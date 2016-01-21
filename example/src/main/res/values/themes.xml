@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style
+            name="Theme.LedgeLine.Example"
+            parent="@style/Theme.LedgeLine.Sdk.Light">
+
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="nextButtonStyle">@style/user_details_next_button_example</item>
+        <item name="userDetailsInputWrapperTheme">@style/Theme.LedgeLine.Example.TextInput</item>
+    </style>
+
+    <style
+            name="Theme.LedgeLine.Example.TextInput"
+            parent="Theme.LedgeLine.Sdk.Light.TextInput">
+
+        <item name="colorControlActivated">@color/primaryDark</item>
+        <item name="colorControlHighlight">@color/primaryDark</item>
+    </style>
+</resources>
