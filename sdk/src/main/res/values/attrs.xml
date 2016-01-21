@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="nextButtonStyle" format="reference" />
+
+    <attr name="userDetailsInputWrapperStyle" format="reference" />
+    <attr name="userDetailsEditTextStyle" format="reference" />
+    <attr name="userDetailsDisclaimerStyle" format="reference" />
+    <attr name="userDetailsTermsStyle" format="reference" />
+</resources>

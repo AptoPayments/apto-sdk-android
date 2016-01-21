@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style
+            name="Theme.Ledge.Line.Sdk.Sdk"
+            parent="@style/Theme.AppCompat.NoActionBar">
+
+        <item name="nextButtonStyle">@style/user_details_next_button</item>
+
+        <item name="userDetailsInputWrapperStyle">@style/user_details_text_input_base</item>
+        <item name="userDetailsEditTextStyle">@style/user_details_text_input_base</item>
+        <item name="userDetailsDisclaimerStyle">@style/user_details_disclaimer</item>
+        <item name="userDetailsTermsStyle">@style/user_details_terms</item>
+    </style>
+
+    <!-- TODO: Nicer solution? -->
+    <style
+            name="Theme.Ledge.Line.Sdk.Sdk.Light"
+            parent="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <item name="nextButtonStyle">@style/user_details_next_button</item>
+
+        <item name="userDetailsInputWrapperStyle">@style/user_details_text_input_base</item>
+        <item name="userDetailsEditTextStyle">@style/user_details_text_input_base</item>
+        <item name="userDetailsDisclaimerStyle">@style/user_details_disclaimer</item>
+        <item name="userDetailsTermsStyle">@style/user_details_terms</item>
+    </style>
+</resources>
