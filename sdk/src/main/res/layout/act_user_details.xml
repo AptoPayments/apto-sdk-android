@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:theme="@style/Theme.Ledge.Line.Sdk.Sdk"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,6 +16,7 @@
     <android.support.design.widget.TextInputLayout
             android:id="@+id/til_birthday"
             style="?attr/userDetailsInputWrapperStyle"
+            android:theme="?attr/userDetailsInputWrapperTheme"
             android:layout_below="@+id/abl_toolbar_wrapper"
             android:nextFocusUp="@id/til_birthday"
             android:nextFocusLeft="@id/til_birthday">
@@ -33,6 +33,7 @@
     <android.support.design.widget.TextInputLayout
             android:id="@+id/til_social_security"
             style="?attr/userDetailsInputWrapperStyle"
+            android:theme="?attr/userDetailsInputWrapperTheme"
             android:layout_below="@+id/til_birthday">
 
         <EditText

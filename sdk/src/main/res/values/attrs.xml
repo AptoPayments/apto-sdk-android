@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="toolbarTheme" format="reference" />
+    <attr name="toolbarPopupTheme" format="reference" />
     <attr name="nextButtonStyle" format="reference" />
 
+    <attr name="userDetailsInputWrapperTheme" format="reference" />
     <attr name="userDetailsInputWrapperStyle" format="reference" />
     <attr name="userDetailsEditTextStyle" format="reference" />
     <attr name="userDetailsDisclaimerStyle" format="reference" />

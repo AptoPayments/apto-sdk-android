@@ -25,6 +25,7 @@
 
         <activity
                 android:name="us.ledge.line.sdk.sdk.activities.UserDetailsActivity"
+                android:theme="@style/Theme.LedgeLine.Sdk"
                 android:label="@string/user_details_label" />
 
     </application>
