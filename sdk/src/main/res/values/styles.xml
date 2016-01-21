@@ -2,40 +2,40 @@
 <resources>
 
     <!-- User details -->
-    <style name="user_details_text_input_base">
+    <style name="llsdk_user_details_text_input_base">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>
     </style>
-    <style name="user_details_text_input_base_light" parent="user_details_text_input_base">
-        <item name="android:textColor">@android:color/black</item>
+    <style name="llsdk_user_details_text_input_base_light" parent="llsdk_user_details_text_input_base">
+        <item name="android:textColor">@color/llsdk_light_text_color</item>
     </style>
 
-    <style name="user_details_disclaimer">
+    <style name="llsdk_user_details_disclaimer">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
     </style>
 
-    <style name="user_details_terms">
+    <style name="llsdk_user_details_terms">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
 
-    <style name="user_details_next_button">
+    <style name="llsdk_user_details_next_button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:background">@android:color/white</item>
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:background">@color/llsdk_dark_text_color</item>
+        <item name="android:textColor">@color/llsdk_light_text_color</item>
     </style>
-    <style name="user_details_next_button_light" parent="user_details_next_button">
-        <item name="android:background">#666</item>
-        <item name="android:textColor">@android:color/white</item>
+    <style name="llsdk_user_details_next_button_light" parent="llsdk_user_details_next_button">
+        <item name="android:background">@color/llsdk_dark_text_color_hint</item>
+        <item name="android:textColor">@color/llsdk_dark_text_color</item>
     </style>
 
 </resources>
