@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ledge Line SDK Example</string>
+
+    <!-- Main -->
+    <string name="main_button_offers_cta">Get loan offers!</string>
+
+    <!-- Offers user details -->
+    <string name="user_details_label">Get offers</string>
+</resources>

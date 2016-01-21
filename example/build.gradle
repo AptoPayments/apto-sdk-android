@@ -1,0 +1,21 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '21.1.2'
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+
+        versionCode = '1'
+        versionName = '0.1'
+        
+        applicationId 'us.ledge.line.sdk.example'
+    }
+
+}
+
+dependencies {
+    compile project(':sdk')
+}
