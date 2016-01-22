@@ -2,23 +2,25 @@ package us.ledge.line.sdk.sdk.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.View;
 import us.ledge.line.sdk.sdk.R;
+import us.ledge.line.sdk.sdk.presenters.UserDetailsPresenter;
+import us.ledge.line.sdk.sdk.views.UserDetailsView;
 
 /**
- * Shows the user details.
+ * Wires up user details MVP pattern.
  * @author Wijnand
  */
 public class UserDetailsActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
+    private UserDetailsView mView;
+    private UserDetailsPresenter mPresenter;
 
     /**
      * Sets up the toolbar.
      */
     private void setupActionBar() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_toolbar);
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(mView.getToolbar());
     }
 
     /**{@inheritDoc} */
@@ -26,7 +28,18 @@ public class UserDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.act_user_details);
+        mView = (UserDetailsView) View.inflate(this, R.layout.act_user_details, null);
+        mPresenter = new UserDetailsPresenter(this);
+        mPresenter.attachView(mView);
+
+        setContentView(mView);
         setupActionBar();
+    }
+
+    /**{@inheritDoc} */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.detachView();
     }
 }

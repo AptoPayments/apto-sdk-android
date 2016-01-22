@@ -36,6 +36,7 @@
     <style name="llsdk_user_details_next_button_light" parent="llsdk_user_details_next_button">
         <item name="android:background">@color/llsdk_dark_text_color_hint</item>
         <item name="android:textColor">@color/llsdk_dark_text_color</item>
+        <item name="android:clickable">true</item>
     </style>
 
 </resources>

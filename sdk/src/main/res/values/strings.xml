@@ -2,7 +2,9 @@
 <resources>
     <!-- User Details -->
     <string name="user_details_birthday_hint">Birthday</string>
+    <string name="user_details_birthday_error">Please use \'MM/DD/YY\'.</string>
     <string name="user_details_social_security_hint">Social security #</string>
+    <string name="user_details_social_security_error">Please enter all 10 digits.</string>
     <string name="user_details_disclaimer">Your information is private and secure.</string>
     <string name="user_details_terms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque turpis ut malesuada iaculis. Nulla facilisi. Etiam ultrices augue mi, et egestas nisi faucibus quis.</string>
     <string name="user_details_button_next">NEXT</string>

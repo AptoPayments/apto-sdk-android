@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Generic -->
     <attr name="llsdk_toolbarTheme" format="reference" />
     <attr name="llsdk_toolbarPopupTheme" format="reference" />
     <attr name="llsdk_nextButtonStyle" format="reference" />
 
+    <!-- User details -->
     <attr name="llsdk_userDetails_inputWrapperTheme" format="reference" />
     <attr name="llsdk_userDetails_inputWrapperStyle" format="reference" />
     <attr name="llsdk_userDetails_editTextStyle" format="reference" />

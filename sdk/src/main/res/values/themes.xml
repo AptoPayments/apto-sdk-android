@@ -35,14 +35,14 @@
 
     <style
             name="Theme.LedgeLine.Sdk.TextInput"
-            parent="@style/Base.TextAppearance.AppCompat">
+            parent="@style/Widget.Design.TextInputLayout">
 
         <item name="android:textColor">@color/llsdk_dark_text_color</item>
         <item name="android:textColorHint">@color/llsdk_dark_text_color_hint</item>
     </style>
     <style
             name="Theme.LedgeLine.Sdk.Light.TextInput"
-            parent="@style/Base.TextAppearance.AppCompat">
+            parent="@style/Widget.Design.TextInputLayout">
 
         <item name="android:textColor">@color/llsdk_light_text_color</item>
         <item name="android:textColorHint">@color/llsdk_dark_text_color_hint</item>
