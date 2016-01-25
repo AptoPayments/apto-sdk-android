@@ -17,10 +17,10 @@ public class UserDetailsActivity extends AppCompatActivity {
     private UserDetailsPresenter mPresenter;
 
     /**
-     * Sets up the toolbar.
+     * @return New presenter instance.
      */
-    private void setupActionBar() {
-        setSupportActionBar(mView.getToolbar());
+    protected UserDetailsPresenter getPresenter() {
+        return new UserDetailsPresenter(this);
     }
 
     /**{@inheritDoc} */
@@ -29,11 +29,10 @@ public class UserDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mView = (UserDetailsView) View.inflate(this, R.layout.act_user_details, null);
-        mPresenter = new UserDetailsPresenter(this);
-        mPresenter.attachView(mView);
-
         setContentView(mView);
-        setupActionBar();
+
+        mPresenter = getPresenter();
+        mPresenter.attachView(mView);
     }
 
     /**{@inheritDoc} */

@@ -1,7 +1,8 @@
 package us.ledge.line.sdk.sdk.presenters;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.DatePicker;
 import us.ledge.line.sdk.sdk.fragments.DatePickerFragment;
 import us.ledge.line.sdk.sdk.models.UserDetailsModel;
@@ -13,14 +14,15 @@ import us.ledge.line.sdk.sdk.views.UserDetailsView;
  */
 public class UserDetailsPresenter
         extends BasePresenter<UserDetailsView, UserDetailsModel>
-        implements Presenter<UserDetailsView, UserDetailsModel>, UserDetailsView.ViewListener, DatePickerDialog.OnDateSetListener {
+        implements Presenter<UserDetailsView, UserDetailsModel>, UserDetailsView.ViewListener,
+        DatePickerDialog.OnDateSetListener {
 
-    private final Activity mActivity;
+    private final AppCompatActivity mActivity;
 
     /**
      * Creates a new {@link UserDetailsPresenter} instance.
      */
-    public UserDetailsPresenter(Activity activity) {
+    public UserDetailsPresenter(AppCompatActivity activity) {
         super();
 
         mActivity = activity;
@@ -34,11 +36,24 @@ public class UserDetailsPresenter
         mModel = new UserDetailsModel(mActivity);
     }
 
+    /**
+     * Sets up the toolbar.
+     */
+    protected void setupToolbar() {
+        mActivity.setSupportActionBar(mView.getToolbar());
+
+        ActionBar actionBar = mActivity.getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
     /** {@inheritDoc} */
     @Override
     public void attachView(UserDetailsView view) {
         super.attachView(view);
         mView.setListener(this);
+        setupToolbar();
     }
 
     /** {@inheritDoc} */
