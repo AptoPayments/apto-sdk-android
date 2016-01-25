@@ -44,7 +44,11 @@ public class UserDetailsModel implements Model {
      * @param dayOfMonth Day of birth.
      */
     public void setBirthday(int year, int monthOfYear, int dayOfMonth) {
-        mBirthday = new GregorianCalendar(year, monthOfYear, dayOfMonth).getTime();
+        try {
+            mBirthday = new GregorianCalendar(year, monthOfYear, dayOfMonth).getTime();
+        } catch (IllegalArgumentException iae) {
+            mBirthday = null;
+        }
     }
 
     /**
