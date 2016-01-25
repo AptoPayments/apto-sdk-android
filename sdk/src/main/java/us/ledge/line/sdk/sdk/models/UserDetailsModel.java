@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import us.ledge.line.sdk.sdk.R;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Concrete {@link Model} for the user details screen.
@@ -37,11 +38,13 @@ public class UserDetailsModel implements Model {
     }
 
     /**
-     * Tries to store the birthday based on a raw String.
-     * @param birthday Raw birthday.
+     * Stores the birthday.
+     * @param year Year of birth.
+     * @param monthOfYear Month of birth.
+     * @param dayOfMonth Day of birth.
      */
-    public void setBirthday(String birthday) {
-        // TODO
+    public void setBirthday(int year, int monthOfYear, int dayOfMonth) {
+        mBirthday = new GregorianCalendar(year, monthOfYear, dayOfMonth).getTime();
     }
 
     /**

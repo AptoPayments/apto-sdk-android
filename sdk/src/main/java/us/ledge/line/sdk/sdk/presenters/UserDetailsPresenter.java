@@ -1,6 +1,9 @@
 package us.ledge.line.sdk.sdk.presenters;
 
-import android.content.Context;
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.widget.DatePicker;
+import us.ledge.line.sdk.sdk.fragments.DatePickerFragment;
 import us.ledge.line.sdk.sdk.models.UserDetailsModel;
 import us.ledge.line.sdk.sdk.views.UserDetailsView;
 
@@ -10,17 +13,17 @@ import us.ledge.line.sdk.sdk.views.UserDetailsView;
  */
 public class UserDetailsPresenter
         extends BasePresenter<UserDetailsView, UserDetailsModel>
-        implements Presenter<UserDetailsView, UserDetailsModel>, UserDetailsView.ViewListener {
+        implements Presenter<UserDetailsView, UserDetailsModel>, UserDetailsView.ViewListener, DatePickerDialog.OnDateSetListener {
 
-    private final Context mContext;
+    private final Activity mActivity;
 
     /**
      * Creates a new {@link UserDetailsPresenter} instance.
      */
-    public UserDetailsPresenter(Context context) {
+    public UserDetailsPresenter(Activity activity) {
         super();
 
-        mContext = context;
+        mActivity = activity;
         init();
     }
 
@@ -28,7 +31,7 @@ public class UserDetailsPresenter
      * Initializes this class.
      */
     private void init() {
-        mModel = new UserDetailsModel(mContext);
+        mModel = new UserDetailsModel(mActivity);
     }
 
     /** {@inheritDoc} */
@@ -47,12 +50,26 @@ public class UserDetailsPresenter
 
     /** {@inheritDoc} */
     @Override
+    public void birthdayClickHandler() {
+        DatePickerFragment fragment = new DatePickerFragment();
+        fragment.setListener(this);
+        fragment.show(mActivity.getFragmentManager(), DatePickerFragment.TAG);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void nextClickHandler() {
         // Validate input.
-        mModel.setBirthday(mView.getBirthday());
         mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
 
         mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
         mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        mModel.setBirthday(year, monthOfYear, dayOfMonth);
+        mView.setBirthday(String.format("%02d/%02d/%02d", monthOfYear + 1, dayOfMonth, year));
     }
 }

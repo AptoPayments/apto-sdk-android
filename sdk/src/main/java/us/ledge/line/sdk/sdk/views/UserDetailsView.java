@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import us.ledge.line.sdk.sdk.R;
@@ -22,6 +23,11 @@ public class UserDetailsView extends RelativeLayout implements View.OnClickListe
     public interface ViewListener {
 
         /**
+         * Called when the birthday input field has been pressed.
+         */
+        void birthdayClickHandler();
+
+        /**
          * Called when the "next" button has been pressed.
          */
         void nextClickHandler();
@@ -30,6 +36,7 @@ public class UserDetailsView extends RelativeLayout implements View.OnClickListe
     private ViewListener mListener;
     private Toolbar mToolbar;
 
+    private Button mBirthdayButton;
     private TextInputLayout mBirthdayWrapper;
     private AppCompatEditText mBirthdayField;
 
@@ -61,6 +68,7 @@ public class UserDetailsView extends RelativeLayout implements View.OnClickListe
     private void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_toolbar);
 
+        mBirthdayButton = (Button) findViewById(R.id.btn_birthday);
         mBirthdayWrapper = (TextInputLayout) findViewById(R.id.til_birthday);
         mBirthdayField = (AppCompatEditText) findViewById(R.id.et_birthday);
 
@@ -74,6 +82,7 @@ public class UserDetailsView extends RelativeLayout implements View.OnClickListe
      * Sets up all required listeners.
      */
     private void setupListeners() {
+        mBirthdayButton.setOnClickListener(this);
         mNextButton.setOnClickListener(this);
     }
 
@@ -107,7 +116,10 @@ public class UserDetailsView extends RelativeLayout implements View.OnClickListe
             return;
         }
 
-        if (view.getId() == R.id.tv_next_bttn) {
+        int id = view.getId();
+        if (id == R.id.btn_birthday) {
+            mListener.birthdayClickHandler();
+        } else if (id == R.id.tv_next_bttn) {
             mListener.nextClickHandler();
         }
     }
@@ -128,17 +140,18 @@ public class UserDetailsView extends RelativeLayout implements View.OnClickListe
     }
 
     /**
-     * @return Birthday.
-     */
-    public String getBirthday() {
-        return mBirthdayField.getText().toString();
-    }
-
-    /**
      * @return Social security number.
      */
     public String getSocialSecurityNumber() {
         return mSocialSecurityField.getText().toString();
+    }
+
+    /**
+     * Shows the user's birthday.
+     * @param birthday Formatted birthday.
+     */
+    public void setBirthday(String birthday) {
+        mBirthdayField.setText(birthday);
     }
 
     /**
