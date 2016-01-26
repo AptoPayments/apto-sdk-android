@@ -12,7 +12,7 @@ import android.widget.TextView;
 import us.ledge.line.sdk.sdk.R;
 
 /**
- * Displays the user input screen.
+ * Displays the user details screen.
  * @author Wijnand
  */
 public class UserDetailsView extends RelativeLayout implements View.OnClickListener {

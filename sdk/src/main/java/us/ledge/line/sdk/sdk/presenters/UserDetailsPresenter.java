@@ -13,8 +13,8 @@ import us.ledge.line.sdk.sdk.views.UserDetailsView;
  * @author Wijnand
  */
 public class UserDetailsPresenter
-        extends BasePresenter<UserDetailsView, UserDetailsModel>
-        implements Presenter<UserDetailsView, UserDetailsModel>, UserDetailsView.ViewListener,
+        extends BasePresenter<UserDetailsModel, UserDetailsView>
+        implements Presenter<UserDetailsModel, UserDetailsView>, UserDetailsView.ViewListener,
         DatePickerDialog.OnDateSetListener {
 
     private final AppCompatActivity mActivity;
@@ -26,14 +26,7 @@ public class UserDetailsPresenter
         super();
 
         mActivity = activity;
-        init();
-    }
-
-    /**
-     * Initializes this class.
-     */
-    private void init() {
-        mModel = new UserDetailsModel(mActivity);
+        mModel.setContext(mActivity);
     }
 
     /**
@@ -46,6 +39,12 @@ public class UserDetailsPresenter
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public UserDetailsModel createModel() {
+        return new UserDetailsModel();
     }
 
     /** {@inheritDoc} */

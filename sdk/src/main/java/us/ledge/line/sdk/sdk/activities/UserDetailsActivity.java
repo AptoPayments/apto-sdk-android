@@ -1,44 +1,26 @@
 package us.ledge.line.sdk.sdk.activities;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import us.ledge.line.sdk.sdk.R;
+import us.ledge.line.sdk.sdk.models.UserDetailsModel;
 import us.ledge.line.sdk.sdk.presenters.UserDetailsPresenter;
 import us.ledge.line.sdk.sdk.views.UserDetailsView;
 
 /**
- * Wires up user details MVP pattern.
+ * Wires up the MVP pattern for the user details screen.
  * @author Wijnand
  */
-public class UserDetailsActivity extends AppCompatActivity {
+public class UserDetailsActivity extends MvpActivity<UserDetailsModel, UserDetailsView, UserDetailsPresenter> {
 
-    private UserDetailsView mView;
-    private UserDetailsPresenter mPresenter;
+    /** {@inheritDoc} */
+    @Override
+    protected UserDetailsView createView() {
+        return (UserDetailsView) View.inflate(this, R.layout.act_user_details, null);
+    }
 
-    /**
-     * @return New presenter instance.
-     */
-    protected UserDetailsPresenter getPresenter() {
+    /** {@inheritDoc} */
+    @Override
+    protected UserDetailsPresenter createPresenter() {
         return new UserDetailsPresenter(this);
-    }
-
-    /**{@inheritDoc} */
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        mView = (UserDetailsView) View.inflate(this, R.layout.act_user_details, null);
-        setContentView(mView);
-
-        mPresenter = getPresenter();
-        mPresenter.attachView(mView);
-    }
-
-    /**{@inheritDoc} */
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mPresenter.detachView();
     }
 }

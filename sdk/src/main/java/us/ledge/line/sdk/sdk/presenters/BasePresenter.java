@@ -5,12 +5,31 @@ import us.ledge.line.sdk.sdk.models.Model;
 
 /**
  * Basic {@link Presenter} implementation.
+ *
+ * @param <M> {@link Model} type.
+ * @param <V> {@link View} type.
+ *
  * @author Wijnand
  */
-public class BasePresenter<V extends View, M extends Model> implements Presenter<V, M> {
+public abstract class BasePresenter<M extends Model, V extends View> implements Presenter<M, V> {
 
-    protected V mView;
     protected M mModel;
+    protected V mView;
+
+    /**
+     * Creates a new {@link BasePresenter} instance.
+     */
+    public BasePresenter() {
+        init();
+    }
+
+    /**
+     * Initializes this class.
+     */
+    protected void init() {
+        mModel = createModel();
+        mView = null;
+    }
 
     /** {@inheritDoc} */
     @Override

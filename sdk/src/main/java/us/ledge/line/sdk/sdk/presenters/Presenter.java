@@ -5,9 +5,18 @@ import us.ledge.line.sdk.sdk.models.Model;
 
 /**
  * Presenter in the MVP pattern.
+ *
+ * @param <V> {@link View} type.
+ * @param <M> {@link Model} type.
+ *
  * @author Wijnand
  */
-public interface Presenter<V extends View, M extends Model> {
+public interface Presenter<M extends Model, V extends View> {
+
+    /**
+     * @return A new {@link Model} instance.
+     */
+    M createModel();
 
     /**
      * Attaches a new {@link View} to this {@link Presenter}.

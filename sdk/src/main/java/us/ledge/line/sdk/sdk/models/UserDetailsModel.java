@@ -15,17 +15,14 @@ public class UserDetailsModel implements Model {
 
     private static final int EXPECTED_SSN_LENGTH = 10;
 
-    private final Context mContext;
-
+    private Context mContext;
     private Date mBirthday;
     private long mSocialSecurityNumber;
 
     /**
      * Creates a new {@link UserDetailsModel} instance.
-     * @param context Context used to fetch resources.
      */
-    public UserDetailsModel(Context context) {
-        mContext = context;
+    public UserDetailsModel() {
         init();
     }
 
@@ -33,8 +30,17 @@ public class UserDetailsModel implements Model {
      * Initializes this class.
      */
     private void init() {
+        mContext = null;
         mBirthday = null;
         mSocialSecurityNumber = -1;
+    }
+
+    /**
+     * Stores a new {@link Context}.
+     * @param context Context used to fetch resources.
+     */
+    public void setContext(Context context) {
+        mContext = context;
     }
 
     /**
