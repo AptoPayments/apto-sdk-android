@@ -15,7 +15,6 @@ public class UserDetailsModel implements Model {
 
     private static final int EXPECTED_SSN_LENGTH = 10;
 
-    private Context mContext;
     private Date mBirthday;
     private long mSocialSecurityNumber;
 
@@ -30,17 +29,8 @@ public class UserDetailsModel implements Model {
      * Initializes this class.
      */
     private void init() {
-        mContext = null;
         mBirthday = null;
         mSocialSecurityNumber = -1;
-    }
-
-    /**
-     * Stores a new {@link Context}.
-     * @param context Context used to fetch resources.
-     */
-    public void setContext(Context context) {
-        mContext = context;
     }
 
     /**
@@ -77,15 +67,15 @@ public class UserDetailsModel implements Model {
     /**
      * @return Error message to show when an incorrect birthday has been entered.
      */
-    public String getBirthdayErrorString() {
-        return mContext.getString(R.string.user_details_birthday_error);
+    public int getBirthdayErrorString() {
+        return R.string.user_details_birthday_error;
     }
 
     /**
      * @return Error message to show when an incorrect SSN has been entered.
      */
-    public String getSsnErrorString() {
-        return mContext.getString(R.string.user_details_social_security_error);
+    public int getSsnErrorString() {
+        return R.string.user_details_social_security_error;
     }
 
     /**

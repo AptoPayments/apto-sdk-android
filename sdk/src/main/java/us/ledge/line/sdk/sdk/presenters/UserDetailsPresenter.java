@@ -24,9 +24,7 @@ public class UserDetailsPresenter
      */
     public UserDetailsPresenter(AppCompatActivity activity) {
         super();
-
         mActivity = activity;
-        mModel.setContext(mActivity);
     }
 
     /**

@@ -90,11 +90,11 @@ public class UserDetailsView extends RelativeLayout implements View.OnClickListe
      * Updates an error display.
      * @param wrapper The {@link TextInputLayout} to update.
      * @param show Whether the error should be shown.
-     * @param errorMessage Error message.
+     * @param errorMessageId Error message resource ID.
      */
-    private void updateErrorDisplay(TextInputLayout wrapper, boolean show, String errorMessage) {
+    private void updateErrorDisplay(TextInputLayout wrapper, boolean show, int errorMessageId) {
         if (show) {
-            wrapper.setError(errorMessage);
+            wrapper.setError(getResources().getString(errorMessageId));
         } else {
             wrapper.setError(null);
             wrapper.setErrorEnabled(false);
@@ -157,18 +157,18 @@ public class UserDetailsView extends RelativeLayout implements View.OnClickListe
     /**
      * Updates the birthday field error display.
      * @param show Whether the error should be shown.
-     * @param errorMessage Error message.
+     * @param errorMessageId Error message resource ID.
      */
-    public void updateBirthdayError(boolean show, String errorMessage) {
-        updateErrorDisplay(mBirthdayWrapper, show, errorMessage);
+    public void updateBirthdayError(boolean show, int errorMessageId) {
+        updateErrorDisplay(mBirthdayWrapper, show, errorMessageId);
     }
 
     /**
      * Updates the SSN field error display.
      * @param show Whether the error should be shown.
-     * @param errorMessage Error message.
+     * @param errorMessageId Error message resource ID.
      */
-    public void updateSocialSecurityError(boolean show, String errorMessage) {
-        updateErrorDisplay(mSocialSecurityWrapper, show, errorMessage);
+    public void updateSocialSecurityError(boolean show, int errorMessageId) {
+        updateErrorDisplay(mSocialSecurityWrapper, show, errorMessageId);
     }
 }
