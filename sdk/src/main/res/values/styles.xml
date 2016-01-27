@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Generic -->
+    <style name="llsdk_user_data_entry_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_below">@+id/abl_toolbar_wrapper</item>
+        <item name="android:layout_above">@+id/tv_next_bttn</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
     <!-- ID Verification -->
     <style name="llsdk_id_verification_text_input_base">
         <item name="android:layout_width">match_parent</item>

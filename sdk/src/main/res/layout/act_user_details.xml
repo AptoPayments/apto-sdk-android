@@ -13,65 +13,70 @@
             android:focusable="true"
             android:focusableInTouchMode="true" />
 
-    <RelativeLayout
-            android:id="@+id/rl_birthday_holder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/abl_toolbar_wrapper">
+    <RelativeLayout style="?attr/llsdk_dataContainerStyle">
 
-        <Button
-                android:id="@+id/btn_birthday"
+        <RelativeLayout
+                android:id="@+id/rl_birthday_holder"
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_alignTop="@+id/til_birthday"
-                android:layout_alignBottom="@+id/til_birthday"
-                android:background="@android:color/transparent" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/abl_toolbar_wrapper">
+
+            <Button
+                    android:id="@+id/btn_birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_alignTop="@+id/til_birthday"
+                    android:layout_alignBottom="@+id/til_birthday"
+                    android:background="@android:color/transparent" />
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_birthday"
+                    style="?attr/llsdk_idVerification_inputWrapperStyle"
+                    android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
+                    android:nextFocusUp="@id/til_birthday"
+                    android:nextFocusLeft="@id/til_birthday">
+
+                <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/et_birthday"
+                        style="?attr/llsdk_idVerification_editTextStyle"
+                        android:inputType="date"
+                        android:singleLine="true"
+                        android:hint="@string/id_verification_birthday_hint" />
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
 
         <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_birthday"
+                android:id="@+id/til_social_security"
                 style="?attr/llsdk_idVerification_inputWrapperStyle"
                 android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
-                android:nextFocusUp="@id/til_birthday"
-                android:nextFocusLeft="@id/til_birthday">
+                android:layout_below="@+id/rl_birthday_holder">
 
             <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/et_birthday"
+                    android:id="@+id/et_social_security"
                     style="?attr/llsdk_idVerification_editTextStyle"
-                    android:inputType="date"
+                    android:inputType="numberSigned"
+                    android:maxLength="10"
                     android:singleLine="true"
-                    android:hint="@string/id_verification_birthday_hint" />
+                    android:hint="@string/id_verification_social_security_hint" />
 
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+                style="?attr/llsdk_idVerification_disclaimerStyle"
+                android:layout_below="@+id/til_social_security"
+                android:text="@string/id_verification_disclaimer" />
+
+        <TextView
+                style="?attr/llsdk_idVerification_termsStyle"
+                android:layout_alignParentBottom="true"
+                android:text="@string/id_verification_terms" />
+
     </RelativeLayout>
-
-    <android.support.design.widget.TextInputLayout
-            android:id="@+id/til_social_security"
-            style="?attr/llsdk_idVerification_inputWrapperStyle"
-            android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
-            android:layout_below="@+id/rl_birthday_holder">
-
-        <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/et_social_security"
-                style="?attr/llsdk_idVerification_editTextStyle"
-                android:inputType="numberSigned"
-                android:maxLength="10"
-                android:singleLine="true"
-                android:hint="@string/id_verification_social_security_hint" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <TextView
-            style="?attr/llsdk_idVerification_disclaimerStyle"
-            android:layout_below="@+id/til_social_security"
-            android:text="@string/id_verification_disclaimer" />
-
-    <TextView
-            style="?attr/llsdk_idVerification_termsStyle"
-            android:layout_above="@+id/tv_next_bttn"
-            android:text="@string/id_verification_terms" />
 
     <TextView
             android:id="@+id/tv_next_bttn"
             style="?attr/llsdk_nextButtonStyle"
             android:text="@string/id_verification_button_next" />
+
 </us.ledge.line.sdk.sdk.views.userdata.IdentityVerificationView>

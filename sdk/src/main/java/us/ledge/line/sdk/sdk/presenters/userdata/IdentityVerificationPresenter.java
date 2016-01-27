@@ -36,7 +36,6 @@ public class IdentityVerificationPresenter
     public void attachView(IdentityVerificationView view) {
         super.attachView(view);
         mView.setListener(this);
-        setupToolbar();
     }
 
     /** {@inheritDoc} */

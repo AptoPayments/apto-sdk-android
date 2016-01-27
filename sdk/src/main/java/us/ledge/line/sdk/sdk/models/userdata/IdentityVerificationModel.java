@@ -29,7 +29,7 @@ public class IdentityVerificationModel implements UserDataModel, ActivityModel, 
     /**
      * Initializes this class.
      */
-    private void init() {
+    protected void init() {
         mBirthday = null;
         mSocialSecurityNumber = -1;
     }

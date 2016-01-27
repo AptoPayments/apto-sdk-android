@@ -7,6 +7,7 @@ import android.view.View;
 import us.ledge.line.sdk.example.R;
 import us.ledge.line.sdk.example.views.MainView;
 import us.ledge.line.sdk.sdk.activities.userdata.IdentityVerificationActivity;
+import us.ledge.line.sdk.sdk.activities.userdata.LoanAmountActivity;
 
 /**
  * Main display.

@@ -3,6 +3,7 @@
     <!-- Generic -->
     <attr name="llsdk_toolbarTheme" format="reference" />
     <attr name="llsdk_toolbarPopupTheme" format="reference" />
+    <attr name="llsdk_dataContainerStyle" format="reference" />
     <attr name="llsdk_nextButtonStyle" format="reference" />
 
     <!-- ID Verification -->

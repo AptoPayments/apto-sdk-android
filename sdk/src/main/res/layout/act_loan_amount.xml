@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<us.ledge.line.sdk.sdk.views.userdata.LoanAmountView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/include_toolbar" />
+
+    <!-- Dummy to get focus on start. -->
+    <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+    <RelativeLayout style="?attr/llsdk_dataContainerStyle">
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_loan_amount"
+                style="?attr/llsdk_idVerification_inputWrapperStyle"
+                android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
+                android:nextFocusUp="@id/til_loan_amount"
+                android:nextFocusLeft="@id/til_loan_amount">
+
+            <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/et_loan_amount"
+                    style="?attr/llsdk_idVerification_editTextStyle"
+                    android:inputType="numberSigned"
+                    android:singleLine="true"
+                    android:hint="@string/loan_amount_input_hint" />
+
+        </android.support.design.widget.TextInputLayout>
+    </RelativeLayout>
+
+    <TextView
+            android:id="@+id/tv_next_bttn"
+            style="?attr/llsdk_nextButtonStyle"
+            android:text="@string/loan_amount_button_next" />
+
+</us.ledge.line.sdk.sdk.views.userdata.LoanAmountView>

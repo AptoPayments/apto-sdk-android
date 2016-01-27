@@ -33,5 +33,15 @@
                     android:value="us.ledge.line.sdk.example.activities.MainActivity" />
         </activity>
 
+        <activity
+                android:name="us.ledge.line.sdk.sdk.activities.userdata.LoanAmountActivity"
+                android:parentActivityName="us.ledge.line.sdk.example.activities.MainActivity"
+                android:theme="@style/Theme.LedgeLine.Example">
+
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="us.ledge.line.sdk.example.activities.MainActivity" />
+        </activity>
+
     </application>
 </manifest>

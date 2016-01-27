@@ -3,12 +3,9 @@ package us.ledge.line.sdk.sdk.views.userdata;
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import us.ledge.line.sdk.sdk.R;
 import us.ledge.line.sdk.sdk.views.ViewWithToolbar;
 
@@ -16,26 +13,20 @@ import us.ledge.line.sdk.sdk.views.ViewWithToolbar;
  * Displays the user details screen.
  * @author Wijnand
  */
-public class IdentityVerificationView extends RelativeLayout implements View.OnClickListener, ViewWithToolbar {
+public class IdentityVerificationView
+        extends UserDataView<IdentityVerificationView.ViewListener>
+        implements View.OnClickListener, ViewWithToolbar {
 
     /**
      * Callbacks this View will invoke.
      */
-    public interface ViewListener {
+    public interface ViewListener extends NextButtonListener {
 
         /**
          * Called when the birthday input field has been pressed.
          */
         void birthdayClickHandler();
-
-        /**
-         * Called when the "next" button has been pressed.
-         */
-        void nextClickHandler();
     }
-
-    private ViewListener mListener;
-    private Toolbar mToolbar;
 
     private Button mBirthdayButton;
     private TextInputLayout mBirthdayWrapper;
@@ -44,70 +35,40 @@ public class IdentityVerificationView extends RelativeLayout implements View.OnC
     private TextInputLayout mSocialSecurityWrapper;
     private AppCompatEditText mSocialSecurityField;
 
-    private TextView mNextButton;
-
     /**
-     * @see RelativeLayout#RelativeLayout
-     * @param context See {@link RelativeLayout#RelativeLayout}.
+     * @see UserDataView#UserDataView
+     * @param context See {@link UserDataView#UserDataView}.
      */
     public IdentityVerificationView(Context context) {
         super(context);
     }
 
     /**
-     * @see RelativeLayout#RelativeLayout
-     * @param context See {@link RelativeLayout#RelativeLayout}.
-     * @param attrs See {@link RelativeLayout#RelativeLayout}.
+     * @see UserDataView#UserDataView
+     * @param context See {@link UserDataView#UserDataView}.
+     * @param attrs See {@link UserDataView#UserDataView}.
      */
     public IdentityVerificationView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    /**
-     * Finds all references to child Views.
-     */
-    private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_toolbar);
-
+    /** {@inheritDoc} */
+    @Override
+    protected void findAllViews() {
+        super.findAllViews();
         mBirthdayButton = (Button) findViewById(R.id.btn_birthday);
         mBirthdayWrapper = (TextInputLayout) findViewById(R.id.til_birthday);
         mBirthdayField = (AppCompatEditText) findViewById(R.id.et_birthday);
 
         mSocialSecurityWrapper = (TextInputLayout) findViewById(R.id.til_social_security);
         mSocialSecurityField = (AppCompatEditText) findViewById(R.id.et_social_security);
-
-        mNextButton = (TextView) findViewById(R.id.tv_next_bttn);
-    }
-
-    /**
-     * Sets up all required listeners.
-     */
-    private void setupListeners() {
-        mBirthdayButton.setOnClickListener(this);
-        mNextButton.setOnClickListener(this);
-    }
-
-    /**
-     * Updates an error display.
-     * @param wrapper The {@link TextInputLayout} to update.
-     * @param show Whether the error should be shown.
-     * @param errorMessageId Error message resource ID.
-     */
-    private void updateErrorDisplay(TextInputLayout wrapper, boolean show, int errorMessageId) {
-        if (show) {
-            wrapper.setError(getResources().getString(errorMessageId));
-        } else {
-            wrapper.setError(null);
-            wrapper.setErrorEnabled(false);
-        }
     }
 
     /** {@inheritDoc} */
     @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        findAllViews();
-        setupListeners();
+    protected void setupListeners() {
+        super.setupListeners();
+        mBirthdayButton.setOnClickListener(this);
     }
 
     /** {@inheritDoc} */
@@ -120,23 +81,9 @@ public class IdentityVerificationView extends RelativeLayout implements View.OnC
         int id = view.getId();
         if (id == R.id.btn_birthday) {
             mListener.birthdayClickHandler();
-        } else if (id == R.id.tv_next_bttn) {
-            mListener.nextClickHandler();
+        } else {
+            super.onClick(view);
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Toolbar getToolbar() {
-        return mToolbar;
-    }
-
-    /**
-     * Stores a new {@link ViewListener}.
-     * @param listener New {@link ViewListener}.
-     */
-    public void setListener(ViewListener listener) {
-        mListener = listener;
     }
 
     /**

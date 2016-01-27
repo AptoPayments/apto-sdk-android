@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Loan Amount -->
+    <string name="loan_amount_label">Loan amount</string>
+    <string name="loan_amount_input_hint">Amount</string>
+    <string name="loan_amount_input_error">Minimum loan amount is $1.</string>
+    <string name="loan_amount_button_next">NEXT</string>
+
     <!-- ID Verification -->
     <string name="id_verification_label">ID verification</string>
     <string name="id_verification_birthday_hint">Birthday</string>
