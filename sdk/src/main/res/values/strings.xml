@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- User Details -->
-    <string name="user_details_birthday_hint">Birthday</string>
-    <string name="user_details_birthday_error">Please select a date.</string>
-    <string name="user_details_social_security_hint">Social security #</string>
-    <string name="user_details_social_security_error">Please enter all 10 digits.</string>
-    <string name="user_details_disclaimer">Your information is private and secure.</string>
-    <string name="user_details_terms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque turpis ut malesuada iaculis. Nulla facilisi. Etiam ultrices augue mi, et egestas nisi faucibus quis.</string>
-    <string name="user_details_button_next">NEXT</string>
+    <!-- ID Verification -->
+    <string name="id_verification_label">ID verification</string>
+    <string name="id_verification_birthday_hint">Birthday</string>
+    <string name="id_verification_birthday_error">Please select a date.</string>
+    <string name="id_verification_social_security_hint">Social security #</string>
+    <string name="id_verification_social_security_error">Please enter all 10 digits.</string>
+    <string name="id_verification_disclaimer">Your information is private and secure.</string>
+    <string name="id_verification_terms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque turpis ut malesuada iaculis. Nulla facilisi. Etiam ultrices augue mi, et egestas nisi faucibus quis.</string>
+    <string name="id_verification_button_next">GET OFFERS</string>
 </resources>

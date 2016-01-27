@@ -68,14 +68,14 @@ public class IdentityVerificationModel implements Model {
      * @return Error message to show when an incorrect birthday has been entered.
      */
     public int getBirthdayErrorString() {
-        return R.string.user_details_birthday_error;
+        return R.string.id_verification_birthday_error;
     }
 
     /**
      * @return Error message to show when an incorrect SSN has been entered.
      */
     public int getSsnErrorString() {
-        return R.string.user_details_social_security_error;
+        return R.string.id_verification_social_security_error;
     }
 
     /**

@@ -5,10 +5,10 @@
     <attr name="llsdk_toolbarPopupTheme" format="reference" />
     <attr name="llsdk_nextButtonStyle" format="reference" />
 
-    <!-- User details -->
-    <attr name="llsdk_userDetails_inputWrapperTheme" format="reference" />
-    <attr name="llsdk_userDetails_inputWrapperStyle" format="reference" />
-    <attr name="llsdk_userDetails_editTextStyle" format="reference" />
-    <attr name="llsdk_userDetails_disclaimerStyle" format="reference" />
-    <attr name="llsdk_userDetails_termsStyle" format="reference" />
+    <!-- ID Verification -->
+    <attr name="llsdk_idVerification_inputWrapperTheme" format="reference" />
+    <attr name="llsdk_idVerification_inputWrapperStyle" format="reference" />
+    <attr name="llsdk_idVerification_editTextStyle" format="reference" />
+    <attr name="llsdk_idVerification_disclaimerStyle" format="reference" />
+    <attr name="llsdk_idVerification_termsStyle" format="reference" />
 </resources>

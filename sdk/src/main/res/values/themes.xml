@@ -6,13 +6,13 @@
 
         <item name="llsdk_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="llsdk_toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="llsdk_nextButtonStyle">@style/llsdk_user_details_next_button</item>
+        <item name="llsdk_nextButtonStyle">@style/llsdk_id_verification_next_button</item>
 
-        <item name="llsdk_userDetails_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.TextInput</item>
-        <item name="llsdk_userDetails_inputWrapperStyle">@style/llsdk_user_details_text_input_base</item>
-        <item name="llsdk_userDetails_editTextStyle">@style/llsdk_user_details_text_input_base</item>
-        <item name="llsdk_userDetails_disclaimerStyle">@style/llsdk_user_details_disclaimer</item>
-        <item name="llsdk_userDetails_termsStyle">@style/llsdk_user_details_terms</item>
+        <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.TextInput</item>
+        <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_base</item>
+        <item name="llsdk_idVerification_editTextStyle">@style/llsdk_id_verification_text_input_base</item>
+        <item name="llsdk_idVerification_disclaimerStyle">@style/llsdk_id_verification_disclaimer</item>
+        <item name="llsdk_idVerification_termsStyle">@style/llsdk_id_verification_terms</item>
     </style>
 
     <style
@@ -24,13 +24,13 @@
 
         <item name="llsdk_toolbarTheme">@style/ThemeOverlay.AppCompat.ActionBar</item>
         <item name="llsdk_toolbarPopupTheme">@style/ThemeOverlay.AppCompat</item>
-        <item name="llsdk_nextButtonStyle">@style/llsdk_user_details_next_button_light</item>
+        <item name="llsdk_nextButtonStyle">@style/llsdk_id_verification_next_button_light</item>
 
-        <item name="llsdk_userDetails_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.Light.TextInput</item>
-        <item name="llsdk_userDetails_inputWrapperStyle">@style/llsdk_user_details_text_input_base</item>
-        <item name="llsdk_userDetails_editTextStyle">@style/llsdk_user_details_text_input_base_light</item>
-        <item name="llsdk_userDetails_disclaimerStyle">@style/llsdk_user_details_disclaimer</item>
-        <item name="llsdk_userDetails_termsStyle">@style/llsdk_user_details_terms</item>
+        <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.Light.TextInput</item>
+        <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_base</item>
+        <item name="llsdk_idVerification_editTextStyle">@style/llsdk_id_verification_text_input_base_light</item>
+        <item name="llsdk_idVerification_disclaimerStyle">@style/llsdk_id_verification_disclaimer</item>
+        <item name="llsdk_idVerification_termsStyle">@style/llsdk_id_verification_terms</item>
     </style>
 
     <style

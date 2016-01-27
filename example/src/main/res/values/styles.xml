@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="user_details_next_button_example" parent="llsdk_user_details_next_button_light">
+    <style name="user_details_next_button_example" parent="llsdk_id_verification_next_button_light">
         <item name="android:background">@color/secondary</item>
     </style>
 </resources>

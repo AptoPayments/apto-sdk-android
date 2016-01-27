@@ -4,7 +4,4 @@
 
     <!-- Main -->
     <string name="main_button_offers_cta">Get loan offers!</string>
-
-    <!-- Offers user details -->
-    <string name="user_details_label">Get offers</string>
 </resources>
