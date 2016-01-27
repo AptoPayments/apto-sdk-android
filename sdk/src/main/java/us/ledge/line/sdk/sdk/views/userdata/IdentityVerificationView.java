@@ -10,12 +10,13 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import us.ledge.line.sdk.sdk.R;
+import us.ledge.line.sdk.sdk.views.ViewWithToolbar;
 
 /**
  * Displays the user details screen.
  * @author Wijnand
  */
-public class IdentityVerificationView extends RelativeLayout implements View.OnClickListener {
+public class IdentityVerificationView extends RelativeLayout implements View.OnClickListener, ViewWithToolbar {
 
     /**
      * Callbacks this View will invoke.
@@ -124,19 +125,18 @@ public class IdentityVerificationView extends RelativeLayout implements View.OnC
         }
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public Toolbar getToolbar() {
+        return mToolbar;
+    }
+
     /**
      * Stores a new {@link ViewListener}.
      * @param listener New {@link ViewListener}.
      */
     public void setListener(ViewListener listener) {
         mListener = listener;
-    }
-
-    /**
-     * @return Toolbar.
-     */
-    public Toolbar getToolbar() {
-        return mToolbar;
     }
 
     /**

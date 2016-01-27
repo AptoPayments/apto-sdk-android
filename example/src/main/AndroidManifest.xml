@@ -26,8 +26,7 @@
         <activity
                 android:name="us.ledge.line.sdk.sdk.activities.userdata.IdentityVerificationActivity"
                 android:parentActivityName="us.ledge.line.sdk.example.activities.MainActivity"
-                android:theme="@style/Theme.LedgeLine.Example"
-                android:label="@string/id_verification_label">
+                android:theme="@style/Theme.LedgeLine.Example">
 
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"

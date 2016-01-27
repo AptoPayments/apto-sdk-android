@@ -11,7 +11,8 @@ import us.ledge.line.sdk.sdk.views.userdata.IdentityVerificationView;
  * Wires up the MVP pattern for the ID verification screen.
  * @author Wijnand
  */
-public class IdentityVerificationActivity extends MvpActivity<IdentityVerificationModel, IdentityVerificationView, IdentityVerificationPresenter> {
+public class IdentityVerificationActivity
+        extends MvpActivity<IdentityVerificationModel, IdentityVerificationView, IdentityVerificationPresenter> {
 
     /** {@inheritDoc} */
     @Override

@@ -1,12 +1,11 @@
 package us.ledge.line.sdk.sdk.presenters.userdata;
 
 import android.app.DatePickerDialog;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.DatePicker;
 import us.ledge.line.sdk.sdk.fragments.DatePickerFragment;
 import us.ledge.line.sdk.sdk.models.userdata.IdentityVerificationModel;
-import us.ledge.line.sdk.sdk.presenters.BasePresenter;
+import us.ledge.line.sdk.sdk.presenters.ActivityPresenter;
 import us.ledge.line.sdk.sdk.presenters.Presenter;
 import us.ledge.line.sdk.sdk.views.userdata.IdentityVerificationView;
 
@@ -15,30 +14,15 @@ import us.ledge.line.sdk.sdk.views.userdata.IdentityVerificationView;
  * @author Wijnand
  */
 public class IdentityVerificationPresenter
-        extends BasePresenter<IdentityVerificationModel, IdentityVerificationView>
+        extends ActivityPresenter<IdentityVerificationModel, IdentityVerificationView>
         implements Presenter<IdentityVerificationModel, IdentityVerificationView>, IdentityVerificationView.ViewListener,
         DatePickerDialog.OnDateSetListener {
-
-    private final AppCompatActivity mActivity;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
      */
     public IdentityVerificationPresenter(AppCompatActivity activity) {
-        super();
-        mActivity = activity;
-    }
-
-    /**
-     * Sets up the toolbar.
-     */
-    protected void setupToolbar() {
-        mActivity.setSupportActionBar(mView.getToolbar());
-
-        ActionBar actionBar = mActivity.getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        super(activity);
     }
 
     /** {@inheritDoc} */
