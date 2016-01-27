@@ -1,4 +1,4 @@
-package us.ledge.line.sdk.sdk.views;
+package us.ledge.line.sdk.sdk.views.userdata;
 
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
@@ -15,7 +15,7 @@ import us.ledge.line.sdk.sdk.R;
  * Displays the user details screen.
  * @author Wijnand
  */
-public class UserDetailsView extends RelativeLayout implements View.OnClickListener {
+public class IdentityVerificationView extends RelativeLayout implements View.OnClickListener {
 
     /**
      * Callbacks this View will invoke.
@@ -49,7 +49,7 @@ public class UserDetailsView extends RelativeLayout implements View.OnClickListe
      * @see RelativeLayout#RelativeLayout
      * @param context See {@link RelativeLayout#RelativeLayout}.
      */
-    public UserDetailsView(Context context) {
+    public IdentityVerificationView(Context context) {
         super(context);
     }
 
@@ -58,7 +58,7 @@ public class UserDetailsView extends RelativeLayout implements View.OnClickListe
      * @param context See {@link RelativeLayout#RelativeLayout}.
      * @param attrs See {@link RelativeLayout#RelativeLayout}.
      */
-    public UserDetailsView(Context context, AttributeSet attrs) {
+    public IdentityVerificationView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

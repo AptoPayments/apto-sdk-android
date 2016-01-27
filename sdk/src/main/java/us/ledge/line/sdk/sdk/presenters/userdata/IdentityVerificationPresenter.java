@@ -1,28 +1,30 @@
-package us.ledge.line.sdk.sdk.presenters;
+package us.ledge.line.sdk.sdk.presenters.userdata;
 
 import android.app.DatePickerDialog;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.DatePicker;
 import us.ledge.line.sdk.sdk.fragments.DatePickerFragment;
-import us.ledge.line.sdk.sdk.models.UserDetailsModel;
-import us.ledge.line.sdk.sdk.views.UserDetailsView;
+import us.ledge.line.sdk.sdk.models.userdata.IdentityVerificationModel;
+import us.ledge.line.sdk.sdk.presenters.BasePresenter;
+import us.ledge.line.sdk.sdk.presenters.Presenter;
+import us.ledge.line.sdk.sdk.views.userdata.IdentityVerificationView;
 
 /**
- * Concrete {@link Presenter} for the user details screen.
+ * Concrete {@link Presenter} for the ID verification screen.
  * @author Wijnand
  */
-public class UserDetailsPresenter
-        extends BasePresenter<UserDetailsModel, UserDetailsView>
-        implements Presenter<UserDetailsModel, UserDetailsView>, UserDetailsView.ViewListener,
+public class IdentityVerificationPresenter
+        extends BasePresenter<IdentityVerificationModel, IdentityVerificationView>
+        implements Presenter<IdentityVerificationModel, IdentityVerificationView>, IdentityVerificationView.ViewListener,
         DatePickerDialog.OnDateSetListener {
 
     private final AppCompatActivity mActivity;
 
     /**
-     * Creates a new {@link UserDetailsPresenter} instance.
+     * Creates a new {@link IdentityVerificationPresenter} instance.
      */
-    public UserDetailsPresenter(AppCompatActivity activity) {
+    public IdentityVerificationPresenter(AppCompatActivity activity) {
         super();
         mActivity = activity;
     }
@@ -41,13 +43,13 @@ public class UserDetailsPresenter
 
     /** {@inheritDoc} */
     @Override
-    public UserDetailsModel createModel() {
-        return new UserDetailsModel();
+    public IdentityVerificationModel createModel() {
+        return new IdentityVerificationModel();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void attachView(UserDetailsView view) {
+    public void attachView(IdentityVerificationView view) {
         super.attachView(view);
         mView.setListener(this);
         setupToolbar();

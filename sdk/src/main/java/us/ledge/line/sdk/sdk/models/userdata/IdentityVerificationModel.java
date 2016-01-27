@@ -1,17 +1,17 @@
-package us.ledge.line.sdk.sdk.models;
+package us.ledge.line.sdk.sdk.models.userdata;
 
-import android.content.Context;
 import android.text.TextUtils;
 import us.ledge.line.sdk.sdk.R;
+import us.ledge.line.sdk.sdk.models.Model;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * Concrete {@link Model} for the user details screen.
+ * Concrete {@link Model} for the ID verification screen.
  * @author Wijnand
  */
-public class UserDetailsModel implements Model {
+public class IdentityVerificationModel implements Model {
 
     private static final int EXPECTED_SSN_LENGTH = 10;
 
@@ -19,9 +19,9 @@ public class UserDetailsModel implements Model {
     private long mSocialSecurityNumber;
 
     /**
-     * Creates a new {@link UserDetailsModel} instance.
+     * Creates a new {@link IdentityVerificationModel} instance.
      */
-    public UserDetailsModel() {
+    public IdentityVerificationModel() {
         init();
     }
 
