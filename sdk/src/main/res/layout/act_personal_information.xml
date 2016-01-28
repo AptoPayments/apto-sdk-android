@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<us.ledge.line.sdk.sdk.views.userdata.PersonalInformationView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/include_toolbar" />
+
+    <!-- Dummy to get focus on start. -->
+    <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/abl_toolbar_wrapper"
+            android:layout_above="@+id/tv_next_bttn">
+
+        <LinearLayout
+                style="?attr/llsdk_dataContainerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_first_name"
+                    style="?attr/llsdk_idVerification_inputWrapperStyle"
+                    android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
+                    android:nextFocusUp="@id/til_first_name"
+                    android:nextFocusLeft="@id/til_first_name">
+
+                <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/et_first_name"
+                        style="?attr/llsdk_idVerification_editTextStyle"
+                        android:inputType="textPersonName"
+                        android:singleLine="true"
+                        android:hint="@string/personal_info_first_name_hint" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_last_name"
+                    style="?attr/llsdk_idVerification_inputWrapperStyle"
+                    android:theme="?attr/llsdk_idVerification_inputWrapperTheme">
+
+                <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/et_last_name"
+                        style="?attr/llsdk_idVerification_editTextStyle"
+                        android:inputType="textPersonName"
+                        android:singleLine="true"
+                        android:hint="@string/personal_info_last_name_hint" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_email"
+                    style="?attr/llsdk_idVerification_inputWrapperStyle"
+                    android:theme="?attr/llsdk_idVerification_inputWrapperTheme">
+
+                <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/et_email"
+                        style="?attr/llsdk_idVerification_editTextStyle"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:hint="@string/personal_info_email_hint" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_phone"
+                    style="?attr/llsdk_idVerification_inputWrapperStyle"
+                    android:theme="?attr/llsdk_idVerification_inputWrapperTheme">
+
+                <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/et_phone"
+                        style="?attr/llsdk_idVerification_editTextStyle"
+                        android:inputType="numberSigned"
+                        android:singleLine="true"
+                        android:hint="@string/personal_info_phone_hint" />
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+            android:id="@+id/tv_next_bttn"
+            style="?attr/llsdk_nextButtonStyle"
+            android:text="@string/loan_amount_button_next" />
+
+</us.ledge.line.sdk.sdk.views.userdata.PersonalInformationView>

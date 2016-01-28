@@ -6,6 +6,17 @@
     <string name="loan_amount_input_error">Minimum loan amount is $1.</string>
     <string name="loan_amount_button_next">NEXT</string>
 
+    <!-- Personal Information -->
+    <string name="personal_info_label">Personal info</string>
+    <string name="personal_info_first_name_hint">First name</string>
+    <string name="personal_info_first_name_error">Please enter your first name.</string>
+    <string name="personal_info_last_name_hint">Last name</string>
+    <string name="personal_info_last_name_error">Please enter your last name.</string>
+    <string name="personal_info_email_hint">Email</string>
+    <string name="personal_info_email_error">Please enter a valid email address.</string>
+    <string name="personal_info_phone_hint">Phone</string>
+    <string name="personal_info_phone_error">Please enter a valid phone number.</string>
+
     <!-- ID Verification -->
     <string name="id_verification_label">ID verification</string>
     <string name="id_verification_birthday_hint">Birthday</string>
