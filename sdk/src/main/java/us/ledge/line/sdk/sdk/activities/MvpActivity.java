@@ -2,9 +2,13 @@ package us.ledge.line.sdk.sdk.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
+import us.ledge.line.sdk.sdk.models.ActivityModel;
 import us.ledge.line.sdk.sdk.models.Model;
+import us.ledge.line.sdk.sdk.presenters.ActivityPresenter;
 import us.ledge.line.sdk.sdk.presenters.Presenter;
+import us.ledge.line.sdk.sdk.views.ViewWithToolbar;
 
 /**
  * Generic MVP Activity, wires up the MVP parts.
@@ -15,7 +19,7 @@ import us.ledge.line.sdk.sdk.presenters.Presenter;
  *
  * @author Wijnand
  */
-public abstract class MvpActivity<M extends Model, V extends View, P extends Presenter<M, V>>
+public abstract class MvpActivity<M extends ActivityModel, V extends View & ViewWithToolbar, P extends ActivityPresenter<M, V>>
         extends AppCompatActivity {
 
     protected V mView;
@@ -55,5 +59,27 @@ public abstract class MvpActivity<M extends Model, V extends View, P extends Pre
     protected void onDestroy() {
         super.onDestroy();
         mPresenter.detachView();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onBackPressed() {
+        mPresenter.startPreviousActivity();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        boolean handled = true;
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mPresenter.startPreviousActivity();
+                break;
+            default:
+                handled = false;
+        }
+
+        return handled || super.onOptionsItemSelected(item);
     }
 }

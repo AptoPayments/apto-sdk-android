@@ -2,14 +2,15 @@ package us.ledge.line.sdk.sdk.models.userdata;
 
 import android.text.TextUtils;
 import us.ledge.line.sdk.sdk.R;
-import us.ledge.line.sdk.sdk.models.ActivityModel;
+import us.ledge.line.sdk.sdk.activities.userdata.AddressActivity;
+import us.ledge.line.sdk.sdk.activities.userdata.LoanAmountActivity;
 import us.ledge.line.sdk.sdk.models.Model;
 
 /**
  * Concrete {@link Model} for the personal information screen.
  * @author Wijnand
  */
-public class PersonalInformationModel implements ActivityModel, UserDataModel, Model {
+public class PersonalInformationModel implements UserDataModel {
 
     private static final long DEFAULT_PHONE_NUMBER = -1;
     private static final long EXPECTED_PHONE_LENGTH = 10;
@@ -40,6 +41,18 @@ public class PersonalInformationModel implements ActivityModel, UserDataModel, M
     @Override
     public int getActivityTitleResource() {
         return R.string.personal_info_label;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Class getPreviousActivity() {
+        return LoanAmountActivity.class;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Class getNextActivity() {
+        return AddressActivity.class;
     }
 
     /** {@inheritDoc} */

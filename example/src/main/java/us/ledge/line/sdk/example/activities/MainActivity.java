@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import us.ledge.line.sdk.example.R;
 import us.ledge.line.sdk.example.views.MainView;
-import us.ledge.line.sdk.sdk.activities.userdata.IdentityVerificationActivity;
 import us.ledge.line.sdk.sdk.activities.userdata.LoanAmountActivity;
 
 /**
@@ -31,6 +30,6 @@ public class MainActivity extends Activity implements MainView.ViewListener {
     /** {@inheritDoc} */
     @Override
     public void offersPressedHandler() {
-        startActivity(new Intent(this, IdentityVerificationActivity.class));
+        startActivity(new Intent(this, LoanAmountActivity.class));
     }
 }

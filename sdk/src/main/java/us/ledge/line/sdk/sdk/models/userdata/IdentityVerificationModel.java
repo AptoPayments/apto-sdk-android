@@ -2,7 +2,7 @@ package us.ledge.line.sdk.sdk.models.userdata;
 
 import android.text.TextUtils;
 import us.ledge.line.sdk.sdk.R;
-import us.ledge.line.sdk.sdk.models.ActivityModel;
+import us.ledge.line.sdk.sdk.activities.userdata.IncomeActivity;
 import us.ledge.line.sdk.sdk.models.Model;
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
  * Concrete {@link Model} for the ID verification screen.
  * @author Wijnand
  */
-public class IdentityVerificationModel implements UserDataModel, ActivityModel, Model {
+public class IdentityVerificationModel implements UserDataModel {
 
     private static final int EXPECTED_SSN_LENGTH = 10;
 
@@ -38,6 +38,18 @@ public class IdentityVerificationModel implements UserDataModel, ActivityModel, 
     @Override
     public int getActivityTitleResource() {
         return R.string.id_verification_label;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Class getPreviousActivity() {
+        return IncomeActivity.class;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Class getNextActivity() {
+        return null;
     }
 
     /** {@inheritDoc} */

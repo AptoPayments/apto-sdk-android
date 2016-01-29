@@ -1,5 +1,6 @@
 package us.ledge.line.sdk.sdk.presenters;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,14 +24,6 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
         mActivity = activity;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void attachView(V view) {
-        super.attachView(view);
-        mActivity.setTitle(mModel.getActivityTitleResource());
-        setupToolbar();
-    }
-
     /**
      * Sets up the toolbar.
      */
@@ -41,5 +34,40 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    /**
+     * Starts another activity.
+     * @param activity The Activity to start.
+     */
+    protected void startActivity(Class activity) {
+        if (activity != null) {
+            Intent startIntent = new Intent(mActivity, activity);
+            mActivity.startActivity(startIntent);
+        }
+
+        mActivity.finish();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void attachView(V view) {
+        super.attachView(view);
+        mActivity.setTitle(mModel.getActivityTitleResource());
+        setupToolbar();
+    }
+
+    /**
+     * Starts the previous activity.
+     */
+    public void startPreviousActivity() {
+        startActivity(mModel.getPreviousActivity());
+    }
+
+    /**
+     * Starts the next activity.
+     */
+    public void startNextActivity() {
+        startActivity(mModel.getNextActivity());
     }
 }

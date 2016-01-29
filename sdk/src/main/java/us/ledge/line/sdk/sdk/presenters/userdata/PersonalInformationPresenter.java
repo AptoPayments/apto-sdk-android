@@ -3,7 +3,6 @@ package us.ledge.line.sdk.sdk.presenters.userdata;
 import android.support.v7.app.AppCompatActivity;
 import us.ledge.line.sdk.sdk.R;
 import us.ledge.line.sdk.sdk.models.userdata.PersonalInformationModel;
-import us.ledge.line.sdk.sdk.presenters.ActivityPresenter;
 import us.ledge.line.sdk.sdk.presenters.Presenter;
 import us.ledge.line.sdk.sdk.views.userdata.NextButtonListener;
 import us.ledge.line.sdk.sdk.views.userdata.PersonalInformationView;
@@ -13,7 +12,7 @@ import us.ledge.line.sdk.sdk.views.userdata.PersonalInformationView;
  * @author Wijnand
  */
 public class PersonalInformationPresenter
-        extends ActivityPresenter<PersonalInformationModel, PersonalInformationView>
+        extends UserDataPresenter<PersonalInformationModel, PersonalInformationView>
         implements NextButtonListener {
 
     /**
@@ -52,6 +51,8 @@ public class PersonalInformationPresenter
         mView.updateLastNameError(!mModel.hasLastName(), R.string.personal_info_last_name_error);
         mView.updateEmailError(!mModel.hasEmail(), R.string.personal_info_email_error);
         mView.updatePhoneError(!mModel.hasPhone(), R.string.personal_info_phone_error);
+
+        super.nextClickHandler();
     }
 
     /** {@inheritDoc} */

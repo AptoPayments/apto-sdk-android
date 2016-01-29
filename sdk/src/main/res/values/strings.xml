@@ -2,8 +2,7 @@
 <resources>
     <!-- Loan Amount -->
     <string name="loan_amount_label">Loan amount</string>
-    <string name="loan_amount_input_hint">Amount</string>
-    <string name="loan_amount_input_error">Minimum loan amount is $1.</string>
+    <string name="loan_amount_format">$%d</string>
     <string name="loan_amount_button_next">NEXT</string>
 
     <!-- Personal Information -->
@@ -27,6 +26,7 @@
 
     <!-- Income -->
     <string name="income_label">Income</string>
+    <string name="income_format">$%dK</string>
 
     <!-- ID Verification -->
     <string name="id_verification_label">ID verification</string>

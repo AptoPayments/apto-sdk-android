@@ -1,13 +1,12 @@
 package us.ledge.line.sdk.sdk.models.userdata;
 
-import us.ledge.line.sdk.sdk.models.Model;
+import us.ledge.line.sdk.sdk.models.ActivityModel;
 
 /**
- * TODO: Class documentation.
- *
+ * User data input related Model.
  * @author Wijnand
  */
-public interface UserDataModel extends Model {
+public interface UserDataModel extends ActivityModel {
 
     /**
      * @return Whether all data has been set.

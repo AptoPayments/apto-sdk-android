@@ -1,20 +1,19 @@
 package us.ledge.line.sdk.sdk.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import us.ledge.line.sdk.sdk.R;
 import us.ledge.line.sdk.sdk.models.userdata.LoanAmountModel;
-import us.ledge.line.sdk.sdk.presenters.ActivityPresenter;
 import us.ledge.line.sdk.sdk.presenters.Presenter;
 import us.ledge.line.sdk.sdk.views.userdata.LoanAmountView;
-import us.ledge.line.sdk.sdk.views.userdata.NextButtonListener;
 
 /**
  * Concrete {@link Presenter} for the loan amount screen.
  * @author Wijnand
  */
 public class LoanAmountPresenter
-        extends ActivityPresenter<LoanAmountModel, LoanAmountView>
-        implements NextButtonListener {
+        extends UserDataPresenter<LoanAmountModel, LoanAmountView>
+        implements LoanAmountView.ViewListener {
 
     /**
      * Creates a new {@link LoanAmountPresenter} instance.
@@ -34,7 +33,9 @@ public class LoanAmountPresenter
     @Override
     public void attachView(LoanAmountView view) {
         super.attachView(view);
+
         mView.setListener(this);
+        onProgressChanged(null, mView.getAmount(), false);
     }
 
     /** {@inheritDoc} */
@@ -48,6 +49,20 @@ public class LoanAmountPresenter
     @Override
     public void nextClickHandler() {
         mModel.setAmount(mView.getAmount());
-        mView.updateAmountError(!mModel.hasValidAmount(), R.string.loan_amount_input_error);
+        super.nextClickHandler();
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
+        mView.updateAmountText(mActivity.getString(R.string.loan_amount_format, value));
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onStartTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onStopTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
 }

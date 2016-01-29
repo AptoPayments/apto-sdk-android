@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.DatePicker;
 import us.ledge.line.sdk.sdk.fragments.DatePickerFragment;
 import us.ledge.line.sdk.sdk.models.userdata.IdentityVerificationModel;
-import us.ledge.line.sdk.sdk.presenters.ActivityPresenter;
 import us.ledge.line.sdk.sdk.presenters.Presenter;
 import us.ledge.line.sdk.sdk.views.userdata.IdentityVerificationView;
 
@@ -14,7 +13,7 @@ import us.ledge.line.sdk.sdk.views.userdata.IdentityVerificationView;
  * @author Wijnand
  */
 public class IdentityVerificationPresenter
-        extends ActivityPresenter<IdentityVerificationModel, IdentityVerificationView>
+        extends UserDataPresenter<IdentityVerificationModel, IdentityVerificationView>
         implements Presenter<IdentityVerificationModel, IdentityVerificationView>, IdentityVerificationView.ViewListener,
         DatePickerDialog.OnDateSetListener {
 
@@ -61,6 +60,8 @@ public class IdentityVerificationPresenter
 
         mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
         mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
+
+        super.nextClickHandler();
     }
 
     /** {@inheritDoc} */

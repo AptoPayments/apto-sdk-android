@@ -1,15 +1,14 @@
 package us.ledge.line.sdk.sdk.models.userdata;
 
-import android.text.TextUtils;
 import us.ledge.line.sdk.sdk.R;
-import us.ledge.line.sdk.sdk.models.ActivityModel;
+import us.ledge.line.sdk.sdk.activities.userdata.PersonalInformationActivity;
 import us.ledge.line.sdk.sdk.models.Model;
 
 /**
  * Concrete {@link Model} for the loan amount screen.
  * @author Wijnand
  */
-public class LoanAmountModel implements ActivityModel, UserDataModel, Model {
+public class LoanAmountModel implements UserDataModel {
 
     private static final int DEFAULT_AMOUNT = -1;
     private static final int MINIMUM_AMOUNT = 1;
@@ -37,25 +36,28 @@ public class LoanAmountModel implements ActivityModel, UserDataModel, Model {
 
     /** {@inheritDoc} */
     @Override
+    public Class getPreviousActivity() {
+        return null;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Class getNextActivity() {
+        return PersonalInformationActivity.class;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public boolean hasAllData() {
         return hasValidAmount();
     }
 
     /**
-     * Tries to store the loan amount based on a raw String.
-     * @param rawAmount The raw amount.
+     * Stores the loan amount.
+     * @param amount The loan amount.
      */
-    public void setAmount(String rawAmount) {
-        if (TextUtils.isEmpty(rawAmount) || !TextUtils.isDigitsOnly(rawAmount)) {
-            mAmount = DEFAULT_AMOUNT;
-            return;
-        }
-
-        try {
-            mAmount = Integer.parseInt(rawAmount);
-        } catch (NumberFormatException nfe) {
-            mAmount = DEFAULT_AMOUNT;
-        }
+    public void setAmount(int amount) {
+        mAmount = amount;
     }
 
     /**
