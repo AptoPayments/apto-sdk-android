@@ -56,7 +56,7 @@
                     android:id="@+id/et_social_security"
                     style="?attr/llsdk_idVerification_editTextStyle"
                     android:inputType="numberSigned"
-                    android:maxLength="10"
+                    android:maxLength="@integer/ssn_length"
                     android:singleLine="true"
                     android:hint="@string/id_verification_social_security_hint" />
 

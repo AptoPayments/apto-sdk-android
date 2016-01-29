@@ -16,6 +16,9 @@ public class LoanAmountView
         extends UserDataView<LoanAmountView.ViewListener>
         implements ViewWithToolbar, View.OnClickListener {
 
+    /**
+     * Callbacks this View will invoke.
+     */
     public interface ViewListener extends NextButtonListener, DiscreteSeekBar.OnProgressChangeListener { }
 
     private TextView mAmountText;
