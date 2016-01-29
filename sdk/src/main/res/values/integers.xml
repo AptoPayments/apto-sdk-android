@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Address -->
+    <integer name="state_length">2</integer>
+    <integer name="zip_code_length">5</integer>
+
+</resources>
