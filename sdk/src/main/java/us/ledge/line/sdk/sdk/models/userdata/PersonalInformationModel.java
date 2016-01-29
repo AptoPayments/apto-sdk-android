@@ -39,13 +39,13 @@ public class PersonalInformationModel implements ActivityModel, UserDataModel, M
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
-        return R.string.loan_amount_label;
+        return R.string.personal_info_label;
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return false;
+        return hasFirstName() && hasLastName() && hasEmail() && hasPhone();
     }
 
     /**
