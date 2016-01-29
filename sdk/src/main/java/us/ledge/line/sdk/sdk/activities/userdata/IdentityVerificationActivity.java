@@ -17,7 +17,7 @@ public class IdentityVerificationActivity
     /** {@inheritDoc} */
     @Override
     protected IdentityVerificationView createView() {
-        return (IdentityVerificationView) View.inflate(this, R.layout.act_user_details, null);
+        return (IdentityVerificationView) View.inflate(this, R.layout.act_id_verification, null);
     }
 
     /** {@inheritDoc} */
