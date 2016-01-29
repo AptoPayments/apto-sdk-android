@@ -21,4 +21,5 @@ repositories {
 dependencies {
     compile 'com.android.support:appcompat-v7:+'
     compile 'com.android.support:design:+'
+    compile 'org.adw.library:discrete-seekbar:+'
 }

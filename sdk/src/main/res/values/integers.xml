@@ -5,4 +5,9 @@
     <integer name="state_length">2</integer>
     <integer name="zip_code_length">5</integer>
 
+    <!-- Income -->
+    <integer name="min_income">0</integer>
+    <integer name="max_income">250</integer>
+    <integer name="default_income">45</integer>
+
 </resources>

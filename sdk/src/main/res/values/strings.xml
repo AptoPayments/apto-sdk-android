@@ -25,6 +25,9 @@
     <string name="address_state_hint">State</string>
     <string name="address_zip_code_hint">ZIP</string>
 
+    <!-- Income -->
+    <string name="income_label">Income</string>
+
     <!-- ID Verification -->
     <string name="id_verification_label">ID verification</string>
     <string name="id_verification_birthday_hint">Birthday</string>

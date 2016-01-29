@@ -13,7 +13,10 @@ android {
         
         applicationId 'us.ledge.line.sdk.example'
     }
+}
 
+repositories {
+    jcenter()
 }
 
 dependencies {

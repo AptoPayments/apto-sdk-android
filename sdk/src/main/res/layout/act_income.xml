@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<us.ledge.line.sdk.sdk.views.userdata.IncomeView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/include_toolbar" />
+
+    <LinearLayout
+            style="?attr/llsdk_dataContainerStyle"
+            android:orientation="vertical">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="$45K" />
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                app:dsb_min="@integer/min_income"
+                app:dsb_max="@integer/max_income"
+                app:dsb_value="@integer/default_income" />
+
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/tv_next_bttn"
+            style="?attr/llsdk_nextButtonStyle"
+            android:text="@string/loan_amount_button_next" />
+
+</us.ledge.line.sdk.sdk.views.userdata.IncomeView>
