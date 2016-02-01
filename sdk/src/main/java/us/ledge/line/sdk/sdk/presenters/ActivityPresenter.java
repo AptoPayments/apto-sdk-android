@@ -42,11 +42,18 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
      */
     protected void startActivity(Class activity) {
         if (activity != null) {
-            Intent startIntent = new Intent(mActivity, activity);
-            mActivity.startActivity(startIntent);
+            mActivity.startActivity(getStartIntent(activity));
         }
 
         mActivity.finish();
+    }
+
+    /**
+     * @param activity The Activity to start.
+     * @return The {@link Intent} to use to start the next Activity.
+     */
+    protected Intent getStartIntent(Class activity) {
+        return new Intent(mActivity, activity);
     }
 
     /** {@inheritDoc} */

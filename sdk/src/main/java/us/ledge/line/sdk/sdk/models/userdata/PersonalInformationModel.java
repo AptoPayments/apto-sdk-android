@@ -5,12 +5,13 @@ import us.ledge.line.sdk.sdk.R;
 import us.ledge.line.sdk.sdk.activities.userdata.AddressActivity;
 import us.ledge.line.sdk.sdk.activities.userdata.LoanAmountActivity;
 import us.ledge.line.sdk.sdk.models.Model;
+import us.ledge.line.sdk.sdk.vos.UserDataVo;
 
 /**
  * Concrete {@link Model} for the personal information screen.
  * @author Wijnand
  */
-public class PersonalInformationModel implements UserDataModel {
+public class PersonalInformationModel extends AbstractUserDataModel implements UserDataModel {
 
     private static final long DEFAULT_PHONE_NUMBER = -1;
     private static final long EXPECTED_PHONE_LENGTH = 10;
@@ -59,6 +60,17 @@ public class PersonalInformationModel implements UserDataModel {
     @Override
     public boolean hasAllData() {
         return hasFirstName() && hasLastName() && hasEmail() && hasPhone();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setBaseData(UserDataVo base) {
+        super.setBaseData(base);
+
+        mFirstName = base.firstName;
+        mLastName = base.lastName;
+        mEmail = base.emailAddress;
+        mPhone = base.phoneNumber;
     }
 
     /**

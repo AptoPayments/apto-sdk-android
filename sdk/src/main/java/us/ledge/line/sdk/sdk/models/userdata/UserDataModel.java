@@ -1,6 +1,7 @@
 package us.ledge.line.sdk.sdk.models.userdata;
 
 import us.ledge.line.sdk.sdk.models.ActivityModel;
+import us.ledge.line.sdk.sdk.vos.UserDataVo;
 
 /**
  * User data input related Model.
@@ -12,4 +13,15 @@ public interface UserDataModel extends ActivityModel {
      * @return Whether all data has been set.
      */
     boolean hasAllData();
+
+    /**
+     * @return Base data for this Model.
+     */
+    UserDataVo getBaseData();
+
+    /**
+     * Stores the Model's base data.
+     * @param base Base data for this Model.
+     */
+    void setBaseData(UserDataVo base);
 }

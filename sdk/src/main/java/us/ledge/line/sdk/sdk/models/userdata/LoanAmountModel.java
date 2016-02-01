@@ -3,29 +3,20 @@ package us.ledge.line.sdk.sdk.models.userdata;
 import us.ledge.line.sdk.sdk.R;
 import us.ledge.line.sdk.sdk.activities.userdata.PersonalInformationActivity;
 import us.ledge.line.sdk.sdk.models.Model;
+import us.ledge.line.sdk.sdk.vos.UserDataVo;
 
 /**
  * Concrete {@link Model} for the loan amount screen.
  * @author Wijnand
  */
-public class LoanAmountModel implements UserDataModel {
+public class LoanAmountModel extends AbstractUserDataModel implements UserDataModel {
 
-    private static final int DEFAULT_AMOUNT = -1;
-    private static final int MINIMUM_AMOUNT = 1;
+    private int mMinAmount;
+    private int mMaxAmount;
     private int mAmount;
 
-    /**
-     * Creates a new {@link LoanAmountModel} instance.
-     */
-    public LoanAmountModel() {
-        init();
-    }
-
-    /**
-     * Initializes this class.
-     */
-    protected void init() {
-        mAmount = DEFAULT_AMOUNT;
+    protected boolean isValid(int amount) {
+        return amount >= mMinAmount && amount <= mMaxAmount;
     }
 
     /** {@inheritDoc} */
@@ -52,18 +43,78 @@ public class LoanAmountModel implements UserDataModel {
         return hasValidAmount();
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public UserDataVo getBaseData() {
+        mBase.loanAmount = getAmount();
+        return super.getBaseData();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setBaseData(UserDataVo base) {
+        super.setBaseData(base);
+        setAmount(base.loanAmount);
+    }
+
+    /**
+     * @return Minimum loan amount.
+     */
+    public int getMinAmount() {
+        return mMinAmount;
+    }
+
+    /**
+     * Stores a new minimum loan amount.
+     * @param min Minimum loan amount.
+     * @return Self reference for easy method chaining.
+     */
+    public LoanAmountModel setMinAmount(int min) {
+        mMinAmount = min;
+        return this;
+    }
+
+    /**
+     * @return Maximum loan amount.
+     */
+    public int getMaxAmount() {
+        return mMaxAmount;
+    }
+
+    /**
+     * Stores a new maximum loan amount.
+     * @param max Maximum loan amount.
+     * @return Self reference for easy method chaining.
+     */
+    public LoanAmountModel setMaxAmount(int max) {
+        mMaxAmount = max;
+        return this;
+    }
+
+    /**
+     * @return Loan amount.
+     */
+    public int getAmount() {
+        return mAmount;
+    }
+
     /**
      * Stores the loan amount.
      * @param amount The loan amount.
+     * @return Self reference for easy method chaining.
      */
-    public void setAmount(int amount) {
-        mAmount = amount;
+    public LoanAmountModel setAmount(int amount) {
+        if (isValid(amount)) {
+            mAmount = amount;
+        }
+
+        return this;
     }
 
     /**
      * @return Whether a valid loan amount has been set.
      */
     public boolean hasValidAmount() {
-        return mAmount >= MINIMUM_AMOUNT;
+        return isValid(mAmount);
     }
 }

@@ -31,11 +31,22 @@ public class LoanAmountPresenter
 
     /** {@inheritDoc} */
     @Override
+    protected void populateModelFromParcel() {
+        mModel.setMinAmount(mActivity.getResources().getInteger(R.integer.min_loan_amount))
+                .setMaxAmount(mActivity.getResources().getInteger(R.integer.max_loan_amount))
+                .setAmount(mActivity.getResources().getInteger(R.integer.default_loan_amount));
+
+        super.populateModelFromParcel();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void attachView(LoanAmountView view) {
         super.attachView(view);
 
         mView.setListener(this);
-        onProgressChanged(null, mView.getAmount(), false);
+        mView.setMinMax(mModel.getMinAmount(), mModel.getMaxAmount());
+        mView.setAmount(mModel.getAmount());
     }
 
     /** {@inheritDoc} */

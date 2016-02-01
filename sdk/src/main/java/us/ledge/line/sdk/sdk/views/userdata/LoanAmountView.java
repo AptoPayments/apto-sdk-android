@@ -58,6 +58,24 @@ public class LoanAmountView
     }
 
     /**
+     * Stores new minimum and maximum loan amounts.
+     * @param min Minimum.
+     * @param max Maximum.
+     */
+    public void setMinMax(int min, int max) {
+        mAmountSlider.setMin(min);
+        mAmountSlider.setMax(max);
+    }
+
+    /**
+     * Shows a new loan amount.
+     * @param amount New loan amount.
+     */
+    public void setAmount(int amount) {
+        mAmountSlider.setProgress(amount);
+    }
+
+    /**
      * @return Loan amount.
      */
     public int getAmount() {

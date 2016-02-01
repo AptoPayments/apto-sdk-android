@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import us.ledge.line.sdk.sdk.R;
 import us.ledge.line.sdk.sdk.activities.userdata.IncomeActivity;
 import us.ledge.line.sdk.sdk.models.Model;
+import us.ledge.line.sdk.sdk.vos.UserDataVo;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -12,7 +13,7 @@ import java.util.GregorianCalendar;
  * Concrete {@link Model} for the ID verification screen.
  * @author Wijnand
  */
-public class IdentityVerificationModel implements UserDataModel {
+public class IdentityVerificationModel extends AbstractUserDataModel implements UserDataModel {
 
     private static final int EXPECTED_SSN_LENGTH = 10;
 
