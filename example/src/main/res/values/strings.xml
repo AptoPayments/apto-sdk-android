@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Ledge Line SDK Example</string>
+    <string name="app_name">Ledge Link SDK Example</string>
 
     <!-- Main -->
     <string name="main_button_offers_cta">Get loan offers!</string>
+    <string name="main_data_header">Or set some data first:</string>
+    <string name="main_input_loan_amount">Loan amount</string>
+    <string name="main_input_first_name">First name</string>
+    <string name="main_input_last_name">Last name</string>
+    <string name="main_input_email">Email</string>
+    <string name="main_input_phone_number">Phone number</string>
+    <string name="main_input_address">Address</string>
+    <string name="main_input_apartment_number">Unit / Apt #</string>
+    <string name="main_input_city">City</string>
+    <string name="main_input_state">State</string>
+    <string name="main_input_zip">Zip</string>
+    <string name="main_input_income">Income</string>
 </resources>

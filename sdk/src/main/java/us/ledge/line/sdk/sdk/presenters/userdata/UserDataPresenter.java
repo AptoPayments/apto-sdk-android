@@ -36,7 +36,10 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends View 
 
         Intent intent = mActivity.getIntent();
         UserDataVo data = intent.getParcelableExtra(UserDataVo.USER_DATA_KEY);
-        if (data != null) {
+
+        if (data == null) {
+            mModel.setBaseData(new UserDataVo());
+        } else {
             mModel.setBaseData(data);
         }
     }
