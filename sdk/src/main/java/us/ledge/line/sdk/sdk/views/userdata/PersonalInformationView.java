@@ -71,10 +71,26 @@ public class PersonalInformationView
     }
 
     /**
+     * Shows a new first name.
+     * @param firstName New first name.
+     */
+    public void setFirstName(String firstName) {
+        mFirstNameField.setText(firstName);
+    }
+
+    /**
      * @return Last name as entered by the user.
      */
     public String getLastName() {
         return mLastNameField.getText().toString();
+    }
+
+    /**
+     * Shows a new last name.
+     * @param lastName New last name.
+     */
+    public void setLastName(String lastName) {
+        mLastNameField.setText(lastName);
     }
 
     /**
@@ -85,10 +101,26 @@ public class PersonalInformationView
     }
 
     /**
+     * Shows a new email address.
+     * @param email New email address.
+     */
+    public void setEmail(String email) {
+        mEmailField.setText(email);
+    }
+
+    /**
      * @return Phone number as entered by the user.
      */
     public String getPhone() {
         return mPhoneField.getText().toString();
+    }
+
+    /**
+     * Shows a new phone number.
+     * @param phone New phone number.
+     */
+    public void setPhone(String phone) {
+        mPhoneField.setText(phone);
     }
 
     /**

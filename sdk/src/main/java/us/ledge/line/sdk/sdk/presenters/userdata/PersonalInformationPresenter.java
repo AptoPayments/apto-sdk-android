@@ -25,8 +25,28 @@ public class PersonalInformationPresenter
 
     /** {@inheritDoc} */
     @Override
+    public PersonalInformationModel createModel() {
+        return new PersonalInformationModel();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void attachView(PersonalInformationView view) {
         super.attachView(view);
+
+        if (mModel.hasFirstName()) {
+            mView.setFirstName(mModel.getFirstName());
+        }
+        if (mModel.hasLastName()) {
+            mView.setLastName(mModel.getLastName());
+        }
+        if (mModel.hasEmail()) {
+            mView.setEmail(mModel.getEmail());
+        }
+        if (mModel.hasPhone()) {
+            mView.setPhone(Long.toString(mModel.getPhone()));
+        }
+
         mView.setListener(this);
     }
 
@@ -53,11 +73,5 @@ public class PersonalInformationPresenter
         mView.updatePhoneError(!mModel.hasPhone(), R.string.personal_info_phone_error);
 
         super.nextClickHandler();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PersonalInformationModel createModel() {
-        return new PersonalInformationModel();
     }
 }

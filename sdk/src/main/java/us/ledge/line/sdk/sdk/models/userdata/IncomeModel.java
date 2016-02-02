@@ -40,8 +40,19 @@ public class IncomeModel extends AbstractUserDataModel implements UserDataModel 
 
     /** {@inheritDoc} */
     @Override
+    public UserDataVo getBaseData() {
+        UserDataVo base = super.getBaseData();
+        base.income = mIncome;
+
+        return base;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void setBaseData(UserDataVo base) {
         super.setBaseData(base);
+
+        // TODO: Validation checks.
         mIncome = base.income;
     }
 }

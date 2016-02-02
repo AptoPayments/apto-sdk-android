@@ -64,13 +64,35 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
 
     /** {@inheritDoc} */
     @Override
+    public UserDataVo getBaseData() {
+        UserDataVo base = super.getBaseData();
+        base.firstName = mFirstName;
+        base.lastName = mLastName;
+        base.emailAddress = mEmail;
+        base.phoneNumber = mPhone;
+
+        return base;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void setBaseData(UserDataVo base) {
         super.setBaseData(base);
 
-        mFirstName = base.firstName;
-        mLastName = base.lastName;
-        mEmail = base.emailAddress;
-        mPhone = base.phoneNumber;
+        setFirstName(base.firstName);
+        setLastName(base.lastName);
+        setEmail(base.emailAddress);
+
+        if (base.phoneNumber > 0) {
+            mPhone = base.phoneNumber;
+        }
+    }
+
+    /**
+     * @return First name.
+     */
+    public String getFirstName() {
+        return mFirstName;
     }
 
     /**
@@ -86,6 +108,13 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     }
 
     /**
+     * @return Last name.
+     */
+    public String getLastName() {
+        return mLastName;
+    }
+
+    /**
      * Stores a valid last name.
      * @param lastName Last name.
      */
@@ -98,11 +127,19 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     }
 
     /**
+     * @return Email address.
+     */
+    public String getEmail() {
+        return mEmail;
+    }
+
+    /**
      * Stores a valid email address.
      * @param email Email address.
      */
     public void setEmail(String email) {
         if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".")
+                || email.indexOf("@") == 0
                 || email.indexOf("@") != email.lastIndexOf("@")
                 || email.indexOf("@") > email.lastIndexOf(".")
                 || email.lastIndexOf(".") == email.length() - 1) {
@@ -111,6 +148,13 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         } else {
             mEmail = email;
         }
+    }
+
+    /**
+     * @return Phone number.
+     */
+    public long getPhone() {
+        return mPhone;
     }
 
     /**
