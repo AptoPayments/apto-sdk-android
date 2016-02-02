@@ -1,5 +1,5 @@
-# Ledge Line
-Ledge Line Android SDK.
+# Ledge Link
+Ledge Link Android SDK.
 
 For more information, see the [website](https://www.ledge.me/).
 
@@ -9,7 +9,7 @@ Maven:
 
 ```xml
 <dependency>
-  <groupId>us.ledge.line</groupId>
+  <groupId>us.ledge.link</groupId>
   <artifactId>sdk</artifactId>
   <version>1.0</version>
 </dependency>
@@ -18,7 +18,7 @@ Maven:
 Or Gradle:
 
 ```groovy
-compile 'us.ledge.line:sdk:1.0'
+compile 'us.ledge.link:sdk:1.0'
 ```
 
 ## Requirements
