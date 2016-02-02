@@ -15,6 +15,10 @@ public class LoanAmountModel extends AbstractUserDataModel implements UserDataMo
     private int mMaxAmount;
     private int mAmount;
 
+    /**
+     * @param amount Amount to validate.
+     * @return Whether the amount is within the allowed range.
+     */
     protected boolean isValid(int amount) {
         return amount >= mMinAmount && amount <= mMaxAmount;
     }

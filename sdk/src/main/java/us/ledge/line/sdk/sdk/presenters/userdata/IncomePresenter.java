@@ -25,10 +25,28 @@ public class IncomePresenter
 
     /** {@inheritDoc} */
     @Override
+    public IncomeModel createModel() {
+        return new IncomeModel();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void populateModelFromParcel() {
+        mModel.setMinIncome(mActivity.getResources().getInteger(R.integer.min_income))
+                .setMaxIncome(mActivity.getResources().getInteger(R.integer.max_income))
+                .setIncome(mActivity.getResources().getInteger(R.integer.default_income));
+
+        super.populateModelFromParcel();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void attachView(IncomeView view) {
         super.attachView(view);
+
         mView.setListener(this);
-        onProgressChanged(null, mView.getAmount(), false);
+        mView.setMinMax(mModel.getMinIncome(), mModel.getMaxIncome());
+        mView.setIncome(mModel.getIncome());
     }
 
     /** {@inheritDoc} */
@@ -40,21 +58,15 @@ public class IncomePresenter
 
     /** {@inheritDoc} */
     @Override
-    public IncomeModel createModel() {
-        return new IncomeModel();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void nextClickHandler() {
-        // TODO
+        mModel.setIncome(mView.getIncome());
         super.nextClickHandler();
     }
 
     /** {@inheritDoc} */
     @Override
     public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
-        mView.updateAmountText(mActivity.getString(R.string.income_format, value));
+        mView.updateIncomeText(mActivity.getString(R.string.income_format, value));
     }
 
     /** {@inheritDoc} */

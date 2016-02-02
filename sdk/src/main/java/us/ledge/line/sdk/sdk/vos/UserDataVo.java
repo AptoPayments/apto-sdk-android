@@ -4,7 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * User data.
+ * User data.<br />
+ * Use this class to pre-fill any forms of the user data collection flow.<br />
+ * For security reasons birthday and SSN are not stored, ever.
+ *
  * @author Wijnand
  */
 public class UserDataVo implements Parcelable {
@@ -42,7 +45,26 @@ public class UserDataVo implements Parcelable {
     /**
      * Creates a new {@link UserDataVo} instance.
      */
-    public UserDataVo() { /* Do nothing. */ }
+    public UserDataVo() {
+        init();
+    }
+
+    /**
+     * Initializes this class.
+     */
+    private void init() {
+        loanAmount = -1;
+        firstName = null;
+        lastName = null;
+        emailAddress = null;
+        phoneNumber = -1;
+        address = null;
+        apartmentNumber = null;
+        city = null;
+        state = null;
+        zip = null;
+        income = -1;
+    }
 
     /**
      * Creates a new {@link UserDataVo} instance.

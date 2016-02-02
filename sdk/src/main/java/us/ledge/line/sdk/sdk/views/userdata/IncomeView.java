@@ -10,7 +10,7 @@ import us.ledge.line.sdk.sdk.models.Model;
 import us.ledge.line.sdk.sdk.views.ViewWithToolbar;
 
 /**
- * Concrete {@link Model} for the income screen.
+ * Displays the income screen.
  * @author Wijnand
  */
 public class IncomeView
@@ -22,8 +22,8 @@ public class IncomeView
      */
     public interface ViewListener extends NextButtonListener, DiscreteSeekBar.OnProgressChangeListener { }
 
-    private TextView mAmountText;
-    private DiscreteSeekBar mAmountSlider;
+    private TextView mIncomeText;
+    private DiscreteSeekBar mIncomeSlider;
 
     /**
      * @see UserDataView#UserDataView
@@ -47,29 +47,47 @@ public class IncomeView
     protected void findAllViews() {
         super.findAllViews();
 
-        mAmountText = (TextView) findViewById(R.id.tv_income);
-        mAmountSlider = (DiscreteSeekBar) findViewById(R.id.dsb_income);
+        mIncomeText = (TextView) findViewById(R.id.tv_income);
+        mIncomeSlider = (DiscreteSeekBar) findViewById(R.id.dsb_income);
     }
 
     /** {@inheritDoc} */
     @Override
     public void setListener(ViewListener listener) {
         super.setListener(listener);
-        mAmountSlider.setOnProgressChangeListener(listener);
+        mIncomeSlider.setOnProgressChangeListener(listener);
     }
 
     /**
-     * @return Loan amount.
+     * Stores new minimum and maximum income amounts.
+     * @param min Minimum.
+     * @param max Maximum.
      */
-    public int getAmount() {
-        return mAmountSlider.getProgress();
+    public void setMinMax(int min, int max) {
+        mIncomeSlider.setMin(min);
+        mIncomeSlider.setMax(max);
     }
 
     /**
-     * Updates the amount text field.
+     * Shows a new income.
+     * @param income New income.
+     */
+    public void setIncome(int income) {
+        mIncomeSlider.setProgress(income);
+    }
+
+    /**
+     * @return Income in thousands of US dollars.
+     */
+    public int getIncome() {
+        return mIncomeSlider.getProgress();
+    }
+
+    /**
+     * Updates the income text field.
      * @param text The new text.
      */
-    public void updateAmountText(String text) {
-        mAmountText.setText(text);
+    public void updateIncomeText(String text) {
+        mIncomeText.setText(text);
     }
 }
