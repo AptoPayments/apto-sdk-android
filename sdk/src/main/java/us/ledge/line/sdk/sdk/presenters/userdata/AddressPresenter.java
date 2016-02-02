@@ -26,6 +26,13 @@ public class AddressPresenter
     @Override
     public void attachView(AddressView view) {
         super.attachView(view);
+
+        // Set data.
+        mView.setAddress(mModel.getAddress());
+        mView.setApartment(mModel.getApartmentNumber());
+        mView.setCity(mModel.getCity());
+        mView.setZipCode(mModel.getZip());
+
         mView.setListener(this);
     }
 
@@ -39,7 +46,13 @@ public class AddressPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        // TODO
+        // Store data.
+        mModel.setAddress(mView.getAddress());
+        mModel.setApartmentNumber(mView.getApartment());
+        mModel.setCity(mView.getCity());
+        mModel.setZip(mView.getZipCode());
+
+        // TODO Validate data.
         super.nextClickHandler();
     }
 

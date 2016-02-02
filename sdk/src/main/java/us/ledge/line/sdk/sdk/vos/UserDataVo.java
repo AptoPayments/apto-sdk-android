@@ -20,7 +20,7 @@ public class UserDataVo implements Parcelable {
     public String apartmentNumber; // Or unit.
     public String city;
     public String state;
-    public int zip;
+    public String zip;
 
     public int income;
 
@@ -58,7 +58,7 @@ public class UserDataVo implements Parcelable {
         apartmentNumber = in.readString();
         city = in.readString();
         state = in.readString();
-        zip = in.readInt();
+        zip = in.readString();
         income = in.readInt();
     }
 
@@ -80,7 +80,7 @@ public class UserDataVo implements Parcelable {
         dest.writeString(apartmentNumber);
         dest.writeString(city);
         dest.writeString(state);
-        dest.writeInt(zip);
+        dest.writeString(zip);
         dest.writeInt(income);
     }
 }
