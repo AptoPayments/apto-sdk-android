@@ -10,8 +10,8 @@ android {
 
         versionCode = '1'
         versionName = '0.1'
-        
-        applicationId 'us.ledge.line.sdk.example'
+
+        applicationId 'us.ledge.link.sdk.example'
     }
 }
 
