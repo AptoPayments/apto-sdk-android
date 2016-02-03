@@ -1,6 +1,6 @@
 package us.ledge.link.sdk.sdk.models.userdata;
 
-import android.text.TextUtils;
+import ru.lanwen.verbalregex.VerbalExpression;
 import us.ledge.link.sdk.sdk.R;
 import us.ledge.link.sdk.sdk.activities.userdata.IncomeActivity;
 import us.ledge.link.sdk.sdk.models.Model;
@@ -77,7 +77,13 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      * @param ssn Raw social security number.
      */
     public void setSocialSecurityNumber(String ssn) {
-        if(TextUtils.isEmpty(ssn) || !TextUtils.isDigitsOnly(ssn) || ssn.length() < EXPECTED_SSN_LENGTH) {
+        VerbalExpression ssnRegex = VerbalExpression.regex()
+                .startOfLine()
+                .digit().count(EXPECTED_SSN_LENGTH)
+                .endOfLine()
+                .build();
+
+        if(!ssnRegex.testExact(ssn)) {
             mSocialSecurityNumber = -1;
             return;
         }

@@ -1,6 +1,7 @@
 package us.ledge.link.sdk.sdk.models.userdata;
 
 import android.text.TextUtils;
+import ru.lanwen.verbalregex.VerbalExpression;
 import us.ledge.link.sdk.sdk.R;
 import us.ledge.link.sdk.sdk.activities.userdata.AddressActivity;
 import us.ledge.link.sdk.sdk.activities.userdata.LoanAmountActivity;
@@ -138,15 +139,20 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * @param email Email address.
      */
     public void setEmail(String email) {
-        if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".")
-                || email.indexOf("@") == 0
-                || email.indexOf("@") != email.lastIndexOf("@")
-                || email.indexOf("@") > email.lastIndexOf(".")
-                || email.lastIndexOf(".") == email.length() - 1) {
+        VerbalExpression emailRegex = VerbalExpression.regex()
+                .startOfLine()
+                .anythingBut(" ").atLeast(1)
+                .then("@")
+                .anythingBut(" ").atLeast(1)
+                .then(".")
+                .wordChar().atLeast(1)
+                .endOfLine()
+                .build();
 
-            mEmail = null;
-        } else {
+        if (emailRegex.testExact(email)) {
             mEmail = email;
+        } else {
+            mEmail = null;
         }
     }
 

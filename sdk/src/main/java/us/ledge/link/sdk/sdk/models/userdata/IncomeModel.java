@@ -45,7 +45,7 @@ public class IncomeModel extends AbstractUserDataModel implements UserDataModel 
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return true;
+        return hasValidIncome();
     }
 
     /** {@inheritDoc} */
