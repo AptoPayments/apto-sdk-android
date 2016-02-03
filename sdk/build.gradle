@@ -1,5 +1,17 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.kt3k.coveralls'
 apply from: 'javadoc.gradle'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        // Coveralls
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.6.3'
+    }
+}
 
 android {
     compileSdkVersion 23
