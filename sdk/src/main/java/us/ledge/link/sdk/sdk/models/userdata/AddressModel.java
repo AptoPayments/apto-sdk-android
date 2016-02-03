@@ -1,5 +1,6 @@
 package us.ledge.link.sdk.sdk.models.userdata;
 
+import ru.lanwen.verbalregex.VerbalExpression;
 import us.ledge.link.sdk.sdk.R;
 import us.ledge.link.sdk.sdk.activities.userdata.IncomeActivity;
 import us.ledge.link.sdk.sdk.activities.userdata.PersonalInformationActivity;
@@ -8,7 +9,6 @@ import us.ledge.link.sdk.sdk.vos.UserDataVo;
 
 /**
  * Concrete {@link Model} for the address screen.
- * TODO: Validation in setters.
  * @author Wijnand
  */
 public class AddressModel extends AbstractUserDataModel implements UserDataModel {
@@ -58,7 +58,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return true;
+        return hasValidAddress() && hasValidCity() && hasValidState() && hasValidZip();
     }
 
     /** {@inheritDoc} */
@@ -98,7 +98,20 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * @param address The address.
      */
     public void setAddress(String address) {
-        mAddress = address;
+        VerbalExpression addressRegex = VerbalExpression.regex()
+                .startOfLine()
+                .digit().atLeast(1)
+                .space()
+                .anythingBut(" ").atLeast(2)
+                .anything()
+                .endOfLine()
+                .build();
+
+        if (addressRegex.test(address)) {
+            mAddress = address;
+        } else {
+            mAddress = null;
+        }
     }
 
     /**
@@ -132,11 +145,28 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
     }
 
     /**
-     * Stores a valid state name.
-     * @param state State name.
+     * @return State abbreviation.
+     */
+    public String getState() {
+        return mState;
+    }
+
+    /**
+     * Stores a valid state abbreviation.
+     * @param state State abbreviation.
      */
     public void setState(String state) {
-        mState = state;
+        VerbalExpression stateRegex = VerbalExpression.regex()
+                .startOfLine()
+                .add("[A-Za-z]").count(2)
+                .endOfLine()
+                .build();
+
+        if (stateRegex.testExact(state)) {
+            mState = state.toUpperCase();
+        } else {
+            mState = null;
+        }
     }
 
     /**
@@ -151,6 +181,49 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * @param zip Zip or postal code.
      */
     public void setZip(String zip) {
-        mZip = zip;
+        VerbalExpression.Builder plusFourRegex = VerbalExpression.regex()
+                .then("-")
+                .digit().count(4);
+
+        VerbalExpression zipRegex = VerbalExpression.regex()
+                .startOfLine()
+                .digit().count(5)
+                .maybe(plusFourRegex)
+                .endOfLine()
+                .build();
+
+        if (zipRegex.testExact(zip)) {
+            mZip = zip;
+        } else {
+            mZip = null;
+        }
+    }
+
+    /**
+     * @return Whether a valid address has been set.
+     */
+    public boolean hasValidAddress() {
+        return mAddress != null;
+    }
+
+    /**
+     * @return Whether a valid city has been set.
+     */
+    public boolean hasValidCity() {
+        return mCity != null;
+    }
+
+    /**
+     * @return Whether a valid state has been set.
+     */
+    public boolean hasValidState() {
+        return mState != null;
+    }
+
+    /**
+     * @return Whether a valid ZIP code has been set.
+     */
+    public boolean hasValidZip() {
+        return mZip != null;
     }
 }

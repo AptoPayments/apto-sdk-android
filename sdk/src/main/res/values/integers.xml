@@ -11,7 +11,7 @@
 
     <!-- Address -->
     <integer name="state_length">2</integer>
-    <integer name="zip_code_length">5</integer>
+    <integer name="zip_code_length">10</integer>
 
     <!-- Income -->
     <integer name="min_income">0</integer>

@@ -19,10 +19,14 @@
     <!-- Address -->
     <string name="address_label">Address</string>
     <string name="address_address_hint">Address</string>
+    <string name="address_address_error">Please enter a valid address.</string>
     <string name="address_apartment_number_hint">Unit/Apt #</string>
     <string name="address_city_hint">City</string>
+    <string name="address_city_error">Please enter a valid city.</string>
     <string name="address_state_hint">State</string>
+    <string name="address_state_error">Please enter a valid state.</string>
     <string name="address_zip_code_hint">ZIP</string>
+    <string name="address_zip_code_error">Please enter a valid ZIP.</string>
 
     <!-- Income -->
     <string name="income_label">Income</string>

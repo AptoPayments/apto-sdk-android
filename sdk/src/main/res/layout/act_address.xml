@@ -103,7 +103,7 @@
                     <android.support.v7.widget.AppCompatEditText
                             android:id="@+id/et_zip_code"
                             style="?attr/llsdk_idVerification_editTextStyle"
-                            android:inputType="numberSigned"
+                            android:inputType="phone"
                             android:maxLength="@integer/zip_code_length"
                             android:singleLine="true"
                             android:hint="@string/address_zip_code_hint" />

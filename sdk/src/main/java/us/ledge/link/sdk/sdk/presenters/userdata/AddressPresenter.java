@@ -1,6 +1,7 @@
 package us.ledge.link.sdk.sdk.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+import us.ledge.link.sdk.sdk.R;
 import us.ledge.link.sdk.sdk.models.userdata.AddressModel;
 import us.ledge.link.sdk.sdk.presenters.Presenter;
 import us.ledge.link.sdk.sdk.views.userdata.AddressView;
@@ -31,6 +32,7 @@ public class AddressPresenter
         mView.setAddress(mModel.getAddress());
         mView.setApartment(mModel.getApartmentNumber());
         mView.setCity(mModel.getCity());
+        mView.setState(mModel.getState());
         mView.setZipCode(mModel.getZip());
 
         mView.setListener(this);
@@ -50,9 +52,15 @@ public class AddressPresenter
         mModel.setAddress(mView.getAddress());
         mModel.setApartmentNumber(mView.getApartment());
         mModel.setCity(mView.getCity());
+        mModel.setState(mView.getState());
         mModel.setZip(mView.getZipCode());
 
-        // TODO Validate data.
+        // Validate data.
+        mView.updateAddressError(!mModel.hasValidAddress(), R.string.address_address_error);
+        mView.updateCityError(!mModel.hasValidCity(), R.string.address_city_error);
+        mView.updateStateError(!mModel.hasValidState(), R.string.address_state_error);
+        mView.updateZipError(!mModel.hasValidZip(), R.string.address_zip_code_error);
+
         super.nextClickHandler();
     }
 
