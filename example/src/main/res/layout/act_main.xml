@@ -122,5 +122,28 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:hint="@string/main_input_income" />
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <Button
+                    android:id="@+id/bttn_fill_all"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="@string/main_button_fill" />
+
+            <Button
+                    android:id="@+id/bttn_clear_all"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="@string/main_button_clear" />
+
+        </LinearLayout>
     </LinearLayout>
 </us.ledge.link.sdk.example.views.MainView>

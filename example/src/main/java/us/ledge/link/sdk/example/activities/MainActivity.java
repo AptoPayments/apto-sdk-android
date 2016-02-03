@@ -99,7 +99,38 @@ public class MainActivity extends Activity implements MainView.ViewListener {
 
     /** {@inheritDoc} */
     @Override
-    public void offersPressedHandler() {
+    public void offersClickedHandler() {
         startActivity(createStartIntent());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void fillAllClickedHandler() {
+        mView.setLoanAmount(getString(R.string.data_michael_loan));
+        mView.setFirstName(getString(R.string.data_michael_first_name));
+        mView.setLastName(getString(R.string.data_michael_last_name));
+        mView.setEmail(getString(R.string.data_michael_email));
+        mView.setPhoneNumber(getString(R.string.data_michael_phone));
+        mView.setAddress(getString(R.string.data_michael_address));
+        mView.setCity(getString(R.string.data_michael_city));
+        mView.setState(getString(R.string.data_michael_state));
+        mView.setZipCode(getString(R.string.data_michael_zip));
+        mView.setIncome(getString(R.string.data_michael_income));
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void clearAllClickedHandler() {
+        mView.setLoanAmount("");
+        mView.setFirstName("");
+        mView.setLastName("");
+        mView.setEmail("");
+        mView.setPhoneNumber("");
+        mView.setAddress("");
+        mView.setApartmentNumber("");
+        mView.setCity("");
+        mView.setState("");
+        mView.setZipCode("");
+        mView.setIncome("");
     }
 }

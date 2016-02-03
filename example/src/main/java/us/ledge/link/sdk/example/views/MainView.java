@@ -21,10 +21,23 @@ public class MainView extends ScrollView implements View.OnClickListener {
         /**
          * Called when the "Get loan offers" button has been pressed.
          */
-        void offersPressedHandler();
+        void offersClickedHandler();
+
+        /**
+         * Called when the "Fill all" button has been pressed.
+         */
+        void fillAllClickedHandler();
+
+        /**
+         * Called when the "Clear all" button has been pressed.
+         */
+        void clearAllClickedHandler();
     }
 
     private Button mOffersButton;
+    private Button mFillButton;
+    private Button mClearButton;
+
     private EditText mLoanAmountField;
     private EditText mFirstNameField;
     private EditText mLastNameField;
@@ -60,8 +73,18 @@ public class MainView extends ScrollView implements View.OnClickListener {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        findAllViews();
+        setUpListeners();
+    }
 
+    /**
+     * Finds all references to {@link View}s.
+     */
+    private void findAllViews() {
         mOffersButton = (Button) findViewById(R.id.bttn_get_offers);
+        mFillButton = (Button) findViewById(R.id.bttn_fill_all);
+        mClearButton = (Button) findViewById(R.id.bttn_clear_all);
+
         mLoanAmountField = (EditText) findViewById(R.id.et_loan_amount);
         mFirstNameField = (EditText) findViewById(R.id.et_first_name);
         mLastNameField = (EditText) findViewById(R.id.et_last_name);
@@ -73,8 +96,15 @@ public class MainView extends ScrollView implements View.OnClickListener {
         mStateField = (EditText) findViewById(R.id.et_state);
         mZipField = (EditText) findViewById(R.id.et_zip_code);
         mIncomeField = (EditText) findViewById(R.id.et_income);
+    }
 
+    /**
+     * Sets up all relevant callback listeners.
+     */
+    private void setUpListeners() {
         mOffersButton.setOnClickListener(this);
+        mFillButton.setOnClickListener(this);
+        mClearButton.setOnClickListener(this);
     }
 
     /** {@inheritDoc} */
@@ -86,7 +116,13 @@ public class MainView extends ScrollView implements View.OnClickListener {
 
         switch (view.getId()) {
             case R.id.bttn_get_offers:
-                mListener.offersPressedHandler();
+                mListener.offersClickedHandler();
+                break;
+            case R.id.bttn_fill_all:
+                mListener.fillAllClickedHandler();
+                break;
+            case R.id.bttn_clear_all:
+                mListener.clearAllClickedHandler();
                 break;
             default:
                 // Do nothing.
@@ -110,10 +146,26 @@ public class MainView extends ScrollView implements View.OnClickListener {
     }
 
     /**
+     * Shows a new loan amount.
+     * @param amount New loan amount.
+     */
+    public void setLoanAmount(String amount) {
+        mLoanAmountField.setText(amount);
+    }
+
+    /**
      * @return First name.
      */
     public String getFirstName() {
         return mFirstNameField.getText().toString();
+    }
+
+    /**
+     * Shows a new first name.
+     * @param name New first name.
+     */
+    public void setFirstName(String name) {
+        mFirstNameField.setText(name);
     }
 
     /**
@@ -124,10 +176,26 @@ public class MainView extends ScrollView implements View.OnClickListener {
     }
 
     /**
+     * Shows a new last name.
+     * @param name New last name.
+     */
+    public void setLastName(String name) {
+        mLastNameField.setText(name);
+    }
+
+    /**
      * @return Email address.
      */
     public String getEmail() {
         return mEmailField.getText().toString();
+    }
+
+    /**
+     * Shows a new email address.
+     * @param email New email.
+     */
+    public void setEmail(String email) {
+        mEmailField.setText(email);
     }
 
     /**
@@ -138,10 +206,26 @@ public class MainView extends ScrollView implements View.OnClickListener {
     }
 
     /**
+     * Shows a new phone number.
+     * @param phone New phone number.
+     */
+    public void setPhoneNumber(String phone) {
+        mPhoneField.setText(phone);
+    }
+
+    /**
      * @return Address.
      */
     public String getAddress() {
         return mAddressField.getText().toString();
+    }
+
+    /**
+     * Shows a new address.
+     * @param address New address.
+     */
+    public void setAddress(String address) {
+        mAddressField.setText(address);
     }
 
     /**
@@ -152,10 +236,26 @@ public class MainView extends ScrollView implements View.OnClickListener {
     }
 
     /**
+     * Shows a new apartment number.
+     * @param number New apartment number.
+     */
+    public void setApartmentNumber(String number) {
+        mApartmentField.setText(number);
+    }
+
+    /**
      * @return City.
      */
     public String getCity() {
         return mCityField.getText().toString();
+    }
+
+    /**
+     * Shows a new city.
+     * @param city New city.
+     */
+    public void setCity(String city) {
+        mCityField.setText(city);
     }
 
     /**
@@ -166,6 +266,14 @@ public class MainView extends ScrollView implements View.OnClickListener {
     }
 
     /**
+     * Shows a new state.
+     * @param state New state.
+     */
+    public void setState(String state) {
+        mStateField.setText(state);
+    }
+
+    /**
      * @return Zip code.
      */
     public String getZipCode() {
@@ -173,9 +281,25 @@ public class MainView extends ScrollView implements View.OnClickListener {
     }
 
     /**
+     * Shows a new ZIP code.
+     * @param zip New ZIP code.
+     */
+    public void setZipCode(String zip) {
+        mZipField.setText(zip);
+    }
+
+    /**
      * @return Income.
      */
     public String getIncome() {
         return mIncomeField.getText().toString();
+    }
+
+    /**
+     * Shows a new income.
+     * @param income New income.
+     */
+    public void setIncome(String income) {
+        mIncomeField.setText(income);
     }
 }
