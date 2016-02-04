@@ -141,11 +141,9 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     public void setEmail(String email) {
         VerbalExpression emailRegex = VerbalExpression.regex()
                 .startOfLine()
-                .anythingBut(" ").atLeast(1)
+                .anythingBut("@").atLeast(1)
                 .then("@")
-                .anythingBut(" ").atLeast(1)
-                .then(".")
-                .wordChar().atLeast(1)
+                .anythingBut("@").atLeast(1)
                 .endOfLine()
                 .build();
 
@@ -168,15 +166,19 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * @param phone Raw phone number.
      */
     public void setPhone(String phone) {
-        if (TextUtils.isEmpty(phone) || phone.length() != EXPECTED_PHONE_LENGTH) {
-            mPhone = DEFAULT_PHONE_NUMBER;
-            return;
-        }
+        mPhone = DEFAULT_PHONE_NUMBER;
+        VerbalExpression phoneRegex = VerbalExpression.regex()
+                .startOfLine()
+                .digit().count(10)
+                .endOfLine()
+                .build();
 
-        try {
-            mPhone = Long.parseLong(phone);
-        } catch (NumberFormatException nfe) {
-            mPhone = DEFAULT_PHONE_NUMBER;
+        if (phoneRegex.testExact(phone)) {
+            try {
+                mPhone = Long.parseLong(phone);
+            } catch (NumberFormatException nfe) {
+                mPhone = DEFAULT_PHONE_NUMBER;
+            }
         }
     }
 
