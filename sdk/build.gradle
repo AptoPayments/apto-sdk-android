@@ -10,7 +10,8 @@ buildscript {
 
     dependencies {
         // Coveralls
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.6.3'
+        // Using fixed version, see https://github.com/kt3k/coveralls-gradle-plugin/issues/47
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.5.0-x'
     }
 }
 
