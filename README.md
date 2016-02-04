@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/itabulous/ledgelinksdk_android.svg?token=qo11VUxzPNUqYf96JsWf)](https://travis-ci.com/itabulous/ledgelinksdk_android)
+[![Coverage Status](https://coveralls.io/repos/github/itabulous/ledgelinksdk_android/badge.svg?branch=master&t=CnCHgb)](https://coveralls.io/github/itabulous/ledgelinksdk_android?branch=master)
+
 # Ledge Link
 Ledge Link Android SDK.
 
