@@ -1,18 +1,15 @@
 package us.ledge.link.sdk.sdk.tests.robolectric.tests.models.userdata;
 
-import android.support.test.runner.AndroidJUnit4;
 import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import us.ledge.link.sdk.sdk.models.userdata.LoanAmountModel;
 
 /**
- * Tests the {@link } class.
+ * Tests the {@link LoanAmountModel} class.
  * @author Wijnand
  */
-@RunWith(AndroidJUnit4.class)
 public class LoanAmountModelTest {
 
     private static final int MIN_AMOUNT = 1;
@@ -34,12 +31,22 @@ public class LoanAmountModelTest {
                 .setMaxAmount(MAX_AMOUNT);
     }
 
+    /**
+     * Given an empty Model.<br />
+     * When trying to set a valid loan amount.<br />
+     * Then the amount should be properly stored.
+     */
     @Test
     public void validAmountIsStored() {
         mModel.setAmount(EXPECTED_VALID_AMOUNT);
         Assert.assertThat("Amount should be stored.", mModel.getAmount(), IsEqual.equalTo(EXPECTED_VALID_AMOUNT));
     }
 
+    /**
+     * Given a Model with a valid amount set.<br />
+     * When trying to store a too small amount.<br />
+     * Then the amount should be ignored.
+     */
     @Test
     public void tooSmallAmountIsIgnored() {
         mModel.setAmount(EXPECTED_VALID_AMOUNT);
@@ -49,6 +56,11 @@ public class LoanAmountModelTest {
                 mModel.getAmount(), IsEqual.equalTo(EXPECTED_VALID_AMOUNT));
     }
 
+    /**
+     * Given a Model with a valid amount set.<br />
+     * When trying to store a too large amount.<br />
+     * Then the amount should be ignored.
+     */
     @Test
     public void tooLargeAmountIsIgnored() {
         mModel.setAmount(EXPECTED_VALID_AMOUNT);
