@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.kt3k.coveralls'
 apply from: 'javadoc.gradle'
+apply from: '../jacoco.gradle'
 
 buildscript {
     repositories {
@@ -27,6 +28,16 @@ android {
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+
+            all {
+                include "**/*Test.class"
+            }
+        }
+    }
+
     buildTypes {
         debug {
             testCoverageEnabled true
@@ -45,5 +56,5 @@ dependencies {
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:+'
 
     // Tests
-    androidTestCompile 'com.android.support.test:testing-support-lib:+'
+    testCompile 'junit:junit:4.+'
 }
