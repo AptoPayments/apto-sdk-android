@@ -14,6 +14,7 @@ import java.util.GregorianCalendar;
  */
 public class IdentityVerificationModel extends AbstractUserDataModel implements UserDataModel {
 
+    private static final int DEFAULT_SSN = -1;
     private static final int EXPECTED_SSN_LENGTH = 9; // TODO: Move to values/ints.xml?
 
     private Date mBirthday;
@@ -31,7 +32,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      */
     protected void init() {
         mBirthday = null;
-        mSocialSecurityNumber = -1;
+        mSocialSecurityNumber = DEFAULT_SSN;
     }
 
     /** {@inheritDoc} */
@@ -84,14 +85,14 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
                 .build();
 
         if(!ssnRegex.testExact(ssn)) {
-            mSocialSecurityNumber = -1;
+            mSocialSecurityNumber = DEFAULT_SSN;
             return;
         }
 
         try {
             mSocialSecurityNumber = Long.parseLong(ssn);
         } catch (NumberFormatException nfe) {
-            mSocialSecurityNumber = -1;
+            mSocialSecurityNumber = DEFAULT_SSN;
         }
     }
 
