@@ -11,7 +11,7 @@ android {
         versionCode = '1'
         versionName = '0.1'
 
-        applicationId 'us.ledge.link.sdk.example'
+        applicationId 'me.ledge.link.sdk.example'
     }
 }
 
