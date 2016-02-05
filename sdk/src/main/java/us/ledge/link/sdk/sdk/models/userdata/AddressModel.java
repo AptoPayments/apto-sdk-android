@@ -1,5 +1,6 @@
 package us.ledge.link.sdk.sdk.models.userdata;
 
+import android.text.TextUtils;
 import ru.lanwen.verbalregex.VerbalExpression;
 import us.ledge.link.sdk.sdk.R;
 import us.ledge.link.sdk.sdk.activities.userdata.IncomeActivity;
@@ -65,11 +66,11 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
     @Override
     public UserDataVo getBaseData() {
         UserDataVo base = super.getBaseData();
-        base.address = mAddress;
-        base.apartmentNumber = mApartmentNumber;
-        base.city = mCity;
-        base.state = mState;
-        base.zip = mZip;
+        base.address = getAddress();
+        base.apartmentNumber = getApartmentNumber();
+        base.city = getCity();
+        base.state = getState();
+        base.zip = getZip();
 
         return base;
     }
@@ -141,7 +142,11 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * @param city City name.
      */
     public void setCity(String city) {
-        mCity = city;
+        if (TextUtils.isEmpty(city)) {
+            mCity = null;
+        } else {
+            mCity = city;
+        }
     }
 
     /**

@@ -20,7 +20,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
  * @author Wijnand
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest( { TextUtils.class })
+@PrepareForTest({ TextUtils.class })
 public class PersonalInformationModelTest {
 
     private static final String EXPECTED_FIRST_NAME = "Michael";
