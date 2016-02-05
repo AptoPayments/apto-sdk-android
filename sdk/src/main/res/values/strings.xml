@@ -35,7 +35,7 @@
     <!-- ID Verification -->
     <string name="id_verification_label">ID verification</string>
     <string name="id_verification_birthday_hint">Birthday</string>
-    <string name="id_verification_birthday_error">Please select a date.</string>
+    <string name="id_verification_birthday_error">You must be 18 years or older.</string>
     <string name="id_verification_social_security_hint">Social security #</string>
     <string name="id_verification_social_security_error">Please enter all 9 digits.</string>
     <string name="id_verification_disclaimer">Your information is private and secure.</string>

@@ -5,6 +5,7 @@ import us.ledge.link.sdk.sdk.R;
 import us.ledge.link.sdk.sdk.activities.userdata.IncomeActivity;
 import us.ledge.link.sdk.sdk.models.Model;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -17,6 +18,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     private static final int DEFAULT_SSN = -1;
     private static final int EXPECTED_SSN_LENGTH = 9; // TODO: Move to values/ints.xml?
 
+    private int mMinimumAge;
     private Date mBirthday;
     private long mSocialSecurityNumber;
 
@@ -31,6 +33,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      * Initializes this class.
      */
     protected void init() {
+        mMinimumAge = 0;
         mBirthday = null;
         mSocialSecurityNumber = DEFAULT_SSN;
     }
@@ -60,6 +63,14 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     }
 
     /**
+     * Stores a new minimum age.
+     * @param age New age.
+     */
+    public void setMinimumAge(int age) {
+        mMinimumAge = age;
+    }
+
+    /**
      * Stores the birthday.
      * @param year Year of birth.
      * @param monthOfYear Month of birth.
@@ -67,7 +78,15 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      */
     public void setBirthday(int year, int monthOfYear, int dayOfMonth) {
         try {
-            mBirthday = new GregorianCalendar(year, monthOfYear, dayOfMonth).getTime();
+            Calendar birth = new GregorianCalendar(year, monthOfYear, dayOfMonth);
+            Calendar minAge = GregorianCalendar.getInstance();
+            minAge.add(Calendar.YEAR, mMinimumAge * -1);
+
+            if (birth.compareTo(minAge) < 0) {
+                mBirthday = birth.getTime();
+            } else {
+                mBirthday = null;
+            }
         } catch (IllegalArgumentException iae) {
             mBirthday = null;
         }

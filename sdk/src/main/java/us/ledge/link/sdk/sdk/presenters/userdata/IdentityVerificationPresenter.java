@@ -3,6 +3,7 @@ package us.ledge.link.sdk.sdk.presenters.userdata;
 import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.DatePicker;
+import us.ledge.link.sdk.sdk.R;
 import us.ledge.link.sdk.sdk.fragments.DatePickerFragment;
 import us.ledge.link.sdk.sdk.models.userdata.IdentityVerificationModel;
 import us.ledge.link.sdk.sdk.presenters.Presenter;
@@ -28,6 +29,13 @@ public class IdentityVerificationPresenter
     @Override
     public IdentityVerificationModel createModel() {
         return new IdentityVerificationModel();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void populateModelFromParcel() {
+        super.populateModelFromParcel();
+        mModel.setMinimumAge(mActivity.getResources().getInteger(R.integer.min_age));
     }
 
     /** {@inheritDoc} */

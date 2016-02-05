@@ -5,11 +5,16 @@ import org.junit.Before;
 import org.junit.Test;
 import us.ledge.link.sdk.sdk.models.userdata.IdentityVerificationModel;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 /**
  * Tests the {@link IdentityVerificationModel} class.
  * @author Wijnand
  */
 public class IdentityVerificationModelTest {
+
+    private static final int MINIMUM_AGE = 18;
 
     private IdentityVerificationModel mModel;
 
@@ -19,6 +24,7 @@ public class IdentityVerificationModelTest {
     @Before
     public void setUp() {
         mModel = new IdentityVerificationModel();
+        mModel.setMinimumAge(MINIMUM_AGE);
     }
 
     /**
@@ -28,8 +34,23 @@ public class IdentityVerificationModelTest {
      */
     @Test
     public void validBirthdayIsStored() {
-        mModel.setBirthday(2002, 3, 22);
+        Calendar today = GregorianCalendar.getInstance();
+        today.add(Calendar.YEAR, MINIMUM_AGE * -2);
+
+        mModel.setBirthday(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DATE));
         Assert.assertTrue("Birthday should be stored.", mModel.hasValidBirthday());
+    }
+
+    /**
+     * Given an empty Model.<br />
+     * When trying to store a valid birthday.<br />
+     * Then the birthday should be stored.
+     */
+    @Test
+    public void invalidBirthdayIsNotStored() {
+        Calendar today = GregorianCalendar.getInstance();
+        mModel.setBirthday(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DATE));
+        Assert.assertFalse("Birthday should NOT be stored.", mModel.hasValidBirthday());
     }
 
     /**
