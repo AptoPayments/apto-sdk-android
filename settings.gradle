@@ -1,2 +1,6 @@
+// https://github.com/itabulous/ledgecommon_android
+include "LedgeCommon"
+project(":LedgeCommon").projectDir = new File("../ledgecommon_android");
+
 include ':sdk'
 include ':example'

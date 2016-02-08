@@ -4,7 +4,11 @@ import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import me.ledge.common.models.countries.UsaState;
 import me.ledge.link.sdk.sdk.R;
 import me.ledge.link.sdk.sdk.views.ViewWithToolbar;
 
@@ -24,11 +28,12 @@ public class AddressView
     private TextInputLayout mCityWrapper;
     private EditText mCityField;
 
-    private TextInputLayout mStateWrapper;
-    private EditText mStateField;
+    private Spinner mStateSpinner;
+    private TextView mStateErrorField;
 
     private TextInputLayout mZipWrapper;
     private EditText mZipField;
+    private ArrayAdapter<CharSequence> mAdapter;
 
     /**
      * @see UserDataView#UserDataView
@@ -60,11 +65,20 @@ public class AddressView
         mCityWrapper = (TextInputLayout) findViewById(R.id.til_city);
         mCityField = (EditText) findViewById(R.id.et_city);
 
-        mStateWrapper = (TextInputLayout) findViewById(R.id.til_state);
-        mStateField = (EditText) findViewById(R.id.et_state);
+        mStateSpinner = (Spinner) findViewById(R.id.sp_state);
+        mStateErrorField = (TextView) findViewById(R.id.tv_state_spinner_error);
 
         mZipWrapper = (TextInputLayout) findViewById(R.id.til_zip_code);
         mZipField = (EditText) findViewById(R.id.et_zip_code);
+    }
+
+    /**
+     * Stores a new {@link ArrayAdapter} to use with the state {@link Spinner}.
+     * @param adapter The new Adapter.
+     */
+    public void setStateSpinnerAdapter(ArrayAdapter<CharSequence> adapter) {
+        mAdapter = adapter;
+        mStateSpinner.setAdapter(adapter);
     }
 
     /**
@@ -116,7 +130,14 @@ public class AddressView
      * @return State.
      */
     public String getState() {
-        return mStateField.getText().toString();
+        String state = null;
+        int position = mStateSpinner.getSelectedItemPosition();
+
+        if (position != Spinner.INVALID_POSITION) {
+            state = mAdapter.getItem(mStateSpinner.getSelectedItemPosition()).toString();
+        }
+
+        return state;
     }
 
     /**
@@ -124,7 +145,8 @@ public class AddressView
      * @param state New State.
      */
     public void setState(String state) {
-        mStateField.setText(state);
+        int position = mAdapter.getPosition(state);
+        mStateSpinner.setSelection(position);
     }
 
     /**
@@ -166,7 +188,13 @@ public class AddressView
      * @param errorMessageId Error message resource ID.
      */
     public void updateStateError(boolean show, int errorMessageId) {
-        updateErrorDisplay(mStateWrapper, show, errorMessageId);
+        mStateErrorField.setText(errorMessageId);
+
+        if (show) {
+            mStateErrorField.setVisibility(VISIBLE);
+        } else {
+            mStateErrorField.setVisibility(GONE);
+        }
     }
 
     /**

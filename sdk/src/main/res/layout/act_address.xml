@@ -74,24 +74,38 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                <android.support.design.widget.TextInputLayout
-                        android:id="@+id/til_state"
-                        style="?attr/llsdk_idVerification_inputWrapperStyle"
+                <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:theme="?attr/llsdk_idVerification_inputWrapperTheme">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
 
-                    <android.support.v7.widget.AppCompatEditText
-                            android:id="@+id/et_state"
-                            style="?attr/llsdk_idVerification_editTextStyle"
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.Design.Hint"
+                            android:textColor="?android:textColorHint"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:text="@string/address_state_hint" />
+
+                    <Spinner
+                            android:id="@+id/sp_state"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:nextFocusDown="@+id/et_zip_code"
-                            android:nextFocusRight="@+id/et_zip_code"
-                            android:inputType="text"
-                            android:maxLength="@integer/state_length"
-                            android:singleLine="true"
-                            android:hint="@string/address_state_hint" />
+                            android:nextFocusRight="@+id/et_zip_code" />
 
-                </android.support.design.widget.TextInputLayout>
+                    <TextView
+                            android:id="@+id/tv_state_spinner_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            style="@style/TextAppearance.Design.Error" />
+
+                </LinearLayout>
 
                 <android.support.design.widget.TextInputLayout
                         android:id="@+id/til_zip_code"
