@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import me.ledge.link.sdk.sdk.R;
 import me.ledge.link.sdk.sdk.views.ViewWithToolbar;
+import me.ledge.link.sdk.sdk.widgets.SsnEditText;
 
 /**
  * Displays the user details screen.
@@ -33,7 +34,7 @@ public class IdentityVerificationView
     private AppCompatEditText mBirthdayField;
 
     private TextInputLayout mSocialSecurityWrapper;
-    private AppCompatEditText mSocialSecurityField;
+    private SsnEditText mSocialSecurityField;
 
     /**
      * @see UserDataView#UserDataView
@@ -61,7 +62,7 @@ public class IdentityVerificationView
         mBirthdayField = (AppCompatEditText) findViewById(R.id.et_birthday);
 
         mSocialSecurityWrapper = (TextInputLayout) findViewById(R.id.til_social_security);
-        mSocialSecurityField = (AppCompatEditText) findViewById(R.id.et_social_security);
+        mSocialSecurityField = (SsnEditText) findViewById(R.id.et_social_security);
     }
 
     /** {@inheritDoc} */
@@ -90,7 +91,7 @@ public class IdentityVerificationView
      * @return Social security number.
      */
     public String getSocialSecurityNumber() {
-        return mSocialSecurityField.getText().toString();
+        return mSocialSecurityField.getSsn();
     }
 
     /**

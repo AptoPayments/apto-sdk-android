@@ -52,12 +52,9 @@
                 android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
                 android:layout_below="@+id/rl_birthday_holder">
 
-            <android.support.v7.widget.AppCompatEditText
+            <me.ledge.link.sdk.sdk.widgets.SsnEditText
                     android:id="@+id/et_social_security"
                     style="?attr/llsdk_idVerification_editTextStyle"
-                    android:inputType="numberSigned"
-                    android:maxLength="@integer/ssn_length"
-                    android:singleLine="true"
                     android:hint="@string/id_verification_social_security_hint" />
 
         </android.support.design.widget.TextInputLayout>

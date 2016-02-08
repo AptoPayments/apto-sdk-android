@@ -15,6 +15,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
     <style name="llsdk_id_verification_text_input_base_light" parent="llsdk_id_verification_text_input_base">
         <item name="android:textColor">@color/llsdk_light_text_color</item>

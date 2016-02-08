@@ -20,6 +20,5 @@
 
     <!-- ID verification -->
     <integer name="min_age">18</integer>
-    <integer name="ssn_length">9</integer>
 
 </resources>
