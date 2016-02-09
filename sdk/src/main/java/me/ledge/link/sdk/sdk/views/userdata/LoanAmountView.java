@@ -58,6 +58,14 @@ public class LoanAmountView
     }
 
     /**
+     * Sets a new {@link DiscreteSeekBar#NumericTransformer} on the {@link DiscreteSeekBar}.
+     * @param transformer The new transformer.
+     */
+    public void setSeekBarTransformer(DiscreteSeekBar.NumericTransformer transformer) {
+        mAmountSlider.setNumericTransformer(transformer);
+    }
+
+    /**
      * Stores new minimum and maximum loan amounts.
      * @param min Minimum.
      * @param max Maximum.

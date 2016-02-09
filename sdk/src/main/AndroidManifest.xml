@@ -8,6 +8,6 @@
             android:minSdkVersion="15"
             android:targetSdkVersion="23" />
 
-    <application android:label="LedgeLineSdk" />
+    <application android:label="LedgeLinkSdk" />
 
 </manifest>
