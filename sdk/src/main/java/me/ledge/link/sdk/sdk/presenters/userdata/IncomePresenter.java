@@ -15,6 +15,8 @@ public class IncomePresenter
         extends UserDataPresenter<IncomeModel, IncomeView>
         implements IncomeView.ViewListener {
 
+    private int mIncomeMultiplier;
+
     /**
      * Creates a new {@link IncomePresenter} instance.
      * @param activity Activity.
@@ -32,6 +34,8 @@ public class IncomePresenter
     /** {@inheritDoc} */
     @Override
     protected void populateModelFromParcel() {
+        mIncomeMultiplier = mActivity.getResources().getInteger(R.integer.income_increment);
+
         mModel.setMinIncome(mActivity.getResources().getInteger(R.integer.min_income))
                 .setMaxIncome(mActivity.getResources().getInteger(R.integer.max_income))
                 .setIncome(mActivity.getResources().getInteger(R.integer.default_income));
@@ -45,8 +49,8 @@ public class IncomePresenter
         super.attachView(view);
 
         mView.setListener(this);
-        mView.setMinMax(mModel.getMinIncome(), mModel.getMaxIncome());
-        mView.setIncome(mModel.getIncome());
+        mView.setMinMax(mModel.getMinIncome() / mIncomeMultiplier, mModel.getMaxIncome() / mIncomeMultiplier);
+        mView.setIncome(mModel.getIncome() / mIncomeMultiplier);
     }
 
     /** {@inheritDoc} */
@@ -59,7 +63,7 @@ public class IncomePresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        mModel.setIncome(mView.getIncome());
+        mModel.setIncome(mView.getIncome() * mIncomeMultiplier);
         super.nextClickHandler();
     }
 
