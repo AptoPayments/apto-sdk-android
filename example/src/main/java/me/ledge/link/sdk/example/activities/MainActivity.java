@@ -19,6 +19,38 @@ public class MainActivity extends Activity implements MainView.ViewListener {
     private MainView mView;
 
     /**
+     * @param source String source to parse to an integer.
+     * @return Parsed integer.
+     */
+    private int parseIntSafely(String source) {
+        int result;
+
+        try {
+            result = Integer.parseInt(source);
+        } catch (NumberFormatException nfe) {
+            result = 0;
+        }
+
+        return result;
+    }
+
+    /**
+     * @param source String source to parse to a long.
+     * @return Parsed long.
+     */
+    private long parseLongSafely(String source) {
+        long result;
+
+        try {
+            result = Long.parseLong(source);
+        } catch (NumberFormatException nfe) {
+            result = 0;
+        }
+
+        return result;
+    }
+
+    /**
      * @return Start {@link Intent} for the Ledge Line SDK.
      */
     private Intent createStartIntent() {
@@ -26,7 +58,7 @@ public class MainActivity extends Activity implements MainView.ViewListener {
         UserDataVo data = new UserDataVo();
 
         if (hasValue(mView.getLoanAmount())) {
-            data.loanAmount = Integer.parseInt(mView.getLoanAmount());
+            data.loanAmount = parseIntSafely(mView.getLoanAmount());
             hasExtraData = true;
         }
         if (hasValue(mView.getFirstName())) {
@@ -42,7 +74,7 @@ public class MainActivity extends Activity implements MainView.ViewListener {
             hasExtraData = true;
         }
         if (hasValue(mView.getPhoneNumber())) {
-            data.phoneNumber = Long.parseLong(mView.getPhoneNumber());
+            data.phoneNumber = parseLongSafely(mView.getPhoneNumber());
             hasExtraData = true;
         }
         if (hasValue(mView.getAddress())) {
@@ -66,7 +98,7 @@ public class MainActivity extends Activity implements MainView.ViewListener {
             hasExtraData = true;
         }
         if (hasValue(mView.getIncome())) {
-            data.income = Integer.parseInt(mView.getIncome());
+            data.income = parseIntSafely(mView.getIncome());
             hasExtraData = true;
         }
 
