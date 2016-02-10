@@ -56,6 +56,7 @@ dependencies {
     compile 'com.android.support:design:+'
     compile 'org.adw.library:discrete-seekbar:+'
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:+'
+    compile 'com.googlecode.libphonenumber:libphonenumber:+'
 
     // Tests
     testCompile 'junit:junit:4.+'

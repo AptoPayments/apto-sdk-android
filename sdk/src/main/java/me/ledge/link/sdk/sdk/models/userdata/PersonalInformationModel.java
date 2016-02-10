@@ -1,12 +1,15 @@
 package me.ledge.link.sdk.sdk.models.userdata;
 
 import android.text.TextUtils;
-import ru.lanwen.verbalregex.VerbalExpression;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import me.ledge.link.sdk.sdk.R;
 import me.ledge.link.sdk.sdk.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.sdk.activities.userdata.LoanAmountActivity;
 import me.ledge.link.sdk.sdk.models.Model;
 import me.ledge.link.sdk.sdk.vos.UserDataVo;
+import ru.lanwen.verbalregex.VerbalExpression;
 
 /**
  * Concrete {@link Model} for the personal information screen.
@@ -15,7 +18,6 @@ import me.ledge.link.sdk.sdk.vos.UserDataVo;
 public class PersonalInformationModel extends AbstractUserDataModel implements UserDataModel {
 
     private static final long DEFAULT_PHONE_NUMBER = -1;
-    private static final long EXPECTED_PHONE_LENGTH = 10;  // TODO: Move to values/ints.xml?
 
     private String mFirstName;
     private String mLastName;
@@ -167,18 +169,15 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      */
     public void setPhone(String phone) {
         mPhone = DEFAULT_PHONE_NUMBER;
-        VerbalExpression phoneRegex = VerbalExpression.regex()
-                .startOfLine()
-                .digit().count(10)
-                .endOfLine()
-                .build();
+        PhoneNumberUtil util = PhoneNumberUtil.getInstance();
 
-        if (phoneRegex.testExact(phone)) {
-            try {
-                mPhone = Long.parseLong(phone);
-            } catch (NumberFormatException nfe) {
-                mPhone = DEFAULT_PHONE_NUMBER;
+        try {
+            PhoneNumber number = util.parse(phone, "US");
+            if (util.isValidNumber(number)) {
+                mPhone = number.getNationalNumber();
             }
+        } catch (NumberParseException npe) {
+            // Do nothing.
         }
     }
 
