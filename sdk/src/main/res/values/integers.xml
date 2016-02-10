@@ -8,7 +8,8 @@
     <integer name="loan_amount_increment">50</integer>
 
     <!-- Personal info -->
-    <integer name="phone_number_length">10</integer>
+    <!-- 10 phone number digits + 4 for formatting -->
+    <integer name="phone_number_length">14</integer>
 
     <!-- Address -->
     <integer name="state_length">2</integer>

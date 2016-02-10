@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import me.ledge.link.sdk.sdk.R;
 import me.ledge.link.sdk.sdk.views.ViewWithToolbar;
+import me.ledge.link.sdk.sdk.views.text.PhoneNumberTextWatcher;
 
 /**
  * Displays the personal information screen.
@@ -61,6 +62,13 @@ public class PersonalInformationView
 
         mPhoneWrapper = (TextInputLayout) findViewById(R.id.til_phone);
         mPhoneField = (EditText) findViewById(R.id.et_phone);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        mPhoneField.addTextChangedListener(new PhoneNumberTextWatcher());
     }
 
     /**

@@ -23,6 +23,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     private String mLastName;
     private String mEmail;
     private long mPhone;
+    private PhoneNumberUtil mPhoneUtil;
 
     /**
      * Creates a new {@link PersonalInformationModel} instance.
@@ -39,6 +40,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         mLastName = null;
         mEmail = null;
         mPhone = DEFAULT_PHONE_NUMBER;
+        mPhoneUtil = PhoneNumberUtil.getInstance();
     }
 
     /** {@inheritDoc} */
@@ -169,11 +171,10 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      */
     public void setPhone(String phone) {
         mPhone = DEFAULT_PHONE_NUMBER;
-        PhoneNumberUtil util = PhoneNumberUtil.getInstance();
 
         try {
-            PhoneNumber number = util.parse(phone, "US");
-            if (util.isValidNumber(number)) {
+            PhoneNumber number = mPhoneUtil.parse(phone, "US");
+            if (mPhoneUtil.isValidNumber(number)) {
                 mPhone = number.getNationalNumber();
             }
         } catch (NumberParseException npe) {
