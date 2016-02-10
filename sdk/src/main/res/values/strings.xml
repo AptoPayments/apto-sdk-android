@@ -31,6 +31,7 @@
     <!-- Income -->
     <string name="income_label">Income</string>
     <string name="income_format">$%dK</string>
+    <string name="income_format_and_more">$%dK+</string>
 
     <!-- ID Verification -->
     <string name="id_verification_label">ID verification</string>

@@ -16,6 +16,7 @@ public class IncomePresenter
         implements IncomeView.ViewListener {
 
     private int mIncomeMultiplier;
+    private int mMaxIncome;
 
     /**
      * Creates a new {@link IncomePresenter} instance.
@@ -35,9 +36,10 @@ public class IncomePresenter
     @Override
     protected void populateModelFromParcel() {
         mIncomeMultiplier = mActivity.getResources().getInteger(R.integer.income_increment);
+        mMaxIncome = mActivity.getResources().getInteger(R.integer.max_income);
 
         mModel.setMinIncome(mActivity.getResources().getInteger(R.integer.min_income))
-                .setMaxIncome(mActivity.getResources().getInteger(R.integer.max_income))
+                .setMaxIncome(mMaxIncome)
                 .setIncome(mActivity.getResources().getInteger(R.integer.default_income));
 
         super.populateModelFromParcel();
@@ -70,7 +72,12 @@ public class IncomePresenter
     /** {@inheritDoc} */
     @Override
     public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
-        mView.updateIncomeText(mActivity.getString(R.string.income_format, value));
+        String formatted = mActivity.getString(R.string.income_format, value);
+        if (value * mIncomeMultiplier >= mMaxIncome) {
+            formatted = mActivity.getString(R.string.income_format_and_more, value);
+        }
+
+        mView.updateIncomeText(formatted);
     }
 
     /** {@inheritDoc} */
