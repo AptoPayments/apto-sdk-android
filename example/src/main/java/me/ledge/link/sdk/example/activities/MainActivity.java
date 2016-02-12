@@ -5,9 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import me.ledge.common.utils.android.AndroidUtils;
+import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
+import me.ledge.link.sdk.sdk.LedgeLink;
 import me.ledge.link.sdk.sdk.activities.userdata.LoanAmountActivity;
+import me.ledge.link.sdk.sdk.tasks.handlers.EventBusThreeResponseHandler;
 import me.ledge.link.sdk.sdk.vos.UserDataVo;
 
 /**
@@ -118,10 +123,27 @@ public class MainActivity extends Activity implements MainView.ViewListener {
         return !TextUtils.isEmpty(fieldValue);
     }
 
+    /**
+     * Sets up the Ledge Link SDK.
+     */
+    private void setupLedgeLink() {
+        AndroidUtils utils = new AndroidUtils();
+
+        LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
+        apiWrapper.setBaseRequestData(
+                Long.parseLong(getString(R.string.ledge_link_developer_id)),
+                utils.getDeviceManufacturerAndModel(),
+                utils.getDeviceSdkRelease());
+
+        LedgeLink.setApiWrapper(apiWrapper);
+        LedgeLink.setResponseHandler(new EventBusThreeResponseHandler());
+    }
+
     /** {@inheritDoc} */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupLedgeLink();
 
         mView = (MainView) View.inflate(this, R.layout.act_main, null);
         mView.setViewListener(this);

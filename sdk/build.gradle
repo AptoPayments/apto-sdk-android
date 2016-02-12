@@ -52,11 +52,13 @@ repositories {
 
 dependencies {
     compile project(':LedgeCommon')
+    compile project(':LedgeLinkApi')
     compile 'com.android.support:appcompat-v7:+'
     compile 'com.android.support:design:+'
     compile 'org.adw.library:discrete-seekbar:+'
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:+'
     compile 'com.googlecode.libphonenumber:libphonenumber:+'
+    compile 'org.greenrobot:eventbus:+'
 
     // Tests
     testCompile 'junit:junit:4.+'

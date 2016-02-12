@@ -2,5 +2,9 @@
 include "LedgeCommon"
 project(":LedgeCommon").projectDir = new File("../ledgecommon_android");
 
+// https://github.com/itabulous/ledgecommon_android
+include "LedgeLinkApi"
+project(":LedgeLinkApi").projectDir = new File("../ledgelinkapi_android");
+
 include ':sdk'
 include ':example'
