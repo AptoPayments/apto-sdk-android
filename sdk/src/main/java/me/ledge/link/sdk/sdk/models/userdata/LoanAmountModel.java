@@ -31,18 +31,6 @@ public class LoanAmountModel extends AbstractUserDataModel implements UserDataMo
 
     /** {@inheritDoc} */
     @Override
-    public Class getPreviousActivity() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class getNextActivity() {
-        return PersonalInformationActivity.class;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean hasAllData() {
         return hasValidAmount();
     }

@@ -46,18 +46,6 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
 
     /** {@inheritDoc} */
     @Override
-    public Class getPreviousActivity() {
-        return PersonalInformationActivity.class;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class getNextActivity() {
-        return IncomeActivity.class;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean hasAllData() {
         return hasValidAddress() && hasValidCity() && hasValidState() && hasValidZip();
     }

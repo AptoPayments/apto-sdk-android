@@ -17,7 +17,7 @@ import java.util.concurrent.Executor;
  *
  * @author Wijnand
  */
-public class LedgeLink {
+public class LedgeLinkSdk {
 
     private static LinkApiWrapper mApiWrapper;
     private static Executor mExecutor;

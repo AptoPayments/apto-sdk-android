@@ -33,19 +33,6 @@ public class IncomeModel extends AbstractUserDataModel implements UserDataModel 
 
     /** {@inheritDoc} */
     @Override
-    public Class getPreviousActivity() {
-        return AddressActivity.class;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class getNextActivity() {
-//        return IdentityVerificationActivity.class;
-        return EventBusIdentityVerificationActivity.class;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean hasAllData() {
         return hasValidIncome();
     }

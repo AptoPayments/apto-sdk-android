@@ -48,18 +48,6 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
 
     /** {@inheritDoc} */
     @Override
-    public Class getPreviousActivity() {
-        return IncomeActivity.class;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class getNextActivity() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean hasAllData() {
         return hasValidBirthday() && hasValidSsn();
     }

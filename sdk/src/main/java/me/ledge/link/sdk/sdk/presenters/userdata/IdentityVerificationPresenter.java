@@ -6,7 +6,7 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
-import me.ledge.link.sdk.sdk.LedgeLink;
+import me.ledge.link.sdk.sdk.LedgeLinkUi;
 import me.ledge.link.sdk.sdk.R;
 import me.ledge.link.sdk.sdk.fragments.DatePickerFragment;
 import me.ledge.link.sdk.sdk.models.userdata.IdentityVerificationModel;
@@ -75,7 +75,7 @@ public class IdentityVerificationPresenter
 
         if (mModel.hasAllData()) {
             // Make API request.
-            LedgeLink.createUser(mModel.getUserRequestData());
+            LedgeLinkUi.createUser(mModel.getUserRequestData());
 
             // Show loading.
             mView.showLoading(true);

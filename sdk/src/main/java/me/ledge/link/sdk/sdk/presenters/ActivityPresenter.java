@@ -68,13 +68,13 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
      * Starts the previous activity.
      */
     public void startPreviousActivity() {
-        startActivity(mModel.getPreviousActivity());
+        startActivity(mModel.getPreviousActivity(mActivity));
     }
 
     /**
      * Starts the next activity.
      */
     public void startNextActivity() {
-        startActivity(mModel.getNextActivity());
+        startActivity(mModel.getNextActivity(mActivity));
     }
 }

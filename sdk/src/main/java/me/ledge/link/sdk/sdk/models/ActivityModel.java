@@ -14,12 +14,14 @@ public interface ActivityModel extends Model {
     int getActivityTitleResource();
 
     /**
+     * @param current The current {@link Activity}.
      * @return The previous {@link Activity} to start.
      */
-    Class getPreviousActivity();
+    Class getPreviousActivity(Activity current);
 
     /**
+     * @param current The current {@link Activity}.
      * @return The next {@link Activity} to start.
      */
-    Class getNextActivity();
+    Class getNextActivity(Activity current);
 }

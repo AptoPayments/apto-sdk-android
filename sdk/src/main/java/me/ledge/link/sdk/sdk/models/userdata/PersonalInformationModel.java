@@ -51,18 +51,6 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
 
     /** {@inheritDoc} */
     @Override
-    public Class getPreviousActivity() {
-        return LoanAmountActivity.class;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class getNextActivity() {
-        return AddressActivity.class;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean hasAllData() {
         return hasFirstName() && hasLastName() && hasEmail() && hasPhone();
     }

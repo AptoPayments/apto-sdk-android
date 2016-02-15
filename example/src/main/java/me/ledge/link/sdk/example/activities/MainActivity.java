@@ -1,7 +1,6 @@
 package me.ledge.link.sdk.example.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,10 +9,16 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
-import me.ledge.link.sdk.sdk.LedgeLink;
+import me.ledge.link.sdk.sdk.LedgeLinkUi;
+import me.ledge.link.sdk.sdk.activities.userdata.AddressActivity;
+import me.ledge.link.sdk.sdk.activities.userdata.EventBusIdentityVerificationActivity;
+import me.ledge.link.sdk.sdk.activities.userdata.IncomeActivity;
 import me.ledge.link.sdk.sdk.activities.userdata.LoanAmountActivity;
+import me.ledge.link.sdk.sdk.activities.userdata.PersonalInformationActivity;
 import me.ledge.link.sdk.sdk.tasks.handlers.EventBusThreeResponseHandler;
 import me.ledge.link.sdk.sdk.vos.UserDataVo;
+
+import java.util.ArrayList;
 
 /**
  * Main display.
@@ -56,63 +61,46 @@ public class MainActivity extends Activity implements MainView.ViewListener {
     }
 
     /**
-     * @return Start {@link Intent} for the Ledge Line SDK.
+     * @return Pre-fill data for the Ledge Line SDK to use.
      */
-    private Intent createStartIntent() {
-        boolean hasExtraData = false;
+    private UserDataVo createStartData() {
         UserDataVo data = new UserDataVo();
 
         if (hasValue(mView.getLoanAmount())) {
             data.loanAmount = parseIntSafely(mView.getLoanAmount());
-            hasExtraData = true;
         }
         if (hasValue(mView.getFirstName())) {
             data.firstName = mView.getFirstName();
-            hasExtraData = true;
         }
         if (hasValue(mView.getLastName())) {
             data.lastName = mView.getLastName();
-            hasExtraData = true;
         }
         if (hasValue(mView.getEmail())) {
             data.emailAddress = mView.getEmail();
-            hasExtraData = true;
         }
         if (hasValue(mView.getPhoneNumber())) {
             data.phoneNumber = parseLongSafely(mView.getPhoneNumber());
-            hasExtraData = true;
         }
         if (hasValue(mView.getAddress())) {
             data.address = mView.getAddress();
-            hasExtraData = true;
         }
         if (hasValue(mView.getApartmentNumber())) {
             data.apartmentNumber = mView.getApartmentNumber();
-            hasExtraData = true;
         }
         if (hasValue(mView.getCity())) {
             data.city = mView.getCity();
-            hasExtraData = true;
         }
         if (hasValue(mView.getState())) {
             data.state = mView.getState();
-            hasExtraData = true;
         }
         if (hasValue(mView.getZipCode())) {
             data.zip = mView.getZipCode();
-            hasExtraData = true;
         }
         if (hasValue(mView.getIncome())) {
             data.income = parseIntSafely(mView.getIncome());
-            hasExtraData = true;
         }
 
-        Intent startIntent = new Intent(this, LoanAmountActivity.class);
-        if (hasExtraData) {
-            startIntent.putExtra(UserDataVo.USER_DATA_KEY, data);
-        }
-
-        return startIntent;
+        return data;
     }
 
     /**
@@ -129,14 +117,22 @@ public class MainActivity extends Activity implements MainView.ViewListener {
     private void setupLedgeLink() {
         AndroidUtils utils = new AndroidUtils();
 
+        ArrayList<Class<?>> process = new ArrayList<>(5);
+        process.add(LoanAmountActivity.class);
+        process.add(PersonalInformationActivity.class);
+        process.add(AddressActivity.class);
+        process.add(IncomeActivity.class);
+        process.add(EventBusIdentityVerificationActivity.class);
+
         LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
         apiWrapper.setBaseRequestData(
                 Long.parseLong(getString(R.string.ledge_link_developer_id)),
                 utils.getDeviceManufacturerAndModel(),
                 utils.getDeviceSdkRelease());
 
-        LedgeLink.setApiWrapper(apiWrapper);
-        LedgeLink.setResponseHandler(new EventBusThreeResponseHandler());
+        LedgeLinkUi.setApiWrapper(apiWrapper);
+        LedgeLinkUi.setResponseHandler(new EventBusThreeResponseHandler());
+        LedgeLinkUi.setProcessOrder(process);
     }
 
     /** {@inheritDoc} */
@@ -154,7 +150,7 @@ public class MainActivity extends Activity implements MainView.ViewListener {
     /** {@inheritDoc} */
     @Override
     public void offersClickedHandler() {
-        startActivity(createStartIntent());
+        LedgeLinkUi.startProcess(this, createStartData());
     }
 
     /** {@inheritDoc} */
