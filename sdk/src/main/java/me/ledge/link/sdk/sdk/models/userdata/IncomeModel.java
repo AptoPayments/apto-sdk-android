@@ -2,6 +2,7 @@ package me.ledge.link.sdk.sdk.models.userdata;
 
 import me.ledge.link.sdk.sdk.R;
 import me.ledge.link.sdk.sdk.activities.userdata.AddressActivity;
+import me.ledge.link.sdk.sdk.activities.userdata.EventBusIdentityVerificationActivity;
 import me.ledge.link.sdk.sdk.activities.userdata.IdentityVerificationActivity;
 import me.ledge.link.sdk.sdk.models.Model;
 import me.ledge.link.sdk.sdk.vos.UserDataVo;
@@ -39,7 +40,8 @@ public class IncomeModel extends AbstractUserDataModel implements UserDataModel 
     /** {@inheritDoc} */
     @Override
     public Class getNextActivity() {
-        return IdentityVerificationActivity.class;
+//        return IdentityVerificationActivity.class;
+        return EventBusIdentityVerificationActivity.class;
     }
 
     /** {@inheritDoc} */

@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import me.ledge.link.sdk.sdk.R;
 import me.ledge.link.sdk.sdk.views.ViewWithToolbar;
 import me.ledge.link.sdk.sdk.widgets.SsnEditText;
@@ -36,6 +37,8 @@ public class IdentityVerificationView
     private TextInputLayout mSocialSecurityWrapper;
     private SsnEditText mSocialSecurityField;
 
+    private RelativeLayout mLoadingOverlay;
+
     /**
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
@@ -55,6 +58,13 @@ public class IdentityVerificationView
 
     /** {@inheritDoc} */
     @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        showLoading(false);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     protected void findAllViews() {
         super.findAllViews();
         mBirthdayButton = (Button) findViewById(R.id.btn_birthday);
@@ -63,6 +73,8 @@ public class IdentityVerificationView
 
         mSocialSecurityWrapper = (TextInputLayout) findViewById(R.id.til_social_security);
         mSocialSecurityField = (SsnEditText) findViewById(R.id.et_social_security);
+
+        mLoadingOverlay = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
     }
 
     /** {@inheritDoc} */
@@ -118,5 +130,17 @@ public class IdentityVerificationView
      */
     public void updateSocialSecurityError(boolean show, int errorMessageId) {
         updateErrorDisplay(mSocialSecurityWrapper, show, errorMessageId);
+    }
+
+    /**
+     * Changes the loading overlay visibility.
+     * @param show Whether the loading overlay should be shown.
+     */
+    public void showLoading(boolean show) {
+        if (show) {
+            mLoadingOverlay.setVisibility(VISIBLE);
+        } else {
+            mLoadingOverlay.setVisibility(GONE);
+        }
     }
 }

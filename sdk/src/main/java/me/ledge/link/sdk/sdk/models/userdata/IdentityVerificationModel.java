@@ -1,5 +1,7 @@
 package me.ledge.link.sdk.sdk.models.userdata;
 
+import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
+import me.ledge.link.sdk.sdk.vos.UserDataVo;
 import ru.lanwen.verbalregex.VerbalExpression;
 import me.ledge.link.sdk.sdk.R;
 import me.ledge.link.sdk.sdk.activities.userdata.IncomeActivity;
@@ -71,6 +73,13 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     }
 
     /**
+     * @return Birthday.
+     */
+    public Date getBirthday() {
+        return mBirthday;
+    }
+
+    /**
      * Stores the birthday.
      * @param year Year of birth.
      * @param monthOfYear Month of birth.
@@ -90,6 +99,13 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         } catch (IllegalArgumentException iae) {
             mBirthday = null;
         }
+    }
+
+    /**
+     * @return social security Number.
+     */
+    public long getSocialSecurityNumber() {
+        return mSocialSecurityNumber;
     }
 
     /**
@@ -141,5 +157,29 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      */
     public boolean hasValidSsn() {
         return mSocialSecurityNumber > 0;
+    }
+
+    /**
+     * Creates the data object to create a new user on the API.
+     * @return The API request data object.
+     */
+    public CreateUserRequestVo getUserRequestData() {
+        CreateUserRequestVo data = new CreateUserRequestVo();
+        UserDataVo base = getBaseData();
+
+        data.first_name = base.firstName;
+        data.last_name = base.lastName;
+        data.birthdate = getBirthday().toString();
+        data.ssn = getSocialSecurityNumber();
+        data.email = base.emailAddress;
+        data.phone = base.phoneNumber;
+        data.income = base.income;
+        data.street = base.address;
+        data.apt = base.apartmentNumber;
+        data.city = base.city;
+        data.state = base.state;
+        data.zip_code = base.zip;
+
+        return  data;
     }
 }

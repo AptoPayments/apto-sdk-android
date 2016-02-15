@@ -76,4 +76,6 @@
             style="?attr/llsdk_nextButtonStyle"
             android:text="@string/id_verification_button_next" />
 
+    <include layout="@layout/include_rl_loading" />
+
 </me.ledge.link.sdk.sdk.views.userdata.IdentityVerificationView>
