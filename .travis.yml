@@ -30,6 +30,7 @@ notifications:
 before_install:
   # Dependencies
   - git clone git@github.com:itabulous/ledgecommon_android.git ~/build/itabulous/ledgecommon_android/
+  - git clone git@github.com:itabulous/ledgelinkapi_android.git ~/build/itabulous/ledgelinkapi_android/
 
 # Running tests.
 script:
