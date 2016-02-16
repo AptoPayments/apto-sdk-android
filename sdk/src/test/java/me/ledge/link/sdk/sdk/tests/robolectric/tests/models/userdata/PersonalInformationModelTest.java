@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.sdk.tests.robolectric.tests.models.userdata;
 
 import android.text.TextUtils;
+import com.google.i18n.phonenumbers.Phonenumber;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,9 +27,19 @@ public class PersonalInformationModelTest {
     private static final String EXPECTED_FIRST_NAME = "Michael";
     private static final String EXPECTED_LAST_NAME = "Bluth";
     private static final String EXPECTED_EMAIL = "michael@bluthcompany.com";
-    private static final long EXPECTED_PHONE_NUMBER = 9495860722L;
+    private static final int EXPECTED_COUNTRY_CODE = 1;
+    private static final long EXPECTED_NATIONAL_NUMBER = 9495860722L;
 
     private PersonalInformationModel mModel;
+
+    /**
+     * @return The expected {@link Phonenumber.PhoneNumber}.
+     */
+    private Phonenumber.PhoneNumber getExpectedPhoneNumber() {
+        return new Phonenumber.PhoneNumber()
+                .setCountryCode(EXPECTED_COUNTRY_CODE)
+                .setNationalNumber(EXPECTED_NATIONAL_NUMBER);
+    }
 
     /**
      * Sets up each test.
@@ -117,9 +128,9 @@ public class PersonalInformationModelTest {
      */
     @Test
     public void validPhoneNumberIsStored() {
-        mModel.setPhone(Long.toString(EXPECTED_PHONE_NUMBER));
+        mModel.setPhone(Long.toString(EXPECTED_NATIONAL_NUMBER));
         Assert.assertTrue("Phone number should be stored.", mModel.hasPhone());
-        Assert.assertThat("Incorrect phone number.", mModel.getPhone(), equalTo(EXPECTED_PHONE_NUMBER));
+        Assert.assertThat("Incorrect phone number.", mModel.getPhone(), equalTo(getExpectedPhoneNumber()));
     }
 
     /**
