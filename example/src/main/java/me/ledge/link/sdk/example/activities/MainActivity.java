@@ -2,8 +2,12 @@ package me.ledge.link.sdk.example.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.View;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
@@ -65,39 +69,59 @@ public class MainActivity extends Activity implements MainView.ViewListener {
      */
     private UserDataVo createStartData() {
         UserDataVo data = new UserDataVo();
+        boolean dataSet = false;
 
         if (hasValue(mView.getLoanAmount())) {
             data.loanAmount = parseIntSafely(mView.getLoanAmount());
+            dataSet = true;
         }
         if (hasValue(mView.getFirstName())) {
             data.firstName = mView.getFirstName();
+            dataSet = true;
         }
         if (hasValue(mView.getLastName())) {
             data.lastName = mView.getLastName();
+            dataSet = true;
         }
         if (hasValue(mView.getEmail())) {
             data.emailAddress = mView.getEmail();
+            dataSet = true;
         }
         if (hasValue(mView.getPhoneNumber())) {
-            data.phoneNumber = parseLongSafely(mView.getPhoneNumber());
+            try {
+                data.phoneNumber = PhoneNumberUtil.getInstance().parse(mView.getPhoneNumber(), "US");
+                dataSet = true;
+            } catch (NumberParseException npe) {
+                // Do nothing.
+            }
         }
         if (hasValue(mView.getAddress())) {
             data.address = mView.getAddress();
+            dataSet = true;
         }
         if (hasValue(mView.getApartmentNumber())) {
             data.apartmentNumber = mView.getApartmentNumber();
+            dataSet = true;
         }
         if (hasValue(mView.getCity())) {
             data.city = mView.getCity();
+            dataSet = true;
         }
         if (hasValue(mView.getState())) {
             data.state = mView.getState();
+            dataSet = true;
         }
         if (hasValue(mView.getZipCode())) {
             data.zip = mView.getZipCode();
+            dataSet = true;
         }
         if (hasValue(mView.getIncome())) {
             data.income = parseIntSafely(mView.getIncome());
+            dataSet = true;
+        }
+
+        if (!dataSet) {
+            data = null;
         }
 
         return data;
@@ -127,8 +151,7 @@ public class MainActivity extends Activity implements MainView.ViewListener {
         LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
         apiWrapper.setBaseRequestData(
                 Long.parseLong(getString(R.string.ledge_link_developer_id)),
-                utils.getDeviceManufacturerAndModel(),
-                utils.getDeviceSdkRelease());
+                utils.getDeviceSummary());
 
         LedgeLinkUi.setApiWrapper(apiWrapper);
         LedgeLinkUi.setResponseHandler(new EventBusThreeResponseHandler());

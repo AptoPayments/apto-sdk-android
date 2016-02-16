@@ -1,5 +1,7 @@
 package me.ledge.link.sdk.sdk.models.userdata;
 
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.sdk.sdk.vos.UserDataVo;
 import ru.lanwen.verbalregex.VerbalExpression;
@@ -7,9 +9,11 @@ import me.ledge.link.sdk.sdk.R;
 import me.ledge.link.sdk.sdk.activities.userdata.IncomeActivity;
 import me.ledge.link.sdk.sdk.models.Model;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 /**
  * Concrete {@link Model} for the ID verification screen.
@@ -17,12 +21,11 @@ import java.util.GregorianCalendar;
  */
 public class IdentityVerificationModel extends AbstractUserDataModel implements UserDataModel {
 
-    private static final int DEFAULT_SSN = -1;
     private static final int EXPECTED_SSN_LENGTH = 9; // TODO: Move to values/ints.xml?
 
     private int mMinimumAge;
     private Date mBirthday;
-    private long mSocialSecurityNumber;
+    private String mSocialSecurityNumber;
 
     /**
      * Creates a new {@link IdentityVerificationModel} instance.
@@ -37,7 +40,30 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     protected void init() {
         mMinimumAge = 0;
         mBirthday = null;
-        mSocialSecurityNumber = DEFAULT_SSN;
+        mSocialSecurityNumber = null;
+    }
+
+    /**
+     * @param number The number to format.
+     * @return E.164 formatted phone number.
+     */
+    private String getFormattedPhone(Phonenumber.PhoneNumber number) {
+        String formatted = null;
+
+        if (number != null) {
+            formatted = PhoneNumberUtil.getInstance().format(number, PhoneNumberUtil.PhoneNumberFormat.E164);
+        }
+
+        return formatted;
+    }
+
+    /**
+     * @param birthday Date to format.
+     * @return Formatted birthday.
+     */
+    private String getFormattedBirthday(Date birthday) {
+        SimpleDateFormat birthdayFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.US);
+        return birthdayFormat.format(birthday);
     }
 
     /** {@inheritDoc} */
@@ -92,7 +118,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     /**
      * @return social security Number.
      */
-    public long getSocialSecurityNumber() {
+    public String getSocialSecurityNumber() {
         return mSocialSecurityNumber;
     }
 
@@ -107,15 +133,10 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
                 .endOfLine()
                 .build();
 
-        if(!ssnRegex.testExact(ssn)) {
-            mSocialSecurityNumber = DEFAULT_SSN;
-            return;
-        }
-
-        try {
-            mSocialSecurityNumber = Long.parseLong(ssn);
-        } catch (NumberFormatException nfe) {
-            mSocialSecurityNumber = DEFAULT_SSN;
+        if(ssnRegex.testExact(ssn)) {
+            mSocialSecurityNumber = ssn;
+        } else {
+            mSocialSecurityNumber = null;
         }
     }
 
@@ -144,7 +165,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      * @return Whether a valid SSN has been stored.
      */
     public boolean hasValidSsn() {
-        return mSocialSecurityNumber > 0;
+        return mSocialSecurityNumber != null;
     }
 
     /**
@@ -157,10 +178,10 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
 
         data.first_name = base.firstName;
         data.last_name = base.lastName;
-        data.birthdate = getBirthday().toString();
+        data.birthdate = getFormattedBirthday(getBirthday());
         data.ssn = getSocialSecurityNumber();
         data.email = base.emailAddress;
-        data.phone = base.phoneNumber;
+        data.phone_number = getFormattedPhone(base.phoneNumber);
         data.income = base.income;
         data.street = base.address;
         data.apt = base.apartmentNumber;

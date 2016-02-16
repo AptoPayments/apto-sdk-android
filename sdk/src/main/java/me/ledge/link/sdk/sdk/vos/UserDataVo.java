@@ -2,6 +2,7 @@ package me.ledge.link.sdk.sdk.vos;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.google.i18n.phonenumbers.Phonenumber;
 
 /**
  * User data.<br />
@@ -17,7 +18,7 @@ public class UserDataVo implements Parcelable {
     public String firstName;
     public String lastName;
     public String emailAddress;
-    public long phoneNumber;
+    public Phonenumber.PhoneNumber phoneNumber;
 
     public String address;
     public String apartmentNumber; // Or unit.
@@ -57,7 +58,7 @@ public class UserDataVo implements Parcelable {
         firstName = null;
         lastName = null;
         emailAddress = null;
-        phoneNumber = -1;
+        phoneNumber = null;
         address = null;
         apartmentNumber = null;
         city = null;
@@ -75,7 +76,7 @@ public class UserDataVo implements Parcelable {
         firstName = in.readString();
         lastName = in.readString();
         emailAddress = in.readString();
-        phoneNumber = in.readLong();
+        phoneNumber = (Phonenumber.PhoneNumber) in.readSerializable();
         address = in.readString();
         apartmentNumber = in.readString();
         city = in.readString();
@@ -97,7 +98,7 @@ public class UserDataVo implements Parcelable {
         dest.writeString(firstName);
         dest.writeString(lastName);
         dest.writeString(emailAddress);
-        dest.writeLong(phoneNumber);
+        dest.writeSerializable(phoneNumber);
         dest.writeString(address);
         dest.writeString(apartmentNumber);
         dest.writeString(city);

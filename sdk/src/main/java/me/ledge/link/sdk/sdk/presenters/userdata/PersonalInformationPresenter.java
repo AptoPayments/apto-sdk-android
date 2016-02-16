@@ -44,7 +44,7 @@ public class PersonalInformationPresenter
             mView.setEmail(mModel.getEmail());
         }
         if (mModel.hasPhone()) {
-            mView.setPhone(Long.toString(mModel.getPhone()));
+            mView.setPhone(Long.toString(mModel.getPhone().getNationalNumber()));
         }
 
         mView.setListener(this);

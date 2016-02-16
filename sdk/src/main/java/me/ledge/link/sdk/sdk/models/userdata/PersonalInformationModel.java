@@ -5,8 +5,6 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import me.ledge.link.sdk.sdk.R;
-import me.ledge.link.sdk.sdk.activities.userdata.AddressActivity;
-import me.ledge.link.sdk.sdk.activities.userdata.LoanAmountActivity;
 import me.ledge.link.sdk.sdk.models.Model;
 import me.ledge.link.sdk.sdk.vos.UserDataVo;
 import ru.lanwen.verbalregex.VerbalExpression;
@@ -17,12 +15,10 @@ import ru.lanwen.verbalregex.VerbalExpression;
  */
 public class PersonalInformationModel extends AbstractUserDataModel implements UserDataModel {
 
-    private static final long DEFAULT_PHONE_NUMBER = -1;
-
     private String mFirstName;
     private String mLastName;
     private String mEmail;
-    private long mPhone;
+    private PhoneNumber mPhone;
     private PhoneNumberUtil mPhoneUtil;
 
     /**
@@ -39,7 +35,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         mFirstName = null;
         mLastName = null;
         mEmail = null;
-        mPhone = DEFAULT_PHONE_NUMBER;
+        mPhone = null;
         mPhoneUtil = PhoneNumberUtil.getInstance();
     }
 
@@ -75,10 +71,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         setFirstName(base.firstName);
         setLastName(base.lastName);
         setEmail(base.emailAddress);
-
-        if (base.phoneNumber > 0) {
-            mPhone = base.phoneNumber;
-        }
+        setPhone(base.phoneNumber);
     }
 
     /**
@@ -149,7 +142,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     /**
      * @return Phone number.
      */
-    public long getPhone() {
+    public PhoneNumber getPhone() {
         return mPhone;
     }
 
@@ -158,15 +151,23 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * @param phone Raw phone number.
      */
     public void setPhone(String phone) {
-        mPhone = DEFAULT_PHONE_NUMBER;
-
         try {
             PhoneNumber number = mPhoneUtil.parse(phone, "US");
-            if (mPhoneUtil.isValidNumber(number)) {
-                mPhone = number.getNationalNumber();
-            }
+            setPhone(number);
         } catch (NumberParseException npe) {
-            // Do nothing.
+            mPhone = null;
+        }
+    }
+
+    /**
+     * Stores a valid phone number.
+     * @param number Phone number object.
+     */
+    public void setPhone(PhoneNumber number) {
+        if (number != null && mPhoneUtil.isValidNumber(number)) {
+            mPhone = number;
+        } else {
+            mPhone = null;
         }
     }
 
@@ -195,6 +196,6 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * @return Whether a phone number has been set.
      */
     public boolean hasPhone() {
-        return mPhone > 0;
+        return mPhone != null;
     }
 }
