@@ -34,9 +34,11 @@ before_install:
   # Create gradle.properties files.
   - echo "HOME=$HOME" > ~/build/itabulous/ledgelinkapi_android/gradle.properties
   - echo "HOME=$HOME" > ~/build/itabulous/ledgelinksdk_android/gradle.properties
+
+install:
   # Add dependencies to local m2 repo.
   - cd ~/build/itabulous/ledgelinkapi_android
-  - gradle -p api install
+  - gradle --configure-on-demand -p api install
   - gradle -p wrappers/wrapper-retrofit install
   - cd ~/build/itabulous/ledgelinksdk_android
 
