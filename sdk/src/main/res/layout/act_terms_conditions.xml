@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.ledge.link.sdk.sdk.views.userdata.TermsView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/include_toolbar" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_centerInParent="true"
+            android:text="@string/terms_tag_line" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="?attr/llsdk_dataContainerStyle"
+            android:gravity="center_horizontal|bottom"
+            android:text="@string/terms_conditions" />
+
+    <TextView
+            android:id="@+id/tv_next_bttn"
+            style="?attr/llsdk_nextButtonStyle"
+            android:text="@string/terms_button_next" />
+
+</me.ledge.link.sdk.sdk.views.userdata.TermsView>

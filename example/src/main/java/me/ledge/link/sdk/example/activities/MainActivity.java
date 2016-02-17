@@ -19,6 +19,7 @@ import me.ledge.link.sdk.sdk.activities.userdata.EventBusIdentityVerificationAct
 import me.ledge.link.sdk.sdk.activities.userdata.IncomeActivity;
 import me.ledge.link.sdk.sdk.activities.userdata.LoanAmountActivity;
 import me.ledge.link.sdk.sdk.activities.userdata.PersonalInformationActivity;
+import me.ledge.link.sdk.sdk.activities.userdata.TermsActivity;
 import me.ledge.link.sdk.sdk.tasks.handlers.EventBusThreeResponseHandler;
 import me.ledge.link.sdk.sdk.vos.UserDataVo;
 
@@ -141,7 +142,8 @@ public class MainActivity extends Activity implements MainView.ViewListener {
     private void setupLedgeLink() {
         AndroidUtils utils = new AndroidUtils();
 
-        ArrayList<Class<?>> process = new ArrayList<>(5);
+        ArrayList<Class<?>> process = new ArrayList<>(6);
+        process.add(TermsActivity.class);
         process.add(LoanAmountActivity.class);
         process.add(PersonalInformationActivity.class);
         process.add(AddressActivity.class);
