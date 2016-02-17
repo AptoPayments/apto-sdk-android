@@ -39,7 +39,7 @@ install:
   # Add dependencies to local m2 repo.
   - cd ~/build/itabulous/ledgelinkapi_android
   - gradle --configure-on-demand -p api install
-  - gradle -p wrappers/wrapper-retrofit install
+  - gradle -p wrappers/wrapper-retrofit2 install
   - cd ~/build/itabulous/ledgelinksdk_android
 
 # Running tests.
