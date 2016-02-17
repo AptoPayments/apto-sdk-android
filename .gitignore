@@ -1,6 +1,7 @@
 # Gradle
 local.properties
 user.properties
+gradle.properties
 .gradle
 build
 

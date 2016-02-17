@@ -48,11 +48,20 @@ android {
 
 repositories {
     jcenter()
+
+    // Temporary solution until libs are published.
+    maven {
+        url "${HOME}/.m2/repository/"
+    }
 }
 
 dependencies {
+    // Ledge Libraries
     compile project(':LedgeCommon')
-    compile project(':LedgeLinkApi')
+    compile 'me.ledge.link.api:api:+'
+    compile 'me.ledge.link.api:wrapper-retrofit2:+'
+
+    // 3rd Party Libraries
     compile 'com.android.support:appcompat-v7:+'
     compile 'com.android.support:design:+'
     compile 'org.adw.library:discrete-seekbar:+'

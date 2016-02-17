@@ -17,6 +17,11 @@ android {
 
 repositories {
     jcenter()
+
+    // Temporary solution until libs are published.
+    maven {
+        url "${HOME}/.m2/repository/"
+    }
 }
 
 dependencies {

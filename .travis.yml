@@ -32,6 +32,12 @@ before_install:
   - git clone git@github.com:itabulous/ledgecommon_android.git ~/build/itabulous/ledgecommon_android/
   - git clone git@github.com:itabulous/ledgelinkapi_android.git ~/build/itabulous/ledgelinkapi_android/
 
+install:
+  - cd ~/build/itabulous/ledgelinkapi_android
+  - gradle -p api install
+  - gradle -p wrappers/wrapper-retrofit install
+  - cd ~/build/itabulous/ledgelinksdk_android
+
 # Running tests.
 script:
   - gradle -p sdk testDebugUnitTestCoverage
