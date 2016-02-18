@@ -26,27 +26,27 @@
         </activity>
 
         <activity
-                android:name="me.ledge.link.sdk.sdk.activities.userdata.TermsActivity"
+                android:name="me.ledge.link.sdk.ui.activities.userdata.TermsActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.sdk.activities.userdata.LoanAmountActivity"
+                android:name="me.ledge.link.sdk.ui.activities.userdata.LoanAmountActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.sdk.activities.userdata.PersonalInformationActivity"
+                android:name="me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.sdk.activities.userdata.AddressActivity"
+                android:name="me.ledge.link.sdk.ui.activities.userdata.AddressActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.sdk.activities.userdata.IncomeActivity"
+                android:name="me.ledge.link.sdk.ui.activities.userdata.IncomeActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.sdk.activities.userdata.EventBusIdentityVerificationActivity"
+                android:name="me.ledge.link.sdk.ui.activities.userdata.EventBusIdentityVerificationActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
     </application>
