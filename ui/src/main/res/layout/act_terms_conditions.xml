@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<me.ledge.link.sdk.sdk.views.userdata.TermsView
+<me.ledge.link.sdk.ui.views.userdata.TermsView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,4 +25,4 @@
             style="?attr/llsdk_nextButtonStyle"
             android:text="@string/terms_button_next" />
 
-</me.ledge.link.sdk.sdk.views.userdata.TermsView>
+</me.ledge.link.sdk.ui.views.userdata.TermsView>
