@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.kt3k.coveralls'
+apply from: '../javadoc.gradle'
+apply from: '../jacoco.gradle'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        // Coveralls
+        // Using fixed version, see https://github.com/kt3k/coveralls-gradle-plugin/issues/47
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.5.0-x'
+    }
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '21.1.2'
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+
+        versionCode = '1'
+        versionName = '0.1'
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+    }
+
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+
+            all {
+                include "**/*Test.class"
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
+}
+
+repositories {
+    jcenter()
+
+    // Temporary solution until libs are published.
+    maven {
+        url "${HOME}/.m2/repository/"
+    }
+}
+
+dependencies {
+    // Ledge Libraries
+    compile project(':sdk')
+    compile project(':LedgeCommon')
+
+    // 3rd Party Libraries
+    compile 'com.android.support:appcompat-v7:+'
+    compile 'com.android.support:design:+'
+    compile 'org.adw.library:discrete-seekbar:+'
+    compile 'ru.lanwen.verbalregex:java-verbal-expressions:+'
+    compile 'com.googlecode.libphonenumber:libphonenumber:+'
+
+    // Tests
+    testCompile 'junit:junit:4.+'
+    testCompile 'org.robolectric:robolectric:+'
+    testCompile 'org.powermock:powermock-api-mockito:+'
+    testCompile 'org.powermock:powermock-module-junit4-rule-agent:+'
+    testCompile 'org.powermock:powermock-module-junit4-rule:+'
+    testCompile 'org.powermock:powermock-module-junit4:+'
+}

@@ -3,4 +3,5 @@ include "LedgeCommon"
 project(":LedgeCommon").projectDir = new File("../ledgecommon_android");
 
 include ':sdk'
+include ':ui'
 include ':example'

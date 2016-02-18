@@ -13,15 +13,15 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
-import me.ledge.link.sdk.sdk.LedgeLinkUi;
-import me.ledge.link.sdk.sdk.activities.userdata.AddressActivity;
-import me.ledge.link.sdk.sdk.activities.userdata.EventBusIdentityVerificationActivity;
-import me.ledge.link.sdk.sdk.activities.userdata.IncomeActivity;
-import me.ledge.link.sdk.sdk.activities.userdata.LoanAmountActivity;
-import me.ledge.link.sdk.sdk.activities.userdata.PersonalInformationActivity;
-import me.ledge.link.sdk.sdk.activities.userdata.TermsActivity;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
+import me.ledge.link.sdk.ui.activities.userdata.EventBusIdentityVerificationActivity;
+import me.ledge.link.sdk.ui.activities.userdata.IncomeActivity;
+import me.ledge.link.sdk.ui.activities.userdata.LoanAmountActivity;
+import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
+import me.ledge.link.sdk.ui.activities.userdata.TermsActivity;
 import me.ledge.link.sdk.sdk.tasks.handlers.EventBusThreeResponseHandler;
-import me.ledge.link.sdk.sdk.vos.UserDataVo;
+import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 import java.util.ArrayList;
 

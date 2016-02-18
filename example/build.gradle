@@ -25,5 +25,5 @@ repositories {
 }
 
 dependencies {
-    compile project(':sdk')
+    compile project(':ui')
 }
