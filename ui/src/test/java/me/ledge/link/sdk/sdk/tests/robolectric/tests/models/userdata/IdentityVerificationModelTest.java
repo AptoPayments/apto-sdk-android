@@ -3,7 +3,7 @@ package me.ledge.link.sdk.sdk.tests.robolectric.tests.models.userdata;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import me.ledge.link.sdk.sdk.models.userdata.IdentityVerificationModel;
+import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import me.ledge.link.sdk.sdk.mocks.answers.textutils.IsEmptyAnswer;
-import me.ledge.link.sdk.sdk.models.userdata.PersonalInformationModel;
+import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.mockito.Matchers.any;

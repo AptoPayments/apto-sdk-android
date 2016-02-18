@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import me.ledge.link.sdk.sdk.mocks.answers.textutils.IsEmptyAnswer;
-import me.ledge.link.sdk.sdk.models.userdata.AddressModel;
+import me.ledge.link.sdk.ui.models.userdata.AddressModel;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.mockito.Matchers.any;

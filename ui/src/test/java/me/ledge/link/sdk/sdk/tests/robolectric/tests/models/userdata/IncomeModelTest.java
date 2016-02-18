@@ -4,7 +4,7 @@ import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import me.ledge.link.sdk.sdk.models.userdata.IncomeModel;
+import me.ledge.link.sdk.ui.models.userdata.IncomeModel;
 
 /**
  * Tests the {@link IncomeModel} class.
