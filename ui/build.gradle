@@ -58,7 +58,7 @@ repositories {
 dependencies {
     // Ledge Libraries
     compile project(':sdk')
-    compile project(':LedgeCommon')
+    compile 'me.ledge.common:common:0.1-SNAPSHOT'
 
     // 3rd Party Libraries
     compile 'com.android.support:appcompat-v7:+'
