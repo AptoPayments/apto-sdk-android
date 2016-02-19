@@ -11,6 +11,11 @@ ext {
     mavenVersion = '0.1-SNAPSHOT'
 }
 
+subprojects {
+    version = mavenVersion
+    group = mavenGroup
+}
+
 buildscript {
     repositories {
         jcenter()

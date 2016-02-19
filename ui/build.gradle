@@ -16,9 +16,6 @@ apply plugin: 'com.github.kt3k.coveralls'
 apply from: '../javadoc.gradle'
 apply from: '../jacoco.gradle'
 
-group = mavenGroup
-version = mavenVersion
-
 android {
     compileSdkVersion androidCompileSdkVersion.toInteger()
     buildToolsVersion androidBuildToolsVersion
