@@ -1,4 +1,10 @@
 include ':sdk'
 include ':ui'
 include ':handlers:handler-eventbus'
-include ':example'
+
+if (!hasProperty('excludeExample') || !excludeExample.toBoolean()) {
+    // Nasty, but solves an issue where installing handlers would fail on:
+    // 'Could not find method compile() for arguments' when using the
+    // '--configure-on-demand' option.
+    include ':example'
+}
