@@ -15,12 +15,12 @@ import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
-import me.ledge.link.sdk.ui.activities.userdata.EventBusIdentityVerificationActivity;
+import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusIdentityVerificationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.LoanAmountActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.TermsActivity;
-import me.ledge.link.sdk.sdk.tasks.handlers.EventBusThreeResponseHandler;
+import me.ledge.link.sdk.handlers.eventbus.tasks.handlers.EventBusThreeResponseHandler;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 import java.util.ArrayList;

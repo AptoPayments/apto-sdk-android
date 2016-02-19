@@ -1,6 +1,7 @@
-package me.ledge.link.sdk.ui.activities.userdata;
+package me.ledge.link.sdk.handlers.eventbus.activities.userdata;
 
-import me.ledge.link.sdk.ui.presenters.userdata.EventBusIdentyVerificationPresenter;
+import me.ledge.link.sdk.handlers.eventbus.presenters.userdata.EventBusIdentyVerificationPresenter;
+import me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
 import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
 
 /**

@@ -26,5 +26,6 @@ repositories {
 
 dependencies {
     compile 'me.ledge.link.sdk:ui:+'
+    compile 'me.ledge.link.sdk:handler-eventbus:+'
     compile 'me.ledge.link.api:wrapper-retrofit2:+'
 }

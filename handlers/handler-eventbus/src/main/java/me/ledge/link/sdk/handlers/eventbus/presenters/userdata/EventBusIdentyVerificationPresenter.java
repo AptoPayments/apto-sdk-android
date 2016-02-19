@@ -1,8 +1,9 @@
-package me.ledge.link.sdk.ui.presenters.userdata;
+package me.ledge.link.sdk.handlers.eventbus.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
+import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

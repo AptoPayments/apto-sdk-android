@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="me.ledge.link.api.wrappers.retrofit.two"
+          package="me.ledge.link.sdk.handlers.eventbus"
           android:versionCode="1"
           android:versionName="1.0">
 
