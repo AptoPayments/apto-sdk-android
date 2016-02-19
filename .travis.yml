@@ -44,6 +44,7 @@ install:
   - gradle --configure-on-demand -p api install
   - gradle -p wrappers/wrapper-retrofit2 install
   - cd ~/build/itabulous/ledgelinksdk_android
+  - gradle -p sdk install
 
 # Running tests.
 script:

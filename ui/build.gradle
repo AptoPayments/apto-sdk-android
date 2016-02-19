@@ -1,8 +1,3 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.github.kt3k.coveralls'
-apply from: '../javadoc.gradle'
-apply from: '../jacoco.gradle'
-
 buildscript {
     repositories {
         jcenter()
@@ -14,6 +9,15 @@ buildscript {
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.5.0-x'
     }
 }
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.github.kt3k.coveralls'
+apply from: '../javadoc.gradle'
+apply from: '../jacoco.gradle'
+
+group = mavenGroup
+version = mavenVersion
 
 android {
     compileSdkVersion androidCompileSdkVersion.toInteger()
@@ -57,8 +61,8 @@ repositories {
 
 dependencies {
     // Ledge Libraries
-    compile project(':sdk')
-    compile 'me.ledge.common:common:0.1-SNAPSHOT'
+    compile 'me.ledge.link.sdk:sdk:+'
+    compile 'me.ledge.common:common:+'
 
     // 3rd Party Libraries
     compile 'com.android.support:appcompat-v7:+'

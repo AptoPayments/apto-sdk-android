@@ -1,4 +1,8 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = mavenGroup
+version = mavenVersion
 
 android {
     compileSdkVersion androidCompileSdkVersion.toInteger()
@@ -27,7 +31,6 @@ repositories {
 dependencies {
     // Ledge Libraries.
     compile 'me.ledge.link.api:api:+'
-    compile 'me.ledge.link.api:wrapper-retrofit2:+'
 
     // 3rd Party Libraries.
     compile 'org.greenrobot:eventbus:+'
