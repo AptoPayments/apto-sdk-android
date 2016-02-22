@@ -101,9 +101,8 @@ public class IdentityVerificationPresenter
     public void setCreateUserResponse(CreateUserResponseVo response) {
         mView.showLoading(false);
 
-        // TODO: Show next screen.
-        String message = mActivity.getString(R.string.id_verification_toast_api_success, response.token);
-        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+        // Show next screen. TODO: Pass token!
+        super.nextClickHandler();
     }
 
     /**

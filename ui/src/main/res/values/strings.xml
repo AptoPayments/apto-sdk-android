@@ -48,6 +48,8 @@
     <string name="id_verification_disclaimer">Your information is private and secure.</string>
     <string name="id_verification_terms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque turpis ut malesuada iaculis. Nulla facilisi. Etiam ultrices augue mi, et egestas nisi faucibus quis.</string>
     <string name="id_verification_button_next">GET OFFERS</string>
-    <string name="id_verification_toast_api_success">User created.\nToken: \'%s\'.</string>
     <string name="id_verification_toast_api_error">Error: %s</string>
+
+    <!-- Offers List -->
+    <string name="offers_list_label">Loan offers</string>
 </resources>

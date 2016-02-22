@@ -14,6 +14,7 @@ import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusIdentityVerificationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IncomeActivity;
@@ -142,13 +143,14 @@ public class MainActivity extends Activity implements MainView.ViewListener {
     private void setupLedgeLink() {
         AndroidUtils utils = new AndroidUtils();
 
-        ArrayList<Class<?>> process = new ArrayList<>(6);
+        ArrayList<Class<?>> process = new ArrayList<>(7);
         process.add(TermsActivity.class);
         process.add(LoanAmountActivity.class);
         process.add(PersonalInformationActivity.class);
         process.add(AddressActivity.class);
         process.add(IncomeActivity.class);
         process.add(EventBusIdentityVerificationActivity.class);
+        process.add(OffersListActivity.class);
 
         LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
         apiWrapper.setBaseRequestData(
