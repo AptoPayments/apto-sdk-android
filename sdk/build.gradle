@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+apply from: '../jacoco.gradle'
 apply from: '../javadoc.gradle'
 
 android {
@@ -12,6 +13,24 @@ android {
 
         versionCode = androidVersionCode
         versionName = androidVersionName
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+    }
+
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+
+            all {
+                include "**/*Test.class"
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
     }
 }
 
@@ -29,4 +48,8 @@ repositories {
 dependencies {
     // Ledge Libraries.
     compile 'me.ledge.link.api:api:+'
+
+    // Tests
+    testCompile 'junit:junit:4.+'
+    testCompile 'org.robolectric:robolectric:+'
 }
