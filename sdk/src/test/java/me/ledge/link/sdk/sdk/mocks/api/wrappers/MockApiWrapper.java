@@ -11,6 +11,8 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
  */
 public class MockApiWrapper implements LinkApiWrapper {
 
+    public static final String TOKEN = "bearer_token";
+
     private long mDeveloperId;
     private String mDevice;
     private String mEndPoint;
@@ -37,6 +39,9 @@ public class MockApiWrapper implements LinkApiWrapper {
     /** {@inheritDoc} */
     @Override
     public CreateUserResponseVo createUser(CreateUserRequestVo requestData) throws ApiException {
-        return null;
+        CreateUserResponseVo response = new CreateUserResponseVo();
+        response.token = TOKEN;
+
+        return response;
     }
 }
