@@ -4,13 +4,14 @@ android.libraryVariants.all { variant ->
             group: 'Documentation',
             dependsOn: "assemble${variant.name.capitalize()}") {
 
-        description = "Generates Ledge Line SDK Java Documentation for ${variant.name.capitalize()}."
-        title = "Ledge Line SDK Java documentation"
+        def projectName = project.name.toUpperCase()
+        description = "Generates Ledge Line ${projectName} Java Documentation for ${variant.name.capitalize()}."
+        title = "Ledge Line ${projectName} Java documentation"
         source = variant.javaCompile.source
 
         classpath += files(variant.javaCompile.classpath.files, project.android.getBootClasspath())
 
-        destinationDir = reporting.file("sdk-docs")
+        destinationDir = reporting.file("${project.name}-javadocs")
         options {
             links "http://docs.oracle.com/javase/7/docs/api/"
             linksOffline "http://d.android.com/reference","${android.sdkDirectory}/docs/reference"
