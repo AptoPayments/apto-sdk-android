@@ -1,13 +1,11 @@
 package me.ledge.link.sdk.example.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.telephony.PhoneNumberUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
 import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
@@ -30,7 +28,7 @@ import java.util.ArrayList;
  * Main display.
  * @author Wijnand
  */
-public class MainActivity extends Activity implements MainView.ViewListener {
+public class MainActivity extends AppCompatActivity implements MainView.ViewListener {
 
     private MainView mView;
 
@@ -43,22 +41,6 @@ public class MainActivity extends Activity implements MainView.ViewListener {
 
         try {
             result = Integer.parseInt(source);
-        } catch (NumberFormatException nfe) {
-            result = 0;
-        }
-
-        return result;
-    }
-
-    /**
-     * @param source String source to parse to a long.
-     * @return Parsed long.
-     */
-    private long parseLongSafely(String source) {
-        long result;
-
-        try {
-            result = Long.parseLong(source);
         } catch (NumberFormatException nfe) {
             result = 0;
         }
