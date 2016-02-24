@@ -12,7 +12,7 @@ import me.ledge.link.sdk.ui.views.userdata.LoanAmountView;
  * @author Wijnand
  */
 public class LoanAmountActivity
-        extends MvpActivity<LoanAmountModel, LoanAmountView, LoanAmountPresenter> {
+        extends UserDataActivity<LoanAmountModel, LoanAmountView, LoanAmountPresenter> {
 
     /** {@inheritDoc} */
     @Override

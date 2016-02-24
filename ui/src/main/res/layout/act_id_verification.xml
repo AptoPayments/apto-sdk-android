@@ -64,11 +64,6 @@
                 android:layout_below="@+id/til_social_security"
                 android:text="@string/id_verification_disclaimer" />
 
-        <TextView
-                style="?attr/llsdk_idVerification_termsStyle"
-                android:layout_alignParentBottom="true"
-                android:text="@string/id_verification_terms" />
-
     </RelativeLayout>
 
     <TextView

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--
+        DARK
+    -->
+
     <!-- Generic -->
     <style name="llsdk_user_data_entry_container">
         <item name="android:layout_width">match_parent</item>
@@ -10,15 +14,18 @@
         <item name="android:padding">16dp</item>
     </style>
 
+    <!-- Terms -->
+    <style name="llsdk_terms_disclaimer" parent="llsdk_user_data_entry_container">
+        <item name="android:gravity">center_horizontal|bottom</item>
+        <item name="android:textColor">@color/llsdk_dark_text_color_hint</item>
+    </style>
+
     <!-- ID Verification -->
     <style name="llsdk_id_verification_text_input_base">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">sans-serif</item>
-    </style>
-    <style name="llsdk_id_verification_text_input_base_light" parent="llsdk_id_verification_text_input_base">
-        <item name="android:textColor">@color/llsdk_light_text_color</item>
     </style>
 
     <style name="llsdk_id_verification_disclaimer">
@@ -43,10 +50,23 @@
         <item name="android:background">@color/llsdk_dark_text_color</item>
         <item name="android:textColor">@color/llsdk_light_text_color</item>
     </style>
+
+    <!--
+        LIGHT
+    -->
+
+    <style name="llsdk_id_verification_text_input_base_light" parent="llsdk_id_verification_text_input_base">
+        <item name="android:textColor">@color/llsdk_light_text_color</item>
+    </style>
+
     <style name="llsdk_id_verification_next_button_light" parent="llsdk_id_verification_next_button">
         <item name="android:background">@color/llsdk_dark_text_color_hint</item>
         <item name="android:textColor">@color/llsdk_dark_text_color</item>
         <item name="android:clickable">true</item>
     </style>
+
+    <!--
+        BLUE
+    -->
 
 </resources>

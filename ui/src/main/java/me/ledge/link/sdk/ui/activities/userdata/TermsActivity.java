@@ -11,7 +11,7 @@ import me.ledge.link.sdk.ui.views.userdata.TermsView;
  * Wires up the MVP pattern for the terms and conditions screen.
  * @author Wijnand
  */
-public class TermsActivity extends MvpActivity<TermsModel, TermsView, TermsPresenter> {
+public class TermsActivity extends UserDataActivity<TermsModel, TermsView, TermsPresenter> {
 
     /** {@inheritDoc} */
     @Override

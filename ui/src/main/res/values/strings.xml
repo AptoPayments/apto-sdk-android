@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Generic -->
+    <string name="user_data_menu_info">Info &amp; terms</string>
+
     <!-- Terms / Conditions -->
     <string name="terms_label">Find a loan</string>
-    <string name="terms_tag_line">Aliquam et nisi in magna blandit ornare.</string>
+    <string name="terms_tag_line">Aliquam et nisi in,\nmagna blandit ornare.</string>
     <string name="terms_conditions">Nullam quam tortor, interdum vitae efficitur in, tristique vitae nulla. Curabitur mattis vehicula sapien id pretium. Curabitur nec metus in tortor venenatis varius. Etiam vel neque arcu. Suspendisse ipsum nisi, sagittis ultrices egestas sed, mattis a lacus. </string>
-    <string name="terms_button_next">FIND A LOAN</string>
+    <string name="terms_button_next">GET OFFERS</string>
 
     <!-- Loan Amount -->
     <string name="loan_amount_label">Loan amount</string>

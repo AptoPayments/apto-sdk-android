@@ -12,7 +12,7 @@ import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
  * @author Wijnand
  */
 public class IdentityVerificationActivity
-        extends MvpActivity<IdentityVerificationModel, IdentityVerificationView, IdentityVerificationPresenter> {
+        extends UserDataActivity<IdentityVerificationModel, IdentityVerificationView, IdentityVerificationPresenter> {
 
     /** {@inheritDoc} */
     @Override

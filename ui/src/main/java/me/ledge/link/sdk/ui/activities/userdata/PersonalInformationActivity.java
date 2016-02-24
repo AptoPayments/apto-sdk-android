@@ -12,7 +12,7 @@ import me.ledge.link.sdk.ui.views.userdata.PersonalInformationView;
  * @author Wijnand
  */
 public class PersonalInformationActivity
-        extends MvpActivity<PersonalInformationModel, PersonalInformationView, PersonalInformationPresenter> {
+        extends UserDataActivity<PersonalInformationModel, PersonalInformationView, PersonalInformationPresenter> {
 
     /** {@inheritDoc} */
     @Override

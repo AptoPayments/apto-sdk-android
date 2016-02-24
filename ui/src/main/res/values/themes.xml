@@ -9,11 +9,13 @@
         <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
         <item name="llsdk_nextButtonStyle">@style/llsdk_id_verification_next_button</item>
 
+        <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
+
         <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.TextInput</item>
         <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_base</item>
         <item name="llsdk_idVerification_editTextStyle">@style/llsdk_id_verification_text_input_base</item>
         <item name="llsdk_idVerification_disclaimerStyle">@style/llsdk_id_verification_disclaimer</item>
-        <item name="llsdk_idVerification_termsStyle">@style/llsdk_id_verification_terms</item>
+        <item name="llsdk_userData_infoIcon">@drawable/ic_help_outline_white_24dp</item>
     </style>
 
     <style
@@ -28,11 +30,13 @@
         <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
         <item name="llsdk_nextButtonStyle">@style/llsdk_id_verification_next_button_light</item>
 
+        <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
+
         <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.Light.TextInput</item>
         <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_base</item>
         <item name="llsdk_idVerification_editTextStyle">@style/llsdk_id_verification_text_input_base_light</item>
         <item name="llsdk_idVerification_disclaimerStyle">@style/llsdk_id_verification_disclaimer</item>
-        <item name="llsdk_idVerification_termsStyle">@style/llsdk_id_verification_terms</item>
+        <item name="llsdk_userData_infoIcon">@drawable/ic_help_outline_black_24dp</item>
     </style>
 
     <style

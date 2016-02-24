@@ -12,7 +12,7 @@ import me.ledge.link.sdk.ui.views.userdata.IncomeView;
  * @author Wijnand
  */
 public class IncomeActivity
-        extends MvpActivity<IncomeModel, IncomeView, IncomePresenter> {
+        extends UserDataActivity<IncomeModel, IncomeView, IncomePresenter> {
 
     /** {@inheritDoc} */
     @Override

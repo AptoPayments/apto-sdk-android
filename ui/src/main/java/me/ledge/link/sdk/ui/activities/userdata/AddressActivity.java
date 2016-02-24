@@ -12,7 +12,7 @@ import me.ledge.link.sdk.ui.views.userdata.AddressView;
  * @author Wijnand
  */
 public class AddressActivity
-        extends MvpActivity<AddressModel, AddressView, AddressPresenter> {
+        extends UserDataActivity<AddressModel, AddressView, AddressPresenter> {
 
     /** {@inheritDoc} */
     @Override
