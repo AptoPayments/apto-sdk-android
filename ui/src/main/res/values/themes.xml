@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--
+        DARK
+    -->
+
     <style
             name="Theme.LedgeLine.Sdk"
             parent="@style/Theme.AppCompat.NoActionBar">
@@ -19,6 +23,18 @@
         <item name="llsdk_userData_infoIcon">@drawable/ic_help_outline_white_24dp</item>
         <item name="llsdk_userData_sliderHeaderStyle">@style/llsdk_value_slider_header</item>
     </style>
+
+    <style
+            name="Theme.LedgeLine.Sdk.TextInput"
+            parent="@style/Widget.Design.TextInputLayout">
+
+        <item name="android:textColor">@color/llsdk_dark_text_color</item>
+        <item name="android:textColorHint">@color/llsdk_dark_text_color_hint</item>
+    </style>
+
+    <!--
+        LIGHT
+    -->
 
     <style
             name="Theme.LedgeLine.Sdk.Light"
@@ -44,13 +60,6 @@
     </style>
 
     <style
-            name="Theme.LedgeLine.Sdk.TextInput"
-            parent="@style/Widget.Design.TextInputLayout">
-
-        <item name="android:textColor">@color/llsdk_dark_text_color</item>
-        <item name="android:textColorHint">@color/llsdk_dark_text_color_hint</item>
-    </style>
-    <style
             name="Theme.LedgeLine.Sdk.Light.TextInput"
             parent="@style/Widget.Design.TextInputLayout">
 
@@ -60,4 +69,45 @@
         <item name="colorControlActivated">@color/llsdk_light_control_activated</item>
         <item name="colorControlHighlight">@color/llsdk_light_control_activated</item>
     </style>
+
+    <!--
+        BLUE
+    -->
+
+    <style
+            name="Theme.LedgeLine.Sdk.Blue"
+            parent="Theme.LedgeLine.Sdk.Blue.Base" />
+
+    <style
+            name="Theme.LedgeLine.Sdk.Blue.Base"
+            parent="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/llsdk_blue_primary</item>
+        <item name="colorPrimaryDark">@color/llsdk_blue_primary_dark</item>
+
+        <item name="llsdk_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="llsdk_toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
+        <item name="llsdk_nextButtonStyle">@style/llsdk_user_data_next_button_blue</item>
+
+        <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
+
+        <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.Blue.TextInput</item>
+        <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_base</item>
+        <item name="llsdk_idVerification_editTextStyle">@style/llsdk_id_verification_text_input_base</item>
+        <item name="llsdk_idVerification_disclaimerStyle">@style/llsdk_id_verification_disclaimer</item>
+
+        <item name="llsdk_userData_infoIcon">@drawable/ic_help_outline_white_24dp</item>
+        <item name="llsdk_userData_sliderHeaderStyle">@style/llsdk_value_slider_header_blue</item>
+        <item name="discreteSeekBarStyle">@style/llsdk_discrete_seek_bar_blue</item>
+    </style>
+
+    <style
+            name="Theme.LedgeLine.Sdk.Blue.TextInput"
+            parent="Theme.LedgeLine.Sdk.Light.TextInput">
+
+        <item name="colorControlActivated">@color/llsdk_blue_primary</item>
+        <item name="colorControlHighlight">@color/llsdk_blue_primary</item>
+    </style>
+
 </resources>

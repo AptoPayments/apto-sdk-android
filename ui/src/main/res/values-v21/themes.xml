@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style
+            name="Theme.LedgeLine.Sdk.Blue"
+            parent="Theme.LedgeLine.Sdk.Blue.Base">
+
+        <item name="llsdk_userData_datePickerTheme">@style/Theme.LedgeLine.Sdk.Blue.DatePicker</item>
+
+    </style>
+
+    <style name="Theme.LedgeLine.Sdk.Blue.DatePicker" parent="@android:style/Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/llsdk_blue_primary</item>
+    </style>
+
+</resources>

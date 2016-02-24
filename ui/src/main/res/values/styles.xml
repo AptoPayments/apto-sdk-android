@@ -78,4 +78,18 @@
         BLUE
     -->
 
+    <style name="llsdk_user_data_next_button_blue" parent="llsdk_id_verification_next_button_light">
+        <item name="android:background">@color/llsdk_blue_primary_dark</item>
+    </style>
+
+    <style name="llsdk_value_slider_header_blue" parent="llsdk_value_slider_header">
+        <item name="android:textColor">@color/llsdk_blue_primary_dark</item>
+    </style>
+
+    <style name="llsdk_discrete_seek_bar_blue">
+        <item name="dsb_progressColor">@color/llsdk_blue_primary_dark</item>
+        <item name="dsb_indicatorColor">@color/llsdk_blue_primary</item>
+        <item name="dsb_rippleColor">@color/llsdk_blue_dsb_ripple</item>
+    </style>
+
 </resources>

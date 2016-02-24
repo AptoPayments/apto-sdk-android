@@ -9,4 +9,7 @@
     <color name="llsdk_light_control_activated">#333</color>
 
     <!-- Blue -->
+    <color name="llsdk_blue_primary">#1B9AF7</color>
+    <color name="llsdk_blue_primary_dark">#0880D7</color>
+    <color name="llsdk_blue_dsb_ripple">#4FB5FF</color>
 </resources>

@@ -1,8 +1,12 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.widget.DatePicker;
 import android.widget.Toast;
 import me.ledge.link.api.vos.ApiErrorVo;
@@ -32,6 +36,25 @@ public class IdentityVerificationPresenter
      */
     public IdentityVerificationPresenter(AppCompatActivity activity) {
         super(activity);
+    }
+
+    /**
+     * @param activity The {@link Activity} that will be hosting the date picker.
+     * @return Resource ID of the theme to use with for the birthday date picker.
+     */
+    private int getBirthdayDialogThemeId(Activity activity) {
+        int id;
+
+        int[] themeAttr = new int[] { R.attr.llsdk_userData_datePickerTheme };
+        try {
+            TypedArray a = activity.obtainStyledAttributes(new TypedValue().data, themeAttr);
+            id = a.getResourceId(0, 0);
+            a.recycle();
+        } catch (Resources.NotFoundException nfe) {
+            id = 0;
+        }
+
+        return id;
     }
 
     /** {@inheritDoc} */
@@ -80,6 +103,7 @@ public class IdentityVerificationPresenter
             fragment.setDate(mModel.getBirthday());
         }
 
+        fragment.setThemeId(getBirthdayDialogThemeId(mActivity));
         fragment.setListener(this);
         fragment.show(mActivity.getFragmentManager(), DatePickerFragment.TAG);
     }

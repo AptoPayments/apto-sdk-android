@@ -18,8 +18,23 @@ public class DatePickerFragment extends DialogFragment {
 
     private Date mDate;
     private DatePickerDialog.OnDateSetListener mListener;
+    private int mThemeId;
 
-    public DatePickerFragment() { }
+    /**
+     * Creates a new {@link DatePickerFragment} instance.
+     */
+    public DatePickerFragment() {
+        init();
+    }
+
+    /**
+     * Initializes this class.
+     */
+    private void init() {
+        mDate = null;
+        mListener = null;
+        mThemeId = 0;
+    }
 
     /** {@inheritDoc} */
     @Override
@@ -33,7 +48,23 @@ public class DatePickerFragment extends DialogFragment {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        return new DatePickerDialog(getActivity(), mListener, year, month, day);
+        DatePickerDialog dialog;
+
+        if (mThemeId == 0) {
+            dialog = new DatePickerDialog(getActivity(), mListener, year, month, day);
+        } else {
+            dialog = new DatePickerDialog(getActivity(), mThemeId, mListener, year, month, day);
+        }
+
+        return dialog;
+    }
+
+    /**
+     * Stores a new theme resource ID to use for the {@link DatePickerDialog}.
+     * @param themeId Theme resource ID.
+     */
+    public void setThemeId(int themeId) {
+        mThemeId = themeId;
     }
 
     /**
