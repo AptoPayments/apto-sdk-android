@@ -6,16 +6,18 @@
 
     <include layout="@layout/include_toolbar" />
 
-    <RelativeLayout
+    <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            style="@style/llsdk_user_data_entry_container">
+            android:layout_below="@+id/abl_toolbar_wrapper"
+            android:layout_alignParentBottom="true">
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:paddingTop="32dp"
                 android:gravity="center_horizontal">
 
             <ImageView
@@ -41,11 +43,10 @@
                     android:layout_marginEnd="64dp"
                     android:text="@string/terms_button_next" />
 
+            <TextView
+                    style="?attr/llsdk_terms_disclaimerStyle"
+                    android:text="@string/terms_conditions" />
+
         </LinearLayout>
-
-        <TextView
-                style="?attr/llsdk_terms_disclaimerStyle"
-                android:text="@string/terms_conditions" />
-
-    </RelativeLayout>
+    </ScrollView>
 </me.ledge.link.sdk.ui.views.userdata.TermsView>
