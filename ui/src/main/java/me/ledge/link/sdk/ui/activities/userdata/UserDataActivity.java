@@ -10,8 +10,7 @@ import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
- * TODO: Class documentation.
- *
+ * Generic user data input related {@link MvpActivity}.
  * @author Wijnand
  */
 public abstract class UserDataActivity<M extends ActivityModel, V extends View & ViewWithToolbar, P extends ActivityPresenter<M, V>>
