@@ -43,14 +43,31 @@ public class IdentityVerificationPresenter
      * @return Resource ID of the theme to use with for the birthday date picker.
      */
     private int getBirthdayDialogThemeId(Activity activity) {
+        return getResourceIdForAttribute(activity, R.attr.llsdk_userData_datePickerTheme);
+    }
+
+    /**
+     * @param activity The {@link Activity} containing the attribute values.
+     * @return Resource ID of the color to use for the progress bar.
+     */
+    private int getProgressBarColor(Activity activity) {
+        return getResourceIdForAttribute(activity, R.attr.llsdk_userData_progressColor);
+    }
+
+    /**
+     * @param activity The {@link Activity} containing the attribute values.
+     * @param attribute The attribute ID to look up the value for.
+     * @return Attribute value.
+     */
+    private int getResourceIdForAttribute(Activity activity, int attribute) {
         int id;
 
-        int[] themeAttr = new int[] { R.attr.llsdk_userData_datePickerTheme };
+        int[] attributesList = new int[] { attribute };
         try {
-            TypedArray a = activity.obtainStyledAttributes(new TypedValue().data, themeAttr);
+            TypedArray a = activity.obtainStyledAttributes(new TypedValue().data, attributesList);
             id = a.getResourceId(0, 0);
             a.recycle();
-        } catch (Resources.NotFoundException nfe) {
+        } catch (RuntimeException rte) {
             id = 0;
         }
 
@@ -85,6 +102,11 @@ public class IdentityVerificationPresenter
     public void attachView(IdentityVerificationView view) {
         super.attachView(view);
         mView.setListener(this);
+
+        int progressColor = getProgressBarColor(mActivity);
+        if (progressColor != 0) {
+            mView.setProgressColor(progressColor);
+        }
     }
 
     /** {@inheritDoc} */

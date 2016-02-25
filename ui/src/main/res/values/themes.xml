@@ -99,6 +99,7 @@
 
         <item name="llsdk_userData_infoIcon">@drawable/ic_help_outline_white_24dp</item>
         <item name="llsdk_userData_sliderHeaderStyle">@style/llsdk_value_slider_header_blue</item>
+        <item name="llsdk_userData_progressColor">@color/llsdk_blue_primary_dark</item>
         <item name="discreteSeekBarStyle">@style/llsdk_discrete_seek_bar_blue</item>
     </style>
 

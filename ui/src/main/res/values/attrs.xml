@@ -7,8 +7,9 @@
     <attr name="llsdk_nextButtonStyle" format="reference" />
 
     <attr name="llsdk_userData_infoIcon" format="reference" />
-    <attr name="llsdk_userData_sliderHeaderStyle" format="reference" />
-    <attr name="llsdk_userData_datePickerTheme" format="reference" />
+    <attr name="llsdk_userData_sliderHeaderStyle" format="reference" /> <!-- Optional -->
+    <attr name="llsdk_userData_datePickerTheme" format="reference" /> <!-- Optional -->
+    <attr name="llsdk_userData_progressColor" format="reference|color" /> <!-- Optional -->
 
     <!-- Terms -->
     <attr name="llsdk_terms_disclaimerStyle" format="reference" />

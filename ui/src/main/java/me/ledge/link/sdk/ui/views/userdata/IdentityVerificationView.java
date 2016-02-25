@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -38,6 +39,7 @@ public class IdentityVerificationView
     private SsnEditText mSocialSecurityField;
 
     private RelativeLayout mLoadingOverlay;
+    private ProgressBar mProgressBar;
 
     /**
      * @see UserDataView#UserDataView
@@ -75,6 +77,7 @@ public class IdentityVerificationView
         mSocialSecurityField = (SsnEditText) findViewById(R.id.et_social_security);
 
         mLoadingOverlay = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
+        mProgressBar = (ProgressBar) findViewById(R.id.pb_progress);
     }
 
     /** {@inheritDoc} */
@@ -97,6 +100,19 @@ public class IdentityVerificationView
         } else {
             super.onClick(view);
         }
+    }
+
+    /**
+     * Sets a new color resource for the progress bar to use.
+     * @param colorResourceId Color resource ID.
+     */
+    public void setProgressColor(int colorResourceId) {
+        if (mProgressBar == null || mProgressBar.getIndeterminateDrawable() == null) {
+            return;
+        }
+
+        mProgressBar.getIndeterminateDrawable()
+                .setColorFilter(getResources().getColor(colorResourceId), android.graphics.PorterDuff.Mode.SRC_IN);
     }
 
     /**
