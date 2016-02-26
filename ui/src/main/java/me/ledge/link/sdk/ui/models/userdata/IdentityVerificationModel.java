@@ -157,14 +157,14 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      * @return Whether a valid birthday has been stored.
      */
     public boolean hasValidBirthday() {
-        return mBirthday != null;
+        return getBirthday() != null;
     }
 
     /**
      * @return Whether a valid SSN has been stored.
      */
     public boolean hasValidSsn() {
-        return mSocialSecurityNumber != null;
+        return getSocialSecurityNumber() != null;
     }
 
     /**
