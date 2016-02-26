@@ -55,4 +55,4 @@ after_success:
   - mkdir -p ~/build/itabulous/ledgelinksdk_android/ui/build/reports/jacoco/test
   - cp ~/build/itabulous/ledgelinksdk_android/ui/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~/build/itabulous/ledgelinksdk_android/ui/build/reports/jacoco/test/jacocoTestReport.xml
   # Send coverage info to Coveralls.io.
-  - gradle -p ui coveralls
+  - gradle --configure-on-demand -p ui coveralls
