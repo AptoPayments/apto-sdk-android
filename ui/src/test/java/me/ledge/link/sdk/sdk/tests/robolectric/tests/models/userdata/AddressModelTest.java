@@ -1,6 +1,8 @@
 package me.ledge.link.sdk.sdk.tests.robolectric.tests.models.userdata;
 
 import android.text.TextUtils;
+import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.vos.UserDataVo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,6 +42,66 @@ public class AddressModelTest {
         when(TextUtils.isEmpty(any(CharSequence.class))).thenAnswer(new IsEmptyAnswer());
 
         mModel = new AddressModel();
+    }
+
+    /**
+     * Given an empty Model.<br />
+     * When fetching the title resource ID.<br />
+     * Then the correct ID should be returned.
+     */
+    @Test
+    public void hasCorrectTitleResource() {
+        Assert.assertThat("Incorrect resource ID.",
+                mModel.getActivityTitleResource(),
+                equalTo(R.string.address_label));
+    }
+
+    /**
+     * Given an empty Model.<br />
+     * When setting base data with valid first name, last name, email and phone number.<br />
+     * Then the Model should contain the same values as the base data.
+     */
+    @Test
+    public void allDataIsSetFromBaseData() {
+        UserDataVo base = new UserDataVo();
+        base.address = EXPECTED_ADDRESS;
+        base.apartmentNumber = EXPECTED_APARTMENT_NUMBER;
+        base.city = EXPECTED_CITY;
+        base.state = EXPECTED_STATE;
+        base.zip = EXPECTED_ZIP;
+
+        mModel.setBaseData(base);
+
+        Assert.assertThat("Incorrect address.", mModel.getAddress(), equalTo(base.address));
+        Assert.assertThat("Incorrect apartment number.", mModel.getApartmentNumber(), equalTo(base.apartmentNumber));
+        Assert.assertThat("Incorrect city.", mModel.getCity(), equalTo(base.city));
+        Assert.assertThat("Incorrect state.", mModel.getState(), equalTo(base.state));
+        Assert.assertThat("Incorrect zip code.", mModel.getZip(), equalTo(base.zip));
+        Assert.assertTrue("All data should be set.", mModel.hasAllData());
+    }
+
+    /**
+     * Given a Model with all data set.<br />
+     * When fetching the base data.<br />
+     * Then the base data should contain the same values as the Model.
+     */
+    @Test
+    public void baseDataIsUpdated() {
+        mModel.setBaseData(new UserDataVo());
+
+        mModel.setAddress(EXPECTED_ADDRESS);
+        mModel.setApartmentNumber(EXPECTED_APARTMENT_NUMBER);
+        mModel.setCity(EXPECTED_CITY);
+        mModel.setState(EXPECTED_STATE);
+        mModel.setZip(EXPECTED_ZIP);
+
+        UserDataVo base = mModel.getBaseData();
+
+        Assert.assertThat("Incorrect address.", base.address, equalTo(mModel.getAddress()));
+        Assert.assertThat("Incorrect apartment number.", base.apartmentNumber, equalTo(mModel.getApartmentNumber()));
+        Assert.assertThat("Incorrect city.", base.city, equalTo(mModel.getCity()));
+        Assert.assertThat("Incorrect state.", base.state, equalTo(mModel.getState()));
+        Assert.assertThat("Incorrect zip code.", base.zip, equalTo(mModel.getZip()));
     }
 
     /**
