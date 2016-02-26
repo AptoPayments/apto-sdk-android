@@ -2,6 +2,8 @@ package me.ledge.link.sdk.sdk.tests.robolectric.tests.models.userdata;
 
 import android.text.TextUtils;
 import com.google.i18n.phonenumbers.Phonenumber;
+import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.vos.UserDataVo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -54,6 +56,63 @@ public class PersonalInformationModelTest {
 
     /**
      * Given an empty Model.<br />
+     * When fetching the title resource ID.<br />
+     * Then the correct ID should be returned.
+     */
+    @Test
+    public void hasCorrectTitleResource() {
+        Assert.assertThat("Incorrect resource ID.",
+                mModel.getActivityTitleResource(),
+                equalTo(R.string.personal_info_label));
+    }
+
+    /**
+     * Given an empty Model.<br />
+     * When setting base data with valid first name, last name, email and phone number.<br />
+     * Then the Model should contain the same values as the base data.
+     */
+    @Test
+    public void allDataIsSetFromBaseData() {
+        UserDataVo base = new UserDataVo();
+        base.firstName = EXPECTED_FIRST_NAME;
+        base.lastName = EXPECTED_LAST_NAME;
+        base.emailAddress = EXPECTED_EMAIL;
+        base.phoneNumber = getExpectedPhoneNumber();
+
+        mModel.setBaseData(base);
+
+        Assert.assertThat("Incorrect first name.", mModel.getFirstName(), equalTo(base.firstName));
+        Assert.assertThat("Incorrect last name.", mModel.getLastName(), equalTo(base.lastName));
+        Assert.assertThat("Incorrect email address.", mModel.getEmail(), equalTo(base.emailAddress));
+        Assert.assertThat("Incorrect phone number.", mModel.getPhone(), equalTo(base.phoneNumber));
+        Assert.assertTrue("All data should be set.", mModel.hasAllData());
+    }
+
+    /**
+     * Given a Model with all data set.<br />
+     * When fetching the base data.<br />
+     * Then the base data should contain the same values as the Model.
+     */
+    @Test
+    public void baseDataIsUpdated() {
+        mModel.setBaseData(new UserDataVo());
+
+        mModel.setFirstName(EXPECTED_FIRST_NAME);
+        mModel.setLastName(EXPECTED_LAST_NAME);
+        mModel.setEmail(EXPECTED_EMAIL);
+        mModel.setPhone(getExpectedPhoneNumber());
+
+        UserDataVo base = mModel.getBaseData();
+
+        Assert.assertThat("Incorrect first name.", base.firstName, equalTo(mModel.getFirstName()));
+        Assert.assertThat("Incorrect last name.", base.lastName, equalTo(mModel.getLastName()));
+        Assert.assertThat("Incorrect email address.", base.emailAddress, equalTo(mModel.getEmail()));
+        Assert.assertThat("Incorrect phone number.", base.phoneNumber, equalTo(mModel.getPhone()));
+        Assert.assertTrue("All data should be set.", mModel.hasAllData());
+    }
+
+    /**
+     * Given an empty Model.<br />
      * When trying to store a valid first name.<br />
      * Then the first name should be stored.
      */
@@ -62,6 +121,7 @@ public class PersonalInformationModelTest {
         mModel.setFirstName(EXPECTED_FIRST_NAME);
         Assert.assertTrue("First name should be stored.", mModel.hasFirstName());
         Assert.assertThat("Incorrect first name.", mModel.getFirstName(), equalTo(EXPECTED_FIRST_NAME));
+        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
     }
 
     /**
@@ -85,6 +145,7 @@ public class PersonalInformationModelTest {
         mModel.setLastName(EXPECTED_LAST_NAME);
         Assert.assertTrue("Last name should be stored.", mModel.hasLastName());
         Assert.assertThat("Incorrect last name.", mModel.getLastName(), equalTo(EXPECTED_LAST_NAME));
+        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
     }
 
     /**
@@ -108,6 +169,7 @@ public class PersonalInformationModelTest {
         mModel.setEmail(EXPECTED_EMAIL);
         Assert.assertTrue("Email should be stored.", mModel.hasEmail());
         Assert.assertThat("Incorrect email.", mModel.getEmail(), equalTo(EXPECTED_EMAIL));
+        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
     }
 
     /**
@@ -131,6 +193,7 @@ public class PersonalInformationModelTest {
         mModel.setPhone(Long.toString(EXPECTED_NATIONAL_NUMBER));
         Assert.assertTrue("Phone number should be stored.", mModel.hasPhone());
         Assert.assertThat("Incorrect phone number.", mModel.getPhone(), equalTo(getExpectedPhoneNumber()));
+        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
     }
 
     /**
