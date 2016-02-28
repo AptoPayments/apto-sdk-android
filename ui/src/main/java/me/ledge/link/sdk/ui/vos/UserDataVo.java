@@ -27,6 +27,7 @@ public class UserDataVo implements Parcelable {
     public String zip;
 
     public int income;
+    public int creditScoreRange;
 
     public static final String USER_DATA_KEY = "us.ledge.line.sdk.sdk.vos.UserData";
     public static final Creator<UserDataVo> CREATOR = new Creator<UserDataVo>() {
@@ -65,6 +66,7 @@ public class UserDataVo implements Parcelable {
         state = null;
         zip = null;
         income = -1;
+        creditScoreRange = -1;
     }
 
     /**
@@ -83,6 +85,7 @@ public class UserDataVo implements Parcelable {
         state = in.readString();
         zip = in.readString();
         income = in.readInt();
+        creditScoreRange = in.readInt();
     }
 
     /** {@inheritDoc} */
@@ -105,5 +108,6 @@ public class UserDataVo implements Parcelable {
         dest.writeString(state);
         dest.writeString(zip);
         dest.writeInt(income);
+        dest.writeInt(creditScoreRange);
     }
 }

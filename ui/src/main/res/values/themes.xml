@@ -14,6 +14,7 @@
         <item name="llsdk_nextButtonStyle">@style/llsdk_id_verification_next_button</item>
 
         <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
+        <item name="llsdk_creditScore_radioButtonStyle">@style/llsdk_credit_score_radio</item>
 
         <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.TextInput</item>
         <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_base</item>
@@ -49,6 +50,7 @@
         <item name="llsdk_nextButtonStyle">@style/llsdk_id_verification_next_button_light</item>
 
         <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
+        <item name="llsdk_creditScore_radioButtonStyle">@style/llsdk_credit_score_radio</item>
 
         <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.Light.TextInput</item>
         <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_base</item>
@@ -84,6 +86,7 @@
 
         <item name="colorPrimary">@color/llsdk_blue_primary</item>
         <item name="colorPrimaryDark">@color/llsdk_blue_primary_dark</item>
+        <item name="colorAccent">@color/llsdk_blue_primary</item>
 
         <item name="llsdk_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="llsdk_toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
@@ -91,6 +94,7 @@
         <item name="llsdk_nextButtonStyle">@style/llsdk_user_data_next_button_blue</item>
 
         <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
+        <item name="llsdk_creditScore_radioButtonStyle">@style/llsdk_credit_score_radio</item>
 
         <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.Blue.TextInput</item>
         <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_base</item>

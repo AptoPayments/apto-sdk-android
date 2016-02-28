@@ -5,6 +5,10 @@
             name="Theme.LedgeLine.Sdk.Blue"
             parent="Theme.LedgeLine.Sdk.Blue.Base">
 
+        <item name="android:colorPrimary">@color/llsdk_blue_primary</item>
+        <item name="android:colorPrimaryDark">@color/llsdk_blue_primary_dark</item>
+        <item name="android:colorAccent">@color/llsdk_blue_primary</item>
+
         <item name="llsdk_userData_datePickerTheme">@style/Theme.LedgeLine.Sdk.Blue.DatePicker</item>
 
     </style>

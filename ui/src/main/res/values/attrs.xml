@@ -14,6 +14,9 @@
     <!-- Terms -->
     <attr name="llsdk_terms_disclaimerStyle" format="reference" />
 
+    <!-- Credit Score -->
+    <attr name="llsdk_creditScore_radioButtonStyle" format="reference" />
+
     <!-- ID Verification -->
     <attr name="llsdk_idVerification_inputWrapperTheme" format="reference" />
     <attr name="llsdk_idVerification_inputWrapperStyle" format="reference" />

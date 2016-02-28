@@ -15,6 +15,7 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusIdentityVerificationActivity;
+import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.LoanAmountActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
@@ -125,12 +126,13 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     private void setupLedgeLink() {
         AndroidUtils utils = new AndroidUtils();
 
-        ArrayList<Class<?>> process = new ArrayList<>(7);
+        ArrayList<Class<?>> process = new ArrayList<>(8);
         process.add(TermsActivity.class);
         process.add(LoanAmountActivity.class);
         process.add(PersonalInformationActivity.class);
         process.add(AddressActivity.class);
         process.add(IncomeActivity.class);
+        process.add(CreditScoreActivity.class);
         process.add(EventBusIdentityVerificationActivity.class);
         process.add(OffersListActivity.class);
 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.ledge.link.sdk.ui.views.userdata.CreditScoreView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/include_toolbar" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/llsdk_user_data_entry_container"
+            android:orientation="vertical">
+
+        <RadioGroup
+                android:id="@+id/rg_credit_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+            <RadioButton
+                    style="?attr/llsdk_creditScore_radioButtonStyle"
+                    android:id="@+id/rb_excellent"
+                    android:text="@string/credit_score_excellent" />
+
+            <RadioButton
+                    style="?attr/llsdk_creditScore_radioButtonStyle"
+                    android:id="@+id/rb_good"
+                    android:text="@string/credit_score_good" />
+
+            <RadioButton
+                    style="?attr/llsdk_creditScore_radioButtonStyle"
+                    android:id="@+id/rb_fair"
+                    android:text="@string/credit_score_fair" />
+
+            <RadioButton
+                    style="?attr/llsdk_creditScore_radioButtonStyle"
+                    android:id="@+id/rb_poor"
+                    android:text="@string/credit_score_poor" />
+
+            <RadioButton
+                    style="?attr/llsdk_creditScore_radioButtonStyle"
+                    android:id="@+id/rb_unknown"
+                    android:text="@string/credit_score_unknown" />
+
+        </RadioGroup>
+
+        <TextView
+                android:id="@+id/tv_credit_score_error"
+                style="@style/TextAppearance.Design.Error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/credit_score_error" />
+
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/tv_next_bttn"
+            style="?attr/llsdk_nextButtonStyle"
+            android:text="@string/loan_amount_button_next" />
+
+</me.ledge.link.sdk.ui.views.userdata.CreditScoreView>

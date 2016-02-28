@@ -33,6 +33,14 @@
         <item name="android:gravity">center_horizontal</item>
     </style>
 
+    <!-- Credit Score -->
+    <style name="llsdk_credit_score_radio">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <!-- ID Verification -->
     <style name="llsdk_id_verification_text_input_base">
         <item name="android:layout_width">match_parent</item>
