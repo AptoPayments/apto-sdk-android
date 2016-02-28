@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.widget.DatePicker;
 import android.widget.Toast;
@@ -91,8 +92,10 @@ public class IdentityVerificationPresenter
     @Override
     protected Intent getStartIntent(Class activity) {
         Intent intent = super.getStartIntent(activity);
-        intent.removeExtra(UserDataVo.USER_DATA_KEY);
-        intent.putExtra(OffersListPresenter.BEARER_TOKEN_KEY, mToken);
+
+        if (!TextUtils.isEmpty(mToken)) {
+            intent.putExtra(OffersListPresenter.BEARER_TOKEN_KEY, mToken);
+        }
 
         return intent;
     }
