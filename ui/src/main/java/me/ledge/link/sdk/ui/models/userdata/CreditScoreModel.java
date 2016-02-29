@@ -31,17 +31,17 @@ public class CreditScoreModel extends AbstractUserDataModel {
     }
 
     /**
-     * @param indication The credit score indication to check.
-     * @return Whether this is a valid credit score indication.
+     * @param indication The credit score range to check.
+     * @return Whether this is a valid credit score range.
      */
-    private boolean isValidIndication(int indication) {
+    private boolean isValidRange(int indication) {
         return indication >= CreditScoreRange.EXCELLENT && indication <= CreditScoreRange.POOR;
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return isValidIndication(mCreditScoreRange);
+        return isValidRange(mCreditScoreRange);
     }
 
     /** {@inheritDoc} */
@@ -80,7 +80,7 @@ public class CreditScoreModel extends AbstractUserDataModel {
      * @see CreditScoreRange
      */
     public void setCreditScoreRange(int indication) {
-        if (isValidIndication(indication)) {
+        if (isValidRange(indication)) {
             mCreditScoreRange = indication;
         } else {
             mCreditScoreRange = DEFAULT_CREDIT_INDICATION;
