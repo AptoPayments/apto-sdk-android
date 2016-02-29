@@ -3,7 +3,11 @@ package me.ledge.link.sdk.ui.views.userdata;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
+import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -21,8 +25,12 @@ public class LoanAmountView
      */
     public interface ViewListener extends NextButtonListener, DiscreteSeekBar.OnProgressChangeListener { }
 
+    private RelativeLayout mLoadingOverlay;
     private TextView mAmountText;
     private DiscreteSeekBar mAmountSlider;
+
+    private Spinner mPurposeSpinner;
+    private TextView mPurposeErrorField;
 
     /**
      * @see UserDataView#UserDataView
@@ -46,8 +54,14 @@ public class LoanAmountView
     protected void findAllViews() {
         super.findAllViews();
 
+        mLoadingOverlay = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
         mAmountText = (TextView) findViewById(R.id.tv_loan_amount);
         mAmountSlider = (DiscreteSeekBar) findViewById(R.id.dsb_loan_amount);
+        mPurposeSpinner = (Spinner) findViewById(R.id.sp_loan_purpose);
+        mPurposeErrorField = (TextView) findViewById(R.id.tv_loan_purpose_error);
+
+        showLoading(false);
+        updatePurposeError(false);
     }
 
     /** {@inheritDoc} */
@@ -76,6 +90,14 @@ public class LoanAmountView
     }
 
     /**
+     * Stores a new {@link HintArrayAdapter} for the {@link Spinner} to use.
+     * @param adapter New {@link HintArrayAdapter}.
+     */
+    public void setPurposeAdapter(HintArrayAdapter<LoanPurposeDisplayVo> adapter) {
+        mPurposeSpinner.setAdapter(adapter);
+    }
+
+    /**
      * Shows a new loan amount.
      * @param amount New loan amount.
      */
@@ -96,5 +118,36 @@ public class LoanAmountView
      */
     public void updateAmountText(String text) {
         mAmountText.setText(text);
+    }
+
+    /**
+     * @return The selected loan purpose.
+     */
+    public LoanPurposeDisplayVo getPurpose() {
+        return (LoanPurposeDisplayVo) mPurposeSpinner.getSelectedItem();
+    }
+
+    /**
+     * Updates the loan purpose error field visibility.
+     * @param show Whether the error should be shown.
+     */
+    public void updatePurposeError(boolean show) {
+        if (show) {
+            mPurposeErrorField.setVisibility(VISIBLE);
+        } else {
+            mPurposeErrorField.setVisibility(GONE);
+        }
+    }
+
+    /**
+     * Changes the loading overlay visibility.
+     * @param show Whether the loading overlay should be shown.
+     */
+    public void showLoading(boolean show) {
+        if (show) {
+            mLoadingOverlay.setVisibility(VISIBLE);
+        } else {
+            mLoadingOverlay.setVisibility(GONE);
+        }
     }
 }

@@ -27,6 +27,33 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="96dp" />
 
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Design.Hint"
+                    android:textColor="?android:textColorHint"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/loan_amount_purpose_header" />
+
+            <Spinner
+                    android:id="@+id/sp_loan_purpose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nextFocusDown="@+id/et_zip_code"
+                    android:nextFocusRight="@+id/et_zip_code" />
+
+            <TextView
+                    android:id="@+id/tv_loan_purpose_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    style="@style/TextAppearance.Design.Error"
+                    android:text="@string/loan_amount_purpose_error" />
+
         </LinearLayout>
     </ScrollView>
 
@@ -35,4 +62,5 @@
             style="?attr/llsdk_nextButtonStyle"
             android:text="@string/loan_amount_button_next" />
 
+    <include layout="@layout/include_rl_loading" />
 </me.ledge.link.sdk.ui.views.userdata.LoanAmountView>

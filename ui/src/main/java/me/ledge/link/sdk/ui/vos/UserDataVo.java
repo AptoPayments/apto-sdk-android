@@ -14,6 +14,7 @@ import com.google.i18n.phonenumbers.Phonenumber;
 public class UserDataVo implements Parcelable {
 
     public int loanAmount;
+    public LoanPurposeDisplayVo loanPurpose;
 
     public String firstName;
     public String lastName;
@@ -56,6 +57,7 @@ public class UserDataVo implements Parcelable {
      */
     private void init() {
         loanAmount = -1;
+        loanPurpose = null;
         firstName = null;
         lastName = null;
         emailAddress = null;
@@ -75,6 +77,8 @@ public class UserDataVo implements Parcelable {
      */
     public UserDataVo(Parcel in) {
         loanAmount = in.readInt();
+        loanPurpose = (LoanPurposeDisplayVo) in.readSerializable();
+
         firstName = in.readString();
         lastName = in.readString();
         emailAddress = in.readString();
@@ -98,6 +102,7 @@ public class UserDataVo implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(loanAmount);
+        dest.writeSerializable(loanPurpose);
         dest.writeString(firstName);
         dest.writeString(lastName);
         dest.writeString(emailAddress);

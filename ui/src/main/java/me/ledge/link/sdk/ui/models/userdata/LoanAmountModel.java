@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.models.userdata;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
+import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 /**
@@ -13,6 +14,7 @@ public class LoanAmountModel extends AbstractUserDataModel implements UserDataMo
     private int mMinAmount;
     private int mMaxAmount;
     private int mAmount;
+    private LoanPurposeDisplayVo mLoanPurpose;
 
     /**
      * @param amount Amount to validate.
@@ -31,7 +33,7 @@ public class LoanAmountModel extends AbstractUserDataModel implements UserDataMo
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return hasValidAmount();
+        return hasValidAmount() && hasValidLoanPurpose();
     }
 
     /** {@inheritDoc} */
@@ -103,9 +105,31 @@ public class LoanAmountModel extends AbstractUserDataModel implements UserDataMo
     }
 
     /**
+     * @return The selected loan purpose.
+     */
+    public LoanPurposeDisplayVo getLoanPurpose() {
+        return mLoanPurpose;
+    }
+
+    /**
+     * Stores a new loan purpose.
+     * @param loanPurpose New loan purpose.
+     */
+    public void setLoanPurpose(LoanPurposeDisplayVo loanPurpose) {
+        mLoanPurpose = loanPurpose;
+    }
+
+    /**
      * @return Whether a valid loan amount has been set.
      */
     public boolean hasValidAmount() {
         return isValid(mAmount);
+    }
+
+    /**
+     * @return Whether a valid loan purpose has been selected.
+     */
+    public boolean hasValidLoanPurpose() {
+        return mLoanPurpose != null && mLoanPurpose.loan_purpose_id >= 0;
     }
 }

@@ -45,7 +45,7 @@ public class AddressPresenter
 
         // Create adapter.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                mActivity, R.array.usa_state_names, android.R.layout.simple_spinner_item);
+                mActivity, R.array.usa_state_names, android.R.layout.simple_spinner_dropdown_item);
         mView.setStateSpinnerAdapter(adapter);
 
         // Set data.

@@ -5,6 +5,8 @@ import android.widget.Toast;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
+import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import me.ledge.link.sdk.ui.R;
@@ -28,6 +30,29 @@ public class LoanAmountPresenter
      */
     public LoanAmountPresenter(AppCompatActivity activity) {
         super(activity);
+    }
+
+    /**
+     * @param loanPurposesList List of loan purposes.
+     * @return A new {@link HintArrayAdapter} to use for the loan purpose drop-down.
+     */
+    private HintArrayAdapter<LoanPurposeDisplayVo> getPurposeAdapter(LoanPurposeVo[] loanPurposesList) {
+        HintArrayAdapter<LoanPurposeDisplayVo> adapter
+                = new HintArrayAdapter<LoanPurposeDisplayVo>(mActivity, android.R.layout.simple_spinner_dropdown_item);
+
+        LoanPurposeDisplayVo hint = new LoanPurposeDisplayVo();
+        hint.description = mActivity.getString(R.string.loan_amount_purpose_hint);
+        hint.loan_purpose_id = -1;
+
+        adapter.add(hint);
+
+        if (loanPurposesList != null) {
+            for (LoanPurposeVo purpose : loanPurposesList) {
+                adapter.add(new LoanPurposeDisplayVo(purpose));
+            }
+        }
+
+        return adapter;
     }
 
     /** {@inheritDoc} */
@@ -57,7 +82,8 @@ public class LoanAmountPresenter
         mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
         mView.setMinMax(mModel.getMinAmount() / mAmountIncrement, mModel.getMaxAmount() / mAmountIncrement);
         mView.setAmount(mModel.getAmount() / mAmountIncrement);
-        // TODO: Loading indicator. mView.showLoading(true);
+        mView.setPurposeAdapter(getPurposeAdapter(null));
+        mView.showLoading(true);
 
         // Load loan purpose list.
         LedgeLinkUi.getLoanPurposesList();
@@ -74,6 +100,9 @@ public class LoanAmountPresenter
     @Override
     public void nextClickHandler() {
         mModel.setAmount(mView.getAmount() * mAmountIncrement);
+        mModel.setLoanPurpose(mView.getPurpose());
+
+        mView.updatePurposeError(!mModel.hasValidLoanPurpose());
         super.nextClickHandler();
     }
 
@@ -96,8 +125,8 @@ public class LoanAmountPresenter
      * @param loanPurposesList New list.
      */
     public void setLoanPurposeList(LoanPurposeVo[] loanPurposesList) {
-        // mView.showLoading(false);
-        // TODO
+        mView.showLoading(false);
+        mView.setPurposeAdapter(getPurposeAdapter(loanPurposesList));
     }
 
     /**
@@ -105,7 +134,7 @@ public class LoanAmountPresenter
      * @param error API error.
      */
     public void setApiError(ApiErrorVo error) {
-        // TODO mView.showLoading(false);
+        mView.showLoading(false);
 
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
         Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();

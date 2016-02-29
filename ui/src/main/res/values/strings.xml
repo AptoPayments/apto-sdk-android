@@ -12,6 +12,9 @@
     <!-- Loan Amount -->
     <string name="loan_amount_label">Loan amount</string>
     <string name="loan_amount_format">$%d</string>
+    <string name="loan_amount_purpose_header">Loan purpose</string>
+    <string name="loan_amount_purpose_hint">Select a loan purpose&#8230;</string>
+    <string name="loan_amount_purpose_error">Please select a valid loan purpose.</string>
     <string name="loan_amount_button_next">NEXT</string>
 
     <!-- Personal Information -->
