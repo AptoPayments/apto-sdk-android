@@ -1,6 +1,10 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import me.ledge.link.sdk.ui.R;
@@ -53,6 +57,10 @@ public class LoanAmountPresenter
         mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
         mView.setMinMax(mModel.getMinAmount() / mAmountIncrement, mModel.getMaxAmount() / mAmountIncrement);
         mView.setAmount(mModel.getAmount() / mAmountIncrement);
+        // TODO: Loading indicator. mView.showLoading(true);
+
+        // Load loan purpose list.
+        LedgeLinkUi.getLoanPurposesList();
     }
 
     /** {@inheritDoc} */
@@ -82,4 +90,24 @@ public class LoanAmountPresenter
     /** {@inheritDoc} */
     @Override
     public void onStopTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
+
+    /**
+     * Stores a new list of loan purposes and updates the View.
+     * @param loanPurposesList New list.
+     */
+    public void setLoanPurposeList(LoanPurposeVo[] loanPurposesList) {
+        // mView.showLoading(false);
+        // TODO
+    }
+
+    /**
+     * Deals with an API error.
+     * @param error API error.
+     */
+    public void setApiError(ApiErrorVo error) {
+        // TODO mView.showLoading(false);
+
+        String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
+        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+    }
 }

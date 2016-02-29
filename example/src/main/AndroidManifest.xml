@@ -30,7 +30,7 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.ui.activities.userdata.LoanAmountActivity"
+                android:name="me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusLoanAmountActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity

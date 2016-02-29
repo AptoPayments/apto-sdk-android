@@ -11,13 +11,13 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
+import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusLoanAmountActivity;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusIdentityVerificationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IncomeActivity;
-import me.ledge.link.sdk.ui.activities.userdata.LoanAmountActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.TermsActivity;
 import me.ledge.link.sdk.handlers.eventbus.tasks.handlers.EventBusThreeResponseHandler;
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
 
         ArrayList<Class<?>> process = new ArrayList<>(8);
         process.add(TermsActivity.class);
-        process.add(LoanAmountActivity.class);
+        process.add(EventBusLoanAmountActivity.class);
         process.add(PersonalInformationActivity.class);
         process.add(AddressActivity.class);
         process.add(IncomeActivity.class);

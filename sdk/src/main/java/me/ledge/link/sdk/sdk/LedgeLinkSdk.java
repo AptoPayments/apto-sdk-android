@@ -1,9 +1,11 @@
 package me.ledge.link.sdk.sdk;
 
 import android.os.AsyncTask;
+import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import me.ledge.link.sdk.sdk.tasks.config.LoanPurposesTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
 
@@ -88,6 +90,18 @@ public class LedgeLinkSdk {
     }
 
     /**
+     * Gets the loan purposes list.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getLoanPurposesList() {
+        checkComponents();
+
+        LoanPurposesTask task = new LoanPurposesTask(new UnauthorizedRequestVo(), getApiWrapper(),
+                getResponseHandler());
+        return (LoanPurposesTask) task.executeOnExecutor(getExecutor());
+    }
+
+    /**
      * Creates a new user.
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
@@ -96,9 +110,7 @@ public class LedgeLinkSdk {
         checkComponents();
 
         CreateUserTask task = new CreateUserTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
-
-        return task;
+        return (CreateUserTask) task.executeOnExecutor(getExecutor());
     }
 
 }
