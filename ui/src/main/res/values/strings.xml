@@ -10,7 +10,7 @@
     <string name="terms_button_next">GET OFFERS</string>
 
     <!-- Loan Amount -->
-    <string name="loan_amount_label">Loan amount</string>
+    <string name="loan_amount_label">How much do you need?</string>
     <string name="loan_amount_format">$%d</string>
     <string name="loan_amount_purpose_header">Loan purpose</string>
     <string name="loan_amount_purpose_hint">Select a loan purpose&#8230;</string>
@@ -18,7 +18,7 @@
     <string name="loan_amount_button_next">NEXT</string>
 
     <!-- Personal Information -->
-    <string name="personal_info_label">Personal info</string>
+    <string name="personal_info_label">Nice to meet you :)</string>
     <string name="personal_info_first_name_hint">First name</string>
     <string name="personal_info_first_name_error">Please enter your first name.</string>
     <string name="personal_info_last_name_hint">Last name</string>
@@ -29,7 +29,7 @@
     <string name="personal_info_phone_error">Please enter a valid phone number.</string>
 
     <!-- Address -->
-    <string name="address_label">Address</string>
+    <string name="address_label">What\'s your address?</string>
     <string name="address_address_hint">Address</string>
     <string name="address_address_error">Please enter a valid address.</string>
     <string name="address_apartment_number_hint">Unit/Apt #</string>
@@ -41,20 +41,9 @@
     <string name="address_zip_code_error">Please enter a valid ZIP.</string>
 
     <!-- Income -->
-    <string name="income_label">Income</string>
+    <string name="income_label">What\'s your pretax income?</string>
     <string name="income_format">$%dK</string>
     <string name="income_format_and_more">$%dK+</string>
-
-    <!-- ID Verification -->
-    <string name="id_verification_label">ID verification</string>
-    <string name="id_verification_birthday_hint">Birthday</string>
-    <string name="id_verification_birthday_error">You must be 18 years or older.</string>
-    <string name="id_verification_social_security_hint">Social security #</string>
-    <string name="id_verification_social_security_error">Please enter all 9 digits.</string>
-    <string name="id_verification_disclaimer">Your information is private and secure.</string>
-    <string name="id_verification_terms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque turpis ut malesuada iaculis. Nulla facilisi. Etiam ultrices augue mi, et egestas nisi faucibus quis.</string>
-    <string name="id_verification_button_next">GET OFFERS</string>
-    <string name="id_verification_toast_api_error">Error: %s</string>
 
     <!-- Credit Score -->
     <string name="credit_score_label">What\'s your credit score?</string>
@@ -64,6 +53,17 @@
     <string name="credit_score_poor">Poor\nBelow 640</string>
     <string name="credit_score_unknown">I don\'t know</string>
     <string name="credit_score_error">Please select a credit score.</string>
+
+    <!-- ID Verification -->
+    <string name="id_verification_label">Ready for your offers?</string>
+    <string name="id_verification_birthday_hint">Birthday</string>
+    <string name="id_verification_birthday_error">You must be 18 years or older.</string>
+    <string name="id_verification_social_security_hint">Social security #</string>
+    <string name="id_verification_social_security_error">Please enter all 9 digits.</string>
+    <string name="id_verification_disclaimer">Your information is private and secure.</string>
+    <string name="id_verification_terms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque turpis ut malesuada iaculis. Nulla facilisi. Etiam ultrices augue mi, et egestas nisi faucibus quis.</string>
+    <string name="id_verification_button_next">GET OFFERS</string>
+    <string name="id_verification_toast_api_error">Error: %s</string>
 
     <!-- Offers List -->
     <string name="offers_list_label">Loan offers</string>
