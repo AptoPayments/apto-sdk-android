@@ -50,7 +50,7 @@ public class EventBusLoanAmountPresenter extends LoanAmountPresenter {
      */
     @Subscribe
     public void handlePurposeList(LoanPurposesResponseVo response) {
-        setLoanPurposeList(response.loan_purposes);
+        setLoanPurposeList(response.data);
     }
 
     /**
