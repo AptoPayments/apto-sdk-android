@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.sdk.tests.robolectric.tests.models.userdata;
 
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 import org.junit.Assert;
 import org.junit.Before;
@@ -58,13 +59,20 @@ public class LoanAmountModelTest {
     }
 
     /**
-     * Given an empty Model.<br />
+     * Given a fully populated Model.<br />
      * When checking if all data has been set.<br />
-     * Then the result should be false.
+     * Then the result should be true.
      */
     @Test
-    public void noDataSet() {
-        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
+    public void allDataSet() {
+        LoanPurposeDisplayVo purpose = new LoanPurposeDisplayVo();
+        purpose.description = "Company investment";
+        purpose.loan_purpose_id = 123;
+
+        mModel.setAmount(EXPECTED_VALID_AMOUNT);
+        mModel.setLoanPurpose(purpose);
+
+        Assert.assertTrue("All data should be set.", mModel.hasAllData());
     }
 
     /**
@@ -79,7 +87,7 @@ public class LoanAmountModelTest {
 
         mModel.setBaseData(base);
 
-        Assert.assertTrue("All data should be present.", mModel.hasAllData());
+        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
         Assert.assertThat("Incorrect amount.", mModel.getAmount(), equalTo(base.loanAmount));
     }
 
