@@ -27,30 +27,22 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="96dp" />
 
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.Design.Hint"
-                    android:textColor="?android:textColorHint"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/loan_amount_purpose_header" />
-
             <Spinner
                     android:id="@+id/sp_loan_purpose"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:nextFocusDown="@+id/et_zip_code"
-                    android:nextFocusRight="@+id/et_zip_code" />
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp" />
 
             <TextView
                     android:id="@+id/tv_loan_purpose_error"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     style="@style/TextAppearance.Design.Error"
                     android:text="@string/loan_amount_purpose_error" />
 
