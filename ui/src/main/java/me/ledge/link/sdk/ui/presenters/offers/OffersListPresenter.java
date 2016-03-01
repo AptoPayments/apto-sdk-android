@@ -2,7 +2,11 @@ package me.ledge.link.sdk.ui.presenters.offers;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.responses.offers.OfferWrapperVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -53,5 +57,27 @@ public class OffersListPresenter
 
         // Fetch offers.
         LedgeLinkUi.getInitialOffers(mModel.getInitialOffersRequest());
+    }
+
+    /**
+     * Adds a list of offers and displays them.
+     * @param offers List of offers.
+     * @param offerRequestId Offer request ID.
+     * @param complete Whether the list is complete.
+     */
+    public void addOffers(OfferWrapperVo[] offers, int offerRequestId, boolean complete) {
+        mModel.setOfferRequestId(offerRequestId);
+        mModel.addOffers(offers);
+    }
+
+    /**
+     * Deals with an API error.
+     * @param error API error.
+     */
+    public void setApiError(ApiErrorVo error) {
+//        mView.showLoading(false);
+
+        String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
+        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
     }
 }

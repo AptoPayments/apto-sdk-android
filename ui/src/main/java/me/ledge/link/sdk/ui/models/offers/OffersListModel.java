@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.models.offers;
 
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.responses.offers.OfferWrapperVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.AbstractActivityModel;
 import me.ledge.link.sdk.ui.models.ActivityModel;
@@ -17,6 +18,8 @@ import java.util.Locale;
 public class OffersListModel extends AbstractActivityModel implements ActivityModel, Model {
 
     private UserDataVo mBaseData;
+    private int mOfferRequestId;
+    private OfferWrapperVo[] mOffers;
 
     /** {@inheritDoc} */
     @Override
@@ -43,5 +46,21 @@ public class OffersListModel extends AbstractActivityModel implements ActivityMo
         request.loan_purpose_id = mBaseData.loanPurpose.loan_purpose_id;
 
         return request;
+    }
+
+    /**
+     * Adds a list of loan offers.
+     * @param offers List of offers.
+     */
+    public void addOffers(OfferWrapperVo[] offers) {
+        mOffers = offers;
+    }
+
+    /**
+     * Stores a new loan offers request ID.
+     * @param id Loan offers request ID.
+     */
+    public void setOfferRequestId(int id) {
+        mOfferRequestId = id;
     }
 }
