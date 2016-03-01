@@ -28,6 +28,13 @@ public class OffersListModel extends AbstractActivityModel implements ActivityMo
     }
 
     /**
+     * @return Basic user data.
+     */
+    public UserDataVo getBaseData() {
+        return mBaseData;
+    }
+
+    /**
      * Stores new basic user data.
      * @param base User data.
      */

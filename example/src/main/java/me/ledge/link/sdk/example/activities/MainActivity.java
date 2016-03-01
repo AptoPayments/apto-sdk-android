@@ -14,7 +14,6 @@ import me.ledge.link.sdk.example.views.MainView;
 import me.ledge.link.sdk.handlers.eventbus.activities.offers.EventBusOffersListActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusLoanAmountActivity;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusIdentityVerificationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;

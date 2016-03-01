@@ -59,6 +59,15 @@ public class OffersListPresenter
         LedgeLinkUi.getInitialOffers(mModel.getInitialOffersRequest());
     }
 
+    /** {@inheritDoc} */
+    @Override
+    protected Intent getStartIntent(Class activity) {
+        Intent intent = super.getStartIntent(activity);
+        intent.putExtra(UserDataVo.USER_DATA_KEY, mModel.getBaseData());
+
+        return intent;
+    }
+
     /**
      * Adds a list of offers and displays them.
      * @param offers List of offers.
