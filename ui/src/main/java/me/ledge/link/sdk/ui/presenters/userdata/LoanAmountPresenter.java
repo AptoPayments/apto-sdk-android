@@ -23,6 +23,7 @@ public class LoanAmountPresenter
         implements LoanAmountView.ViewListener {
 
     private int mAmountIncrement;
+    private HintArrayAdapter<LoanPurposeDisplayVo> mPurposeAdapter;
 
     /**
      * Creates a new {@link LoanAmountPresenter} instance.
@@ -30,6 +31,13 @@ public class LoanAmountPresenter
      */
     public LoanAmountPresenter(AppCompatActivity activity) {
         super(activity);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void init() {
+        super.init();
+        mPurposeAdapter = null;
     }
 
     /**
@@ -82,11 +90,22 @@ public class LoanAmountPresenter
         mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
         mView.setMinMax(mModel.getMinAmount() / mAmountIncrement, mModel.getMaxAmount() / mAmountIncrement);
         mView.setAmount(mModel.getAmount() / mAmountIncrement);
-        mView.setPurposeAdapter(getPurposeAdapter(null));
+        mView.setPurposeAdapter(mPurposeAdapter);
+
         mView.showLoading(true);
 
-        // Load loan purpose list.
-        LedgeLinkUi.getLoanPurposesList();
+        if (mPurposeAdapter == null) {
+            mView.setPurposeAdapter(getPurposeAdapter(null));
+
+            // Load loan purpose list.
+            LedgeLinkUi.getLoanPurposesList();
+        } else {
+            mView.setPurposeAdapter(mPurposeAdapter);
+
+            if (mModel.hasValidLoanPurpose()) {
+                mView.setPurpose(mPurposeAdapter.getPosition(mModel.getLoanPurpose()));
+            }
+        }
     }
 
     /** {@inheritDoc} */
@@ -125,8 +144,14 @@ public class LoanAmountPresenter
      * @param loanPurposesList New list.
      */
     public void setLoanPurposeList(LoanPurposeVo[] loanPurposesList) {
+        mPurposeAdapter = getPurposeAdapter(loanPurposesList);
+
         mView.showLoading(false);
-        mView.setPurposeAdapter(getPurposeAdapter(loanPurposesList));
+        mView.setPurposeAdapter(mPurposeAdapter);
+
+        if (mModel.hasValidLoanPurpose()) {
+            mView.setPurpose(mPurposeAdapter.getPosition(mModel.getLoanPurpose()));
+        }
     }
 
     /**

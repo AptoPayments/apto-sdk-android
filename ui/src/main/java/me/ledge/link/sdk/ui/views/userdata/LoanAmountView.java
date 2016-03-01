@@ -128,6 +128,14 @@ public class LoanAmountView
     }
 
     /**
+     * Sets a new loan purpose.
+     * @param index Loan purpose index.
+     */
+    public void setPurpose(int index) {
+        mPurposeSpinner.setSelection(index);
+    }
+
+    /**
      * Updates the loan purpose error field visibility.
      * @param show Whether the error should be shown.
      */

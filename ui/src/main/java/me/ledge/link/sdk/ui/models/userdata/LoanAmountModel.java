@@ -39,15 +39,20 @@ public class LoanAmountModel extends AbstractUserDataModel implements UserDataMo
     /** {@inheritDoc} */
     @Override
     public UserDataVo getBaseData() {
-        mBase.loanAmount = getAmount();
-        return super.getBaseData();
+        UserDataVo base = super.getBaseData();
+        base.loanAmount = getAmount();
+        base.loanPurpose = getLoanPurpose();
+
+        return base;
     }
 
     /** {@inheritDoc} */
     @Override
     public void setBaseData(UserDataVo base) {
         super.setBaseData(base);
+
         setAmount(base.loanAmount);
+        setLoanPurpose(base.loanPurpose);
     }
 
     /**
