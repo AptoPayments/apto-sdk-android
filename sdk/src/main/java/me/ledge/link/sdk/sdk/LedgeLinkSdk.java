@@ -2,11 +2,13 @@ package me.ledge.link.sdk.sdk;
 
 import android.os.AsyncTask;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
+import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.config.LoanPurposesTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
+import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
 
 import java.util.concurrent.Executor;
@@ -96,8 +98,8 @@ public class LedgeLinkSdk {
     public static LedgeLinkApiTask getLoanPurposesList() {
         checkComponents();
 
-        LoanPurposesTask task = new LoanPurposesTask(new UnauthorizedRequestVo(), getApiWrapper(),
-                getResponseHandler());
+        LoanPurposesTask task
+                = new LoanPurposesTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
         return (LoanPurposesTask) task.executeOnExecutor(getExecutor());
     }
 
@@ -111,6 +113,18 @@ public class LedgeLinkSdk {
 
         CreateUserTask task = new CreateUserTask(data, getApiWrapper(), getResponseHandler());
         return (CreateUserTask) task.executeOnExecutor(getExecutor());
+    }
+
+    /**
+     * Creates a new user.
+     * @param data Mandatory API request data.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getInitialOffers(InitialOffersRequestVo data) {
+        checkComponents();
+
+        InitialOffersTask task = new InitialOffersTask(data, getApiWrapper(), getResponseHandler());
+        return (InitialOffersTask) task.executeOnExecutor(getExecutor());
     }
 
 }
