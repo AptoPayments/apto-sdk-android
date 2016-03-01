@@ -28,6 +28,12 @@ public class CreateUserTask extends LedgeLinkApiTask<Void, Void, CreateUserRespo
     /** {@inheritDoc} */
     @Override
     protected CreateUserResponseVo callApi() throws ApiException {
-        return getApiWrapper().createUser(getRequestData());
+        CreateUserResponseVo response = getApiWrapper().createUser(getRequestData());
+
+        if (response != null) {
+            getApiWrapper().setBearerToken(response.token);
+        }
+
+        return response;
     }
 }

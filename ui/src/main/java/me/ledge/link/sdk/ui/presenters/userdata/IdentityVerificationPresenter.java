@@ -2,11 +2,8 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.TypedValue;
 import android.widget.DatePicker;
 import android.widget.Toast;
@@ -17,9 +14,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.presenters.offers.OffersListPresenter;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 /**
  * Concrete {@link Presenter} for the ID verification screen.
@@ -27,10 +22,8 @@ import me.ledge.link.sdk.ui.vos.UserDataVo;
  */
 public class IdentityVerificationPresenter
         extends UserDataPresenter<IdentityVerificationModel, IdentityVerificationView>
-        implements Presenter<IdentityVerificationModel, IdentityVerificationView>, IdentityVerificationView.ViewListener,
-        DatePickerDialog.OnDateSetListener {
-
-    private String mToken;
+        implements Presenter<IdentityVerificationModel, IdentityVerificationView>,
+        IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener {
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
@@ -86,18 +79,6 @@ public class IdentityVerificationPresenter
     protected void populateModelFromParcel() {
         super.populateModelFromParcel();
         mModel.setMinimumAge(mActivity.getResources().getInteger(R.integer.min_age));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Intent getStartIntent(Class activity) {
-        Intent intent = super.getStartIntent(activity);
-
-        if (!TextUtils.isEmpty(mToken)) {
-            intent.putExtra(OffersListPresenter.BEARER_TOKEN_KEY, mToken);
-        }
-
-        return intent;
     }
 
     /** {@inheritDoc} */
@@ -164,7 +145,6 @@ public class IdentityVerificationPresenter
      */
     public void setCreateUserResponse(CreateUserResponseVo response) {
         mView.showLoading(false);
-        mToken = response.token;
 
         // Show next screen.
         super.nextClickHandler();
