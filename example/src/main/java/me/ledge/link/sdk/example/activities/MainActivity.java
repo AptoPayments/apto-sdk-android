@@ -11,6 +11,7 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
+import me.ledge.link.sdk.handlers.eventbus.activities.offers.EventBusOffersListActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusLoanAmountActivity;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         process.add(IncomeActivity.class);
         process.add(CreditScoreActivity.class);
         process.add(EventBusIdentityVerificationActivity.class);
-        process.add(OffersListActivity.class);
+        process.add(EventBusOffersListActivity.class);
 
         LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
         apiWrapper.setBaseRequestData(
