@@ -39,8 +39,8 @@
 
             <TextView
                     android:id="@+id/tv_apply"
-                    style="@style/llsdk_loan_offer_summary_apply_button"
-                    android:text="?attr/llsdk_loanOfferSummary_buttonStyle" />
+                    style="?attr/llsdk_loanOfferSummary_buttonStyle"
+                    android:text="@string/offers_list_summary_button_apply" />
 
         </LinearLayout>
 

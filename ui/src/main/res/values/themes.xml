@@ -27,7 +27,7 @@
         <item name="llsdk_loanOfferSummary_cardStyle">@style/llsdk_loan_offer_summary</item>
         <item name="llsdk_loanOfferSummary_headerStyle">@style/llsdk_loan_offer_summary_header</item>
         <item name="llsdk_loanOfferSummary_textStyle">@style/llsdk_loan_offer_summary_text</item>
-        <item name="llsdk_loanOfferSummary_buttonStyle">@string/offers_list_summary_button_apply</item>
+        <item name="llsdk_loanOfferSummary_buttonStyle">@style/llsdk_loan_offer_summary_apply_button</item>
         <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image</item>
     </style>
 
@@ -69,7 +69,7 @@
         <item name="llsdk_loanOfferSummary_cardStyle">@style/llsdk_loan_offer_summary</item>
         <item name="llsdk_loanOfferSummary_headerStyle">@style/llsdk_loan_offer_summary_header</item>
         <item name="llsdk_loanOfferSummary_textStyle">@style/llsdk_loan_offer_summary_text</item>
-        <item name="llsdk_loanOfferSummary_buttonStyle">@string/offers_list_summary_button_apply</item>
+        <item name="llsdk_loanOfferSummary_buttonStyle">@style/llsdk_loan_offer_summary_apply_button</item>
         <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image</item>
     </style>
 
@@ -118,11 +118,11 @@
         <item name="llsdk_userData_progressColor">@color/llsdk_blue_primary_dark</item>
         <item name="discreteSeekBarStyle">@style/llsdk_discrete_seek_bar_blue</item>
 
-        <item name="llsdk_loanOfferSummary_cardStyle">@style/llsdk_loan_offer_summary</item>
-        <item name="llsdk_loanOfferSummary_headerStyle">@style/llsdk_loan_offer_summary_header</item>
-        <item name="llsdk_loanOfferSummary_textStyle">@style/llsdk_loan_offer_summary_text</item>
-        <item name="llsdk_loanOfferSummary_buttonStyle">@string/offers_list_summary_button_apply</item>
-        <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image</item>
+        <item name="llsdk_loanOfferSummary_cardStyle">@style/llsdk_loan_offer_summary_blue</item>
+        <item name="llsdk_loanOfferSummary_headerStyle">@style/llsdk_loan_offer_summary_header_blue</item>
+        <item name="llsdk_loanOfferSummary_textStyle">@style/llsdk_loan_offer_summary_text_blue</item>
+        <item name="llsdk_loanOfferSummary_buttonStyle">@style/llsdk_loan_offer_summary_apply_button_blue</item>
+        <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image_blue</item>
     </style>
 
     <style

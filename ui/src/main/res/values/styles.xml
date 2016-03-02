@@ -139,4 +139,24 @@
         <item name="dsb_rippleColor">@color/llsdk_blue_dsb_ripple</item>
     </style>
 
+    <style name="llsdk_loan_offer_summary_blue" parent="llsdk_loan_offer_summary">
+        <item name="cardBackgroundColor">@color/llsddk_blue_loan_offers_card_background</item>
+    </style>
+
+    <style name="llsdk_loan_offer_summary_header_blue" parent="llsdk_loan_offer_summary_header">
+        <item name="android:textColor">@color/llsdk_dark_text_color_hint</item>
+    </style>
+
+    <style name="llsdk_loan_offer_summary_text_blue" parent="llsdk_loan_offer_summary_text">
+        <item name="android:textColor">@color/llsdk_light_text_color</item>
+    </style>
+
+    <style name="llsdk_loan_offer_summary_apply_button_blue" parent="llsdk_loan_offer_summary_apply_button">
+        <item name="android:textColor">@color/llsdk_blue_primary</item>
+    </style>
+
+    <style name="llsdk_loan_offer_summary_image_blue" parent="llsdk_loan_offer_summary_image">
+        <item name="android:background">@color/llsddk_blue_lender_image_background</item>
+    </style>
+
 </resources>
