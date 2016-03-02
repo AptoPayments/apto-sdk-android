@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/abl_toolbar_wrapper"
-        android:layout_marginBottom="8dp"
-        android:scrollbars="vertical" />
+        android:paddingBottom="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="outsideOverlay" />
 
 </me.ledge.link.sdk.ui.views.offers.OffersListView>
