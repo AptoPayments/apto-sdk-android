@@ -2,7 +2,7 @@
 <me.ledge.link.sdk.ui.views.offers.OfferSummaryView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:cv="http://schemas.android.com/apk/res-auto"
-        style="@style/llsdk_loan_offer_summary"
+        style="?attr/llsdk_loanOfferSummary_cardStyle"
         cv:cardCornerRadius="4dp"
         cv:cardElevation="2dp">
 
@@ -23,30 +23,30 @@
 
             <TextView
                     android:id="@+id/tv_lender"
-                    style="@style/llsdk_loan_offer_summary_header" />
+                    style="?attr/llsdk_loanOfferSummary_headerStyle" />
 
             <TextView
                     android:id="@+id/tv_interest"
-                    style="@style/llsdk_loan_offer_summary_text" />
+                    style="?attr/llsdk_loanOfferSummary_textStyle" />
 
             <TextView
                     android:id="@+id/tv_amount"
-                    style="@style/llsdk_loan_offer_summary_text" />
+                    style="?attr/llsdk_loanOfferSummary_textStyle" />
 
             <TextView
                     android:id="@+id/tv_monthly"
-                    style="@style/llsdk_loan_offer_summary_text" />
+                    style="?attr/llsdk_loanOfferSummary_textStyle" />
 
             <TextView
                     android:id="@+id/tv_apply"
                     style="@style/llsdk_loan_offer_summary_apply_button"
-                    android:text="@string/offers_list_summary_button_apply" />
+                    android:text="?attr/llsdk_loanOfferSummary_buttonStyle" />
 
         </LinearLayout>
 
         <ImageView
             android:id="@+id/iv_lender_logo"
-            style="@style/llsdk_loan_offer_summary_image" />
+            style="?attr/llsdk_loanOfferSummary_imageStyle" />
 
     </RelativeLayout>
 </me.ledge.link.sdk.ui.views.offers.OfferSummaryView>

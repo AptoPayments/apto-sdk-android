@@ -23,6 +23,12 @@
 
         <item name="llsdk_userData_infoIcon">@drawable/ic_help_outline_white_24dp</item>
         <item name="llsdk_userData_sliderHeaderStyle">@style/llsdk_value_slider_header</item>
+
+        <item name="llsdk_loanOfferSummary_cardStyle">@style/llsdk_loan_offer_summary</item>
+        <item name="llsdk_loanOfferSummary_headerStyle">@style/llsdk_loan_offer_summary_header</item>
+        <item name="llsdk_loanOfferSummary_textStyle">@style/llsdk_loan_offer_summary_text</item>
+        <item name="llsdk_loanOfferSummary_buttonStyle">@string/offers_list_summary_button_apply</item>
+        <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image</item>
     </style>
 
     <style
@@ -59,6 +65,12 @@
 
         <item name="llsdk_userData_infoIcon">@drawable/ic_help_outline_black_24dp</item>
         <item name="llsdk_userData_sliderHeaderStyle">@style/llsdk_value_slider_header</item>
+
+        <item name="llsdk_loanOfferSummary_cardStyle">@style/llsdk_loan_offer_summary</item>
+        <item name="llsdk_loanOfferSummary_headerStyle">@style/llsdk_loan_offer_summary_header</item>
+        <item name="llsdk_loanOfferSummary_textStyle">@style/llsdk_loan_offer_summary_text</item>
+        <item name="llsdk_loanOfferSummary_buttonStyle">@string/offers_list_summary_button_apply</item>
+        <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image</item>
     </style>
 
     <style
@@ -105,6 +117,12 @@
         <item name="llsdk_userData_sliderHeaderStyle">@style/llsdk_value_slider_header_blue</item>
         <item name="llsdk_userData_progressColor">@color/llsdk_blue_primary_dark</item>
         <item name="discreteSeekBarStyle">@style/llsdk_discrete_seek_bar_blue</item>
+
+        <item name="llsdk_loanOfferSummary_cardStyle">@style/llsdk_loan_offer_summary</item>
+        <item name="llsdk_loanOfferSummary_headerStyle">@style/llsdk_loan_offer_summary_header</item>
+        <item name="llsdk_loanOfferSummary_textStyle">@style/llsdk_loan_offer_summary_text</item>
+        <item name="llsdk_loanOfferSummary_buttonStyle">@string/offers_list_summary_button_apply</item>
+        <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image</item>
     </style>
 
     <style

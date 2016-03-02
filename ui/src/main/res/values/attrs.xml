@@ -22,4 +22,11 @@
     <attr name="llsdk_idVerification_inputWrapperStyle" format="reference" />
     <attr name="llsdk_idVerification_editTextStyle" format="reference" />
     <attr name="llsdk_idVerification_disclaimerStyle" format="reference" />
+
+    <!-- Loan Offers -->
+    <attr name="llsdk_loanOfferSummary_cardStyle" format="reference" />
+    <attr name="llsdk_loanOfferSummary_headerStyle" format="reference" />
+    <attr name="llsdk_loanOfferSummary_textStyle" format="reference" />
+    <attr name="llsdk_loanOfferSummary_buttonStyle" format="reference" />
+    <attr name="llsdk_loanOfferSummary_imageStyle" format="reference" />
 </resources>
