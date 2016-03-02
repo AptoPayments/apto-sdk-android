@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.link.api.vos.ApiErrorVo;
-import me.ledge.link.api.vos.responses.offers.OfferWrapperVo;
+import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
@@ -84,7 +84,7 @@ public class OffersListPresenter
      * @param offerRequestId Offer request ID.
      * @param complete Whether the list is complete.
      */
-    public void addOffers(OfferWrapperVo[] offers, int offerRequestId, boolean complete) {
+    public void addOffers(OfferVo[] offers, int offerRequestId, boolean complete) {
         mModel.setOfferRequestId(offerRequestId);
         mModel.addOffers(mActivity.getResources(), offers, complete);
 

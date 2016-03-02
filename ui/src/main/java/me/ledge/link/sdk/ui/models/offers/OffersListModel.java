@@ -3,7 +3,7 @@ package me.ledge.link.sdk.ui.models.offers;
 import android.content.res.Resources;
 import me.ledge.common.utils.PagedList;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.responses.offers.OfferWrapperVo;
+import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.AbstractActivityModel;
 import me.ledge.link.sdk.ui.models.ActivityModel;
@@ -23,7 +23,7 @@ public class OffersListModel extends AbstractActivityModel implements ActivityMo
     private UserDataVo mBaseData;
     private int mOfferRequestId;
 
-    private OfferWrapperVo[] mRawOffers;
+    private OfferVo[] mRawOffers;
     private PagedList<OfferSummaryModel> mOffers;
 
     /**
@@ -78,11 +78,11 @@ public class OffersListModel extends AbstractActivityModel implements ActivityMo
      * Adds a list of loan offers.
      * @param offers List of offers.
      */
-    public void addOffers(Resources resources, OfferWrapperVo[] offers, boolean complete) {
+    public void addOffers(Resources resources, OfferVo[] offers, boolean complete) {
         mRawOffers = offers;
 
         ArrayList<OfferSummaryModel> newOffers = new ArrayList<OfferSummaryModel>(offers.length);
-        for (OfferWrapperVo offer : offers) {
+        for (OfferVo offer : offers) {
             newOffers.add(new OfferSummaryModel(offer, resources));
         }
 

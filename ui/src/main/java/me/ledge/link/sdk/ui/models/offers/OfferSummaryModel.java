@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.models.offers;
 
 import android.content.res.Resources;
-import me.ledge.link.api.vos.responses.offers.OfferWrapperVo;
+import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 
@@ -11,7 +11,7 @@ import me.ledge.link.sdk.ui.models.Model;
  */
 public class OfferSummaryModel implements Model {
 
-    private OfferWrapperVo mRawOffer;
+    private OfferVo mRawOffer;
     private Resources mResources;
 
     private String mInterestText;
@@ -23,7 +23,7 @@ public class OfferSummaryModel implements Model {
      * @param offer Raw offer data.
      * @param resources {@link Resources} used to fetch Strings.
      */
-    public OfferSummaryModel(OfferWrapperVo offer, Resources resources) {
+    public OfferSummaryModel(OfferVo offer, Resources resources) {
         mRawOffer = offer;
         mResources = resources;
 
@@ -45,13 +45,13 @@ public class OfferSummaryModel implements Model {
      * Creates the formatted texts.
      */
     private void createFormattedText() {
-        if (mResources == null || mRawOffer == null || mRawOffer.offer == null) {
+        if (mResources == null || mRawOffer == null) {
             return;
         }
 
-        mInterestText = mResources.getString(getInterestFormatId(), mRawOffer.offer.interest_rate);
-        mAmountText = mResources.getString(getAmountFormatId(), mRawOffer.offer.loan_amount);
-        mMonthlyPaymentText = mResources.getString(getPaymentFormatId(), mRawOffer.offer.payment_amount);
+        mInterestText = mResources.getString(getInterestFormatId(), mRawOffer.interest_rate);
+        mAmountText = mResources.getString(getAmountFormatId(), mRawOffer.loan_amount);
+        mMonthlyPaymentText = mResources.getString(getPaymentFormatId(), mRawOffer.payment_amount);
     }
 
     /**
