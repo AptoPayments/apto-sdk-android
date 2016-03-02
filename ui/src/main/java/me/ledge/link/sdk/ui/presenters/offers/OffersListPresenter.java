@@ -3,23 +3,30 @@ package me.ledge.link.sdk.ui.presenters.offers;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.offers.OfferWrapperVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.views.offers.OfferSummaryView;
 import me.ledge.link.sdk.ui.views.offers.OffersListView;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 /**
  * Concrete {@link Presenter} for the offers list screen.
+ * TODO: Some loading indicator when offers are being loaded.
+ * TODO: Not reload offers when they are already present.
  * @author Wijnand
  */
 public class OffersListPresenter
         extends ActivityPresenter<OffersListModel, OffersListView>
         implements Presenter<OffersListModel, OffersListView> {
+
+    private PagedListRecyclerAdapter<OfferSummaryModel, OfferSummaryView> mAdapter;
 
     /**
      * Creates a new {@link OffersListPresenter} instance.
@@ -55,6 +62,9 @@ public class OffersListPresenter
     public void attachView(OffersListView view) {
         super.attachView(view);
 
+        mAdapter = new PagedListRecyclerAdapter<>(R.layout.cv_loan_offer);
+        mView.setAdapter(mAdapter);
+
         // Fetch offers.
         LedgeLinkUi.getInitialOffers(mModel.getInitialOffersRequest());
     }
@@ -76,7 +86,9 @@ public class OffersListPresenter
      */
     public void addOffers(OfferWrapperVo[] offers, int offerRequestId, boolean complete) {
         mModel.setOfferRequestId(offerRequestId);
-        mModel.addOffers(offers);
+        mModel.addOffers(mActivity.getResources(), offers, complete);
+
+        mAdapter.updateList(mModel.getOffers());
     }
 
     /**
@@ -84,8 +96,6 @@ public class OffersListPresenter
      * @param error API error.
      */
     public void setApiError(ApiErrorVo error) {
-//        mView.showLoading(false);
-
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
         Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
     }

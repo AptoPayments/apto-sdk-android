@@ -72,6 +72,22 @@
         <item name="android:textColor">@color/llsdk_light_text_color</item>
     </style>
 
+    <!-- Loan offers -->
+    <style name="llsdk_loan_offer_summary">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+    </style>
+    <style name="llsdk_loan_offer_summary_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
     <!--
         LIGHT
     -->

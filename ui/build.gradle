@@ -64,6 +64,8 @@ dependencies {
     // 3rd Party Libraries
     compile 'com.android.support:appcompat-v7:+'
     compile 'com.android.support:design:+'
+    compile 'com.android.support:cardview-v7:+'
+    compile 'com.android.support:recyclerview-v7:+'
     compile 'org.adw.library:discrete-seekbar:+'
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:+'
     compile 'com.googlecode.libphonenumber:libphonenumber:+'

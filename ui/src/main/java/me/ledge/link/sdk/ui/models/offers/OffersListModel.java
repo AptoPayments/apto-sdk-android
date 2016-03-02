@@ -1,5 +1,7 @@
 package me.ledge.link.sdk.ui.models.offers;
 
+import android.content.res.Resources;
+import me.ledge.common.utils.PagedList;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.responses.offers.OfferWrapperVo;
 import me.ledge.link.sdk.ui.R;
@@ -8,6 +10,7 @@ import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 
+import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Locale;
 
@@ -19,7 +22,23 @@ public class OffersListModel extends AbstractActivityModel implements ActivityMo
 
     private UserDataVo mBaseData;
     private int mOfferRequestId;
-    private OfferWrapperVo[] mOffers;
+
+    private OfferWrapperVo[] mRawOffers;
+    private PagedList<OfferSummaryModel> mOffers;
+
+    /**
+     * Creates a new {@link } instance.
+     */
+    public OffersListModel() {
+        init();
+    }
+
+    /**
+     * Initializes this class.
+     */
+    private void init() {
+        mOffers = new PagedList<OfferSummaryModel>();
+    }
 
     /** {@inheritDoc} */
     @Override
@@ -59,8 +78,23 @@ public class OffersListModel extends AbstractActivityModel implements ActivityMo
      * Adds a list of loan offers.
      * @param offers List of offers.
      */
-    public void addOffers(OfferWrapperVo[] offers) {
-        mOffers = offers;
+    public void addOffers(Resources resources, OfferWrapperVo[] offers, boolean complete) {
+        mRawOffers = offers;
+
+        ArrayList<OfferSummaryModel> newOffers = new ArrayList<OfferSummaryModel>(offers.length);
+        for (OfferWrapperVo offer : offers) {
+            newOffers.add(new OfferSummaryModel(offer, resources));
+        }
+
+        mOffers.addAll(newOffers);
+        mOffers.setComplete(complete);
+    }
+
+    /**
+     * @return A {@link PagedList} of offers.
+     */
+    public PagedList<OfferSummaryModel> getOffers() {
+        return mOffers;
     }
 
     /**

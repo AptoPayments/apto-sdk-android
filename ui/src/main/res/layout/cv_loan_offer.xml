@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.ledge.link.sdk.ui.views.offers.OfferSummaryView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:cv="http://schemas.android.com/apk/res-auto"
+        style="@style/llsdk_loan_offer_summary"
+        cv:cardCornerRadius="4dp"
+        cv:cardElevation="2dp">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_lender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/tv_interest"
+            style="@style/llsdk_loan_offer_summary_text" />
+
+        <TextView
+            android:id="@+id/tv_amount"
+            style="@style/llsdk_loan_offer_summary_text" />
+
+        <TextView
+            android:id="@+id/tv_monthly"
+            style="@style/llsdk_loan_offer_summary_text" />
+
+    </LinearLayout>
+</me.ledge.link.sdk.ui.views.offers.OfferSummaryView>
