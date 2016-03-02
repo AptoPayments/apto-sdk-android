@@ -38,14 +38,14 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingBottom">8dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/llsdk_body_text_size</item>
     </style>
 
     <!-- ID Verification -->
     <style name="llsdk_id_verification_text_input_base">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/llsdk_body_text_size</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
@@ -86,6 +86,25 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/llsdk_offer_summary_body_text_size</item>
+    </style>
+    <style name="llsdk_loan_offer_summary_header" parent="llsdk_loan_offer_summary_text">
+        <item name="android:textSize">@dimen/llsdk_offer_summary_header_size</item>
+    </style>
+    <style name="llsdk_loan_offer_summary_apply_button" parent="llsdk_loan_offer_summary_text">
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="llsdk_loan_offer_summary_image">
+        <item name="android:layout_width">@dimen/llsdk_offer_summary_image_width</item>
+        <item name="android:layout_height">@dimen/llsdk_offer_summary_image_height</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:background">@color/llsdk_dark_text_color_hint</item>
     </style>
 
     <!--
