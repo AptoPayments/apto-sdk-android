@@ -1,8 +1,10 @@
 package me.ledge.link.sdk.ui.models.offers;
 
 import android.content.res.Resources;
+import android.text.TextUtils;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.models.Model;
 
 /**
@@ -11,8 +13,9 @@ import me.ledge.link.sdk.ui.models.Model;
  */
 public class OfferSummaryModel implements Model {
 
-    private OfferVo mRawOffer;
-    private Resources mResources;
+    private final OfferVo mRawOffer;
+    private final Resources mResources;
+    private final GenericImageLoader mImageLoader;
 
     private String mInterestText;
     private String mAmountText;
@@ -23,9 +26,10 @@ public class OfferSummaryModel implements Model {
      * @param offer Raw offer data.
      * @param resources {@link Resources} used to fetch Strings.
      */
-    public OfferSummaryModel(OfferVo offer, Resources resources) {
+    public OfferSummaryModel(OfferVo offer, Resources resources, GenericImageLoader loader) {
         mRawOffer = offer;
         mResources = resources;
+        mImageLoader = loader;
 
         init();
     }
@@ -76,6 +80,20 @@ public class OfferSummaryModel implements Model {
     }
 
     /**
+     * @return Whether an {@link GenericImageLoader} has been set.
+     */
+    public boolean hasImageLoader() {
+        return mImageLoader != null;
+    }
+
+    /**
+     * @return The current {@link GenericImageLoader}.
+     */
+    public GenericImageLoader getImageLoader() {
+        return mImageLoader;
+    }
+
+    /**
      * @return Lender name.
      */
     public String getLenderName() {
@@ -86,6 +104,23 @@ public class OfferSummaryModel implements Model {
         }
 
         return name;
+    }
+
+    /**
+     * @return Small lender image URL. If not found, will fall back to the large image URL.
+     */
+    public String getLenderImage() {
+        String imageUrl = null;
+
+        if (mRawOffer != null && mRawOffer.lender != null) {
+            if (!TextUtils.isEmpty(mRawOffer.lender.small_image)) {
+                imageUrl = mRawOffer.lender.small_image;
+            } else if (!TextUtils.isEmpty(mRawOffer.lender.large_image)) {
+                imageUrl = mRawOffer.lender.large_image;
+            }
+        }
+
+        return imageUrl;
     }
 
     /**

@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui.views.offers;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 import android.widget.TextView;
 import me.ledge.common.views.RowView;
 import me.ledge.link.sdk.ui.R;
@@ -15,6 +16,8 @@ import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 public class OfferSummaryView extends CardView implements RowView<OfferSummaryModel> {
 
     private TextView mLenderNameField;
+    private ImageView mLenderLogo;
+
     private TextView mInterestField;
     private TextView mAmountField;
     private TextView mMonthlyPaymentField;
@@ -53,6 +56,8 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
      */
     private void findAllViews() {
         mLenderNameField = (TextView) findViewById(R.id.tv_lender);
+        mLenderLogo = (ImageView) findViewById(R.id.iv_lender_logo);
+
         mInterestField = (TextView) findViewById(R.id.tv_interest);
         mAmountField = (TextView) findViewById(R.id.tv_amount);
         mMonthlyPaymentField = (TextView) findViewById(R.id.tv_monthly);
@@ -64,6 +69,7 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
     private void updateAllFields() {
         if (mData == null) {
             mLenderNameField.setText("");
+            mLenderLogo.setImageResource(android.R.color.transparent);
             mInterestField.setText("");
             mAmountField.setText("");
             mMonthlyPaymentField.setText("");
@@ -72,6 +78,13 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
             mInterestField.setText(mData.getInterestText());
             mAmountField.setText(mData.getAmountText());
             mMonthlyPaymentField.setText(mData.getMonthlyPaymentText());
+
+            if (mData.hasImageLoader() && mData.getLenderImage() != null) {
+                mLenderLogo.setVisibility(VISIBLE);
+                mData.getImageLoader().load(mData.getLenderImage(), mLenderLogo);
+            } else {
+                mLenderLogo.setVisibility(GONE);
+            }
         }
     }
 
@@ -92,6 +105,10 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
     /** {@inheritDoc} */
     @Override
     public void reset() {
+        if (mData != null && mData.hasImageLoader() && mData.getLenderImage() != null) {
+            mData.getImageLoader().cancel(mData.getLenderImage(), mLenderLogo);
+        }
+
         mData = null;
         updateAllFields();
     }

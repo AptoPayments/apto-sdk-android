@@ -54,7 +54,7 @@ public class OffersListPresenter
     /** {@inheritDoc} */
     @Override
     public OffersListModel createModel() {
-        return new OffersListModel();
+        return new OffersListModel(LedgeLinkUi.getImageLoader());
     }
 
     /** {@inheritDoc} */

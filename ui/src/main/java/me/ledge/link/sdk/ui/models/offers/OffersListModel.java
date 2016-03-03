@@ -5,6 +5,7 @@ import me.ledge.common.utils.PagedList;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.models.AbstractActivityModel;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.Model;
@@ -20,6 +21,7 @@ import java.util.Locale;
  */
 public class OffersListModel extends AbstractActivityModel implements ActivityModel, Model {
 
+    private final GenericImageLoader mImageLoader;
     private UserDataVo mBaseData;
     private int mOfferRequestId;
 
@@ -27,9 +29,10 @@ public class OffersListModel extends AbstractActivityModel implements ActivityMo
     private PagedList<OfferSummaryModel> mOffers;
 
     /**
-     * Creates a new {@link } instance.
+     * Creates a new {@link OffersListModel} instance.
      */
-    public OffersListModel() {
+    public OffersListModel(GenericImageLoader loader) {
+        mImageLoader = loader;
         init();
     }
 
@@ -83,7 +86,7 @@ public class OffersListModel extends AbstractActivityModel implements ActivityMo
 
         ArrayList<OfferSummaryModel> newOffers = new ArrayList<OfferSummaryModel>(offers.length);
         for (OfferVo offer : offers) {
-            newOffers.add(new OfferSummaryModel(offer, resources));
+            newOffers.add(new OfferSummaryModel(offer, resources, mImageLoader));
         }
 
         mOffers.addAll(newOffers);
