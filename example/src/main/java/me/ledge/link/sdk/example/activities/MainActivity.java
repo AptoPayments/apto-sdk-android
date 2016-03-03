@@ -13,6 +13,7 @@ import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
 import me.ledge.link.sdk.handlers.eventbus.activities.offers.EventBusOffersListActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusLoanAmountActivity;
+import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusIdentityVerificationActivity;
@@ -142,6 +143,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                 utils.getDeviceSummary());
 
         LedgeLinkUi.setApiWrapper(apiWrapper);
+
+        LedgeLinkUi.setImageLoader(new VolleyImageLoader(this));
         LedgeLinkUi.setResponseHandler(new EventBusThreeResponseHandler());
         LedgeLinkUi.setProcessOrder(process);
     }
