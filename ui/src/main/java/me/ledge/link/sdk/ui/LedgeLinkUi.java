@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui;
 import android.content.Context;
 import android.content.Intent;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
+import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 import java.util.ArrayList;
@@ -15,7 +16,23 @@ import java.util.ArrayList;
  */
 public class LedgeLinkUi extends LedgeLinkSdk {
 
+    private static GenericImageLoader mImageLoader;
     private static ArrayList<Class<?>> mProcessOrder;
+
+    /**
+     * @return The {@link GenericImageLoader} to use to load images.
+     */
+    public static GenericImageLoader getImageLoader() {
+        return mImageLoader;
+    }
+
+    /**
+     * Stores a new {@link GenericImageLoader} to use to load images.
+     * @param loader Image loader.
+     */
+    public static void setImageLoader(GenericImageLoader loader) {
+        mImageLoader = loader;
+    }
 
     /**
      * @return Order in which the Ledge Line Activities should be shown.
