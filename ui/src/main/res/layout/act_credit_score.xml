@@ -39,11 +39,6 @@
                     android:id="@+id/rb_poor"
                     android:text="@string/credit_score_poor" />
 
-            <RadioButton
-                    style="?attr/llsdk_creditScore_radioButtonStyle"
-                    android:id="@+id/rb_unknown"
-                    android:text="@string/credit_score_unknown" />
-
         </RadioGroup>
 
         <TextView

@@ -51,7 +51,6 @@
     <string name="credit_score_good">Good\n700&#8211;759</string>
     <string name="credit_score_fair">Fair\n640&#8211;699</string>
     <string name="credit_score_poor">Poor\nBelow 640</string>
-    <string name="credit_score_unknown">I don\'t know</string>
     <string name="credit_score_error">Please select a credit score.</string>
 
     <!-- ID Verification -->
