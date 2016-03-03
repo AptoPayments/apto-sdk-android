@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
@@ -66,7 +67,9 @@ public class OffersListPresenter
         mView.setAdapter(mAdapter);
 
         // Fetch offers.
-        LedgeLinkUi.getInitialOffers(mModel.getInitialOffersRequest());
+        InitialOffersRequestVo requestData = mModel.getInitialOffersRequest();
+        requestData.rows = 25;
+        LedgeLinkUi.getInitialOffers(requestData);
     }
 
     /** {@inheritDoc} */
