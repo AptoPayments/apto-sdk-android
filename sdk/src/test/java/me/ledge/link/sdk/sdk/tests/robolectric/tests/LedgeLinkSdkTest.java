@@ -8,6 +8,7 @@ import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import me.ledge.link.sdk.sdk.mocks.util.concurrent.MockExecutor;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import org.hamcrest.CoreMatchers;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,10 +24,10 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class LedgeLinkSdkTest {
 
     /**
-     * Sets up each test.
+     * Cleans up after each test.
      */
-    @Before
-    public void setUp() {
+    @After
+    public void tearDown() {
         LedgeLinkSdk.setApiWrapper(null);
         LedgeLinkSdk.setExecutor(null);
         LedgeLinkSdk.setResponseHandler(null);

@@ -19,9 +19,9 @@ public class LoanAmountModelTest {
     private static final int MIN_AMOUNT = 1;
     private static final int MAX_AMOUNT = 1000;
 
-    private static final int EXPECTED_VALID_AMOUNT = 456;
     private static final int TOO_SMALL_AMOUNT = -1000;
     private static final int TOO_LARGE_AMOUNT = MAX_AMOUNT * 2;
+    public static final int EXPECTED_VALID_AMOUNT = 456;
 
     private LoanAmountModel mModel;
 

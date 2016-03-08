@@ -1,7 +1,13 @@
 package me.ledge.link.sdk.sdk.mocks.api.wrappers;
 
 import me.ledge.link.api.exceptions.ApiException;
+import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
+import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
+import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
+import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
+import me.ledge.link.api.vos.responses.offers.OfferVo;
+import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 
@@ -15,6 +21,7 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     private long mDeveloperId;
     private String mDevice;
+    private String mBearerToken;
     private String mEndPoint;
 
     /** {@inheritDoc} */
@@ -22,6 +29,12 @@ public class MockApiWrapper implements LinkApiWrapper {
     public void setBaseRequestData(long developerId, String device) {
         mDeveloperId = developerId;
         mDevice = device;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setBearerToken(String token) {
+        mBearerToken = token;
     }
 
     /** {@inheritDoc} */
@@ -38,9 +51,37 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
+    public LoanPurposesResponseVo getLoanPurposesList(UnauthorizedRequestVo requestData) throws ApiException {
+        return null;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public CreateUserResponseVo createUser(CreateUserRequestVo requestData) throws ApiException {
         CreateUserResponseVo response = new CreateUserResponseVo();
         response.token = TOKEN;
+
+        return response;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public InitialOffersResponseVo getInitialOffers(InitialOffersRequestVo requestData) {
+        OfferVo offerOne = new OfferVo();
+        OfferVo offerTwo = new OfferVo();
+
+        OfferVo[] rawOffers = new OfferVo[]{ offerOne, offerTwo };
+
+        OffersListVo offerList = new OffersListVo();
+        offerList.data = rawOffers;
+        offerList.page = 1;
+        offerList.rows = rawOffers.length;
+        offerList.total_count = rawOffers.length;
+        offerList.has_more = false;
+
+        InitialOffersResponseVo response = new InitialOffersResponseVo();
+        response.offer_request_id = 69;
+        response.offers = offerList;
 
         return response;
     }
