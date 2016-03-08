@@ -4,8 +4,8 @@ import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
-import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
+import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 
 /**
  * A concrete {@link LedgeLinkApiTask} to get the initial list of loan offers.

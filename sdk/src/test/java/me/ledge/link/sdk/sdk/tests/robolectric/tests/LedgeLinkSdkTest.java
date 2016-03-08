@@ -10,7 +10,6 @@ import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.concurrent.Executor;

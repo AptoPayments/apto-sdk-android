@@ -5,11 +5,11 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
-import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
-import me.ledge.link.sdk.sdk.tasks.config.LoanPurposesTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
+import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import me.ledge.link.sdk.sdk.tasks.config.LoanPurposesTask;
 
 import java.util.concurrent.Executor;
 

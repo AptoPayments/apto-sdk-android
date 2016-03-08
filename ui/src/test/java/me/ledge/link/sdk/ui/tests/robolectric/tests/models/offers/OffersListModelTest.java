@@ -1,10 +1,10 @@
-package me.ledge.link.sdk.sdk.tests.robolectric.tests.models.offers;
+package me.ledge.link.sdk.ui.tests.robolectric.tests.models.offers;
 
 import me.ledge.link.api.utils.CreditScoreRange;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
-import me.ledge.link.sdk.sdk.tests.robolectric.tests.models.userdata.LoanAmountModelTest;
+import me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata.LoanAmountModelTest;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
 import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;

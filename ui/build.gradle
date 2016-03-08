@@ -30,12 +30,19 @@ android {
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
+    sourceSets {
+        test {
+            java.srcDirs = ['../sdk/src/test/java', 'src/test/java'];
+        }
+    }
+
     testOptions {
         unitTests {
             returnDefaultValues = true
 
             all {
                 include "**/*Test.class"
+                exclude '**/me/ledge/link/sdk/sdk/*'
             }
         }
     }

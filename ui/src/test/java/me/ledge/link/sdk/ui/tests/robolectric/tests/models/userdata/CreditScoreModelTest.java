@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.sdk.tests.robolectric.tests.models.userdata;
+package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import me.ledge.link.api.utils.CreditScoreRange;
 import me.ledge.link.sdk.ui.R;

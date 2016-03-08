@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.sdk.tests.robolectric.tests.models.userdata;
+package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import com.google.i18n.phonenumbers.Phonenumber;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;

@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.sdk.mocks.answers.textutils;
+package me.ledge.link.sdk.ui.mocks.answers.textutils;
 
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;

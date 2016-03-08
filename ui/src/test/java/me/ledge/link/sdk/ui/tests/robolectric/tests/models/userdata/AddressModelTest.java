@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.sdk.tests.robolectric.tests.models.userdata;
+package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import android.text.TextUtils;
 import me.ledge.link.sdk.ui.R;
@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import me.ledge.link.sdk.sdk.mocks.answers.textutils.IsEmptyAnswer;
+import me.ledge.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
 import me.ledge.link.sdk.ui.models.userdata.AddressModel;
 
 import static org.hamcrest.CoreMatchers.equalTo;
