@@ -18,13 +18,11 @@ android:
   licenses:
     - '.+'
 
-# Only send email on failure.
+# Send notifications on Android Slack channel.
 notifications:
-  email:
-    recipients:
-      - wijnand@ledge.us
-    on_success: never
-    on_failure: always
+  slack:
+    rooms:
+      secure: "AdW02OHYc6Vjuf1PCc+pJVTStqxFU8hJCsdOfCIy8lqod3df/BQpVvy1biKyjFhFa7GySWvkuGdTW9eAF8j7q/OvXF4I7Gqejqi2nXszXqOQQc7gSLFsmwLxBTiPOrqc2WNeV2OPIzOxZpTZVI8D7TlP/7NdzA3QFTXyJlOnhC6jMflqliMqxMNRWEwFRj3HIPFdLpE8ABysnWsN4JV2TZvRVcQHlnI05y56vivZuGS1qUidIaoCAaX0okdN/jDdifVREFxXdjYk1Iy3oAZLgOednSwvRrUohQabJ9w98PIOKmko1khBGSe6iRYYmCtTariZM1uMqNL9mUv0RZ2dYBkY+NcAMcZ0dS4yODKjcqyGOIoXGIR97EogfJ/83ossgqS30r15bb8UcoNQwVmBuNk09MBWwblCJ8ICvOPZmharwdMFt6a9FDYPFDOz7rgA+cdIGSlGLsYgtf5tdh0/w3CGF0idP1C/Z6Lgl3jP2nK0rPXxN5FLxNHDcjetS82of/YlNR2yEj+FDMciyBj0U27wTcJnGtsWnv7zoriMwtWjUnpJMDNWHJ5VIF57dLawkQb4lKEDcWktzO7HdtbNAYSk6BEkZp7bMaDYx4WNpnfegLw4OM2NZztyZv77KGtsSg0+N+MFh53gEuwxdx68UPIrV2nU5RRspWgwSxG5zZM="
 
 # Set up.
 before_install:
