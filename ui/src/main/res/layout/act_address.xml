@@ -87,7 +87,6 @@
                             android:textColor="?android:textColorHint"
                             android:layout_marginLeft="4dp"
                             android:layout_marginStart="4dp"
-                            android:layout_marginBottom="4dp"
                             android:text="@string/address_state_hint" />
 
                     <Spinner
@@ -114,16 +113,16 @@
                         android:layout_weight="1"
                         android:theme="?attr/llsdk_idVerification_inputWrapperTheme">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <EditText
                             android:id="@+id/et_zip_code"
                             style="?attr/llsdk_idVerification_editTextStyle"
                             android:inputType="phone"
                             android:maxLength="@integer/zip_code_length"
+                            android:paddingTop="16dp"
                             android:singleLine="true"
                             android:hint="@string/address_zip_code_hint" />
 
                 </android.support.design.widget.TextInputLayout>
-
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
