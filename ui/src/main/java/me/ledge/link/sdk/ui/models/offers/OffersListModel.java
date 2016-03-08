@@ -69,7 +69,6 @@ public class OffersListModel extends AbstractActivityModel implements ActivityMo
      */
     public InitialOffersRequestVo getInitialOffersRequest() {
         InitialOffersRequestVo request = new InitialOffersRequestVo();
-        request.credit_range = mBaseData.creditScoreRange;
         request.currency = Currency.getInstance(Locale.US).getCurrencyCode();
         request.loan_amount = mBaseData.loanAmount;
         request.loan_purpose_id = mBaseData.loanPurpose.loan_purpose_id;

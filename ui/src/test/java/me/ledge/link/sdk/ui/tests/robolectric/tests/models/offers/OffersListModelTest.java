@@ -87,7 +87,6 @@ public class OffersListModelTest {
         InitialOffersRequestVo request = mModel.getInitialOffersRequest();
 
         Assert.assertThat("Request data should not be null.", request, not(nullValue()));
-        Assert.assertThat("Incorrect credit score range.", request.credit_range, equalTo(EXPECTED_CREDIT_SCORE_RANGE));
         Assert.assertThat("Incorrect currency.", request.currency, equalTo(EXPECTED_CURRENCY));
         Assert.assertThat("Incorrect amount.", request.loan_amount, equalTo(LoanAmountModelTest.EXPECTED_VALID_AMOUNT));
         Assert.assertThat("Incorrect loan purpose.", request.loan_purpose_id, equalTo(EXPECTED_PURPOSE_ID));
