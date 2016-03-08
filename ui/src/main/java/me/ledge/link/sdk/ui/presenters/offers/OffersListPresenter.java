@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
+import me.ledge.common.utils.PagedList;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
@@ -25,7 +26,7 @@ import me.ledge.link.sdk.ui.vos.UserDataVo;
  */
 public class OffersListPresenter
         extends ActivityPresenter<OffersListModel, OffersListView>
-        implements Presenter<OffersListModel, OffersListView> {
+        implements Presenter<OffersListModel, OffersListView>, OffersListView.ViewListener {
 
     private PagedListRecyclerAdapter<OfferSummaryModel, OfferSummaryView> mAdapter;
 
@@ -65,11 +66,20 @@ public class OffersListPresenter
 
         mAdapter = new PagedListRecyclerAdapter<>(R.layout.cv_loan_offer);
         mView.setAdapter(mAdapter);
+        mView.setListener(this);
 
         // Fetch offers.
         InitialOffersRequestVo requestData = mModel.getInitialOffersRequest();
         requestData.rows = 25;
         LedgeLinkUi.getInitialOffers(requestData);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void detachView() {
+        mView.setAdapter(null);
+        mView.setListener(null);
+        super.detachView();
     }
 
     /** {@inheritDoc} */
@@ -81,17 +91,26 @@ public class OffersListPresenter
         return intent;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void updateClickedHandler() {
+        // Start the first step in the process.
+        startActivity(LedgeLinkUi.getProcessOrder().get(0));
+    }
+
     /**
      * Adds a list of offers and displays them.
-     * @param offers List of offers.
+     * @param rawOffers List of offers.
      * @param offerRequestId Offer request ID.
      * @param complete Whether the list is complete.
      */
-    public void addOffers(OfferVo[] offers, int offerRequestId, boolean complete) {
+    public void addOffers(OfferVo[] rawOffers, int offerRequestId, boolean complete) {
         mModel.setOfferRequestId(offerRequestId);
-        mModel.addOffers(mActivity.getResources(), offers, complete);
+        mModel.addOffers(mActivity.getResources(), rawOffers, complete);
 
-        mAdapter.updateList(mModel.getOffers());
+        PagedList<OfferSummaryModel> offers = mModel.getOffers();
+        mAdapter.updateList(offers);
+        mView.showEmptyCase(offers.isComplete() && (offers.getList() == null || offers.getList().size() <= 0));
     }
 
     /**

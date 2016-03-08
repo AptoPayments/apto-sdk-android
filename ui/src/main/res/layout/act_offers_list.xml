@@ -16,4 +16,25 @@
         android:scrollbars="vertical"
         android:scrollbarStyle="outsideOverlay" />
 
+    <LinearLayout
+            android:id="@+id/ll_empty_case"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/offers_list_empty_text" />
+
+        <TextView
+                android:id="@+id/tv_bttn_edit_info"
+                style="?attr/llsdk_nextButtonStyle"
+                android:layout_width="240dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/offers_list_empty_button" />
+
+    </LinearLayout>
 </me.ledge.link.sdk.ui.views.offers.OffersListView>

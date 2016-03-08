@@ -66,6 +66,8 @@
 
     <!-- Offers List -->
     <string name="offers_list_label">Loan offers</string>
+    <string name="offers_list_empty_text">No offers found.</string>
+    <string name="offers_list_empty_button">Update loan request</string>
     <string name="offers_list_menu_update_profile">Update profile</string>
     <string name="offers_list_menu_refresh">Refresh offers</string>
     <string name="offers_list_summary_interest_rate">Interest rate: %.2f%%</string>

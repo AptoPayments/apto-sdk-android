@@ -5,7 +5,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
@@ -15,10 +18,25 @@ import me.ledge.link.sdk.ui.views.ViewWithToolbar;
  * Displays the offers list.
  * @author Wijnand
  */
-public class OffersListView extends RelativeLayout implements ViewWithToolbar {
+public class OffersListView extends RelativeLayout implements ViewWithToolbar, View.OnClickListener {
+
+    /**
+     * Callbacks this View will invoke.
+     */
+    public interface ViewListener {
+
+        /**
+         * Called when the empty case "Update loan request" button has been pressed.
+         */
+        void updateClickedHandler();
+    }
+
+    private ViewListener mListener;
 
     private Toolbar mToolbar;
     private RecyclerView mOffersListView;
+    private LinearLayout mEmptyCaseHolder;
+    private TextView mUpdateButton;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -43,6 +61,15 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar {
     protected void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         mOffersListView = (RecyclerView) findViewById(R.id.rv_offers_list);
+        mEmptyCaseHolder = (LinearLayout) findViewById(R.id.ll_empty_case);
+        mUpdateButton = (TextView) findViewById(R.id.tv_bttn_edit_info);
+    }
+
+    /**
+     * Sets up all child View listeners.
+     */
+    private void setUpListeners() {
+        mUpdateButton.setOnClickListener(this);
     }
 
     /**
@@ -58,7 +85,9 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar {
     protected void onFinishInflate() {
         super.onFinishInflate();
         findAllViews();
+        setUpListeners();
         setupRecyclerView();
+        showEmptyCase(false);
     }
 
     /** {@inheritDoc} */
@@ -67,11 +96,39 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar {
         return mToolbar;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void onClick(View view) {
+        if (mListener != null && view.getId() == R.id.tv_bttn_edit_info) {
+            mListener.updateClickedHandler();
+        }
+    }
+
+    /**
+     * Stores a new {@link ViewListener}.
+     * @param listener New {@link ViewListener}.
+     */
+    public void setListener(ViewListener listener) {
+        mListener = listener;
+    }
+
     /**
      * Stores a new {@link PagedListRecyclerAdapter} for the {@link RecyclerView} to use.
      * @param adapter The adapter to use.
      */
     public void setAdapter(PagedListRecyclerAdapter<OfferSummaryModel, OfferSummaryView> adapter) {
         mOffersListView.setAdapter(adapter);
+    }
+
+    /**
+     * Updates the empty case visibility.
+     * @param show Whether the empty should be shown.
+     */
+    public void showEmptyCase(boolean show) {
+        if (show) {
+            mEmptyCaseHolder.setVisibility(VISIBLE);
+        } else {
+            mEmptyCaseHolder.setVisibility(GONE);
+        }
     }
 }
