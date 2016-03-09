@@ -94,8 +94,8 @@ public class OffersListPresenter
     /** {@inheritDoc} */
     @Override
     public void updateClickedHandler() {
-        // Start the first step in the process.
-        startActivity(LedgeLinkUi.getProcessOrder().get(0));
+        // Start the second step in the process.
+        startActivity(LedgeLinkUi.getProcessOrder().get(1)); // TODO: specify this differently? There is no guaranteed order! yet?
     }
 
     /**
