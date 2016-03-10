@@ -74,4 +74,11 @@
     <string name="offers_list_summary_loan_amount">Amount financed: $%d</string>
     <string name="offers_list_summary_monthly_payment">Monthly payment: $%.2f</string>
     <string name="offers_list_summary_button_apply">APPLY NOW</string>
+
+    <!-- Loan application -->
+    <string name="loan_application_label">My loan</string>
+    <string name="loan_application_explanation_rejected" formatted="false">Your loan application with %s was rejected.</string>
+    <string name="loan_application_explanation_pending_lender_action" formatted="false">Your application is being processed by %s.</string>
+    <string name="loan_application_button_offers">Get offers</string>
+    <string name="loan_application_button_info">More info</string>
 </resources>
