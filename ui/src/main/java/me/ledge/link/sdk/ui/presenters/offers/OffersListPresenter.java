@@ -10,6 +10,7 @@ import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.adapters.OffersListRecyclerAdapter;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
@@ -26,9 +27,9 @@ import me.ledge.link.sdk.ui.vos.UserDataVo;
  */
 public class OffersListPresenter
         extends ActivityPresenter<OffersListModel, OffersListView>
-        implements Presenter<OffersListModel, OffersListView>, OffersListView.ViewListener {
+        implements Presenter<OffersListModel, OffersListView>, OffersListView.ViewListener, OfferSummaryView.ViewListener {
 
-    private PagedListRecyclerAdapter<OfferSummaryModel, OfferSummaryView> mAdapter;
+    private OffersListRecyclerAdapter mAdapter;
 
     /**
      * Creates a new {@link OffersListPresenter} instance.
@@ -64,7 +65,8 @@ public class OffersListPresenter
     public void attachView(OffersListView view) {
         super.attachView(view);
 
-        mAdapter = new PagedListRecyclerAdapter<>(R.layout.cv_loan_offer);
+        mAdapter = new OffersListRecyclerAdapter();
+        mAdapter.setViewListener(this);
         mView.setAdapter(mAdapter);
         mView.setListener(this);
 
@@ -95,7 +97,16 @@ public class OffersListPresenter
     @Override
     public void updateClickedHandler() {
         // Start the second step in the process.
-        startActivity(LedgeLinkUi.getProcessOrder().get(1)); // TODO: specify this differently? There is no guaranteed order! yet?
+        // TODO: specify this differently? There is no guaranteed order! yet?
+        startActivity(LedgeLinkUi.getProcessOrder().get(1));
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void applyClickHandler(OfferSummaryModel offer) {
+        if (offer != null) {
+            LedgeLinkUi.createLoanApplication(offer.getOfferId());
+        }
     }
 
     /**

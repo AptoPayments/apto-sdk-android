@@ -6,6 +6,7 @@ import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
+import me.ledge.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
 import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
@@ -125,6 +126,18 @@ public class LedgeLinkSdk {
 
         InitialOffersTask task = new InitialOffersTask(data, getApiWrapper(), getResponseHandler());
         return (InitialOffersTask) task.executeOnExecutor(getExecutor());
+    }
+
+    /**
+     * Creates a new loan application.
+     * @param offerId The loan offer to apply to.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask createLoanApplication(long offerId) {
+        checkComponents();
+
+        CreateLoanApplicationTask task = new CreateLoanApplicationTask(offerId, getApiWrapper(), getResponseHandler());
+        return (CreateLoanApplicationTask) task.executeOnExecutor(getExecutor());
     }
 
 }

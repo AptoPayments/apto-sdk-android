@@ -143,4 +143,17 @@ public class OfferSummaryModel implements Model {
     public String getMonthlyPaymentText() {
         return mMonthlyPaymentText;
     }
+
+    /**
+     * @return Offer ID OR -1 if not found.
+     */
+    public long getOfferId() {
+        long id = -1;
+
+        if (mRawOffer != null) {
+            id = mRawOffer.id;
+        }
+
+        return id;
+    }
 }
