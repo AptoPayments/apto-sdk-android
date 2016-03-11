@@ -76,8 +76,8 @@ public class IdentityVerificationPresenter
 
     /** {@inheritDoc} */
     @Override
-    protected void populateModelFromParcel() {
-        super.populateModelFromParcel();
+    protected void populateModelFromStorage() {
+        super.populateModelFromStorage();
         mModel.setMinimumAge(mActivity.getResources().getInteger(R.integer.min_age));
     }
 

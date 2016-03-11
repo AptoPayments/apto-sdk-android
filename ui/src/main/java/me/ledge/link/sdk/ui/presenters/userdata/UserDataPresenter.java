@@ -1,10 +1,10 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import me.ledge.link.sdk.ui.models.userdata.UserDataModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
+import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
@@ -23,19 +23,14 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends View 
      */
     public UserDataPresenter(AppCompatActivity activity) {
         super(activity);
-        populateModelFromParcel();
+        populateModelFromStorage();
     }
 
     /**
-     * Populates the {@link UserDataModel} with the data stored in the Activity's start {@link Intent}.
+     * Populates the {@link UserDataModel} with the data stored globally.
      */
-    protected void populateModelFromParcel() {
-        if (mActivity == null || mActivity.getIntent() == null) {
-            return;
-        }
-
-        Intent intent = mActivity.getIntent();
-        UserDataVo data = intent.getParcelableExtra(UserDataVo.USER_DATA_KEY);
+    protected void populateModelFromStorage() {
+        UserDataVo data = UserStorage.getInstance().getUserData();
 
         if (data == null) {
             mModel.setBaseData(new UserDataVo());
@@ -44,19 +39,18 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends View 
         }
     }
 
-    /** {@inheritDoc} */
-    @Override
-    protected Intent getStartIntent(Class activity) {
-        Intent intent = super.getStartIntent(activity);
-        intent.putExtra(UserDataVo.USER_DATA_KEY, mModel.getBaseData());
-
-        return intent;
+    /**
+     * Saves the updated data from the Model in the global storage.
+     */
+    protected void saveData() {
+        UserStorage.getInstance().setUserData(mModel.getBaseData());
     }
 
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
         if (mModel.hasAllData()) {
+            saveData();
             startNextActivity();
         }
     }

@@ -71,14 +71,14 @@ public class LoanAmountPresenter
 
     /** {@inheritDoc} */
     @Override
-    protected void populateModelFromParcel() {
+    protected void populateModelFromStorage() {
         mAmountIncrement = mActivity.getResources().getInteger(R.integer.loan_amount_increment);
 
         mModel.setMinAmount(mActivity.getResources().getInteger(R.integer.min_loan_amount))
                 .setMaxAmount(mActivity.getResources().getInteger(R.integer.max_loan_amount))
                 .setAmount(mActivity.getResources().getInteger(R.integer.default_loan_amount));
 
-        super.populateModelFromParcel();
+        super.populateModelFromStorage();
     }
 
     /** {@inheritDoc} */

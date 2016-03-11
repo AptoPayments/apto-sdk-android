@@ -11,7 +11,7 @@ import com.google.i18n.phonenumbers.Phonenumber;
  *
  * @author Wijnand
  */
-public class UserDataVo implements Parcelable {
+public class UserDataVo {
 
     public int loanAmount;
     public LoanPurposeDisplayVo loanPurpose;
@@ -29,21 +29,6 @@ public class UserDataVo implements Parcelable {
 
     public int income;
     public int creditScoreRange;
-
-    public static final String USER_DATA_KEY = "us.ledge.line.sdk.sdk.vos.UserData";
-    public static final Creator<UserDataVo> CREATOR = new Creator<UserDataVo>() {
-        /** {@inheritDoc} */
-        @Override
-        public UserDataVo createFromParcel(Parcel in) {
-            return new UserDataVo(in);
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public UserDataVo[] newArray(int size) {
-            return new UserDataVo[size];
-        }
-    };
 
     /**
      * Creates a new {@link UserDataVo} instance.
@@ -69,50 +54,5 @@ public class UserDataVo implements Parcelable {
         zip = null;
         income = -1;
         creditScoreRange = -1;
-    }
-
-    /**
-     * Creates a new {@link UserDataVo} instance.
-     * @param in The {@link Parcel} to read the initial data from.
-     */
-    public UserDataVo(Parcel in) {
-        loanAmount = in.readInt();
-        loanPurpose = (LoanPurposeDisplayVo) in.readSerializable();
-
-        firstName = in.readString();
-        lastName = in.readString();
-        emailAddress = in.readString();
-        phoneNumber = (Phonenumber.PhoneNumber) in.readSerializable();
-        address = in.readString();
-        apartmentNumber = in.readString();
-        city = in.readString();
-        state = in.readString();
-        zip = in.readString();
-        income = in.readInt();
-        creditScoreRange = in.readInt();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(loanAmount);
-        dest.writeSerializable(loanPurpose);
-        dest.writeString(firstName);
-        dest.writeString(lastName);
-        dest.writeString(emailAddress);
-        dest.writeSerializable(phoneNumber);
-        dest.writeString(address);
-        dest.writeString(apartmentNumber);
-        dest.writeString(city);
-        dest.writeString(state);
-        dest.writeString(zip);
-        dest.writeInt(income);
-        dest.writeInt(creditScoreRange);
     }
 }

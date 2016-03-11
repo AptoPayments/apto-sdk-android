@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
+import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 import java.util.ArrayList;
@@ -60,12 +61,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
                     "to start the loan offers process!");
         }
 
-        Intent startIntent = new Intent(context, getProcessOrder().get(0));
-
-        if (data != null) {
-            startIntent.putExtra(UserDataVo.USER_DATA_KEY, data);
-        }
-
-        context.startActivity(startIntent);
+        UserStorage.getInstance().setUserData(data);
+        context.startActivity(new Intent(context, getProcessOrder().get(0)));
     }
 }

@@ -1,9 +1,7 @@
 package me.ledge.link.sdk.ui.presenters.offers;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
-import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.common.utils.PagedList;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
@@ -15,9 +13,9 @@ import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.offers.OfferSummaryView;
 import me.ledge.link.sdk.ui.views.offers.OffersListView;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 /**
  * Concrete {@link Presenter} for the offers list screen.
@@ -37,27 +35,15 @@ public class OffersListPresenter
      */
     public OffersListPresenter(AppCompatActivity activity) {
         super(activity);
-        getIntentData();
-    }
-
-    /**
-     * Retrieves the bearer token from the start {@link Intent}.
-     */
-    private void getIntentData() {
-        if (mActivity == null || mActivity.getIntent() == null) {
-            return;
-        }
-
-        Intent intent = mActivity.getIntent();
-
-        UserDataVo baseData = intent.getParcelableExtra(UserDataVo.USER_DATA_KEY);
-        mModel.setBaseData(baseData);
     }
 
     /** {@inheritDoc} */
     @Override
     public OffersListModel createModel() {
-        return new OffersListModel(LedgeLinkUi.getImageLoader());
+        OffersListModel model = new OffersListModel(LedgeLinkUi.getImageLoader());
+        model.setBaseData(UserStorage.getInstance().getUserData());
+
+        return model;
     }
 
     /** {@inheritDoc} */
@@ -82,15 +68,6 @@ public class OffersListPresenter
         mView.setAdapter(null);
         mView.setListener(null);
         super.detachView();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Intent getStartIntent(Class activity) {
-        Intent intent = super.getStartIntent(activity);
-        intent.putExtra(UserDataVo.USER_DATA_KEY, mModel.getBaseData());
-
-        return intent;
     }
 
     /** {@inheritDoc} */

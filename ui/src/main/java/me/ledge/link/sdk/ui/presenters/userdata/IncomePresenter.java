@@ -34,7 +34,7 @@ public class IncomePresenter
 
     /** {@inheritDoc} */
     @Override
-    protected void populateModelFromParcel() {
+    protected void populateModelFromStorage() {
         mIncomeMultiplier = mActivity.getResources().getInteger(R.integer.income_increment);
         mMaxIncome = mActivity.getResources().getInteger(R.integer.max_income);
 
@@ -42,7 +42,7 @@ public class IncomePresenter
                 .setMaxIncome(mMaxIncome)
                 .setIncome(mActivity.getResources().getInteger(R.integer.default_income));
 
-        super.populateModelFromParcel();
+        super.populateModelFromStorage();
     }
 
     /** {@inheritDoc} */
