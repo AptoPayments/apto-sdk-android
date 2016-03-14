@@ -147,6 +147,10 @@ public class IdentityVerificationPresenter
     public void setCreateUserResponse(CreateUserResponseVo response) {
         mView.showLoading(false);
 
+        if (response != null) {
+            UserStorage.getInstance().setBearerToken(response.token);
+        }
+
         // Show next screen.
         super.nextClickHandler();
     }
