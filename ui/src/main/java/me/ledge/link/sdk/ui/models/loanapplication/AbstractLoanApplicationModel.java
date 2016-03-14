@@ -25,6 +25,19 @@ public abstract class AbstractLoanApplicationModel implements ActivityModel, Mod
         mLoanApplication = loanApplication;
     }
 
+    /**
+     * @return Lender name.
+     */
+    protected String getLenderName() {
+        String name = "";
+
+        if (mLoanApplication != null && mLoanApplication.offer != null && mLoanApplication.offer.lender != null) {
+            name = mLoanApplication.offer.lender.lender_name;
+        }
+
+        return name;
+    }
+
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {

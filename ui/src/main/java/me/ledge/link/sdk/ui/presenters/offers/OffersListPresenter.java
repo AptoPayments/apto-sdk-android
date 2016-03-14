@@ -112,12 +112,15 @@ public class OffersListPresenter
      * @param response API reponse.
      */
     public void showLoanApplicationScreen(LoanApplicationDetailsResponseVo response) {
+        mView.showLoading(false);
+        LoanStorage.getInstance().setCurrentLoanApplication(response);
+
         switch (response.status) {
             case LoanApplicationStatus.APPLICATION_REJECTED:
+            case LoanApplicationStatus.PENDING_LENDER_ACTION:
                 startActivity(IntermediateLoanApplicationActivity.class);
                 break;
             case LoanApplicationStatus.APPLICATION_RECEIVED:
-            case LoanApplicationStatus.PENDING_LENDER_ACTION:
             case LoanApplicationStatus.PENDING_BORROWER_ACTION:
             case LoanApplicationStatus.LENDER_REJECTED:
             case LoanApplicationStatus.BORROWER_REJECTED:

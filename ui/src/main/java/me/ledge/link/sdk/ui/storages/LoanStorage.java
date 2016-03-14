@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.storages;
 
 import android.content.res.Resources;
 import me.ledge.common.utils.PagedList;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
@@ -17,6 +18,8 @@ public class LoanStorage {
 
     private int mOfferRequestId;
     private PagedList<OfferSummaryModel> mOffers;
+
+    private LoanApplicationDetailsResponseVo mCurrentLoanApplication;
 
     private static LoanStorage mInstance;
 
@@ -81,4 +84,18 @@ public class LoanStorage {
         return mOffers;
     }
 
+    /**
+     * @return The current loan application.
+     */
+    public LoanApplicationDetailsResponseVo getCurrentLoanApplication() {
+        return mCurrentLoanApplication;
+    }
+
+    /**
+     * Stores a new current loan application.
+     * @param application New loan application.
+     */
+    public void setCurrentLoanApplication(LoanApplicationDetailsResponseVo application) {
+        this.mCurrentLoanApplication = application;
+    }
 }
