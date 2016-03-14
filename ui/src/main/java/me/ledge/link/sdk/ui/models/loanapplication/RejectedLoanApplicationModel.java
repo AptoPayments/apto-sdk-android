@@ -57,16 +57,4 @@ public class RejectedLoanApplicationModel
     public boolean showOffersButton() {
         return true;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class getPreviousActivity(Activity current) {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class getNextActivity(Activity current) {
-        return null;
-    }
 }
