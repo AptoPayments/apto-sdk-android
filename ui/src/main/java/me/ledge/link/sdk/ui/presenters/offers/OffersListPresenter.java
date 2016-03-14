@@ -3,11 +3,14 @@ package me.ledge.link.sdk.ui.presenters.offers;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 import me.ledge.common.utils.PagedList;
+import me.ledge.link.api.utils.LoanApplicationStatus;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.adapters.OffersListRecyclerAdapter;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
@@ -102,6 +105,27 @@ public class OffersListPresenter
         PagedList<OfferSummaryModel> offers = storage.getOffers();
         mAdapter.updateList(offers);
         mView.showEmptyCase(offers.isComplete() && (offers.getList() == null || offers.getList().size() <= 0));
+    }
+
+    /**
+     * Shows a loan application screen based on the API response.
+     * @param response API reponse.
+     */
+    public void showLoanApplicationScreen(LoanApplicationDetailsResponseVo response) {
+        switch (response.status) {
+            case LoanApplicationStatus.APPLICATION_REJECTED:
+                startActivity(IntermediateLoanApplicationActivity.class);
+                break;
+            case LoanApplicationStatus.APPLICATION_RECEIVED:
+            case LoanApplicationStatus.PENDING_LENDER_ACTION:
+            case LoanApplicationStatus.PENDING_BORROWER_ACTION:
+            case LoanApplicationStatus.LENDER_REJECTED:
+            case LoanApplicationStatus.BORROWER_REJECTED:
+            case LoanApplicationStatus.LOAN_APPROVED:
+            default:
+                Toast.makeText(mActivity, "Screen not yet implemented.", Toast.LENGTH_LONG).show();
+                break;
+        }
     }
 
     /**
