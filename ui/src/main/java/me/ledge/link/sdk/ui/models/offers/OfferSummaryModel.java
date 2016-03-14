@@ -79,6 +79,12 @@ public class OfferSummaryModel implements Model {
         return R.string.offers_list_summary_monthly_payment;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof OfferSummaryModel && ((OfferSummaryModel) other).getOfferId() == getOfferId();
+    }
+
     /**
      * @return Whether an {@link GenericImageLoader} has been set.
      */

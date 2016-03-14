@@ -14,6 +14,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 
 /**

@@ -13,6 +13,7 @@ import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.LoanStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.offers.OfferSummaryView;
 import me.ledge.link.sdk.ui.views.offers.OffersListView;
@@ -40,7 +41,7 @@ public class OffersListPresenter
     /** {@inheritDoc} */
     @Override
     public OffersListModel createModel() {
-        OffersListModel model = new OffersListModel(LedgeLinkUi.getImageLoader());
+        OffersListModel model = new OffersListModel();
         model.setBaseData(UserStorage.getInstance().getUserData());
 
         return model;
@@ -93,10 +94,12 @@ public class OffersListPresenter
      * @param complete Whether the list is complete.
      */
     public void addOffers(OfferVo[] rawOffers, int offerRequestId, boolean complete) {
-        mModel.setOfferRequestId(offerRequestId);
-        mModel.addOffers(mActivity.getResources(), rawOffers, complete);
+        LoanStorage storage = LoanStorage.getInstance();
 
-        PagedList<OfferSummaryModel> offers = mModel.getOffers();
+        storage.setOfferRequestId(offerRequestId);
+        storage.addOffers(mActivity.getResources(), rawOffers, complete, LedgeLinkUi.getImageLoader());
+
+        PagedList<OfferSummaryModel> offers = storage.getOffers();
         mAdapter.updateList(offers);
         mView.showEmptyCase(offers.isComplete() && (offers.getList() == null || offers.getList().size() <= 0));
     }
