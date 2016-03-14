@@ -34,7 +34,7 @@ public class OffersListModelTest {
      */
     @Before
     public void setUp() {
-        mModel = new OffersListModel(null);
+        mModel = new OffersListModel();
     }
 
     /**
@@ -90,22 +90,5 @@ public class OffersListModelTest {
         Assert.assertThat("Incorrect currency.", request.currency, equalTo(EXPECTED_CURRENCY));
         Assert.assertThat("Incorrect amount.", request.loan_amount, equalTo(LoanAmountModelTest.EXPECTED_VALID_AMOUNT));
         Assert.assertThat("Incorrect loan purpose.", request.loan_purpose_id, equalTo(EXPECTED_PURPOSE_ID));
-    }
-
-    /**
-     * Given the initial loan offers are being requested.<br />
-     * When storing the API response. <br />
-     * Then the whole list of the response should be stored.
-     */
-    @Test
-    public void offersAreStored() {
-        InitialOffersResponseVo offersResponse = new MockApiWrapper().getInitialOffers(null);
-        mModel.addOffers(null, offersResponse.offers.data, !offersResponse.offers.has_more);
-        mModel.setOfferRequestId(offersResponse.offer_request_id);
-
-        Assert.assertThat("Offer list should not be null.", mModel.getOffers(), not(nullValue()));
-        Assert.assertThat("Incorrect number of offers.",
-                mModel.getOffers().getList().size(), equalTo(offersResponse.offers.data.length));
-        Assert.assertTrue("Offer list should be complete.", mModel.getOffers().isComplete());
     }
 }
