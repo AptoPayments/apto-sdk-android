@@ -37,6 +37,7 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
     private RecyclerView mOffersListView;
     private LinearLayout mEmptyCaseHolder;
     private TextView mUpdateButton;
+    private RelativeLayout mLoadingOverlay;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -63,6 +64,7 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
         mOffersListView = (RecyclerView) findViewById(R.id.rv_offers_list);
         mEmptyCaseHolder = (LinearLayout) findViewById(R.id.ll_empty_case);
         mUpdateButton = (TextView) findViewById(R.id.tv_bttn_edit_info);
+        mLoadingOverlay = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
     }
 
     /**
@@ -87,7 +89,9 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
         findAllViews();
         setUpListeners();
         setupRecyclerView();
+
         showEmptyCase(false);
+        showLoading(false);
     }
 
     /** {@inheritDoc} */
@@ -129,6 +133,18 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
             mEmptyCaseHolder.setVisibility(VISIBLE);
         } else {
             mEmptyCaseHolder.setVisibility(GONE);
+        }
+    }
+
+    /**
+     * Updates the loading overlay visibility.
+     * @param show Whether the loading overlay be shown.
+     */
+    public void showLoading(boolean show) {
+        if (show) {
+            mLoadingOverlay.setVisibility(VISIBLE);
+        } else {
+            mLoadingOverlay.setVisibility(GONE);
         }
     }
 }

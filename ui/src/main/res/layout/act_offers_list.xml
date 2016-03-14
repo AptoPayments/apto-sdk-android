@@ -42,4 +42,6 @@
                 android:text="@string/offers_list_empty_button" />
 
     </LinearLayout>
+
+    <include layout="@layout/include_rl_loading" />
 </me.ledge.link.sdk.ui.views.offers.OffersListView>

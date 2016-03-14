@@ -86,6 +86,11 @@ public class OffersListPresenter
     @Override
     public void applyClickHandler(OfferSummaryModel offer) {
         if (offer != null) {
+            if (mView != null) {
+                mView.showLoading(true);
+            }
+
+            // TODO Handle web v api.
             LedgeLinkUi.createLoanApplication(offer.getOfferId());
         }
     }
@@ -136,6 +141,10 @@ public class OffersListPresenter
      * @param error API error.
      */
     public void setApiError(ApiErrorVo error) {
+        if (mView != null) {
+            mView.showLoading(false);
+        }
+
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
         Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
     }
