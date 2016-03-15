@@ -101,7 +101,9 @@ public class LedgeLinkSdk {
 
         LoanPurposesTask task
                 = new LoanPurposesTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        return (LoanPurposesTask) task.executeOnExecutor(getExecutor());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
     }
 
     /**
@@ -113,7 +115,9 @@ public class LedgeLinkSdk {
         checkComponents();
 
         CreateUserTask task = new CreateUserTask(data, getApiWrapper(), getResponseHandler());
-        return (CreateUserTask) task.executeOnExecutor(getExecutor());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
     }
 
     /**
@@ -125,7 +129,9 @@ public class LedgeLinkSdk {
         checkComponents();
 
         InitialOffersTask task = new InitialOffersTask(data, getApiWrapper(), getResponseHandler());
-        return (InitialOffersTask) task.executeOnExecutor(getExecutor());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
     }
 
     /**
@@ -137,7 +143,9 @@ public class LedgeLinkSdk {
         checkComponents();
 
         CreateLoanApplicationTask task = new CreateLoanApplicationTask(offerId, getApiWrapper(), getResponseHandler());
-        return (CreateLoanApplicationTask) task.executeOnExecutor(getExecutor());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
     }
 
 }
