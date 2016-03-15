@@ -47,6 +47,7 @@ install:
 
 # Running tests.
 script:
+  - gradle --configure-on-demand -p sdk testDebugUnitTest
   - gradle --configure-on-demand -p ui testDebugUnitTestCoverage
 
 after_success:
