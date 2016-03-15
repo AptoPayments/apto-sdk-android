@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui.presenters.offers;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 import me.ledge.common.utils.PagedList;
+import me.ledge.common.utils.web.ExternalSiteLauncher;
 import me.ledge.link.api.utils.LoanApplicationStatus;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
@@ -86,12 +87,15 @@ public class OffersListPresenter
     @Override
     public void applyClickHandler(OfferSummaryModel offer) {
         if (offer != null) {
-            if (mView != null) {
-                mView.showLoading(true);
-            }
+            if (offer.requiresWebApplication()) {
+                new ExternalSiteLauncher().launchBrowser(offer.getOfferApplicationUrl(), mActivity);
+            } else {
+                if (mView != null) {
+                    mView.showLoading(true);
+                }
 
-            // TODO Handle web v api.
-            LedgeLinkUi.createLoanApplication(offer.getOfferId());
+                LedgeLinkUi.createLoanApplication(offer.getOfferId());
+            }
         }
     }
 

@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.models.offers;
 
 import android.content.res.Resources;
 import android.text.TextUtils;
+import me.ledge.link.api.utils.LoanApplicationMethod;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
@@ -151,6 +152,13 @@ public class OfferSummaryModel implements Model {
     }
 
     /**
+     * @return Whether the user needs to apply for this loan offer on a website.
+     */
+    public boolean requiresWebApplication() {
+        return mRawOffer != null && LoanApplicationMethod.WEB.equals(mRawOffer.application_method);
+    }
+
+    /**
      * @return Offer ID OR -1 if not found.
      */
     public long getOfferId() {
@@ -161,5 +169,18 @@ public class OfferSummaryModel implements Model {
         }
 
         return id;
+    }
+
+    /**
+     * @return Loan offer application website URL.
+     */
+    public String getOfferApplicationUrl() {
+        String url = "";
+
+        if (mRawOffer != null) {
+            url = mRawOffer.application_url;
+        }
+
+        return url;
     }
 }
