@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.sdk.tests.robolectric.tests;
 
 import android.os.AsyncTask;
+import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
@@ -78,6 +79,22 @@ public class LedgeLinkSdkTest {
 
     /**
      * Given an API Wrapper AND a response handler have been set.<br />
+     * When trying to get the loan purpose list.<br />
+     * Then the resulting {@link LedgeLinkApiTask} should be returned.
+     */
+    @Test
+    public void loanPurposeTaskIsCreated() {
+        LedgeLinkSdk.setApiWrapper(new MockApiWrapper());
+        LedgeLinkSdk.setExecutor(new MockExecutor());
+        LedgeLinkSdk.setResponseHandler(new MockResponseHandler());
+
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.getLoanPurposesList(),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    /**
+     * Given an API Wrapper AND a response handler have been set.<br />
      * When trying to create a new user.<br />
      * Then the resulting {@link LedgeLinkApiTask} should be returned.
      */
@@ -89,6 +106,38 @@ public class LedgeLinkSdkTest {
 
         Assert.assertThat("Task should have been created.",
                 LedgeLinkSdk.createUser(new CreateUserRequestVo()),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    /**
+     * Given an API Wrapper AND a response handler have been set.<br />
+     * When trying to fetch the initial list of loan offers.<br />
+     * Then the resulting {@link LedgeLinkApiTask} should be returned.
+     */
+    @Test
+    public void initialOffersTaskIsCreated() {
+        LedgeLinkSdk.setApiWrapper(new MockApiWrapper());
+        LedgeLinkSdk.setExecutor(new MockExecutor());
+        LedgeLinkSdk.setResponseHandler(new MockResponseHandler());
+
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.getInitialOffers(new InitialOffersRequestVo()),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    /**
+     * Given an API Wrapper AND a response handler have been set.<br />
+     * When trying to create a new loan application.<br />
+     * Then the resulting {@link LedgeLinkApiTask} should be returned.
+     */
+    @Test
+    public void createLoanApplicationTaskIsCreated() {
+        LedgeLinkSdk.setApiWrapper(new MockApiWrapper());
+        LedgeLinkSdk.setExecutor(new MockExecutor());
+        LedgeLinkSdk.setResponseHandler(new MockResponseHandler());
+
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.createLoanApplication(1189998819991197253L),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 }
