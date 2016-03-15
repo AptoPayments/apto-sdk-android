@@ -69,7 +69,10 @@ public class MockApiWrapper implements LinkApiWrapper {
     @Override
     public InitialOffersResponseVo getInitialOffers(InitialOffersRequestVo requestData) {
         OfferVo offerOne = new OfferVo();
+        offerOne.id = 1;
+
         OfferVo offerTwo = new OfferVo();
+        offerTwo.id = 2;
 
         OfferVo[] rawOffers = new OfferVo[]{ offerOne, offerTwo };
 
