@@ -12,6 +12,7 @@
         <item name="llsdk_toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
         <item name="llsdk_nextButtonStyle">@style/llsdk_id_verification_next_button</item>
+        <item name="llsdk_textLinkStyle">@style/llsdk_plain_text_link</item>
 
         <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
         <item name="llsdk_creditScore_radioButtonStyle">@style/llsdk_credit_score_radio</item>
@@ -54,6 +55,7 @@
         <item name="llsdk_toolbarPopupTheme">@style/ThemeOverlay.AppCompat</item>
         <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
         <item name="llsdk_nextButtonStyle">@style/llsdk_id_verification_next_button_light</item>
+        <item name="llsdk_textLinkStyle">@style/llsdk_plain_text_link</item>
 
         <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
         <item name="llsdk_creditScore_radioButtonStyle">@style/llsdk_credit_score_radio</item>
@@ -104,6 +106,7 @@
         <item name="llsdk_toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
         <item name="llsdk_nextButtonStyle">@style/llsdk_user_data_next_button_blue</item>
+        <item name="llsdk_textLinkStyle">@style/llsdk_plain_text_link_blue</item>
 
         <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
         <item name="llsdk_creditScore_radioButtonStyle">@style/llsdk_credit_score_radio</item>

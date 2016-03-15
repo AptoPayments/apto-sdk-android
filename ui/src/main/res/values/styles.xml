@@ -14,6 +14,10 @@
         <item name="android:padding">16dp</item>
     </style>
 
+    <style name="llsdk_plain_text_link">
+        <item name="android:textColor">@color/llsdk_link_color</item>
+    </style>
+
     <!-- Terms -->
     <style name="llsdk_terms_disclaimer">
         <item name="android:layout_width">match_parent</item>
@@ -127,6 +131,10 @@
 
     <style name="llsdk_user_data_next_button_blue" parent="llsdk_id_verification_next_button_light">
         <item name="android:background">@color/llsdk_blue_primary_dark</item>
+    </style>
+
+    <style name="llsdk_plain_text_link_blue" parent="llsdk_plain_text_link">
+        <item name="android:textColor">@color/llsdk_blue_primary</item>
     </style>
 
     <style name="llsdk_value_slider_header_blue" parent="llsdk_value_slider_header">

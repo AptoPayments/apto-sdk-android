@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Generic -->
+    <color name="llsdk_link_color">#00f</color>
+
     <!-- Dark -->
     <color name="llsdk_dark_text_color">#fff</color>
     <color name="llsdk_dark_text_color_hint">#777</color>
