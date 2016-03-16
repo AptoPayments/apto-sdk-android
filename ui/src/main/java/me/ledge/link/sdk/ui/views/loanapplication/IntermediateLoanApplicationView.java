@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui.views.loanapplication;
 import android.content.Context;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,7 +15,23 @@ import me.ledge.link.sdk.ui.views.ViewWithToolbar;
  * Displays the intermediate loan state.
  * @author Wijnand
  */
-public class IntermediateLoanApplicationView extends RelativeLayout implements ViewWithToolbar {
+public class IntermediateLoanApplicationView extends RelativeLayout implements ViewWithToolbar, View.OnClickListener {
+
+    /**
+     * Callbacks that this View will invoke.
+     */
+    public interface ViewListener {
+
+        /**
+         * Called when the "Get offers" button has been clicked.
+         */
+        void offersClickHandler();
+
+        /**
+         * Called when the "More info" button has been clicked.
+         */
+        void infoClickHandler();
+    }
 
     private Toolbar mToolbar;
 
@@ -22,6 +39,8 @@ public class IntermediateLoanApplicationView extends RelativeLayout implements V
     private TextView mExplanationField;
     private TextView mOffersButton;
     private TextView mInfoButton;
+
+    private ViewListener mListener;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -56,7 +75,8 @@ public class IntermediateLoanApplicationView extends RelativeLayout implements V
      * Sets up all required listeners.
      */
     private void setupListeners() {
-        //
+        mOffersButton.setOnClickListener(this);
+        mInfoButton.setOnClickListener(this);
     }
 
     /** {@inheritDoc} */
@@ -69,8 +89,31 @@ public class IntermediateLoanApplicationView extends RelativeLayout implements V
 
     /** {@inheritDoc} */
     @Override
+    public void onClick(View view) {
+        if (mListener == null) {
+            return;
+        }
+
+        int id = view.getId();
+        if (id == R.id.tv_bttn_get_offers) {
+            mListener.offersClickHandler();
+        } else if (id == R.id.tv_bttn_more_info) {
+            mListener.infoClickHandler();
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Toolbar getToolbar() {
         return mToolbar;
+    }
+
+    /**
+     * Stores a new callback listener that this View will invoke.
+     * @param listener New callback listener.
+     */
+    public void setListener(ViewListener listener) {
+        mListener = listener;
     }
 
     /**

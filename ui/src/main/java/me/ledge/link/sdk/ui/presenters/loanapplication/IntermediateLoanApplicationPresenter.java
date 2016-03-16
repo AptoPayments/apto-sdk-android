@@ -17,7 +17,8 @@ import me.ledge.link.sdk.ui.views.loanapplication.IntermediateLoanApplicationVie
  */
 public class IntermediateLoanApplicationPresenter
         extends ActivityPresenter<IntermediateLoanApplicationModel, IntermediateLoanApplicationView>
-        implements Presenter<IntermediateLoanApplicationModel, IntermediateLoanApplicationView> {
+        implements Presenter<IntermediateLoanApplicationModel, IntermediateLoanApplicationView>,
+        IntermediateLoanApplicationView.ViewListener {
 
     /**
      * Creates a new {@link IntermediateLoanApplicationPresenter} instance.
@@ -44,7 +45,16 @@ public class IntermediateLoanApplicationPresenter
     @Override
     public void attachView(IntermediateLoanApplicationView view) {
         super.attachView(view);
-        view.setData(mModel);
+
+        mView.setData(mModel);
+        mView.setListener(this);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void detachView() {
+        mView.setListener(null);
+        super.detachView();
     }
 
     /** {@inheritDoc} */
@@ -52,5 +62,17 @@ public class IntermediateLoanApplicationPresenter
     public void startPreviousActivity() {
         LoanStorage.getInstance().setCurrentLoanApplication(null);
         super.startPreviousActivity();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void offersClickHandler() {
+        startPreviousActivity();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void infoClickHandler() {
+        // TODO Pending API update.
     }
 }
