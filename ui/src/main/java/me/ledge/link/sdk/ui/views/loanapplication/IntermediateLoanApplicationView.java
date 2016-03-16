@@ -5,9 +5,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
@@ -31,6 +33,12 @@ public class IntermediateLoanApplicationView extends RelativeLayout implements V
          * Called when the "More info" button has been clicked.
          */
         void infoClickHandler();
+
+        /**
+         * Called when the big button has been pressed.
+         * @param action The action to take.
+         */
+        void bigButtonClickHandler(int action);
     }
 
     private Toolbar mToolbar;
@@ -40,7 +48,11 @@ public class IntermediateLoanApplicationView extends RelativeLayout implements V
     private TextView mOffersButton;
     private TextView mInfoButton;
 
+    private LinearLayout mButtonsHolder;
+    private TextView mBigButton;
+
     private ViewListener mListener;
+    private IntermediateLoanApplicationModel mData;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -69,6 +81,9 @@ public class IntermediateLoanApplicationView extends RelativeLayout implements V
         mExplanationField = (TextView) findViewById(R.id.tv_explanation);
         mOffersButton = (TextView) findViewById(R.id.tv_bttn_get_offers);
         mInfoButton = (TextView) findViewById(R.id.tv_bttn_more_info);
+
+        mButtonsHolder = (LinearLayout) findViewById(R.id.ll_buttons_holder);
+        mBigButton = (TextView) findViewById(R.id.tv_bttn_big);
     }
 
     /**
@@ -77,6 +92,7 @@ public class IntermediateLoanApplicationView extends RelativeLayout implements V
     private void setupListeners() {
         mOffersButton.setOnClickListener(this);
         mInfoButton.setOnClickListener(this);
+        mBigButton.setOnClickListener(this);
     }
 
     /** {@inheritDoc} */
@@ -99,6 +115,8 @@ public class IntermediateLoanApplicationView extends RelativeLayout implements V
             mListener.offersClickHandler();
         } else if (id == R.id.tv_bttn_more_info) {
             mListener.infoClickHandler();
+        } else if (id == R.id.tv_bttn_big) {
+            mListener.bigButtonClickHandler(mData.getBigButtonModel().getAction());
         }
     }
 
@@ -121,13 +139,26 @@ public class IntermediateLoanApplicationView extends RelativeLayout implements V
      * @param data Data to show.
      */
     public void setData(IntermediateLoanApplicationModel data) {
+        mData = data;
+        BigButtonModel buttonModel = mData.getBigButtonModel();
+
+        mButtonsHolder.setVisibility(GONE);
+        mBigButton.setVisibility(GONE);
+
         mCloudImage.setImageResource(data.getCloudImageResource());
         mExplanationField.setText(data.getExplanationText(getResources()));
 
-        if (data.showOffersButton()) {
-            mOffersButton.setVisibility(VISIBLE);
+        if (buttonModel.isVisible()) {
+            mBigButton.setText(buttonModel.getLabelResource());
+            mBigButton.setVisibility(VISIBLE);
         } else {
-            mOffersButton.setVisibility(GONE);
+            mButtonsHolder.setVisibility(VISIBLE);
+
+            if (data.showOffersButton()) {
+                mOffersButton.setVisibility(VISIBLE);
+            } else {
+                mOffersButton.setVisibility(GONE);
+            }
         }
     }
 }

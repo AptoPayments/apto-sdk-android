@@ -35,10 +35,4 @@ public class PendingLenderActionModel extends AbstractLoanApplicationModel imple
     public String getExplanationText(Resources resources) {
         return resources.getString(getExplanationTextResource(), getLenderName());
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean showOffersButton() {
-        return false;
-    }
 }

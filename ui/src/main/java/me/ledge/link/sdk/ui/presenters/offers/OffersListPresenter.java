@@ -9,6 +9,7 @@ import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
+import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
@@ -118,7 +119,7 @@ public class OffersListPresenter
 
     /**
      * Shows a loan application screen based on the API response.
-     * @param response API reponse.
+     * @param response API response.
      */
     public void showLoanApplicationScreen(LoanApplicationDetailsResponseVo response) {
         mView.showLoading(false);
@@ -151,5 +152,9 @@ public class OffersListPresenter
 
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
         Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+
+        if (LinkApiWrapper.CREATE_LOAN_APPLICATION_PATH.equals(error.request_path)) {
+            startActivity(IntermediateLoanApplicationActivity.class);
+        }
     }
 }

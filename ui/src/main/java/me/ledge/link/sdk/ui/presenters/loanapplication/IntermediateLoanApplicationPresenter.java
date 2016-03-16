@@ -3,6 +3,8 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 import android.support.v7.app.AppCompatActivity;
 import me.ledge.link.api.utils.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
+import me.ledge.link.sdk.ui.models.loanapplication.ErrorLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.PendingLenderActionModel;
 import me.ledge.link.sdk.ui.models.loanapplication.RejectedLoanApplicationModel;
@@ -32,10 +34,20 @@ public class IntermediateLoanApplicationPresenter
     @Override
     public IntermediateLoanApplicationModel createModel() {
         LoanApplicationDetailsResponseVo loanApplication = LoanStorage.getInstance().getCurrentLoanApplication();
-        IntermediateLoanApplicationModel model = new RejectedLoanApplicationModel(loanApplication);
+        IntermediateLoanApplicationModel model = new ErrorLoanApplicationModel(loanApplication);
 
-        if (loanApplication != null && loanApplication.status == LoanApplicationStatus.PENDING_LENDER_ACTION) {
-            model = new PendingLenderActionModel(loanApplication);
+        if (loanApplication != null) {
+            switch (loanApplication.status) {
+                case LoanApplicationStatus.LENDER_REJECTED:
+                    model = new RejectedLoanApplicationModel(loanApplication);
+                    break;
+                case LoanApplicationStatus.PENDING_LENDER_ACTION:
+                    model = new PendingLenderActionModel(loanApplication);
+                    break;
+                default:
+                    // Do nothing.
+                    break;
+            }
         }
 
         return model;
@@ -74,5 +86,18 @@ public class IntermediateLoanApplicationPresenter
     @Override
     public void infoClickHandler() {
         // TODO Pending API update.
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void bigButtonClickHandler(int action) {
+        switch (action) {
+            case BigButtonModel.Action.RETRY_LOAN_APPLICATION:
+                // TODO
+                break;
+            default:
+                // Do nothing.
+                break;
+        }
     }
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Base {@link Model} implementation for a loan application.
  * @author Wijnand
  */
-public abstract class AbstractLoanApplicationModel implements ActivityModel, Model {
+public abstract class AbstractLoanApplicationModel implements ActivityModel, IntermediateLoanApplicationModel, Model {
 
     protected final LoanApplicationDetailsResponseVo mLoanApplication;
 
@@ -55,5 +55,17 @@ public abstract class AbstractLoanApplicationModel implements ActivityModel, Mod
     @Override
     public Class getNextActivity(Activity current) {
         return null;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean showOffersButton() {
+        return false;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public BigButtonModel getBigButtonModel() {
+        return new BigButtonModel(false, -1, -1);
     }
 }

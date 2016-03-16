@@ -27,6 +27,11 @@ public interface IntermediateLoanApplicationModel extends ActivityModel, Model {
     String getExplanationText(Resources resources);
 
     /**
+     * @return Big button configuration.
+     */
+    BigButtonModel getBigButtonModel();
+
+    /**
      * @return Whether the "get offers" button should be shown.
      */
     boolean showOffersButton();
