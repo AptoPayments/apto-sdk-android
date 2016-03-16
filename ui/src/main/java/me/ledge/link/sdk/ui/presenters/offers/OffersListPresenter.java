@@ -14,6 +14,7 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.adapters.OffersListRecyclerAdapter;
+import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
@@ -31,7 +32,8 @@ import me.ledge.link.sdk.ui.views.offers.OffersListView;
  */
 public class OffersListPresenter
         extends ActivityPresenter<OffersListModel, OffersListView>
-        implements Presenter<OffersListModel, OffersListView>, OffersListView.ViewListener, OfferSummaryView.ViewListener {
+        implements Presenter<OffersListModel, OffersListView>, OffersListView.ViewListener,
+        OfferSummaryView.ViewListener {
 
     private OffersListRecyclerAdapter mAdapter;
 
@@ -41,6 +43,30 @@ public class OffersListPresenter
      */
     public OffersListPresenter(AppCompatActivity activity) {
         super(activity);
+    }
+
+    /**
+     * Reloads the list of loan offers.
+     */
+    private void reloadOffers() {
+        if (mAdapter != null) {
+            // Clear current adapter.
+            mAdapter.setViewListener(null);
+        }
+
+        // Create new one.
+        mAdapter = new OffersListRecyclerAdapter();
+        mAdapter.setViewListener(this);
+
+        if (mView != null) {
+            mView.setAdapter(mAdapter);
+        }
+
+        // Fetch offers.
+        InitialOffersRequestVo requestData = mModel.getInitialOffersRequest();
+        requestData.rows = 25;
+        LedgeLinkUi.getInitialOffers(requestData);
+
     }
 
     /** {@inheritDoc} */
@@ -57,15 +83,10 @@ public class OffersListPresenter
     public void attachView(OffersListView view) {
         super.attachView(view);
 
-        mAdapter = new OffersListRecyclerAdapter();
-        mAdapter.setViewListener(this);
-        mView.setAdapter(mAdapter);
+        mView.setData(mModel);
         mView.setListener(this);
 
-        // Fetch offers.
-        InitialOffersRequestVo requestData = mModel.getInitialOffersRequest();
-        requestData.rows = 25;
-        LedgeLinkUi.getInitialOffers(requestData);
+        reloadOffers();
     }
 
     /** {@inheritDoc} */
@@ -100,6 +121,22 @@ public class OffersListPresenter
         }
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void offersClickHandler() { /* Do nothing. */ }
+
+    /** {@inheritDoc} */
+    @Override
+    public void infoClickHandler() { /* Do nothing. */ }
+
+    /** {@inheritDoc} */
+    @Override
+    public void bigButtonClickHandler(int action) {
+        if (action == BigButtonModel.Action.RELOAD_LOAN_OFFERS) {
+            reloadOffers();
+        }
+    }
+
     /**
      * Adds a list of offers and displays them.
      * @param rawOffers List of offers.
@@ -114,6 +151,8 @@ public class OffersListPresenter
 
         PagedList<OfferSummaryModel> offers = storage.getOffers();
         mAdapter.updateList(offers);
+
+        mView.showError(false);
         mView.showEmptyCase(offers.isComplete() && (offers.getList() == null || offers.getList().size() <= 0));
     }
 
@@ -153,7 +192,9 @@ public class OffersListPresenter
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
         Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
 
-        if (LinkApiWrapper.CREATE_LOAN_APPLICATION_PATH.equals(error.request_path)) {
+        if (LinkApiWrapper.INITIAL_OFFERS_PATH.equals(error.request_path) && mView != null) {
+            mView.showError(true);
+        } else if (LinkApiWrapper.CREATE_LOAN_APPLICATION_PATH.equals(error.request_path)) {
             startActivity(IntermediateLoanApplicationActivity.class);
         }
     }

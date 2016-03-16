@@ -5,56 +5,6 @@
         android:layout_height="match_parent">
 
     <include layout="@layout/include_toolbar" />
+    <include layout="@layout/include_ll_loan_error" />
 
-    <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true">
-
-        <ImageView
-                android:id="@+id/iv_cloud"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/icon_cloud_sad" />
-
-        <TextView
-                android:id="@+id/tv_explanation"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:gravity="center_horizontal" />
-
-        <LinearLayout
-                android:id="@+id/ll_buttons_holder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal">
-
-            <TextView
-                    android:id="@+id/tv_bttn_get_offers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="?attr/llsdk_textLinkStyle"
-                    android:layout_marginRight="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:text="@string/loan_application_button_offers" />
-
-            <TextView
-                    android:id="@+id/tv_bttn_more_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="?attr/llsdk_textLinkStyle"
-                    android:text="@string/loan_application_button_info" />
-
-        </LinearLayout>
-
-        <TextView
-                android:id="@+id/tv_bttn_big"
-                android:layout_width="240dp"
-                style="?attr/llsdk_nextButtonStyle" />
-
-    </LinearLayout>
 </me.ledge.link.sdk.ui.views.loanapplication.IntermediateLoanApplicationView>

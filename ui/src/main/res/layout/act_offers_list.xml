@@ -43,5 +43,6 @@
 
     </LinearLayout>
 
+    <include layout="@layout/include_ll_loan_error" />
     <include layout="@layout/include_rl_loading" />
 </me.ledge.link.sdk.ui.views.offers.OffersListView>

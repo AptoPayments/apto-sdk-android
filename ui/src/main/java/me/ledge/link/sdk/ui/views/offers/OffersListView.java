@@ -11,7 +11,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
+import me.ledge.link.sdk.ui.models.offers.OffersListModel;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
@@ -23,7 +25,7 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
     /**
      * Callbacks this View will invoke.
      */
-    public interface ViewListener {
+    public interface ViewListener extends LoanOfferErrorView.ViewListener {
 
         /**
          * Called when the empty case "Update loan request" button has been pressed.
@@ -37,6 +39,8 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
     private RecyclerView mOffersListView;
     private LinearLayout mEmptyCaseHolder;
     private TextView mUpdateButton;
+
+    private LoanOfferErrorView mErrorView;
     private RelativeLayout mLoadingOverlay;
 
     /**
@@ -64,6 +68,8 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
         mOffersListView = (RecyclerView) findViewById(R.id.rv_offers_list);
         mEmptyCaseHolder = (LinearLayout) findViewById(R.id.ll_empty_case);
         mUpdateButton = (TextView) findViewById(R.id.tv_bttn_edit_info);
+
+        mErrorView = (LoanOfferErrorView) findViewById(R.id.ll_loan_error);
         mLoadingOverlay = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
     }
 
@@ -82,6 +88,19 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
         mOffersListView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
+    /**
+     * Updates a {@link View}'s visibility.
+     * @param show Whether the view should be shown.
+     * @param view The view to update.
+     */
+    private void showView(boolean show, View view) {
+        if (show) {
+            view.setVisibility(VISIBLE);
+        } else {
+            view.setVisibility(GONE);
+        }
+    }
+
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
@@ -91,6 +110,7 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
         setupRecyclerView();
 
         showEmptyCase(false);
+        showError(false);
         showLoading(false);
     }
 
@@ -114,6 +134,7 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
      */
     public void setListener(ViewListener listener) {
         mListener = listener;
+        mErrorView.setListener(listener);
     }
 
     /**
@@ -124,16 +145,24 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
         mOffersListView.setAdapter(adapter);
     }
 
+    public void setData(IntermediateLoanApplicationModel data) {
+        mErrorView.setData(data);
+    }
+
     /**
      * Updates the empty case visibility.
-     * @param show Whether the empty should be shown.
+     * @param show Whether the empty case should be shown.
      */
     public void showEmptyCase(boolean show) {
-        if (show) {
-            mEmptyCaseHolder.setVisibility(VISIBLE);
-        } else {
-            mEmptyCaseHolder.setVisibility(GONE);
-        }
+        showView(show, mEmptyCaseHolder);
+    }
+
+    /**
+     * Updates the error visibility.
+     * @param show Whether the error should be shown.
+     */
+    public void showError(boolean show) {
+        showView(show, mErrorView);
     }
 
     /**
@@ -141,10 +170,6 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
      * @param show Whether the loading overlay be shown.
      */
     public void showLoading(boolean show) {
-        if (show) {
-            mLoadingOverlay.setVisibility(VISIBLE);
-        } else {
-            mLoadingOverlay.setVisibility(GONE);
-        }
+        showView(show, mLoadingOverlay);
     }
 }

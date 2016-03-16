@@ -1,10 +1,13 @@
 package me.ledge.link.sdk.ui.models.offers;
 
+import android.content.res.Resources;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.AbstractActivityModel;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.Model;
+import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
+import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 import java.util.Currency;
@@ -14,7 +17,8 @@ import java.util.Locale;
  * Concrete {@link Model} for the address screen.
  * @author Wijnand
  */
-public class OffersListModel extends AbstractActivityModel implements ActivityModel, Model {
+public class OffersListModel extends AbstractActivityModel
+        implements ActivityModel, IntermediateLoanApplicationModel, Model {
 
     private UserDataVo mBaseData;
 
@@ -22,6 +26,40 @@ public class OffersListModel extends AbstractActivityModel implements ActivityMo
     @Override
     public int getActivityTitleResource() {
         return R.string.offers_list_label;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getCloudImageResource() {
+        return R.drawable.icon_cloud_exclamation;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getExplanationTextResource() {
+        return R.string.loan_application_explanation_error;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getExplanationText(Resources resources) {
+        return resources.getString(getExplanationTextResource());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public BigButtonModel getBigButtonModel() {
+        return new BigButtonModel(
+                true,
+                R.string.loan_application_button_retry,
+                BigButtonModel.Action.RELOAD_LOAN_OFFERS
+        );
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean showOffersButton() {
+        return false;
     }
 
     /**

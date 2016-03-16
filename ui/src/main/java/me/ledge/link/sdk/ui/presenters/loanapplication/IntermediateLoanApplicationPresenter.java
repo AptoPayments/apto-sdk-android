@@ -12,6 +12,7 @@ import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
 import me.ledge.link.sdk.ui.views.loanapplication.IntermediateLoanApplicationView;
+import me.ledge.link.sdk.ui.views.offers.LoanOfferErrorView;
 
 /**
  * Concrete {@link Presenter} for a loan application in an intermediate state.
@@ -20,7 +21,7 @@ import me.ledge.link.sdk.ui.views.loanapplication.IntermediateLoanApplicationVie
 public class IntermediateLoanApplicationPresenter
         extends ActivityPresenter<IntermediateLoanApplicationModel, IntermediateLoanApplicationView>
         implements Presenter<IntermediateLoanApplicationModel, IntermediateLoanApplicationView>,
-        IntermediateLoanApplicationView.ViewListener {
+        LoanOfferErrorView.ViewListener {
 
     /**
      * Creates a new {@link IntermediateLoanApplicationPresenter} instance.
