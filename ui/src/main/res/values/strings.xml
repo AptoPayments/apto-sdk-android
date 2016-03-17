@@ -84,4 +84,6 @@
     <string name="loan_application_button_retry">RETRY</string>
     <string name="loan_application_button_offers">Get offers</string>
     <string name="loan_application_button_info">More info</string>
+    <string name="loan_application_explanation_documents_pending" formatted="false">You need to add some additional documents for your loan with %s.</string>
+    <string name="loan_application_button_documents_pending">ADD DOCUMENTS</string>
 </resources>

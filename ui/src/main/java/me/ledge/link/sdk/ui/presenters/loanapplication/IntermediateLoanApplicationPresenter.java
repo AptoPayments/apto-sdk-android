@@ -6,6 +6,7 @@ import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsRes
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.loanapplication.ErrorLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
+import me.ledge.link.sdk.ui.models.loanapplication.PendingDocumentsModel;
 import me.ledge.link.sdk.ui.models.loanapplication.PendingLenderActionModel;
 import me.ledge.link.sdk.ui.models.loanapplication.RejectedLoanApplicationModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
@@ -44,6 +45,9 @@ public class IntermediateLoanApplicationPresenter
                     break;
                 case LoanApplicationStatus.PENDING_LENDER_ACTION:
                     model = new PendingLenderActionModel(loanApplication);
+                    break;
+                case LoanApplicationStatus.PENDING_BORROWER_ACTION:
+                    model = new PendingDocumentsModel(loanApplication);
                     break;
                 default:
                     // Do nothing.
