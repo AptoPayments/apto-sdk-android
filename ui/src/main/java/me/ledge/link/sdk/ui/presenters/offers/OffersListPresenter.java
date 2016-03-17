@@ -1,9 +1,13 @@
 package me.ledge.link.sdk.ui.presenters.offers;
 
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.Toast;
+import me.ledge.common.fragments.dialogs.DualOptionDialogFragment;
+import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
 import me.ledge.common.utils.PagedList;
 import me.ledge.common.utils.web.ExternalSiteLauncher;
+import me.ledge.link.api.utils.LoanApplicationMethod;
 import me.ledge.link.api.utils.LoanApplicationStatus;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
@@ -33,9 +37,11 @@ import me.ledge.link.sdk.ui.views.offers.OffersListView;
 public class OffersListPresenter
         extends ActivityPresenter<OffersListModel, OffersListView>
         implements Presenter<OffersListModel, OffersListView>, OffersListView.ViewListener,
-        OfferSummaryView.ViewListener {
+        OfferSummaryView.ViewListener, DualOptionDialogFragment.DialogListener {
 
+    private LoanStorage mLoanStorage;
     private OffersListRecyclerAdapter mAdapter;
+    private DualOptionDialogFragment mDialog;
 
     /**
      * Creates a new {@link OffersListPresenter} instance.
@@ -45,10 +51,31 @@ public class OffersListPresenter
         super(activity);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    protected void init() {
+        super.init();
+
+        mLoanStorage = LoanStorage.getInstance();
+        mDialog = new DualOptionDialogFragment();
+    }
+
     /**
      * Reloads the list of loan offers.
      */
     private void reloadOffers() {
+        clearAdapter();
+
+        // Fetch offers.
+        InitialOffersRequestVo requestData = mModel.getInitialOffersRequest();
+        requestData.rows = 25;
+        LedgeLinkUi.getInitialOffers(requestData);
+    }
+
+    /**
+     * Clears the {@link OffersListRecyclerAdapter}.
+     */
+    private void clearAdapter() {
         if (mAdapter != null) {
             // Clear current adapter.
             mAdapter.setViewListener(null);
@@ -61,12 +88,6 @@ public class OffersListPresenter
         if (mView != null) {
             mView.setAdapter(mAdapter);
         }
-
-        // Fetch offers.
-        InitialOffersRequestVo requestData = mModel.getInitialOffersRequest();
-        requestData.rows = 25;
-        LedgeLinkUi.getInitialOffers(requestData);
-
     }
 
     /** {@inheritDoc} */
@@ -86,6 +107,7 @@ public class OffersListPresenter
         mView.setData(mModel);
         mView.setListener(this);
 
+        mDialog.setListener(this);
         reloadOffers();
     }
 
@@ -94,6 +116,7 @@ public class OffersListPresenter
     public void detachView() {
         mView.setAdapter(null);
         mView.setListener(null);
+        mDialog.setListener(null);
         super.detachView();
     }
 
@@ -110,7 +133,19 @@ public class OffersListPresenter
     public void applyClickHandler(OfferSummaryModel offer) {
         if (offer != null) {
             if (offer.requiresWebApplication()) {
-                new ExternalSiteLauncher().launchBrowser(offer.getOfferApplicationUrl(), mActivity);
+                LoanApplicationDetailsResponseVo application = new LoanApplicationDetailsResponseVo();
+                application.offer = new OfferVo();
+                application.offer.application_method = LoanApplicationMethod.WEB;
+                application.offer.application_url = offer.getOfferApplicationUrl();
+
+                // Temporarily store fake application details.
+                mLoanStorage.setCurrentLoanApplication(application);
+
+                // Show dialog.
+                mDialog.setTitle(mActivity.getString(R.string.offers_list_dialog_redirect_title));
+                mDialog.setMessage(
+                        mActivity.getString(R.string.offers_list_dialog_redirect_message, offer.getLenderName()));
+                mDialog.show(mActivity.getFragmentManager(), DualOptionDialogFragment.DIALOG_TAG);
             } else {
                 if (mView != null) {
                     mView.showLoading(true);
@@ -137,6 +172,30 @@ public class OffersListPresenter
         }
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void positiveButtonClickHandler(String dialogTag) {
+        LoanApplicationDetailsResponseVo application = mLoanStorage.getCurrentLoanApplication();
+        mLoanStorage.setCurrentLoanApplication(null);
+
+        if (application != null && application.offer != null && !TextUtils.isEmpty(application.offer.application_url)) {
+            new ExternalSiteLauncher().launchBrowser(application.offer.application_url, mActivity);
+        } else {
+            clearAdapter();
+            mView.showError(true);
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void negativeButtonClickHandler(String dialogTag) {
+        dismissHandler(dialogTag);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void dismissHandler(String dialogTag) { /* Do nothing. */ }
+
     /**
      * Adds a list of offers and displays them.
      * @param rawOffers List of offers.
@@ -144,12 +203,10 @@ public class OffersListPresenter
      * @param complete Whether the list is complete.
      */
     public void addOffers(OfferVo[] rawOffers, int offerRequestId, boolean complete) {
-        LoanStorage storage = LoanStorage.getInstance();
+        mLoanStorage.setOfferRequestId(offerRequestId);
+        mLoanStorage.addOffers(mActivity.getResources(), rawOffers, complete, LedgeLinkUi.getImageLoader());
 
-        storage.setOfferRequestId(offerRequestId);
-        storage.addOffers(mActivity.getResources(), rawOffers, complete, LedgeLinkUi.getImageLoader());
-
-        PagedList<OfferSummaryModel> offers = storage.getOffers();
+        PagedList<OfferSummaryModel> offers = mLoanStorage.getOffers();
         mAdapter.updateList(offers);
 
         mView.showError(false);

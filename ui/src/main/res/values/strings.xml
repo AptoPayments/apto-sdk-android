@@ -42,8 +42,8 @@
 
     <!-- Income -->
     <string name="income_label">What\'s your pretax income?</string>
-    <string name="income_format">$%dK</string>
-    <string name="income_format_and_more">$%dK+</string>
+    <string name="income_format" formatted="false">$%dK</string>
+    <string name="income_format_and_more" formatted="false">$%dK+</string>
 
     <!-- Credit Score -->
     <string name="credit_score_label">What\'s your credit score?</string>
@@ -60,9 +60,8 @@
     <string name="id_verification_social_security_hint">Social security #</string>
     <string name="id_verification_social_security_error">Please enter all 9 digits.</string>
     <string name="id_verification_disclaimer">Your information is private and secure.</string>
-    <string name="id_verification_terms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque turpis ut malesuada iaculis. Nulla facilisi. Etiam ultrices augue mi, et egestas nisi faucibus quis.</string>
     <string name="id_verification_button_next">GET OFFERS</string>
-    <string name="id_verification_toast_api_error">Error: %s</string>
+    <string name="id_verification_toast_api_error" formatted="false">Error: %s</string>
 
     <!-- Offers List -->
     <string name="offers_list_label">Loan offers</string>
@@ -70,10 +69,12 @@
     <string name="offers_list_empty_button">Update loan request</string>
     <string name="offers_list_menu_update_profile">Update profile</string>
     <string name="offers_list_menu_refresh">Refresh offers</string>
-    <string name="offers_list_summary_interest_rate">Interest rate: %.2f%%</string>
-    <string name="offers_list_summary_loan_amount">Amount financed: $%d</string>
-    <string name="offers_list_summary_monthly_payment">Monthly payment: $%.2f</string>
+    <string name="offers_list_summary_interest_rate" formatted="false">Interest rate: %.2f%%</string>
+    <string name="offers_list_summary_loan_amount" formatted="false">Amount financed: $%d</string>
+    <string name="offers_list_summary_monthly_payment" formatted="false">Monthly payment: $%.2f</string>
     <string name="offers_list_summary_button_apply">APPLY NOW</string>
+    <string name="offers_list_dialog_redirect_title" formatted="false">Re-direct</string>
+    <string name="offers_list_dialog_redirect_message" formatted="false">You will be re-directed to the %s website to complete your application.</string>
 
     <!-- Loan application -->
     <string name="loan_application_label">My loan</string>
