@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--
+        LIGHT
+    -->
+
+    <style name="Theme.LedgeLine.Sdk.Light.DatePicker" parent="Theme.LedgeLine.Sdk.Light.Base.DatePicker">
+        <item name="android:datePickerMode">spinner</item>
+    </style>
+
+    <!--
+        DARK
+    -->
+
+    <style name="Theme.LedgeLine.Sdk.Dark.DatePicker" parent="Theme.LedgeLine.Sdk.Dark.Base.DatePicker">
+        <item name="android:datePickerMode">spinner</item>
+    </style>
+
+    <!--
+        BLUE
+    -->
+
     <style
             name="Theme.LedgeLine.Sdk.Blue"
             parent="Theme.LedgeLine.Sdk.Blue.Base">
@@ -9,12 +29,6 @@
         <item name="android:colorPrimaryDark">@color/llsdk_blue_primary_dark</item>
         <item name="android:colorAccent">@color/llsdk_blue_primary</item>
 
-        <item name="llsdk_userData_datePickerTheme">@style/Theme.LedgeLine.Sdk.Blue.DatePicker</item>
-
-    </style>
-
-    <style name="Theme.LedgeLine.Sdk.Blue.DatePicker" parent="@android:style/Theme.Material.Light.Dialog">
-        <item name="android:colorAccent">@color/llsdk_blue_primary</item>
     </style>
 
 </resources>

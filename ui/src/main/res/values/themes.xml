@@ -24,6 +24,7 @@
 
         <item name="llsdk_userData_infoIcon">@drawable/ic_help_outline_white_24dp</item>
         <item name="llsdk_userData_sliderHeaderStyle">@style/llsdk_value_slider_header</item>
+        <item name="llsdk_userData_datePickerTheme">@style/Theme.LedgeLine.Sdk.Dark.Base.DatePicker</item>
 
         <item name="llsdk_loanOfferSummary_cardStyle">@style/llsdk_loan_offer_summary</item>
         <item name="llsdk_loanOfferSummary_headerStyle">@style/llsdk_loan_offer_summary_header</item>
@@ -39,6 +40,12 @@
         <item name="android:textColor">@color/llsdk_dark_text_color</item>
         <item name="android:textColorHint">@color/llsdk_dark_text_color_hint</item>
     </style>
+
+    <style name="Theme.LedgeLine.Sdk.Dark.Base.DatePicker" parent="@android:style/Theme.Holo.Light" >
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+    <style name="Theme.LedgeLine.Sdk.Dark.DatePicker" parent="Theme.LedgeLine.Sdk.Dark.Base.DatePicker" />
 
     <!--
         LIGHT
@@ -67,6 +74,7 @@
 
         <item name="llsdk_userData_infoIcon">@drawable/ic_help_outline_black_24dp</item>
         <item name="llsdk_userData_sliderHeaderStyle">@style/llsdk_value_slider_header</item>
+        <item name="llsdk_userData_datePickerTheme">@style/Theme.LedgeLine.Sdk.Light.DatePicker</item>
 
         <item name="llsdk_loanOfferSummary_cardStyle">@style/llsdk_loan_offer_summary</item>
         <item name="llsdk_loanOfferSummary_headerStyle">@style/llsdk_loan_offer_summary_header</item>
@@ -85,6 +93,12 @@
         <item name="colorControlActivated">@color/llsdk_light_control_activated</item>
         <item name="colorControlHighlight">@color/llsdk_light_control_activated</item>
     </style>
+
+    <style name="Theme.LedgeLine.Sdk.Light.Base.DatePicker" parent="@android:style/Theme.Holo.Light" >
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+    <style name="Theme.LedgeLine.Sdk.Light.DatePicker" parent="Theme.LedgeLine.Sdk.Light.Base.DatePicker" />
 
     <!--
         BLUE
@@ -119,6 +133,7 @@
         <item name="llsdk_userData_infoIcon">@drawable/ic_help_outline_white_24dp</item>
         <item name="llsdk_userData_sliderHeaderStyle">@style/llsdk_value_slider_header_blue</item>
         <item name="llsdk_userData_progressColor">@color/llsdk_blue_primary_dark</item>
+        <item name="llsdk_userData_datePickerTheme">@style/Theme.LedgeLine.Sdk.Light.DatePicker</item>
         <item name="discreteSeekBarStyle">@style/llsdk_discrete_seek_bar_blue</item>
 
         <item name="llsdk_loanOfferSummary_cardStyle">@style/llsdk_loan_offer_summary_blue</item>

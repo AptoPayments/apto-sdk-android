@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -15,6 +16,7 @@ import java.util.Date;
 public class DatePickerFragment extends DialogFragment {
 
     public static final String TAG = "DatePicker";
+    private static final String THEME_ID_KEY = "me.ledge.link.sdk.ui.fragments.themeId";
 
     private Date mDate;
     private DatePickerDialog.OnDateSetListener mListener;
@@ -39,6 +41,10 @@ public class DatePickerFragment extends DialogFragment {
     /** {@inheritDoc} */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            mThemeId = savedInstanceState.getInt(THEME_ID_KEY, 0);
+        }
+
         final Calendar calendar = Calendar.getInstance();
         if (mDate != null) {
             calendar.setTime(mDate);
@@ -57,6 +63,13 @@ public class DatePickerFragment extends DialogFragment {
         }
 
         return dialog;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt(THEME_ID_KEY, mThemeId);
+        super.onSaveInstanceState(outState);
     }
 
     /**
