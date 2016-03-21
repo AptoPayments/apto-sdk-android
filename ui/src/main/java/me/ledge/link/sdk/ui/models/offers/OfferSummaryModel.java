@@ -90,7 +90,7 @@ public class OfferSummaryModel implements Model {
      * @return Whether an {@link GenericImageLoader} has been set.
      */
     public boolean hasImageLoader() {
-        return mImageLoader != null;
+        return getImageLoader() != null;
     }
 
     /**
@@ -177,7 +177,7 @@ public class OfferSummaryModel implements Model {
     public String getOfferApplicationUrl() {
         String url = "";
 
-        if (mRawOffer != null) {
+        if (mRawOffer != null && mRawOffer.application_url != null) {
             url = mRawOffer.application_url;
         }
 
