@@ -1,12 +1,14 @@
 package me.ledge.link.sdk.sdk.mocks.api.wrappers;
 
 import me.ledge.link.api.exceptions.ApiException;
+import me.ledge.link.api.utils.LoanApplicationMethod;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
+import me.ledge.link.api.vos.responses.offers.LenderVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
@@ -19,6 +21,14 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
 public class MockApiWrapper implements LinkApiWrapper {
 
     public static final String TOKEN = "bearer_token";
+
+    private static final String LENDER_ONE_NAME = "More money";
+    private static final String LENDER_ONE_LARGE_IMAGE
+            = "http://cdn-media-1.lifehack.org/wp-content/files/2016/01/04125044/10-Simple-Things-You-Can-Do-To-Earn-More-Money.jpg";
+    private static final long OFFER_ONE_AMOUNT = 5555;
+    private static final float OFFER_ONE_INTEREST = 19.9f;
+    private static final float OFFER_ONE_PAYMENT = 123.45f;
+    private static final String OFFER_ONE_APPLICATION_URL = "http://www.moremoney.com/";
 
     private long mDeveloperId;
     private String mDevice;
@@ -70,6 +80,14 @@ public class MockApiWrapper implements LinkApiWrapper {
     public InitialOffersResponseVo getInitialOffers(InitialOffersRequestVo requestData) {
         OfferVo offerOne = new OfferVo();
         offerOne.id = 1;
+        offerOne.loan_amount = OFFER_ONE_AMOUNT;
+        offerOne.interest_rate = OFFER_ONE_INTEREST;
+        offerOne.payment_amount = OFFER_ONE_PAYMENT;
+        offerOne.application_method = LoanApplicationMethod.WEB;
+        offerOne.application_url = OFFER_ONE_APPLICATION_URL;
+        offerOne.lender = new LenderVo();
+        offerOne.lender.lender_name = LENDER_ONE_NAME;
+        offerOne.lender.large_image = LENDER_ONE_LARGE_IMAGE;
 
         OfferVo offerTwo = new OfferVo();
         offerTwo.id = 2;
