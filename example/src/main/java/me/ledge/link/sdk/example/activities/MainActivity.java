@@ -11,20 +11,11 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
-import me.ledge.link.sdk.handlers.eventbus.activities.offers.EventBusOffersListActivity;
-import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusLoanAmountActivity;
+import me.ledge.link.sdk.handlers.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
-import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusIdentityVerificationActivity;
-import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
-import me.ledge.link.sdk.ui.activities.userdata.IncomeActivity;
-import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
-import me.ledge.link.sdk.ui.activities.userdata.TermsActivity;
-import me.ledge.link.sdk.handlers.eventbus.tasks.handlers.EventBusThreeResponseHandler;
+import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
-
-import java.util.ArrayList;
 
 /**
  * Main display.
@@ -126,16 +117,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
      */
     private void setupLedgeLink() {
         AndroidUtils utils = new AndroidUtils();
-
-        ArrayList<Class<?>> process = new ArrayList<>(8);
-        process.add(TermsActivity.class);
-        process.add(EventBusLoanAmountActivity.class);
-        process.add(PersonalInformationActivity.class);
-        process.add(AddressActivity.class);
-        process.add(IncomeActivity.class);
-        process.add(CreditScoreActivity.class);
-        process.add(EventBusIdentityVerificationActivity.class);
-        process.add(EventBusOffersListActivity.class);
+        HandlerConfigurator configurator = new EventBusHandlerConfigurator();
 
         LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
         apiWrapper.setBaseRequestData(
@@ -145,8 +127,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         LedgeLinkUi.setApiWrapper(apiWrapper);
 
         LedgeLinkUi.setImageLoader(new VolleyImageLoader(this));
-        LedgeLinkUi.setResponseHandler(new EventBusThreeResponseHandler());
-        LedgeLinkUi.setProcessOrder(process);
+        LedgeLinkUi.setResponseHandler(configurator.getResponseHandler());
+        LedgeLinkUi.setProcessOrder(configurator.getProcessOrder());
     }
 
     /** {@inheritDoc} */

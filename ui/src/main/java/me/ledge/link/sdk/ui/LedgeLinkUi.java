@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui;
 import android.content.Context;
 import android.content.Intent;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
+import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class LedgeLinkUi extends LedgeLinkSdk {
 
     private static GenericImageLoader mImageLoader;
-    private static ArrayList<Class<?>> mProcessOrder;
+    private static ArrayList<Class<? extends MvpActivity>> mProcessOrder;
 
     /**
      * @return The {@link GenericImageLoader} to use to load images.
@@ -38,7 +39,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
     /**
      * @return Order in which the Ledge Line Activities should be shown.
      */
-    public static ArrayList<Class<?>> getProcessOrder() {
+    public static ArrayList<Class<? extends MvpActivity>> getProcessOrder() {
         return mProcessOrder;
     }
 
@@ -46,7 +47,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
      * Stores a new order in which the Ledge Line Activities should be shown.
      * @param processOrder List of Activity classes.
      */
-    public static void setProcessOrder(ArrayList<Class<?>> processOrder) {
+    public static void setProcessOrder(ArrayList<Class<? extends MvpActivity>> processOrder) {
         mProcessOrder = processOrder;
     }
 
