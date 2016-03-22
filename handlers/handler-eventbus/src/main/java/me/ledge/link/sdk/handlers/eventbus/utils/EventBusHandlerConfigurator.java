@@ -16,8 +16,7 @@ import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import java.util.ArrayList;
 
 /**
- * TODO: Class documentation.
- *
+ * EventBus specific handler configuration.
  * @author Wijnand
  */
 public class EventBusHandlerConfigurator implements HandlerConfigurator {
