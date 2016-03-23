@@ -17,6 +17,7 @@
     <string name="main_input_state">State</string>
     <string name="main_input_zip">Zip</string>
     <string name="main_input_income">Income</string>
+    <string name="main_text_skip_steps">Skip Steps?</string>
     <string name="main_button_fill">Fill all</string>
     <string name="main_button_clear">Clear all</string>
 

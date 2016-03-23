@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
+import android.widget.Switch;
 import me.ledge.link.sdk.example.R;
 
 /**
@@ -49,6 +50,7 @@ public class MainView extends ScrollView implements View.OnClickListener {
     private EditText mStateField;
     private EditText mZipField;
     private EditText mIncomeField;
+    private Switch mSkipStepsSwitch;
 
     private ViewListener mListener;
 
@@ -96,6 +98,7 @@ public class MainView extends ScrollView implements View.OnClickListener {
         mStateField = (EditText) findViewById(R.id.et_state);
         mZipField = (EditText) findViewById(R.id.et_zip_code);
         mIncomeField = (EditText) findViewById(R.id.et_income);
+        mSkipStepsSwitch = (Switch) findViewById(R.id.sw_skip_steps);
     }
 
     /**
@@ -301,5 +304,12 @@ public class MainView extends ScrollView implements View.OnClickListener {
      */
     public void setIncome(String income) {
         mIncomeField.setText(income);
+    }
+
+    /**
+     * @return Whether some steps should be automatically skipped.
+     */
+    public boolean shouldSkipSteps() {
+        return mSkipStepsSwitch.isChecked();
     }
 }
