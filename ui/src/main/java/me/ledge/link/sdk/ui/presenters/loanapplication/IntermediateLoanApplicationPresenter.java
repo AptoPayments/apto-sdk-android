@@ -49,6 +49,12 @@ public class IntermediateLoanApplicationPresenter
      */
     private IntermediateLoanApplicationModel handleBorrowerAction(LoanApplicationDetailsResponseVo loanApplication) {
         IntermediateLoanApplicationModel model = getDefaultModel(loanApplication);
+        if (loanApplication == null || loanApplication.required_actions == null
+                || loanApplication.required_actions.data == null || loanApplication.required_actions.data.length <= 0
+                || loanApplication.required_actions.data[0] == null) {
+
+            return model;
+        }
 
         switch (loanApplication.required_actions.data[0].action) {
             case LoanApplicationActionId.UPLOAD_BANK_STATEMENT:
