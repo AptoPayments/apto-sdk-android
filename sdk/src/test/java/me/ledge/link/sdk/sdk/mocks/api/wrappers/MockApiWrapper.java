@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.sdk.mocks.api.wrappers;
 
 import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.utils.LoanApplicationMethod;
+import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
