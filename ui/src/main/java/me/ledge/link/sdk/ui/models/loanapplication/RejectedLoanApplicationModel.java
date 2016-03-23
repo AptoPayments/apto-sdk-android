@@ -1,6 +1,5 @@
 package me.ledge.link.sdk.ui.models.loanapplication;
 
-import android.content.res.Resources;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.R;
 
@@ -24,18 +23,6 @@ public class RejectedLoanApplicationModel
     @Override
     public int getCloudImageResource() {
         return R.drawable.icon_cloud_sad;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getExplanationTextResource() {
-        return R.string.loan_application_explanation_rejected;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getExplanationText(Resources resources) {
-        return resources.getString(getExplanationTextResource(), getLenderName());
     }
 
     /** {@inheritDoc} */

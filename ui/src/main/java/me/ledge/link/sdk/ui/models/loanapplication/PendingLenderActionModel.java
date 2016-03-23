@@ -1,6 +1,5 @@
 package me.ledge.link.sdk.ui.models.loanapplication;
 
-import android.content.res.Resources;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.R;
 
@@ -22,17 +21,5 @@ public class PendingLenderActionModel extends AbstractLoanApplicationModel imple
     @Override
     public int getCloudImageResource() {
         return R.drawable.icon_cloud_cog;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getExplanationTextResource() {
-        return R.string.loan_application_explanation_pending_lender_action;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getExplanationText(Resources resources) {
-        return resources.getString(getExplanationTextResource(), getLenderName());
     }
 }

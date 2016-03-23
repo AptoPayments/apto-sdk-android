@@ -1,6 +1,8 @@
 package me.ledge.link.sdk.ui.models.loanapplication;
 
 import android.app.Activity;
+import android.content.res.Resources;
+import android.text.TextUtils;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
@@ -43,6 +45,24 @@ public abstract class AbstractLoanApplicationModel implements ActivityModel, Int
     @Override
     public int getActivityTitleResource() {
         return R.string.loan_application_label;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getExplanationTextResource() {
+        return 0;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getExplanationText(Resources resources) {
+        String text = "";
+
+        if (mLoanApplication != null && !TextUtils.isEmpty(mLoanApplication.status_message)) {
+            text = mLoanApplication.status_message;
+        }
+
+        return text;
     }
 
     /** {@inheritDoc} */
