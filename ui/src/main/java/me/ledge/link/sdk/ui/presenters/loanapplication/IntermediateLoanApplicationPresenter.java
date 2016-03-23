@@ -1,7 +1,8 @@
 package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.support.v7.app.AppCompatActivity;
-import me.ledge.link.api.utils.LoanApplicationStatus;
+import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
+import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.loanapplication.ErrorLoanApplicationModel;
@@ -32,11 +33,40 @@ public class IntermediateLoanApplicationPresenter
         super(activity);
     }
 
+    /**
+     * @param loanApplication Loan application data.
+     * @return Default Model to use.
+     */
+    private IntermediateLoanApplicationModel getDefaultModel(LoanApplicationDetailsResponseVo loanApplication) {
+        return new ErrorLoanApplicationModel(loanApplication);
+    }
+
+    /**
+     * Determines what borrower action to handle.
+     * @param loanApplication Loan application data.
+     * @return A concrete {@link IntermediateLoanApplicationModel} instance.
+     */
+    private IntermediateLoanApplicationModel handleBorrowerAction(LoanApplicationDetailsResponseVo loanApplication) {
+        IntermediateLoanApplicationModel model = getDefaultModel(loanApplication);
+
+        switch (loanApplication.required_actions.data[0].action) {
+            case LoanApplicationActionId.UPLOAD_BANK_STATEMENT:
+            case LoanApplicationActionId.UPLOAD_PHOTO_ID:
+                model = new PendingDocumentsModel(loanApplication);
+                break;
+            default:
+                // Do nothing.
+                break;
+        }
+
+        return model;
+    }
+
     /** {@inheritDoc} */
     @Override
     public IntermediateLoanApplicationModel createModel() {
         LoanApplicationDetailsResponseVo loanApplication = LoanStorage.getInstance().getCurrentLoanApplication();
-        IntermediateLoanApplicationModel model = new ErrorLoanApplicationModel(loanApplication);
+        IntermediateLoanApplicationModel model = getDefaultModel(loanApplication);
 
         if (loanApplication != null) {
             switch (loanApplication.status) {
@@ -47,7 +77,7 @@ public class IntermediateLoanApplicationPresenter
                     model = new PendingLenderActionModel(loanApplication);
                     break;
                 case LoanApplicationStatus.PENDING_BORROWER_ACTION:
-                    model = new PendingDocumentsModel(loanApplication);
+                    model = handleBorrowerAction(loanApplication);
                     break;
                 default:
                     // Do nothing.
