@@ -83,4 +83,5 @@
     <string name="loan_application_button_offers">Get offers</string>
     <string name="loan_application_button_info">More info</string>
     <string name="loan_application_button_documents_pending">ADD DOCUMENTS</string>
+    <string name="loan_application_button_pre_approved_loan">CONFIRM LOAN</string>
 </resources>

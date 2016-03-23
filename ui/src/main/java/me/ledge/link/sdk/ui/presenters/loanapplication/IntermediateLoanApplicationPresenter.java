@@ -9,6 +9,7 @@ import me.ledge.link.sdk.ui.models.loanapplication.ErrorLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.PendingDocumentsModel;
 import me.ledge.link.sdk.ui.models.loanapplication.PendingLenderActionModel;
+import me.ledge.link.sdk.ui.models.loanapplication.PreApprovedLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.RejectedLoanApplicationModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -53,6 +54,9 @@ public class IntermediateLoanApplicationPresenter
             case LoanApplicationActionId.UPLOAD_BANK_STATEMENT:
             case LoanApplicationActionId.UPLOAD_PHOTO_ID:
                 model = new PendingDocumentsModel(loanApplication);
+                break;
+            case LoanApplicationActionId.AGREE_TERMS:
+                model = new PreApprovedLoanApplicationModel(loanApplication);
                 break;
             default:
                 // Do nothing.
