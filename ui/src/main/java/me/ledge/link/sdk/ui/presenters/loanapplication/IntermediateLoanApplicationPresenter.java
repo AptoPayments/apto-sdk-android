@@ -80,7 +80,7 @@ public class IntermediateLoanApplicationPresenter
 
         if (loanApplication != null) {
             switch (loanApplication.status) {
-                case LoanApplicationStatus.LENDER_REJECTED:
+                case LoanApplicationStatus.APPLICATION_REJECTED:
                     model = new RejectedLoanApplicationModel(loanApplication);
                     break;
                 case LoanApplicationStatus.PENDING_LENDER_ACTION:
