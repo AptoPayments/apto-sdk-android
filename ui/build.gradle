@@ -78,6 +78,7 @@ dependencies {
     compile 'org.adw.library:discrete-seekbar:+'
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:+'
     compile 'com.googlecode.libphonenumber:libphonenumber:+'
+    compile 'com.github.ksoichiro:android-observablescrollview:+'
 
     // Tests
     testCompile 'junit:junit:4.+'

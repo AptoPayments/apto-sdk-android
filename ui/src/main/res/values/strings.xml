@@ -84,4 +84,15 @@
     <string name="loan_application_button_info">More info</string>
     <string name="loan_application_button_documents_pending">ADD DOCUMENTS</string>
     <string name="loan_application_button_pre_approved_loan">CONFIRM LOAN</string>
+
+    <!-- Loan agreement -->
+    <string name="loan_agreement_label">Confirm loan</string>
+    <string name="loan_agreement_terms_header">LOAN TERMS</string>
+    <string name="loan_agreement_terms_interest">Interest rate (APR)</string>
+    <string name="loan_agreement_terms_amount">Amount financed</string>
+    <string name="loan_agreement_terms_duration">Loan term</string>
+    <string name="loan_agreement_terms_payment">Monthly payment</string>
+    <string name="loan_agreement_borrower_agreement_header">BORROWER AGREEMENT</string>
+    <string name="loan_agreement_button_scroll_down">SCROLL DOWN TO CONFIRM</string>
+    <string name="loan_agreement_button_agree">AGREE AND FUND LOAN</string>
 </resources>

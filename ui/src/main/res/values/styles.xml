@@ -18,6 +18,12 @@
         <item name="android:textColor">@color/llsdk_link_color</item>
     </style>
 
+    <style name="llsdk_horizontal_hairline">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/llsdk_hairline_color</item>
+    </style>
+
     <!-- Terms -->
     <style name="llsdk_terms_disclaimer">
         <item name="android:layout_width">match_parent</item>

@@ -140,6 +140,9 @@ public class IntermediateLoanApplicationPresenter
             case BigButtonModel.Action.RETRY_LOAN_APPLICATION:
                 // TODO
                 break;
+            case BigButtonModel.Action.CONFIRM_LOAN:
+                startNextActivity();
+                break;
             default:
                 // Do nothing.
                 break;

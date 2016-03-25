@@ -6,4 +6,7 @@
     <dimen name="llsdk_offer_summary_body_text_size">14sp</dimen>
     <dimen name="llsdk_offer_summary_image_width">128dp</dimen>
     <dimen name="llsdk_offer_summary_image_height">72dp</dimen>
+
+    <dimen name="llsdk_terms_title_text_size">20sp</dimen>
+    <dimen name="llsdk_terms_section_header_text_size">16sp</dimen>
 </resources>

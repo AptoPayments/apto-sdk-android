@@ -2,6 +2,7 @@
 <resources>
     <!-- Generic -->
     <color name="llsdk_link_color">#00f</color>
+    <color name="llsdk_hairline_color">#aaa</color>
 
     <!-- Dark -->
     <color name="llsdk_dark_text_color">#fff</color>

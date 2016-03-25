@@ -1,7 +1,9 @@
 package me.ledge.link.sdk.ui.models.loanapplication;
 
+import android.app.Activity;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.activities.loanapplication.LoanAgreementActivity;
 
 /**
  * Concrete {@link IntermediateLoanApplicationModel} for a loan application that has been pre-approved.
@@ -33,5 +35,11 @@ public class PreApprovedLoanApplicationModel
                 R.string.loan_application_button_pre_approved_loan,
                 BigButtonModel.Action.CONFIRM_LOAN
         );
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Class getNextActivity(Activity current) {
+        return LoanAgreementActivity.class;
     }
 }
