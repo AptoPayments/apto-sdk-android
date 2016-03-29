@@ -120,6 +120,34 @@
         <item name="android:layout_marginStart">4dp</item>
     </style>
 
+    <!-- Loan agreement -->
+    <style name="llsdk_loan_agreement_section">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="llsdk_loan_agreement_section_header">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">@dimen/llsdk_terms_section_header_text_size</item>
+    </style>
+
+    <style name="llsdk_loan_agreement_summary_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/llsdk_terms_title_text_size</item>
+    </style>
+
+    <style name="llsdk_loan_agreement_summary_values" parent="llsdk_loan_agreement_summary_text">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
+
     <!--
         LIGHT
     -->

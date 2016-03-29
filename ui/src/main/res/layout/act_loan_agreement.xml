@@ -19,16 +19,12 @@
                 android:layout_height="wrap_content">
 
             <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/llsdk_loan_agreement_section"
                     android:gravity="center_horizontal"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp"
                     android:paddingLeft="48dp"
                     android:paddingStart="48dp"
                     android:paddingRight="48dp"
-                    android:paddingEnd="48dp"
-                    android:background="@android:color/white">
+                    android:paddingEnd="48dp">
 
                 <ImageView
                         android:id="@+id/iv_lender_logo"
@@ -46,18 +42,11 @@
 
             <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:padding="16dp"
-                    android:background="@android:color/white">
+                    style="@style/llsdk_loan_agreement_section"
+                    android:layout_marginTop="16dp">
 
                 <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/llsdk_terms_section_header_text_size"
-                        android:textStyle="bold"
-                        android:textColor="@color/llsdk_light_text_color"
+                        style="@style/llsdk_loan_agreement_section_header"
                         android:text="@string/loan_agreement_terms_header" />
 
                 <RelativeLayout
@@ -67,19 +56,12 @@
                         android:layout_marginBottom="16dp">
 
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/llsdk_terms_title_text_size"
+                            style="@style/llsdk_loan_agreement_summary_text"
                             android:text="@string/loan_agreement_terms_interest" />
 
                     <TextView
                             android:id="@+id/tv_loan_interest_rate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true"
-                            android:textSize="@dimen/llsdk_terms_title_text_size"
-                            android:textColor="@color/llsdk_light_text_color" />
+                            style="@style/llsdk_loan_agreement_summary_values" />
 
                 </RelativeLayout>
 
@@ -92,19 +74,12 @@
                         android:layout_marginBottom="16dp">
 
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/llsdk_terms_title_text_size"
+                            style="@style/llsdk_loan_agreement_summary_text"
                             android:text="@string/loan_agreement_terms_amount" />
 
                     <TextView
                             android:id="@+id/tv_loan_amount"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true"
-                            android:textSize="@dimen/llsdk_terms_title_text_size"
-                            android:textColor="@color/llsdk_light_text_color" />
+                            style="@style/llsdk_loan_agreement_summary_values" />
 
                 </RelativeLayout>
 
@@ -117,19 +92,12 @@
                         android:layout_marginBottom="16dp">
 
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/llsdk_terms_title_text_size"
+                            style="@style/llsdk_loan_agreement_summary_text"
                             android:text="@string/loan_agreement_terms_duration" />
 
                     <TextView
                             android:id="@+id/tv_loan_duration"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true"
-                            android:textSize="@dimen/llsdk_terms_title_text_size"
-                            android:textColor="@color/llsdk_light_text_color" />
+                            style="@style/llsdk_loan_agreement_summary_values" />
 
                 </RelativeLayout>
 
@@ -142,36 +110,23 @@
                         android:layout_marginBottom="16dp">
 
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/llsdk_terms_title_text_size"
+                            style="@style/llsdk_loan_agreement_summary_text"
                             android:text="@string/loan_agreement_terms_payment" />
 
                     <TextView
                             android:id="@+id/tv_payment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true"
-                            android:textSize="@dimen/llsdk_terms_title_text_size"
-                            android:textColor="@color/llsdk_light_text_color" />
+                            style="@style/llsdk_loan_agreement_summary_values" />
 
                 </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:padding="16dp"
-                    android:background="@android:color/white">
+                    style="@style/llsdk_loan_agreement_section"
+                    android:layout_marginTop="16dp">
 
                 <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/llsdk_light_text_color"
+                        style="@style/llsdk_loan_agreement_section_header"
                         android:text="@string/loan_agreement_borrower_agreement_header" />
 
                 <TextView
