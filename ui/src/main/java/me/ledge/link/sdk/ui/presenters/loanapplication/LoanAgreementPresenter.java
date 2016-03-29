@@ -2,9 +2,11 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
+import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -18,6 +20,8 @@ import me.ledge.link.sdk.ui.views.loanapplication.LoanAgreementView;
 public class LoanAgreementPresenter
         extends ActivityPresenter<LoanAgreementModel, LoanAgreementView>
         implements Presenter<LoanAgreementModel, LoanAgreementView>, LoanAgreementView.ViewListener {
+
+    private NotificationDialogFragment mNotificationDialog;
 
     /**
      * Creates a new {@link LoanAgreementPresenter} instance.
@@ -48,6 +52,10 @@ public class LoanAgreementPresenter
         mView.showLoading(false);
         mView.updateBottomButton(false);
         mView.setData(mModel);
+
+        mNotificationDialog = new NotificationDialogFragment();
+        mNotificationDialog.setTitle(mActivity.getString(R.string.loan_agreement_terms_dialog_title));
+        mNotificationDialog.setMessage(mActivity.getString(R.string.loan_agreement_terms_dialog_message));
     }
 
     /** {@inheritDoc} */
@@ -87,7 +95,7 @@ public class LoanAgreementPresenter
             if (mView.hasAcceptedTerms()) {
                 // TODO: makeConfirmApiCall();
             } else {
-                // TODO: showAlert();
+                mNotificationDialog.show(mActivity.getFragmentManager(), NotificationDialogFragment.DIALOG_TAG);
             }
         } else {
             mView.scrollToBottom();

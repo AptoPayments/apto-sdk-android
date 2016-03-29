@@ -1,6 +1,8 @@
 package me.ledge.link.sdk.ui.models.loanapplication;
 
 import android.app.Activity;
+import android.content.res.Resources;
+import me.ledge.link.api.utils.TermUnit;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
@@ -99,28 +101,35 @@ public class LoanAgreementModel implements ActivityModel, Model {
     /**
      * @return Interest rate text.
      */
-    public String getInterestRate() {
-        return "" + mOffer.interest_rate;
+    public String getInterestRate(Resources resources) {
+        return resources.getString(R.string.loan_agreement_terms_interest_format, mOffer.interest_rate);
     }
 
     /**
      * @return Total loan amount text.
      */
-    public String getTotalAmount() {
-        return "" + mOffer.loan_amount;
+    public String getTotalAmount(Resources resources) {
+        return resources.getString(R.string.loan_agreement_terms_amount_format, mOffer.loan_amount);
     }
 
     /**
      * @return Loan term text.
      */
-    public String getTerm() {
-        return "" + mOffer.term.duration;
+    public String getTerm(Resources resources) {
+        int resourceId;
+
+        if (mOffer.term.unit == TermUnit.WEEK) {
+            resourceId = R.plurals.loan_agreement_terms_duration_week;
+        } else {
+            resourceId = R.plurals.loan_agreement_terms_duration_month;
+        }
+        return resources.getQuantityString(resourceId, mOffer.term.duration, mOffer.term.duration);
     }
 
     /**
      * @return Single payment amount text.
      */
-    public String getPaymentAmount() {
-        return "" + mOffer.payment_amount;
+    public String getPaymentAmount(Resources resources) {
+        return resources.getString(R.string.loan_agreement_terms_payment_format, mOffer.payment_amount);
     }
 }

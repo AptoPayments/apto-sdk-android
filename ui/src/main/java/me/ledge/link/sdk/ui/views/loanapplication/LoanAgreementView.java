@@ -157,10 +157,10 @@ public class LoanAgreementView extends RelativeLayout implements ViewWithToolbar
             mLenderNameField.setVisibility(VISIBLE);
         }
 
-        mLoanInterestField.setText(data.getInterestRate());
-        mLoanAmountField.setText(data.getTotalAmount());
-        mLoanDurationField.setText(data.getTerm());
-        mPaymentField.setText(data.getPaymentAmount());
+        mLoanInterestField.setText(data.getInterestRate(getResources()));
+        mLoanAmountField.setText(data.getTotalAmount(getResources()));
+        mLoanDurationField.setText(data.getTerm(getResources()));
+        mPaymentField.setText(data.getPaymentAmount(getResources()));
     }
 
     /**

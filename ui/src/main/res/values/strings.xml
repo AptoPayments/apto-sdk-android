@@ -89,10 +89,23 @@
     <string name="loan_agreement_label">Confirm loan</string>
     <string name="loan_agreement_terms_header">LOAN TERMS</string>
     <string name="loan_agreement_terms_interest">Interest rate (APR)</string>
+    <string name="loan_agreement_terms_interest_format">%.2f%%</string>
     <string name="loan_agreement_terms_amount">Amount financed</string>
+    <string name="loan_agreement_terms_amount_format">$%d</string>
     <string name="loan_agreement_terms_duration">Loan term</string>
+    <plurals name="loan_agreement_terms_duration_week">
+        <item quantity="one">%d week</item>
+        <item quantity="other">%d weeks</item>
+    </plurals>
+    <plurals name="loan_agreement_terms_duration_month">
+        <item quantity="one">%d month</item>
+        <item quantity="other">%d months</item>
+    </plurals>
     <string name="loan_agreement_terms_payment">Monthly payment</string>
+    <string name="loan_agreement_terms_payment_format">$%.2f</string>
     <string name="loan_agreement_borrower_agreement_header">BORROWER AGREEMENT</string>
     <string name="loan_agreement_button_scroll_down">SCROLL DOWN TO CONFIRM</string>
     <string name="loan_agreement_button_agree">AGREE AND FUND LOAN</string>
+    <string name="loan_agreement_terms_dialog_title">Quisque auctor</string>
+    <string name="loan_agreement_terms_dialog_message">Sed vitae felis eget lorem tempus fermentum. Praesent vel augue bibendum, gravida erat in, tincidunt nibh.</string>
 </resources>
