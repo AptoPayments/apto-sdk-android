@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -36,7 +37,7 @@ public class LoanAgreementPresenter
             offer = application.offer;
         }
 
-        return new LoanAgreementModel(offer);
+        return new LoanAgreementModel(offer, LedgeLinkUi.getImageLoader());
     }
 
     /** {@inheritDoc} */
@@ -45,6 +46,7 @@ public class LoanAgreementPresenter
         super.attachView(view);
         mView.setViewListener(this);
         mView.showLoading(false);
+        mView.updateBottomButton(false);
         mView.setData(mModel);
     }
 

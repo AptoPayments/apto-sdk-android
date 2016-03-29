@@ -5,6 +5,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
@@ -33,6 +34,9 @@ public class LoanAgreementView extends RelativeLayout implements ViewWithToolbar
     private Toolbar mToolbar;
     private ObservableScrollView mScrollView;
     private RelativeLayout mLoadingOverlay;
+
+    private ImageView mLenderLogo;
+    private TextView mLenderNameField;
     private TextView mLoanInterestField;
     private TextView mLoanAmountField;
     private TextView mLoanDurationField;
@@ -84,6 +88,9 @@ public class LoanAgreementView extends RelativeLayout implements ViewWithToolbar
         mToolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         mScrollView = (ObservableScrollView) findViewById(R.id.osv_scroll);
         mLoadingOverlay = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
+
+        mLenderLogo = (ImageView) findViewById(R.id.iv_lender_logo);
+        mLenderNameField = (TextView) findViewById(R.id.tv_lender_name);
         mLoanInterestField = (TextView) findViewById(R.id.tv_loan_interest_rate);
         mLoanAmountField = (TextView) findViewById(R.id.tv_loan_amount);
         mLoanDurationField = (TextView) findViewById(R.id.tv_loan_duration);
@@ -137,6 +144,17 @@ public class LoanAgreementView extends RelativeLayout implements ViewWithToolbar
     public void setData(LoanAgreementModel data) {
         if (data == null) {
             return;
+        }
+
+        mLenderLogo.setVisibility(GONE);
+        mLenderNameField.setVisibility(GONE);
+
+        if (data.hasImageLoader() && data.getLenderImage() != null) {
+            data.getImageLoader().load(data.getLenderImage(), mLenderLogo);
+            mLenderLogo.setVisibility(VISIBLE);
+        } else {
+            mLenderNameField.setText(data.getLenderName());
+            mLenderNameField.setVisibility(VISIBLE);
         }
 
         mLoanInterestField.setText(data.getInterestRate());

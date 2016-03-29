@@ -7,6 +7,7 @@ import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.models.Model;
+import me.ledge.link.sdk.ui.models.lenders.LenderModel;
 
 /**
  * Concrete {@link Model} for the offer summary.
@@ -18,6 +19,7 @@ public class OfferSummaryModel implements Model {
     private final Resources mResources;
     private final GenericImageLoader mImageLoader;
 
+    private LenderModel mLender;
     private String mInterestText;
     private String mAmountText;
     private String mMonthlyPaymentText;
@@ -39,6 +41,11 @@ public class OfferSummaryModel implements Model {
      * Initializes this class.
      */
     private void init() {
+        mLender = null;
+        if (mRawOffer != null) {
+            mLender = new LenderModel(mRawOffer.lender);
+        }
+
         mInterestText = "";
         mAmountText = "";
         mMonthlyPaymentText = "";
@@ -104,30 +111,22 @@ public class OfferSummaryModel implements Model {
      * @return Lender name.
      */
     public String getLenderName() {
-        String name = "";
-
-        if (mRawOffer != null && mRawOffer.lender != null) {
-            name = mRawOffer.lender.lender_name;
+        if (mLender == null) {
+            return "";
         }
 
-        return name;
+        return mLender.getLenderName();
     }
 
     /**
-     * @return Small lender image URL. If not found, will fall back to the large image URL.
+     * @return Lender image URL OR null if not found.
      */
     public String getLenderImage() {
-        String imageUrl = null;
-
-        if (mRawOffer != null && mRawOffer.lender != null) {
-            if (!TextUtils.isEmpty(mRawOffer.lender.small_image)) {
-                imageUrl = mRawOffer.lender.small_image;
-            } else if (!TextUtils.isEmpty(mRawOffer.lender.large_image)) {
-                imageUrl = mRawOffer.lender.large_image;
-            }
+        if (mLender == null) {
+            return null;
         }
 
-        return imageUrl;
+        return mLender.getLenderImage();
     }
 
     /**
