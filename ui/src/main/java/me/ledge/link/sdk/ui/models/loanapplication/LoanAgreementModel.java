@@ -24,7 +24,8 @@ public class LoanAgreementModel implements ActivityModel, Model {
 
     /**
      * Creates a new {@link LoanAgreementModel} instance.
-     * @param offer TODO
+     * @param offer The loan offer.
+     * @param imageLoader Image loader.
      */
     public LoanAgreementModel(OfferVo offer, GenericImageLoader imageLoader) {
         mOffer = offer;
@@ -39,7 +40,7 @@ public class LoanAgreementModel implements ActivityModel, Model {
     private void init() {
         mLender = null;
 
-        if (mOffer.lender != null) {
+        if (mOffer != null && mOffer.lender != null) {
             mLender = new LenderModel(mOffer.lender);
         }
     }
@@ -59,7 +60,7 @@ public class LoanAgreementModel implements ActivityModel, Model {
     /** {@inheritDoc} */
     @Override
     public Class getNextActivity(Activity current) {
-        return null;
+        return IntermediateLoanApplicationActivity.class;
     }
 
     /**

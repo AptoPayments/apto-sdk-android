@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 import android.support.v7.app.AppCompatActivity;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
+import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -93,7 +94,13 @@ public class LoanAgreementPresenter
     public void confirmClickHandler() {
         if (mView.getCurrentScroll() >= mView.getMaxScroll()) {
             if (mView.hasAcceptedTerms()) {
-                // TODO: makeConfirmApiCall();
+                // Faking data hard!
+                LoanApplicationDetailsResponseVo application = LoanStorage.getInstance().getCurrentLoanApplication();
+                application.status = LoanApplicationStatus.LOAN_APPROVED;
+                application.status_message = String.format(
+                        "Your loan with %s is being funded.", application.offer.lender.lender_name);
+
+                startNextActivity();
             } else {
                 mNotificationDialog.show(mActivity.getFragmentManager(), NotificationDialogFragment.DIALOG_TAG);
             }

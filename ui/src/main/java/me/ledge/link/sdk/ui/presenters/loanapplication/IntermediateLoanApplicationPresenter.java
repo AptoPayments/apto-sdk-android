@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.ui.models.loanapplication.ApprovedLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.loanapplication.ErrorLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
@@ -88,6 +89,9 @@ public class IntermediateLoanApplicationPresenter
                     break;
                 case LoanApplicationStatus.PENDING_BORROWER_ACTION:
                     model = handleBorrowerAction(loanApplication);
+                    break;
+                case LoanApplicationStatus.LOAN_APPROVED:
+                    model = new ApprovedLoanApplicationModel(loanApplication);
                     break;
                 default:
                     // Do nothing.
