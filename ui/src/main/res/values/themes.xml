@@ -31,6 +31,13 @@
         <item name="llsdk_loanOfferSummary_textStyle">@style/llsdk_loan_offer_summary_text</item>
         <item name="llsdk_loanOfferSummary_buttonStyle">@style/llsdk_loan_offer_summary_apply_button</item>
         <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image</item>
+
+        <item name="llsdk_loanAgreement_sectionStyle">@style/llsdk_loan_agreement_section</item>
+        <item name="llsdk_loanAgreement_sectionHeaderStyle">@style/llsdk_loan_agreement_section_header</item>
+        <item name="llsdk_loanAgreement_summaryTextStyle">@style/llsdk_loan_agreement_summary_text</item>
+        <item name="llsdk_loanAgreement_summaryValuesStyle">@style/llsdk_loan_agreement_summary_values</item>
+        <item name="llsdk_loanAgreement_buttonColorOne">@color/llsdk_dark_text_color</item>
+        <item name="llsdk_loanAgreement_buttonColorTwo">@color/llsdk_light_text_color</item>
     </style>
 
     <style
@@ -81,6 +88,13 @@
         <item name="llsdk_loanOfferSummary_textStyle">@style/llsdk_loan_offer_summary_text</item>
         <item name="llsdk_loanOfferSummary_buttonStyle">@style/llsdk_loan_offer_summary_apply_button</item>
         <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image</item>
+
+        <item name="llsdk_loanAgreement_sectionStyle">@style/llsdk_loan_agreement_section</item>
+        <item name="llsdk_loanAgreement_sectionHeaderStyle">@style/llsdk_loan_agreement_section_header</item>
+        <item name="llsdk_loanAgreement_summaryTextStyle">@style/llsdk_loan_agreement_summary_text</item>
+        <item name="llsdk_loanAgreement_summaryValuesStyle">@style/llsdk_loan_agreement_summary_values</item>
+        <item name="llsdk_loanAgreement_buttonColorOne">@color/llsdk_dark_text_color_hint</item>
+        <item name="llsdk_loanAgreement_buttonColorTwo">@color/llsdk_dark_text_color</item>
     </style>
 
     <style
@@ -141,6 +155,11 @@
         <item name="llsdk_loanOfferSummary_textStyle">@style/llsdk_loan_offer_summary_text_blue</item>
         <item name="llsdk_loanOfferSummary_buttonStyle">@style/llsdk_loan_offer_summary_apply_button_blue</item>
         <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image_blue</item>
+
+        <item name="llsdk_loanAgreement_sectionStyle">@style/llsdk_loan_agreement_section</item>
+        <item name="llsdk_loanAgreement_sectionHeaderStyle">@style/llsdk_loan_agreement_section_header</item>
+        <item name="llsdk_loanAgreement_summaryTextStyle">@style/llsdk_loan_agreement_summary_text</item>
+        <item name="llsdk_loanAgreement_summaryValuesStyle">@style/llsdk_loan_agreement_summary_values</item>
     </style>
 
     <style

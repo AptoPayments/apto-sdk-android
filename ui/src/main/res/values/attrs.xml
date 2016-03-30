@@ -30,4 +30,12 @@
     <attr name="llsdk_loanOfferSummary_textStyle" format="reference" />
     <attr name="llsdk_loanOfferSummary_buttonStyle" format="reference" />
     <attr name="llsdk_loanOfferSummary_imageStyle" format="reference" />
+
+    <!-- Loan Agreement -->
+    <attr name="llsdk_loanAgreement_sectionStyle" format="reference" />
+    <attr name="llsdk_loanAgreement_sectionHeaderStyle" format="reference" />
+    <attr name="llsdk_loanAgreement_summaryTextStyle" format="reference" />
+    <attr name="llsdk_loanAgreement_summaryValuesStyle" format="reference" />
+    <attr name="llsdk_loanAgreement_buttonColorOne" format="reference|color" />
+    <attr name="llsdk_loanAgreement_buttonColorTwo" format="reference|color" />
 </resources>

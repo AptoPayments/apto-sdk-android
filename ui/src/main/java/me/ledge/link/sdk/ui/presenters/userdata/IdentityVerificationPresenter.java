@@ -2,9 +2,7 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
 import android.widget.DatePicker;
 import android.widget.Toast;
 import me.ledge.link.api.vos.ApiErrorVo;
@@ -15,6 +13,7 @@ import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.UserStorage;
+import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 
 /**
@@ -38,7 +37,7 @@ public class IdentityVerificationPresenter
      * @return Resource ID of the theme to use with for the birthday date picker.
      */
     private int getBirthdayDialogThemeId(Activity activity) {
-        return getResourceIdForAttribute(activity, R.attr.llsdk_userData_datePickerTheme);
+        return new ResourceUtil().getResourceIdForAttribute(activity, R.attr.llsdk_userData_datePickerTheme);
     }
 
     /**
@@ -46,27 +45,7 @@ public class IdentityVerificationPresenter
      * @return Resource ID of the color to use for the progress bar.
      */
     private int getProgressBarColor(Activity activity) {
-        return getResourceIdForAttribute(activity, R.attr.llsdk_userData_progressColor);
-    }
-
-    /**
-     * @param activity The {@link Activity} containing the attribute values.
-     * @param attribute The attribute ID to look up the value for.
-     * @return Attribute value.
-     */
-    private int getResourceIdForAttribute(Activity activity, int attribute) {
-        int id;
-
-        int[] attributesList = new int[] { attribute };
-        try {
-            TypedArray a = activity.obtainStyledAttributes(new TypedValue().data, attributesList);
-            id = a.getResourceId(0, 0);
-            a.recycle();
-        } catch (RuntimeException rte) {
-            id = 0;
-        }
-
-        return id;
+        return new ResourceUtil().getResourceIdForAttribute(activity, R.attr.llsdk_userData_progressColor);
     }
 
     /** {@inheritDoc} */

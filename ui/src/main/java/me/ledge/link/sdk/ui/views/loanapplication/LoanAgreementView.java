@@ -12,6 +12,7 @@ import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
+import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
@@ -75,8 +76,12 @@ public class LoanAgreementView extends RelativeLayout implements ViewWithToolbar
     private void init() {
         mMaxScroll = -1;
 
-        mBackgroundColor = getResources().getColor(R.color.llsdk_light_text_color);
-        mForegroundColor = getResources().getColor(android.R.color.white);
+        ResourceUtil util = new ResourceUtil();
+        mBackgroundColor = getResources().getColor(
+                util.getResourceIdForAttribute(getContext(), R.attr.llsdk_loanAgreement_buttonColorOne));
+        mForegroundColor = getResources().getColor(
+                util.getResourceIdForAttribute(getContext(), R.attr.llsdk_loanAgreement_buttonColorTwo));
+
         mScrollMoreCopy = getResources().getString(R.string.loan_agreement_button_scroll_down);
         mAgreeCopy = getResources().getString(R.string.loan_agreement_button_agree);
     }

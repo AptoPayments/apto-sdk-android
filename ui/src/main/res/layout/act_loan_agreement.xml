@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content">
 
             <RelativeLayout
-                    style="@style/llsdk_loan_agreement_section"
+                    style="?attr/llsdk_loanAgreement_sectionStyle"
                     android:gravity="center_horizontal"
                     android:paddingLeft="48dp"
                     android:paddingStart="48dp"
@@ -42,11 +42,11 @@
 
             <LinearLayout
                     android:orientation="vertical"
-                    style="@style/llsdk_loan_agreement_section"
+                    style="?attr/llsdk_loanAgreement_sectionStyle"
                     android:layout_marginTop="16dp">
 
                 <TextView
-                        style="@style/llsdk_loan_agreement_section_header"
+                        style="?attr/llsdk_loanAgreement_sectionHeaderStyle"
                         android:text="@string/loan_agreement_terms_header" />
 
                 <RelativeLayout
@@ -56,12 +56,12 @@
                         android:layout_marginBottom="16dp">
 
                     <TextView
-                            style="@style/llsdk_loan_agreement_summary_text"
+                            style="?attr/llsdk_loanAgreement_summaryTextStyle"
                             android:text="@string/loan_agreement_terms_interest" />
 
                     <TextView
                             android:id="@+id/tv_loan_interest_rate"
-                            style="@style/llsdk_loan_agreement_summary_values" />
+                            style="?attr/llsdk_loanAgreement_summaryValuesStyle" />
 
                 </RelativeLayout>
 
@@ -74,12 +74,12 @@
                         android:layout_marginBottom="16dp">
 
                     <TextView
-                            style="@style/llsdk_loan_agreement_summary_text"
+                            style="?attr/llsdk_loanAgreement_summaryTextStyle"
                             android:text="@string/loan_agreement_terms_amount" />
 
                     <TextView
                             android:id="@+id/tv_loan_amount"
-                            style="@style/llsdk_loan_agreement_summary_values" />
+                            style="?attr/llsdk_loanAgreement_summaryValuesStyle" />
 
                 </RelativeLayout>
 
@@ -92,12 +92,12 @@
                         android:layout_marginBottom="16dp">
 
                     <TextView
-                            style="@style/llsdk_loan_agreement_summary_text"
+                            style="?attr/llsdk_loanAgreement_summaryTextStyle"
                             android:text="@string/loan_agreement_terms_duration" />
 
                     <TextView
                             android:id="@+id/tv_loan_duration"
-                            style="@style/llsdk_loan_agreement_summary_values" />
+                            style="?attr/llsdk_loanAgreement_summaryValuesStyle" />
 
                 </RelativeLayout>
 
@@ -110,23 +110,23 @@
                         android:layout_marginBottom="16dp">
 
                     <TextView
-                            style="@style/llsdk_loan_agreement_summary_text"
+                            style="?attr/llsdk_loanAgreement_summaryTextStyle"
                             android:text="@string/loan_agreement_terms_payment" />
 
                     <TextView
                             android:id="@+id/tv_payment"
-                            style="@style/llsdk_loan_agreement_summary_values" />
+                            style="?attr/llsdk_loanAgreement_summaryValuesStyle" />
 
                 </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
                     android:orientation="vertical"
-                    style="@style/llsdk_loan_agreement_section"
+                    style="?attr/llsdk_loanAgreement_sectionStyle"
                     android:layout_marginTop="16dp">
 
                 <TextView
-                        style="@style/llsdk_loan_agreement_section_header"
+                        style="?attr/llsdk_loanAgreement_sectionHeaderStyle"
                         android:text="@string/loan_agreement_borrower_agreement_header" />
 
                 <TextView

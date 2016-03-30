@@ -8,6 +8,9 @@
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="llsdk_nextButtonStyle">@style/user_details_next_button_example</item>
         <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Example.TextInput</item>
+
+        <item name="llsdk_loanAgreement_buttonColorOne">@color/secondary</item>
+        <item name="llsdk_loanAgreement_buttonColorTwo">@android:color/white</item>
     </style>
 
     <style
