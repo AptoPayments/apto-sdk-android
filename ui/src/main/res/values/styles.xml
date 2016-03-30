@@ -185,7 +185,7 @@
     </style>
 
     <style name="llsdk_loan_offer_summary_blue" parent="llsdk_loan_offer_summary">
-        <item name="cardBackgroundColor">@color/llsddk_blue_loan_offers_card_background</item>
+        <item name="cardBackgroundColor">@color/llsdk_blue_loan_offers_card_background</item>
     </style>
 
     <style name="llsdk_loan_offer_summary_header_blue" parent="llsdk_loan_offer_summary_header">
@@ -201,7 +201,7 @@
     </style>
 
     <style name="llsdk_loan_offer_summary_image_blue" parent="llsdk_loan_offer_summary_image">
-        <item name="android:background">@color/llsddk_blue_lender_image_background</item>
+        <item name="android:background">@color/llsdk_blue_lender_image_background</item>
     </style>
 
 </resources>

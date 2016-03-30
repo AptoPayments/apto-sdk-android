@@ -160,6 +160,8 @@
         <item name="llsdk_loanAgreement_sectionHeaderStyle">@style/llsdk_loan_agreement_section_header</item>
         <item name="llsdk_loanAgreement_summaryTextStyle">@style/llsdk_loan_agreement_summary_text</item>
         <item name="llsdk_loanAgreement_summaryValuesStyle">@style/llsdk_loan_agreement_summary_values</item>
+        <item name="llsdk_loanAgreement_buttonColorOne">@color/llsdk_blue_loan_agreement_button</item>
+        <item name="llsdk_loanAgreement_buttonColorTwo">@android:color/white</item>
     </style>
 
     <style

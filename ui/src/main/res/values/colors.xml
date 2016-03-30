@@ -16,6 +16,7 @@
     <color name="llsdk_blue_primary">#1b9af7</color>
     <color name="llsdk_blue_primary_dark">#0880d7</color>
     <color name="llsdk_blue_dsb_ripple">#4fb5ff</color>
-    <color name="llsddk_blue_loan_offers_card_background">#fff</color>
-    <color name="llsddk_blue_lender_image_background">#fafafa</color>
+    <color name="llsdk_blue_loan_offers_card_background">#fff</color>
+    <color name="llsdk_blue_lender_image_background">#fafafa</color>
+    <color name="llsdk_blue_loan_agreement_button">#0f0</color>
 </resources>
