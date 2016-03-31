@@ -8,6 +8,7 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.LoanAmountModel;
@@ -46,7 +47,7 @@ public class LoanAmountPresenter
      */
     private HintArrayAdapter<LoanPurposeDisplayVo> getPurposeAdapter(LoanPurposeVo[] loanPurposesList) {
         HintArrayAdapter<LoanPurposeDisplayVo> adapter
-                = new HintArrayAdapter<LoanPurposeDisplayVo>(mActivity, android.R.layout.simple_spinner_dropdown_item);
+                = new HintArrayAdapter<>(mActivity, android.R.layout.simple_spinner_dropdown_item);
 
         LoanPurposeDisplayVo hint = new LoanPurposeDisplayVo();
         hint.description = mActivity.getString(R.string.loan_amount_purpose_hint);
@@ -61,6 +62,12 @@ public class LoanAmountPresenter
         }
 
         return adapter;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected StepperConfiguration getStepperConfig() {
+        return new StepperConfiguration(TOTAL_STEPS, 1, true, true);
     }
 
     /** {@inheritDoc} */

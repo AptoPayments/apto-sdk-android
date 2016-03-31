@@ -60,16 +60,24 @@
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+                android:id="@+id/tv_disclaimer"
                 style="?attr/llsdk_idVerification_disclaimerStyle"
                 android:layout_below="@+id/til_social_security"
                 android:text="@string/id_verification_disclaimer" />
 
+        <TextView
+                android:id="@+id/tv_next_bttn"
+                style="?attr/llsdk_nextButtonStyle"
+                android:layout_width="240dp"
+                android:layout_below="@+id/tv_disclaimer"
+                android:layout_marginTop="64dp"
+                android:layout_alignParentBottom="false"
+                android:layout_centerHorizontal="true"
+                android:text="@string/id_verification_button_next" />
+
     </RelativeLayout>
 
-    <TextView
-            android:id="@+id/tv_next_bttn"
-            style="?attr/llsdk_nextButtonStyle"
-            android:text="@string/id_verification_button_next" />
-
+    <include layout="@layout/include_stepper_dots" />
     <include layout="@layout/include_rl_loading" />
+
 </me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView>

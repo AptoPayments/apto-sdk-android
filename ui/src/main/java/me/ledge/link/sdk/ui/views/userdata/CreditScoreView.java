@@ -5,12 +5,18 @@ import android.util.AttributeSet;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
  * Displays the credit score screen.
  * @author wijnand
  */
-public class CreditScoreView extends UserDataView<NextButtonListener> {
+public class CreditScoreView extends UserDataView<CreditScoreView.ViewListener> {
+
+    /**
+     * Callbacks this {@link View} will invoke.
+     */
+    public interface ViewListener extends StepperListener, NextButtonListener {}
 
     private RadioGroup mRadioGroup;
     private TextView mErrorText;

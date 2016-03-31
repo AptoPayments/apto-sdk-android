@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -19,7 +20,8 @@ public class IncomeView
     /**
      * Callbacks this View will invoke.
      */
-    public interface ViewListener extends NextButtonListener, DiscreteSeekBar.OnProgressChangeListener { }
+    public interface ViewListener
+            extends StepperListener, NextButtonListener, DiscreteSeekBar.OnProgressChangeListener { }
 
     private TextView mIncomeText;
     private DiscreteSeekBar mIncomeSlider;

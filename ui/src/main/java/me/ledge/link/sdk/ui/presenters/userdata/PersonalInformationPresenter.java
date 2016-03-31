@@ -4,8 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
 import me.ledge.link.sdk.ui.views.userdata.PersonalInformationView;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
  * Concrete {@link Presenter} for the personal information screen.
@@ -13,7 +13,7 @@ import me.ledge.link.sdk.ui.views.userdata.PersonalInformationView;
  */
 public class PersonalInformationPresenter
         extends UserDataPresenter<PersonalInformationModel, PersonalInformationView>
-        implements NextButtonListener {
+        implements PersonalInformationView.ViewListener {
 
     /**
      * Creates a new {@link PersonalInformationPresenter} instance.
@@ -21,6 +21,12 @@ public class PersonalInformationPresenter
      */
     public PersonalInformationPresenter(AppCompatActivity activity) {
         super(activity);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected StepperConfiguration getStepperConfig() {
+        return new StepperConfiguration(TOTAL_STEPS, 2, true, true);
     }
 
     /** {@inheritDoc} */

@@ -8,7 +8,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AddressModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.views.userdata.AddressView;
-import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
  * Concrete {@link Presenter} for the address screen.
@@ -16,7 +16,7 @@ import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
  */
 public class AddressPresenter
         extends UserDataPresenter<AddressModel, AddressView>
-        implements NextButtonListener {
+        implements AddressView.ViewListener {
 
     private Usa mStates;
 
@@ -36,6 +36,12 @@ public class AddressPresenter
         String[] codes = mActivity.getResources().getStringArray(R.array.usa_state_codes);
         String[] names = mActivity.getResources().getStringArray(R.array.usa_state_names);
         mStates = new Usa(codes, names);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected StepperConfiguration getStepperConfig() {
+        return new StepperConfiguration(TOTAL_STEPS, 3, true, true);
     }
 
     /** {@inheritDoc} */

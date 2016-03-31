@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import me.ledge.link.sdk.ui.models.userdata.TermsModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.views.userdata.TermsView;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
  * Concrete {@link Presenter} for the terms and conditions screen.
@@ -11,7 +12,7 @@ import me.ledge.link.sdk.ui.views.userdata.TermsView;
  */
 public class TermsPresenter
         extends UserDataPresenter<TermsModel, TermsView>
-        implements Presenter<TermsModel, TermsView> {
+        implements Presenter<TermsModel, TermsView>, TermsView.ViewListener {
 
     /**
      * Creates a new {@link TermsPresenter} instance.
@@ -19,6 +20,12 @@ public class TermsPresenter
      */
     public TermsPresenter(AppCompatActivity activity) {
         super(activity);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected StepperConfiguration getStepperConfig() {
+        return null;
     }
 
     /** {@inheritDoc} */

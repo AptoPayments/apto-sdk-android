@@ -59,7 +59,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_below">@+id/abl_toolbar_wrapper</item>
-        <item name="android:layout_above">@+id/tv_next_bttn</item>
+        <item name="android:layout_above">@+id/dsw_stepper</item>
         <item name="android:padding">16dp</item>
     </style>
 

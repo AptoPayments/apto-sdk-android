@@ -5,6 +5,7 @@ import me.ledge.link.api.utils.CreditScoreRange;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.CreditScoreModel;
 import me.ledge.link.sdk.ui.views.userdata.CreditScoreView;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 import java.util.HashMap;
 
@@ -12,7 +13,9 @@ import java.util.HashMap;
  * Concrete {@link Presenter} for the credit score screen.
  * @author wijnand
  */
-public class CreditScorePresenter extends UserDataPresenter<CreditScoreModel, CreditScoreView> {
+public class CreditScorePresenter
+        extends UserDataPresenter<CreditScoreModel, CreditScoreView>
+        implements CreditScoreView.ViewListener {
 
     private HashMap<Integer, Integer> mIdToRangeMap;
     private HashMap<Integer, Integer> mRangeToIdMap;
@@ -41,6 +44,12 @@ public class CreditScorePresenter extends UserDataPresenter<CreditScoreModel, Cr
         mRangeToIdMap.put(CreditScoreRange.GOOD, R.id.rb_good);
         mRangeToIdMap.put(CreditScoreRange.FAIR, R.id.rb_fair);
         mRangeToIdMap.put(CreditScoreRange.POOR, R.id.rb_poor);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected StepperConfiguration getStepperConfig() {
+        return new StepperConfiguration(TOTAL_STEPS, 5, true, true);
     }
 
     /**

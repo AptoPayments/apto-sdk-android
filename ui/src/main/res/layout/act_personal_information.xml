@@ -86,9 +86,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <TextView
-            android:id="@+id/tv_next_bttn"
-            style="?attr/llsdk_nextButtonStyle"
-            android:text="@string/loan_amount_button_next" />
+    <include layout="@layout/include_stepper_dots" />
 
 </me.ledge.link.sdk.ui.views.userdata.PersonalInformationView>

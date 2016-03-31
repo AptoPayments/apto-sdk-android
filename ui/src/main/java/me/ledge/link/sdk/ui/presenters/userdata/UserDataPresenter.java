@@ -7,15 +7,20 @@ import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
+import me.ledge.link.sdk.ui.views.userdata.UserDataView;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
  * Generic {@link Presenter} to handle user data input screens.
  * @author Wijnand
  */
-public abstract class UserDataPresenter<M extends UserDataModel, V extends View & ViewWithToolbar>
+public abstract class UserDataPresenter<M extends UserDataModel, V extends UserDataView & ViewWithToolbar>
         extends ActivityPresenter<M, V>
-        implements NextButtonListener {
+        implements StepperListener, NextButtonListener {
+
+    protected static final int TOTAL_STEPS = 7;
 
     /**
      * Creates a new {@link UserDataPresenter} instance.
@@ -25,6 +30,11 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends View 
         super(activity);
         populateModelFromStorage();
     }
+
+    /**
+     * @return Stepper configuration.
+     */
+    protected abstract StepperConfiguration getStepperConfig();
 
     /**
      * Populates the {@link UserDataModel} with the data stored globally.
@@ -48,10 +58,29 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends View 
 
     /** {@inheritDoc} */
     @Override
+    public void attachView(V view) {
+        super.attachView(view);
+        mView.setStepperConfiguration(getStepperConfig());
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void nextClickHandler() {
         if (mModel.hasAllData()) {
             saveData();
             startNextActivity();
         }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void stepperBackClickHandler() {
+        startPreviousActivity();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void stepperNextClickHandler() {
+        nextClickHandler();
     }
 }

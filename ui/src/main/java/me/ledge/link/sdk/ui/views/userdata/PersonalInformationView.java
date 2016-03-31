@@ -8,14 +8,20 @@ import android.widget.EditText;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.text.PhoneNumberTextWatcher;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
  * Displays the personal information screen.
  * @author Wijnand
  */
 public class PersonalInformationView
-        extends UserDataView<NextButtonListener>
+        extends UserDataView<PersonalInformationView.ViewListener>
         implements ViewWithToolbar, View.OnClickListener {
+
+    /**
+     * Callbacks this {@link View} will invoke.
+     */
+    public interface ViewListener extends StepperListener, NextButtonListener {}
 
     private TextInputLayout mFirstNameWrapper;
     private EditText mFirstNameField;

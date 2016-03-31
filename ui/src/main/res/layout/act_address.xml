@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/abl_toolbar_wrapper"
-            android:layout_above="@+id/tv_next_bttn">
+            android:layout_above="@+id/dsw_stepper">
 
         <LinearLayout
                 style="?attr/llsdk_dataContainerStyle"
@@ -127,9 +127,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <TextView
-            android:id="@+id/tv_next_bttn"
-            style="?attr/llsdk_nextButtonStyle"
-            android:text="@string/loan_amount_button_next" />
+    <include layout="@layout/include_stepper_dots" />
 
 </me.ledge.link.sdk.ui.views.userdata.AddressView>

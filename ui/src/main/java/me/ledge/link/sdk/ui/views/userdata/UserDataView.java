@@ -9,18 +9,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
+import me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
  * Generic user data related View.
  * @author Wijnand
  */
-public class UserDataView<L extends NextButtonListener>
+public class UserDataView<L extends StepperListener & NextButtonListener>
         extends RelativeLayout
         implements ViewWithToolbar, View.OnClickListener {
 
     protected L mListener;
     protected Toolbar mToolbar;
     protected TextView mNextButton;
+    protected DotStepperWidget mStepper;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -45,13 +49,19 @@ public class UserDataView<L extends NextButtonListener>
     protected void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         mNextButton = (TextView) findViewById(R.id.tv_next_bttn);
+        mStepper = (DotStepperWidget) findViewById(R.id.dsw_stepper);
     }
 
     /**
      * Sets up all required listeners.
      */
     protected void setupListeners() {
-        mNextButton.setOnClickListener(this);
+        if (mNextButton != null) {
+            mNextButton.setOnClickListener(this);
+        }
+        if (mStepper != null) {
+            mStepper.setListener(mListener);
+        }
     }
 
     /**
@@ -97,10 +107,24 @@ public class UserDataView<L extends NextButtonListener>
     }
 
     /**
-     * Stores a new {@link NextButtonListener}.
-     * @param listener New {@link NextButtonListener}.
+     * Stores a new {@link L}istener.
+     * @param listener New {@link L}istener.
      */
     public void setListener(L listener) {
         mListener = listener;
+
+        if (mStepper != null) {
+            mStepper.setListener(listener);
+        }
+    }
+
+    /**
+     * Stores a new stepper configuration.
+     * @param configuration New configuration.
+     */
+    public void setStepperConfiguration(StepperConfiguration configuration) {
+        if (mStepper != null) {
+            mStepper.setConfiguration(configuration);
+        }
     }
 }

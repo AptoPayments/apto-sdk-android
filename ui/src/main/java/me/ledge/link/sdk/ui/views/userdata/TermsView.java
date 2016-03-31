@@ -2,13 +2,20 @@ package me.ledge.link.sdk.ui.views.userdata;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
  * Displays the terms and conditions screen.
  * @author Wijnand
  */
-public class TermsView extends UserDataView<NextButtonListener> implements ViewWithToolbar {
+public class TermsView extends UserDataView<TermsView.ViewListener> implements ViewWithToolbar {
+
+    /**
+     * Callbacks this {@link View} will invoke.
+     */
+    public interface ViewListener extends StepperListener, NextButtonListener {}
 
     /**
      * @see UserDataView#UserDataView

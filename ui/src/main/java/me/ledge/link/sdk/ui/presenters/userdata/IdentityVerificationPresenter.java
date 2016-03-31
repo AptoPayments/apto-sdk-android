@@ -17,6 +17,7 @@ import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
  * Concrete {@link Presenter} for the ID verification screen.
@@ -48,6 +49,12 @@ public class IdentityVerificationPresenter
      */
     private int getProgressBarColor(Activity activity) {
         return new ResourceUtil().getResourceIdForAttribute(activity, R.attr.llsdk_userData_progressColor);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected StepperConfiguration getStepperConfig() {
+        return new StepperConfiguration(TOTAL_STEPS, 6, true, false);
     }
 
     /** {@inheritDoc} */

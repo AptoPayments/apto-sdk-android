@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.IncomeModel;
@@ -24,6 +25,12 @@ public class IncomePresenter
      */
     public IncomePresenter(AppCompatActivity activity) {
         super(activity);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected StepperConfiguration getStepperConfig() {
+        return new StepperConfiguration(TOTAL_STEPS, 4, true, true);
     }
 
     /** {@inheritDoc} */

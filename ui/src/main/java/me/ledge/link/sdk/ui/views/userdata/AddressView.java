@@ -10,14 +10,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
  * Displays the address screen.
  * @author Wijnand
  */
 public class AddressView
-        extends UserDataView<NextButtonListener>
+        extends UserDataView<AddressView.ViewListener>
         implements ViewWithToolbar, View.OnClickListener {
+
+    /**
+     * Callbacks this {@link View} will invoke.
+     */
+    public interface ViewListener extends StepperListener, NextButtonListener {}
 
     private TextInputLayout mAddressWrapper;
     private EditText mAddressField;

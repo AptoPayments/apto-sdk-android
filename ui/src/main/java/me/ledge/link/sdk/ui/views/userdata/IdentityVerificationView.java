@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.widgets.SsnEditText;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
  * Displays the user details screen.
@@ -23,7 +24,7 @@ public class IdentityVerificationView
     /**
      * Callbacks this View will invoke.
      */
-    public interface ViewListener extends NextButtonListener {
+    public interface ViewListener extends StepperListener, NextButtonListener {
 
         /**
          * Called when the birthday input field has been pressed.

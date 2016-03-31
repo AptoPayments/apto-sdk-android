@@ -8,6 +8,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
+import me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -23,7 +26,9 @@ public class LoanAmountView
     /**
      * Callbacks this View will invoke.
      */
-    public interface ViewListener extends NextButtonListener, DiscreteSeekBar.OnProgressChangeListener { }
+    public interface ViewListener
+            extends StepperListener, NextButtonListener, DiscreteSeekBar.OnProgressChangeListener {
+    }
 
     private RelativeLayout mLoadingOverlay;
     private TextView mAmountText;
