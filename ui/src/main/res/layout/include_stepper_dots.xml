@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/dsw_stepper"
+        style="@style/llsdk_stepper">
+
+    <LinearLayout
+            android:id="@+id/ll_back_button"
+            style="@style/llsdk_stepper_button_holder.left">
+
+        <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_action_previous_item" />
+
+        <TextView
+                style="@style/llsdk_stepper_button_text"
+                android:text="@string/stepper_back_button_label" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/ll_dots_holder"
+            style="@style/llsdk_stepper_dots_holder" />
+
+    <LinearLayout
+            android:id="@+id/ll_next_button"
+            style="@style/llsdk_stepper_button_holder.right">
+
+        <TextView
+                style="@style/llsdk_stepper_button_text"
+                android:text="@string/stepper_next_button_label" />
+
+        <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_action_next_item" />
+
+    </LinearLayout>
+</me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget>

@@ -3,6 +3,10 @@
     <!-- Generic -->
     <string name="user_data_menu_info">Info &amp; terms</string>
 
+    <!-- Stepper -->
+    <string name="stepper_back_button_label">BACK</string>
+    <string name="stepper_next_button_label">NEXT</string>
+
     <!-- Terms / Conditions -->
     <string name="terms_label">Find a loan</string>
     <string name="terms_tag_line">Find the perfect loan,\nfrom your phone.</string>
