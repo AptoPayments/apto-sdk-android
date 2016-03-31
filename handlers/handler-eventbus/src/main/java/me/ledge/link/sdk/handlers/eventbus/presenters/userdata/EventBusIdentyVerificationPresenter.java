@@ -3,6 +3,7 @@ package me.ledge.link.sdk.handlers.eventbus.presenters.userdata;
 import android.support.v7.app.AppCompatActivity;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
+import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 import org.greenrobot.eventbus.EventBus;
@@ -52,6 +53,15 @@ public class EventBusIdentyVerificationPresenter extends IdentityVerificationPre
     @Subscribe
     public void handleToken(CreateUserResponseVo response) {
         setCreateUserResponse(response);
+    }
+
+    /**
+     * Called when the user update API response has been received.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleUserDetails(UserResponseVo response) {
+        setUpdateUserResponse(response);
     }
 
     /**

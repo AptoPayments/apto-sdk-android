@@ -11,6 +11,7 @@ import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.config.LoanPurposesTask;
+import me.ledge.link.sdk.sdk.tasks.users.UpdateUserTask;
 
 import java.util.concurrent.Executor;
 
@@ -115,6 +116,20 @@ public class LedgeLinkSdk {
         checkComponents();
 
         CreateUserTask task = new CreateUserTask(data, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Updates an existing user.
+     * @param data Mandatory API request data.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask updateUser(CreateUserRequestVo data) {
+        checkComponents();
+
+        UpdateUserTask task = new UpdateUserTask(data, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

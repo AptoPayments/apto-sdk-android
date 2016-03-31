@@ -13,6 +13,7 @@ import me.ledge.link.api.vos.responses.offers.LenderVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
+import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 
 /**
@@ -74,6 +75,12 @@ public class MockApiWrapper implements LinkApiWrapper {
         response.token = TOKEN;
 
         return response;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public UserResponseVo updateUser(CreateUserRequestVo requestData) throws ApiException {
+        return null;
     }
 
     /** {@inheritDoc} */

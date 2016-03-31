@@ -3,10 +3,12 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.DatePicker;
 import android.widget.Toast;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
+import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
@@ -104,8 +106,11 @@ public class IdentityVerificationPresenter
         mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
 
         if (mModel.hasAllData()) {
-            // Make API request.
-            LedgeLinkUi.createUser(mModel.getUserRequestData());
+            if (TextUtils.isEmpty(UserStorage.getInstance().getBearerToken())) {
+                LedgeLinkUi.createUser(mModel.getUserRequestData());
+            } else {
+                LedgeLinkUi.updateUser(mModel.getUserRequestData());
+            }
 
             // Show loading.
             mView.showLoading(true);
@@ -131,6 +136,15 @@ public class IdentityVerificationPresenter
         }
 
         // Show next screen.
+        super.nextClickHandler();
+    }
+
+    /**
+     * Deals with the update user API response.
+     * @param response API response.
+     */
+    public void setUpdateUserResponse(UserResponseVo response) {
+        mView.showLoading(false);
         super.nextClickHandler();
     }
 
