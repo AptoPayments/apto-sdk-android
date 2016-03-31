@@ -40,6 +40,7 @@ public class MainView extends ScrollView implements View.OnClickListener {
     private Button mClearButton;
 
     private EditText mLoanAmountField;
+    private EditText mLoanPurposeField;
     private EditText mFirstNameField;
     private EditText mLastNameField;
     private EditText mEmailField;
@@ -88,6 +89,7 @@ public class MainView extends ScrollView implements View.OnClickListener {
         mClearButton = (Button) findViewById(R.id.bttn_clear_all);
 
         mLoanAmountField = (EditText) findViewById(R.id.et_loan_amount);
+        mLoanPurposeField = (EditText) findViewById(R.id.et_loan_purpose);
         mFirstNameField = (EditText) findViewById(R.id.et_first_name);
         mLastNameField = (EditText) findViewById(R.id.et_last_name);
         mEmailField = (EditText) findViewById(R.id.et_email);
@@ -154,6 +156,21 @@ public class MainView extends ScrollView implements View.OnClickListener {
      */
     public void setLoanAmount(String amount) {
         mLoanAmountField.setText(amount);
+    }
+
+    /**
+     * @return Loan purpose.
+     */
+    public String getLoanPurpose() {
+        return mLoanPurposeField.getText().toString();
+    }
+
+    /**
+     * Shows a new loan purpose (ID).
+     * @param purpose New loan purpose.
+     */
+    public void setLoanPurpose(String purpose) {
+        mLoanPurposeField.setText(purpose);
     }
 
     /**

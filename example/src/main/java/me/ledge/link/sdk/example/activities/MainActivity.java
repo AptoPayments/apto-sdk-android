@@ -7,6 +7,7 @@ import android.view.View;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import me.ledge.common.utils.android.AndroidUtils;
+import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
@@ -15,6 +16,7 @@ import me.ledge.link.sdk.handlers.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
+import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 /**
@@ -50,6 +52,13 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
 
         if (hasValue(mView.getLoanAmount())) {
             data.loanAmount = parseIntSafely(mView.getLoanAmount());
+            dataSet = true;
+        }
+        if (hasValue(mView.getLoanPurpose())) {
+            LoanPurposeVo purpose = new LoanPurposeVo();
+            purpose.loan_purpose_id = parseIntSafely(mView.getLoanPurpose());
+            data.loanPurpose = new LoanPurposeDisplayVo(purpose);
+
             dataSet = true;
         }
         if (hasValue(mView.getFirstName())) {
@@ -152,7 +161,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     /** {@inheritDoc} */
     @Override
     public void fillAllClickedHandler() {
-        mView.setLoanAmount(getString(R.string.data_michael_loan));
+        mView.setLoanAmount(getString(R.string.data_michael_loan_amount));
+        mView.setLoanPurpose(getString(R.string.data_michael_loan_purpose));
         mView.setFirstName(getString(R.string.data_michael_first_name));
         mView.setLastName(getString(R.string.data_michael_last_name));
         mView.setEmail(getString(R.string.data_michael_email));
