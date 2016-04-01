@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.sdk.mocks.api.wrappers;
 
 import me.ledge.link.api.exceptions.ApiException;
+import me.ledge.link.api.utils.TermUnit;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
@@ -12,6 +13,7 @@ import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.LenderVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
+import me.ledge.link.api.vos.responses.offers.TermVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
@@ -93,6 +95,9 @@ public class MockApiWrapper implements LinkApiWrapper {
         offerOne.payment_amount = OFFER_ONE_PAYMENT;
         offerOne.application_method = LoanApplicationMethod.WEB;
         offerOne.application_url = OFFER_ONE_APPLICATION_URL;
+        offerOne.term = new TermVo();
+        offerOne.term.unit = TermUnit.WEEK;
+        offerOne.term.duration = 3;
         offerOne.lender = new LenderVo();
         offerOne.lender.lender_name = LENDER_ONE_NAME;
         offerOne.lender.large_image = LENDER_ONE_LARGE_IMAGE;

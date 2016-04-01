@@ -117,6 +117,10 @@ public class LoanAgreementModel implements ActivityModel, Model {
      * @return Loan term text.
      */
     public String getTerm(Resources resources) {
+        if (mOffer == null || mOffer.term == null) {
+            return "";
+        }
+
         int resourceId;
 
         if (mOffer.term.unit == TermUnit.WEEK) {
