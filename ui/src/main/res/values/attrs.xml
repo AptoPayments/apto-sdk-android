@@ -7,6 +7,14 @@
     <attr name="llsdk_nextButtonStyle" format="reference" />
     <attr name="llsdk_textLinkStyle" format="reference" />
 
+    <!-- Stepper -->
+    <attr name="llsdk_stepper_backgroundColor" format="reference|color" />
+    <attr name="llsdk_stepper_textColor" format="reference|color" />
+    <attr name="llsdk_stepper_leftArrow" format="reference" />
+    <attr name="llsdk_stepper_rightArrow" format="reference" />
+    <attr name="llsdk_stepper_dotDisabled" format="reference" />
+    <attr name="llsdk_stepper_dotEnabled" format="reference" />
+
     <attr name="llsdk_userData_infoIcon" format="reference" />
     <attr name="llsdk_userData_sliderHeaderStyle" format="reference" /> <!-- Optional -->
     <attr name="llsdk_userData_datePickerTheme" format="reference" /> <!-- Optional -->

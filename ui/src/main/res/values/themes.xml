@@ -14,6 +14,13 @@
         <item name="llsdk_nextButtonStyle">@style/llsdk_id_verification_next_button</item>
         <item name="llsdk_textLinkStyle">@style/llsdk_plain_text_link</item>
 
+        <item name="llsdk_stepper_backgroundColor">@color/llsdk_stepper_background</item>
+        <item name="llsdk_stepper_textColor">@color/llsdk_stepper_text</item>
+        <item name="llsdk_stepper_leftArrow">@drawable/ic_action_previous_item</item>
+        <item name="llsdk_stepper_rightArrow">@drawable/ic_action_next_item</item>
+        <item name="llsdk_stepper_dotDisabled">@drawable/stepper_dot_disabled</item>
+        <item name="llsdk_stepper_dotEnabled">@drawable/stepper_dot_enabled</item>
+
         <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
         <item name="llsdk_creditScore_radioButtonStyle">@style/llsdk_credit_score_radio</item>
 
@@ -70,6 +77,13 @@
         <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
         <item name="llsdk_nextButtonStyle">@style/llsdk_id_verification_next_button_light</item>
         <item name="llsdk_textLinkStyle">@style/llsdk_plain_text_link</item>
+
+        <item name="llsdk_stepper_backgroundColor">@color/llsdk_stepper_background</item>
+        <item name="llsdk_stepper_textColor">@color/llsdk_stepper_text</item>
+        <item name="llsdk_stepper_leftArrow">@drawable/ic_action_previous_item</item>
+        <item name="llsdk_stepper_rightArrow">@drawable/ic_action_next_item</item>
+        <item name="llsdk_stepper_dotDisabled">@drawable/stepper_dot_disabled</item>
+        <item name="llsdk_stepper_dotEnabled">@drawable/stepper_dot_enabled</item>
 
         <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
         <item name="llsdk_creditScore_radioButtonStyle">@style/llsdk_credit_score_radio</item>
@@ -135,6 +149,13 @@
         <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
         <item name="llsdk_nextButtonStyle">@style/llsdk_user_data_next_button_blue</item>
         <item name="llsdk_textLinkStyle">@style/llsdk_plain_text_link_blue</item>
+
+        <item name="llsdk_stepper_backgroundColor">@color/llsdk_stepper_background</item>
+        <item name="llsdk_stepper_textColor">@color/llsdk_stepper_text</item>
+        <item name="llsdk_stepper_leftArrow">@drawable/ic_action_previous_item</item>
+        <item name="llsdk_stepper_rightArrow">@drawable/ic_action_next_item</item>
+        <item name="llsdk_stepper_dotDisabled">@drawable/stepper_dot_disabled</item>
+        <item name="llsdk_stepper_dotEnabled">@drawable/stepper_dot_enabled</item>
 
         <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
         <item name="llsdk_creditScore_radioButtonStyle">@style/llsdk_credit_score_radio</item>

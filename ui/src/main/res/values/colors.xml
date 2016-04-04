@@ -19,4 +19,8 @@
     <color name="llsdk_blue_loan_offers_card_background">#fff</color>
     <color name="llsdk_blue_lender_image_background">#fafafa</color>
     <color name="llsdk_blue_loan_agreement_button">#0f0</color>
+
+    <!-- Stepper -->
+    <color name="llsdk_stepper_background">#e3e3e3</color>
+    <color name="llsdk_stepper_text">#6b6b6b</color>
 </resources>

@@ -11,7 +11,7 @@
         <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_action_previous_item" />
+                android:src="?attr/llsdk_stepper_leftArrow" />
 
         <TextView
                 style="@style/llsdk_stepper_button_text"
@@ -34,7 +34,7 @@
         <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_action_next_item" />
+                android:src="?attr/llsdk_stepper_rightArrow" />
 
     </LinearLayout>
 </me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget>

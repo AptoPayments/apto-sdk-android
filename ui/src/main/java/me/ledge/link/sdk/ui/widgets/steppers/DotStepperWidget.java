@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.utils.ResourceUtil;
 
 /**
  * Stepper widget that indicates progress through dots.
@@ -18,6 +19,9 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
     private LinearLayout mNextButton;
     private LinearLayout mDotsHolder;
     private StepperListener mListener;
+
+    private int mDotDisabledResourceId;
+    private int mDotEnabledResourceId;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -34,6 +38,16 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
      */
     public DotStepperWidget(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
+    }
+
+    /**
+     * Initializes this class.
+     */
+    private void init() {
+        ResourceUtil util = new ResourceUtil();
+        mDotDisabledResourceId = util.getResourceIdForAttribute(getContext(), R.attr.llsdk_stepper_dotDisabled);
+        mDotEnabledResourceId = util.getResourceIdForAttribute(getContext(), R.attr.llsdk_stepper_dotEnabled);
     }
 
     /**
@@ -58,6 +72,11 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
         }
     }
 
+    /**
+     * Updates the {@link #onClick(View)} listener for a {@link View}.
+     * @param view The View to update.
+     * @param enabled Whether the listener should be enabled.
+     */
     private void updateListener(View view, boolean enabled) {
         if (enabled) {
             view.setOnClickListener(this);
@@ -78,9 +97,9 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
             view = new ImageView(getContext());
 
             if (i == position) {
-                view.setImageDrawable(getResources().getDrawable(R.drawable.stepper_dot_enabled));
+                view.setImageDrawable(getResources().getDrawable(mDotEnabledResourceId));
             } else {
-                view.setImageDrawable(getResources().getDrawable(R.drawable.stepper_dot_disabled));
+                view.setImageDrawable(getResources().getDrawable(mDotDisabledResourceId));
             }
 
             mDotsHolder.addView(view);
