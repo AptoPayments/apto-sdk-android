@@ -15,6 +15,7 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
         extends BasePresenter<M, V> {
 
     protected final AppCompatActivity mActivity;
+    protected ActionBar mActionBar;
 
     /**
      * Creates a new {@link ActivityPresenter} instance.
@@ -28,11 +29,24 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
      * Sets up the toolbar.
      */
     protected void setupToolbar() {
-        mActivity.setSupportActionBar(mView.getToolbar());
+        initToolbar();
+        showToolbarUpArrow();
+    }
 
-        ActionBar actionBar = mActivity.getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+    /**
+     * Initializes the Toolbar.
+     */
+    protected void initToolbar() {
+        mActivity.setSupportActionBar(mView.getToolbar());
+        mActionBar = mActivity.getSupportActionBar();
+    }
+
+    /**
+     * Shows the "up" arrow on the Toolbar.
+     */
+    protected void showToolbarUpArrow() {
+        if (mActionBar != null) {
+            mActionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
 

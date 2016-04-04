@@ -24,6 +24,13 @@ public class TermsPresenter
 
     /** {@inheritDoc} */
     @Override
+    protected void setupToolbar() {
+        super.setupToolbar();
+        showToolbarUpArrow();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     protected StepperConfiguration getStepperConfig() {
         return null;
     }

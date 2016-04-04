@@ -58,6 +58,12 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
 
     /** {@inheritDoc} */
     @Override
+    protected void setupToolbar() {
+        initToolbar();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void attachView(V view) {
         super.attachView(view);
         mView.setStepperConfiguration(getStepperConfig());
