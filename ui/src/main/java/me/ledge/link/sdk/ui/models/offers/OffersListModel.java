@@ -1,7 +1,9 @@
 package me.ledge.link.sdk.ui.models.offers;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.AbstractActivityModel;
 import me.ledge.link.sdk.ui.models.ActivityModel;
@@ -60,6 +62,12 @@ public class OffersListModel extends AbstractActivityModel
     @Override
     public boolean showOffersButton() {
         return false;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Class getPreviousActivity(Activity current) {
+        return LedgeLinkUi.getProcessOrder().get(0);
     }
 
     /**
