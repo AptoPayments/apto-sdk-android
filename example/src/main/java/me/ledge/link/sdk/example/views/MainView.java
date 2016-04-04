@@ -5,15 +5,19 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.Switch;
 import me.ledge.link.sdk.example.R;
+import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
+import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 
 /**
  * Displays the main View.
  * @author Wijnand
  */
-public class MainView extends ScrollView implements View.OnClickListener {
+public class MainView extends RelativeLayout implements View.OnClickListener {
 
     /**
      * Callbacks this View will invoke.
@@ -40,7 +44,7 @@ public class MainView extends ScrollView implements View.OnClickListener {
     private Button mClearButton;
 
     private EditText mLoanAmountField;
-    private EditText mLoanPurposeField;
+    private Spinner mLoanPurposeSpinner;
     private EditText mFirstNameField;
     private EditText mLastNameField;
     private EditText mEmailField;
@@ -52,6 +56,7 @@ public class MainView extends ScrollView implements View.OnClickListener {
     private EditText mZipField;
     private EditText mIncomeField;
     private Switch mSkipStepsSwitch;
+    private RelativeLayout mLoadingOverlay;
 
     private ViewListener mListener;
 
@@ -89,7 +94,7 @@ public class MainView extends ScrollView implements View.OnClickListener {
         mClearButton = (Button) findViewById(R.id.bttn_clear_all);
 
         mLoanAmountField = (EditText) findViewById(R.id.et_loan_amount);
-        mLoanPurposeField = (EditText) findViewById(R.id.et_loan_purpose);
+        mLoanPurposeSpinner = (Spinner) findViewById(R.id.sp_loan_purpose);
         mFirstNameField = (EditText) findViewById(R.id.et_first_name);
         mLastNameField = (EditText) findViewById(R.id.et_last_name);
         mEmailField = (EditText) findViewById(R.id.et_email);
@@ -101,6 +106,7 @@ public class MainView extends ScrollView implements View.OnClickListener {
         mZipField = (EditText) findViewById(R.id.et_zip_code);
         mIncomeField = (EditText) findViewById(R.id.et_income);
         mSkipStepsSwitch = (Switch) findViewById(R.id.sw_skip_steps);
+        mLoadingOverlay = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
     }
 
     /**
@@ -144,6 +150,26 @@ public class MainView extends ScrollView implements View.OnClickListener {
     }
 
     /**
+     * Stores a new {@link HintArrayAdapter} for the {@link Spinner} to use.
+     * @param adapter New {@link HintArrayAdapter}.
+     */
+    public void setPurposeAdapter(HintArrayAdapter<LoanPurposeDisplayVo> adapter) {
+        mLoanPurposeSpinner.setAdapter(adapter);
+    }
+
+    /**
+     * Changes the loading overlay visibility.
+     * @param show Whether the loading overlay should be shown.
+     */
+    public void showLoading(boolean show) {
+        if (show) {
+            mLoadingOverlay.setVisibility(VISIBLE);
+        } else {
+            mLoadingOverlay.setVisibility(GONE);
+        }
+    }
+
+    /**
      * @return Loan amount.
      */
     public String getLoanAmount() {
@@ -161,16 +187,15 @@ public class MainView extends ScrollView implements View.OnClickListener {
     /**
      * @return Loan purpose.
      */
-    public String getLoanPurpose() {
-        return mLoanPurposeField.getText().toString();
+    public LoanPurposeDisplayVo getLoanPurpose() {
+        return (LoanPurposeDisplayVo) mLoanPurposeSpinner.getSelectedItem();
     }
 
     /**
-     * Shows a new loan purpose (ID).
-     * @param purpose New loan purpose.
+     * Resets the loan purpose Spinner.
      */
-    public void setLoanPurpose(String purpose) {
-        mLoanPurposeField.setText(purpose);
+    public void setLoanPurpose(int index) {
+        mLoanPurposeSpinner.setSelection(index);
     }
 
     /**

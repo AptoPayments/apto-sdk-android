@@ -8,6 +8,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
+import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
@@ -18,6 +19,9 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
+import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 /**
  * Main display.
@@ -54,11 +58,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             data.loanAmount = parseIntSafely(mView.getLoanAmount());
             dataSet = true;
         }
-        if (hasValue(mView.getLoanPurpose())) {
-            LoanPurposeVo purpose = new LoanPurposeVo();
-            purpose.loan_purpose_id = parseIntSafely(mView.getLoanPurpose());
-            data.loanPurpose = new LoanPurposeDisplayVo(purpose);
-
+        if (mView.getLoanPurpose() != null) {
+            data.loanPurpose = mView.getLoanPurpose();
             dataSet = true;
         }
         if (hasValue(mView.getFirstName())) {
@@ -147,9 +148,21 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         setupLedgeLink();
 
         mView = (MainView) View.inflate(this, R.layout.act_main, null);
+        mView.showLoading(true);
         mView.setViewListener(this);
 
         setContentView(mView);
+
+        // Load the loan purpose list so we can create a drop-down.
+        EventBus.getDefault().register(this);
+        LedgeLinkUi.getLoanPurposesList();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     /** {@inheritDoc} */
@@ -162,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     public void fillAllClickedHandler() {
         mView.setLoanAmount(getString(R.string.data_michael_loan_amount));
-        mView.setLoanPurpose(getString(R.string.data_michael_loan_purpose));
+        mView.setLoanPurpose(Integer.parseInt(getString(R.string.data_michael_loan_purpose)));
         mView.setFirstName(getString(R.string.data_michael_first_name));
         mView.setLastName(getString(R.string.data_michael_last_name));
         mView.setEmail(getString(R.string.data_michael_email));
@@ -178,6 +191,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     public void clearAllClickedHandler() {
         mView.setLoanAmount("");
+        mView.setLoanPurpose(0);
         mView.setFirstName("");
         mView.setLastName("");
         mView.setEmail("");
@@ -188,5 +202,30 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         mView.setState("");
         mView.setZipCode("");
         mView.setIncome("");
+    }
+
+    /**
+     * Called when the loan purpose list has been received from the API.
+     * @param response API response.
+     */
+    @Subscribe
+    public void purposeListLoadedHandler(LoanPurposesResponseVo response) {
+        HintArrayAdapter<LoanPurposeDisplayVo> adapter
+                = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
+
+        LoanPurposeDisplayVo hint = new LoanPurposeDisplayVo();
+        hint.description = getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint);
+        hint.loan_purpose_id = -1;
+
+        adapter.add(hint);
+
+        if (response.data != null) {
+            for (LoanPurposeVo purpose : response.data) {
+                adapter.add(new LoanPurposeDisplayVo(purpose));
+            }
+        }
+
+        mView.setPurposeAdapter(adapter);
+        mView.showLoading(false);
     }
 }
