@@ -7,9 +7,9 @@ import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
-import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.LenderVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
@@ -136,7 +136,7 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public ListResponseVo<LoanApplicationDetailsResponseVo> getLoanApplicationsList(ListRequestVo requestData) throws ApiException {
+    public LoanApplicationsListResponseVo getLoanApplicationsList(ListRequestVo requestData) throws ApiException {
         return null;
     }
 }
