@@ -1,12 +1,14 @@
 package me.ledge.link.sdk.sdk;
 
 import android.os.AsyncTask;
+import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
+import me.ledge.link.sdk.sdk.tasks.loanapplication.ListLoanApplicationsTask;
 import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
@@ -163,4 +165,17 @@ public class LedgeLinkSdk {
         return task;
     }
 
+    /**
+     * Fetches the list of open loan applications.
+     * @param data Mandatory API request data.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getLoanApplicationsList(ListRequestVo data) {
+        checkComponents();
+
+        ListLoanApplicationsTask task = new ListLoanApplicationsTask(data, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
 }
