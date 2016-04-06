@@ -16,7 +16,7 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
-import me.ledge.link.sdk.ui.adapters.OffersListRecyclerAdapter;
+import me.ledge.link.sdk.ui.adapters.offers.OffersListRecyclerAdapter;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
