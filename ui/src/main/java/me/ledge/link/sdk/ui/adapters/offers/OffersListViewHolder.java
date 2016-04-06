@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.adapters;
+package me.ledge.link.sdk.ui.adapters.offers;
 
 import me.ledge.common.adapters.recyclerview.GenericViewHolder;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;

@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.adapters;
+package me.ledge.link.sdk.ui.adapters.offers;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
