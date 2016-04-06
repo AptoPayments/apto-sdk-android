@@ -91,6 +91,7 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
      * @param position Position, current step. Zero-based.
      */
     private void generateDots(int total, int position) {
+        mDotsHolder.removeAllViews();
         ImageView view;
 
         for (int i = 0; i < total; i++) {
