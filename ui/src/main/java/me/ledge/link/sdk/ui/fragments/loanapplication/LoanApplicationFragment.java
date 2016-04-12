@@ -1,6 +1,5 @@
 package me.ledge.link.sdk.ui.fragments.loanapplication;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,10 +25,7 @@ public class LoanApplicationFragment extends Fragment {
      */
     public LoanApplicationFragment() { }
 
-    /** {@inheritDoc} */
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    private void createPresenter() {
         mPresenter = new LoanApplicationDetailsPresenter(getResources(), mLoanApplication);
     }
 
@@ -37,7 +33,14 @@ public class LoanApplicationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = (LoanApplicationDetailsView) inflater.inflate(R.layout.sv_loan_application_details, container, false);
-        mPresenter.attachView(mView);
+
+        if (mLoanApplication != null) {
+            if (mPresenter == null) {
+                createPresenter();
+            }
+
+            mPresenter.attachView(mView);
+        }
 
         return mView;
     }

@@ -118,7 +118,7 @@ public class LoanApplicationsListPresenter
     public void showLoanApplicationList(LoanApplicationDetailsResponseVo[] applicationsList) {
         mApplicationsList = applicationsList;
 
-        createModel();
+        mModel = createModel();
         updateViewData();
 
         mView.showLoading(false);

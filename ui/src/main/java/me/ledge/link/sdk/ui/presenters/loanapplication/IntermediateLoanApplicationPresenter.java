@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.loanapplication.ApprovedLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.loanapplication.ErrorLoanApplicationModel;
@@ -135,6 +136,8 @@ public class IntermediateLoanApplicationPresenter
     @Override
     public void infoClickHandler() {
         // TODO Pending API update.
+        LoanStorage.getInstance().setCurrentLoanApplication(null);
+        startActivity(LedgeLinkUi.getHandlerConfiguration().getApplicationsListActivity());
     }
 
     /** {@inheritDoc} */

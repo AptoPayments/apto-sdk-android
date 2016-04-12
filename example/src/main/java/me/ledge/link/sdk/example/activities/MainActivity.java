@@ -135,10 +135,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                 utils.getDeviceSummary());
 
         LedgeLinkUi.setApiWrapper(apiWrapper);
-
         LedgeLinkUi.setImageLoader(new VolleyImageLoader(this));
-        LedgeLinkUi.setResponseHandler(configurator.getResponseHandler());
-        LedgeLinkUi.setProcessOrder(configurator.getProcessOrder());
+        LedgeLinkUi.setHandlerConfiguration(configurator);
     }
 
     /** {@inheritDoc} */

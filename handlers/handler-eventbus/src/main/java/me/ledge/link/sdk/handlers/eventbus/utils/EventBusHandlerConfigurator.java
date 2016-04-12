@@ -1,11 +1,13 @@
 package me.ledge.link.sdk.handlers.eventbus.utils;
 
+import me.ledge.link.sdk.handlers.eventbus.activities.loanapplication.EventBusLoanApplicationsListActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.offers.EventBusOffersListActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusIdentityVerificationActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusLoanAmountActivity;
 import me.ledge.link.sdk.handlers.eventbus.tasks.handlers.EventBusThreeResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
+import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IncomeActivity;
@@ -35,6 +37,12 @@ public class EventBusHandlerConfigurator implements HandlerConfigurator {
         process.add(EventBusOffersListActivity.class);
 
         return process;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Class<? extends LoanApplicationsListActivity> getApplicationsListActivity() {
+        return EventBusLoanApplicationsListActivity.class;
     }
 
     /** {@inheritDoc} */

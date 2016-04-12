@@ -31,8 +31,8 @@ public class LoanApplicationDetailsModel extends OfferSummaryModel implements Mo
     /** {@inheritDoc} */
     @Override
     protected void init() {
-        super.init();
         mLoanDurationText = "";
+        super.init();
     }
 
     /** {@inheritDoc} */

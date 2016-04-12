@@ -46,7 +46,7 @@ public class LoanApplicationDetailsPresenter
         super.attachView(view);
 
         if (mModel == null) {
-            createModel();
+            mModel = createModel();
         }
 
         mView.setData(mModel);
