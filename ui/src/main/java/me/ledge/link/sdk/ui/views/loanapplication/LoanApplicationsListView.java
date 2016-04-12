@@ -21,6 +21,7 @@ public class LoanApplicationsListView extends RelativeLayout implements ViewWith
     private Toolbar mToolbar;
     private ViewPager mPager;
     private DotStepperWidget mStepper;
+    private RelativeLayout mLoadingIndicator;
 
     /**
      * Callbacks this View will invoke.
@@ -51,6 +52,7 @@ public class LoanApplicationsListView extends RelativeLayout implements ViewWith
         mToolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         mPager = (ViewPager) findViewById(R.id.vp_loan_applications_pager);
         mStepper = (DotStepperWidget) findViewById(R.id.dsw_stepper);
+        mLoadingIndicator = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
     }
 
     /** {@inheritDoc} */
@@ -111,5 +113,17 @@ public class LoanApplicationsListView extends RelativeLayout implements ViewWith
      */
     public void nextPage() {
         mPager.setCurrentItem(mPager.getCurrentItem() + 1, true);
+    }
+
+    /**
+     * Changes the visibility of the loading indicator.
+     * @param show Whether the loading indicator should be shown.
+     */
+    public void showLoading(boolean show) {
+        if (show) {
+            mLoadingIndicator.setVisibility(VISIBLE);
+        } else {
+            mLoadingIndicator.setVisibility(GONE);
+        }
     }
 }

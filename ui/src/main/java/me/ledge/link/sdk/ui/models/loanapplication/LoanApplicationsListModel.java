@@ -12,6 +12,16 @@ import me.ledge.link.sdk.ui.models.Model;
  */
 public class LoanApplicationsListModel implements Model, ActivityModel {
 
+    private final LoanApplicationDetailsResponseVo[] mApplicationsList;
+
+    /**
+     * Creates a new {@link LoanApplicationsListModel} instance.
+     * @param applicationsList List of open loan applications.
+     */
+    public LoanApplicationsListModel(LoanApplicationDetailsResponseVo[] applicationsList) {
+        mApplicationsList = applicationsList;
+    }
+
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
@@ -34,7 +44,7 @@ public class LoanApplicationsListModel implements Model, ActivityModel {
      * @return List of open loan applications.
      */
     public LoanApplicationDetailsResponseVo[] getApplicationList() {
-        return null; // TODO
+        return mApplicationsList;
     }
 
     /**
