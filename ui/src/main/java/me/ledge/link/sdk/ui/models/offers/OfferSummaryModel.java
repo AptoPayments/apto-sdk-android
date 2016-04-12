@@ -15,8 +15,8 @@ import me.ledge.link.sdk.ui.models.lenders.LenderModel;
  */
 public class OfferSummaryModel implements Model {
 
-    private final OfferVo mRawOffer;
-    private final Resources mResources;
+    protected final OfferVo mRawOffer;
+    protected final Resources mResources;
     private final GenericImageLoader mImageLoader;
 
     private LenderModel mLender;
@@ -40,7 +40,7 @@ public class OfferSummaryModel implements Model {
     /**
      * Initializes this class.
      */
-    private void init() {
+    protected void init() {
         mLender = null;
         if (mRawOffer != null) {
             mLender = new LenderModel(mRawOffer.lender);
@@ -56,7 +56,7 @@ public class OfferSummaryModel implements Model {
     /**
      * Creates the formatted texts.
      */
-    private void createFormattedText() {
+    protected void createFormattedText() {
         if (mResources == null || mRawOffer == null) {
             return;
         }

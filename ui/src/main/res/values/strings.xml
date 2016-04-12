@@ -115,4 +115,6 @@
 
     <!-- Loan Applications List -->
     <string name="loan_applications_list_label">My loan applications</string>
+    <string name="loan_application_details_duration">Loan term: %s</string>
+    <string name="loan_application_details_disclaimer">Sed pellentesque diam a ligula molestie ultrices. Donec interdum convallis dui, non fermentum sapien lacinia at. Donec congue velit ut rhoncus sodales.</string>
 </resources>

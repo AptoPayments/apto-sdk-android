@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.fragments.loanapplication.LoanApplicationFragment;
 
 /**
@@ -13,10 +14,20 @@ import me.ledge.link.sdk.ui.fragments.loanapplication.LoanApplicationFragment;
 public class LoanApplicationPagerAdapter extends FragmentStatePagerAdapter {
 
     private final Context mContext;
+    private final LoanApplicationDetailsResponseVo[] mApplicationList;
 
-    public LoanApplicationPagerAdapter(FragmentManager fm, Context context) {
+    /**
+     * Creates a new {@link LoanApplicationPagerAdapter} instance.
+     * @param fm Fragment manager.
+     * @param context Context.
+     * @param applicationList List of open loan applications.
+     */
+    public LoanApplicationPagerAdapter(FragmentManager fm, Context context,
+            LoanApplicationDetailsResponseVo[] applicationList) {
+
         super(fm);
         mContext = context;
+        mApplicationList = applicationList;
     }
 
     /** {@inheritDoc} */
@@ -24,9 +35,10 @@ public class LoanApplicationPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         LoanApplicationFragment fragment = null;
 
-        if (position >= 0) {
+        if (position >= 0 && position < getCount()) {
             fragment = (LoanApplicationFragment) LoanApplicationFragment.instantiate(
                     mContext, LoanApplicationFragment.class.getName());
+            fragment.setLoanApplication(mApplicationList[position]);
         }
 
         return fragment;
@@ -35,6 +47,12 @@ public class LoanApplicationPagerAdapter extends FragmentStatePagerAdapter {
     /** {@inheritDoc} */
     @Override
     public int getCount() {
-        return 4;
+        int count = 0;
+
+        if (mApplicationList != null) {
+            count = mApplicationList.length;
+        }
+
+        return count;
     }
 }

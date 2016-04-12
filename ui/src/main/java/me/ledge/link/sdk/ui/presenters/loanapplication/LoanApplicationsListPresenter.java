@@ -25,9 +25,13 @@ public class LoanApplicationsListPresenter
         super(activity);
     }
 
+    /**
+     * @param page Current page.
+     * @return New stepper configuration.
+     */
     private StepperConfiguration createStepperConfig(int page) {
         int total = mModel.getTotalApplications();
-        return new StepperConfiguration(total, page, page != 0, page != total - 1);
+        return new StepperConfiguration(total, page, page > 0, page < total - 1);
     }
 
     /** {@inheritDoc} */
@@ -40,8 +44,8 @@ public class LoanApplicationsListPresenter
     @Override
     public void attachView(LoanApplicationsListView view) {
         super.attachView(view);
-        LoanApplicationPagerAdapter adapter
-                = new LoanApplicationPagerAdapter(mActivity.getSupportFragmentManager(), mActivity);
+        LoanApplicationPagerAdapter adapter = new LoanApplicationPagerAdapter(
+                mActivity.getSupportFragmentManager(), mActivity, mModel.getApplicationList());
 
         mView.setListener(this);
         mView.setPagerAdapter(adapter);
