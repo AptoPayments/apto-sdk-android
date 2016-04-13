@@ -98,6 +98,9 @@ public class IntermediateLoanApplicationPresenter
                 case LoanApplicationStatus.LOAN_APPROVED:
                     model = new ApprovedLoanApplicationModel(loanApplication);
                     break;
+                case LoanApplicationStatus.APPLICATION_RECEIVED:
+                    model = new ApprovedLoanApplicationModel(loanApplication);
+                    break;
                 default:
                     // Do nothing.
                     break;
