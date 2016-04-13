@@ -49,7 +49,10 @@ public class LoanApplicationFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mPresenter.detachView();
+
+        if (mPresenter != null) {
+            mPresenter.detachView();
+        }
     }
 
     /**
