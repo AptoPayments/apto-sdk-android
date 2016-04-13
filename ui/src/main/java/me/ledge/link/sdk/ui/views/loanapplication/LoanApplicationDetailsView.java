@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.views.loanapplication;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -12,7 +13,18 @@ import me.ledge.link.sdk.ui.models.loanapplication.details.LoanApplicationDetail
  * Displays loan application details.
  * @author Wijnand
  */
-public class LoanApplicationDetailsView extends ScrollView {
+public class LoanApplicationDetailsView extends ScrollView implements View.OnClickListener {
+
+    /**
+     * Callbacks that this View will invoke.
+     */
+    public interface ViewListener {
+        /**
+         * Called when the big button has been pressed.
+         * @param action The action to take.
+         */
+        void bigButtonClickHandler(int action);
+    }
 
     private ImageView mLenderImage;
     private TextView mLenderNameField;
@@ -22,6 +34,9 @@ public class LoanApplicationDetailsView extends ScrollView {
     private TextView mPaymentField;
     private TextView mDurationField;
     private TextView mActionButton;
+
+    private ViewListener mListener;
+    private LoanApplicationDetailsModel mData;
 
     /**
      * @see ScrollView#ScrollView
@@ -58,7 +73,7 @@ public class LoanApplicationDetailsView extends ScrollView {
      * Sets up all callback listeners.
      */
     private void setUpListeners() {
-        // TODO
+        mActionButton.setOnClickListener(this);
     }
 
     /**
@@ -84,6 +99,12 @@ public class LoanApplicationDetailsView extends ScrollView {
         mTotalAmountField.setText(data.getAmountText());
         mPaymentField.setText(data.getMonthlyPaymentText());
         mDurationField.setText(data.getDurationText());
+
+        mActionButton.setVisibility(GONE);
+        if (data.getBigButtonModel().isVisible()) {
+            mActionButton.setVisibility(VISIBLE);
+            mActionButton.setText(data.getBigButtonModel().getLabelResource());
+        }
     }
 
     /**
@@ -97,6 +118,7 @@ public class LoanApplicationDetailsView extends ScrollView {
         mTotalAmountField.setText("");
         mPaymentField.setText("");
         mDurationField.setText("");
+        mActionButton.setText("");
     }
 
     /** {@inheritDoc} */
@@ -107,14 +129,33 @@ public class LoanApplicationDetailsView extends ScrollView {
         setUpListeners();
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void onClick(View view) {
+        if (mListener != null && view.getId() == R.id.tv_bttn_action) {
+            mListener.bigButtonClickHandler(mData.getBigButtonModel().getAction());
+        }
+    }
+
     /**
      * Displays the latest data.
      */
     public void setData(LoanApplicationDetailsModel data) {
+        mData = data;
+
         if (data == null) {
             resetView();
         } else {
             populateView(data);
         }
     }
+
+    /**
+     * Stores a new callback listener that this View will invoke.
+     * @param listener New callback listener.
+     */
+    public void setListener(ViewListener listener) {
+        mListener = listener;
+    }
+
 }

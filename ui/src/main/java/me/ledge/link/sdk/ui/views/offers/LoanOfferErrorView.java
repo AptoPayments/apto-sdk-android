@@ -108,7 +108,7 @@ public class LoanOfferErrorView extends LinearLayout implements View.OnClickList
      * Stores a new callback listener that this View will invoke.
      * @param listener New callback listener.
      */
-    public void setListener(LoanOfferErrorView.ViewListener listener) {
+    public void setListener(ViewListener listener) {
         mListener = listener;
     }
 

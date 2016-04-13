@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
+import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 
 /**
  * Concrete {@link LoanApplicationDetailsModel} for a loan application in the {@code PENDING_BORROWER_ACTION} state with
@@ -34,5 +35,15 @@ public class ApprovedLoanApplicationDetailsModel extends LoanApplicationDetailsM
     @Override
     public int getStatusColor() {
         return mResources.getColor(R.color.llsdk_application_approved_color);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public BigButtonModel getBigButtonModel() {
+        return new BigButtonModel(
+                true,
+                R.string.loan_application_button_pre_approved_loan,
+                BigButtonModel.Action.CONFIRM_LOAN
+        );
     }
 }

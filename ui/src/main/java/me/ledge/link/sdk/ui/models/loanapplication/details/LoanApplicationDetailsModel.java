@@ -6,6 +6,7 @@ import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsRes
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.models.Model;
+import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 
 /**
@@ -73,4 +74,9 @@ public abstract class LoanApplicationDetailsModel extends OfferSummaryModel impl
     public String getDurationText() {
         return mLoanDurationText;
     }
+
+    /**
+     * @return Big button configuration.
+     */
+    public abstract BigButtonModel getBigButtonModel();
 }

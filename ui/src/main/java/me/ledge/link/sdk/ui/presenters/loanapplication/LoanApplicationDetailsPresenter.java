@@ -20,7 +20,8 @@ import me.ledge.link.sdk.ui.views.loanapplication.LoanApplicationDetailsView;
  */
 public class LoanApplicationDetailsPresenter
         extends BasePresenter<LoanApplicationDetailsModel, LoanApplicationDetailsView>
-        implements Presenter<LoanApplicationDetailsModel, LoanApplicationDetailsView> {
+        implements Presenter<LoanApplicationDetailsModel, LoanApplicationDetailsView>,
+        LoanApplicationDetailsView.ViewListener {
 
     private final Resources mResources;
     private final LoanApplicationDetailsResponseVo mRawApplication;
@@ -106,12 +107,18 @@ public class LoanApplicationDetailsPresenter
         }
 
         mView.setData(mModel);
+        mView.setListener(this);
     }
 
     /** {@inheritDoc} */
     @Override
     public void detachView() {
+        mView.setListener(null);
         mView.setData(null);
         super.detachView();
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void bigButtonClickHandler(int action) { /* TODO */ }
 }
