@@ -16,6 +16,7 @@ public class BigButtonModel implements Model {
         public static final int RELOAD_LOAN_OFFERS = 2;
         public static final int UPLOAD_DOCUMENTS = 3;
         public static final int CONFIRM_LOAN = 4;
+        public static final int FINISH_EXTERNAL = 5;
     }
 
     private boolean mVisible;

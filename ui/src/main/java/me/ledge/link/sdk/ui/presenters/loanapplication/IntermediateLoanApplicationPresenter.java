@@ -8,6 +8,7 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.loanapplication.ApprovedLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.loanapplication.ErrorLoanApplicationModel;
+import me.ledge.link.sdk.ui.models.loanapplication.FinishExternalLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.PendingDocumentsModel;
 import me.ledge.link.sdk.ui.models.loanapplication.PendingLenderActionModel;
@@ -65,6 +66,9 @@ public class IntermediateLoanApplicationPresenter
                 break;
             case LoanApplicationActionId.AGREE_TERMS:
                 model = new PreApprovedLoanApplicationModel(loanApplication);
+                break;
+            case LoanApplicationActionId.FINISH_APPLICATION_EXTERNAL:
+                model = new FinishExternalLoanApplicationModel(loanApplication);
                 break;
             default:
                 // Do nothing.
