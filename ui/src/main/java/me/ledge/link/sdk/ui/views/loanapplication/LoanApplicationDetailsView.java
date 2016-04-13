@@ -66,6 +66,17 @@ public class LoanApplicationDetailsView extends ScrollView {
      * @param data New data.
      */
     private void populateView(LoanApplicationDetailsModel data) {
+        mLenderImage.setVisibility(GONE);
+        mLenderNameField.setVisibility(GONE);
+
+        if (data.hasImageLoader() && data.getLenderImage() != null) {
+            mLenderImage.setVisibility(VISIBLE);
+            data.getImageLoader().load(data.getLenderImage(), mLenderImage);
+        } else {
+            mLenderNameField.setText(data.getLenderName());
+            mLenderNameField.setVisibility(VISIBLE);
+        }
+
         mApplicationStateField.setText(data.getStatusText());
         mInterestRateField.setText(data.getInterestText());
         mTotalAmountField.setText(data.getAmountText());
@@ -77,6 +88,8 @@ public class LoanApplicationDetailsView extends ScrollView {
      * Clears this View.
      */
     private void resetView() {
+        mLenderImage.setImageResource(android.R.color.transparent);
+        mLenderNameField.setText("");
         mApplicationStateField.setText("");
         mInterestRateField.setText("");
         mTotalAmountField.setText("");
