@@ -4,6 +4,10 @@
     <color name="llsdk_link_color">#00f</color>
     <color name="llsdk_hairline_color">#aaa</color>
 
+    <color name="llsdk_application_approved_color">#58c246</color>
+    <color name="llsdk_application_pending_borrower_action_color">#ffd52b</color>
+    <color name="llsdk_application_pending_lender_action_color">#999</color>
+
     <!-- Dark -->
     <color name="llsdk_dark_text_color">#fff</color>
     <color name="llsdk_dark_text_color_hint">#777</color>

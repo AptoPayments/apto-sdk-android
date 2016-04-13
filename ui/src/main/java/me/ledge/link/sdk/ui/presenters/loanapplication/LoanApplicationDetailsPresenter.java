@@ -1,9 +1,15 @@
 package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.content.res.Resources;
+import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
+import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.models.loanapplication.details.ApprovedLoanApplicationDetailsModel;
+import me.ledge.link.sdk.ui.models.loanapplication.details.FinishExternalLoanApplicationDetailsModel;
 import me.ledge.link.sdk.ui.models.loanapplication.details.LoanApplicationDetailsModel;
+import me.ledge.link.sdk.ui.models.loanapplication.details.PendingLenderActionLoanApplicationDetailsModel;
+import me.ledge.link.sdk.ui.models.loanapplication.details.UploadDocsLoanApplicationDetailsModel;
 import me.ledge.link.sdk.ui.presenters.BasePresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.views.loanapplication.LoanApplicationDetailsView;
@@ -30,14 +36,64 @@ public class LoanApplicationDetailsPresenter
         mRawApplication = application;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public LoanApplicationDetailsModel createModel() {
-        if (mResources == null) {
+    /**
+     * Generates the {@link LoanApplicationDetailsModel} based on the {@link LoanApplicationActionId}.
+     * @param application Loan application.
+     * @return New Model OR null when the criteria aren't met.
+     */
+    private LoanApplicationDetailsModel createPendingBorrowerActionModel(LoanApplicationDetailsResponseVo application) {
+        if (application == null || application.required_actions == null || application.required_actions.data == null
+                || application.required_actions.data[0] == null) {
+
             return null;
         }
 
-        return new LoanApplicationDetailsModel(mRawApplication, mResources, LedgeLinkUi.getImageLoader());
+        LoanApplicationDetailsModel model = null;
+
+        switch (application.required_actions.data[0].action) {
+            case LoanApplicationActionId.AGREE_TERMS:
+                model = new ApprovedLoanApplicationDetailsModel(application, mResources, LedgeLinkUi.getImageLoader());
+                break;
+            case LoanApplicationActionId.UPLOAD_PHOTO_ID:
+                model = new UploadDocsLoanApplicationDetailsModel(
+                        application, mResources, LedgeLinkUi.getImageLoader());
+                break;
+            case LoanApplicationActionId.FINISH_APPLICATION_EXTERNAL:
+                model = new FinishExternalLoanApplicationDetailsModel(
+                        application, mResources, LedgeLinkUi.getImageLoader());
+                break;
+            default:
+                // Do nothing.
+                break;
+        }
+
+        return model;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public LoanApplicationDetailsModel createModel() {
+        if (mResources == null || mRawApplication == null) {
+            return null;
+        }
+
+        LoanApplicationDetailsModel model = null;
+
+        switch (mRawApplication.status) {
+            case LoanApplicationStatus.PENDING_BORROWER_ACTION:
+                model = createPendingBorrowerActionModel(mRawApplication);
+                break;
+            case LoanApplicationStatus.PENDING_LENDER_ACTION:
+            case LoanApplicationStatus.APPLICATION_RECEIVED:
+                model = new PendingLenderActionLoanApplicationDetailsModel(
+                        mRawApplication, mResources, LedgeLinkUi.getImageLoader());
+                break;
+            default:
+                // Do nothing.
+                break;
+        }
+
+        return model;
     }
 
     /** {@inheritDoc} */

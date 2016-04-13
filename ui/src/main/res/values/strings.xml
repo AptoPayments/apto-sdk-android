@@ -117,4 +117,8 @@
     <string name="loan_applications_list_label">My loan applications</string>
     <string name="loan_application_details_duration">Loan term: %s</string>
     <string name="loan_application_details_disclaimer">Sed pellentesque diam a ligula molestie ultrices. Donec interdum convallis dui, non fermentum sapien lacinia at. Donec congue velit ut rhoncus sodales.</string>
+    <string name="loan_application_details_status_approved">Application approved</string>
+    <string name="loan_application_details_status_pending_borrower_action_upload">Additional docs required</string>
+    <string name="loan_application_details_status_pending_borrower_action_finish_external">Additional info required</string>
+    <string name="loan_application_details_status_pending_lender_action">Processing application&#8230;</string>
 </resources>

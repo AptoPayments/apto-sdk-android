@@ -78,6 +78,8 @@ public class LoanApplicationDetailsView extends ScrollView {
         }
 
         mApplicationStateField.setText(data.getStatusText());
+        mApplicationStateField.setTextColor(data.getStatusColor());
+
         mInterestRateField.setText(data.getInterestText());
         mTotalAmountField.setText(data.getAmountText());
         mPaymentField.setText(data.getMonthlyPaymentText());

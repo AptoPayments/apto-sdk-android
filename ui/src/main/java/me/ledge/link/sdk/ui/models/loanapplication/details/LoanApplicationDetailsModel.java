@@ -9,10 +9,10 @@ import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 
 /**
- * Concrete {@link Model} for loan application details.
+ * Abstract {@link Model} for loan application details.
  * @author Wijnand
  */
-public class LoanApplicationDetailsModel extends OfferSummaryModel implements Model {
+public abstract class LoanApplicationDetailsModel extends OfferSummaryModel implements Model {
 
     private String mLoanDurationText;
 
@@ -60,16 +60,12 @@ public class LoanApplicationDetailsModel extends OfferSummaryModel implements Mo
     /**
      * @return Application status text.
      */
-    public String getStatusText() {
-        return "Status";
-    }
+    public abstract String getStatusText();
 
     /**
      * @return Application status color.
      */
-    public int getStatusColor() {
-        return -1;
-    }
+    public abstract int getStatusColor();
 
     /**
      * @return Loan duration text.
