@@ -4,8 +4,10 @@
     <attr name="llsdk_toolbarTheme" format="reference" />
     <attr name="llsdk_toolbarPopupTheme" format="reference" />
     <attr name="llsdk_dataContainerStyle" format="reference" />
+    <attr name="llsdk_bigButtonStyle" format="reference" />
     <attr name="llsdk_nextButtonStyle" format="reference" />
     <attr name="llsdk_textLinkStyle" format="reference" />
+    <attr name="llsdk_lenderLogoBackground" format="reference|color" />
 
     <!-- Stepper -->
     <attr name="llsdk_stepper_backgroundColor" format="reference|color" />

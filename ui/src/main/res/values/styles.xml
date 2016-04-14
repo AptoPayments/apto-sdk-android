@@ -75,7 +75,21 @@
 
     <style name="llsdk_lender_logo">
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:background">@color/llsdk_dark_text_color_hint</item>
+        <item name="android:background">?attr/llsdk_lenderLogoBackground</item>
+    </style>
+
+    <style name="llsdk_big_button_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/llsdk_big_button_height</item>
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingStart">32dp</item>
+        <item name="android:paddingRight">32dp</item>
+        <item name="android:paddingEnd">32dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@color/llsdk_dark_text_color</item>
+        <item name="android:textColor">@color/llsdk_light_text_color</item>
     </style>
 
     <!-- Terms -->
@@ -126,14 +140,10 @@
         <item name="android:gravity">center_horizontal</item>
     </style>
 
-    <style name="llsdk_id_verification_next_button">
+    <style name="llsdk_id_verification_next_button" parent="llsdk_big_button_style">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="android:gravity">center</item>
+        <item name="android:padding">0dp</item>
         <item name="android:layout_alignParentBottom">true</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:background">@color/llsdk_dark_text_color</item>
-        <item name="android:textColor">@color/llsdk_light_text_color</item>
     </style>
 
     <!-- Loan offers -->
@@ -205,6 +215,11 @@
         <item name="android:textColor">@color/llsdk_light_text_color</item>
     </style>
 
+    <style name="llsdk_big_button_style_light" parent="llsdk_big_button_style">
+        <item name="android:background">@color/llsdk_dark_text_color_hint</item>
+        <item name="android:textColor">@color/llsdk_dark_text_color</item>
+    </style>
+
     <style name="llsdk_id_verification_next_button_light" parent="llsdk_id_verification_next_button">
         <item name="android:background">@color/llsdk_dark_text_color_hint</item>
         <item name="android:textColor">@color/llsdk_dark_text_color</item>
@@ -214,6 +229,10 @@
     <!--
         BLUE
     -->
+
+    <style name="llsdk_big_button_style_blue" parent="llsdk_big_button_style_light">
+        <item name="android:background">@color/llsdk_blue_primary_dark</item>
+    </style>
 
     <style name="llsdk_user_data_next_button_blue" parent="llsdk_id_verification_next_button_light">
         <item name="android:background">@color/llsdk_blue_primary_dark</item>
@@ -248,9 +267,4 @@
     <style name="llsdk_loan_offer_summary_apply_button_blue" parent="llsdk_loan_offer_summary_apply_button">
         <item name="android:textColor">@color/llsdk_blue_primary</item>
     </style>
-
-    <style name="llsdk_loan_offer_summary_image_blue" parent="llsdk_loan_offer_summary_image">
-        <item name="android:background">@color/llsdk_blue_lender_image_background</item>
-    </style>
-
 </resources>

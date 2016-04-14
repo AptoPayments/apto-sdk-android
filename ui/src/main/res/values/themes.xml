@@ -11,8 +11,10 @@
         <item name="llsdk_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="llsdk_toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
+        <item name="llsdk_bigButtonStyle">@style/llsdk_big_button_style</item>
         <item name="llsdk_nextButtonStyle">@style/llsdk_id_verification_next_button</item>
         <item name="llsdk_textLinkStyle">@style/llsdk_plain_text_link</item>
+        <item name="llsdk_lenderLogoBackground">@color/llsdk_dark_text_color_hint</item>
 
         <item name="llsdk_stepper_backgroundColor">@color/llsdk_stepper_background</item>
         <item name="llsdk_stepper_textColor">@color/llsdk_stepper_text</item>
@@ -75,8 +77,10 @@
         <item name="llsdk_toolbarTheme">@style/ThemeOverlay.AppCompat.ActionBar</item>
         <item name="llsdk_toolbarPopupTheme">@style/ThemeOverlay.AppCompat</item>
         <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
+        <item name="llsdk_bigButtonStyle">@style/llsdk_big_button_style_light</item>
         <item name="llsdk_nextButtonStyle">@style/llsdk_id_verification_next_button_light</item>
         <item name="llsdk_textLinkStyle">@style/llsdk_plain_text_link</item>
+        <item name="llsdk_lenderLogoBackground">@color/llsdk_dark_text_color_hint</item>
 
         <item name="llsdk_stepper_backgroundColor">@color/llsdk_stepper_background</item>
         <item name="llsdk_stepper_textColor">@color/llsdk_stepper_text</item>
@@ -147,8 +151,10 @@
         <item name="llsdk_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="llsdk_toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
+        <item name="llsdk_bigButtonStyle">@style/llsdk_big_button_style_blue</item>
         <item name="llsdk_nextButtonStyle">@style/llsdk_user_data_next_button_blue</item>
         <item name="llsdk_textLinkStyle">@style/llsdk_plain_text_link_blue</item>
+        <item name="llsdk_lenderLogoBackground">@color/llsdk_blue_lender_image_background</item>
 
         <item name="llsdk_stepper_backgroundColor">@color/llsdk_stepper_background</item>
         <item name="llsdk_stepper_textColor">@color/llsdk_stepper_text</item>
@@ -175,7 +181,7 @@
         <item name="llsdk_loanOfferSummary_headerStyle">@style/llsdk_loan_offer_summary_header_blue</item>
         <item name="llsdk_loanOfferSummary_textStyle">@style/llsdk_loan_offer_summary_text_blue</item>
         <item name="llsdk_loanOfferSummary_buttonStyle">@style/llsdk_loan_offer_summary_apply_button_blue</item>
-        <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image_blue</item>
+        <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image</item>
 
         <item name="llsdk_loanAgreement_sectionStyle">@style/llsdk_loan_agreement_section</item>
         <item name="llsdk_loanAgreement_sectionHeaderStyle">@style/llsdk_loan_agreement_section_header</item>

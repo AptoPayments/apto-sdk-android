@@ -23,7 +23,7 @@
                     android:id="@+id/rl_image_holder"
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
-                    android:background="#ddd">
+                    android:background="?attr/llsdk_lenderLogoBackground">
 
                 <ImageView
                         android:id="@+id/iv_lender_logo"
@@ -48,42 +48,38 @@
 
                 <TextView
                         android:id="@+id/tv_application_state"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        style="?attr/llsdk_loanOfferSummary_headerStyle"
+                        android:layout_marginBottom="8dp" />
 
                 <TextView
                         android:id="@+id/tv_loan_interest_rate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="?attr/llsdk_loanOfferSummary_textStyle"
                         android:text="@string/offers_list_summary_interest_rate" />
 
                 <TextView
                         android:id="@+id/tv_loan_amount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="?attr/llsdk_loanOfferSummary_textStyle"
                         android:text="@string/offers_list_summary_loan_amount" />
 
                 <TextView
                         android:id="@+id/tv_payment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="?attr/llsdk_loanOfferSummary_textStyle"
                         android:text="@string/offers_list_summary_monthly_payment" />
 
                 <TextView
                         android:id="@+id/tv_loan_duration"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="?attr/llsdk_loanOfferSummary_textStyle"
                         android:text="@string/loan_application_details_duration" />
 
                 <TextView
                         android:id="@+id/tv_bttn_action"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal" />
+                        style="?attr/llsdk_bigButtonStyle"
+                        android:layout_marginTop="16dp" />
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
                         android:text="@string/loan_application_details_disclaimer" />
 
             </LinearLayout>
