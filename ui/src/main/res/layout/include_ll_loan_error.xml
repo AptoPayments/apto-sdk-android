@@ -47,7 +47,6 @@
 
     <TextView
             android:id="@+id/tv_bttn_big"
-            android:layout_width="240dp"
-            style="?attr/llsdk_nextButtonStyle" />
+            style="?attr/llsdk_bigButtonStyle" />
 
 </me.ledge.link.sdk.ui.views.offers.LoanOfferErrorView>

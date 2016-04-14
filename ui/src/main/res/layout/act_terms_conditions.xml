@@ -33,12 +33,8 @@
 
             <TextView
                     android:id="@+id/tv_next_bttn"
-                    style="?attr/llsdk_nextButtonStyle"
+                    style="?attr/llsdk_bigButtonStyle"
                     android:layout_marginTop="32dp"
-                    android:layout_marginLeft="64dp"
-                    android:layout_marginStart="64dp"
-                    android:layout_marginRight="64dp"
-                    android:layout_marginEnd="64dp"
                     android:text="@string/terms_button_next" />
 
         </LinearLayout>
