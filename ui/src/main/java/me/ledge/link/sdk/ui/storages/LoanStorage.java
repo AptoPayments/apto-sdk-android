@@ -10,8 +10,7 @@ import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import java.util.ArrayList;
 
 /**
- * TODO: Class documentation.
- *
+ * Stores loan offer and application related data.
  * @author Wijnand
  */
 public class LoanStorage {

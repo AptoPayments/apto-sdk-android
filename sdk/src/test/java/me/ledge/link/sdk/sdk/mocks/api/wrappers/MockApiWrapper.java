@@ -132,20 +132,20 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public LoanApplicationDetailsResponseVo createLoanApplication(long offerId) throws ApiException {
-        return null;
+    public LoanApplicationDetailsResponseVo createLoanApplication(long offerId) {
+        LoanApplicationDetailsResponseVo application = new LoanApplicationDetailsResponseVo();
+        application.status = "";
+        application.required_actions = new ListResponseVo<>();
+        application.required_actions.data = new LoanApplicationActionVo[] { new LoanApplicationActionVo() };
+
+        return application;
     }
 
     /** {@inheritDoc} */
     @Override
     public LoanApplicationsListResponseVo getLoanApplicationsList(ListRequestVo requestData) {
-        LoanApplicationDetailsResponseVo applicationOne = new LoanApplicationDetailsResponseVo();
-        applicationOne.status = "";
-        applicationOne.required_actions = new ListResponseVo<>();
-        applicationOne.required_actions.data = new LoanApplicationActionVo[] { new LoanApplicationActionVo() };
-
         LoanApplicationsListResponseVo response = new LoanApplicationsListResponseVo();
-        response.data = new LoanApplicationDetailsResponseVo[] {applicationOne};
+        response.data = new LoanApplicationDetailsResponseVo[] { createLoanApplication(-1) };
 
         return response;
     }
