@@ -48,7 +48,7 @@ install:
 # Running tests.
 script:
   - gradle --configure-on-demand -p sdk testDebugUnitTest
-  - gradle --configure-on-demand -p ui testDebugUnitTestCoverage
+  - gradle --configure-on-demand -p ui assembleDebug testDebugUnitTestCoverage
 
 after_success:
   # Copy file to expected location.

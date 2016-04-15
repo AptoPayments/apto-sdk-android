@@ -88,3 +88,24 @@ dependencies {
     testCompile 'org.powermock:powermock-module-junit4-rule:+'
     testCompile 'org.powermock:powermock-module-junit4:+'
 }
+
+// Lame Robolectric testing hacks...
+// See https://github.com/robolectric/robolectric/issues/1796#issuecomment-101362218
+afterEvaluate { project ->
+    android.libraryVariants.each { variant ->
+        // workaround for missing R class for aar dependencies
+        tasks.getByName("assemble${variant.name.capitalize()}").dependsOn copyAppcompat
+    }
+}
+
+task copyAppcompat(type: Copy) {
+    def projectPackage = "me/ledge/link/sdk/ui"
+
+    from "build/generated/source/r/debug/${projectPackage}".replace("/", File.separator)
+    into 'src/test/java/android/support/v7/appcompat'.replace("/", File.separator)
+    include 'R.java'
+
+    filter { line ->
+        line.contains("package ${projectPackage.replace("/", ".")};") ? 'package android.support.v7.appcompat;' : line
+    }
+}
