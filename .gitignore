@@ -13,3 +13,4 @@ gen
 # Misc
 libs/
 .DS_Store
+ui/src/test/java/android/
