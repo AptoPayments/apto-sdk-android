@@ -1,6 +1,8 @@
 package me.ledge.link.sdk.ui.models.loanapplication;
 
+import android.app.Activity;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 
 /**
@@ -17,6 +19,12 @@ public class RejectedLoanApplicationModel
      */
     public RejectedLoanApplicationModel(LoanApplicationDetailsResponseVo loanApplication) {
         super(loanApplication);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Class getPreviousActivity(Activity current) {
+        return LedgeLinkUi.getProcessOrder().get(1);
     }
 
     /** {@inheritDoc} */
