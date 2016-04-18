@@ -101,14 +101,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     public void setBirthday(int year, int monthOfYear, int dayOfMonth) {
         try {
             Calendar birth = new GregorianCalendar(year, monthOfYear, dayOfMonth);
-            Calendar minAge = GregorianCalendar.getInstance();
-            minAge.add(Calendar.YEAR, mMinimumAge * -1);
-
-            if (birth.compareTo(minAge) < 0) {
-                mBirthday = birth.getTime();
-            } else {
-                mBirthday = null;
-            }
+            mBirthday = birth.getTime();
         } catch (IllegalArgumentException iae) {
             mBirthday = null;
         }
@@ -157,7 +150,17 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      * @return Whether a valid birthday has been stored.
      */
     public boolean hasValidBirthday() {
-        return getBirthday() != null;
+        if (mBirthday == null) {
+            return false;
+        }
+
+        Calendar birth = GregorianCalendar.getInstance();
+        birth.setTime(mBirthday);
+
+        Calendar minAge = GregorianCalendar.getInstance();
+        minAge.add(Calendar.YEAR, mMinimumAge * -1);
+
+        return birth.compareTo(minAge) < 0;
     }
 
     /**

@@ -94,10 +94,7 @@ public class IdentityVerificationPresenter
     public void birthdayClickHandler() {
         DatePickerFragment fragment = new DatePickerFragment();
 
-        if (mModel.hasValidBirthday()) {
-            fragment.setDate(mModel.getBirthday());
-        }
-
+        fragment.setDate(mModel.getBirthday());
         fragment.setThemeId(getBirthdayDialogThemeId(mActivity));
         fragment.setListener(this);
         fragment.show(mActivity.getFragmentManager(), DatePickerFragment.TAG);

@@ -80,28 +80,28 @@ public class IdentityVerificationModelTest {
 
     /**
      * Given an empty Model.<br />
-     * When trying to store a valid birthday.<br />
-     * Then the birthday should be stored.
+     * When storing a valid birthday.<br />
+     * Then the birthday should be flagged as valid.
      */
     @Test
-    public void validBirthdayIsStored() {
+    public void validBirthday() {
         Calendar birthday = getValidBirthday();
         mModel.setBirthday(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DATE));
 
-        Assert.assertTrue("Birthday should be stored.", mModel.hasValidBirthday());
+        Assert.assertTrue("Birthday should be valid.", mModel.hasValidBirthday());
         Assert.assertFalse("There should be missing data.", mModel.hasAllData());
     }
 
     /**
      * Given an empty Model.<br />
-     * When trying to store a valid birthday.<br />
-     * Then the birthday should be stored.
+     * When storing an invalid birthday.<br />
+     * Then the birthday should be flagged as invalid.
      */
     @Test
-    public void invalidBirthdayIsNotStored() {
+    public void invalidBirthday() {
         Calendar today = GregorianCalendar.getInstance();
         mModel.setBirthday(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DATE));
-        Assert.assertFalse("Birthday should NOT be stored.", mModel.hasValidBirthday());
+        Assert.assertFalse("Birthday should NOT be valid.", mModel.hasValidBirthday());
     }
 
     /**
