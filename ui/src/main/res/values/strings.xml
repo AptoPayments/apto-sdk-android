@@ -114,6 +114,13 @@
     <string name="loan_agreement_terms_dialog_title">Quisque auctor</string>
     <string name="loan_agreement_terms_dialog_message">Sed vitae felis eget lorem tempus fermentum. Praesent vel augue bibendum, gravida erat in, tincidunt nibh.</string>
 
+    <!-- Add documents -->
+    <string name="add_documents_label">Add docs</string>
+    <string name="add_documents_title_unchecked_photo_id">Add photo ID</string>
+    <string name="add_documents_title_unchecked_bank_statement">Add bank statement</string>
+    <string name="add_documents_title_unchecked_proof_of_address">Add proof of address</string>
+    <string name="add_documents_title_unchecked_other">Add other</string>
+
     <!-- Loan Applications List -->
     <string name="loan_applications_list_label">My loan applications</string>
     <string name="loan_application_details_duration">Loan term: %s</string>

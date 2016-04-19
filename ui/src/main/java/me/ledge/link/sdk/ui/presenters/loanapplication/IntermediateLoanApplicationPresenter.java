@@ -62,6 +62,8 @@ public class IntermediateLoanApplicationPresenter
         switch (loanApplication.required_actions.data[0].action) {
             case LoanApplicationActionId.UPLOAD_BANK_STATEMENT:
             case LoanApplicationActionId.UPLOAD_PHOTO_ID:
+            case LoanApplicationActionId.UPLOAD_PROOF_OF_ADDRESS:
+            case LoanApplicationActionId.UNKNOWN:
                 model = new PendingDocumentsModel(loanApplication);
                 break;
             case LoanApplicationActionId.AGREE_TERMS:
@@ -153,6 +155,7 @@ public class IntermediateLoanApplicationPresenter
                 // TODO
                 break;
             case BigButtonModel.Action.CONFIRM_LOAN:
+            case BigButtonModel.Action.UPLOAD_DOCUMENTS:
                 startNextActivity();
                 break;
             default:

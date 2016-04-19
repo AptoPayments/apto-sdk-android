@@ -1,7 +1,9 @@
 package me.ledge.link.sdk.ui.models.loanapplication;
 
+import android.app.Activity;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.activities.loanapplication.AddDocumentsListActivity;
 
 /**
  * Concrete {@link IntermediateLoanApplicationModel} for a loan application that requires more documents from the user.
@@ -31,5 +33,11 @@ public class PendingDocumentsModel extends AbstractLoanApplicationModel implemen
                 R.string.loan_application_button_documents_pending,
                 BigButtonModel.Action.UPLOAD_DOCUMENTS
         );
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Class getNextActivity(Activity current) {
+        return AddDocumentsListActivity.class;
     }
 }

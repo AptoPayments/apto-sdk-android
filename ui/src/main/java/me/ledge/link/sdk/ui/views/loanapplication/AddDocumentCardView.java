@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.TextView;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentModel;
 
 /**
  * Displays a single request to add a document for a loan application.
@@ -48,5 +49,19 @@ public class AddDocumentCardView extends CardView {
     protected void onFinishInflate() {
         super.onFinishInflate();
         findAllViews();
+    }
+
+    /**
+     * Updates this View with the latest data.
+     * @param data Latest data.
+     */
+    public void setData(AddDocumentModel data) {
+        if (data == null) {
+            return;
+        }
+
+        mIconView.setImageResource(data.getIconResourceId());
+        mTitleField.setText(data.getTitleResourceId());
+        mDescriptionField.setText(data.getDescription());
     }
 }
