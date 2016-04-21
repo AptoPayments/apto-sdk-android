@@ -94,7 +94,7 @@
 
         <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.Light.TextInput</item>
         <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_base</item>
-        <item name="llsdk_idVerification_editTextStyle">@style/llsdk_id_verification_text_input_base_light</item>
+        <item name="llsdk_idVerification_editTextStyle">@style/llsdk_id_verification_text_input_base</item>
         <item name="llsdk_idVerification_disclaimerStyle">@style/llsdk_id_verification_disclaimer</item>
 
         <item name="llsdk_userData_infoIcon">@drawable/ic_help_outline_black_24dp</item>

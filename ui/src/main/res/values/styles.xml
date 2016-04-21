@@ -92,6 +92,10 @@
         <item name="android:textColor">@color/llsdk_light_text_color</item>
     </style>
 
+    <style name="llsdk_error_text" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textColor">@color/llsdk_error_text_color</item>
+    </style>
+
     <!-- Terms -->
     <style name="llsdk_terms_disclaimer">
         <item name="android:layout_width">match_parent</item>
@@ -210,10 +214,6 @@
     <!--
         LIGHT
     -->
-
-    <style name="llsdk_id_verification_text_input_base_light" parent="llsdk_id_verification_text_input_base">
-        <item name="android:textColor">@color/llsdk_light_text_color</item>
-    </style>
 
     <style name="llsdk_big_button_style_light" parent="llsdk_big_button_style">
         <item name="android:background">@color/llsdk_dark_text_color_hint</item>

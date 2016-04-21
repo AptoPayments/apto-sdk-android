@@ -102,7 +102,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:layout_marginStart="4dp"
-                            style="@style/TextAppearance.Design.Error" />
+                            style="@style/llsdk_error_text" />
 
                 </LinearLayout>
 

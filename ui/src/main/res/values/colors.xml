@@ -3,6 +3,7 @@
     <!-- Generic -->
     <color name="llsdk_link_color">#00f</color>
     <color name="llsdk_hairline_color">#aaa</color>
+    <color name="llsdk_error_text_color">#FFDD2C00</color>
 
     <color name="llsdk_application_approved_color">#58c246</color>
     <color name="llsdk_application_pending_borrower_action_color">#ffd52b</color>
