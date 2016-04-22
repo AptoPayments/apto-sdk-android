@@ -20,7 +20,7 @@ public class AddBankStatementModel extends AbstractAddDocumentModel implements A
     /** {@inheritDoc} */
     @Override
     public int getIconResourceId() {
-        return R.drawable.icon_cloud_ckeck;
+        return R.drawable.icon_add_doc_bank_statement;
     }
 
     /** {@inheritDoc} */

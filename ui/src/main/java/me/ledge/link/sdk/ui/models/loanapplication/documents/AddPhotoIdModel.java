@@ -20,7 +20,7 @@ public class AddPhotoIdModel extends AbstractAddDocumentModel implements AddDocu
     /** {@inheritDoc} */
     @Override
     public int getIconResourceId() {
-        return R.drawable.icon_cloud_arrow_up;
+        return R.drawable.icon_add_doc_photo_id;
     }
 
     /** {@inheritDoc} */

@@ -20,7 +20,7 @@ public class AddProofOfAddressModel extends AbstractAddDocumentModel implements 
     /** {@inheritDoc} */
     @Override
     public int getIconResourceId() {
-        return R.drawable.icon_cloud_cog;
+        return R.drawable.icon_add_doc_address;
     }
 
     /** {@inheritDoc} */

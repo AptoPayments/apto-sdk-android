@@ -20,7 +20,7 @@ public class AddOtherDocumentModel extends AbstractAddDocumentModel implements A
     /** {@inheritDoc} */
     @Override
     public int getIconResourceId() {
-        return R.drawable.icon_cloud_dollar;
+        return R.drawable.icon_add_doc_generic;
     }
 
     /** {@inheritDoc} */
