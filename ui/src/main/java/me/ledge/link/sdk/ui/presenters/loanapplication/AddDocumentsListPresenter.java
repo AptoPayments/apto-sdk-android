@@ -41,6 +41,12 @@ public class AddDocumentsListPresenter
 
     /** {@inheritDoc} */
     @Override
+    protected void setupToolbar() {
+        initToolbar();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void attachView(AddDocumentsListView view) {
         super.attachView(view);
 
