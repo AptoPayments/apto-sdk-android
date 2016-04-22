@@ -1,5 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.loanapplication;
 
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
@@ -20,7 +21,9 @@ import me.ledge.link.sdk.ui.views.loanapplication.AddDocumentsListView;
  */
 public class AddDocumentsListPresenter
         extends ActivityPresenter<AddDocumentsListModel, AddDocumentsListView>
-        implements Presenter<AddDocumentsListModel, AddDocumentsListView> {
+        implements Presenter<AddDocumentsListModel, AddDocumentsListView>, AddDocumentsListView.ViewListener {
+
+    private BottomSheetBehavior mBehavior;
 
     /**
      * Creates a new {@link AddDocumentsListPresenter} instance.
@@ -42,7 +45,17 @@ public class AddDocumentsListPresenter
         super.attachView(view);
 
         AddDocumentModel[] viewData = createViewData(mModel.getRequiredActions());
+        mView.setViewListener(this);
         mView.setData(viewData);
+
+        mBehavior = BottomSheetBehavior.from(mView.getBottomSheet());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void detachView() {
+        mView.setViewListener(null);
+        super.detachView();
     }
 
     /**
@@ -77,5 +90,23 @@ public class AddDocumentsListPresenter
         }
 
         return data;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void cardClickHandler() {
+        mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void photoClickHandler() {
+        mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void libraryClickHandler() {
+        mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
     }
 }
