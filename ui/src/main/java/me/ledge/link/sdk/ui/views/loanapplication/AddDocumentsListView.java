@@ -39,10 +39,17 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
          * Called when the "Select from library" button has been pressed.
          */
         void libraryClickHandler();
+
+        /**
+         * Called when the "DONE" button has been pressed.
+         */
+        void doneClickHandler();
     }
 
     private Toolbar mToolbar;
     private LinearLayout mDocumentsList;
+    private TextView mDoneButton;
+
     private NestedScrollView mBottomSheet;
     private TextView mPhotoButton;
     private TextView mLibraryButton;
@@ -72,6 +79,7 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
     private void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         mDocumentsList = (LinearLayout) findViewById(R.id.ll_documents_list);
+        mDoneButton = (TextView) findViewById(R.id.tv_done_bttn);
         mBottomSheet = (NestedScrollView) findViewById(R.id.nsv_bottom_sheet);
         mPhotoButton = (TextView) findViewById(R.id.tv_photo_bttn);
         mLibraryButton = (TextView) findViewById(R.id.tv_library_bttn);
@@ -81,6 +89,7 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
      * Sets up all callback listeners for this View.
      */
     private void setUpListeners() {
+        mDoneButton.setOnClickListener(this);
         mPhotoButton.setOnClickListener(this);
         mLibraryButton.setOnClickListener(this);
     }
@@ -105,6 +114,8 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
             mListener.photoClickHandler();
         } else if (id == R.id.tv_library_bttn) {
             mListener.libraryClickHandler();
+        } else if (id == R.id.tv_done_bttn) {
+            mListener.doneClickHandler();
         } else {
             mListener.cardClickHandler();
         }

@@ -109,4 +109,10 @@ public class AddDocumentsListPresenter
     public void libraryClickHandler() {
         mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void doneClickHandler() {
+        startNextActivity();
+    }
 }

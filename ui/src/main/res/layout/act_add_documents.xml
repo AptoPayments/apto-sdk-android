@@ -5,16 +5,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
         <include layout="@layout/include_toolbar" />
 
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@+id/abl_toolbar_wrapper"
+                android:layout_above="@+id/tv_done_bttn"
                 android:paddingBottom="16dp"
                 android:clipToPadding="false"
                 android:scrollbars="vertical"
@@ -28,7 +29,13 @@
                     android:orientation="vertical" />
 
         </ScrollView>
-    </LinearLayout>
+
+        <TextView
+                android:id="@+id/tv_done_bttn"
+                style="?attr/llsdk_nextButtonStyle"
+                android:text="@string/add_documents_button_done" />
+
+    </RelativeLayout>
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nsv_bottom_sheet"
