@@ -54,11 +54,12 @@
                     android:id="@+id/tv_photo_bttn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:drawableLeft="@drawable/icon_add_doc_bottomsheet_camera"
                     android:drawableStart="@drawable/icon_add_doc_bottomsheet_camera"
                     android:drawablePadding="16dp"
+                    android:textSize="@dimen/llsdk_body_text_size"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="16dp"
                     android:text="@string/add_documents_bottom_sheet_photo" />
 
             <TextView
@@ -68,6 +69,7 @@
                     android:drawableLeft="@drawable/icon_add_doc_bottomsheet_browse"
                     android:drawableStart="@drawable/icon_add_doc_bottomsheet_browse"
                     android:drawablePadding="16dp"
+                    android:textSize="@dimen/llsdk_body_text_size"
                     android:gravity="center_vertical"
                     android:text="@string/add_documents_bottom_sheet_library" />
 

@@ -21,4 +21,9 @@ public interface AddDocumentModel {
      */
     String getDescription();
 
+    /**
+     * @return Whether one or more documents have been attached.
+     */
+    boolean hasDocument();
+
 }

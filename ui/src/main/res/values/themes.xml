@@ -107,6 +107,12 @@
         <item name="llsdk_loanOfferSummary_buttonStyle">@style/llsdk_loan_offer_summary_apply_button</item>
         <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image</item>
 
+        <item name="llsdk_addDocuments_iconBackgroundUncheckedColor">@color/llsdk_dark_text_color_hint</item>
+        <item name="llsdk_addDocuments_iconBackgroundCheckedColor">@color/llsdk_light_docs_icon_unchecked</item>
+        <item name="llsdk_addDocuments_iconUncheckedColor">@color/llsdk_light_docs_icon_unchecked</item>
+        <item name="llsdk_addDocuments_iconCheckedColor">@color/llsdk_dark_text_color_hint</item>
+        <item name="llsdk_addDocuments_bottomsheetIconColor">@color/llsdk_dark_text_color_hint</item>
+
         <item name="llsdk_loanAgreement_sectionStyle">@style/llsdk_loan_agreement_section</item>
         <item name="llsdk_loanAgreement_sectionHeaderStyle">@style/llsdk_loan_agreement_section_header</item>
         <item name="llsdk_loanAgreement_summaryTextStyle">@style/llsdk_loan_agreement_summary_text</item>

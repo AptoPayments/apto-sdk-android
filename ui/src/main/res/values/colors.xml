@@ -16,6 +16,7 @@
     <!-- Light -->
     <color name="llsdk_light_text_color">#000</color>
     <color name="llsdk_light_control_activated">#333</color>
+    <color name="llsdk_light_docs_icon_unchecked">#aaa</color>
 
     <!-- Blue -->
     <color name="llsdk_blue_primary">#1b9af7</color>

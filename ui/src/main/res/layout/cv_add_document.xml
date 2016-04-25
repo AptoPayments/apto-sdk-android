@@ -18,7 +18,7 @@
                 android:layout_width="96dp"
                 android:layout_height="match_parent"
                 android:padding="8dp"
-                android:background="@color/llsdk_blue_lender_image_background" />
+                android:background="?attr/llsdk_addDocuments_iconBackgroundUncheckedColor" />
 
         <LinearLayout
                 android:layout_width="wrap_content"
@@ -32,12 +32,17 @@
             <TextView
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/llsdk_dark_text_color_hint"
+                    android:textSize="@dimen/llsdk_terms_title_text_size" />
 
             <TextView
                     android:id="@+id/tv_description"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/llsdk_offer_summary_body_text_size" />
 
         </LinearLayout>
     </RelativeLayout>

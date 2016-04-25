@@ -1,6 +1,8 @@
 package me.ledge.link.sdk.ui.views.loanapplication;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentModel;
+import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
@@ -94,11 +97,34 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
         mLibraryButton.setOnClickListener(this);
     }
 
+    /**
+     * Updates the bottom sheet styling.
+     */
+    private void updateBottomSheet() {
+        int color = new ResourceUtil().getResourceIdForAttribute(
+                getContext(), R.attr.llsdk_addDocuments_bottomsheetIconColor);
+
+        updateDrawableColor(mPhotoButton.getCompoundDrawables()[0], color);
+        updateDrawableColor(mLibraryButton.getCompoundDrawables()[0], color);
+    }
+
+    /**
+     * Updates a {@link Drawable}'s "tint".
+     * @param drawable The Drawable to tint.
+     * @param colorId Tint color resource ID.
+     */
+    private void updateDrawableColor(Drawable drawable, int colorId) {
+        if (drawable != null) {
+            drawable.setColorFilter(getResources().getColor(colorId), PorterDuff.Mode.SRC_ATOP);
+        }
+    }
+
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
         findAllViews();
+        updateBottomSheet();
         setUpListeners();
     }
 

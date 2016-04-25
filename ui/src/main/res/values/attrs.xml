@@ -41,6 +41,13 @@
     <attr name="llsdk_loanOfferSummary_buttonStyle" format="reference" />
     <attr name="llsdk_loanOfferSummary_imageStyle" format="reference" />
 
+    <!-- Add documents -->
+    <attr name="llsdk_addDocuments_iconBackgroundUncheckedColor" format="reference|color" />
+    <attr name="llsdk_addDocuments_iconBackgroundCheckedColor" format="reference|color" />
+    <attr name="llsdk_addDocuments_iconUncheckedColor" format="reference|color" />
+    <attr name="llsdk_addDocuments_iconCheckedColor" format="reference|color" />
+    <attr name="llsdk_addDocuments_bottomsheetIconColor" format="reference|color" />
+
     <!-- Loan Agreement -->
     <attr name="llsdk_loanAgreement_sectionStyle" format="reference" />
     <attr name="llsdk_loanAgreement_sectionHeaderStyle" format="reference" />

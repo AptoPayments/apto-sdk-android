@@ -29,4 +29,10 @@ public abstract class AbstractAddDocumentModel implements AddDocumentModel {
 
         return description;
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasDocument() {
+        return false;
+    }
 }

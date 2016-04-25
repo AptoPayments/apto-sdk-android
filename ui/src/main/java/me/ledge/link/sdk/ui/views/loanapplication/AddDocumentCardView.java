@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentModel;
+import me.ledge.link.sdk.ui.utils.ResourceUtil;
 
 /**
  * Displays a single request to add a document for a loan application.
@@ -44,6 +45,45 @@ public class AddDocumentCardView extends CardView {
         mDescriptionField = (TextView) findViewById(R.id.tv_description);
     }
 
+    /**
+     * Updates the card's icon background and tint based on whether a file has been attached.
+     * @param data Latest data.
+     */
+    private void updateIcon(AddDocumentModel data) {
+        mIconView.setImageResource(data.getIconResourceId());
+
+        ResourceUtil util = new ResourceUtil();
+        int backgroundId = util.getResourceIdForAttribute(
+                getContext(), R.attr.llsdk_addDocuments_iconBackgroundUncheckedColor);
+        int tintId = util.getResourceIdForAttribute(getContext(), R.attr.llsdk_addDocuments_iconUncheckedColor);
+
+        if (data.hasDocument()) {
+            backgroundId = util.getResourceIdForAttribute(
+                    getContext(), R.attr.llsdk_addDocuments_iconBackgroundCheckedColor);
+            tintId = util.getResourceIdForAttribute(getContext(), R.attr.llsdk_addDocuments_iconCheckedColor);
+        }
+
+        mIconView.setBackgroundColor(getResources().getColor(backgroundId));
+        mIconView.setColorFilter(getResources().getColor(tintId));
+    }
+
+    /**
+     * Updates the card's description based on whether a file has been attached.
+     * @param data Latest data.
+     */
+    private void updateDescription(AddDocumentModel data) {
+        String description = data.getDescription();
+        mDescriptionField.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+
+        if (data.hasDocument()) {
+            description = getResources().getString(R.string.add_documents_description_checked);
+            //R.drawable.ic_help_outline_black_24dp;
+            mDescriptionField.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_help_outline_black_24dp, 0, 0, 0);
+        }
+
+        mDescriptionField.setText(description);
+    }
+
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
@@ -60,8 +100,8 @@ public class AddDocumentCardView extends CardView {
             return;
         }
 
-        mIconView.setImageResource(data.getIconResourceId());
+        updateIcon(data);
         mTitleField.setText(data.getTitleResourceId());
-        mDescriptionField.setText(data.getDescription());
+        updateDescription(data);
     }
 }
