@@ -2,10 +2,7 @@
 <me.ledge.link.sdk.ui.views.loanapplication.AddDocumentCardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:cv="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:background="@android:color/white"
-        android:layout_marginBottom="16dp"
+        style="@style/llsdk_add_documents_card"
         cv:cardCornerRadius="4dp"
         cv:cardElevation="2dp">
 
@@ -31,18 +28,11 @@
 
             <TextView
                     android:id="@+id/tv_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/llsdk_dark_text_color_hint"
-                    android:textSize="@dimen/llsdk_terms_title_text_size" />
+                    style="?attr/llsdk_addDocuments_cardTitleStyle" />
 
             <TextView
                     android:id="@+id/tv_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="4dp"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/llsdk_offer_summary_body_text_size" />
+                    style="?attr/llsdk_addDocuments_cardDescriptionStyle" />
 
         </LinearLayout>
     </RelativeLayout>

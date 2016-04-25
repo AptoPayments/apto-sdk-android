@@ -46,6 +46,11 @@
     <attr name="llsdk_addDocuments_iconBackgroundCheckedColor" format="reference|color" />
     <attr name="llsdk_addDocuments_iconUncheckedColor" format="reference|color" />
     <attr name="llsdk_addDocuments_iconCheckedColor" format="reference|color" />
+    <attr name="llsdk_addDocuments_cardTitleStyle" format="reference" />
+    <attr name="llsdk_addDocuments_cardDescriptionStyle" format="reference" />
+
+    <attr name="llsdk_addDocuments_bottomsheetHolderStyle" format="reference" />
+    <attr name="llsdk_addDocuments_bottomsheetItemStyle" format="reference" />
     <attr name="llsdk_addDocuments_bottomsheetIconColor" format="reference|color" />
 
     <!-- Loan Agreement -->
