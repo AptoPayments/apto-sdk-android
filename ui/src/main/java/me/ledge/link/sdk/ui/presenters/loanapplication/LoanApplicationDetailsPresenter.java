@@ -56,6 +56,9 @@ public class LoanApplicationDetailsPresenter
                 model = new ApprovedLoanApplicationDetailsModel(application, mResources, LedgeLinkUi.getImageLoader());
                 break;
             case LoanApplicationActionId.UPLOAD_PHOTO_ID:
+            case LoanApplicationActionId.UPLOAD_BANK_STATEMENT:
+            case LoanApplicationActionId.UPLOAD_PROOF_OF_ADDRESS:
+            case LoanApplicationActionId.UNKNOWN:
                 model = new UploadDocsLoanApplicationDetailsModel(
                         application, mResources, LedgeLinkUi.getImageLoader());
                 break;
