@@ -26,6 +26,7 @@ public class AddProofOfAddressModel extends AbstractAddDocumentModel implements 
     /** {@inheritDoc} */
     @Override
     public int getTitleResourceId() {
-        return R.string.add_documents_title_unchecked_proof_of_address;
+        return getTitleResourceId(R.string.add_documents_title_unchecked_proof_of_address,
+                R.string.add_documents_title_checked_proof_of_address);
     }
 }

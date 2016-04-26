@@ -26,6 +26,7 @@ public class AddBankStatementModel extends AbstractAddDocumentModel implements A
     /** {@inheritDoc} */
     @Override
     public int getTitleResourceId() {
-        return R.string.add_documents_title_unchecked_bank_statement;
+        return getTitleResourceId(R.string.add_documents_title_unchecked_bank_statement,
+                R.string.add_documents_title_checked_bank_statement);
     }
 }

@@ -117,9 +117,13 @@
     <!-- Add documents -->
     <string name="add_documents_label">Add docs</string>
     <string name="add_documents_title_unchecked_photo_id">Add photo ID</string>
+    <string name="add_documents_title_checked_photo_id">Photo ID</string>
     <string name="add_documents_title_unchecked_bank_statement">Add bank statement</string>
+    <string name="add_documents_title_checked_bank_statement">Bank statement</string>
     <string name="add_documents_title_unchecked_proof_of_address">Add proof of address</string>
+    <string name="add_documents_title_checked_proof_of_address">Proof of address</string>
     <string name="add_documents_title_unchecked_other">Add other</string>
+    <string name="add_documents_title_checked_other">Other</string>
     <string name="add_documents_description_checked">Added</string>
     <string name="add_documents_button_done">DONE</string>
     <string name="add_documents_bottom_sheet_photo">Take photo</string>

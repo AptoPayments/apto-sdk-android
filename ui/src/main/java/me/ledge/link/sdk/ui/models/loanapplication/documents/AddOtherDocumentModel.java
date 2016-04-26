@@ -26,6 +26,7 @@ public class AddOtherDocumentModel extends AbstractAddDocumentModel implements A
     /** {@inheritDoc} */
     @Override
     public int getTitleResourceId() {
-        return R.string.add_documents_title_unchecked_other;
+        return getTitleResourceId(R.string.add_documents_title_unchecked_other,
+                R.string.add_documents_title_checked_other);
     }
 }

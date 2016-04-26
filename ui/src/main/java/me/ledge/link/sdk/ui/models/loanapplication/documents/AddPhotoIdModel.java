@@ -26,6 +26,7 @@ public class AddPhotoIdModel extends AbstractAddDocumentModel implements AddDocu
     /** {@inheritDoc} */
     @Override
     public int getTitleResourceId() {
-        return R.string.add_documents_title_unchecked_photo_id;
+        return getTitleResourceId(R.string.add_documents_title_unchecked_photo_id,
+                R.string.add_documents_title_checked_photo_id);
     }
 }
