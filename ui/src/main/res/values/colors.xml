@@ -23,7 +23,8 @@
     <color name="llsdk_blue_primary_dark">#0880d7</color>
     <color name="llsdk_blue_dsb_ripple">#4fb5ff</color>
     <color name="llsdk_blue_loan_offers_card_background">#fff</color>
-    <color name="llsdk_blue_lender_image_background">#fafafa</color>
+    <color name="llsdk_blue_lender_image_background">#e0e0e0</color>
+    <color name="llsdk_blue_add_docs_icon_background_checked">#deeefc</color>
     <color name="llsdk_blue_loan_agreement_button">#54c242</color>
 
     <!-- Stepper -->

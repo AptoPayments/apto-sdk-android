@@ -52,10 +52,10 @@
         <item name="llsdk_loanOfferSummary_buttonStyle">@style/llsdk_loan_offer_summary_apply_button_blue</item>
         <item name="llsdk_loanOfferSummary_imageStyle">@style/llsdk_loan_offer_summary_image</item>
 
-        <item name="llsdk_addDocuments_iconBackgroundUncheckedColor">@color/llsdk_dark_text_color_hint</item>
-        <item name="llsdk_addDocuments_iconBackgroundCheckedColor">@color/llsdk_light_docs_icon_unchecked</item>
-        <item name="llsdk_addDocuments_iconUncheckedColor">@color/llsdk_light_docs_icon_unchecked</item>
-        <item name="llsdk_addDocuments_iconCheckedColor">@color/llsdk_dark_text_color_hint</item>
+        <item name="llsdk_addDocuments_iconBackgroundUncheckedColor">@color/llsdk_blue_lender_image_background</item>
+        <item name="llsdk_addDocuments_iconBackgroundCheckedColor">@color/llsdk_blue_add_docs_icon_background_checked</item>
+        <item name="llsdk_addDocuments_iconUncheckedColor">@android:color/white</item>
+        <item name="llsdk_addDocuments_iconCheckedColor">@color/llsdk_blue_primary</item>
         <item name="llsdk_addDocuments_cardTitleStyle">@style/llsdk_add_documents_card_title</item>
         <item name="llsdk_addDocuments_cardDescriptionStyle">@style/llsdk_add_documents_card_description</item>
         <item name="llsdk_addDocuments_bottomsheetHolderStyle">@style/llsdk_add_documents_bottomsheet_holder</item>
