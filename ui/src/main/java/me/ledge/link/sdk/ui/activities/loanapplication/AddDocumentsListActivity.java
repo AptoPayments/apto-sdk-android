@@ -1,5 +1,6 @@
 package me.ledge.link.sdk.ui.activities.loanapplication;
 
+import android.content.Intent;
 import android.view.View;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
@@ -24,5 +25,12 @@ public class AddDocumentsListActivity
     @Override
     protected AddDocumentsListPresenter createPresenter() {
         return new AddDocumentsListPresenter(this);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mPresenter.handleActivityResult(requestCode, resultCode, data);
     }
 }

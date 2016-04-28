@@ -30,8 +30,9 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
 
         /**
          * Called when one of the document cards has been clicked.
+         * @param model Card data.
          */
-        void cardClickHandler();
+        void cardClickHandler(AddDocumentModel model);
 
         /**
          * Called when the "Take photo" button has been pressed.
@@ -58,6 +59,7 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
     private TextView mLibraryButton;
 
     private ViewListener mListener;
+    private AddDocumentModel[] mData;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -143,7 +145,8 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
         } else if (id == R.id.tv_done_bttn) {
             mListener.doneClickHandler();
         } else {
-            mListener.cardClickHandler();
+            AddDocumentModel model = ((AddDocumentCardView) view).getData();
+            mListener.cardClickHandler(model);
         }
     }
 
@@ -166,6 +169,7 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
      * @param data Latest data.
      */
     public void setData(AddDocumentModel[] data) {
+        mData = data;
         mDocumentsList.removeAllViews();
 
         AddDocumentCardView view;
@@ -177,6 +181,13 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
             view.setOnClickListener(this);
             mDocumentsList.addView(view);
         }
+    }
+
+    /**
+     * Refreshes this View.
+     */
+    public void refresh() {
+        setData(mData);
     }
 
     /**

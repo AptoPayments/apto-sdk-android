@@ -128,6 +128,8 @@
     <string name="add_documents_button_done">DONE</string>
     <string name="add_documents_bottom_sheet_photo">Take photo</string>
     <string name="add_documents_bottom_sheet_library">Select from library</string>
+    <string name="add_documents_library_chooser_title">Select files</string>
+    <string name="add_documents_bottom_sheet_library_error">No file browser installed.</string>
 
     <!-- Loan Applications List -->
     <string name="loan_applications_list_label">My loan applications</string>

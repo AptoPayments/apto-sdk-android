@@ -18,6 +18,7 @@ public class AddDocumentCardView extends CardView {
     private ImageView mIconView;
     private TextView mTitleField;
     private TextView mDescriptionField;
+    private AddDocumentModel mData;
 
     /**
      * @see CardView#CardView
@@ -77,7 +78,6 @@ public class AddDocumentCardView extends CardView {
 
         if (data.hasDocument()) {
             description = getResources().getString(R.string.add_documents_description_checked);
-            //R.drawable.ic_help_outline_black_24dp;
             mDescriptionField.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_help_outline_black_24dp, 0, 0, 0);
         }
 
@@ -100,8 +100,16 @@ public class AddDocumentCardView extends CardView {
             return;
         }
 
+        mData = data;
         updateIcon(data);
         mTitleField.setText(data.getTitleResourceId());
         updateDescription(data);
+    }
+
+    /**
+     * @return The data this View is showing.
+     */
+    public AddDocumentModel getData() {
+        return mData;
     }
 }

@@ -1,5 +1,9 @@
 package me.ledge.link.sdk.ui.models.loanapplication.documents;
 
+import me.ledge.link.sdk.ui.vos.DocumentVo;
+
+import java.util.ArrayList;
+
 /**
  * Information about a document that needs to be added to a loan application.
  * @author Wijnand
@@ -20,6 +24,17 @@ public interface AddDocumentModel {
      * @return Description.
      */
     String getDescription();
+
+    /**
+     * Adds a document to the list.
+     * @param document The document to add.
+     */
+    void addDocument(DocumentVo document);
+
+    /**
+     * @return List of documents.
+     */
+    ArrayList<DocumentVo> getDocumentList();
 
     /**
      * @return Whether one or more documents have been attached.

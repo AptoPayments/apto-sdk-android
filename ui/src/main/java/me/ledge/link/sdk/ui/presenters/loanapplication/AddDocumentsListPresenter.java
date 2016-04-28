@@ -1,9 +1,19 @@
 package me.ledge.link.sdk.ui.presenters.loanapplication;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.ClipData;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddBankStatementModel;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentModel;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
@@ -14,6 +24,7 @@ import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
 import me.ledge.link.sdk.ui.views.loanapplication.AddDocumentsListView;
+import me.ledge.link.sdk.ui.vos.DocumentVo;
 
 /**
  * Concrete {@link Presenter} for the add documents screen.
@@ -23,7 +34,11 @@ public class AddDocumentsListPresenter
         extends ActivityPresenter<AddDocumentsListModel, AddDocumentsListView>
         implements Presenter<AddDocumentsListModel, AddDocumentsListView>, AddDocumentsListView.ViewListener {
 
+    private static final int PICK_FILE_REQUEST_CODE = 9876;
+
+    private AndroidUtils mUtil;
     private BottomSheetBehavior mBehavior;
+    private AddDocumentModel mTargetModel;
 
     /**
      * Creates a new {@link AddDocumentsListPresenter} instance.
@@ -31,6 +46,97 @@ public class AddDocumentsListPresenter
      */
     public AddDocumentsListPresenter(AppCompatActivity activity) {
         super(activity);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void init() {
+        super.init();
+        mUtil = new AndroidUtils();
+    }
+
+    /**
+     * Tries to launch the file browser.
+     */
+    private void launchFileBrowser() {
+        try {
+            Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+            fileIntent.setType("*/*");
+            fileIntent.addCategory(Intent.CATEGORY_OPENABLE);
+            fileIntent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+
+            if (mUtil.isDeviceApiCompatible(Build.VERSION_CODES.JELLY_BEAN_MR2)) {
+                fileIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+            }
+
+            mActivity.startActivityForResult(
+                    Intent.createChooser(fileIntent, mActivity.getString(R.string.add_documents_library_chooser_title)),
+                    PICK_FILE_REQUEST_CODE);
+        } catch (ActivityNotFoundException anfe) {
+            Toast.makeText(mActivity, R.string.add_documents_bottom_sheet_library_error, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Adds the selected files to the target {@link AddDocumentModel}.
+     * @param data The data received from the file picker Activity.
+     */
+    private void addFiles(Intent data) {
+        if (mTargetModel == null) {
+            return;
+        }
+
+        ContentResolver resolver = mActivity.getContentResolver();
+
+        if (mUtil.isDeviceApiCompatible(Build.VERSION_CODES.JELLY_BEAN) && data.getClipData() != null) {
+            // Multiple files.
+            ClipData clipData = data.getClipData();
+            ClipData.Item item;
+
+            Uri file;
+            String mimeType;
+
+            for (int i = 0; i < clipData.getItemCount(); i++) {
+                item = clipData.getItemAt(i);
+                file = item.getUri();
+                mimeType = resolver.getType(file);
+
+                mTargetModel.addDocument(new DocumentVo(file, mimeType));
+            }
+        } else if (data.getData() != null) {
+            // Single file.
+            Uri file = data.getData();
+            // Type isn't always set on the Intent. Using the ContentResolver instead.
+            String mimeType = resolver.getType(file);
+
+            mTargetModel.addDocument(new DocumentVo(file, mimeType));
+        }
+
+        mView.refresh();
+    }
+
+    /**
+     * Parses the received Activity result.
+     * @param requestCode Request code.
+     * @param resultCode Result code.
+     * @param data Result data.
+     */
+    public void handleActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null || resultCode != Activity.RESULT_OK) {
+            mTargetModel = null;
+            return;
+        }
+
+        switch (requestCode) {
+            case PICK_FILE_REQUEST_CODE:
+                addFiles(data);
+                break;
+            default:
+                // Do nothing.
+                break;
+        }
+
+        mTargetModel = null;
     }
 
     /** {@inheritDoc} */
@@ -98,9 +204,11 @@ public class AddDocumentsListPresenter
         return data;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc}
+     * @param model*/
     @Override
-    public void cardClickHandler() {
+    public void cardClickHandler(AddDocumentModel model) {
+        mTargetModel = model;
         mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
 
@@ -114,6 +222,7 @@ public class AddDocumentsListPresenter
     @Override
     public void libraryClickHandler() {
         mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        launchFileBrowser();
     }
 
     /** {@inheritDoc} */
