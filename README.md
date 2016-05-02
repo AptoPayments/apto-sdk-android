@@ -31,4 +31,4 @@ compile 'us.ledge.link:sdk:1.0'
 
 # License
 
-> TBD
+This project is available under the MIT license. See the [LICENSE.md](LICENSE) file for more info.
