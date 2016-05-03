@@ -31,4 +31,4 @@ compile 'me.ledge.link.sdk:ui:+'
 
 # License
 
-This project is available under the MIT license. See the [LICENSE](LICENSE.md) file for more info.
+All rights reserved Ledge Inc (C) 2015-2016. See the [LICENSE](LICENSE.md) file for more info.
