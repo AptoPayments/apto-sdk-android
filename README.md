@@ -12,16 +12,16 @@ Maven:
 
 ```xml
 <dependency>
-  <groupId>us.ledge.link</groupId>
-  <artifactId>sdk</artifactId>
-  <version>1.0</version>
+  <groupId>me.ledge.link.sdk</groupId>
+  <artifactId>ui</artifactId>
+  <version>(insert latest version)</version>
 </dependency>
 ```
 
 Or Gradle:
 
 ```groovy
-compile 'us.ledge.link:sdk:1.0'
+compile 'me.ledge.link.sdk:ui:+'
 ```
 
 ## Requirements
