@@ -26,8 +26,8 @@ compile 'us.ledge.link:sdk:1.0'
 
 ## Requirements
 
-* Java version: TBD
-* Android version: TBD
+* Java version: 7+
+* Android version: 4.0.3+
 
 # License
 

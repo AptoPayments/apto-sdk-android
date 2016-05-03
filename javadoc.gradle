@@ -5,8 +5,8 @@ android.libraryVariants.all { variant ->
             dependsOn: "assemble${variant.name.capitalize()}") {
 
         def projectName = project.name.toUpperCase()
-        description = "Generates Ledge Line ${projectName} Java Documentation for ${variant.name.capitalize()}."
-        title = "Ledge Line ${projectName} Java documentation"
+        description = "Generates Ledge Link ${projectName} Java Documentation for ${variant.name.capitalize()}."
+        title = "Ledge Link ${projectName} Java documentation"
         source = variant.javaCompile.source
 
         classpath += files(variant.javaCompile.classpath.files, project.android.getBootClasspath())
