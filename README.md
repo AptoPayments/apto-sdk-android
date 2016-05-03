@@ -4,7 +4,7 @@
 # Ledge Link
 Ledge Link Android SDK.
 
-For more information, see the [website](https://www.ledge.me/).
+For more information, see the [website](https://itabulous.github.io/ledgelinksdk_android/).
 
 ## Download
 
@@ -31,4 +31,4 @@ compile 'us.ledge.link:sdk:1.0'
 
 # License
 
-This project is available under the MIT license. See the [LICENSE.md](LICENSE) file for more info.
+This project is available under the MIT license. See the [LICENSE](LICENSE.md) file for more info.
