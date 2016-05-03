@@ -37,15 +37,15 @@ public class MockApiWrapper implements LinkApiWrapper {
     private static final float OFFER_ONE_PAYMENT = 123.45f;
     private static final String OFFER_ONE_APPLICATION_URL = "http://www.moremoney.com/";
 
-    private long mDeveloperId;
+    private String mDeveloperKey;
     private String mDevice;
     private String mBearerToken;
     private String mEndPoint;
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseRequestData(long developerId, String device) {
-        mDeveloperId = developerId;
+    public void setBaseRequestData(String developerKey, String device) {
+        mDeveloperKey = developerKey;
         mDevice = device;
     }
 
