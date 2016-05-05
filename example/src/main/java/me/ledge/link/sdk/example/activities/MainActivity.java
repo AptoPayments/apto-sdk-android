@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Toast;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import me.ledge.common.utils.android.AndroidUtils;
+import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
@@ -222,6 +224,16 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         }
 
         mView.setPurposeAdapter(adapter);
+        mView.showLoading(false);
+    }
+
+    /**
+     * Called when an API error occurred.
+     * @param response The error.
+     */
+    @Subscribe
+    public void apiErrorHandler(ApiErrorVo response) {
+        Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
         mView.showLoading(false);
     }
 }
