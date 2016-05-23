@@ -2,6 +2,7 @@ include ':sdk'
 include ':ui'
 include ':handlers:handler-eventbus'
 include 'imageloaders:imageloader-volley'
+include 'imageloaders:imageloader-picasso'
 
 if (!hasProperty('excludeExample') || !excludeExample.toBoolean()) {
     // Nasty, but solves an issue where installing handlers would fail on:
