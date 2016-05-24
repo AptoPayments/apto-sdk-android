@@ -1,0 +1,8 @@
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // 3rd Party Libraries.
+    compile 'com.squareup:otto:+'
+}

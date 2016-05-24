@@ -1,6 +1,7 @@
 include ':sdk'
 include ':ui'
 include ':handlers:handler-eventbus'
+include ':handlers:handler-otto'
 include 'imageloaders:imageloader-volley'
 include 'imageloaders:imageloader-picasso'
 
