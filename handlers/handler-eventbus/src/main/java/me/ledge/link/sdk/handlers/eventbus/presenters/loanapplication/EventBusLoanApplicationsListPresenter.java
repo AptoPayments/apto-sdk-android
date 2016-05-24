@@ -5,7 +5,6 @@ import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationsListPresenter;
 import me.ledge.link.sdk.ui.views.loanapplication.LoanApplicationsListView;
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 /**
@@ -13,8 +12,6 @@ import org.greenrobot.eventbus.Subscribe;
  * @author Wijnand
  */
 public class EventBusLoanApplicationsListPresenter extends LoanApplicationsListPresenter {
-
-    private EventBus mBus;
 
     /**
      * Creates a new {@link EventBusLoanApplicationsListPresenter} instance.
@@ -26,22 +23,15 @@ public class EventBusLoanApplicationsListPresenter extends LoanApplicationsListP
 
     /** {@inheritDoc} */
     @Override
-    protected void init() {
-        super.init();
-        mBus = EventBus.getDefault();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void attachView(LoanApplicationsListView view) {
         super.attachView(view);
-        mBus.register(this);
+        mResponseHandler.subscribe(this);
     }
 
     /** {@inheritDoc} */
     @Override
     public void detachView() {
-        mBus.unregister(this);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 

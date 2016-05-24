@@ -27,6 +27,18 @@ public class EventBusThreeResponseHandler implements ApiResponseHandler {
 
     /** {@inheritDoc} */
     @Override
+    public void subscribe(Object target) {
+        mBus.register(target);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void unsubscribe(Object target) {
+        mBus.unregister(target);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public <T> void publishResult(T result) {
         if (result != null) {
             mBus.post(result);

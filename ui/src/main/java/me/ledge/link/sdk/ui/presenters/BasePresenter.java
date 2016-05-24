@@ -1,6 +1,8 @@
 package me.ledge.link.sdk.ui.presenters;
 
 import android.view.View;
+import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.Model;
 
 /**
@@ -13,6 +15,7 @@ import me.ledge.link.sdk.ui.models.Model;
  */
 public abstract class BasePresenter<M extends Model, V extends View> implements Presenter<M, V> {
 
+    protected ApiResponseHandler mResponseHandler;
     protected M mModel;
     protected V mView;
 
@@ -27,6 +30,7 @@ public abstract class BasePresenter<M extends Model, V extends View> implements 
      * Initializes this class.
      */
     protected void init() {
+        mResponseHandler = LedgeLinkUi.getResponseHandler();
         mModel = createModel();
         mView = null;
     }

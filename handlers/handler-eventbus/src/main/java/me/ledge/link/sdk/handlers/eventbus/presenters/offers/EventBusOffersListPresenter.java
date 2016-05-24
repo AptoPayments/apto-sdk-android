@@ -6,7 +6,6 @@ import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsRes
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.sdk.ui.presenters.offers.OffersListPresenter;
 import me.ledge.link.sdk.ui.views.offers.OffersListView;
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 /**
@@ -14,8 +13,6 @@ import org.greenrobot.eventbus.Subscribe;
  * @author wijnand
  */
 public class EventBusOffersListPresenter extends OffersListPresenter {
-
-    private EventBus mBus;
 
     /**
      * Creates a new {@link EventBusOffersListPresenter} instance.
@@ -27,22 +24,15 @@ public class EventBusOffersListPresenter extends OffersListPresenter {
 
     /** {@inheritDoc} */
     @Override
-    protected void init() {
-        super.init();
-        mBus = EventBus.getDefault();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void attachView(OffersListView view) {
         super.attachView(view);
-        mBus.register(this);
+        mResponseHandler.subscribe(this);
     }
 
     /** {@inheritDoc} */
     @Override
     public void detachView() {
-        mBus.unregister(this);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 

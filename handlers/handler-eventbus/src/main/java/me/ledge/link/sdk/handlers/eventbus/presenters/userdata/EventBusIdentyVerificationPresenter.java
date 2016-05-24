@@ -6,7 +6,6 @@ import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 /**
@@ -14,8 +13,6 @@ import org.greenrobot.eventbus.Subscribe;
  * @author Wijnand
  */
 public class EventBusIdentyVerificationPresenter extends IdentityVerificationPresenter {
-
-    private EventBus mBus;
 
     /**
      * Creates a new {@link EventBusIdentyVerificationPresenter} instance.
@@ -27,22 +24,15 @@ public class EventBusIdentyVerificationPresenter extends IdentityVerificationPre
 
     /** {@inheritDoc} */
     @Override
-    protected void init() {
-        super.init();
-        mBus = EventBus.getDefault();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void attachView(IdentityVerificationView view) {
         super.attachView(view);
-        mBus.register(this);
+        mResponseHandler.subscribe(this);
     }
 
     /** {@inheritDoc} */
     @Override
     public void detachView() {
-        mBus.unregister(this);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
