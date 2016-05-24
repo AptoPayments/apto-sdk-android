@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.widgets;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatEditText;
+import android.support.design.widget.TextInputEditText;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -11,10 +11,10 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Custom {@link AppCompatEditText} to input a social security number (SSN).
+ * Custom {@link TextInputEditText} to input a social security number (SSN).
  * @author Wijnand
  */
-public class SsnEditText extends AppCompatEditText {
+public class SsnEditText extends TextInputEditText {
 
     /**
      * Shows all characters hidden, except the hyphens and the last char.<br />

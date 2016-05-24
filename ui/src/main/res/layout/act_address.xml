@@ -32,7 +32,7 @@
                     android:nextFocusUp="@id/til_address"
                     android:nextFocusLeft="@id/til_address">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                         android:id="@+id/et_address"
                         style="?attr/llsdk_idVerification_editTextStyle"
                         android:inputType="textPostalAddress"
@@ -46,7 +46,7 @@
                     style="?attr/llsdk_idVerification_inputWrapperStyle"
                     android:theme="?attr/llsdk_idVerification_inputWrapperTheme">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                         android:id="@+id/et_apartment_number"
                         style="?attr/llsdk_idVerification_editTextStyle"
                         android:inputType="text"
@@ -60,7 +60,7 @@
                     style="?attr/llsdk_idVerification_inputWrapperStyle"
                     android:theme="?attr/llsdk_idVerification_inputWrapperTheme">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                         android:id="@+id/et_city"
                         style="?attr/llsdk_idVerification_editTextStyle"
                         android:inputType="text"
@@ -113,7 +113,7 @@
                         android:layout_weight="1"
                         android:theme="?attr/llsdk_idVerification_inputWrapperTheme">
 
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                             android:id="@+id/et_zip_code"
                             style="?attr/llsdk_idVerification_editTextStyle"
                             android:inputType="phone"
