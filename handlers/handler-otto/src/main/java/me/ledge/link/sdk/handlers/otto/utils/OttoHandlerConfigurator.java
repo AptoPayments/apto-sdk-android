@@ -23,6 +23,22 @@ import java.util.ArrayList;
  */
 public class OttoHandlerConfigurator implements HandlerConfigurator {
 
+    private ApiResponseHandler mHandler;
+
+    /**
+     * Creates a new {@link OttoHandlerConfigurator} instance.
+     */
+    public OttoHandlerConfigurator() {
+        init();
+    }
+
+    /**
+     * Initializes this class.
+     */
+    private void init() {
+        mHandler = new OttoResponseHandler();
+    }
+
     /** {@inheritDoc} */
     @Override
     public ArrayList<Class<? extends MvpActivity>> getProcessOrder() {
@@ -48,6 +64,6 @@ public class OttoHandlerConfigurator implements HandlerConfigurator {
     /** {@inheritDoc} */
     @Override
     public ApiResponseHandler getResponseHandler() {
-        return new OttoResponseHandler();
+        return mHandler;
     }
 }

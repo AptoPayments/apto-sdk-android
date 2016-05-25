@@ -36,7 +36,7 @@ public class OttoResponseHandler implements ApiResponseHandler {
     @Override
     public void unsubscribe(Object target) {
         try {
-            mBus.unregister(this);
+            mBus.unregister(target);
         } catch (IllegalArgumentException e) {
             // Bus was already unregistered.
         }
