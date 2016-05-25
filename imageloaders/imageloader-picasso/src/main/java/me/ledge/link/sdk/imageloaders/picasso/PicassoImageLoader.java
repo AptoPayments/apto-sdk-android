@@ -1,5 +1,6 @@
 package me.ledge.link.sdk.imageloaders.picasso;
 
+import android.content.Context;
 import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
@@ -12,6 +13,18 @@ import me.ledge.link.sdk.ui.images.GenericImageLoader;
 public class PicassoImageLoader implements GenericImageLoader {
 
     private final Picasso mPicasso;
+
+    /**
+     * Creates a new {@link PicassoImageLoader} instance.
+     * @param context The {@link Context} to build the {@link Picasso} instance from.
+     */
+    public PicassoImageLoader(Context context) {
+        this(new Picasso.Builder(context)
+                .indicatorsEnabled(false)
+                .loggingEnabled(false)
+                .build()
+        );
+    }
 
     /**
      * Creates a new {@link PicassoImageLoader} instance.
