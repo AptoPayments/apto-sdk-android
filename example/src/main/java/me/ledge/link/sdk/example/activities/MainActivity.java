@@ -22,6 +22,7 @@ import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         setContentView(mView);
 
         // Load the loan purpose list so we can create a drop-down.
-        EventBus.getDefault().register(this);
+        LedgeLinkUi.getHandlerConfiguration().getResponseHandler().subscribe(this);
         LedgeLinkUi.getLoanPurposesList();
     }
 
@@ -175,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
+        LedgeLinkUi.getHandlerConfiguration().getResponseHandler().unsubscribe(this);
     }
 
     /** {@inheritDoc} */
