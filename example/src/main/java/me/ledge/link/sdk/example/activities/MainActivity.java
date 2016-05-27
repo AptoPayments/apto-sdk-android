@@ -132,11 +132,26 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         HandlerConfigurator configurator = new EventBusHandlerConfigurator();
 
         LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
-        apiWrapper.setBaseRequestData(getString(R.string.ledge_link_developer_key), utils.getDeviceSummary());
+        apiWrapper.setApiEndPoint(getApiEndPoint());
+        apiWrapper.setBaseRequestData(getDeveloperKey(), utils.getDeviceSummary());
 
         LedgeLinkUi.setApiWrapper(apiWrapper);
         LedgeLinkUi.setImageLoader(new VolleyImageLoader(this));
         LedgeLinkUi.setHandlerConfiguration(configurator);
+    }
+
+    /**
+     * @return Link API end point.
+     */
+    protected String getApiEndPoint() {
+        return getString(R.string.ledge_link_url_dev);
+    }
+
+    /**
+     * @return Link API dev key.
+     */
+    protected String getDeveloperKey() {
+        return getString(R.string.ledge_link_developer_key_dev);
     }
 
     /** {@inheritDoc} */

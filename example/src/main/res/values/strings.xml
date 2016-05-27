@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Ledge Link SDK Example</string>
-    <string name="ledge_link_developer_key">0Vggrl15JIlep/CgzNOiL6A7YmKtm4yO4aKd3YGcMtFJs/FODhbU/GUsYhQvYp2e</string>
 
     <!-- Main -->
     <string name="main_button_offers_cta">Get loan offers!</string>

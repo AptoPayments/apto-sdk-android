@@ -11,6 +11,7 @@ build
 gen
 
 # Misc
-libs/
 .DS_Store
+strings_configuration.xml
+libs/
 ui/src/test/java/android/
