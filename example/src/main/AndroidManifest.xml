@@ -14,7 +14,7 @@
 
     <application
             android:label="@string/app_name"
-            tools:replace="android:label"
+            tools:replace="label"
             android:theme="@style/Theme.AppCompat.NoActionBar">
 
         <activity android:name="me.ledge.link.sdk.example.activities.MainActivity">

@@ -12,6 +12,6 @@
 
     <application
             android:label="LedgeLinkUi"
-            tools:replace="android:label" />
+            tools:replace="label" />
 
 </manifest>
