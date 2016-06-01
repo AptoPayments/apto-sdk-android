@@ -90,7 +90,7 @@ public class LoanAgreementView extends RelativeLayout implements ViewWithToolbar
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mScrollView = (ObservableScrollView) findViewById(R.id.osv_scroll);
         mLoadingOverlay = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
 

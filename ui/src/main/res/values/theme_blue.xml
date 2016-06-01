@@ -17,7 +17,7 @@
         <item name="colorPrimaryDark">@color/llsdk_blue_primary_dark</item>
         <item name="colorAccent">@color/llsdk_blue_primary</item>
 
-        <item name="llsdk_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="llsdk_toolbarTheme">@style/Theme.LedgeLine.Sdk.Blue.Toolbar</item>
         <item name="llsdk_toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
         <item name="llsdk_bigButtonStyle">@style/llsdk_big_button_style_blue</item>
@@ -68,6 +68,13 @@
         <item name="llsdk_loanAgreement_summaryValuesStyle">@style/llsdk_loan_agreement_summary_values</item>
         <item name="llsdk_loanAgreement_buttonColorOne">@color/llsdk_blue_loan_agreement_button</item>
         <item name="llsdk_loanAgreement_buttonColorTwo">@android:color/white</item>
+    </style>
+
+    <style
+            name="Theme.LedgeLine.Sdk.Blue.Toolbar"
+            parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <item name="android:background">@color/llsdk_blue_primary</item>
     </style>
 
     <style

@@ -58,7 +58,7 @@
     <style name="llsdk_user_data_entry_container">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_below">@+id/tb_toolbar</item>
+        <item name="android:layout_below">@+id/tb_llsdk_toolbar</item>
         <item name="android:layout_above">@+id/dsw_stepper</item>
         <item name="android:padding">16dp</item>
     </style>

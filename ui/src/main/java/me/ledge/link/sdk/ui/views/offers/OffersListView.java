@@ -13,7 +13,6 @@ import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
-import me.ledge.link.sdk.ui.models.offers.OffersListModel;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
@@ -64,7 +63,7 @@ public class OffersListView extends RelativeLayout implements ViewWithToolbar, V
      * Finds all references to child Views.
      */
     protected void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mOffersListView = (RecyclerView) findViewById(R.id.rv_offers_list);
         mEmptyCaseHolder = (LinearLayout) findViewById(R.id.ll_empty_case);
         mUpdateButton = (TextView) findViewById(R.id.tv_bttn_edit_info);

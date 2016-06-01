@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <include layout="@layout/include_toolbar" />
+    <include layout="@layout/include_llsdk_toolbar" />
     <include layout="@layout/include_ll_loan_error" />
 
 </me.ledge.link.sdk.ui.views.loanapplication.IntermediateLoanApplicationView>

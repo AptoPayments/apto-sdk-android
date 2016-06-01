@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <include layout="@layout/include_toolbar" />
+    <include layout="@layout/include_llsdk_toolbar" />
 
     <!-- Dummy to get focus on start. -->
     <RelativeLayout
@@ -19,7 +19,7 @@
                 android:id="@+id/rl_birthday_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tb_toolbar">
+                android:layout_below="@+id/tb_llsdk_toolbar">
 
             <Button
                     android:id="@+id/btn_birthday"

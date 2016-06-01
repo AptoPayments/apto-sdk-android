@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        LIGHT
+    -->
+
+    <style name="Theme.LedgeLine.Sdk.Light.DatePicker" parent="Theme.LedgeLine.Sdk.Light.Base.DatePicker">
+        <item name="android:datePickerMode">spinner</item>
+    </style>
+</resources>

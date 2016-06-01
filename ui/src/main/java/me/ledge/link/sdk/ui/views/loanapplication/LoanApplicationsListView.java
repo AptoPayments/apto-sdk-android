@@ -49,7 +49,7 @@ public class LoanApplicationsListView extends RelativeLayout implements ViewWith
      * Finds all relevant child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mPager = (ViewPager) findViewById(R.id.vp_loan_applications_pager);
         mStepper = (DotStepperWidget) findViewById(R.id.dsw_stepper);
         mLoadingIndicator = (RelativeLayout) findViewById(R.id.rl_loading_overlay);

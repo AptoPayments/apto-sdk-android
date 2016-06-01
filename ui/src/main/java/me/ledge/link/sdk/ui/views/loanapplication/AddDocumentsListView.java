@@ -82,7 +82,7 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mDocumentsList = (LinearLayout) findViewById(R.id.ll_documents_list);
         mDoneButton = (TextView) findViewById(R.id.tv_done_bttn);
         mBottomSheet = (NestedScrollView) findViewById(R.id.nsv_bottom_sheet);

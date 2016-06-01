@@ -9,12 +9,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <include layout="@layout/include_toolbar" />
+        <include layout="@layout/include_llsdk_toolbar" />
 
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/tb_toolbar"
+                android:layout_below="@+id/tb_llsdk_toolbar"
                 android:layout_above="@+id/tv_done_bttn"
                 android:paddingBottom="16dp"
                 android:clipToPadding="false"
