@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar
+<android.support.design.widget.AppBarLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:theme="?attr/llsdk_toolbarTheme"
-        app:popupTheme="?attr/llsdk_toolbarPopupTheme"
-        android:id="@+id/tb_llsdk_toolbar"
+        android:id="@+id/abl_toolbar_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="4dp" />
+        android:layout_height="wrap_content"
+        android:theme="?attr/llsdk_toolbarTheme">
+
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/tb_llsdk_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="4dp"
+            app:popupTheme="?attr/llsdk_toolbarPopupTheme" />
+
+</android.support.design.widget.AppBarLayout>
