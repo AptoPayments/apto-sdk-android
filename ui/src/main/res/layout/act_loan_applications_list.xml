@@ -11,7 +11,7 @@
             android:id="@+id/vp_loan_applications_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/abl_toolbar_wrapper"
+            android:layout_below="@+id/tb_toolbar"
             android:layout_above="@+id/dsw_stepper" />
 
     <include layout="@layout/include_stepper_dots" />
