@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style
+            name="Theme.LedgeLine.Example"
+            parent="@style/Theme.LedgeLine.Example.Base">
+
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primaryDark</item>
+        <item name="android:colorAccent">@color/primary</item>
+    </style>
+</resources>
