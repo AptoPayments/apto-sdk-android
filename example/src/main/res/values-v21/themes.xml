@@ -2,7 +2,7 @@
 <resources>
     <style
             name="Theme.LedgeLine.Example"
-            parent="@style/Theme.LedgeLine.Example.Base">
+            parent="Theme.LedgeLine.Example.Base">
 
         <item name="android:colorPrimary">@color/primary</item>
         <item name="android:colorPrimaryDark">@color/primaryDark</item>
