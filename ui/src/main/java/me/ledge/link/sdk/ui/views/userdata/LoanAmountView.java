@@ -6,10 +6,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
-import me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget;
-import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import me.ledge.link.sdk.ui.R;
@@ -98,7 +96,7 @@ public class LoanAmountView
      * Stores a new {@link HintArrayAdapter} for the {@link Spinner} to use.
      * @param adapter New {@link HintArrayAdapter}.
      */
-    public void setPurposeAdapter(HintArrayAdapter<LoanPurposeDisplayVo> adapter) {
+    public void setPurposeAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
         mPurposeSpinner.setAdapter(adapter);
     }
 
@@ -128,8 +126,8 @@ public class LoanAmountView
     /**
      * @return The selected loan purpose.
      */
-    public LoanPurposeDisplayVo getPurpose() {
-        return (LoanPurposeDisplayVo) mPurposeSpinner.getSelectedItem();
+    public IdDescriptionPairDisplayVo getPurpose() {
+        return (IdDescriptionPairDisplayVo) mPurposeSpinner.getSelectedItem();
     }
 
     /**

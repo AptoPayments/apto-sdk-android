@@ -19,7 +19,7 @@ import me.ledge.link.sdk.handlers.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
-import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 
@@ -224,18 +224,16 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
      */
     @Subscribe
     public void purposeListLoadedHandler(LoanPurposesResponseVo response) {
-        HintArrayAdapter<LoanPurposeDisplayVo> adapter
+        HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
 
-        LoanPurposeDisplayVo hint = new LoanPurposeDisplayVo();
-        hint.description = getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint);
-        hint.loan_purpose_id = -1;
-
+        IdDescriptionPairDisplayVo hint =
+                new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
         adapter.add(hint);
 
         if (response.data != null) {
             for (LoanPurposeVo purpose : response.data) {
-                adapter.add(new LoanPurposeDisplayVo(purpose));
+                adapter.add(new IdDescriptionPairDisplayVo(purpose.loan_purpose_id, purpose.description));
             }
         }
 

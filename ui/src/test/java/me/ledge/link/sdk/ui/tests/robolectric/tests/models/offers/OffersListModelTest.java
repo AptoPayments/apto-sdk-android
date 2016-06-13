@@ -2,12 +2,10 @@ package me.ledge.link.sdk.ui.tests.robolectric.tests.models.offers;
 
 import me.ledge.link.api.utils.CreditScoreRange;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
-import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata.LoanAmountModelTest;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
-import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 import org.junit.Assert;
 import org.junit.Before;
@@ -44,8 +42,7 @@ public class OffersListModelTest {
         UserDataVo base = new UserDataVo();
         base.creditScoreRange = EXPECTED_CREDIT_SCORE_RANGE;
         base.loanAmount = LoanAmountModelTest.EXPECTED_VALID_AMOUNT;
-        base.loanPurpose = new LoanPurposeDisplayVo();
-        base.loanPurpose.loan_purpose_id = EXPECTED_PURPOSE_ID;
+        base.loanPurpose = new IdDescriptionPairDisplayVo(EXPECTED_PURPOSE_ID, null);
 
         return base;
     }

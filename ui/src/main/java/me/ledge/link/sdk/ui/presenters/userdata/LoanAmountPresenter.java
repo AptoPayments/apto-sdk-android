@@ -5,7 +5,7 @@ import android.widget.Toast;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
@@ -24,7 +24,7 @@ public class LoanAmountPresenter
         implements LoanAmountView.ViewListener {
 
     private int mAmountIncrement;
-    private HintArrayAdapter<LoanPurposeDisplayVo> mPurposeAdapter;
+    private HintArrayAdapter<IdDescriptionPairDisplayVo> mPurposeAdapter;
 
     /**
      * Creates a new {@link LoanAmountPresenter} instance.
@@ -45,19 +45,18 @@ public class LoanAmountPresenter
      * @param loanPurposesList List of loan purposes.
      * @return A new {@link HintArrayAdapter} to use for the loan purpose drop-down.
      */
-    private HintArrayAdapter<LoanPurposeDisplayVo> getPurposeAdapter(LoanPurposeVo[] loanPurposesList) {
-        HintArrayAdapter<LoanPurposeDisplayVo> adapter
+    private HintArrayAdapter<IdDescriptionPairDisplayVo> getPurposeAdapter(LoanPurposeVo[] loanPurposesList) {
+        HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(mActivity, android.R.layout.simple_spinner_dropdown_item);
 
-        LoanPurposeDisplayVo hint = new LoanPurposeDisplayVo();
-        hint.description = mActivity.getString(R.string.loan_amount_purpose_hint);
-        hint.loan_purpose_id = -1;
+        IdDescriptionPairDisplayVo hint =
+                new IdDescriptionPairDisplayVo(-1, mActivity.getString(R.string.loan_amount_purpose_hint));
 
         adapter.add(hint);
 
         if (loanPurposesList != null) {
             for (LoanPurposeVo purpose : loanPurposesList) {
-                adapter.add(new LoanPurposeDisplayVo(purpose));
+                adapter.add(new IdDescriptionPairDisplayVo(purpose.loan_purpose_id, purpose.description));
             }
         }
 

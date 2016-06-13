@@ -10,7 +10,7 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import me.ledge.link.sdk.example.R;
-import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 
 /**
@@ -153,7 +153,7 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
      * Stores a new {@link HintArrayAdapter} for the {@link Spinner} to use.
      * @param adapter New {@link HintArrayAdapter}.
      */
-    public void setPurposeAdapter(HintArrayAdapter<LoanPurposeDisplayVo> adapter) {
+    public void setPurposeAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
         mLoanPurposeSpinner.setAdapter(adapter);
     }
 
@@ -187,8 +187,8 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     /**
      * @return Loan purpose.
      */
-    public LoanPurposeDisplayVo getLoanPurpose() {
-        return (LoanPurposeDisplayVo) mLoanPurposeSpinner.getSelectedItem();
+    public IdDescriptionPairDisplayVo getLoanPurpose() {
+        return (IdDescriptionPairDisplayVo) mLoanPurposeSpinner.getSelectedItem();
     }
 
     /**

@@ -1,7 +1,5 @@
 package me.ledge.link.sdk.ui.vos;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 import com.google.i18n.phonenumbers.Phonenumber;
 
 /**
@@ -14,7 +12,7 @@ import com.google.i18n.phonenumbers.Phonenumber;
 public class UserDataVo {
 
     public int loanAmount;
-    public LoanPurposeDisplayVo loanPurpose;
+    public IdDescriptionPairDisplayVo loanPurpose;
 
     public String firstName;
     public String lastName;

@@ -92,7 +92,7 @@ public class OffersListModel extends AbstractActivityModel
         InitialOffersRequestVo request = new InitialOffersRequestVo();
         request.currency = Currency.getInstance(Locale.US).getCurrencyCode();
         request.loan_amount = mBaseData.loanAmount;
-        request.loan_purpose_id = mBaseData.loanPurpose.loan_purpose_id;
+        request.loan_purpose_id = mBaseData.loanPurpose.getKey();
 
         return request;
     }

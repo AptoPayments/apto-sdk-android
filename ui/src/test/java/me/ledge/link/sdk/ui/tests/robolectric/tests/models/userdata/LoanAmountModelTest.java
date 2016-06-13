@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.vos.LoanPurposeDisplayVo;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 import org.junit.Assert;
 import org.junit.Before;
@@ -65,9 +65,7 @@ public class LoanAmountModelTest {
      */
     @Test
     public void allDataSet() {
-        LoanPurposeDisplayVo purpose = new LoanPurposeDisplayVo();
-        purpose.description = "Company investment";
-        purpose.loan_purpose_id = 123;
+        IdDescriptionPairDisplayVo purpose = new IdDescriptionPairDisplayVo(123, "Company investment");
 
         mModel.setAmount(EXPECTED_VALID_AMOUNT);
         mModel.setLoanPurpose(purpose);
