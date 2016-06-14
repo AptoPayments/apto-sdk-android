@@ -13,13 +13,17 @@ import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCal
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
+import me.ledge.link.sdk.ui.views.LoadingView;
+import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
  * Displays the loan agreement.
  * @author Wijnand
  */
-public class LoanAgreementView extends RelativeLayout implements ViewWithToolbar, View.OnClickListener {
+public class LoanAgreementView
+        extends RelativeLayout
+        implements ViewWithToolbar, ViewWithIndeterminateLoading, View.OnClickListener {
 
     /**
      * Callbacks that this View will invoke.
@@ -34,7 +38,7 @@ public class LoanAgreementView extends RelativeLayout implements ViewWithToolbar
 
     private Toolbar mToolbar;
     private ObservableScrollView mScrollView;
-    private RelativeLayout mLoadingOverlay;
+    private LoadingView mLoadingView;
 
     private ImageView mLenderLogo;
     private TextView mLenderNameField;
@@ -92,7 +96,7 @@ public class LoanAgreementView extends RelativeLayout implements ViewWithToolbar
     private void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mScrollView = (ObservableScrollView) findViewById(R.id.osv_scroll);
-        mLoadingOverlay = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
+        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
 
         mLenderLogo = (ImageView) findViewById(R.id.iv_lender_logo);
         mLenderNameField = (TextView) findViewById(R.id.tv_lender_name);
@@ -168,16 +172,10 @@ public class LoanAgreementView extends RelativeLayout implements ViewWithToolbar
         mPaymentField.setText(data.getPaymentAmount(getResources()));
     }
 
-    /**
-     * Toggles the loading overlay visibility.
-     * @param show boolean - Whether the overlay should be shown.
-     */
+    /** {@inheritDoc} */
+    @Override
     public void showLoading(boolean show) {
-        if (show) {
-            mLoadingOverlay.setVisibility(VISIBLE);
-        } else {
-            mLoadingOverlay.setVisibility(GONE);
-        }
+        mLoadingView.showLoading(show);
     }
 
     /**

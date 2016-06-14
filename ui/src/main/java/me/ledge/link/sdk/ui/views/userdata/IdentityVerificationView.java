@@ -7,8 +7,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.views.LoadingView;
+import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.widgets.SsnEditText;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
@@ -19,7 +20,7 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
  */
 public class IdentityVerificationView
         extends UserDataView<IdentityVerificationView.ViewListener>
-        implements View.OnClickListener, ViewWithToolbar {
+        implements View.OnClickListener, ViewWithToolbar, ViewWithIndeterminateLoading {
 
     /**
      * Callbacks this View will invoke.
@@ -39,7 +40,7 @@ public class IdentityVerificationView
     private TextInputLayout mSocialSecurityWrapper;
     private SsnEditText mSocialSecurityField;
 
-    private RelativeLayout mLoadingOverlay;
+    private LoadingView mLoadingView;
     private ProgressBar mProgressBar;
 
     /**
@@ -77,7 +78,7 @@ public class IdentityVerificationView
         mSocialSecurityWrapper = (TextInputLayout) findViewById(R.id.til_social_security);
         mSocialSecurityField = (SsnEditText) findViewById(R.id.et_social_security);
 
-        mLoadingOverlay = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
+        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
         mProgressBar = (ProgressBar) findViewById(R.id.pb_progress);
     }
 
@@ -149,15 +150,9 @@ public class IdentityVerificationView
         updateErrorDisplay(mSocialSecurityWrapper, show, errorMessageId);
     }
 
-    /**
-     * Changes the loading overlay visibility.
-     * @param show Whether the loading overlay should be shown.
-     */
+    /** {@inheritDoc} */
+    @Override
     public void showLoading(boolean show) {
-        if (show) {
-            mLoadingOverlay.setVisibility(VISIBLE);
-        } else {
-            mLoadingOverlay.setVisibility(GONE);
-        }
+        mLoadingView.showLoading(show);
     }
 }

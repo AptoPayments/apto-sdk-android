@@ -3,9 +3,10 @@ package me.ledge.link.sdk.ui.views.userdata;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import me.ledge.link.sdk.ui.views.LoadingView;
+import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
@@ -19,7 +20,7 @@ import me.ledge.link.sdk.ui.views.ViewWithToolbar;
  */
 public class LoanAmountView
         extends UserDataView<LoanAmountView.ViewListener>
-        implements ViewWithToolbar, View.OnClickListener {
+        implements ViewWithToolbar, ViewWithIndeterminateLoading, View.OnClickListener {
 
     /**
      * Callbacks this View will invoke.
@@ -28,7 +29,7 @@ public class LoanAmountView
             extends StepperListener, NextButtonListener, DiscreteSeekBar.OnProgressChangeListener {
     }
 
-    private RelativeLayout mLoadingOverlay;
+    private LoadingView mLoadingView;
     private TextView mAmountText;
     private DiscreteSeekBar mAmountSlider;
 
@@ -57,7 +58,7 @@ public class LoanAmountView
     protected void findAllViews() {
         super.findAllViews();
 
-        mLoadingOverlay = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
+        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
         mAmountText = (TextView) findViewById(R.id.tv_loan_amount);
         mAmountSlider = (DiscreteSeekBar) findViewById(R.id.dsb_loan_amount);
         mPurposeSpinner = (Spinner) findViewById(R.id.sp_loan_purpose);
@@ -150,15 +151,9 @@ public class LoanAmountView
         }
     }
 
-    /**
-     * Changes the loading overlay visibility.
-     * @param show Whether the loading overlay should be shown.
-     */
+    /** {@inheritDoc} */
+    @Override
     public void showLoading(boolean show) {
-        if (show) {
-            mLoadingOverlay.setVisibility(VISIBLE);
-        } else {
-            mLoadingOverlay.setVisibility(GONE);
-        }
+        mLoadingView.showLoading(show);
     }
 }

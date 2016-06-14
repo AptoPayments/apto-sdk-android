@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.views.LoadingView;
+import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
@@ -16,12 +18,12 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
  * Displays the loan applications list.
  * @author Wijnand
  */
-public class LoanApplicationsListView extends RelativeLayout implements ViewWithToolbar {
+public class LoanApplicationsListView extends RelativeLayout implements ViewWithToolbar, ViewWithIndeterminateLoading {
 
     private Toolbar mToolbar;
     private ViewPager mPager;
     private DotStepperWidget mStepper;
-    private RelativeLayout mLoadingIndicator;
+    private LoadingView mLoadingView;
 
     /**
      * Callbacks this View will invoke.
@@ -52,7 +54,7 @@ public class LoanApplicationsListView extends RelativeLayout implements ViewWith
         mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mPager = (ViewPager) findViewById(R.id.vp_loan_applications_pager);
         mStepper = (DotStepperWidget) findViewById(R.id.dsw_stepper);
-        mLoadingIndicator = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
+        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
     }
 
     /** {@inheritDoc} */
@@ -115,15 +117,9 @@ public class LoanApplicationsListView extends RelativeLayout implements ViewWith
         mPager.setCurrentItem(mPager.getCurrentItem() + 1, true);
     }
 
-    /**
-     * Changes the visibility of the loading indicator.
-     * @param show Whether the loading indicator should be shown.
-     */
+    /** {@inheritDoc} */
+    @Override
     public void showLoading(boolean show) {
-        if (show) {
-            mLoadingIndicator.setVisibility(VISIBLE);
-        } else {
-            mLoadingIndicator.setVisibility(GONE);
-        }
+        mLoadingView.showLoading(show);
     }
 }

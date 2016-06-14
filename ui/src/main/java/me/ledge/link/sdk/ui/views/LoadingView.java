@@ -1,0 +1,36 @@
+package me.ledge.link.sdk.ui.views;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.RelativeLayout;
+
+/**
+ * Displays a modal overlay with an indeterminate progress bar.
+ * @author Wijnand
+ */
+public class LoadingView extends RelativeLayout implements ViewWithIndeterminateLoading {
+
+    /**
+     * @see RelativeLayout#RelativeLayout
+     */
+    public LoadingView(Context context) {
+        super(context);
+    }
+
+    /**
+     * @see RelativeLayout#RelativeLayout
+     */
+    public LoadingView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void showLoading(boolean show) {
+        if (show) {
+            setVisibility(VISIBLE);
+        } else {
+            setVisibility(GONE);
+        }
+    }
+}
