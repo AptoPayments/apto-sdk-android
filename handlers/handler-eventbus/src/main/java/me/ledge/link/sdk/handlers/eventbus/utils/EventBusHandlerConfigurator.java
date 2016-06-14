@@ -2,6 +2,7 @@ package me.ledge.link.sdk.handlers.eventbus.utils;
 
 import me.ledge.link.sdk.handlers.eventbus.activities.loanapplication.EventBusLoanApplicationsListActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.offers.EventBusOffersListActivity;
+import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusAddressActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusIdentityVerificationActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusLoanAmountActivity;
 import me.ledge.link.sdk.handlers.eventbus.tasks.handlers.EventBusThreeResponseHandler;
@@ -30,7 +31,7 @@ public class EventBusHandlerConfigurator implements HandlerConfigurator {
         process.add(TermsActivity.class);
         process.add(EventBusLoanAmountActivity.class);
         process.add(PersonalInformationActivity.class);
-        process.add(AddressActivity.class);
+        process.add(EventBusAddressActivity.class);
         process.add(IncomeActivity.class);
         process.add(CreditScoreActivity.class);
         process.add(EventBusIdentityVerificationActivity.class);

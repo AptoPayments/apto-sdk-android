@@ -24,6 +24,7 @@ public class UserDataVo {
     public String city;
     public String state;
     public String zip;
+    public IdDescriptionPairDisplayVo housingType;
 
     public int income;
     public int creditScoreRange;
@@ -50,6 +51,7 @@ public class UserDataVo {
         city = null;
         state = null;
         zip = null;
+        housingType = null;
         income = -1;
         creditScoreRange = -1;
     }

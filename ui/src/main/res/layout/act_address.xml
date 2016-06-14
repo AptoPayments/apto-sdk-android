@@ -124,9 +124,40 @@
 
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Design.Hint"
+                        android:textColor="?android:textColorHint"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/address_housing_type_header" />
+
+                <Spinner
+                        android:id="@+id/sp_housing_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:id="@+id/tv_housing_type_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/llsdk_error_text"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/address_housing_type_error" />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
     <include layout="@layout/include_stepper_dots" />
+    <include layout="@layout/include_rl_loading" />
 
 </me.ledge.link.sdk.ui.views.userdata.AddressView>

@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
 import android.text.TextUtils;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import ru.lanwen.verbalregex.VerbalExpression;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
@@ -17,6 +18,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
     private String mCity;
     private String mState;
     private String mZip;
+    private IdDescriptionPairDisplayVo mHousingType;
 
     /**
      * Creates a new {@link AddressModel} instance.
@@ -34,6 +36,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
         mCity = null;
         mState = null;
         mZip = null;
+        mHousingType = null;
     }
 
     /** {@inheritDoc} */
@@ -45,7 +48,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return hasValidAddress() && hasValidCity() && hasValidState() && hasValidZip();
+        return hasValidAddress() && hasValidCity() && hasValidState() && hasValidZip() && hasValidHousingType();
     }
 
     /** {@inheritDoc} */
@@ -57,6 +60,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
         base.city = getCity();
         base.state = getState();
         base.zip = getZip();
+        base.housingType = getHousingType();
 
         return base;
     }
@@ -71,6 +75,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
         setCity(base.city);
         setState(base.state);
         setZip(base.zip);
+        setHousingType(base.housingType);
     }
 
     /**
@@ -216,5 +221,27 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      */
     public boolean hasValidZip() {
         return mZip != null;
+    }
+
+    /**
+     * @return The selected housing type.
+     */
+    public IdDescriptionPairDisplayVo getHousingType() {
+        return mHousingType;
+    }
+
+    /**
+     * Stores a new housing type.
+     * @param type New housing type.
+     */
+    public void setHousingType(IdDescriptionPairDisplayVo type) {
+        mHousingType = type;
+    }
+
+    /**
+     * @return Whether a valid housing type has been selected.
+     */
+    public boolean hasValidHousingType() {
+        return getHousingType() != null && getHousingType().getKey() >= 0;
     }
 }

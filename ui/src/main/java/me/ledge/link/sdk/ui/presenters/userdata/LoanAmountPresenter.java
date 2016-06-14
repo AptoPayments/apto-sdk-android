@@ -49,8 +49,8 @@ public class LoanAmountPresenter
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(mActivity, android.R.layout.simple_spinner_dropdown_item);
 
-        IdDescriptionPairDisplayVo hint =
-                new IdDescriptionPairDisplayVo(-1, mActivity.getString(R.string.loan_amount_purpose_hint));
+        IdDescriptionPairDisplayVo hint
+                = new IdDescriptionPairDisplayVo(-1, mActivity.getString(R.string.loan_amount_purpose_hint));
 
         adapter.add(hint);
 
@@ -96,8 +96,6 @@ public class LoanAmountPresenter
         mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
         mView.setMinMax(mModel.getMinAmount() / mAmountIncrement, mModel.getMaxAmount() / mAmountIncrement);
         mView.setAmount(mModel.getAmount() / mAmountIncrement);
-        mView.setPurposeAdapter(mPurposeAdapter);
-
         mView.showLoading(true);
 
         if (mPurposeAdapter == null) {
