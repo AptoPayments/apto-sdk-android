@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import android.text.TextUtils;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,6 +31,7 @@ public class AddressModelTest {
     private static final String EXPECTED_CITY = "Trabuco Canyon";
     private static final String EXPECTED_STATE = "CA";
     private static final String EXPECTED_ZIP = "92679";
+    private static final IdDescriptionPairDisplayVo EXPECTED_HOUSING_TYPE = new IdDescriptionPairDisplayVo(777, "Baller");
 
     private AddressModel mModel;
 
@@ -69,6 +71,7 @@ public class AddressModelTest {
         base.city = EXPECTED_CITY;
         base.state = EXPECTED_STATE;
         base.zip = EXPECTED_ZIP;
+        base.housingType = EXPECTED_HOUSING_TYPE;
 
         mModel.setBaseData(base);
 
@@ -77,6 +80,7 @@ public class AddressModelTest {
         Assert.assertThat("Incorrect city.", mModel.getCity(), equalTo(base.city));
         Assert.assertThat("Incorrect state.", mModel.getState(), equalTo(base.state));
         Assert.assertThat("Incorrect zip code.", mModel.getZip(), equalTo(base.zip));
+        Assert.assertThat("Incorrect housing type.", mModel.getHousingType(), equalTo(base.housingType));
         Assert.assertTrue("All data should be set.", mModel.hasAllData());
     }
 
@@ -94,6 +98,7 @@ public class AddressModelTest {
         mModel.setCity(EXPECTED_CITY);
         mModel.setState(EXPECTED_STATE);
         mModel.setZip(EXPECTED_ZIP);
+        mModel.setHousingType(EXPECTED_HOUSING_TYPE);
 
         UserDataVo base = mModel.getBaseData();
 
@@ -102,6 +107,7 @@ public class AddressModelTest {
         Assert.assertThat("Incorrect city.", base.city, equalTo(mModel.getCity()));
         Assert.assertThat("Incorrect state.", base.state, equalTo(mModel.getState()));
         Assert.assertThat("Incorrect zip code.", base.zip, equalTo(mModel.getZip()));
+        Assert.assertThat("Incorrect housing type.", base.housingType, equalTo(mModel.getHousingType()));
     }
 
     /**
@@ -118,7 +124,7 @@ public class AddressModelTest {
 
     /**
      * Given an empty Model.<br />
-     * When trying to store a invalid address.<br />
+     * When trying to store an invalid address.<br />
      * Then the address should not be stored.
      */
     @Test
@@ -153,7 +159,7 @@ public class AddressModelTest {
 
     /**
      * Given an empty Model.<br />
-     * When trying to store a invalid city.<br />
+     * When trying to store an invalid city.<br />
      * Then the city should not be stored.
      */
     @Test
@@ -176,7 +182,7 @@ public class AddressModelTest {
 
     /**
      * Given an empty Model.<br />
-     * When trying to store a invalid state.<br />
+     * When trying to store an invalid state.<br />
      * Then the state should not be stored.
      */
     @Test
@@ -199,12 +205,23 @@ public class AddressModelTest {
 
     /**
      * Given an empty Model.<br />
-     * When trying to store a invalid ZIP code.<br />
+     * When trying to store an invalid ZIP code.<br />
      * Then the ZIP code should not be stored.
      */
     @Test
     public void invalidZipIsNotStored() {
         mModel.setZip("abc");
         Assert.assertFalse("ZIP code should NOT be stored.", mModel.hasValidZip());
+    }
+
+    /**
+     * Given an empty Model.<br />
+     * When trying to store an invalid housing type.<br />
+     * Then the housing type should be flagged as such.
+     */
+    @Test
+    public void invalidHousingType() {
+        mModel.setHousingType(new IdDescriptionPairDisplayVo(-1, null));
+        Assert.assertFalse("Housing type should not be valid.", mModel.hasValidHousingType());
     }
 }
