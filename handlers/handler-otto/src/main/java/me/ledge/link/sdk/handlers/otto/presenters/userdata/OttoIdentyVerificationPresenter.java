@@ -9,7 +9,7 @@ import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 
 /**
- * An {@link IdentityVerificationPresenter} that uses the {@link EventBus} to receive API responses.
+ * An {@link IdentityVerificationPresenter} that uses the Otto Bus to receive API responses.
  * @author Wijnand
  */
 public class OttoIdentyVerificationPresenter extends IdentityVerificationPresenter {
