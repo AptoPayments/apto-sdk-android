@@ -190,6 +190,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         data.city = base.city;
         data.state = base.state;
         data.zip_code = base.zip;
+        data.housing_type = base.housingType.getKey();
         data.credit_range = base.creditScoreRange;
 
         return  data;
