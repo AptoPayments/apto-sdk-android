@@ -43,7 +43,7 @@
     <string name="address_state_error">Please select a state.</string>
     <string name="address_zip_code_hint">ZIP</string>
     <string name="address_zip_code_error">Please enter a valid ZIP.</string>
-    <string name="address_housing_type_header">Housing type</string>
+    <string name="address_housing_type_header">Residence</string>
     <string name="address_housing_type_hint">Select a housing type&#8230;</string>
     <string name="address_housing_type_error">Please select a valid housing type.</string>
 
