@@ -11,6 +11,7 @@ import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusListResponseVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
+import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
@@ -86,6 +87,12 @@ public class MockApiWrapper implements LinkApiWrapper {
     public EmploymentStatusListResponseVo getEmploymentStatusList(UnauthorizedRequestVo requestData)
             throws ApiException {
 
+        return null;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public SalaryFrequenciesListResponseVo getSalaryFrequenciesList(UnauthorizedRequestVo requestData) throws ApiException {
         return null;
     }
 
