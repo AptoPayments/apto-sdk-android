@@ -6,6 +6,7 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.sdk.tasks.config.EmploymentStatusesListTask;
 import me.ledge.link.sdk.sdk.tasks.config.HousingTypeListTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
@@ -119,6 +120,20 @@ public class LedgeLinkSdk {
 
         HousingTypeListTask task
                 = new HousingTypeListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Gets the housing type list.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getEmploymentStatusesList() {
+        checkComponents();
+
+        EmploymentStatusesListTask task
+                = new EmploymentStatusesListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;
