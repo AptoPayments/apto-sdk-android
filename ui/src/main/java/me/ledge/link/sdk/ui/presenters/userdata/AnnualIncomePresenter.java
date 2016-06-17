@@ -142,6 +142,9 @@ public class AnnualIncomePresenter
     @Override
     public void onStopTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
 
+    /**
+     * TODO: Make handling theses lists and generating Adapters more generic.
+     */
     public void setEmploymentStatusesList(EmploymentStatusVo[] list) {
         mEmploymentStatusesAdapter = generateEmploymentStatusesAdapter(list);
 
