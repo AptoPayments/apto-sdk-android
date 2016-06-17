@@ -10,7 +10,7 @@ import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
-import me.ledge.link.sdk.ui.activities.userdata.IncomeActivity;
+import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.TermsActivity;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
@@ -47,7 +47,7 @@ public class OttoHandlerConfigurator implements HandlerConfigurator {
         process.add(OttoLoanAmountActivity.class);
         process.add(PersonalInformationActivity.class);
         process.add(AddressActivity.class);
-        process.add(IncomeActivity.class);
+        process.add(AnnualIncomeActivity.class);
         process.add(CreditScoreActivity.class);
         process.add(OttoIdentityVerificationActivity.class);
         process.add(OttoOffersListActivity.class);

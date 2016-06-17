@@ -2,17 +2,27 @@ package me.ledge.link.sdk.ui.models.userdata;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 /**
  * Concrete {@link Model} for the income screen.
  * @author Wijnand
  */
-public class IncomeModel extends AbstractUserDataModel implements UserDataModel {
+public class AnnualIncomeModel extends AbstractUserDataModel implements UserDataModel {
 
     private int mMinIncome;
     private int mMaxIncome;
     private int mIncome;
+    private IdDescriptionPairDisplayVo mEmploymentStatus;
+
+    public AnnualIncomeModel() {
+        init();
+    }
+
+    private void init() {
+        mEmploymentStatus = null;
+    }
 
     /**
      * @param income Income to validate.
@@ -31,14 +41,15 @@ public class IncomeModel extends AbstractUserDataModel implements UserDataModel 
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return hasValidIncome();
+        return hasValidIncome() && hasValidEmploymentStatus();
     }
 
     /** {@inheritDoc} */
     @Override
     public UserDataVo getBaseData() {
         UserDataVo base = super.getBaseData();
-        base.income = mIncome;
+        base.income = getIncome();
+        base.employmentStatus = getEmploymentStatus();
 
         return base;
     }
@@ -48,6 +59,7 @@ public class IncomeModel extends AbstractUserDataModel implements UserDataModel 
     public void setBaseData(UserDataVo base) {
         super.setBaseData(base);
         setIncome(base.income);
+        setEmploymentStatus(base.employmentStatus);
     }
 
     /**
@@ -62,7 +74,7 @@ public class IncomeModel extends AbstractUserDataModel implements UserDataModel 
      * @param min Minimum income.
      * @return Self reference for easy method chaining.
      */
-    public IncomeModel setMinIncome(int min) {
+    public AnnualIncomeModel setMinIncome(int min) {
         mMinIncome = min;
         return this;
     }
@@ -79,7 +91,7 @@ public class IncomeModel extends AbstractUserDataModel implements UserDataModel 
      * @param max Maximum income.
      * @return Self reference for easy method chaining.
      */
-    public IncomeModel setMaxIncome(int max) {
+    public AnnualIncomeModel setMaxIncome(int max) {
         mMaxIncome = max;
         return this;
     }
@@ -96,7 +108,7 @@ public class IncomeModel extends AbstractUserDataModel implements UserDataModel 
      * @param income The income.
      * @return Self reference for easy method chaining.
      */
-    public IncomeModel setIncome(int income) {
+    public AnnualIncomeModel setIncome(int income) {
         if (isValid(income)) {
             mIncome = income;
         }
@@ -109,5 +121,17 @@ public class IncomeModel extends AbstractUserDataModel implements UserDataModel 
      */
     public boolean hasValidIncome() {
         return isValid(mIncome);
+    }
+
+    public IdDescriptionPairDisplayVo getEmploymentStatus() {
+        return mEmploymentStatus;
+    }
+
+    public void setEmploymentStatus(IdDescriptionPairDisplayVo status) {
+        mEmploymentStatus = status;
+    }
+
+    public boolean hasValidEmploymentStatus() {
+        return mEmploymentStatus != null && mEmploymentStatus.getKey() >= 0;
     }
 }

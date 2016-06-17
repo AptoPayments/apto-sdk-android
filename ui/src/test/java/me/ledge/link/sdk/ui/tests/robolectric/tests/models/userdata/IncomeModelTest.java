@@ -6,12 +6,12 @@ import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import me.ledge.link.sdk.ui.models.userdata.IncomeModel;
+import me.ledge.link.sdk.ui.models.userdata.AnnualIncomeModel;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 
 /**
- * Tests the {@link IncomeModel} class.
+ * Tests the {@link AnnualIncomeModel} class.
  * @author Wijnand
  */
 public class IncomeModelTest {
@@ -23,14 +23,14 @@ public class IncomeModelTest {
     private static final int TOO_SMALL_INCOME = -1000;
     private static final int TOO_LARGE_INCOME = MAX_INCOME * 2;
 
-    private IncomeModel mModel;
+    private AnnualIncomeModel mModel;
 
     /**
      * Sets up each test.
      */
     @Before
     public void setUp() {
-        mModel = new IncomeModel()
+        mModel = new AnnualIncomeModel()
                 .setMinIncome(MIN_INCOME)
                 .setMaxIncome(MAX_INCOME);
     }

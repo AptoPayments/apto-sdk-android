@@ -127,7 +127,7 @@ public class LedgeLinkSdk {
     }
 
     /**
-     * Gets the housing type list.
+     * Gets the employment statuses list.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
     public static LedgeLinkApiTask getEmploymentStatusesList() {
@@ -141,7 +141,7 @@ public class LedgeLinkSdk {
     }
 
     /**
-     * Gets the housing type list.
+     * Gets the salary frequencies list.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
     public static LedgeLinkApiTask getSalaryFrequenciesList() {

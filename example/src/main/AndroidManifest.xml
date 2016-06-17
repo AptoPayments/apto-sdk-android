@@ -42,7 +42,7 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.ui.activities.userdata.IncomeActivity"
+                android:name="me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusAnnualIncomeActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity

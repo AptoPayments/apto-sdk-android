@@ -27,6 +27,8 @@ public class UserDataVo {
     public IdDescriptionPairDisplayVo housingType;
 
     public int income;
+    public IdDescriptionPairDisplayVo employmentStatus;
+
     public int creditScoreRange;
 
     /**
@@ -42,17 +44,22 @@ public class UserDataVo {
     private void init() {
         loanAmount = -1;
         loanPurpose = null;
+
         firstName = null;
         lastName = null;
         emailAddress = null;
         phoneNumber = null;
+
         address = null;
         apartmentNumber = null;
         city = null;
         state = null;
         zip = null;
         housingType = null;
+
         income = -1;
+        employmentStatus = null;
+
         creditScoreRange = -1;
     }
 }

@@ -47,10 +47,13 @@
     <string name="address_housing_type_hint">Select a housing type&#8230;</string>
     <string name="address_housing_type_error">Please select a valid housing type.</string>
 
-    <!-- Income -->
+    <!-- Annual Income -->
     <string name="income_label">What\'s your pretax income?</string>
     <string name="income_format" formatted="false">$%dK</string>
     <string name="income_format_and_more" formatted="false">$%dK+</string>
+    <string name="annual_income_employment_status_header">Employment status</string>
+    <string name="annual_income_employment_status_hint">Select an employment status&#8230;</string>
+    <string name="annual_income_employment_status_error">Please select a valid employment status.</string>
 
     <!-- Credit Score -->
     <string name="credit_score_label">What\'s your credit score?</string>
