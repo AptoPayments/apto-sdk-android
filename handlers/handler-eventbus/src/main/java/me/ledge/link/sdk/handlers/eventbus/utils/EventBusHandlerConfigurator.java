@@ -12,6 +12,7 @@ import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
+import me.ledge.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.TermsActivity;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
@@ -33,6 +34,7 @@ public class EventBusHandlerConfigurator implements HandlerConfigurator {
         process.add(PersonalInformationActivity.class);
         process.add(EventBusAddressActivity.class);
         process.add(EventBusAnnualIncomeActivity.class);
+        process.add(MonthlyIncomeActivity.class);
         process.add(CreditScoreActivity.class);
         process.add(EventBusIdentityVerificationActivity.class);
         process.add(EventBusOffersListActivity.class);

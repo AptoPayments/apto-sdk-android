@@ -1,34 +1,18 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.models.Model;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 /**
- * Concrete {@link Model} for the income screen.
+ * TODO: Class documentation.
+ * TODO: A lot copied straight from {@link AnnualIncomeModel}.
  * @author Wijnand
  */
-public class AnnualIncomeModel extends AbstractUserDataModel implements UserDataModel {
+public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDataModel {
 
     private int mMinIncome;
     private int mMaxIncome;
     private int mIncome;
-    private IdDescriptionPairDisplayVo mEmploymentStatus;
-    private IdDescriptionPairDisplayVo mSalaryFrequency;
-
-    public AnnualIncomeModel() {
-        init();
-    }
-
-    private void init() {
-        mEmploymentStatus = null;
-        mSalaryFrequency = null;
-    }
-
-    private boolean hasValidKey(IdDescriptionPairDisplayVo pair) {
-        return pair != null && pair.getKey() >= 0;
-    }
 
     /**
      * @param income Income to validate.
@@ -41,22 +25,20 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
-        return R.string.annual_income_label;
+        return R.string.monthly_income_label;
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return hasValidIncome() && hasValidEmploymentStatus() && hasValidSalaryFrequency();
+        return hasValidIncome();
     }
 
     /** {@inheritDoc} */
     @Override
     public UserDataVo getBaseData() {
         UserDataVo base = super.getBaseData();
-        base.annualGrossIncome = getIncome();
-        base.employmentStatus = getEmploymentStatus();
-        base.salaryFrequency = getSalaryFrequency();
+        base.monthlyNetIncome = getIncome();
 
         return base;
     }
@@ -65,9 +47,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     @Override
     public void setBaseData(UserDataVo base) {
         super.setBaseData(base);
-        setIncome(base.annualGrossIncome);
-        setEmploymentStatus(base.employmentStatus);
-        setSalaryFrequency(base.salaryFrequency);
+        setIncome(base.monthlyNetIncome);
     }
 
     /**
@@ -82,7 +62,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
      * @param min Minimum income.
      * @return Self reference for easy method chaining.
      */
-    public AnnualIncomeModel setMinIncome(int min) {
+    public MonthlyIncomeModel setMinIncome(int min) {
         mMinIncome = min;
         return this;
     }
@@ -99,7 +79,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
      * @param max Maximum income.
      * @return Self reference for easy method chaining.
      */
-    public AnnualIncomeModel setMaxIncome(int max) {
+    public MonthlyIncomeModel setMaxIncome(int max) {
         mMaxIncome = max;
         return this;
     }
@@ -116,7 +96,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
      * @param income The income.
      * @return Self reference for easy method chaining.
      */
-    public AnnualIncomeModel setIncome(int income) {
+    public MonthlyIncomeModel setIncome(int income) {
         if (isValid(income)) {
             mIncome = income;
         }
@@ -129,29 +109,5 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
      */
     public boolean hasValidIncome() {
         return isValid(mIncome);
-    }
-
-    public IdDescriptionPairDisplayVo getEmploymentStatus() {
-        return mEmploymentStatus;
-    }
-
-    public void setEmploymentStatus(IdDescriptionPairDisplayVo status) {
-        mEmploymentStatus = status;
-    }
-
-    public boolean hasValidEmploymentStatus() {
-        return hasValidKey(mEmploymentStatus);
-    }
-
-    public IdDescriptionPairDisplayVo getSalaryFrequency() {
-        return mSalaryFrequency;
-    }
-
-    public void setSalaryFrequency(IdDescriptionPairDisplayVo frequency) {
-        mSalaryFrequency = frequency;
-    }
-
-    public boolean hasValidSalaryFrequency() {
-        return hasValidKey(mSalaryFrequency);
     }
 }

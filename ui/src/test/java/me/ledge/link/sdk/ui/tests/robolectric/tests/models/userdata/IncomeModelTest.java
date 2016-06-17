@@ -55,7 +55,7 @@ public class IncomeModelTest {
     public void hasCorrectTitleResource() {
         Assert.assertThat("Incorrect resource ID.",
                 mModel.getActivityTitleResource(),
-                equalTo(R.string.income_label));
+                equalTo(R.string.annual_income_label));
     }
 
     /**
@@ -76,12 +76,12 @@ public class IncomeModelTest {
     @Test
     public void settingBaseDataUpdatesIncome() {
         UserDataVo base = new UserDataVo();
-        base.income = EXPECTED_VALID_INCOME;
+        base.annualGrossIncome = EXPECTED_VALID_INCOME;
 
         mModel.setBaseData(base);
 
         Assert.assertTrue("All data should be present.", mModel.hasAllData());
-        Assert.assertThat("Incorrect income.", mModel.getIncome(), equalTo(base.income));
+        Assert.assertThat("Incorrect income.", mModel.getIncome(), equalTo(base.annualGrossIncome));
     }
 
     /**
@@ -95,7 +95,7 @@ public class IncomeModelTest {
 
         mModel.setIncome(EXPECTED_VALID_INCOME);
 
-        Assert.assertThat("Incorrect income.", mModel.getBaseData().income, equalTo(mModel.getIncome()));
+        Assert.assertThat("Incorrect income.", mModel.getBaseData().annualGrossIncome, equalTo(mModel.getIncome()));
     }
 
     /**

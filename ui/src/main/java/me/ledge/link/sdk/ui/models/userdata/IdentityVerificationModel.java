@@ -184,7 +184,8 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         data.ssn = getSocialSecurityNumber();
         data.email = base.emailAddress;
         data.phone_number = getFormattedPhone(base.phoneNumber);
-        data.income = base.income;
+        data.income = base.annualGrossIncome;
+        data.monthly_net_income = base.monthlyNetIncome;
         data.street = base.address;
         data.apt = base.apartmentNumber;
         data.city = base.city;

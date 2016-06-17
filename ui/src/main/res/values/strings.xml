@@ -15,7 +15,7 @@
 
     <!-- Loan Amount -->
     <string name="loan_amount_label">How much do you need?</string>
-    <string name="loan_amount_format">$%d</string>
+    <string name="loan_amount_format">$%,d</string>
     <string name="loan_amount_purpose_header">Loan purpose</string>
     <string name="loan_amount_purpose_hint">Select a loan purpose&#8230;</string>
     <string name="loan_amount_purpose_error">Please select a valid loan purpose.</string>
@@ -48,7 +48,7 @@
     <string name="address_housing_type_error">Please select a valid housing type.</string>
 
     <!-- Annual Income -->
-    <string name="income_label">What\'s your pretax income?</string>
+    <string name="annual_income_label">What\'s your pretax income?</string>
     <string name="income_format" formatted="false">$%dK</string>
     <string name="income_format_and_more" formatted="false">$%dK+</string>
     <string name="annual_income_employment_status_header">Employment status</string>
@@ -57,6 +57,10 @@
     <string name="annual_income_salary_frequency_header">Salary frequency</string>
     <string name="annual_income_salary_frequency_hint">Select a salary frequency&#8230;</string>
     <string name="annual_income_salary_frequency_error">Please select a valid salary frequency.</string>
+
+    <!-- Monthly Income -->
+    <string name="monthly_income_label">What\'s your monthly net income?</string>
+    <string name="monthly_income_format" formatted="false">$%,d</string>
 
     <!-- Credit Score -->
     <string name="credit_score_label">What\'s your credit score?</string>

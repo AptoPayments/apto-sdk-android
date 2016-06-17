@@ -49,7 +49,7 @@ public class CreditScorePresenter
     /** {@inheritDoc} */
     @Override
     protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 5, true, true);
+        return new StepperConfiguration(TOTAL_STEPS, 6, true, true);
     }
 
     /**

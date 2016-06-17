@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             dataSet = true;
         }
         if (hasValue(mView.getIncome())) {
-            data.income = parseIntSafely(mView.getIncome());
+            data.annualGrossIncome = parseIntSafely(mView.getIncome());
             dataSet = true;
         }
 

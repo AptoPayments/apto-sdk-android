@@ -26,10 +26,11 @@ public class UserDataVo {
     public String zip;
     public IdDescriptionPairDisplayVo housingType;
 
-    public int income;
+    public int annualGrossIncome;
     public IdDescriptionPairDisplayVo employmentStatus;
     public IdDescriptionPairDisplayVo salaryFrequency;
 
+    public int monthlyNetIncome;
     public int creditScoreRange;
 
     /**
@@ -58,9 +59,11 @@ public class UserDataVo {
         zip = null;
         housingType = null;
 
-        income = -1;
+        annualGrossIncome = -1;
         employmentStatus = null;
+        salaryFrequency = null;
 
+        monthlyNetIncome = -1;
         creditScoreRange = -1;
     }
 }

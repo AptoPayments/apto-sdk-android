@@ -54,7 +54,7 @@ public class IdentityVerificationPresenter
     /** {@inheritDoc} */
     @Override
     protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 6, true, false);
+        return new StepperConfiguration(TOTAL_STEPS, 7, true, false);
     }
 
     /** {@inheritDoc} */

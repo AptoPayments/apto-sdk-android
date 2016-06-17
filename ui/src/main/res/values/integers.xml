@@ -15,11 +15,14 @@
     <integer name="state_length">2</integer>
     <integer name="zip_code_length">10</integer>
 
-    <!-- Income -->
+    <!-- Annual Income -->
     <integer name="min_income">0</integer>
     <integer name="max_income">250000</integer>
     <integer name="default_income">45000</integer>
     <integer name="income_increment">1000</integer>
+
+    <!-- Monthly Income -->
+    <integer name="monthly_income_increment">100</integer>
 
     <!-- ID verification -->
     <integer name="min_age">18</integer>
