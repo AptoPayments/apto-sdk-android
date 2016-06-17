@@ -15,6 +15,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     private int mMaxIncome;
     private int mIncome;
     private IdDescriptionPairDisplayVo mEmploymentStatus;
+    private IdDescriptionPairDisplayVo mSalaryFrequency;
 
     public AnnualIncomeModel() {
         init();
@@ -22,6 +23,11 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
 
     private void init() {
         mEmploymentStatus = null;
+        mSalaryFrequency = null;
+    }
+
+    private boolean hasValidKey(IdDescriptionPairDisplayVo pair) {
+        return pair != null && pair.getKey() >= 0;
     }
 
     /**
@@ -41,7 +47,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return hasValidIncome() && hasValidEmploymentStatus();
+        return hasValidIncome() && hasValidEmploymentStatus() && hasValidSalaryFrequency();
     }
 
     /** {@inheritDoc} */
@@ -50,6 +56,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
         UserDataVo base = super.getBaseData();
         base.income = getIncome();
         base.employmentStatus = getEmploymentStatus();
+        base.salaryFrequency = getSalaryFrequency();
 
         return base;
     }
@@ -60,6 +67,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
         super.setBaseData(base);
         setIncome(base.income);
         setEmploymentStatus(base.employmentStatus);
+        setSalaryFrequency(base.salaryFrequency);
     }
 
     /**
@@ -132,6 +140,18 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     }
 
     public boolean hasValidEmploymentStatus() {
-        return mEmploymentStatus != null && mEmploymentStatus.getKey() >= 0;
+        return hasValidKey(mEmploymentStatus);
+    }
+
+    public IdDescriptionPairDisplayVo getSalaryFrequency() {
+        return mSalaryFrequency;
+    }
+
+    public void setSalaryFrequency(IdDescriptionPairDisplayVo frequency) {
+        mSalaryFrequency = frequency;
+    }
+
+    public boolean hasValidSalaryFrequency() {
+        return hasValidKey(mSalaryFrequency);
     }
 }

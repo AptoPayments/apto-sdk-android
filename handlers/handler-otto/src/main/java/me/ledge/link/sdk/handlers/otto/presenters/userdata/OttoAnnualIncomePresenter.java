@@ -3,6 +3,7 @@ package me.ledge.link.sdk.handlers.otto.presenters.userdata;
 import android.support.v7.app.AppCompatActivity;
 import com.squareup.otto.Subscribe;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusListResponseVo;
+import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
 import me.ledge.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
 import me.ledge.link.sdk.ui.views.userdata.AnnualIncomeView;
 
@@ -39,9 +40,20 @@ public class OttoAnnualIncomePresenter extends AnnualIncomePresenter {
      * @param response API response.
      */
     @Subscribe
-    public void handleToken(EmploymentStatusListResponseVo response) {
+    public void handleEmploymentStatusesList(EmploymentStatusListResponseVo response) {
         if (response != null) {
             setEmploymentStatusesList(response.data);
+        }
+    }
+
+    /**
+     * Called when the salary frequencies list API response has been received.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleSalaryFrequenciesList(SalaryFrequenciesListResponseVo response) {
+        if (response != null) {
+            setSalaryFrequenciesList(response.data);
         }
     }
 }

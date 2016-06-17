@@ -192,6 +192,14 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         data.zip_code = base.zip;
         data.credit_range = base.creditScoreRange;
 
+        if (base.employmentStatus != null) {
+            data.employment_status = base.employmentStatus.getKey();
+        }
+
+        if (base.salaryFrequency != null) {
+            data.salary_frequency = base.salaryFrequency.getKey();
+        }
+
         if (base.housingType != null) {
             data.housing_type = base.housingType.getKey();
         }

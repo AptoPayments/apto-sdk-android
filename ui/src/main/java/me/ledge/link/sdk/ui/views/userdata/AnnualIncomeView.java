@@ -33,6 +33,8 @@ public class AnnualIncomeView
     private DiscreteSeekBar mIncomeSlider;
     private Spinner mEmploymentStatusSpinner;
     private TextView mEmploymentStatusError;
+    private Spinner mSalaryFrequencySpinner;
+    private TextView mSalaryFrequencyError;
 
     /**
      * @see UserDataView#UserDataView
@@ -59,8 +61,12 @@ public class AnnualIncomeView
         mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
         mIncomeText = (TextView) findViewById(R.id.tv_income);
         mIncomeSlider = (DiscreteSeekBar) findViewById(R.id.dsb_income);
+
         mEmploymentStatusSpinner = (Spinner) findViewById(R.id.sp_employment_status);
         mEmploymentStatusError = (TextView) findViewById(R.id.tv_employment_status_error);
+
+        mSalaryFrequencySpinner = (Spinner) findViewById(R.id.sp_salary_frequency);
+        mSalaryFrequencyError = (TextView) findViewById(R.id.tv_salary_frequency_error);
     }
 
     /** {@inheritDoc} */
@@ -142,6 +148,41 @@ public class AnnualIncomeView
             mEmploymentStatusError.setVisibility(VISIBLE);
         } else {
             mEmploymentStatusError.setVisibility(GONE);
+        }
+    }
+
+    /**
+     * @return Selected salary frequency.
+     */
+    public IdDescriptionPairDisplayVo getSalaryFrequency() {
+        return (IdDescriptionPairDisplayVo) mSalaryFrequencySpinner.getSelectedItem();
+    }
+
+    /**
+     * Displays a new salary frequency.
+     * @param position salary frequency index.
+     */
+    public void setSalaryFrequency(int position) {
+        mSalaryFrequencySpinner.setSelection(position);
+    }
+
+    /**
+     * Stores a new {@link HintArrayAdapter} for the salary frequency {@link Spinner} to use.
+     * @param adapter New {@link HintArrayAdapter}.
+     */
+    public void setSalaryFrequencyAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
+        mSalaryFrequencySpinner.setAdapter(adapter);
+    }
+
+    /**
+     * Updates the salary frequency field error display.
+     * @param show Whether the error should be shown.
+     */
+    public void updateSalaryFrequencyError(boolean show) {
+        if (show) {
+            mSalaryFrequencyError.setVisibility(VISIBLE);
+        } else {
+            mSalaryFrequencyError.setVisibility(GONE);
         }
     }
 }

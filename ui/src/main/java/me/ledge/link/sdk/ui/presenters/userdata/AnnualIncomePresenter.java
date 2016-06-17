@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
+import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
@@ -24,6 +25,7 @@ public class AnnualIncomePresenter
     private int mMaxIncome;
 
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mEmploymentStatusesAdapter;
+    private HintArrayAdapter<IdDescriptionPairDisplayVo> mSalaryFrequenciesAdapter;
 
     /**
      * Creates a new {@link AnnualIncomePresenter} instance.
@@ -34,8 +36,8 @@ public class AnnualIncomePresenter
     }
 
     /**
-     * @param typesList List of housing types.
-     * @return Adapter used to display the list of housing types.
+     * @param list List of employment statuses.
+     * @return Adapter used to display the list of employment statuses.
      */
     private HintArrayAdapter<IdDescriptionPairDisplayVo> generateEmploymentStatusesAdapter(EmploymentStatusVo[] list) {
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
@@ -49,6 +51,29 @@ public class AnnualIncomePresenter
         if (list != null) {
             for (EmploymentStatusVo type : list) {
                 adapter.add(new IdDescriptionPairDisplayVo(type.employment_status_id, type.description));
+            }
+        }
+
+        return adapter;
+    }
+
+    /**
+     * TODO: This is almost exactly the same as {@link #generateEmploymentStatusesAdapter}.
+     * @param list List of salary frequencies.
+     * @return Adapter used to display the list of salary frequencies.
+     */
+    private HintArrayAdapter<IdDescriptionPairDisplayVo> generateSalaryFrequenciesAdapter(SalaryFrequencyVo[] list) {
+        HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
+                = new HintArrayAdapter<>(mActivity, android.R.layout.simple_spinner_dropdown_item);
+
+        IdDescriptionPairDisplayVo hint
+                = new IdDescriptionPairDisplayVo(-1, mActivity.getString(R.string.annual_income_salary_frequency_hint));
+
+        adapter.add(hint);
+
+        if (list != null) {
+            for (SalaryFrequencyVo frequency : list) {
+                adapter.add(new IdDescriptionPairDisplayVo(frequency.salary_frequency_id, frequency.description));
             }
         }
 
@@ -89,8 +114,9 @@ public class AnnualIncomePresenter
         mView.setMinMax(mModel.getMinIncome() / mIncomeMultiplier, mModel.getMaxIncome() / mIncomeMultiplier);
         mView.setIncome(mModel.getIncome() / mIncomeMultiplier);
         mView.updateEmploymentStatusError(false);
+        mView.updateSalaryFrequencyError(false);
 
-        mView.showLoading(true);
+        mView.showLoading(mEmploymentStatusesAdapter == null || mSalaryFrequenciesAdapter == null);
 
         if (mEmploymentStatusesAdapter == null) {
             mView.setEmploymentStatusAdapter(generateEmploymentStatusesAdapter(null));
@@ -102,6 +128,20 @@ public class AnnualIncomePresenter
 
             if (mModel.hasValidEmploymentStatus()) {
                 mView.setEmploymentStatus(mEmploymentStatusesAdapter.getPosition(mModel.getEmploymentStatus()));
+            }
+        }
+
+        // TODO: Abstract this!
+        if (mSalaryFrequenciesAdapter == null) {
+            mView.setSalaryFrequencyAdapter(generateSalaryFrequenciesAdapter(null));
+
+            // Load salary frequencies list.
+            LedgeLinkUi.getSalaryFrequenciesList();
+        } else {
+            mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
+
+            if (mModel.hasValidSalaryFrequency()) {
+                mView.setSalaryFrequency(mSalaryFrequenciesAdapter.getPosition(mModel.getSalaryFrequency()));
             }
         }
     }
@@ -118,8 +158,10 @@ public class AnnualIncomePresenter
     public void nextClickHandler() {
         mModel.setIncome(mView.getIncome() * mIncomeMultiplier);
         mModel.setEmploymentStatus(mView.getEmploymentStatus());
+        mModel.setSalaryFrequency(mView.getSalaryFrequency());
 
         mView.updateEmploymentStatusError(!mModel.hasValidEmploymentStatus());
+        mView.updateSalaryFrequencyError(!mModel.hasValidSalaryFrequency());
         super.nextClickHandler();
     }
 
@@ -149,11 +191,27 @@ public class AnnualIncomePresenter
         mEmploymentStatusesAdapter = generateEmploymentStatusesAdapter(list);
 
         if (mView != null) {
-            mView.showLoading(false);
+            mView.showLoading(mEmploymentStatusesAdapter == null || mSalaryFrequenciesAdapter == null);
             mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
 
             if (mModel.hasValidEmploymentStatus()) {
                 mView.setEmploymentStatus(mEmploymentStatusesAdapter.getPosition(mModel.getEmploymentStatus()));
+            }
+        }
+    }
+
+    /**
+     * TODO: Make handling theses lists and generating Adapters more generic.
+     */
+    public void setSalaryFrequenciesList(SalaryFrequencyVo[] list) {
+        mSalaryFrequenciesAdapter = generateSalaryFrequenciesAdapter(list);
+
+        if (mView != null) {
+            mView.showLoading(mEmploymentStatusesAdapter == null || mSalaryFrequenciesAdapter == null);
+            mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
+
+            if (mModel.hasValidSalaryFrequency()) {
+                mView.setSalaryFrequency(mSalaryFrequenciesAdapter.getPosition(mModel.getSalaryFrequency()));
             }
         }
     }

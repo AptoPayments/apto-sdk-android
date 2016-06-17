@@ -28,6 +28,7 @@ public class UserDataVo {
 
     public int income;
     public IdDescriptionPairDisplayVo employmentStatus;
+    public IdDescriptionPairDisplayVo salaryFrequency;
 
     public int creditScoreRange;
 
