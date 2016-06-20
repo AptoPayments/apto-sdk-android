@@ -8,6 +8,7 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
+import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusListResponseVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
@@ -68,6 +69,12 @@ public class MockApiWrapper implements LinkApiWrapper {
     @Override
     public void setApiEndPoint(String endPoint) {
         mEndPoint = endPoint;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public DisclaimerResponseVo getLinkDisclaimer(UnauthorizedRequestVo requestData) throws ApiException {
+        return null;
     }
 
     /** {@inheritDoc} */

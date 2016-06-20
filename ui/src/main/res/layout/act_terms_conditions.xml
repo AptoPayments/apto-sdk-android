@@ -6,16 +6,18 @@
 
     <include layout="@layout/include_llsdk_toolbar" />
 
-    <RelativeLayout
+    <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            style="@style/llsdk_user_data_entry_container">
+            android:layout_below="@+id/abl_toolbar_wrapper"
+            android:layout_alignParentBottom="true">
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:paddingTop="32dp"
                 android:gravity="center_horizontal">
 
             <ImageView
@@ -37,11 +39,12 @@
                     android:layout_marginTop="32dp"
                     android:text="@string/terms_button_next" />
 
+            <TextView
+                    android:id="@+id/tv_terms"
+                    style="?attr/llsdk_terms_disclaimerStyle" />
+
         </LinearLayout>
+    </ScrollView>
 
-        <TextView
-                style="?attr/llsdk_terms_disclaimerStyle"
-                android:text="@string/terms_conditions" />
-
-    </RelativeLayout>
+    <include layout="@layout/include_rl_loading" />
 </me.ledge.link.sdk.ui.views.userdata.TermsView>

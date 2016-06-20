@@ -6,6 +6,7 @@ import me.ledge.link.sdk.handlers.otto.activities.userdata.OttoAddressActivity;
 import me.ledge.link.sdk.handlers.otto.activities.userdata.OttoAnnualIncomeActivity;
 import me.ledge.link.sdk.handlers.otto.activities.userdata.OttoIdentityVerificationActivity;
 import me.ledge.link.sdk.handlers.otto.activities.userdata.OttoLoanAmountActivity;
+import me.ledge.link.sdk.handlers.otto.activities.userdata.OttoTermsActivity;
 import me.ledge.link.sdk.handlers.otto.tasks.handlers.OttoResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
@@ -13,7 +14,6 @@ import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActiv
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
 import me.ledge.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
-import me.ledge.link.sdk.ui.activities.userdata.TermsActivity;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class OttoHandlerConfigurator implements HandlerConfigurator {
     @Override
     public ArrayList<Class<? extends MvpActivity>> getProcessOrder() {
         ArrayList<Class<? extends MvpActivity>> process = new ArrayList<>(8);
-        process.add(TermsActivity.class);
+        process.add(OttoTermsActivity.class);
         process.add(OttoLoanAmountActivity.class);
         process.add(PersonalInformationActivity.class);
         process.add(OttoAddressActivity.class);

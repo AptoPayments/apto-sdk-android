@@ -18,6 +18,7 @@
         <item name="llsdk_nextButtonStyle">@style/user_details_next_button_example</item>
         <item name="llsdk_textLinkStyle">@style/llsdk_plain_text_link_example</item>
 
+        <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer_example</item>
         <item name="llsdk_userData_sliderHeaderStyle">@style/llsdk_value_slider_header_example</item>
         <item name="llsdk_userData_progressColor">@color/primaryDark</item>
         <item name="discreteSeekBarStyle">@style/llsdk_discrete_seek_bar_example</item>

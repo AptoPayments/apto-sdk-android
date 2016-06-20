@@ -26,7 +26,7 @@
         </activity>
 
         <activity
-                android:name="me.ledge.link.sdk.ui.activities.userdata.TermsActivity"
+                android:name="me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusTermsActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity

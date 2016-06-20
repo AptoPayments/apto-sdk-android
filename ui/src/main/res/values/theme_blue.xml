@@ -32,7 +32,7 @@
         <item name="llsdk_stepper_dotDisabled">@drawable/stepper_dot_disabled</item>
         <item name="llsdk_stepper_dotEnabled">@drawable/stepper_dot_enabled</item>
 
-        <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer</item>
+        <item name="llsdk_terms_disclaimerStyle">@style/llsdk_terms_disclaimer_blue</item>
         <item name="llsdk_creditScore_radioButtonStyle">@style/llsdk_credit_score_radio</item>
 
         <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.Blue.TextInput</item>

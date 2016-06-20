@@ -6,15 +6,14 @@ import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusAddressAc
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusAnnualIncomeActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusIdentityVerificationActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusLoanAmountActivity;
+import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusTermsActivity;
 import me.ledge.link.sdk.handlers.eventbus.tasks.handlers.EventBusThreeResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
-import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
-import me.ledge.link.sdk.ui.activities.userdata.TermsActivity;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class EventBusHandlerConfigurator implements HandlerConfigurator {
     @Override
     public ArrayList<Class<? extends MvpActivity>> getProcessOrder() {
         ArrayList<Class<? extends MvpActivity>> process = new ArrayList<>(8);
-        process.add(TermsActivity.class);
+        process.add(EventBusTermsActivity.class);
         process.add(EventBusLoanAmountActivity.class);
         process.add(PersonalInformationActivity.class);
         process.add(EventBusAddressActivity.class);

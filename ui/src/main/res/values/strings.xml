@@ -10,7 +10,6 @@
     <!-- Terms / Conditions -->
     <string name="terms_label">Find a loan</string>
     <string name="terms_tag_line">Find the perfect loan,\nfrom your phone.</string>
-    <string name="terms_conditions">By continuing you accept our Terms of Service and Privacy Policy and agree to share your personal information with Ledge and its affiliates. This may include your name, email, phone number, address, birthday, income and other personally identifiable information.</string>
     <string name="terms_button_next">FIND A LOAN</string>
 
     <!-- Loan Amount -->
