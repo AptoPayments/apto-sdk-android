@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.handlers.otto.activities.userdata;
 
-import me.ledge.link.sdk.handlers.eventbus.presenters.userdata.OttoIdentyVerificationPresenter;
+import me.ledge.link.sdk.handlers.otto.presenters.userdata.OttoIdentyVerificationPresenter;
 import me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
 import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
 

@@ -2,6 +2,7 @@ package me.ledge.link.sdk.handlers.eventbus.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.responses.config.DisclaimersListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
@@ -52,6 +53,11 @@ public class EventBusIdentyVerificationPresenter extends IdentityVerificationPre
     @Subscribe
     public void handleUserDetails(UserResponseVo response) {
         setUpdateUserResponse(response);
+    }
+
+    @Subscribe
+    public void handlePartnerDisclaimersList(DisclaimersListResponseVo response) {
+        setDisclaimers(parseDisclaimersList(response));
     }
 
     /**

@@ -7,6 +7,8 @@ import android.text.TextUtils;
 import android.widget.DatePicker;
 import android.widget.Toast;
 import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
+import me.ledge.link.api.vos.responses.config.DisclaimersListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -27,6 +29,8 @@ public class IdentityVerificationPresenter
         extends UserDataPresenter<IdentityVerificationModel, IdentityVerificationView>
         implements Presenter<IdentityVerificationModel, IdentityVerificationView>,
         IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener {
+
+    private String mDisclaimersText;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
@@ -80,6 +84,13 @@ public class IdentityVerificationPresenter
         if (progressColor != 0) {
             mView.setProgressColor(progressColor);
         }
+
+        if (mDisclaimersText == null) {
+            mView.showLoading(true);
+            LedgeLinkUi.getPartnerDisclaimersList();
+        } else {
+            setDisclaimers(mDisclaimersText);
+        }
     }
 
     /** {@inheritDoc} */
@@ -126,6 +137,29 @@ public class IdentityVerificationPresenter
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         mModel.setBirthday(year, monthOfYear, dayOfMonth);
         mView.setBirthday(String.format("%02d/%02d/%02d", monthOfYear + 1, dayOfMonth, year));
+    }
+
+    public String parseDisclaimersList(DisclaimersListResponseVo response) {
+        if (response.data == null || response.data.length < 1) {
+            return "";
+        }
+
+        String lineBreak = "<br />";
+        String partnerDivider = "<br /><br />";
+        StringBuilder result = new StringBuilder();
+
+        for (DisclaimerResponseVo disclaimer : response.data) {
+            result.append(disclaimer.text.replaceAll("\\r?\\n", lineBreak));
+            result.append(partnerDivider);
+        }
+
+        return result.toString();
+    }
+
+    public void setDisclaimers(String disclaimers) {
+        mDisclaimersText = disclaimers;
+        mView.setDisclaimers(disclaimers);
+        mView.showLoading(false);
     }
 
     /**

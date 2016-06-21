@@ -9,6 +9,7 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.config.EmploymentStatusesListTask;
 import me.ledge.link.sdk.sdk.tasks.config.HousingTypeListTask;
 import me.ledge.link.sdk.sdk.tasks.config.LinkDisclaimerTask;
+import me.ledge.link.sdk.sdk.tasks.config.PartnerDisclaimersListTask;
 import me.ledge.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
@@ -160,6 +161,16 @@ public class LedgeLinkSdk {
 
         SalaryFrequenciesListTask task
                 = new SalaryFrequenciesListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    public static LedgeLinkApiTask getPartnerDisclaimersList() {
+        checkComponents();
+
+        PartnerDisclaimersListTask task
+                = new PartnerDisclaimersListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

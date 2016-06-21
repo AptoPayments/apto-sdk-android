@@ -3,10 +3,12 @@ package me.ledge.link.sdk.ui.views.userdata;
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatEditText;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
@@ -39,6 +41,8 @@ public class IdentityVerificationView
 
     private TextInputLayout mSocialSecurityWrapper;
     private SsnEditText mSocialSecurityField;
+
+    private TextView mDisclaimersField;
 
     private LoadingView mLoadingView;
     private ProgressBar mProgressBar;
@@ -77,6 +81,8 @@ public class IdentityVerificationView
 
         mSocialSecurityWrapper = (TextInputLayout) findViewById(R.id.til_social_security);
         mSocialSecurityField = (SsnEditText) findViewById(R.id.et_social_security);
+
+        mDisclaimersField = (TextView) findViewById(R.id.tv_disclaimers_body);
 
         mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
         mProgressBar = (ProgressBar) findViewById(R.id.pb_progress);
@@ -148,6 +154,10 @@ public class IdentityVerificationView
      */
     public void updateSocialSecurityError(boolean show, int errorMessageId) {
         updateErrorDisplay(mSocialSecurityWrapper, show, errorMessageId);
+    }
+
+    public void setDisclaimers(String disclaimers) {
+        mDisclaimersField.setText(Html.fromHtml(disclaimers));
     }
 
     /** {@inheritDoc} */

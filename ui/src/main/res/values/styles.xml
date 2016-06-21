@@ -135,7 +135,8 @@
     <style name="llsdk_id_verification_disclaimer">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColorLink">@color/llsdk_link_color</item>
     </style>
 
     <style name="llsdk_id_verification_terms">
@@ -292,6 +293,10 @@
         <item name="dsb_progressColor">@color/llsdk_blue_primary_dark</item>
         <item name="dsb_indicatorColor">@color/llsdk_blue_primary</item>
         <item name="dsb_rippleColor">@color/llsdk_blue_dsb_ripple</item>
+    </style>
+
+    <style name="llsdk_id_verification_disclaimer_blue" parent="llsdk_id_verification_disclaimer">
+        <item name="android:textColorLink">@color/llsdk_blue_primary</item>
     </style>
 
     <style name="llsdk_loan_offer_summary_blue" parent="llsdk_loan_offer_summary">

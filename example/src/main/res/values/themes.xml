@@ -22,6 +22,7 @@
         <item name="llsdk_userData_sliderHeaderStyle">@style/llsdk_value_slider_header_example</item>
         <item name="llsdk_userData_progressColor">@color/primaryDark</item>
         <item name="discreteSeekBarStyle">@style/llsdk_discrete_seek_bar_example</item>
+        <item name="llsdk_idVerification_disclaimerStyle">@style/llsdk_id_verification_disclaimer_example</item>
 
         <item name="llsdk_loanOfferSummary_buttonStyle">@style/llsdk_loan_offer_summary_apply_button_example</item>
         <item name="llsdk_addDocuments_iconCheckedColor">@color/primary</item>

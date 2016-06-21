@@ -1,8 +1,9 @@
-package me.ledge.link.sdk.handlers.eventbus.presenters.userdata;
+package me.ledge.link.sdk.handlers.otto.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 import com.squareup.otto.Subscribe;
 import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.responses.config.DisclaimersListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
@@ -52,6 +53,11 @@ public class OttoIdentyVerificationPresenter extends IdentityVerificationPresent
     @Subscribe
     public void handleUserDetails(UserResponseVo response) {
         setUpdateUserResponse(response);
+    }
+
+    @Subscribe
+    public void handlePartnerDisclaimersList(DisclaimersListResponseVo response) {
+        setDisclaimers(parseDisclaimersList(response));
     }
 
     /**

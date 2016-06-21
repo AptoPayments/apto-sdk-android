@@ -16,6 +16,10 @@
         <item name="android:textColorLink">@color/primaryDark</item>
     </style>
 
+    <style name="llsdk_id_verification_disclaimer_example" parent="llsdk_id_verification_disclaimer">
+        <item name="android:textColorLink">@color/primaryDark</item>
+    </style>
+
     <style name="llsdk_value_slider_header_example" parent="llsdk_value_slider_header">
         <item name="android:textColor">@color/primaryDark</item>
     </style>
