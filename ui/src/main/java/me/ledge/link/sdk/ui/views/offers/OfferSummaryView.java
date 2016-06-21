@@ -25,6 +25,8 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
          * @param offer The associated loan offer.
          */
         void applyClickHandler(OfferSummaryModel offer);
+
+        void moreInfoClickHandler(OfferSummaryModel offer);
     }
 
     private TextView mLenderNameField;
@@ -33,6 +35,7 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
     private TextView mInterestField;
     private TextView mAmountField;
     private TextView mMonthlyPaymentField;
+    private TextView mMoreInfoButton;
     private TextView mApplyButton;
 
     private ViewListener mListener;
@@ -75,6 +78,7 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
         mInterestField = (TextView) findViewById(R.id.tv_interest);
         mAmountField = (TextView) findViewById(R.id.tv_amount);
         mMonthlyPaymentField = (TextView) findViewById(R.id.tv_monthly);
+        mMoreInfoButton = (TextView) findViewById(R.id.tv_bttn_more_info);
         mApplyButton = (TextView) findViewById(R.id.tv_apply);
 
     }
@@ -84,6 +88,7 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
      */
     private void setUpListeners() {
         mApplyButton.setOnClickListener(this);
+        mMoreInfoButton.setOnClickListener(this);
     }
 
     /**
@@ -122,8 +127,15 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
     /** {@inheritDoc} */
     @Override
     public void onClick(View view) {
-        if (mListener != null && view.getId() == R.id.tv_apply) {
+        if (mListener == null) {
+            return;
+        }
+
+        int id = view.getId();
+        if (id == R.id.tv_apply) {
             mListener.applyClickHandler(mData);
+        } else if (id == R.id.tv_bttn_more_info) {
+            mListener.moreInfoClickHandler(mData);
         }
     }
 

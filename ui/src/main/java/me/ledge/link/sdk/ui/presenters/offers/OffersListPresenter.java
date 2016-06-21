@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.Toast;
 import me.ledge.common.fragments.dialogs.DualOptionDialogFragment;
+import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
 import me.ledge.common.utils.PagedList;
 import me.ledge.common.utils.web.ExternalSiteLauncher;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
@@ -41,6 +42,7 @@ public class OffersListPresenter
     private LoanStorage mLoanStorage;
     private OffersListRecyclerAdapter mAdapter;
     private DualOptionDialogFragment mDialog;
+    private NotificationDialogFragment mNotificationDialog;
 
     /**
      * Creates a new {@link OffersListPresenter} instance.
@@ -57,6 +59,7 @@ public class OffersListPresenter
 
         mLoanStorage = LoanStorage.getInstance();
         mDialog = new DualOptionDialogFragment();
+        mNotificationDialog = new NotificationDialogFragment();
     }
 
     /**
@@ -107,6 +110,8 @@ public class OffersListPresenter
         mView.setListener(this);
 
         mDialog.setListener(this);
+        mNotificationDialog.setTitle(mActivity.getString(R.string.offers_list_dialog_disclaimer_title));
+
         reloadOffers();
     }
 
@@ -152,6 +157,15 @@ public class OffersListPresenter
 
                 LedgeLinkUi.createLoanApplication(offer.getOfferId());
             }
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void moreInfoClickHandler(OfferSummaryModel offer) {
+        if (offer != null) {
+            mNotificationDialog.setMessage(offer.getDisclaimer());
+            mNotificationDialog.show(mActivity.getFragmentManager(), NotificationDialogFragment.DIALOG_TAG);
         }
     }
 

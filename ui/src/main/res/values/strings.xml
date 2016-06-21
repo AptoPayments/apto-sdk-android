@@ -89,8 +89,10 @@
     <string name="offers_list_summary_loan_amount" formatted="false">Amount financed: $%d</string>
     <string name="offers_list_summary_monthly_payment" formatted="false">Monthly payment: $%.2f</string>
     <string name="offers_list_summary_button_apply">APPLY NOW</string>
-    <string name="offers_list_dialog_redirect_title" formatted="false">Re-direct</string>
+    <string name="offers_list_summary_button_more_info">MORE INFO</string>
+    <string name="offers_list_dialog_redirect_title">Re-direct</string>
     <string name="offers_list_dialog_redirect_message" formatted="false">You will be re-directed to the %s website to complete your application.</string>
+    <string name="offers_list_dialog_disclaimer_title">Disclaimer</string>
 
     <!-- Loan application -->
     <string name="loan_application_label">My loan</string>
