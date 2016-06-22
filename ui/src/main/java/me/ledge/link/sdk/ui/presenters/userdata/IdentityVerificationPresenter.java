@@ -149,11 +149,14 @@ public class IdentityVerificationPresenter
         StringBuilder result = new StringBuilder();
 
         for (DisclaimerResponseVo disclaimer : response.data) {
-            result.append(disclaimer.text.replaceAll("\\r?\\n", lineBreak));
+            if (!TextUtils.isEmpty(disclaimer.text)) {
+                result.append(disclaimer.text.replaceAll("\\r?\\n", lineBreak));
+            }
+
             result.append(partnerDivider);
         }
 
-        return result.toString();
+        return result.substring(0, result.length() - partnerDivider.length());
     }
 
     public void setDisclaimers(String disclaimers) {
