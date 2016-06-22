@@ -9,6 +9,7 @@ import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
+import me.ledge.link.api.vos.responses.config.DisclaimersListResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusListResponseVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
@@ -100,6 +101,12 @@ public class MockApiWrapper implements LinkApiWrapper {
     /** {@inheritDoc} */
     @Override
     public SalaryFrequenciesListResponseVo getSalaryFrequenciesList(UnauthorizedRequestVo requestData) throws ApiException {
+        return null;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public DisclaimersListResponseVo getPartnerDisclaimersList(UnauthorizedRequestVo requestData) throws ApiException {
         return null;
     }
 

@@ -14,7 +14,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
  * Tests the {@link AnnualIncomeModel} class.
  * @author Wijnand
  */
-public class IncomeModelTest {
+public class AnnualIncomeModelTest {
 
     private static final int MIN_INCOME = 1000;
     private static final int MAX_INCOME = 50000;
@@ -80,7 +80,7 @@ public class IncomeModelTest {
 
         mModel.setBaseData(base);
 
-        Assert.assertTrue("All data should be present.", mModel.hasAllData());
+        Assert.assertFalse("Data should still be incomplete.", mModel.hasAllData());
         Assert.assertThat("Incorrect income.", mModel.getIncome(), equalTo(base.annualGrossIncome));
     }
 
