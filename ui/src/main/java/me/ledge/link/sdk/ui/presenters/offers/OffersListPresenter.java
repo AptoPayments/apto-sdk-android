@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.presenters.offers;
 
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.widget.Toast;
 import me.ledge.common.fragments.dialogs.DualOptionDialogFragment;
 import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
@@ -39,6 +40,9 @@ public class OffersListPresenter
         implements Presenter<OffersListModel, OffersListView>, OffersListView.ViewListener,
         OfferSummaryView.ViewListener, DualOptionDialogFragment.DialogListener {
 
+    /* TODO: Store in strings.xml */
+    private static final String TERMS_URL = "https://ledge.me/terms";
+
     private LoanStorage mLoanStorage;
     private OffersListRecyclerAdapter mAdapter;
     private DualOptionDialogFragment mDialog;
@@ -67,6 +71,7 @@ public class OffersListPresenter
      */
     private void reloadOffers() {
         clearAdapter();
+        mLoanStorage.clearOffers();
 
         // Fetch offers.
         InitialOffersRequestVo requestData = mModel.getInitialOffersRequest();
@@ -90,6 +95,10 @@ public class OffersListPresenter
         if (mView != null) {
             mView.setAdapter(mAdapter);
         }
+    }
+
+    private void showInfo() {
+        new ExternalSiteLauncher().launchBrowser(TERMS_URL, mActivity);
     }
 
     /** {@inheritDoc} */
@@ -267,5 +276,22 @@ public class OffersListPresenter
         } else if (LinkApiWrapper.CREATE_LOAN_APPLICATION_PATH.equals(error.request_path)) {
             startActivity(IntermediateLoanApplicationActivity.class);
         }
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        boolean handled = true;
+
+        int id = item.getItemId();
+        if (id == R.id.menu_update_profile) {
+            updateClickedHandler();
+        } else if (id == R.id.menu_refresh) {
+            reloadOffers();
+        }  else if (id == R.id.menu_info) {
+            showInfo();
+        } else {
+            handled = false;
+        }
+
+        return handled;
     }
 }

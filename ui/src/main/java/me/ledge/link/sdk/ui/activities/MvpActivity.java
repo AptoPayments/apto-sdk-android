@@ -78,6 +78,7 @@ public abstract class MvpActivity<M extends ActivityModel, V extends View & View
                 break;
             default:
                 handled = false;
+                break;
         }
 
         return handled || super.onOptionsItemSelected(item);

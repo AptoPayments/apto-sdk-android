@@ -97,4 +97,8 @@ public class LoanStorage {
     public void setCurrentLoanApplication(LoanApplicationDetailsResponseVo application) {
         this.mCurrentLoanApplication = application;
     }
+
+    public void clearOffers() {
+        init();
+    }
 }

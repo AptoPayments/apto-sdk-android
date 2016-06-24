@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.activities.offers;
 
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
@@ -34,5 +35,11 @@ public class OffersListActivity extends MvpActivity<OffersListModel, OffersListV
         inflater.inflate(R.menu.menu_offers_list, menu);
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return mPresenter.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 }
