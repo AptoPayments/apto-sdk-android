@@ -70,6 +70,10 @@ public class OffersListPresenter
      * Reloads the list of loan offers.
      */
     private void reloadOffers() {
+        if (mView != null) {
+            mView.showLoading(true);
+        }
+
         clearAdapter();
         mLoanStorage.clearOffers();
 
@@ -231,8 +235,11 @@ public class OffersListPresenter
         PagedList<OfferSummaryModel> offers = mLoanStorage.getOffers();
         mAdapter.updateList(offers);
 
-        mView.showError(false);
-        mView.showEmptyCase(offers.isComplete() && (offers.getList() == null || offers.getList().size() <= 0));
+        if (mView != null) {
+            mView.showLoading(false);
+            mView.showError(false);
+            mView.showEmptyCase(offers.isComplete() && (offers.getList() == null || offers.getList().size() <= 0));
+        }
     }
 
     /**
