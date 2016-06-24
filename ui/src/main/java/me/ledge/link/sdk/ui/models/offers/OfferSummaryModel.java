@@ -183,10 +183,14 @@ public class OfferSummaryModel implements Model {
         return url;
     }
 
+    public boolean hasDisclaimer() {
+        return mRawOffer != null && !TextUtils.isEmpty(mRawOffer.offer_details);
+    }
+
     public String getDisclaimer() {
         String disclaimer = "";
 
-        if (mRawOffer != null && !TextUtils.isEmpty(mRawOffer.offer_details)) {
+        if (hasDisclaimer()) {
             disclaimer = mRawOffer.offer_details;
         }
 

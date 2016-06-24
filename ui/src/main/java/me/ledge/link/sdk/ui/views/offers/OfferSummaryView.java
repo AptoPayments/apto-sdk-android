@@ -95,6 +95,8 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
      * Updates all fields with the offer data OR empty Strings when no data is set.
      */
     private void updateAllFields() {
+        mMoreInfoButton.setVisibility(GONE);
+
         if (mData == null) {
             mLenderNameField.setText("");
             mLenderLogo.setImageResource(android.R.color.transparent);
@@ -112,6 +114,10 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
                 mData.getImageLoader().load(mData.getLenderImage(), mLenderLogo);
             } else {
                 mLenderLogo.setVisibility(GONE);
+            }
+
+            if (mData.hasDisclaimer()) {
+                mMoreInfoButton.setVisibility(VISIBLE);
             }
         }
     }
