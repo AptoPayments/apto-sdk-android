@@ -11,6 +11,7 @@ import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
  * Generic user data input related {@link MvpActivity}.
+ * @deprecated No longer really needed.
  * @author Wijnand
  */
 public abstract class UserDataActivity<M extends ActivityModel, V extends View & ViewWithToolbar, P extends ActivityPresenter<M, V>>
@@ -19,9 +20,6 @@ public abstract class UserDataActivity<M extends ActivityModel, V extends View &
     /** {@inheritDoc} */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_user_data, menu);
-
         return super.onCreateOptionsMenu(menu);
     }
 }
