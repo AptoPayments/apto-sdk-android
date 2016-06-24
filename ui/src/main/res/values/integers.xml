@@ -3,7 +3,7 @@
 
     <!-- Loan amount -->
     <integer name="min_loan_amount">250</integer>
-    <integer name="max_loan_amount">5000</integer>
+    <integer name="max_loan_amount">25000</integer>
     <integer name="default_loan_amount">1000</integer>
     <integer name="loan_amount_increment">50</integer>
 
