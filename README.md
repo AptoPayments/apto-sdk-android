@@ -69,7 +69,7 @@ To run Unit tests and generate a JaCoCo coverage report, run `./gradlew --parall
 
 ### Example app
 
-To install the example app, run `./gradlew --parallel -p example installDebug`.
+1. To install the example app, run `./gradlew --parallel -p example installDebug`.
 
 # License
 
