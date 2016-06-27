@@ -41,13 +41,15 @@ compile 'me.ledge.link.sdk:ui:+'
 1. Create a `gradle.properties` file in the project root directory.
   1. In this file, define the `HOME` property that point to your user's home directory, i.e. `HOME=C:/Users/Wijnand`.
 1. Install the SDK project: `gradlew --parallel --configure-on-demand -p sdk install`.
-1. Install the UI project: `gradlew --parallel -p ui install`.
+1. Install the UI project: `gradlew --parallel --configure-on-demand -p ui install`.
 1. Install the various image loaders:
-  1. Picasso: `gradlew --parallel -p imageloaders\imageloader-picasso install`.
-  1. Volley: `gradlew --parallel -p imageloaders\imageloader-volley install`.
+  1. Picasso: `gradlew --parallel -PexcludeExample=true -p imageloaders\imageloader-picasso install`. The `-PexcludeExample=true` part is important here! Without it the installation of the project will fail.
+  1. Volley: `gradlew --parallel -p -PexcludeExample=true imageloaders\imageloader-volley install`.
 1. Install the various API response handlers:
-  1. EventBus: `gradlew --parallel -p handlers\handler-eventbus install`.
-  1. Otto: `gradlew --parallel -p handlers\handler-otto install`.
+  1. EventBus: `gradlew --parallel -p -PexcludeExample=true handlers\handler-eventbus install`.
+  1. Otto: `gradlew --parallel -p -PexcludeExample=true handlers\handler-otto install`.
+
+**NOTE:** When you run any of the above Gradle commands for the second time, you can exclude the `--configure-on-demand` and `-PexcludeExample=true` options.
 
 ### Running tests
 
