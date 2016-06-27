@@ -1,3 +1,7 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.2.1"
+}
+
 ext {
     androidCompileSdkVersion = 23
     androidBuildToolsVersion = '21.1.2'
@@ -27,8 +31,4 @@ buildscript {
         // Android Maven plugin.
         classpath 'com.github.dcendents:android-maven-plugin:+'
     }
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.2.1'
 }
