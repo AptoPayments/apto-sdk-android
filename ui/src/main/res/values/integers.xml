@@ -5,7 +5,7 @@
     <integer name="min_loan_amount">250</integer>
     <integer name="max_loan_amount">25000</integer>
     <integer name="default_loan_amount">1000</integer>
-    <integer name="loan_amount_increment">50</integer>
+    <integer name="loan_amount_increment">500</integer>
 
     <!-- Personal info -->
     <!-- 10 phone number digits + 4 for formatting -->
