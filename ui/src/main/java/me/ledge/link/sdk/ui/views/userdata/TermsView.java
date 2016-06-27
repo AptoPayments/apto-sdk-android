@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.views.userdata;
 
 import android.content.Context;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
@@ -49,6 +50,8 @@ public class TermsView extends UserDataView<TermsView.ViewListener>
         super.findAllViews();
 
         mTermsField = (TextView) findViewById(R.id.tv_terms);
+        mTermsField.setMovementMethod(LinkMovementMethod.getInstance());
+
         mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
     }
 

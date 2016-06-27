@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -83,6 +84,7 @@ public class IdentityVerificationView
         mSocialSecurityField = (SsnEditText) findViewById(R.id.et_social_security);
 
         mDisclaimersField = (TextView) findViewById(R.id.tv_disclaimers_body);
+        mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
 
         mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
         mProgressBar = (ProgressBar) findViewById(R.id.pb_progress);
