@@ -29,6 +29,46 @@ compile 'me.ledge.link.sdk:ui:+'
 * Java version: 7+
 * Android version: 4.0.3+
 
+## Developer Guides
+
+### Dependencies
+
+1. Install the [Ledge Common](https://github.com/itabulous/ledgecommon_android) library.
+1. Install the [Ledge Link API](https://github.com/itabulous/ledgelinkapi_android) libraries.
+
+### Installation
+
+1. Create a `gradle.properties` file in the project root directory.
+  1. In this file, define the `HOME` property that point to your user's home directory, i.e. `HOME=C:/Users/Wijnand`.
+1. Install the SDK project: `gradlew --parallel --configure-on-demand -p sdk install`.
+1. Install the UI project: `gradlew --parallel -p ui install`.
+1. Install the various image loaders:
+  1. Picasso: `gradlew --parallel -p imageloaders\imageloader-picasso install`.
+  1. Volley: `gradlew --parallel -p imageloaders\imageloader-volley install`.
+1. Install the various API response handlers:
+  1. EventBus: `gradlew --parallel -p handlers\handler-eventbus install`.
+  1. Otto: `gradlew --parallel -p handlers\handler-otto install`.
+
+### Running tests
+
+#### SDK Project
+
+To run Unit tests and generate a JaCoCo coverage report, run `gradle --parallel -p sdk testDebugUnitTestCoverage`.
+
+* Unit test report: `sdk/build/reports/tests/debug/index.html`.
+* Coverage report: `sdk/build/reports/jacoco/testDebugUnitTestCoverage/html/index.html`.
+
+#### UI Project
+
+To run Unit tests and generate a JaCoCo coverage report, run `gradle --parallel -p ui testDebugUnitTestCoverage`.
+
+* Unit test report: `ui/build/reports/tests/debug/index.html`.
+* Coverage report: `ui/build/reports/jacoco/testDebugUnitTestCoverage/html/index.html`.
+
+### Example app
+
+To install the example app, run `gradle --parallel -p example installDebug`.
+
 # License
 
 All rights reserved Ledge Inc (C) 2015-2016. See the [LICENSE](LICENSE.md) file for more info.
