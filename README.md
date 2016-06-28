@@ -69,7 +69,19 @@ To run Unit tests and generate a JaCoCo coverage report, run `./gradlew --parall
 
 ### Example app
 
+1. In the `src/main/res/values` folder create a new file called `strings_configuration.xml`.\*
+  1. Define the `ledge_link_url_dev`.
+  1. Define the `ledge_link_developer_key_dev`.
 1. To install the example app, run `./gradlew --parallel -p example installDebug`.
+
+\* Example of `strings_configuration.xml`:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ledge_link_url_dev">http://my.api.url</string>
+    <string name="ledge_link_developer_key_dev">myApiKey</string>
+</resources>
+```
 
 # License
 
