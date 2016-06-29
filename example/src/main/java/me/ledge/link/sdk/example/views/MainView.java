@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.Switch;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
@@ -55,7 +54,6 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     private EditText mStateField;
     private EditText mZipField;
     private EditText mIncomeField;
-    private Switch mSkipStepsSwitch;
     private RelativeLayout mLoadingOverlay;
 
     private ViewListener mListener;
@@ -105,7 +103,6 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
         mStateField = (EditText) findViewById(R.id.et_state);
         mZipField = (EditText) findViewById(R.id.et_zip_code);
         mIncomeField = (EditText) findViewById(R.id.et_income);
-        mSkipStepsSwitch = (Switch) findViewById(R.id.sw_skip_steps);
         mLoadingOverlay = (RelativeLayout) findViewById(R.id.rl_loading_overlay);
     }
 
@@ -346,12 +343,5 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
      */
     public void setIncome(String income) {
         mIncomeField.setText(income);
-    }
-
-    /**
-     * @return Whether some steps should be automatically skipped.
-     */
-    public boolean shouldSkipSteps() {
-        return mSkipStepsSwitch.isChecked();
     }
 }
