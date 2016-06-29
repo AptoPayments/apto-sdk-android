@@ -44,10 +44,15 @@ public class MonthlyIncomePresenter
     /** {@inheritDoc} */
     @Override
     protected void populateModelFromStorage() {
+        int annualIncome = mActivity.getResources().getInteger(R.integer.max_income);
         UserDataVo data = UserStorage.getInstance().getUserData();
 
+        if (data != null) {
+            annualIncome = data.annualGrossIncome;
+        }
+
         mIncomeMultiplier = mActivity.getResources().getInteger(R.integer.monthly_income_increment);
-        int maxIncome = (int) Math.ceil((data.annualGrossIncome / 12.0) / mIncomeMultiplier);
+        int maxIncome = (int) Math.ceil((annualIncome / 12.0) / mIncomeMultiplier);
 
         mModel.setMinIncome(mActivity.getResources().getInteger(R.integer.min_income))
                 .setMaxIncome(maxIncome)
