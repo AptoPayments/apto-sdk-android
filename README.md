@@ -83,6 +83,14 @@ To run Unit tests and generate a JaCoCo coverage report, run `./gradlew --parall
 </resources>
 ```
 
+### Github pages
+
+The Github pages website is stored in the `dev-gh-pages` branch.
+
+To generate the Javadocs, run `./gradlew --parallel -p ui generateReleaseJavadoc` from the `dev` branch. The docs are published in `build/reports/ui-javadocs`.
+
+*(For some reason you need to run the Gradle task twice for the Javadocs to be generated. :confused:)*
+
 # License
 
 All rights reserved Ledge Inc (C) 2015-2016. See the [LICENSE](LICENSE.md) file for more info.
