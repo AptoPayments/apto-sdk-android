@@ -122,7 +122,8 @@ public class MockApiWrapper implements LinkApiWrapper {
     /** {@inheritDoc} */
     @Override
     public UserResponseVo updateUser(CreateUserRequestVo requestData) throws ApiException {
-        return null;
+        UserResponseVo response = new UserResponseVo();
+        return response;
     }
 
     /** {@inheritDoc} */
