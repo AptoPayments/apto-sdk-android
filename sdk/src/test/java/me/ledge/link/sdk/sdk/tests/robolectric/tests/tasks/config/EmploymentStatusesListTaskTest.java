@@ -5,7 +5,7 @@ import me.ledge.link.api.vos.responses.config.EmploymentStatusListResponseVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.config.EmploymentStatusesListTask;
-import me.ledge.link.sdk.sdk.utils.tasks.users.RoboLinkApiTaskWrapper;
+import me.ledge.link.sdk.sdk.utils.tasks.RoboLinkApiTaskWrapper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

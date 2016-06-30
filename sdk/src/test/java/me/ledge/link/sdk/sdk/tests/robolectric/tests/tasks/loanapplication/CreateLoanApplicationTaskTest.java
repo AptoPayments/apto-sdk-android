@@ -4,7 +4,7 @@ import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsRes
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
-import me.ledge.link.sdk.sdk.utils.tasks.users.RoboLinkApiTaskWrapper;
+import me.ledge.link.sdk.sdk.utils.tasks.RoboLinkApiTaskWrapper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

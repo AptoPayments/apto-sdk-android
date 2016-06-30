@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.sdk.utils.tasks.users;
+package me.ledge.link.sdk.sdk.utils.tasks;
 
 import junit.framework.Assert;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
