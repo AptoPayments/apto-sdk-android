@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.sdk.tests.robolectric.tests;
 
 import android.os.AsyncTask;
+import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
@@ -11,6 +12,7 @@ import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.concurrent.Executor;
@@ -18,16 +20,27 @@ import java.util.concurrent.Executor;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 /**
- * Tests the {@link } class.
+ * Tests the {@link LedgeLinkSdk} class.
  * @author Wijnand
  */
 public class LedgeLinkSdkTest {
+
+    @Before
+    public void setUp() {
+        LedgeLinkSdk.setApiWrapper(new MockApiWrapper());
+        LedgeLinkSdk.setExecutor(new MockExecutor());
+        LedgeLinkSdk.setResponseHandler(new MockResponseHandler());
+    }
 
     /**
      * Cleans up after each test.
      */
     @After
     public void tearDown() {
+        clearMocks();
+    }
+
+    private void clearMocks() {
         LedgeLinkSdk.setApiWrapper(null);
         LedgeLinkSdk.setExecutor(null);
         LedgeLinkSdk.setResponseHandler(null);
@@ -40,6 +53,7 @@ public class LedgeLinkSdkTest {
      */
     @Test
     public void defaultExecutorIsUsed() {
+        clearMocks();
         Assert.assertThat("Incorrect Executor.", LedgeLinkSdk.getExecutor(), equalTo(AsyncTask.THREAD_POOL_EXECUTOR));
     }
 
@@ -50,6 +64,8 @@ public class LedgeLinkSdkTest {
      */
     @Test
     public void customExecutorIsUsed() {
+        clearMocks();
+
         MockExecutor executor = new MockExecutor();
         LedgeLinkSdk.setExecutor(executor);
 
@@ -63,6 +79,7 @@ public class LedgeLinkSdkTest {
      */
     @Test(expected = NullPointerException.class)
     public void noApiWrapperThrowsError() {
+        clearMocks();
         LedgeLinkSdk.createUser(null);
     }
 
@@ -73,8 +90,16 @@ public class LedgeLinkSdkTest {
      */
     @Test(expected = NullPointerException.class)
     public void noResponseHandlerThrowsError() {
+        clearMocks();
         LedgeLinkSdk.setApiWrapper(new MockApiWrapper());
         LedgeLinkSdk.createUser(null);
+    }
+
+    @Test
+    public void linkDisclaimerTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.getLinkDisclaimer(),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 
     /**
@@ -84,12 +109,36 @@ public class LedgeLinkSdkTest {
      */
     @Test
     public void loanPurposeTaskIsCreated() {
-        LedgeLinkSdk.setApiWrapper(new MockApiWrapper());
-        LedgeLinkSdk.setExecutor(new MockExecutor());
-        LedgeLinkSdk.setResponseHandler(new MockResponseHandler());
-
         Assert.assertThat("Task should have been created.",
                 LedgeLinkSdk.getLoanPurposesList(),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void housingTypeListTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.getHousingTypeList(),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void employmentStatusesListTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.getEmploymentStatusesList(),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void salaryFrequenciesListTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.getSalaryFrequenciesList(),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void partnerDisclaimersListTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.getPartnerDisclaimersList(),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 
@@ -100,12 +149,15 @@ public class LedgeLinkSdkTest {
      */
     @Test
     public void createUserTaskIsCreated() {
-        LedgeLinkSdk.setApiWrapper(new MockApiWrapper());
-        LedgeLinkSdk.setExecutor(new MockExecutor());
-        LedgeLinkSdk.setResponseHandler(new MockResponseHandler());
-
         Assert.assertThat("Task should have been created.",
                 LedgeLinkSdk.createUser(new CreateUserRequestVo()),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void updateUserTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.updateUser(new CreateUserRequestVo()),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 
@@ -116,10 +168,6 @@ public class LedgeLinkSdkTest {
      */
     @Test
     public void initialOffersTaskIsCreated() {
-        LedgeLinkSdk.setApiWrapper(new MockApiWrapper());
-        LedgeLinkSdk.setExecutor(new MockExecutor());
-        LedgeLinkSdk.setResponseHandler(new MockResponseHandler());
-
         Assert.assertThat("Task should have been created.",
                 LedgeLinkSdk.getInitialOffers(new InitialOffersRequestVo()),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
@@ -132,12 +180,15 @@ public class LedgeLinkSdkTest {
      */
     @Test
     public void createLoanApplicationTaskIsCreated() {
-        LedgeLinkSdk.setApiWrapper(new MockApiWrapper());
-        LedgeLinkSdk.setExecutor(new MockExecutor());
-        LedgeLinkSdk.setResponseHandler(new MockResponseHandler());
-
         Assert.assertThat("Task should have been created.",
                 LedgeLinkSdk.createLoanApplication(1189998819991197253L),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void loanApplicationsListTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.getLoanApplicationsList(new ListRequestVo()),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 }
