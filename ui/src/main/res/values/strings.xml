@@ -47,7 +47,7 @@
     <string name="address_housing_type_error">Please select a valid housing type.</string>
 
     <!-- Annual Income -->
-    <string name="annual_income_label">What\'s your pretax income?</string>
+    <string name="annual_income_label">What\'s your annual pretax income?</string>
     <string name="income_format" formatted="false">$%dK</string>
     <string name="income_format_and_more" formatted="false">$%dK+</string>
     <string name="annual_income_employment_status_header">Employment status</string>
