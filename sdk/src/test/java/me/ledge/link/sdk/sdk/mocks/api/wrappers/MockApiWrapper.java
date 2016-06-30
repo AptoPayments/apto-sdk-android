@@ -11,9 +11,13 @@ import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.api.vos.responses.config.DisclaimersListResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusListResponseVo;
+import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
+import me.ledge.link.api.vos.responses.config.HousingTypeVo;
+import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
+import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
@@ -75,19 +79,26 @@ public class MockApiWrapper implements LinkApiWrapper {
     /** {@inheritDoc} */
     @Override
     public DisclaimerResponseVo getLinkDisclaimer(UnauthorizedRequestVo requestData) throws ApiException {
-        return null;
+        DisclaimerResponseVo response = new DisclaimerResponseVo();
+        return response;
     }
 
     /** {@inheritDoc} */
     @Override
     public LoanPurposesResponseVo getLoanPurposesList(UnauthorizedRequestVo requestData) throws ApiException {
-        return null;
+        LoanPurposesResponseVo response = new LoanPurposesResponseVo();
+        response.data = new LoanPurposeVo[0];
+
+        return response;
     }
 
     /** {@inheritDoc} */
     @Override
     public HousingTypeListResponseVo getHousingTypeList(UnauthorizedRequestVo requestData) throws ApiException {
-        return null;
+        HousingTypeListResponseVo response = new HousingTypeListResponseVo();
+        response.data = new HousingTypeVo[0];
+
+        return response;
     }
 
     /** {@inheritDoc} */
@@ -95,19 +106,30 @@ public class MockApiWrapper implements LinkApiWrapper {
     public EmploymentStatusListResponseVo getEmploymentStatusList(UnauthorizedRequestVo requestData)
             throws ApiException {
 
-        return null;
+        EmploymentStatusListResponseVo response = new EmploymentStatusListResponseVo();
+        response.data = new EmploymentStatusVo[0];
+
+        return response;
     }
 
     /** {@inheritDoc} */
     @Override
-    public SalaryFrequenciesListResponseVo getSalaryFrequenciesList(UnauthorizedRequestVo requestData) throws ApiException {
-        return null;
+    public SalaryFrequenciesListResponseVo getSalaryFrequenciesList(UnauthorizedRequestVo requestData)
+            throws ApiException {
+
+        SalaryFrequenciesListResponseVo response = new SalaryFrequenciesListResponseVo();
+        response.data = new SalaryFrequencyVo[0];
+
+        return response;
     }
 
     /** {@inheritDoc} */
     @Override
     public DisclaimersListResponseVo getPartnerDisclaimersList(UnauthorizedRequestVo requestData) throws ApiException {
-        return null;
+        DisclaimersListResponseVo response = new DisclaimersListResponseVo();
+        response.data = new DisclaimerResponseVo[0];
+
+        return response;
     }
 
     /** {@inheritDoc} */
