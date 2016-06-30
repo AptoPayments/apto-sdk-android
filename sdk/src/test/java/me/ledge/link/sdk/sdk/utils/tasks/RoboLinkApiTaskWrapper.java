@@ -39,6 +39,16 @@ public class RoboLinkApiTaskWrapper<Result, Request> {
             Assert.fail("Couldn't invoke 'doInBackground' method.");
         }
 
+        try {
+            Method postExecuteMethod = apiTaskClass.getDeclaredMethod("onPostExecute", Object.class);
+            postExecuteMethod.setAccessible(true);
+            postExecuteMethod.invoke(mTarget, result);
+        } catch (NoSuchMethodException nsme) {
+            Assert.fail("Method 'onPostExecute' not found.");
+        } catch (IllegalAccessException|InvocationTargetException ie) {
+            Assert.fail("Couldn't invoke 'onPostExecute' method.");
+        }
+
         return result;
     }
 }
