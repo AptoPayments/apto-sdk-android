@@ -52,7 +52,7 @@ public class MonthlyIncomePresenter
         }
 
         mIncomeMultiplier = mActivity.getResources().getInteger(R.integer.monthly_income_increment);
-        int maxIncome = (int) Math.ceil((annualIncome / 12.0) / mIncomeMultiplier);
+        int maxIncome = (int) Math.ceil(annualIncome / (12.0 * mIncomeMultiplier)) * mIncomeMultiplier;
 
         mModel.setMinIncome(mActivity.getResources().getInteger(R.integer.min_income))
                 .setMaxIncome(maxIncome)
@@ -68,8 +68,8 @@ public class MonthlyIncomePresenter
 
         mView.setListener(this);
         mView.setSeekBarTransformer(new MultiplyTransformer(mIncomeMultiplier));
-        mView.setMinMax(mModel.getMinIncome(), mModel.getMaxIncome());
-        mView.setIncome(mModel.getIncome());
+        mView.setMinMax(mModel.getMinIncome() / mIncomeMultiplier, mModel.getMaxIncome() / mIncomeMultiplier);
+        mView.setIncome(mModel.getIncome() / mIncomeMultiplier);
     }
 
     /** {@inheritDoc} */
@@ -82,7 +82,7 @@ public class MonthlyIncomePresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        mModel.setIncome(mView.getIncome());
+        mModel.setIncome(mView.getIncome() * mIncomeMultiplier);
         super.nextClickHandler();
     }
 
