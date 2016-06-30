@@ -38,13 +38,13 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     public static final String TOKEN = "bearer_token";
 
-    private static final String LENDER_ONE_NAME = "More money";
-    private static final String LENDER_ONE_LARGE_IMAGE
+    public static final String LENDER_ONE_NAME = "More money";
+    public static final String LENDER_ONE_LARGE_IMAGE
             = "http://cdn-media-1.lifehack.org/wp-content/files/2016/01/04125044/10-Simple-Things-You-Can-Do-To-Earn-More-Money.jpg";
-    private static final long OFFER_ONE_AMOUNT = 5555;
-    private static final float OFFER_ONE_INTEREST = 19.9f;
-    private static final float OFFER_ONE_PAYMENT = 123.45f;
-    private static final String OFFER_ONE_APPLICATION_URL = "http://www.moremoney.com/";
+    public static final long OFFER_ONE_AMOUNT = 5555;
+    public static final float OFFER_ONE_INTEREST = 19.9f;
+    public static final float OFFER_ONE_PAYMENT = 123.45f;
+    public static final String OFFER_ONE_APPLICATION_URL = "http://www.moremoney.com/";
 
     private String mDeveloperKey;
     private String mDevice;

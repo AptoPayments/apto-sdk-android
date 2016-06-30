@@ -7,7 +7,6 @@ import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicati
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricGradleTestRunner;
@@ -15,8 +14,6 @@ import org.robolectric.RuntimeEnvironment;
 import org.robolectric.shadows.ShadowContentProvider;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.core.IsNot.not;
 
 /**
  * Tests the {@link LoanAgreementModel} class.
@@ -90,7 +87,7 @@ public class LoanAgreementModelTest {
      */
     @Test
     public void lenderNameIsSet() {
-        Assert.assertThat("Incorrect lender name.", mModel.getLenderName(), equalTo("More money"));
+        Assert.assertThat("Incorrect lender name.", mModel.getLenderName(), equalTo(MockApiWrapper.LENDER_ONE_NAME));
     }
 
     /**
@@ -98,13 +95,13 @@ public class LoanAgreementModelTest {
      * When fetching the lender image.<br />
      * Then the correct image should be returned.
      */
-    @Ignore("Fails, no time to investigate though. :(")
     @Test
-    public void lenderImageIsSet() {
-        Assert.assertThat("Image should not be null.", mModel.getLenderImage(), not(nullValue()));
-        Assert.assertThat("Incorrect lender image URL.",
+    public void hasLenderImage() {
+        Assert.assertThat(
+                "Incorrect lender image.",
                 mModel.getLenderImage(),
-                equalTo("http://cdn-media-1.lifehack.org/wp-content/files/2016/01/04125044/10-Simple-Things-You-Can-Do-To-Earn-More-Money.jpg"));
+                equalTo(MockApiWrapper.LENDER_ONE_LARGE_IMAGE)
+        );
     }
 
     /**
