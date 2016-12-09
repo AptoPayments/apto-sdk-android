@@ -43,7 +43,7 @@ public class EventBusAnnualIncomePresenter extends AnnualIncomePresenter {
      */
     @Subscribe
     public void handleEmploymentStatusesList(ConfigResponseVo response) {
-        if (response != null) {
+        if (isEmploymentStatusesPresent(response)) {
             setEmploymentStatusesList(response.employmentStatusOpts.data);
         }
     }
@@ -54,8 +54,16 @@ public class EventBusAnnualIncomePresenter extends AnnualIncomePresenter {
      */
     @Subscribe
     public void handleSalaryFrequenciesList(ConfigResponseVo response) {
-        if (response != null) {
+        if (isSalaryFrequencyPresent(response)) {
             setSalaryFrequenciesList(response.salaryFrequencyOpts.data);
         }
+    }
+
+    private boolean isEmploymentStatusesPresent(ConfigResponseVo response) {
+        return response!=null && response.employmentStatusOpts!=null;
+    }
+
+    private boolean isSalaryFrequencyPresent(ConfigResponseVo response) {
+        return response!=null && response.salaryFrequencyOpts!=null;
     }
 }

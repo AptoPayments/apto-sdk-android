@@ -42,8 +42,12 @@ public class EventBusAddressPresenter extends AddressPresenter {
      */
     @Subscribe
     public void handleToken(ConfigResponseVo response) {
-        if (response != null) {
+        if (isHousingTypesPresent(response)) {
             setHousingTypesList(response.housingTypeOpts.data);
         }
+    }
+
+    private boolean isHousingTypesPresent(ConfigResponseVo response) {
+        return response!=null && response.housingTypeOpts!=null;
     }
 }

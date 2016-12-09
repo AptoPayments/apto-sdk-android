@@ -8,8 +8,8 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
-import me.ledge.link.api.vos.responses.config.DisclaimersListResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusListResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
@@ -49,6 +49,7 @@ public class MockApiWrapper implements LinkApiWrapper {
     private String mDeveloperKey;
     private String mDevice;
     private String mBearerToken;
+    private String mProjectToken;
     private String mEndPoint;
 
     /** {@inheritDoc} */
@@ -66,6 +67,15 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
+    public void setDeveloperKey(String developerKey) {
+        mDeveloperKey = developerKey;
+    }
+
+    @Override
+    public void setProjectToken(String projectToken) { mProjectToken = projectToken; }
+
+    /** {@inheritDoc} */
+    @Override
     public String getApiEndPoint() {
         return mEndPoint;
     }
@@ -78,7 +88,7 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public DisclaimerResponseVo getLinkDisclaimer(UnauthorizedRequestVo requestData) throws ApiException {
+    public DisclaimerResponseVo getDisclaimers(UnauthorizedRequestVo requestData) throws ApiException {
         DisclaimerResponseVo response = new DisclaimerResponseVo();
         return response;
     }
@@ -94,49 +104,24 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public HousingTypeListResponseVo getHousingTypeList(UnauthorizedRequestVo requestData) throws ApiException {
-        HousingTypeListResponseVo response = new HousingTypeListResponseVo();
-        response.data = new HousingTypeVo[0];
-
+    public ConfigResponseVo getUserConfig(UnauthorizedRequestVo requestData) throws ApiException {
+        ConfigResponseVo response = new ConfigResponseVo();
+        response.housingTypeOpts = new HousingTypeListResponseVo();
+        response.housingTypeOpts.data = new HousingTypeVo[0];
+        response.salaryFrequencyOpts = new SalaryFrequenciesListResponseVo();
+        response.salaryFrequencyOpts.data = new SalaryFrequencyVo[0];
+        response.employmentStatusOpts = new EmploymentStatusListResponseVo();
+        response.employmentStatusOpts.data = new EmploymentStatusVo[0];
         return response;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public EmploymentStatusListResponseVo getEmploymentStatusList(UnauthorizedRequestVo requestData)
-            throws ApiException {
 
-        EmploymentStatusListResponseVo response = new EmploymentStatusListResponseVo();
-        response.data = new EmploymentStatusVo[0];
-
-        return response;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public SalaryFrequenciesListResponseVo getSalaryFrequenciesList(UnauthorizedRequestVo requestData)
-            throws ApiException {
-
-        SalaryFrequenciesListResponseVo response = new SalaryFrequenciesListResponseVo();
-        response.data = new SalaryFrequencyVo[0];
-
-        return response;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DisclaimersListResponseVo getPartnerDisclaimersList(UnauthorizedRequestVo requestData) throws ApiException {
-        DisclaimersListResponseVo response = new DisclaimersListResponseVo();
-        response.data = new DisclaimerResponseVo[0];
-
-        return response;
-    }
 
     /** {@inheritDoc} */
     @Override
     public CreateUserResponseVo createUser(CreateUserRequestVo requestData) throws ApiException {
         CreateUserResponseVo response = new CreateUserResponseVo();
-        response.token = TOKEN;
+        response.user_token = TOKEN;
 
         return response;
     }
