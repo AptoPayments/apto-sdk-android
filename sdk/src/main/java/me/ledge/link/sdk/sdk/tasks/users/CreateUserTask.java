@@ -31,7 +31,7 @@ public class CreateUserTask extends LedgeLinkApiTask<Void, Void, CreateUserRespo
         CreateUserResponseVo response = getApiWrapper().createUser(getRequestData());
 
         if (response != null) {
-            getApiWrapper().setBearerToken(response.token);
+            getApiWrapper().setBearerToken(response.user_token);
         }
 
         return response;

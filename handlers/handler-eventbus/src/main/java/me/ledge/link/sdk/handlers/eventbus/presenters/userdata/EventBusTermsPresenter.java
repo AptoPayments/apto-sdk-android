@@ -37,7 +37,7 @@ public class EventBusTermsPresenter extends TermsPresenter {
     @Subscribe
     public void handleDisclaimer(DisclaimerResponseVo response) {
         if (response != null) {
-            setTerms(response.text);
+            setTerms(response.linkDisclaimer.text);
         }
     }
 }

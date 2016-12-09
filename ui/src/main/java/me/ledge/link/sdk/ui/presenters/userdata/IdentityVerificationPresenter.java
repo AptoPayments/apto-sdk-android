@@ -6,9 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.DatePicker;
 import android.widget.Toast;
+
+import java.util.List;
+
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
-import me.ledge.link.api.vos.responses.config.DisclaimersListResponseVo;
+import me.ledge.link.api.vos.responses.config.ProductDisclaimerVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -139,8 +142,8 @@ public class IdentityVerificationPresenter
         mView.setBirthday(String.format("%02d/%02d/%02d", monthOfYear + 1, dayOfMonth, year));
     }
 
-    public String parseDisclaimersList(DisclaimersListResponseVo response) {
-        if (response.data == null || response.data.length < 1) {
+    public String parseDisclaimersResponse(DisclaimerResponseVo response) {
+        if (response.productDisclaimerList == null) {
             return "";
         }
 
@@ -148,11 +151,10 @@ public class IdentityVerificationPresenter
         String partnerDivider = "<br /><br />";
         StringBuilder result = new StringBuilder();
 
-        for (DisclaimerResponseVo disclaimer : response.data) {
+        for(ProductDisclaimerVo disclaimer : response.productDisclaimerList.data) {
             if (!TextUtils.isEmpty(disclaimer.text)) {
                 result.append(disclaimer.text.replaceAll("\\r?\\n", lineBreak));
             }
-
             result.append(partnerDivider);
         }
 
@@ -173,7 +175,7 @@ public class IdentityVerificationPresenter
         mView.showLoading(false);
 
         if (response != null) {
-            UserStorage.getInstance().setBearerToken(response.token);
+            UserStorage.getInstance().setBearerToken(response.user_token);
         }
 
         // Show next screen.

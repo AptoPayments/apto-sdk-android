@@ -1,8 +1,10 @@
 package me.ledge.link.sdk.handlers.otto.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+
 import com.squareup.otto.Subscribe;
-import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
+
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.ui.presenters.userdata.AddressPresenter;
 import me.ledge.link.sdk.ui.views.userdata.AddressView;
 
@@ -39,9 +41,9 @@ public class OttoAddressPresenter extends AddressPresenter {
      * @param response API response.
      */
     @Subscribe
-    public void handleToken(HousingTypeListResponseVo response) {
+    public void handleToken(ConfigResponseVo response) {
         if (response != null) {
-            setHousingTypesList(response.data);
+            setHousingTypesList(response.housingTypeOpts.data);
         }
     }
 }

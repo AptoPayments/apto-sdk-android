@@ -26,6 +26,6 @@ public class LinkDisclaimerTask extends LedgeLinkApiTask<Void, Void, DisclaimerR
     /** {@inheritDoc} */
     @Override
     protected DisclaimerResponseVo callApi() throws ApiException {
-        return getApiWrapper().getLinkDisclaimer(getRequestData());
+        return getApiWrapper().getDisclaimers(getRequestData());
     }
 }
