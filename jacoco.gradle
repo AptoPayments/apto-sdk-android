@@ -5,7 +5,7 @@ apply plugin: 'jacoco'
 jacoco {
     // Newer version will break reporting with Robolectric.
     // See: http://stackoverflow.com/a/35750522
-    toolVersion = "0.7.6.201602180812"
+    toolVersion = "0.7.1.201405082137"
 }
 
 project.afterEvaluate {
