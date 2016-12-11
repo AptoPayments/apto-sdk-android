@@ -34,25 +34,27 @@ before_install:
   - echo "HOME=$HOME" > ~/build/itabulous/ledgecommon_android/gradle.properties
   - echo "HOME=$HOME" > ~/build/itabulous/ledgelinkapi_android/gradle.properties
   - echo "HOME=$HOME" > ~/build/itabulous/ledgelinksdk_android/gradle.properties
-
+  # Use gradle wrapper
+  - chmod +x gradlew
+  
 install:
   # Add dependencies to local m2 repo.
   - cd ~/build/itabulous/ledgecommon_android
-  - gradle install
+  - ./gradlew install
   - cd ~/build/itabulous/ledgelinkapi_android
-  - gradle --configure-on-demand -p api install
-  - gradle -p wrappers/wrapper-retrofit2 install
+  - ./gradlew --configure-on-demand -p api install
+  - ./gradlew -p wrappers/wrapper-retrofit2 install
   - cd ~/build/itabulous/ledgelinksdk_android
-  - gradle --configure-on-demand -p sdk install
+  - ./gradlew --configure-on-demand -p sdk install
 
 # Running tests.
 script:
-  - gradle --configure-on-demand -p sdk testDebugUnitTest
-  - gradle --configure-on-demand -p ui assembleDebug testDebugUnitTestCoverage
+  - ./gradlew --configure-on-demand -p sdk testDebugUnitTest
+  - ./gradlew --configure-on-demand -p ui assembleDebug testDebugUnitTestCoverage
 
 after_success:
   # Copy file to expected location.
   - mkdir -p ~/build/itabulous/ledgelinksdk_android/ui/build/reports/jacoco/test
   - cp ~/build/itabulous/ledgelinksdk_android/ui/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~/build/itabulous/ledgelinksdk_android/ui/build/reports/jacoco/test/jacocoTestReport.xml
   # Send coverage info to Coveralls.io.
-  - gradle --configure-on-demand -p ui coveralls
+  - ./gradlew --configure-on-demand -p ui coveralls
