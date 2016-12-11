@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.ledge.link.sdk.sdk"
+    xmlns:tools="http://schemas.android.com/tools"
     android:versionCode="1"
     android:versionName="1.0">
 
@@ -8,6 +9,6 @@
             android:minSdkVersion="15"
             android:targetSdkVersion="23" />
 
-    <application android:label="LedgeLinkSdk" />
+    <application tools:replace='label' android:label="LedgeLinkSdk" />
 
 </manifest>

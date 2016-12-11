@@ -80,7 +80,7 @@ dependencies {
 
     // Tests
     testCompile 'junit:junit:4.+'
-    testCompile 'org.robolectric:robolectric:+'
+    testCompile 'org.robolectric:robolectric:3.1'
     testCompile 'org.powermock:powermock-api-mockito:+'
     testCompile 'org.powermock:powermock-module-junit4-rule-agent:+'
     testCompile 'org.powermock:powermock-module-junit4-rule:+'
