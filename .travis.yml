@@ -34,17 +34,18 @@ before_install:
   - echo "HOME=$HOME" > ~/build/itabulous/ledgecommon_android/gradle.properties
   - echo "HOME=$HOME" > ~/build/itabulous/ledgelinkapi_android/gradle.properties
   - echo "HOME=$HOME" > ~/build/itabulous/ledgelinksdk_android/gradle.properties
-  # Use gradle wrapper
-  - chmod +x gradlew
-  
+
 install:
   # Add dependencies to local m2 repo.
   - cd ~/build/itabulous/ledgecommon_android
+  - chmod +x gradlew
   - ./gradlew install
   - cd ~/build/itabulous/ledgelinkapi_android
+  - chmod +x gradlew
   - ./gradlew --configure-on-demand -p api install
   - ./gradlew -p wrappers/wrapper-retrofit2 install
   - cd ~/build/itabulous/ledgelinksdk_android
+  - chmod +x gradlew
   - ./gradlew --configure-on-demand -p sdk install
 
 # Running tests.
