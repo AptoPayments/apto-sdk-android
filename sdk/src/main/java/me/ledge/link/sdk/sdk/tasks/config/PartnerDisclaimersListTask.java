@@ -2,7 +2,7 @@ package me.ledge.link.sdk.sdk.tasks.config;
 
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
-import me.ledge.link.api.vos.responses.config.DisclaimersListResponseVo;
+import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -12,7 +12,7 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * @author Wijnand
  */
 public class PartnerDisclaimersListTask
-        extends LedgeLinkApiTask<Void, Void, DisclaimersListResponseVo, UnauthorizedRequestVo> {
+        extends LedgeLinkApiTask<Void, Void, DisclaimerResponseVo, UnauthorizedRequestVo> {
 
     /**
      * Creates a new {@link PartnerDisclaimersListTask} instance.
@@ -26,7 +26,7 @@ public class PartnerDisclaimersListTask
 
     /** {@inheritDoc} */
     @Override
-    protected DisclaimersListResponseVo callApi() throws ApiException {
-        return getApiWrapper().getPartnerDisclaimersList(getRequestData());
+    protected DisclaimerResponseVo callApi() throws ApiException {
+        return getApiWrapper().getDisclaimers(getRequestData());
     }
 }

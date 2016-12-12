@@ -8,7 +8,7 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 
 /**
- * A concrete {@link LedgeLinkApiTask} to create a new user.
+ * A concrete {@link LedgeLinkApiTask} to display loan purposes.
  * @author wijnand
  */
 public class LoanPurposesTask extends LedgeLinkApiTask<Void, Void, LoanPurposesResponseVo, UnauthorizedRequestVo> {

@@ -2,7 +2,7 @@ package me.ledge.link.sdk.sdk.tasks.config;
 
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
-import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -12,7 +12,7 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * @author wijnand
  */
 public class HousingTypeListTask
-        extends LedgeLinkApiTask<Void, Void, HousingTypeListResponseVo, UnauthorizedRequestVo> {
+        extends LedgeLinkApiTask<Void, Void, ConfigResponseVo, UnauthorizedRequestVo> {
 
     /**
      * Creates a new {@link HousingTypeListTask} instance.
@@ -28,7 +28,7 @@ public class HousingTypeListTask
 
     /** {@inheritDoc} */
     @Override
-    protected HousingTypeListResponseVo callApi() throws ApiException {
-        return getApiWrapper().getHousingTypeList(getRequestData());
+    protected ConfigResponseVo callApi() throws ApiException {
+        return getApiWrapper().getUserConfig(getRequestData());
     }
 }

@@ -1,13 +1,16 @@
 package me.ledge.link.sdk.handlers.eventbus.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+
+import org.greenrobot.eventbus.Subscribe;
+
 import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.api.vos.responses.config.DisclaimersListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
-import org.greenrobot.eventbus.Subscribe;
 
 /**
  * An {@link IdentityVerificationPresenter} that uses the {@link EventBus} to receive API responses.
@@ -56,8 +59,8 @@ public class EventBusIdentyVerificationPresenter extends IdentityVerificationPre
     }
 
     @Subscribe
-    public void handlePartnerDisclaimersList(DisclaimersListResponseVo response) {
-        setDisclaimers(parseDisclaimersList(response));
+    public void handleDisclaimersResponse(DisclaimerResponseVo response) {
+        setDisclaimers(parseDisclaimersResponse(response));
     }
 
     /**

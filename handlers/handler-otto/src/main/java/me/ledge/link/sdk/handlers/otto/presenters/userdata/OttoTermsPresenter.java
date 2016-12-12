@@ -36,8 +36,12 @@ public class OttoTermsPresenter extends TermsPresenter {
 
     @Subscribe
     public void handleDisclaimer(DisclaimerResponseVo response) {
-        if (response != null) {
-            setTerms(response.text);
+        if (isDisclaimerPresent(response)) {
+            setTerms(response.linkDisclaimer.text);
         }
+    }
+
+    private boolean isDisclaimerPresent(DisclaimerResponseVo response) {
+        return response!=null && response.linkDisclaimer!=null;
     }
 }

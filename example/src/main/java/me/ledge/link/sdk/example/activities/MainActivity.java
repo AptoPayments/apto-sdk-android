@@ -5,8 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
+
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+
 import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
@@ -22,9 +26,6 @@ import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.UserDataVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 /**
  * Main display.
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
         apiWrapper.setApiEndPoint(getApiEndPoint());
         apiWrapper.setBaseRequestData(getDeveloperKey(), utils.getDeviceSummary());
+        apiWrapper.setProjectToken(getProjectToken());
 
         LedgeLinkUi.setApiWrapper(apiWrapper);
         LedgeLinkUi.setImageLoader(new VolleyImageLoader(this));
@@ -153,6 +155,13 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
      */
     protected String getDeveloperKey() {
         return getString(R.string.ledge_link_developer_key_dev);
+    }
+
+    /**
+     * @return Link project token.
+     */
+    protected String getProjectToken() {
+        return getString(R.string.ledge_link_project_token);
     }
 
     /** {@inheritDoc} */

@@ -1,10 +1,12 @@
 package me.ledge.link.sdk.handlers.eventbus.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
-import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.ui.presenters.userdata.AddressPresenter;
 import me.ledge.link.sdk.ui.views.userdata.AddressView;
-import org.greenrobot.eventbus.Subscribe;
 
 /**
  * An {@link AddressPresenter} that uses the {@link EventBus} to receive API responses.
@@ -39,9 +41,13 @@ public class EventBusAddressPresenter extends AddressPresenter {
      * @param response API response.
      */
     @Subscribe
-    public void handleToken(HousingTypeListResponseVo response) {
-        if (response != null) {
-            setHousingTypesList(response.data);
+    public void handleToken(ConfigResponseVo response) {
+        if (isHousingTypesPresent(response)) {
+            setHousingTypesList(response.housingTypeOpts.data);
         }
+    }
+
+    private boolean isHousingTypesPresent(ConfigResponseVo response) {
+        return response!=null && response.housingTypeOpts!=null;
     }
 }

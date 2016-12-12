@@ -1,10 +1,12 @@
 package me.ledge.link.sdk.handlers.eventbus.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+
+import org.greenrobot.eventbus.Subscribe;
+
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.sdk.ui.presenters.userdata.TermsPresenter;
 import me.ledge.link.sdk.ui.views.userdata.TermsView;
-import org.greenrobot.eventbus.Subscribe;
 
 /**
  * TODO: Class documentation.
@@ -36,8 +38,12 @@ public class EventBusTermsPresenter extends TermsPresenter {
 
     @Subscribe
     public void handleDisclaimer(DisclaimerResponseVo response) {
-        if (response != null) {
-            setTerms(response.text);
+        if (isDisclaimerPresent(response)) {
+            setTerms(response.linkDisclaimer.text);
         }
+    }
+
+    private boolean isDisclaimerPresent(DisclaimerResponseVo response) {
+        return response!=null && response.linkDisclaimer!=null;
     }
 }

@@ -1,6 +1,8 @@
 package me.ledge.link.sdk.handlers.eventbus.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
 import me.ledge.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
@@ -40,9 +42,9 @@ public class EventBusAnnualIncomePresenter extends AnnualIncomePresenter {
      * @param response API response.
      */
     @Subscribe
-    public void handleEmploymentStatusesList(EmploymentStatusListResponseVo response) {
-        if (response != null) {
-            setEmploymentStatusesList(response.data);
+    public void handleEmploymentStatusesList(ConfigResponseVo response) {
+        if (isEmploymentStatusesPresent(response)) {
+            setEmploymentStatusesList(response.employmentStatusOpts.data);
         }
     }
 
@@ -51,9 +53,17 @@ public class EventBusAnnualIncomePresenter extends AnnualIncomePresenter {
      * @param response API response.
      */
     @Subscribe
-    public void handleSalaryFrequenciesList(SalaryFrequenciesListResponseVo response) {
-        if (response != null) {
-            setSalaryFrequenciesList(response.data);
+    public void handleSalaryFrequenciesList(ConfigResponseVo response) {
+        if (isSalaryFrequencyPresent(response)) {
+            setSalaryFrequenciesList(response.salaryFrequencyOpts.data);
         }
+    }
+
+    private boolean isEmploymentStatusesPresent(ConfigResponseVo response) {
+        return response!=null && response.employmentStatusOpts!=null;
+    }
+
+    private boolean isSalaryFrequencyPresent(ConfigResponseVo response) {
+        return response!=null && response.salaryFrequencyOpts!=null;
     }
 }
