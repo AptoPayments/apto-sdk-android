@@ -1,5 +1,7 @@
 package me.ledge.link.sdk.handlers.eventbus.utils;
 
+import java.util.ArrayList;
+
 import me.ledge.link.sdk.handlers.eventbus.activities.loanapplication.EventBusLoanApplicationsListActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.offers.EventBusOffersListActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusAddressActivity;
@@ -14,9 +16,8 @@ import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActiv
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
 import me.ledge.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
+import me.ledge.link.sdk.ui.activities.verification.PhoneVerificationActivity;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
-
-import java.util.ArrayList;
 
 /**
  * EventBus specific handler configuration.
@@ -27,10 +28,11 @@ public class EventBusHandlerConfigurator implements HandlerConfigurator {
     /** {@inheritDoc} */
     @Override
     public ArrayList<Class<? extends MvpActivity>> getProcessOrder() {
-        ArrayList<Class<? extends MvpActivity>> process = new ArrayList<>(8);
+        ArrayList<Class<? extends MvpActivity>> process = new ArrayList<>(9);
         process.add(EventBusTermsActivity.class);
         process.add(EventBusLoanAmountActivity.class);
         process.add(PersonalInformationActivity.class);
+        process.add(PhoneVerificationActivity.class);
         process.add(EventBusAddressActivity.class);
         process.add(EventBusAnnualIncomeActivity.class);
         process.add(MonthlyIncomeActivity.class);

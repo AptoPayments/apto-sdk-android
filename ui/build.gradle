@@ -77,6 +77,7 @@ dependencies {
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:+'
     compile 'com.googlecode.libphonenumber:libphonenumber:+'
     compile 'com.github.ksoichiro:android-observablescrollview:+'
+    compile 'com.github.davidpizarro:pinview:1.0.0'
 
     // Tests
     testCompile 'junit:junit:4.+'
