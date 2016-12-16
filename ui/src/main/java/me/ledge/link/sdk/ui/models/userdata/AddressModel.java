@@ -1,11 +1,12 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
 import android.text.TextUtils;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
-import ru.lanwen.verbalregex.VerbalExpression;
+
+import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import ru.lanwen.verbalregex.VerbalExpression;
 
 /**
  * Concrete {@link Model} for the address screen.
@@ -13,11 +14,7 @@ import me.ledge.link.sdk.ui.vos.UserDataVo;
  */
 public class AddressModel extends AbstractUserDataModel implements UserDataModel {
 
-    private String mAddress;
-    private String mApartmentNumber;
-    private String mCity;
-    private String mState;
-    private String mZip;
+    private DataPointVo.Address mAddress;
     private IdDescriptionPairDisplayVo mHousingType;
 
     /**
@@ -31,11 +28,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * Initializes this class.
      */
     private void init() {
-        mAddress = null;
-        mApartmentNumber = null;
-        mCity = null;
-        mState = null;
-        mZip = null;
+        mAddress = new DataPointVo.Address();
         mHousingType = null;
     }
 
@@ -53,43 +46,60 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
 
     /** {@inheritDoc} */
     @Override
-    public UserDataVo getBaseData() {
-        UserDataVo base = super.getBaseData();
-        base.address = getAddress();
-        base.apartmentNumber = getApartmentNumber();
-        base.city = getCity();
-        base.state = getState();
-        base.zip = getZip();
-        base.housingType = getHousingType();
+    public DataPointVo.DataPointList getBaseData() {
+        DataPointVo.DataPointList base = super.getBaseData();
+
+        DataPointVo.Address baseAddress = (DataPointVo.Address) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Address, new DataPointVo.Address());
+        baseAddress.update(getAddress());
+
+        DataPointVo.Housing baseHousing = (DataPointVo.Housing) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Housing, new DataPointVo.Housing());
+        baseHousing.housingType = getHousingType().getKey();
 
         return base;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(UserDataVo base) {
+    public void setBaseData(DataPointVo.DataPointList base) {
         super.setBaseData(base);
 
-        setAddress(base.address);
-        setApartmentNumber(base.apartmentNumber);
-        setCity(base.city);
-        setState(base.state);
-        setZip(base.zip);
-        setHousingType(base.housingType);
+        DataPointVo.Address address = (DataPointVo.Address) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Address,
+                new DataPointVo.Address());
+        setAddress(address);
+
+        DataPointVo.Housing housing = (DataPointVo.Housing) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Housing,
+                new DataPointVo.Housing());
+        setHousingType(new IdDescriptionPairDisplayVo(housing.housingType, ""));
     }
 
     /**
      * @return Address.
      */
-    public String getAddress() {
+    public DataPointVo.Address getAddress() {
         return mAddress;
+    }
+
+    public void setAddress(DataPointVo.Address address) {
+        setStreetAddress(address.address);
+        setApartmentNumber(address.apUnit);
+        setCity(address.city);
+        setState(address.stateCode);
+        setZip(address.zip);
+    }
+
+    public String getStreetAddress() {
+        return mAddress.address;
     }
 
     /**
      * Stores a valid address.
      * @param address The address.
      */
-    public void setAddress(String address) {
+    public void setStreetAddress(String address) {
         VerbalExpression addressRegex = VerbalExpression.regex()
                 .startOfLine()
                 .digit().atLeast(1)
@@ -100,9 +110,9 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
                 .build();
 
         if (addressRegex.test(address)) {
-            mAddress = address;
+            mAddress.address = address;
         } else {
-            mAddress = null;
+            mAddress.address = null;
         }
     }
 
@@ -110,7 +120,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * @return Apartment number.
      */
     public String getApartmentNumber() {
-        return mApartmentNumber;
+        return mAddress.apUnit;
     }
 
     /**
@@ -118,14 +128,14 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * @param apartmentNumber Apartment number.
      */
     public void setApartmentNumber(String apartmentNumber) {
-        mApartmentNumber = apartmentNumber;
+        mAddress.apUnit = apartmentNumber;
     }
 
     /**
      * @return City.
      */
     public String getCity() {
-        return mCity;
+        return mAddress.city;
     }
 
     /**
@@ -134,9 +144,9 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      */
     public void setCity(String city) {
         if (TextUtils.isEmpty(city)) {
-            mCity = null;
+            mAddress.city = null;
         } else {
-            mCity = city;
+            mAddress.city = city;
         }
     }
 
@@ -144,7 +154,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * @return State abbreviation.
      */
     public String getState() {
-        return mState;
+        return mAddress.stateCode;
     }
 
     /**
@@ -159,9 +169,9 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
                 .build();
 
         if (stateRegex.testExact(state)) {
-            mState = state.toUpperCase();
+            mAddress.stateCode = state.toUpperCase();
         } else {
-            mState = null;
+            mAddress.stateCode = null;
         }
     }
 
@@ -169,7 +179,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * @return Zip or postal code.
      */
     public String getZip() {
-        return mZip;
+        return mAddress.zip;
     }
 
     /**
@@ -189,9 +199,9 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
                 .build();
 
         if (zipRegex.testExact(zip)) {
-            mZip = zip;
+            mAddress.zip = zip;
         } else {
-            mZip = null;
+            mAddress.zip = null;
         }
     }
 
@@ -199,28 +209,28 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * @return Whether a valid address has been set.
      */
     public boolean hasValidAddress() {
-        return mAddress != null;
+        return mAddress.address != null;
     }
 
     /**
      * @return Whether a valid city has been set.
      */
     public boolean hasValidCity() {
-        return mCity != null;
+        return mAddress.city != null;
     }
 
     /**
      * @return Whether a valid state has been set.
      */
     public boolean hasValidState() {
-        return mState != null;
+        return mAddress.stateCode != null;
     }
 
     /**
      * @return Whether a valid ZIP code has been set.
      */
     public boolean hasValidZip() {
-        return mZip != null;
+        return mAddress.zip != null;
     }
 
     /**

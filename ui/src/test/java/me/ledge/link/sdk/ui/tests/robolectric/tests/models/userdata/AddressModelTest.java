@@ -1,17 +1,19 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import android.text.TextUtils;
-import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+
+import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
 import me.ledge.link.sdk.ui.models.userdata.AddressModel;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.mockito.Matchers.any;
@@ -31,7 +33,9 @@ public class AddressModelTest {
     private static final String EXPECTED_CITY = "Trabuco Canyon";
     private static final String EXPECTED_STATE = "CA";
     private static final String EXPECTED_ZIP = "92679";
+    private static final String EXPECTED_COUNTRY = "US";
     private static final IdDescriptionPairDisplayVo EXPECTED_HOUSING_TYPE = new IdDescriptionPairDisplayVo(777, "Baller");
+    private static final int EXPECTED_HOUSING_TYPE_ID = 777;
 
     private AddressModel mModel;
 
@@ -65,22 +69,21 @@ public class AddressModelTest {
      */
     @Test
     public void allDataIsSetFromBaseData() {
-        UserDataVo base = new UserDataVo();
-        base.address = EXPECTED_ADDRESS;
-        base.apartmentNumber = EXPECTED_APARTMENT_NUMBER;
-        base.city = EXPECTED_CITY;
-        base.state = EXPECTED_STATE;
-        base.zip = EXPECTED_ZIP;
-        base.housingType = EXPECTED_HOUSING_TYPE;
-
+        DataPointVo.DataPointList base = new DataPointVo.DataPointList();
+        DataPointVo.Address baseAddress = new DataPointVo.Address(EXPECTED_ADDRESS,
+                EXPECTED_APARTMENT_NUMBER, EXPECTED_COUNTRY, EXPECTED_CITY, EXPECTED_STATE,
+                EXPECTED_ZIP,false);
+        base.add(baseAddress);
+        DataPointVo.Housing baseHousing = new DataPointVo.Housing(EXPECTED_HOUSING_TYPE_ID, false);
+        base.add(baseHousing);
         mModel.setBaseData(base);
 
-        Assert.assertThat("Incorrect address.", mModel.getAddress(), equalTo(base.address));
-        Assert.assertThat("Incorrect apartment number.", mModel.getApartmentNumber(), equalTo(base.apartmentNumber));
-        Assert.assertThat("Incorrect city.", mModel.getCity(), equalTo(base.city));
-        Assert.assertThat("Incorrect state.", mModel.getState(), equalTo(base.state));
-        Assert.assertThat("Incorrect zip code.", mModel.getZip(), equalTo(base.zip));
-        Assert.assertThat("Incorrect housing type.", mModel.getHousingType(), equalTo(base.housingType));
+        Assert.assertThat("Incorrect address.", mModel.getStreetAddress(), equalTo(baseAddress.address));
+        Assert.assertThat("Incorrect apartment number.", mModel.getApartmentNumber(), equalTo(baseAddress.apUnit));
+        Assert.assertThat("Incorrect city.", mModel.getCity(), equalTo(baseAddress.city));
+        Assert.assertThat("Incorrect state.", mModel.getState(), equalTo(baseAddress.stateCode));
+        Assert.assertThat("Incorrect zip code.", mModel.getZip(), equalTo(baseAddress.zip));
+        Assert.assertThat("Incorrect housing type.", mModel.getHousingType().getKey(), equalTo(baseHousing.housingType));
         Assert.assertTrue("All data should be set.", mModel.hasAllData());
     }
 
@@ -91,23 +94,27 @@ public class AddressModelTest {
      */
     @Test
     public void baseDataIsUpdated() {
-        mModel.setBaseData(new UserDataVo());
+        mModel.setBaseData(new DataPointVo.DataPointList());
 
-        mModel.setAddress(EXPECTED_ADDRESS);
+        mModel.setStreetAddress(EXPECTED_ADDRESS);
         mModel.setApartmentNumber(EXPECTED_APARTMENT_NUMBER);
         mModel.setCity(EXPECTED_CITY);
         mModel.setState(EXPECTED_STATE);
         mModel.setZip(EXPECTED_ZIP);
         mModel.setHousingType(EXPECTED_HOUSING_TYPE);
 
-        UserDataVo base = mModel.getBaseData();
+        DataPointVo.DataPointList base = mModel.getBaseData();
+        DataPointVo.Address baseAddress = (DataPointVo.Address) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Address, new DataPointVo.Address());
+        DataPointVo.Housing baseHousing = (DataPointVo.Housing) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Housing, new DataPointVo.Housing());
 
-        Assert.assertThat("Incorrect address.", base.address, equalTo(mModel.getAddress()));
-        Assert.assertThat("Incorrect apartment number.", base.apartmentNumber, equalTo(mModel.getApartmentNumber()));
-        Assert.assertThat("Incorrect city.", base.city, equalTo(mModel.getCity()));
-        Assert.assertThat("Incorrect state.", base.state, equalTo(mModel.getState()));
-        Assert.assertThat("Incorrect zip code.", base.zip, equalTo(mModel.getZip()));
-        Assert.assertThat("Incorrect housing type.", base.housingType, equalTo(mModel.getHousingType()));
+        Assert.assertThat("Incorrect address.", baseAddress.address, equalTo(mModel.getStreetAddress()));
+        Assert.assertThat("Incorrect apartment number.", baseAddress.apUnit, equalTo(mModel.getApartmentNumber()));
+        Assert.assertThat("Incorrect city.", baseAddress.city, equalTo(mModel.getCity()));
+        Assert.assertThat("Incorrect state.", baseAddress.stateCode, equalTo(mModel.getState()));
+        Assert.assertThat("Incorrect zip code.", baseAddress.zip, equalTo(mModel.getZip()));
+        Assert.assertThat("Incorrect housing type.", baseHousing.housingType, equalTo(mModel.getHousingType().getKey()));
     }
 
     /**
@@ -117,9 +124,9 @@ public class AddressModelTest {
      */
     @Test
     public void validAddressIsStored() {
-        mModel.setAddress(EXPECTED_ADDRESS);
+        mModel.setStreetAddress(EXPECTED_ADDRESS);
         Assert.assertTrue("Address should be stored.", mModel.hasValidAddress());
-        Assert.assertThat("Incorrect address.", mModel.getAddress(), equalTo(EXPECTED_ADDRESS));
+        Assert.assertThat("Incorrect address.", mModel.getStreetAddress(), equalTo(EXPECTED_ADDRESS));
     }
 
     /**
@@ -129,7 +136,7 @@ public class AddressModelTest {
      */
     @Test
     public void invalidAddressIsNotStored() {
-        mModel.setAddress("Stoney Creek Rd");
+        mModel.setStreetAddress("Stoney Creek Rd");
         Assert.assertFalse("Address should NOT be stored.", mModel.hasValidAddress());
     }
 

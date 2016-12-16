@@ -1,11 +1,12 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
-import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AnnualIncomeModel;
 
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -19,7 +20,7 @@ public class AnnualIncomeModelTest {
     private static final int MIN_INCOME = 1000;
     private static final int MAX_INCOME = 50000;
 
-    private static final int EXPECTED_VALID_INCOME = 30000;
+    private static final long EXPECTED_VALID_INCOME = 30000;
     private static final int TOO_SMALL_INCOME = -1000;
     private static final int TOO_LARGE_INCOME = MAX_INCOME * 2;
 
@@ -75,13 +76,14 @@ public class AnnualIncomeModelTest {
      */
     @Test
     public void settingBaseDataUpdatesIncome() {
-        UserDataVo base = new UserDataVo();
-        base.annualGrossIncome = EXPECTED_VALID_INCOME;
+        DataPointVo.DataPointList base = new DataPointVo.DataPointList();
+        DataPointVo.Income baseIncome = new DataPointVo.Income(0, EXPECTED_VALID_INCOME, false);
+        base.add(baseIncome);
 
         mModel.setBaseData(base);
 
         Assert.assertFalse("Data should still be incomplete.", mModel.hasAllData());
-        Assert.assertThat("Incorrect income.", mModel.getIncome(), equalTo(base.annualGrossIncome));
+        Assert.assertThat("Incorrect income.", mModel.getAnnualIncome(), equalTo(baseIncome.annualGrossIncome));
     }
 
     /**
@@ -91,11 +93,14 @@ public class AnnualIncomeModelTest {
      */
     @Test
     public void baseDataIsUpdated() {
-        mModel.setBaseData(new UserDataVo());
+        mModel.setBaseData(new DataPointVo.DataPointList());
 
-        mModel.setIncome(EXPECTED_VALID_INCOME);
+        mModel.setAnnualIncome(EXPECTED_VALID_INCOME);
 
-        Assert.assertThat("Incorrect income.", mModel.getBaseData().annualGrossIncome, equalTo(mModel.getIncome()));
+        DataPointVo.DataPointList base = mModel.getBaseData();
+        DataPointVo.Income baseIncome = (DataPointVo.Income) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Income, new DataPointVo.Income());
+        Assert.assertThat("Incorrect income.", baseIncome.annualGrossIncome, equalTo(mModel.getAnnualIncome()));
     }
 
     /**
@@ -105,8 +110,8 @@ public class AnnualIncomeModelTest {
      */
     @Test
     public void validIncomeIsStored() {
-        mModel.setIncome(EXPECTED_VALID_INCOME);
-        Assert.assertThat("Income should be stored.", mModel.getIncome(), IsEqual.equalTo(EXPECTED_VALID_INCOME));
+        mModel.setAnnualIncome(EXPECTED_VALID_INCOME);
+        Assert.assertThat("Income should be stored.", mModel.getAnnualIncome(), IsEqual.equalTo(EXPECTED_VALID_INCOME));
     }
 
     /**
@@ -116,11 +121,11 @@ public class AnnualIncomeModelTest {
      */
     @Test
     public void tooLowIncomeIsIgnored() {
-        mModel.setIncome(EXPECTED_VALID_INCOME);
-        mModel.setIncome(TOO_SMALL_INCOME);
+        mModel.setAnnualIncome(EXPECTED_VALID_INCOME);
+        mModel.setAnnualIncome(TOO_SMALL_INCOME);
 
         Assert.assertThat("Too low income should be ignored.",
-                mModel.getIncome(), IsEqual.equalTo(EXPECTED_VALID_INCOME));
+                mModel.getAnnualIncome(), IsEqual.equalTo(EXPECTED_VALID_INCOME));
     }
 
     /**
@@ -130,10 +135,10 @@ public class AnnualIncomeModelTest {
      */
     @Test
     public void tooLargeIncomeIsIgnored() {
-        mModel.setIncome(EXPECTED_VALID_INCOME);
-        mModel.setIncome(TOO_LARGE_INCOME);
+        mModel.setAnnualIncome(EXPECTED_VALID_INCOME);
+        mModel.setAnnualIncome(TOO_LARGE_INCOME);
 
         Assert.assertThat("Too large income should be ignored.",
-                mModel.getIncome(), IsEqual.equalTo(EXPECTED_VALID_INCOME));
+                mModel.getAnnualIncome(), IsEqual.equalTo(EXPECTED_VALID_INCOME));
     }
 }

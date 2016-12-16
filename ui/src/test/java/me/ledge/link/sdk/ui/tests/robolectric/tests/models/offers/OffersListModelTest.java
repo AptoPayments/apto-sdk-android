@@ -1,15 +1,16 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.offers;
 
-import me.ledge.link.api.utils.CreditScoreRange;
-import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata.LoanAmountModelTest;
-import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.models.offers.OffersListModel;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import me.ledge.link.api.utils.CreditScoreRange;
+import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.models.offers.OffersListModel;
+import me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata.LoanAmountModelTest;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
@@ -38,9 +39,8 @@ public class OffersListModelTest {
     /**
      * @return Populated base data.
      */
-    private UserDataVo getBaseData() {
-        UserDataVo base = new UserDataVo();
-        base.creditScoreRange = EXPECTED_CREDIT_SCORE_RANGE;
+    private LoanDataVo getBaseData() {
+        LoanDataVo base = new LoanDataVo();
         base.loanAmount = LoanAmountModelTest.EXPECTED_VALID_AMOUNT;
         base.loanPurpose = new IdDescriptionPairDisplayVo(EXPECTED_PURPOSE_ID, null);
 
@@ -66,7 +66,7 @@ public class OffersListModelTest {
      */
     @Test
     public void baseDataIsStored() {
-        UserDataVo base = getBaseData();
+        LoanDataVo base = getBaseData();
         mModel.setBaseData(base);
         Assert.assertThat("Incorrect base data.", mModel.getBaseData(), equalTo(base));
     }
@@ -78,7 +78,7 @@ public class OffersListModelTest {
      */
     @Test
     public void initialOffersRequestIsGenerated() {
-        UserDataVo base = getBaseData();
+        LoanDataVo base = getBaseData();
         mModel.setBaseData(base);
 
         InitialOffersRequestVo request = mModel.getInitialOffersRequest();

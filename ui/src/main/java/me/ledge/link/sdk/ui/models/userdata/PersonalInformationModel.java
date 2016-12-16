@@ -1,29 +1,33 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
 import android.text.TextUtils;
+
 import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+
+import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 import ru.lanwen.verbalregex.VerbalExpression;
+
 
 /**
  * Concrete {@link Model} for the personal information screen.
- * @author Wijnand
+ * @author Adrian
  */
+
 public class PersonalInformationModel extends AbstractUserDataModel implements UserDataModel {
 
-    private String mFirstName;
-    private String mLastName;
-    private String mEmail;
-    private PhoneNumber mPhone;
+    private DataPointVo.PersonalName mPersonalName;
+    private DataPointVo.Email mEmail;
+    private DataPointVo.PhoneNumber mPhone;
     private PhoneNumberUtil mPhoneUtil;
 
     /**
      * Creates a new {@link PersonalInformationModel} instance.
      */
+
     public PersonalInformationModel() {
         init();
     }
@@ -32,10 +36,9 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * Initializes this class.
      */
     protected void init() {
-        mFirstName = null;
-        mLastName = null;
-        mEmail = null;
-        mPhone = null;
+        mPersonalName = new DataPointVo.PersonalName();
+        mEmail = new DataPointVo.Email();
+        mPhone = new DataPointVo.PhoneNumber();
         mPhoneUtil = PhoneNumberUtil.getInstance();
     }
 
@@ -51,34 +54,56 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         return hasFirstName() && hasLastName() && hasEmail() && hasPhone();
     }
 
+
     /** {@inheritDoc} */
     @Override
-    public UserDataVo getBaseData() {
-        UserDataVo base = super.getBaseData();
-        base.firstName = mFirstName;
-        base.lastName = mLastName;
-        base.emailAddress = mEmail;
-        base.phoneNumber = mPhone;
+    public DataPointVo.DataPointList getBaseData() {
+        DataPointVo.DataPointList base = super.getBaseData();
+
+        DataPointVo.PersonalName personalName = (DataPointVo.PersonalName) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PersonalName, new DataPointVo.PersonalName());
+        personalName.firstName = mPersonalName.firstName;
+        personalName.lastName = mPersonalName.lastName;
+        DataPointVo.Email emailAddress = (DataPointVo.Email) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Email, new DataPointVo.Email());
+        emailAddress.email = mEmail.email;
+        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
+        phoneNumber.phoneNumber = mPhone.phoneNumber;
 
         return base;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(UserDataVo base) {
+    public void setBaseData(DataPointVo.DataPointList base) {
         super.setBaseData(base);
+        DataPointVo.PersonalName personalName = (DataPointVo.PersonalName) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PersonalName,
+                new DataPointVo.PersonalName());
+        setPersonalName(personalName);
+        DataPointVo.Email emailAddress = (DataPointVo.Email) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Email,
+                new DataPointVo.Email());
+        setEmail(emailAddress);
+        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PhoneNumber,
+                new DataPointVo.PhoneNumber());
+        setPhone(phoneNumber);
+    }
 
-        setFirstName(base.firstName);
-        setLastName(base.lastName);
-        setEmail(base.emailAddress);
-        setPhone(base.phoneNumber);
+    public void setPersonalName(DataPointVo.PersonalName personalName) {
+        if(personalName != null) {
+            setFirstName(personalName.firstName);
+            setLastName(personalName.lastName);
+        }
     }
 
     /**
      * @return First name.
      */
     public String getFirstName() {
-        return mFirstName;
+        return mPersonalName.firstName;
     }
 
     /**
@@ -87,9 +112,9 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      */
     public void setFirstName(String firstName) {
         if (TextUtils.isEmpty(firstName)) {
-            mFirstName = null;
+            mPersonalName.firstName = null;
         } else {
-            mFirstName = firstName;
+            mPersonalName.firstName = firstName;
         }
     }
 
@@ -97,7 +122,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * @return Last name.
      */
     public String getLastName() {
-        return mLastName;
+        return mPersonalName.lastName;
     }
 
     /**
@@ -106,9 +131,9 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      */
     public void setLastName(String lastName) {
         if (TextUtils.isEmpty(lastName)) {
-            mLastName = null;
+            mPersonalName.lastName = null;
         } else {
-            mLastName = lastName;
+            mPersonalName.lastName = lastName;
         }
     }
 
@@ -116,7 +141,13 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * @return Email address.
      */
     public String getEmail() {
-        return mEmail;
+        return mEmail.email;
+    }
+
+    public void setEmail(DataPointVo.Email emailAddress) {
+        if(emailAddress != null) {
+            setEmail(emailAddress.email);
+        }
     }
 
     /**
@@ -133,9 +164,9 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
                 .build();
 
         if (emailRegex.testExact(email)) {
-            mEmail = email;
+            mEmail.email = email;
         } else {
-            mEmail = null;
+            mEmail.email = null;
         }
     }
 
@@ -143,7 +174,13 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * @return Phone number.
      */
     public PhoneNumber getPhone() {
-        return mPhone;
+        return mPhone.phoneNumber;
+    }
+
+    public void setPhone(DataPointVo.PhoneNumber phoneNumber) {
+        if(phoneNumber != null) {
+            setPhone(phoneNumber.phoneNumber);
+        }
     }
 
     /**
@@ -152,10 +189,11 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      */
     public void setPhone(String phone) {
         try {
+            //TODO: check country code
             PhoneNumber number = mPhoneUtil.parse(phone, "US");
             setPhone(number);
         } catch (NumberParseException npe) {
-            mPhone = null;
+            mPhone.phoneNumber = null;
         }
     }
 
@@ -165,9 +203,9 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      */
     public void setPhone(PhoneNumber number) {
         if (number != null && mPhoneUtil.isValidNumber(number)) {
-            mPhone = number;
+            mPhone.phoneNumber = number;
         } else {
-            mPhone = null;
+            mPhone.phoneNumber = null;
         }
     }
 
@@ -175,27 +213,28 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * @return Whether a first name has been set.
      */
     public boolean hasFirstName() {
-        return mFirstName != null;
+        return !TextUtils.isEmpty(mPersonalName.firstName);
     }
 
     /**
      * @return Whether a last name has been set.
      */
     public boolean hasLastName() {
-        return mLastName != null;
+        return !TextUtils.isEmpty(mPersonalName.lastName);
     }
 
     /**
      * @return Whether an email address has been set.
      */
     public boolean hasEmail() {
-        return mEmail != null;
+        return !TextUtils.isEmpty(mEmail.email);
     }
 
     /**
      * @return Whether a phone number has been set.
      */
     public boolean hasPhone() {
-        return mPhone != null;
+        return mPhone.phoneNumber != null;
     }
 }
+

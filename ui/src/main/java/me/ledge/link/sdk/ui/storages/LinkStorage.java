@@ -1,29 +1,29 @@
 package me.ledge.link.sdk.ui.storages;
 
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
 /**
- * Stores user related data.
+ * Stores loan related data.
  * @author Wijnand
  */
-public class UserStorage {
+public class LinkStorage {
 
-    private DataPointVo.DataPointList mUserDataPoints;
+    private LoanDataVo mLoanData;
     private String mBearerToken;
 
-    private static UserStorage mInstance;
+    private static LinkStorage mInstance;
 
     /**
-     * Creates a new {@link UserStorage} instance.
+     * Creates a new {@link LinkStorage} instance.
      */
-    private UserStorage() { }
+    private LinkStorage() { }
 
     /**
      * @return The single instance of this class.
      */
-    public static synchronized UserStorage getInstance() {
+    public static synchronized LinkStorage getInstance() {
         if (mInstance == null) {
-            mInstance = new UserStorage();
+            mInstance = new LinkStorage();
         }
 
         return mInstance;
@@ -32,16 +32,16 @@ public class UserStorage {
     /**
      * @return User data.
      */
-    public DataPointVo.DataPointList getUserData() {
-        return mUserDataPoints;
+    public LoanDataVo getLoanData() {
+        return mLoanData;
     }
 
     /**
      * Stores new user data.
-     * @param userData New user data.
+     * @param loanData New user data.
      */
-    public void setUserData(DataPointVo.DataPointList userData) {
-        mUserDataPoints = userData;
+    public void setLoanData(LoanDataVo loanData) {
+        mLoanData = loanData;
     }
 
     /**

@@ -4,10 +4,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 /**
  * TODO: Class documentation.
@@ -78,8 +80,8 @@ public class MonthlyIncomeView
      * Shows a new income.
      * @param income New income.
      */
-    public void setIncome(int income) {
-        mIncomeSlider.setProgress(income);
+    public void setIncome(double income) {
+        mIncomeSlider.setProgress((int)income);
     }
 
     /**

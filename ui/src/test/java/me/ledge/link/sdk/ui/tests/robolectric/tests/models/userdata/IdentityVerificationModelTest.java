@@ -1,16 +1,17 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import com.google.i18n.phonenumbers.Phonenumber;
-import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
-import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -134,20 +135,28 @@ public class IdentityVerificationModelTest {
      */
     @Test
     public void apiDataIsCreated() {
-        UserDataVo base = new UserDataVo();
-        base.phoneNumber = new Phonenumber.PhoneNumber()
+        DataPointVo.DataPointList base = new DataPointVo.DataPointList();
+
+        Phonenumber.PhoneNumber phone = new Phonenumber.PhoneNumber()
                 .setCountryCode(EXPECTED_COUNTRY_CODE)
                 .setNationalNumber(EXPECTED_NATIONAL_NUMBER);
 
-        mModel.setBaseData(base);
+        DataPointVo.PhoneNumber phoneNumber = new DataPointVo.PhoneNumber("", false);
+        phoneNumber.setPhone(phone);
+        base.add(phoneNumber);
 
         Calendar birthday = getValidBirthday();
         mModel.setBirthday(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DATE));
         mModel.setSocialSecurityNumber(EXPECTED_SSN);
 
-        CreateUserRequestVo apiData = mModel.getUserRequestData();
-        Assert.assertThat("Incorrect phone number.", apiData.phone_number, equalTo(EXPECTED_FORMATTED_PHONE));
-        Assert.assertThat("Incorrect birthday.", apiData.birthdate, equalTo(EXPECTED_FORMATTED_BIRTHDAY));
+        mModel.setBaseData(base);
+        DataPointVo.DataPointList apiData = mModel.getUserRequestDataPoints();
+        DataPointVo.PhoneNumber apiPhone = (DataPointVo.PhoneNumber) apiData.getUniqueDataPoint(
+                DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
+        DataPointVo.Birthdate apiBirthDate = (DataPointVo.Birthdate) apiData.getUniqueDataPoint(
+                DataPointVo.DataPointType.BirthDate, new DataPointVo.Birthdate());
+        Assert.assertThat("Incorrect phone number.", apiPhone.getPhoneAsString(), equalTo(EXPECTED_FORMATTED_PHONE));
+        Assert.assertThat("Incorrect birthday.", apiBirthDate.getDate(), equalTo(EXPECTED_FORMATTED_BIRTHDAY));
     }
 
 }

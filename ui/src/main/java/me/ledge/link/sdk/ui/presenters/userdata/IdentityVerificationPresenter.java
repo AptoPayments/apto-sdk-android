@@ -7,8 +7,6 @@ import android.text.TextUtils;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
-import java.util.List;
-
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.api.vos.responses.config.ProductDisclaimerVo;
@@ -125,9 +123,9 @@ public class IdentityVerificationPresenter
 
         if (mModel.hasAllData()) {
             if (TextUtils.isEmpty(UserStorage.getInstance().getBearerToken())) {
-                LedgeLinkUi.createUser(mModel.getUserRequestData());
+                LedgeLinkUi.createUser(mModel.getUserRequestDataPoints());
             } else {
-                LedgeLinkUi.updateUser(mModel.getUserRequestData());
+                LedgeLinkUi.updateUser(mModel.getUserRequestDataPoints());
             }
 
             // Show loading.

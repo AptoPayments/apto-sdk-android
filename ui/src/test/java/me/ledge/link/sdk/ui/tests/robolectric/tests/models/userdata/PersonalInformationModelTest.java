@@ -1,15 +1,18 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import android.text.TextUtils;
+
 import com.google.i18n.phonenumbers.Phonenumber;
-import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+
+import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
 
@@ -43,6 +46,10 @@ public class PersonalInformationModelTest {
                 .setNationalNumber(EXPECTED_NATIONAL_NUMBER);
     }
 
+    private String getExpectedPhoneNumberAsString() {
+        return String.valueOf(EXPECTED_COUNTRY_CODE) + String.valueOf(EXPECTED_NATIONAL_NUMBER);
+    }
+
     /**
      * Sets up each test.
      */
@@ -73,18 +80,20 @@ public class PersonalInformationModelTest {
      */
     @Test
     public void allDataIsSetFromBaseData() {
-        UserDataVo base = new UserDataVo();
-        base.firstName = EXPECTED_FIRST_NAME;
-        base.lastName = EXPECTED_LAST_NAME;
-        base.emailAddress = EXPECTED_EMAIL;
-        base.phoneNumber = getExpectedPhoneNumber();
+        DataPointVo.DataPointList base = new DataPointVo.DataPointList();
+        DataPointVo.PersonalName baseName = new DataPointVo.PersonalName(EXPECTED_FIRST_NAME, EXPECTED_LAST_NAME, false);
+        DataPointVo.Email baseEmail = new DataPointVo.Email(EXPECTED_EMAIL, false);
+        DataPointVo.PhoneNumber basePhone = new DataPointVo.PhoneNumber(getExpectedPhoneNumberAsString(), false);
+        base.add(baseName);
+        base.add(baseEmail);
+        base.add(basePhone);
 
         mModel.setBaseData(base);
 
-        Assert.assertThat("Incorrect first name.", mModel.getFirstName(), equalTo(base.firstName));
-        Assert.assertThat("Incorrect last name.", mModel.getLastName(), equalTo(base.lastName));
-        Assert.assertThat("Incorrect email address.", mModel.getEmail(), equalTo(base.emailAddress));
-        Assert.assertThat("Incorrect phone number.", mModel.getPhone(), equalTo(base.phoneNumber));
+        Assert.assertThat("Incorrect first name.", mModel.getFirstName(), equalTo(baseName.firstName));
+        Assert.assertThat("Incorrect last name.", mModel.getLastName(), equalTo(baseName.lastName));
+        Assert.assertThat("Incorrect email address.", mModel.getEmail(), equalTo(baseEmail.email));
+        Assert.assertThat("Incorrect phone number.", mModel.getPhone(), equalTo(basePhone.getPhone()));
         Assert.assertTrue("All data should be set.", mModel.hasAllData());
     }
 
@@ -95,19 +104,25 @@ public class PersonalInformationModelTest {
      */
     @Test
     public void baseDataIsUpdated() {
-        mModel.setBaseData(new UserDataVo());
+        mModel.setBaseData(new DataPointVo.DataPointList());
 
         mModel.setFirstName(EXPECTED_FIRST_NAME);
         mModel.setLastName(EXPECTED_LAST_NAME);
         mModel.setEmail(EXPECTED_EMAIL);
         mModel.setPhone(getExpectedPhoneNumber());
 
-        UserDataVo base = mModel.getBaseData();
+        DataPointVo.DataPointList base = mModel.getBaseData();
+        DataPointVo.PersonalName baseName = (DataPointVo.PersonalName) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PersonalName, new DataPointVo.PersonalName());
+        DataPointVo.Email baseEmail = (DataPointVo.Email) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Email, new DataPointVo.Email());
+        DataPointVo.PhoneNumber basePhone = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
 
-        Assert.assertThat("Incorrect first name.", base.firstName, equalTo(mModel.getFirstName()));
-        Assert.assertThat("Incorrect last name.", base.lastName, equalTo(mModel.getLastName()));
-        Assert.assertThat("Incorrect email address.", base.emailAddress, equalTo(mModel.getEmail()));
-        Assert.assertThat("Incorrect phone number.", base.phoneNumber, equalTo(mModel.getPhone()));
+        Assert.assertThat("Incorrect first name.", baseName.firstName, equalTo(mModel.getFirstName()));
+        Assert.assertThat("Incorrect last name.", baseName.lastName, equalTo(mModel.getLastName()));
+        Assert.assertThat("Incorrect email address.", baseEmail.email, equalTo(mModel.getEmail()));
+        Assert.assertThat("Incorrect phone number.", basePhone.phoneNumber, equalTo(mModel.getPhone()));
         Assert.assertTrue("All data should be set.", mModel.hasAllData());
     }
 

@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
+import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 /**
  * TODO: Class documentation.
@@ -10,15 +10,23 @@ import me.ledge.link.sdk.ui.vos.UserDataVo;
  */
 public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDataModel {
 
+    private DataPointVo.Income mIncome;
     private int mMinIncome;
     private int mMaxIncome;
-    private int mIncome;
+
+    public MonthlyIncomeModel() {
+        init();
+    }
+
+    private void init() {
+        mIncome = new DataPointVo.Income();
+    }
 
     /**
      * @param income Income to validate.
      * @return Whether the income is within the allowed range.
      */
-    protected boolean isValid(int income) {
+    protected boolean isValid(double income) {
         return income >= mMinIncome && income <= mMaxIncome;
     }
 
@@ -36,18 +44,28 @@ public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDat
 
     /** {@inheritDoc} */
     @Override
-    public UserDataVo getBaseData() {
-        UserDataVo base = super.getBaseData();
-        base.monthlyNetIncome = getIncome();
+    public DataPointVo.DataPointList getBaseData() {
+        DataPointVo.DataPointList base = super.getBaseData();
+
+        DataPointVo.Income baseIncome = (DataPointVo.Income) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Income, new DataPointVo.Income());
+        baseIncome.monthlyNetIncome = getMonthlyIncome();
 
         return base;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(UserDataVo base) {
+    public void setBaseData(DataPointVo.DataPointList base) {
         super.setBaseData(base);
-        setIncome(base.monthlyNetIncome);
+        DataPointVo.Income baseIncome = (DataPointVo.Income) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Income,
+                new DataPointVo.Income());
+        setIncome(baseIncome);
+    }
+
+    public void setIncome(DataPointVo.Income mIncome) {
+        setMonthlyIncome(mIncome.monthlyNetIncome);
     }
 
     /**
@@ -87,8 +105,8 @@ public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDat
     /**
      * @return income.
      */
-    public int getIncome() {
-        return mIncome;
+    public double getMonthlyIncome() {
+        return mIncome.monthlyNetIncome;
     }
 
     /**
@@ -96,9 +114,9 @@ public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDat
      * @param income The income.
      * @return Self reference for easy method chaining.
      */
-    public MonthlyIncomeModel setIncome(int income) {
+    public MonthlyIncomeModel setMonthlyIncome(double income) {
         if (isValid(income)) {
-            mIncome = income;
+            mIncome.monthlyNetIncome = income;
         }
 
         return this;
@@ -108,6 +126,6 @@ public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDat
      * @return Whether a valid income has been set.
      */
     public boolean hasValidIncome() {
-        return isValid(mIncome);
+        return isValid(mIncome.monthlyNetIncome);
     }
 }

@@ -2,25 +2,27 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
-import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
-import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
-import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.views.userdata.LoanAmountView;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
+import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
  * Concrete {@link Presenter} for the loan amount screen.
  * @author Wijnand
  */
 public class LoanAmountPresenter
-        extends UserDataPresenter<LoanAmountModel, LoanAmountView>
+        extends LoanDataPresenter<LoanAmountModel, LoanAmountView>
         implements LoanAmountView.ViewListener {
 
     private int mAmountIncrement;

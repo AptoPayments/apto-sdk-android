@@ -1,12 +1,13 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
-import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.LoanAmountModel;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 
@@ -80,7 +81,7 @@ public class LoanAmountModelTest {
      */
     @Test
     public void settingBaseDataUpdatesAmount() {
-        UserDataVo base = new UserDataVo();
+        LoanDataVo base = new LoanDataVo();
         base.loanAmount = EXPECTED_VALID_AMOUNT;
 
         mModel.setBaseData(base);
@@ -96,7 +97,7 @@ public class LoanAmountModelTest {
      */
     @Test
     public void baseDataIsUpdated() {
-        mModel.setBaseData(new UserDataVo());
+        mModel.setBaseData(new LoanDataVo());
 
         mModel.setAmount(EXPECTED_VALID_AMOUNT);
 

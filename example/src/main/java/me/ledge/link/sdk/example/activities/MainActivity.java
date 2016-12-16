@@ -6,13 +6,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-
 import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
@@ -22,9 +20,10 @@ import me.ledge.link.sdk.example.views.MainView;
 import me.ledge.link.sdk.handlers.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
+import me.ledge.link.sdk.ui.vos.LoanDataVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 
 /**
@@ -54,60 +53,61 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     /**
      * @return Pre-fill data for the Ledge Line SDK to use.
      */
-    private UserDataVo createStartData() {
-        UserDataVo data = new UserDataVo();
+    private DataPointVo.DataPointList createStartData() {
+        DataPointVo.DataPointList data = new DataPointVo.DataPointList();
         boolean dataSet = false;
 
+        LoanDataVo loanData = new LoanDataVo();
         if (hasValue(mView.getLoanAmount())) {
-            data.loanAmount = parseIntSafely(mView.getLoanAmount());
+            loanData.loanAmount = parseIntSafely(mView.getLoanAmount());
             dataSet = true;
         }
         if (mView.getLoanPurpose() != null) {
-            data.loanPurpose = mView.getLoanPurpose();
+            loanData.loanPurpose = mView.getLoanPurpose();
             dataSet = true;
         }
-        if (hasValue(mView.getFirstName())) {
-            data.firstName = mView.getFirstName();
-            dataSet = true;
-        }
-        if (hasValue(mView.getLastName())) {
-            data.lastName = mView.getLastName();
+        LinkStorage.getInstance().setLoanData(loanData);
+        if (hasValue(mView.getFirstName()) && hasValue(mView.getLastName())) {
+            data.add(new DataPointVo.PersonalName(mView.getFirstName(), mView.getLastName(), false));
             dataSet = true;
         }
         if (hasValue(mView.getEmail())) {
-            data.emailAddress = mView.getEmail();
+            data.add(new DataPointVo.Email(mView.getEmail(), false));
             dataSet = true;
         }
         if (hasValue(mView.getPhoneNumber())) {
-            try {
-                data.phoneNumber = PhoneNumberUtil.getInstance().parse(mView.getPhoneNumber(), "US");
-                dataSet = true;
-            } catch (NumberParseException npe) {
-                // Do nothing.
-            }
+            data.add(new DataPointVo.PhoneNumber(mView.getPhoneNumber(), false));
+            dataSet = true;
         }
+        String address = "";
         if (hasValue(mView.getAddress())) {
-            data.address = mView.getAddress();
+            address = mView.getAddress();
             dataSet = true;
         }
+        String apartment = "";
         if (hasValue(mView.getApartmentNumber())) {
-            data.apartmentNumber = mView.getApartmentNumber();
+            apartment = mView.getApartmentNumber();
             dataSet = true;
         }
+        String city = "";
         if (hasValue(mView.getCity())) {
-            data.city = mView.getCity();
+            city = mView.getCity();
             dataSet = true;
         }
+        String state = "";
         if (hasValue(mView.getState())) {
-            data.state = mView.getState();
+            state = mView.getState();
             dataSet = true;
         }
+        String zip = "";
         if (hasValue(mView.getZipCode())) {
-            data.zip = mView.getZipCode();
+            zip = mView.getZipCode();
             dataSet = true;
         }
+        DataPointVo.Address addressDataPoint = new DataPointVo.Address(address, apartment, "US", city, state, zip, false);
+        data.add(addressDataPoint);
         if (hasValue(mView.getIncome())) {
-            data.annualGrossIncome = parseIntSafely(mView.getIncome());
+            data.add(new DataPointVo.Income(-1, parseIntSafely(mView.getIncome()), false));
             dataSet = true;
         }
 

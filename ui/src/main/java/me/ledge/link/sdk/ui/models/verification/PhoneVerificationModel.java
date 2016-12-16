@@ -2,11 +2,12 @@ package me.ledge.link.sdk.ui.models.verification;
 
 import android.text.TextUtils;
 
+import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.VerificationVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.models.userdata.AbstractUserDataModel;
 import me.ledge.link.sdk.ui.models.userdata.UserDataModel;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 /**
  * Concrete {@link Model} for the phone information screen.
@@ -14,7 +15,7 @@ import me.ledge.link.sdk.ui.vos.UserDataVo;
  */
 public class PhoneVerificationModel extends AbstractUserDataModel implements UserDataModel {
 
-    private String mVerificationCode;
+    private VerificationVo mVerification;
 
     /**
      * Creates a new {@link PhoneVerificationModel} instance.
@@ -27,8 +28,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
      * Initializes this class.
      */
     protected void init() {
-        mVerificationCode = null;
-
+        mVerification = new VerificationVo();
     }
 
     /** {@inheritDoc} */
@@ -45,22 +45,31 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
 
     /** {@inheritDoc} */
     @Override
-    public UserDataVo getBaseData() {
-        UserDataVo base = super.getBaseData();
+    public DataPointVo.DataPointList getBaseData() {
+        DataPointVo.DataPointList base = super.getBaseData();
+        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
+        phoneNumber.setVerification(mVerification);
         return base;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(UserDataVo base) {
+    public void setBaseData(DataPointVo.DataPointList base) {
         super.setBaseData(base);
+        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PhoneNumber,
+                new DataPointVo.PhoneNumber());
+        if(phoneNumber.hasVerification()) {
+            mVerification = phoneNumber.getVerification();
+        }
     }
 
     /**
      * @return Verification code.
      */
     public String getVerificationCode() {
-        return mVerificationCode;
+        return mVerification.getSecret();
     }
 
     /**
@@ -69,9 +78,9 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
      */
     public void setVerificationCode(String verificationCode) {
         if (TextUtils.isEmpty(verificationCode)) {
-            mVerificationCode = null;
+            mVerification.setSecret(null);
         } else {
-            mVerificationCode = verificationCode;
+            mVerification.setSecret(verificationCode);
         }
     }
 
@@ -80,6 +89,6 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
      * @return Whether a verification code has been set.
      */
     public boolean hasVerificationCode() {
-        return mVerificationCode != null;
+        return mVerification.getSecret() != null;
     }
 }

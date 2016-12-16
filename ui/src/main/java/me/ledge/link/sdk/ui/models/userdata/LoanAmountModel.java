@@ -3,13 +3,13 @@ package me.ledge.link.sdk.ui.models.userdata;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
+import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
 /**
  * Concrete {@link Model} for the loan amount screen.
  * @author Wijnand
  */
-public class LoanAmountModel extends AbstractUserDataModel implements UserDataModel {
+public class LoanAmountModel extends AbstractLoanDataModel implements LoanDataModel {
 
     private int mMinAmount;
     private int mMaxAmount;
@@ -38,8 +38,8 @@ public class LoanAmountModel extends AbstractUserDataModel implements UserDataMo
 
     /** {@inheritDoc} */
     @Override
-    public UserDataVo getBaseData() {
-        UserDataVo base = super.getBaseData();
+    public LoanDataVo getBaseData() {
+        LoanDataVo base = super.getBaseData();
         base.loanAmount = getAmount();
         base.loanPurpose = getLoanPurpose();
 
@@ -48,7 +48,7 @@ public class LoanAmountModel extends AbstractUserDataModel implements UserDataMo
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(UserDataVo base) {
+    public void setBaseData(LoanDataVo base) {
         super.setBaseData(base);
 
         setAmount(base.loanAmount);

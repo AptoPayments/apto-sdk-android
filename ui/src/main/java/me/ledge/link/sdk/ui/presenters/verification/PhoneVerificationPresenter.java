@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
+import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.models.verification.PhoneVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
@@ -67,6 +68,8 @@ public class PhoneVerificationPresenter
     }
 
     private String getTitle() {
-        return PhoneNumberUtil.getInstance().format(mModel.getBaseData().phoneNumber, INTERNATIONAL);
+        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) mModel.getBaseData().
+                getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
+        return PhoneNumberUtil.getInstance().format(phoneNumber.phoneNumber, INTERNATIONAL);
     }
 }

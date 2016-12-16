@@ -2,6 +2,10 @@ package me.ledge.link.sdk.ui.models.offers;
 
 import android.app.Activity;
 import android.content.res.Resources;
+
+import java.util.Currency;
+import java.util.Locale;
+
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
@@ -10,10 +14,7 @@ import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
-
-import java.util.Currency;
-import java.util.Locale;
+import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
 /**
  * Concrete {@link Model} for the address screen.
@@ -22,7 +23,7 @@ import java.util.Locale;
 public class OffersListModel extends AbstractActivityModel
         implements ActivityModel, IntermediateLoanApplicationModel, Model {
 
-    private UserDataVo mBaseData;
+    private LoanDataVo mBaseData;
 
     /** {@inheritDoc} */
     @Override
@@ -73,7 +74,7 @@ public class OffersListModel extends AbstractActivityModel
     /**
      * @return Basic user data.
      */
-    public UserDataVo getBaseData() {
+    public LoanDataVo getBaseData() {
         return mBaseData;
     }
 
@@ -81,7 +82,7 @@ public class OffersListModel extends AbstractActivityModel
      * Stores new basic user data.
      * @param base User data.
      */
-    public void setBaseData(UserDataVo base) {
+    public void setBaseData(LoanDataVo base) {
         this.mBaseData = base;
     }
 
