@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
 import me.ledge.link.api.utils.CreditScoreRange;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
@@ -14,7 +15,6 @@ public class CreditScoreModel extends AbstractUserDataModel {
     public static final int DEFAULT_CREDIT_INDICATION = 0;
 
     private DataPointVo.CreditScore mCreditScore;
-    //private int mCreditScoreRange;
 
     /**
      * Creates a new {@link CreditScoreModel} instance.
@@ -53,8 +53,8 @@ public class CreditScoreModel extends AbstractUserDataModel {
 
     /** {@inheritDoc} */
     @Override
-    public DataPointVo.DataPointList getBaseData() {
-        DataPointVo.DataPointList base = super.getBaseData();
+    public DataPointList getBaseData() {
+        DataPointList base = super.getBaseData();
         DataPointVo.CreditScore baseCreditScore = (DataPointVo.CreditScore) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.CreditScore, new DataPointVo.CreditScore());
         baseCreditScore.creditScoreRange = getCreditScoreRange();
@@ -63,7 +63,7 @@ public class CreditScoreModel extends AbstractUserDataModel {
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(DataPointVo.DataPointList base) {
+    public void setBaseData(DataPointList base) {
         super.setBaseData(base);
         DataPointVo.CreditScore baseCreditScore = (DataPointVo.CreditScore) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.CreditScore, new DataPointVo.CreditScore());

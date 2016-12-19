@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui.models.verification;
 import android.text.TextUtils;
 
 import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.VerificationVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
@@ -45,8 +46,8 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
 
     /** {@inheritDoc} */
     @Override
-    public DataPointVo.DataPointList getBaseData() {
-        DataPointVo.DataPointList base = super.getBaseData();
+    public DataPointList getBaseData() {
+        DataPointList base = super.getBaseData();
         DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
         phoneNumber.setVerification(mVerification);
@@ -55,7 +56,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(DataPointVo.DataPointList base) {
+    public void setBaseData(DataPointList base) {
         super.setBaseData(base);
         DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.PhoneNumber,

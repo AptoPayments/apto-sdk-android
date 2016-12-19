@@ -1,7 +1,7 @@
 
 package me.ledge.link.sdk.ui.models.userdata;
 
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 
 /**
@@ -23,7 +23,7 @@ public interface UserDataModel extends ActivityModel {
  * @return Base data for this Model.
  */
 
-    DataPointVo.DataPointList getBaseData();
+    DataPointList getBaseData();
 
 
 /**
@@ -31,6 +31,6 @@ public interface UserDataModel extends ActivityModel {
  * @param base Base data for this Model.
  */
 
-    void setBaseData(DataPointVo.DataPointList base);
+    void setBaseData(DataPointList base);
 }
 

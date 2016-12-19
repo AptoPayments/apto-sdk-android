@@ -1,5 +1,6 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 
@@ -44,8 +45,8 @@ public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDat
 
     /** {@inheritDoc} */
     @Override
-    public DataPointVo.DataPointList getBaseData() {
-        DataPointVo.DataPointList base = super.getBaseData();
+    public DataPointList getBaseData() {
+        DataPointList base = super.getBaseData();
 
         DataPointVo.Income baseIncome = (DataPointVo.Income) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Income, new DataPointVo.Income());
@@ -56,7 +57,7 @@ public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDat
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(DataPointVo.DataPointList base) {
+    public void setBaseData(DataPointList base) {
         super.setBaseData(base);
         DataPointVo.Income baseIncome = (DataPointVo.Income) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Income,

@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
@@ -135,7 +136,7 @@ public class IdentityVerificationModelTest {
      */
     @Test
     public void apiDataIsCreated() {
-        DataPointVo.DataPointList base = new DataPointVo.DataPointList();
+        DataPointList base = new DataPointList();
 
         Phonenumber.PhoneNumber phone = new Phonenumber.PhoneNumber()
                 .setCountryCode(EXPECTED_COUNTRY_CODE)
@@ -150,7 +151,7 @@ public class IdentityVerificationModelTest {
         mModel.setSocialSecurityNumber(EXPECTED_SSN);
 
         mModel.setBaseData(base);
-        DataPointVo.DataPointList apiData = mModel.getUserRequestDataPoints();
+        DataPointList apiData = mModel.getUserRequestDataPoints();
         DataPointVo.PhoneNumber apiPhone = (DataPointVo.PhoneNumber) apiData.getUniqueDataPoint(
                 DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
         DataPointVo.Birthdate apiBirthDate = (DataPointVo.Birthdate) apiData.getUniqueDataPoint(

@@ -4,11 +4,10 @@ import android.os.AsyncTask;
 
 import java.util.concurrent.Executor;
 
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.config.EmploymentStatusesListTask;
@@ -183,7 +182,7 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask createUser(DataPointVo.DataPointList data) {
+    public static LedgeLinkApiTask createUser(DataPointList data) {
         checkComponents();
 
         CreateUserTask task = new CreateUserTask(data, getApiWrapper(), getResponseHandler());
@@ -197,7 +196,7 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask updateUser(DataPointVo.DataPointList data) {
+    public static LedgeLinkApiTask updateUser(DataPointList data) {
         checkComponents();
 
         UpdateUserTask task = new UpdateUserTask(data, getApiWrapper(), getResponseHandler());

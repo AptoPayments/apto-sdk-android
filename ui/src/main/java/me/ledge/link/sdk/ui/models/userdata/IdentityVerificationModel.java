@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
@@ -174,9 +175,9 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      * Creates the data object to create a new user on the API.
      * @return The API request data object.
      */
-    public DataPointVo.DataPointList getUserRequestDataPoints() {
-        DataPointVo.DataPointList data = new DataPointVo.DataPointList();
-        DataPointVo.DataPointList base = getBaseData();
+    public DataPointList getUserRequestDataPoints() {
+        DataPointList data = new DataPointList();
+        DataPointList base = getBaseData();
         data.setDataPoints(base.getDataPoints());
 
         DataPointVo.SSN baseSSN = (DataPointVo.SSN) base.getUniqueDataPoint(

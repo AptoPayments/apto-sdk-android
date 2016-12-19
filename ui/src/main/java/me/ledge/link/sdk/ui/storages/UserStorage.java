@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.ui.storages;
 
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.DataPointList;
 
 /**
  * Stores user related data.
@@ -8,7 +8,7 @@ import me.ledge.link.api.vos.DataPointVo;
  */
 public class UserStorage {
 
-    private DataPointVo.DataPointList mUserDataPoints;
+    private DataPointList mUserDataPoints;
     private String mBearerToken;
 
     private static UserStorage mInstance;
@@ -32,7 +32,7 @@ public class UserStorage {
     /**
      * @return User data.
      */
-    public DataPointVo.DataPointList getUserData() {
+    public DataPointList getUserData() {
         return mUserDataPoints;
     }
 
@@ -40,7 +40,7 @@ public class UserStorage {
      * Stores new user data.
      * @param userData New user data.
      */
-    public void setUserData(DataPointVo.DataPointList userData) {
+    public void setUserData(DataPointList userData) {
         mUserDataPoints = userData;
     }
 

@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
@@ -69,7 +70,7 @@ public class AddressModelTest {
      */
     @Test
     public void allDataIsSetFromBaseData() {
-        DataPointVo.DataPointList base = new DataPointVo.DataPointList();
+        DataPointList base = new DataPointList();
         DataPointVo.Address baseAddress = new DataPointVo.Address(EXPECTED_ADDRESS,
                 EXPECTED_APARTMENT_NUMBER, EXPECTED_COUNTRY, EXPECTED_CITY, EXPECTED_STATE,
                 EXPECTED_ZIP,false);
@@ -94,7 +95,7 @@ public class AddressModelTest {
      */
     @Test
     public void baseDataIsUpdated() {
-        mModel.setBaseData(new DataPointVo.DataPointList());
+        mModel.setBaseData(new DataPointList());
 
         mModel.setStreetAddress(EXPECTED_ADDRESS);
         mModel.setApartmentNumber(EXPECTED_APARTMENT_NUMBER);
@@ -103,7 +104,7 @@ public class AddressModelTest {
         mModel.setZip(EXPECTED_ZIP);
         mModel.setHousingType(EXPECTED_HOUSING_TYPE);
 
-        DataPointVo.DataPointList base = mModel.getBaseData();
+        DataPointList base = mModel.getBaseData();
         DataPointVo.Address baseAddress = (DataPointVo.Address) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Address, new DataPointVo.Address());
         DataPointVo.Housing baseHousing = (DataPointVo.Housing) base.getUniqueDataPoint(

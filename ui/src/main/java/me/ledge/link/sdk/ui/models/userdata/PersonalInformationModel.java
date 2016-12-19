@@ -6,6 +6,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
@@ -57,8 +58,8 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
 
     /** {@inheritDoc} */
     @Override
-    public DataPointVo.DataPointList getBaseData() {
-        DataPointVo.DataPointList base = super.getBaseData();
+    public DataPointList getBaseData() {
+        DataPointList base = super.getBaseData();
 
         DataPointVo.PersonalName personalName = (DataPointVo.PersonalName) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.PersonalName, new DataPointVo.PersonalName());
@@ -76,7 +77,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(DataPointVo.DataPointList base) {
+    public void setBaseData(DataPointList base) {
         super.setBaseData(base);
         DataPointVo.PersonalName personalName = (DataPointVo.PersonalName) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.PersonalName,

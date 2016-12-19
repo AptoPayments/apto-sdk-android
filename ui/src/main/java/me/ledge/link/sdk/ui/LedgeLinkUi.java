@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import java.util.ArrayList;
 
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
@@ -71,7 +71,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
      * @param context The {@link Context} to launch the first Ledge Line screen from.
      * @param data Pre-fill user data. Use {@code null} if not needed.
      */
-    public static void startProcess(Context context, DataPointVo.DataPointList data) {
+    public static void startProcess(Context context, DataPointList data) {
         UserStorage.getInstance().setUserData(data);
         context.startActivity(new Intent(context, getProcessOrder().get(0)));
     }

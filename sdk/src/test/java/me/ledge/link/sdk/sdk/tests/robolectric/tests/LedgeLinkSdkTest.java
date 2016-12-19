@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import java.util.concurrent.Executor;
 
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
@@ -152,14 +152,14 @@ public class LedgeLinkSdkTest {
     @Test
     public void createUserTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.createUser(new DataPointVo.DataPointList()),
+                LedgeLinkSdk.createUser(new DataPointList()),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 
     @Test
     public void updateUserTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.updateUser(new DataPointVo.DataPointList()),
+                LedgeLinkSdk.updateUser(new DataPointList()),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 

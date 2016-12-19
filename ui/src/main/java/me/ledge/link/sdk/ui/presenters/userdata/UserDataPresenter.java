@@ -2,7 +2,7 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.sdk.ui.models.userdata.UserDataModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.storages.UserStorage;
@@ -40,9 +40,9 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
      * Populates the {@link UserDataModel} with the data stored globally.
      */
     protected void populateModelFromStorage() {
-        DataPointVo.DataPointList data = UserStorage.getInstance().getUserData();
+        DataPointList data = UserStorage.getInstance().getUserData();
         if (data == null) {
-            mModel.setBaseData(new DataPointVo.DataPointList());
+            mModel.setBaseData(new DataPointList());
         } else {
             mModel.setBaseData(data);
         }

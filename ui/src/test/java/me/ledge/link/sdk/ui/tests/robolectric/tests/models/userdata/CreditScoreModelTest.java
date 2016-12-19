@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import me.ledge.link.api.utils.CreditScoreRange;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.CreditScoreModel;
@@ -46,7 +47,7 @@ public class CreditScoreModelTest {
      */
     @Test
     public void allDataIsSetFromBaseData() {
-        DataPointVo.DataPointList baseData = new DataPointVo.DataPointList();
+        DataPointList baseData = new DataPointList();
         DataPointVo.CreditScore baseCredit = new DataPointVo.CreditScore(CreditScoreRange.EXCELLENT, false);
         baseData.add(baseCredit);
 
@@ -64,10 +65,10 @@ public class CreditScoreModelTest {
      */
     @Test
     public void baseDataIsUpdated() {
-        mModel.setBaseData(new DataPointVo.DataPointList());
+        mModel.setBaseData(new DataPointList());
         mModel.setCreditScoreRange(CreditScoreRange.POOR);
 
-        DataPointVo.DataPointList base = mModel.getBaseData();
+        DataPointList base = mModel.getBaseData();
         DataPointVo.CreditScore baseCredit = (DataPointVo.CreditScore) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.CreditScore, new DataPointVo.CreditScore());
 

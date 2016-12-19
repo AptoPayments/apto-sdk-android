@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.models.userdata;
 
 import android.text.TextUtils;
 
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
@@ -46,8 +47,8 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
 
     /** {@inheritDoc} */
     @Override
-    public DataPointVo.DataPointList getBaseData() {
-        DataPointVo.DataPointList base = super.getBaseData();
+    public DataPointList getBaseData() {
+        DataPointList base = super.getBaseData();
 
         DataPointVo.Address baseAddress = (DataPointVo.Address) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Address, new DataPointVo.Address());
@@ -62,7 +63,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(DataPointVo.DataPointList base) {
+    public void setBaseData(DataPointList base) {
         super.setBaseData(base);
 
         DataPointVo.Address address = (DataPointVo.Address) base.getUniqueDataPoint(

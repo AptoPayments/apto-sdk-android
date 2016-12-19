@@ -3,7 +3,7 @@ package me.ledge.link.sdk.sdk.mocks.api.wrappers;
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.TermUnit;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
@@ -117,7 +117,7 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public CreateUserResponseVo createUser(DataPointVo.DataPointList requestData) throws ApiException {
+    public CreateUserResponseVo createUser(DataPointList requestData) throws ApiException {
         CreateUserResponseVo response = new CreateUserResponseVo();
         response.user_token = TOKEN;
         return response;
@@ -125,7 +125,7 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public UserResponseVo updateUser(DataPointVo.DataPointList requestData) throws ApiException {
+    public UserResponseVo updateUser(DataPointList requestData) throws ApiException {
         UserResponseVo response = new UserResponseVo();
         return response;
     }

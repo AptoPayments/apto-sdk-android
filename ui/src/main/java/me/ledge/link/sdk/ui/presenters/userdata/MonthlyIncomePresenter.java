@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.MonthlyIncomeModel;
 import me.ledge.link.sdk.ui.storages.UserStorage;
@@ -47,7 +48,7 @@ public class MonthlyIncomePresenter
     @Override
     protected void populateModelFromStorage() {
         int annualIncome = mActivity.getResources().getInteger(R.integer.max_income);
-        DataPointVo.DataPointList data = UserStorage.getInstance().getUserData();
+        DataPointList data = UserStorage.getInstance().getUserData();
 
         if (data != null) {
             DataPointVo.Income income = (DataPointVo.Income) data.getUniqueDataPoint(

@@ -10,6 +10,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
@@ -53,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     /**
      * @return Pre-fill data for the Ledge Line SDK to use.
      */
-    private DataPointVo.DataPointList createStartData() {
-        DataPointVo.DataPointList data = new DataPointVo.DataPointList();
+    private DataPointList createStartData() {
+        DataPointList data = new DataPointList();
         boolean dataSet = false;
 
         LoanDataVo loanData = new LoanDataVo();
