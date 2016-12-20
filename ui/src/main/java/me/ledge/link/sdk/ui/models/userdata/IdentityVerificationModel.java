@@ -158,7 +158,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      * Creates the data object to create a new user on the API.
      * @return The API request data object.
      */
-    public DataPointList getUserRequestDataPoints() {
+    public DataPointList getUserData() {
         DataPointList data = new DataPointList();
         DataPointList base = getBaseData();
         data.setDataPoints(base.getDataPoints());

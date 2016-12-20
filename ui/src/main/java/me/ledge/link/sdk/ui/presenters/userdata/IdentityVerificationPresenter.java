@@ -123,9 +123,9 @@ public class IdentityVerificationPresenter
 
         if (mModel.hasAllData()) {
             if (TextUtils.isEmpty(UserStorage.getInstance().getBearerToken())) {
-                LedgeLinkUi.createUser(mModel.getUserRequestDataPoints());
+                LedgeLinkUi.createUser(mModel.getUserData());
             } else {
-                LedgeLinkUi.updateUser(mModel.getUserRequestDataPoints());
+                LedgeLinkUi.updateUser(mModel.getUserData());
             }
 
             // Show loading.

@@ -151,7 +151,7 @@ public class IdentityVerificationModelTest {
         mModel.setSocialSecurityNumber(EXPECTED_SSN);
 
         mModel.setBaseData(base);
-        DataPointList apiData = mModel.getUserRequestDataPoints();
+        DataPointList apiData = mModel.getUserData();
         DataPointVo.PhoneNumber apiPhone = (DataPointVo.PhoneNumber) apiData.getUniqueDataPoint(
                 DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
         DataPointVo.Birthdate apiBirthDate = (DataPointVo.Birthdate) apiData.getUniqueDataPoint(
