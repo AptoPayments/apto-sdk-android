@@ -1,14 +1,7 @@
 package me.ledge.link.sdk.sdk.tests.robolectric.tests;
 
 import android.os.AsyncTask;
-import me.ledge.link.api.vos.requests.base.ListRequestVo;
-import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
-import me.ledge.link.sdk.sdk.LedgeLinkSdk;
-import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
-import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
-import me.ledge.link.sdk.sdk.mocks.util.concurrent.MockExecutor;
-import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
+
 import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.Assert;
@@ -16,6 +9,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.concurrent.Executor;
+
+import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.requests.base.ListRequestVo;
+import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.sdk.sdk.LedgeLinkSdk;
+import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
+import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
+import me.ledge.link.sdk.sdk.mocks.util.concurrent.MockExecutor;
+import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -150,14 +152,14 @@ public class LedgeLinkSdkTest {
     @Test
     public void createUserTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.createUser(new CreateUserRequestVo()),
+                LedgeLinkSdk.createUser(new DataPointList()),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 
     @Test
     public void updateUserTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.updateUser(new CreateUserRequestVo()),
+                LedgeLinkSdk.updateUser(new DataPointList()),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 

@@ -6,7 +6,6 @@ import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
-import me.ledge.link.api.vos.responses.config.DisclaimersListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
@@ -16,13 +15,13 @@ import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
  * An {@link IdentityVerificationPresenter} that uses the {@link EventBus} to receive API responses.
  * @author Wijnand
  */
-public class EventBusIdentyVerificationPresenter extends IdentityVerificationPresenter {
+public class EventBusIdentityVerificationPresenter extends IdentityVerificationPresenter {
 
     /**
-     * Creates a new {@link EventBusIdentyVerificationPresenter} instance.
+     * Creates a new {@link EventBusIdentityVerificationPresenter} instance.
      * @param activity See {@link IdentityVerificationPresenter#IdentityVerificationPresenter}.
      */
-    public EventBusIdentyVerificationPresenter(AppCompatActivity activity) {
+    public EventBusIdentityVerificationPresenter(AppCompatActivity activity) {
         super(activity);
     }
 

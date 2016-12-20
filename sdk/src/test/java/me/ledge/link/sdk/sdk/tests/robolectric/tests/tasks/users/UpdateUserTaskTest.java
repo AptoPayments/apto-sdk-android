@@ -1,14 +1,15 @@
 package me.ledge.link.sdk.sdk.tests.robolectric.tests.tasks.users;
 
-import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.users.UpdateUserTask;
 import me.ledge.link.sdk.sdk.utils.tasks.RoboLinkApiTaskWrapper;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.IsNot.not;
@@ -19,7 +20,7 @@ import static org.hamcrest.core.IsNot.not;
  */
 public class UpdateUserTaskTest {
 
-    private RoboLinkApiTaskWrapper<UserResponseVo, CreateUserRequestVo> mTask;
+    private RoboLinkApiTaskWrapper<UserResponseVo, DataPointList> mTask;
 
     /**
      * Sets up each test.
@@ -27,7 +28,7 @@ public class UpdateUserTaskTest {
     @Before
     public void setUp() {
         mTask = new RoboLinkApiTaskWrapper<>(
-                new UpdateUserTask(new CreateUserRequestVo(), new MockApiWrapper(), new MockResponseHandler())
+                new UpdateUserTask(new DataPointList(), new MockApiWrapper(), new MockResponseHandler())
         );
     }
 

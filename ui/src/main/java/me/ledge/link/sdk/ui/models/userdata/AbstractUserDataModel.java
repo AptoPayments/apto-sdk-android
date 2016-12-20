@@ -1,25 +1,26 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.sdk.ui.models.AbstractActivityModel;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 
-/**
+/*
  * Generic {@link UserDataModel} implementation.
- * @author Wijnand
+ * @author Adrian
  */
+
 public abstract class AbstractUserDataModel extends AbstractActivityModel implements UserDataModel {
 
-    protected UserDataVo mBase;
+    protected DataPointList mBase;
 
     /** {@inheritDoc} */
     @Override
-    public UserDataVo getBaseData() {
+    public DataPointList getBaseData() {
         return mBase;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(UserDataVo base) {
+    public void setBaseData(DataPointList base) {
         mBase = base;
     }
 }

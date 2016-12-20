@@ -25,7 +25,7 @@ import me.ledge.link.sdk.ui.models.offers.OffersListModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
-import me.ledge.link.sdk.ui.storages.UserStorage;
+import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.views.offers.OfferSummaryView;
 import me.ledge.link.sdk.ui.views.offers.OffersListView;
 
@@ -109,7 +109,7 @@ public class OffersListPresenter
     @Override
     public OffersListModel createModel() {
         OffersListModel model = new OffersListModel();
-        model.setBaseData(UserStorage.getInstance().getUserData());
+        model.setBaseData(LinkStorage.getInstance().getLoanData());
 
         return model;
     }

@@ -1,9 +1,10 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
 import me.ledge.link.api.utils.CreditScoreRange;
+import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 /**
  * Concrete {@link Model} for the credit score screen.
@@ -13,7 +14,7 @@ public class CreditScoreModel extends AbstractUserDataModel {
 
     public static final int DEFAULT_CREDIT_INDICATION = 0;
 
-    private int mCreditScoreRange;
+    private DataPointVo.CreditScore mCreditScore;
 
     /**
      * Creates a new {@link CreditScoreModel} instance.
@@ -27,7 +28,7 @@ public class CreditScoreModel extends AbstractUserDataModel {
      * Initializes this class.
      */
     private void init() {
-        mCreditScoreRange = DEFAULT_CREDIT_INDICATION;
+        mCreditScore = new DataPointVo.CreditScore(DEFAULT_CREDIT_INDICATION, false);
     }
 
     /**
@@ -41,7 +42,7 @@ public class CreditScoreModel extends AbstractUserDataModel {
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return isValidRange(mCreditScoreRange);
+        return isValidRange(mCreditScore.creditScoreRange);
     }
 
     /** {@inheritDoc} */
@@ -52,18 +53,22 @@ public class CreditScoreModel extends AbstractUserDataModel {
 
     /** {@inheritDoc} */
     @Override
-    public UserDataVo getBaseData() {
-        UserDataVo base = super.getBaseData();
-        base.creditScoreRange = mCreditScoreRange;
-
+    public DataPointList getBaseData() {
+        DataPointList base = super.getBaseData();
+        DataPointVo.CreditScore baseCreditScore = (DataPointVo.CreditScore) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.CreditScore, new DataPointVo.CreditScore());
+        baseCreditScore.creditScoreRange = getCreditScoreRange();
         return base;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(UserDataVo base) {
+    public void setBaseData(DataPointList base) {
         super.setBaseData(base);
-        setCreditScoreRange(base.creditScoreRange);
+        DataPointVo.CreditScore baseCreditScore = (DataPointVo.CreditScore) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.CreditScore, new DataPointVo.CreditScore());
+
+        setCreditScoreRange(baseCreditScore.creditScoreRange);
     }
 
     /**
@@ -71,7 +76,7 @@ public class CreditScoreModel extends AbstractUserDataModel {
      * @see CreditScoreRange
      */
     public int getCreditScoreRange() {
-        return mCreditScoreRange;
+        return mCreditScore.creditScoreRange;
     }
 
     /**
@@ -81,9 +86,9 @@ public class CreditScoreModel extends AbstractUserDataModel {
      */
     public void setCreditScoreRange(int indication) {
         if (isValidRange(indication)) {
-            mCreditScoreRange = indication;
+            mCreditScore.creditScoreRange = indication;
         } else {
-            mCreditScoreRange = DEFAULT_CREDIT_INDICATION;
+            mCreditScore.creditScoreRange = DEFAULT_CREDIT_INDICATION;
         }
     }
 }

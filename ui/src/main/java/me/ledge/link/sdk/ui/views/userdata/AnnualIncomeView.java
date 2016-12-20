@@ -5,14 +5,16 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
+import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
  * Displays the income screen.
@@ -90,8 +92,8 @@ public class AnnualIncomeView
      * Shows a new income.
      * @param income New income.
      */
-    public void setIncome(int income) {
-        mIncomeSlider.setProgress(income);
+    public void setIncome(long income) {
+        mIncomeSlider.setProgress((int)income);
     }
 
     /**

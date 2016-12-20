@@ -4,7 +4,7 @@ task wrapper(type: Wrapper) {
 
 ext {
     androidCompileSdkVersion = 23
-    androidBuildToolsVersion = '21.1.2'
+    androidBuildToolsVersion = '23.0.0'
     androidMinSdkVersion = 15
     androidTargetSdkVersion = 23
 

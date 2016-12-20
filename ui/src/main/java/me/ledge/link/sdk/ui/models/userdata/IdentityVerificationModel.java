@@ -1,22 +1,20 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
-import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
-import ru.lanwen.verbalregex.VerbalExpression;
-import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.models.Model;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.models.Model;
+import ru.lanwen.verbalregex.VerbalExpression;
+
 /**
  * Concrete {@link Model} for the ID verification screen.
- * @author Wijnand
+ * @author Adrian
  */
 public class IdentityVerificationModel extends AbstractUserDataModel implements UserDataModel {
 
@@ -40,20 +38,6 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         mMinimumAge = 0;
         mBirthday = null;
         mSocialSecurityNumber = null;
-    }
-
-    /**
-     * @param number The number to format.
-     * @return E.164 formatted phone number.
-     */
-    private String getFormattedPhone(Phonenumber.PhoneNumber number) {
-        String formatted = null;
-
-        if (number != null) {
-            formatted = PhoneNumberUtil.getInstance().format(number, PhoneNumberUtil.PhoneNumberFormat.E164);
-        }
-
-        return formatted;
     }
 
     /**
@@ -174,36 +158,19 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      * Creates the data object to create a new user on the API.
      * @return The API request data object.
      */
-    public CreateUserRequestVo getUserRequestData() {
-        CreateUserRequestVo data = new CreateUserRequestVo();
-        UserDataVo base = getBaseData();
+    public DataPointList getUserData() {
+        DataPointList data = new DataPointList();
+        DataPointList base = getBaseData();
+        data.setDataPoints(base.getDataPoints());
 
-        data.first_name = base.firstName;
-        data.last_name = base.lastName;
-        data.birthdate = getFormattedBirthday(getBirthday());
-        data.ssn = getSocialSecurityNumber();
-        data.email = base.emailAddress;
-        data.phone_number = getFormattedPhone(base.phoneNumber);
-        data.income = base.annualGrossIncome;
-        data.monthly_net_income = base.monthlyNetIncome;
-        data.street = base.address;
-        data.apt = base.apartmentNumber;
-        data.city = base.city;
-        data.state = base.state;
-        data.zip_code = base.zip;
-        data.credit_range = base.creditScoreRange;
-
-        if (base.employmentStatus != null) {
-            data.employment_status = base.employmentStatus.getKey();
-        }
-
-        if (base.salaryFrequency != null) {
-            data.salary_frequency = base.salaryFrequency.getKey();
-        }
-
-        if (base.housingType != null) {
-            data.housing_type = base.housingType.getKey();
-        }
+        DataPointVo.SSN baseSSN = (DataPointVo.SSN) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.SSN,
+                new DataPointVo.SSN());
+        baseSSN.setSocialSecurityNumber(this.getSocialSecurityNumber());
+        DataPointVo.Birthdate baseBirthDate = (DataPointVo.Birthdate) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.BirthDate,
+                new DataPointVo.Birthdate());
+        baseBirthDate.setDate(getFormattedBirthday(getBirthday()));
 
         return  data;
     }

@@ -2,31 +2,31 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import me.ledge.link.api.vos.DataPointList;
-import me.ledge.link.sdk.ui.models.userdata.UserDataModel;
+import me.ledge.link.sdk.ui.models.userdata.LoanDataModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
-import me.ledge.link.sdk.ui.storages.UserStorage;
+import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
 import me.ledge.link.sdk.ui.views.userdata.UserDataView;
+import me.ledge.link.sdk.ui.vos.LoanDataVo;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
- * Generic {@link Presenter} to handle user data input screens.
+ * Generic presenter to handle loan data input screens.
  * @author Wijnand
  */
-public abstract class UserDataPresenter<M extends UserDataModel, V extends UserDataView & ViewWithToolbar>
+public abstract class LoanDataPresenter<M extends LoanDataModel, V extends UserDataView & ViewWithToolbar>
         extends ActivityPresenter<M, V>
         implements StepperListener, NextButtonListener {
 
     protected static final int TOTAL_STEPS = 9;
 
     /**
-     * Creates a new {@link UserDataPresenter} instance.
+     * Creates a new {@link LoanDataPresenter} instance.
      * @param activity Activity.
      */
-    public UserDataPresenter(AppCompatActivity activity) {
+    public LoanDataPresenter(AppCompatActivity activity) {
         super(activity);
         populateModelFromStorage();
     }
@@ -37,12 +37,13 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
     protected abstract StepperConfiguration getStepperConfig();
 
     /**
-     * Populates the {@link UserDataModel} with the data stored globally.
+     * Populates the {@link LoanDataModel} with the data stored globally.
      */
     protected void populateModelFromStorage() {
-        DataPointList data = UserStorage.getInstance().getUserData();
+        LoanDataVo data = LinkStorage.getInstance().getLoanData();
+
         if (data == null) {
-            mModel.setBaseData(new DataPointList());
+            mModel.setBaseData(new LoanDataVo());
         } else {
             mModel.setBaseData(data);
         }
@@ -52,7 +53,7 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
      * Saves the updated data from the Model in the global storage.
      */
     protected void saveData() {
-        UserStorage.getInstance().setUserData(mModel.getBaseData());
+        LinkStorage.getInstance().setLoanData(mModel.getBaseData());
     }
 
     /** {@inheritDoc} */

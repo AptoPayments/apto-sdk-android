@@ -1,17 +1,19 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
 import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
-import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
-import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AnnualIncomeModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.views.userdata.AnnualIncomeView;
+import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
+import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
  * Concrete {@link Presenter} for the income screen.
@@ -100,7 +102,7 @@ public class AnnualIncomePresenter
 
         mModel.setMinIncome(mActivity.getResources().getInteger(R.integer.min_income))
                 .setMaxIncome(mMaxIncome)
-                .setIncome(mActivity.getResources().getInteger(R.integer.default_income));
+                .setAnnualIncome(mActivity.getResources().getInteger(R.integer.default_income));
 
         super.populateModelFromStorage();
     }
@@ -112,7 +114,7 @@ public class AnnualIncomePresenter
 
         mView.setListener(this);
         mView.setMinMax(mModel.getMinIncome() / mIncomeMultiplier, mModel.getMaxIncome() / mIncomeMultiplier);
-        mView.setIncome(mModel.getIncome() / mIncomeMultiplier);
+        mView.setIncome(mModel.getAnnualIncome() / mIncomeMultiplier);
         mView.updateEmploymentStatusError(false);
         mView.updateSalaryFrequencyError(false);
 
@@ -156,7 +158,7 @@ public class AnnualIncomePresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        mModel.setIncome(mView.getIncome() * mIncomeMultiplier);
+        mModel.setAnnualIncome(mView.getIncome() * mIncomeMultiplier);
         mModel.setEmploymentStatus(mView.getEmploymentStatus());
         mModel.setSalaryFrequency(mView.getSalaryFrequency());
 

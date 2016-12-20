@@ -38,7 +38,7 @@ public class MockMonthlyIncomeView extends MonthlyIncomeView {
     }
 
     @Override
-    public void setIncome(int income) {
-        mIncome = income;
+    public void setIncome(double income) {
+        mIncome = (int)(income+0.5d);
     }
 }

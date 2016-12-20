@@ -82,7 +82,7 @@ public class AddressPresenter
         mView.setStateSpinnerAdapter(adapter);
 
         // Set data.
-        mView.setAddress(mModel.getAddress());
+        mView.setAddress(mModel.getStreetAddress());
         mView.setApartment(mModel.getApartmentNumber());
         mView.setCity(mModel.getCity());
         mView.setZipCode(mModel.getZip());
@@ -124,7 +124,7 @@ public class AddressPresenter
     @Override
     public void nextClickHandler() {
         // Store data.
-        mModel.setAddress(mView.getAddress());
+        mModel.setStreetAddress(mView.getAddress());
         mModel.setApartmentNumber(mView.getApartment());
         mModel.setCity(mView.getCity());
         mModel.setZip(mView.getZipCode());

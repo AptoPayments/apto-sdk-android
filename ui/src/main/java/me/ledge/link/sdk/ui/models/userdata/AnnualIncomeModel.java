@@ -1,19 +1,19 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
+import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
-
 /**
  * Concrete {@link Model} for the income screen.
  * @author Wijnand
  */
 public class AnnualIncomeModel extends AbstractUserDataModel implements UserDataModel {
 
+    private DataPointVo.Income mIncome;
     private int mMinIncome;
     private int mMaxIncome;
-    private int mIncome;
     private IdDescriptionPairDisplayVo mEmploymentStatus;
     private IdDescriptionPairDisplayVo mSalaryFrequency;
 
@@ -24,6 +24,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     private void init() {
         mEmploymentStatus = null;
         mSalaryFrequency = null;
+        mIncome = new DataPointVo.Income();
     }
 
     private boolean hasValidKey(IdDescriptionPairDisplayVo pair) {
@@ -34,7 +35,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
      * @param income Income to validate.
      * @return Whether the income is within the allowed range.
      */
-    protected boolean isValid(int income) {
+    protected boolean isValid(long income) {
         return income >= mMinIncome && income <= mMaxIncome;
     }
 
@@ -52,22 +53,36 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
 
     /** {@inheritDoc} */
     @Override
-    public UserDataVo getBaseData() {
-        UserDataVo base = super.getBaseData();
-        base.annualGrossIncome = getIncome();
-        base.employmentStatus = getEmploymentStatus();
-        base.salaryFrequency = getSalaryFrequency();
+    public DataPointList getBaseData() {
+        DataPointList base = super.getBaseData();
+
+        DataPointVo.Income baseIncome = (DataPointVo.Income) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Income, new DataPointVo.Income());
+        baseIncome.annualGrossIncome = getAnnualIncome();
+
+        DataPointVo.Employment baseEmployment = (DataPointVo.Employment) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Employment,
+                new DataPointVo.Employment());
+        baseEmployment.employmentStatus = getEmploymentStatus().getKey();
+        baseEmployment.salaryFrequency = getSalaryFrequency().getKey();
 
         return base;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseData(UserDataVo base) {
+    public void setBaseData(DataPointList base) {
         super.setBaseData(base);
-        setIncome(base.annualGrossIncome);
-        setEmploymentStatus(base.employmentStatus);
-        setSalaryFrequency(base.salaryFrequency);
+        DataPointVo.Income baseIncome = (DataPointVo.Income) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Income,
+                new DataPointVo.Income());
+        setIncome(baseIncome);
+
+        DataPointVo.Employment baseEmployment = (DataPointVo.Employment) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Employment,
+                new DataPointVo.Employment());
+        setEmploymentStatus(new IdDescriptionPairDisplayVo(baseEmployment.employmentStatus, ""));
+        setSalaryFrequency(new IdDescriptionPairDisplayVo(baseEmployment.salaryFrequency, ""));
     }
 
     /**
@@ -104,11 +119,15 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
         return this;
     }
 
+    public void setIncome(DataPointVo.Income income) {
+        setAnnualIncome(income.annualGrossIncome);
+    }
+
     /**
-     * @return income.
+     * @return annual income.
      */
-    public int getIncome() {
-        return mIncome;
+    public long getAnnualIncome() {
+        return mIncome.annualGrossIncome;
     }
 
     /**
@@ -116,9 +135,9 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
      * @param income The income.
      * @return Self reference for easy method chaining.
      */
-    public AnnualIncomeModel setIncome(int income) {
+    public AnnualIncomeModel setAnnualIncome(long income) {
         if (isValid(income)) {
-            mIncome = income;
+            mIncome.annualGrossIncome = income;
         }
 
         return this;
@@ -128,7 +147,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
      * @return Whether a valid income has been set.
      */
     public boolean hasValidIncome() {
-        return isValid(mIncome);
+        return isValid(mIncome.annualGrossIncome);
     }
 
     public IdDescriptionPairDisplayVo getEmploymentStatus() {

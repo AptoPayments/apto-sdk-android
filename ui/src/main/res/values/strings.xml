@@ -31,6 +31,13 @@
     <string name="personal_info_phone_hint">Phone</string>
     <string name="personal_info_phone_error">Please enter a valid phone number.</string>
 
+    <!-- Phone Verification -->
+    <string name="phone_verification_label">Phone verification</string>
+    <string name="phone_verification_code_hint">Enter your verification code</string>
+    <string name="phone_verification_info">We just sent a verification code to the number shown above.</string>
+    <string name="phone_verification_button_submit">SUBMIT</string>
+    <string name="phone_verification_button_resend">Re-send Code</string>
+
     <!-- Address -->
     <string name="address_label">What\'s your address?</string>
     <string name="address_address_hint">Address</string>

@@ -1,14 +1,19 @@
 package me.ledge.link.sdk.sdk;
 
 import android.os.AsyncTask;
+
+import java.util.concurrent.Executor;
+
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.requests.users.CreateUserRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.config.EmploymentStatusesListTask;
 import me.ledge.link.sdk.sdk.tasks.config.HousingTypeListTask;
 import me.ledge.link.sdk.sdk.tasks.config.LinkDisclaimerTask;
+import me.ledge.link.sdk.sdk.tasks.config.LoanPurposesTask;
 import me.ledge.link.sdk.sdk.tasks.config.PartnerDisclaimersListTask;
 import me.ledge.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -16,11 +21,7 @@ import me.ledge.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.ListLoanApplicationsTask;
 import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
-import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
-import me.ledge.link.sdk.sdk.tasks.config.LoanPurposesTask;
 import me.ledge.link.sdk.sdk.tasks.users.UpdateUserTask;
-
-import java.util.concurrent.Executor;
 
 /**
  * Ledge Link SDK.<br />
@@ -181,7 +182,7 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask createUser(CreateUserRequestVo data) {
+    public static LedgeLinkApiTask createUser(DataPointList data) {
         checkComponents();
 
         CreateUserTask task = new CreateUserTask(data, getApiWrapper(), getResponseHandler());
@@ -195,7 +196,7 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask updateUser(CreateUserRequestVo data) {
+    public static LedgeLinkApiTask updateUser(DataPointList data) {
         checkComponents();
 
         UpdateUserTask task = new UpdateUserTask(data, getApiWrapper(), getResponseHandler());

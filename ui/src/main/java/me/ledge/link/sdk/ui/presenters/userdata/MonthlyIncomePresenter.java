@@ -1,14 +1,17 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
+import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.MonthlyIncomeModel;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.userdata.MonthlyIncomeView;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 /**
  * TODO: Class documentation.
@@ -45,10 +48,12 @@ public class MonthlyIncomePresenter
     @Override
     protected void populateModelFromStorage() {
         int annualIncome = mActivity.getResources().getInteger(R.integer.max_income);
-        UserDataVo data = UserStorage.getInstance().getUserData();
+        DataPointList data = UserStorage.getInstance().getUserData();
 
         if (data != null) {
-            annualIncome = data.annualGrossIncome;
+            DataPointVo.Income income = (DataPointVo.Income) data.getUniqueDataPoint(
+                    DataPointVo.DataPointType.Income, new DataPointVo.Income());
+            annualIncome = (int) income.annualGrossIncome;
         }
 
         mIncomeMultiplier = mActivity.getResources().getInteger(R.integer.monthly_income_increment);
@@ -56,7 +61,7 @@ public class MonthlyIncomePresenter
 
         mModel.setMinIncome(mActivity.getResources().getInteger(R.integer.min_income))
                 .setMaxIncome(maxIncome)
-                .setIncome(maxIncome / 2);
+                .setMonthlyIncome(maxIncome / 2);
 
         super.populateModelFromStorage();
     }
@@ -69,7 +74,7 @@ public class MonthlyIncomePresenter
         mView.setListener(this);
         mView.setSeekBarTransformer(new MultiplyTransformer(mIncomeMultiplier));
         mView.setMinMax(mModel.getMinIncome() / mIncomeMultiplier, mModel.getMaxIncome() / mIncomeMultiplier);
-        mView.setIncome(mModel.getIncome() / mIncomeMultiplier);
+        mView.setIncome(mModel.getMonthlyIncome() / mIncomeMultiplier);
     }
 
     /** {@inheritDoc} */
@@ -82,7 +87,7 @@ public class MonthlyIncomePresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        mModel.setIncome(mView.getIncome() * mIncomeMultiplier);
+        mModel.setMonthlyIncome(mView.getIncome() * mIncomeMultiplier);
         super.nextClickHandler();
     }
 

@@ -1,27 +1,36 @@
+
 package me.ledge.link.sdk.ui.models.userdata;
 
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.sdk.ui.models.ActivityModel;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 
 /**
  * User data input related Model.
- * @author Wijnand
+ * @author Adrian
  */
+
 public interface UserDataModel extends ActivityModel {
 
-    /**
-     * @return Whether all data has been set.
-     */
+
+/**
+ * @return Whether all data has been set.
+ */
+
     boolean hasAllData();
 
-    /**
-     * @return Base data for this Model.
-     */
-    UserDataVo getBaseData();
 
-    /**
-     * Stores the Model's base data.
-     * @param base Base data for this Model.
-     */
-    void setBaseData(UserDataVo base);
+/**
+ * @return Base data for this Model.
+ */
+
+    DataPointList getBaseData();
+
+
+/**
+ * Stores the Model's base data.
+ * @param base Base data for this Model.
+ */
+
+    void setBaseData(DataPointList base);
 }
+

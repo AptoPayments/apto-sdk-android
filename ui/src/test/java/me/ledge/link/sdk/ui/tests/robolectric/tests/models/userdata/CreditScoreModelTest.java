@@ -1,12 +1,14 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
-import me.ledge.link.api.utils.CreditScoreRange;
-import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.models.userdata.CreditScoreModel;
-import me.ledge.link.sdk.ui.vos.UserDataVo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import me.ledge.link.api.utils.CreditScoreRange;
+import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.models.userdata.CreditScoreModel;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -45,13 +47,14 @@ public class CreditScoreModelTest {
      */
     @Test
     public void allDataIsSetFromBaseData() {
-        UserDataVo baseData = new UserDataVo();
-        baseData.creditScoreRange = CreditScoreRange.EXCELLENT;
+        DataPointList baseData = new DataPointList();
+        DataPointVo.CreditScore baseCredit = new DataPointVo.CreditScore(CreditScoreRange.EXCELLENT, false);
+        baseData.add(baseCredit);
 
         mModel.setBaseData(baseData);
 
         Assert.assertThat("Incorrect credit score range.",
-                mModel.getCreditScoreRange(), equalTo(baseData.creditScoreRange));
+                mModel.getCreditScoreRange(), equalTo(baseCredit.creditScoreRange));
         Assert.assertTrue("All data should be set.", mModel.hasAllData());
     }
 
@@ -62,10 +65,15 @@ public class CreditScoreModelTest {
      */
     @Test
     public void baseDataIsUpdated() {
-        mModel.setBaseData(new UserDataVo());
+        mModel.setBaseData(new DataPointList());
         mModel.setCreditScoreRange(CreditScoreRange.POOR);
+
+        DataPointList base = mModel.getBaseData();
+        DataPointVo.CreditScore baseCredit = (DataPointVo.CreditScore) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.CreditScore, new DataPointVo.CreditScore());
+
         Assert.assertThat("Incorrect credit score range.",
-                mModel.getBaseData().creditScoreRange, equalTo(mModel.getCreditScoreRange()));
+                baseCredit.creditScoreRange, equalTo(mModel.getCreditScoreRange()));
     }
 
     /**
