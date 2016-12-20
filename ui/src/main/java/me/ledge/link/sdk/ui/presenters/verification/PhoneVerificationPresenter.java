@@ -2,16 +2,13 @@ package me.ledge.link.sdk.ui.presenters.verification;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.models.verification.PhoneVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
+import me.ledge.link.sdk.ui.utils.PhoneHelperUtil;
 import me.ledge.link.sdk.ui.views.verification.PhoneVerificationView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
-
-import static com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL;
 
 /**
  * Concrete {@link Presenter} for the phone verification screen.
@@ -70,6 +67,6 @@ public class PhoneVerificationPresenter
     private String getTitle() {
         DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) mModel.getBaseData().
                 getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
-        return PhoneNumberUtil.getInstance().format(phoneNumber.phoneNumber, INTERNATIONAL);
+        return PhoneHelperUtil.formatPhone(phoneNumber.phoneNumber);
     }
 }

@@ -2,14 +2,13 @@ package me.ledge.link.sdk.ui.models.userdata;
 
 import android.text.TextUtils;
 
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
+import me.ledge.link.sdk.ui.utils.PhoneHelperUtil;
 import ru.lanwen.verbalregex.VerbalExpression;
 
 
@@ -23,7 +22,6 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     private DataPointVo.PersonalName mPersonalName;
     private DataPointVo.Email mEmail;
     private DataPointVo.PhoneNumber mPhone;
-    private PhoneNumberUtil mPhoneUtil;
 
     /**
      * Creates a new {@link PersonalInformationModel} instance.
@@ -40,7 +38,6 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         mPersonalName = new DataPointVo.PersonalName();
         mEmail = new DataPointVo.Email();
         mPhone = new DataPointVo.PhoneNumber();
-        mPhoneUtil = PhoneNumberUtil.getInstance();
     }
 
     /** {@inheritDoc} */
@@ -189,13 +186,9 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * @param phone Raw phone number.
      */
     public void setPhone(String phone) {
-        try {
-            //TODO: check country code
-            PhoneNumber number = mPhoneUtil.parse(phone, "US");
-            setPhone(number);
-        } catch (NumberParseException npe) {
-            mPhone.phoneNumber = null;
-        }
+        //TODO: check country code
+        PhoneNumber number = PhoneHelperUtil.parsePhone(phone);
+        setPhone(number);
     }
 
     /**
@@ -203,7 +196,8 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * @param number Phone number object.
      */
     public void setPhone(PhoneNumber number) {
-        if (number != null && mPhoneUtil.isValidNumber(number)) {
+        //TODO: refactor phoneNumber in DataPoint to String
+        if (number != null && PhoneHelperUtil.isValidNumber(number)) {
             mPhone.phoneNumber = number;
         } else {
             mPhone.phoneNumber = null;

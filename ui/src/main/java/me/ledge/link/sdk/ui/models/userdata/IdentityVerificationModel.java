@@ -1,8 +1,5 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,20 +38,6 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         mMinimumAge = 0;
         mBirthday = null;
         mSocialSecurityNumber = null;
-    }
-
-    /**
-     * @param number The number to format.
-     * @return E.164 formatted phone number.
-     */
-    private String getFormattedPhone(Phonenumber.PhoneNumber number) {
-        String formatted = null;
-
-        if (number != null) {
-            formatted = PhoneNumberUtil.getInstance().format(number, PhoneNumberUtil.PhoneNumberFormat.E164);
-        }
-
-        return formatted;
     }
 
     /**

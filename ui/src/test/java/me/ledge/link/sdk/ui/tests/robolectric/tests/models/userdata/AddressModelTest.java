@@ -137,7 +137,7 @@ public class AddressModelTest {
      */
     @Test
     public void invalidAddressIsNotStored() {
-        mModel.setStreetAddress("Stoney Creek Rd");
+        mModel.setStreetAddress("");
         Assert.assertFalse("Address should NOT be stored.", mModel.hasValidAddress());
     }
 

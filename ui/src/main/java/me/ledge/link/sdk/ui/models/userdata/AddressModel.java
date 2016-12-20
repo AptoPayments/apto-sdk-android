@@ -101,19 +101,10 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * @param address The address.
      */
     public void setStreetAddress(String address) {
-        VerbalExpression addressRegex = VerbalExpression.regex()
-                .startOfLine()
-                .digit().atLeast(1)
-                .space()
-                .anythingBut(" ").atLeast(2)
-                .anything()
-                .endOfLine()
-                .build();
-
-        if (addressRegex.test(address)) {
-            mAddress.address = address;
-        } else {
+        if (TextUtils.isEmpty(address)) {
             mAddress.address = null;
+        } else {
+            mAddress.address = address;
         }
     }
 

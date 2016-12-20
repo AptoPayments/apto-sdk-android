@@ -9,7 +9,6 @@ import me.ledge.link.sdk.ui.vos.LoanDataVo;
 public class LinkStorage {
 
     private LoanDataVo mLoanData;
-    private String mBearerToken;
 
     private static LinkStorage mInstance;
 
@@ -42,20 +41,5 @@ public class LinkStorage {
      */
     public void setLoanData(LoanDataVo loanData) {
         mLoanData = loanData;
-    }
-
-    /**
-     * @return Bearer token.
-     */
-    public String getBearerToken() {
-        return mBearerToken;
-    }
-
-    /**
-     * Stores a new bearer token.
-     * @param bearerToken New bearer token.
-     */
-    public void setBearerToken(String bearerToken) {
-        mBearerToken = bearerToken;
     }
 }
