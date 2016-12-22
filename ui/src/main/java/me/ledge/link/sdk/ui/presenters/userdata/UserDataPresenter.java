@@ -1,8 +1,11 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
+import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.UserDataModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.storages.UserStorage;
@@ -87,5 +90,14 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
     @Override
     public void stepperNextClickHandler() {
         nextClickHandler();
+    }
+
+    /**
+     * Deals with an API error.
+     * @param error API error.
+     */
+    public void setApiError(ApiErrorVo error) {
+        String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
+        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
     }
 }

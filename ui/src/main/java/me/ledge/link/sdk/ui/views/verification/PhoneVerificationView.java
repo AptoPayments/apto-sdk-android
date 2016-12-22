@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.IBinder;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
@@ -28,7 +27,12 @@ public class PhoneVerificationView
     /**
      * Callbacks this {@link View} will invoke.
      */
-    public interface ViewListener extends StepperListener, NextButtonListener {}
+    public interface ViewListener extends StepperListener, NextButtonListener {
+        /**
+         * Called when the re-send code button has been pressed.
+         */
+        void resendClickHandler();
+    }
 
     private PinView mPinView;
     private TextView mSubmitButton;
@@ -77,7 +81,6 @@ public class PhoneVerificationView
             @Override
             public void onComplete(boolean completed, final String pinResults) {
                 if (completed) {
-                    Log.d("ADRIAN", pinResults);
                     hideKeyboard(PhoneVerificationView.super.getContext());
                 }
             }
@@ -100,12 +103,10 @@ public class PhoneVerificationView
 
         int id = view.getId();
         if (id == R.id.tv_submit_bttn) {
-            // TODO: check verification
             mListener.nextClickHandler();
         }
         else if (id == R.id.tv_resend_bttn) {
-            // TODO: call notifier
-            return;
+            mListener.resendClickHandler();
         }
     }
 
@@ -118,7 +119,7 @@ public class PhoneVerificationView
 
     public void configurePinView() {
         mPinView.setPin(CODE_LENGTH);
-        mPinView.setKeyboardMandatory(true);
+        mPinView.setKeyboardMandatory(false);
         mPinView.setMaskPassword(false);
     }
 

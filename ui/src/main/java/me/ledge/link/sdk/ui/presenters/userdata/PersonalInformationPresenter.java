@@ -1,9 +1,16 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+
+import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.VerificationVo;
+import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.userdata.PersonalInformationView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
@@ -78,6 +85,23 @@ public class PersonalInformationPresenter
         mView.updateEmailError(!mModel.hasEmail(), R.string.personal_info_email_error);
         mView.updatePhoneError(!mModel.hasPhone(), R.string.personal_info_phone_error);
 
+        // TODO: start phone verification only if enabled
+        LedgeLinkUi.getPhoneVerification(mModel.getPhoneVerificationRequest());
+    }
+
+    /**
+     * Deals with the start phone verification API response.
+     * @param response API response.
+     */
+    public void setVerificationResponse(VerificationResponseVo response) {
+        if (response != null) {
+            DataPointList userData = UserStorage.getInstance().getUserData();
+
+            DataPointVo.PhoneNumber phone = (DataPointVo.PhoneNumber) userData.getUniqueDataPoint(
+                    DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
+            phone.setVerification(new VerificationVo(response.verification_id));
+        }
+        // Show next screen.
         super.nextClickHandler();
     }
 }

@@ -8,6 +8,8 @@ import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.config.EmploymentStatusesListTask;
@@ -22,6 +24,8 @@ import me.ledge.link.sdk.sdk.tasks.loanapplication.ListLoanApplicationsTask;
 import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
 import me.ledge.link.sdk.sdk.tasks.users.UpdateUserTask;
+import me.ledge.link.sdk.sdk.tasks.verifications.CompletePhoneVerificationTask;
+import me.ledge.link.sdk.sdk.tasks.verifications.GetPhoneVerificationTask;
 
 /**
  * Ledge Link SDK.<br />
@@ -242,6 +246,34 @@ public class LedgeLinkSdk {
         checkComponents();
 
         ListLoanApplicationsTask task = new ListLoanApplicationsTask(data, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Starts the phone verification process.
+     * @param data Mandatory API request data.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getPhoneVerification(PhoneVerificationRequestVo data) {
+        checkComponents();
+
+        GetPhoneVerificationTask task = new GetPhoneVerificationTask(data, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Completes the phone verification process.
+     * @param data Mandatory API request data.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask completePhoneVerification(VerificationRequestVo data) {
+        checkComponents();
+
+        CompletePhoneVerificationTask task = new CompletePhoneVerificationTask(data, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

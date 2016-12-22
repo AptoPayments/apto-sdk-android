@@ -1,12 +1,17 @@
 package me.ledge.link.sdk.sdk.mocks.api.wrappers;
 
+import java.util.ArrayList;
+
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.TermUnit;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
+import me.ledge.link.api.vos.CredentialVo;
 import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
@@ -28,6 +33,8 @@ import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.offers.TermVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
+import me.ledge.link.api.vos.responses.verifications.AlternateCredentialsListResponseVo;
+import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 
 /**
@@ -189,6 +196,27 @@ public class MockApiWrapper implements LinkApiWrapper {
         LoanApplicationsListResponseVo response = new LoanApplicationsListResponseVo();
         response.data = new LoanApplicationDetailsResponseVo[] { createLoanApplication(-1) };
 
+        return response;
+    }
+
+    // TODO: add unit tests for verification tasks
+    @Override
+    public VerificationResponseVo getPhoneVerification(PhoneVerificationRequestVo phoneVerificationRequestVo) throws ApiException {
+        VerificationResponseVo response = new VerificationResponseVo();
+        response.status = "";
+        response.type = "";
+        response.verification_id = 0;
+        return response;
+    }
+
+    @Override
+    public VerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo) throws ApiException {
+        VerificationResponseVo response = new VerificationResponseVo();
+        response.status = "";
+        response.type = "";
+        response.verification_id = 0;
+        response.alternate_credentials = new AlternateCredentialsListResponseVo();
+        response.alternate_credentials.data = new ArrayList<CredentialVo>();
         return response;
     }
 }

@@ -6,6 +6,7 @@ import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.utils.PhoneHelperUtil;
@@ -230,6 +231,17 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      */
     public boolean hasPhone() {
         return mPhone.phoneNumber != null;
+    }
+
+    /**
+     * @return Populated phone verification request data object.
+     */
+    public PhoneVerificationRequestVo getPhoneVerificationRequest() {
+        PhoneVerificationRequestVo request = new PhoneVerificationRequestVo();
+        request.country_code = mPhone.getPhone().getCountryCode();
+        request.phone_number = String.valueOf(mPhone.getPhone().getNationalNumber());
+
+        return request;
     }
 }
 
