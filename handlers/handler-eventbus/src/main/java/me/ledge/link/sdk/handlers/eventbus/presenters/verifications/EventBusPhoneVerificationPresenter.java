@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.link.api.vos.ApiErrorVo;
-import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
 import me.ledge.link.sdk.ui.presenters.verification.PhoneVerificationPresenter;
 import me.ledge.link.sdk.ui.views.verification.PhoneVerificationView;
 
@@ -38,11 +39,20 @@ public class EventBusPhoneVerificationPresenter extends PhoneVerificationPresent
     }
 
     /**
+     * Called when the start phone verification API response has been received.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleResponse(StartVerificationResponseVo response) {
+        setVerificationResponse(response);
+    }
+
+    /**
      * Called when the finish phone verification API response has been received.
      * @param response API response.
      */
     @Subscribe
-    public void handleResponse(VerificationResponseVo response) {
+    public void handleResponse(FinishVerificationResponseVo response) {
         setVerificationResponse(response);
     }
 

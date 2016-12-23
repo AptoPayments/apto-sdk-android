@@ -82,6 +82,7 @@ public class PhoneVerificationView
             public void onComplete(boolean completed, final String pinResults) {
                 if (completed) {
                     hideKeyboard(PhoneVerificationView.super.getContext());
+                    mListener.nextClickHandler();
                 }
             }
         });
@@ -115,6 +116,10 @@ public class PhoneVerificationView
      */
     public String getVerificationCode() {
         return mPinView.getPinResults();
+    }
+
+    public void clearPinView() {
+        mPinView.clear();
     }
 
     public void configurePinView() {

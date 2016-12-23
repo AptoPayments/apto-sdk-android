@@ -51,7 +51,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
     @Override
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
-        DataPointVo.PhoneNumber phoneNumber = getPhoneFromBaseData(base);
+        DataPointVo.PhoneNumber phoneNumber = getPhoneFromBaseData();
         phoneNumber.setVerification(mVerification);
         return base;
     }
@@ -71,7 +71,8 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
         }
     }
 
-    private DataPointVo.PhoneNumber getPhoneFromBaseData(DataPointList base) {
+    public DataPointVo.PhoneNumber getPhoneFromBaseData() {
+        DataPointList base = super.getBaseData();
         DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
         return phoneNumber;
@@ -95,8 +96,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
             mVerification.setSecret(verificationCode);
         }
     }
-
-
+    
     /**
      * @return Whether a verification code has been set.
      */
@@ -117,8 +117,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
 
     public PhoneVerificationRequestVo getPhoneVerificationRequest() {
         PhoneVerificationRequestVo request = new PhoneVerificationRequestVo();
-        DataPointList base = super.getBaseData();
-        DataPointVo.PhoneNumber phoneNumber = getPhoneFromBaseData(base);
+        DataPointVo.PhoneNumber phoneNumber = getPhoneFromBaseData();
         request.country_code = phoneNumber.getPhone().getCountryCode();
         request.phone_number = String.valueOf(phoneNumber.getPhone().getNationalNumber());
 

@@ -2,7 +2,7 @@ package me.ledge.link.sdk.sdk.tasks.verifications;
 
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
-import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -11,7 +11,7 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * A concrete {@link LedgeLinkApiTask} to start user's phone verification.
  * @author Adrian
  */
-public class GetPhoneVerificationTask extends LedgeLinkApiTask<Void, Void, VerificationResponseVo, PhoneVerificationRequestVo> {
+public class GetPhoneVerificationTask extends LedgeLinkApiTask<Void, Void, StartVerificationResponseVo, PhoneVerificationRequestVo> {
 
     /**
      * @see LedgeLinkApiTask#LedgeLinkApiTask
@@ -27,7 +27,7 @@ public class GetPhoneVerificationTask extends LedgeLinkApiTask<Void, Void, Verif
 
     /** {@inheritDoc} */
     @Override
-    protected VerificationResponseVo callApi() throws ApiException {
+    protected StartVerificationResponseVo callApi() throws ApiException {
         return getApiWrapper().getPhoneVerification(getRequestData());
     }
 }

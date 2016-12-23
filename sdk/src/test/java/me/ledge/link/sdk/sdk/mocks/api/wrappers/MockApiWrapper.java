@@ -34,7 +34,8 @@ import me.ledge.link.api.vos.responses.offers.TermVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.AlternateCredentialsListResponseVo;
-import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 
 /**
@@ -201,8 +202,8 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     // TODO: add unit tests for verification tasks
     @Override
-    public VerificationResponseVo getPhoneVerification(PhoneVerificationRequestVo phoneVerificationRequestVo) throws ApiException {
-        VerificationResponseVo response = new VerificationResponseVo();
+    public StartVerificationResponseVo getPhoneVerification(PhoneVerificationRequestVo phoneVerificationRequestVo) throws ApiException {
+        StartVerificationResponseVo response = new StartVerificationResponseVo();
         response.status = "";
         response.type = "";
         response.verification_id = 0;
@@ -210,8 +211,8 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public VerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo) throws ApiException {
-        VerificationResponseVo response = new VerificationResponseVo();
+    public FinishVerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo) throws ApiException {
+        FinishVerificationResponseVo response = new FinishVerificationResponseVo();
         response.status = "";
         response.type = "";
         response.verification_id = 0;
