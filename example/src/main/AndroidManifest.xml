@@ -74,7 +74,7 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="me.ledge.link.sdk.ui.activities.verification.PhoneVerificationActivity"
+            android:name="me.ledge.link.sdk.handlers.eventbus.activities.verifications.EventBusPhoneVerificationActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity

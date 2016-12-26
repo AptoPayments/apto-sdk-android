@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -78,6 +79,7 @@ public class PersonalInformationPresenter
         mView.updateEmailError(!mModel.hasEmail(), R.string.personal_info_email_error);
         mView.updatePhoneError(!mModel.hasPhone(), R.string.personal_info_phone_error);
 
+        // TODO: start phone verification only if enabled
         super.nextClickHandler();
     }
 }
