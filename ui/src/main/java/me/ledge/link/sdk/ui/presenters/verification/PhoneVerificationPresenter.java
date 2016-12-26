@@ -31,7 +31,7 @@ public class PhoneVerificationPresenter
      */
     public PhoneVerificationPresenter(AppCompatActivity activity) {
         super(activity);
-        LedgeLinkUi.getPhoneVerification(mModel.getPhoneVerificationRequest());
+        LedgeLinkUi.startPhoneVerification(mModel.getPhoneVerificationRequest());
     }
 
     /** {@inheritDoc} */
@@ -125,7 +125,7 @@ public class PhoneVerificationPresenter
 
     @Override
     public void resendClickHandler() {
-        LedgeLinkUi.getPhoneVerification(mModel.getPhoneVerificationRequest());
+        LedgeLinkUi.startPhoneVerification(mModel.getPhoneVerificationRequest());
         displaySentMessage();
     }
 

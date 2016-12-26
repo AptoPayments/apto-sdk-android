@@ -11,7 +11,7 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * A concrete {@link LedgeLinkApiTask} to start user's phone verification.
  * @author Adrian
  */
-public class GetPhoneVerificationTask extends LedgeLinkApiTask<Void, Void, StartVerificationResponseVo, PhoneVerificationRequestVo> {
+public class StartPhoneVerificationTask extends LedgeLinkApiTask<Void, Void, StartVerificationResponseVo, PhoneVerificationRequestVo> {
 
     /**
      * @see LedgeLinkApiTask#LedgeLinkApiTask
@@ -19,8 +19,8 @@ public class GetPhoneVerificationTask extends LedgeLinkApiTask<Void, Void, Start
      * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      */
-    public GetPhoneVerificationTask(PhoneVerificationRequestVo requestData, LinkApiWrapper apiWrapper,
-                                    ApiResponseHandler responseHandler) {
+    public StartPhoneVerificationTask(PhoneVerificationRequestVo requestData, LinkApiWrapper apiWrapper,
+                                      ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);
     }
@@ -28,6 +28,6 @@ public class GetPhoneVerificationTask extends LedgeLinkApiTask<Void, Void, Start
     /** {@inheritDoc} */
     @Override
     protected StartVerificationResponseVo callApi() throws ApiException {
-        return getApiWrapper().getPhoneVerification(getRequestData());
+        return getApiWrapper().startPhoneVerification(getRequestData());
     }
 }

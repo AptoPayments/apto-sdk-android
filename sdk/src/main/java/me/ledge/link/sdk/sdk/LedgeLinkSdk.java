@@ -25,7 +25,7 @@ import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
 import me.ledge.link.sdk.sdk.tasks.users.UpdateUserTask;
 import me.ledge.link.sdk.sdk.tasks.verifications.CompletePhoneVerificationTask;
-import me.ledge.link.sdk.sdk.tasks.verifications.GetPhoneVerificationTask;
+import me.ledge.link.sdk.sdk.tasks.verifications.StartPhoneVerificationTask;
 
 /**
  * Ledge Link SDK.<br />
@@ -256,10 +256,10 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getPhoneVerification(PhoneVerificationRequestVo data) {
+    public static LedgeLinkApiTask startPhoneVerification(PhoneVerificationRequestVo data) {
         checkComponents();
 
-        GetPhoneVerificationTask task = new GetPhoneVerificationTask(data, getApiWrapper(), getResponseHandler());
+        StartPhoneVerificationTask task = new StartPhoneVerificationTask(data, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

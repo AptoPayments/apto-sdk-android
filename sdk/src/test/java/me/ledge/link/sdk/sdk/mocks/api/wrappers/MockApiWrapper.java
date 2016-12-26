@@ -202,7 +202,7 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     // TODO: add unit tests for verification tasks
     @Override
-    public StartVerificationResponseVo getPhoneVerification(PhoneVerificationRequestVo phoneVerificationRequestVo) throws ApiException {
+    public StartVerificationResponseVo startPhoneVerification(PhoneVerificationRequestVo phoneVerificationRequestVo) throws ApiException {
         StartVerificationResponseVo response = new StartVerificationResponseVo();
         response.status = "";
         response.type = "";
