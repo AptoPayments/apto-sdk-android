@@ -40,6 +40,15 @@
     <string name="phone_verification_resent">A new code has been sent to your phone</string>
     <string name="phone_verification_error">Error: the pin is incorrect!</string>
 
+    <!-- Email Verification -->
+    <string name="email_verification_label">Email verification</string>
+    <string name="email_verification_code_hint">Click on the link to verify your account.</string>
+    <string name="email_verification_info">We just sent a verification link to the email associated with this account: </string>
+    <string name="email_verification_button_submit">I Clicked on the Link</string>
+    <string name="email_verification_button_resend">Re-send Link</string>
+    <string name="email_verification_resent">A new link has been sent to your email</string>
+    <string name="email_verification_error">Error: the email has not been verified!</string>
+
     <!-- Address -->
     <string name="address_label">What\'s your address?</string>
     <string name="address_address_hint">Address</string>

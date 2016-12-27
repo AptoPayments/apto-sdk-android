@@ -9,6 +9,7 @@ import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusAnnualInc
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusIdentityVerificationActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusLoanAmountActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusTermsActivity;
+import me.ledge.link.sdk.handlers.eventbus.activities.verifications.EventBusEmailVerificationActivity;
 import me.ledge.link.sdk.handlers.eventbus.activities.verifications.EventBusPhoneVerificationActivity;
 import me.ledge.link.sdk.handlers.eventbus.tasks.handlers.EventBusThreeResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -28,11 +29,12 @@ public class EventBusHandlerConfigurator implements HandlerConfigurator {
     /** {@inheritDoc} */
     @Override
     public ArrayList<Class<? extends MvpActivity>> getProcessOrder() {
-        ArrayList<Class<? extends MvpActivity>> process = new ArrayList<>(9);
+        ArrayList<Class<? extends MvpActivity>> process = new ArrayList<>(10);
         process.add(EventBusTermsActivity.class);
         process.add(EventBusLoanAmountActivity.class);
         process.add(PersonalInformationActivity.class);
         process.add(EventBusPhoneVerificationActivity.class);
+        process.add(EventBusEmailVerificationActivity.class);
         process.add(EventBusAddressActivity.class);
         process.add(EventBusAnnualIncomeActivity.class);
         process.add(MonthlyIncomeActivity.class);

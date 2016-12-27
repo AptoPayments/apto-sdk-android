@@ -78,8 +78,20 @@
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
+            android:name="me.ledge.link.sdk.handlers.eventbus.activities.verifications.EventBusEmailVerificationActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
                 android:name="me.ledge.link.sdk.handlers.eventbus.activities.loanapplication.EventBusLoanApplicationsListActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="me.ledge.link.sdk.ui.activities.userdata.AddressActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="me.ledge.link.sdk.ui.activities.offers.OffersListActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
 
     </application>
 </manifest>

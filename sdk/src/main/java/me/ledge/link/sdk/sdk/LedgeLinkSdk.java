@@ -8,6 +8,7 @@ import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
@@ -23,8 +24,11 @@ import me.ledge.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.ListLoanApplicationsTask;
 import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
+import me.ledge.link.sdk.sdk.tasks.users.LoginUserTask;
 import me.ledge.link.sdk.sdk.tasks.users.UpdateUserTask;
 import me.ledge.link.sdk.sdk.tasks.verifications.CompletePhoneVerificationTask;
+import me.ledge.link.sdk.sdk.tasks.verifications.GetVerificationStatusTask;
+import me.ledge.link.sdk.sdk.tasks.verifications.StartEmailVerificationTask;
 import me.ledge.link.sdk.sdk.tasks.verifications.StartPhoneVerificationTask;
 
 /**
@@ -214,6 +218,20 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
+    public static LedgeLinkApiTask loginUser(DataPointList data) {
+        checkComponents();
+
+        LoginUserTask task = new LoginUserTask(data, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Creates a new user.
+     * @param data Mandatory API request data.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
     public static LedgeLinkApiTask getInitialOffers(InitialOffersRequestVo data) {
         checkComponents();
 
@@ -274,6 +292,34 @@ public class LedgeLinkSdk {
         checkComponents();
 
         CompletePhoneVerificationTask task = new CompletePhoneVerificationTask(data, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Starts the email verification process.
+     * @param data Mandatory API request data.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask startEmailVerification(EmailVerificationRequestVo data) {
+        checkComponents();
+
+        StartEmailVerificationTask task = new StartEmailVerificationTask(data, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Retrieve the current verification status.
+     * @param data Mandatory API request data.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getVerificationStatus(int data) {
+        checkComponents();
+
+        GetVerificationStatusTask task = new GetVerificationStatusTask(data, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;
