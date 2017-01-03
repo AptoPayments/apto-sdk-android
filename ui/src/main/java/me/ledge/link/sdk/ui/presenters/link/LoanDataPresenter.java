@@ -1,8 +1,8 @@
-package me.ledge.link.sdk.ui.presenters.userdata;
+package me.ledge.link.sdk.ui.presenters.link;
 
 import android.support.v7.app.AppCompatActivity;
 
-import me.ledge.link.sdk.ui.models.userdata.LoanDataModel;
+import me.ledge.link.sdk.ui.models.link.LoanDataModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;

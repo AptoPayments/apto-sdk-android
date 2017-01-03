@@ -1,15 +1,14 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
-import android.content.Intent;
 
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
-import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
-import me.ledge.link.sdk.ui.activities.userdata.TermsActivity;
 import me.ledge.link.sdk.ui.activities.verification.EmailVerificationActivity;
+import me.ledge.link.sdk.ui.presenters.link.LinkModule;
+import me.ledge.link.sdk.ui.presenters.offers.OffersListModule;
 import me.ledge.link.sdk.ui.presenters.verification.EmailVerificationDelegate;
 import me.ledge.link.sdk.ui.presenters.verification.PhoneVerificationDelegate;
 
@@ -19,10 +18,8 @@ import me.ledge.link.sdk.ui.presenters.verification.PhoneVerificationDelegate;
 
 public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVerificationDelegate, EmailVerificationDelegate {
 
-    private Activity mActivity;
-
     public UserDataCollectorModule(Activity activity) {
-        mActivity = activity;
+        super(activity);
     }
 
     @Override
@@ -32,37 +29,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void onClose() {
-        startActivity(TermsActivity.class);
-    }
-
-    @Override
-    public void onBack() {
-        mActivity.onBackPressed();
-    }
-
-    @Override
-    public void onFinish(int result) {
-        mActivity.setResult(result);
-    }
-
-    /**
-     * Starts another activity.
-     * @param activity The Activity to start.
-     */
-    @Override
-    public void startActivity(Class activity) {
-        if (activity != null) {
-            mActivity.startActivity(getStartIntent(activity));
-        }
-        mActivity.finish();
-    }
-
-    /**
-     * @param activity The Activity to start.
-     * @return The {@link Intent} to use to start the next Activity.
-     */
-    protected Intent getStartIntent(Class activity) {
-        return new Intent(mActivity, activity);
+        startModule(new LinkModule(this.getActivity()));
     }
 
     @Override
@@ -77,6 +44,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void emailVerificationSucceeded() {
-        startActivity(OffersListActivity.class);
+        startModule(new OffersListModule(this.getActivity()));
     }
 }

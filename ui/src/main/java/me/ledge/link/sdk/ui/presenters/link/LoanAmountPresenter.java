@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.presenters.userdata;
+package me.ledge.link.sdk.ui.presenters.link;
 
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -11,7 +11,7 @@ import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.models.userdata.LoanAmountModel;
+import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.views.userdata.LoanAmountView;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;

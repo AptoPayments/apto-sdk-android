@@ -1,10 +1,10 @@
-package me.ledge.link.sdk.ui.activities.userdata;
+package me.ledge.link.sdk.ui.activities.link;
 
 import android.view.View;
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.activities.MvpActivity;
-import me.ledge.link.sdk.ui.models.userdata.TermsModel;
-import me.ledge.link.sdk.ui.presenters.userdata.TermsPresenter;
+import me.ledge.link.sdk.ui.activities.userdata.UserDataActivity;
+import me.ledge.link.sdk.ui.models.link.TermsModel;
+import me.ledge.link.sdk.ui.presenters.link.TermsPresenter;
 import me.ledge.link.sdk.ui.views.userdata.TermsView;
 
 /**

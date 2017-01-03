@@ -22,15 +22,14 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
-import me.ledge.link.sdk.ui.activities.userdata.LoanAmountActivity;
 import me.ledge.link.sdk.ui.adapters.offers.OffersListRecyclerAdapter;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.storages.LoanStorage;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
+import me.ledge.link.sdk.ui.storages.LoanStorage;
 import me.ledge.link.sdk.ui.views.offers.OfferSummaryView;
 import me.ledge.link.sdk.ui.views.offers.OffersListView;
 
@@ -53,12 +52,14 @@ public class OffersListPresenter
     private DualOptionDialogFragment mDialog;
     private NotificationDialogFragment mNotificationDialog;
 
+    private OffersListDelegate mDelegate;
     /**
      * Creates a new {@link OffersListPresenter} instance.
      * @param activity Activity.
      */
-    public OffersListPresenter(AppCompatActivity activity) {
+    public OffersListPresenter(AppCompatActivity activity, OffersListDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /** {@inheritDoc} */
@@ -147,9 +148,7 @@ public class OffersListPresenter
     /** {@inheritDoc} */
     @Override
     public void updateClickedHandler() {
-        // Start the second step in the process.
-        // TODO: refactor when modules are done
-        startActivity(LoanAmountActivity.class);
+        mDelegate.onUpdateUserProfile();
     }
 
     /** {@inheritDoc} */

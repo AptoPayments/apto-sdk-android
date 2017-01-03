@@ -1,8 +1,10 @@
-package me.ledge.link.sdk.ui.models.userdata;
+package me.ledge.link.sdk.ui.models.link;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.Model;
+import me.ledge.link.sdk.ui.models.userdata.AbstractUserDataModel;
+import me.ledge.link.sdk.ui.models.userdata.UserDataModel;
 
 /**
  * Concrete {@link Model} for the terms and conditions screen.

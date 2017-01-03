@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.models.userdata;
+package me.ledge.link.sdk.ui.models.link;
 
 import me.ledge.link.sdk.ui.models.AbstractActivityModel;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;

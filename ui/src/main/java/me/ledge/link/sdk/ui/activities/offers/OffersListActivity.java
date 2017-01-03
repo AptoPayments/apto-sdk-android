@@ -7,6 +7,7 @@ import android.view.View;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
+import me.ledge.link.sdk.ui.presenters.offers.OffersListModule;
 import me.ledge.link.sdk.ui.presenters.offers.OffersListPresenter;
 import me.ledge.link.sdk.ui.views.offers.OffersListView;
 
@@ -25,7 +26,7 @@ public class OffersListActivity extends MvpActivity<OffersListModel, OffersListV
     /** {@inheritDoc} */
     @Override
     protected OffersListPresenter createPresenter() {
-        return new OffersListPresenter(this);
+        return new OffersListPresenter(this, new OffersListModule(this));
     }
 
     /** {@inheritDoc} */

@@ -26,11 +26,11 @@
         </activity>
 
         <activity
-                android:name="me.ledge.link.sdk.ui.activities.userdata.TermsActivity"
+                android:name="me.ledge.link.sdk.ui.activities.link.TermsActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.ui.activities.userdata.LoanAmountActivity"
+                android:name="me.ledge.link.sdk.ui.activities.link.LoanAmountActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity

@@ -92,8 +92,4 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
     public void startNextActivity() {
         startActivity(mModel.getNextActivity(mActivity));
     }
-
-    public void startGivenActivity(Class activity) {
-        startActivity(activity);
-    }
 }

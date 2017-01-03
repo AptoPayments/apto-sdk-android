@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.presenters.userdata;
+package me.ledge.link.sdk.ui.presenters.link;
 
 import android.support.v7.app.AppCompatActivity;
 
@@ -6,8 +6,9 @@ import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.models.userdata.TermsModel;
+import me.ledge.link.sdk.ui.models.link.TermsModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
 import me.ledge.link.sdk.ui.views.userdata.TermsView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 

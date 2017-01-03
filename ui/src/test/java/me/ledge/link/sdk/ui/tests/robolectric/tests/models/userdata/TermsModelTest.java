@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.models.userdata.TermsModel;
+import me.ledge.link.sdk.ui.models.link.TermsModel;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

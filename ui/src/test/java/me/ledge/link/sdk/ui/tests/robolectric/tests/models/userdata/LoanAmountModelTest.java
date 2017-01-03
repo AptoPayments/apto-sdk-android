@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.models.userdata.LoanAmountModel;
+import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
