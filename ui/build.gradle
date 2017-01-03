@@ -93,6 +93,7 @@ dependencies {
     compile ('com.github.davidpizarro:pinview:1.0.0') {
         exclude module: 'appcompat-v7'
     }
+    compile 'org.greenrobot:eventbus:+'
 
     // Tests
     testCompile 'junit:junit:4.+'

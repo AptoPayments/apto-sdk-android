@@ -26,11 +26,11 @@
         </activity>
 
         <activity
-                android:name="me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusTermsActivity"
+                android:name="me.ledge.link.sdk.ui.activities.userdata.TermsActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusLoanAmountActivity"
+                android:name="me.ledge.link.sdk.ui.activities.userdata.LoanAmountActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
@@ -38,11 +38,11 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusAddressActivity"
+                android:name="me.ledge.link.sdk.ui.activities.userdata.AddressActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusAnnualIncomeActivity"
+                android:name="me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
@@ -50,7 +50,7 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.handlers.eventbus.activities.userdata.EventBusIdentityVerificationActivity"
+                android:name="me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
@@ -58,7 +58,7 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.handlers.eventbus.activities.offers.EventBusOffersListActivity"
+                android:name="me.ledge.link.sdk.ui.activities.offers.OffersListActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
@@ -74,24 +74,16 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="me.ledge.link.sdk.handlers.eventbus.activities.verifications.EventBusPhoneVerificationActivity"
+            android:name="me.ledge.link.sdk.ui.activities.verification.PhoneVerificationActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="me.ledge.link.sdk.handlers.eventbus.activities.verifications.EventBusEmailVerificationActivity"
+            android:name="me.ledge.link.sdk.ui.activities.verification.EmailVerificationActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.handlers.eventbus.activities.loanapplication.EventBusLoanApplicationsListActivity"
+                android:name="me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
-
-        <activity
-            android:name="me.ledge.link.sdk.ui.activities.userdata.AddressActivity"
-            android:theme="@style/Theme.LedgeLine.Example" />
-
-        <activity
-            android:name="me.ledge.link.sdk.ui.activities.offers.OffersListActivity"
-            android:theme="@style/Theme.LedgeLine.Example" />
 
     </application>
 </manifest>

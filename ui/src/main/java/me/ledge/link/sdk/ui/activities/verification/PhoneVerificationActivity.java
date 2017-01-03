@@ -5,7 +5,7 @@ import android.view.View;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.UserDataActivity;
 import me.ledge.link.sdk.ui.models.verification.PhoneVerificationModel;
-import me.ledge.link.sdk.ui.presenters.userdata.PersonalInformationPresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.presenters.verification.PhoneVerificationPresenter;
 import me.ledge.link.sdk.ui.views.verification.PhoneVerificationView;
 
@@ -25,6 +25,6 @@ public class PhoneVerificationActivity
     /** {@inheritDoc} */
     @Override
     protected PhoneVerificationPresenter createPresenter() {
-        return new PhoneVerificationPresenter(this, new PersonalInformationPresenter(null));
+        return new PhoneVerificationPresenter(this, new UserDataCollectorModule(this));
     }
 }

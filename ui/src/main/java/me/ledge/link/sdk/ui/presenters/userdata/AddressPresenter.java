@@ -2,8 +2,12 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
+
+import org.greenrobot.eventbus.Subscribe;
+
 import me.ledge.common.models.countries.Usa;
 import me.ledge.common.models.countries.UsaState;
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
@@ -75,6 +79,7 @@ public class AddressPresenter
     @Override
     public void attachView(AddressView view) {
         super.attachView(view);
+        mResponseHandler.subscribe(this);
 
         // Create adapter.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -117,6 +122,7 @@ public class AddressPresenter
     @Override
     public void detachView() {
         mView.setListener(null);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -151,6 +157,21 @@ public class AddressPresenter
     @Override
     public AddressModel createModel() {
         return new AddressModel();
+    }
+
+    /**
+     * Called when the housing types list API response has been received.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleToken(ConfigResponseVo response) {
+        if (isHousingTypesPresent(response)) {
+            setHousingTypesList(response.housingTypeOpts.data);
+        }
+    }
+
+    private boolean isHousingTypesPresent(ConfigResponseVo response) {
+        return response!=null && response.housingTypeOpts!=null;
     }
 
     /**

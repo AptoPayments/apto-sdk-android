@@ -4,9 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
+import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.LoanAmountModel;
@@ -93,6 +95,7 @@ public class LoanAmountPresenter
     @Override
     public void attachView(LoanAmountView view) {
         super.attachView(view);
+        mResponseHandler.subscribe(this);
 
         mView.setListener(this);
         mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
@@ -118,6 +121,7 @@ public class LoanAmountPresenter
     @Override
     public void detachView() {
         mView.setListener(null);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -146,10 +150,33 @@ public class LoanAmountPresenter
     public void onStopTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
 
     /**
+     * Called when the list of loan purposes has been received from the API.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handlePurposeList(LoanPurposesResponseVo response) {
+        setLoanPurposeList(response.data);
+    }
+
+    /**
+     * Called when an API error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
+        if (mView != null) {
+            mView.showLoading(false);
+        }
+
+        String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
+        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+    }
+
+    /**
      * Stores a new list of loan purposes and updates the View.
      * @param loanPurposesList New list.
      */
-    public void setLoanPurposeList(LoanPurposeVo[] loanPurposesList) {
+    private void setLoanPurposeList(LoanPurposeVo[] loanPurposesList) {
         mPurposeAdapter = getPurposeAdapter(loanPurposesList);
 
         mView.showLoading(false);
@@ -158,18 +185,5 @@ public class LoanAmountPresenter
         if (mModel.hasValidLoanPurpose()) {
             mView.setPurpose(mPurposeAdapter.getPosition(mModel.getLoanPurpose()));
         }
-    }
-
-    /**
-     * Deals with an API error.
-     * @param error API error.
-     */
-    public void setApiError(ApiErrorVo error) {
-        if (mView != null) {
-            mView.showLoading(false);
-        }
-
-        String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
-        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
     }
 }

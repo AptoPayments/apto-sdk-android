@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import org.greenrobot.eventbus.Subscribe;
+
 import me.ledge.common.fragments.dialogs.DualOptionDialogFragment;
 import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
 import me.ledge.common.utils.PagedList;
@@ -13,11 +16,13 @@ import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
+import me.ledge.link.sdk.ui.activities.userdata.LoanAmountActivity;
 import me.ledge.link.sdk.ui.adapters.offers.OffersListRecyclerAdapter;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
@@ -118,6 +123,7 @@ public class OffersListPresenter
     @Override
     public void attachView(OffersListView view) {
         super.attachView(view);
+        mResponseHandler.subscribe(this);
 
         mView.setData(mModel);
         mView.setListener(this);
@@ -134,6 +140,7 @@ public class OffersListPresenter
         mView.setAdapter(null);
         mView.setListener(null);
         mDialog.setListener(null);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -141,8 +148,8 @@ public class OffersListPresenter
     @Override
     public void updateClickedHandler() {
         // Start the second step in the process.
-        // TODO: specify this differently? There is no guaranteed order! yet?
-        startActivity(LedgeLinkUi.getProcessOrder().get(1));
+        // TODO: refactor when modules are done
+        startActivity(LoanAmountActivity.class);
     }
 
     /** {@inheritDoc} */
@@ -243,9 +250,21 @@ public class OffersListPresenter
     }
 
     /**
-     * Shows a loan application screen based on the API response.
+     * Called when the initial offers list API response has been received.
      * @param response API response.
      */
+    @Subscribe
+    public void handleOffers(InitialOffersResponseVo response) {
+        if (response.offers != null) {
+            addOffers(response.offers.data, response.offer_request_id, true);
+        }
+    }
+
+    /**
+     * Called when a loan application response has been received.
+     * @param response API response.
+     */
+    @Subscribe
     public void showLoanApplicationScreen(LoanApplicationDetailsResponseVo response) {
         mView.showLoading(false);
         LoanStorage.getInstance().setCurrentLoanApplication(response);
@@ -267,10 +286,11 @@ public class OffersListPresenter
     }
 
     /**
-     * Deals with an API error.
+     * Called when an API error has been received.
      * @param error API error.
      */
-    public void setApiError(ApiErrorVo error) {
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
         if (mView != null) {
             mView.showLoading(false);
         }

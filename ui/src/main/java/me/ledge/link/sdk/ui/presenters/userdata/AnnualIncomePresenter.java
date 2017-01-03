@@ -3,7 +3,9 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 import android.support.v7.app.AppCompatActivity;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+import org.greenrobot.eventbus.Subscribe;
 
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -111,7 +113,7 @@ public class AnnualIncomePresenter
     @Override
     public void attachView(AnnualIncomeView view) {
         super.attachView(view);
-
+        mResponseHandler.subscribe(this);
         mView.setListener(this);
         mView.setMinMax(mModel.getMinIncome() / mIncomeMultiplier, mModel.getMaxIncome() / mIncomeMultiplier);
         mView.setIncome(mModel.getAnnualIncome() / mIncomeMultiplier);
@@ -152,6 +154,7 @@ public class AnnualIncomePresenter
     @Override
     public void detachView() {
         mView.setListener(null);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -216,5 +219,35 @@ public class AnnualIncomePresenter
                 mView.setSalaryFrequency(mSalaryFrequenciesAdapter.getPosition(mModel.getSalaryFrequency()));
             }
         }
+    }
+
+    /**
+     * Called when the employment statuses list API response has been received.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleEmploymentStatusesList(ConfigResponseVo response) {
+        if (isEmploymentStatusesPresent(response)) {
+            setEmploymentStatusesList(response.employmentStatusOpts.data);
+        }
+    }
+
+    /**
+     * Called when the salary frequencies list API response has been received.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleSalaryFrequenciesList(ConfigResponseVo response) {
+        if (isSalaryFrequencyPresent(response)) {
+            setSalaryFrequenciesList(response.salaryFrequencyOpts.data);
+        }
+    }
+
+    private boolean isEmploymentStatusesPresent(ConfigResponseVo response) {
+        return response!=null && response.employmentStatusOpts!=null;
+    }
+
+    private boolean isSalaryFrequencyPresent(ConfigResponseVo response) {
+        return response!=null && response.salaryFrequencyOpts!=null;
     }
 }

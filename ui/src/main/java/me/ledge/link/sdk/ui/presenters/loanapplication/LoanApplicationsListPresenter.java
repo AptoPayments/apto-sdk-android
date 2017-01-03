@@ -2,9 +2,13 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+
+import org.greenrobot.eventbus.Subscribe;
+
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.adapters.loanapplication.LoanApplicationPagerAdapter;
@@ -70,7 +74,7 @@ public class LoanApplicationsListPresenter
     @Override
     public void attachView(LoanApplicationsListView view) {
         super.attachView(view);
-
+        mResponseHandler.subscribe(this);
         mView.setListener(this);
         mView.showLoading(true);
         updateViewData();
@@ -82,6 +86,7 @@ public class LoanApplicationsListPresenter
     @Override
     public void detachView() {
         mView.clearListener();
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -125,13 +130,27 @@ public class LoanApplicationsListPresenter
     }
 
     /**
-     * Deals with an API error.
+     * Called when an API error has been received.
      * @param error API error.
      */
-    public void setApiError(ApiErrorVo error) {
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
         Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
 
         mView.showLoading(false);
+    }
+
+    /**
+     * Called when the loan applications list has been loaded.
+     * @param response The API response.
+     */
+    @Subscribe
+    public void handleLoanApplicationsList(LoanApplicationsListResponseVo response) {
+        if (response == null || response.data == null) {
+            return;
+        }
+
+        showLoanApplicationList(response.data);
     }
 }

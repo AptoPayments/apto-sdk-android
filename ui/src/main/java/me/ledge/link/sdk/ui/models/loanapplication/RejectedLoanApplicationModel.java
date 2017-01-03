@@ -4,6 +4,7 @@ import android.app.Activity;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.activities.userdata.LoanAmountActivity;
 
 /**
  * Concrete {@link IntermediateLoanApplicationModel} for a rejected loan application.
@@ -24,7 +25,7 @@ public class RejectedLoanApplicationModel
     /** {@inheritDoc} */
     @Override
     public Class getPreviousActivity(Activity current) {
-        return LedgeLinkUi.getProcessOrder().get(1);
+        return LoanAmountActivity.class;
     }
 
     /** {@inheritDoc} */

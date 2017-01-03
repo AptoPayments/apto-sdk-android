@@ -1,6 +1,10 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.userdata.TermsModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -49,7 +53,7 @@ public class TermsPresenter
     public void attachView(TermsView view) {
         super.attachView(view);
         mView.setListener(this);
-
+        mResponseHandler.subscribe(this);
         if (mTermsText == null) {
             mView.showLoading(true);
             LedgeLinkUi.getLinkDisclaimer();
@@ -61,6 +65,7 @@ public class TermsPresenter
     /** {@inheritDoc} */
     @Override
     public void detachView() {
+        mResponseHandler.unsubscribe(this);
         mView.setListener(null);
         super.detachView();
     }
@@ -70,5 +75,16 @@ public class TermsPresenter
 
         mView.setTerms(terms);
         mView.showLoading(false);
+    }
+
+    @Subscribe
+    public void handleDisclaimer(DisclaimerResponseVo response) {
+        if (isDisclaimerPresent(response)) {
+            setTerms(response.linkDisclaimer.text);
+        }
+    }
+
+    private boolean isDisclaimerPresent(DisclaimerResponseVo response) {
+        return response!=null && response.linkDisclaimer!=null;
     }
 }

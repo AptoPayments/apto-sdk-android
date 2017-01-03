@@ -18,7 +18,7 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
-import me.ledge.link.sdk.handlers.eventbus.utils.EventBusHandlerConfigurator;
+import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.storages.LinkStorage;

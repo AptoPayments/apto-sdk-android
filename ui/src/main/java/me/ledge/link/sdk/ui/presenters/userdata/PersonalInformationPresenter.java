@@ -1,17 +1,10 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 
-import me.ledge.link.api.vos.DataPointVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.presenters.verification.EmailVerificationDelegate;
-import me.ledge.link.sdk.ui.presenters.verification.EmailVerificationPresenter;
-import me.ledge.link.sdk.ui.presenters.verification.PhoneVerificationDelegate;
-import me.ledge.link.sdk.ui.presenters.verification.PhoneVerificationPresenter;
 import me.ledge.link.sdk.ui.views.userdata.PersonalInformationView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
@@ -21,11 +14,7 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
  */
 public class PersonalInformationPresenter
         extends UserDataPresenter<PersonalInformationModel, PersonalInformationView>
-        implements PersonalInformationView.ViewListener, PhoneVerificationDelegate,
-        EmailVerificationDelegate {
-
-    // TODO: refactor when flow manager is implemented
-    private EmailVerificationPresenter mPresenter;
+        implements PersonalInformationView.ViewListener {
 
     /**
      * Creates a new {@link PersonalInformationPresenter} instance.
@@ -92,24 +81,5 @@ public class PersonalInformationPresenter
 
         // TODO: start phone verification only if enabled
         super.nextClickHandler();
-    }
-
-    @Override
-    public void phoneVerificationSucceeded(DataPointVo.PhoneNumber phone,
-                                           PhoneVerificationPresenter phoneVerificationPresenter) {
-        phoneVerificationPresenter.startNextActivity();
-    }
-
-    @Override
-    public void newPhoneVerificationSucceeded(DataPointVo.PhoneNumber phone,
-                                              PhoneVerificationPresenter phoneVerificationPresenter,
-                                              Activity current) {
-        // Skip email verification
-        phoneVerificationPresenter.startGivenActivity(mModel.getNextFollowingActivity(current));
-    }
-
-    @Override
-    public void emailVerificationSucceeded(DataPointVo.Email email, EmailVerificationPresenter emailVerificationPresenter) {
-        LedgeLinkUi.loginUser(mModel.getLoginData());
     }
 }

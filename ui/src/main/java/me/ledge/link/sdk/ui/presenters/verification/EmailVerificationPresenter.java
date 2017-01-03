@@ -3,6 +3,9 @@ package me.ledge.link.sdk.ui.presenters.verification;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.Subscribe;
+
+import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.VerificationVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
@@ -53,16 +56,16 @@ public class EmailVerificationPresenter
     @Override
     public void attachView(EmailVerificationView view) {
         super.attachView(view);
-
         mActivity.setTitle(this.getEmail());
-
         mView.setListener(this);
         mView.displayEmailAddress(this.getEmail());
+        mResponseHandler.subscribe(this);
     }
 
     /** {@inheritDoc} */
     @Override
     public void detachView() {
+        mResponseHandler.unsubscribe(this);
         mView.setListener(null);
         super.detachView();
     }
@@ -71,6 +74,36 @@ public class EmailVerificationPresenter
     @Override
     public void nextClickHandler() {
         LedgeLinkUi.getVerificationStatus(mModel.getVerificationId());
+    }
+
+    /**
+     * Called when the get verification status API response has been received.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleResponse(VerificationStatusResponseVo response) {
+        setVerificationResponse(response);
+    }
+
+    /**
+     * Called when the start phone verification API response has been received.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleToken(CreateUserResponseVo response) {
+        if (response != null) {
+            UserStorage.getInstance().setBearerToken(response.user_token);
+            mDelegate.emailVerificationSucceeded();
+        }
+    }
+
+    /**
+     * Called when an API error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
+        setApiError(error);
     }
 
     private String getEmail() {
@@ -83,6 +116,7 @@ public class EmailVerificationPresenter
      * Deals with the start email verification API response.
      * @param response API response.
      */
+    @Subscribe
     public void setVerificationResponse(StartEmailVerificationResponseVo response) {
         if (response != null) {
             DataPointVo.Email email = mModel.getEmailFromBaseData();
@@ -108,19 +142,8 @@ public class EmailVerificationPresenter
                 return;
             }
             else {
-                mDelegate.emailVerificationSucceeded(email, this);
+                LedgeLinkUi.loginUser(mModel.getLoginData());
             }
-        }
-    }
-
-    /**
-     * Deals with the create user API response.
-     * @param response API response.
-     */
-    public void setCreateUserResponse(CreateUserResponseVo response) {
-        if (response != null) {
-            UserStorage.getInstance().setBearerToken(response.user_token);
-            startGivenActivity(mModel.getLastActivity());
         }
     }
 

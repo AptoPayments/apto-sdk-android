@@ -5,7 +5,7 @@ import android.view.View;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.UserDataActivity;
 import me.ledge.link.sdk.ui.models.verification.EmailVerificationModel;
-import me.ledge.link.sdk.ui.presenters.userdata.PersonalInformationPresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.presenters.verification.EmailVerificationPresenter;
 import me.ledge.link.sdk.ui.views.verification.EmailVerificationView;
 
@@ -25,6 +25,6 @@ public class EmailVerificationActivity
     /** {@inheritDoc} */
     @Override
     protected EmailVerificationPresenter createPresenter() {
-        return new EmailVerificationPresenter(this, new PersonalInformationPresenter(null));
+        return new EmailVerificationPresenter(this, new UserDataCollectorModule(this));
     }
 }

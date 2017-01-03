@@ -7,6 +7,8 @@ import android.text.TextUtils;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.api.vos.responses.config.ProductDisclaimerVo;
@@ -79,6 +81,7 @@ public class IdentityVerificationPresenter
     @Override
     public void attachView(IdentityVerificationView view) {
         super.attachView(view);
+        mResponseHandler.subscribe(this);
         mView.setListener(this);
 
         int progressColor = getProgressBarColor(mActivity);
@@ -98,6 +101,7 @@ public class IdentityVerificationPresenter
     @Override
     public void detachView() {
         mView.setListener(null);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -159,6 +163,11 @@ public class IdentityVerificationPresenter
         return result.substring(0, result.length() - partnerDivider.length());
     }
 
+    @Subscribe
+    public void handleDisclaimersResponse(DisclaimerResponseVo response) {
+        setDisclaimers(parseDisclaimersResponse(response));
+    }
+
     public void setDisclaimers(String disclaimers) {
         mDisclaimersText = disclaimers;
         mView.setDisclaimers(disclaimers);
@@ -169,6 +178,7 @@ public class IdentityVerificationPresenter
      * Deals with the create user API response.
      * @param response API response.
      */
+    @Subscribe
     public void setCreateUserResponse(CreateUserResponseVo response) {
         mView.showLoading(false);
 
@@ -181,19 +191,21 @@ public class IdentityVerificationPresenter
     }
 
     /**
-     * Deals with the update user API response.
+     * Called when the user update API response has been received.
      * @param response API response.
      */
-    public void setUpdateUserResponse(UserResponseVo response) {
+    @Subscribe
+    public void handleUserDetails(UserResponseVo response) {
         mView.showLoading(false);
         super.nextClickHandler();
     }
 
     /**
-     * Deals with an API error.
+     * Called when an API error has been received.
      * @param error API error.
      */
-    public void setApiError(ApiErrorVo error) {
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
         if (mView != null) {
             mView.showLoading(false);
         }

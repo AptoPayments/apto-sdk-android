@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.handlers.eventbus.tasks.handlers;
+package me.ledge.link.sdk.ui.eventbus.handlers;
 
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import org.greenrobot.eventbus.EventBus;

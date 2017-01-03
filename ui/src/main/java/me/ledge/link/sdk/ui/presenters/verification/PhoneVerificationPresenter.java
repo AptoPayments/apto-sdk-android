@@ -3,6 +3,9 @@ package me.ledge.link.sdk.ui.presenters.verification;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.Subscribe;
+
+import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.VerificationVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
@@ -51,15 +54,15 @@ public class PhoneVerificationPresenter
     @Override
     public void attachView(PhoneVerificationView view) {
         super.attachView(view);
-
         mActivity.setTitle(this.getTitle());
-
         mView.setListener(this);
+        mResponseHandler.subscribe(this);
     }
 
     /** {@inheritDoc} */
     @Override
     public void detachView() {
+        mResponseHandler.unsubscribe(this);
         mView.setListener(null);
         super.detachView();
     }
@@ -82,10 +85,11 @@ public class PhoneVerificationPresenter
     }
 
     /**
-     * Deals with the start phone verification API response.
+     * Called when the start phone verification API response has been received.
      * @param response API response.
      */
-    public void setVerificationResponse(StartPhoneVerificationResponseVo response) {
+    @Subscribe
+    public void handleResponse(StartPhoneVerificationResponseVo response) {
         if (response != null) {
             DataPointVo.PhoneNumber phone = mModel.getPhoneFromBaseData();
             if(phone.hasVerification()) {
@@ -98,10 +102,11 @@ public class PhoneVerificationPresenter
     }
 
     /**
-     * Deals with the finish phone verification API response.
+     * Called when the finish phone verification API response has been received.
      * @param response API response.
      */
-    public void setVerificationResponse(FinishPhoneVerificationResponseVo response) {
+    @Subscribe
+    public void handleResponse(FinishPhoneVerificationResponseVo response) {
         if (response != null) {
             DataPointVo.PhoneNumber phone = mModel.getPhoneFromBaseData();
             phone.getVerification().setVerificationStatus(response.status);
@@ -109,14 +114,20 @@ public class PhoneVerificationPresenter
                 displayWrongCodeMessage();
                 return;
             }
-            else if(response.alternate_credentials.total_count == 0) {
-                mDelegate.newPhoneVerificationSucceeded(phone, this, mActivity);
-            }
             else {
                 phone.getVerification().setAlternateCredentials(response.alternate_credentials.data);
-                mDelegate.phoneVerificationSucceeded(phone, this);
+                mDelegate.phoneVerificationSucceeded(phone);
             }
         }
+    }
+
+    /**
+     * Called when an API error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
+        setApiError(error);
     }
 
     @Override
