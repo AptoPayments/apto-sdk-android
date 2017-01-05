@@ -3,11 +3,10 @@ package me.ledge.link.sdk.ui.presenters.verification;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import me.ledge.link.api.vos.CredentialVo;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.VerificationVo;
-import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.verification.PhoneVerificationModel;
@@ -25,12 +24,14 @@ public class PhoneVerificationPresenter
         extends UserDataPresenter<PhoneVerificationModel, PhoneVerificationView>
         implements PhoneVerificationView.ViewListener {
 
+    private PhoneVerificationDelegate mDelegate;
     /**
      * Creates a new {@link PhoneVerificationPresenter} instance.
      * @param activity Activity.
      */
-    public PhoneVerificationPresenter(AppCompatActivity activity) {
+    public PhoneVerificationPresenter(AppCompatActivity activity, PhoneVerificationDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
         LedgeLinkUi.startPhoneVerification(mModel.getPhoneVerificationRequest());
     }
 
@@ -84,7 +85,7 @@ public class PhoneVerificationPresenter
      * Deals with the start phone verification API response.
      * @param response API response.
      */
-    public void setVerificationResponse(StartVerificationResponseVo response) {
+    public void setVerificationResponse(StartPhoneVerificationResponseVo response) {
         if (response != null) {
             DataPointVo.PhoneNumber phone = mModel.getPhoneFromBaseData();
             if(phone.hasVerification()) {
@@ -100,7 +101,7 @@ public class PhoneVerificationPresenter
      * Deals with the finish phone verification API response.
      * @param response API response.
      */
-    public void setVerificationResponse(FinishVerificationResponseVo response) {
+    public void setVerificationResponse(FinishPhoneVerificationResponseVo response) {
         if (response != null) {
             DataPointVo.PhoneNumber phone = mModel.getPhoneFromBaseData();
             phone.getVerification().setVerificationStatus(response.status);
@@ -109,18 +110,13 @@ public class PhoneVerificationPresenter
                 return;
             }
             else if(response.alternate_credentials.total_count == 0) {
-                // New phone, continuing with user creation (skip email activity)
+                mDelegate.newPhoneVerificationSucceeded(phone, this, mActivity);
             }
             else {
-                // Start email verification
-                CredentialVo credentialVo = response.alternate_credentials.data.get(0);
                 phone.getVerification().setAlternateCredentials(response.alternate_credentials.data);
-                // TODO: email verification API call
+                mDelegate.phoneVerificationSucceeded(phone, this);
             }
         }
-
-        // TODO: decide which screen is shown depending on verification response
-        super.nextClickHandler();
     }
 
     @Override

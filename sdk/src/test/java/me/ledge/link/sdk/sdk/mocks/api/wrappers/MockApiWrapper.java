@@ -10,6 +10,7 @@ import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
@@ -34,8 +35,10 @@ import me.ledge.link.api.vos.responses.offers.TermVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.AlternateCredentialsListResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 
 /**
@@ -140,6 +143,14 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
+    public CreateUserResponseVo loginUser(DataPointList requestData) throws ApiException {
+        CreateUserResponseVo response = new CreateUserResponseVo();
+        response.user_token = TOKEN;
+        return response;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public InitialOffersResponseVo getInitialOffers(InitialOffersRequestVo requestData) {
         OfferVo offerOne = new OfferVo();
         offerOne.id = 1;
@@ -202,8 +213,8 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     // TODO: add unit tests for verification tasks
     @Override
-    public StartVerificationResponseVo startPhoneVerification(PhoneVerificationRequestVo phoneVerificationRequestVo) throws ApiException {
-        StartVerificationResponseVo response = new StartVerificationResponseVo();
+    public StartPhoneVerificationResponseVo startPhoneVerification(PhoneVerificationRequestVo phoneVerificationRequestVo) throws ApiException {
+        StartPhoneVerificationResponseVo response = new StartPhoneVerificationResponseVo();
         response.status = "";
         response.type = "";
         response.verification_id = 0;
@@ -211,13 +222,31 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public FinishVerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo) throws ApiException {
-        FinishVerificationResponseVo response = new FinishVerificationResponseVo();
+    public FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo) throws ApiException {
+        FinishPhoneVerificationResponseVo response = new FinishPhoneVerificationResponseVo();
         response.status = "";
         response.type = "";
         response.verification_id = 0;
         response.alternate_credentials = new AlternateCredentialsListResponseVo();
         response.alternate_credentials.data = new ArrayList<CredentialVo>();
+        return response;
+    }
+
+    @Override
+    public StartEmailVerificationResponseVo startEmailVerification(EmailVerificationRequestVo emailVerificationRequestVo) throws ApiException {
+        StartEmailVerificationResponseVo response = new StartEmailVerificationResponseVo();
+        response.status = "";
+        response.type = "";
+        response.verification_id = 0;
+        return null;
+    }
+
+    @Override
+    public VerificationStatusResponseVo getVerificationStatus(int verificationID) throws ApiException {
+        VerificationStatusResponseVo response = new VerificationStatusResponseVo();
+        response.status = "";
+        response.type = "";
+        response.verification_id = verificationID;
         return response;
     }
 }

@@ -1,8 +1,8 @@
 package me.ledge.link.sdk.sdk.tasks.verifications;
 
 import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
-import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
+import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -11,7 +11,7 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * A concrete {@link LedgeLinkApiTask} to start user's phone verification.
  * @author Adrian
  */
-public class StartPhoneVerificationTask extends LedgeLinkApiTask<Void, Void, StartPhoneVerificationResponseVo, PhoneVerificationRequestVo> {
+public class StartEmailVerificationTask extends LedgeLinkApiTask<Void, Void, StartEmailVerificationResponseVo, EmailVerificationRequestVo> {
 
     /**
      * @see LedgeLinkApiTask#LedgeLinkApiTask
@@ -19,7 +19,7 @@ public class StartPhoneVerificationTask extends LedgeLinkApiTask<Void, Void, Sta
      * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      */
-    public StartPhoneVerificationTask(PhoneVerificationRequestVo requestData, LinkApiWrapper apiWrapper,
+    public StartEmailVerificationTask(EmailVerificationRequestVo requestData, LinkApiWrapper apiWrapper,
                                       ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);
@@ -27,7 +27,7 @@ public class StartPhoneVerificationTask extends LedgeLinkApiTask<Void, Void, Sta
 
     /** {@inheritDoc} */
     @Override
-    protected StartPhoneVerificationResponseVo callApi() throws ApiException {
-        return getApiWrapper().startPhoneVerification(getRequestData());
+    protected StartEmailVerificationResponseVo callApi() throws ApiException {
+        return getApiWrapper().startEmailVerification(getRequestData());
     }
 }

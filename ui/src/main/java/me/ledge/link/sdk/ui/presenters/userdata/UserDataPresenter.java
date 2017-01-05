@@ -23,7 +23,7 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
         extends ActivityPresenter<M, V>
         implements StepperListener, NextButtonListener {
 
-    protected static final int TOTAL_STEPS = 9;
+    protected static final int TOTAL_STEPS = 10;
 
     /**
      * Creates a new {@link UserDataPresenter} instance.

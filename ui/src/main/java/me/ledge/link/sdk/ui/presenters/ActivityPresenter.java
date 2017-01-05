@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
@@ -90,5 +91,9 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
      */
     public void startNextActivity() {
         startActivity(mModel.getNextActivity(mActivity));
+    }
+
+    public void startGivenActivity(Class activity) {
+        startActivity(activity);
     }
 }
