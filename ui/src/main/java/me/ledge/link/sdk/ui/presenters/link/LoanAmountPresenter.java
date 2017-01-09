@@ -29,13 +29,15 @@ public class LoanAmountPresenter
 
     private int mAmountIncrement;
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mPurposeAdapter;
+    private LoanDataDelegate mDelegate;
 
     /**
      * Creates a new {@link LoanAmountPresenter} instance.
      * @param activity Activity.
      */
-    public LoanAmountPresenter(AppCompatActivity activity) {
+    public LoanAmountPresenter(AppCompatActivity activity, LoanDataDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /** {@inheritDoc} */
@@ -133,6 +135,13 @@ public class LoanAmountPresenter
 
         mView.updatePurposeError(!mModel.hasValidLoanPurpose());
         super.nextClickHandler();
+        mDelegate.loanDataPresented();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void stepperBackClickHandler() {
+        mDelegate.loanDataOnBackPressed();
     }
 
     /** {@inheritDoc} */

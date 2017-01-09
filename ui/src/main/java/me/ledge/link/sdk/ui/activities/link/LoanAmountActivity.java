@@ -5,6 +5,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.UserDataActivity;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.link.LoanAmountPresenter;
+import me.ledge.link.sdk.ui.presenters.link.LoanInfoModule;
 import me.ledge.link.sdk.ui.views.userdata.LoanAmountView;
 
 /**
@@ -23,6 +24,6 @@ public class LoanAmountActivity
     /** {@inheritDoc} */
     @Override
     protected LoanAmountPresenter createPresenter() {
-        return new LoanAmountPresenter(this);
+        return new LoanAmountPresenter(this, LoanInfoModule.getInstance(this));
     }
 }

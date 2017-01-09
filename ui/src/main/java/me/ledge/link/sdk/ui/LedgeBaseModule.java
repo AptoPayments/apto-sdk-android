@@ -9,23 +9,13 @@ import android.content.Intent;
 
 public abstract class LedgeBaseModule implements Router {
 
-    private Activity mActivity;
+    private static Activity mActivity;
 
     public LedgeBaseModule(Activity activity) {
         mActivity = activity;
     }
 
     public abstract void initialModuleSetup();
-
-    public abstract void onClose();
-
-    public void onBack() {
-        mActivity.onBackPressed();
-    }
-
-    public void onFinish(int result) {
-        mActivity.setResult(result);
-    }
 
     public void startModule(LedgeBaseModule module) {
         module.initialModuleSetup();
@@ -51,7 +41,7 @@ public abstract class LedgeBaseModule implements Router {
      * @param activity The Activity to start.
      * @return The {@link Intent} to use to start the next Activity.
      */
-    protected Intent getStartIntent(Class activity) {
+    private Intent getStartIntent(Class activity) {
         return new Intent(mActivity, activity);
     }
 }

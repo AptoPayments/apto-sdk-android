@@ -74,7 +74,6 @@ public abstract class LoanDataPresenter<M extends LoanDataModel, V extends UserD
     public void nextClickHandler() {
         if (mModel.hasAllData()) {
             saveData();
-            startNextActivity();
         }
     }
 

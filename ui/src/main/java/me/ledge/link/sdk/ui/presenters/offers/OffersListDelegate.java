@@ -8,4 +8,5 @@ package me.ledge.link.sdk.ui.presenters.offers;
 public interface OffersListDelegate {
 
     void onUpdateUserProfile();
+    void onBackPressed();
 }

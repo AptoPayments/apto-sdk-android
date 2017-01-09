@@ -34,10 +34,12 @@ public class EmailVerificationPresenter
      * Creates a new {@link EmailVerificationPresenter} instance.
      * @param activity Activity.
      */
-    public EmailVerificationPresenter(AppCompatActivity activity, EmailVerificationDelegate delegate) {
+    public EmailVerificationPresenter(AppCompatActivity activity, EmailVerificationDelegate delegate, boolean sendEmail) {
         super(activity);
         mDelegate = delegate;
-        LedgeLinkUi.startEmailVerification(mModel.getEmailVerificationRequest());
+        if(sendEmail) {
+            LedgeLinkUi.startEmailVerification(mModel.getEmailVerificationRequest());
+        }
     }
 
     /** {@inheritDoc} */
@@ -161,5 +163,11 @@ public class EmailVerificationPresenter
     private void displayWrongCodeMessage() {
         String message = mActivity.getString(R.string.email_verification_error);
         Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    // TODO: Override for now, remove super later
+    public void stepperBackClickHandler() {
+        mDelegate.emailOnBackPressed();
     }
 }

@@ -26,7 +26,7 @@ public class OffersListActivity extends MvpActivity<OffersListModel, OffersListV
     /** {@inheritDoc} */
     @Override
     protected OffersListPresenter createPresenter() {
-        return new OffersListPresenter(this, new OffersListModule(this));
+        return new OffersListPresenter(this, OffersListModule.getInstance(this));
     }
 
     /** {@inheritDoc} */

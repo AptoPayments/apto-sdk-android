@@ -25,6 +25,6 @@ public class PhoneVerificationActivity
     /** {@inheritDoc} */
     @Override
     protected PhoneVerificationPresenter createPresenter() {
-        return new PhoneVerificationPresenter(this, new UserDataCollectorModule(this));
+        return new PhoneVerificationPresenter(this, UserDataCollectorModule.getInstance(this));
     }
 }

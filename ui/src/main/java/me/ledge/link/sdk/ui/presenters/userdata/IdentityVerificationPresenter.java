@@ -34,12 +34,14 @@ public class IdentityVerificationPresenter
         IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener {
 
     private String mDisclaimersText;
+    private IdentityVerificationDelegate mDelegate;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
      */
-    public IdentityVerificationPresenter(AppCompatActivity activity) {
+    public IdentityVerificationPresenter(AppCompatActivity activity, IdentityVerificationDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /**
@@ -186,8 +188,10 @@ public class IdentityVerificationPresenter
             UserStorage.getInstance().setBearerToken(response.user_token);
         }
 
-        // Show next screen.
-        super.nextClickHandler();
+        if (mModel.hasAllData()) {
+            super.saveData();
+            mDelegate.identityVerificationSucceeded();
+        }
     }
 
     /**
@@ -197,7 +201,10 @@ public class IdentityVerificationPresenter
     @Subscribe
     public void handleUserDetails(UserResponseVo response) {
         mView.showLoading(false);
-        super.nextClickHandler();
+        if (mModel.hasAllData()) {
+            super.saveData();
+            mDelegate.identityVerificationSucceeded();
+        }
     }
 
     /**
@@ -212,5 +219,11 @@ public class IdentityVerificationPresenter
 
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
         Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+    }
+
+    // TODO: Override for now, remove super later
+    @Override
+    public void stepperBackClickHandler() {
+        mDelegate.identityVerificationOnBackPressed();
     }
 }

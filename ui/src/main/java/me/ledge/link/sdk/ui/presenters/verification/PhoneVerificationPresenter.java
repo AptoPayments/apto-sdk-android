@@ -146,4 +146,10 @@ public class PhoneVerificationPresenter
         Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
         mView.clearPinView();
     }
+
+    @Override
+    // TODO: Override for now, remove super later
+    public void stepperBackClickHandler() {
+        mDelegate.phoneOnBackPressed();
+    }
 }

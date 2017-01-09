@@ -1,5 +1,6 @@
 package me.ledge.link.sdk.ui.activities.verification;
 
+import android.os.Bundle;
 import android.view.View;
 
 import me.ledge.link.sdk.ui.R;
@@ -16,6 +17,8 @@ import me.ledge.link.sdk.ui.views.verification.EmailVerificationView;
 public class EmailVerificationActivity
         extends UserDataActivity<EmailVerificationModel, EmailVerificationView, EmailVerificationPresenter> {
 
+    private boolean sendEmailFlag = true;
+
     /** {@inheritDoc} */
     @Override
     protected EmailVerificationView createView() {
@@ -25,6 +28,14 @@ public class EmailVerificationActivity
     /** {@inheritDoc} */
     @Override
     protected EmailVerificationPresenter createPresenter() {
-        return new EmailVerificationPresenter(this, new UserDataCollectorModule(this));
+        return new EmailVerificationPresenter(this, UserDataCollectorModule.getInstance(this), sendEmailFlag);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        if(savedInstanceState != null) {
+            sendEmailFlag = false;
+        }
+        super.onCreate(savedInstanceState);
     }
 }

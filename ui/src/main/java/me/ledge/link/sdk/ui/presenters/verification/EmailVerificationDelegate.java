@@ -8,5 +8,6 @@ package me.ledge.link.sdk.ui.presenters.verification;
 public interface EmailVerificationDelegate {
 
     void emailVerificationSucceeded();
+    void emailOnBackPressed();
 
 }

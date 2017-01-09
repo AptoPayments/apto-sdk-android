@@ -320,4 +320,9 @@ public class OffersListPresenter
 
         return handled;
     }
+
+    @Override
+    public void startPreviousActivity() {
+        mDelegate.onBackPressed();
+    }
 }

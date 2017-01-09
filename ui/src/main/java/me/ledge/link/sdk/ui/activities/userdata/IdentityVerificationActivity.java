@@ -1,10 +1,11 @@
 package me.ledge.link.sdk.ui.activities.userdata;
 
 import android.view.View;
+
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 
 /**
@@ -23,6 +24,6 @@ public class IdentityVerificationActivity
     /** {@inheritDoc} */
     @Override
     protected IdentityVerificationPresenter createPresenter() {
-        return new IdentityVerificationPresenter(this);
+        return new IdentityVerificationPresenter(this, UserDataCollectorModule.getInstance(this));
     }
 }
