@@ -10,6 +10,7 @@ import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
  * Created by adrian on 29/12/2016.
  */
 
+public class LinkModule extends LedgeBaseModule {
 
     private LoanInfoModule mLoanInfoModule;
     private UserDataCollectorModule mUserDataCollectorModule;
