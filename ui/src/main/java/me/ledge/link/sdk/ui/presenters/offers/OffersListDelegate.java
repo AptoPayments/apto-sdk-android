@@ -9,4 +9,5 @@ public interface OffersListDelegate {
 
     void onUpdateUserProfile();
     void onBackPressed();
+    void onApplicationReceived();
 }

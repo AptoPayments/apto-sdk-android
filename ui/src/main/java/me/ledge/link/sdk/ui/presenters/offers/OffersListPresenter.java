@@ -21,7 +21,6 @@ import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.adapters.offers.OffersListRecyclerAdapter;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
@@ -43,9 +42,6 @@ public class OffersListPresenter
         extends ActivityPresenter<OffersListModel, OffersListView>
         implements Presenter<OffersListModel, OffersListView>, OffersListView.ViewListener,
         OfferSummaryView.ViewListener, DualOptionDialogFragment.DialogListener {
-
-    /* TODO: Store in strings.xml */
-    private static final String TERMS_URL = "https://ledge.me/terms";
 
     private LoanStorage mLoanStorage;
     private OffersListRecyclerAdapter mAdapter;
@@ -108,7 +104,7 @@ public class OffersListPresenter
     }
 
     private void showInfo() {
-        new ExternalSiteLauncher().launchBrowser(TERMS_URL, mActivity);
+        new ExternalSiteLauncher().launchBrowser(mActivity.getString(R.string.offers_list_terms_url), mActivity);
     }
 
     /** {@inheritDoc} */
@@ -273,7 +269,7 @@ public class OffersListPresenter
             case LoanApplicationStatus.PENDING_LENDER_ACTION:
             case LoanApplicationStatus.PENDING_BORROWER_ACTION:
             case LoanApplicationStatus.APPLICATION_RECEIVED:
-                startActivity(IntermediateLoanApplicationActivity.class);
+                mDelegate.onApplicationReceived();
                 break;
             case LoanApplicationStatus.LENDER_REJECTED:
             case LoanApplicationStatus.BORROWER_REJECTED:
@@ -300,7 +296,7 @@ public class OffersListPresenter
         if (LinkApiWrapper.INITIAL_OFFERS_PATH.equals(error.request_path) && mView != null) {
             mView.showError(true);
         } else if (LinkApiWrapper.CREATE_LOAN_APPLICATION_PATH.equals(error.request_path)) {
-            startActivity(IntermediateLoanApplicationActivity.class);
+            mDelegate.onApplicationReceived();
         }
     }
 
