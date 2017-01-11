@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
-import me.ledge.link.sdk.ui.presenters.offers.OffersListModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 
 /**
@@ -45,15 +44,9 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void showOffersList() {
-        OffersListModule mOffersListModule = OffersListModule.getInstance(this.getActivity());
-        mOffersListModule.onUpdateUserProfile = this::showUserDataCollector;
-        mOffersListModule.onBack = this::showLoanInfo;
-        mOffersListModule.onApplicationReceived = this::showLoanApplication;
-        startModule(mOffersListModule);
-    }
-
-    private void showLoanApplication() {
         LoanApplicationModule mLoanApplicationModule = LoanApplicationModule.getInstance(this.getActivity());
+        mLoanApplicationModule.onUpdateUserProfile = this::showUserDataCollector;
+        mLoanApplicationModule.onBack = this::showLoanInfo;
         startModule(mLoanApplicationModule);
     }
 

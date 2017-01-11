@@ -9,7 +9,7 @@ import android.content.Intent;
 
 public abstract class LedgeBaseModule implements Router {
 
-    private static Activity mActivity;
+    private Activity mActivity;
 
     public LedgeBaseModule(Activity activity) {
         mActivity = activity;

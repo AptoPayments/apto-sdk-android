@@ -2,21 +2,27 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.app.Activity;
 
+import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
+import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
+import me.ledge.link.sdk.ui.presenters.offers.OffersListDelegate;
 
 /**
  * Created by adrian on 29/12/2016.
  */
 
 public class LoanApplicationModule extends LedgeBaseModule
-        implements IntermediateLoanApplicationDelegate, AddDocumentsListDelegate, LoanAgreementDelegate {
+        implements IntermediateLoanApplicationDelegate, AddDocumentsListDelegate,
+        LoanAgreementDelegate, OffersListDelegate {
     private static LoanApplicationModule mInstance;
+    public Command onUpdateUserProfile;
+    public Command onBack;
 
     public static synchronized LoanApplicationModule getInstance(Activity activity) {
         if (mInstance == null) {
@@ -31,7 +37,7 @@ public class LoanApplicationModule extends LedgeBaseModule
 
     @Override
     public void initialModuleSetup() {
-        startActivity(IntermediateLoanApplicationActivity.class);
+        startActivity(OffersListActivity.class);
     }
 
     @Override
@@ -67,6 +73,20 @@ public class LoanApplicationModule extends LedgeBaseModule
     @Override
     public void showPrevious(LoanAgreementModel model) {
         startPreviousActivity(model);
+    }
+
+    public void onUpdateUserProfile() {
+        onUpdateUserProfile.execute();
+    }
+
+    @Override
+    public void onBackPressed() {
+        onBack.execute();
+    }
+
+    @Override
+    public void onApplicationReceived() {
+        startActivity(IntermediateLoanApplicationActivity.class);
     }
 
     private void startNextActivity(ActivityModel model) {

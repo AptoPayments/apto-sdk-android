@@ -84,7 +84,7 @@ public class LoanApplicationsListPresenter
 
     @Override
     public void onBack() {
-        mActivity.onBackPressed();
+        mActivity.finish();
     }
 
     /** {@inheritDoc} */
