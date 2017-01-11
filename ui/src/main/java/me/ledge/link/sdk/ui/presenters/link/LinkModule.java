@@ -26,7 +26,7 @@ public class LinkModule extends LedgeBaseModule {
     private void showLinkDisclaimers() {
         TermsModule mTermsModule = TermsModule.getInstance(this.getActivity());
         mTermsModule.onFinish = this::showLoanInfo;
-        mTermsModule.onBack = () -> this.getActivity().finish();
+        mTermsModule.onBack = this::showHomeActivity;
         startModule(mTermsModule);
     }
 
@@ -55,5 +55,9 @@ public class LinkModule extends LedgeBaseModule {
     private void showLoanApplication() {
         LoanApplicationModule mLoanApplicationModule = LoanApplicationModule.getInstance(this.getActivity());
         startModule(mLoanApplicationModule);
+    }
+
+    private void showHomeActivity() {
+        startActivity(this.getActivity().getClass());
     }
 }

@@ -60,6 +60,11 @@ public class PersonalInformationPresenter
         mView.setListener(this);
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.personalInformationOnBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -86,10 +91,5 @@ public class PersonalInformationPresenter
             saveData();
             mDelegate.personalInformationStored();
         }
-    }
-
-    @Override
-    public void stepperBackClickHandler() {
-        mDelegate.personalInformationOnBackPressed();
     }
 }

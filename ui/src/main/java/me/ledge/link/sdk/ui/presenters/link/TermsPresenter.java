@@ -65,6 +65,11 @@ public class TermsPresenter
         }
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.termsOnBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -98,10 +103,5 @@ public class TermsPresenter
             saveData();
             mDelegate.termsPresented();
         }
-    }
-
-    @Override
-    public void stepperBackClickHandler() {
-        mDelegate.termsOnBackPressed();
     }
 }

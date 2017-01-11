@@ -64,6 +64,11 @@ public class EmailVerificationPresenter
         mResponseHandler.subscribe(this);
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.emailOnBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -163,11 +168,5 @@ public class EmailVerificationPresenter
     private void displayWrongCodeMessage() {
         String message = mActivity.getString(R.string.email_verification_error);
         Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    // TODO: Override for now, remove super later
-    public void stepperBackClickHandler() {
-        mDelegate.emailOnBackPressed();
     }
 }

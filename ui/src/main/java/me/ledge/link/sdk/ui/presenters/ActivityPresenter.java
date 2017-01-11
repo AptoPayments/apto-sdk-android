@@ -57,4 +57,6 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
         mActivity.setTitle(mModel.getActivityTitleResource());
         setupToolbar();
     }
+
+    public abstract void onBack();
 }

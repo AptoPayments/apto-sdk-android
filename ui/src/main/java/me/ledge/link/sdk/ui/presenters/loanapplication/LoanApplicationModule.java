@@ -41,7 +41,7 @@ public class LoanApplicationModule extends LedgeBaseModule
 
     @Override
     public void showPrevious(IntermediateLoanApplicationModel model) {
-        startActivity(model.getPreviousActivity(this.getActivity()));
+        startPreviousActivity(model);
     }
 
     @Override
@@ -55,11 +55,25 @@ public class LoanApplicationModule extends LedgeBaseModule
     }
 
     @Override
+    public void showPrevious(AddDocumentsListModel model) {
+        startPreviousActivity(model);
+    }
+
+    @Override
     public void showNext(LoanAgreementModel model) {
         startNextActivity(model);
     }
 
+    @Override
+    public void showPrevious(LoanAgreementModel model) {
+        startPreviousActivity(model);
+    }
+
     private void startNextActivity(ActivityModel model) {
         startActivity(model.getNextActivity(this.getActivity()));
+    }
+
+    private void startPreviousActivity(ActivityModel model) {
+        startActivity(model.getPreviousActivity(this.getActivity()));
     }
 }

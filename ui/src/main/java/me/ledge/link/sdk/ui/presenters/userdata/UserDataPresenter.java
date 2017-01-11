@@ -77,6 +77,12 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
         nextClickHandler();
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void stepperBackClickHandler() {
+        this.onBack();
+    }
+
     /**
      * Deals with an API error.
      * @param error API error.

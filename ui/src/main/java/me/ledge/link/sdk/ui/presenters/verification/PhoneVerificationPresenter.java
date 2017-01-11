@@ -59,6 +59,11 @@ public class PhoneVerificationPresenter
         mResponseHandler.subscribe(this);
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.phoneVerificationOnBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -145,11 +150,5 @@ public class PhoneVerificationPresenter
         String message = mActivity.getString(R.string.phone_verification_error);
         Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
         mView.clearPinView();
-    }
-
-    @Override
-    // TODO: Override for now, remove super later
-    public void stepperBackClickHandler() {
-        mDelegate.phoneVerificationOnBackPressed();
     }
 }

@@ -120,6 +120,11 @@ public class AddressPresenter
         mView.setListener(this);
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.addressOnBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -194,10 +199,5 @@ public class AddressPresenter
                 mView.setHousingType(mHousingTypeAdapter.getPosition(mModel.getHousingType()));
             }
         }
-    }
-
-    @Override
-    public void stepperBackClickHandler() {
-        mDelegate.addressOnBackPressed();
     }
 }

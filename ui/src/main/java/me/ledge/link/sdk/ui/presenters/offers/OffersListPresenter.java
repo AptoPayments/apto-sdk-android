@@ -131,6 +131,11 @@ public class OffersListPresenter
         reloadOffers();
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.onBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -310,8 +315,6 @@ public class OffersListPresenter
             reloadOffers();
         }  else if (id == R.id.menu_info) {
             showInfo();
-        } else if (id == android.R.id.home) {
-            mDelegate.onBackPressed();
         } else {
             handled = false;
         }

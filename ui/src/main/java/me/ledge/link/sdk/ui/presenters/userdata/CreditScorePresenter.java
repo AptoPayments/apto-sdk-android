@@ -98,6 +98,11 @@ public class CreditScorePresenter
         mView.setScoreRangeId(getCreditScoreRangeId());
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.creditScoreOnBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -115,10 +120,5 @@ public class CreditScorePresenter
             saveData();
             mDelegate.creditScoreStored();
         }
-    }
-
-    @Override
-    public void stepperBackClickHandler() {
-        mDelegate.creditScoreOnBackPressed();
     }
 }

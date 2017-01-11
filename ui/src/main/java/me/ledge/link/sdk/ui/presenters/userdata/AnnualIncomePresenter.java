@@ -152,6 +152,11 @@ public class AnnualIncomePresenter
         }
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.annualIncomeOnBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -254,10 +259,5 @@ public class AnnualIncomePresenter
 
     private boolean isSalaryFrequencyPresent(ConfigResponseVo response) {
         return response!=null && response.salaryFrequencyOpts!=null;
-    }
-
-    @Override
-    public void stepperBackClickHandler() {
-        mDelegate.annualIncomeOnBackPressed();
     }
 }

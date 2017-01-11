@@ -165,6 +165,11 @@ public class AddDocumentsListPresenter
         mBehavior = BottomSheetBehavior.from(mView.getBottomSheet());
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.showPrevious(mModel);
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {

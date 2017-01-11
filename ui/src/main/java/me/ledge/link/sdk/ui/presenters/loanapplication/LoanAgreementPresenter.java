@@ -61,6 +61,11 @@ public class LoanAgreementPresenter
         mNotificationDialog.setMessage(mActivity.getString(R.string.loan_agreement_terms_dialog_message));
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.showPrevious(mModel);
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {

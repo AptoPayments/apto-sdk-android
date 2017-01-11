@@ -99,6 +99,11 @@ public class IdentityVerificationPresenter
         }
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.identityVerificationOnBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -221,9 +226,4 @@ public class IdentityVerificationPresenter
         Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
     }
 
-    // TODO: Override for now, remove super later
-    @Override
-    public void stepperBackClickHandler() {
-        mDelegate.identityVerificationOnBackPressed();
-    }
 }

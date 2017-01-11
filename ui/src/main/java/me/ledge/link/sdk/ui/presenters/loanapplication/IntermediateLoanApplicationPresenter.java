@@ -122,6 +122,11 @@ public class IntermediateLoanApplicationPresenter
         mView.setListener(this);
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.showPrevious(mModel);
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {

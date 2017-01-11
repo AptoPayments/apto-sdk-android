@@ -119,6 +119,11 @@ public class LoanAmountPresenter
         }
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.loanDataOnBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -138,12 +143,6 @@ public class LoanAmountPresenter
             saveData();
             mDelegate.loanDataPresented();
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void stepperBackClickHandler() {
-        mDelegate.loanDataOnBackPressed();
     }
 
     /** {@inheritDoc} */

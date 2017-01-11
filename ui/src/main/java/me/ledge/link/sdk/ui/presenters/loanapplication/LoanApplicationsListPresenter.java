@@ -82,6 +82,11 @@ public class LoanApplicationsListPresenter
         LedgeLinkUi.getLoanApplicationsList(new ListRequestVo());
     }
 
+    @Override
+    public void onBack() {
+        mActivity.onBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {

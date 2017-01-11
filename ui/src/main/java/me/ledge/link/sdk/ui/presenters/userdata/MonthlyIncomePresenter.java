@@ -79,6 +79,11 @@ public class MonthlyIncomePresenter
         mView.setIncome(mModel.getMonthlyIncome() / mIncomeMultiplier);
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.monthlyIncomeOnBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -110,8 +115,4 @@ public class MonthlyIncomePresenter
     @Override
     public void onStopTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
 
-    @Override
-    public void stepperBackClickHandler() {
-        mDelegate.monthlyIncomeOnBackPressed();
-    }
 }
