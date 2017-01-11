@@ -5,6 +5,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanAgreementPresenter;
+import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.views.loanapplication.LoanAgreementView;
 
 /**
@@ -22,6 +23,6 @@ public class LoanAgreementActivity extends MvpActivity<LoanAgreementModel, LoanA
     /** {@inheritDoc} */
     @Override
     protected LoanAgreementPresenter createPresenter() {
-        return new LoanAgreementPresenter(this);
+        return new LoanAgreementPresenter(this, LoanApplicationModule.getInstance(this));
     }
 }

@@ -17,7 +17,7 @@ public abstract class LedgeBaseModule implements Router {
 
     public abstract void initialModuleSetup();
 
-    public void startModule(LedgeBaseModule module) {
+    protected void startModule(LedgeBaseModule module) {
         module.initialModuleSetup();
     }
 

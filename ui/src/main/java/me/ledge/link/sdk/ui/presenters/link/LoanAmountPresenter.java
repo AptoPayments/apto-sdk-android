@@ -72,7 +72,7 @@ public class LoanAmountPresenter
     /** {@inheritDoc} */
     @Override
     protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 1, true, true);
+        return new StepperConfiguration(TOTAL_STEPS, 0, true, true);
     }
 
     /** {@inheritDoc} */
@@ -134,8 +134,10 @@ public class LoanAmountPresenter
         mModel.setLoanPurpose(mView.getPurpose());
 
         mView.updatePurposeError(!mModel.hasValidLoanPurpose());
-        super.nextClickHandler();
-        mDelegate.loanDataPresented();
+        if (mModel.hasAllData()) {
+            saveData();
+            mDelegate.loanDataPresented();
+        }
     }
 
     /** {@inheritDoc} */

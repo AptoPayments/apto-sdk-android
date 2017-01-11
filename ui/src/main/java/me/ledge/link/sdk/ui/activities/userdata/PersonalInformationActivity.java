@@ -1,10 +1,11 @@
 package me.ledge.link.sdk.ui.activities.userdata;
 
 import android.view.View;
+
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
 import me.ledge.link.sdk.ui.presenters.userdata.PersonalInformationPresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.views.userdata.PersonalInformationView;
 
 /**
@@ -23,6 +24,6 @@ public class PersonalInformationActivity
     /** {@inheritDoc} */
     @Override
     protected PersonalInformationPresenter createPresenter() {
-        return new PersonalInformationPresenter(this);
+        return new PersonalInformationPresenter(this, UserDataCollectorModule.getInstance(this));
     }
 }

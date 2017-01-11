@@ -6,6 +6,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
 import me.ledge.link.sdk.ui.presenters.loanapplication.AddDocumentsListPresenter;
+import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.views.loanapplication.AddDocumentsListView;
 
 /**
@@ -24,7 +25,7 @@ public class AddDocumentsListActivity
     /** {@inheritDoc} */
     @Override
     protected AddDocumentsListPresenter createPresenter() {
-        return new AddDocumentsListPresenter(this);
+        return new AddDocumentsListPresenter(this, LoanApplicationModule.getInstance(this));
     }
 
     /** {@inheritDoc} */

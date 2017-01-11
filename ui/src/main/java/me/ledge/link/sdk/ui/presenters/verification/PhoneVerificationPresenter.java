@@ -41,7 +41,7 @@ public class PhoneVerificationPresenter
     /** {@inheritDoc} */
     @Override
     protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 3, true, true);
+        return new StepperConfiguration(TOTAL_STEPS, 2, true, true);
     }
 
     /** {@inheritDoc} */
@@ -150,6 +150,6 @@ public class PhoneVerificationPresenter
     @Override
     // TODO: Override for now, remove super later
     public void stepperBackClickHandler() {
-        mDelegate.phoneOnBackPressed();
+        mDelegate.phoneVerificationOnBackPressed();
     }
 }

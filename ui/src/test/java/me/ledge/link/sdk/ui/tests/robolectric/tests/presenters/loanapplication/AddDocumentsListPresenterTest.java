@@ -12,6 +12,7 @@ import me.ledge.link.sdk.ui.models.loanapplication.documents.AddOtherDocumentMod
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddPhotoIdModel;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddProofOfAddressModel;
 import me.ledge.link.sdk.ui.presenters.loanapplication.AddDocumentsListPresenter;
+import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
 import org.junit.After;
 import org.junit.Assert;
@@ -41,7 +42,7 @@ public class AddDocumentsListPresenterTest {
      * Creates the {@link AddDocumentsListPresenter}.
      */
     private void createPresenter() {
-        mPresenter = new AddDocumentsListPresenter(mActivity);
+        mPresenter = new AddDocumentsListPresenter(mActivity, LoanApplicationModule.getInstance(mActivity));
     }
 
     /**

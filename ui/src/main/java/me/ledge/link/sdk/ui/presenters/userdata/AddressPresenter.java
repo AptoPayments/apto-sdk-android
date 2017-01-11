@@ -28,14 +28,16 @@ public class AddressPresenter
 
     private Usa mStates;
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mHousingTypeAdapter;
+    private AddressDelegate mDelegate;
 
     /**
      * Creates a new {@link AddressPresenter} instance.
      * @param activity Activity.
      */
-    public AddressPresenter(AppCompatActivity activity) {
+    public AddressPresenter(AppCompatActivity activity, AddressDelegate delegate) {
         super(activity);
         createStates();
+        mDelegate = delegate;
     }
 
     /**
@@ -150,7 +152,10 @@ public class AddressPresenter
         mView.updateZipError(!mModel.hasValidZip(), R.string.address_zip_code_error);
         mView.updateHousingTypeError(!mModel.hasValidHousingType());
 
-        super.nextClickHandler();
+        if (mModel.hasAllData()) {
+            saveData();
+            mDelegate.addressStored();
+        }
     }
 
     /** {@inheritDoc} */
@@ -189,5 +194,10 @@ public class AddressPresenter
                 mView.setHousingType(mHousingTypeAdapter.getPosition(mModel.getHousingType()));
             }
         }
+    }
+
+    @Override
+    public void stepperBackClickHandler() {
+        mDelegate.addressOnBackPressed();
     }
 }

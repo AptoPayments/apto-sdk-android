@@ -310,15 +310,12 @@ public class OffersListPresenter
             reloadOffers();
         }  else if (id == R.id.menu_info) {
             showInfo();
+        } else if (id == android.R.id.home) {
+            mDelegate.onBackPressed();
         } else {
             handled = false;
         }
 
         return handled;
-    }
-
-    @Override
-    public void startPreviousActivity() {
-        mDelegate.onBackPressed();
     }
 }

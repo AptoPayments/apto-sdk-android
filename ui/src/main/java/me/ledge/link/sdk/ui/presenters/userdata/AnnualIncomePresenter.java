@@ -27,6 +27,7 @@ public class AnnualIncomePresenter
 
     private int mIncomeMultiplier;
     private int mMaxIncome;
+    private AnnualIncomeDelegate mDelegate;
 
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mEmploymentStatusesAdapter;
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mSalaryFrequenciesAdapter;
@@ -35,8 +36,9 @@ public class AnnualIncomePresenter
      * Creates a new {@link AnnualIncomePresenter} instance.
      * @param activity Activity.
      */
-    public AnnualIncomePresenter(AppCompatActivity activity) {
+    public AnnualIncomePresenter(AppCompatActivity activity, AnnualIncomeDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /**
@@ -167,7 +169,10 @@ public class AnnualIncomePresenter
 
         mView.updateEmploymentStatusError(!mModel.hasValidEmploymentStatus());
         mView.updateSalaryFrequencyError(!mModel.hasValidSalaryFrequency());
-        super.nextClickHandler();
+        if (mModel.hasAllData()) {
+            saveData();
+            mDelegate.annualIncomeStored();
+        }
     }
 
     /** {@inheritDoc} */
@@ -249,5 +254,10 @@ public class AnnualIncomePresenter
 
     private boolean isSalaryFrequencyPresent(ConfigResponseVo response) {
         return response!=null && response.salaryFrequencyOpts!=null;
+    }
+
+    @Override
+    public void stepperBackClickHandler() {
+        mDelegate.annualIncomeOnBackPressed();
     }
 }

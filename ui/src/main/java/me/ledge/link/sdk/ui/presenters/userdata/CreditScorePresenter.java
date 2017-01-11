@@ -19,13 +19,15 @@ public class CreditScorePresenter
 
     private HashMap<Integer, Integer> mIdToRangeMap;
     private HashMap<Integer, Integer> mRangeToIdMap;
+    private CreditScoreDelegate mDelegate;
 
     /**
      * Creates a new {@link CreditScorePresenter} instance.
      * @param activity Activity.
      */
-    public CreditScorePresenter(AppCompatActivity activity) {
+    public CreditScorePresenter(AppCompatActivity activity, CreditScoreDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /** {@inheritDoc} */
@@ -109,6 +111,14 @@ public class CreditScorePresenter
         mModel.setCreditScoreRange(getCreditScoreRange());
         mView.showError(!mModel.hasAllData());
 
-        super.nextClickHandler();
+        if (mModel.hasAllData()) {
+            saveData();
+            mDelegate.creditScoreStored();
+        }
+    }
+
+    @Override
+    public void stepperBackClickHandler() {
+        mDelegate.creditScoreOnBackPressed();
     }
 }

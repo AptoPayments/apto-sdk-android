@@ -4,6 +4,7 @@ import android.view.View;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.CreditScoreModel;
 import me.ledge.link.sdk.ui.presenters.userdata.CreditScorePresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.views.userdata.CreditScoreView;
 
 /**
@@ -21,6 +22,6 @@ public class CreditScoreActivity extends UserDataActivity<CreditScoreModel, Cred
     /** {@inheritDoc} */
     @Override
     protected CreditScorePresenter createPresenter() {
-        return new CreditScorePresenter(this);
+        return new CreditScorePresenter(this, UserDataCollectorModule.getInstance(this));
     }
 }

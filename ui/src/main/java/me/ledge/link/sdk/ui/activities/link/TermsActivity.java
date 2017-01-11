@@ -1,9 +1,11 @@
 package me.ledge.link.sdk.ui.activities.link;
 
 import android.view.View;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.UserDataActivity;
 import me.ledge.link.sdk.ui.models.link.TermsModel;
+import me.ledge.link.sdk.ui.presenters.link.TermsModule;
 import me.ledge.link.sdk.ui.presenters.link.TermsPresenter;
 import me.ledge.link.sdk.ui.views.userdata.TermsView;
 
@@ -22,6 +24,6 @@ public class TermsActivity extends UserDataActivity<TermsModel, TermsView, Terms
     /** {@inheritDoc} */
     @Override
     protected TermsPresenter createPresenter() {
-        return new TermsPresenter(this);
+        return new TermsPresenter(this, TermsModule.getInstance(this));
     }
 }

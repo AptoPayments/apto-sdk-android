@@ -16,18 +16,21 @@ public class PersonalInformationPresenter
         extends UserDataPresenter<PersonalInformationModel, PersonalInformationView>
         implements PersonalInformationView.ViewListener {
 
+    private PersonalInformationDelegate mDelegate;
+
     /**
      * Creates a new {@link PersonalInformationPresenter} instance.
      * @param activity Activity.
      */
-    public PersonalInformationPresenter(AppCompatActivity activity) {
+    public PersonalInformationPresenter(AppCompatActivity activity, PersonalInformationDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /** {@inheritDoc} */
     @Override
     protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 2, true, true);
+        return new StepperConfiguration(TOTAL_STEPS, 1, true, true);
     }
 
     /** {@inheritDoc} */
@@ -79,7 +82,14 @@ public class PersonalInformationPresenter
         mView.updateEmailError(!mModel.hasEmail(), R.string.personal_info_email_error);
         mView.updatePhoneError(!mModel.hasPhone(), R.string.personal_info_phone_error);
 
-        // TODO: start phone verification only if enabled
-        super.nextClickHandler();
+        if (mModel.hasAllData()) {
+            saveData();
+            mDelegate.personalInformationStored();
+        }
+    }
+
+    @Override
+    public void stepperBackClickHandler() {
+        mDelegate.personalInformationOnBackPressed();
     }
 }

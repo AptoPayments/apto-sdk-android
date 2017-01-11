@@ -14,6 +14,7 @@ import me.ledge.link.sdk.ui.models.loanapplication.PendingLenderActionModel;
 import me.ledge.link.sdk.ui.models.loanapplication.PreApprovedLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.RejectedLoanApplicationModel;
 import me.ledge.link.sdk.ui.presenters.loanapplication.IntermediateLoanApplicationPresenter;
+import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
 import org.junit.After;
 import org.junit.Assert;
@@ -68,7 +69,7 @@ public class IntermediateLoanApplicationPresenterTest {
     @Before
     public void setUp() {
         AppCompatActivity activity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
-        mPresenter = new IntermediateLoanApplicationPresenter(activity);
+        mPresenter = new IntermediateLoanApplicationPresenter(activity, LoanApplicationModule.getInstance(activity));
     }
 
     /**

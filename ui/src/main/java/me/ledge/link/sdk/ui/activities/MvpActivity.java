@@ -64,7 +64,7 @@ public abstract class MvpActivity<M extends ActivityModel, V extends View & View
     /** {@inheritDoc} */
     @Override
     public void onBackPressed() {
-        mPresenter.startPreviousActivity();
+        this.finish();
     }
 
     /** {@inheritDoc} */
@@ -74,7 +74,7 @@ public abstract class MvpActivity<M extends ActivityModel, V extends View & View
 
         switch (item.getItemId()) {
             case android.R.id.home:
-                mPresenter.startPreviousActivity();
+                this.finish();
                 break;
             default:
                 handled = false;

@@ -1,10 +1,12 @@
 package me.ledge.link.sdk.ui.activities.loanapplication;
 
 import android.view.View;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.presenters.loanapplication.IntermediateLoanApplicationPresenter;
+import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.views.loanapplication.IntermediateLoanApplicationView;
 
 /**
@@ -23,6 +25,6 @@ public class IntermediateLoanApplicationActivity
     /** {@inheritDoc} */
     @Override
     protected IntermediateLoanApplicationPresenter createPresenter() {
-        return new IntermediateLoanApplicationPresenter(this);
+        return new IntermediateLoanApplicationPresenter(this, LoanApplicationModule.getInstance(this));
     }
 }

@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui.presenters.link;
 import android.app.Activity;
 
 import me.ledge.link.sdk.ui.LedgeBaseModule;
+import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.offers.OffersListModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 
@@ -12,35 +13,47 @@ import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 
 public class LinkModule extends LedgeBaseModule {
 
-    private LoanInfoModule mLoanInfoModule;
-    private UserDataCollectorModule mUserDataCollectorModule;
-    private OffersListModule mOffersListModule;
-
     public LinkModule(Activity activity) {
         super(activity);
     }
 
     @Override
     public void initialModuleSetup() {
-        showLoanInfo();
+        // TODO: link disclaimers should be optional
+        showLinkDisclaimers();
     }
 
-    public void showLoanInfo() {
-        mLoanInfoModule = LoanInfoModule.getInstance(this.getActivity());
+    private void showLinkDisclaimers() {
+        TermsModule mTermsModule = TermsModule.getInstance(this.getActivity());
+        mTermsModule.onFinish = this::showLoanInfo;
+        mTermsModule.onBack = () -> this.getActivity().finish();
+        startModule(mTermsModule);
+    }
+
+    private void showLoanInfo() {
+        LoanInfoModule mLoanInfoModule = LoanInfoModule.getInstance(this.getActivity());
         mLoanInfoModule.onFinish = this::showUserDataCollector;
+        mLoanInfoModule.onBack = this::showLinkDisclaimers;
         startModule(mLoanInfoModule);
     }
 
-    public void showUserDataCollector() {
-        mUserDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
+    private void showUserDataCollector() {
+        UserDataCollectorModule mUserDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         mUserDataCollectorModule.onFinish = this::showOffersList;
+        mUserDataCollectorModule.onBack = this::showLoanInfo;
         startModule(mUserDataCollectorModule);
     }
 
-    public void showOffersList() {
-        mOffersListModule = OffersListModule.getInstance(this.getActivity());
+    private void showOffersList() {
+        OffersListModule mOffersListModule = OffersListModule.getInstance(this.getActivity());
         mOffersListModule.onUpdateUserProfile = this::showUserDataCollector;
         mOffersListModule.onBack = this::showLoanInfo;
+        mOffersListModule.onApplicationReceived = this::showLoanApplication;
         startModule(mOffersListModule);
+    }
+
+    private void showLoanApplication() {
+        LoanApplicationModule mLoanApplicationModule = LoanApplicationModule.getInstance(this.getActivity());
+        startModule(mLoanApplicationModule);
     }
 }

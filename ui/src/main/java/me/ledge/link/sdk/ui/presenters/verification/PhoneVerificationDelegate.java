@@ -10,5 +10,5 @@ import me.ledge.link.api.vos.DataPointVo;
 public interface PhoneVerificationDelegate {
 
     void phoneVerificationSucceeded(DataPointVo phone);
-    void phoneOnBackPressed();
+    void phoneVerificationOnBackPressed();
 }

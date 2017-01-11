@@ -39,13 +39,15 @@ public class AddDocumentsListPresenter
     private AndroidUtils mUtil;
     private BottomSheetBehavior mBehavior;
     private AddDocumentModel mTargetModel;
+    private AddDocumentsListDelegate mDelegate;
 
     /**
      * Creates a new {@link AddDocumentsListPresenter} instance.
      * @param activity Activity.
      */
-    public AddDocumentsListPresenter(AppCompatActivity activity) {
+    public AddDocumentsListPresenter(AppCompatActivity activity, AddDocumentsListDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /** {@inheritDoc} */
@@ -228,6 +230,6 @@ public class AddDocumentsListPresenter
     /** {@inheritDoc} */
     @Override
     public void doneClickHandler() {
-        startNextActivity();
+        mDelegate.showNext(mModel);
     }
 }

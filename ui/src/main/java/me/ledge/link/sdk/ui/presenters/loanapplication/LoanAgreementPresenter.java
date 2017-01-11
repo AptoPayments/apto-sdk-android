@@ -23,13 +23,15 @@ public class LoanAgreementPresenter
         implements Presenter<LoanAgreementModel, LoanAgreementView>, LoanAgreementView.ViewListener {
 
     private NotificationDialogFragment mNotificationDialog;
+    private LoanAgreementDelegate mDelegate;
 
     /**
      * Creates a new {@link LoanAgreementPresenter} instance.
      * @param activity Activity.
      */
-    public LoanAgreementPresenter(AppCompatActivity activity) {
+    public LoanAgreementPresenter(AppCompatActivity activity, LoanAgreementDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /** {@inheritDoc} */
@@ -100,7 +102,7 @@ public class LoanAgreementPresenter
                 application.status_message = String.format(
                         "Your loan with %s is being funded.", application.offer.lender.lender_name);
 
-                startNextActivity();
+                mDelegate.showNext(mModel);
             } else {
                 mNotificationDialog.show(mActivity.getFragmentManager(), NotificationDialogFragment.DIALOG_TAG);
             }

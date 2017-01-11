@@ -4,6 +4,7 @@ import android.view.View;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.MonthlyIncomeModel;
 import me.ledge.link.sdk.ui.presenters.userdata.MonthlyIncomePresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.views.userdata.MonthlyIncomeView;
 
 /**
@@ -22,6 +23,6 @@ public class MonthlyIncomeActivity
     /** {@inheritDoc} */
     @Override
     protected MonthlyIncomePresenter createPresenter() {
-        return new MonthlyIncomePresenter(this);
+        return new MonthlyIncomePresenter(this, UserDataCollectorModule.getInstance(this));
     }
 }

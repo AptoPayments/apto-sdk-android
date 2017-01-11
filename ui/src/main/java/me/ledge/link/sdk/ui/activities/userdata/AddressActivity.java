@@ -1,10 +1,11 @@
 package me.ledge.link.sdk.ui.activities.userdata;
 
 import android.view.View;
+
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.userdata.AddressModel;
 import me.ledge.link.sdk.ui.presenters.userdata.AddressPresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.views.userdata.AddressView;
 
 /**
@@ -23,6 +24,6 @@ public class AddressActivity
     /** {@inheritDoc} */
     @Override
     protected AddressPresenter createPresenter() {
-        return new AddressPresenter(this);
+        return new AddressPresenter(this, UserDataCollectorModule.getInstance(this));
     }
 }

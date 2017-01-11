@@ -21,13 +21,15 @@ public class TermsPresenter
         implements Presenter<TermsModel, TermsView>, TermsView.ViewListener {
 
     private String mTermsText;
+    private TermsDelegate mDelegate;
 
     /**
      * Creates a new {@link TermsPresenter} instance.
      * @param activity Activity.
      */
-    public TermsPresenter(AppCompatActivity activity) {
+    public TermsPresenter(AppCompatActivity activity, TermsDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /** {@inheritDoc} */
@@ -87,5 +89,19 @@ public class TermsPresenter
 
     private boolean isDisclaimerPresent(DisclaimerResponseVo response) {
         return response!=null && response.linkDisclaimer!=null;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void nextClickHandler() {
+        if (mModel.hasAllData()) {
+            saveData();
+            mDelegate.termsPresented();
+        }
+    }
+
+    @Override
+    public void stepperBackClickHandler() {
+        mDelegate.termsOnBackPressed();
     }
 }

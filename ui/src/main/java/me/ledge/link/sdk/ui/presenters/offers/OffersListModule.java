@@ -2,9 +2,8 @@ package me.ledge.link.sdk.ui.presenters.offers;
 
 import android.app.Activity;
 
-import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.Command;
-import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
+import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 
 /**
@@ -15,6 +14,7 @@ public class OffersListModule extends LedgeBaseModule implements OffersListDeleg
     private static OffersListModule mInstance;
     public Command onUpdateUserProfile;
     public Command onBack;
+    public Command onApplicationReceived;
 
     public static synchronized  OffersListModule getInstance(Activity activity) {
         if (mInstance == null) {
@@ -44,6 +44,6 @@ public class OffersListModule extends LedgeBaseModule implements OffersListDeleg
 
     @Override
     public void onApplicationReceived() {
-        startActivity(IntermediateLoanApplicationActivity.class);
+        onApplicationReceived.execute();
     }
 }

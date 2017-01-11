@@ -1,12 +1,14 @@
 package me.ledge.link.sdk.ui.mocks.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+
+import me.ledge.link.sdk.ui.presenters.userdata.MonthlyIncomeDelegate;
 import me.ledge.link.sdk.ui.presenters.userdata.MonthlyIncomePresenter;
 
 public class MockMonthlyIncomePresenter extends MonthlyIncomePresenter {
 
-    public MockMonthlyIncomePresenter(AppCompatActivity activity) {
-        super(activity);
+    public MockMonthlyIncomePresenter(AppCompatActivity activity, MonthlyIncomeDelegate delegate) {
+        super(activity, delegate);
     }
 
     @Override
@@ -14,8 +16,4 @@ public class MockMonthlyIncomePresenter extends MonthlyIncomePresenter {
         // Do nothing.
     }
 
-    @Override
-    public void startNextActivity() {
-        // Do nothing.
-    }
 }

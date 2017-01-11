@@ -23,13 +23,15 @@ public class MonthlyIncomePresenter
         implements MonthlyIncomeView.ViewListener {
 
     private int mIncomeMultiplier;
+    private MonthlyIncomeDelegate mDelegate;
 
     /**
      * Creates a new {@link AnnualIncomePresenter} instance.
      * @param activity Activity.
      */
-    public MonthlyIncomePresenter(AppCompatActivity activity) {
+    public MonthlyIncomePresenter(AppCompatActivity activity, MonthlyIncomeDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /** {@inheritDoc} */
@@ -88,7 +90,10 @@ public class MonthlyIncomePresenter
     @Override
     public void nextClickHandler() {
         mModel.setMonthlyIncome(mView.getIncome() * mIncomeMultiplier);
-        super.nextClickHandler();
+        if (mModel.hasAllData()) {
+            saveData();
+            mDelegate.monthlyIncomeStored();
+        }
     }
 
     /** {@inheritDoc} */
@@ -104,4 +109,9 @@ public class MonthlyIncomePresenter
     /** {@inheritDoc} */
     @Override
     public void onStopTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
+
+    @Override
+    public void stepperBackClickHandler() {
+        mDelegate.monthlyIncomeOnBackPressed();
+    }
 }

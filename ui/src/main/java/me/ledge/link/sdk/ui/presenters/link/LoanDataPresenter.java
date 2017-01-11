@@ -20,7 +20,7 @@ public abstract class LoanDataPresenter<M extends LoanDataModel, V extends UserD
         extends ActivityPresenter<M, V>
         implements StepperListener, NextButtonListener {
 
-    protected static final int TOTAL_STEPS = 9;
+    protected static final int TOTAL_STEPS = 8;
 
     /**
      * Creates a new {@link LoanDataPresenter} instance.
@@ -67,20 +67,6 @@ public abstract class LoanDataPresenter<M extends LoanDataModel, V extends UserD
     public void attachView(V view) {
         super.attachView(view);
         mView.setStepperConfiguration(getStepperConfig());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void nextClickHandler() {
-        if (mModel.hasAllData()) {
-            saveData();
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void stepperBackClickHandler() {
-        startPreviousActivity();
     }
 
     /** {@inheritDoc} */
