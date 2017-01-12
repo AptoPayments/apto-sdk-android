@@ -15,7 +15,7 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
         extends BasePresenter<M, V> {
 
     protected final AppCompatActivity mActivity;
-    protected ActionBar mActionBar;
+    private ActionBar mActionBar;
 
     /**
      * Creates a new {@link ActivityPresenter} instance.

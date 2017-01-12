@@ -80,7 +80,7 @@ public class LoanApplicationModule extends LedgeBaseModule
     }
 
     @Override
-    public void onBackPressed() {
+    public void onOffersListBackPressed() {
         onBack.execute();
     }
 

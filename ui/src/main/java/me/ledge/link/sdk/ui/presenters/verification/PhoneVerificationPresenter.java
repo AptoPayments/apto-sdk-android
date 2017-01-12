@@ -117,7 +117,6 @@ public class PhoneVerificationPresenter
             phone.getVerification().setVerificationStatus(response.status);
             if(!phone.getVerification().isVerified()) {
                 displayWrongCodeMessage();
-                return;
             }
             else {
                 phone.getVerification().setAlternateCredentials(response.alternate_credentials.data);

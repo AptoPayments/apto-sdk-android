@@ -133,7 +133,7 @@ public class OffersListPresenter
 
     @Override
     public void onBack() {
-        mDelegate.onBackPressed();
+        mDelegate.onOffersListBackPressed();
     }
 
     /** {@inheritDoc} */
