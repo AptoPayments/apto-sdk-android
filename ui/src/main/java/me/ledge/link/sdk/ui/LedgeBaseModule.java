@@ -3,11 +3,15 @@ package me.ledge.link.sdk.ui;
 import android.app.Activity;
 import android.content.Intent;
 
+import java.lang.ref.WeakReference;
+
+import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
+
 /**
  * Created by adrian on 29/12/2016.
  */
 
-public abstract class LedgeBaseModule implements Router {
+public abstract class LedgeBaseModule implements Router, BaseDelegate {
 
     private Activity mActivity;
 
@@ -18,6 +22,8 @@ public abstract class LedgeBaseModule implements Router {
     public abstract void initialModuleSetup();
 
     protected void startModule(LedgeBaseModule module) {
+        WeakReference<LedgeBaseModule> moduleWeakReference = new WeakReference<LedgeBaseModule>(module);
+        ModuleManager.getInstance().setModule(moduleWeakReference);
         module.initialModuleSetup();
     }
 

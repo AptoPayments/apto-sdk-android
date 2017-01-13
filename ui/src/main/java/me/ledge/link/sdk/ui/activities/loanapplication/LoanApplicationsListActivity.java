@@ -5,6 +5,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationsListModel;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationsListPresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
 import me.ledge.link.sdk.ui.views.loanapplication.LoanApplicationsListView;
 
 /**
@@ -22,7 +23,7 @@ public class LoanApplicationsListActivity
 
     /** {@inheritDoc} */
     @Override
-    protected LoanApplicationsListPresenter createPresenter() {
+    protected LoanApplicationsListPresenter createPresenter(BaseDelegate delegate) {
         return new LoanApplicationsListPresenter(this);
     }
 }

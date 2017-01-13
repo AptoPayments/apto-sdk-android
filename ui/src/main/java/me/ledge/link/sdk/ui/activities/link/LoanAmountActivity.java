@@ -1,11 +1,13 @@
 package me.ledge.link.sdk.ui.activities.link;
 
 import android.view.View;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.UserDataActivity;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.link.LoanAmountPresenter;
-import me.ledge.link.sdk.ui.presenters.link.LoanInfoModule;
+import me.ledge.link.sdk.ui.presenters.link.LoanDataDelegate;
+import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
 import me.ledge.link.sdk.ui.views.userdata.LoanAmountView;
 
 /**
@@ -23,7 +25,12 @@ public class LoanAmountActivity
 
     /** {@inheritDoc} */
     @Override
-    protected LoanAmountPresenter createPresenter() {
-        return new LoanAmountPresenter(this, LoanInfoModule.getInstance(this));
+    protected LoanAmountPresenter createPresenter(BaseDelegate delegate) {
+        if(delegate instanceof LoanDataDelegate) {
+            return new LoanAmountPresenter(this, (LoanDataDelegate) delegate);
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement LoanDataDelegate!");
+        }
     }
 }

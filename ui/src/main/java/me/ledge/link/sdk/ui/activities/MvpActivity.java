@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
@@ -33,7 +36,7 @@ public abstract class MvpActivity<M extends ActivityModel, V extends View & View
     /**
      * @return New {@link Presenter} instance.
      */
-    protected abstract P createPresenter();
+    protected abstract P createPresenter(BaseDelegate delegate);
 
     /**
      * Creates the {@link View} and {@link Presenter} and wires everything.<br/>
@@ -47,7 +50,7 @@ public abstract class MvpActivity<M extends ActivityModel, V extends View & View
         mView = createView();
         setContentView(mView);
 
-        mPresenter = createPresenter();
+        mPresenter = createPresenter(ModuleManager.getInstance().getCurrentModule());
         mPresenter.attachView(mView);
     }
 

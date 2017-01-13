@@ -5,8 +5,9 @@ import android.view.View;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.UserDataActivity;
 import me.ledge.link.sdk.ui.models.link.TermsModel;
-import me.ledge.link.sdk.ui.presenters.link.TermsModule;
+import me.ledge.link.sdk.ui.presenters.link.TermsDelegate;
 import me.ledge.link.sdk.ui.presenters.link.TermsPresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
 import me.ledge.link.sdk.ui.views.userdata.TermsView;
 
 /**
@@ -23,7 +24,12 @@ public class TermsActivity extends UserDataActivity<TermsModel, TermsView, Terms
 
     /** {@inheritDoc} */
     @Override
-    protected TermsPresenter createPresenter() {
-        return new TermsPresenter(this, TermsModule.getInstance(this));
+    protected TermsPresenter createPresenter(BaseDelegate delegate) {
+        if(delegate instanceof TermsDelegate) {
+            return new TermsPresenter(this, (TermsDelegate) delegate);
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement TermsDelegate!");
+        }
     }
 }

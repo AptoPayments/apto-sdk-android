@@ -4,8 +4,9 @@ import android.view.View;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
+import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
+import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationDelegate;
 import me.ledge.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
-import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 
 /**
@@ -23,7 +24,12 @@ public class IdentityVerificationActivity
 
     /** {@inheritDoc} */
     @Override
-    protected IdentityVerificationPresenter createPresenter() {
-        return new IdentityVerificationPresenter(this, UserDataCollectorModule.getInstance(this));
+    protected IdentityVerificationPresenter createPresenter(BaseDelegate delegate) {
+        if(delegate instanceof IdentityVerificationDelegate) {
+            return new IdentityVerificationPresenter(this, (IdentityVerificationDelegate) delegate);
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement IdentityVerificationDelegate!");
+        }
     }
 }

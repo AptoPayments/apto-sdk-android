@@ -4,8 +4,9 @@ import android.view.View;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AddressModel;
+import me.ledge.link.sdk.ui.presenters.userdata.AddressDelegate;
 import me.ledge.link.sdk.ui.presenters.userdata.AddressPresenter;
-import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
+import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
 import me.ledge.link.sdk.ui.views.userdata.AddressView;
 
 /**
@@ -23,7 +24,12 @@ public class AddressActivity
 
     /** {@inheritDoc} */
     @Override
-    protected AddressPresenter createPresenter() {
-        return new AddressPresenter(this, UserDataCollectorModule.getInstance(this));
+    protected AddressPresenter createPresenter(BaseDelegate delegate) {
+        if(delegate instanceof AddressDelegate) {
+            return new AddressPresenter(this, (AddressDelegate) delegate);
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement AddressDelegate!");
+        }
     }
 }

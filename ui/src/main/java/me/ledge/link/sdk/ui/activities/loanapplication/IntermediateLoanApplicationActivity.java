@@ -5,8 +5,9 @@ import android.view.View;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
+import me.ledge.link.sdk.ui.presenters.loanapplication.IntermediateLoanApplicationDelegate;
 import me.ledge.link.sdk.ui.presenters.loanapplication.IntermediateLoanApplicationPresenter;
-import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
+import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
 import me.ledge.link.sdk.ui.views.loanapplication.IntermediateLoanApplicationView;
 
 /**
@@ -24,7 +25,12 @@ public class IntermediateLoanApplicationActivity
 
     /** {@inheritDoc} */
     @Override
-    protected IntermediateLoanApplicationPresenter createPresenter() {
-        return new IntermediateLoanApplicationPresenter(this, LoanApplicationModule.getInstance(this));
+    protected IntermediateLoanApplicationPresenter createPresenter(BaseDelegate delegate) {
+        if(delegate instanceof IntermediateLoanApplicationDelegate) {
+            return new IntermediateLoanApplicationPresenter(this, (IntermediateLoanApplicationDelegate) delegate);
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement IntermediateLoanApplicationDelegate!");
+        }
     }
 }
