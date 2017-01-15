@@ -1,6 +1,5 @@
 package me.ledge.link.sdk.ui.presenters;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,7 +15,7 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
         extends BasePresenter<M, V> {
 
     protected final AppCompatActivity mActivity;
-    protected ActionBar mActionBar;
+    private ActionBar mActionBar;
 
     /**
      * Creates a new {@link ActivityPresenter} instance.
@@ -51,26 +50,6 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
         }
     }
 
-    /**
-     * Starts another activity.
-     * @param activity The Activity to start.
-     */
-    protected void startActivity(Class activity) {
-        if (activity != null) {
-            mActivity.startActivity(getStartIntent(activity));
-        }
-
-        mActivity.finish();
-    }
-
-    /**
-     * @param activity The Activity to start.
-     * @return The {@link Intent} to use to start the next Activity.
-     */
-    protected Intent getStartIntent(Class activity) {
-        return new Intent(mActivity, activity);
-    }
-
     /** {@inheritDoc} */
     @Override
     public void attachView(V view) {
@@ -79,21 +58,5 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
         setupToolbar();
     }
 
-    /**
-     * Starts the previous activity.
-     */
-    public void startPreviousActivity() {
-        startActivity(mModel.getPreviousActivity(mActivity));
-    }
-
-    /**
-     * Starts the next activity.
-     */
-    public void startNextActivity() {
-        startActivity(mModel.getNextActivity(mActivity));
-    }
-
-    public void startGivenActivity(Class activity) {
-        startActivity(activity);
-    }
+    public abstract void onBack();
 }

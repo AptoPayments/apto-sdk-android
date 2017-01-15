@@ -7,6 +7,8 @@ import android.text.TextUtils;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.api.vos.responses.config.ProductDisclaimerVo;
@@ -32,12 +34,14 @@ public class IdentityVerificationPresenter
         IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener {
 
     private String mDisclaimersText;
+    private IdentityVerificationDelegate mDelegate;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
      */
-    public IdentityVerificationPresenter(AppCompatActivity activity) {
+    public IdentityVerificationPresenter(AppCompatActivity activity, IdentityVerificationDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /**
@@ -79,6 +83,7 @@ public class IdentityVerificationPresenter
     @Override
     public void attachView(IdentityVerificationView view) {
         super.attachView(view);
+        mResponseHandler.subscribe(this);
         mView.setListener(this);
 
         int progressColor = getProgressBarColor(mActivity);
@@ -94,10 +99,16 @@ public class IdentityVerificationPresenter
         }
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.identityVerificationOnBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
         mView.setListener(null);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -159,6 +170,11 @@ public class IdentityVerificationPresenter
         return result.substring(0, result.length() - partnerDivider.length());
     }
 
+    @Subscribe
+    public void handleDisclaimersResponse(DisclaimerResponseVo response) {
+        setDisclaimers(parseDisclaimersResponse(response));
+    }
+
     public void setDisclaimers(String disclaimers) {
         mDisclaimersText = disclaimers;
         mView.setDisclaimers(disclaimers);
@@ -169,6 +185,7 @@ public class IdentityVerificationPresenter
      * Deals with the create user API response.
      * @param response API response.
      */
+    @Subscribe
     public void setCreateUserResponse(CreateUserResponseVo response) {
         mView.showLoading(false);
 
@@ -176,24 +193,31 @@ public class IdentityVerificationPresenter
             UserStorage.getInstance().setBearerToken(response.user_token);
         }
 
-        // Show next screen.
-        super.nextClickHandler();
+        if (mModel.hasAllData()) {
+            super.saveData();
+            mDelegate.identityVerificationSucceeded();
+        }
     }
 
     /**
-     * Deals with the update user API response.
+     * Called when the user update API response has been received.
      * @param response API response.
      */
-    public void setUpdateUserResponse(UserResponseVo response) {
+    @Subscribe
+    public void handleUserDetails(UserResponseVo response) {
         mView.showLoading(false);
-        super.nextClickHandler();
+        if (mModel.hasAllData()) {
+            super.saveData();
+            mDelegate.identityVerificationSucceeded();
+        }
     }
 
     /**
-     * Deals with an API error.
+     * Called when an API error has been received.
      * @param error API error.
      */
-    public void setApiError(ApiErrorVo error) {
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
         if (mView != null) {
             mView.showLoading(false);
         }
@@ -201,4 +225,5 @@ public class IdentityVerificationPresenter
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
         Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
     }
+
 }

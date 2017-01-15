@@ -1,9 +1,11 @@
 package me.ledge.link.sdk.ui.activities.userdata;
 
 import android.view.View;
+
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
+import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
+import me.ledge.link.sdk.ui.presenters.userdata.PersonalInformationDelegate;
 import me.ledge.link.sdk.ui.presenters.userdata.PersonalInformationPresenter;
 import me.ledge.link.sdk.ui.views.userdata.PersonalInformationView;
 
@@ -22,7 +24,12 @@ public class PersonalInformationActivity
 
     /** {@inheritDoc} */
     @Override
-    protected PersonalInformationPresenter createPresenter() {
-        return new PersonalInformationPresenter(this);
+    protected PersonalInformationPresenter createPresenter(BaseDelegate delegate) {
+        if(delegate instanceof PersonalInformationDelegate) {
+            return new PersonalInformationPresenter(this, (PersonalInformationDelegate) delegate);
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement PersonalInformationDelegate!");
+        }
     }
 }

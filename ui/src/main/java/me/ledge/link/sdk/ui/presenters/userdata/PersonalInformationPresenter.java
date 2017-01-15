@@ -1,17 +1,10 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 
-import me.ledge.link.api.vos.DataPointVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.presenters.verification.EmailVerificationDelegate;
-import me.ledge.link.sdk.ui.presenters.verification.EmailVerificationPresenter;
-import me.ledge.link.sdk.ui.presenters.verification.PhoneVerificationDelegate;
-import me.ledge.link.sdk.ui.presenters.verification.PhoneVerificationPresenter;
 import me.ledge.link.sdk.ui.views.userdata.PersonalInformationView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
@@ -21,24 +14,23 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
  */
 public class PersonalInformationPresenter
         extends UserDataPresenter<PersonalInformationModel, PersonalInformationView>
-        implements PersonalInformationView.ViewListener, PhoneVerificationDelegate,
-        EmailVerificationDelegate {
+        implements PersonalInformationView.ViewListener {
 
-    // TODO: refactor when flow manager is implemented
-    private EmailVerificationPresenter mPresenter;
+    private PersonalInformationDelegate mDelegate;
 
     /**
      * Creates a new {@link PersonalInformationPresenter} instance.
      * @param activity Activity.
      */
-    public PersonalInformationPresenter(AppCompatActivity activity) {
+    public PersonalInformationPresenter(AppCompatActivity activity, PersonalInformationDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /** {@inheritDoc} */
     @Override
     protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 2, true, true);
+        return new StepperConfiguration(TOTAL_STEPS, 1, true, true);
     }
 
     /** {@inheritDoc} */
@@ -68,6 +60,11 @@ public class PersonalInformationPresenter
         mView.setListener(this);
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.personalInformationOnBackPressed();
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -90,26 +87,9 @@ public class PersonalInformationPresenter
         mView.updateEmailError(!mModel.hasEmail(), R.string.personal_info_email_error);
         mView.updatePhoneError(!mModel.hasPhone(), R.string.personal_info_phone_error);
 
-        // TODO: start phone verification only if enabled
-        super.nextClickHandler();
-    }
-
-    @Override
-    public void phoneVerificationSucceeded(DataPointVo.PhoneNumber phone,
-                                           PhoneVerificationPresenter phoneVerificationPresenter) {
-        phoneVerificationPresenter.startNextActivity();
-    }
-
-    @Override
-    public void newPhoneVerificationSucceeded(DataPointVo.PhoneNumber phone,
-                                              PhoneVerificationPresenter phoneVerificationPresenter,
-                                              Activity current) {
-        // Skip email verification
-        phoneVerificationPresenter.startGivenActivity(mModel.getNextFollowingActivity(current));
-    }
-
-    @Override
-    public void emailVerificationSucceeded(DataPointVo.Email email, EmailVerificationPresenter emailVerificationPresenter) {
-        LedgeLinkUi.loginUser(mModel.getLoginData());
+        if (mModel.hasAllData()) {
+            saveData();
+            mDelegate.personalInformationStored();
+        }
     }
 }

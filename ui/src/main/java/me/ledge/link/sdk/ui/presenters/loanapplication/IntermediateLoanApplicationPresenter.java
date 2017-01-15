@@ -1,10 +1,10 @@
 package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.support.v7.app.AppCompatActivity;
+
 import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.loanapplication.ApprovedLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.loanapplication.ErrorLoanApplicationModel;
@@ -29,12 +29,15 @@ public class IntermediateLoanApplicationPresenter
         implements Presenter<IntermediateLoanApplicationModel, IntermediateLoanApplicationView>,
         LoanOfferErrorView.ViewListener {
 
+    private IntermediateLoanApplicationDelegate mDelegate;
+
     /**
      * Creates a new {@link IntermediateLoanApplicationPresenter} instance.
      * @param activity Activity.
      */
-    public IntermediateLoanApplicationPresenter(AppCompatActivity activity) {
+    public IntermediateLoanApplicationPresenter(AppCompatActivity activity, IntermediateLoanApplicationDelegate delegate) {
         super(activity);
+        mDelegate = delegate;
     }
 
     /**
@@ -119,6 +122,11 @@ public class IntermediateLoanApplicationPresenter
         mView.setListener(this);
     }
 
+    @Override
+    public void onBack() {
+        mDelegate.showPrevious(mModel);
+    }
+
     /** {@inheritDoc} */
     @Override
     public void detachView() {
@@ -128,15 +136,9 @@ public class IntermediateLoanApplicationPresenter
 
     /** {@inheritDoc} */
     @Override
-    public void startPreviousActivity() {
-        LoanStorage.getInstance().setCurrentLoanApplication(null);
-        super.startPreviousActivity();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void offersClickHandler() {
-        startPreviousActivity();
+        LoanStorage.getInstance().setCurrentLoanApplication(null);
+        mDelegate.showPrevious(mModel);
     }
 
     /** {@inheritDoc} */
@@ -144,7 +146,7 @@ public class IntermediateLoanApplicationPresenter
     public void infoClickHandler() {
         // TODO Pending API update.
         LoanStorage.getInstance().setCurrentLoanApplication(null);
-        startActivity(LedgeLinkUi.getHandlerConfiguration().getApplicationsListActivity());
+        mDelegate.onInfoPressed();
     }
 
     /** {@inheritDoc} */
@@ -156,7 +158,7 @@ public class IntermediateLoanApplicationPresenter
                 break;
             case BigButtonModel.Action.CONFIRM_LOAN:
             case BigButtonModel.Action.UPLOAD_DOCUMENTS:
-                startNextActivity();
+                mDelegate.showNext(mModel);
                 break;
             default:
                 // Do nothing.

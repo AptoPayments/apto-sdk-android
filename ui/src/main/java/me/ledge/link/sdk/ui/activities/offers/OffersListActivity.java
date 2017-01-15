@@ -4,10 +4,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
+import me.ledge.link.sdk.ui.presenters.offers.OffersListDelegate;
 import me.ledge.link.sdk.ui.presenters.offers.OffersListPresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
 import me.ledge.link.sdk.ui.views.offers.OffersListView;
 
 /**
@@ -24,8 +27,13 @@ public class OffersListActivity extends MvpActivity<OffersListModel, OffersListV
 
     /** {@inheritDoc} */
     @Override
-    protected OffersListPresenter createPresenter() {
-        return new OffersListPresenter(this);
+    protected OffersListPresenter createPresenter(BaseDelegate delegate) {
+        if(delegate instanceof OffersListDelegate) {
+            return new OffersListPresenter(this, (OffersListDelegate) delegate);
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement OffersListDelegate!");
+        }
     }
 
     /** {@inheritDoc} */

@@ -15,6 +15,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.github.kt3k.coveralls'
 apply from: '../javadoc.gradle'
 apply from: '../jacoco.gradle'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion androidCompileSdkVersion.toInteger()
@@ -45,6 +46,11 @@ android {
                 exclude '**/me/ledge/link/sdk/sdk/*'
             }
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -93,6 +99,7 @@ dependencies {
     compile ('com.github.davidpizarro:pinview:1.0.0') {
         exclude module: 'appcompat-v7'
     }
+    compile 'org.greenrobot:eventbus:+'
 
     // Tests
     testCompile 'junit:junit:4.+'

@@ -5,7 +5,8 @@ import android.view.View;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.UserDataActivity;
 import me.ledge.link.sdk.ui.models.verification.PhoneVerificationModel;
-import me.ledge.link.sdk.ui.presenters.userdata.PersonalInformationPresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
+import me.ledge.link.sdk.ui.presenters.verification.PhoneVerificationDelegate;
 import me.ledge.link.sdk.ui.presenters.verification.PhoneVerificationPresenter;
 import me.ledge.link.sdk.ui.views.verification.PhoneVerificationView;
 
@@ -24,7 +25,12 @@ public class PhoneVerificationActivity
 
     /** {@inheritDoc} */
     @Override
-    protected PhoneVerificationPresenter createPresenter() {
-        return new PhoneVerificationPresenter(this, new PersonalInformationPresenter(null));
+    protected PhoneVerificationPresenter createPresenter(BaseDelegate delegate) {
+        if(delegate instanceof PhoneVerificationDelegate) {
+            return new PhoneVerificationPresenter(this, (PhoneVerificationDelegate) delegate);
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement PhoneVerificationDelegate!");
+        }
     }
 }

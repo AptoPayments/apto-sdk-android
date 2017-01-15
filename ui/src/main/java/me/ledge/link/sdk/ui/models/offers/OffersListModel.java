@@ -7,8 +7,8 @@ import java.util.Currency;
 import java.util.Locale;
 
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.activities.link.TermsActivity;
 import me.ledge.link.sdk.ui.models.AbstractActivityModel;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.Model;
@@ -68,7 +68,7 @@ public class OffersListModel extends AbstractActivityModel
     /** {@inheritDoc} */
     @Override
     public Class getPreviousActivity(Activity current) {
-        return LedgeLinkUi.getProcessOrder().get(0);
+        return TermsActivity.class;
     }
 
     /**

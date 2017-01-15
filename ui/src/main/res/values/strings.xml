@@ -111,6 +111,7 @@
     <string name="offers_list_dialog_redirect_title">Re-direct</string>
     <string name="offers_list_dialog_redirect_message" formatted="false">You will be re-directed to the %s website to complete your application.</string>
     <string name="offers_list_dialog_disclaimer_title">Disclaimer</string>
+    <string name="offers_list_terms_url">https://ledge.me/terms</string>
 
     <!-- Loan application -->
     <string name="loan_application_label">My loan</string>

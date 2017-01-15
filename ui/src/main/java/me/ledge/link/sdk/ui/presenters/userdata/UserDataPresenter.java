@@ -23,7 +23,7 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
         extends ActivityPresenter<M, V>
         implements StepperListener, NextButtonListener {
 
-    protected static final int TOTAL_STEPS = 10;
+    protected static final int TOTAL_STEPS = 8;
 
     /**
      * Creates a new {@link UserDataPresenter} instance.
@@ -73,23 +73,14 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
 
     /** {@inheritDoc} */
     @Override
-    public void nextClickHandler() {
-        if (mModel.hasAllData()) {
-            saveData();
-            startNextActivity();
-        }
+    public void stepperNextClickHandler() {
+        nextClickHandler();
     }
 
     /** {@inheritDoc} */
     @Override
     public void stepperBackClickHandler() {
-        startPreviousActivity();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void stepperNextClickHandler() {
-        nextClickHandler();
+        this.onBack();
     }
 
     /**

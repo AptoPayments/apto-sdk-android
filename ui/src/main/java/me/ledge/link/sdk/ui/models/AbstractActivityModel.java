@@ -42,13 +42,4 @@ public abstract class AbstractActivityModel implements ActivityModel {
     public Class getPreviousActivity(Activity current) {
         return safeGetActivityAtPosition(current, -1);
     }
-
-    public Class getLastActivity() {
-        ArrayList<Class<? extends MvpActivity>> order = LedgeLinkUi.getProcessOrder();
-        return LedgeLinkUi.getProcessOrder().get(order.size()-1);
-    }
-
-    public Class getNextFollowingActivity(Activity current) {
-        return safeGetActivityAtPosition(current, 2);
-    }
 }

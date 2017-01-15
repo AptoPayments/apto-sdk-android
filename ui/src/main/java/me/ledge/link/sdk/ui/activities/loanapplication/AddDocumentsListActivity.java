@@ -2,10 +2,13 @@ package me.ledge.link.sdk.ui.activities.loanapplication;
 
 import android.content.Intent;
 import android.view.View;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
+import me.ledge.link.sdk.ui.presenters.loanapplication.AddDocumentsListDelegate;
 import me.ledge.link.sdk.ui.presenters.loanapplication.AddDocumentsListPresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
 import me.ledge.link.sdk.ui.views.loanapplication.AddDocumentsListView;
 
 /**
@@ -23,8 +26,13 @@ public class AddDocumentsListActivity
 
     /** {@inheritDoc} */
     @Override
-    protected AddDocumentsListPresenter createPresenter() {
-        return new AddDocumentsListPresenter(this);
+    protected AddDocumentsListPresenter createPresenter(BaseDelegate delegate) {
+        if(delegate instanceof AddDocumentsListDelegate) {
+            return new AddDocumentsListPresenter(this, (AddDocumentsListDelegate) delegate);
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement AddDocumentsListDelegate!");
+        }
     }
 
     /** {@inheritDoc} */
