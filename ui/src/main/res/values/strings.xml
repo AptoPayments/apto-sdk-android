@@ -172,4 +172,19 @@
     <string name="loan_application_details_status_pending_borrower_action_upload">Additional docs required</string>
     <string name="loan_application_details_status_pending_borrower_action_finish_external">Additional info required</string>
     <string name="loan_application_details_status_pending_lender_action">Processing application&#8230;</string>
+
+    <!-- Financial Account Selector -->
+    <string name="add_financial_account_list_title">Fund Loan</string>
+    <string name="add_financial_account_list_label">How do you want to fund your loan?</string>
+    <string name="add_financial_account_bank">Bank Deposit</string>
+    <string name="add_financial_account_bank_description">We\'ll ask you to link a bank account. Transfers may take up to 3 business days</string>
+    <string name="add_financial_account_card_description">We support most major debit and prepaid cards</string>
+    <string name="add_financial_account_virtual_card">Virtual Card</string>
+    <string name="add_financial_account_virtual_card_description">We\'ll send an SMS with a link to your card</string>
+
+    <!-- Add Card -->
+    <string name="add_card_title">Add Card</string>
+    <string name="add_card_button_submit">Add Card</string>
+    <string name="add_card_button_scan">Scan Card</string>
+
 </resources>

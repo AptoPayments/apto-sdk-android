@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui.presenters.link;
 import android.app.Activity;
 
 import me.ledge.link.sdk.ui.LedgeBaseModule;
+import me.ledge.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 
@@ -47,7 +48,14 @@ public class LinkModule extends LedgeBaseModule {
         LoanApplicationModule mLoanApplicationModule = LoanApplicationModule.getInstance(this.getActivity());
         mLoanApplicationModule.onUpdateUserProfile = this::showUserDataCollector;
         mLoanApplicationModule.onBack = this::showLoanInfo;
+        mLoanApplicationModule.onSelectFundingAccount = this::showFundingAccountSelector;
         startModule(mLoanApplicationModule);
+    }
+
+    private void showFundingAccountSelector() {
+        FinancialAccountSelectorModule mFinancialAccountSelectorModule = FinancialAccountSelectorModule.getInstance(this.getActivity());
+        mFinancialAccountSelectorModule.onBack = this::showOffersList;
+        startModule(mFinancialAccountSelectorModule);
     }
 
     private void showHomeActivity() {

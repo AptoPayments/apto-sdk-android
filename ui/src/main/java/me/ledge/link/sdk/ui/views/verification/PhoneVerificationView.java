@@ -1,16 +1,14 @@
 package me.ledge.link.sdk.ui.views.verification;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.IBinder;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.dpizarro.pinview.library.PinView;
 
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.utils.KeyboardUtil;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
 import me.ledge.link.sdk.ui.views.userdata.UserDataView;
@@ -81,7 +79,7 @@ public class PhoneVerificationView
             @Override
             public void onComplete(boolean completed, final String pinResults) {
                 if (completed) {
-                    hideKeyboard(PhoneVerificationView.super.getContext());
+                    KeyboardUtil.hideKeyboard(PhoneVerificationView.super.getContext());
                     mListener.nextClickHandler();
                 }
             }
@@ -126,16 +124,5 @@ public class PhoneVerificationView
         mPinView.setPin(CODE_LENGTH);
         mPinView.setKeyboardMandatory(false);
         mPinView.setMaskPassword(false);
-    }
-
-    private void hideKeyboard(Context context) {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        View currentFocus = ((Activity) context).getCurrentFocus();
-        if (imm != null && currentFocus != null) {
-            IBinder windowToken = currentFocus.getWindowToken();
-            if (windowToken != null) {
-                imm.hideSoftInputFromWindow(windowToken, 0);
-            }
-        }
     }
 }
