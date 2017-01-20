@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
 import android.app.Activity;
 
+import me.ledge.link.api.vos.Card;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
@@ -45,7 +46,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule implements A
     }
 
     @Override
-    public void cardAdded() {
+    public void cardAdded(Card card) {
 
     }
 

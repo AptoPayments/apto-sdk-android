@@ -11,8 +11,6 @@ import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.views.financialaccountselector.AddFinancialAccountListView;
 
-import static me.ledge.link.api.vos.FinancialAccountVo.FinancialAccountType;
-
 /**
  * Concrete {@link Presenter} for the add financial account screen.
  * @author Adrian
@@ -72,25 +70,25 @@ public class AddFinancialAccountListPresenter
         super.detachView();
     }
 
-    public AddFinancialAccountModel[] createViewData(FinancialAccountType[] accountTypes) {
+    private AddFinancialAccountModel[] createViewData(String[] accountTypes) {
         if (accountTypes == null || accountTypes.length <= 0) {
             return null;
         }
 
         AddFinancialAccountModel[] data = new AddFinancialAccountModel[accountTypes.length];
-        FinancialAccountType type;
+        String type;
 
         for (int i = 0; i < accountTypes.length; i++) {
             type = accountTypes[i];
 
             switch (type) {
-                case Bank:
+                case "Bank":
                     data[i] = new AddBankAccountModel();
                     break;
-                case Card:
+                case "Card":
                     data[i] = new AddCardModel();
                     break;
-                case VirtualCard:
+                case "VirtualCard":
                     data[i] = new AddVirtualCardModel();
                     break;
                 default:

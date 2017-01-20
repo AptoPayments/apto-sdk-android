@@ -186,5 +186,6 @@
     <string name="add_card_title">Add Card</string>
     <string name="add_card_button_submit">Add Card</string>
     <string name="add_card_button_scan">Scan Card</string>
+    <string name="add_card_error">Error: invalid card number!</string>
 
 </resources>

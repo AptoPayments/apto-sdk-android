@@ -7,7 +7,7 @@ package me.ledge.link.sdk.ui.presenters.financialaccountselector;
  */
 public interface AddCardDelegate {
 
-    void cardAdded();
+    void cardAdded(me.ledge.link.api.vos.Card card);
 
     void addCardOnBackPressed();
 }

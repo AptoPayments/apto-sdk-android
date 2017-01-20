@@ -3,11 +3,11 @@ package me.ledge.link.sdk.ui.views.financialaccountselector;
 import android.content.Context;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.devmarvel.creditcardentry.library.CardType;
 import com.devmarvel.creditcardentry.library.CardValidCallback;
 import com.devmarvel.creditcardentry.library.CreditCard;
 import com.devmarvel.creditcardentry.library.CreditCardForm;
@@ -46,6 +46,7 @@ public class AddCardView
     private CreditCardView mCreditCardView;
     private Toolbar mToolbar;
     private AddCardView.ViewListener mListener;
+    private CreditCard mCard;
 
     /**
      * @see AddCardView#AddCardView
@@ -62,6 +63,7 @@ public class AddCardView
      */
     public AddCardView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mCard = null;
     }
 
     @Override
@@ -83,7 +85,6 @@ public class AddCardView
         mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mCreditCardForm = (CreditCardForm) findViewById(R.id.credit_card_form);
         mCreditCardView = (CreditCardView) findViewById(R.id.credit_card_view);
-        mCreditCardForm.focusCreditCard();
     }
 
     protected void setupListeners() {
@@ -100,13 +101,18 @@ public class AddCardView
     CardValidCallback cardValidCallback = new CardValidCallback() {
         @Override
         public void cardValid(CreditCard creditCard) {
-            mCreditCardView.setCardNumber(creditCard.getCardNumber());
-            mCreditCardView.setExpiryDate(creditCard.getExpDate());
-            mCreditCardView.setType(creditCard.getCardType().ordinal());
+            // TODO: refactor this so that presenter stores card in model
+            mCard = creditCard;
+            updateCreditCardView();
             KeyboardUtil.hideKeyboard(AddCardView.super.getContext());
         }
     };
 
+    private void updateCreditCardView() {
+        mCreditCardView.setCardNumber(mCard.getCardNumber());
+        mCreditCardView.setExpiryDate(mCard.getExpDate());
+        mCreditCardView.setType(mCard.getCardType().ordinal());
+    }
 
     public void setListener(ViewListener listener) {
         mListener = listener;
@@ -121,13 +127,7 @@ public class AddCardView
 
         int id = view.getId();
         if (id == R.id.tv_add_bttn) {
-            if(mCreditCardForm.isCreditCardValid()) {
-                Log.d("ADRIAN","Credit card is valid!");
-                mListener.addCardClickHandler();
-            }
-            else {
-                Log.d("ADRIAN","Credit card is invalid!");
-            }
+            mListener.addCardClickHandler();
         }
         else if (id == R.id.tv_scan_bttn) {
             mListener.scanClickHandler();
@@ -136,5 +136,30 @@ public class AddCardView
 
     public void setCardName(String name) {
         mCreditCardView.setCardName(name);
+    }
+
+    public boolean isCreditCardInputValid() {
+        return mCreditCardForm.isCreditCardValid();
+    }
+
+    public String getCardNumber() {
+        return mCard.getCardNumber();
+    }
+
+    public String getSecurityCode() {
+        return mCard.getSecurityCode();
+    }
+
+    public CardType getCardType() {
+        return mCard.getCardType();
+    }
+
+    public String getLastFourDigits() {
+        String cardNumber = mCard.getCardNumber();
+        return cardNumber.substring(cardNumber.length() - 4);
+    }
+
+    public String getExpirationDate() {
+        return mCard.getExpDate();
     }
 }
