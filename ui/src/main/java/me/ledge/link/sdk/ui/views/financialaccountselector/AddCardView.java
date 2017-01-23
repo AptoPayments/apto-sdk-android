@@ -46,7 +46,6 @@ public class AddCardView
     private CreditCardView mCreditCardView;
     private Toolbar mToolbar;
     private AddCardView.ViewListener mListener;
-    private CreditCard mCard;
 
     /**
      * @see AddCardView#AddCardView
@@ -63,7 +62,6 @@ public class AddCardView
      */
     public AddCardView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mCard = null;
     }
 
     @Override
@@ -95,23 +93,16 @@ public class AddCardView
             mScanCardButton.setOnClickListener(this);
         }
 
-        mCreditCardForm.setOnCardValidCallback(cardValidCallback);
+        mCreditCardForm.setOnCardValidCallback(creditCard -> {
+            updateCreditCardView(creditCard);
+            KeyboardUtil.hideKeyboard(AddCardView.super.getContext());
+        });
     }
 
-    CardValidCallback cardValidCallback = new CardValidCallback() {
-        @Override
-        public void cardValid(CreditCard creditCard) {
-            // TODO: refactor this so that presenter stores card in model
-            mCard = creditCard;
-            updateCreditCardView();
-            KeyboardUtil.hideKeyboard(AddCardView.super.getContext());
-        }
-    };
-
-    private void updateCreditCardView() {
-        mCreditCardView.setCardNumber(mCard.getCardNumber());
-        mCreditCardView.setExpiryDate(mCard.getExpDate());
-        mCreditCardView.setType(mCard.getCardType().ordinal());
+    private void updateCreditCardView(CreditCard creditCard) {
+        mCreditCardView.setCardNumber(creditCard.getCardNumber());
+        mCreditCardView.setExpiryDate(creditCard.getExpDate());
+        mCreditCardView.setType(creditCard.getCardType().ordinal());
     }
 
     public void setListener(ViewListener listener) {
@@ -143,23 +134,23 @@ public class AddCardView
     }
 
     public String getCardNumber() {
-        return mCard.getCardNumber();
+        return mCreditCardForm.getCreditCard().getCardNumber();
     }
 
     public String getSecurityCode() {
-        return mCard.getSecurityCode();
+        return mCreditCardForm.getCreditCard().getSecurityCode();
     }
 
     public CardType getCardType() {
-        return mCard.getCardType();
+        return mCreditCardForm.getCreditCard().getCardType();
     }
 
     public String getLastFourDigits() {
-        String cardNumber = mCard.getCardNumber();
+        String cardNumber = mCreditCardForm.getCreditCard().getCardNumber();
         return cardNumber.substring(cardNumber.length() - 4);
     }
 
     public String getExpirationDate() {
-        return mCard.getExpDate();
+        return mCreditCardForm.getCreditCard().getExpDate();
     }
 }
