@@ -4,7 +4,6 @@ package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
@@ -24,7 +23,7 @@ public class AddCardPresenter
     implements Presenter<AddCardModel, AddCardView>, AddCardView.ViewListener {
 
     private AddCardDelegate mDelegate;
-    private static final int SCAN_REQUEST_CODE = 5432;
+    private static final int CARD_IO_SCAN_INTENT_CODE = 5432;
 
     /**
      * Creates a new {@link ActivityPresenter} instance.
@@ -62,7 +61,7 @@ public class AddCardPresenter
             tokenizeCard(mView.getCardNumber(), mView.getSecurityCode());
         }
         else {
-            displayWrongCardMessage();
+            mView.displayWrongCardToast(mActivity, mActivity.getString(R.string.add_card_error));
         }
     }
 
@@ -74,7 +73,7 @@ public class AddCardPresenter
         scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_POSTAL_CODE, false);
         scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_MANUAL_ENTRY, true);
 
-        mActivity.startActivityForResult(scanIntent, SCAN_REQUEST_CODE);
+        mActivity.startActivityForResult(scanIntent, CARD_IO_SCAN_INTENT_CODE);
     }
 
     /**
@@ -88,7 +87,7 @@ public class AddCardPresenter
             return;
         }
 
-        if(requestCode == SCAN_REQUEST_CODE) {
+        if(requestCode == CARD_IO_SCAN_INTENT_CODE) {
             if (data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
                 CreditCard scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
                 storeCardAdditionalInfo(scanResult.getCardType().toString(), scanResult.getLastFourDigitsOfCardNumber(), formatExpiryDate(scanResult.expiryMonth, scanResult.expiryYear));
@@ -99,11 +98,6 @@ public class AddCardPresenter
 
     private String formatExpiryDate(int month, int year) {
         return String.valueOf(month) + "/" + String.valueOf(year);
-    }
-
-    private void displayWrongCardMessage() {
-        String message = mActivity.getString(R.string.add_card_error);
-        Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
     }
 
     private void storeCardAdditionalInfo(String cardType, String lastFourDigits, String expirationDate) {

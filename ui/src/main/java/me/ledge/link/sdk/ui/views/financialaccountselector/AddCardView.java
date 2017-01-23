@@ -1,11 +1,13 @@
 package me.ledge.link.sdk.ui.views.financialaccountselector;
 
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.devmarvel.creditcardentry.library.CardType;
 import com.devmarvel.creditcardentry.library.CardValidCallback;
@@ -152,5 +154,9 @@ public class AddCardView
 
     public String getExpirationDate() {
         return mCreditCardForm.getCreditCard().getExpDate();
+    }
+
+    public void displayWrongCardToast(AppCompatActivity mActivity, String message) {
+        Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
     }
 }
