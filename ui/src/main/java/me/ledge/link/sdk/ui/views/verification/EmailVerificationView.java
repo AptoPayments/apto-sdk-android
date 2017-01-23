@@ -4,8 +4,10 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
 import me.ledge.link.sdk.ui.views.userdata.UserDataView;
@@ -17,7 +19,7 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
  */
 public class EmailVerificationView
         extends UserDataView<EmailVerificationView.ViewListener>
-        implements ViewWithToolbar, View.OnClickListener {
+        implements DisplayErrorMessage, ViewWithToolbar, View.OnClickListener {
 
     /**
      * Callbacks this {@link View} will invoke.
@@ -93,6 +95,16 @@ public class EmailVerificationView
         else if (id == R.id.tv_resend_bttn) {
             mListener.resendClickHandler();
         }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void displayErrorMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void displaySentMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public void displayEmailAddress(String email) {

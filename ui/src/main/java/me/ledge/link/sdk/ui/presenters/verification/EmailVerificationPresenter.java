@@ -1,7 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.verification;
 
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -145,8 +144,7 @@ public class EmailVerificationPresenter
             DataPointVo.Email email = mModel.getEmailFromBaseData();
             email.getVerification().setVerificationStatus(response.status);
             if(!email.getVerification().isVerified()) {
-                displayWrongCodeMessage();
-                return;
+                mView.displayErrorMessage(mActivity.getString(R.string.email_verification_error));
             }
             else {
                 LedgeLinkUi.loginUser(mModel.getLoginData());
@@ -157,16 +155,6 @@ public class EmailVerificationPresenter
     @Override
     public void resendClickHandler() {
         LedgeLinkUi.startEmailVerification(mModel.getEmailVerificationRequest());
-        displaySentMessage();
-    }
-
-    private void displaySentMessage() {
-        String message = mActivity.getString(R.string.email_verification_resent);
-        Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
-    }
-
-    private void displayWrongCodeMessage() {
-        String message = mActivity.getString(R.string.email_verification_error);
-        Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
+        mView.displaySentMessage(mActivity.getString(R.string.email_verification_resent));
     }
 }

@@ -12,16 +12,19 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentModel;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
+import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
  * Shows the list of documents the lender requires for a loan application.
  * @author Wijnand
  */
-public class AddDocumentsListView extends CoordinatorLayout implements ViewWithToolbar, View.OnClickListener {
+public class AddDocumentsListView extends CoordinatorLayout implements DisplayErrorMessage, ViewWithToolbar, View.OnClickListener {
 
     /**
      * Callbacks that this View will invoke.
@@ -154,6 +157,12 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
     @Override
     public Toolbar getToolbar() {
         return mToolbar;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void displayErrorMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     /**

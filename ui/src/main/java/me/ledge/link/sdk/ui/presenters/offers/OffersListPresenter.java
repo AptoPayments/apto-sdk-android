@@ -3,7 +3,6 @@ package me.ledge.link.sdk.ui.presenters.offers;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -280,7 +279,7 @@ public class OffersListPresenter
             case LoanApplicationStatus.BORROWER_REJECTED:
             case LoanApplicationStatus.LOAN_APPROVED:
             default:
-                Toast.makeText(mActivity, "Screen not yet implemented.", Toast.LENGTH_LONG).show();
+                mView.displayErrorMessage("Screen not yet implemented.");
                 break;
         }
     }
@@ -296,7 +295,7 @@ public class OffersListPresenter
         }
 
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
-        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+        mView.displayErrorMessage(message);
 
         if (LinkApiWrapper.INITIAL_OFFERS_PATH.equals(error.request_path) && mView != null) {
             mView.showError(true);

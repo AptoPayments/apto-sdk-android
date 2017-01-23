@@ -1,7 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.verification;
 
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -137,17 +136,11 @@ public class PhoneVerificationPresenter
     @Override
     public void resendClickHandler() {
         LedgeLinkUi.startPhoneVerification(mModel.getPhoneVerificationRequest());
-        displaySentMessage();
-    }
-
-    private void displaySentMessage() {
-        String message = mActivity.getString(R.string.phone_verification_resent);
-        Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
+        mView.displaySentMessage(mActivity.getString(R.string.phone_verification_resent));
     }
 
     private void displayWrongCodeMessage() {
-        String message = mActivity.getString(R.string.phone_verification_error);
-        Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
+        mView.displayErrorMessage(mActivity.getString(R.string.phone_verification_error));
         mView.clearPinView();
     }
 }

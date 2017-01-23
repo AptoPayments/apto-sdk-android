@@ -9,10 +9,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
+import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -23,7 +26,7 @@ import me.ledge.link.sdk.ui.views.ViewWithToolbar;
  */
 public class OffersListView
         extends RelativeLayout
-        implements ViewWithToolbar, ViewWithIndeterminateLoading, View.OnClickListener {
+        implements DisplayErrorMessage, ViewWithToolbar, ViewWithIndeterminateLoading, View.OnClickListener {
 
     /**
      * Callbacks this View will invoke.
@@ -129,6 +132,12 @@ public class OffersListView
         if (mListener != null && view.getId() == R.id.tv_bttn_edit_info) {
             mListener.updateClickedHandler();
         }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void displayErrorMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     /**

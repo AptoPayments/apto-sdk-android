@@ -18,6 +18,9 @@ ext {
 subprojects {
     version = mavenVersion
     group = mavenGroup
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
 }
 
 buildscript {

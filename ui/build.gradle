@@ -67,6 +67,7 @@ repositories {
     maven {
         url "${HOME}/.m2/repository/"
     }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -100,6 +101,9 @@ dependencies {
         exclude module: 'appcompat-v7'
     }
     compile 'org.greenrobot:eventbus:+'
+    compile 'com.github.dbachelder:CreditCardEntry:1.4.7'
+    compile 'com.github.vinaygaba:creditcardview:v1.0.3'
+    compile 'io.card:android-sdk:5.4.2'
 
     // Tests
     testCompile 'junit:junit:4.+'
