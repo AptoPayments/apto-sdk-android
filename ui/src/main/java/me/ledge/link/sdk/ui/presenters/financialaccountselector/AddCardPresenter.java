@@ -61,7 +61,7 @@ public class AddCardPresenter
             tokenizeCard(mView.getCardNumber(), mView.getSecurityCode());
         }
         else {
-            mView.displayWrongCardToast(mActivity, mActivity.getString(R.string.add_card_error));
+            mView.displayErrorMessage(mActivity.getString(R.string.add_card_error));
         }
     }
 

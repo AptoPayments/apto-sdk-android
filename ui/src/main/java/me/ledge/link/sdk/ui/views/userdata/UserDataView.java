@@ -7,7 +7,10 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
@@ -19,7 +22,7 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
  */
 public class UserDataView<L extends StepperListener & NextButtonListener>
         extends RelativeLayout
-        implements ViewWithToolbar, View.OnClickListener {
+        implements DisplayErrorMessage, ViewWithToolbar, View.OnClickListener {
 
     protected L mListener;
     protected Toolbar mToolbar;
@@ -126,5 +129,10 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
         if (mStepper != null) {
             mStepper.setConfiguration(configuration);
         }
+    }
+
+    @Override
+    public void displayErrorMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
     }
 }

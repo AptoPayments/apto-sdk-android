@@ -1,7 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.DataPointList;
@@ -89,6 +88,6 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
      */
     public void setApiError(ApiErrorVo error) {
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
-        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+        mView.displayErrorMessage(message);
     }
 }

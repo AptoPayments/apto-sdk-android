@@ -1,7 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.link;
 
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import org.greenrobot.eventbus.Subscribe;
@@ -179,7 +178,7 @@ public class LoanAmountPresenter
         }
 
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
-        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+        mView.displayErrorMessage(message);
     }
 
     /**

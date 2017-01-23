@@ -10,13 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.devmarvel.creditcardentry.library.CardType;
-import com.devmarvel.creditcardentry.library.CardValidCallback;
 import com.devmarvel.creditcardentry.library.CreditCard;
 import com.devmarvel.creditcardentry.library.CreditCardForm;
 import com.vinaygaba.creditcardview.CreditCardView;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.utils.KeyboardUtil;
+import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
@@ -25,7 +25,7 @@ import me.ledge.link.sdk.ui.views.ViewWithToolbar;
  */
 public class AddCardView
         extends RelativeLayout
-        implements ViewWithToolbar, View.OnClickListener {
+        implements DisplayErrorMessage, ViewWithToolbar, View.OnClickListener {
 
     /**
      * Callbacks this {@link View} will invoke.
@@ -77,6 +77,11 @@ public class AddCardView
         super.onFinishInflate();
         findAllViews();
         setupListeners();
+    }
+
+    @Override
+    public void displayErrorMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     protected void findAllViews() {
@@ -154,9 +159,5 @@ public class AddCardView
 
     public String getExpirationDate() {
         return mCreditCardForm.getCreditCard().getExpDate();
-    }
-
-    public void displayWrongCardToast(AppCompatActivity mActivity, String message) {
-        Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
     }
 }

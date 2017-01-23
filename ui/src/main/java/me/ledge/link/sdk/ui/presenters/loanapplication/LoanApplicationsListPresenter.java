@@ -1,7 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -141,7 +140,7 @@ public class LoanApplicationsListPresenter
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
-        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+        mView.displayErrorMessage(message);
 
         mView.showLoading(false);
     }

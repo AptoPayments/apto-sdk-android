@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.DatePicker;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -222,8 +221,7 @@ public class IdentityVerificationPresenter
             mView.showLoading(false);
         }
 
-        String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
-        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+        mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error.toString()));
     }
 
 }

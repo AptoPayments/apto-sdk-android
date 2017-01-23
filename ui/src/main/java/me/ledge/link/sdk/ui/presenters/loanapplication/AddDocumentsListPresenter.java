@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
@@ -75,7 +74,7 @@ public class AddDocumentsListPresenter
                     Intent.createChooser(fileIntent, mActivity.getString(R.string.add_documents_library_chooser_title)),
                     PICK_FILE_REQUEST_CODE);
         } catch (ActivityNotFoundException anfe) {
-            Toast.makeText(mActivity, R.string.add_documents_bottom_sheet_library_error, Toast.LENGTH_LONG).show();
+            mView.displayErrorMessage(mActivity.getString(R.string.add_documents_bottom_sheet_library_error));
         }
     }
 

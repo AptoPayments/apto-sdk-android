@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dpizarro.pinview.library.PinView;
 
@@ -107,6 +108,20 @@ public class PhoneVerificationView
         else if (id == R.id.tv_resend_bttn) {
             mListener.resendClickHandler();
         }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void displayErrorMessage(String message) {
+        showToast(message);
+    }
+
+    public void displaySentMessage(String message) {
+        showToast(message);
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     /**

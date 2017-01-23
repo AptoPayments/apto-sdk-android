@@ -6,7 +6,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -18,7 +21,8 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
  * Displays the loan applications list.
  * @author Wijnand
  */
-public class LoanApplicationsListView extends RelativeLayout implements ViewWithToolbar, ViewWithIndeterminateLoading {
+public class LoanApplicationsListView extends RelativeLayout
+        implements DisplayErrorMessage, ViewWithToolbar, ViewWithIndeterminateLoading {
 
     private Toolbar mToolbar;
     private ViewPager mPager;
@@ -68,6 +72,12 @@ public class LoanApplicationsListView extends RelativeLayout implements ViewWith
     @Override
     public Toolbar getToolbar() {
         return mToolbar;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void displayErrorMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     /**
