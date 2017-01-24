@@ -1,12 +1,15 @@
 package me.ledge.link.sdk.ui.models.financialaccountselector;
 
+import android.app.Activity;
+
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.models.ActivityModel;
 
 /**
  * Concrete {@link AddFinancialAccountModel} for adding a bank statement.
  * @author Adrian
  */
-public class AddBankAccountModel implements AddFinancialAccountModel {
+public class AddBankAccountModel implements AddFinancialAccountModel, ActivityModel {
 
     /**
      * Creates a new {@link AddBankAccountModel} instance.
@@ -30,5 +33,20 @@ public class AddBankAccountModel implements AddFinancialAccountModel {
     @Override
     public int getDescription() {
         return R.string.add_financial_account_bank_description;
+    }
+
+    @Override
+    public int getActivityTitleResource() {
+        return R.string.add_financial_account_bank_title;
+    }
+
+    @Override
+    public Class getPreviousActivity(Activity current) {
+        return null;
+    }
+
+    @Override
+    public Class getNextActivity(Activity current) {
+        return null;
     }
 }

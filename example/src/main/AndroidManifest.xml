@@ -97,5 +97,9 @@
             android:name="me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
+        <activity
+            android:name="me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
     </application>
 </manifest>

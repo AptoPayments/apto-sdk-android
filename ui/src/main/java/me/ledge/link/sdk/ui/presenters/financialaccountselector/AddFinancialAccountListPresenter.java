@@ -102,13 +102,12 @@ public class AddFinancialAccountListPresenter
     @Override
     public void accountClickHandler(AddFinancialAccountModel model) {
         if(model instanceof AddBankAccountModel) {
-            // Plaid screen
+            mDelegate.addBankAccount();
         }
         else if (model instanceof  AddVirtualCardModel) {
             // issue virtual card call & return
         }
         else if (model instanceof AddCardModel) {
-            // add card input screen
             mDelegate.addCard();
         }
 
