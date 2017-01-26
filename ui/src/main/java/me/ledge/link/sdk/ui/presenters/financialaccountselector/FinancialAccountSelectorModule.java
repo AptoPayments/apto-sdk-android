@@ -1,8 +1,8 @@
 package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
 import android.app.Activity;
+import android.util.Log;
 
-import me.ledge.link.api.vos.Card;
 import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
@@ -56,8 +56,9 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     }
 
     @Override
-    public void cardAdded(Card card) {
-
+    public void cardAdded(String token) {
+        //Send card token to the ledge platform
+        Log.d("ADRIAN", "token received: " + token);
     }
 
     @Override
@@ -72,7 +73,8 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Override
     public void bankAccountLinked(String token) {
-
+        //Send card token to the ledge platform
+        Log.d("ADRIAN", "token received: " + token);
     }
 
     @Override

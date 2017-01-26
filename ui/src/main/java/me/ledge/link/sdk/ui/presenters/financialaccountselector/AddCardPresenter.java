@@ -5,12 +5,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
+import com.verygoodsecurity.vaultsdk.VaultAPIError;
+import com.verygoodsecurity.vaultsdk.VaultAPIUICallback;
+
+import java.net.MalformedURLException;
+
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddCardModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.PCIVaultStorage;
 import me.ledge.link.sdk.ui.views.financialaccountselector.AddCardView;
 
 
@@ -57,7 +63,7 @@ public class AddCardPresenter
     @Override
     public void addCardClickHandler() {
         if(mView.isCreditCardInputValid()) {
-            storeCardAdditionalInfo(mView.getCardType().toString(), mView.getLastFourDigits(), mView.getExpirationDate());
+            storeCardAdditionalInfo(mView.getCardType(), mView.getLastFourDigits(), mView.getExpirationDate());
             tokenizeCard(mView.getCardNumber(), mView.getSecurityCode());
         }
         else {
@@ -107,11 +113,22 @@ public class AddCardPresenter
     }
 
     private void tokenizeCard(String cardNumber, String securityCode) {
-        // 1. call VGS
+        VaultAPIUICallback vaultAPIUICallback = new VaultAPIUICallback() {
+            @Override
+            public void onSuccess(String token) {
+                mDelegate.cardAdded(token);
+            }
+            @Override
+            public void onFailure(VaultAPIError error) {
+                mView.displayErrorMessage("Error adding card: " + error.name());
+            }
+        };
 
-        // 2. store token
-
-        // 3. return Card
-        mDelegate.cardAdded(null);
+        // TODO: format sensitive data
+        try {
+            PCIVaultStorage.getInstance().storeData(mActivity, cardNumber+securityCode, vaultAPIUICallback);
+        } catch (MalformedURLException e) {
+            mView.displayErrorMessage("VGS vault URL is incorrect: " + e.getMessage());
+        }
     }
 }

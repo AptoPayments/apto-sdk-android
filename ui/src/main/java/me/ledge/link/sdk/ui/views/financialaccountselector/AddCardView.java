@@ -19,6 +19,8 @@ import me.ledge.link.sdk.ui.utils.KeyboardUtil;
 import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
+import static com.devmarvel.creditcardentry.library.CardType.*;
+
 /**
  * Displays the add card screen.
  * @author Adrian
@@ -148,8 +150,8 @@ public class AddCardView
         return mCreditCardForm.getCreditCard().getSecurityCode();
     }
 
-    public CardType getCardType() {
-        return mCreditCardForm.getCreditCard().getCardType();
+    public String getCardType() {
+        return mCreditCardForm.getCreditCard().getCardType().name();
     }
 
     public String getLastFourDigits() {

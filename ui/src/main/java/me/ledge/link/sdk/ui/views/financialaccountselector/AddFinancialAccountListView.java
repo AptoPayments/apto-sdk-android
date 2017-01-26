@@ -11,6 +11,8 @@ import android.widget.RelativeLayout;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddFinancialAccountModel;
+import me.ledge.link.sdk.ui.views.LoadingView;
+import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.loanapplication.AddDocumentsListView;
 
@@ -18,13 +20,15 @@ import me.ledge.link.sdk.ui.views.loanapplication.AddDocumentsListView;
  * Created by adrian on 17/01/2017.
  */
 
-public class AddFinancialAccountListView extends CoordinatorLayout implements ViewWithToolbar, View.OnClickListener {
+public class AddFinancialAccountListView extends CoordinatorLayout
+        implements ViewWithToolbar, View.OnClickListener, ViewWithIndeterminateLoading {
 
     private Toolbar mToolbar;
     private LinearLayout mAccountsList;
 
     private AddFinancialAccountListView.ViewListener mListener;
     private AddFinancialAccountModel[] mData;
+    private LoadingView mLoadingView;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -49,6 +53,7 @@ public class AddFinancialAccountListView extends CoordinatorLayout implements Vi
     private void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mAccountsList = (LinearLayout) findViewById(R.id.ll_accounts_list);
+        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
     }
 
     @Override
@@ -71,6 +76,11 @@ public class AddFinancialAccountListView extends CoordinatorLayout implements Vi
     protected void onFinishInflate() {
         super.onFinishInflate();
         findAllViews();
+    }
+
+    @Override
+    public void showLoading(boolean show) {
+        mLoadingView.showLoading(show);
     }
 
     public interface ViewListener {

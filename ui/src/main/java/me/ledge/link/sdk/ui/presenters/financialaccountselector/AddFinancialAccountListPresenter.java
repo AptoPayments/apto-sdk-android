@@ -52,7 +52,7 @@ public class AddFinancialAccountListPresenter
     @Override
     public void attachView(AddFinancialAccountListView view) {
         super.attachView(view);
-
+        mView.showLoading(false);
         AddFinancialAccountModel[] viewData = createViewData(mModel.getFinancialAccountTypes());
         mView.setData(viewData);
         mView.setViewListener(this);
@@ -106,6 +106,7 @@ public class AddFinancialAccountListPresenter
         }
         else if (model instanceof  AddVirtualCardModel) {
             // issue virtual card call & return
+            mView.showLoading(true);
         }
         else if (model instanceof AddCardModel) {
             mDelegate.addCard();
