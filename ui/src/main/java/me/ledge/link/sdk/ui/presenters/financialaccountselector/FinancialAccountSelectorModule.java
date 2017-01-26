@@ -3,18 +3,23 @@ package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 import android.app.Activity;
 
 import me.ledge.link.api.vos.Card;
+import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity;
+import me.ledge.link.sdk.ui.activities.financialaccountselector.IntermediateFinancialAccountListActivity;
+import me.ledge.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity;
+import me.ledge.link.sdk.ui.storages.UserStorage;
 
 /**
  * Created by adrian on 29/12/2016.
  */
 
 public class FinancialAccountSelectorModule extends LedgeBaseModule
-        implements AddFinancialAccountListDelegate, AddCardDelegate, AddBankAccountDelegate {
+        implements AddFinancialAccountListDelegate, AddCardDelegate, AddBankAccountDelegate,
+        SelectFinancialAccountListDelegate, IntermediateFinancialAccountListDelegate {
 
     private static FinancialAccountSelectorModule instance;
     public Command onBack;
@@ -32,9 +37,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Override
     public void initialModuleSetup() {
-
-        // TODO: if user has accounts, showSelectFinancialAccountListSelector()
-        showAddFinancialAccountListSelector();
+        startActivity(IntermediateFinancialAccountListActivity.class);
     }
 
     @Override
@@ -62,10 +65,6 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
         showAddFinancialAccountListSelector();
     }
 
-    private void showAddFinancialAccountListSelector() {
-        startActivity(AddFinancialAccountListActivity.class);
-    }
-
     @Override
     public void addBankAccountOnBackPressed() {
         showAddFinancialAccountListSelector();
@@ -74,5 +73,34 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     @Override
     public void bankAccountLinked(String token) {
 
+    }
+
+    @Override
+    public void selectFinancialAccountListOnBackPressed() {
+        onBack.execute();
+    }
+
+    @Override
+    public void onIntermediateFinancialAccountListBackPressed() {
+        onBack.execute();
+    }
+
+    @Override
+    public void noFinancialAccountsReceived() {
+        showAddFinancialAccountListSelector();
+    }
+
+    @Override
+    public void financialAccountsReceived(DataPointList userData) {
+        UserStorage.getInstance().setUserData(userData);
+        showSelectFinancialAccountListSelector();
+    }
+
+    private void showAddFinancialAccountListSelector() {
+        startActivity(AddFinancialAccountListActivity.class);
+    }
+
+    private void showSelectFinancialAccountListSelector() {
+        startActivity(SelectFinancialAccountListActivity.class);
     }
 }

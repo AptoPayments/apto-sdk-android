@@ -7,6 +7,7 @@ import me.ledge.link.api.utils.TermUnit;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
 import me.ledge.link.api.vos.CredentialVo;
 import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
@@ -33,6 +34,8 @@ import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.offers.TermVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
+import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
+import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.AlternateCredentialsListResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
@@ -63,6 +66,11 @@ public class MockApiWrapper implements LinkApiWrapper {
     private String mProjectToken;
     private String mEndPoint;
 
+    @Override
+    public String getDeveloperKey() {
+        return mDeveloperKey;
+    }
+
     /** {@inheritDoc} */
     @Override
     public void setBaseRequestData(String developerKey, String device) {
@@ -84,6 +92,11 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     @Override
     public void setProjectToken(String projectToken) { mProjectToken = projectToken; }
+
+    @Override
+    public String getProjectToken() {
+        return mProjectToken;
+    }
 
     /** {@inheritDoc} */
     @Override
@@ -146,6 +159,14 @@ public class MockApiWrapper implements LinkApiWrapper {
     public CreateUserResponseVo loginUser(DataPointList requestData) throws ApiException {
         CreateUserResponseVo response = new CreateUserResponseVo();
         response.user_token = TOKEN;
+        return response;
+    }
+
+    @Override
+    public CurrentUserResponseVo getCurrentUser(UnauthorizedRequestVo unauthorizedRequestVo) throws ApiException {
+        CurrentUserResponseVo response = new CurrentUserResponseVo();
+        response.userData = new UserDataListResponseVo();
+        response.userData.data = new DataPointVo[0];
         return response;
     }
 

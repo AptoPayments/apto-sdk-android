@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.ledge.link.sdk.ui.views.financialaccountselector.IntermediateFinancialAccountListView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/include_llsdk_toolbar" />
+    <include layout="@layout/include_rl_loading" />
+</me.ledge.link.sdk.ui.views.financialaccountselector.IntermediateFinancialAccountListView>

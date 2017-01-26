@@ -24,6 +24,7 @@ import me.ledge.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.ListLoanApplicationsTask;
 import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
+import me.ledge.link.sdk.sdk.tasks.users.GetCurrentUserTask;
 import me.ledge.link.sdk.sdk.tasks.users.LoginUserTask;
 import me.ledge.link.sdk.sdk.tasks.users.UpdateUserTask;
 import me.ledge.link.sdk.sdk.tasks.verifications.CompletePhoneVerificationTask;
@@ -226,6 +227,20 @@ public class LedgeLinkSdk {
 
         return task;
     }
+
+    /**
+     * Gets the current user info.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getCurrentUser() {
+        checkComponents();
+
+        GetCurrentUserTask task = new GetCurrentUserTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
 
     /**
      * Creates a new user.
