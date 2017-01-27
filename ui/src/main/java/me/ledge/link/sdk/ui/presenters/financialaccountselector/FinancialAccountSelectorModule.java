@@ -3,9 +3,12 @@ package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 import android.app.Activity;
 import android.util.Log;
 
+import me.ledge.link.api.vos.Card;
 import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity;
@@ -56,9 +59,11 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     }
 
     @Override
-    public void cardAdded(String token) {
+    public void cardAdded(Card card) {
         //Send card token to the ledge platform
-        Log.d("ADRIAN", "token received: " + token);
+        Log.d("ADRIAN", "card received: " + card.toJSON().toString());
+        LedgeLinkUi.addCard(card);
+        startActivity(IntermediateFinancialAccountListActivity.class);
     }
 
     @Override
@@ -75,11 +80,21 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     public void bankAccountLinked(String token) {
         //Send card token to the ledge platform
         Log.d("ADRIAN", "token received: " + token);
+        AddBankAccountRequestVo request = new AddBankAccountRequestVo();
+        request.public_token = token;
+        LedgeLinkUi.addBankAccount(request);
+        Log.d("ADRIAN", "request sent!");
+        startActivity(IntermediateFinancialAccountListActivity.class);
     }
 
     @Override
     public void selectFinancialAccountListOnBackPressed() {
         onBack.execute();
+    }
+
+    @Override
+    public void addAccountPressed() {
+        showAddFinancialAccountListSelector();
     }
 
     @Override

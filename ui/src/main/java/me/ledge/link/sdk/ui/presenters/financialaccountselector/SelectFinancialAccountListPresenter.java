@@ -4,8 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 
+import me.ledge.link.api.vos.Card;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.FinancialAccountVo;
+import me.ledge.link.sdk.ui.models.financialaccountselector.SelectCardModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountListModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
@@ -55,7 +57,9 @@ public class SelectFinancialAccountListPresenter
         super.attachView(view);
 
         SelectFinancialAccountModel[] viewData = createViewData(mModel.getFinancialAccounts());
-        mView.setData(viewData);
+        if(viewData != null) {
+            mView.setData(viewData);
+        }
         mView.setViewListener(this);
     }
 
@@ -79,16 +83,15 @@ public class SelectFinancialAccountListPresenter
         SelectFinancialAccountModel[] data = new SelectFinancialAccountModel[financialAccounts.size()];
         FinancialAccountVo.FinancialAccountType type;
 
-        for (DataPointVo dataPoint : financialAccounts) {
-            FinancialAccountVo financialAccount = (FinancialAccountVo) dataPoint;
+        for (int i = 0; i< financialAccounts.size(); i++) {
+            FinancialAccountVo financialAccount = (FinancialAccountVo) financialAccounts.get(i);
             type = financialAccount.mAccountType;
-
             switch (type) {
                 case Bank:
                     //data[i] = new SelectBankAccountModel();
                     break;
                 case Card:
-                    //data[i] = new SelectCardModel();
+                    data[i] = new SelectCardModel((Card) financialAccount);
                     break;
                 default:
                     break;
@@ -110,5 +113,10 @@ public class SelectFinancialAccountListPresenter
             mDelegate.addCard();
         }*/
 
+    }
+
+    @Override
+    public void addAccountClickHandler() {
+        mDelegate.addAccountPressed();
     }
 }

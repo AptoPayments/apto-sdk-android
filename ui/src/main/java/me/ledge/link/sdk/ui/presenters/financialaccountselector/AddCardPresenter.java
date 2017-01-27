@@ -113,20 +113,33 @@ public class AddCardPresenter
     }
 
     private void tokenizeCard(String cardNumber, String securityCode) {
-        VaultAPIUICallback vaultAPIUICallback = new VaultAPIUICallback() {
+        VaultAPIUICallback storeCardInVaultCallback = new VaultAPIUICallback() {
             @Override
             public void onSuccess(String token) {
-                mDelegate.cardAdded(token);
+                mModel.setPANToken(token);
+                mDelegate.cardAdded(mModel.getCard());
             }
             @Override
             public void onFailure(VaultAPIError error) {
-                mView.displayErrorMessage("Error adding card: " + error.name());
+                mView.displayErrorMessage("Error tokenizing card: " + error.name());
             }
         };
 
-        // TODO: format sensitive data
+        VaultAPIUICallback storeSecurityCodeInVaultCallback = new VaultAPIUICallback() {
+            @Override
+            public void onSuccess(String token) {
+                mModel.setCVVToken(token);
+                //mDelegate.cardAdded(mModel.getCard());
+            }
+            @Override
+            public void onFailure(VaultAPIError error) {
+                mView.displayErrorMessage("Error tokenizing cvv: " + error.name());
+            }
+        };
+
         try {
-            PCIVaultStorage.getInstance().storeData(mActivity, cardNumber+securityCode, vaultAPIUICallback);
+            PCIVaultStorage.getInstance().storeData(mActivity, cardNumber, storeCardInVaultCallback);
+            //PCIVaultStorage.getInstance().storeData(mActivity, securityCode, storeSecurityCodeInVaultCallback);
         } catch (MalformedURLException e) {
             mView.displayErrorMessage("VGS vault URL is incorrect: " + e.getMessage());
         }

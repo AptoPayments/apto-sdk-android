@@ -7,6 +7,7 @@ import me.ledge.link.api.utils.TermUnit;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
 import me.ledge.link.api.vos.CredentialVo;
 import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.Card;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
@@ -14,6 +15,7 @@ import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
@@ -269,5 +271,20 @@ public class MockApiWrapper implements LinkApiWrapper {
         response.type = "";
         response.verification_id = verificationID;
         return response;
+    }
+
+    @Override
+    public VerificationStatusResponseVo addBankAccount(AddBankAccountRequestVo data) throws ApiException {
+        VerificationStatusResponseVo response = new VerificationStatusResponseVo();
+        response.status = "";
+        response.type = "";
+        response.verification_id = 1234;
+        return response;
+    }
+
+    @Override
+    public Card addCard(Card card) throws ApiException {
+        card.mAccountId = 1234;
+        return card;
     }
 }

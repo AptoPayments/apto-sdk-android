@@ -7,4 +7,6 @@ package me.ledge.link.sdk.ui.presenters.financialaccountselector;
  */
 public interface SelectFinancialAccountListDelegate {
     void selectFinancialAccountListOnBackPressed();
+
+    void addAccountPressed();
 }

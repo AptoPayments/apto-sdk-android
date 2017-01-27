@@ -12,8 +12,8 @@ public interface SelectFinancialAccountModel {
     int getIconResourceId();
 
     /**
-     * @return Title resource ID.
+     * @return Description.
      */
-    int getTitleResourceId();
+    String getDescription();
 
 }

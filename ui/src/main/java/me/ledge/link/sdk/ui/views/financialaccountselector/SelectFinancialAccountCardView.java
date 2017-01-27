@@ -61,7 +61,7 @@ public class SelectFinancialAccountCardView extends CardView {
         }
 
         mData = data;
-        mTitleField.setText(data.getTitleResourceId());
+        mTitleField.setText(data.getDescription());
         mIconView.setImageResource(data.getIconResourceId());
     }
 

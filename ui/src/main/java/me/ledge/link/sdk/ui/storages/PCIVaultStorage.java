@@ -36,7 +36,7 @@ public class PCIVaultStorage {
 
     public void storeData(Context context, String sensitiveData, VaultAPIUICallback callback) throws MalformedURLException {
         URL baseUrl = new URL(context.getString(R.string.vgs_vault_url));
-        VaultAPI vault = new VaultAPI(baseUrl, "demo-user");
+        VaultAPI vault = new VaultAPI(baseUrl, context.getString(R.string.vgs_publishable_key));
         vault.createToken(sensitiveData, callback);
     }
 }

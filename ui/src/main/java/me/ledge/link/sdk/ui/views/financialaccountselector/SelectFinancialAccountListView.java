@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
@@ -17,10 +18,12 @@ import me.ledge.link.sdk.ui.views.ViewWithToolbar;
  * Created by adrian on 17/01/2017.
  */
 
-public class SelectFinancialAccountListView extends CoordinatorLayout implements ViewWithToolbar, View.OnClickListener {
+public class SelectFinancialAccountListView extends CoordinatorLayout
+        implements ViewWithToolbar, View.OnClickListener {
 
     private Toolbar mToolbar;
     private LinearLayout mAccountsList;
+    private TextView mAddAccountButton;
 
     private SelectFinancialAccountListView.ViewListener mListener;
     private SelectFinancialAccountModel[] mData;
@@ -42,14 +45,6 @@ public class SelectFinancialAccountListView extends CoordinatorLayout implements
         super(context, attrs);
     }
 
-    /**
-     * Finds all references to child Views.
-     */
-    private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mAccountsList = (LinearLayout) findViewById(R.id.ll_select_accounts_list);
-    }
-
     @Override
     public Toolbar getToolbar() {
         return mToolbar;
@@ -61,8 +56,15 @@ public class SelectFinancialAccountListView extends CoordinatorLayout implements
             return;
         }
 
-        SelectFinancialAccountModel model = ((SelectFinancialAccountCardView) view).getData();
-        mListener.accountClickHandler(model);
+        int id = view.getId();
+        if (id == R.id.tv_add_account_bttn) {
+            mListener.addAccountClickHandler();
+        }
+        else {
+            SelectFinancialAccountModel model = ((SelectFinancialAccountCardView) view).getData();
+            mListener.accountClickHandler(model);
+        }
+        
     }
 
     /** {@inheritDoc} */
@@ -70,6 +72,22 @@ public class SelectFinancialAccountListView extends CoordinatorLayout implements
     protected void onFinishInflate() {
         super.onFinishInflate();
         findAllViews();
+        setupListeners();
+    }
+
+    /**
+     * Finds all references to child Views.
+     */
+    private void findAllViews() {
+        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
+        mAccountsList = (LinearLayout) findViewById(R.id.ll_select_accounts_list);
+        mAddAccountButton = (TextView) findViewById(R.id.tv_add_account_bttn);
+    }
+
+    protected void setupListeners() {
+        if (mAddAccountButton != null) {
+            mAddAccountButton.setOnClickListener(this);
+        }
     }
 
     public interface ViewListener {
@@ -78,6 +96,8 @@ public class SelectFinancialAccountListView extends CoordinatorLayout implements
          * @param model Card data.
          */
         void accountClickHandler(SelectFinancialAccountModel model);
+
+        void addAccountClickHandler();
     }
 
     /**
