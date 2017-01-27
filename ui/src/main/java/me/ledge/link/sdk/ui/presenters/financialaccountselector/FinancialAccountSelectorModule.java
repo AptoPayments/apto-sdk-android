@@ -59,11 +59,17 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     }
 
     @Override
+    public void virtualCardIssued() {
+        Log.d("ADRIAN", "virtual card issued correctly");
+        //startActivity(AutoPayActivity.class);
+    }
+
+    @Override
     public void cardAdded(Card card) {
         //Send card token to the ledge platform
         Log.d("ADRIAN", "card received: " + card.toJSON().toString());
         LedgeLinkUi.addCard(card);
-        startActivity(IntermediateFinancialAccountListActivity.class);
+        //startActivity(AutoPayActivity.class);
     }
 
     @Override

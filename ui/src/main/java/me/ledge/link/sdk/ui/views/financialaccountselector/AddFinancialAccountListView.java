@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddFinancialAccountModel;
+import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -21,7 +23,7 @@ import me.ledge.link.sdk.ui.views.loanapplication.AddDocumentsListView;
  */
 
 public class AddFinancialAccountListView extends CoordinatorLayout
-        implements ViewWithToolbar, View.OnClickListener, ViewWithIndeterminateLoading {
+        implements ViewWithToolbar, View.OnClickListener, ViewWithIndeterminateLoading, DisplayErrorMessage {
 
     private Toolbar mToolbar;
     private LinearLayout mAccountsList;
@@ -81,6 +83,11 @@ public class AddFinancialAccountListView extends CoordinatorLayout
     @Override
     public void showLoading(boolean show) {
         mLoadingView.showLoading(show);
+    }
+
+    @Override
+    public void displayErrorMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public interface ViewListener {

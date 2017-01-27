@@ -11,4 +11,6 @@ public interface AddFinancialAccountListDelegate {
     void addCard();
 
     void addBankAccount();
+
+    void virtualCardIssued();
 }

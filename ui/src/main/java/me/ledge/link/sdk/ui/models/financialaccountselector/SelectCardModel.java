@@ -23,6 +23,8 @@ public class SelectCardModel implements SelectFinancialAccountModel {
     @Override
     public int getIconResourceId() {
         switch (mCard.cardType) {
+            case MARQETA:
+                return R.drawable.ic_card_logo_marqeta;
             default:
                 return R.drawable.icon_add_doc_generic;
         }

@@ -68,13 +68,10 @@ public class IntermediateFinancialAccountListPresenter
         if (mView != null) {
             mView.showLoading(false);
         }
-        Log.d("ADRIAN", "user info received: " + userInfo.toJSON().toString());
         if(userInfo.getDataPointsOf(DataPointVo.DataPointType.FinancialAccount) == null) {
-            Log.d("ADRIAN", "Financial Accounts not present!");
             mDelegate.noFinancialAccountsReceived();
         }
         else {
-            Log.d("ADRIAN", "Financial Accounts found!");
             mDelegate.financialAccountsReceived(userInfo);
         }
     }
