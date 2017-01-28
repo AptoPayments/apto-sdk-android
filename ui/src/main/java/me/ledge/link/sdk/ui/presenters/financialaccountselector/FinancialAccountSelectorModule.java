@@ -87,7 +87,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
         //Send card token to the ledge platform
         Log.d("ADRIAN", "token received: " + token);
         AddBankAccountRequestVo request = new AddBankAccountRequestVo();
-        request.public_token = token;
+        request.publicToken = token;
         LedgeLinkUi.addBankAccount(request);
         Log.d("ADRIAN", "request sent!");
         startActivity(IntermediateFinancialAccountListActivity.class);

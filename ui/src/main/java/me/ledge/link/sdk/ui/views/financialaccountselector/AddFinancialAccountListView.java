@@ -16,7 +16,6 @@ import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
-import me.ledge.link.sdk.ui.views.loanapplication.AddDocumentsListView;
 
 /**
  * Created by adrian on 17/01/2017.
@@ -99,8 +98,8 @@ public class AddFinancialAccountListView extends CoordinatorLayout
     }
 
     /**
-     * Stores a new reference to a {@link AddDocumentsListView.ViewListener} that will be invoked by this View.
-     * @param listener The new {@link AddDocumentsListView.ViewListener} to store.
+     * Stores a new reference to a {@link AddFinancialAccountListView.ViewListener} that will be invoked by this View.
+     * @param listener The new {@link AddFinancialAccountListView.ViewListener} to store.
      */
     public void setViewListener(AddFinancialAccountListView.ViewListener listener) {
         mListener = listener;
