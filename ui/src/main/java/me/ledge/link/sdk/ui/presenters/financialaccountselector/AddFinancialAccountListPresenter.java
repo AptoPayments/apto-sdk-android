@@ -1,7 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -99,8 +98,6 @@ public class AddFinancialAccountListPresenter
                 case "VirtualCard":
                     data[i] = new AddVirtualCardModel();
                     break;
-                default:
-                    break;
             }
         }
 
@@ -133,7 +130,6 @@ public class AddFinancialAccountListPresenter
         if (mView != null) {
             mView.showLoading(false);
         }
-        Log.d("ADRIAN", "virtual card received: " + virtualCard.toJSON().toString());
         mDelegate.virtualCardIssued();
     }
 

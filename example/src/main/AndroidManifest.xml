@@ -109,5 +109,9 @@
             android:name="me.ledge.link.sdk.ui.activities.financialaccountselector.IntermediateFinancialAccountListActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
+        <activity
+            android:name="me.ledge.link.sdk.ui.activities.financialaccountselector.EnableAutoPayActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
     </application>
 </manifest>

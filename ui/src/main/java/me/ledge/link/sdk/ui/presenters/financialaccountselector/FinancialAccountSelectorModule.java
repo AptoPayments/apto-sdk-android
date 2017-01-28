@@ -1,10 +1,10 @@
 package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
 import android.app.Activity;
-import android.util.Log;
 
 import me.ledge.link.api.vos.Card;
 import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.FinancialAccountVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
@@ -12,8 +12,10 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity;
+import me.ledge.link.sdk.ui.activities.financialaccountselector.EnableAutoPayActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.IntermediateFinancialAccountListActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity;
+import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 
 /**
@@ -22,10 +24,12 @@ import me.ledge.link.sdk.ui.storages.UserStorage;
 
 public class FinancialAccountSelectorModule extends LedgeBaseModule
         implements AddFinancialAccountListDelegate, AddCardDelegate, AddBankAccountDelegate,
-        SelectFinancialAccountListDelegate, IntermediateFinancialAccountListDelegate {
+        SelectFinancialAccountListDelegate, IntermediateFinancialAccountListDelegate, EnableAutoPayDelegate {
 
     private static FinancialAccountSelectorModule instance;
     public Command onBack;
+
+    private FinancialAccountVo selectedFinancialAccount;
 
     public static synchronized FinancialAccountSelectorModule getInstance(Activity activity) {
         if (instance == null) {
@@ -60,16 +64,16 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Override
     public void virtualCardIssued() {
-        Log.d("ADRIAN", "virtual card issued correctly");
-        //startActivity(AutoPayActivity.class);
+        //TODO receive virtual card from API
+        //setSelectedFinancialAccount(card);
+        startActivity(EnableAutoPayActivity.class);
     }
 
     @Override
     public void cardAdded(Card card) {
-        //Send card token to the ledge platform
-        Log.d("ADRIAN", "card received: " + card.toJSON().toString());
         LedgeLinkUi.addCard(card);
-        //startActivity(AutoPayActivity.class);
+        setSelectedFinancialAccount(card);
+        startActivity(EnableAutoPayActivity.class);
     }
 
     @Override
@@ -84,12 +88,9 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Override
     public void bankAccountLinked(String token) {
-        //Send card token to the ledge platform
-        Log.d("ADRIAN", "token received: " + token);
         AddBankAccountRequestVo request = new AddBankAccountRequestVo();
         request.publicToken = token;
         LedgeLinkUi.addBankAccount(request);
-        Log.d("ADRIAN", "request sent!");
         startActivity(IntermediateFinancialAccountListActivity.class);
     }
 
@@ -101,6 +102,12 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     @Override
     public void addAccountPressed() {
         showAddFinancialAccountListSelector();
+    }
+
+    @Override
+    public void accountSelected(SelectFinancialAccountModel model) {
+        setSelectedFinancialAccount(model.getFinancialAccount());
+        startActivity(EnableAutoPayActivity.class);
     }
 
     @Override
@@ -125,5 +132,28 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     private void showSelectFinancialAccountListSelector() {
         startActivity(SelectFinancialAccountListActivity.class);
+    }
+
+    @Override
+    public void autoPayEnabled() {
+
+    }
+
+    @Override
+    public void autoPayOnBackPressed() {
+        onBack.execute();
+    }
+
+    @Override
+    public FinancialAccountVo getFinancialAccount() {
+        return this.getSelectedFinancialAccount();
+    }
+
+    public FinancialAccountVo getSelectedFinancialAccount() {
+        return selectedFinancialAccount;
+    }
+
+    public void setSelectedFinancialAccount(FinancialAccountVo selectedFinancialAccount) {
+        this.selectedFinancialAccount = selectedFinancialAccount;
     }
 }

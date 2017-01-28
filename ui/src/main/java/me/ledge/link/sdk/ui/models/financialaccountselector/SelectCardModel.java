@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.models.financialaccountselector;
 
 import me.ledge.link.api.vos.Card;
+import me.ledge.link.api.vos.FinancialAccountVo;
 import me.ledge.link.sdk.ui.R;
 
 /**
@@ -34,5 +35,10 @@ public class SelectCardModel implements SelectFinancialAccountModel {
     @Override
     public String getDescription() {
         return mCard.cardType.name() + " (...." + mCard.lastFourDigits + ")";
+    }
+
+    @Override
+    public FinancialAccountVo getFinancialAccount() {
+        return mCard;
     }
 }

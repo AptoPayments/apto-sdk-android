@@ -4,9 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 
+import me.ledge.link.api.vos.BankAccount;
 import me.ledge.link.api.vos.Card;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.FinancialAccountVo;
+import me.ledge.link.sdk.ui.models.financialaccountselector.SelectBankAccountModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectCardModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountListModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
@@ -88,12 +90,10 @@ public class SelectFinancialAccountListPresenter
             type = financialAccount.mAccountType;
             switch (type) {
                 case Bank:
-                    //data[i] = new SelectBankAccountModel();
+                    data[i] = new SelectBankAccountModel((BankAccount) financialAccount);
                     break;
                 case Card:
                     data[i] = new SelectCardModel((Card) financialAccount);
-                    break;
-                default:
                     break;
             }
         }
@@ -103,16 +103,7 @@ public class SelectFinancialAccountListPresenter
 
     @Override
     public void accountClickHandler(SelectFinancialAccountModel model) {
-/*        if(model instanceof SelectBankAccountModel) {
-            mDelegate.addBankAccount();
-        }
-        else if (model instanceof  SelectVirtualCardModel) {
-            // issue virtual card call & return
-        }
-        else if (model instanceof SelectCardModel) {
-            mDelegate.addCard();
-        }*/
-
+        mDelegate.accountSelected(model);
     }
 
     @Override
