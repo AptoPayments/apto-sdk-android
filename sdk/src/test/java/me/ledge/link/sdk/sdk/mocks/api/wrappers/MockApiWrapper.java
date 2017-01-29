@@ -11,6 +11,7 @@ import me.ledge.link.api.vos.Card;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
@@ -286,5 +287,12 @@ public class MockApiWrapper implements LinkApiWrapper {
     public Card addCard(Card card) throws ApiException {
         card.mAccountId = 1234;
         return card;
+    }
+
+    @Override
+    public Card issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
+        Card response = new Card();
+        response.cardType = Card.CardType.MARQETA;
+        return response;
     }
 }
