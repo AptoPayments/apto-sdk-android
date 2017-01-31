@@ -1,12 +1,13 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.storages;
 
-import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
-import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
-import me.ledge.link.sdk.ui.storages.LoanStorage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
+import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
+import me.ledge.link.sdk.ui.storages.LoanStorage;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -34,7 +35,7 @@ public class LoanStorageTest {
     @After
     public void tearDown() {
         mStorage.setCurrentLoanApplication(null);
-        mStorage.setOfferRequestId(-1);
+        mStorage.setOfferRequestId(null);
     }
 
     /**

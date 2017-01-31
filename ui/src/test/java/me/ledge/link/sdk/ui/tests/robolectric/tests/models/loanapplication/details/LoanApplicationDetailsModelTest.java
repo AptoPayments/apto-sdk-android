@@ -1,6 +1,14 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.loanapplication.details;
 
 import android.content.res.Resources;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.shadows.ShadowContentProvider;
+
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.TermUnit;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
@@ -8,13 +16,6 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.ui.models.loanapplication.details.ApprovedLoanApplicationDetailsModel;
 import me.ledge.link.sdk.ui.models.loanapplication.details.LoanApplicationDetailsModel;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.RuntimeEnvironment;
-import org.robolectric.shadows.ShadowContentProvider;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -48,7 +49,7 @@ public class LoanApplicationDetailsModelTest {
         LoanApplicationDetailsResponseVo application = null;
 
         try {
-            application = mApiWrapper.createLoanApplication(-1);
+            application = mApiWrapper.createLoanApplication(null);
             application.offer = mApiWrapper.getInitialOffers(null).offers.data[0];
         } catch (ApiException ae) {
             Assert.fail("API error.");
@@ -69,7 +70,7 @@ public class LoanApplicationDetailsModelTest {
         LoanApplicationDetailsResponseVo application = null;
 
         try {
-            application = mApiWrapper.createLoanApplication(-1);
+            application = mApiWrapper.createLoanApplication(null);
             application.offer = mApiWrapper.getInitialOffers(null).offers.data[0];
             application.offer.term.unit = TermUnit.MONTH;
         } catch (ApiException ae) {
