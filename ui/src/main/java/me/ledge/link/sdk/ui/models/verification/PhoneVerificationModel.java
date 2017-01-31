@@ -111,7 +111,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
         return request;
     }
 
-    private int getVerificationId() {
+    private String getVerificationId() {
         return mVerification.getVerificationId();
     }
 

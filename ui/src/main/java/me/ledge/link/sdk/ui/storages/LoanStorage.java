@@ -16,7 +16,7 @@ import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
  */
 public class LoanStorage {
 
-    private int mOfferRequestId;
+    private String mOfferRequestId;
     private PagedList<OfferSummaryModel> mOffers;
 
     private LoanApplicationDetailsResponseVo mCurrentLoanApplication;
@@ -34,7 +34,7 @@ public class LoanStorage {
      * Initializes this class.
      */
     private void init() {
-        mOfferRequestId = -1;
+        mOfferRequestId = null;
         mOffers = new PagedList<>();
     }
 
@@ -55,7 +55,7 @@ public class LoanStorage {
      *
      * @param id Loan offers request ID.
      */
-    public void setOfferRequestId(int id) {
+    public void setOfferRequestId(String id) {
         if (id != mOfferRequestId) {
             mOffers = new PagedList<>();
         }

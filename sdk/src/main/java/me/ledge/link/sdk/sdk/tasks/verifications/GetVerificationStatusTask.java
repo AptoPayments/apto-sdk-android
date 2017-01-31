@@ -11,7 +11,7 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * A concrete {@link LedgeLinkApiTask} to complete user's phone verification.
  * @author Adrian
  */
-public class GetVerificationStatusTask extends LedgeLinkApiTask<Void, Void, VerificationStatusResponseVo, Integer> {
+public class GetVerificationStatusTask extends LedgeLinkApiTask<Void, Void, VerificationStatusResponseVo, String> {
 
     /**
      * @see LedgeLinkApiTask#LedgeLinkApiTask
@@ -19,7 +19,7 @@ public class GetVerificationStatusTask extends LedgeLinkApiTask<Void, Void, Veri
      * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      */
-    public GetVerificationStatusTask(int requestData, LinkApiWrapper apiWrapper,
+    public GetVerificationStatusTask(String requestData, LinkApiWrapper apiWrapper,
                                      ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);

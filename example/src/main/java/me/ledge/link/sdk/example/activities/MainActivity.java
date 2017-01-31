@@ -12,6 +12,7 @@ import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
@@ -230,10 +231,11 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
 
     /**
      * Called when the loan purpose list has been received from the API.
-     * @param response API response.
+     * @param linkConfigResponse API response.
      */
     @Subscribe
-    public void purposeListLoadedHandler(LoanPurposesResponseVo response) {
+    public void purposeListLoadedHandler(LinkConfigResponseVo linkConfigResponse) {
+        LoanPurposesResponseVo response = linkConfigResponse.loanPurposesList;
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
 

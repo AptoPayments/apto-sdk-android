@@ -234,7 +234,7 @@ public class OffersListPresenter
      * @param offerRequestId Offer request ID.
      * @param complete Whether the list is complete.
      */
-    public void addOffers(OfferVo[] rawOffers, int offerRequestId, boolean complete) {
+    public void addOffers(OfferVo[] rawOffers, String offerRequestId, boolean complete) {
         mLoanStorage.setOfferRequestId(offerRequestId);
         mLoanStorage.addOffers(mActivity.getResources(), rawOffers, complete, LedgeLinkUi.getImageLoader());
 

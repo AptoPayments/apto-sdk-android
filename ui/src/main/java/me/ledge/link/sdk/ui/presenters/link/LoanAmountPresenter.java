@@ -6,6 +6,7 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -163,8 +164,9 @@ public class LoanAmountPresenter
      * @param response API response.
      */
     @Subscribe
-    public void handlePurposeList(LoanPurposesResponseVo response) {
-        setLoanPurposeList(response.data);
+    public void handlePurposeList(LinkConfigResponseVo response) {
+        LoanPurposesResponseVo purposeList = response.loanPurposesList;
+        setLoanPurposeList(purposeList.data);
     }
 
     /**

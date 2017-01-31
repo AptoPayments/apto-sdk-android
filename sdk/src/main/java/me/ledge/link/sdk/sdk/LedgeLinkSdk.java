@@ -267,7 +267,7 @@ public class LedgeLinkSdk {
      * @param offerId The loan offer to apply to.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask createLoanApplication(long offerId) {
+    public static LedgeLinkApiTask createLoanApplication(String offerId) {
         checkComponents();
 
         CreateLoanApplicationTask task = new CreateLoanApplicationTask(offerId, getApiWrapper(), getResponseHandler());
@@ -337,7 +337,7 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getVerificationStatus(int data) {
+    public static LedgeLinkApiTask getVerificationStatus(String data) {
         checkComponents();
 
         GetVerificationStatusTask task = new GetVerificationStatusTask(data, getApiWrapper(), getResponseHandler());

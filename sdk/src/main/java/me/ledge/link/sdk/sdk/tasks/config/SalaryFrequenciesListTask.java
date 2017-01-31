@@ -3,6 +3,7 @@ package me.ledge.link.sdk.sdk.tasks.config;
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -29,6 +30,7 @@ public class SalaryFrequenciesListTask
     /** {@inheritDoc} */
     @Override
     protected ConfigResponseVo callApi() throws ApiException {
-        return getApiWrapper().getUserConfig(getRequestData());
+        ContextConfigResponseVo response = getApiWrapper().getUserConfig(getRequestData());
+        return response.projectConfiguration;
     }
 }

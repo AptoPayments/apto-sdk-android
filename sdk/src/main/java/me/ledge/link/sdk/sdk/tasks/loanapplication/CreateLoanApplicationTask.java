@@ -10,7 +10,7 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * A concrete {@link LedgeLinkApiTask} to create a new loan application.
  * @author Wijnand
  */
-public class CreateLoanApplicationTask extends LedgeLinkApiTask<Void, Void, LoanApplicationDetailsResponseVo, Long> {
+public class CreateLoanApplicationTask extends LedgeLinkApiTask<Void, Void, LoanApplicationDetailsResponseVo, String> {
 
     /**
      * Creates a new {@link CreateLoanApplicationTask} instance.
@@ -18,7 +18,7 @@ public class CreateLoanApplicationTask extends LedgeLinkApiTask<Void, Void, Loan
      * @param apiWrapper The API wrapper instance to make API calls.
      * @param responseHandler The response handler instance used to publish results.
      */
-    public CreateLoanApplicationTask(long requestData, LinkApiWrapper apiWrapper,
+    public CreateLoanApplicationTask(String requestData, LinkApiWrapper apiWrapper,
             ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);
