@@ -26,8 +26,14 @@ public class SelectCardModel implements SelectFinancialAccountModel {
         switch (mCard.cardType) {
             case MARQETA:
                 return R.drawable.ic_card_logo_marqeta;
+            case VISA:
+                return R.drawable.icon_visa;
+            case MASTERCARD:
+                return R.drawable.icon_mastercard;
+            case AMEX:
+                return R.drawable.icon_amex;
             default:
-                return R.drawable.icon_add_doc_generic;
+                return R.drawable.icon_add_card;
         }
     }
 
