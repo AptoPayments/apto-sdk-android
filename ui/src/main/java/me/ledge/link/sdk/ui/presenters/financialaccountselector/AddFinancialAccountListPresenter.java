@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -113,8 +114,6 @@ public class AddFinancialAccountListPresenter
             mView.showLoading(true);
             AddVirtualCardModel mModel = (AddVirtualCardModel) model;
             LedgeLinkUi.issueVirtualCard(mModel.getRequest());
-            // TODO: it seems response is not arriving so calling delegate from here
-            mDelegate.virtualCardIssued();
         }
         else if (model instanceof AddCardModel) {
             mDelegate.addCard();
@@ -130,6 +129,7 @@ public class AddFinancialAccountListPresenter
         if (mView != null) {
             mView.showLoading(false);
         }
+        // TODO: it seems response is arriving empty
         mDelegate.virtualCardIssued();
     }
 

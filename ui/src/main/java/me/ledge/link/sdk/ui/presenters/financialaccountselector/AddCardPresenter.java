@@ -113,23 +113,11 @@ public class AddCardPresenter
     }
 
     private void tokenizeCard(String cardNumber, String securityCode) {
-        VaultAPIUICallback storeCardInVaultCallback = new VaultAPIUICallback() {
-            @Override
-            public void onSuccess(String token) {
-                mModel.setPANToken(token);
-                mDelegate.cardAdded(mModel.getCard());
-            }
-            @Override
-            public void onFailure(VaultAPIError error) {
-                mView.displayErrorMessage("Error tokenizing card: " + error.name());
-            }
-        };
-
         VaultAPIUICallback storeSecurityCodeInVaultCallback = new VaultAPIUICallback() {
             @Override
             public void onSuccess(String token) {
                 mModel.setCVVToken(token);
-                //mDelegate.cardAdded(mModel.getCard());
+                mDelegate.cardAdded(mModel.getCard());
             }
             @Override
             public void onFailure(VaultAPIError error) {
@@ -137,9 +125,25 @@ public class AddCardPresenter
             }
         };
 
+        VaultAPIUICallback storeCardInVaultCallback = new VaultAPIUICallback() {
+            @Override
+            public void onSuccess(String token) {
+                mModel.setPANToken(token);
+
+                try {
+                    PCIVaultStorage.getInstance().storeData(mActivity, securityCode, storeSecurityCodeInVaultCallback);
+                } catch (MalformedURLException e) {
+                    mView.displayErrorMessage("VGS vault URL is incorrect: " + e.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(VaultAPIError error) {
+                mView.displayErrorMessage("Error tokenizing card: " + error.name());
+            }
+        };
+
         try {
             PCIVaultStorage.getInstance().storeData(mActivity, cardNumber, storeCardInVaultCallback);
-            //PCIVaultStorage.getInstance().storeData(mActivity, securityCode, storeSecurityCodeInVaultCallback);
         } catch (MalformedURLException e) {
             mView.displayErrorMessage("VGS vault URL is incorrect: " + e.getMessage());
         }
