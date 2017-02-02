@@ -79,7 +79,7 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseRequestData(String developerKey, String device) {
+    public void setBaseRequestData(String developerKey, String device, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         mDeveloperKey = developerKey;
         mDevice = device;
     }
@@ -123,7 +123,7 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public void setApiEndPoint(String endPoint) {
+    public void setApiEndPoint(String endPoint, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         mEndPoint = endPoint;
     }
 
