@@ -109,10 +109,10 @@ dependencies {
     // Tests
     testCompile 'junit:junit:4.+'
     testCompile 'org.robolectric:robolectric:3.1'
-    testCompile 'org.powermock:powermock-api-mockito:+'
-    testCompile 'org.powermock:powermock-module-junit4-rule-agent:+'
-    testCompile 'org.powermock:powermock-module-junit4-rule:+'
-    testCompile 'org.powermock:powermock-module-junit4:+'
+    testCompile 'org.powermock:powermock-api-mockito:1.6.6'
+    testCompile 'org.powermock:powermock-module-junit4-rule-agent:1.6.6'
+    testCompile 'org.powermock:powermock-module-junit4-rule:1.6.6'
+    testCompile 'org.powermock:powermock-module-junit4:1.6.6'
 }
 
 // Lame Robolectric testing hacks...
