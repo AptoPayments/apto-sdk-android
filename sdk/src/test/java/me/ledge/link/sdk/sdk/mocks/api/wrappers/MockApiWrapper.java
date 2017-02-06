@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.sdk.mocks.api.wrappers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.TermUnit;
@@ -89,6 +90,11 @@ public class MockApiWrapper implements LinkApiWrapper {
         mBearerToken = token;
     }
 
+    @Override
+    public String getBearerToken() {
+        return mBearerToken;
+    }
+
     /** {@inheritDoc} */
     @Override
     public void setDeveloperKey(String developerKey) {
@@ -107,6 +113,12 @@ public class MockApiWrapper implements LinkApiWrapper {
     @Override
     public String getApiEndPoint() {
         return mEndPoint;
+    }
+
+    @Override
+    public HashMap<String, String> getHTTPHeaders() {
+        HashMap<String, String> response = new HashMap<>();
+        return response;
     }
 
     /** {@inheritDoc} */
