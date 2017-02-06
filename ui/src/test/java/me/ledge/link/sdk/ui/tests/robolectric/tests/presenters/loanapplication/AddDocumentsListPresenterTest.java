@@ -1,6 +1,15 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.presenters.loanapplication;
 
 import android.support.v7.app.AppCompatActivity;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricGradleTestRunner;
+
 import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
@@ -14,14 +23,6 @@ import me.ledge.link.sdk.ui.models.loanapplication.documents.AddProofOfAddressMo
 import me.ledge.link.sdk.ui.presenters.loanapplication.AddDocumentsListPresenter;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.RuntimeEnvironment;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -51,7 +52,7 @@ public class AddDocumentsListPresenterTest {
      * @param action Required action for the loan application.
      */
     private void setupCurrentLoanApplication(String status, String action) {
-        LoanApplicationDetailsResponseVo application = new MockApiWrapper().createLoanApplication(-1);
+        LoanApplicationDetailsResponseVo application = new MockApiWrapper().createLoanApplication(null);
         application.status = status;
         application.required_actions.data[0].action = action;
 

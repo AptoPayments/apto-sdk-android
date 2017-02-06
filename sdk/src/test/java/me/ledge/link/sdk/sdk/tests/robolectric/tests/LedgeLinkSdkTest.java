@@ -183,7 +183,7 @@ public class LedgeLinkSdkTest {
     @Test
     public void createLoanApplicationTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.createLoanApplication(1189998819991197253L),
+                LedgeLinkSdk.createLoanApplication("1189998819991197253L"),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 

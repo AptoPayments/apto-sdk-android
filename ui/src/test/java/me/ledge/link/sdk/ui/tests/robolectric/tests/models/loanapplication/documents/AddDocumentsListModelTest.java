@@ -1,5 +1,11 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.loanapplication.documents;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -10,11 +16,6 @@ import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicati
 import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActivity;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -115,7 +116,7 @@ public class AddDocumentsListModelTest {
      */
     @Test
     public void emptyActionsList() {
-        LoanApplicationDetailsResponseVo application = new MockApiWrapper().createLoanApplication(0);
+        LoanApplicationDetailsResponseVo application = new MockApiWrapper().createLoanApplication(null);
         application.required_actions = null;
 
         mModel = new AddDocumentsListModel(application);
@@ -130,7 +131,7 @@ public class AddDocumentsListModelTest {
      */
     @Test
     public void populatedActionsList() {
-        LoanApplicationDetailsResponseVo application = new MockApiWrapper().createLoanApplication(0);
+        LoanApplicationDetailsResponseVo application = new MockApiWrapper().createLoanApplication(null);
         mModel = new AddDocumentsListModel(application);
         Assert.assertThat("Actions should be populated.", mModel.getRequiredActions(), not(nullValue()));
     }
