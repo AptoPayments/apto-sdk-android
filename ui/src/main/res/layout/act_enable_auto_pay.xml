@@ -55,7 +55,7 @@
                 android:id="@+id/tv_enable_auto_pay_bttn"
                 style="?attr/llsdk_bigButtonStyle"
                 android:layout_below="@+id/tv_auto_pay_info"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_centerHorizontal="true"
                 android:text="@string/enable_auto_pay_button" />
 

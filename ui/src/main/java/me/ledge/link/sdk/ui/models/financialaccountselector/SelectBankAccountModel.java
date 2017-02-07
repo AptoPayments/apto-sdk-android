@@ -23,7 +23,7 @@ public class SelectBankAccountModel implements SelectFinancialAccountModel {
     /** {@inheritDoc} */
     @Override
     public int getIconResourceId() {
-        return R.drawable.icon_add_doc_bank_statement;
+        return R.drawable.icon_add_bank_account;
     }
 
     /** {@inheritDoc} */

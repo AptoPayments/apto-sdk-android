@@ -24,7 +24,7 @@ public class AddVirtualCardModel implements AddFinancialAccountModel {
     /** {@inheritDoc} */
     @Override
     public int getIconResourceId() {
-        return R.drawable.ic_card_virtual;
+        return R.drawable.icon_add_virtual_card;
     }
 
     /** {@inheritDoc} */
