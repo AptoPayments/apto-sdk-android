@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.ledge.link.sdk.ui.views.financialaccountselector.SelectFinancialAccountListView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <include layout="@layout/include_llsdk_toolbar" />
+
+        <TextView
+                android:id="@+id/tv_select_account_header"
+                android:layout_below="@+id/abl_toolbar_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/select_financial_account_list_label" />
+
+        <TextView
+            android:id="@+id/tv_add_account_bttn"
+            style="?attr/llsdk_bigButtonStyle"
+            android:layout_alignParentBottom="true"
+            android:text="@string/add_financial_account_button"
+            android:layout_marginBottom="16dp"
+            android:layout_centerHorizontal="true" />
+
+        <ScrollView
+                android:id="@+id/sv_select_accounts_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tv_select_account_header"
+                android:layout_above="@+id/tv_add_account_bttn"
+                android:paddingBottom="16dp"
+                android:clipToPadding="false"
+                android:scrollbars="vertical"
+                android:scrollbarStyle="outsideOverlay">
+
+            <LinearLayout
+                    android:id="@+id/ll_select_accounts_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical" />
+        </ScrollView>
+    </RelativeLayout>
+</me.ledge.link.sdk.ui.views.financialaccountselector.SelectFinancialAccountListView>

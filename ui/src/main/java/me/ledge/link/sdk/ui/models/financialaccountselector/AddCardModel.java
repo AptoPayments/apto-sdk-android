@@ -62,6 +62,10 @@ public class AddCardModel implements AddFinancialAccountModel, ActivityModel {
         return R.string.add_card_title;
     }
 
+    public Card getCard() {
+        return mCard;
+    }
+
     private String getUserName() {
         DataPointList userData = UserStorage.getInstance().getUserData();
         DataPointVo.PersonalName userName = (DataPointVo.PersonalName) userData.getUniqueDataPoint(
@@ -84,5 +88,13 @@ public class AddCardModel implements AddFinancialAccountModel, ActivityModel {
 
     public void setExpirationDate(String expirationDate) {
         mCard.expirationDate = expirationDate;
+    }
+
+    public void setPANToken(String PANToken) {
+        mCard.PANToken = PANToken;
+    }
+
+    public void setCVVToken(String CVVToken) {
+        mCard.CVVToken = CVVToken;
     }
 }

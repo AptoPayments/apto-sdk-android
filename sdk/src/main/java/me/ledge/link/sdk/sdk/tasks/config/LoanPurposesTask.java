@@ -2,7 +2,7 @@ package me.ledge.link.sdk.sdk.tasks.config;
 
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
-import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
+import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
@@ -11,7 +11,7 @@ import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
  * A concrete {@link LedgeLinkApiTask} to display loan purposes.
  * @author wijnand
  */
-public class LoanPurposesTask extends LedgeLinkApiTask<Void, Void, LoanPurposesResponseVo, UnauthorizedRequestVo> {
+public class LoanPurposesTask extends LedgeLinkApiTask<Void, Void, LinkConfigResponseVo, UnauthorizedRequestVo> {
 
     /**
      * Creates a new {@link LoanPurposesTask} instance.
@@ -27,7 +27,7 @@ public class LoanPurposesTask extends LedgeLinkApiTask<Void, Void, LoanPurposesR
 
     /** {@inheritDoc} */
     @Override
-    protected LoanPurposesResponseVo callApi() throws ApiException {
+    protected LinkConfigResponseVo callApi() throws ApiException {
         return getApiWrapper().getLoanPurposesList(getRequestData());
     }
 }

@@ -2,6 +2,11 @@ package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
 import android.support.v7.app.AppCompatActivity;
 
+import org.greenrobot.eventbus.Subscribe;
+
+import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.Card;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddCardModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddFinancialAccountListModel;
@@ -52,7 +57,8 @@ public class AddFinancialAccountListPresenter
     @Override
     public void attachView(AddFinancialAccountListView view) {
         super.attachView(view);
-
+        mView.showLoading(false);
+        mResponseHandler.subscribe(this);
         AddFinancialAccountModel[] viewData = createViewData(mModel.getFinancialAccountTypes());
         mView.setData(viewData);
         mView.setViewListener(this);
@@ -67,6 +73,7 @@ public class AddFinancialAccountListPresenter
     @Override
     public void detachView() {
         mView.setViewListener(null);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -91,8 +98,6 @@ public class AddFinancialAccountListPresenter
                 case "VirtualCard":
                     data[i] = new AddVirtualCardModel();
                     break;
-                default:
-                    break;
             }
         }
 
@@ -102,15 +107,41 @@ public class AddFinancialAccountListPresenter
     @Override
     public void accountClickHandler(AddFinancialAccountModel model) {
         if(model instanceof AddBankAccountModel) {
-            // Plaid screen
+            mDelegate.addBankAccount();
         }
         else if (model instanceof  AddVirtualCardModel) {
-            // issue virtual card call & return
+            mView.showLoading(true);
+            AddVirtualCardModel mModel = (AddVirtualCardModel) model;
+            LedgeLinkUi.issueVirtualCard(mModel.getRequest());
+            // TODO: it seems response is not arriving so calling delegate from here
+            mDelegate.virtualCardIssued();
         }
         else if (model instanceof AddCardModel) {
-            // add card input screen
             mDelegate.addCard();
         }
+    }
 
+    /**
+     * Called when the issue virtual card response has been received.
+     * @param virtualCard API response.
+     */
+    @Subscribe
+    public void handleResponse(Card virtualCard) {
+        if (mView != null) {
+            mView.showLoading(false);
+        }
+        mDelegate.virtualCardIssued();
+    }
+
+    /**
+     * Called when an API error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
+        if (mView != null) {
+            mView.showLoading(false);
+            mView.displayErrorMessage("API Error: " + error);
+        }
     }
 }

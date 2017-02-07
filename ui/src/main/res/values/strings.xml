@@ -174,6 +174,8 @@
     <string name="loan_application_details_status_pending_lender_action">Processing application&#8230;</string>
 
     <!-- Financial Account Selector -->
+    <string name="select_financial_account_list_title">Funding Account</string>
+    <string name="select_financial_account_list_label">Where do you want your loan deposited?</string>
     <string name="add_financial_account_list_title">Fund Loan</string>
     <string name="add_financial_account_list_label">How do you want to fund your loan?</string>
     <string name="add_financial_account_bank">Bank Deposit</string>
@@ -187,5 +189,20 @@
     <string name="add_card_button_submit">Add Card</string>
     <string name="add_card_button_scan">Scan Card</string>
     <string name="add_card_error">Error: invalid card number!</string>
+    <string name="vgs_vault_url">https://demo.sandbox.verygoodvault.com</string>
+    <string name="vgs_publishable_key">demo-user</string>
 
+    <!-- Add Bank Account -->
+    <string name="add_financial_account_bank_title">Select your bank</string>
+
+    <!-- Select Financial Account -->
+    <string name="add_financial_account_button">Add Account</string>
+
+    <!-- Enable Auto-Pay -->
+    <string name="enable_auto_pay_title">Enable Auto-Pay?</string>
+    <string name="enable_auto_pay_button">Enable Auto-Pay</string>
+    <string name="enable_auto_pay_info">Do you want to enable auto-pay for your loan?</string>
+    <string name="enable_auto_pay_card">Your loan is being disbursed to the card you\'ve selected: (....%s)</string>
+    <string name="enable_auto_pay_virtual_card">We\'ve sent an SMS with a link to view your virtual card to %s</string>
+    <string name="enable_auto_pay_bank">Your loan is being disbursed to the account you\'ve selected: %s</string>
 </resources>

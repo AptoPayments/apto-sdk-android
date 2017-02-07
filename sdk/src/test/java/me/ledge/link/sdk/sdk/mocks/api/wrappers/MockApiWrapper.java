@@ -1,25 +1,32 @@
 package me.ledge.link.sdk.sdk.mocks.api.wrappers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.TermUnit;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
+import me.ledge.link.api.vos.Card;
 import me.ledge.link.api.vos.CredentialVo;
 import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusListResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeVo;
+import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
@@ -33,11 +40,13 @@ import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.offers.TermVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
+import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
+import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.AlternateCredentialsListResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 
@@ -63,6 +72,11 @@ public class MockApiWrapper implements LinkApiWrapper {
     private String mProjectToken;
     private String mEndPoint;
 
+    @Override
+    public String getDeveloperKey() {
+        return mDeveloperKey;
+    }
+
     /** {@inheritDoc} */
     @Override
     public void setBaseRequestData(String developerKey, String device) {
@@ -76,6 +90,11 @@ public class MockApiWrapper implements LinkApiWrapper {
         mBearerToken = token;
     }
 
+    @Override
+    public String getBearerToken() {
+        return mBearerToken;
+    }
+
     /** {@inheritDoc} */
     @Override
     public void setDeveloperKey(String developerKey) {
@@ -85,10 +104,21 @@ public class MockApiWrapper implements LinkApiWrapper {
     @Override
     public void setProjectToken(String projectToken) { mProjectToken = projectToken; }
 
+    @Override
+    public String getProjectToken() {
+        return mProjectToken;
+    }
+
     /** {@inheritDoc} */
     @Override
     public String getApiEndPoint() {
         return mEndPoint;
+    }
+
+    @Override
+    public HashMap<String, String> getHTTPHeaders() {
+        HashMap<String, String> response = new HashMap<>();
+        return response;
     }
 
     /** {@inheritDoc} */
@@ -106,16 +136,17 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public LoanPurposesResponseVo getLoanPurposesList(UnauthorizedRequestVo requestData) throws ApiException {
-        LoanPurposesResponseVo response = new LoanPurposesResponseVo();
-        response.data = new LoanPurposeVo[0];
+    public LinkConfigResponseVo getLoanPurposesList(UnauthorizedRequestVo requestData) throws ApiException {
+        LinkConfigResponseVo response = new LinkConfigResponseVo();
+        response.loanPurposesList = new LoanPurposesResponseVo();
+        response.loanPurposesList.data = new LoanPurposeVo[0];
 
         return response;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ConfigResponseVo getUserConfig(UnauthorizedRequestVo requestData) throws ApiException {
+    public ContextConfigResponseVo getUserConfig(UnauthorizedRequestVo requestData) throws ApiException {
         ConfigResponseVo response = new ConfigResponseVo();
         response.housingTypeOpts = new HousingTypeListResponseVo();
         response.housingTypeOpts.data = new HousingTypeVo[0];
@@ -123,7 +154,9 @@ public class MockApiWrapper implements LinkApiWrapper {
         response.salaryFrequencyOpts.data = new SalaryFrequencyVo[0];
         response.employmentStatusOpts = new EmploymentStatusListResponseVo();
         response.employmentStatusOpts.data = new EmploymentStatusVo[0];
-        return response;
+        ContextConfigResponseVo configResponseVo = new ContextConfigResponseVo();
+        configResponseVo.projectConfiguration = response;
+        return configResponseVo;
     }
 
     /** {@inheritDoc} */
@@ -149,11 +182,19 @@ public class MockApiWrapper implements LinkApiWrapper {
         return response;
     }
 
+    @Override
+    public CurrentUserResponseVo getCurrentUser(UnauthorizedRequestVo unauthorizedRequestVo) throws ApiException {
+        CurrentUserResponseVo response = new CurrentUserResponseVo();
+        response.userData = new UserDataListResponseVo();
+        response.userData.data = new DataPointVo[0];
+        return response;
+    }
+
     /** {@inheritDoc} */
     @Override
     public InitialOffersResponseVo getInitialOffers(InitialOffersRequestVo requestData) {
         OfferVo offerOne = new OfferVo();
-        offerOne.id = 1;
+        offerOne.id = "1";
         offerOne.loan_amount = OFFER_ONE_AMOUNT;
         offerOne.interest_rate = OFFER_ONE_INTEREST;
         offerOne.payment_amount = OFFER_ONE_PAYMENT;
@@ -167,7 +208,7 @@ public class MockApiWrapper implements LinkApiWrapper {
         offerOne.lender.large_image = LENDER_ONE_LARGE_IMAGE;
 
         OfferVo offerTwo = new OfferVo();
-        offerTwo.id = 2;
+        offerTwo.id = "2";
 
         OfferVo[] rawOffers = new OfferVo[]{ offerOne, offerTwo };
 
@@ -179,7 +220,7 @@ public class MockApiWrapper implements LinkApiWrapper {
         offerList.has_more = false;
 
         InitialOffersResponseVo response = new InitialOffersResponseVo();
-        response.offer_request_id = 69;
+        response.offer_request_id = "69";
         response.offers = offerList;
 
         return response;
@@ -187,13 +228,13 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public OffersListVo getMoreOffers(long offerRequestId, ListRequestVo requestData) throws ApiException {
+    public OffersListVo getMoreOffers(String offerRequestId, ListRequestVo requestData) throws ApiException {
         return null;
     }
 
     /** {@inheritDoc} */
     @Override
-    public LoanApplicationDetailsResponseVo createLoanApplication(long offerId) {
+    public LoanApplicationDetailsResponseVo createLoanApplication(String offerId) {
         LoanApplicationDetailsResponseVo application = new LoanApplicationDetailsResponseVo();
         application.status = "";
         application.required_actions = new ListResponseVo<>();
@@ -206,7 +247,7 @@ public class MockApiWrapper implements LinkApiWrapper {
     @Override
     public LoanApplicationsListResponseVo getLoanApplicationsList(ListRequestVo requestData) {
         LoanApplicationsListResponseVo response = new LoanApplicationsListResponseVo();
-        response.data = new LoanApplicationDetailsResponseVo[] { createLoanApplication(-1) };
+        response.data = new LoanApplicationDetailsResponseVo[] { createLoanApplication("") };
 
         return response;
     }
@@ -217,7 +258,7 @@ public class MockApiWrapper implements LinkApiWrapper {
         StartPhoneVerificationResponseVo response = new StartPhoneVerificationResponseVo();
         response.status = "";
         response.type = "";
-        response.verification_id = 0;
+        response.verification_id = "";
         return response;
     }
 
@@ -226,7 +267,7 @@ public class MockApiWrapper implements LinkApiWrapper {
         FinishPhoneVerificationResponseVo response = new FinishPhoneVerificationResponseVo();
         response.status = "";
         response.type = "";
-        response.verification_id = 0;
+        response.verification_id = "";
         response.alternate_credentials = new AlternateCredentialsListResponseVo();
         response.alternate_credentials.data = new ArrayList<CredentialVo>();
         return response;
@@ -237,16 +278,38 @@ public class MockApiWrapper implements LinkApiWrapper {
         StartEmailVerificationResponseVo response = new StartEmailVerificationResponseVo();
         response.status = "";
         response.type = "";
-        response.verification_id = 0;
+        response.verification_id = "";
         return null;
     }
 
     @Override
-    public VerificationStatusResponseVo getVerificationStatus(int verificationID) throws ApiException {
+    public VerificationStatusResponseVo getVerificationStatus(String verificationID) throws ApiException {
         VerificationStatusResponseVo response = new VerificationStatusResponseVo();
         response.status = "";
         response.type = "";
         response.verification_id = verificationID;
+        return response;
+    }
+
+    @Override
+    public VerificationStatusResponseVo addBankAccount(AddBankAccountRequestVo data) throws ApiException {
+        VerificationStatusResponseVo response = new VerificationStatusResponseVo();
+        response.status = "";
+        response.type = "";
+        response.verification_id = "1234";
+        return response;
+    }
+
+    @Override
+    public Card addCard(Card card) throws ApiException {
+        card.mAccountId = "1234";
+        return card;
+    }
+
+    @Override
+    public Card issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
+        Card response = new Card();
+        response.cardType = Card.CardType.MARQETA;
         return response;
     }
 }

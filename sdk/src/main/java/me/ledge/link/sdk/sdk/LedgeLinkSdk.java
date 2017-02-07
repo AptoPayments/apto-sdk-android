@@ -4,9 +4,12 @@ import android.os.AsyncTask;
 
 import java.util.concurrent.Executor;
 
+import me.ledge.link.api.vos.Card;
 import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
@@ -19,11 +22,15 @@ import me.ledge.link.sdk.sdk.tasks.config.LinkDisclaimerTask;
 import me.ledge.link.sdk.sdk.tasks.config.LoanPurposesTask;
 import me.ledge.link.sdk.sdk.tasks.config.PartnerDisclaimersListTask;
 import me.ledge.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
+import me.ledge.link.sdk.sdk.tasks.financialaccounts.AddBankAccountTask;
+import me.ledge.link.sdk.sdk.tasks.financialaccounts.AddCardTask;
+import me.ledge.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.ListLoanApplicationsTask;
 import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
+import me.ledge.link.sdk.sdk.tasks.users.GetCurrentUserTask;
 import me.ledge.link.sdk.sdk.tasks.users.LoginUserTask;
 import me.ledge.link.sdk.sdk.tasks.users.UpdateUserTask;
 import me.ledge.link.sdk.sdk.tasks.verifications.CompletePhoneVerificationTask;
@@ -228,6 +235,20 @@ public class LedgeLinkSdk {
     }
 
     /**
+     * Gets the current user info.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getCurrentUser() {
+        checkComponents();
+
+        GetCurrentUserTask task = new GetCurrentUserTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+
+    /**
      * Creates a new user.
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
@@ -246,7 +267,7 @@ public class LedgeLinkSdk {
      * @param offerId The loan offer to apply to.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask createLoanApplication(long offerId) {
+    public static LedgeLinkApiTask createLoanApplication(String offerId) {
         checkComponents();
 
         CreateLoanApplicationTask task = new CreateLoanApplicationTask(offerId, getApiWrapper(), getResponseHandler());
@@ -316,10 +337,52 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getVerificationStatus(int data) {
+    public static LedgeLinkApiTask getVerificationStatus(String data) {
         checkComponents();
 
         GetVerificationStatusTask task = new GetVerificationStatusTask(data, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Add a bank account
+     * @param data Mandatory API request data.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask addBankAccount(AddBankAccountRequestVo data) {
+        checkComponents();
+
+        AddBankAccountTask task = new AddBankAccountTask(data, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Add a credit/debit card
+     * @param data Mandatory API request data.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask addCard(Card data) {
+        checkComponents();
+
+        AddCardTask task = new AddCardTask(data, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Issue a new virtual card
+     * @param data Mandatory API request data.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask issueVirtualCard(IssueVirtualCardRequestVo data) {
+        checkComponents();
+
+        IssueVirtualCardTask task = new IssueVirtualCardTask(data, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

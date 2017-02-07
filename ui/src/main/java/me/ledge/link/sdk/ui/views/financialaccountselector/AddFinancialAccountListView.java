@@ -8,23 +8,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddFinancialAccountModel;
+import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
+import me.ledge.link.sdk.ui.views.LoadingView;
+import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
-import me.ledge.link.sdk.ui.views.loanapplication.AddDocumentsListView;
 
 /**
  * Created by adrian on 17/01/2017.
  */
 
-public class AddFinancialAccountListView extends CoordinatorLayout implements ViewWithToolbar, View.OnClickListener {
+public class AddFinancialAccountListView extends CoordinatorLayout
+        implements ViewWithToolbar, View.OnClickListener, ViewWithIndeterminateLoading, DisplayErrorMessage {
 
     private Toolbar mToolbar;
     private LinearLayout mAccountsList;
 
     private AddFinancialAccountListView.ViewListener mListener;
     private AddFinancialAccountModel[] mData;
+    private LoadingView mLoadingView;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -49,6 +54,7 @@ public class AddFinancialAccountListView extends CoordinatorLayout implements Vi
     private void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mAccountsList = (LinearLayout) findViewById(R.id.ll_accounts_list);
+        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
     }
 
     @Override
@@ -73,6 +79,16 @@ public class AddFinancialAccountListView extends CoordinatorLayout implements Vi
         findAllViews();
     }
 
+    @Override
+    public void showLoading(boolean show) {
+        mLoadingView.showLoading(show);
+    }
+
+    @Override
+    public void displayErrorMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
     public interface ViewListener {
         /**
          * Called when one of the document cards has been clicked.
@@ -82,8 +98,8 @@ public class AddFinancialAccountListView extends CoordinatorLayout implements Vi
     }
 
     /**
-     * Stores a new reference to a {@link AddDocumentsListView.ViewListener} that will be invoked by this View.
-     * @param listener The new {@link AddDocumentsListView.ViewListener} to store.
+     * Stores a new reference to a {@link AddFinancialAccountListView.ViewListener} that will be invoked by this View.
+     * @param listener The new {@link AddFinancialAccountListView.ViewListener} to store.
      */
     public void setViewListener(AddFinancialAccountListView.ViewListener listener) {
         mListener = listener;

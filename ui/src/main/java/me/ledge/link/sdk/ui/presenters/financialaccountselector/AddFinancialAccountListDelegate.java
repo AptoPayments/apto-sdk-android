@@ -9,4 +9,8 @@ public interface AddFinancialAccountListDelegate {
     void addFinancialAccountListOnBackPressed();
 
     void addCard();
+
+    void addBankAccount();
+
+    void virtualCardIssued();
 }

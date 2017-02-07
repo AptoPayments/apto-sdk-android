@@ -79,7 +79,7 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
         return mVerification.isVerified();
     }
 
-    public int getVerificationId() {
+    public String getVerificationId() {
         return mVerification.getVerificationId();
     }
 

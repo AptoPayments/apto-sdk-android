@@ -90,7 +90,7 @@ public class OfferSummaryModel implements Model {
     /** {@inheritDoc} */
     @Override
     public boolean equals(Object other) {
-        return other instanceof OfferSummaryModel && ((OfferSummaryModel) other).getOfferId() == getOfferId();
+        return other instanceof OfferSummaryModel && ((OfferSummaryModel) other).getOfferId().equals(getOfferId());
     }
 
     /**
@@ -158,10 +158,10 @@ public class OfferSummaryModel implements Model {
     }
 
     /**
-     * @return Offer ID OR -1 if not found.
+     * @return Offer ID OR null if not found.
      */
-    public long getOfferId() {
-        long id = -1;
+    public String getOfferId() {
+        String id = null;
 
         if (mRawOffer != null) {
             id = mRawOffer.id;

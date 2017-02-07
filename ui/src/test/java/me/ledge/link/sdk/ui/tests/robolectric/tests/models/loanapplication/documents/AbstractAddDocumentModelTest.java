@@ -1,13 +1,14 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.loanapplication.documents;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AbstractAddDocumentModel;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddOtherDocumentModel;
 import me.ledge.link.sdk.ui.vos.DocumentVo;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -27,7 +28,7 @@ public class AbstractAddDocumentModelTest {
      */
     @Before
     public void setUp() {
-        LoanApplicationActionVo action = new MockApiWrapper().createLoanApplication(0).required_actions.data[0];
+        LoanApplicationActionVo action = new MockApiWrapper().createLoanApplication(null).required_actions.data[0];
         action.message = EXPECTED_DESCRIPTION;
 
         mModel = new AddOtherDocumentModel(action);
