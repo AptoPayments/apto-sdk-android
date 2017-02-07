@@ -34,6 +34,7 @@ public class EnableAutoPayModel extends AbstractActivityModel
 
     public String getFinancialAccountInfo(Resources resources) {
         if (mFinancialAccount == null) {
+            mFinancialAccount = getLastFinancialAccount();
             return "no account found!";
         }
         switch (mFinancialAccount.mAccountType) {
@@ -55,5 +56,12 @@ public class EnableAutoPayModel extends AbstractActivityModel
 
     public void setFinancialAccount(FinancialAccountVo financialAccount) {
         this.mFinancialAccount = financialAccount;
+    }
+
+    public FinancialAccountVo getLastFinancialAccount() {
+        DataPointList userData = UserStorage.getInstance().getUserData();
+        return (FinancialAccountVo) userData.
+                getUniqueDataPoint(DataPointVo.DataPointType.FinancialAccount,
+                        new FinancialAccountVo(null, null, false));
     }
 }

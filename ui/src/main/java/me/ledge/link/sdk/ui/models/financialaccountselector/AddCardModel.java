@@ -29,7 +29,7 @@ public class AddCardModel implements AddFinancialAccountModel, ActivityModel {
     /** {@inheritDoc} */
     @Override
     public int getIconResourceId() {
-        return R.drawable.icon_add_doc_generic;
+        return R.drawable.icon_add_card;
     }
 
     /** {@inheritDoc} */
