@@ -47,17 +47,17 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void phoneVerificationSucceeded(DataPointVo phone) {
-        startActivity(EmailVerificationActivity.class);
+        if(phone.getVerification().getAlternateEmailCredentials() != null) {
+            startActivity(EmailVerificationActivity.class);
+        }
+        else {
+            startActivity(AddressActivity.class);
+        }
     }
 
     @Override
     public void phoneVerificationOnBackPressed() {
         startActivity(PersonalInformationActivity.class);
-    }
-
-    @Override
-    public void noAlternateCredentials() {
-        startActivity(AddressActivity.class);
     }
 
     @Override
