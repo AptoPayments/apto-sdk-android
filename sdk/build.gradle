@@ -52,4 +52,5 @@ dependencies {
     // Tests
     testCompile 'junit:junit:4.+'
     testCompile 'org.robolectric:robolectric:+'
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

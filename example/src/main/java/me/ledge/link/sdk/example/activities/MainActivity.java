@@ -6,22 +6,20 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import org.greenrobot.eventbus.Subscribe;
-
 import me.ledge.common.utils.android.AndroidUtils;
-import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
-import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
-import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
+import me.ledge.link.sdk.sdk.storages.LoanPurposesDelegate;
+import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
@@ -32,7 +30,7 @@ import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
  * Main display.
  * @author Wijnand
  */
-public class MainActivity extends AppCompatActivity implements MainView.ViewListener {
+public class MainActivity extends AppCompatActivity implements MainView.ViewListener, LoanPurposesDelegate {
 
     private MainView mView;
 
@@ -179,15 +177,13 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         setContentView(mView);
 
         // Load the loan purpose list so we can create a drop-down.
-        LedgeLinkUi.getHandlerConfiguration().getResponseHandler().subscribe(this);
-        LedgeLinkUi.getLoanPurposesList();
+        ConfigStorage.getInstance().getLoanPurposes(this);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LedgeLinkUi.getHandlerConfiguration().getResponseHandler().unsubscribe(this);
     }
 
     /** {@inheritDoc} */
@@ -229,13 +225,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         mView.setIncome("");
     }
 
-    /**
-     * Called when the loan purpose list has been received from the API.
-     * @param linkConfigResponse API response.
-     */
-    @Subscribe
-    public void purposeListLoadedHandler(LinkConfigResponseVo linkConfigResponse) {
-        LoanPurposesResponseVo response = linkConfigResponse.loanPurposesList;
+    @Override
+    public void loanPurposesListRetrieved(LoanPurposesResponseVo loanPurposesList) {
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
 
@@ -243,8 +234,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                 new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
         adapter.add(hint);
 
-        if (response.data != null) {
-            for (LoanPurposeVo purpose : response.data) {
+        if (loanPurposesList.data != null) {
+            for (LoanPurposeVo purpose : loanPurposesList.data) {
                 adapter.add(new IdDescriptionPairDisplayVo(purpose.loan_purpose_id, purpose.description));
             }
         }
@@ -253,13 +244,9 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         mView.showLoading(false);
     }
 
-    /**
-     * Called when an API error occurred.
-     * @param response The error.
-     */
-    @Subscribe
-    public void apiErrorHandler(ApiErrorVo response) {
-        Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
+    @Override
+    public void errorReceived(String error) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         mView.showLoading(false);
     }
 }

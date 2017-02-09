@@ -25,6 +25,7 @@ repositories {
 }
 
 dependencies {
+    compile 'me.ledge.link.sdk:sdk:+'
     compile 'me.ledge.link.sdk:ui:+'
     compile 'me.ledge.link.sdk:handler-eventbus:+'
     compile 'me.ledge.link.sdk:imageloader-volley:+'

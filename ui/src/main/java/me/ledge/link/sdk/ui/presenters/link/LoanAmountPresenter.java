@@ -3,13 +3,11 @@ package me.ledge.link.sdk.ui.presenters.link;
 import android.support.v7.app.AppCompatActivity;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.api.vos.ApiErrorVo;
-import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.sdk.storages.ConfigStorage;
+import me.ledge.link.sdk.sdk.storages.LoanPurposesDelegate;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -25,7 +23,7 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
  */
 public class LoanAmountPresenter
         extends LoanDataPresenter<LoanAmountModel, LoanAmountView>
-        implements LoanAmountView.ViewListener {
+        implements LoanAmountView.ViewListener, LoanPurposesDelegate {
 
     private int mAmountIncrement;
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mPurposeAdapter;
@@ -97,7 +95,6 @@ public class LoanAmountPresenter
     @Override
     public void attachView(LoanAmountView view) {
         super.attachView(view);
-        mResponseHandler.subscribe(this);
 
         mView.setListener(this);
         mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
@@ -109,7 +106,7 @@ public class LoanAmountPresenter
             mView.setPurposeAdapter(getPurposeAdapter(null));
 
             // Load loan purpose list.
-            LedgeLinkUi.getLoanPurposesList();
+            ConfigStorage.getInstance().getLoanPurposes(this);
         } else {
             mView.setPurposeAdapter(mPurposeAdapter);
 
@@ -128,7 +125,6 @@ public class LoanAmountPresenter
     @Override
     public void detachView() {
         mView.setListener(null);
-        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -160,30 +156,6 @@ public class LoanAmountPresenter
     public void onStopTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
 
     /**
-     * Called when the list of loan purposes has been received from the API.
-     * @param response API response.
-     */
-    @Subscribe
-    public void handlePurposeList(LinkConfigResponseVo response) {
-        LoanPurposesResponseVo purposeList = response.loanPurposesList;
-        setLoanPurposeList(purposeList.data);
-    }
-
-    /**
-     * Called when an API error has been received.
-     * @param error API error.
-     */
-    @Subscribe
-    public void handleApiError(ApiErrorVo error) {
-        if (mView != null) {
-            mView.showLoading(false);
-        }
-
-        String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
-        mView.displayErrorMessage(message);
-    }
-
-    /**
      * Stores a new list of loan purposes and updates the View.
      * @param loanPurposesList New list.
      */
@@ -196,5 +168,20 @@ public class LoanAmountPresenter
         if (mModel.hasValidLoanPurpose()) {
             mView.setPurpose(mPurposeAdapter.getPosition(mModel.getLoanPurpose()));
         }
+    }
+
+    @Override
+    public void loanPurposesListRetrieved(LoanPurposesResponseVo purposeList) {
+        setLoanPurposeList(purposeList.data);
+    }
+
+    @Override
+    public void errorReceived(String error) {
+        if (mView != null) {
+            mView.showLoading(false);
+        }
+
+        String message = mActivity.getString(R.string.id_verification_toast_api_error, error);
+        mView.displayErrorMessage(message);
     }
 }

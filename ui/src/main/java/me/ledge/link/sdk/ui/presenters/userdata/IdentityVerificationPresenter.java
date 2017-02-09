@@ -9,10 +9,12 @@ import android.widget.DatePicker;
 import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.link.api.vos.ApiErrorVo;
-import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
+import me.ledge.link.api.vos.responses.config.ProductDisclaimerListVo;
 import me.ledge.link.api.vos.responses.config.ProductDisclaimerVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
+import me.ledge.link.sdk.sdk.storages.ConfigStorage;
+import me.ledge.link.sdk.sdk.storages.PartnerDisclaimersDelegate;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
@@ -30,7 +32,7 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 public class IdentityVerificationPresenter
         extends UserDataPresenter<IdentityVerificationModel, IdentityVerificationView>
         implements Presenter<IdentityVerificationModel, IdentityVerificationView>,
-        IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener {
+        IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener, PartnerDisclaimersDelegate {
 
     private String mDisclaimersText;
     private IdentityVerificationDelegate mDelegate;
@@ -92,7 +94,7 @@ public class IdentityVerificationPresenter
 
         if (mDisclaimersText == null) {
             mView.showLoading(true);
-            LedgeLinkUi.getPartnerDisclaimersList();
+            ConfigStorage.getInstance().getPartnerDisclaimersList(this);
         } else {
             setDisclaimers(mDisclaimersText);
         }
@@ -150,8 +152,8 @@ public class IdentityVerificationPresenter
         mView.setBirthday(String.format("%02d/%02d/%02d", monthOfYear + 1, dayOfMonth, year));
     }
 
-    public String parseDisclaimersResponse(DisclaimerResponseVo response) {
-        if (response.productDisclaimerList == null) {
+    private String parseDisclaimersResponse(ProductDisclaimerListVo productDisclaimerList) {
+        if (productDisclaimerList == null) {
             return "";
         }
 
@@ -159,7 +161,7 @@ public class IdentityVerificationPresenter
         String partnerDivider = "<br /><br />";
         StringBuilder result = new StringBuilder();
 
-        for(ProductDisclaimerVo disclaimer : response.productDisclaimerList.data) {
+        for(ProductDisclaimerVo disclaimer : productDisclaimerList.data) {
             if (!TextUtils.isEmpty(disclaimer.text)) {
                 result.append(disclaimer.text.replaceAll("\\r?\\n", lineBreak));
             }
@@ -169,12 +171,7 @@ public class IdentityVerificationPresenter
         return result.substring(0, result.length() - partnerDivider.length());
     }
 
-    @Subscribe
-    public void handleDisclaimersResponse(DisclaimerResponseVo response) {
-        setDisclaimers(parseDisclaimersResponse(response));
-    }
-
-    public void setDisclaimers(String disclaimers) {
+    private void setDisclaimers(String disclaimers) {
         mDisclaimersText = disclaimers;
         mView.setDisclaimers(disclaimers);
         mView.showLoading(false);
@@ -224,4 +221,17 @@ public class IdentityVerificationPresenter
         mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error.toString()));
     }
 
+    @Override
+    public void partnerDisclaimersListRetrieved(ProductDisclaimerListVo response) {
+        setDisclaimers(parseDisclaimersResponse(response));
+    }
+
+    @Override
+    public void errorReceived(String error) {
+        if (mView != null) {
+            mView.showLoading(false);
+        }
+
+        mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error));
+    }
 }

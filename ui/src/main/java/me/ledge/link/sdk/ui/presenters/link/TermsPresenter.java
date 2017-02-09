@@ -2,10 +2,9 @@ package me.ledge.link.sdk.ui.presenters.link;
 
 import android.support.v7.app.AppCompatActivity;
 
-import org.greenrobot.eventbus.Subscribe;
-
-import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.api.vos.responses.config.LinkDisclaimerVo;
+import me.ledge.link.sdk.sdk.storages.ConfigStorage;
+import me.ledge.link.sdk.sdk.storages.LinkDisclaimerDelegate;
 import me.ledge.link.sdk.ui.models.link.TermsModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
@@ -18,7 +17,7 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
  */
 public class TermsPresenter
         extends UserDataPresenter<TermsModel, TermsView>
-        implements Presenter<TermsModel, TermsView>, TermsView.ViewListener {
+        implements Presenter<TermsModel, TermsView>, TermsView.ViewListener, LinkDisclaimerDelegate {
 
     private String mTermsText;
     private TermsDelegate mDelegate;
@@ -56,10 +55,9 @@ public class TermsPresenter
     public void attachView(TermsView view) {
         super.attachView(view);
         mView.setListener(this);
-        mResponseHandler.subscribe(this);
         if (mTermsText == null) {
             mView.showLoading(true);
-            LedgeLinkUi.getLinkDisclaimer();
+            ConfigStorage.getInstance().getLinkDisclaimer(this);
         } else {
             setTerms(mTermsText);
         }
@@ -73,27 +71,19 @@ public class TermsPresenter
     /** {@inheritDoc} */
     @Override
     public void detachView() {
-        mResponseHandler.unsubscribe(this);
         mView.setListener(null);
         super.detachView();
     }
 
-    public void setTerms(String terms) {
+    private void setTerms(String terms) {
         mTermsText = terms;
 
         mView.setTerms(terms);
         mView.showLoading(false);
     }
 
-    @Subscribe
-    public void handleDisclaimer(DisclaimerResponseVo response) {
-        if (isDisclaimerPresent(response)) {
-            setTerms(response.linkDisclaimer.text);
-        }
-    }
-
-    private boolean isDisclaimerPresent(DisclaimerResponseVo response) {
-        return response!=null && response.linkDisclaimer!=null;
+    private boolean isDisclaimerPresent(LinkDisclaimerVo disclaimer) {
+        return disclaimer!=null;
     }
 
     /** {@inheritDoc} */
@@ -103,5 +93,17 @@ public class TermsPresenter
             saveData();
             mDelegate.termsPresented();
         }
+    }
+
+    @Override
+    public void linkDisclaimersRetrieved(LinkDisclaimerVo disclaimer) {
+        if (isDisclaimerPresent(disclaimer)) {
+            setTerms(disclaimer.text);
+        }
+    }
+
+    @Override
+    public void errorReceived(String error) {
+        mView.displayErrorMessage(error);
     }
 }
