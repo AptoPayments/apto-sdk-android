@@ -21,7 +21,6 @@ import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusListResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
@@ -129,14 +128,7 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public DisclaimerResponseVo getDisclaimers(UnauthorizedRequestVo requestData) throws ApiException {
-        DisclaimerResponseVo response = new DisclaimerResponseVo();
-        return response;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public LinkConfigResponseVo getLoanPurposesList(UnauthorizedRequestVo requestData) throws ApiException {
+    public LinkConfigResponseVo getLinkConfig(UnauthorizedRequestVo requestData) throws ApiException {
         LinkConfigResponseVo response = new LinkConfigResponseVo();
         response.loanPurposesList = new LoanPurposesResponseVo();
         response.loanPurposesList.data = new LoanPurposeVo[0];

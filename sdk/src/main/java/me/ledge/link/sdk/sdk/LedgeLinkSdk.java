@@ -18,9 +18,7 @@ import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.config.EmploymentStatusesListTask;
 import me.ledge.link.sdk.sdk.tasks.config.HousingTypeListTask;
-import me.ledge.link.sdk.sdk.tasks.config.LinkDisclaimerTask;
-import me.ledge.link.sdk.sdk.tasks.config.LoanPurposesTask;
-import me.ledge.link.sdk.sdk.tasks.config.PartnerDisclaimersListTask;
+import me.ledge.link.sdk.sdk.tasks.config.LinkConfigTask;
 import me.ledge.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.AddBankAccountTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.AddCardTask;
@@ -116,25 +114,15 @@ public class LedgeLinkSdk {
         mHandler = handler;
     }
 
-    public static LedgeLinkApiTask getLinkDisclaimer() {
-        checkComponents();
-
-        LinkDisclaimerTask task
-                = new LinkDisclaimerTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
-
-        return task;
-    }
-
     /**
      * Gets the loan purposes list.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getLoanPurposesList() {
+    public static LedgeLinkApiTask getLinkConfig() {
         checkComponents();
 
-        LoanPurposesTask task
-                = new LoanPurposesTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
+        LinkConfigTask task
+                = new LinkConfigTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;
@@ -177,16 +165,6 @@ public class LedgeLinkSdk {
 
         SalaryFrequenciesListTask task
                 = new SalaryFrequenciesListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
-
-        return task;
-    }
-
-    public static LedgeLinkApiTask getPartnerDisclaimersList() {
-        checkComponents();
-
-        PartnerDisclaimersListTask task
-                = new PartnerDisclaimersListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;
