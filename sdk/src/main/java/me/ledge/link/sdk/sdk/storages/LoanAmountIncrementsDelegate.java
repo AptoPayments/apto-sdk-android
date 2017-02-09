@@ -5,9 +5,8 @@ package me.ledge.link.sdk.sdk.storages;
  *
  * @author Adrian
  */
-public interface LoanAmountIncrementsDelegate {
+public interface LoanAmountIncrementsDelegate extends ErrorDelegate {
 
     void loanAmountIncrementsRetrieved(int incrementAmount);
 
-    void errorReceived(String error);
 }

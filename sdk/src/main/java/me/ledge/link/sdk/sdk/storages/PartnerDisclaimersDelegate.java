@@ -7,9 +7,8 @@ import me.ledge.link.api.vos.responses.config.ProductDisclaimerListVo;
  *
  * @author Adrian
  */
-public interface PartnerDisclaimersDelegate {
+public interface PartnerDisclaimersDelegate extends ErrorDelegate {
 
     void partnerDisclaimersListRetrieved(ProductDisclaimerListVo partnerDisclaimerList);
 
-    void errorReceived(String error);
 }

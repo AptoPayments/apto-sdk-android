@@ -5,9 +5,8 @@ package me.ledge.link.sdk.sdk.storages;
  *
  * @author Adrian
  */
-public interface MaxLoanAmountDelegate {
+public interface MaxLoanAmountDelegate extends ErrorDelegate {
 
     void maxLoanAmountRetrieved(int maxAmount);
 
-    void errorReceived(String error);
 }

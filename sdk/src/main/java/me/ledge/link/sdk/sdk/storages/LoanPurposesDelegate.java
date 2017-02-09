@@ -7,9 +7,8 @@ import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
  *
  * @author Adrian
  */
-public interface LoanPurposesDelegate {
+public interface LoanPurposesDelegate extends ErrorDelegate {
 
     void loanPurposesListRetrieved(LoanPurposesResponseVo loanPurposesList);
 
-    void errorReceived(String error);
 }

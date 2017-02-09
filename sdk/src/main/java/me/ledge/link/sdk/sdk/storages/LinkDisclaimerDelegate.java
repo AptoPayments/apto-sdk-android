@@ -7,9 +7,7 @@ import me.ledge.link.api.vos.responses.config.LinkDisclaimerVo;
  *
  * @author Adrian
  */
-public interface LinkDisclaimerDelegate {
+public interface LinkDisclaimerDelegate extends ErrorDelegate {
 
     void linkDisclaimersRetrieved(LinkDisclaimerVo linkDisclaimer);
-
-    void errorReceived(String error);
 }
