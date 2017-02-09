@@ -23,6 +23,7 @@ public class ConfigStorage {
     private List<PartnerDisclaimersDelegate> partnerDisclaimersDelegateList;
     private List<MaxLoanAmountDelegate> maxLoanAmountDelegateList;
     private List<LoanAmountIncrementsDelegate> loanAmountIncrementsDelegateList;
+    private List<SkipLinkDisclaimerDelegate> skipLinkDisclaimerDelegateList;
 
     /**
      * Creates a new {@link ConfigStorage} instance.
@@ -34,6 +35,7 @@ public class ConfigStorage {
         partnerDisclaimersDelegateList = new ArrayList<>();
         maxLoanAmountDelegateList = new ArrayList<>();
         loanAmountIncrementsDelegateList = new ArrayList<>();
+        skipLinkDisclaimerDelegateList = new ArrayList<>();
     }
 
     /**
@@ -96,6 +98,16 @@ public class ConfigStorage {
         }
     }
 
+    public synchronized void getSkipLinkDisclaimer(SkipLinkDisclaimerDelegate delegate) {
+        if(isConfigCached()) {
+            delegate.skipLinkDisclaimerRetrieved(mLinkConfig.skipLinkDisclaimer);
+        }
+        else {
+            skipLinkDisclaimerDelegateList.add(delegate);
+            getLinkConfig();
+        }
+    }
+
     @Subscribe
     public void configHandler(LinkConfigResponseVo linkConfigResponse) {
         isFetchingAPI = false;
@@ -116,6 +128,9 @@ public class ConfigStorage {
         for(LoanAmountIncrementsDelegate delegate : loanAmountIncrementsDelegateList) {
             delegate.loanAmountIncrementsRetrieved(mLinkConfig.loanAmountIncrements);
         }
+        for(SkipLinkDisclaimerDelegate delegate : skipLinkDisclaimerDelegateList) {
+            delegate.skipLinkDisclaimerRetrieved(mLinkConfig.skipLinkDisclaimer);
+        }
 
         clearDelegateLists();
     }
@@ -127,6 +142,7 @@ public class ConfigStorage {
         partnerDisclaimersDelegateList.clear();
         maxLoanAmountDelegateList.clear();
         loanAmountIncrementsDelegateList.clear();
+        skipLinkDisclaimerDelegateList.clear();
     }
 
     /**
@@ -135,6 +151,7 @@ public class ConfigStorage {
      */
     @Subscribe
     public void apiErrorHandler(ApiErrorVo response) {
+        isFetchingAPI = false;
         String errorMessage = response.toString();
         for(LoanPurposesDelegate delegate : loanPurposesDelegateList) {
             delegate.errorReceived(errorMessage);
@@ -150,6 +167,9 @@ public class ConfigStorage {
         }
         for(LoanAmountIncrementsDelegate delegate : loanAmountIncrementsDelegateList) {
             delegate.errorReceived(errorMessage);
+        }
+        for(SkipLinkDisclaimerDelegate delegate : skipLinkDisclaimerDelegateList) {
+            delegate.skipLinkDisclaimerRetrieved(false);
         }
     }
 
