@@ -8,6 +8,8 @@ import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.sdk.storages.LoanPurposesDelegate;
+import me.ledge.link.sdk.sdk.storages.LoanAmountIncrementsDelegate;
+import me.ledge.link.sdk.sdk.storages.MaxLoanAmountDelegate;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -23,11 +25,15 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
  */
 public class LoanAmountPresenter
         extends LoanDataPresenter<LoanAmountModel, LoanAmountView>
-        implements LoanAmountView.ViewListener, LoanPurposesDelegate {
+        implements LoanAmountView.ViewListener, LoanPurposesDelegate,
+        MaxLoanAmountDelegate, LoanAmountIncrementsDelegate {
 
     private int mAmountIncrement;
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mPurposeAdapter;
     private LoanDataDelegate mDelegate;
+    private boolean isMaxLoanAmountReady;
+    private boolean isLoanPurposesReady;
+    private boolean isLoanIncrementsReady;
 
     /**
      * Creates a new {@link LoanAmountPresenter} instance.
@@ -43,6 +49,9 @@ public class LoanAmountPresenter
     protected void init() {
         super.init();
         mPurposeAdapter = null;
+        isMaxLoanAmountReady = false;
+        isLoanPurposesReady = false;
+        isLoanIncrementsReady = false;
     }
 
     /**
@@ -82,10 +91,10 @@ public class LoanAmountPresenter
     /** {@inheritDoc} */
     @Override
     protected void populateModelFromStorage() {
-        mAmountIncrement = mActivity.getResources().getInteger(R.integer.loan_amount_increment);
+        ConfigStorage.getInstance().getMaxLoanAmount(this);
+        ConfigStorage.getInstance().getLoanAmountIncrements(this);
 
         mModel.setMinAmount(mActivity.getResources().getInteger(R.integer.min_loan_amount))
-                .setMaxAmount(mActivity.getResources().getInteger(R.integer.max_loan_amount))
                 .setAmount(mActivity.getResources().getInteger(R.integer.default_loan_amount));
 
         super.populateModelFromStorage();
@@ -97,9 +106,6 @@ public class LoanAmountPresenter
         super.attachView(view);
 
         mView.setListener(this);
-        mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
-        mView.setMinMax(mModel.getMinAmount() / mAmountIncrement, mModel.getMaxAmount() / mAmountIncrement);
-        mView.setAmount(mModel.getAmount() / mAmountIncrement);
         mView.showLoading(true);
 
         if (mPurposeAdapter == null) {
@@ -162,17 +168,33 @@ public class LoanAmountPresenter
     private void setLoanPurposeList(LoanPurposeVo[] loanPurposesList) {
         mPurposeAdapter = getPurposeAdapter(loanPurposesList);
 
-        mView.showLoading(false);
+        isLoanPurposesReady = true;
         mView.setPurposeAdapter(mPurposeAdapter);
 
         if (mModel.hasValidLoanPurpose()) {
             mView.setPurpose(mPurposeAdapter.getPosition(mModel.getLoanPurpose()));
         }
+
+        updateViewIfReady();
     }
 
     @Override
     public void loanPurposesListRetrieved(LoanPurposesResponseVo purposeList) {
         setLoanPurposeList(purposeList.data);
+    }
+
+    @Override
+    public void maxLoanAmountRetrieved(int maxLoanAmount) {
+        isMaxLoanAmountReady = true;
+        mModel.setMaxAmount(maxLoanAmount);
+        updateViewIfReady();
+    }
+
+    @Override
+    public void loanAmountIncrementsRetrieved(int amountIncrement) {
+        isLoanIncrementsReady = true;
+        mAmountIncrement = amountIncrement;
+        updateViewIfReady();
     }
 
     @Override
@@ -183,5 +205,19 @@ public class LoanAmountPresenter
 
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error);
         mView.displayErrorMessage(message);
+    }
+
+    private boolean isAllDataReadyForView() {
+        return isMaxLoanAmountReady && isLoanPurposesReady && isLoanIncrementsReady;
+    }
+
+    private void updateViewIfReady() {
+        if(isAllDataReadyForView()) {
+            mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
+            mView.setMinMax(mModel.getMinAmount() / mAmountIncrement, mModel.getMaxAmount() / mAmountIncrement);
+            mView.setAmount(mModel.getAmount() / mAmountIncrement);
+            mView.setMinMax(mModel.getMinAmount() / mAmountIncrement, mModel.getMaxAmount() / mAmountIncrement);
+            mView.showLoading(false);
+        }
     }
 }

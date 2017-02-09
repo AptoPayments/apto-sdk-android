@@ -21,6 +21,8 @@ public class ConfigStorage {
     private List<LoanPurposesDelegate> loanPurposesDelegateList;
     private List<LinkDisclaimerDelegate> linkDisclaimerDelegateList;
     private List<PartnerDisclaimersDelegate> partnerDisclaimersDelegateList;
+    private List<MaxLoanAmountDelegate> maxLoanAmountDelegateList;
+    private List<LoanAmountIncrementsDelegate> loanAmountIncrementsDelegateList;
 
     /**
      * Creates a new {@link ConfigStorage} instance.
@@ -30,6 +32,8 @@ public class ConfigStorage {
         loanPurposesDelegateList = new ArrayList<>();
         linkDisclaimerDelegateList = new ArrayList<>();
         partnerDisclaimersDelegateList = new ArrayList<>();
+        maxLoanAmountDelegateList = new ArrayList<>();
+        loanAmountIncrementsDelegateList = new ArrayList<>();
     }
 
     /**
@@ -72,6 +76,26 @@ public class ConfigStorage {
         }
     }
 
+    public synchronized void getMaxLoanAmount(MaxLoanAmountDelegate delegate) {
+        if(isConfigCached()) {
+            delegate.maxLoanAmountRetrieved(mLinkConfig.loanAmountMax);
+        }
+        else {
+            maxLoanAmountDelegateList.add(delegate);
+            getLinkConfig();
+        }
+    }
+
+    public synchronized void getLoanAmountIncrements(LoanAmountIncrementsDelegate delegate) {
+        if(isConfigCached()) {
+            delegate.loanAmountIncrementsRetrieved(mLinkConfig.loanAmountIncrements);
+        }
+        else {
+            loanAmountIncrementsDelegateList.add(delegate);
+            getLinkConfig();
+        }
+    }
+
     @Subscribe
     public void configHandler(LinkConfigResponseVo linkConfigResponse) {
         isFetchingAPI = false;
@@ -80,13 +104,17 @@ public class ConfigStorage {
         for(LoanPurposesDelegate delegate : loanPurposesDelegateList) {
             delegate.loanPurposesListRetrieved(mLinkConfig.loanPurposesList);
         }
-
         for(LinkDisclaimerDelegate delegate : linkDisclaimerDelegateList) {
             delegate.linkDisclaimersRetrieved(mLinkConfig.linkDisclaimer);
         }
-
         for(PartnerDisclaimersDelegate delegate : partnerDisclaimersDelegateList) {
             delegate.partnerDisclaimersListRetrieved(mLinkConfig.productDisclaimerList);
+        }
+        for(MaxLoanAmountDelegate delegate : maxLoanAmountDelegateList) {
+            delegate.maxLoanAmountRetrieved(mLinkConfig.loanAmountMax);
+        }
+        for(LoanAmountIncrementsDelegate delegate : loanAmountIncrementsDelegateList) {
+            delegate.loanAmountIncrementsRetrieved(mLinkConfig.loanAmountIncrements);
         }
 
         clearDelegateLists();
@@ -97,6 +125,8 @@ public class ConfigStorage {
         loanPurposesDelegateList.clear();
         linkDisclaimerDelegateList.clear();
         partnerDisclaimersDelegateList.clear();
+        maxLoanAmountDelegateList.clear();
+        loanAmountIncrementsDelegateList.clear();
     }
 
     /**
@@ -105,14 +135,21 @@ public class ConfigStorage {
      */
     @Subscribe
     public void apiErrorHandler(ApiErrorVo response) {
+        String errorMessage = response.toString();
         for(LoanPurposesDelegate delegate : loanPurposesDelegateList) {
-            delegate.errorReceived(response.toString());
+            delegate.errorReceived(errorMessage);
         }
         for(LinkDisclaimerDelegate delegate : linkDisclaimerDelegateList) {
-            delegate.errorReceived(response.toString());
+            delegate.errorReceived(errorMessage);
         }
         for(PartnerDisclaimersDelegate delegate : partnerDisclaimersDelegateList) {
-            delegate.errorReceived(response.toString());
+            delegate.errorReceived(errorMessage);
+        }
+        for(MaxLoanAmountDelegate delegate : maxLoanAmountDelegateList) {
+            delegate.errorReceived(errorMessage);
+        }
+        for(LoanAmountIncrementsDelegate delegate : loanAmountIncrementsDelegateList) {
+            delegate.errorReceived(errorMessage);
         }
     }
 
