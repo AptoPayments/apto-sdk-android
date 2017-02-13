@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.DatePicker;
@@ -20,10 +21,13 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Concrete {@link Presenter} for the ID verification screen.
@@ -187,6 +191,7 @@ public class IdentityVerificationPresenter
 
         if (response != null) {
             UserStorage.getInstance().setBearerToken(response.user_token);
+            SharedPreferencesStorage.storeUserToken(mActivity, response.user_token);
         }
 
         if (mModel.hasAllData()) {

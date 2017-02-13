@@ -15,6 +15,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.verification.EmailVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
+import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.verification.EmailVerificationView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
@@ -99,6 +100,7 @@ public class EmailVerificationPresenter
     public void handleToken(CreateUserResponseVo response) {
         if (response != null) {
             UserStorage.getInstance().setBearerToken(response.user_token);
+            SharedPreferencesStorage.storeUserToken(mActivity, response.user_token);
             mDelegate.emailVerificationSucceeded();
         }
     }
