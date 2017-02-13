@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply from: '../jacoco.gradle'
 apply from: '../javadoc.gradle'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion androidCompileSdkVersion.toInteger()
@@ -25,6 +26,11 @@ android {
                 include "**/*Test.class"
             }
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -53,4 +59,5 @@ dependencies {
     testCompile 'junit:junit:4.+'
     testCompile 'org.robolectric:robolectric:+'
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
 }

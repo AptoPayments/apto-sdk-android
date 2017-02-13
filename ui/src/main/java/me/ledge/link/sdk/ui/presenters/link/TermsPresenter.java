@@ -2,9 +2,9 @@ package me.ledge.link.sdk.ui.presenters.link;
 
 import android.support.v7.app.AppCompatActivity;
 
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.config.LinkDisclaimerVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.sdk.storages.LinkDisclaimerDelegate;
 import me.ledge.link.sdk.ui.models.link.TermsModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
@@ -17,7 +17,7 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
  */
 public class TermsPresenter
         extends UserDataPresenter<TermsModel, TermsView>
-        implements Presenter<TermsModel, TermsView>, TermsView.ViewListener, LinkDisclaimerDelegate {
+        implements Presenter<TermsModel, TermsView>, TermsView.ViewListener {
 
     private String mTermsText;
     private TermsDelegate mDelegate;
@@ -57,7 +57,13 @@ public class TermsPresenter
         mView.setListener(this);
         if (mTermsText == null) {
             mView.showLoading(true);
-            ConfigStorage.getInstance().getLinkDisclaimer(this);
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getLinkDisclaimer())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::showDisclaimer);
         } else {
             setTerms(mTermsText);
         }
@@ -95,14 +101,12 @@ public class TermsPresenter
         }
     }
 
-    @Override
-    public void linkDisclaimersRetrieved(LinkDisclaimerVo disclaimer) {
+    public void showDisclaimer(LinkDisclaimerVo disclaimer) {
         if (isDisclaimerPresent(disclaimer)) {
             setTerms(disclaimer.text);
         }
     }
 
-    @Override
     public void errorReceived(String error) {
         mView.displayErrorMessage(error);
     }

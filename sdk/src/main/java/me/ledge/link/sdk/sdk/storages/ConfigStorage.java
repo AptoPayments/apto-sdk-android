@@ -4,10 +4,18 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import java8.util.concurrent.CompletableFuture;
+import java8.util.concurrent.CompletionException;
+import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
+import me.ledge.link.api.vos.responses.config.LinkDisclaimerVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
+
+import static me.ledge.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
 
 /**
  * Stores config data.
@@ -58,13 +66,26 @@ public class ConfigStorage {
         }
     }
 
-    public synchronized void getLinkDisclaimer(LinkDisclaimerDelegate delegate) {
-        if(isConfigCached()) {
-            delegate.linkDisclaimersRetrieved(mLinkConfig.linkDisclaimer);
-        }
-        else {
-            linkDisclaimerDelegateList.add(delegate);
-            getLinkConfig();
+    public synchronized LinkDisclaimerVo getLinkDisclaimer() {
+        CompletableFuture<LinkDisclaimerVo> f = CompletableFuture.supplyAsync(() -> {
+            if(isConfigCached()) {
+                return mLinkConfig.linkDisclaimer;
+            }
+            else {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.linkDisclaimer;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        try {
+            return f.get();
+        } catch (InterruptedException | ExecutionException e) {
+            f.completeExceptionally(e);
+            throw new CompletionException(e);
         }
     }
 
