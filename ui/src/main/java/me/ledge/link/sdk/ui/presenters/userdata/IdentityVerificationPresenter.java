@@ -2,7 +2,6 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.DatePicker;
@@ -10,6 +9,7 @@ import android.widget.DatePicker;
 import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.responses.config.ProductDisclaimerListVo;
 import me.ledge.link.api.vos.responses.config.ProductDisclaimerVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
@@ -26,8 +26,6 @@ import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Concrete {@link Presenter} for the ID verification screen.
@@ -141,7 +139,15 @@ public class IdentityVerificationPresenter
             if (TextUtils.isEmpty(UserStorage.getInstance().getBearerToken())) {
                 LedgeLinkUi.createUser(mModel.getUserData());
             } else {
-                LedgeLinkUi.updateUser(mModel.getUserData());
+                DataPointVo phone = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
+                DataPointVo email = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.Email, new DataPointVo.Email());
+
+                if(phone.hasVerification() && email.hasVerification()) {
+                    mDelegate.identityVerificationSucceeded();
+                }
+                else {
+                    LedgeLinkUi.updateUser(mModel.getUserData());
+                }
             }
 
             // Show loading.

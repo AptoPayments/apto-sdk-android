@@ -13,6 +13,7 @@ import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LinkDisclaimerVo;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 
 import static me.ledge.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
@@ -75,6 +76,29 @@ public class ConfigStorage {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.linkDisclaimer;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        try {
+            return f.get();
+        } catch (InterruptedException | ExecutionException e) {
+            f.completeExceptionally(e);
+            throw new CompletionException(e);
+        }
+    }
+
+    public synchronized RequiredDataPointsListResponseVo getRequiredUserData() {
+        CompletableFuture<RequiredDataPointsListResponseVo> f = CompletableFuture.supplyAsync(() -> {
+            if(isConfigCached()) {
+                return mLinkConfig.userRequiredData;
+            }
+            else {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.userRequiredData;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
