@@ -1,7 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
-import android.util.Log;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -101,18 +100,18 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             startActivity(EmailVerificationActivity.class);
         }
         else {
-            startActivity(safeGetActivityAtPosition(PhoneVerificationActivity.class, 1));
+            startActivity(getActivityAtPosition(PhoneVerificationActivity.class, 1));
         }
     }
 
     @Override
     public void phoneVerificationOnBackPressed() {
-        startActivity(safeGetActivityAtPosition(PhoneVerificationActivity.class, -1));
+        startActivity(getActivityAtPosition(PhoneVerificationActivity.class, -1));
     }
 
     @Override
     public void emailVerificationSucceeded() {
-        Class nextActivity = safeGetActivityAtPosition(EmailVerificationActivity.class, 1);
+        Class nextActivity = getActivityAtPosition(EmailVerificationActivity.class, 1);
         if(nextActivity != null) {
             startActivity(nextActivity);
         }
@@ -123,7 +122,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void emailOnBackPressed() {
-        startActivity(safeGetActivityAtPosition(EmailVerificationActivity.class, -1));
+        startActivity(getActivityAtPosition(EmailVerificationActivity.class, -1));
     }
 
     @Override
@@ -133,52 +132,52 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void identityVerificationOnBackPressed() {
-        startActivity(safeGetActivityAtPosition(IdentityVerificationActivity.class, -1));
+        startActivity(getActivityAtPosition(IdentityVerificationActivity.class, -1));
     }
 
     @Override
     public void addressStored() {
-        startActivity(safeGetActivityAtPosition(AddressActivity.class, 1));
+        startActivity(getActivityAtPosition(AddressActivity.class, 1));
     }
 
     @Override
     public void addressOnBackPressed() {
-        startActivity(safeGetActivityAtPosition(AddressActivity.class, -1));
+        startActivity(getActivityAtPosition(AddressActivity.class, -1));
     }
 
     @Override
     public void annualIncomeStored() {
-        startActivity(safeGetActivityAtPosition(AnnualIncomeActivity.class, 1));
+        startActivity(getActivityAtPosition(AnnualIncomeActivity.class, 1));
     }
 
     @Override
     public void annualIncomeOnBackPressed() {
-        startActivity(safeGetActivityAtPosition(AnnualIncomeActivity.class, -1));
+        startActivity(getActivityAtPosition(AnnualIncomeActivity.class, -1));
     }
 
     @Override
     public void monthlyIncomeStored() {
-        startActivity(safeGetActivityAtPosition(MonthlyIncomeActivity.class, 1));
+        startActivity(getActivityAtPosition(MonthlyIncomeActivity.class, 1));
     }
 
     @Override
     public void monthlyIncomeOnBackPressed() {
-        startActivity(safeGetActivityAtPosition(MonthlyIncomeActivity.class, -1));
+        startActivity(getActivityAtPosition(MonthlyIncomeActivity.class, -1));
     }
 
     @Override
     public void creditScoreStored() {
-        startActivity(safeGetActivityAtPosition(CreditScoreActivity.class, 1));
+        startActivity(getActivityAtPosition(CreditScoreActivity.class, 1));
     }
 
     @Override
     public void creditScoreOnBackPressed() {
-        startActivity(safeGetActivityAtPosition(CreditScoreActivity.class, -1));
+        startActivity(getActivityAtPosition(CreditScoreActivity.class, -1));
     }
 
     @Override
     public void personalInformationStored() {
-        startActivity(safeGetActivityAtPosition(PersonalInformationActivity.class, 1));
+        startActivity(getActivityAtPosition(PersonalInformationActivity.class, 1));
     }
 
     @Override
@@ -189,10 +188,18 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private void parseRequiredData(RequiredDataPointsListResponseVo requiredDataPointsList) {
         mRequiredDataPointList = new LinkedList<>(Arrays.asList(requiredDataPointsList.data));
 
-        // TODO: read pos_mode
-        String userToken = SharedPreferencesStorage.getUserToken(super.getActivity());
-        // TODO: set to == only for testing purposes
-        if(userToken == null) {
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getPOSMode())
+                .exceptionally(ex -> {
+                    startActivity(PersonalInformationActivity.class);
+                    return null;
+                })
+                .thenAccept(this::getCurrentUserOrContinue);
+    }
+
+    private void getCurrentUserOrContinue(boolean isPOSMode) {
+        String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
+        if(!isPOSMode && userToken != null) {
             LedgeLinkUi.getApiWrapper().setBearerToken(userToken);
             LedgeLinkUi.getCurrentUser();
         }
@@ -212,7 +219,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                     if(requiredDataPointVo.verificationRequired == 0 ||
                             requiredDataPointVo.verificationRequired == 1 &&
                                     currentDataPointMap.get(currentType).get(0).hasVerification()) {
-                        Log.d("ADRIAN", "removing already available type: " + String.valueOf(currentType.ordinal()+1) + " - " + currentType.name());
                         listIterator.remove();
                     }
                 }
@@ -235,7 +241,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private void fillRequiredActivitiesList() {
         if(!mRequiredDataPointList.isEmpty()) {
             for (RequiredDataPointVo requiredDataPointVo : (Iterable<RequiredDataPointVo>) mRequiredDataPointList) {
-                Log.d("ADRIAN", "filtered data - type: " + requiredDataPointVo.type);
                 if(requiredDataPointVo.type == 1) {
                     addRequiredActivity(PersonalInformationActivity.class);
                 }
@@ -261,10 +266,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             }
             addRequiredActivity(IdentityVerificationActivity.class);
         }
-
-        for(Class c : mRequiredActivities) {
-            Log.d("ADRIAN", "required activities: " + c.getCanonicalName());
-        }
     }
 
     private void addRequiredActivity(Class requiredActivity) {
@@ -273,7 +274,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         }
     }
 
-    private Class safeGetActivityAtPosition(Class currentActivity, int positionOffset) {
+    private Class getActivityAtPosition(Class currentActivity, int positionOffset) {
         int currentIndex = mRequiredActivities.indexOf(currentActivity);
         int targetIndex = currentIndex + positionOffset;
         Class result = null;

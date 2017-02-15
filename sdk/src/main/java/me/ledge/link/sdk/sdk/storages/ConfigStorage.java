@@ -113,6 +113,29 @@ public class ConfigStorage {
         }
     }
 
+    public synchronized  boolean getPOSMode() {
+        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
+            if(isConfigCached()) {
+                return mLinkConfig.posMode;
+            }
+            else {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.posMode;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        try {
+            return f.get();
+        } catch (InterruptedException | ExecutionException e) {
+            f.completeExceptionally(e);
+            throw new CompletionException(e);
+        }
+    }
+
     public synchronized void getPartnerDisclaimersList(PartnerDisclaimersDelegate delegate) {
         if(isConfigCached()) {
             delegate.partnerDisclaimersListRetrieved(mLinkConfig.productDisclaimerList);
