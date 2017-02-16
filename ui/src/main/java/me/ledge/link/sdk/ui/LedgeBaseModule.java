@@ -22,7 +22,7 @@ public abstract class LedgeBaseModule implements Router, BaseDelegate {
     public abstract void initialModuleSetup();
 
     protected void startModule(LedgeBaseModule module) {
-        WeakReference<LedgeBaseModule> moduleWeakReference = new WeakReference<LedgeBaseModule>(module);
+        WeakReference<LedgeBaseModule> moduleWeakReference = new WeakReference<>(module);
         ModuleManager.getInstance().setModule(moduleWeakReference);
         module.initialModuleSetup();
     }

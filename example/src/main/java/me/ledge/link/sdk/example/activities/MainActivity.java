@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
@@ -16,7 +17,6 @@ import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
 import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
-import me.ledge.link.sdk.sdk.storages.LoanPurposesDelegate;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
@@ -30,7 +30,7 @@ import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
  * Main display.
  * @author Wijnand
  */
-public class MainActivity extends AppCompatActivity implements MainView.ViewListener, LoanPurposesDelegate {
+public class MainActivity extends AppCompatActivity implements MainView.ViewListener {
 
     private MainView mView;
 
@@ -177,7 +177,13 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         setContentView(mView);
 
         // Load the loan purpose list so we can create a drop-down.
-        ConfigStorage.getInstance().getLoanPurposes(this);
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getLoanPurposes())
+                .exceptionally(ex -> {
+                    errorReceived(ex.getMessage());
+                    return null;
+                })
+                .thenAccept(this::loanPurposesListRetrieved);
     }
 
     /** {@inheritDoc} */
@@ -225,13 +231,12 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         mView.setIncome("");
     }
 
-    @Override
     public void loanPurposesListRetrieved(LoanPurposesResponseVo loanPurposesList) {
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
 
         IdDescriptionPairDisplayVo hint =
-                new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
+                new IdDescriptionPairDisplayVo(0, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
         adapter.add(hint);
 
         if (loanPurposesList.data != null) {
@@ -244,7 +249,6 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         mView.showLoading(false);
     }
 
-    @Override
     public void errorReceived(String error) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         mView.showLoading(false);

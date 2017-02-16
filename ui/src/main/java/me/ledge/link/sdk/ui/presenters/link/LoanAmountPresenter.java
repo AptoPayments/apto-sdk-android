@@ -4,12 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.sdk.storages.LoanPurposesDelegate;
-import me.ledge.link.sdk.sdk.storages.LoanAmountIncrementsDelegate;
-import me.ledge.link.sdk.sdk.storages.MaxLoanAmountDelegate;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -25,8 +23,7 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
  */
 public class LoanAmountPresenter
         extends LoanDataPresenter<LoanAmountModel, LoanAmountView>
-        implements LoanAmountView.ViewListener, LoanPurposesDelegate,
-        MaxLoanAmountDelegate, LoanAmountIncrementsDelegate {
+        implements LoanAmountView.ViewListener {
 
     private int mAmountIncrement;
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mPurposeAdapter;
@@ -91,8 +88,21 @@ public class LoanAmountPresenter
     /** {@inheritDoc} */
     @Override
     protected void populateModelFromStorage() {
-        ConfigStorage.getInstance().getMaxLoanAmount(this);
-        ConfigStorage.getInstance().getLoanAmountIncrements(this);
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getMaxLoanAmount())
+                .exceptionally(ex -> {
+                    errorReceived(ex.getMessage());
+                    return null;
+                })
+                .thenAccept(this::maxLoanAmountRetrieved);
+
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getLoanAmountIncrements())
+                .exceptionally(ex -> {
+                    errorReceived(ex.getMessage());
+                    return null;
+                })
+                .thenAccept(this::loanAmountIncrementsRetrieved);
 
         mModel.setMinAmount(mActivity.getResources().getInteger(R.integer.min_loan_amount))
                 .setAmount(mActivity.getResources().getInteger(R.integer.default_loan_amount));
@@ -112,7 +122,13 @@ public class LoanAmountPresenter
             mView.setPurposeAdapter(getPurposeAdapter(null));
 
             // Load loan purpose list.
-            ConfigStorage.getInstance().getLoanPurposes(this);
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getLoanPurposes())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::loanPurposesListRetrieved);
         } else {
             mView.setPurposeAdapter(mPurposeAdapter);
 
@@ -178,26 +194,22 @@ public class LoanAmountPresenter
         updateViewIfReady();
     }
 
-    @Override
     public void loanPurposesListRetrieved(LoanPurposesResponseVo purposeList) {
         setLoanPurposeList(purposeList.data);
     }
 
-    @Override
     public void maxLoanAmountRetrieved(int maxLoanAmount) {
         isMaxLoanAmountReady = true;
         mModel.setMaxAmount(maxLoanAmount);
         updateViewIfReady();
     }
 
-    @Override
     public void loanAmountIncrementsRetrieved(int amountIncrement) {
         isLoanIncrementsReady = true;
         mAmountIncrement = amountIncrement;
         updateViewIfReady();
     }
 
-    @Override
     public void errorReceived(String error) {
         if (mView != null) {
             mView.showLoading(false);
@@ -216,7 +228,6 @@ public class LoanAmountPresenter
             mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
             mView.setMinMax(mModel.getMinAmount() / mAmountIncrement, mModel.getMaxAmount() / mAmountIncrement);
             mView.setAmount(mModel.getAmount() / mAmountIncrement);
-            mView.setMinMax(mModel.getMinAmount() / mAmountIncrement, mModel.getMaxAmount() / mAmountIncrement);
             mView.showLoading(false);
         }
     }

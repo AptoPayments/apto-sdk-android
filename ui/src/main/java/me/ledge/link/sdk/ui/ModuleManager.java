@@ -10,11 +10,11 @@ public class ModuleManager {
     private static ModuleManager mInstance;
     private WeakReference<LedgeBaseModule> mModule;
 
-    public LedgeBaseModule getCurrentModule() {
+    public synchronized LedgeBaseModule getCurrentModule() {
         return mModule.get();
     }
 
-    public void setModule(WeakReference<LedgeBaseModule> mModule) {
+    public synchronized void setModule(WeakReference<LedgeBaseModule> mModule) {
         this.mModule = mModule;
     }
 

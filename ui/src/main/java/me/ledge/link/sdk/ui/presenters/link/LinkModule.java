@@ -2,8 +2,8 @@ package me.ledge.link.sdk.ui.presenters.link;
 
 import android.app.Activity;
 
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.sdk.storages.SkipLinkDisclaimerDelegate;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
@@ -13,7 +13,7 @@ import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
  * Created by adrian on 29/12/2016.
  */
 
-public class LinkModule extends LedgeBaseModule implements SkipLinkDisclaimerDelegate {
+public class LinkModule extends LedgeBaseModule {
 
     public LinkModule(Activity activity) {
         super(activity);
@@ -22,7 +22,13 @@ public class LinkModule extends LedgeBaseModule implements SkipLinkDisclaimerDel
 
     @Override
     public void initialModuleSetup() {
-        ConfigStorage.getInstance().getSkipLinkDisclaimer(this);
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getSkipLinkDisclaimer())
+                .exceptionally(ex -> {
+                    showLinkDisclaimers();
+                    return null;
+                })
+                .thenAccept(this::skipLinkDisclaimerRetrieved);
     }
 
     private void showLinkDisclaimers() {
@@ -69,7 +75,6 @@ public class LinkModule extends LedgeBaseModule implements SkipLinkDisclaimerDel
         startActivity(this.getActivity().getClass());
     }
 
-    @Override
     public void skipLinkDisclaimerRetrieved(boolean skipLinkDisclaimer) {
         mSkipDisclaimers = skipLinkDisclaimer;
         if(skipLinkDisclaimer) {

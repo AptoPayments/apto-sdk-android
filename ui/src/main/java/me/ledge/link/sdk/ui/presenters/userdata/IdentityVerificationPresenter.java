@@ -8,6 +8,7 @@ import android.widget.DatePicker;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.responses.config.ProductDisclaimerListVo;
@@ -15,7 +16,6 @@ import me.ledge.link.api.vos.responses.config.ProductDisclaimerVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.sdk.storages.PartnerDisclaimersDelegate;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
@@ -34,7 +34,7 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 public class IdentityVerificationPresenter
         extends UserDataPresenter<IdentityVerificationModel, IdentityVerificationView>
         implements Presenter<IdentityVerificationModel, IdentityVerificationView>,
-        IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener, PartnerDisclaimersDelegate {
+        IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener {
 
     private String mDisclaimersText;
     private IdentityVerificationDelegate mDelegate;
@@ -96,7 +96,13 @@ public class IdentityVerificationPresenter
 
         if (mDisclaimersText == null) {
             mView.showLoading(true);
-            ConfigStorage.getInstance().getPartnerDisclaimersList(this);
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getPartnerDisclaimersList())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::partnerDisclaimersListRetrieved);
         } else {
             setDisclaimers(mDisclaimersText);
         }
@@ -232,13 +238,11 @@ public class IdentityVerificationPresenter
         mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error.toString()));
     }
 
-    @Override
-    public void partnerDisclaimersListRetrieved(ProductDisclaimerListVo response) {
+    private void partnerDisclaimersListRetrieved(ProductDisclaimerListVo response) {
         setDisclaimers(parseDisclaimersResponse(response));
     }
 
-    @Override
-    public void errorReceived(String error) {
+    private void errorReceived(String error) {
         if (mView != null) {
             mView.showLoading(false);
         }

@@ -59,13 +59,13 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     private UserDataCollectorModule(Activity activity) {
         super(activity);
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
         mRequiredDataPointList = null;
         mRequiredActivities = new ArrayList<>();
     }
 
     @Override
     public void initialModuleSetup() {
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getRequiredUserData())
                 .exceptionally(ex -> {
@@ -83,6 +83,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     public void handleResponse(DataPointList userInfo) {
         UserStorage.getInstance().setUserData(userInfo);
         compareRequiredDataPointsWithCurrent(userInfo);
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
     }
 
     /**
@@ -91,6 +92,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         startActivity(PersonalInformationActivity.class);
     }
 
