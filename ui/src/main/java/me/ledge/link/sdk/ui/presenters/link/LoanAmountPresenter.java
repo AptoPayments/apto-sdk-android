@@ -200,7 +200,9 @@ public class LoanAmountPresenter
 
     public void maxLoanAmountRetrieved(int maxLoanAmount) {
         isMaxLoanAmountReady = true;
-        mModel.setMaxAmount(maxLoanAmount);
+        mModel.setMaxAmount(maxLoanAmount)
+                .setMinAmount(Math.min(mModel.getMinAmount(),maxLoanAmount))
+                .setAmount(Math.min(mModel.getAmount(),maxLoanAmount));
         updateViewIfReady();
     }
 
