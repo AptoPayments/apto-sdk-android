@@ -134,13 +134,14 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         HandlerConfigurator configurator = new EventBusHandlerConfigurator();
 
         LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
-        apiWrapper.setApiEndPoint(getApiEndPoint());
-        apiWrapper.setBaseRequestData(getDeveloperKey(), utils.getDeviceSummary());
+        apiWrapper.setApiEndPoint(getApiEndPoint(), getCertificatePinning(), getTrustSelfSignedCertificates());
+        apiWrapper.setBaseRequestData(getDeveloperKey(), utils.getDeviceSummary(), getCertificatePinning(), getTrustSelfSignedCertificates());
         apiWrapper.setProjectToken(getProjectToken());
 
         LedgeLinkUi.setApiWrapper(apiWrapper);
         LedgeLinkUi.setImageLoader(new VolleyImageLoader(this));
         LedgeLinkUi.setHandlerConfiguration(configurator);
+        LedgeLinkUi.trustSelfSigned = getTrustSelfSignedCertificates();
     }
 
     /**
@@ -162,6 +163,20 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
      */
     protected String getProjectToken() {
         return getString(R.string.ledge_link_project_token);
+    }
+
+    /**
+     * @return If certificate pinning should be enabled
+     */
+    protected boolean getCertificatePinning() {
+        return this.getResources().getBoolean(R.bool.enable_certificate_pinning);
+    }
+
+    /**
+     * @return If self signed certificates should be trusted
+     */
+    protected boolean getTrustSelfSignedCertificates() {
+        return this.getResources().getBoolean(R.bool.trust_self_signed_certificates);
     }
 
     /** {@inheritDoc} */
