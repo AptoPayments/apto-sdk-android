@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         LedgeLinkUi.setApiWrapper(apiWrapper);
         LedgeLinkUi.setImageLoader(new VolleyImageLoader(this));
         LedgeLinkUi.setHandlerConfiguration(configurator);
+        LedgeLinkUi.trustSelfSigned = getTrustSelfSignedCertificates();
     }
 
     /**

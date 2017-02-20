@@ -22,6 +22,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
 
     private static GenericImageLoader mImageLoader;
     private static HandlerConfigurator mHandlerConfiguration;
+    public static boolean trustSelfSigned;
 
     /**
      * @return Handler configuration.

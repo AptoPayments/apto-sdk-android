@@ -11,6 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
@@ -80,7 +81,12 @@ public class AddBankAccountActivity
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                handler.proceed();
+                if(LedgeLinkUi.trustSelfSigned && error.getPrimaryError() == SslError.SSL_UNTRUSTED) {
+                    handler.proceed();
+                }
+                else {
+                    super.onReceivedSslError(view, handler, error);
+                }
             }
         });
     }
