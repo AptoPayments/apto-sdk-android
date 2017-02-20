@@ -97,12 +97,6 @@ public class LedgeLinkSdkTest {
         LedgeLinkSdk.createUser(null);
     }
 
-    @Test
-    public void linkDisclaimerTaskIsCreated() {
-        Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getLinkDisclaimer(),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
-    }
 
     /**
      * Given an API Wrapper AND a response handler have been set.<br />
@@ -110,9 +104,9 @@ public class LedgeLinkSdkTest {
      * Then the resulting {@link LedgeLinkApiTask} should be returned.
      */
     @Test
-    public void loanPurposeTaskIsCreated() {
+    public void linkConfigTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getLoanPurposesList(),
+                LedgeLinkSdk.getLinkConfig(),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 
@@ -134,13 +128,6 @@ public class LedgeLinkSdkTest {
     public void salaryFrequenciesListTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
                 LedgeLinkSdk.getSalaryFrequenciesList(),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
-    }
-
-    @Test
-    public void partnerDisclaimersListTaskIsCreated() {
-        Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getPartnerDisclaimersList(),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 

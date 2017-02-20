@@ -11,16 +11,16 @@ import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
  * A concrete {@link LedgeLinkApiTask} to display loan purposes.
  * @author wijnand
  */
-public class LoanPurposesTask extends LedgeLinkApiTask<Void, Void, LinkConfigResponseVo, UnauthorizedRequestVo> {
+public class LinkConfigTask extends LedgeLinkApiTask<Void, Void, LinkConfigResponseVo, UnauthorizedRequestVo> {
 
     /**
-     * Creates a new {@link LoanPurposesTask} instance.
+     * Creates a new {@link LinkConfigTask} instance.
      * @param requestData API request data.
      * @param apiWrapper The API wrapper instance to make API calls.
      * @param responseHandler The response handler instance used to publish results.
      */
-    public LoanPurposesTask(UnauthorizedRequestVo requestData, LinkApiWrapper apiWrapper,
-            ApiResponseHandler responseHandler) {
+    public LinkConfigTask(UnauthorizedRequestVo requestData, LinkApiWrapper apiWrapper,
+                          ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);
     }
@@ -28,6 +28,6 @@ public class LoanPurposesTask extends LedgeLinkApiTask<Void, Void, LinkConfigRes
     /** {@inheritDoc} */
     @Override
     protected LinkConfigResponseVo callApi() throws ApiException {
-        return getApiWrapper().getLoanPurposesList(getRequestData());
+        return getApiWrapper().getLinkConfig(getRequestData());
     }
 }

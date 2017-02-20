@@ -6,22 +6,20 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import org.greenrobot.eventbus.Subscribe;
-
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.common.utils.android.AndroidUtils;
-import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
-import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
-import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
+import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
@@ -136,13 +134,14 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         HandlerConfigurator configurator = new EventBusHandlerConfigurator();
 
         LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
-        apiWrapper.setApiEndPoint(getApiEndPoint());
-        apiWrapper.setBaseRequestData(getDeveloperKey(), utils.getDeviceSummary());
+        apiWrapper.setApiEndPoint(getApiEndPoint(), getCertificatePinning(), getTrustSelfSignedCertificates());
+        apiWrapper.setBaseRequestData(getDeveloperKey(), utils.getDeviceSummary(), getCertificatePinning(), getTrustSelfSignedCertificates());
         apiWrapper.setProjectToken(getProjectToken());
 
         LedgeLinkUi.setApiWrapper(apiWrapper);
         LedgeLinkUi.setImageLoader(new VolleyImageLoader(this));
         LedgeLinkUi.setHandlerConfiguration(configurator);
+        LedgeLinkUi.trustSelfSigned = getTrustSelfSignedCertificates();
     }
 
     /**
@@ -166,6 +165,20 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         return getString(R.string.ledge_link_project_token);
     }
 
+    /**
+     * @return If certificate pinning should be enabled
+     */
+    protected boolean getCertificatePinning() {
+        return this.getResources().getBoolean(R.bool.enable_certificate_pinning);
+    }
+
+    /**
+     * @return If self signed certificates should be trusted
+     */
+    protected boolean getTrustSelfSignedCertificates() {
+        return this.getResources().getBoolean(R.bool.trust_self_signed_certificates);
+    }
+
     /** {@inheritDoc} */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,15 +192,19 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         setContentView(mView);
 
         // Load the loan purpose list so we can create a drop-down.
-        LedgeLinkUi.getHandlerConfiguration().getResponseHandler().subscribe(this);
-        LedgeLinkUi.getLoanPurposesList();
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getLoanPurposes())
+                .exceptionally(ex -> {
+                    errorReceived(ex.getMessage());
+                    return null;
+                })
+                .thenAccept(this::loanPurposesListRetrieved);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LedgeLinkUi.getHandlerConfiguration().getResponseHandler().unsubscribe(this);
     }
 
     /** {@inheritDoc} */
@@ -229,22 +246,16 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         mView.setIncome("");
     }
 
-    /**
-     * Called when the loan purpose list has been received from the API.
-     * @param linkConfigResponse API response.
-     */
-    @Subscribe
-    public void purposeListLoadedHandler(LinkConfigResponseVo linkConfigResponse) {
-        LoanPurposesResponseVo response = linkConfigResponse.loanPurposesList;
+    public void loanPurposesListRetrieved(LoanPurposesResponseVo loanPurposesList) {
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
 
         IdDescriptionPairDisplayVo hint =
-                new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
+                new IdDescriptionPairDisplayVo(0, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
         adapter.add(hint);
 
-        if (response.data != null) {
-            for (LoanPurposeVo purpose : response.data) {
+        if (loanPurposesList.data != null) {
+            for (LoanPurposeVo purpose : loanPurposesList.data) {
                 adapter.add(new IdDescriptionPairDisplayVo(purpose.loan_purpose_id, purpose.description));
             }
         }
@@ -253,13 +264,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         mView.showLoading(false);
     }
 
-    /**
-     * Called when an API error occurred.
-     * @param response The error.
-     */
-    @Subscribe
-    public void apiErrorHandler(ApiErrorVo response) {
-        Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
+    public void errorReceived(String error) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         mView.showLoading(false);
     }
 }

@@ -3,13 +3,11 @@ package me.ledge.link.sdk.ui.presenters.link;
 import android.support.v7.app.AppCompatActivity;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.api.vos.ApiErrorVo;
-import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -30,6 +28,9 @@ public class LoanAmountPresenter
     private int mAmountIncrement;
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mPurposeAdapter;
     private LoanDataDelegate mDelegate;
+    private boolean isMaxLoanAmountReady;
+    private boolean isLoanPurposesReady;
+    private boolean isLoanIncrementsReady;
 
     /**
      * Creates a new {@link LoanAmountPresenter} instance.
@@ -45,6 +46,9 @@ public class LoanAmountPresenter
     protected void init() {
         super.init();
         mPurposeAdapter = null;
+        isMaxLoanAmountReady = false;
+        isLoanPurposesReady = false;
+        isLoanIncrementsReady = false;
     }
 
     /**
@@ -84,10 +88,23 @@ public class LoanAmountPresenter
     /** {@inheritDoc} */
     @Override
     protected void populateModelFromStorage() {
-        mAmountIncrement = mActivity.getResources().getInteger(R.integer.loan_amount_increment);
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getMaxLoanAmount())
+                .exceptionally(ex -> {
+                    errorReceived(ex.getMessage());
+                    return null;
+                })
+                .thenAccept(this::maxLoanAmountRetrieved);
+
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getLoanAmountIncrements())
+                .exceptionally(ex -> {
+                    errorReceived(ex.getMessage());
+                    return null;
+                })
+                .thenAccept(this::loanAmountIncrementsRetrieved);
 
         mModel.setMinAmount(mActivity.getResources().getInteger(R.integer.min_loan_amount))
-                .setMaxAmount(mActivity.getResources().getInteger(R.integer.max_loan_amount))
                 .setAmount(mActivity.getResources().getInteger(R.integer.default_loan_amount));
 
         super.populateModelFromStorage();
@@ -97,19 +114,21 @@ public class LoanAmountPresenter
     @Override
     public void attachView(LoanAmountView view) {
         super.attachView(view);
-        mResponseHandler.subscribe(this);
 
         mView.setListener(this);
-        mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
-        mView.setMinMax(mModel.getMinAmount() / mAmountIncrement, mModel.getMaxAmount() / mAmountIncrement);
-        mView.setAmount(mModel.getAmount() / mAmountIncrement);
         mView.showLoading(true);
 
         if (mPurposeAdapter == null) {
             mView.setPurposeAdapter(getPurposeAdapter(null));
 
             // Load loan purpose list.
-            LedgeLinkUi.getLoanPurposesList();
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getLoanPurposes())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::loanPurposesListRetrieved);
         } else {
             mView.setPurposeAdapter(mPurposeAdapter);
 
@@ -128,7 +147,6 @@ public class LoanAmountPresenter
     @Override
     public void detachView() {
         mView.setListener(null);
-        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -160,41 +178,59 @@ public class LoanAmountPresenter
     public void onStopTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
 
     /**
-     * Called when the list of loan purposes has been received from the API.
-     * @param response API response.
-     */
-    @Subscribe
-    public void handlePurposeList(LinkConfigResponseVo response) {
-        LoanPurposesResponseVo purposeList = response.loanPurposesList;
-        setLoanPurposeList(purposeList.data);
-    }
-
-    /**
-     * Called when an API error has been received.
-     * @param error API error.
-     */
-    @Subscribe
-    public void handleApiError(ApiErrorVo error) {
-        if (mView != null) {
-            mView.showLoading(false);
-        }
-
-        String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
-        mView.displayErrorMessage(message);
-    }
-
-    /**
      * Stores a new list of loan purposes and updates the View.
      * @param loanPurposesList New list.
      */
     private void setLoanPurposeList(LoanPurposeVo[] loanPurposesList) {
         mPurposeAdapter = getPurposeAdapter(loanPurposesList);
 
-        mView.showLoading(false);
+        isLoanPurposesReady = true;
         mView.setPurposeAdapter(mPurposeAdapter);
 
         if (mModel.hasValidLoanPurpose()) {
             mView.setPurpose(mPurposeAdapter.getPosition(mModel.getLoanPurpose()));
+        }
+
+        updateViewIfReady();
+    }
+
+    public void loanPurposesListRetrieved(LoanPurposesResponseVo purposeList) {
+        setLoanPurposeList(purposeList.data);
+    }
+
+    public void maxLoanAmountRetrieved(int maxLoanAmount) {
+        isMaxLoanAmountReady = true;
+        mModel.setMaxAmount(maxLoanAmount)
+                .setMinAmount(Math.min(mModel.getMinAmount(),maxLoanAmount))
+                .setAmount(Math.min(mModel.getAmount(),maxLoanAmount));
+        updateViewIfReady();
+    }
+
+    public void loanAmountIncrementsRetrieved(int amountIncrement) {
+        isLoanIncrementsReady = true;
+        mAmountIncrement = amountIncrement;
+        updateViewIfReady();
+    }
+
+    public void errorReceived(String error) {
+        if (mView != null) {
+            mView.showLoading(false);
+        }
+
+        String message = mActivity.getString(R.string.id_verification_toast_api_error, error);
+        mView.displayErrorMessage(message);
+    }
+
+    private boolean isAllDataReadyForView() {
+        return isMaxLoanAmountReady && isLoanPurposesReady && isLoanIncrementsReady;
+    }
+
+    private void updateViewIfReady() {
+        if(isAllDataReadyForView()) {
+            mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
+            mView.setMinMax(mModel.getMinAmount() / mAmountIncrement, mModel.getMaxAmount() / mAmountIncrement);
+            mView.setAmount(mModel.getAmount() / mAmountIncrement);
+            mView.showLoading(false);
         }
     }
 }
