@@ -48,6 +48,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     public Command onFinish;
     public Command onBack;
     private LinkedList mRequiredDataPointList;
+    private boolean isPhoneVerificationEnabled = false;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
 
     public static synchronized  UserDataCollectorModule getInstance(Activity activity) {
@@ -65,6 +66,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void initialModuleSetup() {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getRequiredUserData())
@@ -81,9 +83,9 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
      */
     @Subscribe
     public void handleResponse(DataPointList userInfo) {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         UserStorage.getInstance().setUserData(userInfo);
         compareRequiredDataPointsWithCurrent(userInfo);
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
     }
 
     /**
@@ -124,7 +126,12 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void emailOnBackPressed() {
-        startActivity(getActivityAtPosition(EmailVerificationActivity.class, -1));
+        if(isPhoneVerificationEnabled) {
+            startActivity(PhoneVerificationActivity.class);
+        }
+        else {
+            startActivity(getActivityAtPosition(EmailVerificationActivity.class, -1));
+        }
     }
 
     @Override
@@ -144,7 +151,12 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void addressOnBackPressed() {
-        startActivity(getActivityAtPosition(AddressActivity.class, -1));
+        if(isPhoneVerificationEnabled) {
+            startActivity(PhoneVerificationActivity.class);
+        }
+        else {
+            startActivity(PersonalInformationActivity.class);
+        }
     }
 
     @Override
@@ -179,7 +191,12 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void personalInformationStored() {
-        startActivity(getActivityAtPosition(PersonalInformationActivity.class, 1));
+        if(isPhoneVerificationEnabled) {
+            startActivity(PhoneVerificationActivity.class);
+        }
+        else {
+            startActivity(AddressActivity.class);
+        }
     }
 
     @Override
@@ -218,9 +235,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                 RequiredDataPointVo requiredDataPointVo = listIterator.next();
                 // TODO: this will be refactored on BE side (instead of int -> String)
                 if(requiredDataPointVo.type == currentType.ordinal()+1) {
-                    if(requiredDataPointVo.verificationRequired == 0 ||
-                            requiredDataPointVo.verificationRequired == 1 &&
-                                    currentDataPointMap.get(currentType).get(0).hasVerification()) {
+                    if(!requiredDataPointVo.verificationRequired || currentDataPointMap.get(currentType).get(0).hasVerification()) {
                         listIterator.remove();
                     }
                 }
@@ -247,10 +262,17 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                     addRequiredActivity(PersonalInformationActivity.class);
                 }
                 if(requiredDataPointVo.type == 2) {
-                    addRequiredActivity(PhoneVerificationActivity.class);
+                    addRequiredActivity(PersonalInformationActivity.class);
+                    if(requiredDataPointVo.verificationRequired) {
+                        isPhoneVerificationEnabled = true;
+                        addRequiredActivity(PhoneVerificationActivity.class);
+                    }
                 }
                 if(requiredDataPointVo.type == 3) {
-                    addRequiredActivity(EmailVerificationActivity.class);
+                    addRequiredActivity(PersonalInformationActivity.class);
+                    if(requiredDataPointVo.verificationRequired) {
+                        addRequiredActivity(EmailVerificationActivity.class);
+                    }
                 }
                 if(requiredDataPointVo.type == 6 || requiredDataPointVo.type == 7) {
                     addRequiredActivity(AddressActivity.class);
@@ -277,12 +299,13 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     private Class getActivityAtPosition(Class currentActivity, int positionOffset) {
-        int currentIndex = mRequiredActivities.indexOf(currentActivity);
-        int targetIndex = currentIndex + positionOffset;
         Class result = null;
-
-        if (targetIndex >= 0 && targetIndex < mRequiredActivities.size()) {
-            result = mRequiredActivities.get(targetIndex);
+        int currentIndex = mRequiredActivities.indexOf(currentActivity);
+        if(currentIndex != -1) {
+            int targetIndex = currentIndex + positionOffset;
+            if (targetIndex >= 0 && targetIndex < mRequiredActivities.size()) {
+                result = mRequiredActivities.get(targetIndex);
+            }
         }
 
         return result;

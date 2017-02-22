@@ -149,7 +149,12 @@ public class EmailVerificationPresenter
                 mView.displayErrorMessage(mActivity.getString(R.string.email_verification_error));
             }
             else {
-                LedgeLinkUi.loginUser(mModel.getLoginData());
+                if(mModel.isPhoneVerified()) {
+                    LedgeLinkUi.loginUser(mModel.getLoginData());
+                }
+                else {
+                    mDelegate.emailVerificationSucceeded();
+                }
             }
         }
     }

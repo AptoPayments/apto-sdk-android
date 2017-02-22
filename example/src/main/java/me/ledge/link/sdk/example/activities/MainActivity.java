@@ -190,7 +190,6 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         mView.setViewListener(this);
 
         setContentView(mView);
-
         // Load the loan purpose list so we can create a drop-down.
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getLoanPurposes())
@@ -250,22 +249,25 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
 
-        IdDescriptionPairDisplayVo hint =
-                new IdDescriptionPairDisplayVo(0, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
-        adapter.add(hint);
+        runOnUiThread(() -> {
+            IdDescriptionPairDisplayVo hint =
+                    new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
+            adapter.add(hint);
 
-        if (loanPurposesList.data != null) {
-            for (LoanPurposeVo purpose : loanPurposesList.data) {
-                adapter.add(new IdDescriptionPairDisplayVo(purpose.loan_purpose_id, purpose.description));
+            if (loanPurposesList.data != null) {
+                for (LoanPurposeVo purpose : loanPurposesList.data) {
+                    adapter.add(new IdDescriptionPairDisplayVo(purpose.loan_purpose_id, purpose.description));
+                }
             }
-        }
+            mView.setPurposeAdapter(adapter);
+            mView.showLoading(false);
+        });
 
-        mView.setPurposeAdapter(adapter);
-        mView.showLoading(false);
+
     }
 
     public void errorReceived(String error) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         mView.showLoading(false);
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 }

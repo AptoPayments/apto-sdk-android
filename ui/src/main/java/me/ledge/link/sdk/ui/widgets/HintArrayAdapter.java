@@ -29,16 +29,20 @@ public class HintArrayAdapter<T> extends ArrayAdapter<T> {
     /** {@inheritDoc} */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = super.getView(position, convertView, parent);
+        if(convertView == null ) {
+            View view = super.getView(position, convertView, parent);
 
-        if (position == HINT_INDEX) {
-            TextView textView = (TextView) view.findViewById(android.R.id.text1);
-            CharSequence text = textView.getText();
+            if (position == HINT_INDEX) {
+                TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                CharSequence text = textView.getText();
 
-            textView.setText("");
-            textView.setHint(text);
+                textView.setText("");
+                textView.setHint(text);
+            }
+            return view;
         }
-
-        return view;
+        else {
+            return convertView;
+        }
     }
 }

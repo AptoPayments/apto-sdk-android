@@ -161,6 +161,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     public DataPointList getUserData() {
         DataPointList data = new DataPointList();
         DataPointList base = getBaseData();
+        base.removeDataPointsOf(DataPointVo.DataPointType.FinancialAccount);
         data.setDataPoints(base.getDataPoints());
 
         DataPointVo.SSN baseSSN = (DataPointVo.SSN) base.getUniqueDataPoint(
@@ -172,6 +173,6 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
                 new DataPointVo.Birthdate());
         baseBirthDate.setDate(getFormattedBirthday(getBirthday()));
 
-        return  data;
+        return data;
     }
 }
