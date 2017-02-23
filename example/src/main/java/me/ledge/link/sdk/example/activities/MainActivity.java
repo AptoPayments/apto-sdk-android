@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                     new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
             adapter.add(hint);
 
-            if (loanPurposesList.data != null) {
+            if (loanPurposesList != null && loanPurposesList.data != null) {
                 for (LoanPurposeVo purpose : loanPurposesList.data) {
                     adapter.add(new IdDescriptionPairDisplayVo(purpose.loan_purpose_id, purpose.description));
                 }
@@ -262,12 +262,12 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             mView.setPurposeAdapter(adapter);
             mView.showLoading(false);
         });
-
-
     }
 
     public void errorReceived(String error) {
-        mView.showLoading(false);
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        runOnUiThread(() -> {
+            mView.showLoading(false);
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        });
     }
 }
