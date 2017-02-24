@@ -120,7 +120,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             startActivity(nextActivity);
         }
         else {
-            onFinish.execute();
+            stopModule();
         }
     }
 
@@ -136,7 +136,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void identityVerificationSucceeded() {
-        onFinish.execute();
+        stopModule();
     }
 
     @Override
@@ -235,7 +235,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                 RequiredDataPointVo requiredDataPointVo = listIterator.next();
                 // TODO: this will be refactored on BE side (instead of int -> String)
                 if(requiredDataPointVo.type == currentType.ordinal()+1) {
-                    if(!requiredDataPointVo.verificationRequired || currentDataPointMap.get(currentType).get(0).hasVerification()) {
+                    if(!requiredDataPointVo.verificationRequired || currentDataPointMap.get(currentType).get(0).isVerified()) {
                         listIterator.remove();
                     }
                 }
@@ -248,11 +248,16 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     private void startModule() {
         if(mRequiredActivities.isEmpty()) {
-            onFinish.execute();
+            stopModule();
         }
         else {
             startActivity(mRequiredActivities.get(0));
         }
+    }
+
+    private void stopModule() {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        onFinish.execute();
     }
 
     private void fillRequiredActivitiesList() {
