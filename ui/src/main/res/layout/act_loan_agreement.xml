@@ -47,6 +47,7 @@
 
                 <TextView
                         style="?attr/llsdk_loanAgreement_sectionHeaderStyle"
+                        android:id="@+id/tv_terms_header"
                         android:text="@string/loan_agreement_terms_header" />
 
                 <RelativeLayout
@@ -127,6 +128,7 @@
 
                 <TextView
                         style="?attr/llsdk_loanAgreement_sectionHeaderStyle"
+                        android:id="@+id/tv_borrower_agreement_header"
                         android:text="@string/loan_agreement_borrower_agreement_header" />
 
                 <TextView

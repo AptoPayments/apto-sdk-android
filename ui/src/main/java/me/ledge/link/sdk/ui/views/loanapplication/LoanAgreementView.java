@@ -1,6 +1,10 @@
 package me.ledge.link.sdk.ui.views.loanapplication;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
@@ -8,11 +12,13 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
-import me.ledge.link.sdk.ui.utils.ResourceUtil;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -80,11 +86,8 @@ public class LoanAgreementView
     private void init() {
         mMaxScroll = -1;
 
-        ResourceUtil util = new ResourceUtil();
-        mBackgroundColor = getResources().getColor(
-                util.getResourceIdForAttribute(getContext(), R.attr.llsdk_loanAgreement_buttonColorOne));
-        mForegroundColor = getResources().getColor(
-                util.getResourceIdForAttribute(getContext(), R.attr.llsdk_loanAgreement_buttonColorTwo));
+        mForegroundColor = UIStorage.getInstance().getPrimaryContrastColor();
+        mBackgroundColor = UIStorage.getInstance().getPrimaryColor();
 
         mScrollMoreCopy = getResources().getString(R.string.loan_agreement_button_scroll_down);
         mAgreeCopy = getResources().getString(R.string.loan_agreement_button_agree);
@@ -121,6 +124,20 @@ public class LoanAgreementView
         super.onFinishInflate();
         findAllViews();
         setUpListeners();
+        setColors();
+    }
+
+    private void setColors() {
+        mToolbar.setBackgroundDrawable(new ColorDrawable(mBackgroundColor));
+        mToolbar.setTitleTextColor(mForegroundColor);
+        ((TextView) findViewById(R.id.tv_terms_header)).setTextColor(Color.BLACK);
+        ((TextView) findViewById(R.id.tv_borrower_agreement_header)).setTextColor(Color.BLACK);
+        mLenderNameField.setTextColor(Color.BLACK);
+        mLoanInterestField.setTextColor(Color.BLACK);
+        mLoanDurationField.setTextColor(Color.BLACK);
+        mLoanAmountField.setTextColor(Color.BLACK);
+        mPaymentField.setTextColor(Color.BLACK);
+        ((AppCompatCheckBox) mAcceptTermsCheck).setSupportButtonTintList(ColorStateList.valueOf(mBackgroundColor));
     }
 
     /** {@inheritDoc} */

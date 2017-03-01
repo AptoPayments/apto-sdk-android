@@ -1,11 +1,13 @@
 package me.ledge.link.sdk.ui.views.loanapplication;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.offers.LoanOfferErrorView;
 
@@ -48,6 +50,12 @@ public class IntermediateLoanApplicationView extends RelativeLayout implements V
     protected void onFinishInflate() {
         super.onFinishInflate();
         findAllViews();
+        setColors();
+    }
+
+    private void setColors() {
+        mToolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getPrimaryColor()));
+        mToolbar.setTitleTextColor(UIStorage.getInstance().getPrimaryContrastColor());
     }
 
     /** {@inheritDoc} */
