@@ -21,6 +21,7 @@ import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
@@ -198,6 +199,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                     return null;
                 })
                 .thenAccept(this::loanPurposesListRetrieved);
+
+        UIStorage.getInstance().init();
     }
 
     /** {@inheritDoc} */

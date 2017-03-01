@@ -91,7 +91,7 @@ public class LoanApplicationModule extends LedgeBaseModule
     @Override
     public void onApplicationReceived() {
         LoanApplicationDetailsResponseVo loanApplication = LoanStorage.getInstance().getCurrentLoanApplication();
-        if(loanApplication.required_actions.data[0].action.equals(LoanApplicationActionId.SELECT_FUNDING_ACCOUNT)) {
+        if(loanApplication.required_actions.total_count > 0 && loanApplication.required_actions.data[0].action.equals(LoanApplicationActionId.SELECT_FUNDING_ACCOUNT)) {
             onSelectFundingAccount.execute();
         }
         else {
