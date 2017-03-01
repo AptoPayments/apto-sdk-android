@@ -1,10 +1,15 @@
 package me.ledge.link.sdk.ui.views.userdata;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.support.v7.widget.AppCompatRadioButton;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
@@ -45,6 +50,19 @@ public class CreditScoreView extends UserDataView<CreditScoreView.ViewListener> 
         mRadioGroup = (RadioGroup) findViewById(R.id.rg_credit_score);
         mErrorText = (TextView) findViewById(R.id.tv_credit_score_error);
         showError(false);
+    }
+
+    @Override
+    public void setColors() {
+        super.setColors();
+
+        int color = UIStorage.getInstance().getPrimaryColor();
+        for(int i=0; i<mRadioGroup.getChildCount(); i++) {
+            View v = mRadioGroup.getChildAt(i);
+            if(v instanceof AppCompatRadioButton) {
+                ((AppCompatRadioButton) v).setSupportButtonTintList(ColorStateList.valueOf(color));
+            }
+        }
     }
 
     /**
