@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.views.financialaccountselector;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddFinancialAccountModel;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
@@ -77,6 +79,14 @@ public class AddFinancialAccountListView extends CoordinatorLayout
     protected void onFinishInflate() {
         super.onFinishInflate();
         findAllViews();
+        setColors();
+    }
+
+    private void setColors() {
+        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
+        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
+        mToolbar.setTitleTextColor(contrastColor);
     }
 
     @Override
