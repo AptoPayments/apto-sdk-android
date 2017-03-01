@@ -11,5 +11,4 @@ public interface IntermediateLoanApplicationDelegate {
 
     void showNext(IntermediateLoanApplicationModel model);
     void showPrevious(IntermediateLoanApplicationModel model);
-    void onInfoPressed();
 }

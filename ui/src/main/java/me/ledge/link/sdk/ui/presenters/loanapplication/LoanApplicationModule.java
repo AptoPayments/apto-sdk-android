@@ -54,11 +54,6 @@ public class LoanApplicationModule extends LedgeBaseModule
     }
 
     @Override
-    public void onInfoPressed() {
-        //startActivity(LedgeLinkUi.getHandlerConfiguration().getApplicationsListActivity());
-    }
-
-    @Override
     public void showNext(AddDocumentsListModel model) {
         startNextActivity(model);
     }
