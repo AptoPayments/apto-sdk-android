@@ -29,11 +29,6 @@ public class LoanOfferErrorView extends LinearLayout implements View.OnClickList
         void offersClickHandler();
 
         /**
-         * Called when the "More info" button has been clicked.
-         */
-        void infoClickHandler();
-
-        /**
          * Called when the big button has been pressed.
          * @param action The action to take.
          */
@@ -43,7 +38,6 @@ public class LoanOfferErrorView extends LinearLayout implements View.OnClickList
     private ImageView mCloudImage;
     private TextView mExplanationField;
     private TextView mOffersButton;
-    private TextView mInfoButton;
 
     private LinearLayout mButtonsHolder;
     private TextView mBigButton;
@@ -66,7 +60,6 @@ public class LoanOfferErrorView extends LinearLayout implements View.OnClickList
         mCloudImage = (ImageView) findViewById(R.id.iv_cloud);
         mExplanationField = (TextView) findViewById(R.id.tv_explanation);
         mOffersButton = (TextView) findViewById(R.id.tv_bttn_get_offers);
-        mInfoButton = (TextView) findViewById(R.id.tv_bttn_more_info);
 
         mButtonsHolder = (LinearLayout) findViewById(R.id.ll_buttons_holder);
         mBigButton = (TextView) findViewById(R.id.tv_bttn_big);
@@ -77,7 +70,6 @@ public class LoanOfferErrorView extends LinearLayout implements View.OnClickList
      */
     private void setupListeners() {
         mOffersButton.setOnClickListener(this);
-        mInfoButton.setOnClickListener(this);
         mBigButton.setOnClickListener(this);
     }
 
@@ -107,8 +99,6 @@ public class LoanOfferErrorView extends LinearLayout implements View.OnClickList
         int id = view.getId();
         if (id == R.id.tv_bttn_get_offers) {
             mListener.offersClickHandler();
-        } else if (id == R.id.tv_bttn_more_info) {
-            mListener.infoClickHandler();
         } else if (id == R.id.tv_bttn_big) {
             mListener.bigButtonClickHandler(mData.getBigButtonModel().getAction());
         }

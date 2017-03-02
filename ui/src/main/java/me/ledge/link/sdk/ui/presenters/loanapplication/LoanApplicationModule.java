@@ -6,7 +6,6 @@ import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.models.ActivityModel;
@@ -52,11 +51,6 @@ public class LoanApplicationModule extends LedgeBaseModule
     @Override
     public void showPrevious(IntermediateLoanApplicationModel model) {
         startPreviousActivity(model);
-    }
-
-    @Override
-    public void onInfoPressed() {
-        startActivity(LedgeLinkUi.getHandlerConfiguration().getApplicationsListActivity());
     }
 
     @Override

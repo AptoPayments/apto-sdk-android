@@ -7,7 +7,6 @@ import org.greenrobot.eventbus.Subscribe;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.api.vos.VerificationVo;
-import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -15,8 +14,6 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.verification.EmailVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
-import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
-import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.verification.EmailVerificationView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
@@ -93,19 +90,6 @@ public class EmailVerificationPresenter
     }
 
     /**
-     * Called when the start phone verification API response has been received.
-     * @param response API response.
-     */
-    @Subscribe
-    public void handleToken(CreateUserResponseVo response) {
-        if (response != null) {
-            UserStorage.getInstance().setBearerToken(response.user_token);
-            SharedPreferencesStorage.storeUserToken(mActivity, response.user_token);
-            mDelegate.emailVerificationSucceeded();
-        }
-    }
-
-    /**
      * Called when an API error has been received.
      * @param error API error.
      */
@@ -149,12 +133,7 @@ public class EmailVerificationPresenter
                 mView.displayErrorMessage(mActivity.getString(R.string.email_verification_error));
             }
             else {
-                if(mModel.isPhoneVerified()) {
-                    LedgeLinkUi.loginUser(mModel.getLoginData());
-                }
-                else {
-                    mDelegate.emailVerificationSucceeded();
-                }
+                mDelegate.emailVerificationSucceeded();
             }
         }
     }

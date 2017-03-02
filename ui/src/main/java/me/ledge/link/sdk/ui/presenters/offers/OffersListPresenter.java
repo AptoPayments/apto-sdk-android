@@ -194,10 +194,6 @@ public class OffersListPresenter
 
     /** {@inheritDoc} */
     @Override
-    public void infoClickHandler() { /* Do nothing. */ }
-
-    /** {@inheritDoc} */
-    @Override
     public void bigButtonClickHandler(int action) {
         if (action == BigButtonModel.Action.RELOAD_LOAN_OFFERS) {
             reloadOffers();

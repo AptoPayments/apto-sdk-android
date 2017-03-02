@@ -143,14 +143,6 @@ public class IntermediateLoanApplicationPresenter
 
     /** {@inheritDoc} */
     @Override
-    public void infoClickHandler() {
-        // TODO Pending API update.
-        LoanStorage.getInstance().setCurrentLoanApplication(null);
-        mDelegate.onInfoPressed();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void bigButtonClickHandler(int action) {
         switch (action) {
             case BigButtonModel.Action.RETRY_LOAN_APPLICATION:
