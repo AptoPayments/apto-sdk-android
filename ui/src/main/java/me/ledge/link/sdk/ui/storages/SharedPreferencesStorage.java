@@ -35,7 +35,9 @@ public class SharedPreferencesStorage {
             return null;
         }
         else {
-            return settings.getString(USER_TOKEN_KEY, null);
+            String userToken = settings.getString(USER_TOKEN_KEY, null);
+            UserStorage.getInstance().setBearerToken(userToken);
+            return userToken;
         }
     }
 
