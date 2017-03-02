@@ -132,10 +132,10 @@
                         android:text="@string/loan_agreement_borrower_agreement_header" />
 
                 <TextView
+                        android:id="@+id/tv_esign_disclaimer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Praesent sem metus, mollis eu porta vitae, venenatis sed lacus. Mauris commodo at nisl a blandit. Vestibulum commodo nibh vitae est faucibus, in maximus mauris posuere. Fusce rhoncus fringilla lacus, in rhoncus nisi maximus sit amet. In pharetra vulputate eros vel mattis. Integer tempus ex vitae sodales viverra. Aenean et mollis nisi. Aliquam consequat nisi nec rhoncus volutpat. Cras quam magna, maximus quis enim nec, ultricies dapibus elit. Proin rutrum nisi a elit iaculis sagittis. Sed convallis leo vel sem vehicula convallis. Mauris feugiat tellus eu erat cursus gravida. Vivamus aliquet sed dolor quis viverra. Aliquam vitae eros et turpis euismod varius ac quis quam. Phasellus iaculis orci a bibendum dictum. Curabitur a condimentum tellus.\n\nDonec vehicula ut enim ut tincidunt. Donec eget congue arcu, vel consequat diam. Maecenas urna enim, ultrices id nibh in, vestibulum dignissim sem. Vestibulum eleifend, nibh ut tempus consectetur, ligula nunc rutrum ante, at placerat enim risus sit amet diam. Donec purus elit, ullamcorper et lorem a, rhoncus tincidunt felis. Etiam accumsan, nibh lobortis pellentesque commodo, turpis massa accumsan neque, a vestibulum eros mauris eget ligula. Integer tempus porttitor nisi ut consectetur. Cras et metus dapibus, malesuada orci ac, tincidunt ligula. Quisque non diam eget nulla blandit suscipit. Morbi venenatis velit vitae leo pellentesque, quis dignissim tortor pretium." />
+                        android:layout_marginTop="16dp" />
 
             </LinearLayout>
 
@@ -155,13 +155,13 @@
                         android:layout_height="wrap_content" />
 
                 <TextView
+                        android:id="@+id/tv_esign_consent_disclaimer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="fill"
                         android:paddingTop="2dp"
                         android:layout_marginLeft="6dp"
-                        android:layout_marginStart="6dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce maximus porttitor purus et aliquam. Praesent suscipit lorem magna, in porttitor massa tincidunt vitae." />
+                        android:layout_marginStart="6dp" />
 
             </LinearLayout>
         </LinearLayout>

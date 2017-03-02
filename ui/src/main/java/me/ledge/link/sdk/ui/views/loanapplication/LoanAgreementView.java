@@ -53,6 +53,8 @@ public class LoanAgreementView
     private TextView mLoanDurationField;
     private TextView mPaymentField;
     private TextView mConfirmButton;
+    private TextView mDisclaimer;
+    private TextView mConsentDisclaimer;
     private CheckBox mAcceptTermsCheck;
 
     private ViewListener mViewListener;
@@ -109,6 +111,8 @@ public class LoanAgreementView
         mPaymentField = (TextView) findViewById(R.id.tv_payment);
         mConfirmButton = (TextView) findViewById(R.id.tv_confirm_btn);
         mAcceptTermsCheck = (CheckBox) findViewById(R.id.cb_accept_terms);
+        mDisclaimer = (TextView) findViewById(R.id.tv_esign_disclaimer);
+        mConsentDisclaimer = (TextView) findViewById(R.id.tv_esign_consent_disclaimer);
     }
 
     /**
@@ -250,5 +254,13 @@ public class LoanAgreementView
             mConfirmButton.setTextColor(mBackgroundColor);
             mConfirmButton.setText(mScrollMoreCopy);
         }
+    }
+
+    public void setDisclaimer(String disclaimer) {
+        mDisclaimer.setText(disclaimer);
+    }
+
+    public void setConsentDisclaimer(String disclaimer) {
+        mConsentDisclaimer.setText(disclaimer);
     }
 }
