@@ -11,8 +11,8 @@ import org.greenrobot.eventbus.Subscribe;
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.DataPointVo;
-import me.ledge.link.api.vos.responses.config.ProductDisclaimerListVo;
-import me.ledge.link.api.vos.responses.config.ProductDisclaimerVo;
+import me.ledge.link.api.vos.responses.config.LoanProductListVo;
+import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
@@ -97,7 +97,7 @@ public class IdentityVerificationPresenter
         if (mDisclaimersText == null) {
             mView.showLoading(true);
             CompletableFuture
-                    .supplyAsync(()-> ConfigStorage.getInstance().getPartnerDisclaimersList())
+                    .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
                     .exceptionally(ex -> {
                         errorReceived(ex.getMessage());
                         return null;
@@ -168,7 +168,7 @@ public class IdentityVerificationPresenter
         mView.setBirthday(String.format("%02d/%02d/%02d", monthOfYear + 1, dayOfMonth, year));
     }
 
-    private String parseDisclaimersResponse(ProductDisclaimerListVo productDisclaimerList) {
+    private String parseDisclaimersResponse(LoanProductListVo productDisclaimerList) {
         if (productDisclaimerList == null) {
             return "";
         }
@@ -177,9 +177,9 @@ public class IdentityVerificationPresenter
         String partnerDivider = "<br /><br />";
         StringBuilder result = new StringBuilder();
 
-        for(ProductDisclaimerVo disclaimer : productDisclaimerList.data) {
-            if (!TextUtils.isEmpty(disclaimer.text)) {
-                result.append(disclaimer.text.replaceAll("\\r?\\n", lineBreak));
+        for(LoanProductVo loanProduct : productDisclaimerList.data) {
+            if (!TextUtils.isEmpty(loanProduct.preQualificationDisclaimer)) {
+                result.append(loanProduct.preQualificationDisclaimer.replaceAll("\\r?\\n", lineBreak));
             }
             result.append(partnerDivider);
         }
@@ -238,7 +238,7 @@ public class IdentityVerificationPresenter
         mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error.toString()));
     }
 
-    private void partnerDisclaimersListRetrieved(ProductDisclaimerListVo response) {
+    private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
         setDisclaimers(parseDisclaimersResponse(response));
     }
 

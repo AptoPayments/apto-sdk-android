@@ -8,8 +8,8 @@ import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LinkDisclaimerVo;
+import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
-import me.ledge.link.api.vos.responses.config.ProductDisclaimerListVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 
 import static me.ledge.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
@@ -74,6 +74,24 @@ public class ConfigStorage {
         return (LinkDisclaimerVo) getResultFromFuture(future);
     }
 
+    public synchronized LoanProductListVo getLoanProducts() {
+        CompletableFuture<LoanProductListVo> future = CompletableFuture.supplyAsync(() -> {
+            if(isConfigCached()) {
+                return mLinkConfig.loanProductList;
+            }
+            else {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.loanProductList;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        return (LoanProductListVo) getResultFromFuture(future);
+    }
+
     public synchronized RequiredDataPointsListResponseVo getRequiredUserData() {
         CompletableFuture<RequiredDataPointsListResponseVo> future = CompletableFuture.supplyAsync(() -> {
             if(isConfigCached()) {
@@ -108,24 +126,6 @@ public class ConfigStorage {
         });
 
         return (boolean) getResultFromFuture(f);
-    }
-
-    public synchronized ProductDisclaimerListVo getPartnerDisclaimersList() {
-        CompletableFuture<ProductDisclaimerListVo> future = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.productDisclaimerList;
-            }
-            else {
-                try {
-                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
-                    return mLinkConfig.productDisclaimerList;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            }
-        });
-
-        return (ProductDisclaimerListVo) getResultFromFuture(future);
     }
 
     public synchronized int getMaxLoanAmount() {
