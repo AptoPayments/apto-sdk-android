@@ -90,11 +90,4 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
 
         return request;
     }
-
-    public boolean isPhoneVerified() {
-        DataPointList base = super.getBaseData();
-        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
-        return phoneNumber.isVerified();
-    }
 }
