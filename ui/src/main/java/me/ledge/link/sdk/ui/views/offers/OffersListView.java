@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.views.offers;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +16,7 @@ import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
@@ -114,10 +116,22 @@ public class OffersListView
         findAllViews();
         setUpListeners();
         setupRecyclerView();
+        setColors();
 
         showEmptyCase(false);
         showError(false);
         showLoading(false);
+    }
+
+    private void setColors() {
+        int color = UIStorage.getInstance().getPrimaryColor();
+        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
+        if (mUpdateButton != null) {
+            mUpdateButton.setBackgroundColor(color);
+            mUpdateButton.setTextColor(contrastColor);
+        }
+        mToolbar.setBackgroundDrawable(new ColorDrawable(color));
+        mToolbar.setTitleTextColor(contrastColor);
     }
 
     /** {@inheritDoc} */

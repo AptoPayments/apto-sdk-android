@@ -8,6 +8,7 @@ import android.widget.TextView;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
@@ -53,6 +54,18 @@ public class MonthlyIncomeView
 
         mIncomeText = (TextView) findViewById(R.id.tv_income);
         mIncomeSlider = (DiscreteSeekBar) findViewById(R.id.dsb_income);
+    }
+
+    @Override
+    public void setColors() {
+        super.setColors();
+
+        int color = UIStorage.getInstance().getPrimaryColor();
+        mIncomeText.setTextColor(color);
+        mIncomeSlider.setRippleColor(color);
+        mIncomeSlider.setScrubberColor(color);
+        mIncomeSlider.setTrackColor(color);
+        mIncomeSlider.setThumbColor(color, color);
     }
 
     /** {@inheritDoc} */

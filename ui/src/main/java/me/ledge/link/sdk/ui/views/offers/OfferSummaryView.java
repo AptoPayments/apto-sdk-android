@@ -9,6 +9,7 @@ import android.widget.TextView;
 import me.ledge.common.views.RowView;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 
 /**
  * Displays an offer summary.
@@ -128,6 +129,13 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
         super.onFinishInflate();
         findAllViews();
         setUpListeners();
+        setColors();
+    }
+
+    private void setColors() {
+        int color = UIStorage.getInstance().getPrimaryColor();
+        mLenderNameField.setTextColor(color);
+        mApplyButton.setTextColor(color);
     }
 
     /** {@inheritDoc} */

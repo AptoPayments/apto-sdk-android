@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 import android.app.Activity;
 
 import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
+import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
@@ -85,12 +86,15 @@ public class LoanApplicationModule extends LedgeBaseModule
     @Override
     public void onApplicationReceived() {
         LoanApplicationDetailsResponseVo loanApplication = LoanStorage.getInstance().getCurrentLoanApplication();
-        if(loanApplication.required_actions.data[0].action.equals(LoanApplicationActionId.SELECT_FUNDING_ACCOUNT)) {
-            onSelectFundingAccount.execute();
+        if (loanApplication != null) {
+            if (loanApplication.status.equals(LoanApplicationStatus.PENDING_BORROWER_ACTION)) {
+                if (loanApplication.required_actions.total_count > 0 && loanApplication.required_actions.data[0].action.equals(LoanApplicationActionId.SELECT_FUNDING_ACCOUNT)) {
+                    onSelectFundingAccount.execute();
+                    return;
+                }
+            }
         }
-        else {
-            startActivity(IntermediateLoanApplicationActivity.class);
-        }
+        startActivity(IntermediateLoanApplicationActivity.class);
     }
 
     private void startNextActivity(ActivityModel model) {

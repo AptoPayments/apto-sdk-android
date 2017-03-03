@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.dpizarro.pinview.library.PinView;
 
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.utils.KeyboardUtil;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
@@ -64,6 +65,16 @@ public class PhoneVerificationView
         mSubmitButton = (TextView) findViewById(R.id.tv_submit_bttn);
         mResendButton = (TextView) findViewById(R.id.tv_resend_bttn);
         configurePinView();
+        setColors();
+    }
+
+    @Override
+    public void setColors() {
+        super.setColors();
+
+        int color = UIStorage.getInstance().getPrimaryColor();
+        mSubmitButton.setBackgroundColor(color);
+        mResendButton.setTextColor(color);
     }
 
     /** {@inheritDoc} */

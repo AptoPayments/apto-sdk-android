@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.views.userdata;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget;
@@ -67,6 +69,17 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
         }
     }
 
+    protected void setColors() {
+        int color = UIStorage.getInstance().getPrimaryColor();
+        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
+        if (mNextButton != null) {
+            mNextButton.setBackgroundColor(color);
+            mNextButton.setTextColor(contrastColor);
+        }
+        mToolbar.setBackgroundDrawable(new ColorDrawable(color));
+        mToolbar.setTitleTextColor(contrastColor);
+    }
+
     /**
      * Updates an error display.
      * @param wrapper The {@link TextInputLayout} to update.
@@ -88,6 +101,7 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
         super.onFinishInflate();
         findAllViews();
         setupListeners();
+        setColors();
     }
 
     /** {@inheritDoc} */

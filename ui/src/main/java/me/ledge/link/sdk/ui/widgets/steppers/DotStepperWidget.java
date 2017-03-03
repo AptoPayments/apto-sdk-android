@@ -6,7 +6,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 
 /**
@@ -99,6 +102,7 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
 
             if (i == position) {
                 view.setImageDrawable(getResources().getDrawable(mDotEnabledResourceId));
+                view.setColorFilter(UIStorage.getInstance().getPrimaryColor());
             } else {
                 view.setImageDrawable(getResources().getDrawable(mDotDisabledResourceId));
             }
@@ -112,6 +116,25 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
     protected void onFinishInflate() {
         super.onFinishInflate();
         findAllViews();
+        setColors();
+    }
+
+    private void setColors() {
+        int color = UIStorage.getInstance().getPrimaryColor();
+        setButtonColor(mBackButton, color);
+        setButtonColor(mNextButton, color);
+    }
+
+    private void setButtonColor(LinearLayout button, int color) {
+        for(int i=0; i<button.getChildCount(); i++) {
+            View v = button.getChildAt(i);
+            if(v instanceof ImageView) {
+                ((ImageView) v).setColorFilter(color);
+            }
+            if(v instanceof TextView) {
+                ((TextView) v).setTextColor(color);
+            }
+        }
     }
 
     /** {@inheritDoc} */

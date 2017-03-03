@@ -6,9 +6,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 
 /**
  * Generic loan offer error display.
@@ -77,6 +79,13 @@ public class LoanOfferErrorView extends LinearLayout implements View.OnClickList
         super.onFinishInflate();
         findAllViews();
         setupListeners();
+        setColors();
+    }
+
+    private void setColors() {
+        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        mOffersButton.setTextColor(primaryColor);
+        mBigButton.setTextColor(primaryColor);
     }
 
     /** {@inheritDoc} */

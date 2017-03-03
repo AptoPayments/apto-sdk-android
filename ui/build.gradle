@@ -95,7 +95,7 @@ dependencies {
         exclude module: 'support-v4'
     }
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:+'
-    compile 'com.googlecode.libphonenumber:libphonenumber:+'
+    compile 'com.googlecode.libphonenumber:libphonenumber:8.3.1'
     compile 'com.github.ksoichiro:android-observablescrollview:+'
     compile ('com.github.davidpizarro:pinview:1.0.0') {
         exclude module: 'appcompat-v7'
