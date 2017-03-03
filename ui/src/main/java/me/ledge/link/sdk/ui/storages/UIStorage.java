@@ -98,7 +98,6 @@ public class UIStorage {
     }
 
     public synchronized int getPrimaryContrastColor() {
-        // As per http://stackoverflow.com/a/2241471
         int red = Color.red(mPrimaryColor);
         int green = Color.green(mPrimaryColor);
         int blue = Color.blue(mPrimaryColor);
@@ -106,6 +105,7 @@ public class UIStorage {
     }
 
     private int getBrightness(int red, int green, int blue) {
+        // As per http://stackoverflow.com/a/2241471
         return (int)Math.sqrt(red * red * .299 +
                             green * green * .587 +
                             blue * blue * .114);

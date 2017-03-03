@@ -1,7 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 
@@ -9,7 +8,6 @@ import java8.util.concurrent.CompletableFuture;
 import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
-import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
@@ -72,7 +70,7 @@ public class LoanAgreementPresenter
     }
 
     private void eSignDisclaimersListRetrieved(LoanProductListVo loanProductListVo) {
-        if (loanProductListVo == null) {
+        /*if (loanProductListVo == null) {
             return;
         }
 
@@ -95,7 +93,7 @@ public class LoanAgreementPresenter
         mActivity.runOnUiThread(() -> {
             mView.setDisclaimer(eSignDisclaimer.substring(0, eSignDisclaimer.length() - partnerDivider.length()));
             mView.setConsentDisclaimer(eSignConsentDisclaimer.substring(0, eSignConsentDisclaimer.length() - partnerDivider.length()));
-        });
+        });*/
     }
 
     @Override
