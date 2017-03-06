@@ -57,6 +57,8 @@ public class EnableAutoPayView
         int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
         mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
         mToolbar.setTitleTextColor(contrastColor);
+        mEnableAutoPayButton.setTextColor(contrastColor);
+        mEnableAutoPayButton.setBackgroundColor(primaryColor);
     }
 
     @Override
