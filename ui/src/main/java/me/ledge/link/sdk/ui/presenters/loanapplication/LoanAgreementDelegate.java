@@ -9,6 +9,6 @@ import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
  */
 public interface LoanAgreementDelegate {
 
-    void showNext(LoanAgreementModel model);
-    void showPrevious(LoanAgreementModel model);
+    void loanAgreementShowNext(LoanAgreementModel model);
+    void loanAgreementShowPrevious(LoanAgreementModel model);
 }

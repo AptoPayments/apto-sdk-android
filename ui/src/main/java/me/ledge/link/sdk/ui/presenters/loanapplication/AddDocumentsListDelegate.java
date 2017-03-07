@@ -9,6 +9,6 @@ import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentsListMod
  */
 public interface AddDocumentsListDelegate {
 
-    void showNext(AddDocumentsListModel model);
-    void showPrevious(AddDocumentsListModel model);
+    void addDocumentsListShowNext(AddDocumentsListModel model);
+    void addDocumentsListShowPrevious(AddDocumentsListModel model);
 }

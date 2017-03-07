@@ -14,7 +14,7 @@ import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
 import me.ledge.link.sdk.ui.models.userdata.AddressModel;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.mockito.Matchers.any;
@@ -84,7 +84,7 @@ public class AddressModelTest {
         Assert.assertThat("Incorrect city.", mModel.getCity(), equalTo(baseAddress.city));
         Assert.assertThat("Incorrect state.", mModel.getState(), equalTo(baseAddress.stateCode));
         Assert.assertThat("Incorrect zip code.", mModel.getZip(), equalTo(baseAddress.zip));
-        Assert.assertThat("Incorrect housing type.", mModel.getHousingType().getKey(), equalTo(baseHousing.housingType));
+        Assert.assertThat("Incorrect housing type.", mModel.getHousingType().getKey(), equalTo(baseHousing.housingType.getKey()));
         Assert.assertTrue("All data should be set.", mModel.hasAllData());
     }
 
@@ -115,7 +115,7 @@ public class AddressModelTest {
         Assert.assertThat("Incorrect city.", baseAddress.city, equalTo(mModel.getCity()));
         Assert.assertThat("Incorrect state.", baseAddress.stateCode, equalTo(mModel.getState()));
         Assert.assertThat("Incorrect zip code.", baseAddress.zip, equalTo(mModel.getZip()));
-        Assert.assertThat("Incorrect housing type.", baseHousing.housingType, equalTo(mModel.getHousingType().getKey()));
+        Assert.assertThat("Incorrect housing type.", baseHousing.housingType.getKey(), equalTo(mModel.getHousingType().getKey()));
     }
 
     /**

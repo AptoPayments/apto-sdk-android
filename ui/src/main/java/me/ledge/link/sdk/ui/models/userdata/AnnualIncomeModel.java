@@ -4,7 +4,7 @@ import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 /**
  * Concrete {@link Model} for the income screen.
  * @author Wijnand
@@ -63,8 +63,8 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
         DataPointVo.Employment baseEmployment = (DataPointVo.Employment) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Employment,
                 new DataPointVo.Employment());
-        baseEmployment.employmentStatus = getEmploymentStatus().getKey();
-        baseEmployment.salaryFrequency = getSalaryFrequency().getKey();
+        baseEmployment.employmentStatus = getEmploymentStatus();
+        baseEmployment.salaryFrequency = getSalaryFrequency();
 
         return base;
     }
@@ -81,8 +81,8 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
         DataPointVo.Employment baseEmployment = (DataPointVo.Employment) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Employment,
                 new DataPointVo.Employment());
-        setEmploymentStatus(new IdDescriptionPairDisplayVo(baseEmployment.employmentStatus, ""));
-        setSalaryFrequency(new IdDescriptionPairDisplayVo(baseEmployment.salaryFrequency, ""));
+        setEmploymentStatus(baseEmployment.employmentStatus);
+        setSalaryFrequency(baseEmployment.salaryFrequency);
     }
 
     /**

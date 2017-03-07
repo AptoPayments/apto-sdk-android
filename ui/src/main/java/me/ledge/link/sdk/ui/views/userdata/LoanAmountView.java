@@ -6,11 +6,10 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;

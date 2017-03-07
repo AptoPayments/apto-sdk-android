@@ -98,7 +98,7 @@ public class LoanAgreementPresenter
 
     @Override
     public void onBack() {
-        mDelegate.showPrevious(mModel);
+        mDelegate.loanAgreementShowPrevious(mModel);
     }
 
     /** {@inheritDoc} */
@@ -142,7 +142,7 @@ public class LoanAgreementPresenter
                 application.status_message = String.format(
                         "Your loan with %s is being funded.", application.offer.lender.lender_name);
 
-                mDelegate.showNext(mModel);
+                mDelegate.loanAgreementShowNext(mModel);
             } else {
                 mNotificationDialog.show(mActivity.getFragmentManager(), NotificationDialogFragment.DIALOG_TAG);
             }

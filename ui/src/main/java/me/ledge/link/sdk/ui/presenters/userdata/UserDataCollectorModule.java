@@ -216,6 +216,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     private void parseRequiredData(RequiredDataPointsListResponseVo requiredDataPointsList) {
+        UserStorage.getInstance().setRequiredData(requiredDataPointsList);
         mRequiredDataPointList = new LinkedList<>(Arrays.asList(requiredDataPointsList.data));
 
         CompletableFuture

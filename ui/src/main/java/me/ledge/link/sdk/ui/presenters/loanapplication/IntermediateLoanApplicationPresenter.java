@@ -124,7 +124,7 @@ public class IntermediateLoanApplicationPresenter
 
     @Override
     public void onBack() {
-        mDelegate.showPrevious(mModel);
+        mDelegate.intermediateLoanApplicationShowPrevious(mModel);
     }
 
     /** {@inheritDoc} */
@@ -138,7 +138,7 @@ public class IntermediateLoanApplicationPresenter
     @Override
     public void offersClickHandler() {
         LoanStorage.getInstance().setCurrentLoanApplication(null);
-        mDelegate.showPrevious(mModel);
+        mDelegate.intermediateLoanApplicationShowPrevious(mModel);
     }
 
     /** {@inheritDoc} */
@@ -150,7 +150,7 @@ public class IntermediateLoanApplicationPresenter
                 break;
             case BigButtonModel.Action.CONFIRM_LOAN:
             case BigButtonModel.Action.UPLOAD_DOCUMENTS:
-                mDelegate.showNext(mModel);
+                mDelegate.intermediateLoanApplicationShowNext(mModel);
                 break;
             default:
                 // Do nothing.
