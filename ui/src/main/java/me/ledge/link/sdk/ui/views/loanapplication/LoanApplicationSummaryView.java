@@ -24,7 +24,6 @@ import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
 import me.ledge.link.sdk.ui.storages.UIStorage;
-import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.CreditScoreUtil;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
@@ -197,72 +196,68 @@ public class LoanApplicationSummaryView
         mLoanDurationField.setText(data.getTerm(getResources()));
         mPaymentField.setText(data.getPaymentAmount(getResources()));
 
+        addKeyValueTextView(data.getLoanPurposeLabel(getResources()), data.getLoanPurpose());
 
-        // TODO: move this call to model ie: data.getApplicationInfo();
-        DataPointList dataPointList = UserStorage.getInstance().getUserData();
+        DataPointList dataPointList = data.getApplicationInfo();
         Set<DataPointVo.DataPointType> dataPointTypes = dataPointList.getDataPoints().keySet();
-
         LinkedList<RequiredDataPointVo> requiredData = data.getRequiredData();
-        LayoutInflater inflater = LayoutInflater.from(getContext());
 
         for (RequiredDataPointVo requiredDataPointVo : requiredData) {
             for(DataPointVo.DataPointType currentType : dataPointTypes) {
                 if (requiredDataPointVo.type == currentType.ordinal() + 1) {
                     DataPointVo dataPoint = dataPointList.getUniqueDataPoint(currentType, null);
-                    setTextViewValues(inflater, dataPoint);
+                    setTextViewValues(data, dataPoint);
                 }
             }
-
         }
-
     }
 
-    private void setTextViewValues(LayoutInflater inflater, DataPointVo dataPoint) {
-        // TODO: move hardcoded strings to strings.xml
+    private void setTextViewValues(LoanApplicationSummaryModel data, DataPointVo dataPoint) {
         switch(dataPoint.getType()) {
             case PersonalName:
-                addKeyValueTextView(inflater, "First Name", ((DataPointVo.PersonalName) dataPoint).firstName);
-                addKeyValueTextView(inflater, "Last Name", ((DataPointVo.PersonalName) dataPoint).lastName);
+                addKeyValueTextView(data.getFirstNameLabel(getResources()), ((DataPointVo.PersonalName) dataPoint).firstName);
+                addKeyValueTextView(data.getLastNameLabel(getResources()), ((DataPointVo.PersonalName) dataPoint).lastName);
                 break;
             case PhoneNumber:
-                addKeyValueTextView(inflater, "Phone Number", dataPoint.toString());
+                addKeyValueTextView(data.getPhoneLabel(getResources()), dataPoint.toString());
                 break;
             case Email:
-                addKeyValueTextView(inflater, "Email", dataPoint.toString());
+                addKeyValueTextView(data.getEmailLabel(getResources()), dataPoint.toString());
                 break;
             case BirthDate:
-                addKeyValueTextView(inflater, "Birthday", dataPoint.toString());
+                addKeyValueTextView(data.getBirthdayLabel(getResources()), dataPoint.toString());
                 break;
             case SSN:
-                addKeyValueTextView(inflater, "SSN", dataPoint.toString());
+                addKeyValueTextView(data.getSsnLabel(getResources()), dataPoint.toString());
                 break;
             case Address:
-                addKeyValueTextView(inflater, "Address", ((DataPointVo.Address) dataPoint).address);
-                addKeyValueTextView(inflater, "Apt/Unit", ((DataPointVo.Address) dataPoint).apUnit);
-                addKeyValueTextView(inflater, "ZIP Code", ((DataPointVo.Address) dataPoint).zip);
-                addKeyValueTextView(inflater, "City", ((DataPointVo.Address) dataPoint).city);
-                addKeyValueTextView(inflater, "State", ((DataPointVo.Address) dataPoint).stateCode);
+                addKeyValueTextView(data.getAddressLabel(getResources()), ((DataPointVo.Address) dataPoint).address);
+                addKeyValueTextView(data.getAptUnitLabel(getResources()), ((DataPointVo.Address) dataPoint).apUnit);
+                addKeyValueTextView(data.getZipCodeLabel(getResources()), ((DataPointVo.Address) dataPoint).zip);
+                addKeyValueTextView(data.getCityLabel(getResources()), ((DataPointVo.Address) dataPoint).city);
+                addKeyValueTextView(data.getStateLabel(getResources()), ((DataPointVo.Address) dataPoint).stateCode);
                 break;
             case Housing:
-                addKeyValueTextView(inflater, "Housing Status", ((DataPointVo.Housing) dataPoint).housingType.toString());
+                addKeyValueTextView(data.getHousingStatusLabel(getResources()), ((DataPointVo.Housing) dataPoint).housingType.toString());
                 break;
             case Employment:
-                addKeyValueTextView(inflater, "Employment Status", ((DataPointVo.Employment) dataPoint).employmentStatus.toString());
-                addKeyValueTextView(inflater, "Salary Frequency", ((DataPointVo.Employment) dataPoint).salaryFrequency.toString());
+                addKeyValueTextView(data.getEmploymentStatusLabel(getResources()), ((DataPointVo.Employment) dataPoint).employmentStatus.toString());
+                addKeyValueTextView(data.getSalaryFrequencyLabel(getResources()), ((DataPointVo.Employment) dataPoint).salaryFrequency.toString());
                 break;
             case Income:
-                addKeyValueTextView(inflater, "Annual Pretax Income", String.valueOf(((DataPointVo.Income) dataPoint).annualGrossIncome));
-                addKeyValueTextView(inflater, "Monthly Net Income", String.valueOf(((DataPointVo.Income) dataPoint).monthlyNetIncome));
+                addKeyValueTextView(data.getAnnualIncomeLabel(getResources()), String.valueOf(((DataPointVo.Income) dataPoint).annualGrossIncome));
+                addKeyValueTextView(data.getMonthlyIncomeLabel(getResources()), String.valueOf(((DataPointVo.Income) dataPoint).monthlyNetIncome));
                 break;
             case CreditScore:
                 String creditScore = CreditScoreUtil.getCreditScoreDescription(getContext(), ((DataPointVo.CreditScore) dataPoint).creditScoreRange);
-                addKeyValueTextView(inflater, "Credit Score", creditScore);
+                addKeyValueTextView(data.getCreditScoreLabel(getResources()), creditScore);
                 break;
         }
     }
 
-    private void addKeyValueTextView(LayoutInflater inflater, String key, String value) {
+    private void addKeyValueTextView(String key, String value) {
         if(!key.isEmpty() && !value.isEmpty()) {
+            LayoutInflater inflater = LayoutInflater.from(getContext());
             View view = inflater.inflate(R.layout.lv_datapoint, mApplicationInfoLinearLayout, false);
             TextView dataPointKeyField = (TextView) view.findViewById(R.id.tv_datapoint_key);
             TextView dataPointValueField = (TextView) view.findViewById(R.id.tv_datapoint_value);
