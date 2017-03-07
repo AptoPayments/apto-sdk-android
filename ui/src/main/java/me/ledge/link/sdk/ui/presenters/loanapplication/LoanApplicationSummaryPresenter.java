@@ -55,9 +55,6 @@ public class LoanApplicationSummaryPresenter
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
                 .thenAccept(this::applicationDisclaimerRetrieved);
-/*        CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().getRequiredUserData())
-                .thenAccept(this::setRequiredData);*/
         setRequiredData(UserStorage.getInstance().getRequiredData());
     }
 
@@ -176,8 +173,7 @@ public class LoanApplicationSummaryPresenter
             case LoanApplicationStatus.BORROWER_REJECTED:
             case LoanApplicationStatus.LOAN_APPROVED:
             default:
-                // TODO
-                //mView.displayErrorMessage("Screen not yet implemented.");
+                mView.displayErrorMessage("Screen not yet implemented.");
                 break;
         }
     }
@@ -191,8 +187,7 @@ public class LoanApplicationSummaryPresenter
         if (mView != null) {
             mView.showLoading(false);
         }
-        // TODO
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
-        //mView.displayErrorMessage(message);
+        mView.displayErrorMessage(message);
     }
 }
