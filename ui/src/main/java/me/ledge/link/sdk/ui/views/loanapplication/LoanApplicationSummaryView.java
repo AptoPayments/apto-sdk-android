@@ -25,6 +25,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
+import me.ledge.link.sdk.ui.utils.CreditScoreUtil;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -256,8 +257,8 @@ public class LoanApplicationSummaryView
                 addKeyValueTextView(inflater, "Monthly Net Income", String.valueOf(((DataPointVo.Income) dataPoint).monthlyNetIncome));
                 break;
             case CreditScore:
-                // TODO: store string value selected by user
-                addKeyValueTextView(inflater, "Credit Score", String.valueOf(((DataPointVo.CreditScore) dataPoint).creditScoreRange));
+                String creditScore = CreditScoreUtil.getCreditScoreDescription(getContext(), ((DataPointVo.CreditScore) dataPoint).creditScoreRange);
+                addKeyValueTextView(inflater, "Credit Score", creditScore);
                 break;
         }
     }
