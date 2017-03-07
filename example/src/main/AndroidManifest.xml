@@ -74,6 +74,10 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
+            android:name="me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
                 android:name="me.ledge.link.sdk.ui.activities.loanapplication.AddDocumentsListActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 

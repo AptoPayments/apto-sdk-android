@@ -22,6 +22,7 @@ public class LoanStorage {
     private LoanApplicationDetailsResponseVo mCurrentLoanApplication;
 
     private static LoanStorage mInstance;
+    private OfferVo mSelectedOffer;
 
     /**
      * Creates a new {@link LoanStorage} instance.
@@ -101,5 +102,13 @@ public class LoanStorage {
 
     public void clearOffers() {
         init();
+    }
+
+    public void setSelectedOffer(OfferVo offer) {
+        mSelectedOffer = offer;
+    }
+
+    public OfferVo getSelectedOffer() {
+        return mSelectedOffer;
     }
 }

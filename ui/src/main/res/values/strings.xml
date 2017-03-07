@@ -147,6 +147,12 @@
     <string name="loan_agreement_terms_dialog_title">Quisque auctor</string>
     <string name="loan_agreement_terms_dialog_message">Sed vitae felis eget lorem tempus fermentum. Praesent vel augue bibendum, gravida erat in, tincidunt nibh.</string>
 
+    <!-- Loan confirmation -->
+    <string name="loan_confirmation_label">Confirm Application</string>
+    <string name="loan_confirmation_application_info_header">APPLICATION INFO</string>
+    <string name="loan_confirmation_disclosures_header">DISCLOSURES</string>
+    <string name="loan_confirmation_button_agree">I Agree</string>
+
     <!-- Add documents -->
     <string name="add_documents_label">Add docs</string>
     <string name="add_documents_title_unchecked_photo_id">Add photo ID</string>

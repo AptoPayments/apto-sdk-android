@@ -142,6 +142,8 @@ public class AddressPresenter
         mModel.setCity(mView.getCity());
         mModel.setZip(mView.getZipCode());
         mModel.setHousingType(mView.getHousingType());
+        IdDescriptionPairDisplayVo housingType = mView.getHousingType();
+        housingType.getValue();
 
         UsaState state = mStates.getStateByName(mView.getState());
         if (state == null) {

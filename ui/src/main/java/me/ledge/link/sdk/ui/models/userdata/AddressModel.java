@@ -90,6 +90,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
         setCity(address.city);
         setState(address.stateCode);
         setZip(address.zip);
+        setCountry(address.country);
     }
 
     public String getStreetAddress() {
@@ -105,6 +106,18 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
             mAddress.address = null;
         } else {
             mAddress.address = address;
+        }
+    }
+
+    /**
+     * Stores a valid country.
+     * @param country The country.
+     */
+    public void setCountry(String country) {
+        if (TextUtils.isEmpty(country)) {
+            mAddress.country = null;
+        } else {
+            mAddress.country = country;
         }
     }
 

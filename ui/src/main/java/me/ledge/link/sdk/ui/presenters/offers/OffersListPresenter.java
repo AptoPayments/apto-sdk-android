@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.presenters.offers;
 
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -169,7 +170,11 @@ public class OffersListPresenter
                 mDialog.setMessage(
                         mActivity.getString(R.string.offers_list_dialog_redirect_message, offer.getLenderName()));
                 mDialog.show(mActivity.getFragmentManager(), DualOptionDialogFragment.DIALOG_TAG);
-            } else {
+            } else if(offer.requiresConfirmation()) {
+                Log.d("ADRIAN", "offer requires confirmation");
+                mDelegate.onConfirmationRequired(offer);
+            }
+            else {
                 if (mView != null) {
                     mView.showLoading(true);
                 }

@@ -8,11 +8,14 @@ import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsRes
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
+import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
+import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
+import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.presenters.offers.OffersListDelegate;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
 
@@ -22,7 +25,7 @@ import me.ledge.link.sdk.ui.storages.LoanStorage;
 
 public class LoanApplicationModule extends LedgeBaseModule
         implements IntermediateLoanApplicationDelegate, AddDocumentsListDelegate,
-        LoanAgreementDelegate, OffersListDelegate {
+        LoanAgreementDelegate, OffersListDelegate, LoanApplicationSummaryDelegate {
     private static LoanApplicationModule mInstance;
     public Command onUpdateUserProfile;
     public Command onBack;
@@ -97,11 +100,22 @@ public class LoanApplicationModule extends LedgeBaseModule
         startActivity(IntermediateLoanApplicationActivity.class);
     }
 
+    @Override
+    public void onConfirmationRequired(OfferSummaryModel offer) {
+        LoanStorage.getInstance().setSelectedOffer(offer.getOffer());
+        startActivity(LoanApplicationSummaryActivity.class);
+    }
+
     private void startNextActivity(ActivityModel model) {
         startActivity(model.getNextActivity(this.getActivity()));
     }
 
     private void startPreviousActivity(ActivityModel model) {
         startActivity(model.getPreviousActivity(this.getActivity()));
+    }
+
+    @Override
+    public void showPrevious(LoanApplicationSummaryModel model) {
+        startPreviousActivity(model);
     }
 }
