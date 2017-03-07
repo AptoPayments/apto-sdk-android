@@ -104,7 +104,7 @@ public class LoanApplicationSummaryPresenter
 
     @Override
     public void onBack() {
-        mDelegate.showPrevious(mModel);
+        mDelegate.loanApplicationSummaryShowPrevious(mModel);
     }
 
     /** {@inheritDoc} */

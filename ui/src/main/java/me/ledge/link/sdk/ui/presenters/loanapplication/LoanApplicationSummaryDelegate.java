@@ -9,6 +9,6 @@ import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
  */
 public interface LoanApplicationSummaryDelegate {
 
-    void showPrevious(LoanApplicationSummaryModel model);
+    void loanApplicationSummaryShowPrevious(LoanApplicationSummaryModel model);
     void onApplicationReceived();
 }

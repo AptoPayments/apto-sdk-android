@@ -48,32 +48,32 @@ public class LoanApplicationModule extends LedgeBaseModule
     }
 
     @Override
-    public void showNext(IntermediateLoanApplicationModel model) {
+    public void intermediateLoanApplicationShowNext(IntermediateLoanApplicationModel model) {
         startNextActivity(model);
     }
 
     @Override
-    public void showPrevious(IntermediateLoanApplicationModel model) {
+    public void intermediateLoanApplicationShowPrevious(IntermediateLoanApplicationModel model) {
         startPreviousActivity(model);
     }
 
     @Override
-    public void showNext(AddDocumentsListModel model) {
+    public void addDocumentsListShowNext(AddDocumentsListModel model) {
         startNextActivity(model);
     }
 
     @Override
-    public void showPrevious(AddDocumentsListModel model) {
+    public void addDocumentsListShowPrevious(AddDocumentsListModel model) {
         startPreviousActivity(model);
     }
 
     @Override
-    public void showNext(LoanAgreementModel model) {
+    public void loanAgreementShowNext(LoanAgreementModel model) {
         startNextActivity(model);
     }
 
     @Override
-    public void showPrevious(LoanAgreementModel model) {
+    public void loanAgreementShowPrevious(LoanAgreementModel model) {
         startPreviousActivity(model);
     }
 
@@ -115,7 +115,7 @@ public class LoanApplicationModule extends LedgeBaseModule
     }
 
     @Override
-    public void showPrevious(LoanApplicationSummaryModel model) {
+    public void loanApplicationSummaryShowPrevious(LoanApplicationSummaryModel model) {
         startPreviousActivity(model);
     }
 }

@@ -166,7 +166,7 @@ public class AddDocumentsListPresenter
 
     @Override
     public void onBack() {
-        mDelegate.showPrevious(mModel);
+        mDelegate.addDocumentsListShowPrevious(mModel);
     }
 
     /** {@inheritDoc} */
@@ -234,6 +234,6 @@ public class AddDocumentsListPresenter
     /** {@inheritDoc} */
     @Override
     public void doneClickHandler() {
-        mDelegate.showNext(mModel);
+        mDelegate.addDocumentsListShowNext(mModel);
     }
 }

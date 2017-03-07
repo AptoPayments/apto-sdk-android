@@ -46,9 +46,6 @@ public abstract class ActivityPresenter<M extends ActivityModel, V extends View 
      */
     protected void showToolbarUpArrow() {
         if (mActionBar != null) {
-/*            final Drawable upArrow = mActivity.getResources().getDrawable(R.drawable.ic_action_previous_item);
-            upArrow.setColorFilter(mActivity.getResources().getColor(R.color.llsdk_blue_primary), PorterDuff.Mode.SRC_ATOP);
-            mActionBar.setHomeAsUpIndicator(upArrow);*/
             mActionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
