@@ -244,13 +244,11 @@ public class LoanApplicationSummaryView
                 addKeyValueTextView(inflater, "State", ((DataPointVo.Address) dataPoint).stateCode);
                 break;
             case Housing:
-                // TODO: store string value selected by user
-                addKeyValueTextView(inflater, "Housing Status", String.valueOf(((DataPointVo.Housing) dataPoint).housingType));
+                addKeyValueTextView(inflater, "Housing Status", ((DataPointVo.Housing) dataPoint).housingType.toString());
                 break;
             case Employment:
-                // TODO: store string value selected by user
-                addKeyValueTextView(inflater, "Employment Status", String.valueOf(((DataPointVo.Employment) dataPoint).employmentStatus));
-                addKeyValueTextView(inflater, "Salary Frequency", String.valueOf(((DataPointVo.Employment) dataPoint).salaryFrequency));
+                addKeyValueTextView(inflater, "Employment Status", ((DataPointVo.Employment) dataPoint).employmentStatus.toString());
+                addKeyValueTextView(inflater, "Salary Frequency", ((DataPointVo.Employment) dataPoint).salaryFrequency.toString());
                 break;
             case Income:
                 addKeyValueTextView(inflater, "Annual Pretax Income", String.valueOf(((DataPointVo.Income) dataPoint).annualGrossIncome));
