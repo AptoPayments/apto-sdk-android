@@ -39,7 +39,7 @@ install:
   - cd ~/build/itabulous/ledgelinksdk_android
   - chmod +x gradlew
   - ./gradlew --configure-on-demand -p api install
-  - ./gradlew -p wrappers/wrapper-retrofit2 install
+  - ./gradlew --configure-on-demand -p wrappers/wrapper-retrofit2 install
   - ./gradlew --configure-on-demand -p sdk install
 
 # Running tests.
