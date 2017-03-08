@@ -33,9 +33,12 @@ subprojects {
         maven {
             url "${HOME}/.m2/repository/"
         }
+        jcenter()
     }
 
     dependencies {
         compile 'me.ledge.link.sdk:api:+'
+        compile 'com.squareup.retrofit2:retrofit:+'
+        compile 'com.squareup.retrofit2:converter-gson:+'
     }
 }
