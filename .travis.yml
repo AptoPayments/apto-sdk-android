@@ -39,7 +39,7 @@ install:
   - cd ~/build/itabulous/ledgelinksdk_android
   - chmod +x gradlew
   - ./gradlew --configure-on-demand -p api install
-  - ./gradlew -PexcludeExample=true -p wrappers install
+  - ./gradlew --configure-on-demand -PexcludeExample=true -p wrappers install
   - ./gradlew --configure-on-demand -p sdk install
 
 # Running tests.
