@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        // Android Gradle plugin.
+        classpath 'com.android.tools.build:gradle:1.3.1'
+        // Android Maven plugin.
+        classpath 'com.github.dcendents:android-maven-plugin:+'
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+android {
+    compileSdkVersion androidCompileSdkVersion.toInteger()
+    buildToolsVersion androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion androidMinSdkVersion.toInteger()
+        targetSdkVersion androidTargetSdkVersion.toInteger()
+
+        versionCode = androidVersionCode
+        versionName = androidVersionName
+    }
+}
+
+repositories {
+    jcenter()
+
+    // Temporary solution until libs are published.
+    maven {
+        url "${HOME}/.m2/repository/"
+    }
+}
+
+dependencies {
+    compile 'ru.lanwen.verbalregex:java-verbal-expressions:+'
+    compile 'com.googlecode.libphonenumber:libphonenumber:8.3.1'
+    compile 'com.google.code.gson:gson:2.3.1'
+}

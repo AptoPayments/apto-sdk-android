@@ -27,10 +27,8 @@ notifications:
 before_install:
   # Dependencies
   - git clone git@github.com:itabulous/ledgecommon_android.git ~/build/itabulous/ledgecommon_android/
-  - git clone git@github.com:itabulous/ledgelinkapi_android.git ~/build/itabulous/ledgelinkapi_android/
   # Create gradle.properties files.
   - echo "HOME=$HOME" > ~/build/itabulous/ledgecommon_android/gradle.properties
-  - echo "HOME=$HOME" > ~/build/itabulous/ledgelinkapi_android/gradle.properties
   - echo "HOME=$HOME" > ~/build/itabulous/ledgelinksdk_android/gradle.properties
 
 install:
@@ -38,12 +36,10 @@ install:
   - cd ~/build/itabulous/ledgecommon_android
   - chmod +x gradlew
   - ./gradlew install
-  - cd ~/build/itabulous/ledgelinkapi_android
-  - chmod +x gradlew
-  - ./gradlew --configure-on-demand -p api install
-  - ./gradlew -p wrappers/wrapper-retrofit2 install
   - cd ~/build/itabulous/ledgelinksdk_android
   - chmod +x gradlew
+  - ./gradlew --configure-on-demand -p api install
+  - ./gradlew --configure-on-demand -PexcludeExample=true -p wrappers install
   - ./gradlew --configure-on-demand -p sdk install
 
 # Running tests.

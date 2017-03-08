@@ -35,6 +35,6 @@ dependencies {
     compile 'me.ledge.link.sdk:ui:+'
     compile 'me.ledge.link.sdk:handler-eventbus:+'
     compile 'me.ledge.link.sdk:imageloader-volley:+'
-    compile 'me.ledge.link.api:wrapper-retrofit2:+'
+    compile 'me.ledge.link.sdk:wrapper-retrofit2:+'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
 }
