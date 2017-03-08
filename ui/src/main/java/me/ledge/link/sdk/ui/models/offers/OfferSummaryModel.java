@@ -196,4 +196,12 @@ public class OfferSummaryModel implements Model {
 
         return disclaimer;
     }
+
+    public boolean requiresConfirmation() {
+        return mRawOffer.showApplicationSummary;
+    }
+
+    public OfferVo getOffer() {
+        return mRawOffer;
+    }
 }

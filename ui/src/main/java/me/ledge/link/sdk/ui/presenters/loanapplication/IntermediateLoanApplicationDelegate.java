@@ -9,7 +9,6 @@ import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationMo
  */
 public interface IntermediateLoanApplicationDelegate {
 
-    void showNext(IntermediateLoanApplicationModel model);
-    void showPrevious(IntermediateLoanApplicationModel model);
-    void onInfoPressed();
+    void intermediateLoanApplicationShowNext(IntermediateLoanApplicationModel model);
+    void intermediateLoanApplicationShowPrevious(IntermediateLoanApplicationModel model);
 }

@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.sdk.mocks.api.wrappers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.TermUnit;
@@ -20,7 +21,6 @@ import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusListResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
@@ -89,6 +89,11 @@ public class MockApiWrapper implements LinkApiWrapper {
         mBearerToken = token;
     }
 
+    @Override
+    public String getBearerToken() {
+        return mBearerToken;
+    }
+
     /** {@inheritDoc} */
     @Override
     public void setDeveloperKey(String developerKey) {
@@ -109,22 +114,20 @@ public class MockApiWrapper implements LinkApiWrapper {
         return mEndPoint;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setApiEndPoint(String endPoint, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         mEndPoint = endPoint;
     }
 
     /** {@inheritDoc} */
-    @Override
-    public DisclaimerResponseVo getDisclaimers(UnauthorizedRequestVo requestData) throws ApiException {
-        DisclaimerResponseVo response = new DisclaimerResponseVo();
+    public HashMap<String, String> getHTTPHeaders() {
+        HashMap<String, String> response = new HashMap<>();
         return response;
     }
 
     /** {@inheritDoc} */
     @Override
-    public LinkConfigResponseVo getLoanPurposesList(UnauthorizedRequestVo requestData) throws ApiException {
+    public LinkConfigResponseVo getLinkConfig(UnauthorizedRequestVo requestData) throws ApiException {
         LinkConfigResponseVo response = new LinkConfigResponseVo();
         response.loanPurposesList = new LoanPurposesResponseVo();
         response.loanPurposesList.data = new LoanPurposeVo[0];

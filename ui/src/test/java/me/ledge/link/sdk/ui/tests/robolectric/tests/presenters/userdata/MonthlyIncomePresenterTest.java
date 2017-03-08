@@ -13,9 +13,9 @@ import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockMonthlyIncomePresenter;
+import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModule;
 import me.ledge.link.sdk.ui.mocks.views.userdata.MockMonthlyIncomeView;
 import me.ledge.link.sdk.ui.presenters.userdata.MonthlyIncomePresenter;
-import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.userdata.MonthlyIncomeView;
 
@@ -35,7 +35,7 @@ public class MonthlyIncomePresenterTest {
     @Before
     public void setUp() {
         mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
-        mPresenter = new MockMonthlyIncomePresenter(mActivity, UserDataCollectorModule.getInstance(mActivity));
+        mPresenter = new MockMonthlyIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));
         mView = new MockMonthlyIncomeView(mActivity);
     }
 

@@ -9,10 +9,11 @@ import android.widget.TextView;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
@@ -76,6 +77,18 @@ public class AnnualIncomeView
     public void setListener(ViewListener listener) {
         super.setListener(listener);
         mIncomeSlider.setOnProgressChangeListener(listener);
+    }
+
+    @Override
+    public void setColors() {
+        super.setColors();
+
+        int color = UIStorage.getInstance().getPrimaryColor();
+        mIncomeText.setTextColor(color);
+        mIncomeSlider.setRippleColor(color);
+        mIncomeSlider.setScrubberColor(color);
+        mIncomeSlider.setTrackColor(color);
+        mIncomeSlider.setThumbColor(color, color);
     }
 
     /**

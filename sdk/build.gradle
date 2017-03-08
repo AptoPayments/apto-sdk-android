@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply from: '../jacoco.gradle'
 apply from: '../javadoc.gradle'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion androidCompileSdkVersion.toInteger()
@@ -27,6 +28,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         debug {
             testCoverageEnabled true
@@ -47,9 +53,11 @@ repositories {
 
 dependencies {
     // Ledge Libraries.
-    compile 'me.ledge.link.api:api:+'
+    compile 'me.ledge.link.sdk:api:+'
 
     // Tests
     testCompile 'junit:junit:4.+'
     testCompile 'org.robolectric:robolectric:+'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
 }

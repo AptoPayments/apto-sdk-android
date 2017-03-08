@@ -81,10 +81,10 @@
 
     <!-- Credit Score -->
     <string name="credit_score_label">What\'s your credit score?</string>
-    <string name="credit_score_excellent">Excellent\n760+</string>
-    <string name="credit_score_good">Good\n700&#8211;759</string>
-    <string name="credit_score_fair">Fair\n640&#8211;699</string>
-    <string name="credit_score_poor">Poor\nBelow 640</string>
+    <string name="credit_score_excellent">Excellent (760+)</string>
+    <string name="credit_score_good">Good (700&#8211;759)</string>
+    <string name="credit_score_fair">Fair (640&#8211;699)</string>
+    <string name="credit_score_poor">Poor (Below 640)</string>
     <string name="credit_score_error">Please select a credit score.</string>
 
     <!-- ID Verification -->
@@ -123,6 +123,26 @@
     <string name="loan_application_button_pre_approved_loan">CONFIRM LOAN</string>
     <string name="loan_application_button_finish_external">ADD INFO</string>
 
+    <!-- Loan application summary -->
+    <string name="loan_application_summary_loan_purpose">Loan Purpose</string>
+    <string name="loan_application_summary_first_name">First Name</string>
+    <string name="loan_application_summary_last_name">Last Name</string>
+    <string name="loan_application_summary_email">Email</string>
+    <string name="loan_application_summary_phone">Phone</string>
+    <string name="loan_application_summary_address">Address</string>
+    <string name="loan_application_summary_apt_unit">Apt/Unit</string>
+    <string name="loan_application_summary_city">City</string>
+    <string name="loan_application_summary_state">State</string>
+    <string name="loan_application_summary_zip_code">ZIP Code</string>
+    <string name="loan_application_summary_housing_status">Housing Status</string>
+    <string name="loan_application_summary_annual_pretax_income">Annual Pretax Income</string>
+    <string name="loan_application_summary_employment_status">Employment Status</string>
+    <string name="loan_application_summary_salary_frequency">Salary Frequency</string>
+    <string name="loan_application_summary_monthly_net_income">Monthly Net Income</string>
+    <string name="loan_application_summary_credit_score">Credit Score</string>
+    <string name="loan_application_summary_birthday">Birthday</string>
+    <string name="loan_application_summary_ssn">SSN</string>
+
     <!-- Loan agreement -->
     <string name="loan_agreement_label">Confirm loan</string>
     <string name="loan_agreement_terms_header">LOAN TERMS</string>
@@ -146,6 +166,12 @@
     <string name="loan_agreement_button_agree">AGREE AND FUND LOAN</string>
     <string name="loan_agreement_terms_dialog_title">Quisque auctor</string>
     <string name="loan_agreement_terms_dialog_message">Sed vitae felis eget lorem tempus fermentum. Praesent vel augue bibendum, gravida erat in, tincidunt nibh.</string>
+
+    <!-- Loan confirmation -->
+    <string name="loan_confirmation_label">Confirm Application</string>
+    <string name="loan_confirmation_application_info_header">APPLICATION INFO</string>
+    <string name="loan_confirmation_disclosures_header">DISCLOSURES</string>
+    <string name="loan_confirmation_button_agree">I Agree</string>
 
     <!-- Add documents -->
     <string name="add_documents_label">Add docs</string>

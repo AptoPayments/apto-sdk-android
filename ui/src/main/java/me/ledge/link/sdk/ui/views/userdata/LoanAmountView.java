@@ -5,9 +5,11 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
@@ -64,8 +66,17 @@ public class LoanAmountView
         mPurposeSpinner = (Spinner) findViewById(R.id.sp_loan_purpose);
         mPurposeErrorField = (TextView) findViewById(R.id.tv_loan_purpose_error);
 
+        setColors(UIStorage.getInstance().getPrimaryColor());
         showLoading(false);
         updatePurposeError(false);
+    }
+
+    private void setColors(int color) {
+        mAmountText.setTextColor(color);
+        mAmountSlider.setRippleColor(color);
+        mAmountSlider.setScrubberColor(color);
+        mAmountSlider.setTrackColor(color);
+        mAmountSlider.setThumbColor(color, color);
     }
 
     /** {@inheritDoc} */

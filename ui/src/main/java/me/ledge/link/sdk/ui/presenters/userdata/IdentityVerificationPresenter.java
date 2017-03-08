@@ -8,16 +8,20 @@ import android.widget.DatePicker;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.ApiErrorVo;
-import me.ledge.link.api.vos.responses.config.DisclaimerResponseVo;
-import me.ledge.link.api.vos.responses.config.ProductDisclaimerVo;
+import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.responses.config.LoanProductListVo;
+import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
+import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
@@ -92,7 +96,13 @@ public class IdentityVerificationPresenter
 
         if (mDisclaimersText == null) {
             mView.showLoading(true);
-            LedgeLinkUi.getPartnerDisclaimersList();
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::partnerDisclaimersListRetrieved);
         } else {
             setDisclaimers(mDisclaimersText);
         }
@@ -135,7 +145,15 @@ public class IdentityVerificationPresenter
             if (TextUtils.isEmpty(UserStorage.getInstance().getBearerToken())) {
                 LedgeLinkUi.createUser(mModel.getUserData());
             } else {
-                LedgeLinkUi.updateUser(mModel.getUserData());
+                DataPointVo phone = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
+                DataPointVo email = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.Email, new DataPointVo.Email());
+
+                if(phone.hasVerification() && email.hasVerification()) {
+                    mDelegate.identityVerificationSucceeded();
+                }
+                else {
+                    LedgeLinkUi.updateUser(mModel.getUserData());
+                }
             }
 
             // Show loading.
@@ -150,8 +168,8 @@ public class IdentityVerificationPresenter
         mView.setBirthday(String.format("%02d/%02d/%02d", monthOfYear + 1, dayOfMonth, year));
     }
 
-    public String parseDisclaimersResponse(DisclaimerResponseVo response) {
-        if (response.productDisclaimerList == null) {
+    private String parseDisclaimersResponse(LoanProductListVo productDisclaimerList) {
+        if (productDisclaimerList == null) {
             return "";
         }
 
@@ -159,9 +177,9 @@ public class IdentityVerificationPresenter
         String partnerDivider = "<br /><br />";
         StringBuilder result = new StringBuilder();
 
-        for(ProductDisclaimerVo disclaimer : response.productDisclaimerList.data) {
-            if (!TextUtils.isEmpty(disclaimer.text)) {
-                result.append(disclaimer.text.replaceAll("\\r?\\n", lineBreak));
+        for(LoanProductVo loanProduct : productDisclaimerList.data) {
+            if (!TextUtils.isEmpty(loanProduct.preQualificationDisclaimer)) {
+                result.append(loanProduct.preQualificationDisclaimer.replaceAll("\\r?\\n", lineBreak));
             }
             result.append(partnerDivider);
         }
@@ -169,15 +187,12 @@ public class IdentityVerificationPresenter
         return result.substring(0, result.length() - partnerDivider.length());
     }
 
-    @Subscribe
-    public void handleDisclaimersResponse(DisclaimerResponseVo response) {
-        setDisclaimers(parseDisclaimersResponse(response));
-    }
-
-    public void setDisclaimers(String disclaimers) {
+    private void setDisclaimers(String disclaimers) {
         mDisclaimersText = disclaimers;
-        mView.setDisclaimers(disclaimers);
-        mView.showLoading(false);
+        mActivity.runOnUiThread(() -> {
+            mView.setDisclaimers(disclaimers);
+            mView.showLoading(false);
+        });
     }
 
     /**
@@ -190,6 +205,7 @@ public class IdentityVerificationPresenter
 
         if (response != null) {
             UserStorage.getInstance().setBearerToken(response.user_token);
+            SharedPreferencesStorage.storeUserToken(mActivity, response.user_token);
         }
 
         if (mModel.hasAllData()) {
@@ -224,4 +240,15 @@ public class IdentityVerificationPresenter
         mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error.toString()));
     }
 
+    private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
+        setDisclaimers(parseDisclaimersResponse(response));
+    }
+
+    private void errorReceived(String error) {
+        if (mView != null) {
+            mView.showLoading(false);
+        }
+
+        mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error));
+    }
 }

@@ -2,7 +2,7 @@ package me.ledge.link.sdk.ui.models.link;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
 /**

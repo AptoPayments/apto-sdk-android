@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.views.loanapplication;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.NestedScrollView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentModel;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -131,6 +133,12 @@ public class AddDocumentsListView extends CoordinatorLayout implements DisplayEr
         findAllViews();
         updateBottomSheet();
         setUpListeners();
+        setToolbarColor();
+    }
+
+    private void setToolbarColor() {
+        mToolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getPrimaryColor()));
+        mToolbar.setTitleTextColor(UIStorage.getInstance().getPrimaryContrastColor());
     }
 
     /** {@inheritDoc} */

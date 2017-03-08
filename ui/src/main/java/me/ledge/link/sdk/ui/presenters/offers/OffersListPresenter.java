@@ -169,7 +169,10 @@ public class OffersListPresenter
                 mDialog.setMessage(
                         mActivity.getString(R.string.offers_list_dialog_redirect_message, offer.getLenderName()));
                 mDialog.show(mActivity.getFragmentManager(), DualOptionDialogFragment.DIALOG_TAG);
-            } else {
+            } else if(offer.requiresConfirmation()) {
+                mDelegate.onConfirmationRequired(offer);
+            }
+            else {
                 if (mView != null) {
                     mView.showLoading(true);
                 }
@@ -191,10 +194,6 @@ public class OffersListPresenter
     /** {@inheritDoc} */
     @Override
     public void offersClickHandler() { /* Do nothing. */ }
-
-    /** {@inheritDoc} */
-    @Override
-    public void infoClickHandler() { /* Do nothing. */ }
 
     /** {@inheritDoc} */
     @Override

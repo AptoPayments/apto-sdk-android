@@ -11,5 +11,4 @@ public interface PhoneVerificationDelegate {
 
     void phoneVerificationSucceeded(DataPointVo phone);
     void phoneVerificationOnBackPressed();
-    void noAlternateCredentials();
 }

@@ -2,17 +2,10 @@ buildscript {
     repositories {
         jcenter()
     }
-
-    dependencies {
-        // Coveralls
-        // Using fixed version, see https://github.com/kt3k/coveralls-gradle-plugin/issues/47
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.5.0-x'
-    }
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.github.kt3k.coveralls'
 apply from: '../javadoc.gradle'
 apply from: '../jacoco.gradle'
 apply plugin: 'me.tatarka.retrolambda'
@@ -95,7 +88,7 @@ dependencies {
         exclude module: 'support-v4'
     }
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:+'
-    compile 'com.googlecode.libphonenumber:libphonenumber:+'
+    compile 'com.googlecode.libphonenumber:libphonenumber:8.3.1'
     compile 'com.github.ksoichiro:android-observablescrollview:+'
     compile ('com.github.davidpizarro:pinview:1.0.0') {
         exclude module: 'appcompat-v7'
@@ -105,14 +98,15 @@ dependencies {
     compile 'com.github.vinaygaba:creditcardview:v1.0.3'
     compile 'io.card:android-sdk:5.4.1'
     compile 'com.github.verygoodsecurity:vgs-android-sdk:e6372c5002'
+    compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
 
     // Tests
     testCompile 'junit:junit:4.+'
     testCompile 'org.robolectric:robolectric:3.1'
-    testCompile 'org.powermock:powermock-api-mockito:+'
-    testCompile 'org.powermock:powermock-module-junit4-rule-agent:+'
-    testCompile 'org.powermock:powermock-module-junit4-rule:+'
-    testCompile 'org.powermock:powermock-module-junit4:+'
+    testCompile 'org.powermock:powermock-api-mockito:1.6.6'
+    testCompile 'org.powermock:powermock-module-junit4-rule-agent:1.6.6'
+    testCompile 'org.powermock:powermock-module-junit4-rule:1.6.6'
+    testCompile 'org.powermock:powermock-module-junit4:1.6.6'
 }
 
 // Lame Robolectric testing hacks...

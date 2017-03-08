@@ -118,13 +118,10 @@ public class PhoneVerificationPresenter
                 displayWrongCodeMessage();
             }
             else {
-                if(response.alternate_credentials == null) {
-                    mDelegate.noAlternateCredentials();
-                }
-                else {
+                if(response.alternate_credentials != null) {
                     phone.getVerification().setAlternateCredentials(response.alternate_credentials.data);
-                    mDelegate.phoneVerificationSucceeded(phone);
                 }
+                mDelegate.phoneVerificationSucceeded(phone);
             }
         }
     }

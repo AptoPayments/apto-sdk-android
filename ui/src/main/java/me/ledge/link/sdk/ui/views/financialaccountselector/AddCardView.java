@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.views.financialaccountselector;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -15,6 +16,7 @@ import com.devmarvel.creditcardentry.library.CreditCardForm;
 import com.vinaygaba.creditcardview.CreditCardView;
 
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.utils.KeyboardUtil;
 import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -79,6 +81,17 @@ public class AddCardView
         super.onFinishInflate();
         findAllViews();
         setupListeners();
+        setColors();
+    }
+
+    private void setColors() {
+        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
+        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
+        mToolbar.setTitleTextColor(contrastColor);
+        mAddCardButton.setBackgroundColor(primaryColor);
+        mAddCardButton.setTextColor(contrastColor);
+        mScanCardButton.setTextColor(primaryColor);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.storages;
 
 import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 
 /**
  * Stores user related data.
@@ -10,6 +11,7 @@ public class UserStorage {
 
     private DataPointList mUserDataPoints;
     private String mBearerToken;
+    private RequiredDataPointsListResponseVo mRequiredData;
 
     private static UserStorage mInstance;
 
@@ -57,5 +59,13 @@ public class UserStorage {
      */
     public void setBearerToken(String bearerToken) {
         mBearerToken = bearerToken;
+    }
+
+    public RequiredDataPointsListResponseVo getRequiredData() {
+        return mRequiredData;
+    }
+
+    public void setRequiredData(RequiredDataPointsListResponseVo requiredData) {
+        mRequiredData = requiredData;
     }
 }

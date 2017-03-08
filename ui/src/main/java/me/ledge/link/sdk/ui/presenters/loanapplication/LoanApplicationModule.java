@@ -3,16 +3,19 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 import android.app.Activity;
 
 import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
+import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
+import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
+import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
+import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.presenters.offers.OffersListDelegate;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
 
@@ -22,7 +25,7 @@ import me.ledge.link.sdk.ui.storages.LoanStorage;
 
 public class LoanApplicationModule extends LedgeBaseModule
         implements IntermediateLoanApplicationDelegate, AddDocumentsListDelegate,
-        LoanAgreementDelegate, OffersListDelegate {
+        LoanAgreementDelegate, OffersListDelegate, LoanApplicationSummaryDelegate {
     private static LoanApplicationModule mInstance;
     public Command onUpdateUserProfile;
     public Command onBack;
@@ -45,37 +48,32 @@ public class LoanApplicationModule extends LedgeBaseModule
     }
 
     @Override
-    public void showNext(IntermediateLoanApplicationModel model) {
+    public void intermediateLoanApplicationShowNext(IntermediateLoanApplicationModel model) {
         startNextActivity(model);
     }
 
     @Override
-    public void showPrevious(IntermediateLoanApplicationModel model) {
+    public void intermediateLoanApplicationShowPrevious(IntermediateLoanApplicationModel model) {
         startPreviousActivity(model);
     }
 
     @Override
-    public void onInfoPressed() {
-        startActivity(LedgeLinkUi.getHandlerConfiguration().getApplicationsListActivity());
-    }
-
-    @Override
-    public void showNext(AddDocumentsListModel model) {
+    public void addDocumentsListShowNext(AddDocumentsListModel model) {
         startNextActivity(model);
     }
 
     @Override
-    public void showPrevious(AddDocumentsListModel model) {
+    public void addDocumentsListShowPrevious(AddDocumentsListModel model) {
         startPreviousActivity(model);
     }
 
     @Override
-    public void showNext(LoanAgreementModel model) {
+    public void loanAgreementShowNext(LoanAgreementModel model) {
         startNextActivity(model);
     }
 
     @Override
-    public void showPrevious(LoanAgreementModel model) {
+    public void loanAgreementShowPrevious(LoanAgreementModel model) {
         startPreviousActivity(model);
     }
 
@@ -91,12 +89,21 @@ public class LoanApplicationModule extends LedgeBaseModule
     @Override
     public void onApplicationReceived() {
         LoanApplicationDetailsResponseVo loanApplication = LoanStorage.getInstance().getCurrentLoanApplication();
-        if(loanApplication.required_actions.data[0].action.equals(LoanApplicationActionId.SELECT_FUNDING_ACCOUNT)) {
-            onSelectFundingAccount.execute();
+        if (loanApplication != null) {
+            if (loanApplication.status.equals(LoanApplicationStatus.PENDING_BORROWER_ACTION)) {
+                if (loanApplication.required_actions.total_count > 0 && loanApplication.required_actions.data[0].action.equals(LoanApplicationActionId.SELECT_FUNDING_ACCOUNT)) {
+                    onSelectFundingAccount.execute();
+                    return;
+                }
+            }
         }
-        else {
-            startActivity(IntermediateLoanApplicationActivity.class);
-        }
+        startActivity(IntermediateLoanApplicationActivity.class);
+    }
+
+    @Override
+    public void onConfirmationRequired(OfferSummaryModel offer) {
+        LoanStorage.getInstance().setSelectedOffer(offer.getOffer());
+        startActivity(LoanApplicationSummaryActivity.class);
     }
 
     private void startNextActivity(ActivityModel model) {
@@ -105,5 +112,10 @@ public class LoanApplicationModule extends LedgeBaseModule
 
     private void startPreviousActivity(ActivityModel model) {
         startActivity(model.getPreviousActivity(this.getActivity()));
+    }
+
+    @Override
+    public void loanApplicationSummaryShowPrevious(LoanApplicationSummaryModel model) {
+        startPreviousActivity(model);
     }
 }

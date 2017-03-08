@@ -10,16 +10,14 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import java.util.HashMap;
-
 import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
 import me.ledge.link.sdk.ui.presenters.financialaccountselector.AddBankAccountDelegate;
 import me.ledge.link.sdk.ui.presenters.financialaccountselector.AddBankAccountPresenter;
 import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
-import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.financialaccountselector.AddBankAccountView;
 
 import static me.ledge.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
@@ -54,7 +52,7 @@ public class AddBankAccountActivity
         super.onCreate(savedInstanceState);
         final WebView plaidLinkWebview = (WebView) findViewById(R.id.webview);
         configureWebView(plaidLinkWebview);
-        plaidLinkWebview.loadUrl(getPlaidURL(), getHTTPHeader());
+        plaidLinkWebview.loadUrl(getPlaidURL(), getApiWrapper().getHTTPHeaders());
 
         plaidLinkWebview.setWebViewClient(new WebViewClient() {
             @Override
@@ -83,7 +81,12 @@ public class AddBankAccountActivity
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                handler.proceed();
+                if(LedgeLinkUi.trustSelfSigned && error.getPrimaryError() == SslError.SSL_UNTRUSTED) {
+                    handler.proceed();
+                }
+                else {
+                    super.onReceivedSslError(view, handler, error);
+                }
             }
         });
     }
@@ -101,14 +104,5 @@ public class AddBankAccountActivity
 
     private String getPlaidURL() {
         return getApiWrapper().getApiEndPoint() + "/" + LinkApiWrapper.ADD_BANK_ACCOUNTS_PATH;
-    }
-
-    private HashMap<String, String> getHTTPHeader() {
-        HashMap<String, String> additionalHttpHeaders = new HashMap<>();
-        additionalHttpHeaders.put("Developer-Authorization", "Bearer=" + getApiWrapper().getDeveloperKey());
-        additionalHttpHeaders.put("Project", "Bearer=" + getApiWrapper().getProjectToken());
-        additionalHttpHeaders.put("Authorization", "Bearer=" + UserStorage.getInstance().getBearerToken());
-
-        return additionalHttpHeaders;
     }
 }

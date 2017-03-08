@@ -6,25 +6,24 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import org.greenrobot.eventbus.Subscribe;
-
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.common.utils.android.AndroidUtils;
-import me.ledge.link.api.vos.ApiErrorVo;
 import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
-import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
-import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
+import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 
@@ -143,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         LedgeLinkUi.setApiWrapper(apiWrapper);
         LedgeLinkUi.setImageLoader(new VolleyImageLoader(this));
         LedgeLinkUi.setHandlerConfiguration(configurator);
+        LedgeLinkUi.trustSelfSigned = getTrustSelfSignedCertificates();
     }
 
     /**
@@ -191,17 +191,22 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         mView.setViewListener(this);
 
         setContentView(mView);
-
         // Load the loan purpose list so we can create a drop-down.
-        LedgeLinkUi.getHandlerConfiguration().getResponseHandler().subscribe(this);
-        LedgeLinkUi.getLoanPurposesList();
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getLoanPurposes())
+                .exceptionally(ex -> {
+                    errorReceived(ex.getMessage());
+                    return null;
+                })
+                .thenAccept(this::loanPurposesListRetrieved);
+
+        UIStorage.getInstance().init();
     }
 
     /** {@inheritDoc} */
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LedgeLinkUi.getHandlerConfiguration().getResponseHandler().unsubscribe(this);
     }
 
     /** {@inheritDoc} */
@@ -243,37 +248,29 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         mView.setIncome("");
     }
 
-    /**
-     * Called when the loan purpose list has been received from the API.
-     * @param linkConfigResponse API response.
-     */
-    @Subscribe
-    public void purposeListLoadedHandler(LinkConfigResponseVo linkConfigResponse) {
-        LoanPurposesResponseVo response = linkConfigResponse.loanPurposesList;
+    public void loanPurposesListRetrieved(LoanPurposesResponseVo loanPurposesList) {
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
 
-        IdDescriptionPairDisplayVo hint =
-                new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
-        adapter.add(hint);
+        runOnUiThread(() -> {
+            IdDescriptionPairDisplayVo hint =
+                    new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
+            adapter.add(hint);
 
-        if (response.data != null) {
-            for (LoanPurposeVo purpose : response.data) {
-                adapter.add(new IdDescriptionPairDisplayVo(purpose.loan_purpose_id, purpose.description));
+            if (loanPurposesList != null && loanPurposesList.data != null) {
+                for (LoanPurposeVo purpose : loanPurposesList.data) {
+                    adapter.add(new IdDescriptionPairDisplayVo(purpose.loan_purpose_id, purpose.description));
+                }
             }
-        }
-
-        mView.setPurposeAdapter(adapter);
-        mView.showLoading(false);
+            mView.setPurposeAdapter(adapter);
+            mView.showLoading(false);
+        });
     }
 
-    /**
-     * Called when an API error occurred.
-     * @param response The error.
-     */
-    @Subscribe
-    public void apiErrorHandler(ApiErrorVo response) {
-        Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
-        mView.showLoading(false);
+    public void errorReceived(String error) {
+        runOnUiThread(() -> {
+            mView.showLoading(false);
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        });
     }
 }

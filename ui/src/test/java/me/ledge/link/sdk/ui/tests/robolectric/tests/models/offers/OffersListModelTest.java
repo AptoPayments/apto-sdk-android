@@ -9,7 +9,7 @@ import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
 import me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata.LoanAmountModelTest;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
 import static org.hamcrest.CoreMatchers.equalTo;

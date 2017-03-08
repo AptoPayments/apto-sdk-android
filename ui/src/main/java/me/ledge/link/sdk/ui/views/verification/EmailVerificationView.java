@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
@@ -66,6 +67,16 @@ public class EmailVerificationView
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        setColors();
+    }
+
+    @Override
+    public void setColors() {
+        super.setColors();
+
+        int color = UIStorage.getInstance().getPrimaryColor();
+        mSubmitButton.setBackgroundColor(color);
+        mResendButton.setTextColor(color);
     }
 
     /** {@inheritDoc} */

@@ -14,7 +14,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AddressModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.views.userdata.AddressView;
-import me.ledge.link.sdk.ui.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 

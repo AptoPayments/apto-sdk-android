@@ -4,8 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/abl_toolbar_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="?attr/llsdk_toolbarTheme">
+        android:layout_height="wrap_content">
 
     <android.support.v7.widget.Toolbar
             android:id="@+id/tb_llsdk_toolbar"

@@ -90,17 +90,4 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
 
         return request;
     }
-
-    public DataPointList getLoginData() {
-        DataPointList base = super.getBaseData();
-        DataPointVo.Email emailAddress = (DataPointVo.Email) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Email, new DataPointVo.Email());
-        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
-
-        DataPointList data = new DataPointList();
-        data.add(emailAddress);
-        data.add(phoneNumber);
-        return data;
-    }
 }

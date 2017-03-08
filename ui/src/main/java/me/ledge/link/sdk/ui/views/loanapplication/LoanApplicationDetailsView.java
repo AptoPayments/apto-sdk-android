@@ -8,6 +8,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.details.LoanApplicationDetailsModel;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 
 /**
  * Displays loan application details.
@@ -104,6 +105,8 @@ public class LoanApplicationDetailsView extends ScrollView implements View.OnCli
         if (data.getBigButtonModel().isVisible()) {
             mActionButton.setVisibility(VISIBLE);
             mActionButton.setText(data.getBigButtonModel().getLabelResource());
+            mActionButton.setTextColor(UIStorage.getInstance().getPrimaryContrastColor());
+            mActionButton.setBackgroundColor(UIStorage.getInstance().getPrimaryColor());
         }
     }
 
