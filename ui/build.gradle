@@ -2,17 +2,10 @@ buildscript {
     repositories {
         jcenter()
     }
-
-    dependencies {
-        // Coveralls
-        // Using fixed version, see https://github.com/kt3k/coveralls-gradle-plugin/issues/47
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.5.0-x'
-    }
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.github.kt3k.coveralls'
 apply from: '../javadoc.gradle'
 apply from: '../jacoco.gradle'
 apply plugin: 'me.tatarka.retrolambda'
