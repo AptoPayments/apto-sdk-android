@@ -82,8 +82,9 @@ public class AddCardPresenter
             ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA},
                     REQUEST_CAMERA_PERMISSION_INTENT_CODE);
         }
-
-        startScanCardActivity();
+        else {
+            startScanCardActivity();
+        }
     }
 
     private void startScanCardActivity() {
