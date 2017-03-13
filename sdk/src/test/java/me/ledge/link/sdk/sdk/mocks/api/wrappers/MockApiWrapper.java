@@ -115,15 +115,14 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public HashMap<String, String> getHTTPHeaders() {
-        HashMap<String, String> response = new HashMap<>();
-        return response;
+    public void setApiEndPoint(String endPoint, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
+        mEndPoint = endPoint;
     }
 
     /** {@inheritDoc} */
-    @Override
-    public void setApiEndPoint(String endPoint, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
-        mEndPoint = endPoint;
+    public HashMap<String, String> getHTTPHeaders() {
+        HashMap<String, String> response = new HashMap<>();
+        return response;
     }
 
     /** {@inheritDoc} */

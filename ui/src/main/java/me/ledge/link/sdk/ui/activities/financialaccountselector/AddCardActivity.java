@@ -42,4 +42,12 @@ public class AddCardActivity
         super.onActivityResult(requestCode, resultCode, data);
         mPresenter.handleActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        mPresenter.handleRequestPermissionsResult(requestCode, grantResults);
+
+    }
 }
