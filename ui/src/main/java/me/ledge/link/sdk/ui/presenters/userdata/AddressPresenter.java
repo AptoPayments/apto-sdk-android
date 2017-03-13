@@ -3,19 +3,21 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 
-import org.greenrobot.eventbus.Subscribe;
+import com.smartystreets.api.ClientBuilder;
+import com.smartystreets.api.exceptions.SmartyException;
+import com.smartystreets.api.us_street.Client;
+import com.smartystreets.api.us_street.Lookup;
 
+import java.io.IOException;
+
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.common.models.countries.Usa;
 import me.ledge.common.models.countries.UsaState;
-import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.HousingTypeVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AddressModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.views.userdata.AddressView;
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
-import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
@@ -27,8 +29,8 @@ public class AddressPresenter
         implements AddressView.ViewListener {
 
     private Usa mStates;
-    private HintArrayAdapter<IdDescriptionPairDisplayVo> mHousingTypeAdapter;
     private AddressDelegate mDelegate;
+    private boolean mIsStrictAddressValidationEnabled;
 
     /**
      * Creates a new {@link AddressPresenter} instance.
@@ -49,28 +51,6 @@ public class AddressPresenter
         mStates = new Usa(codes, names);
     }
 
-    /**
-     * @param typesList List of housing types.
-     * @return Adapter used to display the list of housing types.
-     */
-    private HintArrayAdapter<IdDescriptionPairDisplayVo> generateHousingTypeAdapter(HousingTypeVo[] typesList) {
-        HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
-                = new HintArrayAdapter<>(mActivity, android.R.layout.simple_spinner_dropdown_item);
-
-        IdDescriptionPairDisplayVo hint
-                = new IdDescriptionPairDisplayVo(-1, mActivity.getString(R.string.address_housing_type_hint));
-
-        adapter.add(hint);
-
-        if (typesList != null) {
-            for (HousingTypeVo type : typesList) {
-                adapter.add(new IdDescriptionPairDisplayVo(type.housing_type_id, type.description));
-            }
-        }
-
-        return adapter;
-    }
-
     /** {@inheritDoc} */
     @Override
     protected StepperConfiguration getStepperConfig() {
@@ -81,7 +61,9 @@ public class AddressPresenter
     @Override
     public void attachView(AddressView view) {
         super.attachView(view);
-        mResponseHandler.subscribe(this);
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().isStrictAddressValidationEnabled())
+                .thenAccept(this::setIsAddressValidationEnabled);
 
         // Create adapter.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -96,28 +78,18 @@ public class AddressPresenter
 
         mView.updateStateError(false, 0);
         mView.updateZipError(false, 0);
-        mView.updateHousingTypeError(false);
-        mView.showLoading(true);
 
         UsaState state = mStates.getStateByCode(mModel.getState());
         if (state != null) {
             mView.setState(state.getName());
         }
 
-        if (mHousingTypeAdapter == null) {
-            mView.setHousingTypeAdapter(generateHousingTypeAdapter(null));
-
-            // Load housing types list.
-            LedgeLinkUi.getHousingTypeList();
-        } else {
-            mView.setHousingTypeAdapter(mHousingTypeAdapter);
-
-            if (mModel.hasValidHousingType()) {
-                mView.setHousingType(mHousingTypeAdapter.getPosition(mModel.getHousingType()));
-            }
-        }
-
         mView.setListener(this);
+        mView.showLoading(false);
+    }
+
+    private void setIsAddressValidationEnabled(boolean isAddressValidationEnabled) {
+        mIsStrictAddressValidationEnabled = isAddressValidationEnabled;
     }
 
     @Override
@@ -129,19 +101,20 @@ public class AddressPresenter
     @Override
     public void detachView() {
         mView.setListener(null);
-        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
+        onAddressLostFocus();
+        mView.showLoading(true);
+
         // Store data.
         mModel.setStreetAddress(mView.getAddress());
         mModel.setApartmentNumber(mView.getApartment());
         mModel.setCity(mView.getCity());
         mModel.setZip(mView.getZipCode());
-        mModel.setHousingType(mView.getHousingType());
 
         UsaState state = mStates.getStateByName(mView.getState());
         if (state == null) {
@@ -149,15 +122,15 @@ public class AddressPresenter
         } else {
             mModel.setState(state.getCode());
         }
+    }
 
-        // Validate data.
-        mView.updateAddressError(!mModel.hasValidAddress(), R.string.address_address_error);
+    private void validateData() {
+        mView.updateAddressError(!mModel.hasValidAddress(mIsStrictAddressValidationEnabled), R.string.address_address_error);
         mView.updateCityError(!mModel.hasValidCity(), R.string.address_city_error);
         mView.updateStateError(!mModel.hasValidState(), R.string.address_state_error);
         mView.updateZipError(!mModel.hasValidZip(), R.string.address_zip_code_error);
-        mView.updateHousingTypeError(!mModel.hasValidHousingType());
 
-        if (mModel.hasAllData()) {
+        if (mModel.hasAllData() && mModel.hasValidAddress(mIsStrictAddressValidationEnabled)) {
             saveData();
             mDelegate.addressStored();
         }
@@ -169,35 +142,32 @@ public class AddressPresenter
         return new AddressModel();
     }
 
-    /**
-     * Called when the housing types list API response has been received.
-     * @param response API response.
-     */
-    @Subscribe
-    public void handleToken(ConfigResponseVo response) {
-        if (isHousingTypesPresent(response)) {
-            setHousingTypesList(response.housingTypeOpts.data);
-        }
-    }
+    private void validateAddress(String streetAddress) throws SmartyException, IOException {
+        Client client = new ClientBuilder(mActivity.getString(R.string.smarty_streets_auth_id), mActivity.getString(R.string.smarty_streets_auth_token))
+                .buildUsStreetApiClient();
 
-    private boolean isHousingTypesPresent(ConfigResponseVo response) {
-        return response!=null && response.housingTypeOpts!=null;
-    }
+        Lookup lookup = new Lookup();
+        lookup.setStreet(streetAddress);
+        lookup.setCity(mModel.getCity());
+        lookup.setState(mModel.getState());
+        client.send(lookup);
 
-    /**
-     * Stores a new list of housing types and updates the View.
-     * @param typesList New list.
-     */
-    public void setHousingTypesList(HousingTypeVo[] typesList) {
-        mHousingTypeAdapter = generateHousingTypeAdapter(typesList);
-
-        if (mView != null) {
+        mModel.setIsAddressValid(!lookup.getResult().isEmpty());
+        mActivity.runOnUiThread(()-> {
             mView.showLoading(false);
-            mView.setHousingTypeAdapter(mHousingTypeAdapter);
+            validateData();
+        });
+    }
 
-            if (mModel.hasValidHousingType()) {
-                mView.setHousingType(mHousingTypeAdapter.getPosition(mModel.getHousingType()));
+    @Override
+    public void onAddressLostFocus() {
+        Thread thread = new Thread(() -> {
+            try  {
+                validateAddress(mView.getAddress());
+            } catch (Exception e) {
+                mActivity.runOnUiThread(()-> mView.displayErrorMessage(e.getMessage()));
             }
-        }
+        });
+        thread.start();
     }
 }

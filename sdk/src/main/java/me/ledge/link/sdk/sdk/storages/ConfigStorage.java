@@ -182,6 +182,24 @@ public class ConfigStorage {
         return (boolean) getResultFromFuture(f);
     }
 
+    public synchronized boolean isStrictAddressValidationEnabled() {
+        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
+            if(isConfigCached()) {
+                return mLinkConfig.isStrictAddressValidationEnabled;
+            }
+            else {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.isStrictAddressValidationEnabled;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        return (boolean) getResultFromFuture(f);
+    }
+
     private Object getResultFromFuture(CompletableFuture future) {
         try {
             return future.get();

@@ -14,7 +14,6 @@ import me.ledge.link.api.vos.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
 import me.ledge.link.sdk.ui.models.userdata.AddressModel;
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.mockito.Matchers.any;
@@ -35,7 +34,6 @@ public class AddressModelTest {
     private static final String EXPECTED_STATE = "CA";
     private static final String EXPECTED_ZIP = "92679";
     private static final String EXPECTED_COUNTRY = "US";
-    private static final IdDescriptionPairDisplayVo EXPECTED_HOUSING_TYPE = new IdDescriptionPairDisplayVo(777, "Baller");
     private static final int EXPECTED_HOUSING_TYPE_ID = 777;
 
     private AddressModel mModel;
@@ -83,8 +81,6 @@ public class AddressModelTest {
         Assert.assertThat("Incorrect apartment number.", mModel.getApartmentNumber(), equalTo(baseAddress.apUnit));
         Assert.assertThat("Incorrect city.", mModel.getCity(), equalTo(baseAddress.city));
         Assert.assertThat("Incorrect state.", mModel.getState(), equalTo(baseAddress.stateCode));
-        Assert.assertThat("Incorrect zip code.", mModel.getZip(), equalTo(baseAddress.zip));
-        Assert.assertThat("Incorrect housing type.", mModel.getHousingType().getKey(), equalTo(baseHousing.housingType.getKey()));
         Assert.assertTrue("All data should be set.", mModel.hasAllData());
     }
 
@@ -101,21 +97,15 @@ public class AddressModelTest {
         mModel.setApartmentNumber(EXPECTED_APARTMENT_NUMBER);
         mModel.setCity(EXPECTED_CITY);
         mModel.setState(EXPECTED_STATE);
-        mModel.setZip(EXPECTED_ZIP);
-        mModel.setHousingType(EXPECTED_HOUSING_TYPE);
 
         DataPointList base = mModel.getBaseData();
         DataPointVo.Address baseAddress = (DataPointVo.Address) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Address, new DataPointVo.Address());
-        DataPointVo.Housing baseHousing = (DataPointVo.Housing) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Housing, new DataPointVo.Housing());
 
         Assert.assertThat("Incorrect address.", baseAddress.address, equalTo(mModel.getStreetAddress()));
         Assert.assertThat("Incorrect apartment number.", baseAddress.apUnit, equalTo(mModel.getApartmentNumber()));
         Assert.assertThat("Incorrect city.", baseAddress.city, equalTo(mModel.getCity()));
         Assert.assertThat("Incorrect state.", baseAddress.stateCode, equalTo(mModel.getState()));
-        Assert.assertThat("Incorrect zip code.", baseAddress.zip, equalTo(mModel.getZip()));
-        Assert.assertThat("Incorrect housing type.", baseHousing.housingType.getKey(), equalTo(mModel.getHousingType().getKey()));
     }
 
     /**
@@ -126,7 +116,7 @@ public class AddressModelTest {
     @Test
     public void validAddressIsStored() {
         mModel.setStreetAddress(EXPECTED_ADDRESS);
-        Assert.assertTrue("Address should be stored.", mModel.hasValidAddress());
+        Assert.assertTrue("Address should be stored.", mModel.hasValidAddress(false));
         Assert.assertThat("Incorrect address.", mModel.getStreetAddress(), equalTo(EXPECTED_ADDRESS));
     }
 
@@ -138,7 +128,18 @@ public class AddressModelTest {
     @Test
     public void invalidAddressIsNotStored() {
         mModel.setStreetAddress("");
-        Assert.assertFalse("Address should NOT be stored.", mModel.hasValidAddress());
+        Assert.assertFalse("Address should NOT be stored.", mModel.hasValidAddress(false));
+    }
+
+    /**
+     * Given an empty Model.<br />
+     * When trying to store an invalid address and strict validation is enabled.<br />
+     * Then the address should not be valid.
+     */
+    @Test
+    public void invalidAddressWithStrictValidationIsNotStored() {
+        mModel.setStreetAddress("");
+        Assert.assertFalse("Address should NOT be stored.", mModel.hasValidAddress(true));
     }
 
     /**
@@ -197,39 +198,5 @@ public class AddressModelTest {
     public void invalidStateIsNotStored() {
         mModel.setState("1234");
         Assert.assertFalse("State should NOT be stored.", mModel.hasValidState());
-    }
-
-    /**
-     * Given an empty Model.<br />
-     * When trying to store a valid ZIP code.<br />
-     * Then the ZIP code should be stored.
-     */
-    @Test
-    public void validZipIsStored() {
-        mModel.setZip(EXPECTED_ZIP);
-        Assert.assertTrue("ZIP code should be stored.", mModel.hasValidZip());
-        Assert.assertThat("Incorrect ZIP code.", mModel.getZip(), equalTo(EXPECTED_ZIP));
-    }
-
-    /**
-     * Given an empty Model.<br />
-     * When trying to store an invalid ZIP code.<br />
-     * Then the ZIP code should not be stored.
-     */
-    @Test
-    public void invalidZipIsNotStored() {
-        mModel.setZip("abc");
-        Assert.assertFalse("ZIP code should NOT be stored.", mModel.hasValidZip());
-    }
-
-    /**
-     * Given an empty Model.<br />
-     * When trying to store an invalid housing type.<br />
-     * Then the housing type should be flagged as such.
-     */
-    @Test
-    public void invalidHousingType() {
-        mModel.setHousingType(new IdDescriptionPairDisplayVo(-1, null));
-        Assert.assertFalse("Housing type should not be valid.", mModel.hasValidHousingType());
     }
 }
