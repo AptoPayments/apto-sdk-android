@@ -56,8 +56,8 @@ dependencies {
     compile 'me.ledge.link.sdk:api:+'
 
     // Tests
-    testCompile 'junit:junit:4.+'
-    testCompile 'org.robolectric:robolectric:+'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.robolectric:robolectric:3.3.1'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
 }
