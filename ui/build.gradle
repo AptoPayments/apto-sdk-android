@@ -87,13 +87,13 @@ dependencies {
     compile ('org.adw.library:discrete-seekbar:+') {
         exclude module: 'support-v4'
     }
-    compile 'ru.lanwen.verbalregex:java-verbal-expressions:+'
+    compile 'ru.lanwen.verbalregex:java-verbal-expressions:1.4'
     compile 'com.googlecode.libphonenumber:libphonenumber:8.3.1'
-    compile 'com.github.ksoichiro:android-observablescrollview:+'
+    compile 'com.github.ksoichiro:android-observablescrollview:1.6.0'
     compile ('com.github.davidpizarro:pinview:1.0.0') {
         exclude module: 'appcompat-v7'
     }
-    compile 'org.greenrobot:eventbus:+'
+    compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.github.dbachelder:CreditCardEntry:1.4.7'
     compile 'com.github.vinaygaba:creditcardview:v1.0.3'
     compile 'io.card:android-sdk:5.4.1'
@@ -101,7 +101,7 @@ dependencies {
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
 
     // Tests
-    testCompile 'junit:junit:4.+'
+    testCompile 'junit:junit:4.12'
     testCompile 'org.robolectric:robolectric:3.1'
     testCompile 'org.powermock:powermock-api-mockito:1.6.6'
     testCompile 'org.powermock:powermock-module-junit4-rule-agent:1.6.6'
