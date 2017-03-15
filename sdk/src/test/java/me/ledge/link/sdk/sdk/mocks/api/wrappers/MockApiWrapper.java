@@ -28,6 +28,8 @@ import me.ledge.link.api.vos.responses.config.HousingTypeVo;
 import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
@@ -127,10 +129,13 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public LinkConfigResponseVo getLinkConfig(UnauthorizedRequestVo requestData) throws ApiException {
+    public LinkConfigResponseVo getLinkConfig(UnauthorizedRequestVo requestData) {
         LinkConfigResponseVo response = new LinkConfigResponseVo();
         response.loanPurposesList = new LoanPurposesResponseVo();
         response.loanPurposesList.data = new LoanPurposeVo[0];
+
+        response.userRequiredData = new RequiredDataPointsListResponseVo();
+        response.userRequiredData.data = new RequiredDataPointVo[0];
 
         return response;
     }
