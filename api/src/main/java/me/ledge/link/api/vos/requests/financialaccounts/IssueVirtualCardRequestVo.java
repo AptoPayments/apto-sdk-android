@@ -10,6 +10,8 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
  */
 public class IssueVirtualCardRequestVo extends UnauthorizedRequestVo {
 
+    public String type = "virtual_card";
+
     /**
      * Phone number.
      */

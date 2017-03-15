@@ -10,6 +10,8 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
  */
 public class AddBankAccountRequestVo extends UnauthorizedRequestVo {
 
+    public String type = "bank_account";
+
     /**
      * Token received from Plaid.
      */

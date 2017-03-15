@@ -31,7 +31,7 @@ public class IntermediateFinancialAccountListPresenter
     public IntermediateFinancialAccountListPresenter(AppCompatActivity activity, IntermediateFinancialAccountListDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-        LedgeLinkUi.getCurrentUser();
+        LedgeLinkUi.getFinancialAccounts();
     }
 
     @Override

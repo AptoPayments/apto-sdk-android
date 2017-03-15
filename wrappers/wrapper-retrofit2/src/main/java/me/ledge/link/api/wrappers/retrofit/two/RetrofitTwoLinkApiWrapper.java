@@ -43,6 +43,7 @@ import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
+import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
@@ -555,10 +556,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             Response<VerificationStatusResponseVo> response
                     = mFinancialAccountService.addBankAccount(addBankAccountRequestVo).execute();
-            result = handleResponse(response, LinkApiWrapper.ADD_BANK_ACCOUNTS_PATH);
+            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.ADD_BANK_ACCOUNTS_PATH, ioe);
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
         }
 
         return result;
@@ -571,10 +572,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
             JsonObject aRequest = card.toJSON();
             Response<Card> response
                     = mFinancialAccountService.addCard(aRequest).execute();
-            result = handleResponse(response, LinkApiWrapper.ADD_CARD_PATH);
+            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.ADD_CARD_PATH, ioe);
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
         }
 
         return result;
@@ -586,10 +587,25 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             Response<Card> response
                     = mFinancialAccountService.issueVirtualCard(issueVirtualCardRequestVo).execute();
-            result = handleResponse(response, LinkApiWrapper.ISSUE_VIRTUAL_CARD_PATH);
+            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.ISSUE_VIRTUAL_CARD_PATH, ioe);
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
+        }
+
+        return result;
+    }
+
+    @Override
+    public UserDataListResponseVo getFinancialAccounts(UnauthorizedRequestVo requestData) throws ApiException {
+        UserDataListResponseVo result;
+
+        try {
+            Response<UserDataListResponseVo> response = mFinancialAccountService.getFinancialAccounts().execute();
+            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
         }
 
         return result;

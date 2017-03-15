@@ -128,8 +128,8 @@ public class ConfigStorage {
         return (boolean) getResultFromFuture(f);
     }
 
-    public synchronized int getMaxLoanAmount() {
-        CompletableFuture<Integer> f = CompletableFuture.supplyAsync(() -> {
+    public synchronized double getMaxLoanAmount() {
+        CompletableFuture<Double> f = CompletableFuture.supplyAsync(() -> {
             if(isConfigCached()) {
                 return mLinkConfig.loanAmountMax;
             }
@@ -143,11 +143,11 @@ public class ConfigStorage {
             }
         });
 
-        return (int) getResultFromFuture(f);
+        return (double) getResultFromFuture(f);
     }
 
-    public synchronized int getLoanAmountIncrements() {
-        CompletableFuture<Integer> f = CompletableFuture.supplyAsync(() -> {
+    public synchronized double getLoanAmountIncrements() {
+        CompletableFuture<Double> f = CompletableFuture.supplyAsync(() -> {
             if(isConfigCached()) {
                 return mLinkConfig.loanAmountIncrements;
             }
@@ -161,7 +161,7 @@ public class ConfigStorage {
             }
         });
 
-        return (int) getResultFromFuture(f);
+        return (double) getResultFromFuture(f);
     }
 
     public synchronized boolean getSkipLinkDisclaimer() {
