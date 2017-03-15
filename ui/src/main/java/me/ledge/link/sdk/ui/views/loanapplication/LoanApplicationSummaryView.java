@@ -257,15 +257,17 @@ public class LoanApplicationSummaryView
     }
 
     private void addKeyValueTextView(String key, String value) {
-        if(!key.isEmpty() && !value.isEmpty()) {
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            View view = inflater.inflate(R.layout.lv_datapoint, mApplicationInfoLinearLayout, false);
-            TextView dataPointKeyField = (TextView) view.findViewById(R.id.tv_datapoint_key);
-            TextView dataPointValueField = (TextView) view.findViewById(R.id.tv_datapoint_value);
-            dataPointKeyField.setText(key);
-            dataPointValueField.setText(value);
-            mApplicationInfoLinearLayout.addView(view);
+        if(key==null || value==null || key.isEmpty() || value.isEmpty()) {
+            return;
         }
+
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view = inflater.inflate(R.layout.lv_datapoint, mApplicationInfoLinearLayout, false);
+        TextView dataPointKeyField = (TextView) view.findViewById(R.id.tv_datapoint_key);
+        TextView dataPointValueField = (TextView) view.findViewById(R.id.tv_datapoint_value);
+        dataPointKeyField.setText(key);
+        dataPointValueField.setText(value);
+        mApplicationInfoLinearLayout.addView(view);
     }
 
     /** {@inheritDoc} */
