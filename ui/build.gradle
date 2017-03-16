@@ -60,7 +60,10 @@ repositories {
     maven {
         url "${HOME}/.m2/repository/"
     }
-    maven { url 'https://jitpack.io' }
+    maven {
+        url 'https://jitpack.io'
+    }
+    mavenCentral()
 }
 
 dependencies {
@@ -99,6 +102,9 @@ dependencies {
     compile 'io.card:android-sdk:5.4.1'
     compile 'com.github.verygoodsecurity:vgs-android-sdk:e6372c5002'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
+    compile (group: 'com.smartystreets.api', name: 'smartystreets-java-sdk', version: '2.1.1') {
+        exclude group: "org.apache.httpcomponents", module: "httpclient"
+    }
 
     // Tests
     testCompile 'junit:junit:4.12'

@@ -4,23 +4,24 @@ import android.text.TextUtils;
 
 import me.ledge.link.api.vos.DataPointList;
 import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import ru.lanwen.verbalregex.VerbalExpression;
 
 /**
- * Concrete {@link Model} for the address screen.
- * @author Wijnand
+ * Concrete {@link Model} for the address validation screen.
+ * @author Adrian
  */
-public class AddressModel extends AbstractUserDataModel implements UserDataModel {
+public class HomeModel extends AbstractUserDataModel implements UserDataModel {
 
     private DataPointVo.Address mAddress;
-    private boolean mIsAddressValid;
+    private IdDescriptionPairDisplayVo mHousingType;
 
     /**
-     * Creates a new {@link AddressModel} instance.
+     * Creates a new {@link HomeModel} instance.
      */
-    public AddressModel() {
+    public HomeModel() {
         init();
     }
 
@@ -29,7 +30,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      */
     private void init() {
         mAddress = new DataPointVo.Address();
-        mIsAddressValid = false;
+        mHousingType = null;
     }
 
     /** {@inheritDoc} */
@@ -41,7 +42,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return hasValidAddress() && hasValidCity() && hasValidState() && hasValidZip();
+        return hasValidZip() && hasValidHousingType();
     }
 
     /** {@inheritDoc} */
@@ -52,6 +53,10 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
         DataPointVo.Address baseAddress = (DataPointVo.Address) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Address, new DataPointVo.Address());
         baseAddress.update(getAddress());
+
+        DataPointVo.Housing baseHousing = (DataPointVo.Housing) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Housing, new DataPointVo.Housing());
+        baseHousing.housingType = getHousingType();
 
         return base;
     }
@@ -64,7 +69,12 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
         DataPointVo.Address address = (DataPointVo.Address) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Address,
                 new DataPointVo.Address());
-        setAddress(address);
+        mAddress=address;
+
+        DataPointVo.Housing housing = (DataPointVo.Housing) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Housing,
+                new DataPointVo.Housing());
+        setHousingType(housing.housingType);
     }
 
     /**
@@ -72,65 +82,6 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      */
     public DataPointVo.Address getAddress() {
         return mAddress;
-    }
-
-    public void setAddress(DataPointVo.Address address) {
-        setStreetAddress(address.address);
-        setApartmentNumber(address.apUnit);
-        setCity(address.city);
-        setState(address.stateCode);
-        setZip(address.zip);
-        setCountry(address.country);
-    }
-
-    public String getStreetAddress() {
-        return mAddress.address;
-    }
-
-    /**
-     * Stores a valid address.
-     * @param address The address.
-     */
-    public void setStreetAddress(String address) {
-        if (TextUtils.isEmpty(address)) {
-            mAddress.address = null;
-        } else {
-            mAddress.address = address;
-        }
-    }
-
-    /**
-     * Stores a valid country.
-     * @param country The country.
-     */
-    public void setCountry(String country) {
-        if (TextUtils.isEmpty(country)) {
-            mAddress.country = null;
-        } else {
-            mAddress.country = country;
-        }
-    }
-
-    /**
-     * @return Apartment number.
-     */
-    public String getApartmentNumber() {
-        return mAddress.apUnit;
-    }
-
-    /**
-     * Stores a valid apartment or unit number.
-     * @param apartmentNumber Apartment number.
-     */
-    public void setApartmentNumber(String apartmentNumber) {
-        mAddress.apUnit = apartmentNumber;
-    }
-
-    /**
-     * @return City.
-     */
-    public String getCity() {
-        return mAddress.city;
     }
 
     /**
@@ -143,13 +94,6 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
         } else {
             mAddress.city = city;
         }
-    }
-
-    /**
-     * @return State abbreviation.
-     */
-    public String getState() {
-        return mAddress.stateCode;
     }
 
     /**
@@ -200,33 +144,6 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
         }
     }
 
-    /**
-     * @return Whether an address has been set.
-     */
-    public boolean hasValidAddress() {
-        return mAddress.address != null;
-    }
-
-    /**
-     * @return Whether the address has been verified and is valid.
-     */
-    public boolean hasVerifiedAddress() {
-        return mIsAddressValid;
-    }
-
-    /**
-     * @return Whether a valid city has been set.
-     */
-    public boolean hasValidCity() {
-        return mAddress.city != null;
-    }
-
-    /**
-     * @return Whether a valid state has been set.
-     */
-    public boolean hasValidState() {
-        return mAddress.stateCode != null;
-    }
 
     /**
      * @return Whether a valid ZIP code has been set.
@@ -235,7 +152,25 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
         return mAddress.zip != null;
     }
 
-    public void setIsAddressValid(boolean isAddressValid) {
-        mIsAddressValid = isAddressValid;
+    /**
+     * @return The selected housing type.
+     */
+    public IdDescriptionPairDisplayVo getHousingType() {
+        return mHousingType;
+    }
+
+    /**
+     * Stores a new housing type.
+     * @param type New housing type.
+     */
+    public void setHousingType(IdDescriptionPairDisplayVo type) {
+        mHousingType = type;
+    }
+
+    /**
+     * @return Whether a valid housing type has been selected.
+     */
+    public boolean hasValidHousingType() {
+        return getHousingType() != null && getHousingType().getKey() >= 0;
     }
 }

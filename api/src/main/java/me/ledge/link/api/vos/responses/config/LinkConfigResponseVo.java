@@ -35,4 +35,7 @@ public class LinkConfigResponseVo {
 
     @SerializedName("loan_products")
     public LoanProductListVo loanProductList;
+
+    @SerializedName("strict_address_validation")
+    public boolean isStrictAddressValidationEnabled;
 }

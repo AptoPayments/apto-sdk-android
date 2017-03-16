@@ -27,6 +27,7 @@ import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
+import me.ledge.link.sdk.ui.activities.userdata.HomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
@@ -43,7 +44,8 @@ import me.ledge.link.sdk.ui.storages.UserStorage;
 
 public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVerificationDelegate,
         EmailVerificationDelegate, IdentityVerificationDelegate, AddressDelegate,
-        AnnualIncomeDelegate, MonthlyIncomeDelegate, CreditScoreDelegate, PersonalInformationDelegate {
+        AnnualIncomeDelegate, MonthlyIncomeDelegate, CreditScoreDelegate,
+        PersonalInformationDelegate, HomeDelegate {
 
     private static UserDataCollectorModule instance;
     public Command onFinish;
@@ -167,7 +169,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void addressOnBackPressed() {
-        startActivity(mRequiredActivities.get(0));
+        startActivity(getActivityAtPosition(AddressActivity.class, -1));
     }
 
     @Override
@@ -206,7 +208,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             startActivity(PhoneVerificationActivity.class);
         }
         else {
-            startActivity(AddressActivity.class);
+            startActivity(HomeActivity.class);
         }
     }
 
@@ -291,6 +293,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                     }
                 }
                 if(requiredDataPointVo.type == 6 || requiredDataPointVo.type == 7) {
+                    addRequiredActivity(HomeActivity.class);
                     addRequiredActivity(AddressActivity.class);
                 }
                 if(requiredDataPointVo.type == 8) {
@@ -354,5 +357,15 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         data.add(emailAddress);
         data.add(phoneNumber);
         return data;
+    }
+
+    @Override
+    public void zipCodeAndHousingTypeStored() {
+        startActivity(AddressActivity.class);
+    }
+
+    @Override
+    public void homeOnBackPressed() {
+        startActivity(getActivityAtPosition(HomeActivity.class, -1));
     }
 }
