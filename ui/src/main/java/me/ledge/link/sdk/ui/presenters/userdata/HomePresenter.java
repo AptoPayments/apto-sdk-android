@@ -179,6 +179,10 @@ public class HomePresenter
         Thread thread = new Thread(() -> {
             try  {
                 lookUpZipCode(mView.getZipCode());
+                mActivity.runOnUiThread(()-> {
+                    mView.showLoading(false);
+                    validateData();
+                });
             } catch (Exception e) {
                 mActivity.runOnUiThread(()-> mView.displayErrorMessage(e.getMessage()));
             }
@@ -198,9 +202,5 @@ public class HomePresenter
             mModel.setState(results.getZipCode(0).getStateAbbreviation());
             mModel.setCity(results.getCity(0).getCity());
         }
-        mActivity.runOnUiThread(()-> {
-            mView.showLoading(false);
-            validateData();
-        });
     }
 }

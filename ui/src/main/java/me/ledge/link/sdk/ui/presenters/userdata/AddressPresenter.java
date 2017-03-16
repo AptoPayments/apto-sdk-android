@@ -3,13 +3,6 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 
-import com.smartystreets.api.ClientBuilder;
-import com.smartystreets.api.exceptions.SmartyException;
-import com.smartystreets.api.us_street.Client;
-import com.smartystreets.api.us_street.Lookup;
-
-import java.io.IOException;
-
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.common.models.countries.Usa;
 import me.ledge.common.models.countries.UsaState;
@@ -17,6 +10,7 @@ import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AddressModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.tasks.AddressVerificationTask;
 import me.ledge.link.sdk.ui.views.userdata.AddressView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
@@ -31,6 +25,7 @@ public class AddressPresenter
     private Usa mStates;
     private AddressDelegate mDelegate;
     private boolean mIsStrictAddressValidationEnabled;
+    private AddressVerificationTask mAddressVerificationTask;
 
     /**
      * Creates a new {@link AddressPresenter} instance.
@@ -94,6 +89,9 @@ public class AddressPresenter
 
     @Override
     public void onBack() {
+        if(mAddressVerificationTask != null) {
+            mAddressVerificationTask.cancel(true);
+        }
         mDelegate.addressOnBackPressed();
     }
 
@@ -107,9 +105,6 @@ public class AddressPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        onAddressLostFocus();
-        mView.showLoading(true);
-
         // Store data.
         mModel.setStreetAddress(mView.getAddress());
         mModel.setApartmentNumber(mView.getApartment());
@@ -122,18 +117,45 @@ public class AddressPresenter
         } else {
             mModel.setState(state.getCode());
         }
+
+        if(!mIsStrictAddressValidationEnabled || mModel.hasVerifiedAddress()) {
+            validateData();
+        }
+        else {
+            mView.showLoading(true);
+            startAddressVerification(e -> {
+                mActivity.runOnUiThread(() -> {
+                    mView.showLoading(false);
+                    if (e == null) {
+                        if(mModel.hasVerifiedAddress()) {
+                            validateData();
+                        }
+                        else {
+                            mView.updateAddressError(true, R.string.address_address_error);
+                        }
+                    } else {
+                        mView.displayErrorMessage(e.getMessage());
+                    }
+                });
+            });
+        }
     }
 
     private void validateData() {
-        mView.updateAddressError(!mModel.hasValidAddress(mIsStrictAddressValidationEnabled), R.string.address_address_error);
-        mView.updateCityError(!mModel.hasValidCity(), R.string.address_city_error);
-        mView.updateStateError(!mModel.hasValidState(), R.string.address_state_error);
-        mView.updateZipError(!mModel.hasValidZip(), R.string.address_zip_code_error);
-
-        if (mModel.hasAllData() && mModel.hasValidAddress(mIsStrictAddressValidationEnabled)) {
+        if (mModel.hasAllData()) {
             saveData();
             mDelegate.addressStored();
         }
+        else {
+            updateErrorLabels();
+        }
+    }
+
+    private void updateErrorLabels() {
+        mView.updateAddressError(!mModel.hasValidAddress(), R.string.address_address_error);
+        mView.updateCityError(!mModel.hasValidCity(), R.string.address_city_error);
+        mView.updateStateError(!mModel.hasValidState(), R.string.address_state_error);
+        mView.updateZipError(!mModel.hasValidZip(), R.string.address_zip_code_error);
     }
 
     /** {@inheritDoc} */
@@ -142,32 +164,13 @@ public class AddressPresenter
         return new AddressModel();
     }
 
-    private void validateAddress(String streetAddress) throws SmartyException, IOException {
-        Client client = new ClientBuilder(mActivity.getString(R.string.smarty_streets_auth_id), mActivity.getString(R.string.smarty_streets_auth_token))
-                .buildUsStreetApiClient();
-
-        Lookup lookup = new Lookup();
-        lookup.setStreet(streetAddress);
-        lookup.setCity(mModel.getCity());
-        lookup.setState(mModel.getState());
-        client.send(lookup);
-
-        mModel.setIsAddressValid(!lookup.getResult().isEmpty());
-        mActivity.runOnUiThread(()-> {
-            mView.showLoading(false);
-            validateData();
-        });
+    private void startAddressVerification(VerifyAddressCallback callback) {
+        mAddressVerificationTask = new AddressVerificationTask(mActivity, mModel, callback);
+        mAddressVerificationTask.execute(mView.getAddress());
     }
 
     @Override
     public void onAddressLostFocus() {
-        Thread thread = new Thread(() -> {
-            try  {
-                validateAddress(mView.getAddress());
-            } catch (Exception e) {
-                mActivity.runOnUiThread(()-> mView.displayErrorMessage(e.getMessage()));
-            }
-        });
-        thread.start();
+        startAddressVerification(e -> {});
     }
 }

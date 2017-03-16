@@ -29,6 +29,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      */
     private void init() {
         mAddress = new DataPointVo.Address();
+        mIsAddressValid = false;
     }
 
     /** {@inheritDoc} */
@@ -40,7 +41,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return hasValidAddress(false) && hasValidCity() && hasValidState() && hasValidZip();
+        return hasValidAddress() && hasValidCity() && hasValidState() && hasValidZip();
     }
 
     /** {@inheritDoc} */
@@ -200,15 +201,17 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
     }
 
     /**
-     * @return Whether a valid address has been set.
+     * @return Whether an address has been set.
      */
-    public boolean hasValidAddress(boolean isStrictValidationEnabled) {
-        if(isStrictValidationEnabled) {
-            return mIsAddressValid;
-        }
-        else {
-            return mAddress.address != null;
-        }
+    public boolean hasValidAddress() {
+        return mAddress.address != null;
+    }
+
+    /**
+     * @return Whether the address has been verified and is valid.
+     */
+    public boolean hasVerifiedAddress() {
+        return mIsAddressValid;
     }
 
     /**

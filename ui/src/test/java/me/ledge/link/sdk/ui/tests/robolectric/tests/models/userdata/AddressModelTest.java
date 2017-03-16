@@ -116,7 +116,7 @@ public class AddressModelTest {
     @Test
     public void validAddressIsStored() {
         mModel.setStreetAddress(EXPECTED_ADDRESS);
-        Assert.assertTrue("Address should be stored.", mModel.hasValidAddress(false));
+        Assert.assertTrue("Address should be stored.", mModel.hasValidAddress());
         Assert.assertThat("Incorrect address.", mModel.getStreetAddress(), equalTo(EXPECTED_ADDRESS));
     }
 
@@ -128,7 +128,7 @@ public class AddressModelTest {
     @Test
     public void invalidAddressIsNotStored() {
         mModel.setStreetAddress("");
-        Assert.assertFalse("Address should NOT be stored.", mModel.hasValidAddress(false));
+        Assert.assertFalse("Address should NOT be stored.", mModel.hasValidAddress());
     }
 
     /**
@@ -139,7 +139,7 @@ public class AddressModelTest {
     @Test
     public void invalidAddressWithStrictValidationIsNotStored() {
         mModel.setStreetAddress("");
-        Assert.assertFalse("Address should NOT be stored.", mModel.hasValidAddress(true));
+        Assert.assertFalse("Address should NOT be stored.", mModel.hasVerifiedAddress());
     }
 
     /**
