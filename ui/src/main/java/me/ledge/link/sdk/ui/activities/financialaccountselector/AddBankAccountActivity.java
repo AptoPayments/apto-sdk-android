@@ -103,6 +103,6 @@ public class AddBankAccountActivity
     }
 
     private String getPlaidURL() {
-        return getApiWrapper().getApiEndPoint() + "/" + LinkApiWrapper.ADD_BANK_ACCOUNTS_PATH;
+        return getApiWrapper().getApiEndPoint() + "/" + LinkApiWrapper.PLAID_WEB_URL;
     }
 }

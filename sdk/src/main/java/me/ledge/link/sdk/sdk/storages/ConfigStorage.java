@@ -132,8 +132,8 @@ public class ConfigStorage {
         return (boolean) getResultFromFuture(f);
     }
 
-    public synchronized int getMaxLoanAmount() {
-        CompletableFuture<Integer> f = CompletableFuture.supplyAsync(() -> {
+    public synchronized double getMaxLoanAmount() {
+        CompletableFuture<Double> f = CompletableFuture.supplyAsync(() -> {
             if(isConfigCached()) {
                 return mLinkConfig.loanAmountMax;
             }
@@ -147,11 +147,11 @@ public class ConfigStorage {
             }
         });
 
-        return (int) getResultFromFuture(f);
+        return (double) getResultFromFuture(f);
     }
 
-    public synchronized int getLoanAmountIncrements() {
-        CompletableFuture<Integer> f = CompletableFuture.supplyAsync(() -> {
+    public synchronized double getLoanAmountIncrements() {
+        CompletableFuture<Double> f = CompletableFuture.supplyAsync(() -> {
             if(isConfigCached()) {
                 return mLinkConfig.loanAmountIncrements;
             }
@@ -165,7 +165,7 @@ public class ConfigStorage {
             }
         });
 
-        return (int) getResultFromFuture(f);
+        return (double) getResultFromFuture(f);
     }
 
     public synchronized boolean getSkipLinkDisclaimer() {
@@ -177,6 +177,24 @@ public class ConfigStorage {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.skipLinkDisclaimer;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        return (boolean) getResultFromFuture(f);
+    }
+
+    public synchronized boolean isStrictAddressValidationEnabled() {
+        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
+            if(isConfigCached()) {
+                return mLinkConfig.isStrictAddressValidationEnabled;
+            }
+            else {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.isStrictAddressValidationEnabled;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }

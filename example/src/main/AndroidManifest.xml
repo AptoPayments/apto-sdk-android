@@ -43,6 +43,10 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
+            android:name="me.ledge.link.sdk.ui.activities.userdata.HomeActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
                 android:name="me.ledge.link.sdk.ui.activities.userdata.AddressActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 

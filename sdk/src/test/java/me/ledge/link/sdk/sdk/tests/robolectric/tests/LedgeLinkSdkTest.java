@@ -234,6 +234,13 @@ public class LedgeLinkSdkTest {
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 
+    @Test
+    public void getFinancialAccountsTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.getFinancialAccounts(),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
     /**
      * Given an API Wrapper AND a response handler have been set.<br />
      * When trying to fetch the initial list of loan offers.<br />
