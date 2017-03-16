@@ -21,6 +21,7 @@ import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
+import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
@@ -45,9 +46,9 @@ public interface LinkApiWrapper {
     String LINK_CONFIG_PATH = "v1/config/link";
     String CONFIG_PATH = "v1/config";
 
-    String CREATE_USER_PATH = "v1/users";
-    String UPDATE_USER_PATH = "v1/users/current";
-    String LOGIN_USER_PATH = "v1/users/login";
+    String CREATE_USER_PATH = "v1/user";
+    String UPDATE_USER_PATH = "v1/user";
+    String LOGIN_USER_PATH = "v1/user/login";
 
     String INITIAL_OFFERS_PATH = "v1/link/offersrequest";
     String MORE_OFFERS_PATH = "v1/link/offersrequest/{offer_request_id}/offers";
@@ -60,9 +61,8 @@ public interface LinkApiWrapper {
     String VERIFICATION_STATUS_PATH = "v1/verifications/status/{ID}";
     String VERIFICATION_FINISH_PATH = "v1/verifications/finish";
 
-    String ADD_BANK_ACCOUNTS_PATH = "v1/users/current/bankaccounts";
-    String ADD_CARD_PATH = "v1/users/current/cards";
-    String ISSUE_VIRTUAL_CARD_PATH = "v1/users/current/virtualcards";
+    String FINANCIAL_ACCOUNTS_PATH = "v1/user/financialaccounts";
+    String PLAID_WEB_URL = "v1/bankoauth";
 
     int OFFERS_REQUEST_TIMEOUT = 150; // 2.5 minutes.
 
@@ -260,4 +260,11 @@ public interface LinkApiWrapper {
      */
     Card issueVirtualCard(IssueVirtualCardRequestVo requestData) throws ApiException;
 
+    /**
+     * Gets the user's financial accounts
+     * @param requestData Mandatory request data.
+     * @return API response.
+     * @throws ApiException When there is an error making the request.
+     */
+    UserDataListResponseVo getFinancialAccounts(UnauthorizedRequestVo requestData) throws ApiException;
 }

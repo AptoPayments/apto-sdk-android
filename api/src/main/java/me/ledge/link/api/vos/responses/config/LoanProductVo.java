@@ -13,7 +13,7 @@ public class LoanProductVo {
     @SerializedName("pre_qualification_disclaimer")
     public String preQualificationDisclaimer;
 
-    public int id;
+    public String id;
 
     @SerializedName("application_disclaimer")
     public String applicationDisclaimer;

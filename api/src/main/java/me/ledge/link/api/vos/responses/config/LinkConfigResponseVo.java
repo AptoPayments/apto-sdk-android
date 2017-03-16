@@ -10,10 +10,10 @@ import com.google.gson.annotations.SerializedName;
 public class LinkConfigResponseVo {
 
     @SerializedName("loan_amount_max")
-    public int loanAmountMax;
+    public double loanAmountMax;
 
     @SerializedName("loan_amount_increments")
-    public int loanAmountIncrements;
+    public double loanAmountIncrements;
 
     @SerializedName("pos_mode")
     public boolean posMode;

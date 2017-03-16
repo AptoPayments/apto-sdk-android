@@ -303,4 +303,11 @@ public class MockApiWrapper implements LinkApiWrapper {
         response.cardType = Card.CardType.MARQETA;
         return response;
     }
+
+    @Override
+    public UserDataListResponseVo getFinancialAccounts(UnauthorizedRequestVo unauthorizedRequestVo) throws ApiException {
+        UserDataListResponseVo response = new UserDataListResponseVo();
+        response.data = new DataPointVo[0];
+        return response;
+    }
 }

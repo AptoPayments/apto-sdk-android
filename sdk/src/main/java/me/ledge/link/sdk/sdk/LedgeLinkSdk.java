@@ -22,6 +22,7 @@ import me.ledge.link.sdk.sdk.tasks.config.LinkConfigTask;
 import me.ledge.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.AddBankAccountTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.AddCardTask;
+import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountsTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
@@ -365,4 +366,18 @@ public class LedgeLinkSdk {
 
         return task;
     }
+
+    /**
+     * Gets the user's financial accounts.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getFinancialAccounts() {
+        checkComponents();
+
+        GetFinancialAccountsTask task = new GetFinancialAccountsTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
 }

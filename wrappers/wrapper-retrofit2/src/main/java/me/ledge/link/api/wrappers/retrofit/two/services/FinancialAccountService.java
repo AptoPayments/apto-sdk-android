@@ -5,10 +5,12 @@ import com.google.gson.JsonObject;
 import me.ledge.link.api.vos.Card;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -21,7 +23,7 @@ public interface FinancialAccountService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.ADD_BANK_ACCOUNTS_PATH)
+    @POST(LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH)
     Call<VerificationStatusResponseVo> addBankAccount(@Body AddBankAccountRequestVo data);
 
     /**
@@ -29,7 +31,7 @@ public interface FinancialAccountService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.ADD_CARD_PATH)
+    @POST(LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH)
     Call<Card> addCard(@Body JsonObject data);
 
     /**
@@ -37,6 +39,13 @@ public interface FinancialAccountService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.ISSUE_VIRTUAL_CARD_PATH)
+    @POST(LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH)
     Call<Card> issueVirtualCard(@Body IssueVirtualCardRequestVo data);
+
+    /**
+     * Creates a {@link Call} to get the user's financial accounts.
+     * @return API call to execute.
+     */
+    @GET(LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH)
+    Call<UserDataListResponseVo> getFinancialAccounts();
 }

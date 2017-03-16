@@ -198,17 +198,17 @@ public class LoanAmountPresenter
         setLoanPurposeList(purposeList.data);
     }
 
-    public void maxLoanAmountRetrieved(int maxLoanAmount) {
+    public void maxLoanAmountRetrieved(double maxLoanAmount) {
         isMaxLoanAmountReady = true;
-        mModel.setMaxAmount(maxLoanAmount)
-                .setMinAmount(Math.min(mModel.getMinAmount(),maxLoanAmount))
-                .setAmount(Math.min(mModel.getAmount(),maxLoanAmount));
+        mModel.setMaxAmount((int) maxLoanAmount)
+                .setMinAmount(Math.min(mModel.getMinAmount(),(int) maxLoanAmount))
+                .setAmount(Math.min(mModel.getAmount(),(int) maxLoanAmount));
         updateViewIfReady();
     }
 
-    public void loanAmountIncrementsRetrieved(int amountIncrement) {
+    public void loanAmountIncrementsRetrieved(double amountIncrement) {
         isLoanIncrementsReady = true;
-        mAmountIncrement = amountIncrement;
+        mAmountIncrement = (int) amountIncrement;
         updateViewIfReady();
     }
 
