@@ -34,7 +34,6 @@ public class AddressModelTest {
     private static final String EXPECTED_STATE = "CA";
     private static final String EXPECTED_ZIP = "92679";
     private static final String EXPECTED_COUNTRY = "US";
-    private static final int EXPECTED_HOUSING_TYPE_ID = 777;
 
     private AddressModel mModel;
 
@@ -73,8 +72,6 @@ public class AddressModelTest {
                 EXPECTED_APARTMENT_NUMBER, EXPECTED_COUNTRY, EXPECTED_CITY, EXPECTED_STATE,
                 EXPECTED_ZIP,false);
         base.add(baseAddress);
-        DataPointVo.Housing baseHousing = new DataPointVo.Housing(EXPECTED_HOUSING_TYPE_ID, false);
-        base.add(baseHousing);
         mModel.setBaseData(base);
 
         Assert.assertThat("Incorrect address.", mModel.getStreetAddress(), equalTo(baseAddress.address));

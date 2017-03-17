@@ -38,6 +38,10 @@ public class ConfigStorage {
         return mInstance;
     }
 
+    public void setLinkConfig(LinkConfigResponseVo mLinkConfig) {
+        this.mLinkConfig = mLinkConfig;
+    }
+
     public synchronized LoanPurposesResponseVo getLoanPurposes() {
         CompletableFuture<LoanPurposesResponseVo> future = CompletableFuture.supplyAsync(() -> {
             if(isConfigCached()) {
