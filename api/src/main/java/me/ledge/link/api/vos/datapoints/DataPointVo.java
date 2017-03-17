@@ -1,10 +1,12 @@
-package me.ledge.link.api.vos;
+package me.ledge.link.api.vos.datapoints;
 
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
+
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 
 public class DataPointVo {
     public enum DataPointType{

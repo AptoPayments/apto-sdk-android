@@ -1,4 +1,4 @@
-package me.ledge.link.api.vos;
+package me.ledge.link.api.vos.datapoints;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

@@ -1,4 +1,4 @@
-package me.ledge.link.api.vos;
+package me.ledge.link.api.vos.responses;
 
 /**
  * Api error data.

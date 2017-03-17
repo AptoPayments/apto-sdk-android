@@ -9,8 +9,8 @@ import android.widget.DatePicker;
 import org.greenrobot.eventbus.Subscribe;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.ApiErrorVo;
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;

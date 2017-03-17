@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.ui.models.financialaccountselector;
 
-import me.ledge.link.api.vos.FinancialAccountVo;
+import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 
 /**
  * Information about a financial account.

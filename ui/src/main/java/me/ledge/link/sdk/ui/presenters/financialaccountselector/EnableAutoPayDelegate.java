@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
-import me.ledge.link.api.vos.FinancialAccountVo;
+import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 
 /**
  * Delegation interface to enable auto-pay.

@@ -8,9 +8,9 @@ import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
 
-import me.ledge.link.api.vos.BankAccount;
-import me.ledge.link.api.vos.Card;
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.datapoints.BankAccount;
+import me.ledge.link.api.vos.datapoints.Card;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
 
 /**
  * Created by adrian on 25/01/2017.

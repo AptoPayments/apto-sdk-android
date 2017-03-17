@@ -1,4 +1,4 @@
-package me.ledge.link.api.vos;
+package me.ledge.link.api.vos.datapoints;
 
 import com.google.gson.JsonObject;
 
@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
  * Created by adrian on 17/01/2017.
  */
 
-public class FinancialAccountVo extends DataPointVo{
+public class FinancialAccountVo extends DataPointVo {
     public enum FinancialAccountType {
         Bank,
         Card

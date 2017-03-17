@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import java.util.ArrayList;
 
-import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;

@@ -12,9 +12,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.ApiErrorVo;
-import me.ledge.link.api.vos.DataPointList;
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
+import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;

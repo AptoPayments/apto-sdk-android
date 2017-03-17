@@ -12,7 +12,7 @@ import me.ledge.common.utils.PagedList;
 import me.ledge.common.utils.web.ExternalSiteLauncher;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
-import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;

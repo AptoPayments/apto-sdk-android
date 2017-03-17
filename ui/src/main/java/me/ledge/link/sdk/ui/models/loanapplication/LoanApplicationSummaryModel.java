@@ -4,7 +4,7 @@ import android.content.res.Resources;
 
 import java.util.LinkedList;
 
-import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.R;

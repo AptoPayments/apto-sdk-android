@@ -1,6 +1,6 @@
 package me.ledge.link.api.vos.responses.users;
 
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
 
 /**

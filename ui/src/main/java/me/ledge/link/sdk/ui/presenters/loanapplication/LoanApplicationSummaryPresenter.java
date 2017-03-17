@@ -12,7 +12,7 @@ import java.util.LinkedList;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
-import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;

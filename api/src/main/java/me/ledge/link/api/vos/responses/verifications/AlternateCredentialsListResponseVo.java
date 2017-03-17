@@ -2,7 +2,7 @@ package me.ledge.link.api.vos.responses.verifications;
 
 import java.util.ArrayList;
 
-import me.ledge.link.api.vos.CredentialVo;
+import me.ledge.link.api.vos.datapoints.CredentialVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
 
 /**
