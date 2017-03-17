@@ -142,7 +142,7 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public ContextConfigResponseVo getUserConfig(UnauthorizedRequestVo requestData) throws ApiException {
+    public ContextConfigResponseVo getUserConfig(UnauthorizedRequestVo requestData) {
         ConfigResponseVo response = new ConfigResponseVo();
         response.housingTypeOpts = new HousingTypeListResponseVo();
         response.housingTypeOpts.data = new HousingTypeVo[0];

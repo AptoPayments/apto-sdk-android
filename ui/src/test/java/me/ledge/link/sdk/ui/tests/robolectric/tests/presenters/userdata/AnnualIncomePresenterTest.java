@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.tests.robolectric.tests.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -85,6 +86,14 @@ public class AnnualIncomePresenterTest {
         DataPointVo.Employment employment = (DataPointVo.Employment) userData.getUniqueDataPoint(
                 DataPointVo.DataPointType.Employment, null);
         Assert.assertThat("Incorrect salary frequency.", employment.salaryFrequency.getKey(), equalTo(EXPECTED_SALARY_FREQUENCY));
+    }
+
+    /**
+     * Cleans up after each test.
+     */
+    @After
+    public void tearDown() {
+        mPresenter.detachView();
     }
 
 }
