@@ -10,6 +10,8 @@ import java8.util.concurrent.CompletableFuture;
 import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.PersonalName;
+import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         }
         LinkStorage.getInstance().setLoanData(loanData);
         if (hasValue(mView.getFirstName()) && hasValue(mView.getLastName())) {
-            data.add(new DataPointVo.PersonalName(mView.getFirstName(), mView.getLastName(), false));
+            data.add(new PersonalName(mView.getFirstName(), mView.getLastName(), false));
             dataSet = true;
         }
         if (hasValue(mView.getEmail())) {
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             dataSet = true;
         }
         if (hasValue(mView.getPhoneNumber())) {
-            data.add(new DataPointVo.PhoneNumber(mView.getPhoneNumber(), false));
+            data.add(new PhoneNumberVo(mView.getPhoneNumber(), false));
             dataSet = true;
         }
         String address = "";

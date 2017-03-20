@@ -11,6 +11,8 @@ import java.lang.reflect.Type;
 import me.ledge.link.api.vos.datapoints.BankAccount;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.PersonalName;
+import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 
 /**
  * Created by adrian on 25/01/2017.
@@ -24,11 +26,11 @@ public class DataPointParser implements JsonDeserializer<DataPointVo> {
         String type = jObject.get("type").getAsString();
         switch (type) {
             case "name":
-                return new DataPointVo.PersonalName(jObject.get("first_name").getAsString(),
+                return new PersonalName(jObject.get("first_name").getAsString(),
                         jObject.get("last_name").getAsString(),
                         jObject.get("verified").getAsBoolean());
             case "phone":
-                return new DataPointVo.PhoneNumber(jObject.get("country_code").getAsString() +
+                return new PhoneNumberVo(jObject.get("country_code").getAsString() +
                         jObject.get("phone_number").getAsString(),
                         jObject.get("verified").getAsBoolean());
             case "email":

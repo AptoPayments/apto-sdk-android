@@ -5,6 +5,7 @@ import android.app.Activity;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.storages.UserStorage;
@@ -68,8 +69,8 @@ public class AddCardModel implements AddFinancialAccountModel, ActivityModel {
 
     private String getUserName() {
         DataPointList userData = UserStorage.getInstance().getUserData();
-        DataPointVo.PersonalName userName = (DataPointVo.PersonalName) userData.getUniqueDataPoint(
-                DataPointVo.DataPointType.PersonalName, new DataPointVo.PersonalName());
+        PersonalName userName = (PersonalName) userData.getUniqueDataPoint(
+                DataPointVo.DataPointType.PersonalName, new PersonalName());
 
         return userName.firstName + " " + userName.lastName;
     }

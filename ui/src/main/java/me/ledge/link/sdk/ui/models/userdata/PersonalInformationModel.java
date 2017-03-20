@@ -6,6 +6,8 @@ import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.PersonalName;
+import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.utils.PhoneHelperUtil;
@@ -19,9 +21,9 @@ import ru.lanwen.verbalregex.VerbalExpression;
 
 public class PersonalInformationModel extends AbstractUserDataModel implements UserDataModel {
 
-    private DataPointVo.PersonalName mPersonalName;
+    private PersonalName mPersonalName;
     private DataPointVo.Email mEmail;
-    private DataPointVo.PhoneNumber mPhone;
+    private PhoneNumberVo mPhone;
 
     /**
      * Creates a new {@link PersonalInformationModel} instance.
@@ -35,9 +37,9 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * Initializes this class.
      */
     protected void init() {
-        mPersonalName = new DataPointVo.PersonalName();
+        mPersonalName = new PersonalName();
         mEmail = new DataPointVo.Email();
-        mPhone = new DataPointVo.PhoneNumber();
+        mPhone = new PhoneNumberVo();
     }
 
     /** {@inheritDoc} */
@@ -58,15 +60,15 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
 
-        DataPointVo.PersonalName personalName = (DataPointVo.PersonalName) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PersonalName, new DataPointVo.PersonalName());
+        PersonalName personalName = (PersonalName) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PersonalName, new PersonalName());
         personalName.firstName = mPersonalName.firstName;
         personalName.lastName = mPersonalName.lastName;
         DataPointVo.Email emailAddress = (DataPointVo.Email) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Email, new DataPointVo.Email());
         emailAddress.email = mEmail.email;
-        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
+        PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
         phoneNumber.phoneNumber = mPhone.phoneNumber;
 
         return base;
@@ -76,21 +78,19 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     @Override
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
-        DataPointVo.PersonalName personalName = (DataPointVo.PersonalName) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PersonalName,
-                new DataPointVo.PersonalName());
+        PersonalName personalName = (PersonalName) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PersonalName, new PersonalName());
         setPersonalName(personalName);
         DataPointVo.Email emailAddress = (DataPointVo.Email) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Email,
                 new DataPointVo.Email());
         setEmail(emailAddress);
-        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber,
-                new DataPointVo.PhoneNumber());
+        PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
         setPhone(phoneNumber);
     }
 
-    public void setPersonalName(DataPointVo.PersonalName personalName) {
+    public void setPersonalName(PersonalName personalName) {
         if(personalName != null) {
             setFirstName(personalName.firstName);
             setLastName(personalName.lastName);
@@ -175,7 +175,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         return mPhone.phoneNumber;
     }
 
-    public void setPhone(DataPointVo.PhoneNumber phoneNumber) {
+    public void setPhone(PhoneNumberVo phoneNumber) {
         if(phoneNumber != null) {
             setPhone(phoneNumber.phoneNumber);
         }

@@ -11,6 +11,7 @@ import java.util.GregorianCalendar;
 
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 
@@ -142,7 +143,7 @@ public class IdentityVerificationModelTest {
                 .setCountryCode(EXPECTED_COUNTRY_CODE)
                 .setNationalNumber(EXPECTED_NATIONAL_NUMBER);
 
-        DataPointVo.PhoneNumber phoneNumber = new DataPointVo.PhoneNumber("", false);
+        PhoneNumberVo phoneNumber = new PhoneNumberVo("", false);
         phoneNumber.setPhone(phone);
         base.add(phoneNumber);
 
@@ -152,8 +153,8 @@ public class IdentityVerificationModelTest {
 
         mModel.setBaseData(base);
         DataPointList apiData = mModel.getUserData();
-        DataPointVo.PhoneNumber apiPhone = (DataPointVo.PhoneNumber) apiData.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
+        PhoneNumberVo apiPhone = (PhoneNumberVo) apiData.getUniqueDataPoint(
+                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
         DataPointVo.Birthdate apiBirthDate = (DataPointVo.Birthdate) apiData.getUniqueDataPoint(
                 DataPointVo.DataPointType.BirthDate, new DataPointVo.Birthdate());
         Assert.assertThat("Incorrect phone number.", apiPhone.getPhoneAsString(), equalTo(EXPECTED_FORMATTED_PHONE));

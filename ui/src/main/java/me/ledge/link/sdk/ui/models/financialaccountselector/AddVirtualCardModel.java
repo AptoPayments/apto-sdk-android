@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.models.financialaccountselector;
 
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
@@ -41,7 +42,7 @@ public class AddVirtualCardModel implements AddFinancialAccountModel {
     public IssueVirtualCardRequestVo getRequest() {
         IssueVirtualCardRequestVo request = new IssueVirtualCardRequestVo();
         DataPointList userData = UserStorage.getInstance().getUserData();
-        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) userData.getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, null);
+        PhoneNumberVo phoneNumber = (PhoneNumberVo) userData.getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, null);
         request.phoneNumber = phoneNumber.getPhone().toString();
 
         LoanDataVo loanData = LinkStorage.getInstance().getLoanData();

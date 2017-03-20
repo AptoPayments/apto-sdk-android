@@ -2,9 +2,6 @@ package me.ledge.link.api.vos.datapoints;
 
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
 
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 
@@ -79,109 +76,6 @@ public class DataPointVo {
             gsonObject.add("verification", mVerification.toJSON());
         }
         return gsonObject;
-    }
-
-    public static class PersonalName extends DataPointVo {
-        public String firstName;
-        public String lastName;
-
-        public PersonalName() {
-            this(null, null, false);
-        }
-
-        public PersonalName(String firstName, String lastName, boolean verified) {
-            super(DataPointType.PersonalName, verified);
-            this.firstName = firstName;
-            this.lastName = lastName;
-        }
-
-        @Override
-        public JsonObject toJSON() {
-            JsonObject gsonObject = super.toJSON();
-            gsonObject.addProperty("data_type", "name");
-            gsonObject.addProperty("first_name", firstName);
-            gsonObject.addProperty("last_name", lastName);
-            return gsonObject;
-        }
-
-        @Override
-        public String toString() {
-            return firstName + " " + lastName;
-        }
-    }
-
-    public static class PhoneNumber extends DataPointVo {
-        public Phonenumber.PhoneNumber phoneNumber;
-
-        public PhoneNumber() {
-            this(null, false);
-        }
-
-        public PhoneNumber(String phone, boolean verified) {
-            super(DataPointType.PhoneNumber, verified);
-            init();
-            try {
-                Phonenumber.PhoneNumber number = PhoneNumberUtil.getInstance().parse(phone, "US");
-                setPhone(number);
-            } catch (NumberParseException e) {
-                this.phoneNumber = null;
-            }
-        }
-
-        public void init() {
-            phoneNumber = new Phonenumber.PhoneNumber();
-        }
-
-        /**
-         * @return Phone number.
-         */
-        public Phonenumber.PhoneNumber getPhone() {
-            return phoneNumber;
-        }
-
-        public String getPhoneAsString() {
-            return "+" + String.valueOf(phoneNumber.getCountryCode()) + String.valueOf(phoneNumber.getNationalNumber());
-        }
-
-        /**
-         * Parses and stores a valid phone number.
-         * @param phone Raw phone number.
-         */
-        public void setPhone(String phone) {
-            try {
-                Phonenumber.PhoneNumber number = PhoneNumberUtil.getInstance().parse(phone, "US");
-                setPhone(number);
-            } catch (NumberParseException npe) {
-                this.phoneNumber = null;
-            }
-        }
-
-        /**
-         * Stores a valid phone number.
-         * @param number Phone number object.
-         */
-        public void setPhone(Phonenumber.PhoneNumber number) {
-            if (number != null && PhoneNumberUtil.getInstance().isValidNumber(number)) {
-                this.phoneNumber = number;
-            } else {
-                this.phoneNumber = null;
-            }
-        }
-
-        @Override
-        public JsonObject toJSON() {
-            JsonObject gsonObject = super.toJSON();
-            gsonObject.addProperty("data_type", "phone");
-            gsonObject.addProperty("phone_number", String.valueOf(phoneNumber.getNationalNumber()));
-            gsonObject.addProperty("country_code", String.valueOf(phoneNumber.getCountryCode()));
-            return gsonObject;
-        }
-
-        @Override
-        public String toString() {
-            // TODO: refactor
-            return getPhoneAsString();
-        }
     }
 
     public static class Email extends DataPointVo {

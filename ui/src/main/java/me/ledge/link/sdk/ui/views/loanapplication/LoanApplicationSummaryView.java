@@ -21,6 +21,7 @@ import java.util.Set;
 
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
@@ -216,8 +217,8 @@ public class LoanApplicationSummaryView
     private void setTextViewValues(LoanApplicationSummaryModel data, DataPointVo dataPoint) {
         switch(dataPoint.getType()) {
             case PersonalName:
-                addKeyValueTextView(data.getFirstNameLabel(getResources()), ((DataPointVo.PersonalName) dataPoint).firstName);
-                addKeyValueTextView(data.getLastNameLabel(getResources()), ((DataPointVo.PersonalName) dataPoint).lastName);
+                addKeyValueTextView(data.getFirstNameLabel(getResources()), ((PersonalName) dataPoint).firstName);
+                addKeyValueTextView(data.getLastNameLabel(getResources()), ((PersonalName) dataPoint).lastName);
                 break;
             case PhoneNumber:
                 addKeyValueTextView(data.getPhoneLabel(getResources()), dataPoint.toString());
