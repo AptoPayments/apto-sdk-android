@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
@@ -155,8 +156,8 @@ public class IdentityVerificationModelTest {
         DataPointList apiData = mModel.getUserData();
         PhoneNumberVo apiPhone = (PhoneNumberVo) apiData.getUniqueDataPoint(
                 DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
-        DataPointVo.Birthdate apiBirthDate = (DataPointVo.Birthdate) apiData.getUniqueDataPoint(
-                DataPointVo.DataPointType.BirthDate, new DataPointVo.Birthdate());
+        Birthdate apiBirthDate = (Birthdate) apiData.getUniqueDataPoint(
+                DataPointVo.DataPointType.BirthDate, new Birthdate());
         Assert.assertThat("Incorrect phone number.", apiPhone.getPhoneAsString(), equalTo(EXPECTED_FORMATTED_PHONE));
         Assert.assertThat("Incorrect birthday.", apiBirthDate.getDate(), equalTo(EXPECTED_FORMATTED_BIRTHDAY));
     }

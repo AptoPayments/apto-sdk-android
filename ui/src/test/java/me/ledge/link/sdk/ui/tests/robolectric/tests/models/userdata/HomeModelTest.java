@@ -9,8 +9,10 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import me.ledge.link.api.vos.datapoints.Address;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Housing;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
@@ -65,10 +67,10 @@ public class HomeModelTest {
     @Test
     public void allDataIsSetFromBaseData() {
         DataPointList base = new DataPointList();
-        DataPointVo.Address baseAddress = new DataPointVo.Address();
+        Address baseAddress = new Address();
         baseAddress.zip = EXPECTED_ZIP;
         base.add(baseAddress);
-        DataPointVo.Housing baseHousing = new DataPointVo.Housing(EXPECTED_HOUSING_TYPE_ID, false);
+        Housing baseHousing = new Housing(EXPECTED_HOUSING_TYPE_ID, false);
         base.add(baseHousing);
         mModel.setBaseData(base);
 
@@ -89,11 +91,11 @@ public class HomeModelTest {
         mModel.setHousingType(new IdDescriptionPairDisplayVo(EXPECTED_HOUSING_TYPE_ID, null));
 
         DataPointList base = mModel.getBaseData();
-        DataPointVo.Address baseAddress = (DataPointVo.Address) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Address, new DataPointVo.Address());
+        Address baseAddress = (Address) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Address, new Address());
 
-        DataPointVo.Housing baseHousing = (DataPointVo.Housing) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Housing, new DataPointVo.Housing());
+        Housing baseHousing = (Housing) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Housing, new Housing());
 
         Assert.assertThat("Incorrect zip.", baseAddress.zip, equalTo(mModel.getZip()));
         Assert.assertThat("Incorrect housing type.", baseHousing.housingType.getKey(), equalTo(mModel.getHousingType().getKey()));

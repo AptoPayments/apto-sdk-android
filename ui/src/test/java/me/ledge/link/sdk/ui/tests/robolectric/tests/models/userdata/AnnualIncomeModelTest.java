@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AnnualIncomeModel;
 
@@ -78,7 +79,7 @@ public class AnnualIncomeModelTest {
     @Test
     public void settingBaseDataUpdatesIncome() {
         DataPointList base = new DataPointList();
-        DataPointVo.Income baseIncome = new DataPointVo.Income(0, EXPECTED_VALID_INCOME, false);
+        Income baseIncome = new Income(0, EXPECTED_VALID_INCOME, false);
         base.add(baseIncome);
 
         mModel.setBaseData(base);
@@ -99,8 +100,8 @@ public class AnnualIncomeModelTest {
         mModel.setAnnualIncome(EXPECTED_VALID_INCOME);
 
         DataPointList base = mModel.getBaseData();
-        DataPointVo.Income baseIncome = (DataPointVo.Income) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Income, new DataPointVo.Income());
+        Income baseIncome = (Income) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Income, new Income());
         Assert.assertThat("Incorrect income.", baseIncome.annualGrossIncome, equalTo(mModel.getAnnualIncome()));
     }
 

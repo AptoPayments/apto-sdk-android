@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import me.ledge.link.api.utils.CreditScoreRange;
+import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.ui.R;
@@ -48,7 +49,7 @@ public class CreditScoreModelTest {
     @Test
     public void allDataIsSetFromBaseData() {
         DataPointList baseData = new DataPointList();
-        DataPointVo.CreditScore baseCredit = new DataPointVo.CreditScore(CreditScoreRange.EXCELLENT, false);
+        CreditScore baseCredit = new CreditScore(CreditScoreRange.EXCELLENT, false);
         baseData.add(baseCredit);
 
         mModel.setBaseData(baseData);
@@ -69,8 +70,8 @@ public class CreditScoreModelTest {
         mModel.setCreditScoreRange(CreditScoreRange.POOR);
 
         DataPointList base = mModel.getBaseData();
-        DataPointVo.CreditScore baseCredit = (DataPointVo.CreditScore) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.CreditScore, new DataPointVo.CreditScore());
+        CreditScore baseCredit = (CreditScore) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.CreditScore, new CreditScore());
 
         Assert.assertThat("Incorrect credit score range.",
                 baseCredit.creditScoreRange, equalTo(mModel.getCreditScoreRange()));

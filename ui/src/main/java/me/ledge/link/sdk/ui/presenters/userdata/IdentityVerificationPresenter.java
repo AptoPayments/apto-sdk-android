@@ -11,6 +11,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
@@ -147,7 +148,7 @@ public class IdentityVerificationPresenter
                 LedgeLinkUi.createUser(mModel.getUserData());
             } else {
                 DataPointVo phone = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
-                DataPointVo email = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.Email, new DataPointVo.Email());
+                DataPointVo email = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.Email, new Email());
 
                 if(phone.hasVerification() && email.hasVerification()) {
                     mDelegate.identityVerificationSucceeded();

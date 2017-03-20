@@ -6,6 +6,7 @@ import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.sdk.ui.R;
@@ -22,7 +23,7 @@ import ru.lanwen.verbalregex.VerbalExpression;
 public class PersonalInformationModel extends AbstractUserDataModel implements UserDataModel {
 
     private PersonalName mPersonalName;
-    private DataPointVo.Email mEmail;
+    private Email mEmail;
     private PhoneNumberVo mPhone;
 
     /**
@@ -38,7 +39,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      */
     protected void init() {
         mPersonalName = new PersonalName();
-        mEmail = new DataPointVo.Email();
+        mEmail = new Email();
         mPhone = new PhoneNumberVo();
     }
 
@@ -64,8 +65,8 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
                 DataPointVo.DataPointType.PersonalName, new PersonalName());
         personalName.firstName = mPersonalName.firstName;
         personalName.lastName = mPersonalName.lastName;
-        DataPointVo.Email emailAddress = (DataPointVo.Email) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Email, new DataPointVo.Email());
+        Email emailAddress = (Email) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Email, new Email());
         emailAddress.email = mEmail.email;
         PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
@@ -81,9 +82,9 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         PersonalName personalName = (PersonalName) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.PersonalName, new PersonalName());
         setPersonalName(personalName);
-        DataPointVo.Email emailAddress = (DataPointVo.Email) base.getUniqueDataPoint(
+        Email emailAddress = (Email) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Email,
-                new DataPointVo.Email());
+                new Email());
         setEmail(emailAddress);
         PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
@@ -142,7 +143,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         return mEmail.email;
     }
 
-    public void setEmail(DataPointVo.Email emailAddress) {
+    public void setEmail(Email emailAddress) {
         if(emailAddress != null) {
             setEmail(emailAddress.email);
         }

@@ -2,8 +2,10 @@ package me.ledge.link.sdk.ui.models.userdata;
 
 import android.text.TextUtils;
 
+import me.ledge.link.api.vos.datapoints.Address;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Housing;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
@@ -15,7 +17,7 @@ import ru.lanwen.verbalregex.VerbalExpression;
  */
 public class HomeModel extends AbstractUserDataModel implements UserDataModel {
 
-    private DataPointVo.Address mAddress;
+    private Address mAddress;
     private IdDescriptionPairDisplayVo mHousingType;
 
     /**
@@ -29,7 +31,7 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
      * Initializes this class.
      */
     private void init() {
-        mAddress = new DataPointVo.Address();
+        mAddress = new Address();
         mHousingType = null;
     }
 
@@ -50,12 +52,12 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
 
-        DataPointVo.Address baseAddress = (DataPointVo.Address) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Address, new DataPointVo.Address());
+        Address baseAddress = (Address) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Address, new Address());
         baseAddress.update(getAddress());
 
-        DataPointVo.Housing baseHousing = (DataPointVo.Housing) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Housing, new DataPointVo.Housing());
+        Housing baseHousing = (Housing) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Housing, new Housing());
         baseHousing.housingType = getHousingType();
 
         return base;
@@ -66,21 +68,21 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
 
-        DataPointVo.Address address = (DataPointVo.Address) base.getUniqueDataPoint(
+        Address address = (Address) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Address,
-                new DataPointVo.Address());
+                new Address());
         mAddress=address;
 
-        DataPointVo.Housing housing = (DataPointVo.Housing) base.getUniqueDataPoint(
+        Housing housing = (Housing) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Housing,
-                new DataPointVo.Housing());
+                new Housing());
         setHousingType(housing.housingType);
     }
 
     /**
      * @return Address.
      */
-    public DataPointVo.Address getAddress() {
+    public Address getAddress() {
         return mAddress;
     }
 

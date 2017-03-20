@@ -6,6 +6,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.VerificationVo;
 import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
@@ -99,8 +100,8 @@ public class EmailVerificationPresenter
     }
 
     private String getEmail() {
-        DataPointVo.Email email = (DataPointVo.Email) mModel.getBaseData().
-                getUniqueDataPoint(DataPointVo.DataPointType.Email, new DataPointVo.Email());
+        Email email = (Email) mModel.getBaseData().
+                getUniqueDataPoint(DataPointVo.DataPointType.Email, new Email());
         return email.email;
     }
 
@@ -111,7 +112,7 @@ public class EmailVerificationPresenter
     @Subscribe
     public void setVerificationResponse(StartEmailVerificationResponseVo response) {
         if (response != null) {
-            DataPointVo.Email email = mModel.getEmailFromBaseData();
+            Email email = mModel.getEmailFromBaseData();
             if(email.hasVerification()) {
                 email.getVerification().setVerificationId(response.verification_id);
             }
@@ -127,7 +128,7 @@ public class EmailVerificationPresenter
      */
     public void setVerificationResponse(VerificationStatusResponseVo response) {
         if (response != null) {
-            DataPointVo.Email email = mModel.getEmailFromBaseData();
+            Email email = mModel.getEmailFromBaseData();
             email.getVerification().setVerificationStatus(response.status);
             if(!email.getVerification().isVerified()) {
                 mView.displayErrorMessage(mActivity.getString(R.string.email_verification_error));

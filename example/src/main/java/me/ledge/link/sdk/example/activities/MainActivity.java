@@ -8,8 +8,11 @@ import android.widget.Toast;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.common.utils.android.AndroidUtils;
+import me.ledge.link.api.vos.datapoints.Address;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Email;
+import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             dataSet = true;
         }
         if (hasValue(mView.getEmail())) {
-            data.add(new DataPointVo.Email(mView.getEmail(), false));
+            data.add(new Email(mView.getEmail(), false));
             dataSet = true;
         }
         if (hasValue(mView.getPhoneNumber())) {
@@ -107,10 +110,10 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             zip = mView.getZipCode();
             dataSet = true;
         }
-        DataPointVo.Address addressDataPoint = new DataPointVo.Address(address, apartment, "US", city, state, zip, false);
+        Address addressDataPoint = new Address(address, apartment, "US", city, state, zip, false);
         data.add(addressDataPoint);
         if (hasValue(mView.getIncome())) {
-            data.add(new DataPointVo.Income(-1, parseIntSafely(mView.getIncome()), false));
+            data.add(new Income(-1, parseIntSafely(mView.getIncome()), false));
             dataSet = true;
         }
 

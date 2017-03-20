@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import me.ledge.link.api.vos.datapoints.Address;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.ui.R;
@@ -68,7 +69,7 @@ public class AddressModelTest {
     @Test
     public void allDataIsSetFromBaseData() {
         DataPointList base = new DataPointList();
-        DataPointVo.Address baseAddress = new DataPointVo.Address(EXPECTED_ADDRESS,
+        Address baseAddress = new Address(EXPECTED_ADDRESS,
                 EXPECTED_APARTMENT_NUMBER, EXPECTED_COUNTRY, EXPECTED_CITY, EXPECTED_STATE,
                 EXPECTED_ZIP,false);
         base.add(baseAddress);
@@ -96,8 +97,8 @@ public class AddressModelTest {
         mModel.setState(EXPECTED_STATE);
 
         DataPointList base = mModel.getBaseData();
-        DataPointVo.Address baseAddress = (DataPointVo.Address) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Address, new DataPointVo.Address());
+        Address baseAddress = (Address) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Address, new Address());
 
         Assert.assertThat("Incorrect address.", baseAddress.address, equalTo(mModel.getStreetAddress()));
         Assert.assertThat("Incorrect apartment number.", baseAddress.apUnit, equalTo(mModel.getApartmentNumber()));

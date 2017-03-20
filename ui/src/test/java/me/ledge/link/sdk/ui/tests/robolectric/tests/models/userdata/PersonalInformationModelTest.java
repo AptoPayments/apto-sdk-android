@@ -13,6 +13,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.sdk.ui.R;
@@ -85,7 +86,7 @@ public class PersonalInformationModelTest {
     public void allDataIsSetFromBaseData() {
         DataPointList base = new DataPointList();
         PersonalName baseName = new PersonalName(EXPECTED_FIRST_NAME, EXPECTED_LAST_NAME, false);
-        DataPointVo.Email baseEmail = new DataPointVo.Email(EXPECTED_EMAIL, false);
+        Email baseEmail = new Email(EXPECTED_EMAIL, false);
         PhoneNumberVo basePhone = new PhoneNumberVo(getExpectedPhoneNumberAsString(), false);
         base.add(baseName);
         base.add(baseEmail);
@@ -117,8 +118,8 @@ public class PersonalInformationModelTest {
         DataPointList base = mModel.getBaseData();
         PersonalName baseName = (PersonalName) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.PersonalName, new PersonalName());
-        DataPointVo.Email baseEmail = (DataPointVo.Email) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Email, new DataPointVo.Email());
+        Email baseEmail = (Email) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Email, new Email());
         PhoneNumberVo basePhone = (PhoneNumberVo) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
 

@@ -13,8 +13,10 @@ import java.util.List;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
+import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
@@ -349,8 +351,8 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     public DataPointList getLoginData() {
         DataPointList base = UserStorage.getInstance().getUserData();
-        DataPointVo.Email emailAddress = (DataPointVo.Email) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Email, new DataPointVo.Email());
+        Email emailAddress = (Email) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Email, new Email());
         PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
 

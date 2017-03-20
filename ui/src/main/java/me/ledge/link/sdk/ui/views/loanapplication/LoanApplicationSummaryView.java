@@ -19,8 +19,13 @@ import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCal
 import java.util.LinkedList;
 import java.util.Set;
 
+import me.ledge.link.api.vos.datapoints.Address;
+import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Housing;
+import me.ledge.link.api.vos.datapoints.Employment;
+import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.ui.R;
@@ -233,25 +238,25 @@ public class LoanApplicationSummaryView
                 addKeyValueTextView(data.getSsnLabel(getResources()), dataPoint.toString());
                 break;
             case Address:
-                addKeyValueTextView(data.getAddressLabel(getResources()), ((DataPointVo.Address) dataPoint).address);
-                addKeyValueTextView(data.getAptUnitLabel(getResources()), ((DataPointVo.Address) dataPoint).apUnit);
-                addKeyValueTextView(data.getZipCodeLabel(getResources()), ((DataPointVo.Address) dataPoint).zip);
-                addKeyValueTextView(data.getCityLabel(getResources()), ((DataPointVo.Address) dataPoint).city);
-                addKeyValueTextView(data.getStateLabel(getResources()), ((DataPointVo.Address) dataPoint).stateCode);
+                addKeyValueTextView(data.getAddressLabel(getResources()), ((Address) dataPoint).address);
+                addKeyValueTextView(data.getAptUnitLabel(getResources()), ((Address) dataPoint).apUnit);
+                addKeyValueTextView(data.getZipCodeLabel(getResources()), ((Address) dataPoint).zip);
+                addKeyValueTextView(data.getCityLabel(getResources()), ((Address) dataPoint).city);
+                addKeyValueTextView(data.getStateLabel(getResources()), ((Address) dataPoint).stateCode);
                 break;
             case Housing:
-                addKeyValueTextView(data.getHousingStatusLabel(getResources()), ((DataPointVo.Housing) dataPoint).housingType.toString());
+                addKeyValueTextView(data.getHousingStatusLabel(getResources()), ((Housing) dataPoint).housingType.toString());
                 break;
             case Employment:
-                addKeyValueTextView(data.getEmploymentStatusLabel(getResources()), ((DataPointVo.Employment) dataPoint).employmentStatus.toString());
-                addKeyValueTextView(data.getSalaryFrequencyLabel(getResources()), ((DataPointVo.Employment) dataPoint).salaryFrequency.toString());
+                addKeyValueTextView(data.getEmploymentStatusLabel(getResources()), ((Employment) dataPoint).employmentStatus.toString());
+                addKeyValueTextView(data.getSalaryFrequencyLabel(getResources()), ((Employment) dataPoint).salaryFrequency.toString());
                 break;
             case Income:
-                addKeyValueTextView(data.getAnnualIncomeLabel(getResources()), String.valueOf(((DataPointVo.Income) dataPoint).annualGrossIncome));
-                addKeyValueTextView(data.getMonthlyIncomeLabel(getResources()), String.valueOf(((DataPointVo.Income) dataPoint).monthlyNetIncome));
+                addKeyValueTextView(data.getAnnualIncomeLabel(getResources()), String.valueOf(((Income) dataPoint).annualGrossIncome));
+                addKeyValueTextView(data.getMonthlyIncomeLabel(getResources()), String.valueOf(((Income) dataPoint).monthlyNetIncome));
                 break;
             case CreditScore:
-                String creditScore = CreditScoreUtil.getCreditScoreDescription(getContext(), ((DataPointVo.CreditScore) dataPoint).creditScoreRange);
+                String creditScore = CreditScoreUtil.getCreditScoreDescription(getContext(), ((CreditScore) dataPoint).creditScoreRange);
                 addKeyValueTextView(data.getCreditScoreLabel(getResources()), creditScore);
                 break;
         }
