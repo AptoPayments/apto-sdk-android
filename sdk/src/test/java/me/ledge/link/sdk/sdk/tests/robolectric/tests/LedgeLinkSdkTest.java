@@ -11,8 +11,14 @@ import org.junit.Test;
 import java.util.concurrent.Executor;
 
 import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
@@ -147,6 +153,91 @@ public class LedgeLinkSdkTest {
     public void updateUserTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
                 LedgeLinkSdk.updateUser(new DataPointList()),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void getCurrentUserTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.getCurrentUser(),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void loginUserTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.loginUser(new DataPointList()),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    /**
+     * Given an API Wrapper AND a response handler have been set.<br />
+     * When trying to verify the phone.<br />
+     * Then the resulting {@link LedgeLinkApiTask} should be returned.
+     */
+    @Test
+    public void startPhoneVerificationTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.startPhoneVerification(new PhoneVerificationRequestVo()),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void completePhoneVerificationTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.completePhoneVerification(new VerificationRequestVo()),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    /**
+     * Given an API Wrapper AND a response handler have been set.<br />
+     * When trying to verify the email.<br />
+     * Then the resulting {@link LedgeLinkApiTask} should be returned.
+     */
+    @Test
+    public void startEmailVerificationTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.startEmailVerification(new EmailVerificationRequestVo()),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void getVerificationStatusTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.getVerificationStatus(""),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    /**
+     * Given an API Wrapper AND a response handler have been set.<br />
+     * When trying to add a financial account.<br />
+     * Then the resulting {@link LedgeLinkApiTask} should be returned.
+     */
+    @Test
+    public void addBankAccountTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.addBankAccount(new AddBankAccountRequestVo()),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void addCardTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.addCard(new Card()),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void issueVirtualCardTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.issueVirtualCard(new IssueVirtualCardRequestVo()),
+                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+    }
+
+    @Test
+    public void getFinancialAccountsTaskIsCreated() {
+        Assert.assertThat("Task should have been created.",
+                LedgeLinkSdk.getFinancialAccounts(),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 

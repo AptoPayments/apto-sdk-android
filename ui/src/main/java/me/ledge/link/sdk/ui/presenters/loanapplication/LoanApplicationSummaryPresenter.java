@@ -77,8 +77,10 @@ public class LoanApplicationSummaryPresenter
     }
 
     private void setRequiredData(RequiredDataPointsListResponseVo requiredDataPointsList) {
-        LinkedList<RequiredDataPointVo> requiredDataPointsLinkedList = new LinkedList<>(Arrays.asList(requiredDataPointsList.data));
-        mModel.setRequiredData(requiredDataPointsLinkedList);
+        if(requiredDataPointsList != null) {
+            LinkedList<RequiredDataPointVo> requiredDataPointsLinkedList = new LinkedList<>(Arrays.asList(requiredDataPointsList.data));
+            mModel.setRequiredData(requiredDataPointsLinkedList);
+        }
     }
 
     private void applicationDisclaimerRetrieved(LoanProductListVo loanProductListVo) {
