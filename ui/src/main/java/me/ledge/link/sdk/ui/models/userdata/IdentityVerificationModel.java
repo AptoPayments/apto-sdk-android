@@ -6,8 +6,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import me.ledge.link.api.vos.DataPointList;
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Birthdate;
+import me.ledge.link.api.vos.datapoints.SSN;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import ru.lanwen.verbalregex.VerbalExpression;
@@ -164,13 +166,13 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         base.removeDataPointsOf(DataPointVo.DataPointType.FinancialAccount);
         data.setDataPoints(base.getDataPoints());
 
-        DataPointVo.SSN baseSSN = (DataPointVo.SSN) base.getUniqueDataPoint(
+        SSN baseSSN = (SSN) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.SSN,
-                new DataPointVo.SSN());
+                new SSN());
         baseSSN.setSocialSecurityNumber(this.getSocialSecurityNumber());
-        DataPointVo.Birthdate baseBirthDate = (DataPointVo.Birthdate) base.getUniqueDataPoint(
+        Birthdate baseBirthDate = (Birthdate) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.BirthDate,
-                new DataPointVo.Birthdate());
+                new Birthdate());
         baseBirthDate.setDate(getFormattedBirthday(getBirthday()));
 
         return data;

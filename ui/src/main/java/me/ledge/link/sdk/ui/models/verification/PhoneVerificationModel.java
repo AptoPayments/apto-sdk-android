@@ -2,9 +2,10 @@ package me.ledge.link.sdk.ui.models.verification;
 
 import android.text.TextUtils;
 
-import me.ledge.link.api.vos.DataPointList;
-import me.ledge.link.api.vos.DataPointVo;
-import me.ledge.link.api.vos.VerificationVo;
+import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.VerificationVo;
+import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.sdk.ui.R;
@@ -51,7 +52,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
     @Override
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
-        DataPointVo.PhoneNumber phoneNumber = getPhoneFromBaseData();
+        PhoneNumberVo phoneNumber = getPhoneFromBaseData();
         phoneNumber.setVerification(mVerification);
         return base;
     }
@@ -60,9 +61,8 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
     @Override
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
-        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber,
-                new DataPointVo.PhoneNumber());
+        PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
         if(phoneNumber.hasVerification()) {
             mVerification = phoneNumber.getVerification();
         }
@@ -71,10 +71,10 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
         }
     }
 
-    public DataPointVo.PhoneNumber getPhoneFromBaseData() {
+    public PhoneNumberVo getPhoneFromBaseData() {
         DataPointList base = super.getBaseData();
-        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
+        PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
         return phoneNumber;
     }
 
@@ -117,7 +117,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
 
     public PhoneVerificationRequestVo getPhoneVerificationRequest() {
         PhoneVerificationRequestVo request = new PhoneVerificationRequestVo();
-        DataPointVo.PhoneNumber phoneNumber = getPhoneFromBaseData();
+        PhoneNumberVo phoneNumber = getPhoneFromBaseData();
         request.country_code = phoneNumber.getPhone().getCountryCode();
         request.phone_number = String.valueOf(phoneNumber.getPhone().getNationalNumber());
 

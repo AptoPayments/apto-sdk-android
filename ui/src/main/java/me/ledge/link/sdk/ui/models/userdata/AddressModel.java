@@ -2,8 +2,9 @@ package me.ledge.link.sdk.ui.models.userdata;
 
 import android.text.TextUtils;
 
-import me.ledge.link.api.vos.DataPointList;
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Address;
+import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import ru.lanwen.verbalregex.VerbalExpression;
@@ -14,7 +15,7 @@ import ru.lanwen.verbalregex.VerbalExpression;
  */
 public class AddressModel extends AbstractUserDataModel implements UserDataModel {
 
-    private DataPointVo.Address mAddress;
+    private Address mAddress;
     private boolean mIsAddressValid;
 
     /**
@@ -28,7 +29,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * Initializes this class.
      */
     private void init() {
-        mAddress = new DataPointVo.Address();
+        mAddress = new Address();
         mIsAddressValid = false;
     }
 
@@ -49,8 +50,8 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
 
-        DataPointVo.Address baseAddress = (DataPointVo.Address) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Address, new DataPointVo.Address());
+        Address baseAddress = (Address) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Address, new Address());
         baseAddress.update(getAddress());
 
         return base;
@@ -61,20 +62,20 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
 
-        DataPointVo.Address address = (DataPointVo.Address) base.getUniqueDataPoint(
+        Address address = (Address) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Address,
-                new DataPointVo.Address());
+                new Address());
         setAddress(address);
     }
 
     /**
      * @return Address.
      */
-    public DataPointVo.Address getAddress() {
+    public Address getAddress() {
         return mAddress;
     }
 
-    public void setAddress(DataPointVo.Address address) {
+    public void setAddress(Address address) {
         setStreetAddress(address.address);
         setApartmentNumber(address.apUnit);
         setCity(address.city);

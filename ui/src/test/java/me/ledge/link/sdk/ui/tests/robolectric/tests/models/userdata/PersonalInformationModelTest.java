@@ -11,8 +11,11 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import me.ledge.link.api.vos.DataPointList;
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Email;
+import me.ledge.link.api.vos.datapoints.PersonalName;
+import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
@@ -82,9 +85,9 @@ public class PersonalInformationModelTest {
     @Test
     public void allDataIsSetFromBaseData() {
         DataPointList base = new DataPointList();
-        DataPointVo.PersonalName baseName = new DataPointVo.PersonalName(EXPECTED_FIRST_NAME, EXPECTED_LAST_NAME, false);
-        DataPointVo.Email baseEmail = new DataPointVo.Email(EXPECTED_EMAIL, false);
-        DataPointVo.PhoneNumber basePhone = new DataPointVo.PhoneNumber(getExpectedPhoneNumberAsString(), false);
+        PersonalName baseName = new PersonalName(EXPECTED_FIRST_NAME, EXPECTED_LAST_NAME, false);
+        Email baseEmail = new Email(EXPECTED_EMAIL, false);
+        PhoneNumberVo basePhone = new PhoneNumberVo(getExpectedPhoneNumberAsString(), false);
         base.add(baseName);
         base.add(baseEmail);
         base.add(basePhone);
@@ -113,12 +116,12 @@ public class PersonalInformationModelTest {
         mModel.setPhone(getExpectedPhoneNumber());
 
         DataPointList base = mModel.getBaseData();
-        DataPointVo.PersonalName baseName = (DataPointVo.PersonalName) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PersonalName, new DataPointVo.PersonalName());
-        DataPointVo.Email baseEmail = (DataPointVo.Email) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Email, new DataPointVo.Email());
-        DataPointVo.PhoneNumber basePhone = (DataPointVo.PhoneNumber) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
+        PersonalName baseName = (PersonalName) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PersonalName, new PersonalName());
+        Email baseEmail = (Email) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Email, new Email());
+        PhoneNumberVo basePhone = (PhoneNumberVo) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
 
         Assert.assertThat("Incorrect first name.", baseName.firstName, equalTo(mModel.getFirstName()));
         Assert.assertThat("Incorrect last name.", baseName.lastName, equalTo(mModel.getLastName()));

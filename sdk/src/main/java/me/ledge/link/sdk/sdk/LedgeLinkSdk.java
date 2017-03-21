@@ -4,8 +4,8 @@ import android.os.AsyncTask;
 
 import java.util.concurrent.Executor;
 
-import me.ledge.link.api.vos.Card;
-import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.datapoints.Card;
+import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;

@@ -4,9 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.api.vos.ApiErrorVo;
-import me.ledge.link.api.vos.DataPointVo;
-import me.ledge.link.api.vos.VerificationVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
+import me.ledge.link.api.vos.datapoints.VerificationVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -83,8 +84,8 @@ public class PhoneVerificationPresenter
     }
 
     private String getTitle() {
-        DataPointVo.PhoneNumber phoneNumber = (DataPointVo.PhoneNumber) mModel.getBaseData().
-                getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
+        PhoneNumberVo phoneNumber = (PhoneNumberVo) mModel.getBaseData().
+                getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
         return PhoneHelperUtil.formatPhone(phoneNumber.phoneNumber);
     }
 
@@ -95,7 +96,7 @@ public class PhoneVerificationPresenter
     @Subscribe
     public void handleResponse(StartPhoneVerificationResponseVo response) {
         if (response != null) {
-            DataPointVo.PhoneNumber phone = mModel.getPhoneFromBaseData();
+            PhoneNumberVo phone = mModel.getPhoneFromBaseData();
             if(phone.hasVerification()) {
                 phone.getVerification().setVerificationId(response.verification_id);
             }
@@ -112,7 +113,7 @@ public class PhoneVerificationPresenter
     @Subscribe
     public void handleResponse(FinishPhoneVerificationResponseVo response) {
         if (response != null) {
-            DataPointVo.PhoneNumber phone = mModel.getPhoneFromBaseData();
+            PhoneNumberVo phone = mModel.getPhoneFromBaseData();
             phone.getVerification().setVerificationStatus(response.status);
             if(!phone.getVerification().isVerified()) {
                 displayWrongCodeMessage();

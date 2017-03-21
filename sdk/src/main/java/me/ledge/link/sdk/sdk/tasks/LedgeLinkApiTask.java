@@ -2,7 +2,7 @@ package me.ledge.link.sdk.sdk.tasks;
 
 import android.os.AsyncTask;
 import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 

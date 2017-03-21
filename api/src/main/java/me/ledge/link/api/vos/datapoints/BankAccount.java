@@ -1,4 +1,6 @@
-package me.ledge.link.api.vos;
+package me.ledge.link.api.vos.datapoints;
+
+import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 
 /**
  * Created by adrian on 18/01/2017.

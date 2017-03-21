@@ -1,7 +1,9 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
-import me.ledge.link.api.vos.DataPointList;
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Employment;
+import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
@@ -11,7 +13,7 @@ import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
  */
 public class AnnualIncomeModel extends AbstractUserDataModel implements UserDataModel {
 
-    private DataPointVo.Income mIncome;
+    private Income mIncome;
     private int mMinIncome;
     private int mMaxIncome;
     private IdDescriptionPairDisplayVo mEmploymentStatus;
@@ -24,7 +26,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     private void init() {
         mEmploymentStatus = null;
         mSalaryFrequency = null;
-        mIncome = new DataPointVo.Income();
+        mIncome = new Income();
     }
 
     private boolean hasValidKey(IdDescriptionPairDisplayVo pair) {
@@ -56,13 +58,13 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
 
-        DataPointVo.Income baseIncome = (DataPointVo.Income) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Income, new DataPointVo.Income());
+        Income baseIncome = (Income) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Income, new Income());
         baseIncome.annualGrossIncome = getAnnualIncome();
 
-        DataPointVo.Employment baseEmployment = (DataPointVo.Employment) base.getUniqueDataPoint(
+        Employment baseEmployment = (Employment) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Employment,
-                new DataPointVo.Employment());
+                new Employment());
         baseEmployment.employmentStatus = getEmploymentStatus();
         baseEmployment.salaryFrequency = getSalaryFrequency();
 
@@ -73,14 +75,14 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     @Override
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
-        DataPointVo.Income baseIncome = (DataPointVo.Income) base.getUniqueDataPoint(
+        Income baseIncome = (Income) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Income,
-                new DataPointVo.Income());
+                new Income());
         setIncome(baseIncome);
 
-        DataPointVo.Employment baseEmployment = (DataPointVo.Employment) base.getUniqueDataPoint(
+        Employment baseEmployment = (Employment) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Employment,
-                new DataPointVo.Employment());
+                new Employment());
         setEmploymentStatus(baseEmployment.employmentStatus);
         setSalaryFrequency(baseEmployment.salaryFrequency);
     }
@@ -119,7 +121,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
         return this;
     }
 
-    public void setIncome(DataPointVo.Income income) {
+    public void setIncome(Income income) {
         setAnnualIncome(income.annualGrossIncome);
     }
 

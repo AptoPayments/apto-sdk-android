@@ -1,7 +1,8 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
-import me.ledge.link.api.vos.DataPointList;
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.sdk.ui.R;
 
 /**
@@ -11,7 +12,7 @@ import me.ledge.link.sdk.ui.R;
  */
 public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDataModel {
 
-    private DataPointVo.Income mIncome;
+    private Income mIncome;
     private int mMinIncome;
     private int mMaxIncome;
 
@@ -20,7 +21,7 @@ public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDat
     }
 
     private void init() {
-        mIncome = new DataPointVo.Income();
+        mIncome = new Income();
     }
 
     /**
@@ -48,8 +49,8 @@ public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDat
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
 
-        DataPointVo.Income baseIncome = (DataPointVo.Income) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Income, new DataPointVo.Income());
+        Income baseIncome = (Income) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Income, new Income());
         baseIncome.monthlyNetIncome = getMonthlyIncome();
 
         return base;
@@ -59,13 +60,13 @@ public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDat
     @Override
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
-        DataPointVo.Income baseIncome = (DataPointVo.Income) base.getUniqueDataPoint(
+        Income baseIncome = (Income) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Income,
-                new DataPointVo.Income());
+                new Income());
         setIncome(baseIncome);
     }
 
-    public void setIncome(DataPointVo.Income mIncome) {
+    public void setIncome(Income mIncome) {
         setMonthlyIncome(mIncome.monthlyNetIncome);
     }
 

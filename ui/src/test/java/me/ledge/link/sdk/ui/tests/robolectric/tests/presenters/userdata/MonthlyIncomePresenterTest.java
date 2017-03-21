@@ -9,8 +9,9 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 
-import me.ledge.link.api.vos.DataPointList;
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockMonthlyIncomePresenter;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModule;
@@ -49,8 +50,8 @@ public class MonthlyIncomePresenterTest {
 
         DataPointList userData = UserStorage.getInstance().getUserData();
         Assert.assertThat("User data should not be empty.", userData, not(nullValue()));
-        DataPointVo.Income income = (DataPointVo.Income) userData.getUniqueDataPoint(
-                DataPointVo.DataPointType.Income, new DataPointVo.Income());
+        Income income = (Income) userData.getUniqueDataPoint(
+                DataPointVo.DataPointType.Income, new Income());
         Assert.assertThat("Incorrect monthly net income.", income.monthlyNetIncome, equalTo(EXPECTED_INCOME));
     }
 

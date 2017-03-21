@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;

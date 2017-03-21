@@ -1,6 +1,6 @@
 package me.ledge.link.api.exceptions;
 
-import me.ledge.link.api.vos.ApiErrorVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 
 /**
  * API exception, thrown when an API request has failed.

@@ -5,8 +5,8 @@ import android.util.Log;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.api.vos.ApiErrorVo;
-import me.ledge.link.api.vos.Card;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
+import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddCardModel;

@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.sdk.tasks.financialaccounts;
 
 import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.Card;
+import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;

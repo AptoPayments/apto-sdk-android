@@ -1,8 +1,9 @@
 package me.ledge.link.sdk.ui.models.verification;
 
-import me.ledge.link.api.vos.DataPointList;
-import me.ledge.link.api.vos.DataPointVo;
-import me.ledge.link.api.vos.VerificationVo;
+import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Email;
+import me.ledge.link.api.vos.datapoints.VerificationVo;
 import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
@@ -48,7 +49,7 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
     @Override
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
-        DataPointVo.Email email = getEmailFromBaseData();
+        Email email = getEmailFromBaseData();
         email.setVerification(mVerification);
         return base;
     }
@@ -57,9 +58,9 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
     @Override
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
-        DataPointVo.Email email = (DataPointVo.Email) base.getUniqueDataPoint(
+        Email email = (Email) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Email,
-                new DataPointVo.Email());
+                new Email());
         if(email.hasVerification()) {
             mVerification = email.getVerification();
         }
@@ -68,10 +69,10 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
         }
     }
 
-    public DataPointVo.Email getEmailFromBaseData() {
+    public Email getEmailFromBaseData() {
         DataPointList base = super.getBaseData();
-        DataPointVo.Email email = (DataPointVo.Email) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Email, new DataPointVo.Email());
+        Email email = (Email) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Email, new Email());
         return email;
     }
 
@@ -85,7 +86,7 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
 
     public EmailVerificationRequestVo getEmailVerificationRequest() {
         EmailVerificationRequestVo request = new EmailVerificationRequestVo();
-        DataPointVo.Email email = getEmailFromBaseData();
+        Email email = getEmailFromBaseData();
         request.email = email.email;
 
         return request;

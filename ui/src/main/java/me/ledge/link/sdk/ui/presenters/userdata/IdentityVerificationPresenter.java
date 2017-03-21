@@ -9,8 +9,10 @@ import android.widget.DatePicker;
 import org.greenrobot.eventbus.Subscribe;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.ApiErrorVo;
-import me.ledge.link.api.vos.DataPointVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Email;
+import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
@@ -145,8 +147,8 @@ public class IdentityVerificationPresenter
             if (TextUtils.isEmpty(UserStorage.getInstance().getBearerToken())) {
                 LedgeLinkUi.createUser(mModel.getUserData());
             } else {
-                DataPointVo phone = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new DataPointVo.PhoneNumber());
-                DataPointVo email = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.Email, new DataPointVo.Email());
+                DataPointVo phone = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
+                DataPointVo email = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.Email, new Email());
 
                 if(phone.hasVerification() && email.hasVerification()) {
                     mDelegate.identityVerificationSucceeded();

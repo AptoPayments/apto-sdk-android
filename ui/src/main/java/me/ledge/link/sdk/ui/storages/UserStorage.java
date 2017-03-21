@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.ui.storages;
 
-import me.ledge.link.api.vos.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 
 /**
