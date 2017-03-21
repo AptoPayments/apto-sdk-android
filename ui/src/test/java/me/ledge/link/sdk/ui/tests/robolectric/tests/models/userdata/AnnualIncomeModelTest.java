@@ -5,8 +5,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.Employment;
 import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AnnualIncomeModel;
@@ -25,6 +27,9 @@ public class AnnualIncomeModelTest {
     private static final long EXPECTED_VALID_INCOME = 30000;
     private static final int TOO_SMALL_INCOME = -1000;
     private static final int TOO_LARGE_INCOME = MAX_INCOME * 2;
+
+    private static final int EXPECTED_EMPLOYMENT_STATUS = 1;
+    private static final int EXPECTED_SALARY_FREQUENCY = 2;
 
     private AnnualIncomeModel mModel;
 
@@ -89,6 +94,24 @@ public class AnnualIncomeModelTest {
     }
 
     /**
+     * Given an empty Model.<br />
+     * When setting base data with a valid employment status and salary frequency.<br />
+     * Then the employment status and salary frequency in the Model should be the same as in the base data.
+     */
+    @Test
+    public void settingBaseDataUpdatesEmploymentStatusAndSalaryFrequency() {
+        DataPointList base = new DataPointList();
+        Employment baseEmployment = new Employment(EXPECTED_EMPLOYMENT_STATUS, EXPECTED_SALARY_FREQUENCY, false);
+        base.add(baseEmployment);
+
+        mModel.setBaseData(base);
+
+        Assert.assertFalse("Data should still be incomplete.", mModel.hasAllData());
+        Assert.assertThat("Incorrect employment status.", mModel.getEmploymentStatus().getKey(), equalTo(baseEmployment.employmentStatus.getKey()));
+        Assert.assertThat("Incorrect salary frequency.", mModel.getSalaryFrequency().getKey(), equalTo(baseEmployment.salaryFrequency.getKey()));
+    }
+
+    /**
      * Given a Model with the income set.<br />
      * When fetching the base data.<br />
      * Then the base data should contain the same income as the Model.
@@ -98,11 +121,17 @@ public class AnnualIncomeModelTest {
         mModel.setBaseData(new DataPointList());
 
         mModel.setAnnualIncome(EXPECTED_VALID_INCOME);
+        mModel.setEmploymentStatus(new IdDescriptionPairDisplayVo(EXPECTED_EMPLOYMENT_STATUS, null));
+        mModel.setSalaryFrequency(new IdDescriptionPairDisplayVo(EXPECTED_SALARY_FREQUENCY, null));
 
         DataPointList base = mModel.getBaseData();
         Income baseIncome = (Income) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Income, new Income());
+        Employment baseEmployment = (Employment) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Employment, new Employment());
         Assert.assertThat("Incorrect income.", baseIncome.annualGrossIncome, equalTo(mModel.getAnnualIncome()));
+        Assert.assertThat("Incorrect employment status.", baseEmployment.employmentStatus, equalTo(mModel.getEmploymentStatus()));
+        Assert.assertThat("Incorrect salary frequency.", baseEmployment.salaryFrequency, equalTo(mModel.getSalaryFrequency()));
     }
 
     /**
