@@ -119,11 +119,12 @@ public class HomePresenter
     @Override
     public void nextClickHandler() {
         mView.showLoading(true);
-        onZipFieldLostFocus();
+        startZipValidation();
 
         // Store data.
         mModel.setZip(mView.getZipCode());
         mModel.setHousingType(mView.getHousingType());
+        validateData();
     }
 
     private void validateData() {
@@ -176,12 +177,15 @@ public class HomePresenter
 
     @Override
     public void onZipFieldLostFocus() {
+        startZipValidation();
+    }
+
+    private void startZipValidation() {
         Thread thread = new Thread(() -> {
             try  {
                 lookUpZipCode(mView.getZipCode());
                 mActivity.runOnUiThread(()-> {
                     mView.showLoading(false);
-                    validateData();
                 });
             } catch (Exception e) {
                 mActivity.runOnUiThread(()-> mView.displayErrorMessage(e.getMessage()));
