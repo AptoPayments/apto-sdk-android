@@ -57,6 +57,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private LinkedList mRequiredDataPointList;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
     public boolean isUpdatingProfile;
+    private DataPointList mCurrentUserDataCopy;
 
     public static synchronized  UserDataCollectorModule getInstance(Activity activity) {
         if (instance == null) {
@@ -74,6 +75,9 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     @Override
     public void initialModuleSetup() {
         mRequiredActivities.clear();
+        if(isUpdatingProfile) {
+            mCurrentUserDataCopy = new DataPointList(UserStorage.getInstance().getUserData());
+        }
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         CompletableFuture
@@ -166,9 +170,23 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             LedgeLinkUi.createUser(UserStorage.getInstance().getUserData());
         }
         else {
-            if(isUpdatingProfile) {
-                // TODO: updateProfile only if some data point has changed
-                LedgeLinkUi.updateUser(UserStorage.getInstance().getUserData());
+            if(isUpdatingProfile && !mCurrentUserDataCopy.equals(UserStorage.getInstance().getUserData())) {
+                HashMap<DataPointVo.DataPointType, List<DataPointVo>> baseDataPoints = mCurrentUserDataCopy.getDataPoints();
+                HashMap<DataPointVo.DataPointType, List<DataPointVo>> updatedDataPoints = UserStorage.getInstance().getUserData().getDataPoints();
+                DataPointList request = new DataPointList();
+
+                for(DataPointVo.DataPointType type : baseDataPoints.keySet()) {
+                    // TO DO: for now assuming only 1 DataPoint is present, will be refactored once DataPoint ID is available
+                    DataPointVo baseDataPoint = baseDataPoints.get(type).get(0);
+                    DataPointVo updatedDataPoint = updatedDataPoints.get(type).get(0);
+                    if(!baseDataPoint.equals(updatedDataPoint)) {
+                        request.add(updatedDataPoint);
+                    }
+                }
+
+                if(!request.getDataPoints().isEmpty()) {
+                    LedgeLinkUi.updateUser(request);
+                }
             }
         }
         stopModule();
