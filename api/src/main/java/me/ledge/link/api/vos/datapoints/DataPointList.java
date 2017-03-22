@@ -2,6 +2,7 @@ package me.ledge.link.api.vos.datapoints;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.rits.cloning.Cloner;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,6 +14,11 @@ public class DataPointList {
 
     public DataPointList() {
         dataPoints = new HashMap<>();
+    }
+
+    public DataPointList(DataPointList copyInstance) {
+        Cloner cloner = new Cloner();
+        this.dataPoints = cloner.deepClone(copyInstance.dataPoints);
     }
 
     public void init() {

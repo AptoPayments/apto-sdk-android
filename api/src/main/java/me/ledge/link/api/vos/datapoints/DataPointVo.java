@@ -39,6 +39,12 @@ public class DataPointVo {
         mVerified = verified;
     }
 
+    public DataPointVo(DataPointVo copy) {
+        this.mDataPointType = copy.getType();
+        this.mVerified = copy.isVerified();
+        this.mVerification = copy.getVerification();
+    }
+
     public void invalidateVerification() {
         mVerification = null;
         mVerified = false;

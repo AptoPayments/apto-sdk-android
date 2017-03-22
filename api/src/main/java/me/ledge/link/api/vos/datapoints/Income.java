@@ -24,4 +24,26 @@ public class Income extends DataPointVo {
         gsonObject.addProperty("net_monthly_income", monthlyNetIncome);
         return gsonObject;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Income income = (Income) o;
+
+        if (Double.compare(income.monthlyNetIncome, monthlyNetIncome) != 0) return false;
+        return annualGrossIncome == income.annualGrossIncome;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(monthlyNetIncome);
+        result = (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (int) (annualGrossIncome ^ (annualGrossIncome >>> 32));
+        return result;
+    }
 }

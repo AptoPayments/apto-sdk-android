@@ -43,4 +43,20 @@ public class SSN extends DataPointVo {
         }
         return outputBuffer.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SSN ssn1 = (SSN) o;
+
+        return ssn != null ? ssn.equals(ssn1.ssn) : ssn1.ssn == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return ssn != null ? ssn.hashCode() : 0;
+    }
 }

@@ -106,4 +106,28 @@ public class VerificationVo {
         gsonObject.addProperty("verification_id", String.valueOf(mVerificationId));
         return gsonObject;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        VerificationVo that = (VerificationVo) o;
+
+        if (mVerificationStatus != that.mVerificationStatus) return false;
+        if (mSecret != null ? !mSecret.equals(that.mSecret) : that.mSecret != null) return false;
+        if (mVerificationId != null ? !mVerificationId.equals(that.mVerificationId) : that.mVerificationId != null)
+            return false;
+        return mAlternateCredentials != null ? mAlternateCredentials.equals(that.mAlternateCredentials) : that.mAlternateCredentials == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = mVerificationStatus != null ? mVerificationStatus.hashCode() : 0;
+        result = 31 * result + (mSecret != null ? mSecret.hashCode() : 0);
+        result = 31 * result + (mVerificationId != null ? mVerificationId.hashCode() : 0);
+        result = 31 * result + (mAlternateCredentials != null ? mAlternateCredentials.hashCode() : 0);
+        return result;
+    }
 }

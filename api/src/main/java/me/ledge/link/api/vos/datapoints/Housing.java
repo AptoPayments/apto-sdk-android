@@ -23,4 +23,20 @@ public class Housing extends DataPointVo {
         gsonObject.addProperty("housing_type_id", housingType.getKey());
         return gsonObject;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Housing housing = (Housing) o;
+
+        return housingType != null ? housingType.equals(housing.housingType) : housing.housingType == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return housingType != null ? housingType.hashCode() : 0;
+    }
 }
