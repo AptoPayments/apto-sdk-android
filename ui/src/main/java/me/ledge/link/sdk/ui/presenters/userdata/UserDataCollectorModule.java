@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
+import android.text.TextUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -12,15 +13,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.responses.ApiErrorVo;
-import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
+import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.Command;
@@ -55,6 +56,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     public Command onBack;
     private LinkedList mRequiredDataPointList;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
+    public boolean isUpdatingProfile;
 
     public static synchronized  UserDataCollectorModule getInstance(Activity activity) {
         if (instance == null) {
@@ -71,6 +73,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void initialModuleSetup() {
+        mRequiredActivities.clear();
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         CompletableFuture
@@ -79,7 +82,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                     startActivity(PersonalInformationActivity.class);
                     return null;
                 })
-                .thenAccept(this::parseRequiredData);
+                .thenAccept(this::storeRequiredData);
     }
 
     /**
@@ -157,8 +160,43 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void identityVerificationSucceeded() {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
+        if (TextUtils.isEmpty(UserStorage.getInstance().getBearerToken())) {
+            LedgeLinkUi.createUser(UserStorage.getInstance().getUserData());
+        }
+        else {
+            if(isUpdatingProfile) {
+                // TODO: updateProfile only if some data point has changed
+                LedgeLinkUi.updateUser(UserStorage.getInstance().getUserData());
+            }
+        }
         stopModule();
     }
+
+    /**
+     * Deals with the create user API response.
+     * @param response API response.
+     */
+    @Subscribe
+    public void setCreateUserResponse(CreateUserResponseVo response) {
+        if (response != null) {
+            UserStorage.getInstance().setBearerToken(response.user_token);
+            SharedPreferencesStorage.storeUserToken(getActivity(), response.user_token);
+        }
+
+        stopModule();
+    }
+
+    /**
+     * Deals with the update user API response.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleUserDetails(UserResponseVo response) {
+        stopModule();
+    }
+
 
     @Override
     public void identityVerificationOnBackPressed() {
@@ -220,7 +258,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         onBack.execute();
     }
 
-    private void parseRequiredData(RequiredDataPointsListResponseVo requiredDataPointsList) {
+    private void storeRequiredData(RequiredDataPointsListResponseVo requiredDataPointsList) {
         UserStorage.getInstance().setRequiredData(requiredDataPointsList);
         mRequiredDataPointList = new LinkedList<>(Arrays.asList(requiredDataPointsList.data));
 
@@ -235,12 +273,11 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     private void getCurrentUserOrContinue(boolean isPOSMode) {
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
-        if(!isPOSMode && userToken != null) {
+        if (isPOSMode || userToken == null || isUpdatingProfile) {
+            compareRequiredDataPointsWithCurrent(new DataPointList());
+        } else {
             LedgeLinkUi.getApiWrapper().setBearerToken(userToken);
             LedgeLinkUi.getCurrentUser();
-        }
-        else {
-            compareRequiredDataPointsWithCurrent(new DataPointList());
         }
     }
 

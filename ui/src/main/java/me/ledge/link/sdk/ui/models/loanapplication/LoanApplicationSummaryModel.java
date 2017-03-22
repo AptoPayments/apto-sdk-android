@@ -1,5 +1,6 @@
 package me.ledge.link.sdk.ui.models.loanapplication;
 
+import android.app.Activity;
 import android.content.res.Resources;
 
 import java.util.LinkedList;
@@ -8,6 +9,7 @@ import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.Model;
@@ -37,6 +39,12 @@ public class LoanApplicationSummaryModel extends LoanAgreementModel implements A
     @Override
     public int getActivityTitleResource() {
         return R.string.loan_confirmation_label;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Class getPreviousActivity(Activity current) {
+        return OffersListActivity.class;
     }
 
     public void setRequiredData(LinkedList<RequiredDataPointVo> requiredDataPointsList) {

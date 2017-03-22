@@ -51,15 +51,20 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void showUserDataCollector() {
+        startUserDataCollectorModule(false);
+    }
+
+    private void startUserDataCollectorModule(boolean updateProfile) {
         UserDataCollectorModule mUserDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         mUserDataCollectorModule.onFinish = this::showOffersList;
         mUserDataCollectorModule.onBack = this::showLoanInfo;
+        mUserDataCollectorModule.isUpdatingProfile = updateProfile;
         startModule(mUserDataCollectorModule);
     }
 
     private void showOffersList() {
         LoanApplicationModule mLoanApplicationModule = LoanApplicationModule.getInstance(this.getActivity());
-        mLoanApplicationModule.onUpdateUserProfile = this::showUserDataCollector;
+        mLoanApplicationModule.onUpdateUserProfile = () -> startUserDataCollectorModule(true);
         mLoanApplicationModule.onBack = this::showLoanInfo;
         mLoanApplicationModule.onSelectFundingAccount = this::showFundingAccountSelector;
         startModule(mLoanApplicationModule);
