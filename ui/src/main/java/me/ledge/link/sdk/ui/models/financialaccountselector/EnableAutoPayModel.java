@@ -35,8 +35,7 @@ public class EnableAutoPayModel extends AbstractActivityModel
 
     public String getFinancialAccountInfo(Resources resources) {
         if (mFinancialAccount == null) {
-            mFinancialAccount = getLastFinancialAccount();
-            return "no account found!";
+            return "";
         }
         switch (mFinancialAccount.mAccountType) {
             case Bank:
@@ -51,18 +50,12 @@ public class EnableAutoPayModel extends AbstractActivityModel
                     return resources.getString(R.string.enable_auto_pay_virtual_card, PhoneHelperUtil.formatPhone(phoneNumber.phoneNumber));
                 }
                 return resources.getString(R.string.enable_auto_pay_card, card.lastFourDigits);
+            default:
+                return "";
         }
-        return "";
     }
 
     public void setFinancialAccount(FinancialAccountVo financialAccount) {
         this.mFinancialAccount = financialAccount;
-    }
-
-    public FinancialAccountVo getLastFinancialAccount() {
-        DataPointList userData = UserStorage.getInstance().getUserData();
-        return (FinancialAccountVo) userData.
-                getUniqueDataPoint(DataPointVo.DataPointType.FinancialAccount,
-                        new FinancialAccountVo(null, null, false));
     }
 }

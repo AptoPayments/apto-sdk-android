@@ -1,12 +1,11 @@
 package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.datapoints.Card;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddCardModel;
@@ -129,8 +128,7 @@ public class AddFinancialAccountListPresenter
         if (mView != null) {
             mView.showLoading(false);
         }
-        // TODO: it seems response is arriving empty
-        mDelegate.virtualCardIssued();
+        mDelegate.virtualCardIssued(virtualCard);
     }
 
     /**

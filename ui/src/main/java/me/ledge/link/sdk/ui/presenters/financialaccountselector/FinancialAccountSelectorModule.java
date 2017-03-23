@@ -2,8 +2,11 @@ package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
 import android.app.Activity;
 
+import java.util.List;
+
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.sdk.ui.Command;
@@ -63,9 +66,9 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     }
 
     @Override
-    public void virtualCardIssued() {
+    public void virtualCardIssued(Card virtualCard) {
         //TODO receive virtual card from API
-        //setSelectedFinancialAccount(card);
+        //setSelectedFinancialAccount(virtualCard);
         startActivity(EnableAutoPayActivity.class);
     }
 
@@ -121,8 +124,13 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     }
 
     @Override
-    public void financialAccountsReceived(DataPointList userData) {
-        UserStorage.getInstance().setUserData(userData);
+    public void financialAccountsReceived(DataPointList financialAccounts) {
+        DataPointList baseUserData = UserStorage.getInstance().getUserData();
+        List<DataPointVo> financialAccountsList = financialAccounts.getDataPointsOf(DataPointVo.DataPointType.FinancialAccount);
+        for(DataPointVo financialAccount : financialAccountsList) {
+            baseUserData.add(financialAccount);
+        }
+        UserStorage.getInstance().setUserData(baseUserData);
         showSelectFinancialAccountListSelector();
     }
 
