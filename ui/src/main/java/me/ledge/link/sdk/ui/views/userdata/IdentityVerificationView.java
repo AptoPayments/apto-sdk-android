@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
@@ -138,6 +139,16 @@ public class IdentityVerificationView
      */
     public void setBirthday(String birthday) {
         mBirthdayField.setText(birthday);
+    }
+
+    /**
+     * Shows the user's social security number with hyphens.
+     * @param ssn social security number.
+     */
+    public void setSSN(String ssn) {
+        ssn = new StringBuilder(ssn).insert(3, "-").toString();
+        ssn = new StringBuilder(ssn).insert(6, "-").toString();
+        mSocialSecurityField.setText(ssn);
     }
 
     /**

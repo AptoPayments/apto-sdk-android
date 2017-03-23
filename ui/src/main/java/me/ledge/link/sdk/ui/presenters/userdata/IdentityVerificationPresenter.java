@@ -83,6 +83,10 @@ public class IdentityVerificationPresenter
             mView.setBirthday(mModel.getFormattedBirthday());
         }
 
+        if(mModel.hasValidSsn()) {
+            mView.setSSN(mModel.getSocialSecurityNumber());
+        }
+
         int progressColor = getProgressBarColor(mActivity);
         if (progressColor != 0) {
             mView.setProgressColor(progressColor);

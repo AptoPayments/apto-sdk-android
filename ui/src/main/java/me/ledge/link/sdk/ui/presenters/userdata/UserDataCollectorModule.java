@@ -188,8 +188,8 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                     LedgeLinkUi.updateUser(request);
                 }
             }
+            stopModule();
         }
-        stopModule();
     }
 
     /**

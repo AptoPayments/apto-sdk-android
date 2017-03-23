@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import me.ledge.link.api.vos.datapoints.Birthdate;
+import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.SSN;
@@ -83,12 +84,27 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         super.setBaseData(base);
         Birthdate baseBirthdate = (Birthdate) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.BirthDate, new Birthdate());
-
         setBirthday(baseBirthdate.getDate());
+
+        SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
+        setSocialSecurityNumber(baseSSN.getSocialSecurityNumber());
     }
 
     private void setBirthday(String date) {
         mBirthday = getDateFromString(date);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public DataPointList getBaseData() {
+        DataPointList base = super.getBaseData();
+        Birthdate baseBirthdate = (Birthdate) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.BirthDate, new CreditScore());
+        baseBirthdate.setDate(getFormattedBirthday());
+
+        SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
+        baseSSN.setSocialSecurityNumber(getSocialSecurityNumber());
+        return base;
     }
 
     /**
@@ -191,7 +207,6 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     public DataPointList getUserData() {
         DataPointList data = new DataPointList();
         DataPointList base = getBaseData();
-        base.removeDataPointsOf(DataPointVo.DataPointType.FinancialAccount);
         data.setDataPoints(base.getDataPoints());
 
         SSN baseSSN = (SSN) base.getUniqueDataPoint(
