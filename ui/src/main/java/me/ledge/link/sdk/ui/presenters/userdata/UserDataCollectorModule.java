@@ -401,6 +401,10 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private boolean isCurrentPhoneVerified() {
         DataPointList currentData = UserStorage.getInstance().getUserData();
         DataPointVo currentPhone = currentData.getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, null);
+        if(isUpdatingProfile) {
+            DataPointVo basePhone = mCurrentUserDataCopy.getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, null);
+            return basePhone.equals(currentPhone);
+        }
         return currentPhone.isVerified();
     }
 
