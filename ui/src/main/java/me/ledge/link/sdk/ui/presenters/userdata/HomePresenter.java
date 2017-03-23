@@ -43,6 +43,8 @@ public class HomePresenter
     public HomePresenter(AppCompatActivity activity, HomeDelegate delegate) {
         super(activity);
         mDelegate = delegate;
+        // Load housing types list.
+        LedgeLinkUi.getHousingTypeList();
     }
 
     /**
@@ -87,15 +89,12 @@ public class HomePresenter
         mView.showLoading(true);
 
         if (mHousingTypeAdapter == null) {
-            mView.setHousingTypeAdapter(generateHousingTypeAdapter(null));
-
-            // Load housing types list.
-            LedgeLinkUi.getHousingTypeList();
+            mView.showLoading(true);
         } else {
             mView.setHousingTypeAdapter(mHousingTypeAdapter);
 
             if (mModel.hasValidHousingType()) {
-                mView.setHousingType(mHousingTypeAdapter.getPosition(mModel.getHousingType()));
+                mView.setHousingType(mModel.getHousingType().getKey());
             }
         }
 
@@ -170,7 +169,7 @@ public class HomePresenter
             mView.setHousingTypeAdapter(mHousingTypeAdapter);
 
             if (mModel.hasValidHousingType()) {
-                mView.setHousingType(mHousingTypeAdapter.getPosition(mModel.getHousingType()));
+                mView.setHousingType(mModel.getHousingType().getKey());
             }
         }
     }

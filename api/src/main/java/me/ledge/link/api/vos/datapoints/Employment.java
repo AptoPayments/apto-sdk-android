@@ -34,9 +34,9 @@ public class Employment extends DataPointVo {
 
         Employment that = (Employment) o;
 
-        if (employmentStatus != null ? !employmentStatus.equals(that.employmentStatus) : that.employmentStatus != null)
+        if (employmentStatus != null ? !employmentStatus.getKey().equals(that.employmentStatus.getKey()) : that.employmentStatus != null)
             return false;
-        return salaryFrequency != null ? salaryFrequency.equals(that.salaryFrequency) : that.salaryFrequency == null;
+        return salaryFrequency != null ? salaryFrequency.getKey().equals(that.salaryFrequency.getKey()) : that.salaryFrequency == null;
 
     }
 

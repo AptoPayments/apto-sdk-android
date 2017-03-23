@@ -79,6 +79,10 @@ public class IdentityVerificationPresenter
         super.attachView(view);
         mView.setListener(this);
 
+        if(mModel.hasValidBirthday()) {
+            mView.setBirthday(mModel.getFormattedBirthday());
+        }
+
         int progressColor = getProgressBarColor(mActivity);
         if (progressColor != 0) {
             mView.setProgressColor(progressColor);

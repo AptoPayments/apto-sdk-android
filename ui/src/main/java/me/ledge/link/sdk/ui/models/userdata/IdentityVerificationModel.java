@@ -1,14 +1,15 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.SSN;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
@@ -21,7 +22,7 @@ import ru.lanwen.verbalregex.VerbalExpression;
 public class IdentityVerificationModel extends AbstractUserDataModel implements UserDataModel {
 
     private static final int EXPECTED_SSN_LENGTH = 9; // TODO: Move to values/ints.xml?
-
+    private static final String DATE_FORMAT = "MM-dd-yyyy";
     private int mMinimumAge;
     private Date mBirthday;
     private String mSocialSecurityNumber;
@@ -43,12 +44,20 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     }
 
     /**
-     * @param birthday Date to format.
      * @return Formatted birthday.
      */
-    private String getFormattedBirthday(Date birthday) {
-        SimpleDateFormat birthdayFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.US);
-        return birthdayFormat.format(birthday);
+    public String getFormattedBirthday() {
+        SimpleDateFormat birthdayFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
+        return birthdayFormat.format(mBirthday);
+    }
+
+    public Date getDateFromString(String dateString) {
+        SimpleDateFormat birthdayFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
+        try {
+            return birthdayFormat.parse(dateString);
+        } catch (ParseException e) {
+            return null;
+        }
     }
 
     /** {@inheritDoc} */
@@ -61,6 +70,20 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     @Override
     public boolean hasAllData() {
         return hasValidBirthday() && hasValidSsn();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setBaseData(DataPointList base) {
+        super.setBaseData(base);
+        Birthdate baseBirthdate = (Birthdate) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.BirthDate, new Birthdate());
+
+        setBirthday(baseBirthdate.getDate());
+    }
+
+    private void setBirthday(String date) {
+        mBirthday = getDateFromString(date);
     }
 
     /**
@@ -173,7 +196,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         Birthdate baseBirthDate = (Birthdate) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.BirthDate,
                 new Birthdate());
-        baseBirthDate.setDate(getFormattedBirthday(getBirthday()));
+        baseBirthDate.setDate(getFormattedBirthday());
 
         return data;
     }

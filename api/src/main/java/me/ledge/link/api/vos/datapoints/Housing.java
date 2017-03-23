@@ -31,7 +31,7 @@ public class Housing extends DataPointVo {
 
         Housing housing = (Housing) o;
 
-        return housingType != null ? housingType.equals(housing.housingType) : housing.housingType == null;
+        return housingType != null ? housingType.getKey().equals(housing.housingType.getKey()) : housing.housingType == null;
 
     }
 

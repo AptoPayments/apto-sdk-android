@@ -428,6 +428,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void homeOnBackPressed() {
-        startActivity(getActivityAtPosition(HomeActivity.class, -1));
+        startActivity(PersonalInformationActivity.class);
     }
 }
