@@ -52,10 +52,15 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     }
 
     public Date getDateFromString(String dateString) {
-        SimpleDateFormat birthdayFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
-        try {
-            return birthdayFormat.parse(dateString);
-        } catch (ParseException e) {
+        if(dateString != null) {
+            SimpleDateFormat birthdayFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
+            try {
+                return birthdayFormat.parse(dateString);
+            } catch (ParseException e) {
+                return null;
+            }
+        }
+        else {
             return null;
         }
     }

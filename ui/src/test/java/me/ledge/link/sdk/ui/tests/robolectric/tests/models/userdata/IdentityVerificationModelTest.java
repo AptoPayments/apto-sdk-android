@@ -147,12 +147,12 @@ public class IdentityVerificationModelTest {
         PhoneNumberVo phoneNumber = new PhoneNumberVo("", false);
         phoneNumber.setPhone(phone);
         base.add(phoneNumber);
+        mModel.setBaseData(base);
 
         Calendar birthday = getValidBirthday();
         mModel.setBirthday(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DATE));
         mModel.setSocialSecurityNumber(EXPECTED_SSN);
 
-        mModel.setBaseData(base);
         DataPointList apiData = mModel.getUserData();
         PhoneNumberVo apiPhone = (PhoneNumberVo) apiData.getUniqueDataPoint(
                 DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
