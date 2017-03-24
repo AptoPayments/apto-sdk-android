@@ -1,20 +1,26 @@
 package me.ledge.link.sdk.ui.views.userdata;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
  * Displays the loan amount screen.
@@ -37,6 +43,9 @@ public class LoanAmountView
 
     private Spinner mPurposeSpinner;
     private TextView mPurposeErrorField;
+
+    private TextView mDisclaimersHeader;
+    private TextView mDisclaimersField;
 
     /**
      * @see UserDataView#UserDataView
@@ -65,10 +74,19 @@ public class LoanAmountView
         mAmountSlider = (DiscreteSeekBar) findViewById(R.id.dsb_loan_amount);
         mPurposeSpinner = (Spinner) findViewById(R.id.sp_loan_purpose);
         mPurposeErrorField = (TextView) findViewById(R.id.tv_loan_purpose_error);
+        mDisclaimersHeader = (TextView) findViewById(R.id.tv_disclaimers_header);
+        mDisclaimersField = (TextView) findViewById(R.id.tv_disclaimers_body);
+        mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
 
         setColors(UIStorage.getInstance().getPrimaryColor());
         showLoading(false);
         updatePurposeError(false);
+        setToolbarIcon();
+    }
+
+    private void setToolbarIcon() {
+        Drawable drawable = ContextCompat.getDrawable(getContext(),R.drawable.ic_action_update_profile);
+        getToolbar().setOverflowIcon(drawable);
     }
 
     private void setColors(int color) {
@@ -166,5 +184,24 @@ public class LoanAmountView
     @Override
     public void showLoading(boolean show) {
         mLoadingView.showLoading(show);
+    }
+
+    public void showGetOffersButtonAndDisclaimers(boolean show) {
+        if(show) {
+            mNextButton.setVisibility(VISIBLE);
+            mDisclaimersHeader.setVisibility(VISIBLE);
+            mDisclaimersField.setVisibility(VISIBLE);
+            mStepper.setVisibility(GONE);
+        }
+        else {
+            mNextButton.setVisibility(GONE);
+            mDisclaimersHeader.setVisibility(GONE);
+            mDisclaimersField.setVisibility(GONE);
+            getToolbar().setOverflowIcon(null);
+        }
+    }
+
+    public void setDisclaimers(String disclaimers) {
+        mDisclaimersField.setText(Html.fromHtml(disclaimers));
     }
 }

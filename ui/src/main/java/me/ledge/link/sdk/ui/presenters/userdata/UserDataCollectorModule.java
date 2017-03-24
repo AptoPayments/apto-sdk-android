@@ -54,6 +54,8 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private static UserDataCollectorModule instance;
     public Command onFinish;
     public Command onBack;
+    public Command onUserIsLoggedIn;
+    public Command onUserNotLoggedIn;
     private LinkedList mRequiredDataPointList;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
     public boolean isUpdatingProfile;
@@ -83,7 +85,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getRequiredUserData())
                 .exceptionally(ex -> {
-                    startActivity(PersonalInformationActivity.class);
+                    stopModule();
                     return null;
                 })
                 .thenAccept(this::storeRequiredData);
@@ -121,7 +123,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        startActivity(PersonalInformationActivity.class);
+        stopModule();
     }
 
     @Override
@@ -283,7 +285,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getPOSMode())
                 .exceptionally(ex -> {
-                    startActivity(PersonalInformationActivity.class);
+                    stopModule();
                     return null;
                 })
                 .thenAccept(this::getCurrentUserOrContinue);
@@ -320,7 +322,11 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     private void startModule() {
         if(mRequiredActivities.isEmpty()) {
-            stopModule();
+            LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+            onUserIsLoggedIn.execute();
+        }
+        else if(onUserNotLoggedIn != null) {
+            onUserNotLoggedIn.execute();
         }
         else {
             startActivity(mRequiredActivities.get(0));

@@ -148,7 +148,7 @@ public class OffersListPresenter
     /** {@inheritDoc} */
     @Override
     public void updateClickedHandler() {
-        mDelegate.onUpdateUserProfile();
+        mDelegate.onUpdateLoan();
     }
 
     /** {@inheritDoc} */
@@ -308,7 +308,7 @@ public class OffersListPresenter
 
         int id = item.getItemId();
         if (id == R.id.menu_update_profile) {
-            updateClickedHandler();
+            mDelegate.onUpdateUserProfile();
         } else if (id == R.id.menu_refresh) {
             reloadOffers();
         }  else if (id == R.id.menu_info) {
