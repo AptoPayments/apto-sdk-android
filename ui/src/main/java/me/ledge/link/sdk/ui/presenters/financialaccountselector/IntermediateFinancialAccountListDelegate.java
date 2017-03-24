@@ -8,5 +8,5 @@ import me.ledge.link.api.vos.datapoints.DataPointList;
 public interface IntermediateFinancialAccountListDelegate {
     void onIntermediateFinancialAccountListBackPressed();
     void noFinancialAccountsReceived();
-    void financialAccountsReceived(DataPointList userData);
+    void financialAccountsReceived(DataPointList financialAccounts);
 }
