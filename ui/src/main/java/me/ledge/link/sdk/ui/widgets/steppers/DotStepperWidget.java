@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
@@ -23,7 +22,6 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
     private LinearLayout mDotsHolder;
     private StepperListener mListener;
 
-    private int mDotDisabledResourceId;
     private int mDotEnabledResourceId;
 
     /**
@@ -49,7 +47,6 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
      */
     private void init() {
         ResourceUtil util = new ResourceUtil();
-        mDotDisabledResourceId = util.getResourceIdForAttribute(getContext(), R.attr.llsdk_stepper_dotDisabled);
         mDotEnabledResourceId = util.getResourceIdForAttribute(getContext(), R.attr.llsdk_stepper_dotEnabled);
     }
 
@@ -99,12 +96,10 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
 
         for (int i = 0; i < total; i++) {
             view = new ImageView(getContext());
+            view.setImageDrawable(getResources().getDrawable(mDotEnabledResourceId));
 
             if (i == position) {
-                view.setImageDrawable(getResources().getDrawable(mDotEnabledResourceId));
                 view.setColorFilter(UIStorage.getInstance().getPrimaryColor());
-            } else {
-                view.setImageDrawable(getResources().getDrawable(mDotDisabledResourceId));
             }
 
             mDotsHolder.addView(view);
@@ -116,25 +111,6 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
     protected void onFinishInflate() {
         super.onFinishInflate();
         findAllViews();
-        setColors();
-    }
-
-    private void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
-        setButtonColor(mBackButton, color);
-        setButtonColor(mNextButton, color);
-    }
-
-    private void setButtonColor(LinearLayout button, int color) {
-        for(int i=0; i<button.getChildCount(); i++) {
-            View v = button.getChildAt(i);
-            if(v instanceof ImageView) {
-                ((ImageView) v).setColorFilter(color);
-            }
-            if(v instanceof TextView) {
-                ((TextView) v).setTextColor(color);
-            }
-        }
     }
 
     /** {@inheritDoc} */
