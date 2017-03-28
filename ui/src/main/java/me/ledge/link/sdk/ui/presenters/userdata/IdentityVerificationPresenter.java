@@ -14,6 +14,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
@@ -83,8 +84,11 @@ public class IdentityVerificationPresenter
             mView.setBirthday(mModel.getFormattedBirthday());
         }
 
-        if(mModel.hasValidSsn()) {
+        if(UserStorage.getInstance().getBearerToken() != null) {
             mView.setSSN(mModel.getSocialSecurityNumber());
+            mView.setButtonText(mActivity.getResources().getString(R.string.id_verification_update_profile_button));
+            mActivity.getSupportActionBar().setTitle(mActivity.getResources().getString(R.string.id_verification_update_profile_title));
+            mView.showDisclaimers(false);
         }
 
         int progressColor = getProgressBarColor(mActivity);
@@ -133,15 +137,26 @@ public class IdentityVerificationPresenter
     @Override
     public void nextClickHandler() {
         // Validate input.
-        mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
+        if(hasUpdatedSSN()) {
+            mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
+            mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
+        }
+        else {
+            if(!mModel.hasValidSsn() || mModel.isSSNMasked()) {
+                mModel.setSocialSecurityNumber(null);
+            }
+        }
 
         mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
-        mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
 
         if (mModel.hasAllData()) {
             super.saveData();
             mDelegate.identityVerificationSucceeded();
         }
+    }
+
+    private boolean hasUpdatedSSN() {
+        return !mView.getSocialSecurityNumber().equals(mModel.getSocialSecurityNumber());
     }
 
     /** {@inheritDoc} */

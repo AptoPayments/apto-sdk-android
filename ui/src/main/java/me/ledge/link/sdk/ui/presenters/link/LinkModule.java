@@ -23,6 +23,7 @@ public class LinkModule extends LedgeBaseModule {
 
     @Override
     public void initialModuleSetup() {
+        mIsUserLoggedIn = false;
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getSkipLinkDisclaimer())
                 .exceptionally(ex -> {
@@ -41,6 +42,7 @@ public class LinkModule extends LedgeBaseModule {
 
     private void showLoanInfo() {
         LoanInfoModule loanInfoModule = LoanInfoModule.getInstance(this.getActivity());
+        loanInfoModule.isUserLoggedIn = mIsUserLoggedIn;
         if(mIsUserLoggedIn) {
             loanInfoModule.onGetOffers = this::showOffersList;
             loanInfoModule.onFinish = this::showOffersList;

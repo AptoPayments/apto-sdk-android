@@ -99,6 +99,8 @@
     <string name="id_verification_disclaimer">Your information is private and secure.</string>
     <string name="id_verification_button_next">GET OFFERS</string>
     <string name="id_verification_toast_api_error" formatted="false">Error: %s</string>
+    <string name="id_verification_update_profile_button">UPDATE PROFILE</string>
+    <string name="id_verification_update_profile_title">Update Profile</string>
 
     <!-- Offers List -->
     <string name="offers_list_label">Loan offers</string>

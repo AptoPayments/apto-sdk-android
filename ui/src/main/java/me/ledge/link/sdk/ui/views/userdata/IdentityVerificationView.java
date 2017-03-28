@@ -44,6 +44,8 @@ public class IdentityVerificationView
     private TextInputLayout mSocialSecurityWrapper;
     private SsnEditText mSocialSecurityField;
 
+    private TextView mDisclaimer;
+    private TextView mDisclaimersHeader;
     private TextView mDisclaimersField;
 
     private LoadingView mLoadingView;
@@ -84,6 +86,8 @@ public class IdentityVerificationView
         mSocialSecurityWrapper = (TextInputLayout) findViewById(R.id.til_social_security);
         mSocialSecurityField = (SsnEditText) findViewById(R.id.et_social_security);
 
+        mDisclaimer = (TextView) findViewById(R.id.tv_security);
+        mDisclaimersHeader = (TextView) findViewById(R.id.tv_disclaimers_header);
         mDisclaimersField = (TextView) findViewById(R.id.tv_disclaimers_body);
         mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -96,6 +100,7 @@ public class IdentityVerificationView
     protected void setupListeners() {
         super.setupListeners();
         mBirthdayButton.setOnClickListener(this);
+        mSocialSecurityField.setOnClickListener(this);
     }
 
     /** {@inheritDoc} */
@@ -177,5 +182,22 @@ public class IdentityVerificationView
     @Override
     public void showLoading(boolean show) {
         mLoadingView.showLoading(show);
+    }
+
+    public void setButtonText(String buttonText) {
+        super.mNextButton.setText(buttonText);
+    }
+
+    public void showDisclaimers(boolean show) {
+        if(show) {
+            mDisclaimer.setVisibility(VISIBLE);
+            mDisclaimersHeader.setVisibility(VISIBLE);
+            mDisclaimersField.setVisibility(VISIBLE);
+        }
+        else {
+            mDisclaimer.setVisibility(GONE);
+            mDisclaimersHeader.setVisibility(GONE);
+            mDisclaimersField.setVisibility(GONE);
+        }
     }
 }

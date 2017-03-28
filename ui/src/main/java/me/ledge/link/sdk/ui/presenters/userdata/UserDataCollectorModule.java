@@ -128,17 +128,17 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void phoneVerificationSucceeded(DataPointVo phone) {
-        if(phone.getVerification().getAlternateEmailCredentials() != null) {
+        if(!isCurrentEmailVerified() && isEmailVerificationRequired(phone)) {
             startActivity(EmailVerificationActivity.class);
         }
         else {
-            startActivity(getActivityAtPosition(PhoneVerificationActivity.class, 1));
+            startActivity(getActivityAtPosition(PersonalInformationActivity.class, 1));
         }
     }
 
     @Override
     public void phoneVerificationOnBackPressed() {
-        startActivity(getActivityAtPosition(PhoneVerificationActivity.class, -1));
+        startActivity(PersonalInformationActivity.class);
     }
 
     @Override
@@ -156,6 +156,16 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             else {
                 stopModule();
             }
+        }
+    }
+
+    @Override
+    public void startActivity(Class activity) {
+        if(activity == null) {
+            stopModule();
+        }
+        else {
+            super.startActivity(activity);
         }
     }
 
@@ -189,8 +199,10 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                 if(!request.getDataPoints().isEmpty()) {
                     LedgeLinkUi.updateUser(request);
                 }
+                else {
+                    stopModule();
+                }
             }
-            stopModule();
         }
     }
 
@@ -265,11 +277,11 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void personalInformationStored() {
-        if(isPhoneVerificationRequired() && !isCurrentPhoneVerified()) {
+        if(!isCurrentPhoneVerified() && isPhoneVerificationRequired()) {
             startActivity(PhoneVerificationActivity.class);
         }
         else {
-            startActivity(HomeActivity.class);
+            startActivity(getActivityAtPosition(PersonalInformationActivity.class, 1));
         }
     }
 
@@ -321,21 +333,29 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     private void startModule() {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+
         if(mRequiredActivities.isEmpty()) {
-            LedgeLinkSdk.getResponseHandler().unsubscribe(this);
             onUserIsLoggedIn.execute();
         }
-        else if(onUserNotLoggedIn != null) {
-            onUserNotLoggedIn.execute();
-        }
         else {
-            startActivity(mRequiredActivities.get(0));
+            if(onUserNotLoggedIn != null) {
+                onUserNotLoggedIn.execute();
+            }
+            else {
+                startActivity(mRequiredActivities.get(0));
+            }
         }
     }
 
     private void stopModule() {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        onFinish.execute();
+        if(isUpdatingProfile) {
+            onBack.execute();
+        }
+        else {
+            onFinish.execute();
+        }
     }
 
     private void fillRequiredActivitiesList() {
@@ -346,9 +366,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                 }
                 if(requiredDataPointVo.type == 2) {
                     addRequiredActivity(PersonalInformationActivity.class);
-                    if(requiredDataPointVo.verificationRequired) {
-                        addRequiredActivity(PhoneVerificationActivity.class);
-                    }
                 }
                 if(requiredDataPointVo.type == 3) {
                     addRequiredActivity(PersonalInformationActivity.class);
@@ -412,6 +429,26 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             return basePhone.equals(currentPhone);
         }
         return currentPhone.isVerified();
+    }
+
+    private boolean isEmailVerificationRequired(DataPointVo phone) {
+        boolean isVerificationRequired = false;
+        for (RequiredDataPointVo requiredDataPointVo : (Iterable<RequiredDataPointVo>) mRequiredDataPointList) {
+            if (requiredDataPointVo.type == 3 && requiredDataPointVo.verificationRequired) {
+                isVerificationRequired = true;
+            }
+        }
+        return isVerificationRequired && (phone.getVerification().getAlternateEmailCredentials()!=null);
+    }
+
+    private boolean isCurrentEmailVerified() {
+        DataPointList currentData = UserStorage.getInstance().getUserData();
+        DataPointVo currentEmail = currentData.getUniqueDataPoint(DataPointVo.DataPointType.Email, null);
+        if(isUpdatingProfile) {
+            DataPointVo baseEmail = mCurrentUserDataCopy.getUniqueDataPoint(DataPointVo.DataPointType.Email, null);
+            return baseEmail.equals(currentEmail);
+        }
+        return currentEmail.isVerified();
     }
 
     public DataPointList getLoginData() {

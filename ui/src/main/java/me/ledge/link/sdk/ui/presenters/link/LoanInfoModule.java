@@ -17,6 +17,7 @@ public class LoanInfoModule extends LedgeBaseModule implements LoanDataDelegate 
     public Command onGetOffers;
     public Command onUpdateProfile;
     public Command onBack;
+    public boolean isUserLoggedIn;
 
 
     public static synchronized  LoanInfoModule getInstance(Activity activity) {

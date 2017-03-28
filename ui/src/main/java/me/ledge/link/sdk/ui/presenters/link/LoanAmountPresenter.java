@@ -13,10 +13,10 @@ import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.userdata.LoanAmountView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
@@ -82,7 +82,7 @@ public class LoanAmountPresenter
     /** {@inheritDoc} */
     @Override
     protected StepperConfiguration getStepperConfig() {
-        boolean enableNextButton = UserStorage.getInstance().getBearerToken() == null;
+        boolean enableNextButton = !((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).isUserLoggedIn;
         return new StepperConfiguration(TOTAL_STEPS, 0, true, enableNextButton);
     }
 
@@ -124,8 +124,7 @@ public class LoanAmountPresenter
 
         mView.setListener(this);
         mView.showLoading(true);
-
-        if(UserStorage.getInstance().getBearerToken() != null) {
+        if(((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).isUserLoggedIn) {
             mView.showGetOffersButtonAndDisclaimers(true);
             if (mDisclaimersText == null) {
                 mView.showLoading(true);

@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.models.userdata;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -44,6 +45,13 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         mSocialSecurityNumber = null;
     }
 
+    private String getMaskedSSN() {
+        final char DOT = '\u2022';
+        char[] mask = new char[EXPECTED_SSN_LENGTH];
+        Arrays.fill(mask, DOT);
+        return new String(mask);
+    }
+
     /**
      * @return Formatted birthday.
      */
@@ -75,7 +83,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return hasValidBirthday() && hasValidSsn();
+        return hasValidBirthday();
     }
 
     /** {@inheritDoc} */
@@ -85,9 +93,13 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         Birthdate baseBirthdate = (Birthdate) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.BirthDate, new Birthdate());
         setBirthday(baseBirthdate.getDate());
-
         SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
-        setSocialSecurityNumber(baseSSN.getSocialSecurityNumber());
+        if(baseSSN.getSocialSecurityNumber() == null) {
+            mSocialSecurityNumber = getMaskedSSN();
+        }
+        else {
+            setSocialSecurityNumber(baseSSN.getSocialSecurityNumber());
+        }
     }
 
     private void setBirthday(String date) {
@@ -198,6 +210,10 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      */
     public boolean hasValidSsn() {
         return getSocialSecurityNumber() != null;
+    }
+
+    public boolean isSSNMasked() {
+        return mSocialSecurityNumber.equals(getMaskedSSN());
     }
 
     /**
