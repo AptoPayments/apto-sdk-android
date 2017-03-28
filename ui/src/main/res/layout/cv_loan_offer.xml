@@ -28,6 +28,7 @@
 
                 <TextView
                         android:id="@+id/tv_lender"
+                        android:paddingBottom="2dp"
                         style="?attr/llsdk_loanOfferSummary_headerStyle" />
 
                 <TextView
