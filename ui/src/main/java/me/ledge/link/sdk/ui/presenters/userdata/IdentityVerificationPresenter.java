@@ -10,11 +10,11 @@ import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
@@ -83,9 +83,14 @@ public class IdentityVerificationPresenter
         if(mModel.hasValidBirthday()) {
             mView.setBirthday(mModel.getFormattedBirthday());
         }
-
-        if(UserStorage.getInstance().getBearerToken() != null) {
+        if(mModel.hasValidSsn()) {
             mView.setSSN(mModel.getSocialSecurityNumber());
+        }
+
+        if(((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile) {
+            if(mView.getSocialSecurityNumber().isEmpty()) {
+                mView.setSSN(mModel.getMaskedSSN());
+            }
             mView.setButtonText(mActivity.getResources().getString(R.string.id_verification_update_profile_button));
             mActivity.getSupportActionBar().setTitle(mActivity.getResources().getString(R.string.id_verification_update_profile_title));
             mView.showDisclaimers(false);
@@ -137,26 +142,31 @@ public class IdentityVerificationPresenter
     @Override
     public void nextClickHandler() {
         // Validate input.
-        if(hasUpdatedSSN()) {
-            mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
-            mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
-        }
-        else {
-            if(!mModel.hasValidSsn() || mModel.isSSNMasked()) {
-                mModel.setSocialSecurityNumber(null);
-            }
-        }
-
         mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
 
-        if (mModel.hasAllData()) {
-            super.saveData();
-            mDelegate.identityVerificationSucceeded();
+        if (((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
+                && !userHasUpdatedSSN()) {
+            if (mModel.hasValidBirthday()) {
+                saveDataAndExit();
+            }
+        }
+        else {
+            mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
+            mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
+            if (mModel.hasAllData()) {
+                saveDataAndExit();
+            }
         }
     }
 
-    private boolean hasUpdatedSSN() {
-        return !mView.getSocialSecurityNumber().equals(mModel.getSocialSecurityNumber());
+    private boolean userHasUpdatedSSN() {
+        return !mView.getSocialSecurityNumber().equals(mModel.getSocialSecurityNumber()) &&
+                !mView.getSocialSecurityNumber().equals(mModel.getMaskedSSN());
+    }
+
+    private void saveDataAndExit() {
+        super.saveData();
+        mDelegate.identityVerificationSucceeded();
     }
 
     /** {@inheritDoc} */

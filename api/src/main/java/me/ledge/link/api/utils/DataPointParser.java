@@ -48,6 +48,7 @@ public class DataPointParser implements JsonDeserializer<DataPointVo> {
                 return new Birthdate(jObject.get("date").getAsString(),
                         jObject.get("verified").getAsBoolean());
             case "ssn":
+                // Temporary patch until the server doesn't return the SSN datapoint
                 return new SSN();
             case "address":
                 return new Address(jObject.get("address").getAsString(),

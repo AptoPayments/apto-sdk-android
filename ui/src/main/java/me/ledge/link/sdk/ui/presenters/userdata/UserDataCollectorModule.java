@@ -54,8 +54,8 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private static UserDataCollectorModule instance;
     public Command onFinish;
     public Command onBack;
-    public Command onUserIsLoggedIn;
-    public Command onUserNotLoggedIn;
+    public Command onUserDoesNotHaveAllRequiredData;
+    public Command onUserHasAllRequiredData;
     private LinkedList mRequiredDataPointList;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
     public boolean isUpdatingProfile;
@@ -77,9 +77,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     @Override
     public void initialModuleSetup() {
         mRequiredActivities.clear();
-        if(isUpdatingProfile) {
-            mCurrentUserDataCopy = new DataPointList(UserStorage.getInstance().getUserData());
-        }
+        mCurrentUserDataCopy = new DataPointList(UserStorage.getInstance().getUserData());
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         CompletableFuture
@@ -336,11 +334,11 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
 
         if(mRequiredActivities.isEmpty()) {
-            onUserIsLoggedIn.execute();
+            onUserDoesNotHaveAllRequiredData.execute();
         }
         else {
-            if(onUserNotLoggedIn != null) {
-                onUserNotLoggedIn.execute();
+            if(onUserHasAllRequiredData != null) {
+                onUserHasAllRequiredData.execute();
             }
             else {
                 startActivity(mRequiredActivities.get(0));

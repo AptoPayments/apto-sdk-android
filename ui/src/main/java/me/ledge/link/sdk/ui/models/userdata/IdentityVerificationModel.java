@@ -45,7 +45,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         mSocialSecurityNumber = null;
     }
 
-    private String getMaskedSSN() {
+    public String getMaskedSSN() {
         final char DOT = '\u2022';
         char[] mask = new char[EXPECTED_SSN_LENGTH];
         Arrays.fill(mask, DOT);
@@ -83,7 +83,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return hasValidBirthday();
+        return hasValidBirthday() && hasValidSsn();
     }
 
     /** {@inheritDoc} */
@@ -94,10 +94,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
                 DataPointVo.DataPointType.BirthDate, new Birthdate());
         setBirthday(baseBirthdate.getDate());
         SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
-        if(baseSSN.getSocialSecurityNumber() == null) {
-            mSocialSecurityNumber = getMaskedSSN();
-        }
-        else {
+        if(baseSSN.getSocialSecurityNumber() != null) {
             setSocialSecurityNumber(baseSSN.getSocialSecurityNumber());
         }
     }
@@ -115,7 +112,12 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         baseBirthdate.setDate(getFormattedBirthday());
 
         SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
-        baseSSN.setSocialSecurityNumber(getSocialSecurityNumber());
+        if(isSSNMasked()) {
+            baseSSN.setSocialSecurityNumber(null);
+        }
+        else {
+            baseSSN.setSocialSecurityNumber(getSocialSecurityNumber());
+        }
         return base;
     }
 
@@ -212,8 +214,8 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         return getSocialSecurityNumber() != null;
     }
 
-    public boolean isSSNMasked() {
-        return mSocialSecurityNumber.equals(getMaskedSSN());
+    private boolean isSSNMasked() {
+        return getMaskedSSN().equals(mSocialSecurityNumber);
     }
 
     /**

@@ -93,7 +93,7 @@ public class IdentityVerificationModelTest {
         mModel.setBirthday(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DATE));
 
         Assert.assertTrue("Birthday should be valid.", mModel.hasValidBirthday());
-        Assert.assertTrue("There shouldn't be missing data.", mModel.hasAllData());
+        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
     }
 
     /**

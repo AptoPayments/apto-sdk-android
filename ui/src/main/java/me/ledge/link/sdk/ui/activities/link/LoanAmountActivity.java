@@ -5,13 +5,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.UserDataActivity;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.link.LoanAmountPresenter;
 import me.ledge.link.sdk.ui.presenters.link.LoanDataDelegate;
+import me.ledge.link.sdk.ui.presenters.link.LoanInfoModule;
 import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
-import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.userdata.LoanAmountView;
 
 /**
@@ -41,7 +42,7 @@ public class LoanAmountActivity
     /** {@inheritDoc} */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(!enableUpdateProfile()) {
+        if(!((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData) {
             return false;
         }
         MenuInflater inflater = getMenuInflater();
@@ -54,9 +55,5 @@ public class LoanAmountActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return mPresenter.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
-    }
-
-    private boolean enableUpdateProfile() {
-        return UserStorage.getInstance().getBearerToken() != null;
     }
 }

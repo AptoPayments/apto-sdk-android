@@ -82,7 +82,7 @@ public class LoanAmountPresenter
     /** {@inheritDoc} */
     @Override
     protected StepperConfiguration getStepperConfig() {
-        boolean enableNextButton = !((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).isUserLoggedIn;
+        boolean enableNextButton = !((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData;
         return new StepperConfiguration(TOTAL_STEPS, 0, true, enableNextButton);
     }
 
@@ -124,7 +124,7 @@ public class LoanAmountPresenter
 
         mView.setListener(this);
         mView.showLoading(true);
-        if(((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).isUserLoggedIn) {
+        if(((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData) {
             mView.showGetOffersButtonAndDisclaimers(true);
             if (mDisclaimersText == null) {
                 mView.showLoading(true);

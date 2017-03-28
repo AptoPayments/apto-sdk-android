@@ -19,11 +19,11 @@ public class LinkModule extends LedgeBaseModule {
         super(activity);
     }
     private boolean mSkipDisclaimers;
-    private boolean mIsUserLoggedIn;
+    private boolean mUserHasAllRequiredData;
 
     @Override
     public void initialModuleSetup() {
-        mIsUserLoggedIn = false;
+        mUserHasAllRequiredData = false;
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getSkipLinkDisclaimer())
                 .exceptionally(ex -> {
@@ -42,8 +42,8 @@ public class LinkModule extends LedgeBaseModule {
 
     private void showLoanInfo() {
         LoanInfoModule loanInfoModule = LoanInfoModule.getInstance(this.getActivity());
-        loanInfoModule.isUserLoggedIn = mIsUserLoggedIn;
-        if(mIsUserLoggedIn) {
+        loanInfoModule.userHasAllRequiredData = mUserHasAllRequiredData;
+        if(mUserHasAllRequiredData) {
             loanInfoModule.onGetOffers = this::showOffersList;
             loanInfoModule.onFinish = this::showOffersList;
             loanInfoModule.onUpdateProfile = () -> startUserDataCollectorModule(true);
@@ -66,7 +66,7 @@ public class LinkModule extends LedgeBaseModule {
 
     private void startUserDataCollectorModule(boolean updateProfile) {
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
-        userDataCollectorModule.onUserNotLoggedIn = null;
+        userDataCollectorModule.onUserHasAllRequiredData = null;
         userDataCollectorModule.onFinish = this::showOffersList;
         userDataCollectorModule.onBack = this::showLoanInfo;
         userDataCollectorModule.isUpdatingProfile = updateProfile;
@@ -74,7 +74,7 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void showOffersList() {
-        mIsUserLoggedIn = true;
+        mUserHasAllRequiredData = true;
         LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(this.getActivity());
         loanApplicationModule.onUpdateUserProfile = () -> startUserDataCollectorModule(true);
         loanApplicationModule.onBack = this::showLoanInfo;
@@ -94,18 +94,18 @@ public class LinkModule extends LedgeBaseModule {
 
     private void skipLinkDisclaimerRetrieved(boolean skipLinkDisclaimer) {
         mSkipDisclaimers = skipLinkDisclaimer;
-        askDataCollectorIfUserIsLoggedIn();
+        askDataCollectorIfUserHasAllRequiredData();
     }
 
-    private void askDataCollectorIfUserIsLoggedIn() {
+    private void askDataCollectorIfUserHasAllRequiredData() {
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         userDataCollectorModule.onFinish = this::showOrSkipDisclaimers;
-        userDataCollectorModule.onUserNotLoggedIn = () -> {
-            mIsUserLoggedIn = false;
+        userDataCollectorModule.onUserHasAllRequiredData = () -> {
+            mUserHasAllRequiredData = false;
             showOrSkipDisclaimers();
         };
-        userDataCollectorModule.onUserIsLoggedIn = () -> {
-            mIsUserLoggedIn = true;
+        userDataCollectorModule.onUserDoesNotHaveAllRequiredData = () -> {
+            mUserHasAllRequiredData = true;
             showOrSkipDisclaimers();
         };
         startModule(userDataCollectorModule);
