@@ -134,7 +134,6 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
 
     private void setColors() {
         int color = UIStorage.getInstance().getPrimaryColor();
-        mLenderNameField.setTextColor(color);
         mApplyButton.setTextColor(color);
     }
 
