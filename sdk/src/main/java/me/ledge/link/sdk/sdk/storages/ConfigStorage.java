@@ -204,6 +204,24 @@ public class ConfigStorage {
         return (boolean) getResultFromFuture(f);
     }
 
+    public synchronized String getOffersListStyle() {
+        CompletableFuture<String> f = CompletableFuture.supplyAsync(() -> {
+            if(isConfigCached()) {
+                return mLinkConfig.offerListStyle;
+            }
+            else {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.offerListStyle;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        return (String) getResultFromFuture(f);
+    }
+
     private Object getResultFromFuture(CompletableFuture future) {
         try {
             return future.get();

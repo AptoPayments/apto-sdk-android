@@ -71,6 +71,10 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
+            android:name="me.ledge.link.sdk.ui.activities.offers.OffersCarouselActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
                 android:name="me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 

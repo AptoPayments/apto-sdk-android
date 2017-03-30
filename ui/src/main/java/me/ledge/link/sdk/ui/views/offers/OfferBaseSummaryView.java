@@ -6,58 +6,26 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import me.ledge.common.views.RowView;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
-import me.ledge.link.sdk.ui.storages.UIStorage;
 
 /**
  * Displays an offer summary.
  * @author wijnand
  */
-public class OfferSummaryView extends CardView implements RowView<OfferSummaryModel>, View.OnClickListener {
 
-    /**
-     * Callbacks that this View will invoke.
-     */
-    public interface ViewListener {
-        /**
-         * Called when the "apply now" button has been clicked.
-         * @param offer The associated loan offer.
-         */
-        void applyClickHandler(OfferSummaryModel offer);
-
-        void moreInfoClickHandler(OfferSummaryModel offer);
-    }
-
-    private TextView mLenderNameField;
-    private ImageView mLenderLogo;
-
-    private TextView mInterestField;
-    private TextView mAmountField;
-    private TextView mMonthlyPaymentField;
-    private TextView mMoreInfoButton;
-    private TextView mApplyButton;
-
+abstract class OfferBaseSummaryView extends CardView implements RowView<OfferSummaryModel>,View.OnClickListener {
+    TextView mLenderNameField;
+    ImageView mLenderLogo;
+    TextView mInterestField;
+    TextView mAmountField;
+    TextView mMonthlyPaymentField;
+    TextView mMoreInfoButton;
+    protected TextView mApplyButton;
     private ViewListener mListener;
-    private OfferSummaryModel mData;
-
-    /**
-     * @see CardView#CardView
-     * @param context See {@link CardView#CardView}.
-     */
-    public OfferSummaryView(Context context) {
-        super(context);
-    }
-
-    /**
-     * @see CardView#CardView
-     * @param context See {@link CardView#CardView}.
-     * @param attrs See {@link CardView#CardView}.
-     */
-    public OfferSummaryView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+    OfferSummaryModel mData;
 
     /**
      * @see CardView#CardView
@@ -65,8 +33,25 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
      * @param attrs See {@link CardView#CardView}.
      * @param defStyleAttr See {@link CardView#CardView}.
      */
-    public OfferSummaryView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public OfferBaseSummaryView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    /**
+     * @see CardView#CardView
+     * @param context See {@link CardView#CardView}.
+     * @param attrs See {@link CardView#CardView}.
+     */
+    public OfferBaseSummaryView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    /**
+     * @see CardView#CardView
+     * @param context See {@link CardView#CardView}.
+     */
+    public OfferBaseSummaryView(Context context) {
+        super(context);
     }
 
     /**
@@ -92,37 +77,6 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
         mMoreInfoButton.setOnClickListener(this);
     }
 
-    /**
-     * Updates all fields with the offer data OR empty Strings when no data is set.
-     */
-    private void updateAllFields() {
-        mMoreInfoButton.setVisibility(GONE);
-
-        if (mData == null) {
-            mLenderNameField.setText("");
-            mLenderLogo.setImageResource(android.R.color.transparent);
-            mInterestField.setText("");
-            mAmountField.setText("");
-            mMonthlyPaymentField.setText("");
-        } else {
-            mLenderNameField.setText(mData.getLenderName());
-            mInterestField.setText(mData.getInterestText());
-            mAmountField.setText(mData.getAmountText());
-            mMonthlyPaymentField.setText(mData.getMonthlyPaymentText());
-
-            if (mData.hasImageLoader() && mData.getLenderImage() != null) {
-                mLenderLogo.setVisibility(VISIBLE);
-                mData.getImageLoader().load(mData.getLenderImage(), mLenderLogo);
-            } else {
-                mLenderLogo.setVisibility(GONE);
-            }
-
-            if (mData.hasDisclaimer()) {
-                mMoreInfoButton.setVisibility(VISIBLE);
-            }
-        }
-    }
-
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
@@ -130,11 +84,6 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
         findAllViews();
         setUpListeners();
         setColors();
-    }
-
-    private void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
-        mApplyButton.setTextColor(color);
     }
 
     /** {@inheritDoc} */
@@ -176,5 +125,25 @@ public class OfferSummaryView extends CardView implements RowView<OfferSummaryMo
      */
     public void setListener(ViewListener listener) {
         mListener = listener;
+    }
+
+    protected abstract void setColors();
+
+    /**
+     * Updates all fields with the offer data OR empty Strings when no data is set.
+     */
+    protected abstract void updateAllFields();
+
+    /**
+     * Callbacks that this View will invoke.
+     */
+    public interface ViewListener {
+        /**
+         * Called when the "apply now" button has been clicked.
+         * @param offer The associated loan offer.
+         */
+        void applyClickHandler(OfferSummaryModel offer);
+
+        void moreInfoClickHandler(OfferSummaryModel offer);
     }
 }

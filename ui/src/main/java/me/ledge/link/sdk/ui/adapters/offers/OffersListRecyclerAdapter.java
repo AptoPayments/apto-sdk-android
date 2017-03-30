@@ -6,15 +6,15 @@ import android.view.ViewGroup;
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
-import me.ledge.link.sdk.ui.views.offers.OfferSummaryView;
+import me.ledge.link.sdk.ui.views.offers.OfferListSummaryView;
 
 /**
  * A concrete {@link RecyclerView.Adapter} for the loan offers list.
  * @author Wijnand
  */
-public class OffersListRecyclerAdapter extends PagedListRecyclerAdapter<OfferSummaryModel, OfferSummaryView> {
+public class OffersListRecyclerAdapter extends PagedListRecyclerAdapter<OfferSummaryModel, OfferListSummaryView> {
 
-    private OfferSummaryView.ViewListener mListener;
+    private OfferListSummaryView.ViewListener mListener;
 
     /**
      * Creates a new {@link OffersListRecyclerAdapter} instance.
@@ -26,7 +26,7 @@ public class OffersListRecyclerAdapter extends PagedListRecyclerAdapter<OfferSum
     /** {@inheritDoc} */
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        OfferSummaryView view = (OfferSummaryView) LayoutInflater.from(parent.getContext()).inflate(mResource, parent, false);
+        OfferListSummaryView view = (OfferListSummaryView) LayoutInflater.from(parent.getContext()).inflate(mResource, parent, false);
         return new OffersListViewHolder(view);
     }
 
@@ -41,10 +41,10 @@ public class OffersListRecyclerAdapter extends PagedListRecyclerAdapter<OfferSum
     }
 
     /**
-     * Stores a new callback listener that the generated {@link OfferSummaryView}s will invoke.
+     * Stores a new callback listener that the generated {@link OfferListSummaryView}s will invoke.
      * @param listener New callback listener.
      */
-    public void setViewListener(OfferSummaryView.ViewListener listener) {
+    public void setViewListener(OfferListSummaryView.ViewListener listener) {
         mListener = listener;
     }
 }

@@ -105,6 +105,7 @@ dependencies {
     compile (group: 'com.smartystreets.api', name: 'smartystreets-java-sdk', version: '2.1.1') {
         exclude group: "org.apache.httpcomponents", module: "httpclient"
     }
+    compile 'com.synnapps:carouselview:0.0.10'
 
     // Tests
     testCompile 'junit:junit:4.12'

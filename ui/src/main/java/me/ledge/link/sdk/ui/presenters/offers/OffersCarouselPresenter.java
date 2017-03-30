@@ -3,8 +3,13 @@ package me.ledge.link.sdk.ui.presenters.offers;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.synnapps.carouselview.ViewListener;
 
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.List;
 
 import me.ledge.common.fragments.dialogs.DualOptionDialogFragment;
 import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
@@ -12,47 +17,44 @@ import me.ledge.common.utils.PagedList;
 import me.ledge.common.utils.web.ExternalSiteLauncher;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
-import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.adapters.offers.OffersListRecyclerAdapter;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
-import me.ledge.link.sdk.ui.models.offers.OffersListModel;
+import me.ledge.link.sdk.ui.models.offers.OffersCarouselModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
+import me.ledge.link.sdk.ui.views.offers.OfferCarouselSummaryView;
 import me.ledge.link.sdk.ui.views.offers.OfferListSummaryView;
-import me.ledge.link.sdk.ui.views.offers.OffersListView;
+import me.ledge.link.sdk.ui.views.offers.OffersCarouselView;
 
 /**
- * Concrete {@link Presenter} for the offers list screen.
- * TODO: Some loading indicator when offers are being loaded.
- * TODO: Not reload offers when they are already present.
- * @author Wijnand
+ * Concrete {@link Presenter} for the offers carousel screen.
+ * @author Adrian
  */
-public class OffersListPresenter
-        extends ActivityPresenter<OffersListModel, OffersListView>
-        implements Presenter<OffersListModel, OffersListView>, OffersListView.ViewListener,
+public class OffersCarouselPresenter
+        extends ActivityPresenter<OffersCarouselModel, OffersCarouselView>
+        implements Presenter<OffersCarouselModel, OffersCarouselView>, OffersCarouselView.ViewListener,
         OfferListSummaryView.ViewListener, DualOptionDialogFragment.DialogListener {
 
     private LoanStorage mLoanStorage;
-    private OffersListRecyclerAdapter mAdapter;
     private DualOptionDialogFragment mDialog;
     private NotificationDialogFragment mNotificationDialog;
 
     private OffersListDelegate mDelegate;
     /**
-     * Creates a new {@link OffersListPresenter} instance.
+     * Creates a new {@link OffersCarouselPresenter} instance.
      * @param activity Activity.
      */
-    public OffersListPresenter(AppCompatActivity activity, OffersListDelegate delegate) {
+    public OffersCarouselPresenter(AppCompatActivity activity, OffersListDelegate delegate) {
         super(activity);
         mDelegate = delegate;
     }
@@ -75,7 +77,6 @@ public class OffersListPresenter
             mView.showLoading(true);
         }
 
-        clearAdapter();
         mLoanStorage.clearOffers();
 
         // Fetch offers.
@@ -84,32 +85,14 @@ public class OffersListPresenter
         LedgeLinkUi.getInitialOffers(requestData);
     }
 
-    /**
-     * Clears the {@link OffersListRecyclerAdapter}.
-     */
-    private void clearAdapter() {
-        if (mAdapter != null) {
-            // Clear current adapter.
-            mAdapter.setViewListener(null);
-        }
-
-        // Create new one.
-        mAdapter = new OffersListRecyclerAdapter();
-        mAdapter.setViewListener(this);
-
-        if (mView != null) {
-            mView.setAdapter(mAdapter);
-        }
-    }
-
     private void showInfo() {
         new ExternalSiteLauncher().launchBrowser(mActivity.getString(R.string.offers_list_terms_url), mActivity);
     }
 
     /** {@inheritDoc} */
     @Override
-    public OffersListModel createModel() {
-        OffersListModel model = new OffersListModel();
+    public OffersCarouselModel createModel() {
+        OffersCarouselModel model = new OffersCarouselModel();
         model.setBaseData(LinkStorage.getInstance().getLoanData());
 
         return model;
@@ -117,7 +100,7 @@ public class OffersListPresenter
 
     /** {@inheritDoc} */
     @Override
-    public void attachView(OffersListView view) {
+    public void attachView(OffersCarouselView view) {
         super.attachView(view);
         mResponseHandler.subscribe(this);
 
@@ -138,7 +121,7 @@ public class OffersListPresenter
     /** {@inheritDoc} */
     @Override
     public void detachView() {
-        mView.setAdapter(null);
+        mView.setCarouselViewListener(null);
         mView.setListener(null);
         mDialog.setListener(null);
         mResponseHandler.unsubscribe(this);
@@ -148,7 +131,7 @@ public class OffersListPresenter
     /** {@inheritDoc} */
     @Override
     public void updateClickedHandler() {
-        mDelegate.onUpdateLoan();
+        mDelegate.onUpdateUserProfile();
     }
 
     /** {@inheritDoc} */
@@ -212,7 +195,6 @@ public class OffersListPresenter
         if (application != null && application.offer != null && !TextUtils.isEmpty(application.offer.application_url)) {
             new ExternalSiteLauncher().launchBrowser(application.offer.application_url, mActivity);
         } else {
-            clearAdapter();
             mView.showError(true);
         }
     }
@@ -238,7 +220,21 @@ public class OffersListPresenter
         mLoanStorage.addOffers(mActivity.getResources(), rawOffers, complete, LedgeLinkUi.getImageLoader());
 
         PagedList<OfferSummaryModel> offers = mLoanStorage.getOffers();
-        mAdapter.updateList(offers);
+
+        ViewListener viewListener = new ViewListener() {
+            List<OfferSummaryModel> offersList = OffersCarouselPresenter.this.mLoanStorage.getOffers().getList();
+            @Override
+            public View setViewForPosition(int position) {
+
+                OfferCarouselSummaryView offerSummaryView = (OfferCarouselSummaryView) mActivity.getLayoutInflater().inflate(R.layout.sv_loan_offer, null);
+                offerSummaryView.setData(offersList.get(position));
+                offerSummaryView.setListener(OffersCarouselPresenter.this);
+
+                return offerSummaryView;
+            }
+        };
+        mView.setCarouselViewListener(viewListener);
+        mView.displayOffers(offers.getList());
 
         if (mView != null) {
             mView.showLoading(false);
@@ -308,7 +304,7 @@ public class OffersListPresenter
 
         int id = item.getItemId();
         if (id == R.id.menu_update_profile) {
-            mDelegate.onUpdateUserProfile();
+            updateClickedHandler();
         } else if (id == R.id.menu_refresh) {
             reloadOffers();
         }  else if (id == R.id.menu_info) {

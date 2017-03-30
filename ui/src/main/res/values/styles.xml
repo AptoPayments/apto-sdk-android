@@ -186,6 +186,15 @@
         <item name="android:layout_marginLeft">4dp</item>
         <item name="android:layout_marginStart">4dp</item>
     </style>
+    <style name="llsdk_loan_offer_carousel_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/llsdk_body_text_size</item>
+    </style>
+    <style name="llsdk_loan_offer_carousel_header" parent="llsdk_loan_offer_carousel_text">
+        <item name="android:textSize">@dimen/llsdk_offer_summary_header_size</item>
+    </style>
 
     <!-- Add documents -->
     <style name="llsdk_add_documents_card">

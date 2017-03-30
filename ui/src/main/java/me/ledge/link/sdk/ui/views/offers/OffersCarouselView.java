@@ -2,8 +2,6 @@ package me.ledge.link.sdk.ui.views.offers;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
@@ -12,7 +10,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
+import com.synnapps.carouselview.CarouselView;
+
+import java.util.List;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
@@ -26,7 +27,7 @@ import me.ledge.link.sdk.ui.views.ViewWithToolbar;
  * Displays the offers list.
  * @author Wijnand
  */
-public class OffersListView
+public class OffersCarouselView
         extends RelativeLayout
         implements DisplayErrorMessage, ViewWithToolbar, ViewWithIndeterminateLoading, View.OnClickListener {
 
@@ -44,18 +45,20 @@ public class OffersListView
     private ViewListener mListener;
 
     private Toolbar mToolbar;
-    private RecyclerView mOffersListView;
+
     private LinearLayout mEmptyCaseHolder;
     private TextView mUpdateButton;
 
     private LoanOfferErrorView mErrorView;
     private LoadingView mLoadingView;
 
+    private CarouselView mOffersCarouselView;
+
     /**
      * @see RelativeLayout#RelativeLayout
      * @param context See {@link RelativeLayout#RelativeLayout}.
      */
-    public OffersListView(Context context) {
+    public OffersCarouselView(Context context) {
         super(context);
     }
 
@@ -64,7 +67,7 @@ public class OffersListView
      * @param context See {@link RelativeLayout#RelativeLayout}.
      * @param attrs See {@link RelativeLayout#RelativeLayout}.
      */
-    public OffersListView(Context context, AttributeSet attrs) {
+    public OffersCarouselView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -73,7 +76,7 @@ public class OffersListView
      */
     protected void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mOffersListView = (RecyclerView) findViewById(R.id.rv_offers_list);
+        mOffersCarouselView = (CarouselView) findViewById(R.id.carouselView);
         mEmptyCaseHolder = (LinearLayout) findViewById(R.id.ll_empty_case);
         mUpdateButton = (TextView) findViewById(R.id.tv_bttn_edit_info);
 
@@ -86,14 +89,6 @@ public class OffersListView
      */
     private void setUpListeners() {
         mUpdateButton.setOnClickListener(this);
-    }
-
-    /**
-     * Sets up the {@link RecyclerView}.
-     */
-    private void setupRecyclerView() {
-        mOffersListView.setHasFixedSize(true);
-        mOffersListView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     /**
@@ -115,7 +110,6 @@ public class OffersListView
         super.onFinishInflate();
         findAllViews();
         setUpListeners();
-        setupRecyclerView();
         setColors();
 
         showEmptyCase(false);
@@ -130,6 +124,7 @@ public class OffersListView
             mUpdateButton.setBackgroundColor(color);
             mUpdateButton.setTextColor(contrastColor);
         }
+        mOffersCarouselView.setFillColor(color);
         mToolbar.setBackgroundDrawable(new ColorDrawable(color));
         mToolbar.setTitleTextColor(contrastColor);
     }
@@ -163,12 +158,12 @@ public class OffersListView
         mErrorView.setListener(listener);
     }
 
-    /**
-     * Stores a new {@link PagedListRecyclerAdapter} for the {@link RecyclerView} to use.
-     * @param adapter The adapter to use.
-     */
-    public void setAdapter(PagedListRecyclerAdapter<OfferSummaryModel, OfferListSummaryView> adapter) {
-        mOffersListView.setAdapter(adapter);
+    public void setCarouselViewListener(com.synnapps.carouselview.ViewListener viewListener) {
+        mOffersCarouselView.setViewListener(viewListener);
+    }
+
+    public void displayOffers(List<OfferSummaryModel> offers) {
+        mOffersCarouselView.setPageCount(offers.size());
     }
 
     public void setData(IntermediateLoanApplicationModel data) {

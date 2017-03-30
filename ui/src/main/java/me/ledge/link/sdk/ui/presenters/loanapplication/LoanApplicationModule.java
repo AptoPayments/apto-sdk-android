@@ -2,13 +2,16 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.app.Activity;
 
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity;
+import me.ledge.link.sdk.ui.activities.offers.OffersCarouselActivity;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
@@ -30,6 +33,7 @@ public class LoanApplicationModule extends LedgeBaseModule
     public Command onUpdateUserProfile;
     public Command onBack;
     public Command onSelectFundingAccount;
+    private String mOffersListStyle;
 
     public static synchronized LoanApplicationModule getInstance(Activity activity) {
         if (mInstance == null) {
@@ -44,7 +48,21 @@ public class LoanApplicationModule extends LedgeBaseModule
 
     @Override
     public void initialModuleSetup() {
-        startActivity(OffersListActivity.class);
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getOffersListStyle())
+                .thenAccept((style) -> {
+                    mOffersListStyle = style;
+                    showOffers();
+                });
+    }
+
+    private void showOffers() {
+        if(mOffersListStyle.equals("carousel")) {
+            startActivity(OffersCarouselActivity.class);
+        }
+        else {
+            startActivity(OffersListActivity.class);
+        }
     }
 
     @Override
@@ -121,6 +139,6 @@ public class LoanApplicationModule extends LedgeBaseModule
 
     @Override
     public void loanApplicationSummaryShowPrevious(LoanApplicationSummaryModel model) {
-        startPreviousActivity(model);
+        showOffers();
     }
 }
