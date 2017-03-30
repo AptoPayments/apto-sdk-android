@@ -2,7 +2,6 @@ package me.ledge.link.sdk.ui.models.userdata;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -23,7 +22,7 @@ import ru.lanwen.verbalregex.VerbalExpression;
  */
 public class IdentityVerificationModel extends AbstractUserDataModel implements UserDataModel {
 
-    private static final int EXPECTED_SSN_LENGTH = 9; // TODO: Move to values/ints.xml?
+    private int mExpectedSSNLength;
     private static final String DATE_FORMAT = "MM-dd-yyyy";
     private int mMinimumAge;
     private Date mBirthday;
@@ -41,15 +40,9 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      */
     protected void init() {
         mMinimumAge = 0;
+        mExpectedSSNLength = 0;
         mBirthday = null;
         mSocialSecurityNumber = null;
-    }
-
-    public String getMaskedSSN() {
-        final char DOT = '\u2022';
-        char[] mask = new char[EXPECTED_SSN_LENGTH];
-        Arrays.fill(mask, DOT);
-        return new String(mask);
     }
 
     /**
@@ -112,12 +105,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         baseBirthdate.setDate(getFormattedBirthday());
 
         SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
-        if(isSSNMasked()) {
-            baseSSN.setSocialSecurityNumber(null);
-        }
-        else {
-            baseSSN.setSocialSecurityNumber(getSocialSecurityNumber());
-        }
+        baseSSN.setSocialSecurityNumber(getSocialSecurityNumber());
         return base;
     }
 
@@ -127,6 +115,14 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      */
     public void setMinimumAge(int age) {
         mMinimumAge = age;
+    }
+
+    /**
+     * Stores the expected SSN length.
+     * @param length SSN length.
+     */
+    public void setExpectedSSNLength(int length) {
+        mExpectedSSNLength = length;
     }
 
     /**
@@ -165,7 +161,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     public void setSocialSecurityNumber(String ssn) {
         VerbalExpression ssnRegex = VerbalExpression.regex()
                 .startOfLine()
-                .digit().count(EXPECTED_SSN_LENGTH)
+                .digit().count(mExpectedSSNLength)
                 .endOfLine()
                 .build();
 
@@ -212,10 +208,6 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      */
     public boolean hasValidSsn() {
         return getSocialSecurityNumber() != null;
-    }
-
-    private boolean isSSNMasked() {
-        return getMaskedSSN().equals(mSocialSecurityNumber);
     }
 
     /**

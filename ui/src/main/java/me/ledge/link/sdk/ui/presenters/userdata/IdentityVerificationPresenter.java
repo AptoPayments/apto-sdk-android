@@ -70,8 +70,9 @@ public class IdentityVerificationPresenter
     /** {@inheritDoc} */
     @Override
     protected void populateModelFromStorage() {
-        super.populateModelFromStorage();
+        mModel.setExpectedSSNLength(mActivity.getResources().getInteger(R.integer.ssn_length));
         mModel.setMinimumAge(mActivity.getResources().getInteger(R.integer.min_age));
+        super.populateModelFromStorage();
     }
 
     /** {@inheritDoc} */
@@ -89,7 +90,7 @@ public class IdentityVerificationPresenter
 
         if(((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile) {
             if(mView.getSocialSecurityNumber().isEmpty()) {
-                mView.setSSN(mModel.getMaskedSSN());
+                mView.setMaskedSSN();
             }
             mView.setButtonText(mActivity.getResources().getString(R.string.id_verification_update_profile_button));
             mActivity.getSupportActionBar().setTitle(mActivity.getResources().getString(R.string.id_verification_update_profile_title));
@@ -161,7 +162,7 @@ public class IdentityVerificationPresenter
 
     private boolean userHasUpdatedSSN() {
         return !mView.getSocialSecurityNumber().equals(mModel.getSocialSecurityNumber()) &&
-                !mView.getSocialSecurityNumber().equals(mModel.getMaskedSSN());
+                !mView.isSSNMasked();
     }
 
     private void saveDataAndExit() {

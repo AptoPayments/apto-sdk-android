@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
@@ -154,6 +156,21 @@ public class IdentityVerificationView
         ssn = new StringBuilder(ssn).insert(3, "-").toString();
         ssn = new StringBuilder(ssn).insert(6, "-").toString();
         mSocialSecurityField.setText(ssn);
+    }
+
+    private String getMaskedSSN() {
+        final char DOT = '\u2022';
+        char[] mask = new char[getResources().getInteger(R.integer.ssn_length)];
+        Arrays.fill(mask, DOT);
+        return new String(mask);
+    }
+
+    public void setMaskedSSN() {
+        setSSN(getMaskedSSN());
+    }
+
+    public boolean isSSNMasked() {
+        return getMaskedSSN().equals(getSocialSecurityNumber());
     }
 
     /**
