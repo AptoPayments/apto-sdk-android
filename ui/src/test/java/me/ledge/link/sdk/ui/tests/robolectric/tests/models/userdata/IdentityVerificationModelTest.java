@@ -25,6 +25,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class IdentityVerificationModelTest {
 
     private static final int MINIMUM_AGE = 18;
+    private static final int SSN_LENGTH = 9;
 
     private static final String EXPECTED_SSN = "123456789";
     private static final int EXPECTED_COUNTRY_CODE = 1;
@@ -54,6 +55,7 @@ public class IdentityVerificationModelTest {
     public void setUp() {
         mModel = new IdentityVerificationModel();
         mModel.setMinimumAge(MINIMUM_AGE);
+        mModel.setExpectedSSNLength(SSN_LENGTH);
     }
 
     /**
@@ -147,12 +149,12 @@ public class IdentityVerificationModelTest {
         PhoneNumberVo phoneNumber = new PhoneNumberVo("", false);
         phoneNumber.setPhone(phone);
         base.add(phoneNumber);
+        mModel.setBaseData(base);
 
         Calendar birthday = getValidBirthday();
         mModel.setBirthday(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DATE));
         mModel.setSocialSecurityNumber(EXPECTED_SSN);
 
-        mModel.setBaseData(base);
         DataPointList apiData = mModel.getUserData();
         PhoneNumberVo apiPhone = (PhoneNumberVo) apiData.getUniqueDataPoint(
                 DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());

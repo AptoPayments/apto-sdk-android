@@ -70,4 +70,35 @@ public class Address extends DataPointVo {
     public String toString() {
         return addressDescription();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Address address1 = (Address) o;
+
+        if (address != null ? !address.equals(address1.address) : address1.address != null)
+            return false;
+        if (apUnit != null ? !apUnit.equals(address1.apUnit) : address1.apUnit != null)
+            return false;
+        if (country != null ? !country.equals(address1.country) : address1.country != null)
+            return false;
+        if (city != null ? !city.equals(address1.city) : address1.city != null) return false;
+        if (stateCode != null ? !stateCode.equals(address1.stateCode) : address1.stateCode != null)
+            return false;
+        return zip != null ? zip.equals(address1.zip) : address1.zip == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = address != null ? address.hashCode() : 0;
+        result = 31 * result + (apUnit != null ? apUnit.hashCode() : 0);
+        result = 31 * result + (country != null ? country.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (stateCode != null ? stateCode.hashCode() : 0);
+        result = 31 * result + (zip != null ? zip.hashCode() : 0);
+        return result;
+    }
 }

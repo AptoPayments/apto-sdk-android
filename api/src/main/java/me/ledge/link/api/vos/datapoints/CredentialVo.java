@@ -37,4 +37,22 @@ public class CredentialVo {
         credential = value;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CredentialVo that = (CredentialVo) o;
+
+        if (mCredentialType != that.mCredentialType) return false;
+        return credential != null ? credential.equals(that.credential) : that.credential == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = mCredentialType != null ? mCredentialType.hashCode() : 0;
+        result = 31 * result + (credential != null ? credential.hashCode() : 0);
+        return result;
+    }
 }

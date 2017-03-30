@@ -14,7 +14,10 @@ public class LoanInfoModule extends LedgeBaseModule implements LoanDataDelegate 
 
     private static LoanInfoModule mInstance;
     public Command onFinish;
+    public Command onGetOffers;
+    public Command onUpdateProfile;
     public Command onBack;
+    public boolean userHasAllRequiredData;
 
 
     public static synchronized  LoanInfoModule getInstance(Activity activity) {
@@ -35,11 +38,21 @@ public class LoanInfoModule extends LedgeBaseModule implements LoanDataDelegate 
 
     @Override
     public void loanDataPresented() {
-        onFinish.execute();
+        if(onGetOffers != null) {
+            onGetOffers.execute();
+        }
+        else {
+            onFinish.execute();
+        }
     }
 
     @Override
     public void loanDataOnBackPressed() {
         onBack.execute();
+    }
+
+    @Override
+    public void onUpdateUserProfile() {
+        onUpdateProfile.execute();
     }
 }

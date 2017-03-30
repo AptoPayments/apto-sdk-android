@@ -9,5 +9,5 @@ public interface LoanDataDelegate {
 
     void loanDataPresented();
     void loanDataOnBackPressed();
-
+    void onUpdateUserProfile();
 }

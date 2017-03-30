@@ -70,4 +70,32 @@ public class Card extends FinancialAccountVo {
         }
         return formattedExpirationDate;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Card card = (Card) o;
+
+        if (cardType != card.cardType) return false;
+        if (lastFourDigits != null ? !lastFourDigits.equals(card.lastFourDigits) : card.lastFourDigits != null)
+            return false;
+        if (PANToken != null ? !PANToken.equals(card.PANToken) : card.PANToken != null)
+            return false;
+        if (CVVToken != null ? !CVVToken.equals(card.CVVToken) : card.CVVToken != null)
+            return false;
+        return expirationDate != null ? expirationDate.equals(card.expirationDate) : card.expirationDate == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = cardType != null ? cardType.hashCode() : 0;
+        result = 31 * result + (lastFourDigits != null ? lastFourDigits.hashCode() : 0);
+        result = 31 * result + (PANToken != null ? PANToken.hashCode() : 0);
+        result = 31 * result + (CVVToken != null ? CVVToken.hashCode() : 0);
+        result = 31 * result + (expirationDate != null ? expirationDate.hashCode() : 0);
+        return result;
+    }
 }

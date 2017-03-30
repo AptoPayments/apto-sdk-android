@@ -133,7 +133,7 @@ public class AnnualIncomePresenter
             mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
 
             if (mModel.hasValidEmploymentStatus()) {
-                mView.setEmploymentStatus(mEmploymentStatusesAdapter.getPosition(mModel.getEmploymentStatus()));
+                mView.setEmploymentStatus(mModel.getEmploymentStatus().getKey());
             }
         }
 
@@ -147,7 +147,7 @@ public class AnnualIncomePresenter
             mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
 
             if (mModel.hasValidSalaryFrequency()) {
-                mView.setSalaryFrequency(mSalaryFrequenciesAdapter.getPosition(mModel.getSalaryFrequency()));
+                mView.setSalaryFrequency(mModel.getSalaryFrequency().getKey());
             }
         }
     }
@@ -210,7 +210,7 @@ public class AnnualIncomePresenter
             mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
 
             if (mModel.hasValidEmploymentStatus()) {
-                mView.setEmploymentStatus(mEmploymentStatusesAdapter.getPosition(mModel.getEmploymentStatus()));
+                mView.setEmploymentStatus(mModel.getEmploymentStatus().getKey());
             }
         }
     }
@@ -226,32 +226,35 @@ public class AnnualIncomePresenter
             mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
 
             if (mModel.hasValidSalaryFrequency()) {
-                mView.setSalaryFrequency(mSalaryFrequenciesAdapter.getPosition(mModel.getSalaryFrequency()));
+                mView.setSalaryFrequency(mModel.getSalaryFrequency().getKey());
             }
         }
     }
 
     /**
-     * Called when the employment statuses list API response has been received.
+     * Called when the employment statuses / salary frequency lists API response has been received.
      * @param response API response.
      */
     @Subscribe
-    public void handleEmploymentStatusesList(ConfigResponseVo response) {
+    public void handleConfigResponse(ConfigResponseVo response) {
         if (isEmploymentStatusesPresent(response)) {
             setEmploymentStatusesList(response.employmentStatusOpts.data);
         }
+        if (isSalaryFrequencyPresent(response)) {
+            setSalaryFrequenciesList(response.salaryFrequencyOpts.data);
+        }
     }
 
-    /**
+/*    *//**
      * Called when the salary frequencies list API response has been received.
      * @param response API response.
-     */
+     *//*
     @Subscribe
     public void handleSalaryFrequenciesList(ConfigResponseVo response) {
         if (isSalaryFrequencyPresent(response)) {
             setSalaryFrequenciesList(response.salaryFrequencyOpts.data);
         }
-    }
+    }*/
 
     private boolean isEmploymentStatusesPresent(ConfigResponseVo response) {
         return response!=null && response.employmentStatusOpts!=null;

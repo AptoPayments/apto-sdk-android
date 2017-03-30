@@ -1,14 +1,16 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import me.ledge.link.api.vos.datapoints.Birthdate;
+import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.SSN;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
@@ -20,8 +22,8 @@ import ru.lanwen.verbalregex.VerbalExpression;
  */
 public class IdentityVerificationModel extends AbstractUserDataModel implements UserDataModel {
 
-    private static final int EXPECTED_SSN_LENGTH = 9; // TODO: Move to values/ints.xml?
-
+    private int mExpectedSSNLength;
+    private static final String DATE_FORMAT = "MM-dd-yyyy";
     private int mMinimumAge;
     private Date mBirthday;
     private String mSocialSecurityNumber;
@@ -38,17 +40,31 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      */
     protected void init() {
         mMinimumAge = 0;
+        mExpectedSSNLength = 0;
         mBirthday = null;
         mSocialSecurityNumber = null;
     }
 
     /**
-     * @param birthday Date to format.
      * @return Formatted birthday.
      */
-    private String getFormattedBirthday(Date birthday) {
-        SimpleDateFormat birthdayFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.US);
-        return birthdayFormat.format(birthday);
+    public String getFormattedBirthday() {
+        SimpleDateFormat birthdayFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
+        return birthdayFormat.format(mBirthday);
+    }
+
+    public Date getDateFromString(String dateString) {
+        if(dateString != null) {
+            SimpleDateFormat birthdayFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
+            try {
+                return birthdayFormat.parse(dateString);
+            } catch (ParseException e) {
+                return null;
+            }
+        }
+        else {
+            return null;
+        }
     }
 
     /** {@inheritDoc} */
@@ -63,12 +79,50 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         return hasValidBirthday() && hasValidSsn();
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void setBaseData(DataPointList base) {
+        super.setBaseData(base);
+        Birthdate baseBirthdate = (Birthdate) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.BirthDate, new Birthdate());
+        setBirthday(baseBirthdate.getDate());
+        SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
+        if(baseSSN.getSocialSecurityNumber() != null) {
+            setSocialSecurityNumber(baseSSN.getSocialSecurityNumber());
+        }
+    }
+
+    private void setBirthday(String date) {
+        mBirthday = getDateFromString(date);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public DataPointList getBaseData() {
+        DataPointList base = super.getBaseData();
+        Birthdate baseBirthdate = (Birthdate) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.BirthDate, new CreditScore());
+        baseBirthdate.setDate(getFormattedBirthday());
+
+        SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
+        baseSSN.setSocialSecurityNumber(getSocialSecurityNumber());
+        return base;
+    }
+
     /**
      * Stores a new minimum age.
      * @param age New age.
      */
     public void setMinimumAge(int age) {
         mMinimumAge = age;
+    }
+
+    /**
+     * Stores the expected SSN length.
+     * @param length SSN length.
+     */
+    public void setExpectedSSNLength(int length) {
+        mExpectedSSNLength = length;
     }
 
     /**
@@ -107,7 +161,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     public void setSocialSecurityNumber(String ssn) {
         VerbalExpression ssnRegex = VerbalExpression.regex()
                 .startOfLine()
-                .digit().count(EXPECTED_SSN_LENGTH)
+                .digit().count(mExpectedSSNLength)
                 .endOfLine()
                 .build();
 
@@ -163,7 +217,6 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     public DataPointList getUserData() {
         DataPointList data = new DataPointList();
         DataPointList base = getBaseData();
-        base.removeDataPointsOf(DataPointVo.DataPointType.FinancialAccount);
         data.setDataPoints(base.getDataPoints());
 
         SSN baseSSN = (SSN) base.getUniqueDataPoint(
@@ -173,7 +226,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         Birthdate baseBirthDate = (Birthdate) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.BirthDate,
                 new Birthdate());
-        baseBirthDate.setDate(getFormattedBirthday(getBirthday()));
+        baseBirthDate.setDate(getFormattedBirthday());
 
         return data;
     }

@@ -106,6 +106,11 @@ public class LoanApplicationModule extends LedgeBaseModule
         startActivity(LoanApplicationSummaryActivity.class);
     }
 
+    @Override
+    public void onUpdateLoan() {
+        onBack.execute();
+    }
+
     private void startNextActivity(ActivityModel model) {
         startActivity(model.getNextActivity(this.getActivity()));
     }
