@@ -21,4 +21,20 @@ public class CreditScore extends DataPointVo {
         gsonObject.addProperty("credit_range", creditScoreRange);
         return gsonObject;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CreditScore that = (CreditScore) o;
+
+        return creditScoreRange == that.creditScoreRange;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return creditScoreRange;
+    }
 }

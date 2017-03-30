@@ -13,4 +13,5 @@ public interface OffersListDelegate {
     void onOffersListBackPressed();
     void onApplicationReceived();
     void onConfirmationRequired(OfferSummaryModel offer);
+    void onUpdateLoan();
 }

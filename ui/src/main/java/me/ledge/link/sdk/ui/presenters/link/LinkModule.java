@@ -19,9 +19,11 @@ public class LinkModule extends LedgeBaseModule {
         super(activity);
     }
     private boolean mSkipDisclaimers;
+    private boolean mUserHasAllRequiredData;
 
     @Override
     public void initialModuleSetup() {
+        mUserHasAllRequiredData = false;
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getSkipLinkDisclaimer())
                 .exceptionally(ex -> {
@@ -39,45 +41,78 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void showLoanInfo() {
-        LoanInfoModule mLoanInfoModule = LoanInfoModule.getInstance(this.getActivity());
-        mLoanInfoModule.onFinish = this::showUserDataCollector;
-        if(mSkipDisclaimers) {
-            mLoanInfoModule.onBack = this::showHomeActivity;
+        LoanInfoModule loanInfoModule = LoanInfoModule.getInstance(this.getActivity());
+        loanInfoModule.userHasAllRequiredData = mUserHasAllRequiredData;
+        if(mUserHasAllRequiredData) {
+            loanInfoModule.onGetOffers = this::showOffersList;
+            loanInfoModule.onFinish = this::showOffersList;
+            loanInfoModule.onUpdateProfile = () -> startUserDataCollectorModule(true);
         }
         else {
-            mLoanInfoModule.onBack = this::showLinkDisclaimers;
+            loanInfoModule.onFinish = this::showUserDataCollector;
         }
-        startModule(mLoanInfoModule);
+        if(mSkipDisclaimers) {
+            loanInfoModule.onBack = this::showHomeActivity;
+        }
+        else {
+            loanInfoModule.onBack = this::showLinkDisclaimers;
+        }
+        startModule(loanInfoModule);
     }
 
     private void showUserDataCollector() {
-        UserDataCollectorModule mUserDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
-        mUserDataCollectorModule.onFinish = this::showOffersList;
-        mUserDataCollectorModule.onBack = this::showLoanInfo;
-        startModule(mUserDataCollectorModule);
+        startUserDataCollectorModule(false);
+    }
+
+    private void startUserDataCollectorModule(boolean updateProfile) {
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
+        userDataCollectorModule.onUserHasAllRequiredData = null;
+        userDataCollectorModule.onFinish = this::showOffersList;
+        userDataCollectorModule.onBack = this::showLoanInfo;
+        userDataCollectorModule.isUpdatingProfile = updateProfile;
+        startModule(userDataCollectorModule);
     }
 
     private void showOffersList() {
-        LoanApplicationModule mLoanApplicationModule = LoanApplicationModule.getInstance(this.getActivity());
-        mLoanApplicationModule.onUpdateUserProfile = this::showUserDataCollector;
-        mLoanApplicationModule.onBack = this::showLoanInfo;
-        mLoanApplicationModule.onSelectFundingAccount = this::showFundingAccountSelector;
-        startModule(mLoanApplicationModule);
+        mUserHasAllRequiredData = true;
+        LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(this.getActivity());
+        loanApplicationModule.onUpdateUserProfile = () -> startUserDataCollectorModule(true);
+        loanApplicationModule.onBack = this::showLoanInfo;
+        loanApplicationModule.onSelectFundingAccount = this::showFundingAccountSelector;
+        startModule(loanApplicationModule);
     }
 
     private void showFundingAccountSelector() {
-        FinancialAccountSelectorModule mFinancialAccountSelectorModule = FinancialAccountSelectorModule.getInstance(this.getActivity());
-        mFinancialAccountSelectorModule.onBack = this::showOffersList;
-        startModule(mFinancialAccountSelectorModule);
+        FinancialAccountSelectorModule financialAccountSelectorModule = FinancialAccountSelectorModule.getInstance(this.getActivity());
+        financialAccountSelectorModule.onBack = this::showOffersList;
+        startModule(financialAccountSelectorModule);
     }
 
     private void showHomeActivity() {
         startActivity(this.getActivity().getClass());
     }
 
-    public void skipLinkDisclaimerRetrieved(boolean skipLinkDisclaimer) {
+    private void skipLinkDisclaimerRetrieved(boolean skipLinkDisclaimer) {
         mSkipDisclaimers = skipLinkDisclaimer;
-        if(skipLinkDisclaimer) {
+        askDataCollectorIfUserHasAllRequiredData();
+    }
+
+    private void askDataCollectorIfUserHasAllRequiredData() {
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
+        userDataCollectorModule.onFinish = this::showOrSkipDisclaimers;
+        userDataCollectorModule.onUserHasAllRequiredData = () -> {
+            mUserHasAllRequiredData = false;
+            showOrSkipDisclaimers();
+        };
+        userDataCollectorModule.onUserDoesNotHaveAllRequiredData = () -> {
+            mUserHasAllRequiredData = true;
+            showOrSkipDisclaimers();
+        };
+        startModule(userDataCollectorModule);
+    }
+
+    private void showOrSkipDisclaimers() {
+        if(mSkipDisclaimers) {
             showLoanInfo();
         }
         else {

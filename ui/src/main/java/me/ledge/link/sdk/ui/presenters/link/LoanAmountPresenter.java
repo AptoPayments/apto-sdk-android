@@ -1,18 +1,23 @@
 package me.ledge.link.sdk.ui.presenters.link;
 
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.view.MenuItem;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import java8.util.concurrent.CompletableFuture;
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.api.vos.responses.config.LoanProductListVo;
+import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.views.userdata.LoanAmountView;
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
@@ -31,6 +36,7 @@ public class LoanAmountPresenter
     private boolean isMaxLoanAmountReady;
     private boolean isLoanPurposesReady;
     private boolean isLoanIncrementsReady;
+    private String mDisclaimersText;
 
     /**
      * Creates a new {@link LoanAmountPresenter} instance.
@@ -76,7 +82,8 @@ public class LoanAmountPresenter
     /** {@inheritDoc} */
     @Override
     protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 0, true, true);
+        boolean enableNextButton = !((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData;
+        return new StepperConfiguration(TOTAL_STEPS, 0, true, enableNextButton);
     }
 
     /** {@inheritDoc} */
@@ -117,6 +124,24 @@ public class LoanAmountPresenter
 
         mView.setListener(this);
         mView.showLoading(true);
+        if(((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData) {
+            mView.showGetOffersButtonAndDisclaimers(true);
+            if (mDisclaimersText == null) {
+                mView.showLoading(true);
+                CompletableFuture
+                        .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
+                        .exceptionally(ex -> {
+                            errorReceived(ex.getMessage());
+                            return null;
+                        })
+                        .thenAccept(this::partnerDisclaimersListRetrieved);
+            } else {
+                setDisclaimers(mDisclaimersText);
+            }
+        }
+        else {
+            mView.showGetOffersButtonAndDisclaimers(false);
+        }
 
         if (mPurposeAdapter == null) {
             mView.setPurposeAdapter(getPurposeAdapter(null));
@@ -194,11 +219,11 @@ public class LoanAmountPresenter
         updateViewIfReady();
     }
 
-    public void loanPurposesListRetrieved(LoanPurposesResponseVo purposeList) {
+    private void loanPurposesListRetrieved(LoanPurposesResponseVo purposeList) {
         setLoanPurposeList(purposeList.data);
     }
 
-    public void maxLoanAmountRetrieved(double maxLoanAmount) {
+    private void maxLoanAmountRetrieved(double maxLoanAmount) {
         isMaxLoanAmountReady = true;
         mModel.setMaxAmount((int) maxLoanAmount)
                 .setMinAmount(Math.min(mModel.getMinAmount(),(int) maxLoanAmount))
@@ -206,13 +231,17 @@ public class LoanAmountPresenter
         updateViewIfReady();
     }
 
-    public void loanAmountIncrementsRetrieved(double amountIncrement) {
+    private void loanAmountIncrementsRetrieved(double amountIncrement) {
         isLoanIncrementsReady = true;
         mAmountIncrement = (int) amountIncrement;
         updateViewIfReady();
     }
 
-    public void errorReceived(String error) {
+    private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
+        setDisclaimers(parseDisclaimersResponse(response));
+    }
+
+    private void errorReceived(String error) {
         if (mView != null) {
             mView.showLoading(false);
         }
@@ -232,5 +261,45 @@ public class LoanAmountPresenter
             mView.setAmount(mModel.getAmount() / mAmountIncrement);
             mView.showLoading(false);
         }
+    }
+
+    private String parseDisclaimersResponse(LoanProductListVo productDisclaimerList) {
+        if (productDisclaimerList == null) {
+            return "";
+        }
+
+        String lineBreak = "<br />";
+        String partnerDivider = "<br /><br />";
+        StringBuilder result = new StringBuilder();
+
+        for(LoanProductVo loanProduct : productDisclaimerList.data) {
+            if (!TextUtils.isEmpty(loanProduct.preQualificationDisclaimer)) {
+                result.append(loanProduct.preQualificationDisclaimer.replaceAll("\\r?\\n", lineBreak));
+            }
+            result.append(partnerDivider);
+        }
+
+        return result.substring(0, result.length() - partnerDivider.length());
+    }
+
+    private void setDisclaimers(String disclaimers) {
+        mDisclaimersText = disclaimers;
+        mActivity.runOnUiThread(() -> {
+            mView.setDisclaimers(disclaimers);
+            mView.showLoading(false);
+        });
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        boolean handled = true;
+
+        int id = item.getItemId();
+        if (id == R.id.menu_update_profile) {
+            mDelegate.onUpdateUserProfile();
+        } else {
+            handled = false;
+        }
+
+        return handled;
     }
 }

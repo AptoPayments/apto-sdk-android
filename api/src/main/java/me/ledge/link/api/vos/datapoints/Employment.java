@@ -26,4 +26,24 @@ public class Employment extends DataPointVo {
         gsonObject.addProperty("salary_frequency_id", salaryFrequency.getKey());
         return gsonObject;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employment that = (Employment) o;
+
+        if (employmentStatus != null ? !employmentStatus.getKey().equals(that.employmentStatus.getKey()) : that.employmentStatus != null)
+            return false;
+        return salaryFrequency != null ? salaryFrequency.getKey().equals(that.salaryFrequency.getKey()) : that.salaryFrequency == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = employmentStatus != null ? employmentStatus.hashCode() : 0;
+        result = 31 * result + (salaryFrequency != null ? salaryFrequency.hashCode() : 0);
+        return result;
+    }
 }

@@ -6,25 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.DatePicker;
 
-import org.greenrobot.eventbus.Subscribe;
-
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.responses.ApiErrorVo;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.Email;
-import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
-import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
-import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
-import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
@@ -80,16 +70,32 @@ public class IdentityVerificationPresenter
     /** {@inheritDoc} */
     @Override
     protected void populateModelFromStorage() {
-        super.populateModelFromStorage();
+        mModel.setExpectedSSNLength(mActivity.getResources().getInteger(R.integer.ssn_length));
         mModel.setMinimumAge(mActivity.getResources().getInteger(R.integer.min_age));
+        super.populateModelFromStorage();
     }
 
     /** {@inheritDoc} */
     @Override
     public void attachView(IdentityVerificationView view) {
         super.attachView(view);
-        mResponseHandler.subscribe(this);
         mView.setListener(this);
+
+        if(mModel.hasValidBirthday()) {
+            mView.setBirthday(mModel.getFormattedBirthday());
+        }
+        if(mModel.hasValidSsn()) {
+            mView.setSSN(mModel.getSocialSecurityNumber());
+        }
+
+        if(((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile) {
+            if(mView.getSocialSecurityNumber().isEmpty()) {
+                mView.setMaskedSSN();
+            }
+            mView.setButtonText(mActivity.getResources().getString(R.string.id_verification_update_profile_button));
+            mActivity.getSupportActionBar().setTitle(mActivity.getResources().getString(R.string.id_verification_update_profile_title));
+            mView.showDisclaimers(false);
+        }
 
         int progressColor = getProgressBarColor(mActivity);
         if (progressColor != 0) {
@@ -119,7 +125,6 @@ public class IdentityVerificationPresenter
     @Override
     public void detachView() {
         mView.setListener(null);
-        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -138,29 +143,31 @@ public class IdentityVerificationPresenter
     @Override
     public void nextClickHandler() {
         // Validate input.
-        mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
-
         mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
-        mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
 
-        if (mModel.hasAllData()) {
-            if (TextUtils.isEmpty(UserStorage.getInstance().getBearerToken())) {
-                LedgeLinkUi.createUser(mModel.getUserData());
-            } else {
-                DataPointVo phone = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
-                DataPointVo email = UserStorage.getInstance().getUserData().getUniqueDataPoint(DataPointVo.DataPointType.Email, new Email());
-
-                if(phone.hasVerification() && email.hasVerification()) {
-                    mDelegate.identityVerificationSucceeded();
-                }
-                else {
-                    LedgeLinkUi.updateUser(mModel.getUserData());
-                }
+        if (((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
+                && !userHasUpdatedSSN()) {
+            if (mModel.hasValidBirthday()) {
+                saveDataAndExit();
             }
-
-            // Show loading.
-            mView.showLoading(true);
         }
+        else {
+            mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
+            mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
+            if (mModel.hasAllData()) {
+                saveDataAndExit();
+            }
+        }
+    }
+
+    private boolean userHasUpdatedSSN() {
+        return !mView.getSocialSecurityNumber().equals(mModel.getSocialSecurityNumber()) &&
+                !mView.isSSNMasked();
+    }
+
+    private void saveDataAndExit() {
+        super.saveData();
+        mDelegate.identityVerificationSucceeded();
     }
 
     /** {@inheritDoc} */
@@ -195,51 +202,6 @@ public class IdentityVerificationPresenter
             mView.setDisclaimers(disclaimers);
             mView.showLoading(false);
         });
-    }
-
-    /**
-     * Deals with the create user API response.
-     * @param response API response.
-     */
-    @Subscribe
-    public void setCreateUserResponse(CreateUserResponseVo response) {
-        mView.showLoading(false);
-
-        if (response != null) {
-            UserStorage.getInstance().setBearerToken(response.user_token);
-            SharedPreferencesStorage.storeUserToken(mActivity, response.user_token);
-        }
-
-        if (mModel.hasAllData()) {
-            super.saveData();
-            mDelegate.identityVerificationSucceeded();
-        }
-    }
-
-    /**
-     * Called when the user update API response has been received.
-     * @param response API response.
-     */
-    @Subscribe
-    public void handleUserDetails(UserResponseVo response) {
-        mView.showLoading(false);
-        if (mModel.hasAllData()) {
-            super.saveData();
-            mDelegate.identityVerificationSucceeded();
-        }
-    }
-
-    /**
-     * Called when an API error has been received.
-     * @param error API error.
-     */
-    @Subscribe
-    public void handleApiError(ApiErrorVo error) {
-        if (mView != null) {
-            mView.showLoading(false);
-        }
-
-        mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error.toString()));
     }
 
     private void partnerDisclaimersListRetrieved(LoanProductListVo response) {

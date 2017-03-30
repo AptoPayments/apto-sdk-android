@@ -25,7 +25,7 @@
                     android:id="@+id/dsb_loan_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="96dp" />
+                    android:layout_marginTop="32dp" />
 
             <Spinner
                     android:id="@+id/sp_loan_purpose"
@@ -46,6 +46,33 @@
                     style="@style/llsdk_error_text"
                     android:text="@string/loan_amount_purpose_error" />
 
+            <TextView
+                android:id="@+id/tv_next_bttn"
+                style="?attr/llsdk_bigButtonStyle"
+                android:layout_marginTop="16dp"
+                android:visibility="invisible"
+                android:text="@string/id_verification_button_next" />
+
+            <TextView
+                android:id="@+id/tv_security"
+                style="?attr/llsdk_idVerification_disclaimerStyle"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:text="@string/id_verification_disclaimer" />
+
+            <TextView
+                android:id="@+id/tv_disclaimers_header"
+                style="?attr/llsdk_idVerification_disclaimerStyle"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="32dp"
+                android:visibility="invisible"
+                android:text="Disclosures:" />
+
+            <TextView
+                android:id="@+id/tv_disclaimers_body"
+                style="?attr/llsdk_idVerification_disclaimerStyle"
+                android:visibility="invisible"
+                android:layout_marginTop="0dp"/>
         </LinearLayout>
     </ScrollView>
 

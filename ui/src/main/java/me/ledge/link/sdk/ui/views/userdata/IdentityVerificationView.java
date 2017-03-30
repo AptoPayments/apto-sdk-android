@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.util.Arrays;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
@@ -43,6 +46,8 @@ public class IdentityVerificationView
     private TextInputLayout mSocialSecurityWrapper;
     private SsnEditText mSocialSecurityField;
 
+    private TextView mDisclaimer;
+    private TextView mDisclaimersHeader;
     private TextView mDisclaimersField;
 
     private LoadingView mLoadingView;
@@ -83,6 +88,8 @@ public class IdentityVerificationView
         mSocialSecurityWrapper = (TextInputLayout) findViewById(R.id.til_social_security);
         mSocialSecurityField = (SsnEditText) findViewById(R.id.et_social_security);
 
+        mDisclaimer = (TextView) findViewById(R.id.tv_security);
+        mDisclaimersHeader = (TextView) findViewById(R.id.tv_disclaimers_header);
         mDisclaimersField = (TextView) findViewById(R.id.tv_disclaimers_body);
         mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -95,6 +102,7 @@ public class IdentityVerificationView
     protected void setupListeners() {
         super.setupListeners();
         mBirthdayButton.setOnClickListener(this);
+        mSocialSecurityField.setOnClickListener(this);
     }
 
     /** {@inheritDoc} */
@@ -141,6 +149,31 @@ public class IdentityVerificationView
     }
 
     /**
+     * Shows the user's social security number with hyphens.
+     * @param ssn social security number.
+     */
+    public void setSSN(String ssn) {
+        ssn = new StringBuilder(ssn).insert(3, "-").toString();
+        ssn = new StringBuilder(ssn).insert(6, "-").toString();
+        mSocialSecurityField.setText(ssn);
+    }
+
+    private String getMaskedSSN() {
+        final char DOT = '\u2022';
+        char[] mask = new char[getResources().getInteger(R.integer.ssn_length)];
+        Arrays.fill(mask, DOT);
+        return new String(mask);
+    }
+
+    public void setMaskedSSN() {
+        setSSN(getMaskedSSN());
+    }
+
+    public boolean isSSNMasked() {
+        return getMaskedSSN().equals(getSocialSecurityNumber());
+    }
+
+    /**
      * Updates the birthday field error display.
      * @param show Whether the error should be shown.
      * @param errorMessageId Error message resource ID.
@@ -166,5 +199,22 @@ public class IdentityVerificationView
     @Override
     public void showLoading(boolean show) {
         mLoadingView.showLoading(show);
+    }
+
+    public void setButtonText(String buttonText) {
+        super.mNextButton.setText(buttonText);
+    }
+
+    public void showDisclaimers(boolean show) {
+        if(show) {
+            mDisclaimer.setVisibility(VISIBLE);
+            mDisclaimersHeader.setVisibility(VISIBLE);
+            mDisclaimersField.setVisibility(VISIBLE);
+        }
+        else {
+            mDisclaimer.setVisibility(GONE);
+            mDisclaimersHeader.setVisibility(GONE);
+            mDisclaimersField.setVisibility(GONE);
+        }
     }
 }
