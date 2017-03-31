@@ -3,8 +3,13 @@ package me.ledge.link.sdk.ui.presenters.offers;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.synnapps.carouselview.ViewListener;
 
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.List;
 
 import me.ledge.common.fragments.dialogs.DualOptionDialogFragment;
 import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
@@ -12,8 +17,8 @@ import me.ledge.common.utils.PagedList;
 import me.ledge.common.utils.web.ExternalSiteLauncher;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
-import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
@@ -28,7 +33,10 @@ import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
-import me.ledge.link.sdk.ui.views.offers.OfferSummaryView;
+import me.ledge.link.sdk.ui.views.offers.OfferCarouselSummaryView;
+import me.ledge.link.sdk.ui.views.offers.OfferListSummaryView;
+import me.ledge.link.sdk.ui.views.offers.OffersBaseView;
+import me.ledge.link.sdk.ui.views.offers.OffersCarouselView;
 import me.ledge.link.sdk.ui.views.offers.OffersListView;
 
 /**
@@ -38,9 +46,10 @@ import me.ledge.link.sdk.ui.views.offers.OffersListView;
  * @author Wijnand
  */
 public class OffersListPresenter
-        extends ActivityPresenter<OffersListModel, OffersListView>
-        implements Presenter<OffersListModel, OffersListView>, OffersListView.ViewListener,
-        OfferSummaryView.ViewListener, DualOptionDialogFragment.DialogListener {
+        extends ActivityPresenter<OffersListModel, OffersBaseView>
+        implements Presenter<OffersListModel, OffersBaseView>, OffersListView.ViewListener,
+        OffersCarouselView.ViewListener, OfferListSummaryView.ViewListener,
+        DualOptionDialogFragment.DialogListener {
 
     private LoanStorage mLoanStorage;
     private OffersListRecyclerAdapter mAdapter;
@@ -88,17 +97,19 @@ public class OffersListPresenter
      * Clears the {@link OffersListRecyclerAdapter}.
      */
     private void clearAdapter() {
-        if (mAdapter != null) {
-            // Clear current adapter.
-            mAdapter.setViewListener(null);
-        }
+        if (mView instanceof OffersListView) {
+            if (mAdapter != null) {
+                // Clear current adapter.
+                mAdapter.setViewListener(null);
+            }
 
-        // Create new one.
-        mAdapter = new OffersListRecyclerAdapter();
-        mAdapter.setViewListener(this);
+            // Create new one.
+            mAdapter = new OffersListRecyclerAdapter();
+            mAdapter.setViewListener(this);
 
-        if (mView != null) {
-            mView.setAdapter(mAdapter);
+            if (mView != null) {
+                ((OffersListView) mView).setAdapter(mAdapter);
+            }
         }
     }
 
@@ -117,7 +128,7 @@ public class OffersListPresenter
 
     /** {@inheritDoc} */
     @Override
-    public void attachView(OffersListView view) {
+    public void attachView(OffersBaseView view) {
         super.attachView(view);
         mResponseHandler.subscribe(this);
 
@@ -138,7 +149,9 @@ public class OffersListPresenter
     /** {@inheritDoc} */
     @Override
     public void detachView() {
-        mView.setAdapter(null);
+        if (mView instanceof OffersListView) {
+            ((OffersListView) mView).setAdapter(null);
+        }
         mView.setListener(null);
         mDialog.setListener(null);
         mResponseHandler.unsubscribe(this);
@@ -238,7 +251,26 @@ public class OffersListPresenter
         mLoanStorage.addOffers(mActivity.getResources(), rawOffers, complete, LedgeLinkUi.getImageLoader());
 
         PagedList<OfferSummaryModel> offers = mLoanStorage.getOffers();
-        mAdapter.updateList(offers);
+
+        if(mView instanceof OffersCarouselView) {
+            ViewListener viewListener = new ViewListener() {
+                List<OfferSummaryModel> offersList = OffersListPresenter.this.mLoanStorage.getOffers().getList();
+                @Override
+                public View setViewForPosition(int position) {
+
+                    OfferCarouselSummaryView offerSummaryView = (OfferCarouselSummaryView) mActivity.getLayoutInflater().inflate(R.layout.sv_loan_offer, null);
+                    offerSummaryView.setData(offersList.get(position));
+                    offerSummaryView.setListener(OffersListPresenter.this);
+
+                    return offerSummaryView;
+                }
+            };
+            ((OffersCarouselView) mView).setCarouselViewListener(viewListener);
+            ((OffersCarouselView) mView).displayOffers(offers.getList());
+        }
+        else {
+            mAdapter.updateList(offers);
+        }
 
         if (mView != null) {
             mView.showLoading(false);
