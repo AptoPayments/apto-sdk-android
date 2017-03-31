@@ -22,6 +22,9 @@ public class ConfigStorage {
 
     private static ConfigStorage mInstance;
     private LinkConfigResponseVo mLinkConfig;
+    public enum OffersListStyle {
+        list, carousel
+    }
 
     /**
      * Creates a new {@link ConfigStorage} instance.
@@ -204,22 +207,22 @@ public class ConfigStorage {
         return (boolean) getResultFromFuture(f);
     }
 
-    public synchronized String getOffersListStyle() {
-        CompletableFuture<String> f = CompletableFuture.supplyAsync(() -> {
+    public synchronized OffersListStyle getOffersListStyle() {
+        CompletableFuture<OffersListStyle> f = CompletableFuture.supplyAsync(() -> {
             if(isConfigCached()) {
-                return mLinkConfig.offerListStyle;
+                return OffersListStyle.valueOf(mLinkConfig.offerListStyle);
             }
             else {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
-                    return mLinkConfig.offerListStyle;
+                    return OffersListStyle.valueOf(mLinkConfig.offerListStyle);
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
             }
         });
 
-        return (String) getResultFromFuture(f);
+        return (OffersListStyle) getResultFromFuture(f);
     }
 
     private Object getResultFromFuture(CompletableFuture future) {

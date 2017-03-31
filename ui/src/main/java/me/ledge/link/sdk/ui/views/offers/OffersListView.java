@@ -16,19 +16,15 @@ import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
+import me.ledge.link.sdk.ui.presenters.offers.OffersListPresenter;
 import me.ledge.link.sdk.ui.storages.UIStorage;
-import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.LoadingView;
-import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
-import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
  * Displays the offers list.
  * @author Wijnand
  */
-public class OffersListView
-        extends RelativeLayout
-        implements DisplayErrorMessage, ViewWithToolbar, ViewWithIndeterminateLoading, View.OnClickListener {
+public class OffersListView extends OffersBaseView {
 
     /**
      * Callbacks this View will invoke.
@@ -154,6 +150,11 @@ public class OffersListView
         Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void setListener(OffersListPresenter offersListPresenter) {
+        this.setListener((ViewListener) offersListPresenter);
+    }
+
     /**
      * Stores a new {@link ViewListener}.
      * @param listener New {@link ViewListener}.
@@ -171,6 +172,7 @@ public class OffersListView
         mOffersListView.setAdapter(adapter);
     }
 
+    @Override
     public void setData(IntermediateLoanApplicationModel data) {
         mErrorView.setData(data);
     }

@@ -7,11 +7,11 @@ import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
+import me.ledge.link.sdk.sdk.storages.ConfigStorage.OffersListStyle;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity;
-import me.ledge.link.sdk.ui.activities.offers.OffersCarouselActivity;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
@@ -33,7 +33,7 @@ public class LoanApplicationModule extends LedgeBaseModule
     public Command onUpdateUserProfile;
     public Command onBack;
     public Command onSelectFundingAccount;
-    private String mOffersListStyle;
+    public OffersListStyle mOffersListStyle;
 
     public static synchronized LoanApplicationModule getInstance(Activity activity) {
         if (mInstance == null) {
@@ -57,12 +57,7 @@ public class LoanApplicationModule extends LedgeBaseModule
     }
 
     private void showOffers() {
-        if(mOffersListStyle.equals("carousel")) {
-            startActivity(OffersCarouselActivity.class);
-        }
-        else {
-            startActivity(OffersListActivity.class);
-        }
+        startActivity(OffersListActivity.class);
     }
 
     @Override

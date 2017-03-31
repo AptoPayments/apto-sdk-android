@@ -17,19 +17,15 @@ import java.util.List;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
+import me.ledge.link.sdk.ui.presenters.offers.OffersListPresenter;
 import me.ledge.link.sdk.ui.storages.UIStorage;
-import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.LoadingView;
-import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
-import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
  * Displays the offers list.
  * @author Wijnand
  */
-public class OffersCarouselView
-        extends RelativeLayout
-        implements DisplayErrorMessage, ViewWithToolbar, ViewWithIndeterminateLoading, View.OnClickListener {
+public class OffersCarouselView extends OffersBaseView {
 
     /**
      * Callbacks this View will invoke.
@@ -156,6 +152,12 @@ public class OffersCarouselView
     public void setListener(ViewListener listener) {
         mListener = listener;
         mErrorView.setListener(listener);
+    }
+
+
+    @Override
+    public void setListener(OffersListPresenter offersListPresenter) {
+        this.setListener((ViewListener) offersListPresenter);
     }
 
     public void setCarouselViewListener(com.synnapps.carouselview.ViewListener viewListener) {
