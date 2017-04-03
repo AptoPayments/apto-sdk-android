@@ -40,14 +40,17 @@
 
         <activity
                 android:name="me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity"
+                android:windowSoftInputMode="adjustPan"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
             android:name="me.ledge.link.sdk.ui.activities.userdata.HomeActivity"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
                 android:name="me.ledge.link.sdk.ui.activities.userdata.AddressActivity"
+                android:windowSoftInputMode="adjustPan"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
@@ -60,6 +63,7 @@
 
         <activity
                 android:name="me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity"
+                android:windowSoftInputMode="adjustPan"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
@@ -88,6 +92,7 @@
 
         <activity
             android:name="me.ledge.link.sdk.ui.activities.verification.PhoneVerificationActivity"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
@@ -104,6 +109,7 @@
 
         <activity
             android:name="me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity android:name="io.card.payment.CardIOActivity" android:configChanges="keyboardHidden|orientation" />
@@ -112,6 +118,7 @@
 
         <activity
             android:name="me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
