@@ -21,6 +21,8 @@ public class UIStorage {
     private Integer mPrimaryColor;
     private Integer mSecondaryColor;
     private ContextConfigResponseVo mConfig;
+    private final static String DEFAULT_PRIMARY_COLOR = "9ADE83";
+    private final static String DEFAULT_SECONDARY_COLOR = "F2F2F2";
 
     private static UIStorage mInstance;
 
@@ -113,8 +115,14 @@ public class UIStorage {
 
     private void setColors() {
         String hexColor = mConfig.projectConfiguration.primaryColor;
+        if(hexColor == null) {
+            hexColor = DEFAULT_PRIMARY_COLOR;
+        }
         mPrimaryColor = convertHexToInt(hexColor);
         hexColor = mConfig.projectConfiguration.secondaryColor;
+        if(hexColor == null) {
+            hexColor = DEFAULT_SECONDARY_COLOR;
+        }
         mSecondaryColor = convertHexToInt(hexColor);
     }
 
