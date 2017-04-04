@@ -1,13 +1,12 @@
 package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.financialaccountselector.IntermediateFinancialAccountListModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
@@ -65,6 +64,7 @@ public class IntermediateFinancialAccountListPresenter
      */
     @Subscribe
     public void handleResponse(DataPointList userInfo) {
+        mResponseHandler.unsubscribe(this);
         if (mView != null) {
             mView.showLoading(false);
         }
