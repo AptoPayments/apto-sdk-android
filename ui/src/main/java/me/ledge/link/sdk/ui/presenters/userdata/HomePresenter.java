@@ -183,9 +183,7 @@ public class HomePresenter
         Thread thread = new Thread(() -> {
             try  {
                 lookUpZipCode(mView.getZipCode());
-                mActivity.runOnUiThread(()-> {
-                    mView.showLoading(false);
-                });
+                mActivity.runOnUiThread(()-> mView.showLoading(false));
             } catch (Exception e) {
                 mActivity.runOnUiThread(()-> mView.displayErrorMessage(e.getMessage()));
             }

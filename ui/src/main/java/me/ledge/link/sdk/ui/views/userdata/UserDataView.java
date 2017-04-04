@@ -147,6 +147,8 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
 
     @Override
     public void displayErrorMessage(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
+        if(!message.isEmpty()) {
+            Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
+        }
     }
 }

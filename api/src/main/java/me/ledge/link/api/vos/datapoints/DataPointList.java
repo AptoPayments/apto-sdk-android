@@ -28,7 +28,9 @@ public class DataPointList {
     public void add(DataPointVo dataPoint) {
         if(dataPoints.containsKey(dataPoint.getType())) {
             List<DataPointVo> dataPointList = this.getDataPointsOf(dataPoint.getType());
-            dataPointList.add(dataPoint);
+            if(!dataPointList.contains(dataPoint)) {
+                dataPointList.add(dataPoint);
+            }
             dataPoints.put(dataPoint.getType(), dataPointList);
         }
         else {

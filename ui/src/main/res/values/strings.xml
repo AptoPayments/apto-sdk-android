@@ -220,7 +220,7 @@
     <string name="add_card_button_submit">Add Card</string>
     <string name="add_card_button_scan">Scan Card</string>
     <string name="add_card_error">Error: invalid card number!</string>
-    <string name="vgs_vault_url">https://demo.sandbox.verygoodvault.com</string>
+    <string name="vgs_vault_url">https://ledge.sandbox.verygoodvault.com</string>
     <string name="vgs_publishable_key">demo-user</string>
 
     <!-- Add Bank Account -->
