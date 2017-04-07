@@ -1,36 +1,25 @@
 package me.ledge.link.sdk.example.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Toast;
 
-import java8.util.concurrent.CompletableFuture;
+import java.lang.ref.WeakReference;
+import java.util.HashMap;
+
 import me.ledge.common.utils.android.AndroidUtils;
-import me.ledge.link.api.vos.datapoints.Address;
 import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.Email;
-import me.ledge.link.api.vos.datapoints.Income;
-import me.ledge.link.api.vos.datapoints.PersonalName;
-import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
-import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
-import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
 import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
-import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
-import me.ledge.link.sdk.ui.storages.LinkStorage;
-import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
-import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 
 /**
  * Main display.
@@ -39,90 +28,10 @@ import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 public class MainActivity extends AppCompatActivity implements MainView.ViewListener {
 
     private MainView mView;
-
-    /**
-     * @param source String source to parse to an integer.
-     * @return Parsed integer.
-     */
-    private int parseIntSafely(String source) {
-        int result;
-
-        try {
-            result = Integer.parseInt(source);
-        } catch (NumberFormatException nfe) {
-            result = 0;
-        }
-
-        return result;
-    }
-
-    /**
-     * @return Pre-fill data for the Ledge Line SDK to use.
-     */
-    private DataPointList createStartData() {
-        DataPointList data = new DataPointList();
-        boolean dataSet = false;
-
-        LoanDataVo loanData = new LoanDataVo();
-        if (hasValue(mView.getLoanAmount())) {
-            loanData.loanAmount = parseIntSafely(mView.getLoanAmount());
-            dataSet = true;
-        }
-        if (mView.getLoanPurpose() != null) {
-            loanData.loanPurpose = mView.getLoanPurpose();
-            dataSet = true;
-        }
-        LinkStorage.getInstance().setLoanData(loanData);
-        if (hasValue(mView.getFirstName()) && hasValue(mView.getLastName())) {
-            data.add(new PersonalName(mView.getFirstName(), mView.getLastName(), false));
-            dataSet = true;
-        }
-        if (hasValue(mView.getEmail())) {
-            data.add(new Email(mView.getEmail(), false));
-            dataSet = true;
-        }
-        if (hasValue(mView.getPhoneNumber())) {
-            data.add(new PhoneNumberVo(mView.getPhoneNumber(), false));
-            dataSet = true;
-        }
-        String address = "";
-        if (hasValue(mView.getAddress())) {
-            address = mView.getAddress();
-            dataSet = true;
-        }
-        String apartment = "";
-        if (hasValue(mView.getApartmentNumber())) {
-            apartment = mView.getApartmentNumber();
-            dataSet = true;
-        }
-        String city = "";
-        if (hasValue(mView.getCity())) {
-            city = mView.getCity();
-            dataSet = true;
-        }
-        String state = "";
-        if (hasValue(mView.getState())) {
-            state = mView.getState();
-            dataSet = true;
-        }
-        String zip = "";
-        if (hasValue(mView.getZipCode())) {
-            zip = mView.getZipCode();
-            dataSet = true;
-        }
-        Address addressDataPoint = new Address(address, apartment, "US", city, state, zip, false);
-        data.add(addressDataPoint);
-        if (hasValue(mView.getIncome())) {
-            data.add(new Income(-1, parseIntSafely(mView.getIncome()), false));
-            dataSet = true;
-        }
-
-        if (!dataSet) {
-            data = null;
-        }
-
-        return data;
-    }
+    static HashMap<String, WeakReference<DataPointList>> SHARED_USER_DATA;
+    static HashMap<String, WeakReference<LoanDataVo>> SHARED_LOAN_DATA;
+    static final String USER_DATA_KEY = "USER_DATA_KEY";
+    static final String LOAN_DATA_KEY = "LOAN_DATA_KEY";
 
     /**
      * @param fieldValue Field value to check.
@@ -189,23 +98,13 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SHARED_USER_DATA = new HashMap<>();
+        SHARED_LOAN_DATA = new HashMap<>();
         setupLedgeLink();
 
         mView = (MainView) View.inflate(this, R.layout.act_main, null);
-        mView.showLoading(true);
         mView.setViewListener(this);
-
         setContentView(mView);
-        // Load the loan purpose list so we can create a drop-down.
-        CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().getLoanPurposes())
-                .exceptionally(ex -> {
-                    errorReceived(ex.getMessage());
-                    return null;
-                })
-                .thenAccept(this::loanPurposesListRetrieved);
-
-        UIStorage.getInstance().init();
     }
 
     /** {@inheritDoc} */
@@ -217,65 +116,18 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     /** {@inheritDoc} */
     @Override
     public void offersClickedHandler() {
-        LedgeLinkUi.startProcess(this, createStartData());
+        if(SHARED_USER_DATA.containsKey(USER_DATA_KEY) && SHARED_LOAN_DATA.containsKey(LOAN_DATA_KEY)) {
+            WeakReference<DataPointList> userData = SHARED_USER_DATA.get(USER_DATA_KEY);
+            WeakReference<LoanDataVo> loanData = SHARED_LOAN_DATA.get(LOAN_DATA_KEY);
+            LedgeLinkUi.startProcess(this, userData.get(), loanData.get());
+        }
+        else {
+            LedgeLinkUi.startProcess(this, null, null);
+        }
     }
 
-    /** {@inheritDoc} */
     @Override
-    public void fillAllClickedHandler() {
-        mView.setLoanAmount(getString(R.string.data_michael_loan_amount));
-        mView.setLoanPurpose(Integer.parseInt(getString(R.string.data_michael_loan_purpose)));
-        mView.setFirstName(getString(R.string.data_michael_first_name));
-        mView.setLastName(getString(R.string.data_michael_last_name));
-        mView.setEmail(getString(R.string.data_michael_email));
-        mView.setPhoneNumber(getString(R.string.data_michael_phone));
-        mView.setAddress(getString(R.string.data_michael_address));
-        mView.setCity(getString(R.string.data_michael_city));
-        mView.setState(getString(R.string.data_michael_state));
-        mView.setZipCode(getString(R.string.data_michael_zip));
-        mView.setIncome(getString(R.string.data_michael_income));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void clearAllClickedHandler() {
-        mView.setLoanAmount("");
-        mView.setLoanPurpose(0);
-        mView.setFirstName("");
-        mView.setLastName("");
-        mView.setEmail("");
-        mView.setPhoneNumber("");
-        mView.setAddress("");
-        mView.setApartmentNumber("");
-        mView.setCity("");
-        mView.setState("");
-        mView.setZipCode("");
-        mView.setIncome("");
-    }
-
-    public void loanPurposesListRetrieved(LoanPurposesResponseVo loanPurposesList) {
-        HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
-                = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
-
-        runOnUiThread(() -> {
-            IdDescriptionPairDisplayVo hint =
-                    new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
-            adapter.add(hint);
-
-            if (loanPurposesList != null && loanPurposesList.data != null) {
-                for (LoanPurposeVo purpose : loanPurposesList.data) {
-                    adapter.add(new IdDescriptionPairDisplayVo(purpose.loan_purpose_id, purpose.description));
-                }
-            }
-            mView.setPurposeAdapter(adapter);
-            mView.showLoading(false);
-        });
-    }
-
-    public void errorReceived(String error) {
-        runOnUiThread(() -> {
-            mView.showLoading(false);
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
-        });
+    public void settingsClickedHandler() {
+        startActivity(new Intent(this, SettingsActivity.class));
     }
 }

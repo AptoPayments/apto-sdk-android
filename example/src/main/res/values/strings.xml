@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Ledge Link SDK Example</string>
 
     <!-- Main -->
     <string name="main_button_offers_cta">Get loan offers!</string>
-    <string name="main_data_header">Or set some data first:</string>
+    <string name="main_data_header"><u>Or set some data first</u></string>
     <string name="main_input_loan_amount">Loan amount</string>
     <string name="main_input_loan_purpose">Loan purpose</string>
     <string name="main_input_first_name">First name</string>
@@ -17,9 +17,17 @@
     <string name="main_input_state">State</string>
     <string name="main_input_zip">Zip</string>
     <string name="main_input_income">Income</string>
+    <string name="main_input_birthday">Birthday</string>
+    <string name="main_input_ssn">Social security number</string>
+    <string name="main_user_token">User token:</string>
+    <string name="main_offer_list_style">Offer list style:</string>
+    <string name="main_pos_mode">POS mode:</string>
+    <string name="main_skip_link_disclaimers">Skip project disclaimers:</string>
+    <string name="main_address_validation">Strict address validation:</string>
     <string name="main_text_skip_steps">Skip Steps?</string>
     <string name="main_button_fill">Fill all</string>
     <string name="main_button_clear">Clear all</string>
+    <string name="main_toolbar_title">Settings</string>
 
     <!-- Fake data -->
     <string name="data_michael_loan_amount">3500</string>
@@ -28,9 +36,16 @@
     <string name="data_michael_last_name">Bluth</string>
     <string name="data_michael_email">adrian@ledge.me</string>
     <string name="data_michael_phone">9495860722</string>
+    <string name="data_michael_housing_type">2</string>
     <string name="data_michael_address">31881 Stoney Creek Rd</string>
     <string name="data_michael_city">Trabuco Canyon</string>
     <string name="data_michael_state">CA</string>
     <string name="data_michael_zip">92679</string>
     <string name="data_michael_income">25000</string>
+    <string name="data_michael_birthday" tools:ignore="TypographyDashes">11-09-1989</string>
+    <string name="data_michael_ssn">111111111</string>
+    <string name="data_michael_salary_frequency">4</string>
+    <string name="data_michael_employment_status">3</string>
+    <string name="data_michael_credit_score">1</string>
+
 </resources>

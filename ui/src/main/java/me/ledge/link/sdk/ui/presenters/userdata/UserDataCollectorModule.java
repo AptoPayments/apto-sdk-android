@@ -205,20 +205,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     /**
-     * Deals with the create user API response.
-     * @param response API response.
-     */
-    @Subscribe
-    public void setCreateUserResponse(CreateUserResponseVo response) {
-        if (response != null) {
-            UserStorage.getInstance().setBearerToken(response.user_token);
-            SharedPreferencesStorage.storeUserToken(getActivity(), response.user_token);
-        }
-
-        stopModule();
-    }
-
-    /**
      * Deals with the update user API response.
      * @param response API response.
      */

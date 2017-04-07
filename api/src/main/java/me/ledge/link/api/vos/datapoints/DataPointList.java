@@ -17,6 +17,9 @@ public class DataPointList {
     }
 
     public DataPointList(DataPointList copyInstance) {
+        if(copyInstance == null) {
+            return;
+        }
         Cloner cloner = new Cloner();
         this.dataPoints = cloner.deepClone(copyInstance.dataPoints);
     }

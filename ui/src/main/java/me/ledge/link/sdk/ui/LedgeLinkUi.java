@@ -9,8 +9,10 @@ import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.presenters.link.LinkModule;
+import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
+import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
 /**
  * Ledge Line UI helper is an extension of {@link LedgeLinkSdk} to help set up the Ledge Line UI.<br />
@@ -70,10 +72,12 @@ public class LedgeLinkUi extends LedgeLinkSdk {
     /**
      * Starts the Ledge Line loan offers process.
      * @param activity The {@link Activity} to launch the first Ledge Line screen from.
-     * @param data Pre-fill user data. Use {@code null} if not needed.
+     * @param userData Pre-fill user data. Use {@code null} if not needed.
+     * @param loanData Pre-fill loan data. Use {@code null} if not needed.
      */
-    public static void startProcess(Activity activity, DataPointList data) {
-        UserStorage.getInstance().setUserData(data);
+    public static void startProcess(Activity activity, DataPointList userData, LoanDataVo loanData) {
+        UserStorage.getInstance().setUserData(userData);
+        LinkStorage.getInstance().setLoanData(loanData);
         LinkModule linkModule = new LinkModule(activity);
         linkModule.initialModuleSetup();
     }

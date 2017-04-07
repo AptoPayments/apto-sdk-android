@@ -4,175 +4,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_cloud_dollar"
+            android:paddingTop="32dp"
+            android:layout_centerHorizontal="true" />
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-            <!-- Dummy to get focus on start. -->
-            <RelativeLayout
-                    android:layout_width="0px"
-                    android:layout_height="0px"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true" />
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="32dp">
 
             <Button
-                    android:id="@+id/bttn_get_offers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="16dp"
-                    android:text="@string/main_button_offers_cta" />
+                android:id="@+id/bttn_get_offers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="16dp"
+                android:text="@string/main_button_offers_cta" />
 
             <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/main_data_header" />
+                android:id="@+id/bttn_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="16sp"
+                android:text="@string/main_data_header" />
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <EditText
-                        android:id="@+id/et_loan_amount"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:inputType="number"
-                        android:hint="@string/main_input_loan_amount" />
-
-                <Spinner
-                        android:id="@+id/sp_loan_purpose"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <EditText
-                        android:id="@+id/et_first_name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:hint="@string/main_input_first_name" />
-
-                <EditText
-                        android:id="@+id/et_last_name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:hint="@string/main_input_last_name" />
-            </LinearLayout>
-
-            <EditText
-                    android:id="@+id/et_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:hint="@string/main_input_email" />
-
-            <EditText
-                    android:id="@+id/et_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:hint="@string/main_input_phone_number" />
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <EditText
-                        android:id="@+id/et_address"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:singleLine="true"
-                        android:hint="@string/main_input_address" />
-
-                <EditText
-                        android:id="@+id/et_apartment_number"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:hint="@string/main_input_apartment_number" />
-            </LinearLayout>
-
-            <EditText
-                    android:id="@+id/et_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:hint="@string/main_input_city" />
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <EditText
-                        android:id="@+id/et_state"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:maxLength="2"
-                        android:hint="@string/main_input_state" />
-
-                <EditText
-                        android:id="@+id/et_zip_code"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberSigned"
-                        android:hint="@string/main_input_zip" />
-            </LinearLayout>
-
-            <EditText
-                    android:id="@+id/et_income"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:hint="@string/main_input_income" />
-
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp">
-
-                <Button
-                        android:id="@+id/bttn_fill_all"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:text="@string/main_button_fill" />
-
-                <Button
-                        android:id="@+id/bttn_clear_all"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:text="@string/main_button_clear" />
-
-            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-
-    <include layout="@layout/include_rl_loading" />
+    </RelativeLayout>
 </me.ledge.link.sdk.example.views.MainView>
