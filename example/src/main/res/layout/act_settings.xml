@@ -8,7 +8,6 @@
         android:id="@+id/settings_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:titleTextColor="@android:color/white"
         app:title="@string/main_toolbar_title"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
@@ -160,19 +159,27 @@
                 <Spinner
                     android:id="@+id/sp_salary_frequency"
                     android:layout_width="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <Spinner
-                android:id="@+id/sp_employment_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/sp_credit_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <Spinner
+                    android:id="@+id/sp_employment_status"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <Spinner
+                    android:id="@+id/sp_credit_score"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/et_birthday"

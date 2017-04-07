@@ -12,7 +12,6 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.api.vos.datapoints.Address;
 import me.ledge.link.api.vos.datapoints.Birthdate;
@@ -31,18 +30,13 @@ import me.ledge.link.api.vos.responses.config.HousingTypeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
-import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.SettingsView;
-import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
-import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 
@@ -289,7 +283,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
 
         runOnUiThread(() -> {
             IdDescriptionPairDisplayVo hint =
-                    new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.loan_amount_purpose_hint));
+                    new IdDescriptionPairDisplayVo(-1, getString(R.string.main_input_loan_purpose));
             adapter.add(hint);
 
             if (loanPurposesList != null && loanPurposesList.data != null) {
@@ -318,7 +312,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
         IdDescriptionPairDisplayVo hint =
-                new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.address_housing_type_hint));
+                new IdDescriptionPairDisplayVo(-1, getString(R.string.main_input_housing_type));
         adapter.add(hint);
 
         HousingTypeVo[] typesList = mProjectConfig.housingTypeOpts.data;
@@ -335,7 +329,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
         IdDescriptionPairDisplayVo hint =
-                new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.annual_income_salary_frequency_hint));
+                new IdDescriptionPairDisplayVo(-1, getString(R.string.main_input_salary_frequency));
         adapter.add(hint);
 
         SalaryFrequencyVo[] typesList = mProjectConfig.salaryFrequencyOpts.data;
@@ -352,7 +346,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
         IdDescriptionPairDisplayVo hint =
-                new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.annual_income_employment_status_hint));
+                new IdDescriptionPairDisplayVo(-1, getString(R.string.main_input_employment_status));
         adapter.add(hint);
 
         EmploymentStatusVo[] typesList = mProjectConfig.employmentStatusOpts.data;
@@ -369,7 +363,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
         IdDescriptionPairDisplayVo hint =
-                new IdDescriptionPairDisplayVo(-1, getString(me.ledge.link.sdk.ui.R.string.credit_score_label));
+                new IdDescriptionPairDisplayVo(-1, getString(R.string.main_input_credit_score));
         adapter.add(hint);
         adapter.add(new IdDescriptionPairDisplayVo(1, getString(me.ledge.link.sdk.ui.R.string.credit_score_excellent)));
         adapter.add(new IdDescriptionPairDisplayVo(2, getString(me.ledge.link.sdk.ui.R.string.credit_score_good)));
