@@ -22,6 +22,7 @@ import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
+import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.Command;
@@ -115,12 +116,24 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     /**
+     * Deals with the update user API response.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleUserDetails(UserResponseVo response) {
+        stopModule();
+    }
+
+    /**
      * Called when an API error has been received.
      * @param error API error.
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        if(error.request_path.equals(LinkApiWrapper.UPDATE_USER_PATH) && error.statusCode == 401) {
+            LedgeLinkUi.clearUserToken(getActivity());
+        }
         stopModule();
     }
 
@@ -203,16 +216,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             }
         }
     }
-
-    /**
-     * Deals with the update user API response.
-     * @param response API response.
-     */
-    @Subscribe
-    public void handleUserDetails(UserResponseVo response) {
-        stopModule();
-    }
-
 
     @Override
     public void identityVerificationOnBackPressed() {
