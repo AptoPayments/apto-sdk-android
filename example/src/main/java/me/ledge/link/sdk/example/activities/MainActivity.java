@@ -34,14 +34,6 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     static final String LOAN_DATA_KEY = "LOAN_DATA_KEY";
 
     /**
-     * @param fieldValue Field value to check.
-     * @return Whether the field has a value set.
-     */
-    private boolean hasValue(String fieldValue) {
-        return !TextUtils.isEmpty(fieldValue);
-    }
-
-    /**
      * Sets up the Ledge Link SDK.
      */
     private void setupLedgeLink() {

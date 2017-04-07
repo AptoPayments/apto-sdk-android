@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui;
 
 import android.app.Activity;
+import android.content.Context;
 
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.presenters.link.LinkModule;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
+import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
@@ -67,6 +69,11 @@ public class LedgeLinkUi extends LedgeLinkSdk {
      */
     public static ArrayList<Class<? extends MvpActivity>> getProcessOrder() {
         return getHandlerConfiguration().getProcessOrder();
+    }
+
+    public static void clearUserToken(Context context) {
+        SharedPreferencesStorage.storeUserToken(context, null);
+        UserStorage.getInstance().setBearerToken(null);
     }
 
     /**

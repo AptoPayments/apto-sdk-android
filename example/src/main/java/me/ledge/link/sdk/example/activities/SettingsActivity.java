@@ -170,64 +170,10 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         return !TextUtils.isEmpty(fieldValue);
     }
 
-    /**
-     * Sets up the Ledge Link SDK.
-     */
-    private void setupLedgeLink() {
-        AndroidUtils utils = new AndroidUtils();
-        HandlerConfigurator configurator = new EventBusHandlerConfigurator();
-
-        LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
-        apiWrapper.setApiEndPoint(getApiEndPoint(), getCertificatePinning(), getTrustSelfSignedCertificates());
-        apiWrapper.setBaseRequestData(getDeveloperKey(), utils.getDeviceSummary(), getCertificatePinning(), getTrustSelfSignedCertificates());
-        apiWrapper.setProjectToken(getProjectToken());
-
-        LedgeLinkUi.setApiWrapper(apiWrapper);
-        LedgeLinkUi.setImageLoader(new VolleyImageLoader(this));
-        LedgeLinkUi.setHandlerConfiguration(configurator);
-        LedgeLinkUi.trustSelfSigned = getTrustSelfSignedCertificates();
-    }
-
-    /**
-     * @return Link API end point.
-     */
-    protected String getApiEndPoint() {
-        return getString(R.string.ledge_link_url_dev);
-    }
-
-    /**
-     * @return Link API dev key.
-     */
-    protected String getDeveloperKey() {
-        return getString(R.string.ledge_link_developer_key_dev);
-    }
-
-    /**
-     * @return Link project token.
-     */
-    protected String getProjectToken() {
-        return getString(R.string.ledge_link_project_token);
-    }
-
-    /**
-     * @return If certificate pinning should be enabled
-     */
-    protected boolean getCertificatePinning() {
-        return this.getResources().getBoolean(R.bool.enable_certificate_pinning);
-    }
-
-    /**
-     * @return If self signed certificates should be trusted
-     */
-    protected boolean getTrustSelfSignedCertificates() {
-        return this.getResources().getBoolean(R.bool.trust_self_signed_certificates);
-    }
-
     /** {@inheritDoc} */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupLedgeLink();
 
         mView = (SettingsView) View.inflate(this, R.layout.act_settings, null);
         mView.showLoading(true);
@@ -334,8 +280,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
     @Override
     public void clearUserTokenClickedHandler() {
         mView.setUserToken("");
-        SharedPreferencesStorage.storeUserToken(this, null);
-        UserStorage.getInstance().setBearerToken(null);
+        LedgeLinkUi.clearUserToken(this);
     }
 
     public void loanPurposesListRetrieved(LoanPurposesResponseVo loanPurposesList) {
