@@ -8,16 +8,10 @@ import android.view.View;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 
-import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
-import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
-import me.ledge.link.sdk.imageloaders.volley.VolleyImageLoader;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
-import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
 /**
@@ -33,28 +27,10 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     static final String LOAN_DATA_KEY = "LOAN_DATA_KEY";
 
     /**
-     * Sets up the Ledge Link SDK.
+     * @return The targeted environment (local, dev, stg, sbx or prd)
      */
-    private void setupLedgeLink() {
-        AndroidUtils utils = new AndroidUtils();
-        HandlerConfigurator configurator = new EventBusHandlerConfigurator();
-
-        LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
-        apiWrapper.setApiEndPoint(getApiEndPoint(), getCertificatePinning(), getTrustSelfSignedCertificates());
-        apiWrapper.setBaseRequestData(getDeveloperKey(), utils.getDeviceSummary(), getCertificatePinning(), getTrustSelfSignedCertificates());
-        apiWrapper.setProjectToken(getProjectToken());
-
-        LedgeLinkUi.setApiWrapper(apiWrapper);
-        LedgeLinkUi.setImageLoader(new VolleyImageLoader(this));
-        LedgeLinkUi.setHandlerConfiguration(configurator);
-        LedgeLinkUi.trustSelfSigned = getTrustSelfSignedCertificates();
-    }
-
-    /**
-     * @return Link API end point.
-     */
-    protected String getApiEndPoint() {
-        return getString(R.string.ledge_link_url_dev);
+    protected String getEnvironment() {
+        return getString(R.string.ledge_link_environment);
     }
 
     /**
@@ -91,7 +67,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         super.onCreate(savedInstanceState);
         SHARED_USER_DATA = new HashMap<>();
         SHARED_LOAN_DATA = new HashMap<>();
-        setupLedgeLink();
+        LedgeLinkUi.setupLedgeLink(this, getDeveloperKey(), getProjectToken(),
+                getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
 
         mView = (MainView) View.inflate(this, R.layout.act_main, null);
         mView.setViewListener(this);

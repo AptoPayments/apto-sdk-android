@@ -1,13 +1,15 @@
-package me.ledge.link.sdk.imageloaders.volley;
+package me.ledge.link.imageloaders.volley;
 
 import android.content.Context;
 import android.widget.ImageView;
+
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-import me.ledge.link.sdk.ui.images.GenericImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import me.ledge.link.sdk.ui.images.GenericImageLoader;
 
 /**
  * Concrete implementation of the {@link GenericImageLoader} interface using
