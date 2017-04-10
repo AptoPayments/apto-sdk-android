@@ -131,7 +131,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        if(error.request_path.equals(LinkApiWrapper.UPDATE_USER_PATH) && error.statusCode == 401) {
+        if(error.request_path.equals(LinkApiWrapper.GET_CURRENT_USER_PATH) && error.statusCode == 401) {
             LedgeLinkUi.clearUserToken(getActivity());
         }
         stopModule();

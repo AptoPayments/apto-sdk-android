@@ -48,6 +48,7 @@ public interface LinkApiWrapper {
 
     String CREATE_USER_PATH = "v1/user";
     String UPDATE_USER_PATH = "v1/user";
+    String GET_CURRENT_USER_PATH = "v1/user";
     String LOGIN_USER_PATH = "v1/user/login";
 
     String INITIAL_OFFERS_PATH = "v1/link/offersrequest";

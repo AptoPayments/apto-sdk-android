@@ -84,14 +84,15 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     /** {@inheritDoc} */
     @Override
     public void offersClickedHandler() {
-        if(SHARED_USER_DATA.containsKey(USER_DATA_KEY) && SHARED_LOAN_DATA.containsKey(LOAN_DATA_KEY)) {
-            WeakReference<DataPointList> userData = SHARED_USER_DATA.get(USER_DATA_KEY);
-            WeakReference<LoanDataVo> loanData = SHARED_LOAN_DATA.get(LOAN_DATA_KEY);
-            LedgeLinkUi.startProcess(this, userData.get(), loanData.get());
+        WeakReference<DataPointList> userData = new WeakReference<>(null);
+        WeakReference<LoanDataVo> loanData = new WeakReference<>(null);;
+        if(SHARED_USER_DATA.containsKey(USER_DATA_KEY)){
+            userData = SHARED_USER_DATA.get(USER_DATA_KEY);
         }
-        else {
-            LedgeLinkUi.startProcess(this, null, null);
+        if(SHARED_LOAN_DATA.containsKey(LOAN_DATA_KEY)){
+            loanData = SHARED_LOAN_DATA.get(LOAN_DATA_KEY);
         }
+        LedgeLinkUi.startProcess(this, userData.get(), loanData.get());
     }
 
     @Override
