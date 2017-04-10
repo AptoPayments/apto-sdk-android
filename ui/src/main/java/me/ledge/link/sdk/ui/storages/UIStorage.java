@@ -8,6 +8,7 @@ import java8.util.concurrent.CompletableFuture;
 import java8.util.concurrent.CompletionException;
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
 
 import static me.ledge.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
@@ -77,7 +78,7 @@ public class UIStorage {
             }
         });
 
-        return getResultFromFuture(future);
+        return (Integer) getResultFromFuture(future);
     }
 
     public synchronized int getSecondaryColor() {
@@ -96,7 +97,25 @@ public class UIStorage {
             }
         });
 
-        return getResultFromFuture(future);
+        return (Integer) getResultFromFuture(future);
+    }
+
+    public synchronized ConfigResponseVo getContextConfig() {
+        CompletableFuture<ConfigResponseVo> future = CompletableFuture.supplyAsync(() -> {
+            if(mConfig != null) {
+                return mConfig.projectConfiguration;
+            }
+            else {
+                try {
+                    mConfig = getApiWrapper().getUserConfig(new UnauthorizedRequestVo());
+                    return mConfig.projectConfiguration;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        return (ConfigResponseVo) getResultFromFuture(future);
     }
 
     public synchronized int getPrimaryContrastColor() {
@@ -130,9 +149,9 @@ public class UIStorage {
         return Color.parseColor("#"+hexColor);
     }
 
-    private Integer getResultFromFuture(CompletableFuture future) {
+    private Object getResultFromFuture(CompletableFuture future) {
         try {
-            return (Integer) future.get();
+            return future.get();
         } catch (InterruptedException | ExecutionException e) {
             future.completeExceptionally(e);
             throw new CompletionException(e);

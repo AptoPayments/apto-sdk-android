@@ -45,6 +45,6 @@ public interface UserService {
      * Creates a {@link Call} to get the current user info.
      * @return API call to execute.
      */
-    @GET(LinkApiWrapper.UPDATE_USER_PATH)
+    @GET(LinkApiWrapper.GET_CURRENT_USER_PATH)
     Call<CurrentUserResponseVo> getCurrentUser();
 }

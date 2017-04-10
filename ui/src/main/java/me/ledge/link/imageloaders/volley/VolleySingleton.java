@@ -1,6 +1,7 @@
-package me.ledge.link.sdk.imageloaders.volley;
+package me.ledge.link.imageloaders.volley;
 
 import android.content.Context;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
