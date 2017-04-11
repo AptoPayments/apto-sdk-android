@@ -1,7 +1,6 @@
 package me.ledge.link.sdk.example.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,6 +13,7 @@ import java.util.HashMap;
 
 import io.branch.referral.Branch;
 import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.example.KeysStorage;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -31,17 +31,12 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     static HashMap<String, WeakReference<LoanDataVo>> SHARED_LOAN_DATA;
     static final String USER_DATA_KEY = "USER_DATA_KEY";
     static final String LOAN_DATA_KEY = "LOAN_DATA_KEY";
-    private static final String PREFS_FILE_NAME = "KeysFile";
-    private static final String PREFS_ENVIRONMENT = "ENVIRONMENT";
-    private static final String PREFS_PROJECT_KEY = "PROJECT_KEY";
-    private static final String PREFS_TEAM_KEY = "TEAM_KEY";
 
     /**
      * @return The targeted environment (local, dev, stg, sbx or prd)
      */
     protected String getEnvironment() {
-        SharedPreferences settings = this.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
-        return settings.getString(PREFS_ENVIRONMENT, getDefaultEnvironment());
+        return KeysStorage.getEnvironment(this, getDefaultEnvironment());
     }
 
     protected String getDefaultEnvironment() {
@@ -52,8 +47,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
      * @return Link API dev key.
      */
     protected String getDeveloperKey() {
-        SharedPreferences settings = this.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
-        return settings.getString(PREFS_TEAM_KEY, getDefaultDeveloperKey());
+        return KeysStorage.getDeveloperKey(this, getDefaultDeveloperKey());
     }
 
     protected String getDefaultDeveloperKey() {
@@ -64,8 +58,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
      * @return Link project token.
      */
     protected String getProjectToken() {
-        SharedPreferences settings = this.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
-        return settings.getString(PREFS_PROJECT_KEY, getDefaultProjectToken());
+        return KeysStorage.getProjectToken(this, getDefaultProjectToken());
     }
 
     protected String getDefaultProjectToken() {
@@ -108,24 +101,23 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         super.onStart();
         Branch branch = Branch.getInstance(getApplicationContext());
         branch.initSession((referringParams, error) -> {
-            if (error == null && referringParams.has(PREFS_ENVIRONMENT)
-                    && referringParams.has(PREFS_PROJECT_KEY)
-                    && referringParams.has(PREFS_TEAM_KEY)) {
+            if (error == null && referringParams.has(KeysStorage.PREFS_ENVIRONMENT)
+                    && referringParams.has(KeysStorage.PREFS_PROJECT_KEY)
+                    && referringParams.has(KeysStorage.PREFS_TEAM_KEY)) {
                 try {
-                    storeKeys(referringParams.getString(PREFS_ENVIRONMENT),
-                            referringParams.getString(PREFS_PROJECT_KEY),
-                            referringParams.getString(PREFS_TEAM_KEY));
+                    KeysStorage.storeKeys(this, referringParams.getString(KeysStorage.PREFS_ENVIRONMENT),
+                            referringParams.getString(KeysStorage.PREFS_PROJECT_KEY),
+                            referringParams.getString(KeysStorage.PREFS_TEAM_KEY));
                 } catch (JSONException e) {
-                    storeKeys(getDefaultEnvironment(),
+                    KeysStorage.storeKeys(this, getDefaultEnvironment(),
                             getDefaultProjectToken(),
                             getDefaultDeveloperKey());
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
+            LedgeLinkUi.setupLedgeLink(this, getDeveloperKey(), getProjectToken(),
+                    getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
         }, this.getIntent().getData(), this);
-
-        LedgeLinkUi.setupLedgeLink(this, getDeveloperKey(), getProjectToken(),
-                getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
     }
 
     /** {@inheritDoc} */
@@ -151,14 +143,5 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     public void settingsClickedHandler() {
         startActivity(new Intent(this, SettingsActivity.class));
-    }
-
-    private void storeKeys(String environment, String projectKey, String teamKey) {
-        SharedPreferences settings = this.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(PREFS_ENVIRONMENT, environment);
-        editor.putString(PREFS_PROJECT_KEY, projectKey);
-        editor.putString(PREFS_TEAM_KEY, teamKey);
-        editor.apply();
     }
 }
