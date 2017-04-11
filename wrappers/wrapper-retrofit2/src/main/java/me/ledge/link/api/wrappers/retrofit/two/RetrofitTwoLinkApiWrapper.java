@@ -408,10 +408,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
         try {
             Response<CurrentUserResponseVo> response = mUserService.getCurrentUser().execute();
-            result = handleResponse(response, LinkApiWrapper.UPDATE_USER_PATH);
+            result = handleResponse(response, LinkApiWrapper.GET_CURRENT_USER_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.UPDATE_USER_PATH, ioe);
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.GET_CURRENT_USER_PATH, ioe);
         }
 
         return result;
