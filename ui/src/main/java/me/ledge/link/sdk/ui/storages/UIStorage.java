@@ -10,6 +10,7 @@ import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
+import me.ledge.link.api.vos.responses.config.TeamConfigResponseVo;
 
 import static me.ledge.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
 
@@ -116,6 +117,24 @@ public class UIStorage {
         });
 
         return (ConfigResponseVo) getResultFromFuture(future);
+    }
+
+    public synchronized TeamConfigResponseVo getTeamConfig() {
+        CompletableFuture<TeamConfigResponseVo> future = CompletableFuture.supplyAsync(() -> {
+            if(mConfig != null) {
+                return mConfig.teamConfiguration;
+            }
+            else {
+                try {
+                    mConfig = getApiWrapper().getUserConfig(new UnauthorizedRequestVo());
+                    return mConfig.teamConfiguration;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        return (TeamConfigResponseVo) getResultFromFuture(future);
     }
 
     public synchronized int getPrimaryContrastColor() {

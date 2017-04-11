@@ -90,13 +90,13 @@ public class LedgeLinkUi extends LedgeLinkSdk {
             case local:
                 return "http://10.0.2.2:5001";
             case dev:
-                return "https://dev.platform.ledge.me/";
+                return "https://dev.ledge.me:5000";
             case stg:
-                return "https://stg.ledge.me/";
+                return "https://stg.ledge.me";
             case sbx:
                 return "https://sbx.ledge.me";
             case prd:
-                return "https://platform.ledge.me";
+                return "https://prd.ledge.me";
             default:
                 return "https://sbx.ledge.me";
         }
@@ -114,7 +114,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
         HandlerConfigurator configurator = new EventBusHandlerConfigurator();
 
         LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
-        apiWrapper.setApiEndPoint(getApiEndPoint(Environment.valueOf(environment)), certificatePinning, trustSelfSignedCertificates);
+        apiWrapper.setApiEndPoint(getApiEndPoint(Environment.valueOf(environment.toLowerCase())), certificatePinning, trustSelfSignedCertificates);
         apiWrapper.setBaseRequestData(developerKey, utils.getDeviceSummary(), certificatePinning, trustSelfSignedCertificates);
         apiWrapper.setProjectToken(projectToken);
 

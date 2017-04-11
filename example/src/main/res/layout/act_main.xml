@@ -9,14 +9,8 @@
         android:layout_height="match_parent"
         android:padding="16dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_ledge_logo"
-            android:paddingTop="32dp"
-            android:layout_centerHorizontal="true" />
-
         <LinearLayout
+            android:id="@+id/ll_buttons"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,5 +34,13 @@
                 android:text="@string/main_data_header" />
 
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_ledge_logo"
+            android:paddingTop="32dp"
+            android:layout_above="@id/ll_buttons"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 </me.ledge.link.sdk.example.views.MainView>
