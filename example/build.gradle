@@ -35,4 +35,5 @@ dependencies {
     compile 'me.ledge.link.sdk:ui:+'
     compile 'me.ledge.link.sdk:handler-eventbus:+'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
+    compile 'io.branch.sdk.android:library:2.+'
 }

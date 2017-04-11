@@ -64,6 +64,8 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
     private EditText mBirthday;
     private EditText mSSN;
     private EditText mBearerToken;
+    private EditText mTeamName;
+    private EditText mProjectName;
     private EditText mOffersListStyle;
     private Switch mPOSMode;
     private Switch mSkipDisclaimers;
@@ -128,6 +130,8 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
         mBirthday = (EditText) findViewById(R.id.et_birthday);
         mSSN = (EditText) findViewById(R.id.et_ssn);
         mBearerToken = (EditText) findViewById(R.id.et_user_token);
+        mTeamName = (EditText) findViewById(R.id.et_team_name);
+        mProjectName = (EditText) findViewById(R.id.et_project_name);
         mOffersListStyle = (EditText) findViewById(R.id.et_offers_list_style);
         mPOSMode = (Switch) findViewById(R.id.sw_pos_mode) ;
         mSkipDisclaimers = (Switch) findViewById(R.id.sw_skip_link_disclaimers);
@@ -447,13 +451,6 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
     }
 
     /**
-     * @return User token.
-     */
-    public String getUserToken() {
-        return mBearerToken.getText().toString();
-    }
-
-    /**
      * Shows the stored user token.
      * @param token User token.
      */
@@ -529,5 +526,21 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
      */
     public void setStrictAddressValidation(boolean enabled) {
         mAddressValidation.setChecked(enabled);
+    }
+
+    /**
+     * Shows the team name.
+     * @param team Team name
+     */
+    public void setTeamName(String team) {
+        mTeamName.setText(team);
+    }
+
+    /**
+     * Shows the project name.
+     * @param project Project name
+     */
+    public void setProjectName(String project) {
+        mProjectName.setText(project);
     }
 }

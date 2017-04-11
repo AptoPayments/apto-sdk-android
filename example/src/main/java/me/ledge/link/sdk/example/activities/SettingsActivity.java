@@ -306,6 +306,8 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         mView.setPOSMode(ConfigStorage.getInstance().getPOSMode());
         mView.setSkipDisclaimers(ConfigStorage.getInstance().getSkipLinkDisclaimer());
         mView.setStrictAddressValidation(ConfigStorage.getInstance().isStrictAddressValidationEnabled());
+        mView.setProjectName(mProjectConfig.name);
+        mView.setTeamName(UIStorage.getInstance().getTeamConfig().name);
     }
 
     private void displayHousingType() {

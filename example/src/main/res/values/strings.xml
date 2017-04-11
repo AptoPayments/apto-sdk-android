@@ -24,6 +24,8 @@
     <string name="main_input_salary_frequency">Salary frequency</string>
     <string name="main_input_housing_type">Housing type</string>
     <string name="main_user_token">User token:</string>
+    <string name="main_team_name">Organization:</string>
+    <string name="main_project_name">Project:</string>
     <string name="main_offer_list_style">Offer list style:</string>
     <string name="main_pos_mode">POS mode:</string>
     <string name="main_skip_link_disclaimers">Skip project disclaimers:</string>
