@@ -135,6 +135,24 @@ public class ConfigStorage {
         return (boolean) getResultFromFuture(f);
     }
 
+    public synchronized double getMinLoanAmount() {
+        CompletableFuture<Double> f = CompletableFuture.supplyAsync(() -> {
+            if(isConfigCached()) {
+                return mLinkConfig.loanAmountMin;
+            }
+            else {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.loanAmountMin;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        return (double) getResultFromFuture(f);
+    }
+
     public synchronized double getMaxLoanAmount() {
         CompletableFuture<Double> f = CompletableFuture.supplyAsync(() -> {
             if(isConfigCached()) {
@@ -170,6 +188,25 @@ public class ConfigStorage {
 
         return (double) getResultFromFuture(f);
     }
+
+    public synchronized double getLoanAmountDefault() {
+        CompletableFuture<Double> f = CompletableFuture.supplyAsync(() -> {
+            if(isConfigCached()) {
+                return mLinkConfig.loanAmountDefault;
+            }
+            else {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.loanAmountDefault;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        return (double) getResultFromFuture(f);
+    }
+
 
     public synchronized boolean getSkipLinkDisclaimer() {
         CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {

@@ -34,6 +34,8 @@ public class LoanAmountPresenter
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mPurposeAdapter;
     private LoanDataDelegate mDelegate;
     private boolean isMaxLoanAmountReady;
+    private boolean isMinLoanAmountReady;
+    private boolean isDefaultLoanAmountReady;
     private boolean isLoanPurposesReady;
     private boolean isLoanIncrementsReady;
     private String mDisclaimersText;
@@ -53,8 +55,11 @@ public class LoanAmountPresenter
         super.init();
         mPurposeAdapter = null;
         isMaxLoanAmountReady = false;
+        isMinLoanAmountReady = false;
+        isDefaultLoanAmountReady = false;
         isLoanPurposesReady = false;
         isLoanIncrementsReady = false;
+        retrieveValuesFromConfig();
     }
 
     /**
@@ -90,31 +95,6 @@ public class LoanAmountPresenter
     @Override
     public LoanAmountModel createModel() {
         return new LoanAmountModel();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void populateModelFromStorage() {
-        CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().getMaxLoanAmount())
-                .exceptionally(ex -> {
-                    errorReceived(ex.getMessage());
-                    return null;
-                })
-                .thenAccept(this::maxLoanAmountRetrieved);
-
-        CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().getLoanAmountIncrements())
-                .exceptionally(ex -> {
-                    errorReceived(ex.getMessage());
-                    return null;
-                })
-                .thenAccept(this::loanAmountIncrementsRetrieved);
-
-        mModel.setMinAmount(mActivity.getResources().getInteger(R.integer.min_loan_amount))
-                .setAmount(mActivity.getResources().getInteger(R.integer.default_loan_amount));
-
-        super.populateModelFromStorage();
     }
 
     /** {@inheritDoc} */
@@ -202,6 +182,40 @@ public class LoanAmountPresenter
     @Override
     public void onStopTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
 
+    private void retrieveValuesFromConfig() {
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getMaxLoanAmount())
+                .exceptionally(ex -> {
+                    errorReceived(ex.getMessage());
+                    return null;
+                })
+                .thenAccept(this::maxLoanAmountRetrieved);
+
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getMinLoanAmount())
+                .exceptionally(ex -> {
+                    errorReceived(ex.getMessage());
+                    return null;
+                })
+                .thenAccept(this::minLoanAmountRetrieved);
+
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getLoanAmountDefault())
+                .exceptionally(ex -> {
+                    errorReceived(ex.getMessage());
+                    return null;
+                })
+                .thenAccept(this::defaultLoanAmountRetrieved);
+
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getLoanAmountIncrements())
+                .exceptionally(ex -> {
+                    errorReceived(ex.getMessage());
+                    return null;
+                })
+                .thenAccept(this::loanAmountIncrementsRetrieved);
+    }
+
     /**
      * Stores a new list of loan purposes and updates the View.
      * @param loanPurposesList New list.
@@ -225,9 +239,19 @@ public class LoanAmountPresenter
 
     private void maxLoanAmountRetrieved(double maxLoanAmount) {
         isMaxLoanAmountReady = true;
-        mModel.setMaxAmount((int) maxLoanAmount)
-                .setMinAmount(Math.min(mModel.getMinAmount(),(int) maxLoanAmount))
-                .setAmount(Math.min(mModel.getAmount(),(int) maxLoanAmount));
+        mModel.setMaxAmount((int) maxLoanAmount);
+        updateViewIfReady();
+    }
+
+    private void minLoanAmountRetrieved(double minLoanAmount) {
+        isMinLoanAmountReady = true;
+        mModel.setMinAmount((int) minLoanAmount);
+        updateViewIfReady();
+    }
+
+    private void defaultLoanAmountRetrieved(double defaultLoanAmount) {
+        isDefaultLoanAmountReady = true;
+        mModel.setAmount((int) defaultLoanAmount);
         updateViewIfReady();
     }
 
@@ -251,13 +275,15 @@ public class LoanAmountPresenter
     }
 
     private boolean isAllDataReadyForView() {
-        return isMaxLoanAmountReady && isLoanPurposesReady && isLoanIncrementsReady;
+        return isMinLoanAmountReady && isMaxLoanAmountReady && isLoanPurposesReady
+                && isLoanIncrementsReady && isDefaultLoanAmountReady;
     }
 
     private void updateViewIfReady() {
         if(isAllDataReadyForView()) {
+            super.populateModelFromStorage();
             mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
-            mView.setMinMax(mModel.getMinAmount() / mAmountIncrement, mModel.getMaxAmount() / mAmountIncrement);
+            mView.setMinMax((mModel.getMinAmount() / mAmountIncrement)+1, mModel.getMaxAmount() / mAmountIncrement);
             mView.setAmount(mModel.getAmount() / mAmountIncrement);
             mView.showLoading(false);
         }
