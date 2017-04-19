@@ -89,7 +89,9 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void showHomeActivity() {
-        startActivity(this.getActivity().getClass());
+        Activity mainActivity = this.getActivity();
+        mainActivity.finish();
+        mainActivity.startActivity(mainActivity.getIntent());
     }
 
     private void skipLinkDisclaimerRetrieved(boolean skipLinkDisclaimer) {
