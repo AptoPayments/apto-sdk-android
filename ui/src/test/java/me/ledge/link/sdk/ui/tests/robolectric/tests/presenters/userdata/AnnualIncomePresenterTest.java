@@ -10,14 +10,13 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 
-import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Employment;
 import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockAnnualIncomePresenter;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModule;
 import me.ledge.link.sdk.ui.mocks.views.userdata.MockAnnualIncomeView;
@@ -33,6 +32,8 @@ import static org.hamcrest.CoreMatchers.nullValue;
 public class AnnualIncomePresenterTest {
 
     private static final long EXPECTED_INCOME = 90000;
+    private static final int TEST_MAX_INCOME = 100000;
+    private static final int EXPECTED_MULTIPLIER = 1000;
     private static final int EXPECTED_EMPLOYMENT_STATUS = 1;
     private static final int EXPECTED_SALARY_FREQUENCY = 2;
 
@@ -52,9 +53,9 @@ public class AnnualIncomePresenterTest {
 
     @Test
     public void absoluteAnnualGrossIncomeStoredInModel() {
-        int incomeMultiplier  = mActivity.getResources().getInteger(R.integer.income_increment);
-        mView.setIncome(EXPECTED_INCOME / incomeMultiplier);
-
+        ((MockAnnualIncomePresenter) mPresenter).setModelMaxIncome(TEST_MAX_INCOME);
+        ((MockAnnualIncomePresenter) mPresenter).setMultiplier(EXPECTED_MULTIPLIER);
+        mView.setIncome(EXPECTED_INCOME / EXPECTED_MULTIPLIER);
         mPresenter.nextClickHandler();
 
         DataPointList userData = UserStorage.getInstance().getUserData();
