@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import org.greenrobot.eventbus.Subscribe;
 
+import java8.util.concurrent.CompletableFuture;
+import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
@@ -12,8 +14,8 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AnnualIncomeModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.userdata.AnnualIncomeView;
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
@@ -25,8 +27,8 @@ public class AnnualIncomePresenter
         extends UserDataPresenter<AnnualIncomeModel, AnnualIncomeView>
         implements AnnualIncomeView.ViewListener {
 
-    private int mIncomeMultiplier;
-    private int mMaxIncome;
+    protected int mIncomeMultiplier;
+    private boolean mIncomeValuesReady;
     private AnnualIncomeDelegate mDelegate;
 
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mEmploymentStatusesAdapter;
@@ -39,6 +41,34 @@ public class AnnualIncomePresenter
     public AnnualIncomePresenter(AppCompatActivity activity, AnnualIncomeDelegate delegate) {
         super(activity);
         mDelegate = delegate;
+        mIncomeValuesReady = false;
+    }
+
+    private void retrieveValuesFromConfig() {
+        CompletableFuture
+                .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
+                .exceptionally(ex -> {
+                    mView.displayErrorMessage(ex.getMessage());
+                    return null;
+                })
+                .thenAccept(this::contextConfigRetrieved);
+    }
+
+    private void contextConfigRetrieved(ConfigResponseVo config) {
+        mIncomeValuesReady = true;
+        mModel.setMinIncome((int) config.grossIncomeMin)
+                .setMaxIncome((int) config.grossIncomeMax)
+                .setAnnualIncome((int) config.grossIncomeDefault);
+        mIncomeMultiplier = (int) config.grossIncomeIncrements;
+        super.populateModelFromStorage();
+        mView.setMinMax(mModel.getMinIncome() / mIncomeMultiplier, mModel.getMaxIncome() / mIncomeMultiplier);
+        mView.setIncome(mModel.getAnnualIncome() / mIncomeMultiplier);
+        mView.showLoading(isViewLoading());
+    }
+    
+    private boolean isViewLoading() {
+        return mEmploymentStatusesAdapter == null || mSalaryFrequenciesAdapter == null ||
+                !mIncomeValuesReady;
     }
 
     /**
@@ -100,29 +130,15 @@ public class AnnualIncomePresenter
 
     /** {@inheritDoc} */
     @Override
-    protected void populateModelFromStorage() {
-        mIncomeMultiplier = mActivity.getResources().getInteger(R.integer.income_increment);
-        mMaxIncome = mActivity.getResources().getInteger(R.integer.max_income);
-
-        mModel.setMinIncome(mActivity.getResources().getInteger(R.integer.min_income))
-                .setMaxIncome(mMaxIncome)
-                .setAnnualIncome(mActivity.getResources().getInteger(R.integer.default_income));
-
-        super.populateModelFromStorage();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void attachView(AnnualIncomeView view) {
         super.attachView(view);
         mResponseHandler.subscribe(this);
+        retrieveValuesFromConfig();
         mView.setListener(this);
-        mView.setMinMax(mModel.getMinIncome() / mIncomeMultiplier, mModel.getMaxIncome() / mIncomeMultiplier);
-        mView.setIncome(mModel.getAnnualIncome() / mIncomeMultiplier);
         mView.updateEmploymentStatusError(false);
         mView.updateSalaryFrequencyError(false);
 
-        mView.showLoading(mEmploymentStatusesAdapter == null || mSalaryFrequenciesAdapter == null);
+        mView.showLoading(isViewLoading());
 
         if (mEmploymentStatusesAdapter == null) {
             mView.setEmploymentStatusAdapter(generateEmploymentStatusesAdapter(null));
@@ -183,12 +199,7 @@ public class AnnualIncomePresenter
     /** {@inheritDoc} */
     @Override
     public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
-        String formatted = mActivity.getString(R.string.income_format, value);
-        if (value * mIncomeMultiplier >= mMaxIncome) {
-            formatted = mActivity.getString(R.string.income_format_and_more, value);
-        }
-
-        mView.updateIncomeText(formatted);
+        mView.updateIncomeText(String.valueOf(value*mIncomeMultiplier));
     }
 
     /** {@inheritDoc} */
@@ -206,7 +217,7 @@ public class AnnualIncomePresenter
         mEmploymentStatusesAdapter = generateEmploymentStatusesAdapter(list);
 
         if (mView != null) {
-            mView.showLoading(mEmploymentStatusesAdapter == null || mSalaryFrequenciesAdapter == null);
+            mView.showLoading(isViewLoading());
             mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
 
             if (mModel.hasValidEmploymentStatus()) {
@@ -222,7 +233,7 @@ public class AnnualIncomePresenter
         mSalaryFrequenciesAdapter = generateSalaryFrequenciesAdapter(list);
 
         if (mView != null) {
-            mView.showLoading(mEmploymentStatusesAdapter == null || mSalaryFrequenciesAdapter == null);
+            mView.showLoading(isViewLoading());
             mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
 
             if (mModel.hasValidSalaryFrequency()) {
@@ -244,17 +255,6 @@ public class AnnualIncomePresenter
             setSalaryFrequenciesList(response.salaryFrequencyOpts.data);
         }
     }
-
-/*    *//**
-     * Called when the salary frequencies list API response has been received.
-     * @param response API response.
-     *//*
-    @Subscribe
-    public void handleSalaryFrequenciesList(ConfigResponseVo response) {
-        if (isSalaryFrequencyPresent(response)) {
-            setSalaryFrequenciesList(response.salaryFrequencyOpts.data);
-        }
-    }*/
 
     private boolean isEmploymentStatusesPresent(ConfigResponseVo response) {
         return response!=null && response.employmentStatusOpts!=null;

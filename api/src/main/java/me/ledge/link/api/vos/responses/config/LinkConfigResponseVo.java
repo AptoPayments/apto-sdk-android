@@ -9,11 +9,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class LinkConfigResponseVo {
 
+    @SerializedName("loan_amount_min")
+    public double loanAmountMin;
+
     @SerializedName("loan_amount_max")
     public double loanAmountMax;
 
     @SerializedName("loan_amount_increments")
     public double loanAmountIncrements;
+
+    @SerializedName("loan_amount_default")
+    public double loanAmountDefault;
 
     @SerializedName("pos_mode")
     public boolean posMode;

@@ -20,6 +20,18 @@ public class ConfigResponseVo {
     @SerializedName("logo_url")
     public String logoURL;
 
+    @SerializedName("gross_income_min")
+    public double grossIncomeMin;
+
+    @SerializedName("gross_income_max")
+    public double grossIncomeMax;
+
+    @SerializedName("gross_income_increments")
+    public double grossIncomeIncrements;
+
+    @SerializedName("gross_income_default")
+    public double grossIncomeDefault;
+
     @SerializedName("housing_types")
     public HousingTypeListResponseVo housingTypeOpts;
 
