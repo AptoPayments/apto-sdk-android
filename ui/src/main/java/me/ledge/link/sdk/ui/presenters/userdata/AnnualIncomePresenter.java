@@ -230,7 +230,7 @@ public class AnnualIncomePresenter
     /** {@inheritDoc} */
     @Override
     public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
-        mView.updateIncomeText(String.valueOf(value*mIncomeMultiplier));
+        mView.updateIncomeText(mActivity.getString(R.string.annual_income_format, value * mIncomeMultiplier));
     }
 
     /** {@inheritDoc} */
