@@ -10,17 +10,22 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 
+import java.lang.ref.WeakReference;
+
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Employment;
 import me.ledge.link.api.vos.datapoints.Income;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockAnnualIncomePresenter;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModule;
 import me.ledge.link.sdk.ui.mocks.views.userdata.MockAnnualIncomeView;
 import me.ledge.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.userdata.AnnualIncomeView;
 
@@ -36,6 +41,7 @@ public class AnnualIncomePresenterTest {
     private static final int EXPECTED_MULTIPLIER = 1000;
     private static final int EXPECTED_EMPLOYMENT_STATUS = 1;
     private static final int EXPECTED_SALARY_FREQUENCY = 2;
+    private static final int EMPLOYMENT_TYPE = 8;
 
     private AppCompatActivity mActivity;
     private AnnualIncomePresenter mPresenter;
@@ -44,6 +50,9 @@ public class AnnualIncomePresenterTest {
     @Before
     public void setUp() {
         mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity);
+        userDataCollectorModule.mRequiredDataPointList.add(new RequiredDataPointVo(EMPLOYMENT_TYPE));
+        ModuleManager.getInstance().setModule(new WeakReference<>(userDataCollectorModule));
         mPresenter = new MockAnnualIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));
         mView = new MockAnnualIncomeView(mActivity);
         LedgeLinkUi.setApiWrapper(new MockApiWrapper());

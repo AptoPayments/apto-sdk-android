@@ -57,7 +57,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     public Command onBack;
     public Command onUserDoesNotHaveAllRequiredData;
     public Command onUserHasAllRequiredData;
-    public LinkedList mRequiredDataPointList;
+    public LinkedList<RequiredDataPointVo> mRequiredDataPointList;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
     public boolean isUpdatingProfile;
     private DataPointList mCurrentUserDataCopy;
@@ -71,7 +71,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     private UserDataCollectorModule(Activity activity) {
         super(activity);
-        mRequiredDataPointList = null;
+        mRequiredDataPointList = new LinkedList<>();
         mRequiredActivities = new ArrayList<>();
     }
 

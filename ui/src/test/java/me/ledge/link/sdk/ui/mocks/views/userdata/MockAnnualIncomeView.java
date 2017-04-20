@@ -62,6 +62,11 @@ public class MockAnnualIncomeView extends AnnualIncomeView {
     }
 
     @Override
+    public void showEmploymentFields(boolean show) {
+        // Do nothing.
+    }
+
+    @Override
     public void showLoading(boolean show) {
         // Do nothing.
     }
