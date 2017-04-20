@@ -34,8 +34,10 @@ public class AnnualIncomeView
     private LoadingView mLoadingView;
     private TextView mIncomeText;
     private DiscreteSeekBar mIncomeSlider;
+    private TextView mEmploymentStatusHint;
     private Spinner mEmploymentStatusSpinner;
     private TextView mEmploymentStatusError;
+    private TextView mSalaryFrequencyHint;
     private Spinner mSalaryFrequencySpinner;
     private TextView mSalaryFrequencyError;
 
@@ -65,9 +67,11 @@ public class AnnualIncomeView
         mIncomeText = (TextView) findViewById(R.id.tv_income);
         mIncomeSlider = (DiscreteSeekBar) findViewById(R.id.dsb_income);
 
+        mEmploymentStatusHint = (TextView) findViewById(R.id.tv_employment_status_hint);
         mEmploymentStatusSpinner = (Spinner) findViewById(R.id.sp_employment_status);
         mEmploymentStatusError = (TextView) findViewById(R.id.tv_employment_status_error);
 
+        mSalaryFrequencyHint = (TextView) findViewById(R.id.tv_salary_frequency_hint);
         mSalaryFrequencySpinner = (Spinner) findViewById(R.id.sp_salary_frequency);
         mSalaryFrequencyError = (TextView) findViewById(R.id.tv_salary_frequency_error);
     }
@@ -198,6 +202,22 @@ public class AnnualIncomeView
             mSalaryFrequencyError.setVisibility(VISIBLE);
         } else {
             mSalaryFrequencyError.setVisibility(GONE);
+        }
+    }
+
+    public void showEmploymentFields(boolean show) {
+        if (show) {
+            mEmploymentStatusSpinner.setVisibility(VISIBLE);
+            mEmploymentStatusHint.setVisibility(VISIBLE);
+            mSalaryFrequencySpinner.setVisibility(VISIBLE);
+            mSalaryFrequencyHint.setVisibility(VISIBLE);
+        } else {
+            mEmploymentStatusSpinner.setVisibility(GONE);
+            mEmploymentStatusHint.setVisibility(GONE);
+            updateEmploymentStatusError(false);
+            mSalaryFrequencySpinner.setVisibility(GONE);
+            mSalaryFrequencyHint.setVisibility(GONE);
+            updateSalaryFrequencyError(false);
         }
     }
 }
