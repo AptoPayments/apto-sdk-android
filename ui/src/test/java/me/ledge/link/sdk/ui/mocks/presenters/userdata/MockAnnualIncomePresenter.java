@@ -18,4 +18,12 @@ public class MockAnnualIncomePresenter extends AnnualIncomePresenter {
         // Do nothing.
     }
 
+    public void setModelMaxIncome(int maxIncome) {
+        mModel.setMaxIncome(maxIncome);
+    }
+
+    public void setMultiplier(int multiplier) {
+        mIncomeMultiplier = multiplier;
+    }
+
 }
