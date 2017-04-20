@@ -173,6 +173,15 @@ public class IdentityVerificationView
         return getMaskedSSN().equals(getSocialSecurityNumber());
     }
 
+    public void showSSN(boolean show) {
+        if(show) {
+            mSocialSecurityField.setVisibility(VISIBLE);
+        }
+        else {
+            mSocialSecurityField.setVisibility(GONE);
+        }
+    }
+
     /**
      * Updates the birthday field error display.
      * @param show Whether the error should be shown.
