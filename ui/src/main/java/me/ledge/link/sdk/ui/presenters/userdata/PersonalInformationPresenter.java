@@ -20,6 +20,7 @@ public class PersonalInformationPresenter
         implements PersonalInformationView.ViewListener {
 
     private PersonalInformationDelegate mDelegate;
+    private boolean mIsNameRequired;
     private boolean mIsPhoneRequired;
     private boolean mIsEmailRequired;
 
@@ -31,6 +32,7 @@ public class PersonalInformationPresenter
         super(activity);
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
+        mIsNameRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.PersonalName.ordinal()+1));
         mIsPhoneRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.PhoneNumber.ordinal()+1));
         mIsEmailRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Email.ordinal()+1));
     }
@@ -52,10 +54,11 @@ public class PersonalInformationPresenter
     public void attachView(PersonalInformationView view) {
         super.attachView(view);
 
-        if (mModel.hasFirstName()) {
+        mView.showName(mIsNameRequired);
+        if (mIsNameRequired && mModel.hasFirstName()) {
             mView.setFirstName(mModel.getFirstName());
         }
-        if (mModel.hasLastName()) {
+        if (mIsNameRequired && mModel.hasLastName()) {
             mView.setLastName(mModel.getLastName());
         }
         mView.showEmail(mIsEmailRequired);
@@ -85,13 +88,12 @@ public class PersonalInformationPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        // Store data.
-        mModel.setFirstName(mView.getFirstName());
-        mModel.setLastName(mView.getLastName());
-
-        // Validate data.
-        mView.updateFirstNameError(!mModel.hasFirstName(), R.string.personal_info_first_name_error);
-        mView.updateLastNameError(!mModel.hasLastName(), R.string.personal_info_last_name_error);
+        if(mIsNameRequired) {
+            mModel.setFirstName(mView.getFirstName());
+            mModel.setLastName(mView.getLastName());
+            mView.updateFirstNameError(!mModel.hasFirstName(), R.string.personal_info_first_name_error);
+            mView.updateLastNameError(!mModel.hasLastName(), R.string.personal_info_last_name_error);
+        }
 
         if(mIsEmailRequired) {
             mModel.setEmail(mView.getEmail());
@@ -103,25 +105,9 @@ public class PersonalInformationPresenter
             mView.updatePhoneError(!mModel.hasPhone(), R.string.personal_info_phone_error);
         }
 
-        if(mIsEmailRequired && mIsPhoneRequired) {
-            if (mModel.hasAllData()) {
-                saveDataAndExit();
-            }
+        if(mModel.hasAllRequiredData(mIsNameRequired, mIsEmailRequired, mIsPhoneRequired)) {
+            saveData();
+            mDelegate.personalInformationStored();
         }
-        else if(mIsEmailRequired) {
-            if(mModel.hasName() && mModel.hasEmail()) {
-                saveDataAndExit();
-            }
-        }
-        else {
-            if(mModel.hasName() && mModel.hasPhone()) {
-                saveDataAndExit();
-            }
-        }
-    }
-
-    private void saveDataAndExit() {
-        saveData();
-        mDelegate.personalInformationStored();
     }
 }

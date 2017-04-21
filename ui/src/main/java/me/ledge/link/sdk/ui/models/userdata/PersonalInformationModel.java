@@ -4,6 +4,8 @@ import android.text.TextUtils;
 
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
+import java.util.LinkedList;
+
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Email;
@@ -234,6 +236,26 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      */
     public boolean hasPhone() {
         return mPhone.phoneNumber != null;
+    }
+
+    public boolean hasAllRequiredData(boolean isNameRequired, boolean isEmailRequired, boolean isPhoneRequired) {
+        boolean hasAllData = true;
+
+        LinkedList<Boolean> requiredDataList = new LinkedList<>();
+        if(isNameRequired) {
+            requiredDataList.add(hasName());
+        }
+        if(isEmailRequired) {
+            requiredDataList.add(hasEmail());
+        }
+        if(isPhoneRequired) {
+            requiredDataList.add(hasPhone());
+        }
+
+        for (boolean hasData:requiredDataList) {
+            hasAllData = hasAllData && hasData;
+        }
+        return hasAllData;
     }
 }
 
