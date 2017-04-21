@@ -226,4 +226,15 @@ public class IdentityVerificationView
             mDisclaimersField.setVisibility(GONE);
         }
     }
+
+    public void showBirthday(boolean show) {
+        if(show) {
+            mBirthdayButton.setVisibility(VISIBLE);
+            mBirthdayField.setVisibility(VISIBLE);
+        }
+        else {
+            mBirthdayButton.setVisibility(GONE);
+            mBirthdayField.setVisibility(GONE);
+        }
+    }
 }

@@ -33,6 +33,7 @@ public class IdentityVerificationPresenter
     private String mDisclaimersText;
     private IdentityVerificationDelegate mDelegate;
     private boolean mIsSSNRequired;
+    private boolean mIsBirthdayRequired;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
@@ -42,6 +43,7 @@ public class IdentityVerificationPresenter
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
         mIsSSNRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.SSN.ordinal()+1));
+        mIsBirthdayRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.BirthDate.ordinal()+1));
     }
 
     /**
@@ -86,6 +88,7 @@ public class IdentityVerificationPresenter
         super.attachView(view);
         mView.setListener(this);
 
+        mView.showBirthday(mIsBirthdayRequired);
         if(mModel.hasValidBirthday()) {
             mView.setBirthday(mModel.getFormattedBirthday());
         }
@@ -150,7 +153,9 @@ public class IdentityVerificationPresenter
     @Override
     public void nextClickHandler() {
         // Validate input.
-        mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
+        if(mIsBirthdayRequired) {
+            mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
+        }
 
         if(mIsSSNRequired && userHasUpdatedSSN()) {
             mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
