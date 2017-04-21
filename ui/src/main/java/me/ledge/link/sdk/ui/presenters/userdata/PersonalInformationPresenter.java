@@ -2,6 +2,9 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
+import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -17,6 +20,8 @@ public class PersonalInformationPresenter
         implements PersonalInformationView.ViewListener {
 
     private PersonalInformationDelegate mDelegate;
+    private boolean mIsPhoneRequired;
+    private boolean mIsEmailRequired;
 
     /**
      * Creates a new {@link PersonalInformationPresenter} instance.
@@ -25,6 +30,9 @@ public class PersonalInformationPresenter
     public PersonalInformationPresenter(AppCompatActivity activity, PersonalInformationDelegate delegate) {
         super(activity);
         mDelegate = delegate;
+        UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
+        mIsPhoneRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.PhoneNumber.ordinal()+1));
+        mIsEmailRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Email.ordinal()+1));
     }
 
     /** {@inheritDoc} */
@@ -50,10 +58,12 @@ public class PersonalInformationPresenter
         if (mModel.hasLastName()) {
             mView.setLastName(mModel.getLastName());
         }
-        if (mModel.hasEmail()) {
+        mView.showEmail(mIsEmailRequired);
+        if (mIsEmailRequired && mModel.hasEmail()) {
             mView.setEmail(mModel.getEmail());
         }
-        if (mModel.hasPhone()) {
+        mView.showPhone(mIsPhoneRequired);
+        if (mIsPhoneRequired && mModel.hasPhone()) {
             mView.setPhone(Long.toString(mModel.getPhone().getNationalNumber()));
         }
 
@@ -78,18 +88,40 @@ public class PersonalInformationPresenter
         // Store data.
         mModel.setFirstName(mView.getFirstName());
         mModel.setLastName(mView.getLastName());
-        mModel.setEmail(mView.getEmail());
-        mModel.setPhone(mView.getPhone());
 
         // Validate data.
         mView.updateFirstNameError(!mModel.hasFirstName(), R.string.personal_info_first_name_error);
         mView.updateLastNameError(!mModel.hasLastName(), R.string.personal_info_last_name_error);
-        mView.updateEmailError(!mModel.hasEmail(), R.string.personal_info_email_error);
-        mView.updatePhoneError(!mModel.hasPhone(), R.string.personal_info_phone_error);
 
-        if (mModel.hasAllData()) {
-            saveData();
-            mDelegate.personalInformationStored();
+        if(mIsEmailRequired) {
+            mModel.setEmail(mView.getEmail());
+            mView.updateEmailError(!mModel.hasEmail(), R.string.personal_info_email_error);
         }
+
+        if(mIsPhoneRequired) {
+            mModel.setPhone(mView.getPhone());
+            mView.updatePhoneError(!mModel.hasPhone(), R.string.personal_info_phone_error);
+        }
+
+        if(mIsEmailRequired && mIsPhoneRequired) {
+            if (mModel.hasAllData()) {
+                saveDataAndExit();
+            }
+        }
+        else if(mIsEmailRequired) {
+            if(mModel.hasName() && mModel.hasEmail()) {
+                saveDataAndExit();
+            }
+        }
+        else {
+            if(mModel.hasName() && mModel.hasPhone()) {
+                saveDataAndExit();
+            }
+        }
+    }
+
+    private void saveDataAndExit() {
+        saveData();
+        mDelegate.personalInformationStored();
     }
 }

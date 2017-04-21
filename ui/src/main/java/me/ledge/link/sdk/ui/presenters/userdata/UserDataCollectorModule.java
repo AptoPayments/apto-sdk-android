@@ -347,7 +347,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     private void fillRequiredActivitiesList() {
         if(!mRequiredDataPointList.isEmpty()) {
-            for (RequiredDataPointVo requiredDataPointVo : (Iterable<RequiredDataPointVo>) mRequiredDataPointList) {
+            for (RequiredDataPointVo requiredDataPointVo : mRequiredDataPointList) {
                 if(requiredDataPointVo.type == 1) {
                     addRequiredActivity(PersonalInformationActivity.class);
                 }
@@ -400,7 +400,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     private boolean isPhoneVerificationRequired() {
         boolean isPhoneVerificationRequired = false;
-        for (RequiredDataPointVo requiredDataPointVo : (Iterable<RequiredDataPointVo>) mRequiredDataPointList) {
+        for (RequiredDataPointVo requiredDataPointVo : mRequiredDataPointList) {
             if (requiredDataPointVo.type == 2 && requiredDataPointVo.verificationRequired) {
                 isPhoneVerificationRequired = true;
             }
@@ -420,7 +420,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     private boolean isEmailVerificationRequired(DataPointVo phone) {
         boolean isVerificationRequired = false;
-        for (RequiredDataPointVo requiredDataPointVo : (Iterable<RequiredDataPointVo>) mRequiredDataPointList) {
+        for (RequiredDataPointVo requiredDataPointVo : mRequiredDataPointList) {
             if (requiredDataPointVo.type == 3 && requiredDataPointVo.verificationRequired) {
                 isVerificationRequired = true;
             }

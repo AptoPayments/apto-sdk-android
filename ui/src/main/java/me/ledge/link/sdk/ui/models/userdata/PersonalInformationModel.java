@@ -52,9 +52,12 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return hasFirstName() && hasLastName() && hasEmail() && hasPhone();
+        return hasName() && hasEmail() && hasPhone();
     }
 
+    public boolean hasName() {
+        return hasFirstName() && hasLastName();
+    }
 
     /** {@inheritDoc} */
     @Override
