@@ -63,6 +63,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:inputType="textCapWords"
                         android:singleLine="true"
                         android:hint="@string/main_input_first_name" />
 
@@ -71,6 +72,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:inputType="textCapWords"
                         android:singleLine="true"
                         android:hint="@string/main_input_last_name" />
             </LinearLayout>
