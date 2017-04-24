@@ -7,10 +7,13 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AnnualIncomeModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -34,6 +37,8 @@ public class AnnualIncomePresenter
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mEmploymentStatusesAdapter;
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mSalaryFrequenciesAdapter;
 
+    private boolean mIsEmploymentRequired;
+
     /**
      * Creates a new {@link AnnualIncomePresenter} instance.
      * @param activity Activity.
@@ -41,6 +46,8 @@ public class AnnualIncomePresenter
     public AnnualIncomePresenter(AppCompatActivity activity, AnnualIncomeDelegate delegate) {
         super(activity);
         mDelegate = delegate;
+        UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
+        mIsEmploymentRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Employment.ordinal()+1));
         mIncomeValuesReady = false;
     }
 
@@ -63,7 +70,12 @@ public class AnnualIncomePresenter
         super.populateModelFromStorage();
         mView.setMinMax(mModel.getMinIncome() / mIncomeMultiplier, mModel.getMaxIncome() / mIncomeMultiplier);
         mView.setIncome(mModel.getAnnualIncome() / mIncomeMultiplier);
-        mView.showLoading(isViewLoading());
+        if(mIsEmploymentRequired) {
+            mView.showLoading(isViewLoading());
+        }
+        else {
+            mView.showLoading(false);
+        }
     }
     
     private boolean isViewLoading() {
@@ -135,36 +147,42 @@ public class AnnualIncomePresenter
         mResponseHandler.subscribe(this);
         retrieveValuesFromConfig();
         mView.setListener(this);
+
+        mView.showEmploymentFields(mIsEmploymentRequired);
         mView.updateEmploymentStatusError(false);
         mView.updateSalaryFrequencyError(false);
 
-        mView.showLoading(isViewLoading());
+        if(mIsEmploymentRequired) {
+            mView.showLoading(isViewLoading());
+            if (mEmploymentStatusesAdapter == null) {
+                mView.setEmploymentStatusAdapter(generateEmploymentStatusesAdapter(null));
 
-        if (mEmploymentStatusesAdapter == null) {
-            mView.setEmploymentStatusAdapter(generateEmploymentStatusesAdapter(null));
+                // Load employment statuses list.
+                LedgeLinkUi.getEmploymentStatusesList();
+            } else {
+                mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
 
-            // Load employment statuses list.
-            LedgeLinkUi.getEmploymentStatusesList();
-        } else {
-            mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
+                if (mModel.hasValidEmploymentStatus()) {
+                    mView.setEmploymentStatus(mModel.getEmploymentStatus().getKey());
+                }
+            }
 
-            if (mModel.hasValidEmploymentStatus()) {
-                mView.setEmploymentStatus(mModel.getEmploymentStatus().getKey());
+            // TODO: Abstract this!
+            if (mSalaryFrequenciesAdapter == null) {
+                mView.setSalaryFrequencyAdapter(generateSalaryFrequenciesAdapter(null));
+
+                // Load salary frequencies list.
+                LedgeLinkUi.getSalaryFrequenciesList();
+            } else {
+                mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
+
+                if (mModel.hasValidSalaryFrequency()) {
+                    mView.setSalaryFrequency(mModel.getSalaryFrequency().getKey());
+                }
             }
         }
-
-        // TODO: Abstract this!
-        if (mSalaryFrequenciesAdapter == null) {
-            mView.setSalaryFrequencyAdapter(generateSalaryFrequenciesAdapter(null));
-
-            // Load salary frequencies list.
-            LedgeLinkUi.getSalaryFrequenciesList();
-        } else {
-            mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
-
-            if (mModel.hasValidSalaryFrequency()) {
-                mView.setSalaryFrequency(mModel.getSalaryFrequency().getKey());
-            }
+        else {
+            mView.showLoading(!mIncomeValuesReady);
         }
     }
 
@@ -185,21 +203,34 @@ public class AnnualIncomePresenter
     @Override
     public void nextClickHandler() {
         mModel.setAnnualIncome(mView.getIncome() * mIncomeMultiplier);
-        mModel.setEmploymentStatus(mView.getEmploymentStatus());
-        mModel.setSalaryFrequency(mView.getSalaryFrequency());
 
-        mView.updateEmploymentStatusError(!mModel.hasValidEmploymentStatus());
-        mView.updateSalaryFrequencyError(!mModel.hasValidSalaryFrequency());
-        if (mModel.hasAllData()) {
-            saveData();
-            mDelegate.annualIncomeStored();
+        if(mIsEmploymentRequired) {
+            mModel.setEmploymentStatus(mView.getEmploymentStatus());
+            mModel.setSalaryFrequency(mView.getSalaryFrequency());
+
+            mView.updateEmploymentStatusError(!mModel.hasValidEmploymentStatus());
+            mView.updateSalaryFrequencyError(!mModel.hasValidSalaryFrequency());
+
+            if(mModel.hasAllData()) {
+                saveDataAndExit();
+            }
         }
+        else {
+            if(mModel.hasValidIncome()) {
+                saveDataAndExit();
+            }
+        }
+    }
+
+    private void saveDataAndExit() {
+        saveData();
+        mDelegate.annualIncomeStored();
     }
 
     /** {@inheritDoc} */
     @Override
     public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
-        mView.updateIncomeText(String.valueOf(value*mIncomeMultiplier));
+        mView.updateIncomeText(mActivity.getString(R.string.annual_income_format, value * mIncomeMultiplier));
     }
 
     /** {@inheritDoc} */

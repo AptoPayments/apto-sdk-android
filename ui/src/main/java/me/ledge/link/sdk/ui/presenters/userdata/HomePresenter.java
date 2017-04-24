@@ -14,9 +14,12 @@ import java.io.IOException;
 
 import me.ledge.common.models.countries.Usa;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeVo;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.HomeModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -32,9 +35,9 @@ public class HomePresenter
         extends UserDataPresenter<HomeModel, HomeView>
         implements HomeView.ViewListener {
 
-    private Usa mStates;
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mHousingTypeAdapter;
     private HomeDelegate mDelegate;
+    private boolean mIsHousingTypeRequired;
 
     /**
      * Creates a new {@link HomePresenter} instance.
@@ -43,8 +46,12 @@ public class HomePresenter
     public HomePresenter(AppCompatActivity activity, HomeDelegate delegate) {
         super(activity);
         mDelegate = delegate;
+        UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
+        mIsHousingTypeRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Housing.ordinal()+1));
         // Load housing types list.
-        LedgeLinkUi.getHousingTypeList();
+        if(mIsHousingTypeRequired) {
+            LedgeLinkUi.getHousingTypeList();
+        }
     }
 
     /**
@@ -86,18 +93,21 @@ public class HomePresenter
 
         mView.updateZipError(false, 0);
         mView.updateHousingTypeError(false);
-        mView.showLoading(true);
+        mView.showHousingTypeHint(mIsHousingTypeRequired);
+        if(mIsHousingTypeRequired) {
+            if (mHousingTypeAdapter == null) {
+                mView.showLoading(true);
+            } else {
+                mView.setHousingTypeAdapter(mHousingTypeAdapter);
 
-        if (mHousingTypeAdapter == null) {
-            mView.showLoading(true);
-        } else {
-            mView.setHousingTypeAdapter(mHousingTypeAdapter);
-
-            if (mModel.hasValidHousingType()) {
-                mView.setHousingType(mModel.getHousingType().getKey());
+                if (mModel.hasValidHousingType()) {
+                    mView.setHousingType(mModel.getHousingType().getKey());
+                }
             }
         }
-
+        else {
+            mView.showLoading(false);
+        }
         mView.setListener(this);
     }
 
@@ -122,18 +132,30 @@ public class HomePresenter
 
         // Store data.
         mModel.setZip(mView.getZipCode());
-        mModel.setHousingType(mView.getHousingType());
+        if(mIsHousingTypeRequired) {
+            mModel.setHousingType(mView.getHousingType());
+        }
         validateData();
     }
 
     private void validateData() {
         mView.updateZipError(!mModel.hasValidZip(), R.string.address_zip_code_error);
-        mView.updateHousingTypeError(!mModel.hasValidHousingType());
-
-        if (mModel.hasAllData()) {
-            saveData();
-            mDelegate.zipCodeAndHousingTypeStored();
+        if(mIsHousingTypeRequired) {
+            mView.updateHousingTypeError(!mModel.hasValidHousingType());
+            if (mModel.hasAllData()) {
+                saveDataAndExit();
+            }
         }
+        else {
+            if(mModel.hasValidZip()) {
+                saveDataAndExit();
+            }
+        }
+    }
+
+    private void saveDataAndExit() {
+        saveData();
+        mDelegate.zipCodeAndHousingTypeStored();
     }
 
     /** {@inheritDoc} */

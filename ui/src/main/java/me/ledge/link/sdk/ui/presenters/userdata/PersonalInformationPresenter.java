@@ -2,6 +2,9 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
+import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -17,6 +20,9 @@ public class PersonalInformationPresenter
         implements PersonalInformationView.ViewListener {
 
     private PersonalInformationDelegate mDelegate;
+    private boolean mIsNameRequired;
+    private boolean mIsPhoneRequired;
+    private boolean mIsEmailRequired;
 
     /**
      * Creates a new {@link PersonalInformationPresenter} instance.
@@ -25,6 +31,10 @@ public class PersonalInformationPresenter
     public PersonalInformationPresenter(AppCompatActivity activity, PersonalInformationDelegate delegate) {
         super(activity);
         mDelegate = delegate;
+        UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
+        mIsNameRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.PersonalName.ordinal()+1));
+        mIsPhoneRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.PhoneNumber.ordinal()+1));
+        mIsEmailRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Email.ordinal()+1));
     }
 
     /** {@inheritDoc} */
@@ -44,16 +54,19 @@ public class PersonalInformationPresenter
     public void attachView(PersonalInformationView view) {
         super.attachView(view);
 
-        if (mModel.hasFirstName()) {
+        mView.showName(mIsNameRequired);
+        if (mIsNameRequired && mModel.hasFirstName()) {
             mView.setFirstName(mModel.getFirstName());
         }
-        if (mModel.hasLastName()) {
+        if (mIsNameRequired && mModel.hasLastName()) {
             mView.setLastName(mModel.getLastName());
         }
-        if (mModel.hasEmail()) {
+        mView.showEmail(mIsEmailRequired);
+        if (mIsEmailRequired && mModel.hasEmail()) {
             mView.setEmail(mModel.getEmail());
         }
-        if (mModel.hasPhone()) {
+        mView.showPhone(mIsPhoneRequired);
+        if (mIsPhoneRequired && mModel.hasPhone()) {
             mView.setPhone(Long.toString(mModel.getPhone().getNationalNumber()));
         }
 
@@ -75,19 +88,24 @@ public class PersonalInformationPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        // Store data.
-        mModel.setFirstName(mView.getFirstName());
-        mModel.setLastName(mView.getLastName());
-        mModel.setEmail(mView.getEmail());
-        mModel.setPhone(mView.getPhone());
+        if(mIsNameRequired) {
+            mModel.setFirstName(mView.getFirstName());
+            mModel.setLastName(mView.getLastName());
+            mView.updateFirstNameError(!mModel.hasFirstName(), R.string.personal_info_first_name_error);
+            mView.updateLastNameError(!mModel.hasLastName(), R.string.personal_info_last_name_error);
+        }
 
-        // Validate data.
-        mView.updateFirstNameError(!mModel.hasFirstName(), R.string.personal_info_first_name_error);
-        mView.updateLastNameError(!mModel.hasLastName(), R.string.personal_info_last_name_error);
-        mView.updateEmailError(!mModel.hasEmail(), R.string.personal_info_email_error);
-        mView.updatePhoneError(!mModel.hasPhone(), R.string.personal_info_phone_error);
+        if(mIsEmailRequired) {
+            mModel.setEmail(mView.getEmail());
+            mView.updateEmailError(!mModel.hasEmail(), R.string.personal_info_email_error);
+        }
 
-        if (mModel.hasAllData()) {
+        if(mIsPhoneRequired) {
+            mModel.setPhone(mView.getPhone());
+            mView.updatePhoneError(!mModel.hasPhone(), R.string.personal_info_phone_error);
+        }
+
+        if(mModel.hasAllRequiredData(mIsNameRequired, mIsEmailRequired, mIsPhoneRequired)) {
             saveData();
             mDelegate.personalInformationStored();
         }

@@ -40,6 +40,7 @@ public class HomeView
 
     private Spinner mHousingTypeSpinner;
     private TextView mHousingTypeError;
+    private TextView mHousingTypeHint;
 
     /**
      * @see UserDataView#UserDataView
@@ -70,6 +71,7 @@ public class HomeView
 
         mHousingTypeSpinner = (Spinner) findViewById(R.id.sp_housing_type);
         mHousingTypeError = (TextView) findViewById(R.id.tv_housing_type_error);
+        mHousingTypeHint = (TextView) findViewById(R.id.tv_housing_type_hint);
     }
 
     /** {@inheritDoc} */
@@ -157,5 +159,18 @@ public class HomeView
      */
     public void setHousingType(int position) {
         mHousingTypeSpinner.setSelection(position);
+    }
+
+    public void showHousingTypeHint(boolean show) {
+        if(show) {
+            mHousingTypeHint.setVisibility(VISIBLE);
+            mHousingTypeSpinner.setVisibility(VISIBLE);
+        }
+        else {
+            mHousingTypeHint.setVisibility(GONE);
+            mHousingTypeSpinner.setVisibility(GONE);
+            updateHousingTypeError(false);
+        }
+
     }
 }

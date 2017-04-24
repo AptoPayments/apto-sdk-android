@@ -75,6 +75,7 @@
     <string name="annual_income_salary_frequency_header">Salary frequency</string>
     <string name="annual_income_salary_frequency_hint">Select a salary frequency&#8230;</string>
     <string name="annual_income_salary_frequency_error">Please select a valid salary frequency.</string>
+    <string name="annual_income_format" formatted="false">$%,d</string>
 
     <!-- Monthly Income -->
     <string name="monthly_income_label">What\'s your monthly net income?</string>

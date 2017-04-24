@@ -172,4 +172,33 @@ public class PersonalInformationView
     public void updatePhoneError(boolean show, int errorMessageId) {
         updateErrorDisplay(mPhoneWrapper, show, errorMessageId);
     }
+
+    public void showName(boolean show) {
+        if(show) {
+            mFirstNameField.setVisibility(VISIBLE);
+            mLastNameField.setVisibility(VISIBLE);
+        }
+        else {
+            mFirstNameField.setVisibility(GONE);
+            mLastNameField.setVisibility(GONE);
+        }
+    }
+
+    public void showPhone(boolean show) {
+        if(show) {
+            mPhoneField.setVisibility(VISIBLE);
+        }
+        else {
+            mPhoneField.setVisibility(GONE);
+        }
+    }
+
+    public void showEmail(boolean show) {
+        if(show) {
+            mEmailField.setVisibility(VISIBLE);
+        }
+        else {
+            mEmailField.setVisibility(GONE);
+        }
+    }
 }

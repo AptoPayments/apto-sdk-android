@@ -7,8 +7,10 @@ import android.text.TextUtils;
 import android.widget.DatePicker;
 
 import java8.util.concurrent.CompletableFuture;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
@@ -30,6 +32,8 @@ public class IdentityVerificationPresenter
 
     private String mDisclaimersText;
     private IdentityVerificationDelegate mDelegate;
+    private boolean mIsSSNRequired;
+    private boolean mIsBirthdayRequired;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
@@ -37,6 +41,9 @@ public class IdentityVerificationPresenter
     public IdentityVerificationPresenter(AppCompatActivity activity, IdentityVerificationDelegate delegate) {
         super(activity);
         mDelegate = delegate;
+        UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
+        mIsSSNRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.SSN.ordinal()+1));
+        mIsBirthdayRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.BirthDate.ordinal()+1));
     }
 
     /**
@@ -81,15 +88,18 @@ public class IdentityVerificationPresenter
         super.attachView(view);
         mView.setListener(this);
 
+        mView.showBirthday(mIsBirthdayRequired);
         if(mModel.hasValidBirthday()) {
             mView.setBirthday(mModel.getFormattedBirthday());
         }
-        if(mModel.hasValidSsn()) {
+
+        mView.showSSN(mIsSSNRequired);
+        if(mIsSSNRequired && mModel.hasValidSsn()) {
             mView.setSSN(mModel.getSocialSecurityNumber());
         }
 
         if(((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile) {
-            if(mView.getSocialSecurityNumber().isEmpty()) {
+            if(mIsSSNRequired && mView.getSocialSecurityNumber().isEmpty()) {
                 mView.setMaskedSSN();
             }
             mView.setButtonText(mActivity.getResources().getString(R.string.id_verification_update_profile_button));
@@ -143,18 +153,19 @@ public class IdentityVerificationPresenter
     @Override
     public void nextClickHandler() {
         // Validate input.
-        mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
+        if(mIsBirthdayRequired) {
+            mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
+        }
 
-        if (((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
-                && !userHasUpdatedSSN()) {
-            if (mModel.hasValidBirthday()) {
+        if(mIsSSNRequired && userHasUpdatedSSN()) {
+            mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
+            mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
+            if (mModel.hasAllData()) {
                 saveDataAndExit();
             }
         }
         else {
-            mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
-            mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
-            if (mModel.hasAllData()) {
+            if (mModel.hasValidBirthday()) {
                 saveDataAndExit();
             }
         }
