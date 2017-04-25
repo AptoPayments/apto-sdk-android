@@ -61,9 +61,10 @@ public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDat
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
         Income baseIncome = (Income) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Income,
-                new Income());
-        setIncome(baseIncome);
+                DataPointVo.DataPointType.Income, null);
+        if(baseIncome!=null) {
+            setIncome(baseIncome);
+        }
     }
 
     public void setIncome(Income mIncome) {

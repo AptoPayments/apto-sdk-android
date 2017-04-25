@@ -63,9 +63,10 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
         super.setBaseData(base);
 
         Address address = (Address) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Address,
-                new Address());
-        setAddress(address);
+                DataPointVo.DataPointType.Address, null);
+        if(address!=null) {
+            setAddress(address);
+        }
     }
 
     /**

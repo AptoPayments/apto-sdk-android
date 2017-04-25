@@ -123,21 +123,23 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
             zip = mView.getZipCode();
             dataSet = true;
         }
-        Address addressDataPoint = new Address(address, apartment, "US", city, state, zip, false);
-        data.add(addressDataPoint);
+        if(!address.isEmpty() || !apartment.isEmpty() || !city.isEmpty() || !state.isEmpty() || zip.isEmpty()) {
+            Address addressDataPoint = new Address(address, apartment, "US", city, state, zip, false);
+            data.add(addressDataPoint);
+        }
         if (hasValue(mView.getIncome())) {
             data.add(new Income(-1, parseIntSafely(mView.getIncome()), false));
             dataSet = true;
         }
-        if (mView.getHousingType() != null) {
+        if (mView.getHousingType().getKey() != -1) {
             data.add(new Housing(mView.getHousingType().getKey(),false));
             dataSet = true;
         }
-        if (mView.getEmploymentStatus() != null || mView.getSalaryFrequency() != null) {
+        if (mView.getEmploymentStatus().getKey() != -1 || mView.getSalaryFrequency().getKey() != -1) {
             data.add(new Employment(mView.getEmploymentStatus().getKey(), mView.getSalaryFrequency().getKey(), false));
             dataSet = true;
         }
-        if (mView.getCreditScore() != null) {
+        if (mView.getCreditScore().getKey() != -1) {
             data.add(new CreditScore(mView.getCreditScore().getKey(), false));
             dataSet = true;
         }
@@ -275,6 +277,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
     public void clearUserTokenClickedHandler() {
         mView.setUserToken("");
         LedgeLinkUi.clearUserToken(this);
+        MainActivity.SHARED_USER_DATA.put(MainActivity.USER_DATA_KEY, new WeakReference<>(null));
     }
 
     public void loanPurposesListRetrieved(LoanPurposesResponseVo loanPurposesList) {

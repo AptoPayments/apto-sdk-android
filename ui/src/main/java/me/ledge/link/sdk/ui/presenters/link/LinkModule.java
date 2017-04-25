@@ -49,6 +49,7 @@ public class LinkModule extends LedgeBaseModule {
             loanInfoModule.onUpdateProfile = () -> startUserDataCollectorModule(true);
         }
         else {
+            loanInfoModule.onGetOffers = null;
             loanInfoModule.onFinish = this::showUserDataCollector;
         }
         if(mSkipDisclaimers) {
