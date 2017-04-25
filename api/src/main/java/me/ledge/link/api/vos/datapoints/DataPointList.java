@@ -48,14 +48,16 @@ public class DataPointList {
     }
 
     /**
-     * @return Single DataPoint of requested type or an empty one if not found
+     * @return Single DataPoint of requested type or the default value if not found
      */
     public DataPointVo getUniqueDataPoint(DataPointVo.DataPointType key, DataPointVo defaultValue) {
         if(dataPoints.containsKey(key)) {
             return dataPoints.get(key).get(0);
         }
         else {
-            dataPoints.put(key, new LinkedList<>(Arrays.asList(defaultValue)));
+            if(defaultValue!=null) {
+                dataPoints.put(key, new LinkedList<>(Arrays.asList(defaultValue)));
+            }
             return defaultValue;
         }
     }

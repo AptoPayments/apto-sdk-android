@@ -58,15 +58,22 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
 
-        Income baseIncome = (Income) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Income, new Income());
-        baseIncome.annualGrossIncome = getAnnualIncome();
+        if(hasValidIncome()) {
+            Income baseIncome = (Income) base.getUniqueDataPoint(
+                    DataPointVo.DataPointType.Income, new Income());
+            baseIncome.annualGrossIncome = getAnnualIncome();
+        }
 
-        Employment baseEmployment = (Employment) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Employment,
-                new Employment());
-        baseEmployment.employmentStatus = getEmploymentStatus();
-        baseEmployment.salaryFrequency = getSalaryFrequency();
+        if(hasValidEmploymentStatus()) {
+            Employment baseEmployment = (Employment) base.getUniqueDataPoint(
+                    DataPointVo.DataPointType.Employment, new Employment());
+            baseEmployment.employmentStatus = getEmploymentStatus();
+        }
+        if(hasValidSalaryFrequency()) {
+            Employment baseEmployment = (Employment) base.getUniqueDataPoint(
+                    DataPointVo.DataPointType.Employment, new Employment());
+            baseEmployment.salaryFrequency = getSalaryFrequency();
+        }
 
         return base;
     }
@@ -76,15 +83,17 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
         Income baseIncome = (Income) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Income,
-                new Income());
-        setIncome(baseIncome);
+                DataPointVo.DataPointType.Income, null);
+        if(baseIncome!=null) {
+            setIncome(baseIncome);
+        }
 
         Employment baseEmployment = (Employment) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Employment,
-                new Employment());
-        setEmploymentStatus(baseEmployment.employmentStatus);
-        setSalaryFrequency(baseEmployment.salaryFrequency);
+                DataPointVo.DataPointType.Employment, null);
+        if(baseEmployment!=null) {
+            setEmploymentStatus(baseEmployment.employmentStatus);
+            setSalaryFrequency(baseEmployment.salaryFrequency);
+        }
     }
 
     /**

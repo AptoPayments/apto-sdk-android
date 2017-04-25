@@ -52,13 +52,17 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
 
-        Address baseAddress = (Address) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Address, new Address());
-        baseAddress.update(getAddress());
+        if(hasValidZip()) {
+            Address baseAddress = (Address) base.getUniqueDataPoint(
+                    DataPointVo.DataPointType.Address, new Address());
+            baseAddress.update(getAddress());
+        }
 
-        Housing baseHousing = (Housing) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Housing, new Housing());
-        baseHousing.housingType = getHousingType();
+        if(hasValidHousingType()) {
+            Housing baseHousing = (Housing) base.getUniqueDataPoint(
+                    DataPointVo.DataPointType.Housing, new Housing());
+            baseHousing.housingType = getHousingType();
+        }
 
         return base;
     }
@@ -69,14 +73,16 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
         super.setBaseData(base);
 
         Address address = (Address) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Address,
-                new Address());
-        mAddress=address;
+                DataPointVo.DataPointType.Address, null);
+        if(address!=null) {
+            mAddress=address;
+        }
 
         Housing housing = (Housing) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Housing,
-                new Housing());
-        setHousingType(housing.housingType);
+                DataPointVo.DataPointType.Housing, null);
+        if(housing!=null) {
+            setHousingType(housing.housingType);
+        }
     }
 
     /**

@@ -89,7 +89,7 @@ public class IdentityVerificationPresenter
         mView.setListener(this);
 
         mView.showBirthday(mIsBirthdayRequired);
-        if(mModel.hasValidBirthday()) {
+        if(mIsBirthdayRequired && mModel.hasValidBirthday()) {
             mView.setBirthday(mModel.getFormattedBirthday());
         }
 
@@ -156,24 +156,35 @@ public class IdentityVerificationPresenter
         if(mIsBirthdayRequired) {
             mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
         }
-
         if(mIsSSNRequired && userHasUpdatedSSN()) {
             mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
             mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
-            if (mModel.hasAllData()) {
+        }
+
+        if(mIsSSNRequired && mIsBirthdayRequired) {
+            if(mModel.hasAllData() || ((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
+                    && !userHasUpdatedSSN() && mModel.hasValidBirthday()) {
+                saveDataAndExit();
+            }
+        }
+        else if(mIsBirthdayRequired) {
+            if(mModel.hasValidBirthday()) {
                 saveDataAndExit();
             }
         }
         else {
-            if (mModel.hasValidBirthday()) {
+            if(mModel.hasValidSsn() || ((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
+                    && !userHasUpdatedSSN()) {
                 saveDataAndExit();
             }
         }
     }
 
     private boolean userHasUpdatedSSN() {
-        return !mView.getSocialSecurityNumber().equals(mModel.getSocialSecurityNumber()) &&
-                !mView.isSSNMasked();
+        return (!mView.getSocialSecurityNumber().equals(mModel.getSocialSecurityNumber()) &&
+                !mView.isSSNMasked()) ||
+                (!((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
+                && mView.getSocialSecurityNumber()!=null);
     }
 
     private void saveDataAndExit() {

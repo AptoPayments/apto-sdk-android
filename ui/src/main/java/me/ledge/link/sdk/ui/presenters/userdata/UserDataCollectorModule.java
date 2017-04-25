@@ -301,15 +301,17 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     private void compareRequiredDataPointsWithCurrent(DataPointList currentDataPointList) {
-        HashMap<DataPointVo.DataPointType, List<DataPointVo>> currentDataPointMap = currentDataPointList.getDataPoints();
+        if(!isUpdatingProfile) {
+            HashMap<DataPointVo.DataPointType, List<DataPointVo>> currentDataPointMap = currentDataPointList.getDataPoints();
 
-        for(DataPointVo.DataPointType currentType : currentDataPointMap.keySet()) {
-            for(Iterator<RequiredDataPointVo> listIterator = mRequiredDataPointList.iterator(); listIterator.hasNext();) {
-                RequiredDataPointVo requiredDataPointVo = listIterator.next();
-                // TODO: this will be refactored on BE side (instead of int -> String)
-                if(requiredDataPointVo.type == currentType.ordinal()+1) {
-                    if(!requiredDataPointVo.verificationRequired || currentDataPointMap.get(currentType).get(0).isVerified()) {
-                        listIterator.remove();
+            for(DataPointVo.DataPointType currentType : currentDataPointMap.keySet()) {
+                for(Iterator<RequiredDataPointVo> listIterator = mRequiredDataPointList.iterator(); listIterator.hasNext();) {
+                    RequiredDataPointVo requiredDataPointVo = listIterator.next();
+                    // TODO: this will be refactored on BE side (instead of int -> String)
+                    if(requiredDataPointVo.type == currentType.ordinal()+1) {
+                        if(!requiredDataPointVo.verificationRequired || currentDataPointMap.get(currentType).get(0).isVerified()) {
+                            listIterator.remove();
+                        }
                     }
                 }
             }

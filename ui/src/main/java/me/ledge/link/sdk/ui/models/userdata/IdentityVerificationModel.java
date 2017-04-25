@@ -8,7 +8,6 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import me.ledge.link.api.vos.datapoints.Birthdate;
-import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.SSN;
@@ -84,10 +83,12 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
         Birthdate baseBirthdate = (Birthdate) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.BirthDate, new Birthdate());
-        setBirthday(baseBirthdate.getDate());
-        SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
-        if(baseSSN.getSocialSecurityNumber() != null) {
+                DataPointVo.DataPointType.BirthDate, null);
+        if(baseBirthdate!=null) {
+            setBirthday(baseBirthdate.getDate());
+        }
+        SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, null);
+        if(baseSSN!=null && baseSSN.getSocialSecurityNumber()!=null) {
             setSocialSecurityNumber(baseSSN.getSocialSecurityNumber());
         }
     }
@@ -100,12 +101,15 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     @Override
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
-        Birthdate baseBirthdate = (Birthdate) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.BirthDate, new CreditScore());
-        baseBirthdate.setDate(getFormattedBirthday());
-
-        SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
-        baseSSN.setSocialSecurityNumber(getSocialSecurityNumber());
+        if(hasValidBirthday()) {
+            Birthdate baseBirthdate = (Birthdate) base.getUniqueDataPoint(
+                    DataPointVo.DataPointType.BirthDate, new Birthdate());
+            baseBirthdate.setDate(getFormattedBirthday());
+        }
+        if(hasValidSsn()) {
+            SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
+            baseSSN.setSocialSecurityNumber(getSocialSecurityNumber());
+        }
         return base;
     }
 

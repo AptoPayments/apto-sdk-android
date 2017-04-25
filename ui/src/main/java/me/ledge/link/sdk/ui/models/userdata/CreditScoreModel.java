@@ -67,9 +67,10 @@ public class CreditScoreModel extends AbstractUserDataModel {
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
         CreditScore baseCreditScore = (CreditScore) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.CreditScore, new CreditScore());
-
-        setCreditScoreRange(baseCreditScore.creditScoreRange);
+                DataPointVo.DataPointType.CreditScore, null);
+        if(baseCreditScore!=null) {
+            setCreditScoreRange(baseCreditScore.creditScoreRange);
+        }
     }
 
     /**

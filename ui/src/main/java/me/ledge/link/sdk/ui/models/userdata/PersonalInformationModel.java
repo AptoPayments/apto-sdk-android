@@ -66,16 +66,22 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
 
-        PersonalName personalName = (PersonalName) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PersonalName, new PersonalName());
-        personalName.firstName = mPersonalName.firstName;
-        personalName.lastName = mPersonalName.lastName;
-        Email emailAddress = (Email) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Email, new Email());
-        emailAddress.email = mEmail.email;
-        PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
-        phoneNumber.phoneNumber = mPhone.phoneNumber;
+        if(hasName()) {
+            PersonalName personalName = (PersonalName) base.getUniqueDataPoint(
+                    DataPointVo.DataPointType.PersonalName, new PersonalName());
+            personalName.firstName = mPersonalName.firstName;
+            personalName.lastName = mPersonalName.lastName;
+        }
+        if(hasEmail()) {
+            Email emailAddress = (Email) base.getUniqueDataPoint(
+                    DataPointVo.DataPointType.Email, new Email());
+            emailAddress.email = mEmail.email;
+        }
+        if(hasPhone()) {
+            PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
+                    DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
+            phoneNumber.phoneNumber = mPhone.phoneNumber;
+        }
 
         return base;
     }
@@ -85,15 +91,22 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
         PersonalName personalName = (PersonalName) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PersonalName, new PersonalName());
-        setPersonalName(personalName);
+                DataPointVo.DataPointType.PersonalName, null);
+        if(personalName!=null) {
+            setPersonalName(personalName);
+        }
+
         Email emailAddress = (Email) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Email,
-                new Email());
-        setEmail(emailAddress);
+                DataPointVo.DataPointType.Email, null);
+        if(emailAddress!=null) {
+            setEmail(emailAddress);
+        }
+
         PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
-        setPhone(phoneNumber);
+                DataPointVo.DataPointType.PhoneNumber, null);
+        if(phoneNumber!=null) {
+            setPhone(phoneNumber);
+        }
     }
 
     public void setPersonalName(PersonalName personalName) {
