@@ -104,15 +104,19 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             if (error == null && referringParams.has(KeysStorage.PREFS_ENVIRONMENT)
                     && referringParams.has(KeysStorage.PREFS_PROJECT_KEY)
                     && referringParams.has(KeysStorage.PREFS_TEAM_KEY)) {
+                boolean hasProjectChanged = false;
                 try {
-                    KeysStorage.storeKeys(this, referringParams.getString(KeysStorage.PREFS_ENVIRONMENT),
+                    hasProjectChanged = KeysStorage.storeKeys(this, referringParams.getString(KeysStorage.PREFS_ENVIRONMENT),
                             referringParams.getString(KeysStorage.PREFS_PROJECT_KEY),
                             referringParams.getString(KeysStorage.PREFS_TEAM_KEY));
                 } catch (JSONException e) {
-                    KeysStorage.storeKeys(this, getDefaultEnvironment(),
+                    hasProjectChanged = KeysStorage.storeKeys(this, getDefaultEnvironment(),
                             getDefaultProjectToken(),
                             getDefaultDeveloperKey());
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                if(hasProjectChanged) {
+                    LedgeLinkUi.clearUserToken(this);
                 }
             }
             LedgeLinkUi.setupLedgeLink(this, getDeveloperKey(), getProjectToken(),
