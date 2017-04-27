@@ -15,13 +15,18 @@ public class KeysStorage {
     public static final String PREFS_PROJECT_KEY = "PROJECT_KEY";
     public static final String PREFS_TEAM_KEY = "TEAM_KEY";
 
-    public static void storeKeys(Context context, String environment, String projectKey, String teamKey) {
+    /**
+     * @return True if project has changed.
+     */
+    public static boolean storeKeys(Context context, String environment, String projectKey, String teamKey) {
         SharedPreferences settings = context.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
+        String storedProject = settings.getString(PREFS_PROJECT_KEY, "");
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(PREFS_ENVIRONMENT, environment);
         editor.putString(PREFS_PROJECT_KEY, projectKey);
         editor.putString(PREFS_TEAM_KEY, teamKey);
         editor.apply();
+        return !projectKey.equals(storedProject);
     }
 
     public static String getEnvironment(Context context, String defaultEnvironment) {
