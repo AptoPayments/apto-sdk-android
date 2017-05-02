@@ -211,7 +211,7 @@ public class LoanApplicationSummaryView
 
         for (RequiredDataPointVo requiredDataPointVo : requiredData) {
             for(DataPointVo.DataPointType currentType : dataPointTypes) {
-                if (requiredDataPointVo.type == currentType.ordinal() + 1) {
+                if (requiredDataPointVo.type.equals(currentType)) {
                     DataPointVo dataPoint = dataPointList.getUniqueDataPoint(currentType, null);
                     setTextViewValues(data, dataPoint);
                 }

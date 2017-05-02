@@ -22,7 +22,7 @@ import javax.net.ssl.X509TrustManager;
 
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.DataPointParser;
-import me.ledge.link.api.vos.responses.ApiErrorVo;
+import me.ledge.link.api.utils.RequiredDataPointParser;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
@@ -34,8 +34,10 @@ import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.errors.ErrorResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
@@ -117,6 +119,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     private Retrofit.Builder getRetrofitBuilder() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(DataPointVo.class, new DataPointParser());
+        gsonBuilder.registerTypeAdapter(RequiredDataPointVo.class, new RequiredDataPointParser());
 
         // Adding serializeNulls option to avoid bug in API where keys with null values
         // must be present
@@ -170,8 +173,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         final TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
             @Override
             public X509Certificate[] getAcceptedIssuers() {
-                X509Certificate[] cArrr = new X509Certificate[0];
-                return cArrr;
+                return new X509Certificate[0];
             }
 
             @Override

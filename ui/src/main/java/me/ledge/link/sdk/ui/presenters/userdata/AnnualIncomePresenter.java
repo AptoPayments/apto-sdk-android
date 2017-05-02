@@ -47,7 +47,7 @@ public class AnnualIncomePresenter
         super(activity);
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
-        mIsEmploymentRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Employment.ordinal()+1));
+        mIsEmploymentRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Employment));
         mIncomeValuesReady = false;
     }
 

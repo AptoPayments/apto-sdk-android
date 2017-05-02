@@ -12,7 +12,6 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.io.IOException;
 
-import me.ledge.common.models.countries.Usa;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
@@ -47,7 +46,7 @@ public class HomePresenter
         super(activity);
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
-        mIsHousingTypeRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Housing.ordinal()+1));
+        mIsHousingTypeRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Housing));
         // Load housing types list.
         if(mIsHousingTypeRequired) {
             LedgeLinkUi.getHousingTypeList();

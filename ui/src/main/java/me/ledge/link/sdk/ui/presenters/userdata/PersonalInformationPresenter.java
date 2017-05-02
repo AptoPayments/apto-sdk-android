@@ -32,9 +32,9 @@ public class PersonalInformationPresenter
         super(activity);
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
-        mIsNameRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.PersonalName.ordinal()+1));
-        mIsPhoneRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.PhoneNumber.ordinal()+1));
-        mIsEmailRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Email.ordinal()+1));
+        mIsNameRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.PersonalName));
+        mIsPhoneRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.PhoneNumber));
+        mIsEmailRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Email));
     }
 
     /** {@inheritDoc} */

@@ -41,7 +41,6 @@ public class AnnualIncomePresenterTest {
     private static final int EXPECTED_MULTIPLIER = 1000;
     private static final int EXPECTED_EMPLOYMENT_STATUS = 1;
     private static final int EXPECTED_SALARY_FREQUENCY = 2;
-    private static final int EMPLOYMENT_TYPE = 8;
 
     private AppCompatActivity mActivity;
     private AnnualIncomePresenter mPresenter;
@@ -51,7 +50,7 @@ public class AnnualIncomePresenterTest {
     public void setUp() {
         mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity);
-        userDataCollectorModule.mRequiredDataPointList.add(new RequiredDataPointVo(EMPLOYMENT_TYPE));
+        userDataCollectorModule.mRequiredDataPointList.add(new RequiredDataPointVo(DataPointVo.DataPointType.Employment));
         ModuleManager.getInstance().setModule(new WeakReference<>(userDataCollectorModule));
         mPresenter = new MockAnnualIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));
         mView = new MockAnnualIncomeView(mActivity);

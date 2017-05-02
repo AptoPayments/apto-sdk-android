@@ -17,7 +17,7 @@ public class CreditScore extends DataPointVo {
     @Override
     public JsonObject toJSON() {
         JsonObject gsonObject = super.toJSON();
-        gsonObject.addProperty("data_type", "financial_credit_score");
+        gsonObject.addProperty("data_type", "credit_score");
         gsonObject.addProperty("credit_range", creditScoreRange);
         return gsonObject;
     }

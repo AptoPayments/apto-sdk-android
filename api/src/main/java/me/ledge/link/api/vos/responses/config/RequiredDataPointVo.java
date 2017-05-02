@@ -2,6 +2,8 @@ package me.ledge.link.api.vos.responses.config;
 
 import com.google.gson.annotations.SerializedName;
 
+import me.ledge.link.api.vos.datapoints.DataPointVo;
+
 /**
  * Info about the required DataPoint.
  * @author Adrian
@@ -9,14 +11,19 @@ import com.google.gson.annotations.SerializedName;
 public class RequiredDataPointVo {
 
     @SerializedName("datapoint_type")
-    public int type;
+    public DataPointVo.DataPointType type;
 
     @SerializedName("verification_required")
     public boolean verificationRequired;
 
-    public RequiredDataPointVo(int type) {
+    public RequiredDataPointVo(DataPointVo.DataPointType type) {
         this.type = type;
         this.verificationRequired = false;
+    }
+
+    public RequiredDataPointVo(DataPointVo.DataPointType type, Boolean verificationRequired) {
+        this.type = type;
+        this.verificationRequired = verificationRequired;
     }
 
     @Override
@@ -26,12 +33,12 @@ public class RequiredDataPointVo {
 
         RequiredDataPointVo that = (RequiredDataPointVo) o;
 
-        return type == that.type;
+        return type != null ? type.equals(that.type) : that.type == null;
 
     }
 
     @Override
     public int hashCode() {
-        return type;
+        return type != null ? type.hashCode() : 0;
     }
 }

@@ -307,8 +307,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             for(DataPointVo.DataPointType currentType : currentDataPointMap.keySet()) {
                 for(Iterator<RequiredDataPointVo> listIterator = mRequiredDataPointList.iterator(); listIterator.hasNext();) {
                     RequiredDataPointVo requiredDataPointVo = listIterator.next();
-                    // TODO: this will be refactored on BE side (instead of int -> String)
-                    if(requiredDataPointVo.type == currentType.ordinal()+1) {
+                    if(requiredDataPointVo.type.equals(currentType)) {
                         if(!requiredDataPointVo.verificationRequired || currentDataPointMap.get(currentType).get(0).isVerified()) {
                             listIterator.remove();
                         }
@@ -350,31 +349,34 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private void fillRequiredActivitiesList() {
         if(!mRequiredDataPointList.isEmpty()) {
             for (RequiredDataPointVo requiredDataPointVo : mRequiredDataPointList) {
-                if(requiredDataPointVo.type == 1) {
-                    addRequiredActivity(PersonalInformationActivity.class);
-                }
-                if(requiredDataPointVo.type == 2) {
-                    addRequiredActivity(PersonalInformationActivity.class);
-                }
-                if(requiredDataPointVo.type == 3) {
-                    addRequiredActivity(PersonalInformationActivity.class);
-                    if(requiredDataPointVo.verificationRequired) {
-                        addRequiredActivity(EmailVerificationActivity.class);
-                    }
-                }
-                if(requiredDataPointVo.type == 6 || requiredDataPointVo.type == 7) {
-                    addRequiredActivity(HomeActivity.class);
-                    addRequiredActivity(AddressActivity.class);
-                }
-                if(requiredDataPointVo.type == 8) {
-                    addRequiredActivity(AnnualIncomeActivity.class);
-                }
-                if(requiredDataPointVo.type == 9) {
-                    addRequiredActivity(AnnualIncomeActivity.class);
-                    addRequiredActivity(MonthlyIncomeActivity.class);
-                }
-                if(requiredDataPointVo.type == 10) {
-                    addRequiredActivity(CreditScoreActivity.class);
+                switch(requiredDataPointVo.type) {
+                    case PersonalName:
+                        addRequiredActivity(PersonalInformationActivity.class);
+                        break;
+                    case PhoneNumber:
+                        addRequiredActivity(PersonalInformationActivity.class);
+                        break;
+                    case Email:
+                        addRequiredActivity(PersonalInformationActivity.class);
+                        if(requiredDataPointVo.verificationRequired) {
+                            addRequiredActivity(EmailVerificationActivity.class);
+                        }
+                        break;
+                    case Address:
+                    case Housing:
+                        addRequiredActivity(HomeActivity.class);
+                        addRequiredActivity(AddressActivity.class);
+                        break;
+                    case Employment:
+                        addRequiredActivity(AnnualIncomeActivity.class);
+                        break;
+                    case Income:
+                        addRequiredActivity(AnnualIncomeActivity.class);
+                        addRequiredActivity(MonthlyIncomeActivity.class);
+                        break;
+                    case CreditScore:
+                        addRequiredActivity(CreditScoreActivity.class);
+                        break;
                 }
             }
             addRequiredActivity(IdentityVerificationActivity.class);
@@ -403,7 +405,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private boolean isPhoneVerificationRequired() {
         boolean isPhoneVerificationRequired = false;
         for (RequiredDataPointVo requiredDataPointVo : mRequiredDataPointList) {
-            if (requiredDataPointVo.type == 2 && requiredDataPointVo.verificationRequired) {
+            if (requiredDataPointVo.type.equals(DataPointVo.DataPointType.PhoneNumber) && requiredDataPointVo.verificationRequired) {
                 isPhoneVerificationRequired = true;
             }
         }
@@ -423,7 +425,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private boolean isEmailVerificationRequired(DataPointVo phone) {
         boolean isVerificationRequired = false;
         for (RequiredDataPointVo requiredDataPointVo : mRequiredDataPointList) {
-            if (requiredDataPointVo.type == 3 && requiredDataPointVo.verificationRequired) {
+            if (requiredDataPointVo.type.equals(DataPointVo.DataPointType.Email) && requiredDataPointVo.verificationRequired) {
                 isVerificationRequired = true;
             }
         }
