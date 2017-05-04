@@ -19,7 +19,7 @@ public class Income extends DataPointVo {
     @Override
     public JsonObject toJSON() {
         JsonObject gsonObject = super.toJSON();
-        gsonObject.addProperty("data_type", "financial_income");
+        gsonObject.addProperty("data_type", "income");
         gsonObject.addProperty("gross_annual_income", annualGrossIncome);
         gsonObject.addProperty("net_monthly_income", monthlyNetIncome);
         return gsonObject;
