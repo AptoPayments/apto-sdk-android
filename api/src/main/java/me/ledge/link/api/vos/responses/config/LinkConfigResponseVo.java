@@ -44,4 +44,10 @@ public class LinkConfigResponseVo {
 
     @SerializedName("strict_address_validation")
     public boolean isStrictAddressValidationEnabled;
+
+    @SerializedName("skip_loan_amount")
+    public boolean skipLoanAmount;
+
+    @SerializedName("skip_loan_purpose")
+    public boolean skipLoanPurpose;
 }

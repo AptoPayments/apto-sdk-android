@@ -12,12 +12,12 @@ public class InitialOffersRequestVo extends ListRequestVo {
     /**
      * Loan amount.
      */
-    public int loan_amount;
+    public Integer loan_amount;
 
     /**
      * Loan purpose ID, based on the "config/loanPurposes" API response.
      */
-    public int loan_purpose_id;
+    public Integer loan_purpose_id;
 
     /**
      * Three letter <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO 4217</a> currency code.

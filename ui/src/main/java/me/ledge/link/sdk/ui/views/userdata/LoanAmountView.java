@@ -186,6 +186,27 @@ public class LoanAmountView
         mLoadingView.showLoading(show);
     }
 
+    public void showLoanAmount(boolean show) {
+        if(show) {
+            mAmountText.setVisibility(VISIBLE);
+            mAmountSlider.setVisibility(VISIBLE);
+        }
+        else {
+            mAmountText.setVisibility(GONE);
+            mAmountSlider.setVisibility(GONE);
+        }
+    }
+
+    public void showLoanPurpose(boolean show) {
+        if(show) {
+            mPurposeSpinner.setVisibility(VISIBLE);
+        }
+        else {
+            mPurposeSpinner.setVisibility(GONE);
+            updatePurposeError(false);
+        }
+    }
+
     public void showGetOffersButtonAndDisclaimers(boolean show) {
         if(show) {
             mNextButton.setVisibility(VISIBLE);

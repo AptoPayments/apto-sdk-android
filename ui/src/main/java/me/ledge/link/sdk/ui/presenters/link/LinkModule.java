@@ -41,24 +41,36 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void showLoanInfo() {
-        LoanInfoModule loanInfoModule = LoanInfoModule.getInstance(this.getActivity());
-        loanInfoModule.userHasAllRequiredData = mUserHasAllRequiredData;
-        if(mUserHasAllRequiredData) {
-            loanInfoModule.onGetOffers = this::showOffersList;
-            loanInfoModule.onFinish = this::showOffersList;
-            loanInfoModule.onUpdateProfile = () -> startUserDataCollectorModule(true);
+        boolean shouldSkipLoanAmount = ConfigStorage.getInstance().getSkipLoanAmount();
+        boolean shouldSkipLoanPurpose = ConfigStorage.getInstance().getSkipLoanPurpose();
+        if(shouldSkipLoanAmount && shouldSkipLoanPurpose) {
+            if(mUserHasAllRequiredData) {
+                showOffersList();
+            }
+            else {
+                showUserDataCollector();
+            }
         }
         else {
-            loanInfoModule.onGetOffers = null;
-            loanInfoModule.onFinish = this::showUserDataCollector;
+            LoanInfoModule loanInfoModule = LoanInfoModule.getInstance(this.getActivity());
+            loanInfoModule.userHasAllRequiredData = mUserHasAllRequiredData;
+            if(mUserHasAllRequiredData) {
+                loanInfoModule.onGetOffers = this::showOffersList;
+                loanInfoModule.onFinish = this::showOffersList;
+                loanInfoModule.onUpdateProfile = () -> startUserDataCollectorModule(true);
+            }
+            else {
+                loanInfoModule.onGetOffers = null;
+                loanInfoModule.onFinish = this::showUserDataCollector;
+            }
+            if(mSkipDisclaimers) {
+                loanInfoModule.onBack = this::showHomeActivity;
+            }
+            else {
+                loanInfoModule.onBack = this::showLinkDisclaimers;
+            }
+            startModule(loanInfoModule);
         }
-        if(mSkipDisclaimers) {
-            loanInfoModule.onBack = this::showHomeActivity;
-        }
-        else {
-            loanInfoModule.onBack = this::showLinkDisclaimers;
-        }
-        startModule(loanInfoModule);
     }
 
     private void showUserDataCollector() {
