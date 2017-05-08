@@ -9,7 +9,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 
 import java.lang.ref.WeakReference;
-import java.util.HashMap;
+import java.util.WeakHashMap;
 
 import io.branch.referral.Branch;
 import me.ledge.link.api.vos.datapoints.DataPointList;
@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
 
 
     private MainView mView;
-    static HashMap<String, WeakReference<DataPointList>> SHARED_USER_DATA;
-    static HashMap<String, WeakReference<LoanDataVo>> SHARED_LOAN_DATA;
+    static WeakHashMap<String, WeakReference<DataPointList>> SHARED_USER_DATA;
+    static WeakHashMap<String, WeakReference<LoanDataVo>> SHARED_LOAN_DATA;
     static final String USER_DATA_KEY = "USER_DATA_KEY";
     static final String LOAN_DATA_KEY = "LOAN_DATA_KEY";
 
@@ -83,8 +83,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SHARED_USER_DATA = new HashMap<>();
-        SHARED_LOAN_DATA = new HashMap<>();
+        SHARED_USER_DATA = new WeakHashMap<>();
+        SHARED_LOAN_DATA = new WeakHashMap<>();
 
         mView = (MainView) View.inflate(this, R.layout.act_main, null);
         mView.setViewListener(this);
