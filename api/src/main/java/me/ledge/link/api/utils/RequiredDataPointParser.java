@@ -22,37 +22,47 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
         JsonObject jObject = json.getAsJsonObject();
         String type = jObject.get("datapoint_type").getAsString();
         Boolean isVerificationRequired = jObject.get("verification_required").getAsBoolean();
+        Boolean isNotSpecifiedAllowed = jObject.get("not_specified_allowed").getAsBoolean();
         switch (type) {
             case "name":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.PersonalName,
-                        isVerificationRequired);
+                        isVerificationRequired, isNotSpecifiedAllowed);
             case "phone":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.PhoneNumber,
-                        isVerificationRequired);
+                        isVerificationRequired, isNotSpecifiedAllowed);
             case "email":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Email,
-                        isVerificationRequired);
+                        isVerificationRequired, isNotSpecifiedAllowed);
             case "birthdate":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.BirthDate,
-                        isVerificationRequired);
+                        isVerificationRequired, isNotSpecifiedAllowed);
             case "ssn":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.SSN,
-                        isVerificationRequired);
+                        isVerificationRequired, isNotSpecifiedAllowed);
             case "address":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Address,
-                        isVerificationRequired);
+                        isVerificationRequired, isNotSpecifiedAllowed);
             case "housing":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Housing,
-                        isVerificationRequired);
+                        isVerificationRequired, isNotSpecifiedAllowed);
             case "employment":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Employment,
-                        isVerificationRequired);
+                        isVerificationRequired, isNotSpecifiedAllowed);
             case "income":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Income,
-                        isVerificationRequired);
+                        isVerificationRequired, isNotSpecifiedAllowed);
             case "credit_score":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.CreditScore,
-                        isVerificationRequired);
+                        isVerificationRequired, isNotSpecifiedAllowed);
+            case "payday_loan":
+                return new RequiredDataPointVo(DataPointVo.DataPointType.PayDayLoan,
+                        isVerificationRequired, isNotSpecifiedAllowed);
+            case "member_of_armed_forces":
+                return new RequiredDataPointVo(DataPointVo.DataPointType.MemberOfArmedForces,
+                        isVerificationRequired, isNotSpecifiedAllowed);
+            case "time_at_address":
+                return new RequiredDataPointVo(DataPointVo.DataPointType.TimeAtAddress,
+                        isVerificationRequired, isNotSpecifiedAllowed);
         }
         return null;
     }

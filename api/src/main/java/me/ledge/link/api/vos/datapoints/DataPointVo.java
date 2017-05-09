@@ -15,7 +15,10 @@ public class DataPointVo {
         Employment,
         Income,
         CreditScore,
-        FinancialAccount;
+        FinancialAccount,
+        PayDayLoan,
+        MemberOfArmedForces,
+        TimeAtAddress;
     }
 
     @SerializedName("type")
