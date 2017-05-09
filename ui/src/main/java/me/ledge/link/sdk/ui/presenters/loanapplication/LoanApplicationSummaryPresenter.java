@@ -93,8 +93,8 @@ public class LoanApplicationSummaryPresenter
         StringBuilder applicationDisclaimer = new StringBuilder();
 
         for(LoanProductVo loanProduct : loanProductListVo.data) {
-            if (!TextUtils.isEmpty(loanProduct.applicationDisclaimer)) {
-                applicationDisclaimer.append(loanProduct.applicationDisclaimer.replaceAll("\\r?\\n", lineBreak));
+            if (!TextUtils.isEmpty(loanProduct.applicationDisclaimer.value)) {
+                applicationDisclaimer.append(loanProduct.applicationDisclaimer.value.replaceAll("\\r?\\n", lineBreak));
             }
             applicationDisclaimer.append(partnerDivider);
         }

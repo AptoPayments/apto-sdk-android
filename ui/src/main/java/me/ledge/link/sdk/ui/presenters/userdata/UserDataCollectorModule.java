@@ -139,7 +139,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void phoneVerificationSucceeded(DataPointVo phone) {
-        if(!isCurrentEmailVerified() && isEmailVerificationRequired(phone)) {
+        if(isEmailVerificationRequired(phone) && !isCurrentEmailVerified()) {
             startActivity(EmailVerificationActivity.class);
         }
         else {
@@ -264,7 +264,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void personalInformationStored() {
-        if(!isCurrentPhoneVerified() && isPhoneVerificationRequired()) {
+        if(isPhoneVerificationRequired() && !isCurrentPhoneVerified()) {
             startActivity(PhoneVerificationActivity.class);
         }
         else {

@@ -73,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         if (hasValue(mView.getLoanAmount())) {
             loanData.loanAmount = parseIntSafely(mView.getLoanAmount());
         }
-        if (mView.getLoanPurpose() != null) {
+        if (mView.getLoanPurpose() != null && mView.getLoanPurpose().getKey()!=-1) {
             loanData.loanPurpose = mView.getLoanPurpose();
         }
         return loanData;
