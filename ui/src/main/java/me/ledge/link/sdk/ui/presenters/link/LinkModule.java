@@ -35,9 +35,20 @@ public class LinkModule extends LedgeBaseModule {
 
     private void showLinkDisclaimers() {
         TermsModule mTermsModule = TermsModule.getInstance(this.getActivity());
-        mTermsModule.onFinish = this::showLoanInfo;
+        mTermsModule.onFinish = this::showOrSkipLoanInfo;
         mTermsModule.onBack = this::showHomeActivity;
         startModule(mTermsModule);
+    }
+
+    private void showOrSkipLoanInfo() {
+        boolean shouldSkipLoanAmount = ConfigStorage.getInstance().getSkipLoanAmount();
+        boolean shouldSkipLoanPurpose = ConfigStorage.getInstance().getSkipLoanPurpose();
+        if(shouldSkipLoanAmount && shouldSkipLoanPurpose) {
+            skipLoanInfo();
+        }
+        else {
+            showLoanInfo();
+        }
     }
 
     private void showLoanInfo() {
@@ -61,6 +72,15 @@ public class LinkModule extends LedgeBaseModule {
         startModule(loanInfoModule);
     }
 
+    private void skipLoanInfo() {
+        if(mUserHasAllRequiredData) {
+            showOffersList();
+        }
+        else {
+            showUserDataCollector();
+        }
+    }
+
     private void showUserDataCollector() {
         startUserDataCollectorModule(false);
     }
@@ -69,7 +89,7 @@ public class LinkModule extends LedgeBaseModule {
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         userDataCollectorModule.onUserHasAllRequiredData = null;
         userDataCollectorModule.onFinish = this::showOffersList;
-        userDataCollectorModule.onBack = this::showLoanInfo;
+        userDataCollectorModule.onBack = this::showOrSkipLoanInfo;
         userDataCollectorModule.isUpdatingProfile = updateProfile;
         startModule(userDataCollectorModule);
     }
@@ -78,7 +98,7 @@ public class LinkModule extends LedgeBaseModule {
         mUserHasAllRequiredData = true;
         LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(this.getActivity());
         loanApplicationModule.onUpdateUserProfile = () -> startUserDataCollectorModule(true);
-        loanApplicationModule.onBack = this::showLoanInfo;
+        loanApplicationModule.onBack = this::showOrSkipLoanInfo;
         loanApplicationModule.onSelectFundingAccount = this::showFundingAccountSelector;
         startModule(loanApplicationModule);
     }
@@ -116,7 +136,7 @@ public class LinkModule extends LedgeBaseModule {
 
     private void showOrSkipDisclaimers() {
         if(mSkipDisclaimers) {
-            showLoanInfo();
+            showOrSkipLoanInfo();
         }
         else {
             showLinkDisclaimers();

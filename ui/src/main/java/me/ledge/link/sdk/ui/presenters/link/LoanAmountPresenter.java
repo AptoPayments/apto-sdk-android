@@ -38,6 +38,8 @@ public class LoanAmountPresenter
     private boolean isDefaultLoanAmountReady;
     private boolean isLoanPurposesReady;
     private boolean isLoanIncrementsReady;
+    private boolean isLoanAmountRequired;
+    private boolean isLoanPurposeRequired;
     private String mDisclaimersText;
 
     /**
@@ -59,6 +61,8 @@ public class LoanAmountPresenter
         isDefaultLoanAmountReady = false;
         isLoanPurposesReady = false;
         isLoanIncrementsReady = false;
+        isLoanAmountRequired = !ConfigStorage.getInstance().getSkipLoanAmount();
+        isLoanPurposeRequired = !ConfigStorage.getInstance().getSkipLoanPurpose();
         retrieveValuesFromConfig();
     }
 
@@ -123,22 +127,27 @@ public class LoanAmountPresenter
             mView.showGetOffersButtonAndDisclaimers(false);
         }
 
-        if (mPurposeAdapter == null) {
-            mView.setPurposeAdapter(getPurposeAdapter(null));
+        mView.showLoanAmount(isLoanAmountRequired);
+        mView.showLoanPurpose(isLoanPurposeRequired);
 
-            // Load loan purpose list.
-            CompletableFuture
-                    .supplyAsync(()-> ConfigStorage.getInstance().getLoanPurposes())
-                    .exceptionally(ex -> {
-                        errorReceived(ex.getMessage());
-                        return null;
-                    })
-                    .thenAccept(this::loanPurposesListRetrieved);
-        } else {
-            mView.setPurposeAdapter(mPurposeAdapter);
+        if(isLoanPurposeRequired) {
+            if (mPurposeAdapter == null) {
+                mView.setPurposeAdapter(getPurposeAdapter(null));
 
-            if (mModel.hasValidLoanPurpose()) {
-                mView.setPurpose(mPurposeAdapter.getPosition(mModel.getLoanPurpose()));
+                // Load loan purpose list.
+                CompletableFuture
+                        .supplyAsync(()-> ConfigStorage.getInstance().getLoanPurposes())
+                        .exceptionally(ex -> {
+                            errorReceived(ex.getMessage());
+                            return null;
+                        })
+                        .thenAccept(this::loanPurposesListRetrieved);
+            } else {
+                mView.setPurposeAdapter(mPurposeAdapter);
+
+                if (mModel.hasValidLoanPurpose()) {
+                    mView.setPurpose(mPurposeAdapter.getPosition(mModel.getLoanPurpose()));
+                }
             }
         }
     }
@@ -158,11 +167,17 @@ public class LoanAmountPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        mModel.setAmount(mView.getAmount() * mAmountIncrement);
-        mModel.setLoanPurpose(mView.getPurpose());
+        if(isLoanAmountRequired) {
+            mModel.setAmount(mView.getAmount() * mAmountIncrement);
+        }
+        if(isLoanPurposeRequired) {
+            mModel.setLoanPurpose(mView.getPurpose());
+            mView.updatePurposeError(!mModel.hasValidLoanPurpose());
+        }
 
-        mView.updatePurposeError(!mModel.hasValidLoanPurpose());
-        if (mModel.hasAllData()) {
+        if ((isLoanAmountRequired && isLoanPurposeRequired && mModel.hasAllData())
+            || (isLoanAmountRequired && mModel.hasValidAmount())
+            || (isLoanPurposeRequired && mModel.hasValidLoanPurpose())) {
             saveData();
             mDelegate.loanDataPresented();
         }
@@ -183,37 +198,39 @@ public class LoanAmountPresenter
     public void onStopTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
 
     private void retrieveValuesFromConfig() {
-        CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().getMaxLoanAmount())
-                .exceptionally(ex -> {
-                    errorReceived(ex.getMessage());
-                    return null;
-                })
-                .thenAccept(this::maxLoanAmountRetrieved);
+        if(isLoanAmountRequired) {
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getMaxLoanAmount())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::maxLoanAmountRetrieved);
 
-        CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().getMinLoanAmount())
-                .exceptionally(ex -> {
-                    errorReceived(ex.getMessage());
-                    return null;
-                })
-                .thenAccept(this::minLoanAmountRetrieved);
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getMinLoanAmount())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::minLoanAmountRetrieved);
 
-        CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().getLoanAmountDefault())
-                .exceptionally(ex -> {
-                    errorReceived(ex.getMessage());
-                    return null;
-                })
-                .thenAccept(this::defaultLoanAmountRetrieved);
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getLoanAmountDefault())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::defaultLoanAmountRetrieved);
 
-        CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().getLoanAmountIncrements())
-                .exceptionally(ex -> {
-                    errorReceived(ex.getMessage());
-                    return null;
-                })
-                .thenAccept(this::loanAmountIncrementsRetrieved);
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getLoanAmountIncrements())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::loanAmountIncrementsRetrieved);
+        }
     }
 
     /**
@@ -275,16 +292,25 @@ public class LoanAmountPresenter
     }
 
     private boolean isAllDataReadyForView() {
-        return isMinLoanAmountReady && isMaxLoanAmountReady && isLoanPurposesReady
-                && isLoanIncrementsReady && isDefaultLoanAmountReady;
+        boolean isViewReady = true;
+        if(isLoanAmountRequired) {
+            isViewReady = isMinLoanAmountReady && isMaxLoanAmountReady && isDefaultLoanAmountReady
+                    && isLoanIncrementsReady;
+        }
+        if(isLoanPurposeRequired) {
+            isViewReady = isViewReady && isLoanPurposesReady;
+        }
+        return isViewReady;
     }
 
     private void updateViewIfReady() {
         if(isAllDataReadyForView()) {
             super.populateModelFromStorage();
-            mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
-            mView.setMinMax((mModel.getMinAmount() / mAmountIncrement)+1, mModel.getMaxAmount() / mAmountIncrement);
-            mView.setAmount(mModel.getAmount() / mAmountIncrement);
+            if(isLoanAmountRequired) {
+                mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
+                mView.setMinMax((mModel.getMinAmount() / mAmountIncrement)+1, mModel.getMaxAmount() / mAmountIncrement);
+                mView.setAmount(mModel.getAmount() / mAmountIncrement);
+            }
             mView.showLoading(false);
         }
     }

@@ -207,7 +207,6 @@ public class ConfigStorage {
         return (double) getResultFromFuture(f);
     }
 
-
     public synchronized boolean getSkipLinkDisclaimer() {
         CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
             if(isConfigCached()) {
@@ -260,6 +259,42 @@ public class ConfigStorage {
         });
 
         return (OffersListStyle) getResultFromFuture(f);
+    }
+
+    public synchronized boolean getSkipLoanAmount() {
+        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
+            if(isConfigCached()) {
+                return mLinkConfig.skipLoanAmount;
+            }
+            else {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.skipLoanAmount;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        return (boolean) getResultFromFuture(f);
+    }
+
+    public synchronized boolean getSkipLoanPurpose() {
+        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
+            if(isConfigCached()) {
+                return mLinkConfig.skipLoanPurpose;
+            }
+            else {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.skipLoanPurpose;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        return (boolean) getResultFromFuture(f);
     }
 
     private Object getResultFromFuture(CompletableFuture future) {
