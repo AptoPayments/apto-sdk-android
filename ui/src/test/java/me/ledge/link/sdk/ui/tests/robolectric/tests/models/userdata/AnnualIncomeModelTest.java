@@ -84,7 +84,7 @@ public class AnnualIncomeModelTest {
     @Test
     public void settingBaseDataUpdatesIncome() {
         DataPointList base = new DataPointList();
-        Income baseIncome = new Income(0, EXPECTED_VALID_INCOME, false);
+        Income baseIncome = new Income(0, EXPECTED_VALID_INCOME, false, false);
         base.add(baseIncome);
 
         mModel.setBaseData(base);
@@ -101,7 +101,7 @@ public class AnnualIncomeModelTest {
     @Test
     public void settingBaseDataUpdatesEmploymentStatusAndSalaryFrequency() {
         DataPointList base = new DataPointList();
-        Employment baseEmployment = new Employment(EXPECTED_EMPLOYMENT_STATUS, EXPECTED_SALARY_FREQUENCY, false);
+        Employment baseEmployment = new Employment(EXPECTED_EMPLOYMENT_STATUS, EXPECTED_SALARY_FREQUENCY, false, false);
         base.add(baseEmployment);
 
         mModel.setBaseData(base);

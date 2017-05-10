@@ -8,11 +8,11 @@ public class PersonalName extends DataPointVo {
     public String lastName;
 
     public PersonalName() {
-        this(null, null, false);
+        this(null, null, false, false);
     }
 
-    public PersonalName(String firstName, String lastName, boolean verified) {
-        super(DataPointType.PersonalName, verified);
+    public PersonalName(String firstName, String lastName, boolean verified, boolean notSpecified) {
+        super(DataPointType.PersonalName, verified, notSpecified);
         this.firstName = firstName;
         this.lastName = lastName;
     }

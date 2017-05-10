@@ -8,8 +8,9 @@ public class BankAccount extends FinancialAccountVo {
     public String bankName;
     public String lastFourDigits;
 
-    public BankAccount(String accountId, String bankName, String lastFourDigits, boolean verified) {
-        super(accountId, FinancialAccountType.Bank, verified);
+    public BankAccount(String accountId, String bankName, String lastFourDigits, boolean verified,
+                       boolean notSpecified) {
+        super(accountId, FinancialAccountType.Bank, verified, notSpecified);
         this.bankName = bankName;
         this.lastFourDigits = lastFourDigits;
     }

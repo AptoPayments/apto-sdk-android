@@ -43,7 +43,7 @@ public class SelectBankAccountModelTest {
         mockStatic(TextUtils.class);
         when(TextUtils.isEmpty(any(CharSequence.class))).thenAnswer(new IsEmptyAnswer());
 
-        mBankAccount = new BankAccount(EXPECTED_ACCOUNT_ID, EXPECTED_BANK_NAME, EXPECTED_LAST_FOUR_DIGITS, false);
+        mBankAccount = new BankAccount(EXPECTED_ACCOUNT_ID, EXPECTED_BANK_NAME, EXPECTED_LAST_FOUR_DIGITS, false, false);
         mModel = new SelectBankAccountModel(mBankAccount);
     }
 

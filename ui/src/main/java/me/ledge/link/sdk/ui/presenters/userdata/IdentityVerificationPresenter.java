@@ -33,6 +33,7 @@ public class IdentityVerificationPresenter
     private String mDisclaimersText;
     private IdentityVerificationDelegate mDelegate;
     private boolean mIsSSNRequired;
+    private boolean mIsSSNNotAvailableAllowed;
     private boolean mIsBirthdayRequired;
 
     /**
@@ -42,7 +43,16 @@ public class IdentityVerificationPresenter
         super(activity);
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
-        mIsSSNRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.SSN));
+
+        mIsSSNRequired = false;
+        mIsSSNNotAvailableAllowed = false;
+        for (RequiredDataPointVo requiredDataPointVo : module.mRequiredDataPointList) {
+            if(requiredDataPointVo.type.equals(DataPointVo.DataPointType.SSN)) {
+                mIsSSNRequired = true;
+                mIsSSNNotAvailableAllowed = requiredDataPointVo.notSpecifiedAllowed;
+            }
+        }
+
         mIsBirthdayRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.BirthDate));
     }
 
@@ -94,6 +104,7 @@ public class IdentityVerificationPresenter
         }
 
         mView.showSSN(mIsSSNRequired);
+        mView.showSSNNotAvailableCheckbox(mIsSSNNotAvailableAllowed);
         if(mIsSSNRequired && mModel.hasValidSsn()) {
             mView.setSSN(mModel.getSocialSecurityNumber());
         }
@@ -149,10 +160,21 @@ public class IdentityVerificationPresenter
         fragment.show(mActivity.getFragmentManager(), DatePickerFragment.TAG);
     }
 
+    @Override
+    public void ssnCheckBoxClickHandler() {
+        mView.enableSSNField(!mView.isSSNCheckboxChecked());
+        mView.updateSocialSecurityError(false, 0);
+    }
+
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
         // Validate input.
+        if(mView.isSSNCheckboxChecked()) {
+            mIsSSNRequired = false;
+            mModel.setSocialSecurityNotAvailable(true);
+        }
+
         if(mIsBirthdayRequired) {
             mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
         }

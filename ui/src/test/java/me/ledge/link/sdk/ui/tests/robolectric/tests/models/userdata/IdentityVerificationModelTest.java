@@ -146,7 +146,7 @@ public class IdentityVerificationModelTest {
                 .setCountryCode(EXPECTED_COUNTRY_CODE)
                 .setNationalNumber(EXPECTED_NATIONAL_NUMBER);
 
-        PhoneNumberVo phoneNumber = new PhoneNumberVo("", false);
+        PhoneNumberVo phoneNumber = new PhoneNumberVo("", false, false);
         phoneNumber.setPhone(phone);
         base.add(phoneNumber);
         mModel.setBaseData(base);

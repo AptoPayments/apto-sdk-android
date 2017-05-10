@@ -1,19 +1,23 @@
 package me.ledge.link.sdk.ui.views.userdata;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Arrays;
 
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -32,11 +36,8 @@ public class IdentityVerificationView
      * Callbacks this View will invoke.
      */
     public interface ViewListener extends StepperListener, NextButtonListener {
-
-        /**
-         * Called when the birthday input field has been pressed.
-         */
         void birthdayClickHandler();
+        void ssnCheckBoxClickHandler();
     }
 
     private Button mBirthdayButton;
@@ -45,6 +46,8 @@ public class IdentityVerificationView
 
     private TextInputLayout mSocialSecurityWrapper;
     private SsnEditText mSocialSecurityField;
+    private CheckBox mSocialSecurityAvailableCheck;
+    private TextView mSocialSecurityAvailableField;
 
     private TextView mDisclaimer;
     private TextView mDisclaimersHeader;
@@ -75,6 +78,8 @@ public class IdentityVerificationView
     protected void onFinishInflate() {
         super.onFinishInflate();
         showLoading(false);
+        ((AppCompatCheckBox) mSocialSecurityAvailableCheck).setSupportButtonTintList(
+                ColorStateList.valueOf(UIStorage.getInstance().getPrimaryColor()));
     }
 
     /** {@inheritDoc} */
@@ -87,6 +92,8 @@ public class IdentityVerificationView
 
         mSocialSecurityWrapper = (TextInputLayout) findViewById(R.id.til_social_security);
         mSocialSecurityField = (SsnEditText) findViewById(R.id.et_social_security);
+        mSocialSecurityAvailableCheck = (CheckBox) findViewById(R.id.cb_ssn_itin_not_available);
+        mSocialSecurityAvailableField = (TextView) findViewById(R.id.tv_ssn_itin_not_available);
 
         mDisclaimer = (TextView) findViewById(R.id.tv_security);
         mDisclaimersHeader = (TextView) findViewById(R.id.tv_disclaimers_header);
@@ -103,6 +110,7 @@ public class IdentityVerificationView
         super.setupListeners();
         mBirthdayButton.setOnClickListener(this);
         mSocialSecurityField.setOnClickListener(this);
+        mSocialSecurityAvailableCheck.setOnClickListener(this);
     }
 
     /** {@inheritDoc} */
@@ -115,7 +123,11 @@ public class IdentityVerificationView
         int id = view.getId();
         if (id == R.id.btn_birthday) {
             mListener.birthdayClickHandler();
-        } else {
+        }
+        else if (id == R.id.cb_ssn_itin_not_available) {
+            mListener.ssnCheckBoxClickHandler();
+        }
+        else {
             super.onClick(view);
         }
     }
@@ -180,6 +192,25 @@ public class IdentityVerificationView
         else {
             mSocialSecurityField.setVisibility(GONE);
         }
+    }
+
+    public void showSSNNotAvailableCheckbox(boolean show) {
+        if(show) {
+            mSocialSecurityAvailableCheck.setVisibility(VISIBLE);
+            mSocialSecurityAvailableField.setVisibility(VISIBLE);
+        }
+        else {
+            mSocialSecurityAvailableCheck.setVisibility(GONE);
+            mSocialSecurityAvailableField.setVisibility(GONE);
+        }
+    }
+
+    public boolean isSSNCheckboxChecked() {
+        return mSocialSecurityAvailableCheck.isChecked();
+    }
+
+    public void enableSSNField(boolean enabled) {
+        mSocialSecurityField.setEnabled(enabled);
     }
 
     /**

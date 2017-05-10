@@ -49,7 +49,7 @@ public class CreditScoreModelTest {
     @Test
     public void allDataIsSetFromBaseData() {
         DataPointList baseData = new DataPointList();
-        CreditScore baseCredit = new CreditScore(CreditScoreRange.EXCELLENT, false);
+        CreditScore baseCredit = new CreditScore(CreditScoreRange.EXCELLENT, false, false);
         baseData.add(baseCredit);
 
         mModel.setBaseData(baseData);

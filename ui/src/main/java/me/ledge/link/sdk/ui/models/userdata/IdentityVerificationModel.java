@@ -26,6 +26,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     private int mMinimumAge;
     private Date mBirthday;
     private String mSocialSecurityNumber;
+    private boolean mSocialSecurityNumberNotSpecified;
 
     /**
      * Creates a new {@link IdentityVerificationModel} instance.
@@ -42,6 +43,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         mExpectedSSNLength = 0;
         mBirthday = null;
         mSocialSecurityNumber = null;
+        mSocialSecurityNumberNotSpecified = false;
     }
 
     /**
@@ -106,9 +108,10 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
                     DataPointVo.DataPointType.BirthDate, new Birthdate());
             baseBirthdate.setDate(getFormattedBirthday());
         }
-        if(hasValidSsn()) {
+        if(hasValidSsn() || mSocialSecurityNumberNotSpecified) {
             SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
             baseSSN.setSocialSecurityNumber(getSocialSecurityNumber());
+            baseSSN.setNotSpecified(mSocialSecurityNumberNotSpecified);
         }
         return base;
     }
@@ -227,11 +230,16 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
                 DataPointVo.DataPointType.SSN,
                 new SSN());
         baseSSN.setSocialSecurityNumber(this.getSocialSecurityNumber());
+        baseSSN.setNotSpecified(mSocialSecurityNumberNotSpecified);
         Birthdate baseBirthDate = (Birthdate) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.BirthDate,
                 new Birthdate());
         baseBirthDate.setDate(getFormattedBirthday());
 
         return data;
+    }
+
+    public void setSocialSecurityNotAvailable(boolean notAvailable) {
+        mSocialSecurityNumberNotSpecified = notAvailable;
     }
 }

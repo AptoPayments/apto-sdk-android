@@ -70,7 +70,7 @@ public class HomeModelTest {
         Address baseAddress = new Address();
         baseAddress.zip = EXPECTED_ZIP;
         base.add(baseAddress);
-        Housing baseHousing = new Housing(EXPECTED_HOUSING_TYPE_ID, false);
+        Housing baseHousing = new Housing(EXPECTED_HOUSING_TYPE_ID, false, false);
         base.add(baseHousing);
         mModel.setBaseData(base);
 

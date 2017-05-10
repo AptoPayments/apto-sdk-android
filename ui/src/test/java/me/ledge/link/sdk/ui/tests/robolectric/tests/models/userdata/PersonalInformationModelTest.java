@@ -85,9 +85,9 @@ public class PersonalInformationModelTest {
     @Test
     public void allDataIsSetFromBaseData() {
         DataPointList base = new DataPointList();
-        PersonalName baseName = new PersonalName(EXPECTED_FIRST_NAME, EXPECTED_LAST_NAME, false);
-        Email baseEmail = new Email(EXPECTED_EMAIL, false);
-        PhoneNumberVo basePhone = new PhoneNumberVo(getExpectedPhoneNumberAsString(), false);
+        PersonalName baseName = new PersonalName(EXPECTED_FIRST_NAME, EXPECTED_LAST_NAME, false, false);
+        Email baseEmail = new Email(EXPECTED_EMAIL, false, false);
+        PhoneNumberVo basePhone = new PhoneNumberVo(getExpectedPhoneNumberAsString(), false, false);
         base.add(baseName);
         base.add(baseEmail);
         base.add(basePhone);

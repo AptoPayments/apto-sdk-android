@@ -11,12 +11,12 @@ public class Address extends DataPointVo {
     public String zip;
 
     public Address() {
-        this(null, null, null, null, null, null, false);
+        this(null, null, null, null, null, null, false, false);
     }
 
     public Address(String address, String apUnit, String country, String city, String stateCode,
-                   String zip, boolean verified) {
-        super(DataPointType.Address, verified);
+                   String zip, boolean verified, boolean notSpecified) {
+        super(DataPointType.Address, verified, notSpecified);
         this.address = address;
         this.apUnit = apUnit;
         this.country = country;

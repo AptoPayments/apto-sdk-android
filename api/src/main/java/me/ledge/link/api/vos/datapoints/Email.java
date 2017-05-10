@@ -6,11 +6,11 @@ public class Email extends DataPointVo {
     public String email;
 
     public Email() {
-        this(null, false);
+        this(null, false, false);
     }
 
-    public Email(String email, boolean verified) {
-        super(DataPointType.Email, verified);
+    public Email(String email, boolean verified, boolean notSpecified) {
+        super(DataPointType.Email, verified, notSpecified);
         this.email = email;
     }
 

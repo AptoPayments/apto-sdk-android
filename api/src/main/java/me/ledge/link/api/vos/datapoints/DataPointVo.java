@@ -26,26 +26,29 @@ public class DataPointVo {
     @SerializedName("verified")
     private boolean mVerified;
     private VerificationVo mVerification;
+    private boolean mNotSpecified;
 
     /**
      * Default constructor
      */
     public DataPointVo() {
-        this(null, false);
+        this(null, false, false);
     }
 
     /**
      * Creates a new {@link DataPointVo} instance.
      */
-    public DataPointVo(DataPointType type, boolean verified) {
+    public DataPointVo(DataPointType type, boolean verified, boolean notSpecified) {
         mDataPointType = type;
         mVerified = verified;
+        mNotSpecified = notSpecified;
     }
 
     public DataPointVo(DataPointVo copy) {
         this.mDataPointType = copy.getType();
         this.mVerified = copy.isVerified();
         this.mVerification = copy.getVerification();
+        this.mNotSpecified = copy.isNotSpecified();
     }
 
     public void invalidateVerification() {
@@ -53,11 +56,16 @@ public class DataPointVo {
         mVerified = false;
     }
 
-    /**
-     * @return DataPoint Type.
-     */
     public DataPointType getType() {
         return mDataPointType;
+    }
+
+    public boolean isNotSpecified() {
+        return mNotSpecified;
+    }
+
+    public void setNotSpecified(boolean notSpecified) {
+        mNotSpecified = notSpecified;
     }
 
     public boolean isVerified() {
@@ -82,6 +90,7 @@ public class DataPointVo {
         if(this.hasVerification()) {
             gsonObject.add("verification", mVerification.toJSON());
         }
+        gsonObject.addProperty("not_specified", mNotSpecified);
         return gsonObject;
     }
 }
