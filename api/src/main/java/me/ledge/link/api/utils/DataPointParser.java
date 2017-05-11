@@ -69,11 +69,11 @@ public class DataPointParser implements JsonDeserializer<DataPointVo> {
                 return new Card(jObject.get("account_id").getAsString(),
                         Card.CardType.valueOf(jObject.get("card_type").getAsString()), null, null,
                         jObject.get("last_four_digits").getAsString(),
-                        jObject.get("expiration").getAsString(), false, false);
+                        jObject.get("expiration").getAsString(), false);
             case "bank":
                 return new BankAccount(jObject.get("account_id").getAsString(),
                         jObject.get("bank_name").getAsString(),
-                        jObject.get("last_four_digits").getAsString(), false, false);
+                        jObject.get("last_four_digits").getAsString(), false);
         }
         return null;
     }
