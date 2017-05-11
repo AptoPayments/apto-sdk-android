@@ -325,8 +325,8 @@ public class LoanAmountPresenter
         StringBuilder result = new StringBuilder();
 
         for(LoanProductVo loanProduct : productDisclaimerList.data) {
-            if (!TextUtils.isEmpty(loanProduct.preQualificationDisclaimer)) {
-                result.append(loanProduct.preQualificationDisclaimer.replaceAll("\\r?\\n", lineBreak));
+            if (!TextUtils.isEmpty(loanProduct.preQualificationDisclaimer.value)) {
+                result.append(loanProduct.preQualificationDisclaimer.value.replaceAll("\\r?\\n", lineBreak));
             }
             result.append(partnerDivider);
         }

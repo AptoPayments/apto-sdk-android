@@ -29,7 +29,7 @@ public class CreditScoreModel extends AbstractUserDataModel {
      * Initializes this class.
      */
     private void init() {
-        mCreditScore = new CreditScore(DEFAULT_CREDIT_INDICATION, false);
+        mCreditScore = new CreditScore(DEFAULT_CREDIT_INDICATION, false, false);
     }
 
     /**

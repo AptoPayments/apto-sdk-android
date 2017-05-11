@@ -16,14 +16,20 @@ public class RequiredDataPointVo {
     @SerializedName("verification_required")
     public boolean verificationRequired;
 
+    @SerializedName("not_specified_allowed")
+    public boolean notSpecifiedAllowed;
+
     public RequiredDataPointVo(DataPointVo.DataPointType type) {
         this.type = type;
         this.verificationRequired = false;
+        this.notSpecifiedAllowed = false;
     }
 
-    public RequiredDataPointVo(DataPointVo.DataPointType type, Boolean verificationRequired) {
+    public RequiredDataPointVo(DataPointVo.DataPointType type, Boolean verificationRequired,
+                               Boolean notSpecifiedAllowed) {
         this.type = type;
         this.verificationRequired = verificationRequired;
+        this.notSpecifiedAllowed = notSpecifiedAllowed;
     }
 
     @Override

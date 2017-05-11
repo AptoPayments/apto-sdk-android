@@ -65,10 +65,33 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <LinearLayout
+                android:id="@+id/ll_ssn_itin_not_available_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/til_social_security">
+
+                <CheckBox
+                    android:id="@+id/cb_ssn_itin_not_available"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_ssn_itin_not_available"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/id_verification_ssn_itin_not_available" />
+
+            </LinearLayout>
+
             <TextView
                     android:id="@+id/tv_next_bttn"
                     style="?attr/llsdk_bigButtonStyle"
-                    android:layout_below="@+id/til_social_security"
+                    android:layout_below="@+id/ll_ssn_itin_not_available_holder"
                     android:layout_marginTop="8dp"
                     android:layout_centerHorizontal="true"
                     android:text="@string/id_verification_button_next" />
@@ -86,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_marginTop="32dp"
                     android:layout_below="@+id/tv_security"
-                    android:text="Disclosures:" />
+                    android:text="@string/id_verification_disclosures_label" />
 
             <TextView
                     android:id="@+id/tv_disclaimers_body"

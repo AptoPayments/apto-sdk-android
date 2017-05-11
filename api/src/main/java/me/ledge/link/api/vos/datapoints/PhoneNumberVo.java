@@ -9,11 +9,11 @@ public class PhoneNumberVo extends DataPointVo {
     public Phonenumber.PhoneNumber phoneNumber;
 
     public PhoneNumberVo() {
-        this(null, false);
+        this(null, false, false);
     }
 
-    public PhoneNumberVo(String phone, boolean verified) {
-        super(DataPointType.PhoneNumber, verified);
+    public PhoneNumberVo(String phone, boolean verified, boolean notSpecified) {
+        super(DataPointType.PhoneNumber, verified, notSpecified);
         init();
         try {
             Phonenumber.PhoneNumber number = PhoneNumberUtil.getInstance().parse(phone, "US");

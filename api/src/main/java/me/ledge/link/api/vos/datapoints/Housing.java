@@ -8,11 +8,11 @@ public class Housing extends DataPointVo {
     public IdDescriptionPairDisplayVo housingType;
 
     public Housing() {
-        this(-1, false);
+        this(-1, false, false);
     }
 
-    public Housing(int housingType, boolean verified) {
-        super(DataPointType.Housing, verified);
+    public Housing(int housingType, boolean verified, boolean notSpecified) {
+        super(DataPointType.Housing, verified, notSpecified);
         this.housingType = new IdDescriptionPairDisplayVo(housingType, null);
     }
 

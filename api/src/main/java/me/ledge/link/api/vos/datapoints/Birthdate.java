@@ -6,11 +6,11 @@ public class Birthdate extends DataPointVo {
     private String date;
 
     public Birthdate() {
-        this(null, false);
+        this(null, false, false);
     }
 
-    public Birthdate(String date, boolean verified) {
-        super(DataPointType.BirthDate, verified);
+    public Birthdate(String date, boolean verified, boolean notSpecified) {
+        super(DataPointType.BirthDate, verified, notSpecified);
         this.date = date;
     }
 

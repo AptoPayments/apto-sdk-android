@@ -6,11 +6,11 @@ public class CreditScore extends DataPointVo {
     public int creditScoreRange;
 
     public CreditScore() {
-        this(-1, false);
+        this(-1, false, false);
     }
 
-    public CreditScore(int creditScoreRange, boolean verified) {
-        super(DataPointType.CreditScore, verified);
+    public CreditScore(int creditScoreRange, boolean verified, boolean notSpecified) {
+        super(DataPointType.CreditScore, verified, notSpecified);
         this.creditScoreRange = creditScoreRange;
     }
 

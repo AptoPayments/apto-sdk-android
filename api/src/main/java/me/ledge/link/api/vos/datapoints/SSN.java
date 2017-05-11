@@ -7,11 +7,11 @@ public class SSN extends DataPointVo {
     private static final int EXPECTED_SSN_LENGTH = 9;
 
     public SSN() {
-        this(null, false);
+        this(null, false, false);
     }
 
-    public SSN(String ssn, boolean verified) {
-        super(DataPointType.SSN, verified);
+    public SSN(String ssn, boolean verified, boolean notSpecified) {
+        super(DataPointType.SSN, verified, notSpecified);
         setSocialSecurityNumber(ssn);
     }
 

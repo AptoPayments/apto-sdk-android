@@ -7,11 +7,12 @@ public class Income extends DataPointVo {
     public long annualGrossIncome;
 
     public Income() {
-        this(-1, -1, false);
+        this(-1, -1, false, false);
     }
 
-    public Income(double monthlyNetIncome, long annualGrossIncome, boolean verified) {
-        super(DataPointType.Income, verified);
+    public Income(double monthlyNetIncome, long annualGrossIncome, boolean verified,
+                  boolean notSpecified) {
+        super(DataPointType.Income, verified, notSpecified);
         this.monthlyNetIncome = monthlyNetIncome;
         this.annualGrossIncome = annualGrossIncome;
     }

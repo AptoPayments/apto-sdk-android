@@ -73,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         if (hasValue(mView.getLoanAmount())) {
             loanData.loanAmount = parseIntSafely(mView.getLoanAmount());
         }
-        if (mView.getLoanPurpose() != null) {
+        if (mView.getLoanPurpose() != null && mView.getLoanPurpose().getKey()!=-1) {
             loanData.loanPurpose = mView.getLoanPurpose();
         }
         return loanData;
@@ -87,15 +87,15 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         boolean dataSet = false;
 
         if (hasValue(mView.getFirstName()) && hasValue(mView.getLastName())) {
-            data.add(new PersonalName(mView.getFirstName(), mView.getLastName(), false));
+            data.add(new PersonalName(mView.getFirstName(), mView.getLastName(), false, false));
             dataSet = true;
         }
         if (hasValue(mView.getEmail())) {
-            data.add(new Email(mView.getEmail(), false));
+            data.add(new Email(mView.getEmail(), false, false));
             dataSet = true;
         }
         if (hasValue(mView.getPhoneNumber())) {
-            data.add(new PhoneNumberVo(mView.getPhoneNumber(), false));
+            data.add(new PhoneNumberVo(mView.getPhoneNumber(), false, false));
             dataSet = true;
         }
         String address = "";
@@ -124,31 +124,31 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
             dataSet = true;
         }
         if(!address.isEmpty() || !apartment.isEmpty() || !city.isEmpty() || !state.isEmpty() || zip.isEmpty()) {
-            Address addressDataPoint = new Address(address, apartment, "US", city, state, zip, false);
+            Address addressDataPoint = new Address(address, apartment, "US", city, state, zip, false, false);
             data.add(addressDataPoint);
         }
         if (hasValue(mView.getIncome())) {
-            data.add(new Income(-1, parseIntSafely(mView.getIncome()), false));
+            data.add(new Income(-1, parseIntSafely(mView.getIncome()), false, false));
             dataSet = true;
         }
         if (mView.getHousingType().getKey() != -1) {
-            data.add(new Housing(mView.getHousingType().getKey(),false));
+            data.add(new Housing(mView.getHousingType().getKey(),false, false));
             dataSet = true;
         }
         if (mView.getEmploymentStatus().getKey() != -1 || mView.getSalaryFrequency().getKey() != -1) {
-            data.add(new Employment(mView.getEmploymentStatus().getKey(), mView.getSalaryFrequency().getKey(), false));
+            data.add(new Employment(mView.getEmploymentStatus().getKey(), mView.getSalaryFrequency().getKey(), false, false));
             dataSet = true;
         }
         if (mView.getCreditScore().getKey() != -1) {
-            data.add(new CreditScore(mView.getCreditScore().getKey(), false));
+            data.add(new CreditScore(mView.getCreditScore().getKey(), false, false));
             dataSet = true;
         }
         if (hasValue(mView.getBirthday())) {
-            data.add(new Birthdate(mView.getBirthday(), false));
+            data.add(new Birthdate(mView.getBirthday(), false, false));
             dataSet = true;
         }
         if (hasValue(mView.getSSN())) {
-            data.add(new SSN(mView.getSSN(), false));
+            data.add(new SSN(mView.getSSN(), false, false));
             dataSet = true;
         }
         if (!dataSet) {

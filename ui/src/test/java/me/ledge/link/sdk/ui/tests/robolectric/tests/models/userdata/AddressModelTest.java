@@ -71,7 +71,7 @@ public class AddressModelTest {
         DataPointList base = new DataPointList();
         Address baseAddress = new Address(EXPECTED_ADDRESS,
                 EXPECTED_APARTMENT_NUMBER, EXPECTED_COUNTRY, EXPECTED_CITY, EXPECTED_STATE,
-                EXPECTED_ZIP,false);
+                EXPECTED_ZIP,false, false);
         base.add(baseAddress);
         mModel.setBaseData(base);
 

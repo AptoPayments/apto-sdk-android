@@ -93,7 +93,9 @@ public class OffersListModel extends AbstractActivityModel
         InitialOffersRequestVo request = new InitialOffersRequestVo();
         if(mBaseData != null) {
             request.loan_amount = mBaseData.loanAmount;
-            request.loan_purpose_id = mBaseData.loanPurpose.getKey();
+            if(mBaseData.loanPurpose != null) {
+                request.loan_purpose_id = mBaseData.loanPurpose.getKey();
+            }
         }
         request.currency = Currency.getInstance(Locale.US).getCurrencyCode();
 

@@ -3,7 +3,7 @@ package me.ledge.link.sdk.ui.presenters.link;
 import android.support.v7.app.AppCompatActivity;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.responses.config.LinkDisclaimerVo;
+import me.ledge.link.api.vos.responses.config.DisclaimerVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.models.link.TermsModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -88,7 +88,7 @@ public class TermsPresenter
         mView.showLoading(false);
     }
 
-    private boolean isDisclaimerPresent(LinkDisclaimerVo disclaimer) {
+    private boolean isDisclaimerPresent(DisclaimerVo disclaimer) {
         return disclaimer!=null;
     }
 
@@ -101,9 +101,9 @@ public class TermsPresenter
         }
     }
 
-    public void showDisclaimer(LinkDisclaimerVo disclaimer) {
+    public void showDisclaimer(DisclaimerVo disclaimer) {
         if (isDisclaimerPresent(disclaimer)) {
-            setTerms(disclaimer.text);
+            setTerms(disclaimer.value);
         }
     }
 

@@ -9,11 +9,12 @@ public class Employment extends DataPointVo {
     public IdDescriptionPairDisplayVo salaryFrequency;
 
     public Employment() {
-        this(-1, -1, false);
+        this(-1, -1, false, false);
     }
 
-    public Employment(int employmentStatus, int salaryFrequency, boolean verified) {
-        super(DataPointType.Employment, verified);
+    public Employment(int employmentStatus, int salaryFrequency, boolean verified,
+                      boolean notSpecified) {
+        super(DataPointType.Employment, verified, notSpecified);
         this.employmentStatus = new IdDescriptionPairDisplayVo(employmentStatus, null);;
         this.salaryFrequency = new IdDescriptionPairDisplayVo(salaryFrequency, null);;
     }
