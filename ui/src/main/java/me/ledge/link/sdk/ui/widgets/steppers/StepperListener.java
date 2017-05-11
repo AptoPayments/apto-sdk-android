@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.widgets.steppers;
 
 /**
- * Callbacks the {@link DotStepperWidget} will invoke.
+ * Callbacks the {@link ProgressBarWidget} will invoke.
  * @author Wijnand
  */
 public interface StepperListener {

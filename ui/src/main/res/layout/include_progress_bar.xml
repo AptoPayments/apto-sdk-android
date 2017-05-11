@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget
+<me.ledge.link.sdk.ui.widgets.steppers.ProgressBarWidget
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/dsw_stepper"
+        android:id="@+id/pbw_stepper"
         style="@style/llsdk_stepper">
 
     <LinearLayout
@@ -20,8 +20,16 @@
     </LinearLayout>
 
     <LinearLayout
-            android:id="@+id/ll_dots_holder"
-            style="@style/llsdk_stepper_dots_holder" />
+        android:id="@+id/ll_progress_bar_holder"
+        style="@style/llsdk_stepper_bar_holder">
+
+        <ProgressBar
+            android:id="@+id/pb_progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="false" />
+    </LinearLayout>
 
     <LinearLayout
             android:id="@+id/ll_next_button"
@@ -37,4 +45,4 @@
                 android:src="?attr/llsdk_stepper_rightArrow" />
 
     </LinearLayout>
-</me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget>
+</me.ledge.link.sdk.ui.widgets.steppers.ProgressBarWidget>

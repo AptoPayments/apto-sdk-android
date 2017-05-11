@@ -1,34 +1,31 @@
 package me.ledge.link.sdk.ui.widgets.steppers;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.storages.UIStorage;
-import me.ledge.link.sdk.ui.utils.ResourceUtil;
 
 /**
- * Stepper widget that indicates progress through dots.
- * @author Wijnand
+ * Stepper widget that indicates progress through a progress bar.
+ * @author Adrian
  */
-public class DotStepperWidget extends RelativeLayout implements View.OnClickListener {
+public class ProgressBarWidget extends RelativeLayout implements View.OnClickListener {
 
     private LinearLayout mBackButton;
     private LinearLayout mNextButton;
-    private LinearLayout mDotsHolder;
+    private ProgressBar mProgressBar;
     private StepperListener mListener;
-
-    private int mDotEnabledResourceId;
 
     /**
      * @see RelativeLayout#RelativeLayout
      * @param context See {@link RelativeLayout#RelativeLayout}.
      */
-    public DotStepperWidget(Context context) {
+    public ProgressBarWidget(Context context) {
         this(context, null);
     }
 
@@ -37,17 +34,12 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
      * @param context See {@link RelativeLayout#RelativeLayout}.
      * @param attrs See {@link RelativeLayout#RelativeLayout}.
      */
-    public DotStepperWidget(Context context, AttributeSet attrs) {
+    public ProgressBarWidget(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    /**
-     * Initializes this class.
-     */
     private void init() {
-        ResourceUtil util = new ResourceUtil();
-        mDotEnabledResourceId = util.getResourceIdForAttribute(getContext(), R.attr.llsdk_stepper_dotEnabled);
     }
 
     /**
@@ -56,7 +48,7 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
     private void findAllViews() {
         mBackButton = (LinearLayout) findViewById(R.id.ll_back_button);
         mNextButton = (LinearLayout) findViewById(R.id.ll_next_button);
-        mDotsHolder = (LinearLayout) findViewById(R.id.ll_dots_holder);
+        mProgressBar = (ProgressBar) findViewById(R.id.pb_progress_bar);
     }
 
     /**
@@ -86,24 +78,13 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
     }
 
     /**
-     * Creates all dots that indicate total steps and progress.
+     * Updates the progress of the bar.
      * @param total Total steps.
      * @param position Position, current step. Zero-based.
      */
-    private void generateDots(int total, int position) {
-        mDotsHolder.removeAllViews();
-        ImageView view;
-
-        for (int i = 0; i < total; i++) {
-            view = new ImageView(getContext());
-            view.setImageDrawable(getResources().getDrawable(mDotEnabledResourceId));
-
-            if (i == position) {
-                view.setColorFilter(UIStorage.getInstance().getPrimaryColor());
-            }
-
-            mDotsHolder.addView(view);
-        }
+    private void updateProgressBar(int total, int position) {
+        int progress = (int) ((position / (float) total)*100);
+        mProgressBar.setProgress(progress);
     }
 
     /** {@inheritDoc} */
@@ -139,7 +120,7 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
         updateListener(mBackButton, configuration.isBackEnabled());
         updateListener(mNextButton, configuration.isNextEnabled());
 
-        generateDots(configuration.getTotalSteps(), configuration.getPosition());
+        updateProgressBar(configuration.getTotalSteps(), configuration.getPosition());
     }
 
     /**
@@ -148,5 +129,10 @@ public class DotStepperWidget extends RelativeLayout implements View.OnClickList
      */
     public void setListener(StepperListener listener) {
         mListener = listener;
+    }
+
+    public void setProgressBarColor(int color) {
+        mProgressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        mProgressBar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
     }
 }

@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.widgets.steppers;
 
 /**
- * {@link DotStepperWidget} configuration.
+ * {@link ProgressBarWidget} configuration.
  * @author Wijnand
  */
 public class StepperConfiguration {

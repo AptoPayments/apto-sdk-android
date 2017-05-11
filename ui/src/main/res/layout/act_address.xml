@@ -127,7 +127,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <include layout="@layout/include_stepper_dots" />
+    <include layout="@layout/include_progress_bar" />
     <include layout="@layout/include_rl_loading" />
 
 </me.ledge.link.sdk.ui.views.userdata.AddressView>
