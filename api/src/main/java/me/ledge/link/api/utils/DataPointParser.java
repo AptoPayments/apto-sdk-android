@@ -32,8 +32,14 @@ public class DataPointParser implements JsonDeserializer<DataPointVo> {
             throws JsonParseException {
         JsonObject jObject = json.getAsJsonObject();
         String type = jObject.get("type").getAsString();
-        boolean verified = jObject.get("verified").getAsBoolean();
-        boolean notSpecified = jObject.get("not_specified").getAsBoolean();
+        boolean verified = false;
+        if(jObject.has("verified")) {
+            verified = jObject.get("verified").getAsBoolean();
+        }
+        boolean notSpecified = false;
+        if(jObject.has("not_specified")) {
+            notSpecified = jObject.get("not_specified").getAsBoolean();
+        }
         switch (type) {
             case "name":
                 return new PersonalName(jObject.get("first_name").getAsString(),
