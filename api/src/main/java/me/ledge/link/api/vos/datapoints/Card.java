@@ -25,7 +25,7 @@ public class Card extends FinancialAccountVo {
     public String expirationDate;
 
     public Card() {
-        super(null, FinancialAccountType.Card, false, false);
+        super(null, FinancialAccountType.Card, false);
         cardType = null;
         lastFourDigits = null;
         PANToken = null;
@@ -34,8 +34,8 @@ public class Card extends FinancialAccountVo {
     }
 
     public Card(String accountId, CardType type, String PANToken, String CVVToken, String lastFourDigits,
-                String expirationDate, boolean verified, boolean notSpecified) {
-        super(accountId, FinancialAccountType.Card, verified, notSpecified);
+                String expirationDate, boolean verified) {
+        super(accountId, FinancialAccountType.Card, verified);
         this.cardType = type;
         this.lastFourDigits = lastFourDigits;
         this.PANToken = PANToken;

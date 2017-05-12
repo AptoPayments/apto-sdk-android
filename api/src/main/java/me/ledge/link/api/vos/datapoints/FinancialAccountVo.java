@@ -15,9 +15,8 @@ public class FinancialAccountVo extends DataPointVo {
     public String mAccountId;
     public FinancialAccountType mAccountType;
 
-    public FinancialAccountVo(String accountId, FinancialAccountType type, boolean verified,
-                              boolean notSpecified) {
-        super(DataPointType.FinancialAccount, verified, notSpecified);
+    public FinancialAccountVo(String accountId, FinancialAccountType type, boolean verified) {
+        super(DataPointType.FinancialAccount, verified, false);
         mAccountId = accountId;
         mAccountType = type;
     }

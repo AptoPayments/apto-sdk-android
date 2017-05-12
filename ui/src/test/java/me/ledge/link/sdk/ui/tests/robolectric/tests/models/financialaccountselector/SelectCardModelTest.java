@@ -46,7 +46,7 @@ public class SelectCardModelTest {
         when(TextUtils.isEmpty(any(CharSequence.class))).thenAnswer(new IsEmptyAnswer());
 
         mCard = new Card(EXPECTED_ACCOUNT_ID, EXPECTED_CARD_TYPE, null, null,
-                EXPECTED_LAST_FOUR_DIGITS, EXPECTED_EXPIRATION_DATE, false, false);
+                EXPECTED_LAST_FOUR_DIGITS, EXPECTED_EXPIRATION_DATE, false);
         mModel = new SelectCardModel(mCard);
     }
 
