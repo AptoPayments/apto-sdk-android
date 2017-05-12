@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -381,12 +382,17 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             }
             addRequiredActivity(IdentityVerificationActivity.class);
         }
+        UserDataPresenter.TOTAL_STEPS = mRequiredActivities.size();
     }
 
     private void addRequiredActivity(Class requiredActivity) {
         if(!mRequiredActivities.contains(requiredActivity)) {
             mRequiredActivities.add(requiredActivity);
         }
+    }
+
+    public int getRequiredActivityPosition(Class<? extends AppCompatActivity> activity) {
+        return mRequiredActivities.indexOf(activity);
     }
 
     private Class getActivityAtPosition(Class currentActivity, int positionOffset) {
