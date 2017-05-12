@@ -37,12 +37,6 @@ public class MonthlyIncomePresenter
 
     /** {@inheritDoc} */
     @Override
-    protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 5, true, true);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public MonthlyIncomeModel createModel() {
         return new MonthlyIncomeModel();
     }

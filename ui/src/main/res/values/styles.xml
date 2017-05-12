@@ -41,7 +41,7 @@
         <item name="android:textColor">?attr/llsdk_stepper_textColor</item>
     </style>
 
-    <style name="llsdk_stepper_dots_holder">
+    <style name="llsdk_stepper_bar_holder">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">horizontal</item>

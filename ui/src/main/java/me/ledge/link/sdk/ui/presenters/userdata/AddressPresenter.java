@@ -48,12 +48,6 @@ public class AddressPresenter
 
     /** {@inheritDoc} */
     @Override
-    protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 3, true, true);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void attachView(AddressView view) {
         super.attachView(view);
         CompletableFuture

@@ -14,6 +14,6 @@
             android:layout_below="@+id/abl_toolbar_wrapper"
             android:layout_above="@+id/dsw_stepper" />
 
-    <include layout="@layout/include_stepper_dots" />
+    <include layout="@layout/include_progress_bar" />
     <include layout="@layout/include_rl_loading" />
 </me.ledge.link.sdk.ui.views.loanapplication.LoanApplicationsListView>

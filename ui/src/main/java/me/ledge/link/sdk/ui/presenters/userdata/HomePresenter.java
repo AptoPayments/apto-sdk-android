@@ -77,12 +77,6 @@ public class HomePresenter
 
     /** {@inheritDoc} */
     @Override
-    protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 3, true, true);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void attachView(HomeView view) {
         super.attachView(view);
         mResponseHandler.subscribe(this);

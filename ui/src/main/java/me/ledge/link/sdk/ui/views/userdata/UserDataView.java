@@ -14,7 +14,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
-import me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget;
+import me.ledge.link.sdk.ui.widgets.steppers.ProgressBarWidget;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
@@ -29,7 +29,7 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     protected L mListener;
     protected Toolbar mToolbar;
     protected TextView mNextButton;
-    protected DotStepperWidget mStepper;
+    protected ProgressBarWidget mStepper;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -54,7 +54,7 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     protected void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mNextButton = (TextView) findViewById(R.id.tv_next_bttn);
-        mStepper = (DotStepperWidget) findViewById(R.id.dsw_stepper);
+        mStepper = (ProgressBarWidget) findViewById(R.id.pbw_stepper);
     }
 
     /**
@@ -78,6 +78,9 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
         }
         mToolbar.setBackgroundDrawable(new ColorDrawable(color));
         mToolbar.setTitleTextColor(contrastColor);
+        if(mStepper != null) {
+            mStepper.setProgressBarColor(color);
+        }
     }
 
     /**

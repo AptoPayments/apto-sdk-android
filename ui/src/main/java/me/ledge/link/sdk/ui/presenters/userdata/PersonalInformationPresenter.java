@@ -39,12 +39,6 @@ public class PersonalInformationPresenter
 
     /** {@inheritDoc} */
     @Override
-    protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 1, true, true);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public PersonalInformationModel createModel() {
         return new PersonalInformationModel();
     }

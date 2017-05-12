@@ -48,12 +48,6 @@ public class CreditScorePresenter
         mRangeToIdMap.put(CreditScoreRange.POOR, R.id.rb_poor);
     }
 
-    /** {@inheritDoc} */
-    @Override
-    protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 6, true, true);
-    }
-
     /**
      * @param map The {@link HashMap} to get the value from.
      * @param key The key we're looking for.

@@ -130,12 +130,6 @@ public class AnnualIncomePresenter
 
     /** {@inheritDoc} */
     @Override
-    protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 4, true, true);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public AnnualIncomeModel createModel() {
         return new AnnualIncomeModel();
     }

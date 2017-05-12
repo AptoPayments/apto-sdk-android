@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.UserDataModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
@@ -22,7 +23,7 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
         extends ActivityPresenter<M, V>
         implements StepperListener, NextButtonListener {
 
-    protected static final int TOTAL_STEPS = 8;
+    protected static int TOTAL_STEPS;
 
     /**
      * Creates a new {@link UserDataPresenter} instance.
@@ -36,7 +37,11 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
     /**
      * @return Stepper configuration.
      */
-    protected abstract StepperConfiguration getStepperConfig();
+    protected StepperConfiguration getStepperConfig() {
+        UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
+        int position = module.getRequiredActivityPosition(mActivity.getClass());
+        return new StepperConfiguration(TOTAL_STEPS, position, true, true);
+    }
 
     /**
      * Populates the {@link UserDataModel} with the data stored globally.

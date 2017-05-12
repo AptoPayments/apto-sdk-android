@@ -13,7 +13,7 @@ import me.ledge.link.sdk.ui.views.DisplayErrorMessage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
-import me.ledge.link.sdk.ui.widgets.steppers.DotStepperWidget;
+import me.ledge.link.sdk.ui.widgets.steppers.ProgressBarWidget;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
@@ -26,7 +26,7 @@ public class LoanApplicationsListView extends RelativeLayout
 
     private Toolbar mToolbar;
     private ViewPager mPager;
-    private DotStepperWidget mStepper;
+    private ProgressBarWidget mStepper;
     private LoadingView mLoadingView;
 
     /**
@@ -57,7 +57,7 @@ public class LoanApplicationsListView extends RelativeLayout
     private void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mPager = (ViewPager) findViewById(R.id.vp_loan_applications_pager);
-        mStepper = (DotStepperWidget) findViewById(R.id.dsw_stepper);
+        mStepper = (ProgressBarWidget) findViewById(R.id.dsw_stepper);
         mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
     }
 

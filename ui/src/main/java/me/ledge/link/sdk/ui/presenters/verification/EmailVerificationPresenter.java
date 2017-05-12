@@ -42,12 +42,6 @@ public class EmailVerificationPresenter
 
     /** {@inheritDoc} */
     @Override
-    protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 3, true, true);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public EmailVerificationModel createModel() {
         return new EmailVerificationModel();
     }

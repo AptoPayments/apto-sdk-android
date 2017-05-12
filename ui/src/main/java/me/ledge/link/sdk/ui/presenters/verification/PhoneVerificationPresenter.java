@@ -4,10 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.datapoints.VerificationVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -17,7 +17,6 @@ import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
 import me.ledge.link.sdk.ui.utils.PhoneHelperUtil;
 import me.ledge.link.sdk.ui.views.verification.PhoneVerificationView;
-import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
  * Concrete {@link Presenter} for the phone verification screen.
@@ -36,12 +35,6 @@ public class PhoneVerificationPresenter
         super(activity);
         mDelegate = delegate;
         LedgeLinkUi.startPhoneVerification(mModel.getPhoneVerificationRequest());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected StepperConfiguration getStepperConfig() {
-        return new StepperConfiguration(TOTAL_STEPS, 2, true, true);
     }
 
     /** {@inheritDoc} */
