@@ -36,6 +36,7 @@ import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
 import me.ledge.link.sdk.ui.activities.userdata.HomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
+import me.ledge.link.sdk.ui.activities.userdata.PaydayLoanActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
 import me.ledge.link.sdk.ui.activities.verification.EmailVerificationActivity;
 import me.ledge.link.sdk.ui.activities.verification.PhoneVerificationActivity;
@@ -51,7 +52,7 @@ import me.ledge.link.sdk.ui.storages.UserStorage;
 public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVerificationDelegate,
         EmailVerificationDelegate, IdentityVerificationDelegate, AddressDelegate,
         AnnualIncomeDelegate, MonthlyIncomeDelegate, CreditScoreDelegate,
-        PersonalInformationDelegate, HomeDelegate {
+        PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate {
 
     private static UserDataCollectorModule instance;
     public Command onFinish;
@@ -264,6 +265,16 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     @Override
+    public void paydayLoanStored() {
+        startActivity(getActivityAtPosition(PaydayLoanActivity.class, 1));
+    }
+
+    @Override
+    public void paydayLoanOnBackPressed() {
+        startActivity(getActivityAtPosition(PaydayLoanActivity.class, -1));
+    }
+
+    @Override
     public void personalInformationStored() {
         if(isPhoneVerificationRequired() && !isCurrentPhoneVerified()) {
             startActivity(PhoneVerificationActivity.class);
@@ -377,6 +388,9 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                         break;
                     case CreditScore:
                         addRequiredActivity(CreditScoreActivity.class);
+                        break;
+                    case PayDayLoan:
+                        addRequiredActivity(PaydayLoanActivity.class);
                         break;
                 }
             }

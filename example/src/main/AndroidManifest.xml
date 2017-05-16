@@ -86,6 +86,10 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
+            android:name="me.ledge.link.sdk.ui.activities.userdata.PaydayLoanActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
                 android:name="me.ledge.link.sdk.ui.activities.offers.OffersListActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
