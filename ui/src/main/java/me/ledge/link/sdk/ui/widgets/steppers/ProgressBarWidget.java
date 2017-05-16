@@ -83,7 +83,7 @@ public class ProgressBarWidget extends RelativeLayout implements View.OnClickLis
      * @param position Position, current step. Zero-based.
      */
     private void updateProgressBar(int total, int position) {
-        int progress = (int) ((position / (float) total)*100);
+        int progress = (int) (((position+1) / (float) total)*100);
         mProgressBar.setProgress(progress);
     }
 

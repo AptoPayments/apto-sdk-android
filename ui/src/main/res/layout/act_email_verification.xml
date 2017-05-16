@@ -72,6 +72,4 @@
         </RelativeLayout>
     </ScrollView>
 
-    <include layout="@layout/include_progress_bar" />
-
 </me.ledge.link.sdk.ui.views.verification.EmailVerificationView>
