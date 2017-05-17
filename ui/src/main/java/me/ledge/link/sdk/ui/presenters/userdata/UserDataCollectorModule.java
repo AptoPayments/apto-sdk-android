@@ -32,6 +32,7 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
+import me.ledge.link.sdk.ui.activities.userdata.ArmedForcesActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
 import me.ledge.link.sdk.ui.activities.userdata.HomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
@@ -52,7 +53,7 @@ import me.ledge.link.sdk.ui.storages.UserStorage;
 public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVerificationDelegate,
         EmailVerificationDelegate, IdentityVerificationDelegate, AddressDelegate,
         AnnualIncomeDelegate, MonthlyIncomeDelegate, CreditScoreDelegate,
-        PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate {
+        PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate, ArmedForcesDelegate {
 
     private static UserDataCollectorModule instance;
     public Command onFinish;
@@ -275,6 +276,16 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     @Override
+    public void armedForcesStored() {
+        startActivity(getActivityAtPosition(ArmedForcesActivity.class, 1));
+    }
+
+    @Override
+    public void armedForcesOnBackPressed() {
+        startActivity(getActivityAtPosition(ArmedForcesActivity.class, -1));
+    }
+
+    @Override
     public void personalInformationStored() {
         if(isPhoneVerificationRequired() && !isCurrentPhoneVerified()) {
             startActivity(PhoneVerificationActivity.class);
@@ -391,6 +402,9 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                         break;
                     case PayDayLoan:
                         addRequiredActivity(PaydayLoanActivity.class);
+                        break;
+                    case MemberOfArmedForces:
+                        addRequiredActivity(ArmedForcesActivity.class);
                         break;
                 }
             }

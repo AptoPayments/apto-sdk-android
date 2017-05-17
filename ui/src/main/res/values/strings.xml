@@ -96,6 +96,13 @@
     <string name="payday_loan_hint">Have you used a payday loan in the past six months?</string>
     <string name="payday_loan_error">Please choose an answer.</string>
 
+    <!-- Armed Forces -->
+    <string name="armed_forces_label">Additional Info</string>
+    <string name="armed_forces_yes">Yes</string>
+    <string name="armed_forces_no">No</string>
+    <string name="armed_forces_hint">Are you, your spouse, or your head of household an active member of the armed forces?</string>
+    <string name="armed_forces_error">Please choose an answer.</string>
+
     <!-- ID Verification -->
     <string name="id_verification_label">Ready for your offers?</string>
     <string name="id_verification_birthday_hint">Birthday</string>
