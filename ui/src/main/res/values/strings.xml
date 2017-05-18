@@ -67,6 +67,15 @@
     <string name="smarty_streets_auth_id">833054ba-7001-35c3-ce66-5c13006292f4</string>
     <string name="smarty_streets_auth_token">R0VHYDTJEq7sy15FumDo</string>
 
+    <!-- Time at Address -->
+    <string name="time_at_address_label">Address</string>
+    <string name="time_at_address_hint">How long have you been at this address?</string>
+    <string name="time_at_address_6_to_12_months">6 to 12 months</string>
+    <string name="time_at_address_less_than_6_months">Less than 6 months</string>
+    <string name="time_at_address_1_to_2_years">1 to 2 years</string>
+    <string name="time_at_address_more_than_2_years">More than 2 years</string>
+    <string name="time_at_address_error">Please select a time range.</string>
+
     <!-- Annual Income -->
     <string name="annual_income_label">What\'s your annual pretax income?</string>
     <string name="annual_income_employment_status_header">Employment status</string>

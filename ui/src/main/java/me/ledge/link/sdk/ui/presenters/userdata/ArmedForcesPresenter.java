@@ -71,7 +71,7 @@ public class ArmedForcesPresenter
     }
 
     /**
-     * @return Whether the user has used a payday loan based on the checked Radio Button.
+     * @return Whether the user is a member of the armed forces based on the checked Radio Button.
      */
     private Boolean getArmedForces() {
         if(mView.getSelectionId() == -1) {
