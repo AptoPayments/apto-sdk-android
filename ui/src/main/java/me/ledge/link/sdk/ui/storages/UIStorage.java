@@ -63,7 +63,7 @@ public class UIStorage {
         setColors();
     }
 
-    public synchronized int getPrimaryColor() {
+    public synchronized Integer getPrimaryColor() {
         CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
             if(mPrimaryColor != null) {
                 return mPrimaryColor;
@@ -79,10 +79,15 @@ public class UIStorage {
             }
         });
 
-        return (Integer) getResultFromFuture(future);
+        if(getResultFromFuture(future)==null) {
+            return 0;
+        }
+        else {
+            return (Integer) getResultFromFuture(future);
+        }
     }
 
-    public synchronized int getSecondaryColor() {
+    public synchronized Integer getSecondaryColor() {
         CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
             if(mSecondaryColor != null) {
                 return mSecondaryColor;
@@ -138,6 +143,9 @@ public class UIStorage {
     }
 
     public synchronized int getPrimaryContrastColor() {
+        if(mPrimaryColor==null) {
+            return 0;
+        }
         int red = Color.red(mPrimaryColor);
         int green = Color.green(mPrimaryColor);
         int blue = Color.blue(mPrimaryColor);
@@ -173,7 +181,7 @@ public class UIStorage {
             return future.get();
         } catch (InterruptedException | ExecutionException e) {
             future.completeExceptionally(e);
-            throw new CompletionException(e);
+            return null;
         }
     }
 

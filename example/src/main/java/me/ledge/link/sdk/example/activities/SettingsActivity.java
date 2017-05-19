@@ -131,15 +131,16 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
             data.add(new Income(-1, parseIntSafely(mView.getIncome()), false, false));
             dataSet = true;
         }
-        if (mView.getHousingType().getKey() != -1) {
+        if (mView.getHousingType() != null && mView.getHousingType().getKey() != -1) {
             data.add(new Housing(mView.getHousingType().getKey(),false, false));
             dataSet = true;
         }
-        if (mView.getEmploymentStatus().getKey() != -1 || mView.getSalaryFrequency().getKey() != -1) {
+        if ((mView.getEmploymentStatus() != null && mView.getEmploymentStatus().getKey() != -1) ||
+                (mView.getSalaryFrequency() != null && mView.getSalaryFrequency().getKey() != -1)) {
             data.add(new Employment(mView.getEmploymentStatus().getKey(), mView.getSalaryFrequency().getKey(), false, false));
             dataSet = true;
         }
-        if (mView.getCreditScore().getKey() != -1) {
+        if (mView.getCreditScore() != null && mView.getCreditScore().getKey() != -1) {
             data.add(new CreditScore(mView.getCreditScore().getKey(), false, false));
             dataSet = true;
         }
@@ -301,6 +302,9 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
 
     private void displayConfigElements() {
         mProjectConfig = UIStorage.getInstance().getContextConfig();
+        if(mProjectConfig==null) {
+            return;
+        }
         displayHousingType();
         displaySalaryFrequencies();
         displayEmploymentStatus();
