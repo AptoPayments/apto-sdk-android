@@ -11,4 +11,10 @@ public class DisclaimerVo {
     public String format;
 
     public String value;
+
+    public enum formatValues {
+        plain_text,
+        markdown,
+        external_url
+    }
 }

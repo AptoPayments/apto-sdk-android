@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.ledge.link.sdk.ui.views.DisclaimerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Dummy to get focus on start. -->
+    <RelativeLayout
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/btn_accept_pdf"
+            android:text="@string/disclaimer_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <WebView
+            android:id="@+id/pdf_webview"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_above="@id/btn_accept_pdf"
+            android:layout_alignParentTop="true"/>
+
+
+
+    </RelativeLayout>
+</me.ledge.link.sdk.ui.views.DisclaimerView>
