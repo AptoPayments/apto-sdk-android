@@ -8,6 +8,7 @@ import android.widget.DatePicker;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.responses.config.DisclaimerVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
@@ -17,9 +18,9 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.utils.DisclaimerUtil;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
-import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
  * Concrete {@link Presenter} for the ID verification screen.
@@ -35,6 +36,7 @@ public class IdentityVerificationPresenter
     private boolean mIsSSNRequired;
     private boolean mIsSSNNotAvailableAllowed;
     private boolean mIsBirthdayRequired;
+    private String mDisclaimerURL;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
@@ -208,7 +210,20 @@ public class IdentityVerificationPresenter
 
     private void saveDataAndExit() {
         super.saveData();
+        if(mDisclaimerURL!=null) {
+            showDisclaimer();
+        }
+        else {
+            exit();
+        }
+    }
+
+    private void exit() {
         mDelegate.identityVerificationSucceeded();
+    }
+
+    private void showDisclaimer() {
+        DisclaimerUtil.loadExternalURL(mActivity, mDisclaimerURL, this::exit);
     }
 
     /** {@inheritDoc} */
@@ -247,7 +262,16 @@ public class IdentityVerificationPresenter
     }
 
     private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
-        setDisclaimers(parseDisclaimersResponse(response));
+        DisclaimerVo disclaimer = response.data[0].preQualificationDisclaimer;
+        switch(DisclaimerVo.formatValues.valueOf(disclaimer.format)) {
+            case plain_text:
+                setDisclaimers(parseDisclaimersResponse(response));
+                break;
+            case external_url:
+                mDisclaimerURL = disclaimer.value;
+                mView.showLoading(false);
+                break;
+        }
     }
 
     private void errorReceived(String error) {
