@@ -261,12 +261,22 @@ public class IdentityVerificationPresenter
         });
     }
 
+    private void setMarkdownDisclaimers(String disclaimers) {
+        mDisclaimersText = disclaimers;
+        mActivity.runOnUiThread(() -> {
+            mView.setMarkdownDisclaimers(disclaimers);
+            mView.showLoading(false);
+        });
+    }
+
     private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
         DisclaimerVo disclaimer = response.data[0].preQualificationDisclaimer;
         switch(DisclaimerVo.formatValues.valueOf(disclaimer.format)) {
             case plain_text:
                 setDisclaimers(parseDisclaimersResponse(response));
                 break;
+            case markdown:
+                setMarkdownDisclaimers(parseDisclaimersResponse(response));
             case external_url:
                 mDisclaimerURL = disclaimer.value;
                 mView.showLoading(false);

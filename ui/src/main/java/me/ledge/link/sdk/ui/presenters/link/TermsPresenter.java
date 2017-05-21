@@ -88,6 +88,14 @@ public class TermsPresenter
         mView.showLoading(false);
     }
 
+    private void setMarkDownTerms(String terms) {
+        mTermsText = terms;
+        mActivity.runOnUiThread(() -> {
+            mView.setMarkDownTerms(terms);
+            mView.showLoading(false);
+        });
+    }
+
     private boolean isDisclaimerPresent(DisclaimerVo disclaimer) {
         return disclaimer!=null;
     }
@@ -102,8 +110,16 @@ public class TermsPresenter
     }
 
     public void showDisclaimer(DisclaimerVo disclaimer) {
-        if (isDisclaimerPresent(disclaimer)) {
-            setTerms(disclaimer.value);
+        if (!isDisclaimerPresent(disclaimer)) {
+            return;
+        }
+        switch(DisclaimerVo.formatValues.valueOf(disclaimer.format)) {
+            case plain_text:
+                setTerms(disclaimer.value);
+                break;
+            case markdown:
+                setMarkDownTerms(disclaimer.value);
+                break;
         }
     }
 

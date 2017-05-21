@@ -43,6 +43,10 @@
                     android:id="@+id/tv_terms"
                     style="?attr/llsdk_terms_disclaimerStyle" />
 
+            <us.feras.mdv.MarkdownView
+                    android:id="@+id/md_terms"
+                    style="?attr/llsdk_terms_disclaimerStyle" />
+
         </LinearLayout>
     </ScrollView>
 
