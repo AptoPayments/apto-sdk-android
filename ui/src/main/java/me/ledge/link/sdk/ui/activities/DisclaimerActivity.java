@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.utils.DisclaimerUtil;
@@ -25,7 +26,17 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
         setView();
 
         WebView webview = (WebView) findViewById(R.id.pdf_webview);
+        webview.clearCache(true);
+        webview.clearHistory();
         webview.getSettings().setJavaScriptEnabled(true);
+        webview.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+
         webview.loadUrl(mPDFReader + DisclaimerUtil.disclaimerURL);
     }
 

@@ -197,7 +197,7 @@ public class IdentityVerificationPresenter
             }
         }
         else {
-            mDelegate.identityVerificationSucceeded();
+            showDisclaimerOrExit();
         }
     }
 
@@ -210,6 +210,10 @@ public class IdentityVerificationPresenter
 
     private void saveDataAndExit() {
         super.saveData();
+        showDisclaimerOrExit();
+    }
+
+    private void showDisclaimerOrExit() {
         if(mDisclaimerURL!=null) {
             showDisclaimer();
         }
@@ -271,6 +275,11 @@ public class IdentityVerificationPresenter
 
     private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
         DisclaimerVo disclaimer = response.data[0].preQualificationDisclaimer;
+        if(disclaimer.value.isEmpty()) {
+            retrieveProjectDisclaimer();
+            mView.showLoading(false);
+            return;
+        }
         switch(DisclaimerVo.formatValues.valueOf(disclaimer.format)) {
             case plain_text:
                 setDisclaimers(parseDisclaimersResponse(response));
@@ -281,6 +290,13 @@ public class IdentityVerificationPresenter
                 mDisclaimerURL = disclaimer.value;
                 mView.showLoading(false);
                 break;
+        }
+    }
+
+    private void retrieveProjectDisclaimer() {
+        DisclaimerVo prequalificationDisclaimer = ConfigStorage.getInstance().getPrequalificationDisclaimer();
+        if(prequalificationDisclaimer != null) {
+            mDisclaimerURL = prequalificationDisclaimer.value;
         }
     }
 

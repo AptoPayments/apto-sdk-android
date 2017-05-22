@@ -50,4 +50,10 @@ public class LinkConfigResponseVo {
 
     @SerializedName("skip_loan_purpose")
     public boolean skipLoanPurpose;
+
+    @SerializedName("show_pre_qualification_disclaimer")
+    public boolean showPrequalificationDisclaimer;
+
+    @SerializedName("pre_qualification_disclaimer")
+    public DisclaimerVo preQualificationDisclaimer;
 }
