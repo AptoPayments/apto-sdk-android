@@ -204,4 +204,8 @@ public class OfferSummaryModel implements Model {
     public OfferVo getOffer() {
         return mRawOffer;
     }
+
+    public boolean isTextOnlyOffer() {
+        return mRawOffer.loan_amount == 0;
+    }
 }

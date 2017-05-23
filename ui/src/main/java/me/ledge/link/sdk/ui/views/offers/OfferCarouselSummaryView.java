@@ -40,9 +40,22 @@ public class OfferCarouselSummaryView extends OfferBaseSummaryView {
             mAmountField.setText("");
             mMonthlyPaymentField.setText("");
         } else {
-            mInterestField.setText(mData.getInterestText());
-            mAmountField.setText(mData.getAmountText());
-            mMonthlyPaymentField.setText(mData.getMonthlyPaymentText());
+            if(!mData.isTextOnlyOffer()) {
+                mInterestField.setText(mData.getInterestText());
+                mAmountField.setText(mData.getAmountText());
+                mMonthlyPaymentField.setText(mData.getMonthlyPaymentText());
+
+                if (mData.hasDisclaimer()) {
+                    mMoreInfoButton.setVisibility(VISIBLE);
+                }
+            }
+            else {
+                mInterestField.setVisibility(GONE);
+                mAmountField.setVisibility(GONE);
+                mMonthlyPaymentField.setVisibility(GONE);
+                mDisclaimerField.setVisibility(VISIBLE);
+                mDisclaimerField.setText(mData.getDisclaimer());
+            }
 
             if (mData.hasImageLoader() && mData.getLenderImage() != null) {
                 mLenderNameField.setVisibility(GONE);
@@ -51,10 +64,6 @@ public class OfferCarouselSummaryView extends OfferBaseSummaryView {
             } else {
                 mLenderNameField.setText(mData.getLenderName());
                 mLenderLogo.setVisibility(GONE);
-            }
-
-            if (mData.hasDisclaimer()) {
-                mMoreInfoButton.setVisibility(VISIBLE);
             }
         }
     }

@@ -43,6 +43,11 @@
                         android:id="@+id/tv_monthly"
                         style="?attr/llsdk_loanOfferSummary_textStyle" />
 
+                <TextView
+                    android:id="@+id/tv_disclaimer"
+                    android:visibility="gone"
+                    style="@style/llsdk_terms_disclaimer" />
+
             </LinearLayout>
 
             <ImageView
