@@ -577,4 +577,70 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
     public void setTimeAtAddress(int index) {
         mTimeAtAddressSpinner.setSelection(index);
     }
+
+    public void showPersonalName() {
+        mFirstNameField.setVisibility(VISIBLE);
+        mLastNameField.setVisibility(VISIBLE);
+    }
+
+    public void showPhoneNumber() {
+        mPhoneField.setVisibility(VISIBLE);
+    }
+
+    public void showEmail() {
+        mEmailField.setVisibility(VISIBLE);
+    }
+
+    public void showBirthday() {
+        mBirthday.setVisibility(VISIBLE);
+    }
+
+    public void showSSN() {
+        mSSN.setVisibility(VISIBLE);
+    }
+
+    public void showAddress() {
+        mAddressField.setVisibility(VISIBLE);
+        mZipField.setVisibility(VISIBLE);
+        mCityField.setVisibility(VISIBLE);
+        mStateField.setVisibility(VISIBLE);
+        mApartmentField.setVisibility(VISIBLE);
+    }
+
+    public void showHousing() {
+        mHousingTypeSpinner.setVisibility(VISIBLE);
+    }
+
+    public void showEmployment() {
+        mEmploymentStatusSpinner.setVisibility(VISIBLE);
+        mSalaryFrequencySpinner.setVisibility(VISIBLE);
+    }
+
+    public void showIncome() {
+        mIncomeField.setVisibility(VISIBLE);
+    }
+
+    public void showCreditScore() {
+        mCreditScoreSpinner.setVisibility(VISIBLE);
+    }
+
+    public void showPayDayLoan() {
+        mPaydayLoan.setVisibility(VISIBLE);
+    }
+
+    public void showMemberOfArmedForces() {
+        mArmedForces.setVisibility(VISIBLE);
+    }
+
+    public void showTimeAtAddress() {
+        mTimeAtAddressSpinner.setVisibility(VISIBLE);
+    }
+
+    public boolean isArmedForcesVisible() {
+        return mArmedForces.getVisibility() == VISIBLE;
+    }
+
+    public boolean isPayDayLoanVisible() {
+        return mPaydayLoan.getVisibility() == VISIBLE;
+    }
 }
