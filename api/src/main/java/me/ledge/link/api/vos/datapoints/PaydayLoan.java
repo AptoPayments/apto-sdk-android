@@ -26,7 +26,7 @@ public class PaydayLoan extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         PaydayLoan that = (PaydayLoan) o;
 
         return hasUsedPaydayLoan == that.hasUsedPaydayLoan;
@@ -35,6 +35,6 @@ public class PaydayLoan extends DataPointVo {
 
     @Override
     public int hashCode() {
-        return (hasUsedPaydayLoan ? 1 : 0);
+        return super.hashCode()+hasUsedPaydayLoan.hashCode();
     }
 }

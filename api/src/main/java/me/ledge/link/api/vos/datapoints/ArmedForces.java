@@ -26,7 +26,7 @@ public class ArmedForces extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         ArmedForces that = (ArmedForces) o;
 
         return isMemberOfArmedForces == that.isMemberOfArmedForces;
@@ -35,6 +35,6 @@ public class ArmedForces extends DataPointVo {
 
     @Override
     public int hashCode() {
-        return (isMemberOfArmedForces ? 1 : 0);
+        return super.hashCode()+isMemberOfArmedForces.hashCode();
     }
 }

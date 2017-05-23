@@ -82,7 +82,7 @@ public class PhoneNumberVo extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         PhoneNumberVo that = (PhoneNumberVo) o;
 
         return phoneNumber != null ? phoneNumber.equals(that.phoneNumber) : that.phoneNumber == null;
@@ -91,6 +91,6 @@ public class PhoneNumberVo extends DataPointVo {
 
     @Override
     public int hashCode() {
-        return phoneNumber != null ? phoneNumber.hashCode() : 0;
+        return super.hashCode() + (phoneNumber != null ? phoneNumber.hashCode() : 0);
     }
 }

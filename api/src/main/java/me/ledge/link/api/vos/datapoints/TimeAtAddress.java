@@ -26,7 +26,7 @@ public class TimeAtAddress extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         TimeAtAddress that = (TimeAtAddress) o;
 
         return timeAtAddressRange == that.timeAtAddressRange;
@@ -35,6 +35,6 @@ public class TimeAtAddress extends DataPointVo {
 
     @Override
     public int hashCode() {
-        return timeAtAddressRange;
+        return super.hashCode() + timeAtAddressRange;
     }
 }
