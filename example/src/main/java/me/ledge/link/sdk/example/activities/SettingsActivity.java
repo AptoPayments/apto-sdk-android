@@ -14,6 +14,7 @@ import java.lang.ref.WeakReference;
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.api.vos.datapoints.Address;
+import me.ledge.link.api.vos.datapoints.ArmedForces;
 import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
@@ -21,9 +22,11 @@ import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.Employment;
 import me.ledge.link.api.vos.datapoints.Housing;
 import me.ledge.link.api.vos.datapoints.Income;
+import me.ledge.link.api.vos.datapoints.PaydayLoan;
 import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.datapoints.SSN;
+import me.ledge.link.api.vos.datapoints.TimeAtAddress;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeVo;
@@ -152,6 +155,12 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
             data.add(new SSN(mView.getSSN(), false, false));
             dataSet = true;
         }
+        data.add(new ArmedForces(mView.getArmedForces(), false, false));
+        data.add(new PaydayLoan(mView.getPaydayLoan(), false, false));
+        if ((mView.getTimeAtAddress() != null && mView.getTimeAtAddress().getKey() != -1)) {
+            data.add(new TimeAtAddress(mView.getTimeAtAddress().getKey(), false, false));
+            dataSet = true;
+        }
         if (!dataSet) {
             data = null;
         }
@@ -249,6 +258,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         mView.setSalaryFrequency(Integer.parseInt(getString(R.string.data_michael_salary_frequency)));
         mView.setEmploymentStatus(Integer.parseInt(getString(R.string.data_michael_employment_status)));
         mView.setCreditScore(Integer.parseInt(getString(R.string.data_michael_credit_score)));
+        mView.setTimeAtAddress(Integer.parseInt(getString(R.string.data_michael_time_at_address)));
     }
 
     /** {@inheritDoc} */
@@ -272,6 +282,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         mView.setSalaryFrequency(0);
         mView.setEmploymentStatus(0);
         mView.setCreditScore(0);
+        mView.setTimeAtAddress(0);
     }
 
     @Override
@@ -309,6 +320,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         displaySalaryFrequencies();
         displayEmploymentStatus();
         displayCreditScore();
+        displayTimeAtAddress();
         mView.setOffersListStyle(ConfigStorage.getInstance().getOffersListStyle().toString());
         mView.setPOSMode(ConfigStorage.getInstance().getPOSMode());
         mView.setSkipDisclaimers(ConfigStorage.getInstance().getSkipLinkDisclaimer());
@@ -380,6 +392,21 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         adapter.add(new IdDescriptionPairDisplayVo(4, getString(me.ledge.link.sdk.ui.R.string.credit_score_poor)));
 
         mView.setCreditScoreAdapter(adapter);
+    }
+
+
+    private void displayTimeAtAddress() {
+        HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
+                = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
+        IdDescriptionPairDisplayVo hint =
+                new IdDescriptionPairDisplayVo(-1, getString(R.string.main_input_time_at_address));
+        adapter.add(hint);
+        adapter.add(new IdDescriptionPairDisplayVo(1, getString(me.ledge.link.sdk.ui.R.string.time_at_address_less_than_6_months)));
+        adapter.add(new IdDescriptionPairDisplayVo(2, getString(me.ledge.link.sdk.ui.R.string.time_at_address_6_to_12_months)));
+        adapter.add(new IdDescriptionPairDisplayVo(3, getString(me.ledge.link.sdk.ui.R.string.time_at_address_1_to_2_years)));
+        adapter.add(new IdDescriptionPairDisplayVo(4, getString(me.ledge.link.sdk.ui.R.string.time_at_address_more_than_2_years)));
+
+        mView.setTimeAtAddressAdapter(adapter);
     }
 
     public void errorReceived(String error) {

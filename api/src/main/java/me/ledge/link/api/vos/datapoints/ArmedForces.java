@@ -9,9 +9,9 @@ public class ArmedForces extends DataPointVo {
         this(null, false, false);
     }
 
-    public ArmedForces(Boolean hasUsedPaydayLoan, boolean verified, boolean notSpecified) {
+    public ArmedForces(Boolean isMemberOfArmedForces, boolean verified, boolean notSpecified) {
         super(DataPointType.MemberOfArmedForces, verified, notSpecified);
-        this.isMemberOfArmedForces = hasUsedPaydayLoan;
+        this.isMemberOfArmedForces = isMemberOfArmedForces;
     }
 
     @Override

@@ -146,6 +146,11 @@
                         android:hint="@string/main_input_zip" />
             </LinearLayout>
 
+            <Spinner
+                android:id="@+id/sp_time_at_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -197,6 +202,22 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/main_input_ssn"
                 android:maxLines="1" />
+
+            <Switch
+                android:id="@+id/sw_armed_forces"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="@string/main_armed_forces"
+                android:clickable="true"/>
+
+            <Switch
+                android:id="@+id/sw_payday_loan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="@string/main_payday_loan"
+                android:clickable="true"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
