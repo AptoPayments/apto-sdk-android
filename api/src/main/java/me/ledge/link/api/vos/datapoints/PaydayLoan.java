@@ -35,6 +35,6 @@ public class PaydayLoan extends DataPointVo {
 
     @Override
     public int hashCode() {
-        return (hasUsedPaydayLoan ? 1 : 0);
+        return hasUsedPaydayLoan.hashCode();
     }
 }

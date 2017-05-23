@@ -35,6 +35,6 @@ public class ArmedForces extends DataPointVo {
 
     @Override
     public int hashCode() {
-        return (isMemberOfArmedForces ? 1 : 0);
+        return isMemberOfArmedForces.hashCode();
     }
 }
