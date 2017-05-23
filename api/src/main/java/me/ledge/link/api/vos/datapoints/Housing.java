@@ -28,7 +28,7 @@ public class Housing extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         Housing housing = (Housing) o;
 
         return housingType != null ? housingType.getKey().equals(housing.housingType.getKey()) : housing.housingType == null;
@@ -37,6 +37,6 @@ public class Housing extends DataPointVo {
 
     @Override
     public int hashCode() {
-        return housingType != null ? housingType.hashCode() : 0;
+        return super.hashCode() + (housingType != null ? housingType.hashCode() : 0);
     }
 }

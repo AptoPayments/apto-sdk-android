@@ -31,7 +31,7 @@ public class Email extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         Email email1 = (Email) o;
 
         return email != null ? email.equals(email1.email) : email1.email == null;
@@ -40,6 +40,6 @@ public class Email extends DataPointVo {
 
     @Override
     public int hashCode() {
-        return email != null ? email.hashCode() : 0;
+        return super.hashCode() + (email != null ? email.hashCode() : 0);
     }
 }

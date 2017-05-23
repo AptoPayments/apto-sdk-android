@@ -18,7 +18,7 @@ public class BankAccount extends FinancialAccountVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         BankAccount that = (BankAccount) o;
 
         if (bankName != null ? !bankName.equals(that.bankName) : that.bankName != null)
@@ -29,7 +29,7 @@ public class BankAccount extends FinancialAccountVo {
 
     @Override
     public int hashCode() {
-        int result = bankName != null ? bankName.hashCode() : 0;
+        int result = super.hashCode()+(bankName != null ? bankName.hashCode() : 0);
         result = 31 * result + (lastFourDigits != null ? lastFourDigits.hashCode() : 0);
         return result;
     }

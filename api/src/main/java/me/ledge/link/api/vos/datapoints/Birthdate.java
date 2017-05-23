@@ -39,7 +39,7 @@ public class Birthdate extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         Birthdate birthdate = (Birthdate) o;
 
         return date.equals(birthdate.date);
@@ -48,6 +48,6 @@ public class Birthdate extends DataPointVo {
 
     @Override
     public int hashCode() {
-        return date.hashCode();
+        return super.hashCode()+date.hashCode();
     }
 }

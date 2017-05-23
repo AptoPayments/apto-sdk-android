@@ -26,7 +26,7 @@ public class CreditScore extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         CreditScore that = (CreditScore) o;
 
         return creditScoreRange == that.creditScoreRange;
@@ -35,6 +35,6 @@ public class CreditScore extends DataPointVo {
 
     @Override
     public int hashCode() {
-        return creditScoreRange;
+        return super.hashCode()+creditScoreRange;
     }
 }

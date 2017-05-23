@@ -39,7 +39,7 @@ public class FinancialAccountVo extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         FinancialAccountVo that = (FinancialAccountVo) o;
 
         if (mAccountId != null ? !mAccountId.equals(that.mAccountId) : that.mAccountId != null)
@@ -51,7 +51,7 @@ public class FinancialAccountVo extends DataPointVo {
 
     @Override
     public int hashCode() {
-        int result = mAccountId != null ? mAccountId.hashCode() : 0;
+        int result = super.hashCode() + (mAccountId != null ? mAccountId.hashCode() : 0);
         result = 31 * result + (mAccountType != null ? mAccountType.hashCode() : 0);
         return result;
     }
