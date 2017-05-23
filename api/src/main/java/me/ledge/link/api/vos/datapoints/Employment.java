@@ -32,7 +32,7 @@ public class Employment extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         Employment that = (Employment) o;
 
         if (employmentStatus != null ? !employmentStatus.getKey().equals(that.employmentStatus.getKey()) : that.employmentStatus != null)
@@ -43,7 +43,7 @@ public class Employment extends DataPointVo {
 
     @Override
     public int hashCode() {
-        int result = employmentStatus != null ? employmentStatus.hashCode() : 0;
+        int result = super.hashCode() + (employmentStatus != null ? employmentStatus.hashCode() : 0);
         result = 31 * result + (salaryFrequency != null ? salaryFrequency.hashCode() : 0);
         return result;
     }

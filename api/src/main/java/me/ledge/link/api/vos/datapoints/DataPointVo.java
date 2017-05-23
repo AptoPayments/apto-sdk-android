@@ -93,4 +93,27 @@ public class DataPointVo {
         gsonObject.addProperty("not_specified", mNotSpecified);
         return gsonObject;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DataPointVo that = (DataPointVo) o;
+
+        if (mVerified != that.mVerified) return false;
+        if (mNotSpecified != that.mNotSpecified) return false;
+        if (mDataPointType != that.mDataPointType) return false;
+        return mVerification != null ? mVerification.equals(that.mVerification) : that.mVerification == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = mDataPointType != null ? mDataPointType.hashCode() : 0;
+        result = 31 * result + (mVerified ? 1 : 0);
+        result = 31 * result + (mVerification != null ? mVerification.hashCode() : 0);
+        result = 31 * result + (mNotSpecified ? 1 : 0);
+        return result;
+    }
 }

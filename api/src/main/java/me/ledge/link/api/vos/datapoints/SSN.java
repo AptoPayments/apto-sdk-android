@@ -48,7 +48,7 @@ public class SSN extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         SSN ssn1 = (SSN) o;
 
         return ssn != null ? ssn.equals(ssn1.ssn) : ssn1.ssn == null;
@@ -57,6 +57,6 @@ public class SSN extends DataPointVo {
 
     @Override
     public int hashCode() {
-        return ssn != null ? ssn.hashCode() : 0;
+        return super.hashCode() + (ssn != null ? ssn.hashCode() : 0);
     }
 }

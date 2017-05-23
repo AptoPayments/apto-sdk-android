@@ -35,7 +35,7 @@ public class PersonalName extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         PersonalName that = (PersonalName) o;
 
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null)
@@ -46,7 +46,8 @@ public class PersonalName extends DataPointVo {
 
     @Override
     public int hashCode() {
-        int result = firstName != null ? firstName.hashCode() : 0;
+        int result = super.hashCode();
+        result += firstName != null ? firstName.hashCode() : 0;
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         return result;
     }

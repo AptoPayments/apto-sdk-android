@@ -41,7 +41,7 @@ public class CredentialVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         CredentialVo that = (CredentialVo) o;
 
         if (mCredentialType != that.mCredentialType) return false;
@@ -51,7 +51,7 @@ public class CredentialVo {
 
     @Override
     public int hashCode() {
-        int result = mCredentialType != null ? mCredentialType.hashCode() : 0;
+        int result = super.hashCode()+(mCredentialType != null ? mCredentialType.hashCode() : 0);
         result = 31 * result + (credential != null ? credential.hashCode() : 0);
         return result;
     }

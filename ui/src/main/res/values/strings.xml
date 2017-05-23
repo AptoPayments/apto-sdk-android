@@ -67,6 +67,15 @@
     <string name="smarty_streets_auth_id">833054ba-7001-35c3-ce66-5c13006292f4</string>
     <string name="smarty_streets_auth_token">R0VHYDTJEq7sy15FumDo</string>
 
+    <!-- Time at Address -->
+    <string name="time_at_address_label">Address</string>
+    <string name="time_at_address_hint">How long have you been at this address?</string>
+    <string name="time_at_address_6_to_12_months">6 to 12 months</string>
+    <string name="time_at_address_less_than_6_months">Less than 6 months</string>
+    <string name="time_at_address_1_to_2_years">1 to 2 years</string>
+    <string name="time_at_address_more_than_2_years">More than 2 years</string>
+    <string name="time_at_address_error">Please select a time range.</string>
+
     <!-- Annual Income -->
     <string name="annual_income_label">What\'s your annual pretax income?</string>
     <string name="annual_income_employment_status_header">Employment status</string>
@@ -88,6 +97,20 @@
     <string name="credit_score_fair">Fair (640&#8211;699)</string>
     <string name="credit_score_poor">Poor (Below 640)</string>
     <string name="credit_score_error">Please select a credit score.</string>
+
+    <!-- Payday Loan -->
+    <string name="payday_loan_label">Additional Info</string>
+    <string name="payday_loan_yes">Yes</string>
+    <string name="payday_loan_no">No</string>
+    <string name="payday_loan_hint">Have you used a payday loan in the past six months?</string>
+    <string name="payday_loan_error">Please choose an answer.</string>
+
+    <!-- Armed Forces -->
+    <string name="armed_forces_label">Additional Info</string>
+    <string name="armed_forces_yes">Yes</string>
+    <string name="armed_forces_no">No</string>
+    <string name="armed_forces_hint">Are you, your spouse, or your head of household an active member of the armed forces?</string>
+    <string name="armed_forces_error">Please choose an answer.</string>
 
     <!-- ID Verification -->
     <string name="id_verification_label">Ready for your offers?</string>

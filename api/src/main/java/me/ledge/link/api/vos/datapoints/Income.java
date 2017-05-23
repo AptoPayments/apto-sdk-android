@@ -30,7 +30,7 @@ public class Income extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+        if(!super.equals(o)) return false;
         Income income = (Income) o;
 
         if (Double.compare(income.monthlyNetIncome, monthlyNetIncome) != 0) return false;
@@ -40,10 +40,10 @@ public class Income extends DataPointVo {
 
     @Override
     public int hashCode() {
-        int result;
+        int result = super.hashCode();
         long temp;
         temp = Double.doubleToLongBits(monthlyNetIncome);
-        result = (int) (temp ^ (temp >>> 32));
+        result += (int) (temp ^ (temp >>> 32));
         result = 31 * result + (int) (annualGrossIncome ^ (annualGrossIncome >>> 32));
         return result;
     }

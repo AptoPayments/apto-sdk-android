@@ -32,11 +32,14 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
+import me.ledge.link.sdk.ui.activities.userdata.ArmedForcesActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
 import me.ledge.link.sdk.ui.activities.userdata.HomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
+import me.ledge.link.sdk.ui.activities.userdata.PaydayLoanActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
+import me.ledge.link.sdk.ui.activities.userdata.TimeAtAddressActivity;
 import me.ledge.link.sdk.ui.activities.verification.EmailVerificationActivity;
 import me.ledge.link.sdk.ui.activities.verification.PhoneVerificationActivity;
 import me.ledge.link.sdk.ui.presenters.verification.EmailVerificationDelegate;
@@ -51,7 +54,8 @@ import me.ledge.link.sdk.ui.storages.UserStorage;
 public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVerificationDelegate,
         EmailVerificationDelegate, IdentityVerificationDelegate, AddressDelegate,
         AnnualIncomeDelegate, MonthlyIncomeDelegate, CreditScoreDelegate,
-        PersonalInformationDelegate, HomeDelegate {
+        PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate, ArmedForcesDelegate,
+        TimeAtAddressDelegate {
 
     private static UserDataCollectorModule instance;
     public Command onFinish;
@@ -234,6 +238,16 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     @Override
+    public void timeAtAddressStored() {
+        startActivity(getActivityAtPosition(TimeAtAddressActivity.class, 1));
+    }
+
+    @Override
+    public void timeAtAddressOnBackPressed() {
+        startActivity(getActivityAtPosition(TimeAtAddressActivity.class, -1));
+    }
+
+    @Override
     public void annualIncomeStored() {
         startActivity(getActivityAtPosition(AnnualIncomeActivity.class, 1));
     }
@@ -261,6 +275,26 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     @Override
     public void creditScoreOnBackPressed() {
         startActivity(getActivityAtPosition(CreditScoreActivity.class, -1));
+    }
+
+    @Override
+    public void paydayLoanStored() {
+        startActivity(getActivityAtPosition(PaydayLoanActivity.class, 1));
+    }
+
+    @Override
+    public void paydayLoanOnBackPressed() {
+        startActivity(getActivityAtPosition(PaydayLoanActivity.class, -1));
+    }
+
+    @Override
+    public void armedForcesStored() {
+        startActivity(getActivityAtPosition(ArmedForcesActivity.class, 1));
+    }
+
+    @Override
+    public void armedForcesOnBackPressed() {
+        startActivity(getActivityAtPosition(ArmedForcesActivity.class, -1));
     }
 
     @Override
@@ -368,6 +402,9 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                         addRequiredActivity(HomeActivity.class);
                         addRequiredActivity(AddressActivity.class);
                         break;
+                    case TimeAtAddress:
+                        addRequiredActivity(TimeAtAddressActivity.class);
+                        break;
                     case Employment:
                         addRequiredActivity(AnnualIncomeActivity.class);
                         break;
@@ -377,6 +414,12 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                         break;
                     case CreditScore:
                         addRequiredActivity(CreditScoreActivity.class);
+                        break;
+                    case PayDayLoan:
+                        addRequiredActivity(PaydayLoanActivity.class);
+                        break;
+                    case MemberOfArmedForces:
+                        addRequiredActivity(ArmedForcesActivity.class);
                         break;
                 }
             }
