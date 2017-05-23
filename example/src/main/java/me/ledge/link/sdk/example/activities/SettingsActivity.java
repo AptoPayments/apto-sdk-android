@@ -140,7 +140,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
             data.add(new Housing(mView.getHousingType().getKey(),false, false));
             dataSet = true;
         }
-        if ((mView.getEmploymentStatus() != null && mView.getEmploymentStatus().getKey() != -1) ||
+        if ((mView.getEmploymentStatus() != null && mView.getEmploymentStatus().getKey() != -1) &&
                 (mView.getSalaryFrequency() != null && mView.getSalaryFrequency().getKey() != -1)) {
             data.add(new Employment(mView.getEmploymentStatus().getKey(), mView.getSalaryFrequency().getKey(), false, false));
             dataSet = true;
