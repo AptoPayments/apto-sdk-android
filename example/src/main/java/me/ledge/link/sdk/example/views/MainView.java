@@ -4,9 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 import me.ledge.link.sdk.example.R;
 
@@ -32,7 +32,7 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     }
 
     private Button mOffersButton;
-    private TextView mSettingsButton;
+    private ImageView mSettingsButton;
 
     private ViewListener mListener;
 
@@ -66,7 +66,7 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
      */
     private void findAllViews() {
         mOffersButton = (Button) findViewById(R.id.bttn_get_offers);
-        mSettingsButton = (TextView) findViewById(R.id.bttn_settings);
+        mSettingsButton = (ImageView) findViewById(R.id.bttn_settings);
     }
 
     /**
