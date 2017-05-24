@@ -3,7 +3,7 @@
     <string name="app_name">Ledge Link SDK Example</string>
 
     <!-- Main -->
-    <string name="main_button_offers_cta">Get started!</string>
+    <string name="main_button_offers_cta">Get started</string>
     <string name="main_data_header"><u>Or set some data first</u></string>
     <string name="main_input_loan_amount">Loan amount</string>
     <string name="main_input_loan_purpose">Loan purpose</string>

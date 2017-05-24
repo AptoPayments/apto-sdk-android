@@ -37,11 +37,12 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/iv_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_ledge_logo"
-            android:paddingTop="32dp"
+            android:padding="16dp"
             android:layout_above="@id/ll_buttons"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
 </me.ledge.link.sdk.example.views.MainView>
