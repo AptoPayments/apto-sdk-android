@@ -3,19 +3,20 @@ package me.ledge.link.sdk.ui.views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 
 /**
- * Displays the plaid webview.
+ * Displays the disclaimer webview.
  * @author Adrian
  */
 public class DisclaimerView extends RelativeLayout implements View.OnClickListener {
 
-    private Button mAcceptButton;
+    private TextView mAcceptButton;
+    private TextView mCancelButton;
     private ViewListener mListener;
 
     public DisclaimerView(Context context) {
@@ -33,10 +34,8 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
      * Callbacks this {@link View} will invoke.
      */
     public interface ViewListener {
-        /**
-         * Called when the re-send code button has been pressed.
-         */
         void acceptClickHandler();
+        void cancelClickHandler();
     }
 
     /** {@inheritDoc} */
@@ -52,6 +51,9 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
         if (mAcceptButton != null) {
             mAcceptButton.setOnClickListener(this);
         }
+        if (mCancelButton != null) {
+            mCancelButton.setOnClickListener(this);
+        }
     }
 
     /** {@inheritDoc} */
@@ -62,17 +64,21 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
         }
 
         int id = view.getId();
-        if (id == R.id.btn_accept_pdf) {
+        if (id == R.id.tv_accept_pdf) {
             mListener.acceptClickHandler();
+        }
+        else if(id == R.id.tv_cancel_pdf) {
+            mListener.cancelClickHandler();
         }
     }
 
     private void setColors() {
         int primaryColor = UIStorage.getInstance().getPrimaryColor();
-        mAcceptButton.setBackgroundColor(primaryColor);
+        mAcceptButton.setTextColor(primaryColor);
     }
 
     protected void findAllViews() {
-        mAcceptButton = (Button) findViewById(R.id.btn_accept_pdf);
+        mAcceptButton = (TextView) findViewById(R.id.tv_accept_pdf);
+        mCancelButton = (TextView) findViewById(R.id.tv_cancel_pdf);
     }
 }

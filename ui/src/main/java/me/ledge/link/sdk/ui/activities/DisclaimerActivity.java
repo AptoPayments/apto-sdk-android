@@ -50,4 +50,9 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
     public void acceptClickHandler() {
         DisclaimerUtil.onAccept.execute();
     }
+
+    @Override
+    public void cancelClickHandler() {
+        this.finish();
+    }
 }
