@@ -56,11 +56,11 @@ public class CreditScoreView extends UserDataView<CreditScoreView.ViewListener> 
     public void setColors() {
         super.setColors();
 
-        int color = UIStorage.getInstance().getPrimaryColor();
+        ColorStateList colorStateList = UIStorage.getInstance().getRadioButtonColors();
         for(int i=0; i<mRadioGroup.getChildCount(); i++) {
             View v = mRadioGroup.getChildAt(i);
             if(v instanceof AppCompatRadioButton) {
-                ((AppCompatRadioButton) v).setSupportButtonTintList(ColorStateList.valueOf(color));
+                ((AppCompatRadioButton) v).setSupportButtonTintList(colorStateList);
             }
         }
     }
