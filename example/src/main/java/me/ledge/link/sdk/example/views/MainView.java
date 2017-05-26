@@ -85,15 +85,15 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     public void setColors() {
         int color = UIStorage.getInstance().getPrimaryColor();
         mOffersButton.setBackgroundColor(color);
+        mOffersButton.setVisibility(VISIBLE);
+    }
+
+    public void setLogo() {
+        mLogoImageView.setImageResource(R.drawable.icon_ledge_logo);
     }
 
     public void setLogo(String logoURL) {
-        if(logoURL==null) {
-            mLogoImageView.setImageResource(R.drawable.icon_ledge_logo);
-        }
-        else {
-            LedgeLinkUi.getImageLoader().load(logoURL, mLogoImageView);
-        }
+        LedgeLinkUi.getImageLoader().load(logoURL, mLogoImageView);
     }
 
     /** {@inheritDoc} */

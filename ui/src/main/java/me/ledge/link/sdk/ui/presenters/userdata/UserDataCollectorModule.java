@@ -440,7 +440,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             return;
         }
         if(mRequiredActivities.contains(givenActivity)) {
-            mRequiredActivities.add(mRequiredActivities.indexOf(givenActivity), requiredActivity);
+            mRequiredActivities.add(mRequiredActivities.indexOf(givenActivity)+1, requiredActivity);
         }
         else {
             addRequiredActivity(requiredActivity);

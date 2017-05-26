@@ -214,7 +214,7 @@ public class IdentityVerificationPresenter
     }
 
     private void showDisclaimerOrExit() {
-        if(mDisclaimerURL!=null) {
+        if(mDisclaimerURL!=null && !mDisclaimerURL.isEmpty()) {
             showDisclaimer();
         }
         else {
