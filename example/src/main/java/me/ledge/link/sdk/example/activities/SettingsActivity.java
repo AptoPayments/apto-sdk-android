@@ -35,6 +35,7 @@ import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
+import me.ledge.link.api.vos.responses.config.TimeAtAddressVo;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.SettingsView;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
@@ -403,10 +404,13 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         IdDescriptionPairDisplayVo hint =
                 new IdDescriptionPairDisplayVo(-1, getString(R.string.main_input_time_at_address));
         adapter.add(hint);
-        adapter.add(new IdDescriptionPairDisplayVo(1, getString(me.ledge.link.sdk.ui.R.string.time_at_address_less_than_6_months)));
-        adapter.add(new IdDescriptionPairDisplayVo(2, getString(me.ledge.link.sdk.ui.R.string.time_at_address_6_to_12_months)));
-        adapter.add(new IdDescriptionPairDisplayVo(3, getString(me.ledge.link.sdk.ui.R.string.time_at_address_1_to_2_years)));
-        adapter.add(new IdDescriptionPairDisplayVo(4, getString(me.ledge.link.sdk.ui.R.string.time_at_address_more_than_2_years)));
+
+        TimeAtAddressVo[] typesList = mProjectConfig.timeAtAddressOpts.data;
+        if (typesList != null) {
+            for (TimeAtAddressVo type : typesList) {
+                adapter.add(new IdDescriptionPairDisplayVo(type.timeAtAddressId, type.description));
+            }
+        }
 
         mView.setTimeAtAddressAdapter(adapter);
     }
