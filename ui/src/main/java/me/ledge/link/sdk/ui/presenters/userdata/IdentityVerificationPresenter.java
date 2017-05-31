@@ -36,7 +36,7 @@ public class IdentityVerificationPresenter
     private boolean mIsSSNRequired;
     private boolean mIsSSNNotAvailableAllowed;
     private boolean mIsBirthdayRequired;
-    private String mDisclaimerURL;
+    private DisclaimerVo mDisclaimer;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
@@ -214,7 +214,7 @@ public class IdentityVerificationPresenter
     }
 
     private void showDisclaimerOrExit() {
-        if(mDisclaimerURL!=null) {
+        if(mDisclaimer!=null) {
             showDisclaimer();
         }
         else {
@@ -227,7 +227,7 @@ public class IdentityVerificationPresenter
     }
 
     private void showDisclaimer() {
-        DisclaimerUtil.loadExternalURL(mActivity, mDisclaimerURL, this::exit);
+        DisclaimerUtil.showDisclaimer(mActivity, mDisclaimer, this::exit);
     }
 
     /** {@inheritDoc} */
@@ -287,17 +287,14 @@ public class IdentityVerificationPresenter
             case markdown:
                 setMarkdownDisclaimers(parseDisclaimersResponse(response));
             case external_url:
-                mDisclaimerURL = disclaimer.value;
+                mDisclaimer = disclaimer;
                 mView.showLoading(false);
                 break;
         }
     }
 
     private void retrieveProjectDisclaimer() {
-        DisclaimerVo prequalificationDisclaimer = ConfigStorage.getInstance().getPrequalificationDisclaimer();
-        if(prequalificationDisclaimer != null) {
-            mDisclaimerURL = prequalificationDisclaimer.value;
-        }
+        mDisclaimer = ConfigStorage.getInstance().getPrequalificationDisclaimer();
     }
 
     private void errorReceived(String error) {

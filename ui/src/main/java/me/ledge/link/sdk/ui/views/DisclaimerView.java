@@ -5,9 +5,11 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
+import us.feras.mdv.MarkdownView;
 
 /**
  * Displays the plaid webview.
@@ -16,6 +18,8 @@ import me.ledge.link.sdk.ui.storages.UIStorage;
 public class DisclaimerView extends RelativeLayout implements View.OnClickListener {
 
     private Button mAcceptButton;
+    private MarkdownView mMarkdownView;
+    private TextView mTextView;
     private ViewListener mListener;
 
     public DisclaimerView(Context context) {
@@ -74,5 +78,17 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
 
     protected void findAllViews() {
         mAcceptButton = (Button) findViewById(R.id.btn_accept_pdf);
+        mMarkdownView = (MarkdownView) findViewById(R.id.md_disclaimer_markdown);
+        mTextView = (TextView) findViewById(R.id.tv_disclaimer_text);
+    }
+
+    public void loadMarkdown(String markDown) {
+        mMarkdownView.setVisibility(VISIBLE);
+        mMarkdownView.loadMarkdown(markDown);
+    }
+
+    public void loadPlainText(String text) {
+        mTextView.setVisibility(VISIBLE);
+        mTextView.setText(text);
     }
 }

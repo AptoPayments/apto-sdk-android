@@ -206,6 +206,7 @@ public class OfferSummaryModel implements Model {
     }
 
     public boolean isTextOnlyOffer() {
-        return mRawOffer.loan_amount == 0;
+        return mRawOffer.loan_amount == 0 && mRawOffer.interest_rate == 0 &&
+                (mRawOffer.term == null || mRawOffer.term.duration == 0);
     }
 }

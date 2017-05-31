@@ -26,13 +26,28 @@
             android:layout_height="wrap_content" />
 
         <WebView
-            android:id="@+id/pdf_webview"
+            android:id="@+id/wb_pdf_webview"
+            android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_above="@id/btn_accept_pdf"
             android:layout_alignParentTop="true"/>
 
+        <TextView
+            android:id="@+id/tv_disclaimer_text"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_above="@id/btn_accept_pdf"
+            style="?attr/llsdk_terms_disclaimerStyle" />
 
+        <us.feras.mdv.MarkdownView
+            android:id="@+id/md_disclaimer_markdown"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_above="@id/btn_accept_pdf"
+            style="?attr/llsdk_terms_disclaimerStyle" />
 
     </RelativeLayout>
 </me.ledge.link.sdk.ui.views.DisclaimerView>
