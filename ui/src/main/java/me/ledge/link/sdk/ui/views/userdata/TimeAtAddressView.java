@@ -5,6 +5,9 @@ import android.content.res.ColorStateList;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.util.AttributeSet;
 import android.view.View;
+import me.ledge.link.api.vos.responses.config.TimeAtAddressVo;
+
+import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -62,6 +65,24 @@ public class TimeAtAddressView extends UserDataView<TimeAtAddressView.ViewListen
             if(v instanceof AppCompatRadioButton) {
                 ((AppCompatRadioButton) v).setSupportButtonTintList(colorStateList);
             }
+        }
+    }
+
+    public void makeRadioButtons(TimeAtAddressVo[] typesList) {
+        float density = getResources().getDisplayMetrics().density;
+        RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        int margin = (int)(8*density);
+        params.setMargins(0, 0, 0, margin);
+
+        for (TimeAtAddressVo type : typesList) {
+            AppCompatRadioButton rb = new AppCompatRadioButton(getContext());
+            rb.setText(type.description);
+            rb.setId(type.timeAtAddressId);
+            rb.setPadding(margin, 0, 0, 0);
+            mRadioGroup.addView(rb, params);
         }
     }
 

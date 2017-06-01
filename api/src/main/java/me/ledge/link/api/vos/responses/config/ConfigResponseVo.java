@@ -41,5 +41,8 @@ public class ConfigResponseVo {
     @SerializedName("salary_frequencies")
     public SalaryFrequenciesListResponseVo salaryFrequencyOpts;
 
+    @SerializedName("time_at_address_values")
+    public TimeAtAddressListResponseVo timeAtAddressOpts;
+
     public ProductsListResponseVo products;
 }

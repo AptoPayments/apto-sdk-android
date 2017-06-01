@@ -6,6 +6,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import me.ledge.link.api.vos.responses.config.DisclaimerVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.utils.DisclaimerUtil;
 import me.ledge.link.sdk.ui.views.DisclaimerView;
@@ -25,7 +26,20 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
         super.onCreate(savedInstanceState);
         setView();
 
-        WebView webview = (WebView) findViewById(R.id.pdf_webview);
+        switch(DisclaimerVo.formatValues.valueOf(DisclaimerUtil.disclaimer.format)) {
+            case plain_text:
+                mView.loadPlainText(DisclaimerUtil.disclaimer.value);
+                break;
+            case markdown:
+                mView.loadMarkdown(DisclaimerUtil.disclaimer.value);
+            case external_url:
+                loadUrl(DisclaimerUtil.disclaimer.value);
+                break;
+        }
+    }
+
+    private void loadUrl(String url) {
+        WebView webview = (WebView) findViewById(R.id.wb_pdf_webview);
         webview.clearCache(true);
         webview.clearHistory();
         webview.getSettings().setJavaScriptEnabled(true);
@@ -36,8 +50,8 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
                 return true;
             }
         });
-
-        webview.loadUrl(mPDFReader + DisclaimerUtil.disclaimerURL);
+        webview.setVisibility(View.VISIBLE);
+        webview.loadUrl(mPDFReader + url);
     }
 
     private void setView() {

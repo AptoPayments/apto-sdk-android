@@ -1,6 +1,5 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
-import me.ledge.link.api.utils.TimeAtAddressRange;
 import me.ledge.link.api.vos.datapoints.TimeAtAddress;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
@@ -33,11 +32,11 @@ public class TimeAtAddressModel extends AbstractUserDataModel {
     }
 
     /**
-     * @param indication The credit score range to check.
-     * @return Whether this is a valid credit score range.
+     * @param indication The time address range to check.
+     * @return Whether this is a valid time at address range.
      */
     private boolean isValidRange(int indication) {
-        return indication >= TimeAtAddressRange.LESS_THAN_SIX_MONTHS && indication <= TimeAtAddressRange.MORE_THAN_TWO_YEARS;
+        return indication >= 0;
     }
 
     /** {@inheritDoc} */
@@ -74,17 +73,15 @@ public class TimeAtAddressModel extends AbstractUserDataModel {
     }
 
     /**
-     * @return Credit score range.
-     * @see TimeAtAddressRange
+     * @return Time at address range.
      */
     public int getTimeAtAddressRange() {
         return mTimeAtAddress.timeAtAddressRange;
     }
 
     /**
-     * Stores a new credit score range.
+     * Stores a new time at address range.
      * @param indication New range.
-     * @see TimeAtAddressRange
      */
     public void setTimeAtAddressRange(int indication) {
         if (isValidRange(indication)) {

@@ -26,27 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp">
-
-            <RadioButton
-                    style="?attr/llsdk_creditScore_radioButtonStyle"
-                    android:id="@+id/rb_less_than_6_months"
-                    android:text="@string/time_at_address_less_than_6_months" />
-
-            <RadioButton
-                    style="?attr/llsdk_creditScore_radioButtonStyle"
-                    android:id="@+id/rb_6_to_12_months"
-                    android:text="@string/time_at_address_6_to_12_months" />
-
-            <RadioButton
-                    style="?attr/llsdk_creditScore_radioButtonStyle"
-                    android:id="@+id/rb_1_to_2_years"
-                    android:text="@string/time_at_address_1_to_2_years" />
-
-            <RadioButton
-                    style="?attr/llsdk_creditScore_radioButtonStyle"
-                    android:id="@+id/rb_more_than_2_years"
-                    android:text="@string/time_at_address_more_than_2_years" />
-
         </RadioGroup>
 
         <TextView

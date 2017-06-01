@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
+import us.feras.mdv.MarkdownView;
 
 /**
  * Displays the disclaimer webview.
@@ -17,6 +18,8 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
 
     private TextView mAcceptButton;
     private TextView mCancelButton;
+    private MarkdownView mMarkdownView;
+    private TextView mTextView;
     private ViewListener mListener;
 
     public DisclaimerView(Context context) {
@@ -80,5 +83,17 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
     protected void findAllViews() {
         mAcceptButton = (TextView) findViewById(R.id.tv_accept_pdf);
         mCancelButton = (TextView) findViewById(R.id.tv_cancel_pdf);
+        mMarkdownView = (MarkdownView) findViewById(R.id.md_disclaimer_markdown);
+        mTextView = (TextView) findViewById(R.id.tv_disclaimer_text);
+    }
+
+    public void loadMarkdown(String markDown) {
+        mMarkdownView.setVisibility(VISIBLE);
+        mMarkdownView.loadMarkdown(markDown);
+    }
+
+    public void loadPlainText(String text) {
+        mTextView.setVisibility(VISIBLE);
+        mTextView.setText(text);
     }
 }
