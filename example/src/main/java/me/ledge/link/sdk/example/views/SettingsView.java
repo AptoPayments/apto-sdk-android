@@ -46,6 +46,7 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
     private ImageButton mClearUserTokenButton;
 
     private EditText mLoanAmountField;
+    private Spinner mTimeAtAddressSpinner;
     private Spinner mLoanPurposeSpinner;
     private Spinner mHousingTypeSpinner;
     private Spinner mSalaryFrequencySpinner;
@@ -67,6 +68,8 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
     private EditText mTeamName;
     private EditText mProjectName;
     private EditText mOffersListStyle;
+    private Switch mArmedForces;
+    private Switch mPaydayLoan;
     private Switch mPOSMode;
     private Switch mSkipDisclaimers;
     private Switch mAddressValidation;
@@ -112,6 +115,7 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
         mClearUserTokenButton = (ImageButton) findViewById(R.id.bttn_clear_user_token);
 
         mLoanAmountField = (EditText) findViewById(R.id.et_loan_amount);
+        mTimeAtAddressSpinner = (Spinner) findViewById(R.id.sp_time_at_address);
         mLoanPurposeSpinner = (Spinner) findViewById(R.id.sp_loan_purpose);
         mHousingTypeSpinner = (Spinner)  findViewById(R.id.sp_housing_type);
         mEmploymentStatusSpinner = (Spinner) findViewById(R.id.sp_employment_status);
@@ -133,6 +137,8 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
         mTeamName = (EditText) findViewById(R.id.et_team_name);
         mProjectName = (EditText) findViewById(R.id.et_project_name);
         mOffersListStyle = (EditText) findViewById(R.id.et_offers_list_style);
+        mArmedForces = (Switch) findViewById(R.id.sw_armed_forces);
+        mPaydayLoan = (Switch) findViewById(R.id.sw_payday_loan);
         mPOSMode = (Switch) findViewById(R.id.sw_pos_mode) ;
         mSkipDisclaimers = (Switch) findViewById(R.id.sw_skip_link_disclaimers);
         mAddressValidation = (Switch) findViewById(R.id.sw_address_validation);
@@ -201,6 +207,10 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
 
     public void setCreditScoreAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
         mCreditScoreSpinner.setAdapter(adapter);
+    }
+
+    public void setTimeAtAddressAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
+        mTimeAtAddressSpinner.setAdapter(adapter);
     }
 
     /**
@@ -542,5 +552,95 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
      */
     public void setProjectName(String project) {
         mProjectName.setText(project);
+    }
+
+    public boolean getArmedForces() {
+        return mArmedForces.isChecked();
+    }
+
+    public void setArmedForces(boolean isMember) {
+        mArmedForces.setChecked(isMember);
+    }
+
+    public boolean getPaydayLoan() {
+        return mPaydayLoan.isChecked();
+    }
+
+    public void setPaydayLoan(boolean hasUsedPaydayLoan) {
+        mPaydayLoan.setChecked(hasUsedPaydayLoan);
+    }
+
+    public IdDescriptionPairDisplayVo getTimeAtAddress() {
+        return (IdDescriptionPairDisplayVo) mTimeAtAddressSpinner.getSelectedItem();
+    }
+
+    public void setTimeAtAddress(int index) {
+        mTimeAtAddressSpinner.setSelection(index);
+    }
+
+    public void showPersonalName() {
+        mFirstNameField.setVisibility(VISIBLE);
+        mLastNameField.setVisibility(VISIBLE);
+    }
+
+    public void showPhoneNumber() {
+        mPhoneField.setVisibility(VISIBLE);
+    }
+
+    public void showEmail() {
+        mEmailField.setVisibility(VISIBLE);
+    }
+
+    public void showBirthday() {
+        mBirthday.setVisibility(VISIBLE);
+    }
+
+    public void showSSN() {
+        mSSN.setVisibility(VISIBLE);
+    }
+
+    public void showAddress() {
+        mAddressField.setVisibility(VISIBLE);
+        mZipField.setVisibility(VISIBLE);
+        mCityField.setVisibility(VISIBLE);
+        mStateField.setVisibility(VISIBLE);
+        mApartmentField.setVisibility(VISIBLE);
+    }
+
+    public void showHousing() {
+        mHousingTypeSpinner.setVisibility(VISIBLE);
+    }
+
+    public void showEmployment() {
+        mEmploymentStatusSpinner.setVisibility(VISIBLE);
+        mSalaryFrequencySpinner.setVisibility(VISIBLE);
+    }
+
+    public void showIncome() {
+        mIncomeField.setVisibility(VISIBLE);
+    }
+
+    public void showCreditScore() {
+        mCreditScoreSpinner.setVisibility(VISIBLE);
+    }
+
+    public void showPayDayLoan() {
+        mPaydayLoan.setVisibility(VISIBLE);
+    }
+
+    public void showMemberOfArmedForces() {
+        mArmedForces.setVisibility(VISIBLE);
+    }
+
+    public void showTimeAtAddress() {
+        mTimeAtAddressSpinner.setVisibility(VISIBLE);
+    }
+
+    public boolean isArmedForcesVisible() {
+        return mArmedForces.getVisibility() == VISIBLE;
+    }
+
+    public boolean isPayDayLoanVisible() {
+        return mPaydayLoan.getVisibility() == VISIBLE;
     }
 }

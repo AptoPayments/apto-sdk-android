@@ -9,6 +9,7 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 
 import me.ledge.link.api.vos.datapoints.Address;
+import me.ledge.link.api.vos.datapoints.ArmedForces;
 import me.ledge.link.api.vos.datapoints.BankAccount;
 import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.Card;
@@ -18,9 +19,11 @@ import me.ledge.link.api.vos.datapoints.Employment;
 import me.ledge.link.api.vos.datapoints.Housing;
 import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.PaydayLoan;
 import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.datapoints.SSN;
+import me.ledge.link.api.vos.datapoints.TimeAtAddress;
 
 /**
  * Created by adrian on 25/01/2017.
@@ -80,6 +83,15 @@ public class DataPointParser implements JsonDeserializer<DataPointVo> {
                 return new BankAccount(jObject.get("account_id").getAsString(),
                         jObject.get("bank_name").getAsString(),
                         jObject.get("last_four_digits").getAsString(), false);
+            case "payday_loan":
+                return new PaydayLoan(jObject.get("used_payday_loan").getAsBoolean(), verified,
+                        notSpecified);
+            case "member_of_armed_forces":
+                return new ArmedForces(jObject.get("member_of_armed_forces").getAsBoolean(),
+                        verified, notSpecified);
+            case "time_at_address":
+                return new TimeAtAddress(jObject.get("time_at_address_id").getAsInt(), verified,
+                        notSpecified);
         }
         return null;
     }

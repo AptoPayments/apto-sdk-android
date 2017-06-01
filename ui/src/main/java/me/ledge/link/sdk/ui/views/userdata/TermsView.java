@@ -6,11 +6,13 @@ import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
+import us.feras.mdv.MarkdownView;
 
 /**
  * Displays the terms and conditions screen.
@@ -26,6 +28,7 @@ public class TermsView extends UserDataView<TermsView.ViewListener>
 
     private TextView mTermsField;
     private LoadingView mLoadingView;
+    private MarkdownView mMarkdownView;
 
     /**
      * @see UserDataView#UserDataView
@@ -49,6 +52,7 @@ public class TermsView extends UserDataView<TermsView.ViewListener>
     protected void findAllViews() {
         super.findAllViews();
 
+        mMarkdownView = (MarkdownView) findViewById(R.id.md_terms);
         mTermsField = (TextView) findViewById(R.id.tv_terms);
         mTermsField.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -63,5 +67,9 @@ public class TermsView extends UserDataView<TermsView.ViewListener>
 
     public void setTerms(String disclaimer) {
         mTermsField.setText(Html.fromHtml(disclaimer));
+    }
+
+    public void setMarkDownTerms(String disclaimer) {
+        mMarkdownView.loadMarkdown(disclaimer);
     }
 }

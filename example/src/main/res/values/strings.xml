@@ -34,6 +34,9 @@
     <string name="main_button_fill">Fill all</string>
     <string name="main_button_clear">Clear all</string>
     <string name="main_toolbar_title">Settings</string>
+    <string name="main_armed_forces">Member of armed forces:</string>
+    <string name="main_payday_loan">Payday loan:</string>
+    <string name="main_input_time_at_address">Time at address</string>
 
     <!-- Fake data -->
     <string name="data_michael_loan_amount">3500</string>
@@ -53,5 +56,6 @@
     <string name="data_michael_salary_frequency">4</string>
     <string name="data_michael_employment_status">3</string>
     <string name="data_michael_credit_score">1</string>
+    <string name="data_michael_time_at_address">2</string>
 
 </resources>

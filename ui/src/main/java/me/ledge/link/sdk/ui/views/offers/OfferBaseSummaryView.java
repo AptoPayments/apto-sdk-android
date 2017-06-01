@@ -23,6 +23,7 @@ abstract class OfferBaseSummaryView extends CardView implements RowView<OfferSum
     TextView mAmountField;
     TextView mMonthlyPaymentField;
     TextView mMoreInfoButton;
+    TextView mDisclaimerField;
     protected TextView mApplyButton;
     private ViewListener mListener;
     OfferSummaryModel mData;
@@ -66,6 +67,7 @@ abstract class OfferBaseSummaryView extends CardView implements RowView<OfferSum
         mMonthlyPaymentField = (TextView) findViewById(R.id.tv_monthly);
         mMoreInfoButton = (TextView) findViewById(R.id.tv_bttn_more_info);
         mApplyButton = (TextView) findViewById(R.id.tv_apply);
+        mDisclaimerField = (TextView) findViewById(R.id.tv_disclaimer);
 
     }
 

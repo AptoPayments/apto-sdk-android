@@ -57,19 +57,28 @@ public class OfferListSummaryView extends OfferBaseSummaryView {
             mMonthlyPaymentField.setText("");
         } else {
             mLenderNameField.setText(mData.getLenderName());
-            mInterestField.setText(mData.getInterestText());
-            mAmountField.setText(mData.getAmountText());
-            mMonthlyPaymentField.setText(mData.getMonthlyPaymentText());
+            if(!mData.isTextOnlyOffer()) {
+                mInterestField.setText(mData.getInterestText());
+                mAmountField.setText(mData.getAmountText());
+                mMonthlyPaymentField.setText(mData.getMonthlyPaymentText());
+
+                if (mData.hasDisclaimer()) {
+                    mMoreInfoButton.setVisibility(VISIBLE);
+                }
+            }
+            else {
+                mInterestField.setVisibility(GONE);
+                mAmountField.setVisibility(GONE);
+                mMonthlyPaymentField.setVisibility(GONE);
+                mDisclaimerField.setVisibility(VISIBLE);
+                mDisclaimerField.setText(mData.getDisclaimer());
+            }
 
             if (mData.hasImageLoader() && mData.getLenderImage() != null) {
                 mLenderLogo.setVisibility(VISIBLE);
                 mData.getImageLoader().load(mData.getLenderImage(), mLenderLogo);
             } else {
                 mLenderLogo.setVisibility(GONE);
-            }
-
-            if (mData.hasDisclaimer()) {
-                mMoreInfoButton.setVisibility(VISIBLE);
             }
         }
     }

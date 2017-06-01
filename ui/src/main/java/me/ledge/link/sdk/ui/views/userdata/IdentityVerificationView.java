@@ -23,6 +23,7 @@ import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.widgets.SsnEditText;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
+import us.feras.mdv.MarkdownView;
 
 /**
  * Displays the user details screen.
@@ -52,6 +53,7 @@ public class IdentityVerificationView
     private TextView mDisclaimer;
     private TextView mDisclaimersHeader;
     private TextView mDisclaimersField;
+    private MarkdownView mMarkdownView;
 
     private LoadingView mLoadingView;
     private ProgressBar mProgressBar;
@@ -99,6 +101,7 @@ public class IdentityVerificationView
         mDisclaimersHeader = (TextView) findViewById(R.id.tv_disclaimers_header);
         mDisclaimersField = (TextView) findViewById(R.id.tv_disclaimers_body);
         mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
+        mMarkdownView = (MarkdownView) findViewById(R.id.md_terms);
 
         mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
         mProgressBar = (ProgressBar) findViewById(R.id.pb_progress);
@@ -235,6 +238,10 @@ public class IdentityVerificationView
         mDisclaimersField.setText(Html.fromHtml(disclaimers));
     }
 
+    public void setMarkdownDisclaimers(String disclaimer) {
+        mMarkdownView.loadMarkdown(disclaimer);
+    }
+
     /** {@inheritDoc} */
     @Override
     public void showLoading(boolean show) {
@@ -250,11 +257,13 @@ public class IdentityVerificationView
             mDisclaimer.setVisibility(VISIBLE);
             mDisclaimersHeader.setVisibility(VISIBLE);
             mDisclaimersField.setVisibility(VISIBLE);
+            mMarkdownView.setVisibility(VISIBLE);
         }
         else {
             mDisclaimer.setVisibility(GONE);
             mDisclaimersHeader.setVisibility(GONE);
             mDisclaimersField.setVisibility(GONE);
+            mMarkdownView.setVisibility(GONE);
         }
     }
 

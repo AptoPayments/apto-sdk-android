@@ -81,6 +81,24 @@ public class ConfigStorage {
         return (DisclaimerVo) getResultFromFuture(future);
     }
 
+    public synchronized DisclaimerVo getPrequalificationDisclaimer() {
+        CompletableFuture<DisclaimerVo> future = CompletableFuture.supplyAsync(() -> {
+            if(isConfigCached()) {
+                return mLinkConfig.preQualificationDisclaimer;
+            }
+            else {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.preQualificationDisclaimer;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            }
+        });
+
+        return (DisclaimerVo) getResultFromFuture(future);
+    }
+
     public synchronized LoanProductListVo getLoanProducts() {
         CompletableFuture<LoanProductListVo> future = CompletableFuture.supplyAsync(() -> {
             if(isConfigCached()) {

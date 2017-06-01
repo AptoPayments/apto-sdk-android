@@ -14,6 +14,7 @@ import java.lang.ref.WeakReference;
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.api.vos.datapoints.Address;
+import me.ledge.link.api.vos.datapoints.ArmedForces;
 import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
@@ -21,15 +22,20 @@ import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.Employment;
 import me.ledge.link.api.vos.datapoints.Housing;
 import me.ledge.link.api.vos.datapoints.Income;
+import me.ledge.link.api.vos.datapoints.PaydayLoan;
 import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.datapoints.SSN;
+import me.ledge.link.api.vos.datapoints.TimeAtAddress;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
+import me.ledge.link.api.vos.responses.config.TimeAtAddressVo;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.SettingsView;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
@@ -131,15 +137,16 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
             data.add(new Income(-1, parseIntSafely(mView.getIncome()), false, false));
             dataSet = true;
         }
-        if (mView.getHousingType().getKey() != -1) {
+        if (mView.getHousingType() != null && mView.getHousingType().getKey() != -1) {
             data.add(new Housing(mView.getHousingType().getKey(),false, false));
             dataSet = true;
         }
-        if (mView.getEmploymentStatus().getKey() != -1 || mView.getSalaryFrequency().getKey() != -1) {
+        if ((mView.getEmploymentStatus() != null && mView.getEmploymentStatus().getKey() != -1) &&
+                (mView.getSalaryFrequency() != null && mView.getSalaryFrequency().getKey() != -1)) {
             data.add(new Employment(mView.getEmploymentStatus().getKey(), mView.getSalaryFrequency().getKey(), false, false));
             dataSet = true;
         }
-        if (mView.getCreditScore().getKey() != -1) {
+        if (mView.getCreditScore() != null && mView.getCreditScore().getKey() != -1) {
             data.add(new CreditScore(mView.getCreditScore().getKey(), false, false));
             dataSet = true;
         }
@@ -149,6 +156,16 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         }
         if (hasValue(mView.getSSN())) {
             data.add(new SSN(mView.getSSN(), false, false));
+            dataSet = true;
+        }
+        if(mView.isArmedForcesVisible()) {
+            data.add(new ArmedForces(mView.getArmedForces(), false, false));
+        }
+        if(mView.isPayDayLoanVisible()) {
+            data.add(new PaydayLoan(mView.getPaydayLoan(), false, false));
+        }
+        if ((mView.getTimeAtAddress() != null && mView.getTimeAtAddress().getKey() != -1)) {
+            data.add(new TimeAtAddress(mView.getTimeAtAddress().getKey(), false, false));
             dataSet = true;
         }
         if (!dataSet) {
@@ -194,6 +211,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
                 .thenAccept(this::loanPurposesListRetrieved);
 
         displayConfigElements();
+        showRequiredFields();
     }
 
     private void setUpToolbar() {
@@ -248,6 +266,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         mView.setSalaryFrequency(Integer.parseInt(getString(R.string.data_michael_salary_frequency)));
         mView.setEmploymentStatus(Integer.parseInt(getString(R.string.data_michael_employment_status)));
         mView.setCreditScore(Integer.parseInt(getString(R.string.data_michael_credit_score)));
+        mView.setTimeAtAddress(Integer.parseInt(getString(R.string.data_michael_time_at_address)));
     }
 
     /** {@inheritDoc} */
@@ -271,6 +290,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         mView.setSalaryFrequency(0);
         mView.setEmploymentStatus(0);
         mView.setCreditScore(0);
+        mView.setTimeAtAddress(0);
     }
 
     @Override
@@ -301,10 +321,10 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
 
     private void displayConfigElements() {
         mProjectConfig = UIStorage.getInstance().getContextConfig();
-        displayHousingType();
-        displaySalaryFrequencies();
-        displayEmploymentStatus();
-        displayCreditScore();
+        if(mProjectConfig==null) {
+            return;
+        }
+
         mView.setOffersListStyle(ConfigStorage.getInstance().getOffersListStyle().toString());
         mView.setPOSMode(ConfigStorage.getInstance().getPOSMode());
         mView.setSkipDisclaimers(ConfigStorage.getInstance().getSkipLinkDisclaimer());
@@ -378,10 +398,80 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         mView.setCreditScoreAdapter(adapter);
     }
 
+    private void displayTimeAtAddress() {
+        HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
+                = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
+        IdDescriptionPairDisplayVo hint =
+                new IdDescriptionPairDisplayVo(-1, getString(R.string.main_input_time_at_address));
+        adapter.add(hint);
+
+        TimeAtAddressVo[] typesList = mProjectConfig.timeAtAddressOpts.data;
+        if (typesList != null) {
+            for (TimeAtAddressVo type : typesList) {
+                adapter.add(new IdDescriptionPairDisplayVo(type.timeAtAddressId, type.description));
+            }
+        }
+
+        mView.setTimeAtAddressAdapter(adapter);
+    }
+
     public void errorReceived(String error) {
         runOnUiThread(() -> {
             mView.showLoading(false);
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         });
+    }
+
+    public void showRequiredFields() {
+        RequiredDataPointsListResponseVo requiredUserData = ConfigStorage.getInstance().getRequiredUserData();
+        for(RequiredDataPointVo requiredDataPoint : requiredUserData.data) {
+            switch(requiredDataPoint.type) {
+                case PersonalName:
+                    mView.showPersonalName();
+                    break;
+                case PhoneNumber:
+                    mView.showPhoneNumber();
+                    break;
+                case Email:
+                    mView.showEmail();
+                    break;
+                case BirthDate:
+                    mView.showBirthday();
+                    break;
+                case SSN:
+                    mView.showSSN();
+                    break;
+                case Address:
+                    mView.showAddress();
+                    break;
+                case Housing:
+                    displayHousingType();
+                    mView.showHousing();
+                    break;
+                case Employment:
+                    displayEmploymentStatus();
+                    displaySalaryFrequencies();
+                    mView.showEmployment();
+                    break;
+                case Income:
+                    displaySalaryFrequencies();
+                    mView.showIncome();
+                    break;
+                case CreditScore:
+                    displayCreditScore();
+                    mView.showCreditScore();
+                    break;
+                case PayDayLoan:
+                    mView.showPayDayLoan();
+                    break;
+                case MemberOfArmedForces:
+                    mView.showMemberOfArmedForces();
+                    break;
+                case TimeAtAddress:
+                    displayTimeAtAddress();
+                    mView.showTimeAtAddress();
+                    break;
+            }
+        }
     }
 }

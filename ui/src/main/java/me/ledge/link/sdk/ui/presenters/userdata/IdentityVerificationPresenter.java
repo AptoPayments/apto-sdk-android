@@ -8,6 +8,7 @@ import android.widget.DatePicker;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.responses.config.DisclaimerVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
@@ -17,9 +18,9 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.utils.DisclaimerUtil;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
-import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
  * Concrete {@link Presenter} for the ID verification screen.
@@ -35,6 +36,7 @@ public class IdentityVerificationPresenter
     private boolean mIsSSNRequired;
     private boolean mIsSSNNotAvailableAllowed;
     private boolean mIsBirthdayRequired;
+    private DisclaimerVo mDisclaimer;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
@@ -195,7 +197,7 @@ public class IdentityVerificationPresenter
             }
         }
         else {
-            mDelegate.identityVerificationSucceeded();
+            showDisclaimerOrExit();
         }
     }
 
@@ -208,7 +210,24 @@ public class IdentityVerificationPresenter
 
     private void saveDataAndExit() {
         super.saveData();
+        showDisclaimerOrExit();
+    }
+
+    private void showDisclaimerOrExit() {
+        if(mDisclaimer!=null) {
+            showDisclaimer();
+        }
+        else {
+            exit();
+        }
+    }
+
+    private void exit() {
         mDelegate.identityVerificationSucceeded();
+    }
+
+    private void showDisclaimer() {
+        DisclaimerUtil.showDisclaimer(mActivity, mDisclaimer, this::exit);
     }
 
     /** {@inheritDoc} */
@@ -246,8 +265,36 @@ public class IdentityVerificationPresenter
         });
     }
 
+    private void setMarkdownDisclaimers(String disclaimers) {
+        mDisclaimersText = disclaimers;
+        mActivity.runOnUiThread(() -> {
+            mView.setMarkdownDisclaimers(disclaimers);
+            mView.showLoading(false);
+        });
+    }
+
     private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
-        setDisclaimers(parseDisclaimersResponse(response));
+        DisclaimerVo disclaimer = response.data[0].preQualificationDisclaimer;
+        if(disclaimer.value.isEmpty()) {
+            retrieveProjectDisclaimer();
+            mView.showLoading(false);
+            return;
+        }
+        switch(DisclaimerVo.formatValues.valueOf(disclaimer.format)) {
+            case plain_text:
+                setDisclaimers(parseDisclaimersResponse(response));
+                break;
+            case markdown:
+                setMarkdownDisclaimers(parseDisclaimersResponse(response));
+            case external_url:
+                mDisclaimer = disclaimer;
+                mView.showLoading(false);
+                break;
+        }
+    }
+
+    private void retrieveProjectDisclaimer() {
+        mDisclaimer = ConfigStorage.getInstance().getPrequalificationDisclaimer();
     }
 
     private void errorReceived(String error) {

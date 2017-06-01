@@ -403,7 +403,8 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                         addRequiredActivity(AddressActivity.class);
                         break;
                     case TimeAtAddress:
-                        addRequiredActivity(TimeAtAddressActivity.class);
+                        addRequiredActivityAfterGivenActivity(TimeAtAddressActivity.class,
+                                AddressActivity.class);
                         break;
                     case Employment:
                         addRequiredActivity(AnnualIncomeActivity.class);
@@ -431,6 +432,18 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private void addRequiredActivity(Class requiredActivity) {
         if(!mRequiredActivities.contains(requiredActivity)) {
             mRequiredActivities.add(requiredActivity);
+        }
+    }
+
+    private void addRequiredActivityAfterGivenActivity(Class requiredActivity, Class givenActivity) {
+        if(mRequiredActivities.contains(requiredActivity)) {
+            return;
+        }
+        if(mRequiredActivities.contains(givenActivity)) {
+            mRequiredActivities.add(mRequiredActivities.indexOf(givenActivity)+1, requiredActivity);
+        }
+        else {
+            addRequiredActivity(requiredActivity);
         }
     }
 
