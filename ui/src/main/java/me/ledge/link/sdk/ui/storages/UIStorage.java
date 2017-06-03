@@ -1,5 +1,6 @@
 package me.ledge.link.sdk.ui.storages;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 
 import java.util.concurrent.ExecutionException;
@@ -183,6 +184,18 @@ public class UIStorage {
             future.completeExceptionally(e);
             return null;
         }
+    }
+
+    public ColorStateList getRadioButtonColors() {
+        return new ColorStateList(
+                new int[][]{
+                        new int[]{-android.R.attr.state_checked},
+                        new int[]{android.R.attr.state_checked}
+                },
+                new int[] {
+                        Color.BLACK, mPrimaryColor
+                }
+        );
     }
 
 }

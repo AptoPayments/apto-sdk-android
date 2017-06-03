@@ -259,4 +259,5 @@
 
     <!-- Disclaimers -->
     <string name="disclaimer_accept">Accept</string>
+    <string name="disclaimer_cancel">Cancel</string>
 </resources>

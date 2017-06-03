@@ -4,6 +4,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/bttn_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_settings_black_24dp"
+        android:tint="@android:color/darker_gray"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:layout_alignParentRight="true" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,24 +33,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:padding="16dp"
+                android:visibility="gone"
                 android:text="@string/main_button_offers_cta" />
-
-            <TextView
-                android:id="@+id/bttn_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="16sp"
-                android:text="@string/main_data_header" />
-
         </LinearLayout>
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/iv_logo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_ledge_logo"
-            android:paddingTop="32dp"
+            android:padding="32dp"
             android:layout_above="@id/ll_buttons"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
 </me.ledge.link.sdk.example.views.MainView>

@@ -122,7 +122,8 @@
     <style name="llsdk_credit_score_radio">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
         <item name="android:textSize">@dimen/llsdk_body_text_size</item>
     </style>
 

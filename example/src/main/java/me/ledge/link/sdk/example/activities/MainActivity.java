@@ -12,11 +12,14 @@ import java.lang.ref.WeakReference;
 import java.util.WeakHashMap;
 
 import io.branch.referral.Branch;
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.example.KeysStorage;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
 /**
@@ -91,6 +94,19 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         setContentView(mView);
     }
 
+    private void configRetrieved(ConfigResponseVo configResponseVo) {
+        runOnUiThread(()->{
+            if(configResponseVo.logoURL != null && !configResponseVo.logoURL.isEmpty()) {
+                mView.setLogo(configResponseVo.logoURL);
+            }
+            else {
+                mView.setLogo();
+            }
+
+            mView.setColors();
+        });
+    }
+
     @Override
     public void onNewIntent(Intent intent) {
         this.setIntent(intent);
@@ -121,6 +137,9 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             }
             LedgeLinkUi.setupLedgeLink(this, getDeveloperKey(), getProjectToken(),
                     getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
+            CompletableFuture
+                    .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
+                    .thenAccept(this::configRetrieved);
         }, this.getIntent().getData(), this);
     }
 

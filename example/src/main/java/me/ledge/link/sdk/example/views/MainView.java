@@ -4,11 +4,13 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 import me.ledge.link.sdk.example.R;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 
 /**
  * Displays the main View.
@@ -32,7 +34,8 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     }
 
     private Button mOffersButton;
-    private TextView mSettingsButton;
+    private ImageView mSettingsButton;
+    private ImageView mLogoImageView;
 
     private ViewListener mListener;
 
@@ -59,6 +62,7 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
         super.onFinishInflate();
         findAllViews();
         setUpListeners();
+        setColors();
     }
 
     /**
@@ -66,7 +70,8 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
      */
     private void findAllViews() {
         mOffersButton = (Button) findViewById(R.id.bttn_get_offers);
-        mSettingsButton = (TextView) findViewById(R.id.bttn_settings);
+        mSettingsButton = (ImageView) findViewById(R.id.bttn_settings);
+        mLogoImageView = (ImageView) findViewById(R.id.iv_logo);
     }
 
     /**
@@ -75,6 +80,20 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     private void setUpListeners() {
         mOffersButton.setOnClickListener(this);
         mSettingsButton.setOnClickListener(this);
+    }
+
+    public void setColors() {
+        int color = UIStorage.getInstance().getPrimaryColor();
+        mOffersButton.setBackgroundColor(color);
+        mOffersButton.setVisibility(VISIBLE);
+    }
+
+    public void setLogo() {
+        mLogoImageView.setImageResource(R.drawable.icon_ledge_logo);
+    }
+
+    public void setLogo(String logoURL) {
+        LedgeLinkUi.getImageLoader().load(logoURL, mLogoImageView);
     }
 
     /** {@inheritDoc} */
