@@ -175,12 +175,20 @@ public class LoanAmountPresenter
             mView.updatePurposeError(!mModel.hasValidLoanPurpose());
         }
 
-        if ((isLoanAmountRequired && isLoanPurposeRequired && mModel.hasAllData())
-            || (isLoanAmountRequired && mModel.hasValidAmount())
-            || (isLoanPurposeRequired && mModel.hasValidLoanPurpose())) {
-            saveData();
-            mDelegate.loanDataPresented();
+        if (isLoanAmountRequired && isLoanPurposeRequired && mModel.hasAllData()) {
+            saveDataAndExit();
         }
+        else if (!isLoanPurposeRequired && isLoanAmountRequired && mModel.hasValidAmount()) {
+            saveDataAndExit();
+        }
+        else if (!isLoanAmountRequired && isLoanPurposeRequired && mModel.hasValidLoanPurpose()) {
+            saveDataAndExit();
+        }
+    }
+
+    private void saveDataAndExit() {
+        saveData();
+        mDelegate.loanDataPresented();
     }
 
     /** {@inheritDoc} */
