@@ -96,7 +96,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
             case sbx:
                 return "https://sbx.ledge.me";
             case prd:
-                return "https://prd.ledge.me";
+                return "https://api.ledge.me";
             default:
                 return "https://sbx.ledge.me";
         }
