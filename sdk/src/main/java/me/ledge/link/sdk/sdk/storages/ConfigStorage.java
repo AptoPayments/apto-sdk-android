@@ -46,273 +46,260 @@ public class ConfigStorage {
     }
 
     public synchronized LoanPurposesResponseVo getLoanPurposes() {
-        CompletableFuture<LoanPurposesResponseVo> future = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.loanPurposesList;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.loanPurposesList;
+        }
+        else {
+            CompletableFuture<LoanPurposesResponseVo> future = CompletableFuture.supplyAsync(() -> {
+
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.loanPurposesList;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (LoanPurposesResponseVo) getResultFromFuture(future);
+            });
+            return (LoanPurposesResponseVo) getResultFromFuture(future);
+        }
     }
 
     public synchronized DisclaimerVo getLinkDisclaimer() {
-        CompletableFuture<DisclaimerVo> future = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.linkDisclaimer;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.linkDisclaimer;
+        }
+        else {
+            CompletableFuture<DisclaimerVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.linkDisclaimer;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (DisclaimerVo) getResultFromFuture(future);
+            });
+            return (DisclaimerVo) getResultFromFuture(future);
+        }
     }
 
     public synchronized DisclaimerVo getPrequalificationDisclaimer() {
-        CompletableFuture<DisclaimerVo> future = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.preQualificationDisclaimer;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.preQualificationDisclaimer;
+        }
+        else {
+            CompletableFuture<DisclaimerVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.preQualificationDisclaimer;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (DisclaimerVo) getResultFromFuture(future);
+            });
+            return (DisclaimerVo) getResultFromFuture(future);
+        }
     }
 
     public synchronized LoanProductListVo getLoanProducts() {
-        CompletableFuture<LoanProductListVo> future = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.loanProductList;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.loanProductList;
+        }
+        else {
+            CompletableFuture<LoanProductListVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.loanProductList;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (LoanProductListVo) getResultFromFuture(future);
+            });
+            return (LoanProductListVo) getResultFromFuture(future);
+        }
     }
 
     public synchronized RequiredDataPointsListResponseVo getRequiredUserData() {
-        CompletableFuture<RequiredDataPointsListResponseVo> future = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.userRequiredData;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.userRequiredData;
+        }
+        else {
+            CompletableFuture<RequiredDataPointsListResponseVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.userRequiredData;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (RequiredDataPointsListResponseVo) getResultFromFuture(future);
+            });
+            return (RequiredDataPointsListResponseVo) getResultFromFuture(future);
+        }
     }
 
     public synchronized boolean getPOSMode() {
-        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.posMode;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.posMode;
+        }
+        else {
+            CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.posMode;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (boolean) getResultFromFuture(f);
+            });
+            return (boolean) getResultFromFuture(future);
+        }
     }
 
     public synchronized double getMinLoanAmount() {
-        CompletableFuture<Double> f = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.loanAmountMin;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.loanAmountMin;
+        }
+        else {
+            CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.loanAmountMin;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (double) getResultFromFuture(f);
+            });
+            return (double) getResultFromFuture(future);
+        }
     }
 
     public synchronized double getMaxLoanAmount() {
-        CompletableFuture<Double> f = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.loanAmountMax;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.loanAmountMax;
+        }
+        else {
+            CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.loanAmountMax;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (double) getResultFromFuture(f);
+            });
+            return (double) getResultFromFuture(future);
+        }
     }
 
     public synchronized double getLoanAmountIncrements() {
-        CompletableFuture<Double> f = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.loanAmountIncrements;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.loanAmountIncrements;
+        }
+        else {
+            CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.loanAmountIncrements;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (double) getResultFromFuture(f);
+            });
+            return (double) getResultFromFuture(future);
+        }
     }
 
     public synchronized double getLoanAmountDefault() {
-        CompletableFuture<Double> f = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.loanAmountDefault;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.loanAmountDefault;
+        }
+        else {
+            CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.loanAmountDefault;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (double) getResultFromFuture(f);
+            });
+            return (double) getResultFromFuture(future);
+        }
     }
 
     public synchronized boolean getSkipLinkDisclaimer() {
-        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.skipLinkDisclaimer;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.skipLinkDisclaimer;
+        }
+        else {
+            CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
+
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.skipLinkDisclaimer;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (boolean) getResultFromFuture(f);
+            });
+            return (boolean) getResultFromFuture(future);
+        }
     }
 
     public synchronized boolean isStrictAddressValidationEnabled() {
-        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.isStrictAddressValidationEnabled;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.isStrictAddressValidationEnabled;
+        }
+        else {
+            CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.isStrictAddressValidationEnabled;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (boolean) getResultFromFuture(f);
+            });
+            return (boolean) getResultFromFuture(future);
+        }
     }
 
     public synchronized OffersListStyle getOffersListStyle() {
-        CompletableFuture<OffersListStyle> f = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return OffersListStyle.valueOf(mLinkConfig.offerListStyle);
-            }
-            else {
+        if(isConfigCached()) {
+            return OffersListStyle.valueOf(mLinkConfig.offerListStyle);
+        }
+        else {
+            CompletableFuture<OffersListStyle> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return OffersListStyle.valueOf(mLinkConfig.offerListStyle);
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (OffersListStyle) getResultFromFuture(f);
+            });
+            return (OffersListStyle) getResultFromFuture(future);
+        }
     }
 
     public synchronized boolean getSkipLoanAmount() {
-        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.skipLoanAmount;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.skipLoanAmount;
+        }
+        else {
+            CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.skipLoanAmount;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (boolean) getResultFromFuture(f);
+            });
+            return (boolean) getResultFromFuture(future);
+        }
     }
 
     public synchronized boolean getSkipLoanPurpose() {
-        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
-            if(isConfigCached()) {
-                return mLinkConfig.skipLoanPurpose;
-            }
-            else {
+        if(isConfigCached()) {
+            return mLinkConfig.skipLoanPurpose;
+        }
+        else {
+            CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.skipLoanPurpose;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (boolean) getResultFromFuture(f);
+            });
+            return (boolean) getResultFromFuture(future);
+        }
     }
 
     private Object getResultFromFuture(CompletableFuture future) {

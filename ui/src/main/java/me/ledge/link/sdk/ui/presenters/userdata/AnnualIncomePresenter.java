@@ -3,7 +3,6 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 import android.support.v7.app.AppCompatActivity;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-import org.greenrobot.eventbus.Subscribe;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
@@ -12,7 +11,6 @@ import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AnnualIncomeModel;
@@ -20,7 +18,6 @@ import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.userdata.AnnualIncomeView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
-import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
  * Concrete {@link Presenter} for the income screen.
@@ -138,7 +135,6 @@ public class AnnualIncomePresenter
     @Override
     public void attachView(AnnualIncomeView view) {
         super.attachView(view);
-        mResponseHandler.subscribe(this);
         retrieveValuesFromConfig();
         mView.setListener(this);
 
@@ -152,7 +148,13 @@ public class AnnualIncomePresenter
                 mView.setEmploymentStatusAdapter(generateEmploymentStatusesAdapter(null));
 
                 // Load employment statuses list.
-                LedgeLinkUi.getEmploymentStatusesList();
+                CompletableFuture
+                        .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
+                        .exceptionally(ex -> {
+                            mView.displayErrorMessage(ex.getMessage());
+                            return null;
+                        })
+                        .thenAccept(this::handleConfigResponse);
             } else {
                 mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
 
@@ -166,7 +168,13 @@ public class AnnualIncomePresenter
                 mView.setSalaryFrequencyAdapter(generateSalaryFrequenciesAdapter(null));
 
                 // Load salary frequencies list.
-                LedgeLinkUi.getSalaryFrequenciesList();
+                CompletableFuture
+                        .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
+                        .exceptionally(ex -> {
+                            mView.displayErrorMessage(ex.getMessage());
+                            return null;
+                        })
+                        .thenAccept(this::handleConfigResponse);
             } else {
                 mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
 
@@ -189,7 +197,6 @@ public class AnnualIncomePresenter
     @Override
     public void detachView() {
         mView.setListener(null);
-        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -238,7 +245,7 @@ public class AnnualIncomePresenter
     /**
      * TODO: Make handling theses lists and generating Adapters more generic.
      */
-    public void setEmploymentStatusesList(EmploymentStatusVo[] list) {
+    private void setEmploymentStatusesList(EmploymentStatusVo[] list) {
         mEmploymentStatusesAdapter = generateEmploymentStatusesAdapter(list);
 
         if (mView != null) {
@@ -254,7 +261,7 @@ public class AnnualIncomePresenter
     /**
      * TODO: Make handling theses lists and generating Adapters more generic.
      */
-    public void setSalaryFrequenciesList(SalaryFrequencyVo[] list) {
+    private void setSalaryFrequenciesList(SalaryFrequencyVo[] list) {
         mSalaryFrequenciesAdapter = generateSalaryFrequenciesAdapter(list);
 
         if (mView != null) {
@@ -271,8 +278,7 @@ public class AnnualIncomePresenter
      * Called when the employment statuses / salary frequency lists API response has been received.
      * @param response API response.
      */
-    @Subscribe
-    public void handleConfigResponse(ConfigResponseVo response) {
+    private void handleConfigResponse(ConfigResponseVo response) {
         if (isEmploymentStatusesPresent(response)) {
             setEmploymentStatusesList(response.employmentStatusOpts.data);
         }

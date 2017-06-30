@@ -65,11 +65,12 @@ public class UIStorage {
     }
 
     public synchronized Integer getPrimaryColor() {
-        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-            if(mPrimaryColor != null) {
-                return mPrimaryColor;
-            }
-            else {
+        if(mPrimaryColor != null) {
+            return mPrimaryColor;
+        }
+        else {
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+
                 try {
                     mConfig = getApiWrapper().getUserConfig(new UnauthorizedRequestVo());
                     setColors();
@@ -77,23 +78,23 @@ public class UIStorage {
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
 
-        if(getResultFromFuture(future)==null) {
-            return 0;
-        }
-        else {
-            return (Integer) getResultFromFuture(future);
+            });
+            if (getResultFromFuture(future) == null) {
+                return 0;
+            } else {
+                return (Integer) getResultFromFuture(future);
+            }
         }
     }
 
     public synchronized Integer getSecondaryColor() {
-        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-            if(mSecondaryColor != null) {
-                return mSecondaryColor;
-            }
-            else {
+        if(mSecondaryColor != null) {
+            return mSecondaryColor;
+        }
+        else {
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+
                 try {
                     mConfig = getApiWrapper().getUserConfig(new UnauthorizedRequestVo());
                     setColors();
@@ -101,47 +102,62 @@ public class UIStorage {
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
 
-        return (Integer) getResultFromFuture(future);
+            });
+            return (Integer) getResultFromFuture(future);
+        }
     }
 
     public synchronized ConfigResponseVo getContextConfig() {
-        CompletableFuture<ConfigResponseVo> future = CompletableFuture.supplyAsync(() -> {
-            if(mConfig != null) {
-                return mConfig.projectConfiguration;
-            }
-            else {
+        if (mConfig != null) {
+            return mConfig.projectConfiguration;
+        }
+        else {
+            CompletableFuture<ConfigResponseVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mConfig = getApiWrapper().getUserConfig(new UnauthorizedRequestVo());
                     return mConfig.projectConfiguration;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (ConfigResponseVo) getResultFromFuture(future);
+            });
+            return (ConfigResponseVo) getResultFromFuture(future);
+        }
     }
 
     public synchronized TeamConfigResponseVo getTeamConfig() {
-        CompletableFuture<TeamConfigResponseVo> future = CompletableFuture.supplyAsync(() -> {
-            if(mConfig != null) {
-                return mConfig.teamConfiguration;
-            }
-            else {
+        if(mConfig != null) {
+            return mConfig.teamConfiguration;
+        }
+        else {
+            CompletableFuture<TeamConfigResponseVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mConfig = getApiWrapper().getUserConfig(new UnauthorizedRequestVo());
                     return mConfig.teamConfiguration;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-            }
-        });
-
-        return (TeamConfigResponseVo) getResultFromFuture(future);
+            });
+            return (TeamConfigResponseVo) getResultFromFuture(future);
+        }
     }
+
+/*    public synchronized EmploymentStatusListResponseVo getEmploymentStatusOpts() {
+        if (mConfig != null) {
+            return mConfig.projectConfiguration.employmentStatusOpts;
+        }
+        else {
+            CompletableFuture<EmploymentStatusListResponseVo> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    mConfig = getApiWrapper().getUserConfig(new UnauthorizedRequestVo());
+                    return mConfig.projectConfiguration.employmentStatusOpts;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            });
+            return (EmploymentStatusListResponseVo) getResultFromFuture(future);
+        }
+    }*/
 
     public synchronized int getPrimaryContrastColor() {
         if(mPrimaryColor==null) {
