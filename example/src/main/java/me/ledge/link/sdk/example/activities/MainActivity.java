@@ -103,6 +103,10 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                 mView.setLogo();
             }
 
+            if(configResponseVo.summary != null && !configResponseVo.summary.isEmpty()) {
+                mView.setSummary(configResponseVo.summary);
+            }
+
             mView.setColors();
         });
     }

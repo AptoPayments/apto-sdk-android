@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -36,6 +37,7 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     private Button mOffersButton;
     private ImageView mSettingsButton;
     private ImageView mLogoImageView;
+    private TextView mSummaryTextView;
 
     private ViewListener mListener;
 
@@ -72,6 +74,7 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
         mOffersButton = (Button) findViewById(R.id.bttn_get_offers);
         mSettingsButton = (ImageView) findViewById(R.id.bttn_settings);
         mLogoImageView = (ImageView) findViewById(R.id.iv_logo);
+        mSummaryTextView = (TextView) findViewById(R.id.tv_project_summary);
     }
 
     /**
@@ -94,6 +97,11 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
 
     public void setLogo(String logoURL) {
         LedgeLinkUi.getImageLoader().load(logoURL, mLogoImageView);
+    }
+
+    public void setSummary(String summary) {
+        mSummaryTextView.setText(summary);
+        mSummaryTextView.setVisibility(VISIBLE);
     }
 
     /** {@inheritDoc} */
