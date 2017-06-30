@@ -55,4 +55,6 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
+
+    <include layout="@layout/include_rl_loading" />
 </me.ledge.link.sdk.example.views.MainView>

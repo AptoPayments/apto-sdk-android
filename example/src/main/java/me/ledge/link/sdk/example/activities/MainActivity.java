@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         mView = (MainView) View.inflate(this, R.layout.act_main, null);
         mView.setViewListener(this);
         setContentView(mView);
+        mView.showLoading(true);
     }
 
     private void configRetrieved(ConfigResponseVo configResponseVo) {
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             }
 
             mView.setColors();
+            mView.showLoading(false);
         });
     }
 
