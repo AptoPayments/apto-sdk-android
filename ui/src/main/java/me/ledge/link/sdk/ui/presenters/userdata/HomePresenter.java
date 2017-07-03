@@ -8,23 +8,21 @@ import com.smartystreets.api.us_zipcode.Client;
 import com.smartystreets.api.us_zipcode.Lookup;
 import com.smartystreets.api.us_zipcode.Result;
 
-import org.greenrobot.eventbus.Subscribe;
-
 import java.io.IOException;
 
+import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.HomeModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.userdata.HomeView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
-import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
  * Concrete {@link Presenter} for the address validation screen.
@@ -47,9 +45,15 @@ public class HomePresenter
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
         mIsHousingTypeRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Housing));
-        // Load housing types list.
         if(mIsHousingTypeRequired) {
-            LedgeLinkUi.getHousingTypeList();
+            // Load housing types list.
+            CompletableFuture
+                    .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
+                    .exceptionally(ex -> {
+                        mView.displayErrorMessage(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::handleHousingTypes);
         }
     }
 
@@ -79,7 +83,6 @@ public class HomePresenter
     @Override
     public void attachView(HomeView view) {
         super.attachView(view);
-        mResponseHandler.subscribe(this);
 
         // Set data.
         mView.setZipCode(mModel.getZip());
@@ -113,7 +116,6 @@ public class HomePresenter
     @Override
     public void detachView() {
         mView.setListener(null);
-        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -161,8 +163,7 @@ public class HomePresenter
      * Called when the housing types list API response has been received.
      * @param response API response.
      */
-    @Subscribe
-    public void handleToken(ConfigResponseVo response) {
+    private void handleHousingTypes(ConfigResponseVo response) {
         if (isHousingTypesPresent(response)) {
             setHousingTypesList(response.housingTypeOpts.data);
         }
@@ -176,7 +177,7 @@ public class HomePresenter
      * Stores a new list of housing types and updates the View.
      * @param typesList New list.
      */
-    public void setHousingTypesList(HousingTypeVo[] typesList) {
+    private void setHousingTypesList(HousingTypeVo[] typesList) {
         mHousingTypeAdapter = generateHousingTypeAdapter(typesList);
 
         if (mView != null) {

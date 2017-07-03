@@ -12,7 +12,6 @@ import me.ledge.link.sdk.ui.models.userdata.AddressModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.tasks.AddressVerificationTask;
 import me.ledge.link.sdk.ui.views.userdata.AddressView;
-import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**
  * Concrete {@link Presenter} for the address screen.
