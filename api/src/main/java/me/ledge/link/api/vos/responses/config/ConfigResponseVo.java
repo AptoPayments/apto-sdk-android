@@ -45,4 +45,6 @@ public class ConfigResponseVo {
     public TimeAtAddressListResponseVo timeAtAddressOpts;
 
     public ProductsListResponseVo products;
+
+    public String summary;
 }

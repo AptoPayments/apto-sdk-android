@@ -7,10 +7,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.storages.UIStorage;
+import me.ledge.link.sdk.ui.views.LoadingView;
 
 /**
  * Displays the main View.
@@ -36,6 +38,8 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     private Button mOffersButton;
     private ImageView mSettingsButton;
     private ImageView mLogoImageView;
+    private TextView mSummaryTextView;
+    private LoadingView mLoadingView;
 
     private ViewListener mListener;
 
@@ -72,6 +76,8 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
         mOffersButton = (Button) findViewById(R.id.bttn_get_offers);
         mSettingsButton = (ImageView) findViewById(R.id.bttn_settings);
         mLogoImageView = (ImageView) findViewById(R.id.iv_logo);
+        mSummaryTextView = (TextView) findViewById(R.id.tv_project_summary);
+        mLoadingView = (LoadingView) findViewById(me.ledge.link.sdk.ui.R.id.rl_loading_overlay);
     }
 
     /**
@@ -94,6 +100,11 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
 
     public void setLogo(String logoURL) {
         LedgeLinkUi.getImageLoader().load(logoURL, mLogoImageView);
+    }
+
+    public void setSummary(String summary) {
+        mSummaryTextView.setText(summary);
+        mSummaryTextView.setVisibility(VISIBLE);
     }
 
     /** {@inheritDoc} */
@@ -122,5 +133,9 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
      */
     public void setViewListener(ViewListener listener) {
         mListener = listener;
+    }
+
+    public void showLoading(boolean show) {
+        mLoadingView.showLoading(show);
     }
 }
