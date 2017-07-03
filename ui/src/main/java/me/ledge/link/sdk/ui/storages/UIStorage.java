@@ -142,23 +142,6 @@ public class UIStorage {
         }
     }
 
-/*    public synchronized EmploymentStatusListResponseVo getEmploymentStatusOpts() {
-        if (mConfig != null) {
-            return mConfig.projectConfiguration.employmentStatusOpts;
-        }
-        else {
-            CompletableFuture<EmploymentStatusListResponseVo> future = CompletableFuture.supplyAsync(() -> {
-                try {
-                    mConfig = getApiWrapper().getUserConfig(new UnauthorizedRequestVo());
-                    return mConfig.projectConfiguration.employmentStatusOpts;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            });
-            return (EmploymentStatusListResponseVo) getResultFromFuture(future);
-        }
-    }*/
-
     public synchronized int getPrimaryContrastColor() {
         if(mPrimaryColor==null) {
             return 0;

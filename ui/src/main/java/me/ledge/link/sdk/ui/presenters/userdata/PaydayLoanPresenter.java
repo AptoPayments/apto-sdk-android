@@ -2,8 +2,6 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import java.util.HashMap;
-
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.PaydayLoanModel;
 import me.ledge.link.sdk.ui.views.userdata.PaydayLoanView;

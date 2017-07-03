@@ -1,13 +1,13 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+
+import java.util.HashMap;
+
 import me.ledge.link.api.utils.CreditScoreRange;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.CreditScoreModel;
 import me.ledge.link.sdk.ui.views.userdata.CreditScoreView;
-import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
-
-import java.util.HashMap;
 
 /**
  * Concrete {@link Presenter} for the credit score screen.
