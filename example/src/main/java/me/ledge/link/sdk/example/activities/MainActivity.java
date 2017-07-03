@@ -1,9 +1,11 @@
 package me.ledge.link.sdk.example.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -92,6 +94,21 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         mView = (MainView) View.inflate(this, R.layout.act_main, null);
         mView.setViewListener(this);
         setContentView(mView);
+        mView.showLoading(true);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        // Hide the status bar.
+        if (Build.VERSION.SDK_INT < 16) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+        else {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+        }
     }
 
     private void configRetrieved(ConfigResponseVo configResponseVo) {
@@ -103,7 +120,12 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                 mView.setLogo();
             }
 
+            if(configResponseVo.summary != null && !configResponseVo.summary.isEmpty()) {
+                mView.setSummary(configResponseVo.summary);
+            }
+
             mView.setColors();
+            mView.showLoading(false);
         });
     }
 

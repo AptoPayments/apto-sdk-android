@@ -37,13 +37,24 @@
                 android:text="@string/main_button_offers_cta" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_project_summary"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_above="@+id/ll_buttons"
+            android:layout_centerHorizontal="true" />
+
         <ImageView
             android:id="@+id/iv_logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="32dp"
-            android:layout_above="@id/ll_buttons"
+            android:layout_above="@id/tv_project_summary"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
+
+    <include layout="@layout/include_rl_loading" />
 </me.ledge.link.sdk.example.views.MainView>
