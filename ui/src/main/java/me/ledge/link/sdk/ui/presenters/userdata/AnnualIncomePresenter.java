@@ -59,20 +59,45 @@ public class AnnualIncomePresenter
     }
 
     private void contextConfigRetrieved(ConfigResponseVo config) {
-        mIncomeValuesReady = true;
-        mModel.setMinIncome((int) config.grossIncomeMin)
-                .setMaxIncome((int) config.grossIncomeMax)
-                .setAnnualIncome((int) config.grossIncomeDefault);
-        mIncomeMultiplier = (int) config.grossIncomeIncrements;
-        super.populateModelFromStorage();
-        mView.setMinMax(mModel.getMinIncome() / mIncomeMultiplier, mModel.getMaxIncome() / mIncomeMultiplier);
-        mView.setIncome(mModel.getAnnualIncome() / mIncomeMultiplier);
-        if(mIsEmploymentRequired) {
-            mView.showLoading(isViewLoading());
-        }
-        else {
-            mView.showLoading(false);
-        }
+        mActivity.runOnUiThread(() -> {
+            mIncomeValuesReady = true;
+            mModel.setMinIncome((int) config.grossIncomeMin)
+                    .setMaxIncome((int) config.grossIncomeMax)
+                    .setAnnualIncome((int) config.grossIncomeDefault);
+            mIncomeMultiplier = (int) config.grossIncomeIncrements;
+            super.populateModelFromStorage();
+
+            mView.setMinMax(mModel.getMinIncome() / mIncomeMultiplier, mModel.getMaxIncome() / mIncomeMultiplier);
+            mView.setIncome(mModel.getAnnualIncome() / mIncomeMultiplier);
+
+            if(mIsEmploymentRequired) {
+                mView.showLoading(isViewLoading());
+                if (mEmploymentStatusesAdapter == null) {
+                    mView.setEmploymentStatusAdapter(generateEmploymentStatusesAdapter(null));
+                    handleConfigResponse(config);
+                } else {
+                    mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
+
+                    if (mModel.hasValidEmploymentStatus()) {
+                        mView.setEmploymentStatus(mModel.getEmploymentStatus().getKey());
+                    }
+                }
+
+                if (mSalaryFrequenciesAdapter == null) {
+                    mView.setSalaryFrequencyAdapter(generateSalaryFrequenciesAdapter(null));
+                    handleConfigResponse(config);
+                } else {
+                    mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
+
+                    if (mModel.hasValidSalaryFrequency()) {
+                        mView.setSalaryFrequency(mModel.getSalaryFrequency().getKey());
+                    }
+                }
+            }
+            else {
+                mView.showLoading(!mIncomeValuesReady);
+            }
+        });
     }
     
     private boolean isViewLoading() {
@@ -135,57 +160,12 @@ public class AnnualIncomePresenter
     @Override
     public void attachView(AnnualIncomeView view) {
         super.attachView(view);
-        retrieveValuesFromConfig();
         mView.setListener(this);
 
         mView.showEmploymentFields(mIsEmploymentRequired);
         mView.updateEmploymentStatusError(false);
         mView.updateSalaryFrequencyError(false);
-
-        if(mIsEmploymentRequired) {
-            mView.showLoading(isViewLoading());
-            if (mEmploymentStatusesAdapter == null) {
-                mView.setEmploymentStatusAdapter(generateEmploymentStatusesAdapter(null));
-
-                // Load employment statuses list.
-                CompletableFuture
-                        .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
-                        .exceptionally(ex -> {
-                            mView.displayErrorMessage(ex.getMessage());
-                            return null;
-                        })
-                        .thenAccept(this::handleConfigResponse);
-            } else {
-                mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
-
-                if (mModel.hasValidEmploymentStatus()) {
-                    mView.setEmploymentStatus(mModel.getEmploymentStatus().getKey());
-                }
-            }
-
-            // TODO: Abstract this!
-            if (mSalaryFrequenciesAdapter == null) {
-                mView.setSalaryFrequencyAdapter(generateSalaryFrequenciesAdapter(null));
-
-                // Load salary frequencies list.
-                CompletableFuture
-                        .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
-                        .exceptionally(ex -> {
-                            mView.displayErrorMessage(ex.getMessage());
-                            return null;
-                        })
-                        .thenAccept(this::handleConfigResponse);
-            } else {
-                mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
-
-                if (mModel.hasValidSalaryFrequency()) {
-                    mView.setSalaryFrequency(mModel.getSalaryFrequency().getKey());
-                }
-            }
-        }
-        else {
-            mView.showLoading(!mIncomeValuesReady);
-        }
+        retrieveValuesFromConfig();
     }
 
     @Override
@@ -249,12 +229,14 @@ public class AnnualIncomePresenter
         mEmploymentStatusesAdapter = generateEmploymentStatusesAdapter(list);
 
         if (mView != null) {
-            mView.showLoading(isViewLoading());
-            mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
+            mActivity.runOnUiThread(() -> {
+                mView.showLoading(isViewLoading());
+                mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
 
-            if (mModel.hasValidEmploymentStatus()) {
-                mView.setEmploymentStatus(mModel.getEmploymentStatus().getKey());
-            }
+                if (mModel.hasValidEmploymentStatus()) {
+                    mView.setEmploymentStatus(mModel.getEmploymentStatus().getKey());
+                }
+            });
         }
     }
 
@@ -265,12 +247,14 @@ public class AnnualIncomePresenter
         mSalaryFrequenciesAdapter = generateSalaryFrequenciesAdapter(list);
 
         if (mView != null) {
-            mView.showLoading(isViewLoading());
-            mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
+            mActivity.runOnUiThread(() -> {
+                mView.showLoading(isViewLoading());
+                mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
 
-            if (mModel.hasValidSalaryFrequency()) {
-                mView.setSalaryFrequency(mModel.getSalaryFrequency().getKey());
-            }
+                if (mModel.hasValidSalaryFrequency()) {
+                    mView.setSalaryFrequency(mModel.getSalaryFrequency().getKey());
+                }
+            });
         }
     }
 

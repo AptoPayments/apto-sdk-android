@@ -45,16 +45,6 @@ public class HomePresenter
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
         mIsHousingTypeRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Housing));
-        if(mIsHousingTypeRequired) {
-            // Load housing types list.
-            CompletableFuture
-                    .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
-                    .exceptionally(ex -> {
-                        mView.displayErrorMessage(ex.getMessage());
-                        return null;
-                    })
-                    .thenAccept(this::handleHousingTypes);
-        }
     }
 
     /**
@@ -93,6 +83,14 @@ public class HomePresenter
         if(mIsHousingTypeRequired) {
             if (mHousingTypeAdapter == null) {
                 mView.showLoading(true);
+                // Load housing types list.
+                CompletableFuture
+                        .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
+                        .exceptionally(ex -> {
+                            mView.displayErrorMessage(ex.getMessage());
+                            return null;
+                        })
+                        .thenAccept(this::handleHousingTypes);
             } else {
                 mView.setHousingTypeAdapter(mHousingTypeAdapter);
 
@@ -181,12 +179,14 @@ public class HomePresenter
         mHousingTypeAdapter = generateHousingTypeAdapter(typesList);
 
         if (mView != null) {
-            mView.showLoading(false);
-            mView.setHousingTypeAdapter(mHousingTypeAdapter);
+            mActivity.runOnUiThread(()-> {
+                mView.showLoading(false);
+                mView.setHousingTypeAdapter(mHousingTypeAdapter);
 
-            if (mModel.hasValidHousingType()) {
-                mView.setHousingType(mModel.getHousingType().getKey());
-            }
+                if (mModel.hasValidHousingType()) {
+                    mView.setHousingType(mModel.getHousingType().getKey());
+                }
+            });
         }
     }
 
