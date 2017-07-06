@@ -49,9 +49,11 @@
 
         <ImageView
             android:id="@+id/iv_logo"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:padding="32dp"
+            android:padding="64dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             android:layout_above="@id/tv_project_summary"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />

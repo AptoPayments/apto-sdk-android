@@ -22,7 +22,8 @@
         <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_fctvserZdDqDxjjbCA0fnajgstdai1vp" />
 
         <activity android:name="me.ledge.link.sdk.example.activities.MainActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
