@@ -22,7 +22,7 @@ public class MonthlyIncomePresenter
         extends UserDataPresenter<MonthlyIncomeModel, MonthlyIncomeView>
         implements MonthlyIncomeView.ViewListener {
 
-    private int mIncomeMultiplier;
+    protected int mIncomeMultiplier;
     private MonthlyIncomeDelegate mDelegate;
 
     /**
