@@ -28,7 +28,7 @@
                     android:layout_marginTop="96dp" />
 
             <TextView
-                    android:id="@+id/tv_employment_status_hint"
+                    android:id="@+id/tv_income_type_hint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.Design.Hint"
@@ -36,10 +36,10 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="@string/annual_income_employment_status_header" />
+                    android:text="@string/annual_income_income_type_header" />
 
             <Spinner
-                    android:id="@+id/sp_employment_status"
+                    android:id="@+id/sp_income_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -48,13 +48,13 @@
                     android:layout_marginEnd="8dp" />
 
             <TextView
-                    android:id="@+id/tv_employment_status_error"
+                    android:id="@+id/tv_income_type_error"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/llsdk_error_text"
                     android:layout_marginLeft="16dp"
                     android:layout_marginStart="16dp"
-                    android:text="@string/annual_income_employment_status_error" />
+                    android:text="@string/annual_income_income_type_error" />
 
             <TextView
                     android:id="@+id/tv_salary_frequency_hint"

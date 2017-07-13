@@ -264,7 +264,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         mView.setBirthday(getString(R.string.data_michael_birthday));
         mView.setSSN(getString(R.string.data_michael_ssn));
         mView.setSalaryFrequency(Integer.parseInt(getString(R.string.data_michael_salary_frequency)));
-        mView.setIncomeType(Integer.parseInt(getString(R.string.data_michael_employment_status)));
+        mView.setIncomeType(Integer.parseInt(getString(R.string.data_michael_income_type)));
         mView.setCreditScore(Integer.parseInt(getString(R.string.data_michael_credit_score)));
         mView.setTimeAtAddress(Integer.parseInt(getString(R.string.data_michael_time_at_address)));
     }
@@ -371,7 +371,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
         IdDescriptionPairDisplayVo hint =
-                new IdDescriptionPairDisplayVo(-1, getString(R.string.main_input_employment_status));
+                new IdDescriptionPairDisplayVo(-1, getString(R.string.main_input_income_type));
         adapter.add(hint);
 
         IncomeTypeVo[] typesList = mProjectConfig.incomeTypeOpts.data;

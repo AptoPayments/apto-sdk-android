@@ -28,7 +28,7 @@ public class AnnualIncomeModelTest {
     private static final int TOO_SMALL_INCOME = -1000;
     private static final int TOO_LARGE_INCOME = MAX_INCOME * 2;
 
-    private static final int EXPECTED_EMPLOYMENT_STATUS = 1;
+    private static final int EXPECTED_INCOME_TYPE = 1;
     private static final int EXPECTED_SALARY_FREQUENCY = 2;
 
     private AnnualIncomeModel mModel;
@@ -95,20 +95,20 @@ public class AnnualIncomeModelTest {
 
     /**
      * Given an empty Model.<br />
-     * When setting base data with a valid employment status and salary frequency.<br />
-     * Then the employment status and salary frequency in the Model should be the same as in the base data.
+     * When setting base data with a valid income source and salary frequency.<br />
+     * Then the income source and salary frequency in the Model should be the same as in the base data.
      */
     @Test
     public void settingBaseDataUpdatesIncomeTypeAndSalaryFrequency() {
         DataPointList base = new DataPointList();
-        IncomeSource baseEmployment = new IncomeSource(EXPECTED_EMPLOYMENT_STATUS, EXPECTED_SALARY_FREQUENCY, false, false);
-        base.add(baseEmployment);
+        IncomeSource baseIncomeSource = new IncomeSource(EXPECTED_INCOME_TYPE, EXPECTED_SALARY_FREQUENCY, false, false);
+        base.add(baseIncomeSource);
 
         mModel.setBaseData(base);
 
         Assert.assertFalse("Data should still be incomplete.", mModel.hasAllData());
-        Assert.assertThat("Incorrect employment status.", mModel.getIncomeType().getKey(), equalTo(baseEmployment.incomeType.getKey()));
-        Assert.assertThat("Incorrect salary frequency.", mModel.getSalaryFrequency().getKey(), equalTo(baseEmployment.salaryFrequency.getKey()));
+        Assert.assertThat("Incorrect income source.", mModel.getIncomeType().getKey(), equalTo(baseIncomeSource.incomeType.getKey()));
+        Assert.assertThat("Incorrect salary frequency.", mModel.getSalaryFrequency().getKey(), equalTo(baseIncomeSource.salaryFrequency.getKey()));
     }
 
     /**
@@ -121,17 +121,17 @@ public class AnnualIncomeModelTest {
         mModel.setBaseData(new DataPointList());
 
         mModel.setAnnualIncome(EXPECTED_VALID_INCOME);
-        mModel.setIncomeType(new IdDescriptionPairDisplayVo(EXPECTED_EMPLOYMENT_STATUS, null));
+        mModel.setIncomeType(new IdDescriptionPairDisplayVo(EXPECTED_INCOME_TYPE, null));
         mModel.setSalaryFrequency(new IdDescriptionPairDisplayVo(EXPECTED_SALARY_FREQUENCY, null));
 
         DataPointList base = mModel.getBaseData();
         Income baseIncome = (Income) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Income, new Income());
-        IncomeSource baseEmployment = (IncomeSource) base.getUniqueDataPoint(
+        IncomeSource baseIncomeSource = (IncomeSource) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.IncomeSource, new IncomeSource());
         Assert.assertThat("Incorrect income.", baseIncome.annualGrossIncome, equalTo(mModel.getAnnualIncome()));
-        Assert.assertThat("Incorrect employment status.", baseEmployment.incomeType, equalTo(mModel.getIncomeType()));
-        Assert.assertThat("Incorrect salary frequency.", baseEmployment.salaryFrequency, equalTo(mModel.getSalaryFrequency()));
+        Assert.assertThat("Incorrect income source.", baseIncomeSource.incomeType, equalTo(mModel.getIncomeType()));
+        Assert.assertThat("Incorrect salary frequency.", baseIncomeSource.salaryFrequency, equalTo(mModel.getSalaryFrequency()));
     }
 
     /**

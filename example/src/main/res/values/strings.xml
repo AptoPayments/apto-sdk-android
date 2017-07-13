@@ -20,7 +20,7 @@
     <string name="main_input_birthday">Birthday</string>
     <string name="main_input_ssn">Social security number</string>
     <string name="main_input_credit_score">Credit score</string>
-    <string name="main_input_employment_status">Income type</string>
+    <string name="main_input_income_type">Income type</string>
     <string name="main_input_salary_frequency">Salary frequency</string>
     <string name="main_input_housing_type">Housing type</string>
     <string name="main_user_token">User token:</string>
@@ -54,7 +54,7 @@
     <string name="data_michael_birthday" tools:ignore="TypographyDashes">11-09-1989</string>
     <string name="data_michael_ssn">111111111</string>
     <string name="data_michael_salary_frequency">4</string>
-    <string name="data_michael_employment_status">3</string>
+    <string name="data_michael_income_type">3</string>
     <string name="data_michael_credit_score">1</string>
     <string name="data_michael_time_at_address">2</string>
 

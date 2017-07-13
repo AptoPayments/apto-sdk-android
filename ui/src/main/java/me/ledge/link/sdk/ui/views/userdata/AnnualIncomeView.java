@@ -67,9 +67,9 @@ public class AnnualIncomeView
         mIncomeText = (TextView) findViewById(R.id.tv_income);
         mIncomeSlider = (DiscreteSeekBar) findViewById(R.id.dsb_income);
 
-        mIncomeTypeHint = (TextView) findViewById(R.id.tv_employment_status_hint);
-        mIncomeTypeSpinner = (Spinner) findViewById(R.id.sp_employment_status);
-        mIncomeTypeError = (TextView) findViewById(R.id.tv_employment_status_error);
+        mIncomeTypeHint = (TextView) findViewById(R.id.tv_income_type_hint);
+        mIncomeTypeSpinner = (Spinner) findViewById(R.id.sp_income_type);
+        mIncomeTypeError = (TextView) findViewById(R.id.tv_income_type_error);
 
         mSalaryFrequencyHint = (TextView) findViewById(R.id.tv_salary_frequency_hint);
         mSalaryFrequencySpinner = (Spinner) findViewById(R.id.sp_salary_frequency);

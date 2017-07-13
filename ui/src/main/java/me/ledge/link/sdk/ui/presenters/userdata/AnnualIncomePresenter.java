@@ -114,7 +114,7 @@ public class AnnualIncomePresenter
                 = new HintArrayAdapter<>(mActivity, android.R.layout.simple_spinner_dropdown_item);
 
         IdDescriptionPairDisplayVo hint
-                = new IdDescriptionPairDisplayVo(-1, mActivity.getString(R.string.annual_income_employment_status_hint));
+                = new IdDescriptionPairDisplayVo(-1, mActivity.getString(R.string.annual_income_income_type_hint));
 
         adapter.add(hint);
 
