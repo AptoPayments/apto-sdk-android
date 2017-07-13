@@ -65,14 +65,14 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
         }
 
         if(hasValidIncomeType()) {
-            IncomeSource baseEmployment = (IncomeSource) base.getUniqueDataPoint(
+            IncomeSource baseIncomeSource = (IncomeSource) base.getUniqueDataPoint(
                     DataPointVo.DataPointType.IncomeSource, new IncomeSource());
-            baseEmployment.incomeType = getIncomeType();
+            baseIncomeSource.incomeType = getIncomeType();
         }
         if(hasValidSalaryFrequency()) {
-            IncomeSource baseEmployment = (IncomeSource) base.getUniqueDataPoint(
+            IncomeSource baseIncomeSource = (IncomeSource) base.getUniqueDataPoint(
                     DataPointVo.DataPointType.IncomeSource, new IncomeSource());
-            baseEmployment.salaryFrequency = getSalaryFrequency();
+            baseIncomeSource.salaryFrequency = getSalaryFrequency();
         }
 
         return base;
@@ -88,11 +88,11 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
             setIncome(baseIncome);
         }
 
-        IncomeSource baseEmployment = (IncomeSource) base.getUniqueDataPoint(
+        IncomeSource baseIncomeSource = (IncomeSource) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.IncomeSource, null);
-        if(baseEmployment!=null) {
-            setIncomeType(baseEmployment.incomeType);
-            setSalaryFrequency(baseEmployment.salaryFrequency);
+        if(baseIncomeSource!=null) {
+            setIncomeType(baseIncomeSource.incomeType);
+            setSalaryFrequency(baseIncomeSource.salaryFrequency);
         }
     }
 
