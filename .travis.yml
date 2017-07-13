@@ -41,12 +41,11 @@ install:
   - ./gradlew --configure-on-demand -p api install
   - ./gradlew --configure-on-demand -PexcludeExample=true -p wrappers install
   - ./gradlew --configure-on-demand -p sdk install
-  - ./gradlew --configure-on-demand -p ui install
 
 # Running tests.
 script:
   - ./gradlew --configure-on-demand -p sdk testDebugUnitTestCoverage
-  - ./gradlew --configure-on-demand -p ui testDebugUnitTestCoverage
+  - ./gradlew --configure-on-demand -p ui assembleDebug testDebugUnitTestCoverage
 
 after_success:
   # Copy file to expected location.
