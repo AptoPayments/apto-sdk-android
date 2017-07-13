@@ -15,7 +15,7 @@ import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.Email;
-import me.ledge.link.api.vos.datapoints.Employment;
+import me.ledge.link.api.vos.datapoints.IncomeSource;
 import me.ledge.link.api.vos.datapoints.Housing;
 import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
@@ -65,8 +65,8 @@ public class DataPointParser implements JsonDeserializer<DataPointVo> {
             case "housing":
                 return new Housing(jObject.get("housing_type_id").getAsInt(), verified,
                         notSpecified);
-            case "employment":
-                return new Employment(jObject.get("employment_status_id").getAsInt(),
+            case "income_source":
+                return new IncomeSource(jObject.get("income_type_id").getAsInt(),
                         jObject.get("salary_frequency_id").getAsInt(), verified, notSpecified);
             case "income":
                 return new Income(jObject.get("net_monthly_income").getAsDouble(),
@@ -84,7 +84,7 @@ public class DataPointParser implements JsonDeserializer<DataPointVo> {
                         jObject.get("bank_name").getAsString(),
                         jObject.get("last_four_digits").getAsString(), false);
             case "payday_loan":
-                return new PaydayLoan(jObject.get("used_payday_loan").getAsBoolean(), verified,
+                return new PaydayLoan(jObject.get("payday_loan").getAsBoolean(), verified,
                         notSpecified);
             case "member_of_armed_forces":
                 return new ArmedForces(jObject.get("member_of_armed_forces").getAsBoolean(),

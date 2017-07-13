@@ -19,17 +19,17 @@ import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.Email;
-import me.ledge.link.api.vos.datapoints.Employment;
 import me.ledge.link.api.vos.datapoints.Housing;
 import me.ledge.link.api.vos.datapoints.Income;
+import me.ledge.link.api.vos.datapoints.IncomeSource;
 import me.ledge.link.api.vos.datapoints.PaydayLoan;
 import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.datapoints.SSN;
 import me.ledge.link.api.vos.datapoints.TimeAtAddress;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeVo;
+import me.ledge.link.api.vos.responses.config.IncomeTypeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
@@ -141,9 +141,9 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
             data.add(new Housing(mView.getHousingType().getKey(),false, false));
             dataSet = true;
         }
-        if ((mView.getEmploymentStatus() != null && mView.getEmploymentStatus().getKey() != -1) &&
+        if ((mView.getIncomeType() != null && mView.getIncomeType().getKey() != -1) &&
                 (mView.getSalaryFrequency() != null && mView.getSalaryFrequency().getKey() != -1)) {
-            data.add(new Employment(mView.getEmploymentStatus().getKey(), mView.getSalaryFrequency().getKey(), false, false));
+            data.add(new IncomeSource(mView.getIncomeType().getKey(), mView.getSalaryFrequency().getKey(), false, false));
             dataSet = true;
         }
         if (mView.getCreditScore() != null && mView.getCreditScore().getKey() != -1) {
@@ -264,7 +264,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         mView.setBirthday(getString(R.string.data_michael_birthday));
         mView.setSSN(getString(R.string.data_michael_ssn));
         mView.setSalaryFrequency(Integer.parseInt(getString(R.string.data_michael_salary_frequency)));
-        mView.setEmploymentStatus(Integer.parseInt(getString(R.string.data_michael_employment_status)));
+        mView.setIncomeType(Integer.parseInt(getString(R.string.data_michael_employment_status)));
         mView.setCreditScore(Integer.parseInt(getString(R.string.data_michael_credit_score)));
         mView.setTimeAtAddress(Integer.parseInt(getString(R.string.data_michael_time_at_address)));
     }
@@ -288,7 +288,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         mView.setBirthday("");
         mView.setSSN("");
         mView.setSalaryFrequency(0);
-        mView.setEmploymentStatus(0);
+        mView.setIncomeType(0);
         mView.setCreditScore(0);
         mView.setTimeAtAddress(0);
     }
@@ -374,14 +374,14 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
                 new IdDescriptionPairDisplayVo(-1, getString(R.string.main_input_employment_status));
         adapter.add(hint);
 
-        EmploymentStatusVo[] typesList = mProjectConfig.employmentStatusOpts.data;
+        IncomeTypeVo[] typesList = mProjectConfig.incomeTypeOpts.data;
         if (typesList != null) {
-            for (EmploymentStatusVo type : typesList) {
-                adapter.add(new IdDescriptionPairDisplayVo(type.employment_status_id, type.description));
+            for (IncomeTypeVo type : typesList) {
+                adapter.add(new IdDescriptionPairDisplayVo(type.income_type_id, type.description));
             }
         }
 
-        mView.setEmploymentStatusAdapter(adapter);
+        mView.setIncomeTypeAdapter(adapter);
     }
 
     private void displayCreditScore() {
@@ -448,7 +448,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
                     displayHousingType();
                     mView.showHousing();
                     break;
-                case Employment:
+                case IncomeSource:
                     displayEmploymentStatus();
                     displaySalaryFrequencies();
                     mView.showEmployment();

@@ -50,7 +50,7 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
     private Spinner mLoanPurposeSpinner;
     private Spinner mHousingTypeSpinner;
     private Spinner mSalaryFrequencySpinner;
-    private Spinner mEmploymentStatusSpinner;
+    private Spinner mIncomeTypeSpinner;
     private Spinner mCreditScoreSpinner;
     private EditText mFirstNameField;
     private EditText mLastNameField;
@@ -118,7 +118,7 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
         mTimeAtAddressSpinner = (Spinner) findViewById(R.id.sp_time_at_address);
         mLoanPurposeSpinner = (Spinner) findViewById(R.id.sp_loan_purpose);
         mHousingTypeSpinner = (Spinner)  findViewById(R.id.sp_housing_type);
-        mEmploymentStatusSpinner = (Spinner) findViewById(R.id.sp_employment_status);
+        mIncomeTypeSpinner = (Spinner) findViewById(R.id.sp_employment_status);
         mSalaryFrequencySpinner = (Spinner) findViewById(R.id.sp_salary_frequency);
         mCreditScoreSpinner = (Spinner) findViewById(R.id.sp_credit_score);
         mFirstNameField = (EditText) findViewById(R.id.et_first_name);
@@ -201,8 +201,8 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
         mSalaryFrequencySpinner.setAdapter(adapter);
     }
 
-    public void setEmploymentStatusAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
-        mEmploymentStatusSpinner.setAdapter(adapter);
+    public void setIncomeTypeAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
+        mIncomeTypeSpinner.setAdapter(adapter);
     }
 
     public void setCreditScoreAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
@@ -283,17 +283,17 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
     }
 
     /**
-     * @return Employment status.
+     * @return Income type.
      */
-    public IdDescriptionPairDisplayVo getEmploymentStatus() {
-        return (IdDescriptionPairDisplayVo) mEmploymentStatusSpinner.getSelectedItem();
+    public IdDescriptionPairDisplayVo getIncomeType() {
+        return (IdDescriptionPairDisplayVo) mIncomeTypeSpinner.getSelectedItem();
     }
 
     /**
-     * Resets the employment status Spinner.
+     * Resets the income type Spinner.
      */
-    public void setEmploymentStatus(int index) {
-        mEmploymentStatusSpinner.setSelection(index);
+    public void setIncomeType(int index) {
+        mIncomeTypeSpinner.setSelection(index);
     }
 
     /**
@@ -612,7 +612,7 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
     }
 
     public void showEmployment() {
-        mEmploymentStatusSpinner.setVisibility(VISIBLE);
+        mIncomeTypeSpinner.setVisibility(VISIBLE);
         mSalaryFrequencySpinner.setVisibility(VISIBLE);
     }
 

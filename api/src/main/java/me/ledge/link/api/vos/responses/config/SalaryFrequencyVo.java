@@ -7,7 +7,7 @@ package me.ledge.link.api.vos.responses.config;
 public class SalaryFrequencyVo extends ConfigVo {
 
     /**
-     * Employment status ID.
+     * IncomeSource status ID.
      * @see me.ledge.link.api.utils.users.SalaryFrequencyId
      */
     public int salary_frequency_id;

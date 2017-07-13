@@ -12,7 +12,7 @@ public class DataPointVo {
         SSN,
         Address,
         Housing,
-        Employment,
+        IncomeSource,
         Income,
         CreditScore,
         FinancialAccount,

@@ -2,7 +2,7 @@ package me.ledge.link.sdk.ui.models.userdata;
 
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.Employment;
+import me.ledge.link.api.vos.datapoints.IncomeSource;
 import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
@@ -16,7 +16,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     private Income mIncome;
     private int mMinIncome;
     private int mMaxIncome;
-    private IdDescriptionPairDisplayVo mEmploymentStatus;
+    private IdDescriptionPairDisplayVo mIncomeType;
     private IdDescriptionPairDisplayVo mSalaryFrequency;
 
     public AnnualIncomeModel() {
@@ -24,7 +24,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     }
 
     private void init() {
-        mEmploymentStatus = null;
+        mIncomeType = null;
         mSalaryFrequency = null;
         mIncome = new Income();
     }
@@ -50,7 +50,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return hasValidIncome() && hasValidEmploymentStatus() && hasValidSalaryFrequency();
+        return hasValidIncome() && hasValidIncomeType() && hasValidSalaryFrequency();
     }
 
     /** {@inheritDoc} */
@@ -64,14 +64,14 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
             baseIncome.annualGrossIncome = getAnnualIncome();
         }
 
-        if(hasValidEmploymentStatus()) {
-            Employment baseEmployment = (Employment) base.getUniqueDataPoint(
-                    DataPointVo.DataPointType.Employment, new Employment());
-            baseEmployment.employmentStatus = getEmploymentStatus();
+        if(hasValidIncomeType()) {
+            IncomeSource baseEmployment = (IncomeSource) base.getUniqueDataPoint(
+                    DataPointVo.DataPointType.IncomeSource, new IncomeSource());
+            baseEmployment.incomeType = getIncomeType();
         }
         if(hasValidSalaryFrequency()) {
-            Employment baseEmployment = (Employment) base.getUniqueDataPoint(
-                    DataPointVo.DataPointType.Employment, new Employment());
+            IncomeSource baseEmployment = (IncomeSource) base.getUniqueDataPoint(
+                    DataPointVo.DataPointType.IncomeSource, new IncomeSource());
             baseEmployment.salaryFrequency = getSalaryFrequency();
         }
 
@@ -88,10 +88,10 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
             setIncome(baseIncome);
         }
 
-        Employment baseEmployment = (Employment) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Employment, null);
+        IncomeSource baseEmployment = (IncomeSource) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.IncomeSource, null);
         if(baseEmployment!=null) {
-            setEmploymentStatus(baseEmployment.employmentStatus);
+            setIncomeType(baseEmployment.incomeType);
             setSalaryFrequency(baseEmployment.salaryFrequency);
         }
     }
@@ -161,16 +161,16 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
         return isValid(mIncome.annualGrossIncome);
     }
 
-    public IdDescriptionPairDisplayVo getEmploymentStatus() {
-        return mEmploymentStatus;
+    public IdDescriptionPairDisplayVo getIncomeType() {
+        return mIncomeType;
     }
 
-    public void setEmploymentStatus(IdDescriptionPairDisplayVo status) {
-        mEmploymentStatus = status;
+    public void setIncomeType(IdDescriptionPairDisplayVo status) {
+        mIncomeType = status;
     }
 
-    public boolean hasValidEmploymentStatus() {
-        return hasValidKey(mEmploymentStatus);
+    public boolean hasValidIncomeType() {
+        return hasValidKey(mIncomeType);
     }
 
     public IdDescriptionPairDisplayVo getSalaryFrequency() {

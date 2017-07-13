@@ -35,8 +35,8 @@ public class ConfigResponseVo {
     @SerializedName("housing_types")
     public HousingTypeListResponseVo housingTypeOpts;
 
-    @SerializedName("employment_statuses")
-    public EmploymentStatusListResponseVo employmentStatusOpts;
+    @SerializedName("income_types")
+    public IncomeTypeListResponseVo incomeTypeOpts;
 
     @SerializedName("salary_frequencies")
     public SalaryFrequenciesListResponseVo salaryFrequencyOpts;

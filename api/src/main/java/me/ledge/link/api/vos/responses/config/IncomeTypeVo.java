@@ -1,14 +1,14 @@
 package me.ledge.link.api.vos.responses.config;
 
 /**
- * Employment status data.
+ * IncomeSource status data.
  * @author Wijnand
  */
-public class EmploymentStatusVo extends ConfigVo {
+public class IncomeTypeVo extends ConfigVo {
 
     /**
-     * Employment status ID.
+     * IncomeSource status ID.
      * @see me.ledge.link.api.utils.users.EmploymentStatusId
      */
-    public int employment_status_id;
+    public int income_type_id;
 }

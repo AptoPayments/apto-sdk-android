@@ -91,7 +91,7 @@ public class CreateUserRequestVo extends UnauthorizedRequestVo {
     public int salary_frequency;
 
     /**
-     * Employment status.
+     * IncomeSource status.
      * @see EmploymentStatusId
      */
     public int employment_status;

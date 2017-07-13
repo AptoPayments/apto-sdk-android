@@ -74,9 +74,9 @@
 
     <!-- Annual Income -->
     <string name="annual_income_label">What\'s your annual pretax income?</string>
-    <string name="annual_income_employment_status_header">Employment status</string>
-    <string name="annual_income_employment_status_hint">Select an employment status&#8230;</string>
-    <string name="annual_income_employment_status_error">Please select a valid employment status.</string>
+    <string name="annual_income_employment_status_header">Income type</string>
+    <string name="annual_income_employment_status_hint">Select an income type&#8230;</string>
+    <string name="annual_income_employment_status_error">Please select a valid income type.</string>
     <string name="annual_income_salary_frequency_header">Salary frequency</string>
     <string name="annual_income_salary_frequency_hint">Select a salary frequency&#8230;</string>
     <string name="annual_income_salary_frequency_error">Please select a valid salary frequency.</string>

@@ -9,20 +9,20 @@ import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
- * A concrete {@link LedgeLinkApiTask} to get the list of employment statuses.
+ * A concrete {@link LedgeLinkApiTask} to get the list of income types.
  * @author wijnand
  */
-public class EmploymentStatusesListTask
+public class IncomeTypesListTask
         extends LedgeLinkApiTask<Void, Void, ConfigResponseVo, UnauthorizedRequestVo> {
 
     /**
-     * Creates a new {@link EmploymentStatusesListTask} instance.
+     * Creates a new {@link IncomeTypesListTask} instance.
      * @param requestData API request data.
      * @param apiWrapper The API wrapper instance to make API calls.
      * @param responseHandler The response handler instance used to publish results.
      */
-    public EmploymentStatusesListTask(UnauthorizedRequestVo requestData, LinkApiWrapper apiWrapper,
-            ApiResponseHandler responseHandler) {
+    public IncomeTypesListTask(UnauthorizedRequestVo requestData, LinkApiWrapper apiWrapper,
+                               ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);
     }

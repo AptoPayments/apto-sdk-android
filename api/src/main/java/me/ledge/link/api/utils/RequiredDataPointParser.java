@@ -45,8 +45,8 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
             case "housing":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Housing,
                         isVerificationRequired, isNotSpecifiedAllowed);
-            case "employment":
-                return new RequiredDataPointVo(DataPointVo.DataPointType.Employment,
+            case "income_source":
+                return new RequiredDataPointVo(DataPointVo.DataPointType.IncomeSource,
                         isVerificationRequired, isNotSpecifiedAllowed);
             case "income":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Income,
