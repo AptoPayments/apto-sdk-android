@@ -345,7 +345,9 @@ public class LoanAmountPresenter
     private void setDisclaimers(String disclaimers) {
         mDisclaimersText = disclaimers;
         mActivity.runOnUiThread(() -> {
-            mView.setDisclaimers(disclaimers);
+            if(!disclaimers.isEmpty()) {
+                mView.setDisclaimers(disclaimers);
+            }
             mView.showLoading(false);
         });
     }

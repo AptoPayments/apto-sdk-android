@@ -214,6 +214,7 @@ public class IdentityVerificationPresenter
     }
 
     private void showDisclaimerOrExit() {
+        mView.showLoading(true);
         if(mDisclaimer!=null) {
             showDisclaimer();
         }
@@ -223,6 +224,7 @@ public class IdentityVerificationPresenter
     }
 
     private void exit() {
+        mView.showLoading(false);
         mDelegate.identityVerificationSucceeded();
     }
 

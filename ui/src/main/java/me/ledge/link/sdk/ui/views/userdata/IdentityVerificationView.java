@@ -235,10 +235,12 @@ public class IdentityVerificationView
     }
 
     public void setDisclaimers(String disclaimers) {
+        mDisclaimersHeader.setVisibility(VISIBLE);
         mDisclaimersField.setText(Html.fromHtml(disclaimers));
     }
 
     public void setMarkdownDisclaimers(String disclaimer) {
+        mDisclaimersHeader.setVisibility(VISIBLE);
         mMarkdownView.loadMarkdown(disclaimer);
     }
 

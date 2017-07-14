@@ -210,8 +210,6 @@ public class LoanAmountView
     public void showGetOffersButtonAndDisclaimers(boolean show) {
         if(show) {
             mNextButton.setVisibility(VISIBLE);
-            mDisclaimersHeader.setVisibility(VISIBLE);
-            mDisclaimersField.setVisibility(VISIBLE);
             mStepper.setVisibility(GONE);
         }
         else {
@@ -223,6 +221,8 @@ public class LoanAmountView
     }
 
     public void setDisclaimers(String disclaimers) {
+        mDisclaimersHeader.setVisibility(VISIBLE);
+        mDisclaimersField.setVisibility(VISIBLE);
         mDisclaimersField.setText(Html.fromHtml(disclaimers));
     }
 }
