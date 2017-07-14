@@ -406,7 +406,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                         addRequiredActivityAfterGivenActivity(TimeAtAddressActivity.class,
                                 AddressActivity.class);
                         break;
-                    case Employment:
+                    case IncomeSource:
                         addRequiredActivity(AnnualIncomeActivity.class);
                         break;
                     case Income:

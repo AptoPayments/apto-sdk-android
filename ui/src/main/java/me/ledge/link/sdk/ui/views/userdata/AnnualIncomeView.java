@@ -34,9 +34,9 @@ public class AnnualIncomeView
     private LoadingView mLoadingView;
     private TextView mIncomeText;
     private DiscreteSeekBar mIncomeSlider;
-    private TextView mEmploymentStatusHint;
-    private Spinner mEmploymentStatusSpinner;
-    private TextView mEmploymentStatusError;
+    private TextView mIncomeTypeHint;
+    private Spinner mIncomeTypeSpinner;
+    private TextView mIncomeTypeError;
     private TextView mSalaryFrequencyHint;
     private Spinner mSalaryFrequencySpinner;
     private TextView mSalaryFrequencyError;
@@ -67,9 +67,9 @@ public class AnnualIncomeView
         mIncomeText = (TextView) findViewById(R.id.tv_income);
         mIncomeSlider = (DiscreteSeekBar) findViewById(R.id.dsb_income);
 
-        mEmploymentStatusHint = (TextView) findViewById(R.id.tv_employment_status_hint);
-        mEmploymentStatusSpinner = (Spinner) findViewById(R.id.sp_employment_status);
-        mEmploymentStatusError = (TextView) findViewById(R.id.tv_employment_status_error);
+        mIncomeTypeHint = (TextView) findViewById(R.id.tv_income_type_hint);
+        mIncomeTypeSpinner = (Spinner) findViewById(R.id.sp_income_type);
+        mIncomeTypeError = (TextView) findViewById(R.id.tv_income_type_error);
 
         mSalaryFrequencyHint = (TextView) findViewById(R.id.tv_salary_frequency_hint);
         mSalaryFrequencySpinner = (Spinner) findViewById(R.id.sp_salary_frequency);
@@ -138,35 +138,35 @@ public class AnnualIncomeView
     /**
      * @return Selected housing type.
      */
-    public IdDescriptionPairDisplayVo getEmploymentStatus() {
-        return (IdDescriptionPairDisplayVo) mEmploymentStatusSpinner.getSelectedItem();
+    public IdDescriptionPairDisplayVo getIncomeType() {
+        return (IdDescriptionPairDisplayVo) mIncomeTypeSpinner.getSelectedItem();
     }
 
     /**
      * Displays a new housing type.
      * @param position Housing type index.
      */
-    public void setEmploymentStatus(int position) {
-        mEmploymentStatusSpinner.setSelection(position);
+    public void setIncomeType(int position) {
+        mIncomeTypeSpinner.setSelection(position);
     }
 
     /**
      * Stores a new {@link HintArrayAdapter} for the employment status {@link Spinner} to use.
      * @param adapter New {@link HintArrayAdapter}.
      */
-    public void setEmploymentStatusAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
-        mEmploymentStatusSpinner.setAdapter(adapter);
+    public void setIncomeTypesAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
+        mIncomeTypeSpinner.setAdapter(adapter);
     }
 
     /**
      * Updates the employment status field error display.
      * @param show Whether the error should be shown.
      */
-    public void updateEmploymentStatusError(boolean show) {
+    public void updateIncomeTypeError(boolean show) {
         if (show) {
-            mEmploymentStatusError.setVisibility(VISIBLE);
+            mIncomeTypeError.setVisibility(VISIBLE);
         } else {
-            mEmploymentStatusError.setVisibility(GONE);
+            mIncomeTypeError.setVisibility(GONE);
         }
     }
 
@@ -207,14 +207,14 @@ public class AnnualIncomeView
 
     public void showEmploymentFields(boolean show) {
         if (show) {
-            mEmploymentStatusSpinner.setVisibility(VISIBLE);
-            mEmploymentStatusHint.setVisibility(VISIBLE);
+            mIncomeTypeSpinner.setVisibility(VISIBLE);
+            mIncomeTypeHint.setVisibility(VISIBLE);
             mSalaryFrequencySpinner.setVisibility(VISIBLE);
             mSalaryFrequencyHint.setVisibility(VISIBLE);
         } else {
-            mEmploymentStatusSpinner.setVisibility(GONE);
-            mEmploymentStatusHint.setVisibility(GONE);
-            updateEmploymentStatusError(false);
+            mIncomeTypeSpinner.setVisibility(GONE);
+            mIncomeTypeHint.setVisibility(GONE);
+            updateIncomeTypeError(false);
             mSalaryFrequencySpinner.setVisibility(GONE);
             mSalaryFrequencyHint.setVisibility(GONE);
             updateSalaryFrequencyError(false);

@@ -27,7 +27,7 @@ public class MockAnnualIncomeView extends AnnualIncomeView {
     }
 
     @Override
-    public void setEmploymentStatus(int position) {
+    public void setIncomeType(int position) {
         mEmploymentStatus = position;
     }
 
@@ -52,7 +52,7 @@ public class MockAnnualIncomeView extends AnnualIncomeView {
     }
 
     @Override
-    public void updateEmploymentStatusError(boolean show) {
+    public void updateIncomeTypeError(boolean show) {
         // Do nothing.
     }
 
@@ -72,7 +72,7 @@ public class MockAnnualIncomeView extends AnnualIncomeView {
     }
 
     @Override
-    public void setEmploymentStatusAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
+    public void setIncomeTypesAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
         // Do nothing.
     }
 
@@ -82,7 +82,7 @@ public class MockAnnualIncomeView extends AnnualIncomeView {
     }
 
     @Override
-    public IdDescriptionPairDisplayVo getEmploymentStatus() {
+    public IdDescriptionPairDisplayVo getIncomeType() {
         return new IdDescriptionPairDisplayVo(mEmploymentStatus, "");
     }
 

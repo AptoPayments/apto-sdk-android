@@ -20,7 +20,7 @@ public interface ConfigService {
 
     /**
      * Creates a {@link Call} to get the config.
-     * It contains the housing types, employment statuses and salary frequencies.
+     * It contains the housing types, income types and salary frequencies.
      * @return API call to execute.
      */
     @GET(LinkApiWrapper.CONFIG_PATH)

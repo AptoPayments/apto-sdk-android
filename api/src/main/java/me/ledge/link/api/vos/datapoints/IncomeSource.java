@@ -4,26 +4,26 @@ import com.google.gson.JsonObject;
 
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 
-public class Employment extends DataPointVo {
-    public IdDescriptionPairDisplayVo employmentStatus;
+public class IncomeSource extends DataPointVo {
+    public IdDescriptionPairDisplayVo incomeType;
     public IdDescriptionPairDisplayVo salaryFrequency;
 
-    public Employment() {
+    public IncomeSource() {
         this(-1, -1, false, false);
     }
 
-    public Employment(int employmentStatus, int salaryFrequency, boolean verified,
-                      boolean notSpecified) {
-        super(DataPointType.Employment, verified, notSpecified);
-        this.employmentStatus = new IdDescriptionPairDisplayVo(employmentStatus, null);;
+    public IncomeSource(int incomeType, int salaryFrequency, boolean verified,
+                        boolean notSpecified) {
+        super(DataPointType.IncomeSource, verified, notSpecified);
+        this.incomeType = new IdDescriptionPairDisplayVo(incomeType, null);;
         this.salaryFrequency = new IdDescriptionPairDisplayVo(salaryFrequency, null);;
     }
 
     @Override
     public JsonObject toJSON() {
         JsonObject gsonObject = super.toJSON();
-        gsonObject.addProperty("data_type", "employment");
-        gsonObject.addProperty("employment_status_id", employmentStatus.getKey());
+        gsonObject.addProperty("data_type", "income_source");
+        gsonObject.addProperty("income_type_id", incomeType.getKey());
         gsonObject.addProperty("salary_frequency_id", salaryFrequency.getKey());
         return gsonObject;
     }
@@ -33,9 +33,9 @@ public class Employment extends DataPointVo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if(!super.equals(o)) return false;
-        Employment that = (Employment) o;
+        IncomeSource that = (IncomeSource) o;
 
-        if (employmentStatus != null ? !employmentStatus.getKey().equals(that.employmentStatus.getKey()) : that.employmentStatus != null)
+        if (incomeType != null ? !incomeType.getKey().equals(that.incomeType.getKey()) : that.incomeType != null)
             return false;
         return salaryFrequency != null ? salaryFrequency.getKey().equals(that.salaryFrequency.getKey()) : that.salaryFrequency == null;
 
@@ -43,7 +43,7 @@ public class Employment extends DataPointVo {
 
     @Override
     public int hashCode() {
-        int result = super.hashCode() + (employmentStatus != null ? employmentStatus.hashCode() : 0);
+        int result = super.hashCode() + (incomeType != null ? incomeType.hashCode() : 0);
         result = 31 * result + (salaryFrequency != null ? salaryFrequency.hashCode() : 0);
         return result;
     }

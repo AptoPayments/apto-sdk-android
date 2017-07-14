@@ -16,4 +16,8 @@ public class MockMonthlyIncomePresenter extends MonthlyIncomePresenter {
         // Do nothing.
     }
 
+    public void setMultiplier(int multiplier) {
+        mIncomeMultiplier = multiplier;
+    }
+
 }

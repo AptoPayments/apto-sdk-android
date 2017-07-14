@@ -43,6 +43,7 @@ public class MonthlyIncomePresenterTest {
     @Test
     public void absoluteMonthlyNetIncomeStoredInModel() {
         int incomeMultiplier  = mActivity.getResources().getInteger(R.integer.monthly_income_increment);
+        ((MockMonthlyIncomePresenter) mPresenter).setMultiplier(incomeMultiplier);
         mPresenter.attachView(mView);
 
         mView.setIncome(EXPECTED_INCOME / incomeMultiplier);

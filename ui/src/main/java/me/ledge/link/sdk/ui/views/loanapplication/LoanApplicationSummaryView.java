@@ -24,7 +24,7 @@ import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Housing;
-import me.ledge.link.api.vos.datapoints.Employment;
+import me.ledge.link.api.vos.datapoints.IncomeSource;
 import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
@@ -247,9 +247,9 @@ public class LoanApplicationSummaryView
             case Housing:
                 addKeyValueTextView(data.getHousingStatusLabel(getResources()), ((Housing) dataPoint).housingType.toString());
                 break;
-            case Employment:
-                addKeyValueTextView(data.getEmploymentStatusLabel(getResources()), ((Employment) dataPoint).employmentStatus.toString());
-                addKeyValueTextView(data.getSalaryFrequencyLabel(getResources()), ((Employment) dataPoint).salaryFrequency.toString());
+            case IncomeSource:
+                addKeyValueTextView(data.getIncomeTypeLabel(getResources()), ((IncomeSource) dataPoint).incomeType.toString());
+                addKeyValueTextView(data.getSalaryFrequencyLabel(getResources()), ((IncomeSource) dataPoint).salaryFrequency.toString());
                 break;
             case Income:
                 addKeyValueTextView(data.getAnnualIncomeLabel(getResources()), String.valueOf(((Income) dataPoint).annualGrossIncome));

@@ -14,7 +14,7 @@ import java.lang.ref.WeakReference;
 
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.Employment;
+import me.ledge.link.api.vos.datapoints.IncomeSource;
 import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
@@ -50,7 +50,7 @@ public class AnnualIncomePresenterTest {
     public void setUp() {
         mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity);
-        userDataCollectorModule.mRequiredDataPointList.add(new RequiredDataPointVo(DataPointVo.DataPointType.Employment));
+        userDataCollectorModule.mRequiredDataPointList.add(new RequiredDataPointVo(DataPointVo.DataPointType.IncomeSource));
         ModuleManager.getInstance().setModule(new WeakReference<>(userDataCollectorModule));
         mPresenter = new MockAnnualIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));
         mView = new MockAnnualIncomeView(mActivity);
@@ -75,15 +75,15 @@ public class AnnualIncomePresenterTest {
 
     @Test
     public void employmentStatusIsStoredInModel() {
-        mView.setEmploymentStatus(EXPECTED_EMPLOYMENT_STATUS);
+        mView.setIncomeType(EXPECTED_EMPLOYMENT_STATUS);
 
         mPresenter.nextClickHandler();
 
         DataPointList userData = UserStorage.getInstance().getUserData();
         Assert.assertThat("User data should not be empty.", userData, not(nullValue()));
-        Employment employment = (Employment) userData.getUniqueDataPoint(
-                DataPointVo.DataPointType.Employment, null);
-        Assert.assertThat("Incorrect employment status.", employment.employmentStatus.getKey(), equalTo(EXPECTED_EMPLOYMENT_STATUS));
+        IncomeSource employment = (IncomeSource) userData.getUniqueDataPoint(
+                DataPointVo.DataPointType.IncomeSource, null);
+        Assert.assertThat("Incorrect employment status.", employment.incomeType.getKey(), equalTo(EXPECTED_EMPLOYMENT_STATUS));
     }
 
     @Test
@@ -94,8 +94,8 @@ public class AnnualIncomePresenterTest {
 
         DataPointList userData = UserStorage.getInstance().getUserData();
         Assert.assertThat("User data should not be empty.", userData, not(nullValue()));
-        Employment employment = (Employment) userData.getUniqueDataPoint(
-                DataPointVo.DataPointType.Employment, null);
+        IncomeSource employment = (IncomeSource) userData.getUniqueDataPoint(
+                DataPointVo.DataPointType.IncomeSource, null);
         Assert.assertThat("Incorrect salary frequency.", employment.salaryFrequency.getKey(), equalTo(EXPECTED_SALARY_FREQUENCY));
     }
 

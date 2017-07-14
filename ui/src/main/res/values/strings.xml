@@ -74,9 +74,9 @@
 
     <!-- Annual Income -->
     <string name="annual_income_label">What\'s your annual pretax income?</string>
-    <string name="annual_income_employment_status_header">Employment status</string>
-    <string name="annual_income_employment_status_hint">Select an employment status&#8230;</string>
-    <string name="annual_income_employment_status_error">Please select a valid employment status.</string>
+    <string name="annual_income_income_type_header">Income type</string>
+    <string name="annual_income_income_type_hint">Select an income type&#8230;</string>
+    <string name="annual_income_income_type_error">Please select a valid income type.</string>
     <string name="annual_income_salary_frequency_header">Salary frequency</string>
     <string name="annual_income_salary_frequency_hint">Select a salary frequency&#8230;</string>
     <string name="annual_income_salary_frequency_error">Please select a valid salary frequency.</string>
@@ -161,7 +161,7 @@
     <string name="loan_application_summary_zip_code">ZIP Code</string>
     <string name="loan_application_summary_housing_status">Housing Status</string>
     <string name="loan_application_summary_annual_pretax_income">Annual Pretax Income</string>
-    <string name="loan_application_summary_employment_status">Employment Status</string>
+    <string name="loan_application_summary_income_type">Income Type</string>
     <string name="loan_application_summary_salary_frequency">Salary Frequency</string>
     <string name="loan_application_summary_monthly_net_income">Monthly Net Income</string>
     <string name="loan_application_summary_credit_score">Credit Score</string>

@@ -16,7 +16,7 @@ import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
-import me.ledge.link.sdk.sdk.tasks.config.EmploymentStatusesListTask;
+import me.ledge.link.sdk.sdk.tasks.config.IncomeTypesListTask;
 import me.ledge.link.sdk.sdk.tasks.config.HousingTypeListTask;
 import me.ledge.link.sdk.sdk.tasks.config.LinkConfigTask;
 import me.ledge.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
@@ -147,11 +147,11 @@ public class LedgeLinkSdk {
      * Gets the employment statuses list.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getEmploymentStatusesList() {
+    public static LedgeLinkApiTask getIncomeTypesList() {
         checkComponents();
 
-        EmploymentStatusesListTask task
-                = new EmploymentStatusesListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
+        IncomeTypesListTask task
+                = new IncomeTypesListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

@@ -8,7 +8,7 @@ import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.EmploymentStatusVo;
+import me.ledge.link.api.vos.responses.config.IncomeTypeVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.sdk.ui.ModuleManager;
@@ -31,7 +31,7 @@ public class AnnualIncomePresenter
     private boolean mIncomeValuesReady;
     private AnnualIncomeDelegate mDelegate;
 
-    private HintArrayAdapter<IdDescriptionPairDisplayVo> mEmploymentStatusesAdapter;
+    private HintArrayAdapter<IdDescriptionPairDisplayVo> mIncomeTypesAdapter;
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mSalaryFrequenciesAdapter;
 
     private boolean mIsEmploymentRequired;
@@ -44,7 +44,7 @@ public class AnnualIncomePresenter
         super(activity);
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
-        mIsEmploymentRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Employment));
+        mIsEmploymentRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.IncomeSource));
         mIncomeValuesReady = false;
     }
 
@@ -72,14 +72,14 @@ public class AnnualIncomePresenter
 
             if(mIsEmploymentRequired) {
                 mView.showLoading(isViewLoading());
-                if (mEmploymentStatusesAdapter == null) {
-                    mView.setEmploymentStatusAdapter(generateEmploymentStatusesAdapter(null));
+                if (mIncomeTypesAdapter == null) {
+                    mView.setIncomeTypesAdapter(generateIncomeTypesAdapter(null));
                     handleConfigResponse(config);
                 } else {
-                    mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
+                    mView.setIncomeTypesAdapter(mIncomeTypesAdapter);
 
-                    if (mModel.hasValidEmploymentStatus()) {
-                        mView.setEmploymentStatus(mModel.getEmploymentStatus().getKey());
+                    if (mModel.hasValidIncomeType()) {
+                        mView.setIncomeType(mModel.getIncomeType().getKey());
                     }
                 }
 
@@ -101,7 +101,7 @@ public class AnnualIncomePresenter
     }
     
     private boolean isViewLoading() {
-        return mEmploymentStatusesAdapter == null || mSalaryFrequenciesAdapter == null ||
+        return mIncomeTypesAdapter == null || mSalaryFrequenciesAdapter == null ||
                 !mIncomeValuesReady;
     }
 
@@ -109,18 +109,18 @@ public class AnnualIncomePresenter
      * @param list List of employment statuses.
      * @return Adapter used to display the list of employment statuses.
      */
-    private HintArrayAdapter<IdDescriptionPairDisplayVo> generateEmploymentStatusesAdapter(EmploymentStatusVo[] list) {
+    private HintArrayAdapter<IdDescriptionPairDisplayVo> generateIncomeTypesAdapter(IncomeTypeVo[] list) {
         HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
                 = new HintArrayAdapter<>(mActivity, android.R.layout.simple_spinner_dropdown_item);
 
         IdDescriptionPairDisplayVo hint
-                = new IdDescriptionPairDisplayVo(-1, mActivity.getString(R.string.annual_income_employment_status_hint));
+                = new IdDescriptionPairDisplayVo(-1, mActivity.getString(R.string.annual_income_income_type_hint));
 
         adapter.add(hint);
 
         if (list != null) {
-            for (EmploymentStatusVo type : list) {
-                adapter.add(new IdDescriptionPairDisplayVo(type.employment_status_id, type.description));
+            for (IncomeTypeVo type : list) {
+                adapter.add(new IdDescriptionPairDisplayVo(type.income_type_id, type.description));
             }
         }
 
@@ -128,7 +128,7 @@ public class AnnualIncomePresenter
     }
 
     /**
-     * TODO: This is almost exactly the same as {@link #generateEmploymentStatusesAdapter}.
+     * TODO: This is almost exactly the same as {@link #generateIncomeTypesAdapter(IncomeTypeVo[])}.
      * @param list List of salary frequencies.
      * @return Adapter used to display the list of salary frequencies.
      */
@@ -163,7 +163,7 @@ public class AnnualIncomePresenter
         mView.setListener(this);
 
         mView.showEmploymentFields(mIsEmploymentRequired);
-        mView.updateEmploymentStatusError(false);
+        mView.updateIncomeTypeError(false);
         mView.updateSalaryFrequencyError(false);
         retrieveValuesFromConfig();
     }
@@ -186,10 +186,10 @@ public class AnnualIncomePresenter
         mModel.setAnnualIncome(mView.getIncome() * mIncomeMultiplier);
 
         if(mIsEmploymentRequired) {
-            mModel.setEmploymentStatus(mView.getEmploymentStatus());
+            mModel.setIncomeType(mView.getIncomeType());
             mModel.setSalaryFrequency(mView.getSalaryFrequency());
 
-            mView.updateEmploymentStatusError(!mModel.hasValidEmploymentStatus());
+            mView.updateIncomeTypeError(!mModel.hasValidIncomeType());
             mView.updateSalaryFrequencyError(!mModel.hasValidSalaryFrequency());
 
             if(mModel.hasAllData()) {
@@ -225,16 +225,16 @@ public class AnnualIncomePresenter
     /**
      * TODO: Make handling theses lists and generating Adapters more generic.
      */
-    private void setEmploymentStatusesList(EmploymentStatusVo[] list) {
-        mEmploymentStatusesAdapter = generateEmploymentStatusesAdapter(list);
+    private void setIncomeTypesList(IncomeTypeVo[] list) {
+        mIncomeTypesAdapter = generateIncomeTypesAdapter(list);
 
         if (mView != null) {
             mActivity.runOnUiThread(() -> {
                 mView.showLoading(isViewLoading());
-                mView.setEmploymentStatusAdapter(mEmploymentStatusesAdapter);
+                mView.setIncomeTypesAdapter(mIncomeTypesAdapter);
 
-                if (mModel.hasValidEmploymentStatus()) {
-                    mView.setEmploymentStatus(mModel.getEmploymentStatus().getKey());
+                if (mModel.hasValidIncomeType()) {
+                    mView.setIncomeType(mModel.getIncomeType().getKey());
                 }
             });
         }
@@ -263,16 +263,16 @@ public class AnnualIncomePresenter
      * @param response API response.
      */
     private void handleConfigResponse(ConfigResponseVo response) {
-        if (isEmploymentStatusesPresent(response)) {
-            setEmploymentStatusesList(response.employmentStatusOpts.data);
+        if (isIncomeTypesPresent(response)) {
+            setIncomeTypesList(response.incomeTypeOpts.data);
         }
         if (isSalaryFrequencyPresent(response)) {
             setSalaryFrequenciesList(response.salaryFrequencyOpts.data);
         }
     }
 
-    private boolean isEmploymentStatusesPresent(ConfigResponseVo response) {
-        return response!=null && response.employmentStatusOpts!=null;
+    private boolean isIncomeTypesPresent(ConfigResponseVo response) {
+        return response!=null && response.incomeTypeOpts!=null;
     }
 
     private boolean isSalaryFrequencyPresent(ConfigResponseVo response) {

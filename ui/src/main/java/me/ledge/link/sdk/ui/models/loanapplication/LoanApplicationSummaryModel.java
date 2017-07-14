@@ -109,8 +109,8 @@ public class LoanApplicationSummaryModel extends LoanAgreementModel implements A
         return resources.getString(R.string.loan_application_summary_housing_status);
     }
 
-    public String getEmploymentStatusLabel(Resources resources) {
-        return resources.getString(R.string.loan_application_summary_employment_status);
+    public String getIncomeTypeLabel(Resources resources) {
+        return resources.getString(R.string.loan_application_summary_income_type);
     }
 
     public String getSalaryFrequencyLabel(Resources resources) {
