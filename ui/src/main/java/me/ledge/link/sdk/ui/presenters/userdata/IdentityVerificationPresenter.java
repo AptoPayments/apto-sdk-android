@@ -215,7 +215,7 @@ public class IdentityVerificationPresenter
 
     private void showDisclaimerOrExit() {
         mView.showLoading(true);
-        if(mDisclaimer!=null) {
+        if(mDisclaimer!=null && !mDisclaimer.value.isEmpty()) {
             showDisclaimer();
         }
         else {
