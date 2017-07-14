@@ -116,6 +116,7 @@
                     android:id="@+id/tv_disclaimers_body"
                     style="?attr/llsdk_idVerification_disclaimerStyle"
                     android:layout_marginTop="0dp"
+                    android:layout_marginBottom="48dp"
                     android:layout_below="@+id/tv_disclaimers_header" />
 
             <us.feras.mdv.MarkdownView
