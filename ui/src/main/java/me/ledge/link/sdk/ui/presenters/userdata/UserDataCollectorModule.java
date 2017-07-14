@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 
@@ -63,21 +64,22 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     public Command onUserDoesNotHaveAllRequiredData;
     public Command onUserHasAllRequiredData;
     public LinkedList<RequiredDataPointVo> mRequiredDataPointList;
-    private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
     public boolean isUpdatingProfile;
+    private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
     private DataPointList mCurrentUserDataCopy;
-
-    public static synchronized  UserDataCollectorModule getInstance(Activity activity) {
-        if (instance == null) {
-            instance = new UserDataCollectorModule(activity);
-        }
-        return instance;
-    }
+    private ProgressDialog mProgressDialog;
 
     private UserDataCollectorModule(Activity activity) {
         super(activity);
         mRequiredDataPointList = new LinkedList<>();
         mRequiredActivities = new ArrayList<>();
+    }
+
+    public static synchronized UserDataCollectorModule getInstance(Activity activity) {
+        if (instance == null) {
+            instance = new UserDataCollectorModule(activity);
+        }
+        return instance;
     }
 
     @Override
@@ -87,7 +89,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().getRequiredUserData())
+                .supplyAsync(() -> ConfigStorage.getInstance().getRequiredUserData())
                 .exceptionally(ex -> {
                     stopModule();
                     return null;
@@ -146,8 +148,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     public void phoneVerificationSucceeded(DataPointVo phone) {
         if(isEmailVerificationRequired(phone) && !isCurrentEmailVerified()) {
             startActivity(EmailVerificationActivity.class);
-        }
-        else {
+        } else {
             startActivity(getActivityAtPosition(PersonalInformationActivity.class, 1));
         }
     }
@@ -163,13 +164,11 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             LedgeLinkSdk.getResponseHandler().unsubscribe(this);
             LedgeLinkSdk.getResponseHandler().subscribe(this);
             LedgeLinkUi.loginUser(getLoginData());
-        }
-        else {
+        } else {
             Class nextActivity = getActivityAtPosition(EmailVerificationActivity.class, 1);
             if(nextActivity != null) {
                 startActivity(nextActivity);
-            }
-            else {
+            } else {
                 stopModule();
             }
         }
@@ -179,8 +178,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     public void startActivity(Class activity) {
         if(activity == null) {
             stopModule();
-        }
-        else {
+        } else {
             super.startActivity(activity);
         }
     }
@@ -192,30 +190,29 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void identityVerificationSucceeded() {
+        showLoading();
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         if (TextUtils.isEmpty(UserStorage.getInstance().getBearerToken())) {
             LedgeLinkUi.createUser(UserStorage.getInstance().getUserData());
-        }
-        else {
-            if(isUpdatingProfile && !mCurrentUserDataCopy.equals(UserStorage.getInstance().getUserData())) {
+        } else {
+            if (isUpdatingProfile && !mCurrentUserDataCopy.equals(UserStorage.getInstance().getUserData())) {
                 HashMap<DataPointVo.DataPointType, List<DataPointVo>> baseDataPoints = mCurrentUserDataCopy.getDataPoints();
                 HashMap<DataPointVo.DataPointType, List<DataPointVo>> updatedDataPoints = UserStorage.getInstance().getUserData().getDataPoints();
                 DataPointList request = new DataPointList();
 
-                for(DataPointVo.DataPointType type : baseDataPoints.keySet()) {
+                for (DataPointVo.DataPointType type : baseDataPoints.keySet()) {
                     // TO DO: for now assuming only 1 DataPoint is present, will be refactored once DataPoint ID is available
                     DataPointVo baseDataPoint = baseDataPoints.get(type).get(0);
                     DataPointVo updatedDataPoint = updatedDataPoints.get(type).get(0);
-                    if(!baseDataPoint.equals(updatedDataPoint)) {
+                    if (!baseDataPoint.equals(updatedDataPoint)) {
                         request.add(updatedDataPoint);
                     }
                 }
 
                 if(!request.getDataPoints().isEmpty()) {
                     LedgeLinkUi.updateUser(request);
-                }
-                else {
+                } else {
                     stopModule();
                 }
             }
@@ -301,8 +298,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     public void personalInformationStored() {
         if(isPhoneVerificationRequired() && !isCurrentPhoneVerified()) {
             startActivity(PhoneVerificationActivity.class);
-        }
-        else {
+        } else {
             startActivity(getActivityAtPosition(PersonalInformationActivity.class, 1));
         }
     }
@@ -312,12 +308,46 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         onBack.execute();
     }
 
+    @Override
+    public void zipCodeAndHousingTypeStored() {
+        startActivity(AddressActivity.class);
+    }
+
+    @Override
+    public void homeOnBackPressed() {
+        startActivity(PersonalInformationActivity.class);
+    }
+
+    private void startModule() {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+
+        if(mRequiredActivities.isEmpty()) {
+            onUserDoesNotHaveAllRequiredData.execute();
+        } else {
+            if (onUserHasAllRequiredData != null) {
+                onUserHasAllRequiredData.execute();
+            } else {
+                startActivity(mRequiredActivities.get(0));
+            }
+        }
+    }
+
+    private void stopModule() {
+        mProgressDialog.dismiss();
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        if(isUpdatingProfile) {
+            onBack.execute();
+        } else {
+            onFinish.execute();
+        }
+    }
+
     private void storeRequiredData(RequiredDataPointsListResponseVo requiredDataPointsList) {
         UserStorage.getInstance().setRequiredData(requiredDataPointsList);
         mRequiredDataPointList = new LinkedList<>(Arrays.asList(requiredDataPointsList.data));
 
         CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().getPOSMode())
+                .supplyAsync(() -> ConfigStorage.getInstance().getPOSMode())
                 .exceptionally(ex -> {
                     stopModule();
                     return null;
@@ -353,32 +383,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
         fillRequiredActivitiesList();
         startModule();
-    }
-
-    private void startModule() {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-
-        if(mRequiredActivities.isEmpty()) {
-            onUserDoesNotHaveAllRequiredData.execute();
-        }
-        else {
-            if(onUserHasAllRequiredData != null) {
-                onUserHasAllRequiredData.execute();
-            }
-            else {
-                startActivity(mRequiredActivities.get(0));
-            }
-        }
-    }
-
-    private void stopModule() {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        if(isUpdatingProfile) {
-            onBack.execute();
-        }
-        else {
-            onFinish.execute();
-        }
     }
 
     private void fillRequiredActivitiesList() {
@@ -491,7 +495,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                 isVerificationRequired = true;
             }
         }
-        return isVerificationRequired && (phone.getVerification().getAlternateEmailCredentials()!=null);
+        return isVerificationRequired && (phone.getVerification().getAlternateEmailCredentials() != null);
     }
 
     private boolean isCurrentEmailVerified() {
@@ -504,7 +508,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         return currentEmail.isVerified();
     }
 
-    public DataPointList getLoginData() {
+    private DataPointList getLoginData() {
         DataPointList base = UserStorage.getInstance().getUserData();
         Email emailAddress = (Email) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Email, new Email());
@@ -517,13 +521,12 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         return data;
     }
 
-    @Override
-    public void zipCodeAndHousingTypeStored() {
-        startActivity(AddressActivity.class);
-    }
-
-    @Override
-    public void homeOnBackPressed() {
-        startActivity(PersonalInformationActivity.class);
+    private void showLoading() {
+        mProgressDialog = new ProgressDialog(super.getActivity());
+        if (!super.getActivity().isFinishing()) {
+            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.show();
+        }
     }
 }
