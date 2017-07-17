@@ -36,6 +36,8 @@ import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.userdata.AnnualIncomeView;
 
+import static me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper.EXPECTED_INCOME_TYPE;
+import static me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper.EXPECTED_SALARY_FREQUENCY;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -47,8 +49,6 @@ public class AnnualIncomePresenterTest {
     private static final long EXPECTED_INCOME = 90000;
     private static final int TEST_MAX_INCOME = 100000;
     private static final int EXPECTED_MULTIPLIER = 1000;
-    private static final int EXPECTED_INCOME_TYPE = 1;
-    private static final int EXPECTED_SALARY_FREQUENCY = 2;
 
     private AppCompatActivity mActivity;
     private AnnualIncomePresenter mPresenter;
