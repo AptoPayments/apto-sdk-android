@@ -14,9 +14,15 @@ import java.lang.ref.WeakReference;
 
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.IncomeSource;
 import me.ledge.link.api.vos.datapoints.Income;
+import me.ledge.link.api.vos.datapoints.IncomeSource;
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
+import me.ledge.link.api.vos.responses.config.IncomeTypeListResponseVo;
+import me.ledge.link.api.vos.responses.config.IncomeTypeVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
+import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
+import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -26,10 +32,12 @@ import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModul
 import me.ledge.link.sdk.ui.mocks.views.userdata.MockAnnualIncomeView;
 import me.ledge.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.userdata.AnnualIncomeView;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 
@@ -39,7 +47,7 @@ public class AnnualIncomePresenterTest {
     private static final long EXPECTED_INCOME = 90000;
     private static final int TEST_MAX_INCOME = 100000;
     private static final int EXPECTED_MULTIPLIER = 1000;
-    private static final int EXPECTED_EMPLOYMENT_STATUS = 1;
+    private static final int EXPECTED_INCOME_TYPE = 1;
     private static final int EXPECTED_SALARY_FREQUENCY = 2;
 
     private AppCompatActivity mActivity;
@@ -57,6 +65,23 @@ public class AnnualIncomePresenterTest {
         LedgeLinkUi.setApiWrapper(new MockApiWrapper());
         LedgeLinkUi.setResponseHandler(new MockResponseHandler());
         mPresenter.attachView(mView);
+
+        ConfigResponseVo configResponseVo = new ConfigResponseVo();
+        configResponseVo.salaryFrequencyOpts = new SalaryFrequenciesListResponseVo();
+        configResponseVo.salaryFrequencyOpts.data = new SalaryFrequencyVo[1];
+        SalaryFrequencyVo salaryFrequencyVo = new SalaryFrequencyVo();
+        salaryFrequencyVo.salary_frequency_id = EXPECTED_SALARY_FREQUENCY;
+        configResponseVo.salaryFrequencyOpts.data[0] = salaryFrequencyVo;
+
+        configResponseVo.incomeTypeOpts = new IncomeTypeListResponseVo();
+        configResponseVo.incomeTypeOpts.data = new IncomeTypeVo[1];
+        IncomeTypeVo incomeTypeVo = new IncomeTypeVo();
+        incomeTypeVo.income_type_id = EXPECTED_INCOME_TYPE;
+        configResponseVo.incomeTypeOpts.data[0] = incomeTypeVo;
+
+        ContextConfigResponseVo contextConfigResponseVo = new ContextConfigResponseVo();
+        contextConfigResponseVo.projectConfiguration = configResponseVo;
+        UIStorage.getInstance().setConfig(contextConfigResponseVo);
     }
 
     @Test
@@ -74,29 +99,29 @@ public class AnnualIncomePresenterTest {
     }
 
     @Test
-    public void employmentStatusIsStoredInModel() {
-        mView.setIncomeType(EXPECTED_EMPLOYMENT_STATUS);
-
+    public void incomeSourceIsStoredInModel() {
+        mView.setIncomeType(EXPECTED_INCOME_TYPE);
+        mView.setSalaryFrequency(EXPECTED_SALARY_FREQUENCY);
         mPresenter.nextClickHandler();
 
         DataPointList userData = UserStorage.getInstance().getUserData();
         Assert.assertThat("User data should not be empty.", userData, not(nullValue()));
-        IncomeSource employment = (IncomeSource) userData.getUniqueDataPoint(
+        IncomeSource incomeSource = (IncomeSource) userData.getUniqueDataPoint(
                 DataPointVo.DataPointType.IncomeSource, null);
-        Assert.assertThat("Incorrect employment status.", employment.incomeType.getKey(), equalTo(EXPECTED_EMPLOYMENT_STATUS));
+        Assert.assertThat("Incorrect income type.", incomeSource.incomeType.getKey(), equalTo(EXPECTED_INCOME_TYPE));
+        Assert.assertThat("Incorrect salary frequency.", incomeSource.salaryFrequency.getKey(), equalTo(EXPECTED_SALARY_FREQUENCY));
     }
 
     @Test
-    public void salaryFrequencyIsStoredInModel() {
-        mView.setSalaryFrequency(EXPECTED_SALARY_FREQUENCY);
-
+    public void incorrectIncomeSourceIsNotStoredInModel() {
+        mView.setIncomeType(99);
         mPresenter.nextClickHandler();
 
         DataPointList userData = UserStorage.getInstance().getUserData();
         Assert.assertThat("User data should not be empty.", userData, not(nullValue()));
-        IncomeSource employment = (IncomeSource) userData.getUniqueDataPoint(
+        IncomeSource incomeSource = (IncomeSource) userData.getUniqueDataPoint(
                 DataPointVo.DataPointType.IncomeSource, null);
-        Assert.assertThat("Incorrect salary frequency.", employment.salaryFrequency.getKey(), equalTo(EXPECTED_SALARY_FREQUENCY));
+        Assert.assertThat("Income Source should be null.", incomeSource, is(nullValue()));
     }
 
     /**

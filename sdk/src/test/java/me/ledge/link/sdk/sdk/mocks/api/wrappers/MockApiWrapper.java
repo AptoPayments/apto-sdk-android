@@ -21,6 +21,8 @@ import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
+import me.ledge.link.api.vos.responses.config.CreditScoreListResponseVo;
+import me.ledge.link.api.vos.responses.config.CreditScoreVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeVo;
 import me.ledge.link.api.vos.responses.config.IncomeTypeListResponseVo;
@@ -150,6 +152,8 @@ public class MockApiWrapper implements LinkApiWrapper {
         response.salaryFrequencyOpts.data = new SalaryFrequencyVo[0];
         response.incomeTypeOpts = new IncomeTypeListResponseVo();
         response.incomeTypeOpts.data = new IncomeTypeVo[0];
+        response.creditScoreOpts = new CreditScoreListResponseVo();
+        response.creditScoreOpts.data = new CreditScoreVo[0];
         ContextConfigResponseVo configResponseVo = new ContextConfigResponseVo();
         configResponseVo.projectConfiguration = response;
         return configResponseVo;
