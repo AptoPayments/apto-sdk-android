@@ -108,6 +108,7 @@ public class AnnualIncomePresenterTest {
         Assert.assertThat("User data should not be empty.", userData, not(nullValue()));
         IncomeSource incomeSource = (IncomeSource) userData.getUniqueDataPoint(
                 DataPointVo.DataPointType.IncomeSource, null);
+        Assert.assertThat("Income source should not be empty.", incomeSource, not(nullValue()));
         Assert.assertThat("Incorrect income type.", incomeSource.incomeType.getKey(), equalTo(EXPECTED_INCOME_TYPE));
         Assert.assertThat("Incorrect salary frequency.", incomeSource.salaryFrequency.getKey(), equalTo(EXPECTED_SALARY_FREQUENCY));
     }

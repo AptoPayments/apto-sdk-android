@@ -1,9 +1,5 @@
 package me.ledge.link.sdk.ui.storages;
 
-import android.util.Log;
-
-import java.util.Arrays;
-
 import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
