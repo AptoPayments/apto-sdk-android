@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     public void offersClickedHandler() {
         WeakReference<DataPointList> userData = new WeakReference<>(null);
-        WeakReference<LoanDataVo> loanData = new WeakReference<>(null);;
+        WeakReference<LoanDataVo> loanData = new WeakReference<>(null);
         if(SHARED_USER_DATA.containsKey(USER_DATA_KEY)){
             userData = SHARED_USER_DATA.get(USER_DATA_KEY);
         }

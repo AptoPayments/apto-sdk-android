@@ -51,17 +51,19 @@ public class UserStorage {
      * @param userData New user data.
      */
     public void setUserData(DataPointList userData) {
-        Housing housing = (Housing) userData.getUniqueDataPoint(DataPointVo.DataPointType.Housing, null);
-        if(housing != null && !isHousingTypeValid(housing)) {
-            userData.removeDataPointsOf(DataPointVo.DataPointType.Housing);
-        }
-        IncomeSource incomeSource = (IncomeSource) userData.getUniqueDataPoint(DataPointVo.DataPointType.IncomeSource, null);
-        if(incomeSource != null && (!isIncomeTypeValid(incomeSource) || !isSalaryFrequencyValid(incomeSource))) {
-            userData.removeDataPointsOf(DataPointVo.DataPointType.IncomeSource);
-        }
-        CreditScore creditScore = (CreditScore) userData.getUniqueDataPoint(DataPointVo.DataPointType.CreditScore, null);
-        if(creditScore != null && !isCreditScoreValid(creditScore)) {
-            userData.removeDataPointsOf(DataPointVo.DataPointType.CreditScore);
+        if(userData!=null) {
+            Housing housing = (Housing) userData.getUniqueDataPoint(DataPointVo.DataPointType.Housing, null);
+            if(housing != null && !isHousingTypeValid(housing)) {
+                userData.removeDataPointsOf(DataPointVo.DataPointType.Housing);
+            }
+            IncomeSource incomeSource = (IncomeSource) userData.getUniqueDataPoint(DataPointVo.DataPointType.IncomeSource, null);
+            if(incomeSource != null && (!isIncomeTypeValid(incomeSource) || !isSalaryFrequencyValid(incomeSource))) {
+                userData.removeDataPointsOf(DataPointVo.DataPointType.IncomeSource);
+            }
+            CreditScore creditScore = (CreditScore) userData.getUniqueDataPoint(DataPointVo.DataPointType.CreditScore, null);
+            if(creditScore != null && !isCreditScoreValid(creditScore)) {
+                userData.removeDataPointsOf(DataPointVo.DataPointType.CreditScore);
+            }
         }
         mUserDataPoints = userData;
     }

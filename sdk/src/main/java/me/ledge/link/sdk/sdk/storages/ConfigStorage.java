@@ -97,6 +97,23 @@ public class ConfigStorage {
         }
     }
 
+    public synchronized boolean showPrequalificationDisclaimer() {
+        if(isConfigCached()) {
+            return mLinkConfig.showPrequalificationDisclaimer;
+        }
+        else {
+            CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    return mLinkConfig.showPrequalificationDisclaimer;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            });
+            return (boolean) getResultFromFuture(future);
+        }
+    }
+
     public synchronized LoanProductListVo getLoanProducts() {
         if(isConfigCached()) {
             return mLinkConfig.loanProductList;
