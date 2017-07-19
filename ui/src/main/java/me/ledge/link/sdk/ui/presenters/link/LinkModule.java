@@ -41,14 +41,30 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void showOrSkipLoanInfo() {
-        boolean shouldSkipLoanAmount = ConfigStorage.getInstance().getSkipLoanAmount();
-        boolean shouldSkipLoanPurpose = ConfigStorage.getInstance().getSkipLoanPurpose();
-        if(shouldSkipLoanAmount && shouldSkipLoanPurpose) {
+        if (isLoanInfoRequired()) {
+            showLoanInfo();
+        } else {
             skipLoanInfo();
         }
-        else {
+    }
+
+    private void showLoanInfoOrBack() {
+        if (isLoanInfoRequired()) {
             showLoanInfo();
+        } else {
+            if(mSkipDisclaimers) {
+                showHomeActivity();
+            }
+            else {
+                showLinkDisclaimers();
+            }
         }
+    }
+
+    private boolean isLoanInfoRequired() {
+        boolean shouldSkipLoanAmount = ConfigStorage.getInstance().getSkipLoanAmount();
+        boolean shouldSkipLoanPurpose = ConfigStorage.getInstance().getSkipLoanPurpose();
+        return !shouldSkipLoanAmount || !shouldSkipLoanPurpose;
     }
 
     private void showLoanInfo() {
@@ -89,7 +105,7 @@ public class LinkModule extends LedgeBaseModule {
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         userDataCollectorModule.onUserHasAllRequiredData = null;
         userDataCollectorModule.onFinish = this::showOffersList;
-        userDataCollectorModule.onBack = this::showOrSkipLoanInfo;
+        userDataCollectorModule.onBack = this::showLoanInfoOrBack;
         userDataCollectorModule.isUpdatingProfile = updateProfile;
         startModule(userDataCollectorModule);
     }
