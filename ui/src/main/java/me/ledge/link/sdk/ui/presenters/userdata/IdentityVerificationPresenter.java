@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.widget.DatePicker;
 
 import java8.util.concurrent.CompletableFuture;
+import me.ledge.link.api.vos.datapoints.Address;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.responses.config.DisclaimerVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
@@ -18,7 +19,9 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
 import me.ledge.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.DisclaimerUtil;
+import me.ledge.link.sdk.ui.utils.LanguageUtil;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 
@@ -215,7 +218,7 @@ public class IdentityVerificationPresenter
 
     private void showDisclaimerOrExit() {
         mView.showLoading(true);
-        if(mDisclaimer!=null && !mDisclaimer.value.isEmpty()) {
+        if(ConfigStorage.getInstance().showPrequalificationDisclaimer()) {
             showDisclaimer();
         }
         else {
@@ -289,14 +292,14 @@ public class IdentityVerificationPresenter
             case markdown:
                 setMarkdownDisclaimers(parseDisclaimersResponse(response));
             case external_url:
-                mDisclaimer = disclaimer;
+                setExternalUrlDisclaimer(disclaimer);
                 mView.showLoading(false);
                 break;
         }
     }
 
     private void retrieveProjectDisclaimer() {
-        mDisclaimer = ConfigStorage.getInstance().getPrequalificationDisclaimer();
+        setExternalUrlDisclaimer(ConfigStorage.getInstance().getPrequalificationDisclaimer());
     }
 
     private void errorReceived(String error) {
@@ -305,5 +308,12 @@ public class IdentityVerificationPresenter
         }
 
         mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error));
+    }
+
+    private void setExternalUrlDisclaimer(DisclaimerVo disclaimer) {
+        Address userAddress = (Address) UserStorage.getInstance().getUserData().getUniqueDataPoint(
+                DataPointVo.DataPointType.Address, null);
+        disclaimer.value = disclaimer.value.replace("[language]", LanguageUtil.getLanguage()).replace("[state]", userAddress.stateCode.toUpperCase());
+        mDisclaimer = disclaimer;
     }
 }

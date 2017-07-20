@@ -50,4 +50,6 @@ public class ConfigResponseVo {
     public ProductsListResponseVo products;
 
     public String summary;
+
+    public String language;
 }
