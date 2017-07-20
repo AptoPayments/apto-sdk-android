@@ -9,14 +9,19 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 
+import java.lang.ref.WeakReference;
+
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Income;
+import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockMonthlyIncomePresenter;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModule;
 import me.ledge.link.sdk.ui.mocks.views.userdata.MockMonthlyIncomeView;
 import me.ledge.link.sdk.ui.presenters.userdata.MonthlyIncomePresenter;
+import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.userdata.MonthlyIncomeView;
 
@@ -38,6 +43,9 @@ public class MonthlyIncomePresenterTest {
         mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
         mPresenter = new MockMonthlyIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));
         mView = new MockMonthlyIncomeView(mActivity);
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity);
+        userDataCollectorModule.mRequiredDataPointList.add(new RequiredDataPointVo(DataPointVo.DataPointType.IncomeSource));
+        ModuleManager.getInstance().setModule(new WeakReference<>(userDataCollectorModule));
     }
 
     @Test

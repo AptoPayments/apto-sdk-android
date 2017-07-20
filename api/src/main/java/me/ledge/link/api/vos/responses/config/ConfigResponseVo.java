@@ -44,6 +44,9 @@ public class ConfigResponseVo {
     @SerializedName("time_at_address_values")
     public TimeAtAddressListResponseVo timeAtAddressOpts;
 
+    @SerializedName("credit_score_values")
+    public CreditScoreListResponseVo creditScoreOpts;
+
     public ProductsListResponseVo products;
 
     public String summary;

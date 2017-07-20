@@ -21,6 +21,8 @@ import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
+import me.ledge.link.api.vos.responses.config.CreditScoreListResponseVo;
+import me.ledge.link.api.vos.responses.config.CreditScoreVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeListResponseVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeVo;
 import me.ledge.link.api.vos.responses.config.IncomeTypeListResponseVo;
@@ -66,6 +68,8 @@ public class MockApiWrapper implements LinkApiWrapper {
     public static final float OFFER_ONE_INTEREST = 19.9f;
     public static final float OFFER_ONE_PAYMENT = 123.45f;
     public static final String OFFER_ONE_APPLICATION_URL = "http://www.moremoney.com/";
+    public static final int EXPECTED_INCOME_TYPE = 1;
+    public static final int EXPECTED_SALARY_FREQUENCY = 2;
 
     private String mDeveloperKey;
     private String mDevice;
@@ -147,9 +151,17 @@ public class MockApiWrapper implements LinkApiWrapper {
         response.housingTypeOpts = new HousingTypeListResponseVo();
         response.housingTypeOpts.data = new HousingTypeVo[0];
         response.salaryFrequencyOpts = new SalaryFrequenciesListResponseVo();
-        response.salaryFrequencyOpts.data = new SalaryFrequencyVo[0];
+        response.salaryFrequencyOpts.data = new SalaryFrequencyVo[1];
+        SalaryFrequencyVo salaryFrequencyVo = new SalaryFrequencyVo();
+        salaryFrequencyVo.salary_frequency_id = EXPECTED_SALARY_FREQUENCY;
+        response.salaryFrequencyOpts.data[0] = salaryFrequencyVo;
         response.incomeTypeOpts = new IncomeTypeListResponseVo();
-        response.incomeTypeOpts.data = new IncomeTypeVo[0];
+        response.incomeTypeOpts.data = new IncomeTypeVo[1];
+        IncomeTypeVo incomeTypeVo = new IncomeTypeVo();
+        incomeTypeVo.income_type_id = EXPECTED_INCOME_TYPE;
+        response.incomeTypeOpts.data[0] = incomeTypeVo;
+        response.creditScoreOpts = new CreditScoreListResponseVo();
+        response.creditScoreOpts.data = new CreditScoreVo[0];
         ContextConfigResponseVo configResponseVo = new ContextConfigResponseVo();
         configResponseVo.projectConfiguration = response;
         return configResponseVo;

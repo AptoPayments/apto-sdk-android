@@ -40,12 +40,12 @@
 
     <!-- Fake data -->
     <string name="data_michael_loan_amount">3500</string>
-    <string name="data_michael_loan_purpose">7</string>
+    <string name="data_michael_loan_purpose">1</string>
     <string name="data_michael_first_name">Michael</string>
     <string name="data_michael_last_name">Bluth</string>
     <string name="data_michael_email">adrian@ledge.me</string>
-    <string name="data_michael_phone">9495860722</string>
-    <string name="data_michael_housing_type">2</string>
+    <string name="data_michael_phone">4248350958</string>
+    <string name="data_michael_housing_type">1</string>
     <string name="data_michael_address">31881 Stoney Creek Rd</string>
     <string name="data_michael_city">Trabuco Canyon</string>
     <string name="data_michael_state">CA</string>
@@ -53,9 +53,9 @@
     <string name="data_michael_income">25000</string>
     <string name="data_michael_birthday" tools:ignore="TypographyDashes">11-09-1989</string>
     <string name="data_michael_ssn">111111111</string>
-    <string name="data_michael_salary_frequency">4</string>
-    <string name="data_michael_income_type">3</string>
+    <string name="data_michael_salary_frequency">1</string>
+    <string name="data_michael_income_type">1</string>
     <string name="data_michael_credit_score">1</string>
-    <string name="data_michael_time_at_address">2</string>
+    <string name="data_michael_time_at_address">1</string>
 
 </resources>
