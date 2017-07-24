@@ -116,6 +116,7 @@ public class AddFinancialAccountListPresenter
         }
         else if (model instanceof AddCardModel) {
             mDelegate.addCard();
+            mResponseHandler.unsubscribe(this);
         }
     }
 
