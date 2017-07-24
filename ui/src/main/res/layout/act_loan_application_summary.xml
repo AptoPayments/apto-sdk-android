@@ -148,6 +148,7 @@
                 <TextView
                         style="?attr/llsdk_loanAgreement_sectionHeaderStyle"
                         android:id="@+id/tv_borrower_agreement_header"
+                        android:visibility="invisible"
                         android:text="@string/loan_confirmation_disclosures_header" />
 
                 <TextView
