@@ -11,6 +11,7 @@ import com.dpizarro.pinview.library.PinView;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.utils.KeyboardUtil;
+import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
 import me.ledge.link.sdk.ui.views.userdata.UserDataView;
@@ -37,6 +38,7 @@ public class PhoneVerificationView
     private PinView mPinView;
     private TextView mSubmitButton;
     private TextView mResendButton;
+    private LoadingView mLoadingView;
     final int CODE_LENGTH = 6;
 
 
@@ -64,6 +66,7 @@ public class PhoneVerificationView
         mPinView = (PinView) findViewById(R.id.pinView);
         mSubmitButton = (TextView) findViewById(R.id.tv_submit_bttn);
         mResendButton = (TextView) findViewById(R.id.tv_resend_bttn);
+        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
         configurePinView();
         setColors();
     }
@@ -87,13 +90,10 @@ public class PhoneVerificationView
     @Override
     protected void setupListeners() {
         super.setupListeners();
-        mPinView.setOnCompleteListener(new PinView.OnCompleteListener() {
-            @Override
-            public void onComplete(boolean completed, final String pinResults) {
-                if (completed) {
-                    KeyboardUtil.hideKeyboard(PhoneVerificationView.super.getContext());
-                    mListener.nextClickHandler();
-                }
+        mPinView.setOnCompleteListener((completed, pinResults) -> {
+            if (completed) {
+                KeyboardUtil.hideKeyboard(PhoneVerificationView.super.getContext());
+                mListener.nextClickHandler();
             }
         });
 
@@ -150,5 +150,9 @@ public class PhoneVerificationView
         mPinView.setPin(CODE_LENGTH);
         mPinView.setKeyboardMandatory(false);
         mPinView.setMaskPassword(false);
+    }
+
+    public void showLoading(boolean show) {
+        mLoadingView.showLoading(show);
     }
 }

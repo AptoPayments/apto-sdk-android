@@ -49,6 +49,7 @@ public class PhoneVerificationPresenter
         super.attachView(view);
         mActivity.setTitle(this.getTitle());
         mView.setListener(this);
+        mView.showLoading(false);
         mResponseHandler.subscribe(this);
     }
 
@@ -68,6 +69,7 @@ public class PhoneVerificationPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
+        mView.showLoading(true);
         // Store data.
         mModel.setVerificationCode(mView.getVerificationCode());
 
@@ -105,6 +107,7 @@ public class PhoneVerificationPresenter
      */
     @Subscribe
     public void handleResponse(FinishPhoneVerificationResponseVo response) {
+        mView.showLoading(false);
         if (response != null) {
             PhoneNumberVo phone = mModel.getPhoneFromBaseData();
             phone.getVerification().setVerificationStatus(response.status);
