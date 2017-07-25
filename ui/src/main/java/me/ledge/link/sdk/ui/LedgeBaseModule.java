@@ -31,6 +31,10 @@ public abstract class LedgeBaseModule implements Router, BaseDelegate {
         return mActivity;
     }
 
+    public void setActivity(Activity activity) {
+        mActivity = activity;
+    }
+
     /**
      * Starts another activity.
      * @param activity The Activity to start.

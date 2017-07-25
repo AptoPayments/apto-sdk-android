@@ -30,6 +30,7 @@ import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
@@ -190,7 +191,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void identityVerificationSucceeded() {
-        showLoading();
+        showLoading(true);
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         if (TextUtils.isEmpty(UserStorage.getInstance().getBearerToken())) {
@@ -333,7 +334,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     private void stopModule() {
-        mProgressDialog.dismiss();
+        showLoading(false);
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         if(isUpdatingProfile) {
             onBack.execute();
@@ -521,12 +522,12 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         return data;
     }
 
-    private void showLoading() {
-        mProgressDialog = new ProgressDialog(super.getActivity());
-        if (!super.getActivity().isFinishing()) {
-            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            mProgressDialog.setCancelable(false);
-            mProgressDialog.show();
+    private void showLoading(boolean show) {
+        if (show) {
+            mProgressDialog = ProgressDialog.show(getActivity(),null,null);
+            mProgressDialog.setContentView(R.layout.include_rl_loading);
+        } else {
+            mProgressDialog.dismiss();
         }
     }
 }

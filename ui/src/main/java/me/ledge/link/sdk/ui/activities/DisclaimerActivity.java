@@ -7,6 +7,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import me.ledge.link.api.vos.responses.config.DisclaimerVo;
+import me.ledge.link.sdk.ui.LedgeBaseModule;
+import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.utils.DisclaimerUtil;
 import me.ledge.link.sdk.ui.views.DisclaimerView;
@@ -35,6 +37,10 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
             case external_url:
                 loadUrl(DisclaimerUtil.disclaimer.value);
                 break;
+        }
+        LedgeBaseModule currentModule = ModuleManager.getInstance().getCurrentModule();
+        if(currentModule != null) {
+            currentModule.setActivity(this);
         }
     }
 
