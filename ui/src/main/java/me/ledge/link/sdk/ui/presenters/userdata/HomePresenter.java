@@ -196,7 +196,8 @@ public class HomePresenter
     }
 
     private void startZipValidation() {
-        Thread thread = new Thread(() -> {
+        // TODO: disabling zip validation and auto-fill until a service is agreed upon
+        /*Thread thread = new Thread(() -> {
             try  {
                 lookUpZipCode(mView.getZipCode());
                 mActivity.runOnUiThread(()-> mView.showLoading(false));
@@ -204,7 +205,7 @@ public class HomePresenter
                 mActivity.runOnUiThread(()-> mView.displayErrorMessage(e.getMessage()));
             }
         });
-        thread.start();
+        thread.start();*/
     }
 
     private void lookUpZipCode(String zipCode) throws SmartyException, IOException {
