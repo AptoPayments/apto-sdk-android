@@ -127,9 +127,8 @@ public class LoanApplicationsListView extends RelativeLayout
         mPager.setCurrentItem(mPager.getCurrentItem() + 1, true);
     }
 
-    /** {@inheritDoc} */
     @Override
-    public void showLoading(boolean show) {
-        mLoadingView.showLoading(show);
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 }

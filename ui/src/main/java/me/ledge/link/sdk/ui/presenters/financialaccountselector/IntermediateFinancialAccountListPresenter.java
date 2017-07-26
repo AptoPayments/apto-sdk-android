@@ -11,6 +11,7 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.financialaccountselector.IntermediateFinancialAccountListModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.financialaccountselector.IntermediateFinancialAccountListView;
 
 /**
@@ -23,6 +24,7 @@ public class IntermediateFinancialAccountListPresenter
 
 
     private IntermediateFinancialAccountListDelegate mDelegate;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
     /**
      * Creates a new {@link IntermediateFinancialAccountListPresenter} instance.
      * @param activity Activity.
@@ -43,7 +45,8 @@ public class IntermediateFinancialAccountListPresenter
     public void attachView(IntermediateFinancialAccountListView view) {
         super.attachView(view);
         mResponseHandler.subscribe(this);
-        mView.showLoading(true);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
+        mLoadingSpinnerManager.showLoading(true);
     }
 
     @Override
@@ -66,7 +69,7 @@ public class IntermediateFinancialAccountListPresenter
     public void handleResponse(DataPointList userInfo) {
         mResponseHandler.unsubscribe(this);
         if (mView != null) {
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         }
         if(userInfo.getDataPointsOf(DataPointVo.DataPointType.FinancialAccount) == null) {
             mDelegate.noFinancialAccountsReceived();
@@ -83,7 +86,7 @@ public class IntermediateFinancialAccountListPresenter
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         if (mView != null) {
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         }
         mDelegate.noFinancialAccountsReceived();
     }

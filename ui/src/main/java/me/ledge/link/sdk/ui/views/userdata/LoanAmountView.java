@@ -79,7 +79,6 @@ public class LoanAmountView
         mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
 
         setColors(UIStorage.getInstance().getPrimaryColor());
-        showLoading(false);
         updatePurposeError(false);
         setToolbarIcon();
     }
@@ -180,10 +179,9 @@ public class LoanAmountView
         }
     }
 
-    /** {@inheritDoc} */
     @Override
-    public void showLoading(boolean show) {
-        mLoadingView.showLoading(show);
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 
     public void showLoanAmount(boolean show) {

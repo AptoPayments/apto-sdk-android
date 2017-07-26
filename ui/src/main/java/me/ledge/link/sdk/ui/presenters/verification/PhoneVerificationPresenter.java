@@ -15,6 +15,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.verification.PhoneVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.utils.PhoneHelperUtil;
 import me.ledge.link.sdk.ui.views.verification.PhoneVerificationView;
 
@@ -27,6 +28,7 @@ public class PhoneVerificationPresenter
         implements PhoneVerificationView.ViewListener {
 
     private PhoneVerificationDelegate mDelegate;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
     /**
      * Creates a new {@link PhoneVerificationPresenter} instance.
      * @param activity Activity.
@@ -49,7 +51,8 @@ public class PhoneVerificationPresenter
         super.attachView(view);
         mActivity.setTitle(this.getTitle());
         mView.setListener(this);
-        mView.showLoading(false);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
+        mLoadingSpinnerManager.showLoading(false);
         mResponseHandler.subscribe(this);
     }
 
@@ -69,7 +72,7 @@ public class PhoneVerificationPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        mView.showLoading(true);
+        mLoadingSpinnerManager.showLoading(true);
         // Store data.
         mModel.setVerificationCode(mView.getVerificationCode());
 
@@ -107,7 +110,7 @@ public class PhoneVerificationPresenter
      */
     @Subscribe
     public void handleResponse(FinishPhoneVerificationResponseVo response) {
-        mView.showLoading(false);
+        mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
             PhoneNumberVo phone = mModel.getPhoneFromBaseData();
             phone.getVerification().setVerificationStatus(response.status);

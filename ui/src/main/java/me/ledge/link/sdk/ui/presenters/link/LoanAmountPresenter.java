@@ -17,6 +17,7 @@ import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.userdata.LoanAmountView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
@@ -41,6 +42,7 @@ public class LoanAmountPresenter
     private boolean isLoanAmountRequired;
     private boolean isLoanPurposeRequired;
     private String mDisclaimersText;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link LoanAmountPresenter} instance.
@@ -105,13 +107,13 @@ public class LoanAmountPresenter
     @Override
     public void attachView(LoanAmountView view) {
         super.attachView(view);
-
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mView.setListener(this);
-        mView.showLoading(true);
+        mLoadingSpinnerManager.showLoading(true);
         if(((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData) {
             mView.showGetOffersButtonAndDisclaimers(true);
             if (mDisclaimersText == null) {
-                mView.showLoading(true);
+                mLoadingSpinnerManager.showLoading(true);
                 CompletableFuture
                         .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
                         .exceptionally(ex -> {
@@ -292,7 +294,7 @@ public class LoanAmountPresenter
 
     private void errorReceived(String error) {
         if (mView != null) {
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         }
 
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error);
@@ -319,7 +321,7 @@ public class LoanAmountPresenter
                 mView.setMinMax((mModel.getMinAmount() / mAmountIncrement)+1, mModel.getMaxAmount() / mAmountIncrement);
                 mView.setAmount(mModel.getAmount() / mAmountIncrement);
             }
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         }
     }
 
@@ -348,7 +350,7 @@ public class LoanAmountPresenter
             if(!disclaimers.isEmpty()) {
                 mView.setDisclaimers(disclaimers);
             }
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         });
     }
 

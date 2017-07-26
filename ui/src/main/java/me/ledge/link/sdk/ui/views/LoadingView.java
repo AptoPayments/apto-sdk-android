@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
  * Displays a modal overlay with an indeterminate progress bar.
  * @author Wijnand
  */
-public class LoadingView extends RelativeLayout implements ViewWithIndeterminateLoading {
+public class LoadingView extends RelativeLayout {
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -24,8 +24,6 @@ public class LoadingView extends RelativeLayout implements ViewWithIndeterminate
         super(context, attrs);
     }
 
-    /** {@inheritDoc} */
-    @Override
     public void showLoading(boolean show) {
         if (show) {
             setVisibility(VISIBLE);

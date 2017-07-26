@@ -12,6 +12,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.utils.KeyboardUtil;
 import me.ledge.link.sdk.ui.views.LoadingView;
+import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
 import me.ledge.link.sdk.ui.views.userdata.UserDataView;
@@ -23,7 +24,7 @@ import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
  */
 public class PhoneVerificationView
         extends UserDataView<PhoneVerificationView.ViewListener>
-        implements ViewWithToolbar, View.OnClickListener {
+        implements ViewWithToolbar, View.OnClickListener, ViewWithIndeterminateLoading {
 
     /**
      * Callbacks this {@link View} will invoke.
@@ -152,7 +153,8 @@ public class PhoneVerificationView
         mPinView.setMaskPassword(false);
     }
 
-    public void showLoading(boolean show) {
-        mLoadingView.showLoading(show);
+    @Override
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 }

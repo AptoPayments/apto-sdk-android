@@ -59,10 +59,9 @@ public class TermsView extends UserDataView<TermsView.ViewListener>
         mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
     }
 
-    /** {@inheritDoc} */
     @Override
-    public void showLoading(boolean show) {
-        mLoadingView.showLoading(show);
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 
     public void setTerms(String disclaimer) {

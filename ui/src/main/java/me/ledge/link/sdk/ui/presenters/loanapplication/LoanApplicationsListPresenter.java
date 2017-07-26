@@ -14,6 +14,7 @@ import me.ledge.link.sdk.ui.adapters.loanapplication.LoanApplicationPagerAdapter
 import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationsListModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.loanapplication.LoanApplicationsListView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
@@ -27,6 +28,7 @@ public class LoanApplicationsListPresenter
         LoanApplicationsListView.ViewListener {
 
     private LoanApplicationDetailsResponseVo[] mApplicationsList;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link LoanApplicationsListPresenter} instance.
@@ -75,7 +77,8 @@ public class LoanApplicationsListPresenter
         super.attachView(view);
         mResponseHandler.subscribe(this);
         mView.setListener(this);
-        mView.showLoading(true);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
+        mLoadingSpinnerManager.showLoading(true);
         updateViewData();
 
         LedgeLinkUi.getLoanApplicationsList(new ListRequestVo());
@@ -130,7 +133,7 @@ public class LoanApplicationsListPresenter
         mModel = createModel();
         updateViewData();
 
-        mView.showLoading(false);
+        mLoadingSpinnerManager.showLoading(false);
     }
 
     /**
@@ -142,7 +145,7 @@ public class LoanApplicationsListPresenter
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
         mView.displayErrorMessage(message);
 
-        mView.showLoading(false);
+        mLoadingSpinnerManager.showLoading(false);
     }
 
     /**

@@ -8,6 +8,7 @@ import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.models.link.TermsModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.userdata.TermsView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
@@ -21,6 +22,7 @@ public class TermsPresenter
 
     private String mTermsText;
     private TermsDelegate mDelegate;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link TermsPresenter} instance.
@@ -54,9 +56,10 @@ public class TermsPresenter
     @Override
     public void attachView(TermsView view) {
         super.attachView(view);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mView.setListener(this);
         if (mTermsText == null) {
-            mView.showLoading(true);
+            mLoadingSpinnerManager.showLoading(true);
             CompletableFuture
                     .supplyAsync(()-> ConfigStorage.getInstance().getLinkDisclaimer())
                     .exceptionally(ex -> {
@@ -85,14 +88,14 @@ public class TermsPresenter
         mTermsText = terms;
 
         mView.setTerms(terms);
-        mView.showLoading(false);
+        mLoadingSpinnerManager.showLoading(false);
     }
 
     private void setMarkDownTerms(String terms) {
         mTermsText = terms;
         mActivity.runOnUiThread(() -> {
             mView.setMarkDownTerms(terms);
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         });
     }
 

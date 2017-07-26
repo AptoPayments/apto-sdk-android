@@ -6,10 +6,6 @@ package me.ledge.link.sdk.ui.views;
  */
 public interface ViewWithIndeterminateLoading {
 
-    /**
-     * Changes the loading overlay visibility.
-     * @param show Whether the loading overlay should be shown.
-     */
-    void showLoading(boolean show);
+    LoadingView getLoadingView();
 
 }

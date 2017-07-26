@@ -110,7 +110,6 @@ public class OffersCarouselView extends OffersBaseView {
 
         showEmptyCase(false);
         showError(false);
-        showLoading(false);
     }
 
     private void setColors() {
@@ -188,9 +187,8 @@ public class OffersCarouselView extends OffersBaseView {
         showView(show, mErrorView);
     }
 
-    /** {@inheritDoc} */
     @Override
-    public void showLoading(boolean show) {
-        mLoadingView.showLoading(show);
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 }

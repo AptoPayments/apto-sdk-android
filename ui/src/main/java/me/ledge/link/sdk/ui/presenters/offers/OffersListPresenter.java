@@ -33,6 +33,7 @@ import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.offers.OfferCarouselSummaryView;
 import me.ledge.link.sdk.ui.views.offers.OfferListSummaryView;
 import me.ledge.link.sdk.ui.views.offers.OffersBaseView;
@@ -55,6 +56,7 @@ public class OffersListPresenter
     private OffersListRecyclerAdapter mAdapter;
     private DualOptionDialogFragment mDialog;
     private NotificationDialogFragment mNotificationDialog;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     private OffersListDelegate mDelegate;
     /**
@@ -81,7 +83,7 @@ public class OffersListPresenter
      */
     private void reloadOffers() {
         if (mView != null) {
-            mView.showLoading(true);
+            mLoadingSpinnerManager.showLoading(true);
         }
 
         clearAdapter();
@@ -130,6 +132,7 @@ public class OffersListPresenter
     @Override
     public void attachView(OffersBaseView view) {
         super.attachView(view);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mResponseHandler.subscribe(this);
 
         mView.setData(mModel);
@@ -187,7 +190,7 @@ public class OffersListPresenter
             }
             else {
                 if (mView != null) {
-                    mView.showLoading(true);
+                    mLoadingSpinnerManager.showLoading(true);
                 }
 
                 LedgeLinkUi.createLoanApplication(offer.getOfferId());
@@ -273,7 +276,7 @@ public class OffersListPresenter
         }
 
         if (mView != null) {
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
             mView.showError(false);
             mView.showEmptyCase(offers.isComplete() && (offers.getList() == null || offers.getList().size() <= 0));
         }
@@ -296,7 +299,7 @@ public class OffersListPresenter
      */
     @Subscribe
     public void showLoanApplicationScreen(LoanApplicationDetailsResponseVo response) {
-        mView.showLoading(false);
+        mLoadingSpinnerManager.showLoading(false);
         LoanStorage.getInstance().setCurrentLoanApplication(response);
 
         switch (response.status) {
@@ -322,7 +325,7 @@ public class OffersListPresenter
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         if (mView != null) {
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         }
 
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());

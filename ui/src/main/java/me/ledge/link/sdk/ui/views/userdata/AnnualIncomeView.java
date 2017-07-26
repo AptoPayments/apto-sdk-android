@@ -129,10 +129,9 @@ public class AnnualIncomeView
     }
 
 
-    /** {@inheritDoc} */
     @Override
-    public void showLoading(boolean show) {
-        mLoadingView.showLoading(show);
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 
     /**

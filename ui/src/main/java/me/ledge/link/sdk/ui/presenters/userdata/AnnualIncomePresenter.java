@@ -16,6 +16,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AnnualIncomeModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.UIStorage;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.userdata.AnnualIncomeView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 
@@ -35,6 +36,7 @@ public class AnnualIncomePresenter
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mSalaryFrequenciesAdapter;
 
     private boolean mIsEmploymentRequired;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link AnnualIncomePresenter} instance.
@@ -71,7 +73,7 @@ public class AnnualIncomePresenter
             mView.setIncome(mModel.getAnnualIncome() / mIncomeMultiplier);
 
             if(mIsEmploymentRequired) {
-                mView.showLoading(isViewLoading());
+                mLoadingSpinnerManager.showLoading(isViewLoading());
                 if (mIncomeTypesAdapter == null) {
                     mView.setIncomeTypesAdapter(generateIncomeTypesAdapter(null));
                     handleConfigResponse(config);
@@ -95,7 +97,7 @@ public class AnnualIncomePresenter
                 }
             }
             else {
-                mView.showLoading(!mIncomeValuesReady);
+                mLoadingSpinnerManager.showLoading(!mIncomeValuesReady);
             }
         });
     }
@@ -161,6 +163,7 @@ public class AnnualIncomePresenter
     public void attachView(AnnualIncomeView view) {
         super.attachView(view);
         mView.setListener(this);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
 
         mView.showEmploymentFields(mIsEmploymentRequired);
         mView.updateIncomeTypeError(false);
@@ -230,7 +233,7 @@ public class AnnualIncomePresenter
 
         if (mView != null) {
             mActivity.runOnUiThread(() -> {
-                mView.showLoading(isViewLoading());
+                mLoadingSpinnerManager.showLoading(isViewLoading());
                 mView.setIncomeTypesAdapter(mIncomeTypesAdapter);
 
                 if (mModel.hasValidIncomeType()) {
@@ -248,7 +251,7 @@ public class AnnualIncomePresenter
 
         if (mView != null) {
             mActivity.runOnUiThread(() -> {
-                mView.showLoading(isViewLoading());
+                mLoadingSpinnerManager.showLoading(isViewLoading());
                 mView.setSalaryFrequencyAdapter(mSalaryFrequenciesAdapter);
 
                 if (mModel.hasValidSalaryFrequency()) {
