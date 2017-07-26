@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui.mocks.views.userdata;
 import android.content.Context;
 
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.userdata.AnnualIncomeView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 
@@ -67,8 +68,8 @@ public class MockAnnualIncomeView extends AnnualIncomeView {
     }
 
     @Override
-    public void showLoading(boolean show) {
-        // Do nothing.
+    public LoadingView getLoadingView() {
+        return null;
     }
 
     @Override
