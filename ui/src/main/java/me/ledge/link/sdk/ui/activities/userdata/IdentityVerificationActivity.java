@@ -32,10 +32,4 @@ public class IdentityVerificationActivity
             throw new NullPointerException("Received Module does not implement IdentityVerificationDelegate!");
         }
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mView.showLoading(false);
-    }
 }

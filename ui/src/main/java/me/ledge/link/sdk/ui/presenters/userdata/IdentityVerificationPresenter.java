@@ -224,10 +224,10 @@ public class IdentityVerificationPresenter
         else {
             exit();
         }
+        mView.showLoading(false);
     }
 
     private void exit() {
-        mView.showLoading(false);
         mDelegate.identityVerificationSucceeded();
     }
 
