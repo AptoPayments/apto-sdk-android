@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 
@@ -525,7 +526,8 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private void showLoading(boolean show) {
         if (show) {
             mProgressDialog = ProgressDialog.show(getActivity(),null,null);
-            mProgressDialog.setContentView(R.layout.include_rl_loading);
+            mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            mProgressDialog.setContentView(R.layout.include_rl_loading_transparent);
         } else {
             mProgressDialog.dismiss();
         }
