@@ -232,6 +232,7 @@ public class IdentityVerificationPresenter
     }
 
     private void showDisclaimer() {
+        retrieveProjectDisclaimer();
         DisclaimerUtil.showDisclaimer(mActivity, mDisclaimer, this::exit);
     }
 
@@ -281,7 +282,6 @@ public class IdentityVerificationPresenter
     private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
         DisclaimerVo disclaimer = response.data[0].preQualificationDisclaimer;
         if(disclaimer.value.isEmpty()) {
-            retrieveProjectDisclaimer();
             mView.showLoading(false);
             return;
         }
