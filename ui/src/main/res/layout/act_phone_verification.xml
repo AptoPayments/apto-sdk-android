@@ -68,4 +68,6 @@
         </RelativeLayout>
     </ScrollView>
 
+    <include layout="@layout/include_rl_loading" />
+
 </me.ledge.link.sdk.ui.views.verification.PhoneVerificationView>

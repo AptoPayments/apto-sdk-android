@@ -79,7 +79,6 @@ public class IdentityVerificationView
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        showLoading(false);
         ((AppCompatCheckBox) mSocialSecurityAvailableCheck).setSupportButtonTintList(
                 ColorStateList.valueOf(UIStorage.getInstance().getPrimaryColor()));
     }
@@ -244,10 +243,9 @@ public class IdentityVerificationView
         mMarkdownView.loadMarkdown(disclaimer);
     }
 
-    /** {@inheritDoc} */
     @Override
-    public void showLoading(boolean show) {
-        mLoadingView.showLoading(show);
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 
     public void setButtonText(String buttonText) {

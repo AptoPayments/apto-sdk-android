@@ -193,10 +193,9 @@ public class LoanAgreementView
         mPaymentField.setText(data.getPaymentAmount(getResources()));
     }
 
-    /** {@inheritDoc} */
     @Override
-    public void showLoading(boolean show) {
-        mLoadingView.showLoading(show);
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 
     /**

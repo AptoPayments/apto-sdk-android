@@ -22,6 +22,7 @@ import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.DisclaimerUtil;
 import me.ledge.link.sdk.ui.utils.LanguageUtil;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.utils.ResourceUtil;
 import me.ledge.link.sdk.ui.views.userdata.IdentityVerificationView;
 
@@ -40,6 +41,7 @@ public class IdentityVerificationPresenter
     private boolean mIsSSNNotAvailableAllowed;
     private boolean mIsBirthdayRequired;
     private DisclaimerVo mDisclaimer;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
@@ -96,6 +98,7 @@ public class IdentityVerificationPresenter
     public void attachView(IdentityVerificationView view) {
         super.attachView(view);
         mView.setListener(this);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
 
         mView.showBirthday(mIsBirthdayRequired);
         if(mIsBirthdayRequired && mModel.hasValidBirthday()) {
@@ -123,7 +126,7 @@ public class IdentityVerificationPresenter
         }
 
         if (mDisclaimersText == null) {
-            mView.showLoading(true);
+            mLoadingSpinnerManager.showLoading(true);
             CompletableFuture
                     .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
                     .exceptionally(ex -> {
@@ -217,17 +220,17 @@ public class IdentityVerificationPresenter
     }
 
     private void showDisclaimerOrExit() {
-        mView.showLoading(true);
+        mLoadingSpinnerManager.showLoading(true);
         if(ConfigStorage.getInstance().showPrequalificationDisclaimer()) {
             showDisclaimer();
         }
         else {
             exit();
         }
+        mLoadingSpinnerManager.showLoading(false);
     }
 
     private void exit() {
-        mView.showLoading(false);
         mDelegate.identityVerificationSucceeded();
     }
 
@@ -267,7 +270,7 @@ public class IdentityVerificationPresenter
         mDisclaimersText = disclaimers;
         mActivity.runOnUiThread(() -> {
             mView.setDisclaimers(disclaimers);
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         });
     }
 
@@ -275,14 +278,14 @@ public class IdentityVerificationPresenter
         mDisclaimersText = disclaimers;
         mActivity.runOnUiThread(() -> {
             mView.setMarkdownDisclaimers(disclaimers);
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         });
     }
 
     private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
         DisclaimerVo disclaimer = response.data[0].preQualificationDisclaimer;
         if(disclaimer.value.isEmpty()) {
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
             return;
         }
         switch(DisclaimerVo.formatValues.valueOf(disclaimer.format)) {
@@ -293,7 +296,7 @@ public class IdentityVerificationPresenter
                 setMarkdownDisclaimers(parseDisclaimersResponse(response));
             case external_url:
                 setExternalUrlDisclaimer(disclaimer);
-                mView.showLoading(false);
+                mLoadingSpinnerManager.showLoading(false);
                 break;
         }
     }
@@ -304,7 +307,7 @@ public class IdentityVerificationPresenter
 
     private void errorReceived(String error) {
         if (mView != null) {
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         }
 
         mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error));

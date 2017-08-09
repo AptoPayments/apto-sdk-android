@@ -67,6 +67,7 @@ public class LoanApplicationSummaryView
     private TextView mPaymentField;
     private TextView mConfirmButton;
     private TextView mDisclaimer;
+    private TextView mDisclaimerHeader;
 
     private ViewListener mViewListener;
     private int mMaxScroll;
@@ -123,6 +124,7 @@ public class LoanApplicationSummaryView
         mPaymentField = (TextView) findViewById(R.id.tv_payment);
         mConfirmButton = (TextView) findViewById(R.id.tv_confirm_btn);
         mDisclaimer = (TextView) findViewById(R.id.tv_application_disclaimer);
+        mDisclaimerHeader = (TextView) findViewById(R.id.tv_borrower_agreement_header);
         mApplicationInfoLinearLayout = (LinearLayout) findViewById(R.id.lv_loanSummary_applicationInfo);
     }
 
@@ -276,10 +278,9 @@ public class LoanApplicationSummaryView
         mApplicationInfoLinearLayout.addView(view);
     }
 
-    /** {@inheritDoc} */
     @Override
-    public void showLoading(boolean show) {
-        mLoadingView.showLoading(show);
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 
     /**
@@ -333,6 +334,7 @@ public class LoanApplicationSummaryView
     }
 
     public void setDisclaimer(String disclaimer) {
+        mDisclaimerHeader.setVisibility(VISIBLE);
         mDisclaimer.setText(disclaimer);
     }
 

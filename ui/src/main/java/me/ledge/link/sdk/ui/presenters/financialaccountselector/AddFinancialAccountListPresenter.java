@@ -14,6 +14,7 @@ import me.ledge.link.sdk.ui.models.financialaccountselector.AddFinancialAccountM
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddVirtualCardModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.financialaccountselector.AddFinancialAccountListView;
 
 /**
@@ -25,6 +26,7 @@ public class AddFinancialAccountListPresenter
         implements Presenter<AddFinancialAccountListModel, AddFinancialAccountListView>, AddFinancialAccountListView.ViewListener {
 
     private AddFinancialAccountListDelegate mDelegate;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link AddFinancialAccountListPresenter} instance.
@@ -57,7 +59,8 @@ public class AddFinancialAccountListPresenter
     @Override
     public void attachView(AddFinancialAccountListView view) {
         super.attachView(view);
-        mView.showLoading(false);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
+        mLoadingSpinnerManager.showLoading(false);
         mResponseHandler.subscribe(this);
         AddFinancialAccountModel[] viewData = createViewData(mModel.getFinancialAccountTypes());
         mView.setData(viewData);
@@ -110,12 +113,13 @@ public class AddFinancialAccountListPresenter
             mDelegate.addBankAccount();
         }
         else if (model instanceof  AddVirtualCardModel) {
-            mView.showLoading(true);
+            mLoadingSpinnerManager.showLoading(true);
             AddVirtualCardModel mModel = (AddVirtualCardModel) model;
             LedgeLinkUi.issueVirtualCard(mModel.getRequest());
         }
         else if (model instanceof AddCardModel) {
             mDelegate.addCard();
+            mResponseHandler.unsubscribe(this);
         }
     }
 
@@ -126,7 +130,7 @@ public class AddFinancialAccountListPresenter
     @Subscribe
     public void handleResponse(Card virtualCard) {
         if (mView != null) {
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         }
         mDelegate.virtualCardIssued(virtualCard);
     }
@@ -138,7 +142,7 @@ public class AddFinancialAccountListPresenter
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         if (mView != null) {
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
             mView.displayErrorMessage("API Error: " + error);
         }
     }

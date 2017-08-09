@@ -10,8 +10,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_settings_black_24dp"
         android:tint="@android:color/darker_gray"
-        android:paddingTop="16dp"
-        android:paddingRight="16dp"
+        android:padding="20dp"
         android:layout_alignParentRight="true" />
 
     <RelativeLayout

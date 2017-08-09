@@ -21,6 +21,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.HomeModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.UIStorage;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.userdata.HomeView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 
@@ -35,6 +36,7 @@ public class HomePresenter
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mHousingTypeAdapter;
     private HomeDelegate mDelegate;
     private boolean mIsHousingTypeRequired;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link HomePresenter} instance.
@@ -73,6 +75,7 @@ public class HomePresenter
     @Override
     public void attachView(HomeView view) {
         super.attachView(view);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
 
         // Set data.
         mView.setZipCode(mModel.getZip());
@@ -82,7 +85,7 @@ public class HomePresenter
         mView.showHousingTypeHint(mIsHousingTypeRequired);
         if(mIsHousingTypeRequired) {
             if (mHousingTypeAdapter == null) {
-                mView.showLoading(true);
+                mLoadingSpinnerManager.showLoading(true);
                 // Load housing types list.
                 CompletableFuture
                         .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
@@ -100,7 +103,7 @@ public class HomePresenter
             }
         }
         else {
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         }
         mView.setListener(this);
     }
@@ -120,7 +123,7 @@ public class HomePresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        mView.showLoading(true);
+        mLoadingSpinnerManager.showLoading(true);
         startZipValidation();
 
         // Store data.
@@ -180,7 +183,7 @@ public class HomePresenter
 
         if (mView != null) {
             mActivity.runOnUiThread(()-> {
-                mView.showLoading(false);
+                mLoadingSpinnerManager.showLoading(false);
                 mView.setHousingTypeAdapter(mHousingTypeAdapter);
 
                 if (mModel.hasValidHousingType()) {
@@ -196,7 +199,8 @@ public class HomePresenter
     }
 
     private void startZipValidation() {
-        Thread thread = new Thread(() -> {
+        // TODO: disabling zip validation and auto-fill until a service is agreed upon
+        /*Thread thread = new Thread(() -> {
             try  {
                 lookUpZipCode(mView.getZipCode());
                 mActivity.runOnUiThread(()-> mView.showLoading(false));
@@ -204,7 +208,7 @@ public class HomePresenter
                 mActivity.runOnUiThread(()-> mView.displayErrorMessage(e.getMessage()));
             }
         });
-        thread.start();
+        thread.start();*/
     }
 
     private void lookUpZipCode(String zipCode) throws SmartyException, IOException {

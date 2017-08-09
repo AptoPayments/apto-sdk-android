@@ -17,6 +17,7 @@ import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.loanapplication.LoanAgreementView;
 
 /**
@@ -29,6 +30,7 @@ public class LoanAgreementPresenter
 
     private NotificationDialogFragment mNotificationDialog;
     private LoanAgreementDelegate mDelegate;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link LoanAgreementPresenter} instance.
@@ -60,7 +62,8 @@ public class LoanAgreementPresenter
                 .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
                 .thenAccept(this::eSignDisclaimersListRetrieved);
         mView.setViewListener(this);
-        mView.showLoading(false);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
+        mLoadingSpinnerManager.showLoading(false);
         mView.updateBottomButton(false);
         mView.setData(mModel);
 

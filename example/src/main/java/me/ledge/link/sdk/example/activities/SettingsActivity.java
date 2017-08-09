@@ -1,5 +1,6 @@
 package me.ledge.link.sdk.example.activities;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,6 @@ import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 
-import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.api.vos.datapoints.Address;
 import me.ledge.link.api.vos.datapoints.ArmedForces;
@@ -54,6 +54,24 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
 
     private SettingsView mView;
     private ConfigResponseVo mProjectConfig;
+
+    /** {@inheritDoc} */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mView = (SettingsView) View.inflate(this, R.layout.act_settings, null);
+        mView.setViewListener(this);
+        setContentView(mView);
+        mView.showLoading(true);
+
+        if( SharedPreferencesStorage.getUserToken(this, false) != null) {
+            mView.setUserToken(UserStorage.getInstance().getBearerToken());
+        }
+
+        setUpToolbar();
+        new LoadConfigTask().execute();
+    }
 
     /**
      * @param source String source to parse to an integer.
@@ -183,37 +201,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         return !TextUtils.isEmpty(fieldValue);
     }
 
-    /** {@inheritDoc} */
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        mView = (SettingsView) View.inflate(this, R.layout.act_settings, null);
-        mView.showLoading(true);
-        mView.setViewListener(this);
-
-        setContentView(mView);
-
-        if( SharedPreferencesStorage.getUserToken(this, false) != null) {
-            mView.setUserToken(UserStorage.getInstance().getBearerToken());
-        }
-
-        setUpToolbar();
-        UIStorage.getInstance().init();
-
-        // Load the loan purpose list so we can create a drop-down.
-        CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().getLoanPurposes())
-                .exceptionally(ex -> {
-                    errorReceived(ex.getMessage());
-                    return null;
-                })
-                .thenAccept(this::loanPurposesListRetrieved);
-
-        displayConfigElements();
-        showRequiredFields();
-    }
-
     private void setUpToolbar() {
         Toolbar settingsToolbar = (Toolbar) findViewById(R.id.settings_toolbar);
         setSupportActionBar(settingsToolbar);
@@ -238,12 +225,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
             return true;
         }
         return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     /** {@inheritDoc} */
@@ -315,7 +296,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
                 }
             }
             mView.setPurposeAdapter(adapter);
-            mView.showLoading(false);
         });
     }
 
@@ -472,6 +452,23 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
                     mView.showTimeAtAddress();
                     break;
             }
+        }
+    }
+
+    private class LoadConfigTask extends AsyncTask<Void, Void, LoanPurposesResponseVo> {
+
+        @Override
+        protected LoanPurposesResponseVo doInBackground(Void... params) {
+            UIStorage.getInstance().init();
+            return ConfigStorage.getInstance().getLoanPurposes();
+        }
+
+        @Override
+        protected void onPostExecute(LoanPurposesResponseVo loanPurposes) {
+            loanPurposesListRetrieved(loanPurposes);
+            displayConfigElements();
+            showRequiredFields();
+            mView.showLoading(false);
         }
     }
 }

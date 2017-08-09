@@ -11,6 +11,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.AddressModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.tasks.AddressVerificationTask;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.userdata.AddressView;
 
 /**
@@ -25,6 +26,7 @@ public class AddressPresenter
     private AddressDelegate mDelegate;
     private boolean mIsStrictAddressValidationEnabled;
     private AddressVerificationTask mAddressVerificationTask;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link AddressPresenter} instance.
@@ -49,6 +51,7 @@ public class AddressPresenter
     @Override
     public void attachView(AddressView view) {
         super.attachView(view);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().isStrictAddressValidationEnabled())
                 .thenAccept(this::setIsAddressValidationEnabled);
@@ -73,7 +76,7 @@ public class AddressPresenter
         }
 
         mView.setListener(this);
-        mView.showLoading(false);
+        mLoadingSpinnerManager.showLoading(false);
     }
 
     private void setIsAddressValidationEnabled(boolean isAddressValidationEnabled) {
@@ -115,10 +118,10 @@ public class AddressPresenter
             validateData();
         }
         else {
-            mView.showLoading(true);
+            mLoadingSpinnerManager.showLoading(true);
             startAddressVerification(e -> {
                 mActivity.runOnUiThread(() -> {
-                    mView.showLoading(false);
+                    mLoadingSpinnerManager.showLoading(false);
                     if (e == null) {
                         if(mModel.hasVerifiedAddress()) {
                             validateData();

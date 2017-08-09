@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
+import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.Model;
@@ -49,8 +50,11 @@ public abstract class MvpActivity<M extends ActivityModel, V extends View & View
 
         mView = createView();
         setContentView(mView);
-
-        mPresenter = createPresenter(ModuleManager.getInstance().getCurrentModule());
+        LedgeBaseModule currentModule = ModuleManager.getInstance().getCurrentModule();
+        if(currentModule != null) {
+            currentModule.setActivity(this);
+        }
+        mPresenter = createPresenter(currentModule);
         mPresenter.attachView(mView);
     }
 

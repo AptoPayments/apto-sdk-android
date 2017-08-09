@@ -27,6 +27,7 @@ import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.loanapplication.LoanApplicationSummaryView;
 
 /**
@@ -38,6 +39,7 @@ public class LoanApplicationSummaryPresenter
         implements Presenter<LoanApplicationSummaryModel, LoanApplicationSummaryView>, LoanApplicationSummaryView.ViewListener {
 
     private LoanApplicationSummaryDelegate mDelegate;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link LoanApplicationSummaryPresenter} instance.
@@ -71,7 +73,8 @@ public class LoanApplicationSummaryPresenter
         mResponseHandler.subscribe(this);
 
         mView.setViewListener(this);
-        mView.showLoading(false);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
+        mLoadingSpinnerManager.showLoading(false);
         mView.updateBottomButton(false);
         mView.setData(mModel);
     }
@@ -145,7 +148,7 @@ public class LoanApplicationSummaryPresenter
     public void confirmClickHandler() {
         if (mView.getCurrentScroll() >= mView.getMaxScroll()) {
             if (mView != null) {
-                mView.showLoading(true);
+                mLoadingSpinnerManager.showLoading(true);
             }
             OfferVo selectedOffer = LoanStorage.getInstance().getSelectedOffer();
             LedgeLinkUi.createLoanApplication(selectedOffer.id);
@@ -161,7 +164,7 @@ public class LoanApplicationSummaryPresenter
      */
     @Subscribe
     public void showLoanApplicationScreen(LoanApplicationDetailsResponseVo response) {
-        mView.showLoading(false);
+        mLoadingSpinnerManager.showLoading(false);
         LoanStorage.getInstance().setCurrentLoanApplication(response);
 
         switch (response.status) {
@@ -187,7 +190,7 @@ public class LoanApplicationSummaryPresenter
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         if (mView != null) {
-            mView.showLoading(false);
+            mLoadingSpinnerManager.showLoading(false);
         }
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
         mView.displayErrorMessage(message);

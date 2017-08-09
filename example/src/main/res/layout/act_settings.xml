@@ -264,10 +264,11 @@
 
                 <ImageButton
                     android:id="@+id/bttn_clear_user_token"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginLeft="2dp"
                     android:layout_gravity="center_vertical"
+                    android:padding="24dp"
                     android:src="@android:drawable/ic_menu_close_clear_cancel"/>
             </LinearLayout>
 
