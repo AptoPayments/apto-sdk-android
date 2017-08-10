@@ -260,4 +260,5 @@
     <!-- Disclaimers -->
     <string name="disclaimer_accept">Accept</string>
     <string name="disclaimer_cancel">Cancel</string>
+    <string name="disclaimer_error">Error loading disclaimer</string>
 </resources>

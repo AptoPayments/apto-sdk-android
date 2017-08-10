@@ -235,7 +235,7 @@ public class IdentityVerificationPresenter
     }
 
     private void showDisclaimer() {
-        retrieveProjectDisclaimer();
+        setExternalUrlDisclaimer(ConfigStorage.getInstance().getPrequalificationDisclaimer());
         DisclaimerUtil.showDisclaimer(mActivity, mDisclaimer, this::exit);
     }
 
@@ -299,10 +299,6 @@ public class IdentityVerificationPresenter
                 mLoadingSpinnerManager.showLoading(false);
                 break;
         }
-    }
-
-    private void retrieveProjectDisclaimer() {
-        setExternalUrlDisclaimer(ConfigStorage.getInstance().getPrequalificationDisclaimer());
     }
 
     private void errorReceived(String error) {
