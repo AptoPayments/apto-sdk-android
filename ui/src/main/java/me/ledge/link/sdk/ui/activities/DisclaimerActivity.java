@@ -59,10 +59,7 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-                CharSequence extension = ".pdf";
-                if (title.contains(extension)) {
-                    mDisclosureLoaded = true;
-                }
+                mDisclosureLoaded = true;
             }
         });
         webview.setWebViewClient(new WebViewClient(){
