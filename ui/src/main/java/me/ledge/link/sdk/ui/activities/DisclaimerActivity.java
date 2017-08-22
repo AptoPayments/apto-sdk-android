@@ -3,6 +3,9 @@ package me.ledge.link.sdk.ui.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -21,6 +24,9 @@ import me.ledge.link.sdk.ui.views.DisclaimerView;
 public class DisclaimerActivity extends AppCompatActivity implements DisclaimerView.ViewListener {
 
     private DisclaimerView mView;
+    private boolean mDisclosureLoaded = false;
+    private final short mMaxNumberOfTries = 3;
+    private short mNumberOfTries = 0;
     private static final String mPDFReader = "http://drive.google.com/viewerng/viewer?embedded=true&url=";
 
     @Override
@@ -49,15 +55,43 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
         webview.clearCache(true);
         webview.clearHistory();
         webview.getSettings().setJavaScriptEnabled(true);
+        webview.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+                super.onReceivedTitle(view, title);
+                mDisclosureLoaded = true;
+            }
+        });
         webview.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                if (!mDisclosureLoaded) {
+                    retryLoading(view, url);
+                }
+            }
+            @Override
+            public void onReceivedHttpError (WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+                retryLoading(view, url);
+            }
         });
         webview.setVisibility(View.VISIBLE);
         webview.loadUrl(mPDFReader + url);
+    }
+
+    private void retryLoading(WebView view, String url) {
+        if(mNumberOfTries < mMaxNumberOfTries) {
+            mNumberOfTries += 1;
+            view.loadUrl(url);
+        }
+        else {
+            mView.displayErrorMessage(getString(R.string.disclaimer_error));
+        }
     }
 
     private void setView() {
@@ -68,7 +102,9 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
 
     @Override
     public void acceptClickHandler() {
-        DisclaimerUtil.onAccept.execute();
+        if(mDisclosureLoaded) {
+            DisclaimerUtil.onAccept.execute();
+        }
     }
 
     @Override
