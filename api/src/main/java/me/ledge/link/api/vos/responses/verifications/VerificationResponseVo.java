@@ -9,5 +9,6 @@ public class VerificationResponseVo {
     public String type;
     public String verification_id;
     public String status;
+    public String secret;
     public AlternateCredentialsListResponseVo alternate_credentials;
 }

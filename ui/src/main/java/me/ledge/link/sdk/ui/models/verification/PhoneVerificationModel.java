@@ -120,6 +120,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
         PhoneNumberVo phoneNumber = getPhoneFromBaseData();
         request.country_code = phoneNumber.getPhone().getCountryCode();
         request.phone_number = String.valueOf(phoneNumber.getPhone().getNationalNumber());
+        request.show_verification_secret = true;
 
         return request;
     }

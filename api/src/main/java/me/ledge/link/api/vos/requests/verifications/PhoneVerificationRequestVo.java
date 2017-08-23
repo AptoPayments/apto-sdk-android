@@ -16,4 +16,9 @@ public class PhoneVerificationRequestVo extends UnauthorizedRequestVo {
      * Country code.
      */
     public int country_code;
+
+    /**
+     * Returns verification secret in response (for testing purposes)
+     */
+    public boolean show_verification_secret;
 }

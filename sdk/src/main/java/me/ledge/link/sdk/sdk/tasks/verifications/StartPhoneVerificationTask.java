@@ -4,6 +4,7 @@ import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
 import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.sdk.storages.AutomationStorage;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
@@ -28,6 +29,8 @@ public class StartPhoneVerificationTask extends LedgeLinkApiTask<Void, Void, Sta
     /** {@inheritDoc} */
     @Override
     protected StartPhoneVerificationResponseVo callApi() throws ApiException {
-        return getApiWrapper().startPhoneVerification(getRequestData());
+        StartPhoneVerificationResponseVo response = getApiWrapper().startPhoneVerification(getRequestData());
+        AutomationStorage.getInstance().verificationSecret = response.secret;
+        return response;
     }
 }
