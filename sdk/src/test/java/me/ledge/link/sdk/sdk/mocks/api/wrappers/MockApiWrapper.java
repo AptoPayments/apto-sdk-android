@@ -15,6 +15,7 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.requests.users.DeleteUserRequestVo;
 import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
@@ -326,5 +327,9 @@ public class MockApiWrapper implements LinkApiWrapper {
         UserDataListResponseVo response = new UserDataListResponseVo();
         response.data = new DataPointVo[0];
         return response;
+    }
+
+    @Override
+    public void deleteUser(DeleteUserRequestVo deleteUserRequestVo) throws ApiException {
     }
 }
