@@ -10,6 +10,7 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.requests.users.DeleteUserRequestVo;
 import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
@@ -48,6 +49,7 @@ public interface LinkApiWrapper {
 
     String CREATE_USER_PATH = "v1/user";
     String UPDATE_USER_PATH = "v1/user";
+    String DELETE_USER_PATH = "v1/dashboard/users/deletebyphone";
     String GET_CURRENT_USER_PATH = "v1/user";
     String LOGIN_USER_PATH = "v1/user/login";
 
@@ -268,4 +270,11 @@ public interface LinkApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     UserDataListResponseVo getFinancialAccounts(UnauthorizedRequestVo requestData) throws ApiException;
+
+    /**
+     * Delete a user given his phone number
+     * @param requestData Mandatory request data.
+     * @throws ApiException When there is an error making the request.
+     */
+    void deleteUser(DeleteUserRequestVo requestData) throws ApiException;
 }

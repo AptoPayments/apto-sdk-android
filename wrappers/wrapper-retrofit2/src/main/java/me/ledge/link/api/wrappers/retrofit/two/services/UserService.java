@@ -2,6 +2,7 @@ package me.ledge.link.api.wrappers.retrofit.two.services;
 
 import com.google.gson.JsonObject;
 
+import me.ledge.link.api.vos.requests.users.DeleteUserRequestVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
@@ -47,4 +48,12 @@ public interface UserService {
      */
     @GET(LinkApiWrapper.GET_CURRENT_USER_PATH)
     Call<CurrentUserResponseVo> getCurrentUser();
+
+    /**
+     * Creates a {@link Call} to login an existing user.
+     * @param data Mandatory request data.
+     * @return API call to execute.
+     */
+    @POST(LinkApiWrapper.DELETE_USER_PATH)
+    Call<Void> deleteUser(@Body DeleteUserRequestVo data);
 }
