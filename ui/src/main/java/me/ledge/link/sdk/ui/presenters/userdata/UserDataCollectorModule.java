@@ -491,13 +491,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     private boolean isEmailVerificationRequired(DataPointVo phone) {
-        boolean isVerificationRequired = false;
-        for (RequiredDataPointVo requiredDataPointVo : mRequiredDataPointList) {
-            if (requiredDataPointVo.type.equals(DataPointVo.DataPointType.Email) && requiredDataPointVo.verificationRequired) {
-                isVerificationRequired = true;
-            }
-        }
-        return isVerificationRequired && (phone.getVerification().getAlternateEmailCredentials() != null);
+        return phone.getVerification().getAlternateEmailCredentials() != null;
     }
 
     private boolean isCurrentEmailVerified() {
@@ -524,6 +518,9 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     private void showLoading(boolean show) {
+        if(mProgressDialog==null) {
+            return;
+        }
         if (show) {
             mProgressDialog = ProgressDialog.show(getActivity(),null,null);
             mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
