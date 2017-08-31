@@ -2,14 +2,6 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.smartystreets.api.ClientBuilder;
-import com.smartystreets.api.exceptions.SmartyException;
-import com.smartystreets.api.us_zipcode.Client;
-import com.smartystreets.api.us_zipcode.Lookup;
-import com.smartystreets.api.us_zipcode.Result;
-
-import java.io.IOException;
-
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
@@ -21,6 +13,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.HomeModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.UIStorage;
+import me.ledge.link.sdk.ui.tasks.ZipValidationTask;
 import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.userdata.HomeView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
@@ -37,6 +30,7 @@ public class HomePresenter
     private HomeDelegate mDelegate;
     private boolean mIsHousingTypeRequired;
     private LoadingSpinnerManager mLoadingSpinnerManager;
+    private ZipValidationTask mZipValidationTask;
 
     /**
      * Creates a new {@link HomePresenter} instance.
@@ -199,29 +193,16 @@ public class HomePresenter
     }
 
     private void startZipValidation() {
-        // TODO: disabling zip validation and auto-fill until a service is agreed upon
-        /*Thread thread = new Thread(() -> {
-            try  {
-                lookUpZipCode(mView.getZipCode());
-                mActivity.runOnUiThread(()-> mView.showLoading(false));
-            } catch (Exception e) {
-                mActivity.runOnUiThread(()-> mView.displayErrorMessage(e.getMessage()));
+        startZipValidationTask(e -> {
+            mActivity.runOnUiThread(() -> mLoadingSpinnerManager.showLoading(false));
+            if (e != null) {
+                mView.displayErrorMessage(e.getMessage());
             }
         });
-        thread.start();*/
     }
 
-    private void lookUpZipCode(String zipCode) throws SmartyException, IOException {
-        Client client = new ClientBuilder(mActivity.getString(R.string.smarty_streets_auth_id), mActivity.getString(R.string.smarty_streets_auth_token))
-                .buildUsZipCodeApiClient();
-
-        Lookup lookup = new Lookup();
-        lookup.setZipCode(zipCode);
-        client.send(lookup);
-        Result results = lookup.getResult();
-        if (results.isValid()) {
-            mModel.setState(results.getZipCode(0).getStateAbbreviation());
-            mModel.setCity(results.getCity(0).getCity());
-        }
+    private void startZipValidationTask(GeoApiCallback callback) {
+        mZipValidationTask = new ZipValidationTask(mActivity, mModel, callback);
+        mZipValidationTask.execute(mView.getZipCode());
     }
 }

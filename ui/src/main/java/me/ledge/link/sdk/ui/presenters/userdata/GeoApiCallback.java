@@ -5,8 +5,8 @@ package me.ledge.link.sdk.ui.presenters.userdata;
  *
  * @author Adrian
  */
-public interface VerifyAddressCallback {
+public interface GeoApiCallback {
 
-    void execute(Exception e);
+    void execute(Throwable e);
 
 }

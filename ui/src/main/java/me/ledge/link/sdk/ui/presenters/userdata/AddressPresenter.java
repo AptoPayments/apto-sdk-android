@@ -119,21 +119,19 @@ public class AddressPresenter
         }
         else {
             mLoadingSpinnerManager.showLoading(true);
-            startAddressVerification(e -> {
-                mActivity.runOnUiThread(() -> {
-                    mLoadingSpinnerManager.showLoading(false);
-                    if (e == null) {
-                        if(mModel.hasVerifiedAddress()) {
-                            validateData();
-                        }
-                        else {
-                            mView.updateAddressError(true, R.string.address_address_error);
-                        }
-                    } else {
-                        mView.displayErrorMessage(e.getMessage());
+            startAddressVerification(e -> mActivity.runOnUiThread(() -> {
+                mLoadingSpinnerManager.showLoading(false);
+                if (e == null) {
+                    if(mModel.hasVerifiedAddress()) {
+                        validateData();
                     }
-                });
-            });
+                    else {
+                        mView.updateAddressError(true, R.string.address_address_error);
+                    }
+                } else {
+                    mView.displayErrorMessage(e.getMessage());
+                }
+            }));
         }
     }
 
@@ -160,7 +158,7 @@ public class AddressPresenter
         return new AddressModel();
     }
 
-    private void startAddressVerification(VerifyAddressCallback callback) {
+    private void startAddressVerification(GeoApiCallback callback) {
         mAddressVerificationTask = new AddressVerificationTask(mActivity, mModel, callback);
         mAddressVerificationTask.execute(mView.getAddress());
     }

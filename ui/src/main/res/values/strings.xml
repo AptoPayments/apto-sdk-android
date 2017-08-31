@@ -64,8 +64,7 @@
     <string name="address_housing_type_header">Residence</string>
     <string name="address_housing_type_hint">Select a housing type&#8230;</string>
     <string name="address_housing_type_error">Please select a valid housing type.</string>
-    <string name="smarty_streets_auth_id">833054ba-7001-35c3-ce66-5c13006292f4</string>
-    <string name="smarty_streets_auth_token">R0VHYDTJEq7sy15FumDo</string>
+    <string name="google_maps_api_key">AIzaSyBQuKFxmTO8gmxBwnXZlgG3TJY50KpbS-0</string>
 
     <!-- Time at Address -->
     <string name="time_at_address_label">Address</string>
