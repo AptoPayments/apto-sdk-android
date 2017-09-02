@@ -17,7 +17,7 @@
             android:label="@string/app_name"
             tools:replace="label"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:name="me.ledge.link.sdk.example.LedgeApplication">
+            android:name="io.branch.referral.BranchApp">
 
         <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_fctvserZdDqDxjjbCA0fnajgstdai1vp" />
 

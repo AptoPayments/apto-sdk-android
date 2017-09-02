@@ -10,10 +10,12 @@ import me.ledge.link.api.vos.responses.config.HousingTypeVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.geocoding.handlers.GeocodingHandler;
+import me.ledge.link.sdk.ui.geocoding.vos.AddressComponentVo;
+import me.ledge.link.sdk.ui.geocoding.vos.ResultVo;
 import me.ledge.link.sdk.ui.models.userdata.HomeModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.UIStorage;
-import me.ledge.link.sdk.ui.tasks.ZipValidationTask;
 import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.userdata.HomeView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
@@ -30,7 +32,6 @@ public class HomePresenter
     private HomeDelegate mDelegate;
     private boolean mIsHousingTypeRequired;
     private LoadingSpinnerManager mLoadingSpinnerManager;
-    private ZipValidationTask mZipValidationTask;
 
     /**
      * Creates a new {@link HomePresenter} instance.
@@ -193,16 +194,24 @@ public class HomePresenter
     }
 
     private void startZipValidation() {
-        startZipValidationTask(e -> {
-            mActivity.runOnUiThread(() -> mLoadingSpinnerManager.showLoading(false));
-            if (e != null) {
-                mView.displayErrorMessage(e.getMessage());
-            }
-        });
-    }
-
-    private void startZipValidationTask(GeoApiCallback callback) {
-        mZipValidationTask = new ZipValidationTask(mActivity, mModel, callback);
-        mZipValidationTask.execute(mView.getZipCode());
+        GeocodingHandler.reverseGeocode(mActivity, mView.getZipCode(), null,
+                response -> {
+                    if (response == null) {
+                        return;
+                    }
+                    ResultVo result = response.getResults().get(0);
+                    for (AddressComponentVo addressComponent : result.getAddressComponents()) {
+                        if(addressComponent.getTypes().get(0).equals("locality")) {
+                            mModel.setCity(addressComponent.getLongName());
+                        }
+                        else if(addressComponent.getTypes().get(0).equals("administrative_area_level_1")) {
+                            mModel.setState(addressComponent.getShortName());
+                        }
+                    }
+                },
+                e -> {
+                    mLoadingSpinnerManager.showLoading(false);
+                    mView.displayErrorMessage(e.getMessage());
+                });
     }
 }

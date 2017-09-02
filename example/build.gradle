@@ -13,8 +13,6 @@ android {
         versionName = androidVersionName
 
         applicationId 'me.ledge.link.sdk.example'
-
-        multiDexEnabled true
     }
 
     compileOptions {
