@@ -6,8 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.shadows.ShadowContentProvider;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.TermUnit;
@@ -23,7 +23,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
  * Tests the {@link LoanApplicationDetailsModel} class.
  * @author Wijnand
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 public class LoanApplicationDetailsModelTest {
 
     private Resources mResources;
@@ -35,7 +35,7 @@ public class LoanApplicationDetailsModelTest {
      */
     @Before
     public void setUp() {
-        mResources = new ShadowContentProvider().getContext().getResources();
+        mResources = RuntimeEnvironment.application.getResources();
         mApiWrapper = new MockApiWrapper();
     }
 
