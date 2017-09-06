@@ -46,7 +46,7 @@ install:
 script:
   - ./gradlew --configure-on-demand -p sdk testDebugUnitTestCoverage
   - cd ~/build/itabulous/sdk_android/ui
-  - ./gradlew --configure-on-demand -p ui assembleDebug testDebugUnitTestCoverage
+  - ./gradlew --configure-on-demand assembleDebug testDebugUnitTestCoverage
 
 after_success:
   # Copy file to expected location.
