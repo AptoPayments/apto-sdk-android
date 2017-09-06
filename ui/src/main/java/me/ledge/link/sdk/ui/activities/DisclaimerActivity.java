@@ -40,6 +40,8 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
                 break;
             case markdown:
                 mView.loadMarkdown(DisclaimerUtil.disclaimer.value);
+                mDisclosureLoaded = true;
+                break;
             case external_url:
                 loadUrl(DisclaimerUtil.disclaimer.value);
                 break;
