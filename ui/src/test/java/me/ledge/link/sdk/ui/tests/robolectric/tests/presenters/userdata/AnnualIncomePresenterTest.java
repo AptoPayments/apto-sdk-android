@@ -50,13 +50,12 @@ public class AnnualIncomePresenterTest {
     private static final int TEST_MAX_INCOME = 100000;
     private static final int EXPECTED_MULTIPLIER = 1000;
 
-    private AppCompatActivity mActivity;
     private AnnualIncomePresenter mPresenter;
     private AnnualIncomeView mView;
 
     @Before
     public void setUp() {
-        mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
+        AppCompatActivity mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity);
         userDataCollectorModule.mRequiredDataPointList.add(new RequiredDataPointVo(DataPointVo.DataPointType.IncomeSource));
         ModuleManager.getInstance().setModule(new WeakReference<>(userDataCollectorModule));
