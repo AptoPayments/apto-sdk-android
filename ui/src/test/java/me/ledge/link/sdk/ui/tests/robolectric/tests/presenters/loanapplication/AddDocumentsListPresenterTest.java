@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 
 import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
@@ -33,7 +33,7 @@ import static org.hamcrest.core.IsNot.not;
  * Tests the {@link AddDocumentsListPresenter} class.
  * @author Wijnand
  */
-@RunWith(RobolectricTestRunner.class)
+@RunWith(RobolectricGradleTestRunner.class)
 public class AddDocumentsListPresenterTest {
 
     private AppCompatActivity mActivity;

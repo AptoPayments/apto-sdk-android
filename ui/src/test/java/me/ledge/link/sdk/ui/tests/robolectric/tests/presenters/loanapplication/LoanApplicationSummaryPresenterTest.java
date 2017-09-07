@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 
 import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
@@ -21,7 +21,7 @@ import static org.hamcrest.core.IsNot.not;
  * Tests the {@link LoanApplicationSummaryPresenter} class.
  * @author Adrian
  */
-@RunWith(RobolectricTestRunner.class)
+@RunWith(RobolectricGradleTestRunner.class)
 public class LoanApplicationSummaryPresenterTest {
 
     private LoanApplicationSummaryPresenter mPresenter;

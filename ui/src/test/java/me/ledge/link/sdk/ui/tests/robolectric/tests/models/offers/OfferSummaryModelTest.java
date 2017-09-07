@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.shadows.ShadowContentProvider;
 
@@ -21,7 +21,7 @@ import static org.hamcrest.core.IsNot.not;
  * Tests the {@link OfferSummaryModel} class.
  * @author Wijnand
  */
-@RunWith(RobolectricTestRunner.class)
+@RunWith(RobolectricGradleTestRunner.class)
 public class OfferSummaryModelTest {
 
     private static final String EXPECTED_AMOUNT_TEXT = "Amount financed: $5555";
@@ -50,7 +50,7 @@ public class OfferSummaryModelTest {
      * @return Android resources.
      */
     private Resources getResources() {
-        return RuntimeEnvironment.application.getResources();
+        return new ShadowContentProvider().getContext().getResources();
     }
 
     /**
