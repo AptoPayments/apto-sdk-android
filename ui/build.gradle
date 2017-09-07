@@ -104,9 +104,6 @@ dependencies {
     compile 'io.card:android-sdk:5.4.1'
     compile 'com.github.verygoodsecurity:vgs-android-sdk:e6372c5002'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
-    compile (group: 'com.smartystreets.api', name: 'smartystreets-java-sdk', version: '2.1.1') {
-        exclude group: "org.apache.httpcomponents", module: "httpclient"
-    }
     compile 'com.synnapps:carouselview:0.0.10'
     compile 'us.feras.mdv:markdownview:1.1.0'
 
