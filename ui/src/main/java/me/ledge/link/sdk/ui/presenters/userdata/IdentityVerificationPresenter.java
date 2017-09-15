@@ -237,15 +237,16 @@ public class IdentityVerificationPresenter
     }
 
     private void showFullScreenDisclaimers() {
-        for (DisclaimerVo disclaimer : mFullScreenDisclaimers) {
-            DisclaimerUtil.showDisclaimer(mActivity, disclaimer, this::showDisclaimersCallback);
-        }
+        DisclaimerUtil.showDisclaimer(mActivity, mFullScreenDisclaimers.get(0), this::showDisclaimersCallback);
     }
 
     private void showDisclaimersCallback() {
         mDisclaimersShownCounter++;
         if(mDisclaimersShownCounter == mFullScreenDisclaimers.size()) {
             exit();
+        }
+        else {
+            DisclaimerUtil.showDisclaimer(mActivity, mFullScreenDisclaimers.get(mDisclaimersShownCounter), this::showDisclaimersCallback);
         }
     }
 
@@ -262,8 +263,8 @@ public class IdentityVerificationPresenter
         StringBuilder result = new StringBuilder();
         if (!TextUtils.isEmpty(textDisclaimer.value)) {
             result.append(textDisclaimer.value.replaceAll("\\r?\\n", lineBreak));
+            result.append(partnerDivider);
         }
-        result.append(partnerDivider);
 
         mDisclaimersText += result.substring(0, result.length() - partnerDivider.length());
     }
