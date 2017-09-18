@@ -271,7 +271,9 @@ public class IdentityVerificationPresenter
 
     private void setTextDisclaimers(String disclaimers) {
         mActivity.runOnUiThread(() -> {
-            mView.setDisclaimers(disclaimers);
+            if(!disclaimers.isEmpty()) {
+                mView.setDisclaimers(disclaimers);
+            }
             mLoadingSpinnerManager.showLoading(false);
         });
     }
