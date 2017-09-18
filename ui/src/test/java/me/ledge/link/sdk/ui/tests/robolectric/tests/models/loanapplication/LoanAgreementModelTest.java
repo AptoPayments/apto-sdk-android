@@ -1,18 +1,17 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.loanapplication;
 
 import android.content.res.Resources;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
-
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RuntimeEnvironment;
+import org.robolectric.shadows.ShadowContentProvider;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -20,7 +19,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
  * Tests the {@link LoanAgreementModel} class.
  * @author Wijnand
  */
-@RunWith(RobolectricTestRunner.class)
+@RunWith(RobolectricGradleTestRunner.class)
 public class LoanAgreementModelTest {
 
     private LoanAgreementModel mModel;
@@ -32,7 +31,7 @@ public class LoanAgreementModelTest {
     @Before
     public void setUp() {
         mModel = new LoanAgreementModel(new MockApiWrapper().getInitialOffers(null).offers.data[0], null);
-        mResources = RuntimeEnvironment.application.getResources();
+        mResources = new ShadowContentProvider().getContext().getResources();
     }
 
     /**

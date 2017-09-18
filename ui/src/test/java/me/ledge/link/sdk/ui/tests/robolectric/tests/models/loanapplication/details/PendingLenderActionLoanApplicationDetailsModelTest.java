@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.shadows.ShadowContentProvider;
 
@@ -18,7 +18,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
  * Tests the {@link PendingLenderActionLoanApplicationDetailsModel} class.
  * @author Wijnand
  */
-@RunWith(RobolectricTestRunner.class)
+@RunWith(RobolectricGradleTestRunner.class)
 public class PendingLenderActionLoanApplicationDetailsModelTest {
 
     private Resources mResources;
@@ -29,7 +29,7 @@ public class PendingLenderActionLoanApplicationDetailsModelTest {
      */
     @Before
     public void setUp() {
-        mResources = RuntimeEnvironment.application.getResources();
+        mResources = new ShadowContentProvider().getContext().getResources();
         mModel = new PendingLenderActionLoanApplicationDetailsModel(null, mResources, null);
     }
 

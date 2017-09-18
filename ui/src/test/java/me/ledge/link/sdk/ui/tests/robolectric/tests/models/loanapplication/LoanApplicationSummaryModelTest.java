@@ -6,8 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
+import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.shadows.ShadowContentProvider;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
@@ -18,7 +18,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
  * Tests the {@link LoanApplicationSummaryModel} class.
  * @author Adrian
  */
-@RunWith(RobolectricTestRunner.class)
+@RunWith(RobolectricGradleTestRunner.class)
 public class LoanApplicationSummaryModelTest {
 
     private LoanApplicationSummaryModel mModel;
@@ -30,7 +30,7 @@ public class LoanApplicationSummaryModelTest {
     @Before
     public void setUp() {
         mModel = new LoanApplicationSummaryModel(null, null);
-        mResources = RuntimeEnvironment.application.getResources();
+        mResources = new ShadowContentProvider().getContext().getResources();
     }
 
     /**
