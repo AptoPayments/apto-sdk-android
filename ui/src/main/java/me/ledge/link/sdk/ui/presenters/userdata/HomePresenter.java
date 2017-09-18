@@ -2,14 +2,6 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.smartystreets.api.ClientBuilder;
-import com.smartystreets.api.exceptions.SmartyException;
-import com.smartystreets.api.us_zipcode.Client;
-import com.smartystreets.api.us_zipcode.Lookup;
-import com.smartystreets.api.us_zipcode.Result;
-
-import java.io.IOException;
-
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
@@ -18,6 +10,9 @@ import me.ledge.link.api.vos.responses.config.HousingTypeVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.geocoding.handlers.GeocodingHandler;
+import me.ledge.link.sdk.ui.geocoding.vos.AddressComponentVo;
+import me.ledge.link.sdk.ui.geocoding.vos.ResultVo;
 import me.ledge.link.sdk.ui.models.userdata.HomeModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.UIStorage;
@@ -199,29 +194,24 @@ public class HomePresenter
     }
 
     private void startZipValidation() {
-        // TODO: disabling zip validation and auto-fill until a service is agreed upon
-        /*Thread thread = new Thread(() -> {
-            try  {
-                lookUpZipCode(mView.getZipCode());
-                mActivity.runOnUiThread(()-> mView.showLoading(false));
-            } catch (Exception e) {
-                mActivity.runOnUiThread(()-> mView.displayErrorMessage(e.getMessage()));
-            }
-        });
-        thread.start();*/
-    }
-
-    private void lookUpZipCode(String zipCode) throws SmartyException, IOException {
-        Client client = new ClientBuilder(mActivity.getString(R.string.smarty_streets_auth_id), mActivity.getString(R.string.smarty_streets_auth_token))
-                .buildUsZipCodeApiClient();
-
-        Lookup lookup = new Lookup();
-        lookup.setZipCode(zipCode);
-        client.send(lookup);
-        Result results = lookup.getResult();
-        if (results.isValid()) {
-            mModel.setState(results.getZipCode(0).getStateAbbreviation());
-            mModel.setCity(results.getCity(0).getCity());
-        }
+        GeocodingHandler.reverseGeocode(mActivity, mView.getZipCode(), null,
+                response -> {
+                    if (response == null) {
+                        return;
+                    }
+                    ResultVo result = response.getResults().get(0);
+                    for (AddressComponentVo addressComponent : result.getAddressComponents()) {
+                        if(addressComponent.getTypes().get(0).equals("locality")) {
+                            mModel.setCity(addressComponent.getLongName());
+                        }
+                        else if(addressComponent.getTypes().get(0).equals("administrative_area_level_1")) {
+                            mModel.setState(addressComponent.getShortName());
+                        }
+                    }
+                },
+                e -> {
+                    mLoadingSpinnerManager.showLoading(false);
+                    mView.displayErrorMessage(e.getMessage());
+                });
     }
 }

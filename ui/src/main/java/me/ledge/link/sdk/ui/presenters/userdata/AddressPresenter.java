@@ -8,9 +8,10 @@ import me.ledge.common.models.countries.Usa;
 import me.ledge.common.models.countries.UsaState;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.geocoding.handlers.GeocodingHandler;
+import me.ledge.link.sdk.ui.geocoding.vos.ResultVo;
 import me.ledge.link.sdk.ui.models.userdata.AddressModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.tasks.AddressVerificationTask;
 import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.userdata.AddressView;
 
@@ -25,7 +26,6 @@ public class AddressPresenter
     private Usa mStates;
     private AddressDelegate mDelegate;
     private boolean mIsStrictAddressValidationEnabled;
-    private AddressVerificationTask mAddressVerificationTask;
     private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
@@ -85,9 +85,6 @@ public class AddressPresenter
 
     @Override
     public void onBack() {
-        if(mAddressVerificationTask != null) {
-            mAddressVerificationTask.cancel(true);
-        }
         mDelegate.addressOnBackPressed();
     }
 
@@ -119,18 +116,13 @@ public class AddressPresenter
         }
         else {
             mLoadingSpinnerManager.showLoading(true);
-            startAddressVerification(e -> {
+            startAddressVerification(()->{
                 mActivity.runOnUiThread(() -> {
-                    mLoadingSpinnerManager.showLoading(false);
-                    if (e == null) {
-                        if(mModel.hasVerifiedAddress()) {
-                            validateData();
-                        }
-                        else {
-                            mView.updateAddressError(true, R.string.address_address_error);
-                        }
-                    } else {
-                        mView.displayErrorMessage(e.getMessage());
+                    if(mModel.hasVerifiedAddress()) {
+                        validateData();
+                    }
+                    else {
+                        mView.updateAddressError(true, R.string.address_address_error);
                     }
                 });
             });
@@ -160,13 +152,41 @@ public class AddressPresenter
         return new AddressModel();
     }
 
-    private void startAddressVerification(VerifyAddressCallback callback) {
-        mAddressVerificationTask = new AddressVerificationTask(mActivity, mModel, callback);
-        mAddressVerificationTask.execute(mView.getAddress());
+    private void startAddressVerification(AddressVerificationCallback callback) {
+        String address = String.format("%s,+%s,+%s,+%s",
+                mView.getAddress(), mModel.getCity(), mModel.getState(), mModel.getZip());
+        String formattedAddress = address.replace(' ', '+');
+        GeocodingHandler.reverseGeocode(mActivity, formattedAddress, mModel.getCountry(),
+                response -> {
+                    mLoadingSpinnerManager.showLoading(false);
+                    boolean isValidAddress = false;
+
+                    if (response != null && !response.getResults().isEmpty()) {
+                        ResultVo result = response.getResults().get(0);
+                        isValidAddress = !result.getFormattedAddress().isEmpty();
+                    }
+                    mModel.setIsAddressValid(isValidAddress);
+                    if(callback != null) {
+                        callback.execute();
+                    }
+                },
+                e -> {
+                    mLoadingSpinnerManager.showLoading(false);
+                    if(e.getMessage() != null) {
+                        mView.displayErrorMessage(e.getMessage());
+                    }
+                });
     }
 
     @Override
     public void onAddressLostFocus() {
-        startAddressVerification(e -> {});
+        startAddressVerification(()->{
+            mActivity.runOnUiThread(() -> mView.updateAddressError(mModel.hasValidAddress(), R.string.address_address_error));
+        });
     }
 }
+
+interface AddressVerificationCallback {
+    void execute();
+}
+
