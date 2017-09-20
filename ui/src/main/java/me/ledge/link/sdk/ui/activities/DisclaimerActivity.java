@@ -106,6 +106,7 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
     public void acceptClickHandler() {
         if(mDisclosureLoaded) {
             DisclaimerUtil.onAccept.execute();
+            this.finish();
         }
     }
 
