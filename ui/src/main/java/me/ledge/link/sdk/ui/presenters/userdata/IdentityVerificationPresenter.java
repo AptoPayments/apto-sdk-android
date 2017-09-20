@@ -44,7 +44,7 @@ public class IdentityVerificationPresenter
     private boolean mIsSSNNotAvailableAllowed;
     private boolean mIsBirthdayRequired;
     private LoadingSpinnerManager mLoadingSpinnerManager;
-    private int mDisclaimersShownCounter = 0;
+    public int mDisclaimersShownCounter = 0;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
