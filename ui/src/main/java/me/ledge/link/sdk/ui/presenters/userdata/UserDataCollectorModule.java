@@ -25,7 +25,7 @@ import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
-import me.ledge.link.api.vos.responses.verifications.SimpleVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.BaseVerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
@@ -148,7 +148,16 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     @Override
-    public void phoneVerificationSucceeded(SimpleVerificationResponseVo secondaryCredential) {
+    public void startActivity(Class activity) {
+        if(activity == null) {
+            stopModule();
+        } else {
+            super.startActivity(activity);
+        }
+    }
+
+    @Override
+    public void phoneVerificationSucceeded(BaseVerificationResponseVo secondaryCredential) {
         if(isEmailVerificationRequired() && !isCurrentEmailVerified()) {
             startActivity(EmailVerificationActivity.class);
         } else {
@@ -174,15 +183,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             } else {
                 stopModule();
             }
-        }
-    }
-
-    @Override
-    public void startActivity(Class activity) {
-        if(activity == null) {
-            stopModule();
-        } else {
-            super.startActivity(activity);
         }
     }
 

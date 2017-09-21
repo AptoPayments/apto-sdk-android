@@ -73,9 +73,8 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
 
     public PhoneNumberVo getPhoneFromBaseData() {
         DataPointList base = super.getBaseData();
-        PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
+        return (PhoneNumberVo) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Phone, new PhoneNumberVo());
-        return phoneNumber;
     }
 
     /**

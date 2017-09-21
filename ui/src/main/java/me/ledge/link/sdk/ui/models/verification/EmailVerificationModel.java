@@ -71,9 +71,8 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
 
     public Email getEmailFromBaseData() {
         DataPointList base = super.getBaseData();
-        Email email = (Email) base.getUniqueDataPoint(
+        return (Email) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Email, new Email());
-        return email;
     }
 
     public boolean isEmailVerified() {
