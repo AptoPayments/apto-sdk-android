@@ -409,7 +409,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
                 case PersonalName:
                     mView.showPersonalName();
                     break;
-                case PhoneNumber:
+                case Phone:
                     mView.showPhoneNumber();
                     break;
                 case Email:

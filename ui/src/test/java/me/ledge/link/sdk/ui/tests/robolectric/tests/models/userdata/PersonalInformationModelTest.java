@@ -121,7 +121,7 @@ public class PersonalInformationModelTest {
         Email baseEmail = (Email) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Email, new Email());
         PhoneNumberVo basePhone = (PhoneNumberVo) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
+                DataPointVo.DataPointType.Phone, new PhoneNumberVo());
 
         Assert.assertThat("Incorrect first name.", baseName.firstName, equalTo(mModel.getFirstName()));
         Assert.assertThat("Incorrect last name.", baseName.lastName, equalTo(mModel.getLastName()));

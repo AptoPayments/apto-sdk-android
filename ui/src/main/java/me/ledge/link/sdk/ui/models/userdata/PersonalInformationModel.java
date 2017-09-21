@@ -79,7 +79,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         }
         if(hasPhone()) {
             PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
-                    DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
+                    DataPointVo.DataPointType.Phone, new PhoneNumberVo());
             phoneNumber.phoneNumber = mPhone.phoneNumber;
         }
 
@@ -103,7 +103,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         }
 
         PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, null);
+                DataPointVo.DataPointType.Phone, null);
         if(phoneNumber!=null) {
             setPhone(phoneNumber);
         }

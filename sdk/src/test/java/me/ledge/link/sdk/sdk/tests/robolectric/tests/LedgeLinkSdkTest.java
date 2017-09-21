@@ -16,8 +16,8 @@ import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
-import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
@@ -178,7 +178,7 @@ public class LedgeLinkSdkTest {
     @Test
     public void startPhoneVerificationTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.startPhoneVerification(new PhoneVerificationRequestVo()),
+                LedgeLinkSdk.startPhoneVerification(new StartVerificationRequestVo()),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 
@@ -197,7 +197,7 @@ public class LedgeLinkSdkTest {
     @Test
     public void startEmailVerificationTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.startEmailVerification(new EmailVerificationRequestVo()),
+                LedgeLinkSdk.startEmailVerification(new StartVerificationRequestVo()),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 

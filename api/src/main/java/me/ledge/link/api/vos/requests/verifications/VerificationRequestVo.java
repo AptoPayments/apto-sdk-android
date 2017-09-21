@@ -16,4 +16,9 @@ public class VerificationRequestVo extends UnauthorizedRequestVo {
      * Echo of ID returned in the initial verification request
      */
     public String verification_id;
+
+    /**
+     * Ask backend to start verification of secondary credential
+     */
+    public boolean autostart_secondary_credential_verification;
 }

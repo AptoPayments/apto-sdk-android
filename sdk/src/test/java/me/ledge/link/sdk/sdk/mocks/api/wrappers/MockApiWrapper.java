@@ -1,13 +1,11 @@
 package me.ledge.link.sdk.sdk.mocks.api.wrappers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.TermUnit;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
 import me.ledge.link.api.vos.datapoints.Card;
-import me.ledge.link.api.vos.datapoints.CredentialVo;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
@@ -15,8 +13,7 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
-import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
@@ -46,7 +43,6 @@ import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
-import me.ledge.link.api.vos.responses.verifications.AlternateCredentialsListResponseVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
@@ -262,7 +258,7 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     // TODO: add unit tests for verification tasks
     @Override
-    public StartPhoneVerificationResponseVo startPhoneVerification(PhoneVerificationRequestVo phoneVerificationRequestVo) throws ApiException {
+    public StartPhoneVerificationResponseVo startPhoneVerification(StartVerificationRequestVo phoneVerificationRequestVo) throws ApiException {
         StartPhoneVerificationResponseVo response = new StartPhoneVerificationResponseVo();
         response.status = "";
         response.type = "";
@@ -276,13 +272,11 @@ public class MockApiWrapper implements LinkApiWrapper {
         response.status = "";
         response.type = "";
         response.verification_id = "";
-        response.alternate_credentials = new AlternateCredentialsListResponseVo();
-        response.alternate_credentials.data = new ArrayList<CredentialVo>();
         return response;
     }
 
     @Override
-    public StartEmailVerificationResponseVo startEmailVerification(EmailVerificationRequestVo emailVerificationRequestVo) throws ApiException {
+    public StartEmailVerificationResponseVo startEmailVerification(StartVerificationRequestVo emailVerificationRequestVo) throws ApiException {
         StartEmailVerificationResponseVo response = new StartEmailVerificationResponseVo();
         response.status = "";
         response.type = "";

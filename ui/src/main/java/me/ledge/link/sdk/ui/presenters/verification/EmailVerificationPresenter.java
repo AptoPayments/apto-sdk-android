@@ -31,12 +31,9 @@ public class EmailVerificationPresenter
      * Creates a new {@link EmailVerificationPresenter} instance.
      * @param activity Activity.
      */
-    public EmailVerificationPresenter(AppCompatActivity activity, EmailVerificationDelegate delegate, boolean sendEmail) {
+    public EmailVerificationPresenter(AppCompatActivity activity, EmailVerificationDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-        if(sendEmail) {
-            LedgeLinkUi.startEmailVerification(mModel.getEmailVerificationRequest());
-        }
     }
 
     /** {@inheritDoc} */

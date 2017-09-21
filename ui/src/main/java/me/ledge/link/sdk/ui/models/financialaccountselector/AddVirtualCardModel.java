@@ -42,7 +42,7 @@ public class AddVirtualCardModel implements AddFinancialAccountModel {
     public IssueVirtualCardRequestVo getRequest() {
         IssueVirtualCardRequestVo request = new IssueVirtualCardRequestVo();
         DataPointList userData = UserStorage.getInstance().getUserData();
-        PhoneNumberVo phoneNumber = (PhoneNumberVo) userData.getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, null);
+        PhoneNumberVo phoneNumber = (PhoneNumberVo) userData.getUniqueDataPoint(DataPointVo.DataPointType.Phone, null);
         request.phoneNumber = phoneNumber.getPhone().toString();
 
         LoanDataVo loanData = LinkStorage.getInstance().getLoanData();

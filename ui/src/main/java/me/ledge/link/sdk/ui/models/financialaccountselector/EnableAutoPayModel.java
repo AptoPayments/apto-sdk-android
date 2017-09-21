@@ -46,7 +46,7 @@ public class EnableAutoPayModel extends AbstractActivityModel
                 if (card.cardType == Card.CardType.MARQETA) {
                     DataPointList userData = UserStorage.getInstance().getUserData();
                     PhoneNumberVo phoneNumber = (PhoneNumberVo) userData.
-                            getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
+                            getUniqueDataPoint(DataPointVo.DataPointType.Phone, new PhoneNumberVo());
                     return resources.getString(R.string.enable_auto_pay_virtual_card, PhoneHelperUtil.formatPhone(phoneNumber.phoneNumber));
                 }
                 return resources.getString(R.string.enable_auto_pay_card, card.lastFourDigits);

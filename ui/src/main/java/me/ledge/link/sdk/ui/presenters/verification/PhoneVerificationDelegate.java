@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.verification;
 
-import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.responses.verifications.SimpleVerificationResponseVo;
 
 /**
  * Delegation interface for phone verification.
@@ -9,6 +9,6 @@ import me.ledge.link.api.vos.datapoints.DataPointVo;
  */
 public interface PhoneVerificationDelegate {
 
-    void phoneVerificationSucceeded(DataPointVo phone);
+    void phoneVerificationSucceeded(SimpleVerificationResponseVo secondaryCredential);
     void phoneVerificationOnBackPressed();
 }
