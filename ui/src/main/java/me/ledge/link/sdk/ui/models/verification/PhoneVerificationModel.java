@@ -107,7 +107,6 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
         VerificationRequestVo request = new VerificationRequestVo();
         request.secret = getVerificationCode();
         request.verification_id = getVerificationId();
-        request.autostart_secondary_credential_verification = true;
         return request;
     }
 
@@ -117,7 +116,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
 
     public StartVerificationRequestVo getPhoneVerificationRequest() {
         StartVerificationRequestVo request = new StartVerificationRequestVo();
-        request.data = getPhoneFromBaseData().toJSON();
+        request.data = getPhoneFromBaseData();
         request.datapoint_type = DataPointVo.DataPointType.Phone;
         return request;
     }

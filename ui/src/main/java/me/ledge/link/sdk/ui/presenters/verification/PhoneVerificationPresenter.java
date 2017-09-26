@@ -118,7 +118,7 @@ public class PhoneVerificationPresenter
                 displayWrongCodeMessage();
             }
             else {
-                mDelegate.phoneVerificationSucceeded(response.secondary_credential);
+                mDelegate.phoneVerificationSucceeded(response);
             }
         }
     }

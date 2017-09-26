@@ -85,7 +85,7 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
 
     public StartVerificationRequestVo getEmailVerificationRequest() {
         StartVerificationRequestVo request = new StartVerificationRequestVo();
-        request.data = getEmailFromBaseData().toJSON();
+        request.data = getEmailFromBaseData();
         request.datapoint_type = DataPointVo.DataPointType.Email;
 
         return request;

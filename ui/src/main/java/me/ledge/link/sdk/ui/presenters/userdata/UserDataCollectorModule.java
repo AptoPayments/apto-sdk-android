@@ -25,7 +25,7 @@ import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
-import me.ledge.link.api.vos.responses.verifications.BaseVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
@@ -157,7 +157,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     @Override
-    public void phoneVerificationSucceeded(BaseVerificationResponseVo secondaryCredential) {
+    public void phoneVerificationSucceeded(VerificationResponseVo secondaryCredential) {
         if(isEmailVerificationRequired() && !isCurrentEmailVerified()) {
             startActivity(EmailVerificationActivity.class);
         } else {
