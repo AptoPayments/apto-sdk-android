@@ -100,6 +100,7 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
 
     @Override
     public JsonElement serialize(DataPointVo src, Type typeOfSrc, JsonSerializationContext context) {
+        // Cast to Object required due to Gson library limitations: https://stackoverflow.com/a/15016251
         return context.serialize( (Object) src.toJSON());
     }
 }
