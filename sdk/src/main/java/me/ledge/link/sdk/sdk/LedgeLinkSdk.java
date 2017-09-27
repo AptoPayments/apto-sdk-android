@@ -11,8 +11,8 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
-import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
@@ -274,7 +274,7 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask startPhoneVerification(PhoneVerificationRequestVo data) {
+    public static LedgeLinkApiTask startPhoneVerification(StartVerificationRequestVo data) {
         checkComponents();
 
         StartPhoneVerificationTask task = new StartPhoneVerificationTask(data, getApiWrapper(), getResponseHandler());
@@ -302,7 +302,7 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask startEmailVerification(EmailVerificationRequestVo data) {
+    public static LedgeLinkApiTask startEmailVerification(StartVerificationRequestVo data) {
         checkComponents();
 
         StartEmailVerificationTask task = new StartEmailVerificationTask(data, getApiWrapper(), getResponseHandler());

@@ -39,6 +39,6 @@ repositories {
 dependencies {
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:1.4'
     compile 'com.googlecode.libphonenumber:libphonenumber:8.3.1'
-    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.google.code.gson:gson:2.8.2'
     compile 'uk.com.robust-it:cloning:1.9.3'
 }

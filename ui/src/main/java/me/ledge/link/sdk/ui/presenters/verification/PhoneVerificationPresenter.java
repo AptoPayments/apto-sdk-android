@@ -83,7 +83,7 @@ public class PhoneVerificationPresenter
 
     private String getTitle() {
         PhoneNumberVo phoneNumber = (PhoneNumberVo) mModel.getBaseData().
-                getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
+                getUniqueDataPoint(DataPointVo.DataPointType.Phone, new PhoneNumberVo());
         return PhoneHelperUtil.formatPhone(phoneNumber.phoneNumber);
     }
 
@@ -118,10 +118,7 @@ public class PhoneVerificationPresenter
                 displayWrongCodeMessage();
             }
             else {
-                if(response.alternate_credentials != null) {
-                    phone.getVerification().setAlternateCredentials(response.alternate_credentials.data);
-                }
-                mDelegate.phoneVerificationSucceeded(phone);
+                mDelegate.phoneVerificationSucceeded(response);
             }
         }
     }

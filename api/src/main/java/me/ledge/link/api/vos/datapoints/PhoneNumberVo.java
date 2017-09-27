@@ -13,7 +13,7 @@ public class PhoneNumberVo extends DataPointVo {
     }
 
     public PhoneNumberVo(String phone, boolean verified, boolean notSpecified) {
-        super(DataPointType.PhoneNumber, verified, notSpecified);
+        super(DataPointType.Phone, verified, notSpecified);
         init();
         try {
             Phonenumber.PhoneNumber number = PhoneNumberUtil.getInstance().parse(phone, "US");

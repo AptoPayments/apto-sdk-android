@@ -25,6 +25,7 @@ import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
+import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
@@ -147,8 +148,17 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     @Override
-    public void phoneVerificationSucceeded(DataPointVo phone) {
-        if(isEmailVerificationRequired(phone) && !isCurrentEmailVerified()) {
+    public void startActivity(Class activity) {
+        if(activity == null) {
+            stopModule();
+        } else {
+            super.startActivity(activity);
+        }
+    }
+
+    @Override
+    public void phoneVerificationSucceeded(VerificationResponseVo secondaryCredential) {
+        if(isEmailVerificationRequired() && !isCurrentEmailVerified()) {
             startActivity(EmailVerificationActivity.class);
         } else {
             startActivity(getActivityAtPosition(PersonalInformationActivity.class, 1));
@@ -173,15 +183,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
             } else {
                 stopModule();
             }
-        }
-    }
-
-    @Override
-    public void startActivity(Class activity) {
-        if(activity == null) {
-            stopModule();
-        } else {
-            super.startActivity(activity);
         }
     }
 
@@ -394,7 +395,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                     case PersonalName:
                         addRequiredActivity(PersonalInformationActivity.class);
                         break;
-                    case PhoneNumber:
+                    case Phone:
                         addRequiredActivity(PersonalInformationActivity.class);
                         break;
                     case Email:
@@ -473,7 +474,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private boolean isPhoneVerificationRequired() {
         boolean isPhoneVerificationRequired = false;
         for (RequiredDataPointVo requiredDataPointVo : mRequiredDataPointList) {
-            if (requiredDataPointVo.type.equals(DataPointVo.DataPointType.PhoneNumber) && requiredDataPointVo.verificationRequired) {
+            if (requiredDataPointVo.type.equals(DataPointVo.DataPointType.Phone) && requiredDataPointVo.verificationRequired) {
                 isPhoneVerificationRequired = true;
             }
         }
@@ -482,22 +483,22 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     private boolean isCurrentPhoneVerified() {
         DataPointList currentData = UserStorage.getInstance().getUserData();
-        DataPointVo currentPhone = currentData.getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, null);
+        DataPointVo currentPhone = currentData.getUniqueDataPoint(DataPointVo.DataPointType.Phone, null);
         if(isUpdatingProfile) {
-            DataPointVo basePhone = mCurrentUserDataCopy.getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, null);
+            DataPointVo basePhone = mCurrentUserDataCopy.getUniqueDataPoint(DataPointVo.DataPointType.Phone, null);
             return basePhone.equals(currentPhone);
         }
         return currentPhone.isVerified();
     }
 
-    private boolean isEmailVerificationRequired(DataPointVo phone) {
+    private boolean isEmailVerificationRequired() {
         boolean isVerificationRequired = false;
         for (RequiredDataPointVo requiredDataPointVo : mRequiredDataPointList) {
             if (requiredDataPointVo.type.equals(DataPointVo.DataPointType.Email) && requiredDataPointVo.verificationRequired) {
                 isVerificationRequired = true;
             }
         }
-        return isVerificationRequired && (phone.getVerification().getAlternateEmailCredentials() != null);
+        return isVerificationRequired;
     }
 
     private boolean isCurrentEmailVerified() {
@@ -515,7 +516,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         Email emailAddress = (Email) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Email, new Email());
         PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
+                DataPointVo.DataPointType.Phone, new PhoneNumberVo());
 
         DataPointList data = new DataPointList();
         data.add(emailAddress);
@@ -524,6 +525,9 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     }
 
     private void showLoading(boolean show) {
+        if(mProgressDialog == null) {
+            return;
+        }
         if (show) {
             mProgressDialog = ProgressDialog.show(getActivity(),null,null);
             mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));

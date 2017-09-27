@@ -26,13 +26,14 @@ import me.ledge.link.api.utils.RequiredDataPointParser;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
-import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
@@ -487,16 +488,16 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
     /** {@inheritDoc} */
     @Override
-    public StartPhoneVerificationResponseVo startPhoneVerification(PhoneVerificationRequestVo phoneVerificationRequestVo)
+    public StartPhoneVerificationResponseVo startPhoneVerification(StartVerificationRequestVo phoneVerificationRequestVo)
             throws ApiException {
         StartPhoneVerificationResponseVo result;
         try {
             Response<StartPhoneVerificationResponseVo> response
                     = mVerificationService.startPhoneVerification(phoneVerificationRequestVo).execute();
-            result = handleResponse(response, LinkApiWrapper.VERIFICATION_PHONE_PATH);
+            result = handleResponse(response, LinkApiWrapper.VERIFICATION_START_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.VERIFICATION_PHONE_PATH, ioe);
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.VERIFICATION_START_PATH, ioe);
         }
 
         return result;
@@ -520,16 +521,16 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public StartEmailVerificationResponseVo startEmailVerification(EmailVerificationRequestVo emailVerificationRequestVo)
+    public StartEmailVerificationResponseVo startEmailVerification(StartVerificationRequestVo emailVerificationRequestVo)
             throws ApiException {
         StartEmailVerificationResponseVo result;
         try {
             Response<StartEmailVerificationResponseVo> response
                     = mVerificationService.startEmailVerification(emailVerificationRequestVo).execute();
-            result = handleResponse(response, LinkApiWrapper.VERIFICATION_EMAIL_PATH);
+            result = handleResponse(response, LinkApiWrapper.VERIFICATION_START_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.VERIFICATION_EMAIL_PATH, ioe);
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.VERIFICATION_START_PATH, ioe);
         }
 
         return result;

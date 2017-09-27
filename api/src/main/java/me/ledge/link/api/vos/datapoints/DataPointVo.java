@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class DataPointVo {
     public enum DataPointType{
         PersonalName,
-        PhoneNumber,
+        Phone,
         Email,
         BirthDate,
         SSN,

@@ -4,10 +4,7 @@ package me.ledge.link.api.vos.responses.verifications;
  *  Verification API response
  * @author Adrian
  */
-public class VerificationResponseVo {
+public class VerificationResponseVo extends BaseVerificationResponseVo{
 
-    public String type;
-    public String verification_id;
-    public String status;
-    public AlternateCredentialsListResponseVo alternate_credentials;
+    public BaseVerificationResponseVo secondary_credential;
 }

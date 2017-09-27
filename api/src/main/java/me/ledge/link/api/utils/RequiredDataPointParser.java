@@ -28,7 +28,7 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
                 return new RequiredDataPointVo(DataPointVo.DataPointType.PersonalName,
                         isVerificationRequired, isNotSpecifiedAllowed);
             case "phone":
-                return new RequiredDataPointVo(DataPointVo.DataPointType.PhoneNumber,
+                return new RequiredDataPointVo(DataPointVo.DataPointType.Phone,
                         isVerificationRequired, isNotSpecifiedAllowed);
             case "email":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Email,

@@ -1,7 +1,7 @@
 package me.ledge.link.api.wrappers.retrofit.two.services;
 
-import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
-import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
@@ -24,8 +24,8 @@ public interface VerificationService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.VERIFICATION_PHONE_PATH)
-    Call<StartPhoneVerificationResponseVo> startPhoneVerification(@Body PhoneVerificationRequestVo data);
+    @POST(LinkApiWrapper.VERIFICATION_START_PATH)
+    Call<StartPhoneVerificationResponseVo> startPhoneVerification(@Body StartVerificationRequestVo data);
 
     /**
      * Creates a {@link Call} to finish phone verification.
@@ -40,8 +40,8 @@ public interface VerificationService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.VERIFICATION_EMAIL_PATH)
-    Call<StartEmailVerificationResponseVo> startEmailVerification(@Body EmailVerificationRequestVo data);
+    @POST(LinkApiWrapper.VERIFICATION_START_PATH)
+    Call<StartEmailVerificationResponseVo> startEmailVerification(@Body StartVerificationRequestVo data);
 
     /**
      * Creates a {@link Call} to get the current verification status.

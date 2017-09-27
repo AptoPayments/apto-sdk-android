@@ -227,7 +227,7 @@ public class LoanApplicationSummaryView
                 addKeyValueTextView(data.getFirstNameLabel(getResources()), ((PersonalName) dataPoint).firstName);
                 addKeyValueTextView(data.getLastNameLabel(getResources()), ((PersonalName) dataPoint).lastName);
                 break;
-            case PhoneNumber:
+            case Phone:
                 addKeyValueTextView(data.getPhoneLabel(getResources()), dataPoint.toString());
                 break;
             case Email:

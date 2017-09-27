@@ -10,8 +10,7 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
-import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
@@ -57,8 +56,7 @@ public interface LinkApiWrapper {
     String CREATE_LOAN_APPLICATION_PATH = "v1/link/offers/{offer_id}/apply";
     String LIST_LOAN_APPLICATIONS_PATH = "v1/link/offers/";
 
-    String VERIFICATION_PHONE_PATH = "v1/verifications/phone";
-    String VERIFICATION_EMAIL_PATH = "v1/verifications/email";
+    String VERIFICATION_START_PATH = "v1/verifications/start";
     String VERIFICATION_STATUS_PATH = "v1/verifications/status/{ID}";
     String VERIFICATION_FINISH_PATH = "v1/verifications/finish";
 
@@ -212,7 +210,7 @@ public interface LinkApiWrapper {
      * @return A verification object with its verification ID.
      * @throws ApiException When there is an error making the request.
      */
-    StartPhoneVerificationResponseVo startPhoneVerification(PhoneVerificationRequestVo requestData)
+    StartPhoneVerificationResponseVo startPhoneVerification(StartVerificationRequestVo requestData)
             throws ApiException;
 
     /**
@@ -230,7 +228,7 @@ public interface LinkApiWrapper {
      * @return A verification object with its verification ID.
      * @throws ApiException When there is an error making the request.
      */
-    StartEmailVerificationResponseVo startEmailVerification(EmailVerificationRequestVo requestData)
+    StartEmailVerificationResponseVo startEmailVerification(StartVerificationRequestVo requestData)
             throws ApiException;
 
     /**
