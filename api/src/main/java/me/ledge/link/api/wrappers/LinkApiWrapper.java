@@ -57,8 +57,8 @@ public interface LinkApiWrapper {
     String LIST_LOAN_APPLICATIONS_PATH = "v1/link/offers/";
 
     String VERIFICATION_START_PATH = "v1/verifications/start";
-    String VERIFICATION_STATUS_PATH = "v1/verifications/status/{ID}";
-    String VERIFICATION_FINISH_PATH = "v1/verifications/finish";
+    String VERIFICATION_STATUS_PATH = "v1/verifications/{ID}/status";
+    String VERIFICATION_FINISH_PATH = "v1/verifications/{ID}/finish";
 
     String FINANCIAL_ACCOUNTS_PATH = "v1/user/financialaccounts";
     String PLAID_WEB_URL = "v1/bankoauth";
@@ -215,11 +215,12 @@ public interface LinkApiWrapper {
 
     /**
      * Completes the process to verify a user's phone number.
-     * @param requestData The secret inputted by the user and verification ID.
+     * @param requestData The secret inputted by the user ID.
+     * @param verificationID The verification ID.
      * @return A verification object with the corresponding status.
      * @throws ApiException When there is an error making the request.
      */
-    FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo requestData)
+    FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo requestData, String verificationID)
             throws ApiException;
 
     /**

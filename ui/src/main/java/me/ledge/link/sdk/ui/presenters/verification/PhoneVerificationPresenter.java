@@ -77,7 +77,7 @@ public class PhoneVerificationPresenter
         mModel.setVerificationCode(mView.getVerificationCode());
 
         if (mModel.hasAllData()) {
-            LedgeLinkUi.completePhoneVerification(mModel.getVerificationRequest());
+            LedgeLinkUi.completePhoneVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
         }
     }
 

@@ -106,11 +106,10 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
     public VerificationRequestVo getVerificationRequest() {
         VerificationRequestVo request = new VerificationRequestVo();
         request.secret = getVerificationCode();
-        request.verification_id = getVerificationId();
         return request;
     }
 
-    private String getVerificationId() {
+    public String getVerificationId() {
         return mVerification.getVerificationId();
     }
 

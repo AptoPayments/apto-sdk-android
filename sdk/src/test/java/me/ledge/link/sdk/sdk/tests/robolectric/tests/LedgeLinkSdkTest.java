@@ -10,13 +10,12 @@ import org.junit.Test;
 
 import java.util.concurrent.Executor;
 
-import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.Card;
+import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
@@ -185,7 +184,7 @@ public class LedgeLinkSdkTest {
     @Test
     public void completePhoneVerificationTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.completePhoneVerification(new VerificationRequestVo()),
+                LedgeLinkSdk.completePhoneVerification(new VerificationRequestVo(), ""),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 

@@ -13,21 +13,23 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  */
 public class CompletePhoneVerificationTask extends LedgeLinkApiTask<Void, Void, FinishPhoneVerificationResponseVo, VerificationRequestVo> {
 
+    private String mVerificationId;
     /**
      * @see LedgeLinkApiTask#LedgeLinkApiTask
      * @param requestData See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      */
-    public CompletePhoneVerificationTask(VerificationRequestVo requestData, LinkApiWrapper apiWrapper,
+    public CompletePhoneVerificationTask(VerificationRequestVo requestData, String verificationId, LinkApiWrapper apiWrapper,
                                          ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);
+        mVerificationId = verificationId;
     }
 
     /** {@inheritDoc} */
     @Override
     protected FinishPhoneVerificationResponseVo callApi() throws ApiException {
-        return getApiWrapper().completePhoneVerification(getRequestData());
+        return getApiWrapper().completePhoneVerification(getRequestData(), mVerificationId);
     }
 }

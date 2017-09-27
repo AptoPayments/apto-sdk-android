@@ -505,12 +505,12 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
     /** {@inheritDoc} */
     @Override
-    public FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo)
+    public FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo, String verificationID)
             throws ApiException {
         FinishPhoneVerificationResponseVo result;
         try {
             Response<FinishPhoneVerificationResponseVo> response
-                    = mVerificationService.completePhoneVerification(verificationRequestVo).execute();
+                    = mVerificationService.completePhoneVerification(verificationID, verificationRequestVo).execute();
             result = handleResponse(response, LinkApiWrapper.VERIFICATION_FINISH_PATH);
         } catch (IOException ioe) {
             result = null;

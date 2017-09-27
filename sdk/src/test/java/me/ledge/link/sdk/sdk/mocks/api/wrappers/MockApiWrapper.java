@@ -267,11 +267,10 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo) throws ApiException {
+    public FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo, String verificationId) throws ApiException {
         FinishPhoneVerificationResponseVo response = new FinishPhoneVerificationResponseVo();
         response.status = "";
         response.type = "";
-        response.verification_id = "";
         return response;
     }
 

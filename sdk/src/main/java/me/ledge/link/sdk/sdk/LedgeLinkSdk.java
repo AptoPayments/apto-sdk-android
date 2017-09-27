@@ -12,12 +12,11 @@ import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
-import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
-import me.ledge.link.sdk.sdk.tasks.config.IncomeTypesListTask;
 import me.ledge.link.sdk.sdk.tasks.config.HousingTypeListTask;
+import me.ledge.link.sdk.sdk.tasks.config.IncomeTypesListTask;
 import me.ledge.link.sdk.sdk.tasks.config.LinkConfigTask;
 import me.ledge.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.AddBankAccountTask;
@@ -288,10 +287,10 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask completePhoneVerification(VerificationRequestVo data) {
+    public static LedgeLinkApiTask completePhoneVerification(VerificationRequestVo data, String verificationId) {
         checkComponents();
 
-        CompletePhoneVerificationTask task = new CompletePhoneVerificationTask(data, getApiWrapper(), getResponseHandler());
+        CompletePhoneVerificationTask task = new CompletePhoneVerificationTask(data, verificationId, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

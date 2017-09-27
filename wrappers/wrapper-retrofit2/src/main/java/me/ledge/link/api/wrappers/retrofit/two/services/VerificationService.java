@@ -1,7 +1,6 @@
 package me.ledge.link.api.wrappers.retrofit.two.services;
 
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
-import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
@@ -33,7 +32,7 @@ public interface VerificationService {
      * @return API call to execute.
      */
     @POST(LinkApiWrapper.VERIFICATION_FINISH_PATH)
-    Call<FinishPhoneVerificationResponseVo> completePhoneVerification(@Body VerificationRequestVo data);
+    Call<FinishPhoneVerificationResponseVo> completePhoneVerification(@Path("ID") String verificationID, @Body VerificationRequestVo data);
 
     /**
      * Creates a {@link Call} to start email verification.
