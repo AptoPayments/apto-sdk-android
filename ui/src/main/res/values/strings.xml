@@ -29,8 +29,12 @@
     <string name="personal_info_last_name_error">Please enter your last name.</string>
     <string name="personal_info_email_hint">Email</string>
     <string name="personal_info_email_error">Please enter a valid email address.</string>
-    <string name="personal_info_phone_hint">Phone</string>
-    <string name="personal_info_phone_error">Please enter a valid phone number.</string>
+
+    <!-- Phone -->
+    <string name="phone_title">Get started</string>
+    <string name="phone_hint">Mobile number</string>
+    <string name="phone_label">We\'ll send a one-time SMS to verify your phone number. Carrier SMS fees may apply.</string>
+    <string name="phone_error">Invalid phone number</string>
 
     <!-- Phone Verification -->
     <string name="phone_verification_label">Phone verification</string>
@@ -44,7 +48,7 @@
     <!-- Email Verification -->
     <string name="email_verification_label">Email verification</string>
     <string name="email_verification_code_hint">Click on the link to verify your account.</string>
-    <string name="email_verification_info">We just sent a verification link to the email associated with this account: </string>
+    <string name="email_verification_info">We just sent a verification link to the email associated with this account.</string>
     <string name="email_verification_button_submit">I Clicked on the Link</string>
     <string name="email_verification_button_resend">Re-send Link</string>
     <string name="email_verification_resent">A new link has been sent to your email</string>

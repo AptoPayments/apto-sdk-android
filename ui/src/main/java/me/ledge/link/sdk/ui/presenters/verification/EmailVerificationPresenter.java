@@ -48,7 +48,6 @@ public class EmailVerificationPresenter
         super.attachView(view);
         mActivity.setTitle(this.getEmail());
         mView.setListener(this);
-        mView.displayEmailAddress(this.getEmail());
         mResponseHandler.subscribe(this);
     }
 

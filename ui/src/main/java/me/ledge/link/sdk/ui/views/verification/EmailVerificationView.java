@@ -117,8 +117,4 @@ public class EmailVerificationView
     public void displaySentMessage(String message) {
         Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
-
-    public void displayEmailAddress(String email) {
-        mEmailInfo.append(email);
-    }
 }

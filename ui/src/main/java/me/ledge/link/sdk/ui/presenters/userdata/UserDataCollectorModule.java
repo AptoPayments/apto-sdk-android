@@ -43,6 +43,7 @@ import me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PaydayLoanActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
+import me.ledge.link.sdk.ui.activities.userdata.PhoneActivity;
 import me.ledge.link.sdk.ui.activities.userdata.TimeAtAddressActivity;
 import me.ledge.link.sdk.ui.activities.verification.EmailVerificationActivity;
 import me.ledge.link.sdk.ui.activities.verification.PhoneVerificationActivity;
@@ -55,9 +56,9 @@ import me.ledge.link.sdk.ui.storages.UserStorage;
  * Created by adrian on 29/12/2016.
  */
 
-public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVerificationDelegate,
-        EmailVerificationDelegate, IdentityVerificationDelegate, AddressDelegate,
-        AnnualIncomeDelegate, MonthlyIncomeDelegate, CreditScoreDelegate,
+public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDelegate,
+        PhoneVerificationDelegate, EmailVerificationDelegate, IdentityVerificationDelegate,
+        AddressDelegate, AnnualIncomeDelegate, MonthlyIncomeDelegate, CreditScoreDelegate,
         PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate, ArmedForcesDelegate,
         TimeAtAddressDelegate {
 
@@ -156,18 +157,33 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
         }
     }
 
+    public void phoneStored() {
+        if(isPhoneVerificationRequired() && !isCurrentPhoneVerified()) {
+            startActivity(PhoneVerificationActivity.class);
+        } else {
+            startActivity(getActivityAtPosition(PhoneActivity.class, 1));
+        }
+    }
+
+    @Override
+    public void phoneOnBackPressed() {
+        onBack.execute();
+    }
+
     @Override
     public void phoneVerificationSucceeded(VerificationResponseVo secondaryCredential) {
+        // TODO: start next activity based on secondary credential
+        // TODO: set verification_id from secondary credential
         if(isEmailVerificationRequired() && !isCurrentEmailVerified()) {
             startActivity(EmailVerificationActivity.class);
         } else {
-            startActivity(getActivityAtPosition(PersonalInformationActivity.class, 1));
+            startActivity(getActivityAtPosition(PhoneActivity.class, 1));
         }
     }
 
     @Override
     public void phoneVerificationOnBackPressed() {
-        startActivity(PersonalInformationActivity.class);
+        startActivity(PhoneActivity.class);
     }
 
     @Override
@@ -299,16 +315,12 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
 
     @Override
     public void personalInformationStored() {
-        if(isPhoneVerificationRequired() && !isCurrentPhoneVerified()) {
-            startActivity(PhoneVerificationActivity.class);
-        } else {
-            startActivity(getActivityAtPosition(PersonalInformationActivity.class, 1));
-        }
+        startActivity(getActivityAtPosition(PersonalInformationActivity.class, 1));
     }
 
     @Override
     public void personalInformationOnBackPressed() {
-        onBack.execute();
+        startActivity(getActivityAtPosition(PersonalInformationActivity.class, -1));
     }
 
     @Override
@@ -396,7 +408,9 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
                         addRequiredActivity(PersonalInformationActivity.class);
                         break;
                     case Phone:
-                        addRequiredActivity(PersonalInformationActivity.class);
+                        if(!mRequiredActivities.contains(PhoneActivity.class)) {
+                            mRequiredActivities.add(0, PhoneActivity.class);
+                        }
                         break;
                     case Email:
                         addRequiredActivity(PersonalInformationActivity.class);
@@ -504,6 +518,9 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneVer
     private boolean isCurrentEmailVerified() {
         DataPointList currentData = UserStorage.getInstance().getUserData();
         DataPointVo currentEmail = currentData.getUniqueDataPoint(DataPointVo.DataPointType.Email, null);
+        if(currentEmail == null) {
+            return false;
+        }
         if(isUpdatingProfile) {
             DataPointVo baseEmail = mCurrentUserDataCopy.getUniqueDataPoint(DataPointVo.DataPointType.Email, null);
             return baseEmail.equals(currentEmail);

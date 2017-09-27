@@ -2,18 +2,14 @@ package me.ledge.link.sdk.ui.models.userdata;
 
 import android.text.TextUtils;
 
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
-
 import java.util.LinkedList;
 
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.PersonalName;
-import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
-import me.ledge.link.sdk.ui.utils.PhoneHelperUtil;
 import ru.lanwen.verbalregex.VerbalExpression;
 
 
@@ -26,7 +22,6 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
 
     private PersonalName mPersonalName;
     private Email mEmail;
-    private PhoneNumberVo mPhone;
 
     /**
      * Creates a new {@link PersonalInformationModel} instance.
@@ -42,7 +37,6 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     protected void init() {
         mPersonalName = new PersonalName();
         mEmail = new Email();
-        mPhone = new PhoneNumberVo();
     }
 
     /** {@inheritDoc} */
@@ -54,7 +48,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     /** {@inheritDoc} */
     @Override
     public boolean hasAllData() {
-        return hasName() && hasEmail() && hasPhone();
+        return hasName() && hasEmail();
     }
 
     public boolean hasName() {
@@ -77,11 +71,6 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
                     DataPointVo.DataPointType.Email, new Email());
             emailAddress.email = mEmail.email;
         }
-        if(hasPhone()) {
-            PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
-                    DataPointVo.DataPointType.Phone, new PhoneNumberVo());
-            phoneNumber.phoneNumber = mPhone.phoneNumber;
-        }
 
         return base;
     }
@@ -100,12 +89,6 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
                 DataPointVo.DataPointType.Email, null);
         if(emailAddress!=null) {
             setEmail(emailAddress);
-        }
-
-        PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Phone, null);
-        if(phoneNumber!=null) {
-            setPhone(phoneNumber);
         }
     }
 
@@ -188,42 +171,6 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     }
 
     /**
-     * @return Phone number.
-     */
-    public PhoneNumber getPhone() {
-        return mPhone.phoneNumber;
-    }
-
-    public void setPhone(PhoneNumberVo phoneNumber) {
-        if(phoneNumber != null) {
-            setPhone(phoneNumber.phoneNumber);
-        }
-    }
-
-    /**
-     * Parses and stores a valid phone number.
-     * @param phone Raw phone number.
-     */
-    public void setPhone(String phone) {
-        //TODO: check country code
-        PhoneNumber number = PhoneHelperUtil.parsePhone(phone);
-        setPhone(number);
-    }
-
-    /**
-     * Stores a valid phone number.
-     * @param number Phone number object.
-     */
-    public void setPhone(PhoneNumber number) {
-        //TODO: refactor phoneNumber in DataPoint to String
-        if (number != null && PhoneHelperUtil.isValidNumber(number)) {
-            mPhone.phoneNumber = number;
-        } else {
-            mPhone.phoneNumber = null;
-        }
-    }
-
-    /**
      * @return Whether a first name has been set.
      */
     public boolean hasFirstName() {
@@ -244,14 +191,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         return !TextUtils.isEmpty(mEmail.email);
     }
 
-    /**
-     * @return Whether a phone number has been set.
-     */
-    public boolean hasPhone() {
-        return mPhone.phoneNumber != null;
-    }
-
-    public boolean hasAllRequiredData(boolean isNameRequired, boolean isEmailRequired, boolean isPhoneRequired) {
+    public boolean hasAllRequiredData(boolean isNameRequired, boolean isEmailRequired) {
         boolean hasAllData = true;
 
         LinkedList<Boolean> requiredDataList = new LinkedList<>();
@@ -260,9 +200,6 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         }
         if(isEmailRequired) {
             requiredDataList.add(hasEmail());
-        }
-        if(isPhoneRequired) {
-            requiredDataList.add(hasPhone());
         }
 
         for (boolean hasData:requiredDataList) {

@@ -55,6 +55,11 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
+            android:name="me.ledge.link.sdk.ui.activities.userdata.PhoneActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
                 android:name="me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity"
                 android:windowSoftInputMode="adjustPan"
                 android:theme="@style/Theme.LedgeLine.Example" />
