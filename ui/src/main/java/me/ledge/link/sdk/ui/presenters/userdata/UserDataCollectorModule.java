@@ -400,6 +400,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     private void storeRequiredData(RequiredDataPointsListResponseVo requiredDataPointsList) {
         UserStorage.getInstance().setRequiredData(requiredDataPointsList);
         mRequiredDataPointList = new LinkedList<>(Arrays.asList(requiredDataPointsList.data));
+        removeSecondaryCredentialFromRequiredList();
 
         CompletableFuture
                 .supplyAsync(() -> ConfigStorage.getInstance().getPOSMode())
@@ -438,6 +439,16 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
 
         fillRequiredActivitiesList();
         startModule();
+    }
+
+    private void removeSecondaryCredentialFromRequiredList() {
+        String secondaryCredential = UIStorage.getInstance().getContextConfig().secondaryAuthCredential;
+        for(Iterator<RequiredDataPointVo> listIterator = mRequiredDataPointList.iterator(); listIterator.hasNext();) {
+            RequiredDataPointVo requiredDataPointVo = listIterator.next();
+            if(requiredDataPointVo.type.equals(DataPointVo.DataPointType.fromString(secondaryCredential))) {
+                listIterator.remove();
+            }
+        }
     }
 
     private void fillRequiredActivitiesList() {

@@ -8,7 +8,7 @@ import android.widget.DatePicker;
 import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.link.api.vos.responses.ApiErrorVo;
-import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
@@ -107,8 +107,7 @@ public class BirthdateVerificationPresenter
         if (mModel.hasValidBirthdate()) {
             mLoadingSpinnerManager.showLoading(true);
             super.saveData();
-            // TODO: rename call
-            LedgeLinkUi.completePhoneVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
+            LedgeLinkUi.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
         }
     }
 
@@ -124,8 +123,7 @@ public class BirthdateVerificationPresenter
      * @param response API response.
      */
     @Subscribe
-    public void handleResponse(FinishPhoneVerificationResponseVo response) {
-        // TODO: rename finishPhoneVerificationResponse
+    public void handleResponse(FinishVerificationResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
             mModel.getVerification().setVerificationStatus(response.status);

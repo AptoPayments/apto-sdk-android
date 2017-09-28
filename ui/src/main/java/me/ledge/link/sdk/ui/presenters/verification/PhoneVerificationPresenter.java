@@ -8,7 +8,7 @@ import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.datapoints.VerificationVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
-import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
@@ -36,7 +36,7 @@ public class PhoneVerificationPresenter
     public PhoneVerificationPresenter(AppCompatActivity activity, PhoneVerificationDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-        LedgeLinkUi.startPhoneVerification(mModel.getPhoneVerificationRequest());
+        LedgeLinkUi.startVerification(mModel.getPhoneVerificationRequest());
     }
 
     /** {@inheritDoc} */
@@ -77,7 +77,7 @@ public class PhoneVerificationPresenter
         mModel.setVerificationCode(mView.getVerificationCode());
 
         if (mModel.hasAllData()) {
-            LedgeLinkUi.completePhoneVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
+            LedgeLinkUi.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
         }
     }
 
@@ -110,7 +110,7 @@ public class PhoneVerificationPresenter
      * @param response API response.
      */
     @Subscribe
-    public void handleResponse(FinishPhoneVerificationResponseVo response) {
+    public void handleResponse(FinishVerificationResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
             PhoneNumberVo phone = mModel.getPhoneFromBaseData();

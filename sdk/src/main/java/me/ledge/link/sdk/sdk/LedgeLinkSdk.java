@@ -32,10 +32,10 @@ import me.ledge.link.sdk.sdk.tasks.users.CreateUserTask;
 import me.ledge.link.sdk.sdk.tasks.users.GetCurrentUserTask;
 import me.ledge.link.sdk.sdk.tasks.users.LoginUserTask;
 import me.ledge.link.sdk.sdk.tasks.users.UpdateUserTask;
-import me.ledge.link.sdk.sdk.tasks.verifications.CompletePhoneVerificationTask;
+import me.ledge.link.sdk.sdk.tasks.verifications.CompleteVerificationTask;
 import me.ledge.link.sdk.sdk.tasks.verifications.GetVerificationStatusTask;
 import me.ledge.link.sdk.sdk.tasks.verifications.RestartVerificationTask;
-import me.ledge.link.sdk.sdk.tasks.verifications.StartPhoneVerificationTask;
+import me.ledge.link.sdk.sdk.tasks.verifications.StartVerificationTask;
 
 /**
  * Ledge Link SDK.<br />
@@ -274,10 +274,10 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask startPhoneVerification(StartVerificationRequestVo data) {
+    public static LedgeLinkApiTask startVerification(StartVerificationRequestVo data) {
         checkComponents();
 
-        StartPhoneVerificationTask task = new StartPhoneVerificationTask(data, getApiWrapper(), getResponseHandler());
+        StartVerificationTask task = new StartVerificationTask(data, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;
@@ -288,10 +288,10 @@ public class LedgeLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask completePhoneVerification(VerificationRequestVo data, String verificationId) {
+    public static LedgeLinkApiTask completeVerification(VerificationRequestVo data, String verificationId) {
         checkComponents();
 
-        CompletePhoneVerificationTask task = new CompletePhoneVerificationTask(data, verificationId, getApiWrapper(), getResponseHandler());
+        CompleteVerificationTask task = new CompleteVerificationTask(data, verificationId, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

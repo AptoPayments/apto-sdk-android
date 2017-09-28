@@ -2,9 +2,9 @@ package me.ledge.link.api.wrappers.retrofit.two.services;
 
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
-import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
@@ -20,20 +20,20 @@ import retrofit2.http.Path;
  */
 public interface VerificationService {
     /**
-     * Creates a {@link Call} to start phone verification.
+     * Creates a {@link Call} to start a verification.
      * @param data Mandatory request data.
      * @return API call to execute.
      */
     @POST(LinkApiWrapper.VERIFICATION_START_PATH)
-    Call<StartPhoneVerificationResponseVo> startPhoneVerification(@Body StartVerificationRequestVo data);
+    Call<StartVerificationResponseVo> startVerification(@Body StartVerificationRequestVo data);
 
     /**
-     * Creates a {@link Call} to finish phone verification.
+     * Creates a {@link Call} to finish a verification.
      * @param data Mandatory request data.
      * @return API call to execute.
      */
     @POST(LinkApiWrapper.VERIFICATION_FINISH_PATH)
-    Call<FinishPhoneVerificationResponseVo> completePhoneVerification(@Path("ID") String verificationID, @Body VerificationRequestVo data);
+    Call<FinishVerificationResponseVo> completeVerification(@Path("ID") String verificationID, @Body VerificationRequestVo data);
 
     /**
      * Creates a {@link Call} to start email verification.

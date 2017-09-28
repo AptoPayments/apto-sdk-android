@@ -49,9 +49,8 @@ import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
-import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 import me.ledge.link.api.wrappers.BaseLinkApiWrapper;
@@ -490,12 +489,12 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
     /** {@inheritDoc} */
     @Override
-    public StartPhoneVerificationResponseVo startPhoneVerification(StartVerificationRequestVo phoneVerificationRequestVo)
+    public StartVerificationResponseVo startVerification(StartVerificationRequestVo startVerificationRequestVo)
             throws ApiException {
-        StartPhoneVerificationResponseVo result;
+        StartVerificationResponseVo result;
         try {
-            Response<StartPhoneVerificationResponseVo> response
-                    = mVerificationService.startPhoneVerification(phoneVerificationRequestVo).execute();
+            Response<StartVerificationResponseVo> response
+                    = mVerificationService.startVerification(startVerificationRequestVo).execute();
             result = handleResponse(response, LinkApiWrapper.VERIFICATION_START_PATH);
         } catch (IOException ioe) {
             result = null;
@@ -507,12 +506,12 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
     /** {@inheritDoc} */
     @Override
-    public FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo, String verificationID)
+    public FinishVerificationResponseVo completeVerification(VerificationRequestVo verificationRequestVo, String verificationID)
             throws ApiException {
-        FinishPhoneVerificationResponseVo result;
+        FinishVerificationResponseVo result;
         try {
-            Response<FinishPhoneVerificationResponseVo> response
-                    = mVerificationService.completePhoneVerification(verificationID, verificationRequestVo).execute();
+            Response<FinishVerificationResponseVo> response
+                    = mVerificationService.completeVerification(verificationID, verificationRequestVo).execute();
             result = handleResponse(response, LinkApiWrapper.VERIFICATION_FINISH_PATH);
         } catch (IOException ioe) {
             result = null;

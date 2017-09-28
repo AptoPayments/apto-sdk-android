@@ -23,8 +23,8 @@ import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
-import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 
@@ -207,22 +207,22 @@ public interface LinkApiWrapper {
             throws ApiException;
 
     /**
-     * Starts the process to verify a user's phone number.
-     * @param requestData The phone number and country code.
+     * Starts the process to verify a user's datapoint.
+     * @param requestData The datapoint to be verified.
      * @return A verification object with its verification ID.
      * @throws ApiException When there is an error making the request.
      */
-    StartPhoneVerificationResponseVo startPhoneVerification(StartVerificationRequestVo requestData)
+    StartVerificationResponseVo startVerification(StartVerificationRequestVo requestData)
             throws ApiException;
 
     /**
-     * Completes the process to verify a user's phone number.
+     * Completes the process to verify a user's datapoint.
      * @param requestData The secret inputted by the user ID.
      * @param verificationID The verification ID.
      * @return A verification object with the corresponding status.
      * @throws ApiException When there is an error making the request.
      */
-    FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo requestData, String verificationID)
+    FinishVerificationResponseVo completeVerification(VerificationRequestVo requestData, String verificationID)
             throws ApiException;
 
     /**
