@@ -8,7 +8,7 @@ import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.VerificationVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
-import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
@@ -48,7 +48,6 @@ public class EmailVerificationPresenter
         super.attachView(view);
         mActivity.setTitle(this.getEmail());
         mView.setListener(this);
-        mView.displayEmailAddress(this.getEmail());
         mResponseHandler.subscribe(this);
     }
 
@@ -96,11 +95,11 @@ public class EmailVerificationPresenter
     }
 
     /**
-     * Deals with the start email verification API response.
+     * Deals with the restart verification API response.
      * @param response API response.
      */
     @Subscribe
-    public void setVerificationResponse(StartEmailVerificationResponseVo response) {
+    public void setVerificationResponse(VerificationResponseVo response) {
         if (response != null) {
             Email email = mModel.getEmailFromBaseData();
             if(email.hasVerification()) {
@@ -131,7 +130,7 @@ public class EmailVerificationPresenter
 
     @Override
     public void resendClickHandler() {
-        LedgeLinkUi.startEmailVerification(mModel.getEmailVerificationRequest());
+        LedgeLinkUi.restartVerification(mModel.getVerificationId());
         mView.displaySentMessage(mActivity.getString(R.string.email_verification_resent));
     }
 }

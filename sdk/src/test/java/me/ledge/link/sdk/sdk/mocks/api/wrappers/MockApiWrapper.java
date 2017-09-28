@@ -13,6 +13,7 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.base.ListResponseVo;
@@ -44,8 +45,8 @@ import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 
@@ -178,9 +179,8 @@ public class MockApiWrapper implements LinkApiWrapper {
         return response;
     }
 
-    /** {@inheritDoc} */
     @Override
-    public CreateUserResponseVo loginUser(DataPointList requestData) throws ApiException {
+    public CreateUserResponseVo loginUser(LoginRequestVo loginRequestVo) throws ApiException {
         CreateUserResponseVo response = new CreateUserResponseVo();
         response.user_token = TOKEN;
         return response;
@@ -267,21 +267,11 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo) throws ApiException {
+    public FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo, String verificationId) throws ApiException {
         FinishPhoneVerificationResponseVo response = new FinishPhoneVerificationResponseVo();
         response.status = "";
         response.type = "";
-        response.verification_id = "";
         return response;
-    }
-
-    @Override
-    public StartEmailVerificationResponseVo startEmailVerification(StartVerificationRequestVo emailVerificationRequestVo) throws ApiException {
-        StartEmailVerificationResponseVo response = new StartEmailVerificationResponseVo();
-        response.status = "";
-        response.type = "";
-        response.verification_id = "";
-        return null;
     }
 
     @Override
@@ -290,6 +280,14 @@ public class MockApiWrapper implements LinkApiWrapper {
         response.status = "";
         response.type = "";
         response.verification_id = verificationID;
+        return response;
+    }
+
+    @Override
+    public VerificationResponseVo restartVerification(String s) throws ApiException {
+        VerificationResponseVo response = new VerificationResponseVo();
+        response.status = "";
+        response.type = "";
         return response;
     }
 

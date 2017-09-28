@@ -10,6 +10,7 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
@@ -23,8 +24,8 @@ import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 
 /**
@@ -57,8 +58,9 @@ public interface LinkApiWrapper {
     String LIST_LOAN_APPLICATIONS_PATH = "v1/link/offers/";
 
     String VERIFICATION_START_PATH = "v1/verifications/start";
-    String VERIFICATION_STATUS_PATH = "v1/verifications/status/{ID}";
-    String VERIFICATION_FINISH_PATH = "v1/verifications/finish";
+    String VERIFICATION_STATUS_PATH = "v1/verifications/{ID}/status";
+    String VERIFICATION_FINISH_PATH = "v1/verifications/{ID}/finish";
+    String VERIFICATION_RESTART_PATH = "v1/verifications/{ID}/restart";
 
     String FINANCIAL_ACCOUNTS_PATH = "v1/user/financialaccounts";
     String PLAID_WEB_URL = "v1/bankoauth";
@@ -160,7 +162,7 @@ public interface LinkApiWrapper {
      * @return API response.
      * @throws ApiException When there is an error making the request.
      */
-    CreateUserResponseVo loginUser(DataPointList requestData) throws ApiException;
+    CreateUserResponseVo loginUser(LoginRequestVo requestData) throws ApiException;
 
     /**
      * Gets the current user info.
@@ -215,28 +217,27 @@ public interface LinkApiWrapper {
 
     /**
      * Completes the process to verify a user's phone number.
-     * @param requestData The secret inputted by the user and verification ID.
+     * @param requestData The secret inputted by the user ID.
+     * @param verificationID The verification ID.
      * @return A verification object with the corresponding status.
      * @throws ApiException When there is an error making the request.
      */
-    FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo requestData)
+    FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo requestData, String verificationID)
             throws ApiException;
 
     /**
-     * Starts the process to verify a user's email.
-     * @param requestData The email address.
-     * @return A verification object with its verification ID.
-     * @throws ApiException When there is an error making the request.
-     */
-    StartEmailVerificationResponseVo startEmailVerification(StartVerificationRequestVo requestData)
-            throws ApiException;
-
-    /**
-     * @param verificationID The verification ID to check.
+     * @param verificationId The verification ID to check.
      * @return The verification object with the current status.
      * @throws ApiException
      */
-    VerificationStatusResponseVo getVerificationStatus(String verificationID) throws ApiException;
+    VerificationStatusResponseVo getVerificationStatus(String verificationId) throws ApiException;
+
+    /**
+     * @param verificationId The verification ID to restart.
+     * @return A verification object with the verification ID.
+     * @throws ApiException
+     */
+    VerificationResponseVo restartVerification(String verificationId) throws ApiException;
 
     /**
      * @param requestData The tokenized bank account.

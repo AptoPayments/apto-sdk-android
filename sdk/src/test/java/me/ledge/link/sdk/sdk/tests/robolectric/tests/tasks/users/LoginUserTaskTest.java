@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
@@ -20,7 +20,7 @@ import static org.hamcrest.core.IsNot.not;
  */
 public class LoginUserTaskTest {
 
-    private RoboLinkApiTaskWrapper<CreateUserResponseVo, DataPointList> mTask;
+    private RoboLinkApiTaskWrapper<CreateUserResponseVo, LoginRequestVo> mTask;
 
     /**
      * Sets up each test.
@@ -28,7 +28,7 @@ public class LoginUserTaskTest {
     @Before
     public void setUp() {
         mTask = new RoboLinkApiTaskWrapper<>(
-                new LoginUserTask(new DataPointList(), new MockApiWrapper(), new MockResponseHandler())
+                new LoginUserTask(new LoginRequestVo(null), new MockApiWrapper(), new MockResponseHandler())
         );
     }
 

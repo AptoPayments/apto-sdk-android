@@ -5,9 +5,9 @@ import android.support.design.widget.TextInputLayout;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
-import me.ledge.link.sdk.ui.views.text.PhoneNumberTextWatcher;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
@@ -31,9 +31,6 @@ public class PersonalInformationView
 
     private TextInputLayout mEmailWrapper;
     private EditText mEmailField;
-
-    private TextInputLayout mPhoneWrapper;
-    private EditText mPhoneField;
 
     /**
      * @see UserDataView#UserDataView
@@ -65,16 +62,12 @@ public class PersonalInformationView
 
         mEmailWrapper = (TextInputLayout) findViewById(R.id.til_email);
         mEmailField = (EditText) findViewById(R.id.et_email);
-
-        mPhoneWrapper = (TextInputLayout) findViewById(R.id.til_phone);
-        mPhoneField = (EditText) findViewById(R.id.et_phone);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mPhoneField.addTextChangedListener(new PhoneNumberTextWatcher());
     }
 
     /**
@@ -123,21 +116,6 @@ public class PersonalInformationView
     }
 
     /**
-     * @return Phone number as entered by the user.
-     */
-    public String getPhone() {
-        return mPhoneField.getText().toString();
-    }
-
-    /**
-     * Shows a new phone number.
-     * @param phone New phone number.
-     */
-    public void setPhone(String phone) {
-        mPhoneField.setText(phone);
-    }
-
-    /**
      * Updates the first name field error display.
      * @param show Whether the error should be shown.
      * @param errorMessageId Error message resource ID.
@@ -164,15 +142,6 @@ public class PersonalInformationView
         updateErrorDisplay(mEmailWrapper, show, errorMessageId);
     }
 
-    /**
-     * Updates the phone field error display.
-     * @param show Whether the error should be shown.
-     * @param errorMessageId Error message resource ID.
-     */
-    public void updatePhoneError(boolean show, int errorMessageId) {
-        updateErrorDisplay(mPhoneWrapper, show, errorMessageId);
-    }
-
     public void showName(boolean show) {
         if(show) {
             mFirstNameField.setVisibility(VISIBLE);
@@ -181,15 +150,6 @@ public class PersonalInformationView
         else {
             mFirstNameField.setVisibility(GONE);
             mLastNameField.setVisibility(GONE);
-        }
-    }
-
-    public void showPhone(boolean show) {
-        if(show) {
-            mPhoneField.setVisibility(VISIBLE);
-        }
-        else {
-            mPhoneField.setVisibility(GONE);
         }
     }
 

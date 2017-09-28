@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.sdk.tasks.users;
 
 import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
@@ -11,7 +11,7 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * A concrete {@link LedgeLinkApiTask} to login an exisiting user.
  * @author Wijnand
  */
-public class LoginUserTask extends LedgeLinkApiTask<Void, Void, CreateUserResponseVo, DataPointList> {
+public class LoginUserTask extends LedgeLinkApiTask<Void, Void, CreateUserResponseVo, LoginRequestVo> {
 
     /**
      * @see LedgeLinkApiTask#LedgeLinkApiTask
@@ -19,7 +19,7 @@ public class LoginUserTask extends LedgeLinkApiTask<Void, Void, CreateUserRespon
      * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      */
-    public LoginUserTask(DataPointList requestData, LinkApiWrapper apiWrapper,
+    public LoginUserTask(LoginRequestVo requestData, LinkApiWrapper apiWrapper,
                          ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);

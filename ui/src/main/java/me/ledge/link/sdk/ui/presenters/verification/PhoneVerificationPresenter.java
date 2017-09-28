@@ -9,7 +9,7 @@ import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.datapoints.VerificationVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.verification.PhoneVerificationModel;
@@ -77,7 +77,7 @@ public class PhoneVerificationPresenter
         mModel.setVerificationCode(mView.getVerificationCode());
 
         if (mModel.hasAllData()) {
-            LedgeLinkUi.completePhoneVerification(mModel.getVerificationRequest());
+            LedgeLinkUi.completePhoneVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
         }
     }
 
@@ -88,18 +88,19 @@ public class PhoneVerificationPresenter
     }
 
     /**
-     * Called when the start phone verification API response has been received.
+     * Called when the restart verification API response has been received.
      * @param response API response.
      */
     @Subscribe
-    public void handleResponse(StartPhoneVerificationResponseVo response) {
+    public void handleResponse(VerificationResponseVo response) {
         if (response != null) {
             PhoneNumberVo phone = mModel.getPhoneFromBaseData();
             if(phone.hasVerification()) {
                 phone.getVerification().setVerificationId(response.verification_id);
+                phone.getVerification().setVerificationType(response.verification_type);
             }
             else{
-                phone.setVerification(new VerificationVo(response.verification_id));
+                phone.setVerification(new VerificationVo(response.verification_id, response.verification_type));
             }
         }
     }
@@ -134,7 +135,7 @@ public class PhoneVerificationPresenter
 
     @Override
     public void resendClickHandler() {
-        LedgeLinkUi.startPhoneVerification(mModel.getPhoneVerificationRequest());
+        LedgeLinkUi.restartVerification(mModel.getVerificationId());
         mView.displaySentMessage(mActivity.getString(R.string.phone_verification_resent));
     }
 
