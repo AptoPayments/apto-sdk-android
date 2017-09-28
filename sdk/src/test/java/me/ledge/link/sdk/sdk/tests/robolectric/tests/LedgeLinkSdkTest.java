@@ -16,6 +16,7 @@ import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
@@ -165,7 +166,7 @@ public class LedgeLinkSdkTest {
     @Test
     public void loginUserTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.loginUser(new DataPointList()),
+                LedgeLinkSdk.loginUser(new LoginRequestVo(null)),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 
@@ -185,18 +186,6 @@ public class LedgeLinkSdkTest {
     public void completePhoneVerificationTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
                 LedgeLinkSdk.completePhoneVerification(new VerificationRequestVo(), ""),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
-    }
-
-    /**
-     * Given an API Wrapper AND a response handler have been set.<br />
-     * When trying to verify the email.<br />
-     * Then the resulting {@link LedgeLinkApiTask} should be returned.
-     */
-    @Test
-    public void startEmailVerificationTaskIsCreated() {
-        Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.startEmailVerification(new StartVerificationRequestVo()),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 
