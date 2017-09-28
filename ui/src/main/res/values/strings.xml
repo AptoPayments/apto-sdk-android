@@ -36,6 +36,13 @@
     <string name="phone_label">We\'ll send a one-time SMS to verify your phone number. Carrier SMS fees may apply.</string>
     <string name="phone_error">Invalid phone number</string>
 
+    <!-- Birthdate -->
+    <string name="birthdate_title">Security Check</string>
+    <string name="birthdate_hint">Birthdate (MM/DD/YYYY)</string>
+    <string name="birthdate_label">Enter your birthdate below to verify your account.</string>
+    <string name="birthdate_error">You must be 18 years or older.</string>
+    <string name="birthdate_verification_error">Error: the birthdate is incorrect!</string>
+
     <!-- Phone Verification -->
     <string name="phone_verification_label">Phone verification</string>
     <string name="phone_verification_code_hint">Enter your verification code</string>

@@ -52,4 +52,10 @@ public class ConfigResponseVo {
     public String summary;
 
     public String language;
+
+    @SerializedName("primary_auth_credential")
+    public String primaryAuthCredential;
+
+    @SerializedName("secondary_auth_credential")
+    public String secondaryAuthCredential;
 }

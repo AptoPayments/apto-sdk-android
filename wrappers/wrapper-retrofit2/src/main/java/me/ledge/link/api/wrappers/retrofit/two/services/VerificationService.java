@@ -5,6 +5,7 @@ import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import retrofit2.Call;
@@ -48,4 +49,11 @@ public interface VerificationService {
      */
     @GET(LinkApiWrapper.VERIFICATION_STATUS_PATH)
     Call<VerificationStatusResponseVo> getVerificationStatus(@Path("ID") String verificationID);
+
+    /**
+     * Creates a {@link Call} to restart the verification.
+     * @return API call to execute.
+     */
+    @POST(LinkApiWrapper.VERIFICATION_RESTART_PATH)
+    Call<VerificationResponseVo> restartVerification(@Path("ID") String verificationID);
 }

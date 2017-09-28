@@ -5,20 +5,39 @@ import com.google.gson.annotations.SerializedName;
 
 public class DataPointVo {
     public enum DataPointType{
-        PersonalName,
-        Phone,
-        Email,
-        BirthDate,
-        SSN,
-        Address,
-        Housing,
-        IncomeSource,
-        Income,
-        CreditScore,
-        FinancialAccount,
-        PayDayLoan,
-        MemberOfArmedForces,
-        TimeAtAddress;
+        PersonalName("NAME"),
+        Phone("PHONE"),
+        Email("EMAIL"),
+        BirthDate("BIRTHDATE"),
+        SSN("SSN"),
+        Address("ADDRESS"),
+        Housing("HOUSING"),
+        IncomeSource("INCOME_SOURCE"),
+        Income("INCOME"),
+        CreditScore("CREDIT_SCORE"),
+        FinancialAccount("FINANCIAL_ACCOUNT"),
+        PayDayLoan("PAYDAY_LOAN"),
+        MemberOfArmedForces("MEMBER_OF_ARMED_FORCES"),
+        TimeAtAddress("TIME_AT_ADDRESS");
+
+        private String type;
+
+        DataPointType(String type) {
+            this.type = type;
+        }
+
+        public String getType() {
+            return this.type;
+        }
+
+        public static DataPointType fromString(String type) {
+            for (DataPointType enumType : DataPointType.values()) {
+                if (enumType.type.equalsIgnoreCase(type)) {
+                    return enumType;
+                }
+            }
+            return null;
+        }
     }
 
     @SerializedName("type")

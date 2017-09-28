@@ -5,11 +5,11 @@ package me.ledge.link.api.vos.requests.base;
  * TODO: Move to API common project.
  * @author wijnand
  */
-public class ListRequestVo extends UnauthorizedRequestVo {
+public class ListRequestVo<DataType> extends UnauthorizedRequestVo {
 
     private static final int DEFAULT_ROWS = 10;
 
     public int page = 0;
     public int rows = DEFAULT_ROWS;
-
+    public DataType data;
 }

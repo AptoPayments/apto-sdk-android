@@ -12,17 +12,27 @@ public class VerificationVo {
     private VerificationStatus mVerificationStatus;
     private String mSecret;
     private String mVerificationId;
+    private String mVerificationType;
 
     public VerificationVo() {
         mVerificationId = null;
         mSecret = null;
         mVerificationStatus = null;
+        mVerificationType = null;
     }
 
     public VerificationVo(String verificationId) {
         mVerificationId = verificationId;
         mSecret = null;
         mVerificationStatus = null;
+        mVerificationType = null;
+    }
+
+    public VerificationVo(String verificationId, String verificationType) {
+        mVerificationId = verificationId;
+        mSecret = null;
+        mVerificationStatus = null;
+        mVerificationType = verificationType;
     }
 
     /**
@@ -59,6 +69,14 @@ public class VerificationVo {
         }
     }
 
+    public String getVerificationType() {
+        return mVerificationType;
+    }
+
+    public void setVerificationType(String verificationType) {
+        this.mVerificationType = verificationType;
+    }
+
     /**
      * @return is DataPoint Verified
      */
@@ -70,6 +88,7 @@ public class VerificationVo {
         JsonObject gsonObject = new JsonObject();;
         gsonObject.addProperty("secret", mSecret);
         gsonObject.addProperty("verification_id", String.valueOf(mVerificationId));
+        gsonObject.addProperty("verification_type", mVerificationType);
         return gsonObject;
     }
 

@@ -16,15 +16,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 import java8.util.concurrent.CompletableFuture;
+import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Email;
-import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
+import me.ledge.link.api.vos.datapoints.VerificationVo;
+import me.ledge.link.api.vos.requests.base.ListRequestVo;
+import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
+import me.ledge.link.api.vos.responses.verifications.BaseVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
@@ -37,6 +41,7 @@ import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.ArmedForcesActivity;
+import me.ledge.link.sdk.ui.activities.verification.BirthdateVerificationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
 import me.ledge.link.sdk.ui.activities.userdata.HomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
@@ -47,9 +52,11 @@ import me.ledge.link.sdk.ui.activities.userdata.PhoneActivity;
 import me.ledge.link.sdk.ui.activities.userdata.TimeAtAddressActivity;
 import me.ledge.link.sdk.ui.activities.verification.EmailVerificationActivity;
 import me.ledge.link.sdk.ui.activities.verification.PhoneVerificationActivity;
+import me.ledge.link.sdk.ui.presenters.verification.BirthdateVerificationDelegate;
 import me.ledge.link.sdk.ui.presenters.verification.EmailVerificationDelegate;
 import me.ledge.link.sdk.ui.presenters.verification.PhoneVerificationDelegate;
 import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 
 /**
@@ -60,7 +67,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         PhoneVerificationDelegate, EmailVerificationDelegate, IdentityVerificationDelegate,
         AddressDelegate, AnnualIncomeDelegate, MonthlyIncomeDelegate, CreditScoreDelegate,
         PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate, ArmedForcesDelegate,
-        TimeAtAddressDelegate {
+        TimeAtAddressDelegate, BirthdateVerificationDelegate {
 
     private static UserDataCollectorModule instance;
     public Command onFinish;
@@ -171,13 +178,34 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     }
 
     @Override
-    public void phoneVerificationSucceeded(VerificationResponseVo secondaryCredential) {
-        // TODO: start next activity based on secondary credential
-        // TODO: set verification_id from secondary credential
-        if(isEmailVerificationRequired() && !isCurrentEmailVerified()) {
-            startActivity(EmailVerificationActivity.class);
-        } else {
+    public void phoneVerificationSucceeded(VerificationResponseVo verification) {
+        if(verification.secondary_credential == null) {
             startActivity(getActivityAtPosition(PhoneActivity.class, 1));
+            return;
+        }
+        BaseVerificationResponseVo secondaryCredential = verification.secondary_credential;
+        switch(DataPointVo.DataPointType.fromString(secondaryCredential.verification_type)) {
+            // TODO: make this more generic
+            case Email:
+                if(isEmailVerificationRequired() && !isCurrentEmailVerified()) {
+                    DataPointList userData = UserStorage.getInstance().getUserData();
+                    DataPointVo baseEmail = userData.getUniqueDataPoint(DataPointVo.DataPointType.Email, new Email());
+                    UserStorage.getInstance().setUserData(userData);
+                    baseEmail.setVerification(new VerificationVo(secondaryCredential.verification_id, secondaryCredential.verification_type));
+                    startActivity(EmailVerificationActivity.class);
+                } else {
+                    startActivity(getActivityAtPosition(PhoneActivity.class, 1));
+                }
+                break;
+            case BirthDate:
+                DataPointList userData = UserStorage.getInstance().getUserData();
+                DataPointVo baseBirthdate = userData.getUniqueDataPoint(DataPointVo.DataPointType.BirthDate, new Birthdate());
+                UserStorage.getInstance().setUserData(userData);
+                baseBirthdate.setVerification(new VerificationVo(secondaryCredential.verification_id, secondaryCredential.verification_type));
+                startActivity(BirthdateVerificationActivity.class);
+                break;
+            default:
+                startActivity(getActivityAtPosition(PhoneActivity.class, 1));
         }
     }
 
@@ -333,6 +361,18 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         startActivity(PersonalInformationActivity.class);
     }
 
+    @Override
+    public void birthdateSucceeded() {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
+        LedgeLinkUi.loginUser(getLoginData());
+    }
+
+    @Override
+    public void birthdateOnBackPressed() {
+        startActivity(mRequiredActivities.get(0));
+    }
+
     private void startModule() {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
 
@@ -414,9 +454,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
                         break;
                     case Email:
                         addRequiredActivity(PersonalInformationActivity.class);
-                        if(requiredDataPointVo.verificationRequired) {
-                            addRequiredActivity(EmailVerificationActivity.class);
-                        }
                         break;
                     case Address:
                     case Housing:
@@ -486,13 +523,10 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     }
 
     private boolean isPhoneVerificationRequired() {
-        boolean isPhoneVerificationRequired = false;
-        for (RequiredDataPointVo requiredDataPointVo : mRequiredDataPointList) {
-            if (requiredDataPointVo.type.equals(DataPointVo.DataPointType.Phone) && requiredDataPointVo.verificationRequired) {
-                isPhoneVerificationRequired = true;
-            }
-        }
-        return isPhoneVerificationRequired;
+        String primaryCredential = UIStorage.getInstance().getContextConfig().primaryAuthCredential;
+        String secondaryCredential = UIStorage.getInstance().getContextConfig().secondaryAuthCredential;
+        return DataPointVo.DataPointType.fromString(primaryCredential).equals(DataPointVo.DataPointType.Phone)
+                || DataPointVo.DataPointType.fromString(secondaryCredential).equals(DataPointVo.DataPointType.Phone);
     }
 
     private boolean isCurrentPhoneVerified() {
@@ -528,17 +562,22 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         return currentEmail.isVerified();
     }
 
-    private DataPointList getLoginData() {
+    private LoginRequestVo getLoginData() {
         DataPointList base = UserStorage.getInstance().getUserData();
-        Email emailAddress = (Email) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Email, new Email());
-        PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Phone, new PhoneNumberVo());
+        String primaryCredential = UIStorage.getInstance().getContextConfig().primaryAuthCredential;
+        DataPointVo primaryDataPoint = base.getUniqueDataPoint(DataPointVo.DataPointType.fromString(primaryCredential), null);
 
-        DataPointList data = new DataPointList();
-        data.add(emailAddress);
-        data.add(phoneNumber);
-        return data;
+        String secondaryCredential = UIStorage.getInstance().getContextConfig().secondaryAuthCredential;
+        DataPointVo secondaryDataPoint = base.getUniqueDataPoint(DataPointVo.DataPointType.fromString(secondaryCredential), null);
+
+        VerificationVo[] verificationList = new VerificationVo[2];
+        verificationList[0] = primaryDataPoint.getVerification();
+        verificationList[1] = secondaryDataPoint.getVerification();
+
+        ListRequestVo<VerificationVo[]> verifications = new ListRequestVo<>();
+        verifications.data = verificationList;
+
+        return new LoginRequestVo(verifications);
     }
 
     private void showLoading(boolean show) {

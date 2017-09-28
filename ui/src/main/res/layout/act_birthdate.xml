@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.ledge.link.sdk.ui.views.verification.BirthdateVerificationView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/include_llsdk_toolbar" />
+
+    <!-- Dummy to get focus on start. -->
+    <RelativeLayout
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <ScrollView
+        style="?attr/llsdk_dataContainerStyle"
+        android:scrollbarStyle="outsideOverlay">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_birthdate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:textSize="18sp"
+                android:text="@string/birthdate_label" />
+
+            <RelativeLayout
+                android:id="@+id/rl_birthday_holder"
+                android:layout_marginTop="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_birthdate_label">
+
+                <Button
+                    android:id="@+id/btn_birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_alignBottom="@+id/til_birthday"
+                    android:layout_alignTop="@+id/til_birthday"
+                    android:background="@android:color/transparent" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_birthday"
+                    style="?attr/llsdk_idVerification_inputWrapperStyle"
+                    android:nextFocusLeft="@id/til_birthday"
+                    android:nextFocusUp="@id/til_birthday"
+                    android:theme="?attr/llsdk_idVerification_inputWrapperTheme">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_birthday"
+                        style="?attr/llsdk_idVerification_editTextStyle"
+                        android:hint="@string/birthdate_hint"
+                        android:inputType="date"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <include layout="@layout/include_progress_bar" />
+    <include layout="@layout/include_rl_loading" />
+
+</me.ledge.link.sdk.ui.views.verification.BirthdateVerificationView>
