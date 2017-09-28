@@ -1,12 +1,17 @@
 package me.ledge.link.sdk.ui.views.userdata;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
@@ -21,7 +26,9 @@ public class PersonalInformationView
     /**
      * Callbacks this {@link View} will invoke.
      */
-    public interface ViewListener extends StepperListener, NextButtonListener {}
+    public interface ViewListener extends StepperListener, NextButtonListener {
+        void emailCheckBoxClickHandler();
+    }
 
     private TextInputLayout mFirstNameWrapper;
     private EditText mFirstNameField;
@@ -31,6 +38,8 @@ public class PersonalInformationView
 
     private TextInputLayout mEmailWrapper;
     private EditText mEmailField;
+    private CheckBox mEmailAvailableCheck;
+    private TextView mEmailAvailableField;
 
     /**
      * @see UserDataView#UserDataView
@@ -51,6 +60,30 @@ public class PersonalInformationView
 
     /** {@inheritDoc} */
     @Override
+    protected void setupListeners() {
+        super.setupListeners();
+        mEmailField.setOnClickListener(this);
+        mEmailAvailableCheck.setOnClickListener(this);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onClick(View view) {
+        if (mListener == null) {
+            return;
+        }
+
+        int id = view.getId();
+        if (id == R.id.cb_email_not_available) {
+            mListener.emailCheckBoxClickHandler();
+        }
+        else {
+            super.onClick(view);
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
     protected void findAllViews() {
         super.findAllViews();
 
@@ -62,12 +95,17 @@ public class PersonalInformationView
 
         mEmailWrapper = (TextInputLayout) findViewById(R.id.til_email);
         mEmailField = (EditText) findViewById(R.id.et_email);
+
+        mEmailAvailableCheck = (CheckBox) findViewById(R.id.cb_email_not_available);
+        mEmailAvailableField = (TextView) findViewById(R.id.tv_email_not_available);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        ((AppCompatCheckBox) mEmailAvailableCheck).setSupportButtonTintList(
+                ColorStateList.valueOf(UIStorage.getInstance().getPrimaryColor()));
     }
 
     /**
@@ -160,5 +198,24 @@ public class PersonalInformationView
         else {
             mEmailField.setVisibility(GONE);
         }
+    }
+
+    public void showEmailNotAvailableCheckbox(boolean show) {
+        if(show) {
+            mEmailAvailableCheck.setVisibility(VISIBLE);
+            mEmailAvailableField.setVisibility(VISIBLE);
+        }
+        else {
+            mEmailAvailableCheck.setVisibility(GONE);
+            mEmailAvailableField.setVisibility(GONE);
+        }
+    }
+
+    public boolean isEmailCheckboxChecked() {
+        return mEmailAvailableCheck.isChecked();
+    }
+
+    public void enableEmailField(boolean enabled) {
+        mEmailField.setEnabled(enabled);
     }
 }

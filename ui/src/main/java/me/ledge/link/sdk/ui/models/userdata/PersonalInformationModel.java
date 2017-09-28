@@ -22,6 +22,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
 
     private PersonalName mPersonalName;
     private Email mEmail;
+    private boolean mEmailNotSpecified;
 
     /**
      * Creates a new {@link PersonalInformationModel} instance.
@@ -37,6 +38,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     protected void init() {
         mPersonalName = new PersonalName();
         mEmail = new Email();
+        mEmailNotSpecified = false;
     }
 
     /** {@inheritDoc} */
@@ -66,10 +68,11 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
             personalName.firstName = mPersonalName.firstName;
             personalName.lastName = mPersonalName.lastName;
         }
-        if(hasEmail()) {
+        if(hasEmail() || mEmailNotSpecified) {
             Email emailAddress = (Email) base.getUniqueDataPoint(
                     DataPointVo.DataPointType.Email, new Email());
             emailAddress.email = mEmail.email;
+            emailAddress.setNotSpecified(mEmailNotSpecified);
         }
 
         return base;
@@ -206,6 +209,10 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
             hasAllData = hasAllData && hasData;
         }
         return hasAllData;
+    }
+
+    public void setEmailNotAvailable(boolean notAvailable) {
+        mEmailNotSpecified = notAvailable;
     }
 }
 
