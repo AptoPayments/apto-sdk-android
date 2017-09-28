@@ -178,14 +178,14 @@ public class LedgeLinkSdkTest {
     @Test
     public void startPhoneVerificationTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.startPhoneVerification(new StartVerificationRequestVo()),
+                LedgeLinkSdk.startVerification(new StartVerificationRequestVo()),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 
     @Test
     public void completePhoneVerificationTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.completePhoneVerification(new VerificationRequestVo(), ""),
+                LedgeLinkSdk.completeVerification(new VerificationRequestVo(), ""),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 

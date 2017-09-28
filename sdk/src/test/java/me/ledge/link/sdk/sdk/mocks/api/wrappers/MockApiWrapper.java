@@ -44,8 +44,8 @@ import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
-import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
@@ -258,8 +258,8 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     // TODO: add unit tests for verification tasks
     @Override
-    public StartPhoneVerificationResponseVo startPhoneVerification(StartVerificationRequestVo phoneVerificationRequestVo) throws ApiException {
-        StartPhoneVerificationResponseVo response = new StartPhoneVerificationResponseVo();
+    public StartVerificationResponseVo startVerification(StartVerificationRequestVo startVerificationRequestVo) throws ApiException {
+        StartVerificationResponseVo response = new StartVerificationResponseVo();
         response.status = "";
         response.type = "";
         response.verification_id = "";
@@ -267,8 +267,8 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public FinishPhoneVerificationResponseVo completePhoneVerification(VerificationRequestVo verificationRequestVo, String verificationId) throws ApiException {
-        FinishPhoneVerificationResponseVo response = new FinishPhoneVerificationResponseVo();
+    public FinishVerificationResponseVo completeVerification(VerificationRequestVo verificationRequestVo, String verificationId) throws ApiException {
+        FinishVerificationResponseVo response = new FinishVerificationResponseVo();
         response.status = "";
         response.type = "";
         return response;
