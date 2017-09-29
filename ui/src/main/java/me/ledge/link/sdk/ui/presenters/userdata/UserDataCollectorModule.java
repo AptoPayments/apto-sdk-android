@@ -129,7 +129,8 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         if (response != null) {
             UserStorage.getInstance().setBearerToken(response.user_token);
             SharedPreferencesStorage.storeUserToken(getActivity(), response.user_token);
-            stopModule();
+            removeSecondaryCredentialFromRequiredList();
+            startActivity(IdentityVerificationActivity.class);
         }
     }
 
