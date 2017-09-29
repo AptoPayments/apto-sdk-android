@@ -70,7 +70,6 @@
 
             <TextView
                 android:id="@+id/tv_disclaimers_body"
-                android:autoLink="web"
                 style="?attr/llsdk_idVerification_disclaimerStyle"
                 android:visibility="invisible"
                 android:layout_marginTop="0dp"/>
