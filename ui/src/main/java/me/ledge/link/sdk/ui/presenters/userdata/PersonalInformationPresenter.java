@@ -58,6 +58,7 @@ public class PersonalInformationPresenter
 
         mView.showName(mIsNameRequired);
         mView.showEmailNotAvailableCheckbox(mIsEmailNotAvailableAllowed);
+        mView.checkEmailNotAvailableCheckbox(mModel.isEmailNotSpecified());
         if (mIsNameRequired && mModel.hasFirstName()) {
             mView.setFirstName(mModel.getFirstName());
         }

@@ -57,6 +57,10 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
         return hasFirstName() && hasLastName();
     }
 
+    public boolean isEmailNotSpecified() {
+        return mEmailNotSpecified;
+    }
+
     /** {@inheritDoc} */
     @Override
     public DataPointList getBaseData() {
@@ -92,6 +96,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
                 DataPointVo.DataPointType.Email, null);
         if(emailAddress!=null) {
             setEmail(emailAddress);
+            mEmailNotSpecified = emailAddress.isNotSpecified();
         }
     }
 

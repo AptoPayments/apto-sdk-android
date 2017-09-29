@@ -218,4 +218,9 @@ public class PersonalInformationView
     public void enableEmailField(boolean enabled) {
         mEmailField.setEnabled(enabled);
     }
+
+    public void checkEmailNotAvailableCheckbox(boolean enable) {
+        mEmailAvailableCheck.setChecked(enable);
+        enableEmailField(!enable);
+    }
 }

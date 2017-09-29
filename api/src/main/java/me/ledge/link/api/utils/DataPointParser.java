@@ -53,6 +53,9 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                 return new PhoneNumberVo(jObject.get("country_code").getAsString() +
                         jObject.get("phone_number").getAsString(), verified, notSpecified);
             case "email":
+                if(notSpecified) {
+                    return new Email(null, verified, notSpecified);
+                }
                 return new Email(jObject.get("email").getAsString(), verified, notSpecified);
             case "birthdate":
                 return new Birthdate(jObject.get("date").getAsString(), verified, notSpecified);
