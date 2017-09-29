@@ -21,6 +21,7 @@ public class PersonalInformationPresenter
     private PersonalInformationDelegate mDelegate;
     private boolean mIsNameRequired;
     private boolean mIsEmailRequired;
+    private boolean mIsEmailNotAvailableAllowed;
 
     /**
      * Creates a new {@link PersonalInformationPresenter} instance.
@@ -30,8 +31,18 @@ public class PersonalInformationPresenter
         super(activity);
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
-        mIsNameRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.PersonalName));
-        mIsEmailRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Email));
+
+        mIsEmailRequired = false;
+        mIsEmailNotAvailableAllowed = false;
+        for (RequiredDataPointVo requiredDataPointVo : module.mRequiredDataPointList) {
+            if(requiredDataPointVo.type.equals(DataPointVo.DataPointType.PersonalName)) {
+                mIsNameRequired = true;
+            }
+            if(requiredDataPointVo.type.equals(DataPointVo.DataPointType.Email)) {
+                mIsEmailRequired = true;
+                mIsEmailNotAvailableAllowed = requiredDataPointVo.notSpecifiedAllowed;
+            }
+        }
     }
 
     /** {@inheritDoc} */
@@ -46,6 +57,8 @@ public class PersonalInformationPresenter
         super.attachView(view);
 
         mView.showName(mIsNameRequired);
+        mView.showEmailNotAvailableCheckbox(mIsEmailNotAvailableAllowed);
+        mView.checkEmailNotAvailableCheckbox(mModel.isEmailNotSpecified());
         if (mIsNameRequired && mModel.hasFirstName()) {
             mView.setFirstName(mModel.getFirstName());
         }
@@ -82,6 +95,10 @@ public class PersonalInformationPresenter
             mView.updateLastNameError(!mModel.hasLastName(), R.string.personal_info_last_name_error);
         }
 
+        if(mView.isEmailCheckboxChecked()) {
+            mIsEmailRequired = false;
+            mModel.setEmailNotAvailable(true);
+        }
         if(mIsEmailRequired) {
             mModel.setEmail(mView.getEmail());
             mView.updateEmailError(!mModel.hasEmail(), R.string.personal_info_email_error);
@@ -91,5 +108,11 @@ public class PersonalInformationPresenter
             saveData();
             mDelegate.personalInformationStored();
         }
+    }
+
+    @Override
+    public void emailCheckBoxClickHandler() {
+        mView.enableEmailField(!mView.isEmailCheckboxChecked());
+        mView.updateEmailError(false, 0);
     }
 }

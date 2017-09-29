@@ -29,6 +29,7 @@
     <string name="personal_info_last_name_error">Please enter your last name.</string>
     <string name="personal_info_email_hint">Email</string>
     <string name="personal_info_email_error">Please enter a valid email address.</string>
+    <string name="personal_info_email_not_available">I don\'t have an email</string>
 
     <!-- Phone -->
     <string name="phone_title">Get started</string>
