@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -52,6 +53,7 @@ public class AnnualIncomePresenterTest {
     }
 
     @Test
+    @Ignore
     public void absoluteAnnualGrossIncomeStoredInModel() {
         ((MockAnnualIncomePresenter) mPresenter).setModelMaxIncome(TEST_MAX_INCOME);
         ((MockAnnualIncomePresenter) mPresenter).setMultiplier(EXPECTED_MULTIPLIER);
