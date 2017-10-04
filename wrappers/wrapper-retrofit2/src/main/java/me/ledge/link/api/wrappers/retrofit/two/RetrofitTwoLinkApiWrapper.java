@@ -47,6 +47,7 @@ import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
+import me.ledge.link.api.vos.responses.users.LoginUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
@@ -392,11 +393,11 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public CreateUserResponseVo loginUser(LoginRequestVo requestData) throws ApiException {
-        CreateUserResponseVo result;
+    public LoginUserResponseVo loginUser(LoginRequestVo requestData) throws ApiException {
+        LoginUserResponseVo result;
 
         try {
-            Response<CreateUserResponseVo> response = mUserService.loginUser(requestData).execute();
+            Response<LoginUserResponseVo> response = mUserService.loginUser(requestData).execute();
             result = handleResponse(response, LinkApiWrapper.LOGIN_USER_PATH);
         } catch (IOException ioe) {
             result = null;

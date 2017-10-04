@@ -3,6 +3,7 @@ package me.ledge.link.api.wrappers.retrofit.two.services;
 import com.google.gson.JsonObject;
 
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
+import me.ledge.link.api.vos.responses.users.LoginUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
@@ -40,7 +41,7 @@ public interface UserService {
      * @return API call to execute.
      */
     @POST(LinkApiWrapper.LOGIN_USER_PATH)
-    Call<CreateUserResponseVo> loginUser(@Body LoginRequestVo data);
+    Call<LoginUserResponseVo> loginUser(@Body LoginRequestVo data);
 
     /**
      * Creates a {@link Call} to get the current user info.

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.imageloaders.volley.VolleyImageLoader;
@@ -17,6 +18,7 @@ import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.presenters.link.LinkModule;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
@@ -81,7 +83,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
     }
 
     public static void clearUserToken(Context context) {
-        SharedPreferencesStorage.storeUserToken(context, null);
+        SharedPreferencesStorage.clearUserToken(context);
         UserStorage.getInstance().setBearerToken(null);
     }
 
@@ -133,7 +135,18 @@ public class LedgeLinkUi extends LedgeLinkSdk {
     public static void startProcess(Activity activity, DataPointList userData, LoanDataVo loanData) {
         UserStorage.getInstance().setUserData(userData);
         LinkStorage.getInstance().setLoanData(loanData);
+        validateToken(activity);
         LinkModule linkModule = new LinkModule(activity);
         linkModule.initialModuleSetup();
+    }
+
+    private static void validateToken(Context context) {
+        String storedPrimaryCredential = SharedPreferencesStorage.getPrimaryCredential(context);
+        String storedSecondaryCredential = SharedPreferencesStorage.getSecondaryCredential(context);
+        ConfigResponseVo contextConfig = UIStorage.getInstance().getContextConfig();
+        if(!contextConfig.primaryAuthCredential.equals(storedPrimaryCredential) ||
+                !contextConfig.secondaryAuthCredential.equals(storedSecondaryCredential)) {
+            clearUserToken(context);
+        }
     }
 }
