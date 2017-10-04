@@ -28,6 +28,7 @@ import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
+import me.ledge.link.api.vos.responses.users.LoginUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.BaseVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
@@ -125,16 +126,28 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
      * @param response API response.
      */
     @Subscribe
+    public void handleToken(LoginUserResponseVo response) {
+        if (response != null) {
+            storeToken(response.user_token);
+            removeSecondaryCredentialFromRequiredList();
+            mRequiredActivities.clear();
+            // Identity Verification screen has to be added to show disclaimers
+            addRequiredActivity(IdentityVerificationActivity.class);
+            getCurrentUserOrContinue(ConfigStorage.getInstance().getPOSMode());
+        }
+    }
+
+    /**
+     * Called when the create user response has been received.
+     * @param response API response.
+     */
+    @Subscribe
     public void handleToken(CreateUserResponseVo response) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         if (response != null) {
-            UserStorage.getInstance().setBearerToken(response.user_token);
-            SharedPreferencesStorage.storeUserToken(getActivity(), response.user_token);
-            ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
-            SharedPreferencesStorage.storeCredentials(getActivity(), config.primaryAuthCredential, config.secondaryAuthCredential);
-            removeSecondaryCredentialFromRequiredList();
-            startActivity(IdentityVerificationActivity.class);
+            storeToken(response.user_token);
         }
+        stopModule();
     }
 
     /**
@@ -188,24 +201,19 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
             return;
         }
         BaseVerificationResponseVo secondaryCredential = verification.secondary_credential;
+        DataPointList userData = UserStorage.getInstance().getUserData();
         switch(DataPointVo.DataPointType.fromString(secondaryCredential.verification_type)) {
             // TODO: make this more generic
             case Email:
-                if(isEmailVerificationRequired() && !isCurrentEmailVerified()) {
-                    DataPointList userData = UserStorage.getInstance().getUserData();
-                    DataPointVo baseEmail = userData.getUniqueDataPoint(DataPointVo.DataPointType.Email, new Email());
-                    UserStorage.getInstance().setUserData(userData);
-                    baseEmail.setVerification(new VerificationVo(secondaryCredential.verification_id, secondaryCredential.verification_type));
-                    startActivity(EmailVerificationActivity.class);
-                } else {
-                    startActivity(getActivityAtPosition(PhoneActivity.class, 1));
-                }
+                DataPointVo baseEmail = userData.getUniqueDataPoint(DataPointVo.DataPointType.Email, new Email());
+                baseEmail.setVerification(new VerificationVo(secondaryCredential.verification_id, secondaryCredential.verification_type));
+                UserStorage.getInstance().setUserData(userData);
+                startActivity(EmailVerificationActivity.class);
                 break;
             case BirthDate:
-                DataPointList userData = UserStorage.getInstance().getUserData();
                 DataPointVo baseBirthdate = userData.getUniqueDataPoint(DataPointVo.DataPointType.BirthDate, new Birthdate());
-                UserStorage.getInstance().setUserData(userData);
                 baseBirthdate.setVerification(new VerificationVo(secondaryCredential.verification_id, secondaryCredential.verification_type));
+                UserStorage.getInstance().setUserData(userData);
                 startActivity(BirthdateVerificationActivity.class);
                 break;
             default:
@@ -384,10 +392,10 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
 
         if(mRequiredActivities.isEmpty()) {
-            onUserDoesNotHaveAllRequiredData.execute();
+            onUserHasAllRequiredData.execute();
         } else {
             if (onUserHasAllRequiredData != null) {
-                onUserHasAllRequiredData.execute();
+                onUserDoesNotHaveAllRequiredData.execute();
             } else {
                 startActivity(mRequiredActivities.get(0));
             }
@@ -402,6 +410,13 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         } else {
             onFinish.execute();
         }
+    }
+
+    private void storeToken(String token) {
+        UserStorage.getInstance().setBearerToken(token);
+        SharedPreferencesStorage.storeUserToken(getActivity(), token);
+        ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
+        SharedPreferencesStorage.storeCredentials(getActivity(), config.primaryAuthCredential, config.secondaryAuthCredential);
     }
 
     private void storeRequiredData(RequiredDataPointsListResponseVo requiredDataPointsList) {
@@ -478,6 +493,9 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
                         break;
                     case Email:
                         addRequiredActivity(PersonalInformationActivity.class);
+                        if(requiredDataPointVo.verificationRequired) {
+                            addRequiredActivity(EmailVerificationActivity.class);
+                        }
                         break;
                     case Address:
                     case Housing:
@@ -504,9 +522,12 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
                     case MemberOfArmedForces:
                         addRequiredActivity(ArmedForcesActivity.class);
                         break;
+                    case SSN:
+                    case BirthDate:
+                        addRequiredActivity(IdentityVerificationActivity.class);
+                        break;
                 }
             }
-            addRequiredActivity(IdentityVerificationActivity.class);
         }
         UserDataPresenter.TOTAL_STEPS = mRequiredActivities.size();
     }

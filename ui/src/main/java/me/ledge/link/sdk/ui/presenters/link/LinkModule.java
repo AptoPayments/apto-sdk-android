@@ -139,11 +139,11 @@ public class LinkModule extends LedgeBaseModule {
     private void askDataCollectorIfUserHasAllRequiredData() {
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         userDataCollectorModule.onFinish = this::showOrSkipDisclaimers;
-        userDataCollectorModule.onUserHasAllRequiredData = () -> {
+        userDataCollectorModule.onUserDoesNotHaveAllRequiredData = () -> {
             mUserHasAllRequiredData = false;
             showOrSkipDisclaimers();
         };
-        userDataCollectorModule.onUserDoesNotHaveAllRequiredData = () -> {
+        userDataCollectorModule.onUserHasAllRequiredData = () -> {
             mUserHasAllRequiredData = true;
             showOrSkipDisclaimers();
         };

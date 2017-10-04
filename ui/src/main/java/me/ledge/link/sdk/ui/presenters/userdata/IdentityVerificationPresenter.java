@@ -114,6 +114,11 @@ public class IdentityVerificationPresenter
             mView.setSSN(mModel.getSocialSecurityNumber());
         }
 
+        int progressColor = getProgressBarColor(mActivity);
+        if (progressColor != 0) {
+            mView.setProgressColor(progressColor);
+        }
+
         if(((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile) {
             if(mIsSSNRequired && mView.getSocialSecurityNumber().isEmpty()) {
                 mView.setMaskedSSN();
@@ -121,24 +126,21 @@ public class IdentityVerificationPresenter
             mView.setButtonText(mActivity.getResources().getString(R.string.id_verification_update_profile_button));
             mActivity.getSupportActionBar().setTitle(mActivity.getResources().getString(R.string.id_verification_update_profile_title));
             mView.showDisclaimers(false);
+            mLoadingSpinnerManager.showLoading(false);
         }
-
-        int progressColor = getProgressBarColor(mActivity);
-        if (progressColor != 0) {
-            mView.setProgressColor(progressColor);
-        }
-
-        if (mDisclaimersText.isEmpty()) {
-            mLoadingSpinnerManager.showLoading(true);
-            CompletableFuture
-                    .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
-                    .exceptionally(ex -> {
-                        errorReceived(ex.getMessage());
-                        return null;
-                    })
-                    .thenAccept(this::partnerDisclaimersListRetrieved);
-        } else {
-            setTextDisclaimers(mDisclaimersText);
+        else {
+            if (mDisclaimersText.isEmpty()) {
+                mLoadingSpinnerManager.showLoading(true);
+                CompletableFuture
+                        .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
+                        .exceptionally(ex -> {
+                            errorReceived(ex.getMessage());
+                            return null;
+                        })
+                        .thenAccept(this::partnerDisclaimersListRetrieved);
+            } else {
+                setTextDisclaimers(mDisclaimersText);
+            }
         }
     }
 
