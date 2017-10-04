@@ -21,6 +21,7 @@ import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
+import me.ledge.link.api.vos.responses.users.LoginUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
@@ -162,7 +163,7 @@ public interface LinkApiWrapper {
      * @return API response.
      * @throws ApiException When there is an error making the request.
      */
-    CreateUserResponseVo loginUser(LoginRequestVo requestData) throws ApiException;
+    LoginUserResponseVo loginUser(LoginRequestVo requestData) throws ApiException;
 
     /**
      * Gets the current user info.
