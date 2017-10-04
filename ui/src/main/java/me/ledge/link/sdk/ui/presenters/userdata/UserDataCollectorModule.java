@@ -24,6 +24,7 @@ import me.ledge.link.api.vos.datapoints.VerificationVo;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
@@ -129,6 +130,8 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         if (response != null) {
             UserStorage.getInstance().setBearerToken(response.user_token);
             SharedPreferencesStorage.storeUserToken(getActivity(), response.user_token);
+            ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
+            SharedPreferencesStorage.storeCredentials(getActivity(), config.primaryAuthCredential, config.secondaryAuthCredential);
             removeSecondaryCredentialFromRequiredList();
             startActivity(IdentityVerificationActivity.class);
         }

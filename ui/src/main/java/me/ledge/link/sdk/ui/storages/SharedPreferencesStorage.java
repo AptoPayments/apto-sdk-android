@@ -13,11 +13,15 @@ public class SharedPreferencesStorage {
 
     private static final String PREFS_FILE_NAME = "UserTokenFile";
     private static final String USER_TOKEN_KEY = "userToken";
+    private static final String PRIMARY_CREDENTIAL_KEY = "primaryCredential";
+    private static final String SECONDARY_CREDENTIAL_KEY = "secondaryCredential";
     private static boolean mIsPOSMode;
 
     public static void clearUserToken(Context context) {
         SharedPreferences settings = context.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
         settings.edit().remove(USER_TOKEN_KEY).apply();
+        settings.edit().remove(PRIMARY_CREDENTIAL_KEY).apply();
+        settings.edit().remove(SECONDARY_CREDENTIAL_KEY).apply();
     }
 
     public static void storeUserToken(Context context, String userToken){
@@ -46,4 +50,21 @@ public class SharedPreferencesStorage {
         }
     }
 
+    public static void storeCredentials(Context context, String primaryCredential, String secondaryCredential){
+        SharedPreferences settings = context.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(PRIMARY_CREDENTIAL_KEY, primaryCredential);
+        editor.putString(SECONDARY_CREDENTIAL_KEY, secondaryCredential);
+        editor.apply();
+    }
+
+    public static String getPrimaryCredential(Context context) {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
+        return settings.getString(PRIMARY_CREDENTIAL_KEY, null);
+    }
+
+    public static String getSecondaryCredential(Context context) {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
+        return settings.getString(SECONDARY_CREDENTIAL_KEY, null);
+    }
 }
