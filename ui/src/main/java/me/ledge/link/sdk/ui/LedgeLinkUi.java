@@ -81,7 +81,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
     }
 
     public static void clearUserToken(Context context) {
-        SharedPreferencesStorage.storeUserToken(context, null);
+        SharedPreferencesStorage.clearUserToken(context);
         UserStorage.getInstance().setBearerToken(null);
     }
 

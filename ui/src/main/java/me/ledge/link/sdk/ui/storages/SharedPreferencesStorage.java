@@ -15,6 +15,11 @@ public class SharedPreferencesStorage {
     private static final String USER_TOKEN_KEY = "userToken";
     private static boolean mIsPOSMode;
 
+    public static void clearUserToken(Context context) {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
+        settings.edit().remove(USER_TOKEN_KEY).apply();
+    }
+
     public static void storeUserToken(Context context, String userToken){
         if(!mIsPOSMode) {
             SharedPreferences settings = context.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
@@ -31,7 +36,7 @@ public class SharedPreferencesStorage {
         mIsPOSMode = isPOSMode;
         SharedPreferences settings = context.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
         if(mIsPOSMode) {
-            settings.edit().remove(USER_TOKEN_KEY).apply();
+            clearUserToken(context);
             return null;
         }
         else {
