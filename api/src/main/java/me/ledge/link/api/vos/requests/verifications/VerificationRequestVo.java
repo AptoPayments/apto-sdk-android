@@ -11,9 +11,4 @@ public class VerificationRequestVo extends UnauthorizedRequestVo {
      * Secret input from user
      */
     public String secret;
-
-    /**
-     * Echo of ID returned in the initial verification request
-     */
-    public String verification_id;
 }

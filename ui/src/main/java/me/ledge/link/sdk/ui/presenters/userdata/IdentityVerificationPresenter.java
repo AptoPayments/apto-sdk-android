@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.DatePicker;
 
+import java.util.ArrayList;
+
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.datapoints.Address;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
@@ -35,13 +37,14 @@ public class IdentityVerificationPresenter
         implements Presenter<IdentityVerificationModel, IdentityVerificationView>,
         IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener {
 
-    private String mDisclaimersText;
+    private String mDisclaimersText = "";
+    private ArrayList<DisclaimerVo> mFullScreenDisclaimers = new ArrayList<>();
     private IdentityVerificationDelegate mDelegate;
     private boolean mIsSSNRequired;
     private boolean mIsSSNNotAvailableAllowed;
     private boolean mIsBirthdayRequired;
-    private DisclaimerVo mDisclaimer;
     private LoadingSpinnerManager mLoadingSpinnerManager;
+    public int mDisclaimersShownCounter = 0;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
@@ -125,7 +128,7 @@ public class IdentityVerificationPresenter
             mView.setProgressColor(progressColor);
         }
 
-        if (mDisclaimersText == null) {
+        if (mDisclaimersText.isEmpty()) {
             mLoadingSpinnerManager.showLoading(true);
             CompletableFuture
                     .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
@@ -135,7 +138,7 @@ public class IdentityVerificationPresenter
                     })
                     .thenAccept(this::partnerDisclaimersListRetrieved);
         } else {
-            setDisclaimers(mDisclaimersText);
+            setTextDisclaimers(mDisclaimersText);
         }
     }
 
@@ -221,11 +224,10 @@ public class IdentityVerificationPresenter
 
     private void showDisclaimerOrExit() {
         mLoadingSpinnerManager.showLoading(true);
-        if(ConfigStorage.getInstance().showPrequalificationDisclaimer()) {
-            showDisclaimer();
-        }
-        else {
+        if (mFullScreenDisclaimers.isEmpty()) {
             exit();
+        } else {
+            showFullScreenDisclaimers();
         }
         mLoadingSpinnerManager.showLoading(false);
     }
@@ -234,9 +236,18 @@ public class IdentityVerificationPresenter
         mDelegate.identityVerificationSucceeded();
     }
 
-    private void showDisclaimer() {
-        setExternalUrlDisclaimer(ConfigStorage.getInstance().getPrequalificationDisclaimer());
-        DisclaimerUtil.showDisclaimer(mActivity, mDisclaimer, this::exit);
+    private void showFullScreenDisclaimers() {
+        DisclaimerUtil.showDisclaimer(mActivity, mFullScreenDisclaimers.get(0), this::showDisclaimersCallback);
+    }
+
+    private void showDisclaimersCallback() {
+        mDisclaimersShownCounter++;
+        if(mDisclaimersShownCounter == mFullScreenDisclaimers.size()) {
+            exit();
+        }
+        else {
+            DisclaimerUtil.showDisclaimer(mActivity, mFullScreenDisclaimers.get(mDisclaimersShownCounter), this::showDisclaimersCallback);
+        }
     }
 
     /** {@inheritDoc} */
@@ -246,59 +257,45 @@ public class IdentityVerificationPresenter
         mView.setBirthday(String.format("%02d/%02d/%02d", monthOfYear + 1, dayOfMonth, year));
     }
 
-    private String parseDisclaimersResponse(LoanProductListVo productDisclaimerList) {
-        if (productDisclaimerList == null) {
-            return "";
-        }
-
+    private void parseTextDisclaimer(DisclaimerVo textDisclaimer) {
         String lineBreak = "<br />";
         String partnerDivider = "<br /><br />";
         StringBuilder result = new StringBuilder();
-
-        for(LoanProductVo loanProduct : productDisclaimerList.data) {
-            if (loanProduct.preQualificationDisclaimer!=null &&
-                    !TextUtils.isEmpty(loanProduct.preQualificationDisclaimer.value)) {
-                result.append(loanProduct.preQualificationDisclaimer.value.replaceAll("\\r?\\n", lineBreak));
-            }
+        if (!TextUtils.isEmpty(textDisclaimer.value)) {
+            result.append(textDisclaimer.value.replaceAll("\\r?\\n", lineBreak));
             result.append(partnerDivider);
         }
 
-        return result.substring(0, result.length() - partnerDivider.length());
+        mDisclaimersText += result.substring(0, result.length() - partnerDivider.length());
     }
 
-    private void setDisclaimers(String disclaimers) {
-        mDisclaimersText = disclaimers;
+    private void setTextDisclaimers(String disclaimers) {
         mActivity.runOnUiThread(() -> {
-            mView.setDisclaimers(disclaimers);
-            mLoadingSpinnerManager.showLoading(false);
-        });
-    }
-
-    private void setMarkdownDisclaimers(String disclaimers) {
-        mDisclaimersText = disclaimers;
-        mActivity.runOnUiThread(() -> {
-            mView.setMarkdownDisclaimers(disclaimers);
+            if(!disclaimers.isEmpty()) {
+                mView.setDisclaimers(disclaimers);
+            }
             mLoadingSpinnerManager.showLoading(false);
         });
     }
 
     private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
-        DisclaimerVo disclaimer = response.data[0].preQualificationDisclaimer;
-        if(disclaimer.value.isEmpty()) {
-            mLoadingSpinnerManager.showLoading(false);
-            return;
+        for (LoanProductVo loanProduct : response.data) {
+            DisclaimerVo disclaimer = loanProduct.preQualificationDisclaimer;
+            if(!disclaimer.value.isEmpty()) {
+                switch(DisclaimerVo.formatValues.valueOf(disclaimer.format)) {
+                    case plain_text:
+                        parseTextDisclaimer(disclaimer);
+                        break;
+                    case markdown:
+                        mFullScreenDisclaimers.add(disclaimer);
+                        break;
+                    case external_url:
+                        mFullScreenDisclaimers.add(formatExternalUrlDisclaimer(disclaimer));
+                        break;
+                }
+            }
         }
-        switch(DisclaimerVo.formatValues.valueOf(disclaimer.format)) {
-            case plain_text:
-                setDisclaimers(parseDisclaimersResponse(response));
-                break;
-            case markdown:
-                setMarkdownDisclaimers(parseDisclaimersResponse(response));
-            case external_url:
-                setExternalUrlDisclaimer(disclaimer);
-                mLoadingSpinnerManager.showLoading(false);
-                break;
-        }
+        setTextDisclaimers(mDisclaimersText);
     }
 
     private void errorReceived(String error) {
@@ -309,10 +306,10 @@ public class IdentityVerificationPresenter
         mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error));
     }
 
-    private void setExternalUrlDisclaimer(DisclaimerVo disclaimer) {
+    private DisclaimerVo formatExternalUrlDisclaimer(DisclaimerVo disclaimer) {
         Address userAddress = (Address) UserStorage.getInstance().getUserData().getUniqueDataPoint(
                 DataPointVo.DataPointType.Address, null);
         disclaimer.value = disclaimer.value.replace("[language]", LanguageUtil.getLanguage()).replace("[state]", userAddress.stateCode.toUpperCase());
-        mDisclaimer = disclaimer;
+        return disclaimer;
     }
 }

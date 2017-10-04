@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.ledge.link.sdk.ui.views.userdata.PhoneView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/include_llsdk_toolbar" />
+
+    <!-- Dummy to get focus on start. -->
+    <RelativeLayout
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <LinearLayout
+        style="?attr/llsdk_dataContainerStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_next_bttn"
+        android:layout_below="@+id/abl_toolbar_wrapper"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_phone_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/phone_label"
+            android:textSize="18sp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_phone"
+            style="?attr/llsdk_idVerification_inputWrapperStyle"
+            android:layout_marginTop="32dp"
+            android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
+            app:hintTextAppearance="@style/TextAppearance.AppCompat">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_phone"
+                style="?attr/llsdk_idVerification_editTextStyle"
+                android:hint="@string/phone_hint"
+                android:inputType="numberSigned"
+                android:maxLength="@integer/phone_number_length"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <include layout="@layout/include_progress_bar" />
+
+</me.ledge.link.sdk.ui.views.userdata.PhoneView>

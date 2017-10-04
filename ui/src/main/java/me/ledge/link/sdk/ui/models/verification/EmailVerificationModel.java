@@ -4,7 +4,6 @@ import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.VerificationVo;
-import me.ledge.link.api.vos.requests.verifications.EmailVerificationRequestVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.models.userdata.AbstractUserDataModel;
@@ -71,9 +70,8 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
 
     public Email getEmailFromBaseData() {
         DataPointList base = super.getBaseData();
-        Email email = (Email) base.getUniqueDataPoint(
+        return (Email) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Email, new Email());
-        return email;
     }
 
     public boolean isEmailVerified() {
@@ -82,13 +80,5 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
 
     public String getVerificationId() {
         return mVerification.getVerificationId();
-    }
-
-    public EmailVerificationRequestVo getEmailVerificationRequest() {
-        EmailVerificationRequestVo request = new EmailVerificationRequestVo();
-        Email email = getEmailFromBaseData();
-        request.email = email.email;
-
-        return request;
     }
 }

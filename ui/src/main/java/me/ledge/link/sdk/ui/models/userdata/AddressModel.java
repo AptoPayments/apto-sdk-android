@@ -240,4 +240,8 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
     public void setIsAddressValid(boolean isAddressValid) {
         mIsAddressValid = isAddressValid;
     }
+
+    public String getCountry() {
+        return mAddress.country;
+    }
 }

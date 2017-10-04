@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.annotation.Config;
 
 import java.lang.ref.WeakReference;
 
@@ -25,6 +26,7 @@ import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
+import me.ledge.link.sdk.ui.BuildConfig;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockAnnualIncomePresenter;
@@ -44,19 +46,19 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 
 @RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class)
 public class AnnualIncomePresenterTest {
 
     private static final long EXPECTED_INCOME = 90000;
     private static final int TEST_MAX_INCOME = 100000;
     private static final int EXPECTED_MULTIPLIER = 1000;
 
-    private AppCompatActivity mActivity;
     private AnnualIncomePresenter mPresenter;
     private AnnualIncomeView mView;
 
     @Before
     public void setUp() {
-        mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
+        AppCompatActivity mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity);
         userDataCollectorModule.mRequiredDataPointList.add(new RequiredDataPointVo(DataPointVo.DataPointType.IncomeSource));
         ModuleManager.getInstance().setModule(new WeakReference<>(userDataCollectorModule));

@@ -6,7 +6,7 @@ import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.VerificationVo;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
-import me.ledge.link.api.vos.requests.verifications.PhoneVerificationRequestVo;
+import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
@@ -62,7 +62,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
         PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
+                DataPointVo.DataPointType.Phone, new PhoneNumberVo());
         if(phoneNumber.hasVerification()) {
             mVerification = phoneNumber.getVerification();
         }
@@ -73,9 +73,8 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
 
     public PhoneNumberVo getPhoneFromBaseData() {
         DataPointList base = super.getBaseData();
-        PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
-        return phoneNumber;
+        return (PhoneNumberVo) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.Phone, new PhoneNumberVo());
     }
 
     /**
@@ -107,21 +106,18 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
     public VerificationRequestVo getVerificationRequest() {
         VerificationRequestVo request = new VerificationRequestVo();
         request.secret = getVerificationCode();
-        request.verification_id = getVerificationId();
         return request;
     }
 
-    private String getVerificationId() {
+    public String getVerificationId() {
         return mVerification.getVerificationId();
     }
 
-    public PhoneVerificationRequestVo getPhoneVerificationRequest() {
-        PhoneVerificationRequestVo request = new PhoneVerificationRequestVo();
-        PhoneNumberVo phoneNumber = getPhoneFromBaseData();
-        request.country_code = phoneNumber.getPhone().getCountryCode();
-        request.phone_number = String.valueOf(phoneNumber.getPhone().getNationalNumber());
+    public StartVerificationRequestVo getPhoneVerificationRequest() {
+        StartVerificationRequestVo request = new StartVerificationRequestVo();
+        request.data = getPhoneFromBaseData();
+        request.datapoint_type = DataPointVo.DataPointType.Phone;
         request.show_verification_secret = true;
-
         return request;
     }
 }

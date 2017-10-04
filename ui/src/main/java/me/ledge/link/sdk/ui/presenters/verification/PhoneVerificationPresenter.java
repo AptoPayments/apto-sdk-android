@@ -8,8 +8,8 @@ import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.datapoints.VerificationVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
-import me.ledge.link.api.vos.responses.verifications.FinishPhoneVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartPhoneVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
+import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.verification.PhoneVerificationModel;
@@ -36,7 +36,7 @@ public class PhoneVerificationPresenter
     public PhoneVerificationPresenter(AppCompatActivity activity, PhoneVerificationDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-        LedgeLinkUi.startPhoneVerification(mModel.getPhoneVerificationRequest());
+        LedgeLinkUi.startVerification(mModel.getPhoneVerificationRequest());
     }
 
     /** {@inheritDoc} */
@@ -77,29 +77,30 @@ public class PhoneVerificationPresenter
         mModel.setVerificationCode(mView.getVerificationCode());
 
         if (mModel.hasAllData()) {
-            LedgeLinkUi.completePhoneVerification(mModel.getVerificationRequest());
+            LedgeLinkUi.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
         }
     }
 
     private String getTitle() {
         PhoneNumberVo phoneNumber = (PhoneNumberVo) mModel.getBaseData().
-                getUniqueDataPoint(DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
+                getUniqueDataPoint(DataPointVo.DataPointType.Phone, new PhoneNumberVo());
         return PhoneHelperUtil.formatPhone(phoneNumber.phoneNumber);
     }
 
     /**
-     * Called when the start phone verification API response has been received.
+     * Called when the restart verification API response has been received.
      * @param response API response.
      */
     @Subscribe
-    public void handleResponse(StartPhoneVerificationResponseVo response) {
+    public void handleResponse(VerificationResponseVo response) {
         if (response != null) {
             PhoneNumberVo phone = mModel.getPhoneFromBaseData();
             if(phone.hasVerification()) {
                 phone.getVerification().setVerificationId(response.verification_id);
+                phone.getVerification().setVerificationType(response.verification_type);
             }
             else{
-                phone.setVerification(new VerificationVo(response.verification_id));
+                phone.setVerification(new VerificationVo(response.verification_id, response.verification_type));
             }
         }
     }
@@ -109,7 +110,7 @@ public class PhoneVerificationPresenter
      * @param response API response.
      */
     @Subscribe
-    public void handleResponse(FinishPhoneVerificationResponseVo response) {
+    public void handleResponse(FinishVerificationResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
             PhoneNumberVo phone = mModel.getPhoneFromBaseData();
@@ -118,10 +119,7 @@ public class PhoneVerificationPresenter
                 displayWrongCodeMessage();
             }
             else {
-                if(response.alternate_credentials != null) {
-                    phone.getVerification().setAlternateCredentials(response.alternate_credentials.data);
-                }
-                mDelegate.phoneVerificationSucceeded(phone);
+                mDelegate.phoneVerificationSucceeded(response);
             }
         }
     }
@@ -137,7 +135,7 @@ public class PhoneVerificationPresenter
 
     @Override
     public void resendClickHandler() {
-        LedgeLinkUi.startPhoneVerification(mModel.getPhoneVerificationRequest());
+        LedgeLinkUi.restartVerification(mModel.getVerificationId());
         mView.displaySentMessage(mActivity.getString(R.string.phone_verification_resent));
     }
 

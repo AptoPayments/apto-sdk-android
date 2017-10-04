@@ -2,8 +2,6 @@ package me.ledge.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import android.text.TextUtils;
 
-import com.google.i18n.phonenumbers.Phonenumber;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +13,6 @@ import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.PersonalName;
-import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
@@ -36,23 +33,8 @@ public class PersonalInformationModelTest {
     private static final String EXPECTED_FIRST_NAME = "Michael";
     private static final String EXPECTED_LAST_NAME = "Bluth";
     private static final String EXPECTED_EMAIL = "michael@bluthcompany.com";
-    private static final int EXPECTED_COUNTRY_CODE = 1;
-    private static final long EXPECTED_NATIONAL_NUMBER = 9495860722L;
 
     private PersonalInformationModel mModel;
-
-    /**
-     * @return The expected {@link Phonenumber.PhoneNumber}.
-     */
-    private Phonenumber.PhoneNumber getExpectedPhoneNumber() {
-        return new Phonenumber.PhoneNumber()
-                .setCountryCode(EXPECTED_COUNTRY_CODE)
-                .setNationalNumber(EXPECTED_NATIONAL_NUMBER);
-    }
-
-    private String getExpectedPhoneNumberAsString() {
-        return String.valueOf(EXPECTED_COUNTRY_CODE) + String.valueOf(EXPECTED_NATIONAL_NUMBER);
-    }
 
     /**
      * Sets up each test.
@@ -87,17 +69,14 @@ public class PersonalInformationModelTest {
         DataPointList base = new DataPointList();
         PersonalName baseName = new PersonalName(EXPECTED_FIRST_NAME, EXPECTED_LAST_NAME, false, false);
         Email baseEmail = new Email(EXPECTED_EMAIL, false, false);
-        PhoneNumberVo basePhone = new PhoneNumberVo(getExpectedPhoneNumberAsString(), false, false);
         base.add(baseName);
         base.add(baseEmail);
-        base.add(basePhone);
 
         mModel.setBaseData(base);
 
         Assert.assertThat("Incorrect first name.", mModel.getFirstName(), equalTo(baseName.firstName));
         Assert.assertThat("Incorrect last name.", mModel.getLastName(), equalTo(baseName.lastName));
         Assert.assertThat("Incorrect email address.", mModel.getEmail(), equalTo(baseEmail.email));
-        Assert.assertThat("Incorrect phone number.", mModel.getPhone(), equalTo(basePhone.getPhone()));
         Assert.assertTrue("All data should be set.", mModel.hasAllData());
     }
 
@@ -113,20 +92,16 @@ public class PersonalInformationModelTest {
         mModel.setFirstName(EXPECTED_FIRST_NAME);
         mModel.setLastName(EXPECTED_LAST_NAME);
         mModel.setEmail(EXPECTED_EMAIL);
-        mModel.setPhone(getExpectedPhoneNumber());
 
         DataPointList base = mModel.getBaseData();
         PersonalName baseName = (PersonalName) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.PersonalName, new PersonalName());
         Email baseEmail = (Email) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Email, new Email());
-        PhoneNumberVo basePhone = (PhoneNumberVo) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PhoneNumber, new PhoneNumberVo());
 
         Assert.assertThat("Incorrect first name.", baseName.firstName, equalTo(mModel.getFirstName()));
         Assert.assertThat("Incorrect last name.", baseName.lastName, equalTo(mModel.getLastName()));
         Assert.assertThat("Incorrect email address.", baseEmail.email, equalTo(mModel.getEmail()));
-        Assert.assertThat("Incorrect phone number.", basePhone.phoneNumber, equalTo(mModel.getPhone()));
         Assert.assertTrue("All data should be set.", mModel.hasAllData());
     }
 
@@ -200,30 +175,6 @@ public class PersonalInformationModelTest {
     public void invalidEmailIsNotStored() {
         mModel.setEmail("michael@bluth@company.com");
         Assert.assertFalse("Email should NOT be stored.", mModel.hasEmail());
-    }
-
-    /**
-     * Given an empty Model.<br />
-     * When trying to store a valid phone number.<br />
-     * Then the phone number should be stored.
-     */
-    @Test
-    public void validPhoneNumberIsStored() {
-        mModel.setPhone(Long.toString(EXPECTED_NATIONAL_NUMBER));
-        Assert.assertTrue("Phone number should be stored.", mModel.hasPhone());
-        Assert.assertThat("Incorrect phone number.", mModel.getPhone(), equalTo(getExpectedPhoneNumber()));
-        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
-    }
-
-    /**
-     * Given an empty Model.<br />
-     * When trying to store a invalid phone number.<br />
-     * Then the phone number should not be stored.
-     */
-    @Test
-    public void invalidPhoneNumberIsNotStored() {
-        mModel.setPhone("123");
-        Assert.assertFalse("Phone number should NOT be stored.", mModel.hasPhone());
     }
 
 }

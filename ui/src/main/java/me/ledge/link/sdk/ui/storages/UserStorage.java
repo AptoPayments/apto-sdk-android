@@ -1,5 +1,7 @@
 package me.ledge.link.sdk.ui.storages;
 
+import android.text.TextUtils;
+
 import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
@@ -81,6 +83,10 @@ public class UserStorage {
      */
     public void setBearerToken(String bearerToken) {
         mBearerToken = bearerToken;
+    }
+
+    public boolean hasBearerToken() {
+        return !TextUtils.isEmpty(mBearerToken);
     }
 
     public RequiredDataPointsListResponseVo getRequiredData() {

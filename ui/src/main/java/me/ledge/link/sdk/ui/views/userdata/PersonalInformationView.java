@@ -1,13 +1,18 @@
 package me.ledge.link.sdk.ui.views.userdata;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
-import me.ledge.link.sdk.ui.views.text.PhoneNumberTextWatcher;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
@@ -21,7 +26,9 @@ public class PersonalInformationView
     /**
      * Callbacks this {@link View} will invoke.
      */
-    public interface ViewListener extends StepperListener, NextButtonListener {}
+    public interface ViewListener extends StepperListener, NextButtonListener {
+        void emailCheckBoxClickHandler();
+    }
 
     private TextInputLayout mFirstNameWrapper;
     private EditText mFirstNameField;
@@ -31,9 +38,8 @@ public class PersonalInformationView
 
     private TextInputLayout mEmailWrapper;
     private EditText mEmailField;
-
-    private TextInputLayout mPhoneWrapper;
-    private EditText mPhoneField;
+    private CheckBox mEmailAvailableCheck;
+    private TextView mEmailAvailableField;
 
     /**
      * @see UserDataView#UserDataView
@@ -54,6 +60,30 @@ public class PersonalInformationView
 
     /** {@inheritDoc} */
     @Override
+    protected void setupListeners() {
+        super.setupListeners();
+        mEmailField.setOnClickListener(this);
+        mEmailAvailableCheck.setOnClickListener(this);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onClick(View view) {
+        if (mListener == null) {
+            return;
+        }
+
+        int id = view.getId();
+        if (id == R.id.cb_email_not_available) {
+            mListener.emailCheckBoxClickHandler();
+        }
+        else {
+            super.onClick(view);
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
     protected void findAllViews() {
         super.findAllViews();
 
@@ -66,15 +96,16 @@ public class PersonalInformationView
         mEmailWrapper = (TextInputLayout) findViewById(R.id.til_email);
         mEmailField = (EditText) findViewById(R.id.et_email);
 
-        mPhoneWrapper = (TextInputLayout) findViewById(R.id.til_phone);
-        mPhoneField = (EditText) findViewById(R.id.et_phone);
+        mEmailAvailableCheck = (CheckBox) findViewById(R.id.cb_email_not_available);
+        mEmailAvailableField = (TextView) findViewById(R.id.tv_email_not_available);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mPhoneField.addTextChangedListener(new PhoneNumberTextWatcher());
+        ((AppCompatCheckBox) mEmailAvailableCheck).setSupportButtonTintList(
+                ColorStateList.valueOf(UIStorage.getInstance().getPrimaryColor()));
     }
 
     /**
@@ -123,21 +154,6 @@ public class PersonalInformationView
     }
 
     /**
-     * @return Phone number as entered by the user.
-     */
-    public String getPhone() {
-        return mPhoneField.getText().toString();
-    }
-
-    /**
-     * Shows a new phone number.
-     * @param phone New phone number.
-     */
-    public void setPhone(String phone) {
-        mPhoneField.setText(phone);
-    }
-
-    /**
      * Updates the first name field error display.
      * @param show Whether the error should be shown.
      * @param errorMessageId Error message resource ID.
@@ -164,15 +180,6 @@ public class PersonalInformationView
         updateErrorDisplay(mEmailWrapper, show, errorMessageId);
     }
 
-    /**
-     * Updates the phone field error display.
-     * @param show Whether the error should be shown.
-     * @param errorMessageId Error message resource ID.
-     */
-    public void updatePhoneError(boolean show, int errorMessageId) {
-        updateErrorDisplay(mPhoneWrapper, show, errorMessageId);
-    }
-
     public void showName(boolean show) {
         if(show) {
             mFirstNameField.setVisibility(VISIBLE);
@@ -184,15 +191,6 @@ public class PersonalInformationView
         }
     }
 
-    public void showPhone(boolean show) {
-        if(show) {
-            mPhoneField.setVisibility(VISIBLE);
-        }
-        else {
-            mPhoneField.setVisibility(GONE);
-        }
-    }
-
     public void showEmail(boolean show) {
         if(show) {
             mEmailField.setVisibility(VISIBLE);
@@ -200,5 +198,29 @@ public class PersonalInformationView
         else {
             mEmailField.setVisibility(GONE);
         }
+    }
+
+    public void showEmailNotAvailableCheckbox(boolean show) {
+        if(show) {
+            mEmailAvailableCheck.setVisibility(VISIBLE);
+            mEmailAvailableField.setVisibility(VISIBLE);
+        }
+        else {
+            mEmailAvailableCheck.setVisibility(GONE);
+            mEmailAvailableField.setVisibility(GONE);
+        }
+    }
+
+    public boolean isEmailCheckboxChecked() {
+        return mEmailAvailableCheck.isChecked();
+    }
+
+    public void enableEmailField(boolean enabled) {
+        mEmailField.setEnabled(enabled);
+    }
+
+    public void checkEmailNotAvailableCheckbox(boolean enable) {
+        mEmailAvailableCheck.setChecked(enable);
+        enableEmailField(!enable);
     }
 }

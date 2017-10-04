@@ -104,15 +104,12 @@ dependencies {
     compile 'io.card:android-sdk:5.4.1'
     compile 'com.github.verygoodsecurity:vgs-android-sdk:e6372c5002'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
-    compile (group: 'com.smartystreets.api', name: 'smartystreets-java-sdk', version: '2.1.1') {
-        exclude group: "org.apache.httpcomponents", module: "httpclient"
-    }
     compile 'com.synnapps:carouselview:0.0.10'
     compile 'us.feras.mdv:markdownview:1.1.0'
 
     // Tests
     testCompile 'junit:junit:4.12'
-    testCompile 'org.robolectric:robolectric:3.1'
+    testCompile 'org.robolectric:robolectric:3.1.2'
     testCompile 'org.powermock:powermock-api-mockito:1.6.6'
     testCompile 'org.powermock:powermock-module-junit4-rule-agent:1.6.6'
     testCompile 'org.powermock:powermock-module-junit4-rule:1.6.6'

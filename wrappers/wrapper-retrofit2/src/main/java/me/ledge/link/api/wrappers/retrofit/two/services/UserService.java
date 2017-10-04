@@ -6,6 +6,7 @@ import me.ledge.link.api.vos.requests.users.DeleteUserRequestVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
+import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -40,7 +41,7 @@ public interface UserService {
      * @return API call to execute.
      */
     @POST(LinkApiWrapper.LOGIN_USER_PATH)
-    Call<CreateUserResponseVo> loginUser(@Body JsonObject data);
+    Call<CreateUserResponseVo> loginUser(@Body LoginRequestVo data);
 
     /**
      * Creates a {@link Call} to get the current user info.
