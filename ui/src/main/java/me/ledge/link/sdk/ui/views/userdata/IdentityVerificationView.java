@@ -108,6 +108,7 @@ public class IdentityVerificationView
     protected void setupListeners() {
         super.setupListeners();
         mBirthdayButton.setOnClickListener(this);
+        mBirthdayField.setOnClickListener(this);
         mSocialSecurityField.setOnClickListener(this);
         mSocialSecurityAvailableCheck.setOnClickListener(this);
     }
@@ -120,7 +121,7 @@ public class IdentityVerificationView
         }
 
         int id = view.getId();
-        if (id == R.id.btn_birthday) {
+        if (id == R.id.btn_birthday || id == R.id.et_birthday) {
             mListener.birthdayClickHandler();
         }
         else if (id == R.id.cb_ssn_itin_not_available) {

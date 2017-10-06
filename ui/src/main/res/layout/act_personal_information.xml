@@ -68,6 +68,7 @@
                         style="?attr/llsdk_idVerification_editTextStyle"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
+                        android:imeOptions="actionDone"
                         android:hint="@string/personal_info_email_hint" />
 
             </android.support.design.widget.TextInputLayout>
