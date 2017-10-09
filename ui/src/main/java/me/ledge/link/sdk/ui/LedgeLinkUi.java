@@ -3,6 +3,11 @@ package me.ledge.link.sdk.ui;
 import android.app.Activity;
 import android.content.Context;
 
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.security.ProviderInstaller;
+
 import java.util.ArrayList;
 
 import me.ledge.common.utils.android.AndroidUtils;
@@ -136,8 +141,18 @@ public class LedgeLinkUi extends LedgeLinkSdk {
         UserStorage.getInstance().setUserData(userData);
         LinkStorage.getInstance().setLoanData(loanData);
         validateToken(activity);
-        LinkModule linkModule = new LinkModule(activity);
-        linkModule.initialModuleSetup();
+        try {
+            ProviderInstaller.installIfNeeded(activity.getApplicationContext());
+            LinkModule linkModule = new LinkModule(activity);
+            linkModule.initialModuleSetup();
+        } catch (GooglePlayServicesRepairableException e) {
+            // Thrown when Google Play Services is not installed, up-to-date, or enabled
+            // Show dialog to allow users to install, update, or otherwise enable Google Play services.
+            GoogleApiAvailability.getInstance().getErrorDialog(activity, e.getConnectionStatusCode(), 0).show();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            // Google Play services is not available entirely.
+            GoogleApiAvailability.getInstance().getErrorDialog(activity, e.errorCode, 0).show();
+        }
     }
 
     private static void validateToken(Context context) {
