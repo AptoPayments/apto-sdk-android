@@ -7,6 +7,10 @@
     <string name="stepper_back_button_label">BACK</string>
     <string name="stepper_next_button_label">NEXT</string>
 
+    <!-- Welcome -->
+    <string name="welcome_title">Get started</string>
+    <string name="welcome_button_next">START</string>
+
     <!-- Terms / Conditions -->
     <string name="terms_label">Find a loan</string>
     <string name="terms_tag_line">Find the perfect loan,\nfrom your phone.</string>

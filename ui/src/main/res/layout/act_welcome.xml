@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.ledge.link.sdk.ui.views.link.WelcomeView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/include_llsdk_toolbar" />
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/abl_toolbar_wrapper"
+            android:layout_alignParentBottom="true">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:paddingTop="32dp"
+                android:gravity="center_horizontal">
+
+            <us.feras.mdv.MarkdownView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/md_content" />
+
+            <TextView
+                    android:id="@+id/tv_next_bttn"
+                    style="?attr/llsdk_bigButtonStyle"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/welcome_button_next" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/include_rl_loading" />
+</me.ledge.link.sdk.ui.views.link.WelcomeView>

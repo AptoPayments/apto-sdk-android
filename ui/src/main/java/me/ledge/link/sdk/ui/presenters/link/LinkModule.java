@@ -1,10 +1,15 @@
 package me.ledge.link.sdk.ui.presenters.link;
 
 import android.app.Activity;
+import android.content.Intent;
+
+import java.lang.ref.WeakReference;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
+import me.ledge.link.sdk.ui.ModuleManager;
+import me.ledge.link.sdk.ui.activities.link.WelcomeActivity;
 import me.ledge.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
@@ -13,13 +18,15 @@ import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
  * Created by adrian on 29/12/2016.
  */
 
-public class LinkModule extends LedgeBaseModule {
+public class LinkModule extends LedgeBaseModule implements WelcomeDelegate {
 
     public LinkModule(Activity activity) {
         super(activity);
+        mCallerActivity = activity;
     }
     private boolean mSkipDisclaimers;
     private boolean mUserHasAllRequiredData;
+    private Activity mCallerActivity;
 
     @Override
     public void initialModuleSetup() {
@@ -27,16 +34,17 @@ public class LinkModule extends LedgeBaseModule {
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getSkipLinkDisclaimer())
                 .exceptionally(ex -> {
-                    showLinkDisclaimers();
+                    showWelcomeScreen();
                     return null;
                 })
                 .thenAccept(this::skipLinkDisclaimerRetrieved);
+        showWelcomeScreen();
     }
 
     private void showLinkDisclaimers() {
         TermsModule mTermsModule = TermsModule.getInstance(this.getActivity());
         mTermsModule.onFinish = this::showOrSkipLoanInfo;
-        mTermsModule.onBack = this::showHomeActivity;
+        mTermsModule.onBack = this::showWelcomeScreen;
         startModule(mTermsModule);
     }
 
@@ -53,7 +61,7 @@ public class LinkModule extends LedgeBaseModule {
             showLoanInfo();
         } else {
             if(mSkipDisclaimers) {
-                showHomeActivity();
+                showWelcomeScreen();
             }
             else {
                 showLinkDisclaimers();
@@ -80,7 +88,7 @@ public class LinkModule extends LedgeBaseModule {
             loanInfoModule.onFinish = this::showUserDataCollector;
         }
         if(mSkipDisclaimers) {
-            loanInfoModule.onBack = this::showHomeActivity;
+            loanInfoModule.onBack = this::showWelcomeScreen;
         }
         else {
             loanInfoModule.onBack = this::showLinkDisclaimers;
@@ -126,14 +134,13 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void showHomeActivity() {
-        Activity mainActivity = this.getActivity();
-        mainActivity.finish();
-        mainActivity.startActivity(mainActivity.getIntent());
+        Activity currentActivity = this.getActivity();
+        currentActivity.finish();
+        currentActivity.startActivity(mCallerActivity.getIntent());
     }
 
     private void skipLinkDisclaimerRetrieved(boolean skipLinkDisclaimer) {
         mSkipDisclaimers = skipLinkDisclaimer;
-        askDataCollectorIfUserHasAllRequiredData();
     }
 
     private void askDataCollectorIfUserHasAllRequiredData() {
@@ -157,5 +164,21 @@ public class LinkModule extends LedgeBaseModule {
         else {
             showLinkDisclaimers();
         }
+    }
+
+    private void showWelcomeScreen() {
+        ModuleManager.getInstance().setModule(new WeakReference<>(this));
+        Activity mainActivity = this.getActivity();
+        mainActivity.startActivity(new Intent(mainActivity, WelcomeActivity.class));
+    }
+
+    @Override
+    public void welcomeScreenPresented() {
+        askDataCollectorIfUserHasAllRequiredData();
+    }
+
+    @Override
+    public void welcomeScreenOnBackPressed() {
+        showHomeActivity();
     }
 }
