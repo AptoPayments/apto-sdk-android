@@ -9,7 +9,7 @@ import me.ledge.link.sdk.ui.models.link.TermsModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
 import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
-import me.ledge.link.sdk.ui.views.userdata.TermsView;
+import me.ledge.link.sdk.ui.views.link.TermsView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
 /**

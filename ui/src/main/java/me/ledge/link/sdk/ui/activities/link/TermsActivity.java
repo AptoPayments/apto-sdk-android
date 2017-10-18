@@ -8,7 +8,7 @@ import me.ledge.link.sdk.ui.models.link.TermsModel;
 import me.ledge.link.sdk.ui.presenters.link.TermsDelegate;
 import me.ledge.link.sdk.ui.presenters.link.TermsPresenter;
 import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
-import me.ledge.link.sdk.ui.views.userdata.TermsView;
+import me.ledge.link.sdk.ui.views.link.TermsView;
 
 /**
  * Wires up the MVP pattern for the terms and conditions screen.

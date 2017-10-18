@@ -19,7 +19,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
-import me.ledge.link.sdk.ui.views.userdata.LoanAmountView;
+import me.ledge.link.sdk.ui.views.link.LoanAmountView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;

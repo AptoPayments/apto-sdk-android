@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.views.userdata;
+package me.ledge.link.sdk.ui.views.link;
 
 import android.content.Context;
 import android.text.Html;
@@ -11,6 +11,8 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
+import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
+import me.ledge.link.sdk.ui.views.userdata.UserDataView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 import us.feras.mdv.MarkdownView;
 
