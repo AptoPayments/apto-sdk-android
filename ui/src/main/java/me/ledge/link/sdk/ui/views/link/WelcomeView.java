@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui.views.link;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.TextView;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.LoadingView;
@@ -27,6 +28,7 @@ public class WelcomeView extends UserDataView<WelcomeView.ViewListener>
 
     private LoadingView mLoadingView;
     private MarkdownView mMarkdownView;
+    private TextView mNextButton;
 
     /**
      * @see UserDataView#UserDataView
@@ -52,6 +54,7 @@ public class WelcomeView extends UserDataView<WelcomeView.ViewListener>
 
         mMarkdownView = (MarkdownView) findViewById(R.id.md_content);
         mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mNextButton = (TextView) findViewById(R.id.tv_next_bttn);
     }
 
     @Override
@@ -61,5 +64,9 @@ public class WelcomeView extends UserDataView<WelcomeView.ViewListener>
 
     public void setMarkdown(String markdown) {
         mMarkdownView.loadMarkdown(markdown);
+    }
+
+    public void setCallToAction(String title) {
+        mNextButton.setText(title);
     }
 }

@@ -70,15 +70,8 @@ public class WelcomePresenter
                     })
                     .thenAccept(this::projectConfigRetrieved);
         } else {
-            setWelcome(mWelcomeText);
+            setWelcomeText(mWelcomeText);
         }
-    }
-
-    private void projectConfigRetrieved(ConfigResponseVo configResponseVo) {
-        mLoadingSpinnerManager.showLoading(false);
-        ActionVo welcomeScreenAction = configResponseVo.welcomeScreenAction;
-        GenericMessageConfigurationVo actionConfig = (GenericMessageConfigurationVo) welcomeScreenAction.configuration;
-        mActivity.runOnUiThread(() -> mActivity.setTitle(actionConfig.callToAction.title));
     }
 
     @Override
@@ -94,13 +87,6 @@ public class WelcomePresenter
         super.detachView();
     }
 
-    private void setWelcome(String terms) {
-        mWelcomeText = terms;
-
-        //mView.setWelcome(terms);
-    }
-
-
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
@@ -110,7 +96,23 @@ public class WelcomePresenter
         }
     }
 
-    public void errorReceived(String error) {
+    private void projectConfigRetrieved(ConfigResponseVo configResponseVo) {
+        mLoadingSpinnerManager.showLoading(false);
+        ActionVo welcomeScreenAction = configResponseVo.welcomeScreenAction;
+        GenericMessageConfigurationVo actionConfig = (GenericMessageConfigurationVo) welcomeScreenAction.configuration;
+        mActivity.runOnUiThread(() -> {
+            mActivity.setTitle(actionConfig.title);
+            mView.setCallToAction(actionConfig.callToAction.title);
+            setWelcomeText(actionConfig.content.value);
+        });
+    }
+
+    private void errorReceived(String error) {
         mView.displayErrorMessage(error);
+    }
+
+    private void setWelcomeText(String welcomeText) {
+        mWelcomeText = welcomeText;
+        mView.setMarkdown(welcomeText);
     }
 }
