@@ -6,6 +6,7 @@ import android.content.Intent;
 import java.lang.ref.WeakReference;
 
 import java8.util.concurrent.CompletableFuture;
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.ModuleManager;
@@ -13,6 +14,7 @@ import me.ledge.link.sdk.ui.activities.link.WelcomeActivity;
 import me.ledge.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 
 /**
  * Created by adrian on 29/12/2016.
@@ -26,11 +28,19 @@ public class LinkModule extends LedgeBaseModule implements WelcomeDelegate {
     }
     private boolean mSkipDisclaimers;
     private boolean mUserHasAllRequiredData;
+    private boolean mShowWelcomeScreen;
     private Activity mCallerActivity;
 
     @Override
     public void initialModuleSetup() {
         mUserHasAllRequiredData = false;
+        CompletableFuture
+                .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
+                .exceptionally(ex -> {
+                    showWelcomeScreen();
+                    return null;
+                })
+                .thenAccept(this::projectConfigRetrieved);
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getSkipLinkDisclaimer())
                 .exceptionally(ex -> {
@@ -38,13 +48,22 @@ public class LinkModule extends LedgeBaseModule implements WelcomeDelegate {
                     return null;
                 })
                 .thenAccept(this::skipLinkDisclaimerRetrieved);
-        showWelcomeScreen();
+    }
+
+    @Override
+    public void welcomeScreenPresented() {
+        askDataCollectorIfUserHasAllRequiredData();
+    }
+
+    @Override
+    public void welcomeScreenOnBackPressed() {
+        showHomeActivity();
     }
 
     private void showLinkDisclaimers() {
         TermsModule mTermsModule = TermsModule.getInstance(this.getActivity());
         mTermsModule.onFinish = this::showOrSkipLoanInfo;
-        mTermsModule.onBack = this::showWelcomeScreen;
+        mTermsModule.onBack = this::showWelcomeScreenOrBack;
         startModule(mTermsModule);
     }
 
@@ -61,7 +80,7 @@ public class LinkModule extends LedgeBaseModule implements WelcomeDelegate {
             showLoanInfo();
         } else {
             if(mSkipDisclaimers) {
-                showWelcomeScreen();
+                showWelcomeScreenOrBack();
             }
             else {
                 showLinkDisclaimers();
@@ -88,7 +107,7 @@ public class LinkModule extends LedgeBaseModule implements WelcomeDelegate {
             loanInfoModule.onFinish = this::showUserDataCollector;
         }
         if(mSkipDisclaimers) {
-            loanInfoModule.onBack = this::showWelcomeScreen;
+            loanInfoModule.onBack = this::showWelcomeScreenOrBack;
         }
         else {
             loanInfoModule.onBack = this::showLinkDisclaimers;
@@ -172,13 +191,22 @@ public class LinkModule extends LedgeBaseModule implements WelcomeDelegate {
         mainActivity.startActivity(new Intent(mainActivity, WelcomeActivity.class));
     }
 
-    @Override
-    public void welcomeScreenPresented() {
-        askDataCollectorIfUserHasAllRequiredData();
+    private void projectConfigRetrieved(ConfigResponseVo configResponseVo) {
+        mShowWelcomeScreen = (configResponseVo.welcomeScreenAction.status != 0);
+        if(mShowWelcomeScreen) {
+            showWelcomeScreen();
+        }
+        else {
+            showOrSkipDisclaimers();
+        }
     }
 
-    @Override
-    public void welcomeScreenOnBackPressed() {
-        showHomeActivity();
+    private void showWelcomeScreenOrBack() {
+        if(mShowWelcomeScreen) {
+            showWelcomeScreen();
+        }
+        else {
+            showHomeActivity();
+        }
     }
 }

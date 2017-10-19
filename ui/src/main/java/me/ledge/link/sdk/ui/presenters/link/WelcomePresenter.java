@@ -97,13 +97,13 @@ public class WelcomePresenter
     }
 
     private void projectConfigRetrieved(ConfigResponseVo configResponseVo) {
-        mLoadingSpinnerManager.showLoading(false);
         ActionVo welcomeScreenAction = configResponseVo.welcomeScreenAction;
         GenericMessageConfigurationVo actionConfig = (GenericMessageConfigurationVo) welcomeScreenAction.configuration;
         mActivity.runOnUiThread(() -> {
             mActivity.setTitle(actionConfig.title);
             mView.setCallToAction(actionConfig.callToAction.title);
             setWelcomeText(actionConfig.content.value);
+            mLoadingSpinnerManager.showLoading(false);
         });
     }
 
