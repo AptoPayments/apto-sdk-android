@@ -3,11 +3,13 @@ package me.ledge.link.sdk.ui.presenters.link;
 import android.support.v7.app.AppCompatActivity;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.responses.config.DisclaimerVo;
-import me.ledge.link.sdk.sdk.storages.ConfigStorage;
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.api.vos.responses.workflow.ActionVo;
+import me.ledge.link.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import me.ledge.link.sdk.ui.models.link.WelcomeModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.link.WelcomeView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
@@ -61,15 +63,22 @@ public class WelcomePresenter
         if (mWelcomeText == null) {
             mLoadingSpinnerManager.showLoading(true);
             CompletableFuture
-                    .supplyAsync(()-> ConfigStorage.getInstance().getLinkDisclaimer())
+                    .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
                     .exceptionally(ex -> {
                         errorReceived(ex.getMessage());
                         return null;
                     })
-                    .thenAccept(this::showDisclaimer);
+                    .thenAccept(this::projectConfigRetrieved);
         } else {
             setWelcome(mWelcomeText);
         }
+    }
+
+    private void projectConfigRetrieved(ConfigResponseVo configResponseVo) {
+        mLoadingSpinnerManager.showLoading(false);
+        ActionVo welcomeScreenAction = configResponseVo.welcomeScreenAction;
+        GenericMessageConfigurationVo actionConfig = (GenericMessageConfigurationVo) welcomeScreenAction.configuration;
+        mActivity.runOnUiThread(() -> mActivity.setTitle(actionConfig.callToAction.title));
     }
 
     @Override
@@ -89,20 +98,8 @@ public class WelcomePresenter
         mWelcomeText = terms;
 
         //mView.setWelcome(terms);
-        mLoadingSpinnerManager.showLoading(false);
     }
 
-    private void setMarkDownWelcome(String terms) {
-        mWelcomeText = terms;
-        mActivity.runOnUiThread(() -> {
-            //mView.setMarkDownWelcome(terms);
-            mLoadingSpinnerManager.showLoading(false);
-        });
-    }
-
-    private boolean isDisclaimerPresent(DisclaimerVo disclaimer) {
-        return disclaimer!=null;
-    }
 
     /** {@inheritDoc} */
     @Override
@@ -110,20 +107,6 @@ public class WelcomePresenter
         if (mModel.hasAllData()) {
             saveData();
             mDelegate.welcomeScreenPresented();
-        }
-    }
-
-    public void showDisclaimer(DisclaimerVo disclaimer) {
-        if (!isDisclaimerPresent(disclaimer)) {
-            return;
-        }
-        switch(DisclaimerVo.formatValues.valueOf(disclaimer.format)) {
-            case plain_text:
-                setWelcome(disclaimer.value);
-                break;
-            case markdown:
-                setMarkDownWelcome(disclaimer.value);
-                break;
         }
     }
 

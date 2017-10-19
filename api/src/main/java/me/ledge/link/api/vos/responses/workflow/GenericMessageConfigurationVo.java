@@ -20,7 +20,7 @@ public class GenericMessageConfigurationVo extends ConfigurationVo {
     public DisclaimerVo content;
 
     @SerializedName("image")
-    public Object image;
+    public String image;
 
     @SerializedName("tracker_event_name")
     public String trackerEventName;
@@ -31,5 +31,13 @@ public class GenericMessageConfigurationVo extends ConfigurationVo {
     @SerializedName("call_to_action")
     public CallToActionVo callToAction;
 
-
+    public GenericMessageConfigurationVo(String type, String title, DisclaimerVo content, String image, String trackerEventName, String trackerIncrementName, CallToActionVo callToAction) {
+        this.type = type;
+        this.title = title;
+        this.content = content;
+        this.image = image;
+        this.trackerEventName = trackerEventName;
+        this.trackerIncrementName = trackerIncrementName;
+        this.callToAction = callToAction;
+    }
 }

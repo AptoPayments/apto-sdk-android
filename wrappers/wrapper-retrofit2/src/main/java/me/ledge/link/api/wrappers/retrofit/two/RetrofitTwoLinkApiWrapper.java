@@ -23,6 +23,7 @@ import javax.net.ssl.X509TrustManager;
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.DataPointParser;
 import me.ledge.link.api.utils.RequiredDataPointParser;
+import me.ledge.link.api.utils.WorkflowConfigurationParser;
 import me.ledge.link.api.utils.VerificationSerializer;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
@@ -54,6 +55,7 @@ import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseV
 import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
+import me.ledge.link.api.vos.responses.workflow.ConfigurationVo;
 import me.ledge.link.api.wrappers.BaseLinkApiWrapper;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.interceptors.LedgeLinkOkThreeInterceptor;
@@ -124,6 +126,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         gsonBuilder.registerTypeAdapter(DataPointVo.class, new DataPointParser());
         gsonBuilder.registerTypeAdapter(RequiredDataPointVo.class, new RequiredDataPointParser());
         gsonBuilder.registerTypeAdapter(VerificationVo.class, new VerificationSerializer());
+        gsonBuilder.registerTypeAdapter(ConfigurationVo.class, new WorkflowConfigurationParser());
 
         // Adding serializeNulls option to avoid bug in API where keys with null values
         // must be present
