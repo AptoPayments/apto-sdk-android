@@ -13,7 +13,7 @@ apply plugin: 'me.tatarka.retrolambda'
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'android-sdk'
-    bintrayOrg = 'ledge'
+    bintrayOrg = 'itabulous'
 
     publishedGroupId = 'ledge.link.sdk'
     libraryName = 'UI'
@@ -24,7 +24,7 @@ ext {
     siteUrl = 'https://github.com/itabulous/sdk_android'
     gitUrl = 'https://github.com/itabulous/sdk_android.git'
 
-    libraryVersion = '0.2.1'
+    libraryVersion = '0.1'
 
     developerId = 'adrian-ledge'
     developerName = 'Adrian Tung'
