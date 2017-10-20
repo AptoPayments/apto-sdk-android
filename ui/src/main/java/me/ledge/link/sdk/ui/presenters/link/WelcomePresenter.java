@@ -103,6 +103,9 @@ public class WelcomePresenter
             mActivity.setTitle(actionConfig.title);
             mView.setCallToAction(actionConfig.callToAction.title);
             setWelcomeText(actionConfig.content.value);
+            if(actionConfig.image != null) {
+                mView.setImage(actionConfig.image);
+            }
             mLoadingSpinnerManager.showLoading(false);
         });
     }

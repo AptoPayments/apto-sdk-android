@@ -51,11 +51,6 @@
         </activity>
 
         <activity
-                android:name="me.ledge.link.sdk.ui.activities.link.TermsActivity"
-                android:theme="@style/Theme.LedgeLine.Example">
-        </activity>
-
-        <activity
                 android:name="me.ledge.link.sdk.ui.activities.link.LoanAmountActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 

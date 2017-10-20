@@ -1,16 +1,11 @@
 package me.ledge.link.sdk.ui.presenters.link;
 
 import android.app.Activity;
-import android.content.Intent;
-
-import java.lang.ref.WeakReference;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
-import me.ledge.link.sdk.ui.ModuleManager;
-import me.ledge.link.sdk.ui.activities.link.WelcomeActivity;
 import me.ledge.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
@@ -20,16 +15,13 @@ import me.ledge.link.sdk.ui.storages.UIStorage;
  * Created by adrian on 29/12/2016.
  */
 
-public class LinkModule extends LedgeBaseModule implements WelcomeDelegate {
+public class LinkModule extends LedgeBaseModule {
 
     public LinkModule(Activity activity) {
         super(activity);
-        mCallerActivity = activity;
     }
-    private boolean mSkipDisclaimers;
     private boolean mUserHasAllRequiredData;
     private boolean mShowWelcomeScreen;
-    private Activity mCallerActivity;
 
     @Override
     public void initialModuleSetup() {
@@ -41,30 +33,13 @@ public class LinkModule extends LedgeBaseModule implements WelcomeDelegate {
                     return null;
                 })
                 .thenAccept(this::projectConfigRetrieved);
-        CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().getSkipLinkDisclaimer())
-                .exceptionally(ex -> {
-                    showWelcomeScreen();
-                    return null;
-                })
-                .thenAccept(this::skipLinkDisclaimerRetrieved);
     }
 
-    @Override
-    public void welcomeScreenPresented() {
-        askDataCollectorIfUserHasAllRequiredData();
-    }
-
-    @Override
-    public void welcomeScreenOnBackPressed() {
-        showHomeActivity();
-    }
-
-    private void showLinkDisclaimers() {
-        TermsModule mTermsModule = TermsModule.getInstance(this.getActivity());
-        mTermsModule.onFinish = this::showOrSkipLoanInfo;
-        mTermsModule.onBack = this::showWelcomeScreenOrBack;
-        startModule(mTermsModule);
+    private void showWelcomeScreen() {
+        WelcomeModule mWelcomeModule = WelcomeModule.getInstance(this.getActivity());
+        mWelcomeModule.onFinish = this::showOrSkipLoanInfo;
+        mWelcomeModule.onBack = this::showHomeActivity;
+        startModule(mWelcomeModule);
     }
 
     private void showOrSkipLoanInfo() {
@@ -79,11 +54,11 @@ public class LinkModule extends LedgeBaseModule implements WelcomeDelegate {
         if (isLoanInfoRequired()) {
             showLoanInfo();
         } else {
-            if(mSkipDisclaimers) {
-                showWelcomeScreenOrBack();
+            if(mShowWelcomeScreen) {
+                showWelcomeScreen();
             }
             else {
-                showLinkDisclaimers();
+                showHomeActivity();
             }
         }
     }
@@ -106,11 +81,11 @@ public class LinkModule extends LedgeBaseModule implements WelcomeDelegate {
             loanInfoModule.onGetOffers = null;
             loanInfoModule.onFinish = this::showUserDataCollector;
         }
-        if(mSkipDisclaimers) {
-            loanInfoModule.onBack = this::showWelcomeScreenOrBack;
+        if(mShowWelcomeScreen) {
+            loanInfoModule.onBack = this::showWelcomeScreen;
         }
         else {
-            loanInfoModule.onBack = this::showLinkDisclaimers;
+            loanInfoModule.onBack = this::showHomeActivity;
         }
         startModule(loanInfoModule);
     }
@@ -155,58 +130,34 @@ public class LinkModule extends LedgeBaseModule implements WelcomeDelegate {
     private void showHomeActivity() {
         Activity currentActivity = this.getActivity();
         currentActivity.finish();
-        currentActivity.startActivity(mCallerActivity.getIntent());
-    }
-
-    private void skipLinkDisclaimerRetrieved(boolean skipLinkDisclaimer) {
-        mSkipDisclaimers = skipLinkDisclaimer;
+        currentActivity.startActivity(currentActivity.getIntent());
     }
 
     private void askDataCollectorIfUserHasAllRequiredData() {
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
-        userDataCollectorModule.onFinish = this::showOrSkipDisclaimers;
+        userDataCollectorModule.onFinish = this::showOrSkipWelcomeScreen;
         userDataCollectorModule.onUserDoesNotHaveAllRequiredData = () -> {
             mUserHasAllRequiredData = false;
-            showOrSkipDisclaimers();
+            showOrSkipWelcomeScreen();
         };
         userDataCollectorModule.onUserHasAllRequiredData = () -> {
             mUserHasAllRequiredData = true;
-            showOrSkipDisclaimers();
+            showOrSkipWelcomeScreen();
         };
         startModule(userDataCollectorModule);
     }
 
-    private void showOrSkipDisclaimers() {
-        if(mSkipDisclaimers) {
-            showOrSkipLoanInfo();
+    private void showOrSkipWelcomeScreen() {
+        if(mShowWelcomeScreen) {
+            showWelcomeScreen();
         }
         else {
-            showLinkDisclaimers();
+            showOrSkipLoanInfo();
         }
-    }
-
-    private void showWelcomeScreen() {
-        ModuleManager.getInstance().setModule(new WeakReference<>(this));
-        Activity mainActivity = this.getActivity();
-        mainActivity.startActivity(new Intent(mainActivity, WelcomeActivity.class));
     }
 
     private void projectConfigRetrieved(ConfigResponseVo configResponseVo) {
         mShowWelcomeScreen = (configResponseVo.welcomeScreenAction.status != 0);
-        if(mShowWelcomeScreen) {
-            showWelcomeScreen();
-        }
-        else {
-            showOrSkipDisclaimers();
-        }
-    }
-
-    private void showWelcomeScreenOrBack() {
-        if(mShowWelcomeScreen) {
-            showWelcomeScreen();
-        }
-        else {
-            showHomeActivity();
-        }
+        askDataCollectorIfUserHasAllRequiredData();
     }
 }
