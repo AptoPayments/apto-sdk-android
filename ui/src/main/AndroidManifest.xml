@@ -8,7 +8,8 @@
 
     <uses-sdk
             android:minSdkVersion="15"
-            android:targetSdkVersion="23" />
+            android:targetSdkVersion="24"
+            tools:overrideLibrary="br.tiagohm.markdownview"/>
 
     <application
             android:label="LedgeLinkUi"
