@@ -92,7 +92,7 @@ public class WelcomePresenter
     public void nextClickHandler() {
         if (mModel.hasAllData()) {
             saveData();
-            mDelegate.welcomeScreenPresented();
+            mDelegate.welcomeScreenOnNextPressed();
         }
     }
 

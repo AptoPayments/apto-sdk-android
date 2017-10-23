@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.presenters.link;
 
 import android.app.Activity;
+import android.widget.Toast;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
@@ -29,7 +30,7 @@ public class LinkModule extends LedgeBaseModule {
         CompletableFuture
                 .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
                 .exceptionally(ex -> {
-                    showWelcomeScreen();
+                    showError(ex.getMessage());
                     return null;
                 })
                 .thenAccept(this::projectConfigRetrieved);
@@ -159,5 +160,11 @@ public class LinkModule extends LedgeBaseModule {
     private void projectConfigRetrieved(ConfigResponseVo configResponseVo) {
         mShowWelcomeScreen = (configResponseVo.welcomeScreenAction.status != 0);
         askDataCollectorIfUserHasAllRequiredData();
+    }
+
+    private void showError(String errorMessage) {
+        if(!errorMessage.isEmpty()) {
+            Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
+        }
     }
 }

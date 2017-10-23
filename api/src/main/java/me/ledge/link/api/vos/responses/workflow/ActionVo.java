@@ -33,5 +33,5 @@ public class ActionVo {
     public String ownerModule;
 
     @SerializedName("configuration")
-    public ConfigurationVo configuration;
+    public ActionConfigurationVo configuration;
 }

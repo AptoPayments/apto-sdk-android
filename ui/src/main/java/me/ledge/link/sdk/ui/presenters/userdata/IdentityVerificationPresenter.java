@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.datapoints.Address;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.responses.config.DisclaimerVo;
+import me.ledge.link.api.vos.responses.config.ContentVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
@@ -38,7 +38,7 @@ public class IdentityVerificationPresenter
         IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener {
 
     private String mDisclaimersText = "";
-    private ArrayList<DisclaimerVo> mFullScreenDisclaimers = new ArrayList<>();
+    private ArrayList<ContentVo> mFullScreenDisclaimers = new ArrayList<>();
     private IdentityVerificationDelegate mDelegate;
     private boolean mIsSSNRequired;
     private boolean mIsSSNNotAvailableAllowed;
@@ -259,7 +259,7 @@ public class IdentityVerificationPresenter
         mView.setBirthday(String.format("%02d/%02d/%02d", monthOfYear + 1, dayOfMonth, year));
     }
 
-    private void parseTextDisclaimer(DisclaimerVo textDisclaimer) {
+    private void parseTextDisclaimer(ContentVo textDisclaimer) {
         String lineBreak = "<br />";
         String partnerDivider = "<br /><br />";
         StringBuilder result = new StringBuilder();
@@ -282,9 +282,9 @@ public class IdentityVerificationPresenter
 
     private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
         for (LoanProductVo loanProduct : response.data) {
-            DisclaimerVo disclaimer = loanProduct.preQualificationDisclaimer;
+            ContentVo disclaimer = loanProduct.preQualificationDisclaimer;
             if(!disclaimer.value.isEmpty()) {
-                switch(DisclaimerVo.formatValues.valueOf(disclaimer.format)) {
+                switch(ContentVo.formatValues.valueOf(disclaimer.format)) {
                     case plain_text:
                         parseTextDisclaimer(disclaimer);
                         break;
@@ -308,7 +308,7 @@ public class IdentityVerificationPresenter
         mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error));
     }
 
-    private DisclaimerVo formatExternalUrlDisclaimer(DisclaimerVo disclaimer) {
+    private ContentVo formatExternalUrlDisclaimer(ContentVo disclaimer) {
         Address userAddress = (Address) UserStorage.getInstance().getUserData().getUniqueDataPoint(
                 DataPointVo.DataPointType.Address, null);
         disclaimer.value = disclaimer.value.replace("[language]", LanguageUtil.getLanguage()).replace("[state]", userAddress.stateCode.toUpperCase());

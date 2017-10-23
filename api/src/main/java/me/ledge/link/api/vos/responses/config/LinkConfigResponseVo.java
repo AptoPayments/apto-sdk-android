@@ -37,7 +37,7 @@ public class LinkConfigResponseVo {
     public RequiredDataPointsListResponseVo userRequiredData;
 
     @SerializedName("link_disclaimer")
-    public DisclaimerVo linkDisclaimer;
+    public ContentVo linkDisclaimer;
 
     @SerializedName("loan_products")
     public LoanProductListVo loanProductList;

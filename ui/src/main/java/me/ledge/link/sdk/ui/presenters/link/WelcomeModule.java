@@ -30,7 +30,7 @@ public class WelcomeModule extends LedgeBaseModule implements WelcomeDelegate {
     }
 
     @Override
-    public void welcomeScreenPresented() {
+    public void welcomeScreenOnNextPressed() {
         onFinish.execute();
     }
 

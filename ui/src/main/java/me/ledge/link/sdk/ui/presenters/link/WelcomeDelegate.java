@@ -7,6 +7,6 @@ package me.ledge.link.sdk.ui.presenters.link;
  */
 public interface WelcomeDelegate {
 
-    void welcomeScreenPresented();
+    void welcomeScreenOnNextPressed();
     void welcomeScreenOnBackPressed();
 }

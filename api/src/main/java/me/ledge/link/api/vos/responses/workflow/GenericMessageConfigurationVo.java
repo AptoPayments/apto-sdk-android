@@ -6,9 +6,9 @@ package me.ledge.link.api.vos.responses.workflow;
 
 import com.google.gson.annotations.SerializedName;
 
-import me.ledge.link.api.vos.responses.config.DisclaimerVo;
+import me.ledge.link.api.vos.responses.config.ContentVo;
 
-public class GenericMessageConfigurationVo extends ConfigurationVo {
+public class GenericMessageConfigurationVo extends ActionConfigurationVo {
 
     @SerializedName("type")
     public String type;
@@ -17,7 +17,7 @@ public class GenericMessageConfigurationVo extends ConfigurationVo {
     public String title;
 
     @SerializedName("content")
-    public DisclaimerVo content;
+    public ContentVo content;
 
     @SerializedName("image")
     public String image;
@@ -31,7 +31,7 @@ public class GenericMessageConfigurationVo extends ConfigurationVo {
     @SerializedName("call_to_action")
     public CallToActionVo callToAction;
 
-    public GenericMessageConfigurationVo(String type, String title, DisclaimerVo content, String image, String trackerEventName, String trackerIncrementName, CallToActionVo callToAction) {
+    public GenericMessageConfigurationVo(String type, String title, ContentVo content, String image, String trackerEventName, String trackerIncrementName, CallToActionVo callToAction) {
         this.type = type;
         this.title = title;
         this.content = content;
