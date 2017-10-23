@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.views.userdata;
+package me.ledge.link.sdk.ui.views.link;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -7,7 +7,6 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -19,6 +18,8 @@ import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
+import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
+import me.ledge.link.sdk.ui.views.userdata.UserDataView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 

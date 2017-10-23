@@ -3,16 +3,16 @@ task wrapper(type: Wrapper) {
 }
 
 ext {
-    androidCompileSdkVersion = 23
+    androidCompileSdkVersion = 24
     androidBuildToolsVersion = '23.0.0'
     androidMinSdkVersion = 15
-    androidTargetSdkVersion = 23
+    androidTargetSdkVersion = 24
 
     androidVersionCode = '1'
     androidVersionName = '0.1'
 
     mavenGroup = 'me.ledge.link.sdk'
-    mavenVersion = '0.1-SNAPSHOT'
+    mavenVersion = '0.1.1'
 }
 
 subprojects {

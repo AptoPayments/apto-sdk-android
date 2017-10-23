@@ -11,18 +11,18 @@ public class LoanProductVo {
     public int status;
 
     @SerializedName("pre_qualification_disclaimer")
-    public DisclaimerVo preQualificationDisclaimer;
+    public ContentVo preQualificationDisclaimer;
 
     public String id;
 
     @SerializedName("application_disclaimer")
-    public DisclaimerVo applicationDisclaimer;
+    public ContentVo applicationDisclaimer;
 
     @SerializedName("esign_disclaimer")
-    public DisclaimerVo eSignDisclaimer;
+    public ContentVo eSignDisclaimer;
 
     @SerializedName("esign_consent_disclaimer")
-    public DisclaimerVo eSignConsentDisclaimer;
+    public ContentVo eSignConsentDisclaimer;
 
     public String type;
 

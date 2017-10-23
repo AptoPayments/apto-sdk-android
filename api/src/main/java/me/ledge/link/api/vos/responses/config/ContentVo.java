@@ -4,7 +4,13 @@ package me.ledge.link.api.vos.responses.config;
  * Disclaimers data.
  * @author Adrian
  */
-public class DisclaimerVo {
+public class ContentVo {
+
+    public ContentVo(String type, String format, String value) {
+        this.type = type;
+        this.format = format;
+        this.value = value;
+    }
 
     public String type;
 

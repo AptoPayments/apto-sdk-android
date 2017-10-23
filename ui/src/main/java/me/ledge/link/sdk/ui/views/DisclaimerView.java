@@ -1,15 +1,16 @@
 package me.ledge.link.sdk.ui.views;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import br.tiagohm.markdownview.MarkdownView;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
-import us.feras.mdv.MarkdownView;
 
 /**
  * Displays the disclaimer webview.
@@ -90,6 +91,7 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
 
     public void loadMarkdown(String markDown) {
         mMarkdownView.setVisibility(VISIBLE);
+        mMarkdownView.setBackgroundColor(Color.TRANSPARENT);
         mMarkdownView.loadMarkdown(markDown);
     }
 

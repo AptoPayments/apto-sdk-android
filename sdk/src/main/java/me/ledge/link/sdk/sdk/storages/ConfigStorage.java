@@ -7,7 +7,7 @@ import java8.util.concurrent.CompletionException;
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.DisclaimerVo;
+import me.ledge.link.api.vos.responses.config.ContentVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
@@ -63,12 +63,12 @@ public class ConfigStorage {
         }
     }
 
-    public synchronized DisclaimerVo getLinkDisclaimer() {
+    public synchronized ContentVo getLinkDisclaimer() {
         if(isConfigCached()) {
             return mLinkConfig.linkDisclaimer;
         }
         else {
-            CompletableFuture<DisclaimerVo> future = CompletableFuture.supplyAsync(() -> {
+            CompletableFuture<ContentVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.linkDisclaimer;
@@ -76,7 +76,7 @@ public class ConfigStorage {
                     throw new CompletionException(e);
                 }
             });
-            return (DisclaimerVo) getResultFromFuture(future);
+            return (ContentVo) getResultFromFuture(future);
         }
     }
 

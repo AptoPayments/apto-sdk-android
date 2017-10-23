@@ -3,7 +3,7 @@ package me.ledge.link.sdk.ui.utils;
 import android.app.Activity;
 import android.content.Intent;
 
-import me.ledge.link.api.vos.responses.config.DisclaimerVo;
+import me.ledge.link.api.vos.responses.config.ContentVo;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.activities.DisclaimerActivity;
 
@@ -13,10 +13,10 @@ import me.ledge.link.sdk.ui.activities.DisclaimerActivity;
  */
 
 public class DisclaimerUtil {
-    public static DisclaimerVo disclaimer;
+    public static ContentVo disclaimer;
     public static Command onAccept;
 
-    public static void showDisclaimer(Activity activity, DisclaimerVo disclaimerVo, Command onFinish) {
+    public static void showDisclaimer(Activity activity, ContentVo disclaimerVo, Command onFinish) {
         disclaimer = disclaimerVo;
         onAccept = onFinish;
         activity.startActivity(new Intent(activity, DisclaimerActivity.class));

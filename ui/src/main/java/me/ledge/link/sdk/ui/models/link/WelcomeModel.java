@@ -7,10 +7,10 @@ import me.ledge.link.sdk.ui.models.userdata.AbstractUserDataModel;
 import me.ledge.link.sdk.ui.models.userdata.UserDataModel;
 
 /**
- * Concrete {@link Model} for the terms and conditions screen.
- * @author Wijnand
+ * Concrete {@link Model} for the welcome screen.
+ * @author Adrian
  */
-public class TermsModel
+public class WelcomeModel
         extends AbstractUserDataModel
         implements UserDataModel, ActivityModel, Model {
 
@@ -23,6 +23,6 @@ public class TermsModel
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
-        return R.string.terms_label;
+        return R.string.welcome_title;
     }
 }

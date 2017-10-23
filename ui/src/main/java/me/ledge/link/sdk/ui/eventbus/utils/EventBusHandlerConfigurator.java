@@ -4,16 +4,15 @@ import java.util.ArrayList;
 
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
+import me.ledge.link.sdk.ui.activities.link.LoanAmountActivity;
 import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActivity;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
-import me.ledge.link.sdk.ui.activities.link.LoanAmountActivity;
 import me.ledge.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.PersonalInformationActivity;
-import me.ledge.link.sdk.ui.activities.link.TermsActivity;
 import me.ledge.link.sdk.ui.activities.verification.EmailVerificationActivity;
 import me.ledge.link.sdk.ui.activities.verification.PhoneVerificationActivity;
 import me.ledge.link.sdk.ui.eventbus.handlers.EventBusThreeResponseHandler;
@@ -29,7 +28,7 @@ public class EventBusHandlerConfigurator implements HandlerConfigurator {
     @Override
     public ArrayList<Class<? extends MvpActivity>> getProcessOrder() {
         ArrayList<Class<? extends MvpActivity>> process = new ArrayList<>(11);
-        process.add(TermsActivity.class);
+        // TODO: remove this
         process.add(LoanAmountActivity.class);
         process.add(PersonalInformationActivity.class);
         process.add(PhoneVerificationActivity.class);
