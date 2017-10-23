@@ -64,7 +64,7 @@
             android:layout_marginTop="32dp"
             android:layout_above="@id/ll_buttons_holder" />
 
-        <us.feras.mdv.MarkdownView
+        <br.tiagohm.markdownview.MarkdownView
             android:id="@+id/md_disclaimer_markdown"
             android:visibility="gone"
             android:layout_height="match_parent"

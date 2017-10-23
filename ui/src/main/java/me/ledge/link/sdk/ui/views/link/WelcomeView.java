@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import br.tiagohm.markdownview.MarkdownView;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.LoadingView;
@@ -15,7 +16,6 @@ import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
 import me.ledge.link.sdk.ui.views.userdata.UserDataView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
-import us.feras.mdv.MarkdownView;
 
 /**
  * Displays the welcome screen.

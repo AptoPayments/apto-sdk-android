@@ -106,7 +106,7 @@ dependencies {
     compile 'com.github.verygoodsecurity:vgs-android-sdk:e6372c5002'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
     compile 'com.synnapps:carouselview:0.0.10'
-    compile 'us.feras.mdv:markdownview:1.1.0'
+    compile 'com.github.tiagohm.MarkdownView:library:0.17.0'
 
     // Tests
     testCompile 'junit:junit:4.12'
