@@ -15,6 +15,7 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity;
+import me.ledge.link.sdk.ui.activities.financialaccountselector.DisplayCardActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.EnableAutoPayActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.IntermediateFinancialAccountListActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity;
@@ -27,7 +28,8 @@ import me.ledge.link.sdk.ui.storages.UserStorage;
 
 public class FinancialAccountSelectorModule extends LedgeBaseModule
         implements AddFinancialAccountListDelegate, AddCardDelegate, AddBankAccountDelegate,
-        SelectFinancialAccountListDelegate, IntermediateFinancialAccountListDelegate, EnableAutoPayDelegate {
+        SelectFinancialAccountListDelegate, IntermediateFinancialAccountListDelegate,
+        EnableAutoPayDelegate, DisplayCardDelegate {
 
     private static FinancialAccountSelectorModule instance;
     public Command onBack;
@@ -67,9 +69,8 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Override
     public void virtualCardIssued(Card virtualCard) {
-        //TODO receive virtual card from API
-        //setSelectedFinancialAccount(virtualCard);
-        startActivity(EnableAutoPayActivity.class);
+        setSelectedFinancialAccount(virtualCard);
+        startActivity(DisplayCardActivity.class);
     }
 
     @Override
@@ -163,5 +164,10 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     public void setSelectedFinancialAccount(FinancialAccountVo selectedFinancialAccount) {
         this.selectedFinancialAccount = selectedFinancialAccount;
+    }
+
+    @Override
+    public void displayCardOnBackPressed() {
+        showSelectFinancialAccountListSelector();
     }
 }

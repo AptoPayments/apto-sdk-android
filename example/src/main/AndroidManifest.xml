@@ -173,6 +173,11 @@
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
+            android:name="me.ledge.link.sdk.ui.activities.financialaccountselector.DisplayCardActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
             android:name="me.ledge.link.sdk.ui.activities.DisclaimerActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 

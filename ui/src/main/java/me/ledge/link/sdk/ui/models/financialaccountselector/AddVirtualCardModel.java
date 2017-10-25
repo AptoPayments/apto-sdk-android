@@ -48,6 +48,8 @@ public class AddVirtualCardModel implements AddFinancialAccountModel {
         LoanDataVo loanData = LinkStorage.getInstance().getLoanData();
         request.amount = loanData.loanAmount;
 
+        request.cardIssuer = "MARQETA";
+
         return request;
     }
 }

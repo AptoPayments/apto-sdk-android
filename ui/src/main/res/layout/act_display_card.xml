@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.ledge.link.sdk.ui.views.financialaccountselector.DisplayCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include layout="@layout/include_llsdk_toolbar" />
+
+    <!-- Dummy to get focus on start. -->
+    <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/abl_toolbar_wrapper"
+            android:layout_above="@+id/tv_next_bttn">
+
+        <RelativeLayout
+            style="?attr/llsdk_dataContainerStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.vinaygaba.creditcardview.CreditCardView
+                android:id="@+id/credit_card_view"
+                android:layout_width="wrap_content"
+                android:layout_height="225dp"
+                android:background="@drawable/cardbackground_world"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                app:cardNumberTextColor="#cccccc"
+                app:cardNumberFormat="all_digits"
+                app:cardNameTextColor="#cccccc"
+                app:type="auto"
+                app:putChip="true"
+                app:expiryDateTextColor="#cccccc"
+                app:isEditable="false"
+                app:validTillTextColor="#cccccc"
+                app:hintTextColor = "#cccccc" />
+
+        </RelativeLayout>
+    </ScrollView>
+</me.ledge.link.sdk.ui.views.financialaccountselector.DisplayCardView>

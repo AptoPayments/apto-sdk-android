@@ -273,6 +273,9 @@
     <string name="enable_auto_pay_virtual_card">We\'ve sent an SMS with a link to view your virtual card to %s</string>
     <string name="enable_auto_pay_bank">Your loan is being disbursed to the account you\'ve selected: %s</string>
 
+    <!-- Display Card -->
+    <string name="display_card_title">Your Card</string>
+
     <!-- Disclaimers -->
     <string name="disclaimer_accept">Accept</string>
     <string name="disclaimer_cancel">Cancel</string>
