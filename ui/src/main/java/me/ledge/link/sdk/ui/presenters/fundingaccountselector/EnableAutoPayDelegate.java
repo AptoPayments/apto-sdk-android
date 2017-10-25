@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.presenters.financialaccountselector;
+package me.ledge.link.sdk.ui.presenters.fundingaccountselector;
 
 import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 

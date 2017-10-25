@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<me.ledge.link.sdk.ui.views.financialaccountselector.DisplayCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<me.ledge.link.sdk.ui.views.fundingaccountselector.DisplayCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -43,4 +43,4 @@
 
         </RelativeLayout>
     </ScrollView>
-</me.ledge.link.sdk.ui.views.financialaccountselector.DisplayCardView>
+</me.ledge.link.sdk.ui.views.fundingaccountselector.DisplayCardView>

@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.views.financialaccountselector;
+package me.ledge.link.sdk.ui.views.fundingaccountselector;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;

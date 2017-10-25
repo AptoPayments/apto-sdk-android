@@ -15,11 +15,13 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity;
-import me.ledge.link.sdk.ui.activities.financialaccountselector.DisplayCardActivity;
-import me.ledge.link.sdk.ui.activities.financialaccountselector.EnableAutoPayActivity;
+import me.ledge.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity;
+import me.ledge.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.IntermediateFinancialAccountListActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
+import me.ledge.link.sdk.ui.presenters.fundingaccountselector.DisplayCardDelegate;
+import me.ledge.link.sdk.ui.presenters.fundingaccountselector.EnableAutoPayDelegate;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 
 /**

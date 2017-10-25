@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.models.financialaccountselector;
+package me.ledge.link.sdk.ui.models.fundingaccountselector;
 
 import android.content.res.Resources;
 

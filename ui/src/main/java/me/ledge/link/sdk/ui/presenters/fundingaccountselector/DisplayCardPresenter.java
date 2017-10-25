@@ -1,14 +1,14 @@
-package me.ledge.link.sdk.ui.presenters.financialaccountselector;
-
+package me.ledge.link.sdk.ui.presenters.fundingaccountselector;
 
 import android.support.v7.app.AppCompatActivity;
 
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.sdk.ui.ModuleManager;
-import me.ledge.link.sdk.ui.models.financialaccountselector.DisplayCardModel;
+import me.ledge.link.sdk.ui.models.fundingaccountselector.DisplayCardModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.views.financialaccountselector.DisplayCardView;
+import me.ledge.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
+import me.ledge.link.sdk.ui.views.fundingaccountselector.DisplayCardView;
 
 
 /**

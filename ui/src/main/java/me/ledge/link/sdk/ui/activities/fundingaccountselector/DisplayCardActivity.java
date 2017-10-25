@@ -1,14 +1,14 @@
-package me.ledge.link.sdk.ui.activities.financialaccountselector;
+package me.ledge.link.sdk.ui.activities.fundingaccountselector;
 
 import android.view.View;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
-import me.ledge.link.sdk.ui.models.financialaccountselector.DisplayCardModel;
-import me.ledge.link.sdk.ui.presenters.financialaccountselector.DisplayCardDelegate;
-import me.ledge.link.sdk.ui.presenters.financialaccountselector.DisplayCardPresenter;
+import me.ledge.link.sdk.ui.models.fundingaccountselector.DisplayCardModel;
+import me.ledge.link.sdk.ui.presenters.fundingaccountselector.DisplayCardDelegate;
+import me.ledge.link.sdk.ui.presenters.fundingaccountselector.DisplayCardPresenter;
 import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
-import me.ledge.link.sdk.ui.views.financialaccountselector.DisplayCardView;
+import me.ledge.link.sdk.ui.views.fundingaccountselector.DisplayCardView;
 
 /**
  * Wires up the MVP pattern for the display card screen.

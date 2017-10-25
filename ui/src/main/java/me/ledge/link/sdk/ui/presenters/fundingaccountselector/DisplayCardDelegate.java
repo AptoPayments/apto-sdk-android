@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.presenters.financialaccountselector;
+package me.ledge.link.sdk.ui.presenters.fundingaccountselector;
 
 /**
  * Delegation interface for displaying a card.
