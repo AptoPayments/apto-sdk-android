@@ -83,6 +83,9 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     private ErrorUtil mErrorUtil;
     private LedgeLinkOkThreeInterceptor mInterceptor;
 
+    private boolean mIsCertificatePinningEnabled;
+    private boolean mTrustSelfSignedCerts;
+
     private ConfigService mConfigService;
     private UserService mUserService;
     private OfferService mOfferService;
@@ -101,6 +104,8 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
      * Sets up all Retrofit parts.
      */
     private void setUpRetrofit(boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
+        mIsCertificatePinningEnabled = isCertificatePinningEnabled;
+        mTrustSelfSignedCerts = trustSelfSignedCerts;
         Retrofit retrofit = getRetrofitBuilder()
                 .client(createDefaultClient(isCertificatePinningEnabled, trustSelfSignedCerts))
                 .build();
@@ -595,12 +600,18 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     @Override
     public VirtualCard issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
         VirtualCard result;
+        String apiEndPoint = this.getApiEndPoint();
         try {
+            // Setting VGS proxy only for this call
+            String vgsEndPoint = "https://tntiewv89ib.SANDBOX.verygoodproxy.com";
+            this.setApiEndPoint(vgsEndPoint, mIsCertificatePinningEnabled, false);
             Response<VirtualCard> response
                     = mFinancialAccountService.issueVirtualCard(issueVirtualCardRequestVo).execute();
             result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
+            this.setApiEndPoint(apiEndPoint, mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
         } catch (IOException ioe) {
             result = null;
+            this.setApiEndPoint(apiEndPoint, mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
         }
 
