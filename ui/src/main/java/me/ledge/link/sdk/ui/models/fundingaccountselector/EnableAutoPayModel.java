@@ -11,6 +11,9 @@ import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.AbstractActivityModel;
 import me.ledge.link.sdk.ui.models.Model;
+import me.ledge.link.sdk.ui.presenters.fundingaccountselector.AutoPayViewModel;
+import me.ledge.link.sdk.ui.presenters.fundingaccountselector.FinancialAccountStrategy;
+import me.ledge.link.sdk.ui.presenters.fundingaccountselector.VirtualCardAutoPayStrategy;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.PhoneHelperUtil;
 
@@ -58,4 +61,28 @@ public class EnableAutoPayModel extends AbstractActivityModel
     public void setFinancialAccount(FinancialAccountVo financialAccount) {
         this.mFinancialAccount = financialAccount;
     }
+
+    public AutoPayViewModel getEnableAutoPayViewModel(Resources resources) {
+        return EnableAutoPayFactory.getStrategy(mFinancialAccount).getViewModel(resources);
+    }
+
+    private static class EnableAutoPayFactory {
+        static FinancialAccountStrategy getStrategy(FinancialAccountVo account) {
+            switch (account.mAccountType) {
+                case Card:
+                    Card card = (Card) account;
+                    if (card.cardType == Card.CardType.MARQETA) {
+                        return new VirtualCardAutoPayStrategy();
+                    }
+                    return null;
+                case Bank:
+                    // TODO
+                    return null;
+                default:
+                    return null;
+            }
+        }
+    }
+
+
 }

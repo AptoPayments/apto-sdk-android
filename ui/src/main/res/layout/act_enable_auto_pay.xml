@@ -27,6 +27,7 @@
                 android:id="@+id/iv_auto_pay_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/icon_loan_funded"
@@ -42,22 +43,21 @@
                 android:gravity="center_horizontal" />
 
             <TextView
-                android:id="@+id/tv_auto_pay_info"
-                style="?attr/llsdk_idVerification_disclaimerStyle"
-                android:layout_marginTop="16dp"
-                android:layout_below="@+id/tv_financial_account_label"
-                android:layout_centerHorizontal="true"
-                android:textSize="18sp"
-                android:gravity="center_horizontal"
-                android:text="@string/enable_auto_pay_info" />
-
-            <TextView
-                android:id="@+id/tv_enable_auto_pay_bttn"
+                android:id="@+id/tv_enable_auto_pay_primary_bttn"
                 style="?attr/llsdk_bigButtonStyle"
-                android:layout_below="@+id/tv_auto_pay_info"
+                android:visibility="gone"
+                android:layout_below="@+id/tv_financial_account_label"
                 android:layout_marginTop="32dp"
                 android:layout_centerHorizontal="true"
-                android:text="@string/enable_auto_pay_button" />
+                android:text="@string/display_card_primary_button"/>
+
+            <TextView
+                android:id="@+id/tv_enable_auto_pay_secondary_bttn"
+                style="?attr/llsdk_bigButtonStyle"
+                android:visibility="gone"
+                android:layout_below="@+id/tv_enable_auto_pay_primary_bttn"
+                android:layout_centerHorizontal="true"
+                android:text="@string/display_card_secondary_button"/>
 
         </RelativeLayout>
     </ScrollView>

@@ -23,9 +23,9 @@ public class Card extends FinancialAccountVo {
     public CardType cardType;
     @SerializedName("last_four_digits")
     public String lastFourDigits;
-    @SerializedName("pan_token")
+    @SerializedName("pan")
     public String PANToken;
-    @SerializedName("cvv_token")
+    @SerializedName("cvv_number")
     public String CVVToken;
     @SerializedName("expiration")
     public String expirationDate;

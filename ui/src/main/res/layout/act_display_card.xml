@@ -24,13 +24,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/tv_card_balance"
+                android:layout_marginTop="32dp"
+                style="?attr/llsdk_userData_sliderHeaderStyle" />
+
+            <TextView
+                android:id="@+id/tv_card_balance_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="@string/display_card_label"
+                android:layout_below="@+id/tv_card_balance"
+                android:layout_centerHorizontal="true" />
+
             <com.vinaygaba.creditcardview.CreditCardView
                 android:id="@+id/credit_card_view"
                 android:layout_width="wrap_content"
                 android:layout_height="225dp"
+                android:layout_below="@id/tv_card_balance_label"
                 android:background="@drawable/cardbackground_world"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginTop="32dp"
                 app:cardNumberTextColor="#cccccc"
                 app:cardNumberFormat="all_digits"
                 app:cardNameTextColor="#cccccc"
@@ -40,6 +55,21 @@
                 app:isEditable="false"
                 app:validTillTextColor="#cccccc"
                 app:hintTextColor = "#cccccc" />
+
+            <TextView
+                android:id="@+id/tv_display_card_primary_bttn"
+                style="?attr/llsdk_bigButtonStyle"
+                android:layout_below="@+id/credit_card_view"
+                android:layout_marginTop="32dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/display_card_primary_button"/>
+
+            <TextView
+                android:id="@+id/tv_display_card_secondary_bttn"
+                style="?attr/llsdk_bigButtonStyle"
+                android:layout_below="@+id/tv_display_card_primary_bttn"
+                android:layout_centerHorizontal="true"
+                android:text="@string/display_card_secondary_button"/>
 
         </RelativeLayout>
     </ScrollView>

@@ -266,15 +266,18 @@
     <string name="add_financial_account_button">Add Account</string>
 
     <!-- Enable Auto-Pay -->
-    <string name="enable_auto_pay_title">Enable Auto-Pay?</string>
-    <string name="enable_auto_pay_button">Enable Auto-Pay</string>
-    <string name="enable_auto_pay_info">Do you want to enable auto-pay for your loan?</string>
+    <string name="enable_auto_pay_title"> </string>
     <string name="enable_auto_pay_card">Your loan is being disbursed to the card you\'ve selected: (....%s)</string>
-    <string name="enable_auto_pay_virtual_card">We\'ve sent an SMS with a link to view your virtual card to %s</string>
+    <string name="enable_auto_pay_virtual_card">Your loan has been funded to a virtual card. Show this card to an agent to make your purchase.</string>
     <string name="enable_auto_pay_bank">Your loan is being disbursed to the account you\'ve selected: %s</string>
+    <string name="enable_auto_pay_virtual_card_primary_button">VIEW VIRTUAL CARD</string>
+    <string name="enable_auto_pay_virtual_card_secondary_button">Send via SMS</string>
 
     <!-- Display Card -->
-    <string name="display_card_title">Your Card</string>
+    <string name="display_card_title"> </string>
+    <string name="display_card_label">CARD BALANCE</string>
+    <string name="display_card_primary_button">ADD TO WALLET</string>
+    <string name="display_card_secondary_button">Send via SMS</string>
 
     <!-- Disclaimers -->
     <string name="disclaimer_accept">Accept</string>

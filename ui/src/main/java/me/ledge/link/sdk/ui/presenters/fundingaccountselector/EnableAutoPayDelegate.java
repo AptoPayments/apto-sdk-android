@@ -9,7 +9,9 @@ import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
  */
 public interface EnableAutoPayDelegate {
 
-    void autoPayEnabled();
+    void primaryButtonPressed();
+
+    void secondaryButtonPressed();
 
     void autoPayOnBackPressed();
 

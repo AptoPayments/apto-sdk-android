@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import me.ledge.link.sdk.ui.models.fundingaccountselector.EnableAutoPayModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.fundingaccountselector.EnableAutoPayView;
 
 /**
@@ -38,7 +39,17 @@ public class EnableAutoPayPresenter
     public void attachView(EnableAutoPayView view) {
         super.attachView(view);
         mView.setListener(this);
-        mView.displayFinancialAccountInfo(mModel.getFinancialAccountInfo(mActivity.getResources()));
+        AutoPayViewModel enableAutoPayViewModel = mModel.getEnableAutoPayViewModel(mActivity.getResources());
+        if(enableAutoPayViewModel.showDescription) {
+            mView.displayFinancialAccountInfo(enableAutoPayViewModel.description);
+        }
+        if(enableAutoPayViewModel.showPrimaryButton) {
+            mView.setPrimaryButtonText(enableAutoPayViewModel.primaryButtonText);
+        }
+        if(enableAutoPayViewModel.showSecondaryButton) {
+            mView.setSecondaryButtonText(enableAutoPayViewModel.secondaryButtonText);
+        }
+        mView.setImage(UIStorage.getInstance().getContextConfig().logoURL);
     }
 
     @Override
@@ -54,8 +65,12 @@ public class EnableAutoPayPresenter
     }
 
     @Override
-    public void enableAutoPayClickHandler() {
-        // TODO
-        mDelegate.autoPayEnabled();
+    public void primaryButtonClickHandler() {
+        mDelegate.primaryButtonPressed();
+    }
+
+    @Override
+    public void secondaryButtonClickHandler() {
+        mDelegate.secondaryButtonPressed();
     }
 }

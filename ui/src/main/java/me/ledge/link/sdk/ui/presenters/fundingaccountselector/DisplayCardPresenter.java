@@ -3,11 +3,10 @@ package me.ledge.link.sdk.ui.presenters.fundingaccountselector;
 import android.support.v7.app.AppCompatActivity;
 
 import me.ledge.link.api.vos.datapoints.Card;
-import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.models.fundingaccountselector.DisplayCardModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
+import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.views.fundingaccountselector.DisplayCardView;
 
 
@@ -35,11 +34,11 @@ public class DisplayCardPresenter
     @Override
     public void attachView(DisplayCardView view) {
         super.attachView(view);
-        FinancialAccountSelectorModule currentModule = (FinancialAccountSelectorModule) ModuleManager.getInstance().getCurrentModule();
-        Card card = (Card) currentModule.getSelectedFinancialAccount();
+        Card card = mDelegate.getCard();
         view.setExpiryDate(card.expirationDate);
-        view.setCardNumber(card.lastFourDigits);
+        view.setCardNumber(card.PANToken);
         view.setCardName(mModel.getCardHolderName());
+        view.setCardBalance(String.valueOf(LinkStorage.getInstance().getLoanData().loanAmount));
     }
 
     @Override

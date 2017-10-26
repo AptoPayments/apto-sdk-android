@@ -15,13 +15,9 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity;
-import me.ledge.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity;
-import me.ledge.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.IntermediateFinancialAccountListActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
-import me.ledge.link.sdk.ui.presenters.fundingaccountselector.DisplayCardDelegate;
-import me.ledge.link.sdk.ui.presenters.fundingaccountselector.EnableAutoPayDelegate;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 
 /**
@@ -30,11 +26,11 @@ import me.ledge.link.sdk.ui.storages.UserStorage;
 
 public class FinancialAccountSelectorModule extends LedgeBaseModule
         implements AddFinancialAccountListDelegate, AddCardDelegate, AddBankAccountDelegate,
-        SelectFinancialAccountListDelegate, IntermediateFinancialAccountListDelegate,
-        EnableAutoPayDelegate, DisplayCardDelegate {
+        SelectFinancialAccountListDelegate, IntermediateFinancialAccountListDelegate {
 
     private static FinancialAccountSelectorModule instance;
     public Command onBack;
+    public Command onFinish;
 
     private FinancialAccountVo selectedFinancialAccount;
 
@@ -71,15 +67,13 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Override
     public void virtualCardIssued(Card virtualCard) {
-        setSelectedFinancialAccount(virtualCard);
-        startActivity(DisplayCardActivity.class);
+        onFinancialAccountSelected(virtualCard);
     }
 
     @Override
     public void cardAdded(Card card) {
         LedgeLinkUi.addCard(card);
-        setSelectedFinancialAccount(card);
-        startActivity(EnableAutoPayActivity.class);
+        onFinancialAccountSelected(card);
     }
 
     @Override
@@ -112,8 +106,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Override
     public void accountSelected(SelectFinancialAccountModel model) {
-        setSelectedFinancialAccount(model.getFinancialAccount());
-        startActivity(EnableAutoPayActivity.class);
+        onFinancialAccountSelected(model.getFinancialAccount());
     }
 
     @Override
@@ -145,31 +138,12 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
         startActivity(SelectFinancialAccountListActivity.class);
     }
 
-    @Override
-    public void autoPayEnabled() {
-
-    }
-
-    @Override
-    public void autoPayOnBackPressed() {
-        onBack.execute();
-    }
-
-    @Override
     public FinancialAccountVo getFinancialAccount() {
-        return this.getSelectedFinancialAccount();
-    }
-
-    public FinancialAccountVo getSelectedFinancialAccount() {
         return selectedFinancialAccount;
     }
 
-    public void setSelectedFinancialAccount(FinancialAccountVo selectedFinancialAccount) {
+    private void onFinancialAccountSelected(FinancialAccountVo selectedFinancialAccount) {
         this.selectedFinancialAccount = selectedFinancialAccount;
-    }
-
-    @Override
-    public void displayCardOnBackPressed() {
-        showSelectFinancialAccountListSelector();
+        onFinish.execute();
     }
 }

@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vinaygaba.creditcardview.CreditCardView;
@@ -24,6 +25,9 @@ public class DisplayCardView
 
     private CreditCardView mCreditCardView;
     private Toolbar mToolbar;
+    private TextView mCardBalance;
+    private TextView mPrimaryButton;
+    private TextView mSecondaryButton;
 
     public DisplayCardView(Context context) {
         this(context, null);
@@ -52,6 +56,10 @@ public class DisplayCardView
         int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
         mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
         mToolbar.setTitleTextColor(contrastColor);
+        mCardBalance.setTextColor(primaryColor);
+        mPrimaryButton.setTextColor(contrastColor);
+        mPrimaryButton.setBackgroundColor(primaryColor);
+        mSecondaryButton.setTextColor(primaryColor);
     }
 
     @Override
@@ -62,6 +70,9 @@ public class DisplayCardView
     protected void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mCreditCardView = (CreditCardView) findViewById(R.id.credit_card_view);
+        mCardBalance = (TextView) findViewById(R.id.tv_card_balance);
+        mPrimaryButton = (TextView) findViewById(R.id.tv_display_card_primary_bttn);
+        mSecondaryButton = (TextView) findViewById(R.id.tv_display_card_secondary_bttn);
     }
 
     public void setCardNumber(String cardNumber) {
@@ -78,5 +89,9 @@ public class DisplayCardView
 
     public void setCardName(String name) {
         mCreditCardView.setCardName(name);
+    }
+
+    public void setCardBalance(String amount) {
+        mCardBalance.setText(amount);
     }
 }
