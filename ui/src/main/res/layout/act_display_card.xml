@@ -66,7 +66,7 @@
 
             <TextView
                 android:id="@+id/tv_display_card_secondary_bttn"
-                style="?attr/llsdk_bigButtonStyle"
+                style="?attr/llsdk_loanOfferSummary_buttonStyle"
                 android:layout_below="@+id/tv_display_card_primary_bttn"
                 android:layout_centerHorizontal="true"
                 android:text="@string/display_card_secondary_button"/>

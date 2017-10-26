@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.api.vos.datapoints.Card;
+import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
@@ -128,7 +128,7 @@ public class AddFinancialAccountListPresenter
      * @param virtualCard API response.
      */
     @Subscribe
-    public void handleResponse(Card virtualCard) {
+    public void handleResponse(VirtualCard virtualCard) {
         if (mView != null) {
             mLoadingSpinnerManager.showLoading(false);
         }

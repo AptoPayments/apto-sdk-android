@@ -53,7 +53,7 @@
 
             <TextView
                 android:id="@+id/tv_enable_auto_pay_secondary_bttn"
-                style="?attr/llsdk_bigButtonStyle"
+                style="?attr/llsdk_loanOfferSummary_buttonStyle"
                 android:visibility="gone"
                 android:layout_below="@+id/tv_enable_auto_pay_primary_bttn"
                 android:layout_centerHorizontal="true"

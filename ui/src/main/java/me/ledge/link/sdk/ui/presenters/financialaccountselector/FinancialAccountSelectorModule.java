@@ -8,6 +8,7 @@ import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
+import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.sdk.ui.Command;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
@@ -66,7 +67,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     }
 
     @Override
-    public void virtualCardIssued(Card virtualCard) {
+    public void virtualCardIssued(VirtualCard virtualCard) {
         onFinancialAccountSelected(virtualCard);
     }
 

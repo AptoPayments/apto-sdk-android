@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.views.fundingaccountselector;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;

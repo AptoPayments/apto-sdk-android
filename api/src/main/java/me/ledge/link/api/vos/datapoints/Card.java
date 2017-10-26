@@ -49,6 +49,16 @@ public class Card extends FinancialAccountVo {
         this.expirationDate = expirationDate;
     }
 
+    protected Card(FinancialAccountType accountType, String accountId, CardType type, String PANToken, String CVVToken, String lastFourDigits,
+                String expirationDate, boolean verified) {
+        super(accountId, accountType, verified);
+        this.cardType = type;
+        this.lastFourDigits = lastFourDigits;
+        this.PANToken = PANToken;
+        this.CVVToken = CVVToken;
+        this.expirationDate = expirationDate;
+    }
+
     @Override
     public JsonObject toJSON() {
         JsonObject gsonObject = super.toJSON();

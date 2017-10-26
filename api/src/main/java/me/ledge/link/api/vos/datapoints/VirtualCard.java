@@ -6,6 +6,6 @@ package me.ledge.link.api.vos.datapoints;
 
 public class VirtualCard extends Card {
     public VirtualCard(String accountId, CardType type, String PANToken, String CVVToken, String lastFourDigits, String expirationDate, boolean verified) {
-        super(accountId, type, PANToken, CVVToken, lastFourDigits, expirationDate, verified);
+        super(FinancialAccountType.VirtualCard, accountId, type, PANToken, CVVToken, lastFourDigits, expirationDate, verified);
     }
 }

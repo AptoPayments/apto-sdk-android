@@ -24,11 +24,13 @@ import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.DataPointParser;
 import me.ledge.link.api.utils.RequiredDataPointParser;
 import me.ledge.link.api.utils.ActionConfigurationParser;
+import me.ledge.link.api.utils.VirtualCardParser;
 import me.ledge.link.api.utils.VerificationSerializer;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.VerificationVo;
+import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
@@ -127,6 +129,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         gsonBuilder.registerTypeAdapter(RequiredDataPointVo.class, new RequiredDataPointParser());
         gsonBuilder.registerTypeAdapter(VerificationVo.class, new VerificationSerializer());
         gsonBuilder.registerTypeAdapter(ActionConfigurationVo.class, new ActionConfigurationParser());
+        gsonBuilder.registerTypeAdapter(VirtualCard.class, new VirtualCardParser());
 
         // Adding serializeNulls option to avoid bug in API where keys with null values
         // must be present
@@ -590,10 +593,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public Card issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
-        Card result;
+    public VirtualCard issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
+        VirtualCard result;
         try {
-            Response<Card> response
+            Response<VirtualCard> response
                     = mFinancialAccountService.issueVirtualCard(issueVirtualCardRequestVo).execute();
             result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
         } catch (IOException ioe) {
