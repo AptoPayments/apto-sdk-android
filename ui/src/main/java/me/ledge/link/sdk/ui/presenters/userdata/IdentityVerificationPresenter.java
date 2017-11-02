@@ -183,6 +183,7 @@ public class IdentityVerificationPresenter
         }
 
         if(mIsBirthdayRequired) {
+            mModel.setBirthday(mView.getBirthday(), "MM/dd/yyyy");
             mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
         }
         if(mIsSSNRequired && userHasUpdatedSSN()) {
