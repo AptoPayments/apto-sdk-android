@@ -2,7 +2,7 @@ package me.ledge.link.sdk.sdk.tasks.users;
 
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
-import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
+import me.ledge.link.api.vos.responses.users.LoginUserResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -11,7 +11,7 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * A concrete {@link LedgeLinkApiTask} to login an exisiting user.
  * @author Wijnand
  */
-public class LoginUserTask extends LedgeLinkApiTask<Void, Void, CreateUserResponseVo, LoginRequestVo> {
+public class LoginUserTask extends LedgeLinkApiTask<Void, Void, LoginUserResponseVo, LoginRequestVo> {
 
     /**
      * @see LedgeLinkApiTask#LedgeLinkApiTask
@@ -27,8 +27,8 @@ public class LoginUserTask extends LedgeLinkApiTask<Void, Void, CreateUserRespon
 
     /** {@inheritDoc} */
     @Override
-    protected CreateUserResponseVo callApi() throws ApiException {
-        CreateUserResponseVo response = getApiWrapper().loginUser(getRequestData());
+    protected LoginUserResponseVo callApi() throws ApiException {
+        LoginUserResponseVo response = getApiWrapper().loginUser(getRequestData());
 
         if (response != null) {
             getApiWrapper().setBearerToken(response.user_token);

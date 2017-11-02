@@ -1,24 +1,27 @@
-package me.ledge.link.sdk.ui.views.userdata;
+package me.ledge.link.sdk.ui.views.link;
 
 import android.content.Context;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import br.tiagohm.markdownview.MarkdownView;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
+import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
+import me.ledge.link.sdk.ui.views.userdata.UserDataView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
-import us.feras.mdv.MarkdownView;
 
 /**
- * Displays the terms and conditions screen.
- * @author Wijnand
+ * Displays the welcome screen.
+ * @author Adrian
  */
-public class TermsView extends UserDataView<TermsView.ViewListener>
+public class WelcomeView extends UserDataView<WelcomeView.ViewListener>
         implements ViewWithToolbar, ViewWithIndeterminateLoading {
 
     /**
@@ -26,15 +29,16 @@ public class TermsView extends UserDataView<TermsView.ViewListener>
      */
     public interface ViewListener extends StepperListener, NextButtonListener {}
 
-    private TextView mTermsField;
     private LoadingView mLoadingView;
     private MarkdownView mMarkdownView;
+    private TextView mNextButton;
+    private ImageView mImageView;
 
     /**
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
      */
-    public TermsView(Context context) {
+    public WelcomeView(Context context) {
         super(context);
     }
 
@@ -43,7 +47,7 @@ public class TermsView extends UserDataView<TermsView.ViewListener>
      * @param context See {@link UserDataView#UserDataView}.
      * @param attrs See {@link UserDataView#UserDataView}.
      */
-    public TermsView(Context context, AttributeSet attrs) {
+    public WelcomeView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -52,11 +56,10 @@ public class TermsView extends UserDataView<TermsView.ViewListener>
     protected void findAllViews() {
         super.findAllViews();
 
-        mMarkdownView = (MarkdownView) findViewById(R.id.md_terms);
-        mTermsField = (TextView) findViewById(R.id.tv_terms);
-        mTermsField.setMovementMethod(LinkMovementMethod.getInstance());
-
+        mMarkdownView = (MarkdownView) findViewById(R.id.md_content);
         mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mNextButton = (TextView) findViewById(R.id.tv_next_bttn);
+        mImageView = (ImageView) findViewById(R.id.iv_image);
     }
 
     @Override
@@ -64,11 +67,17 @@ public class TermsView extends UserDataView<TermsView.ViewListener>
         return mLoadingView;
     }
 
-    public void setTerms(String disclaimer) {
-        mTermsField.setText(Html.fromHtml(disclaimer));
+    public void setMarkdown(String markdown) {
+        mMarkdownView.setBackgroundColor(Color.TRANSPARENT);
+        mMarkdownView.loadMarkdown(markdown);
     }
 
-    public void setMarkDownTerms(String disclaimer) {
-        mMarkdownView.loadMarkdown(disclaimer);
+    public void setCallToAction(String title) {
+        mNextButton.setText(title);
+    }
+
+    public void setImage(String imageUrl) {
+        mImageView.setVisibility(VISIBLE);
+        LedgeLinkUi.getImageLoader().load(imageUrl, mImageView);
     }
 }

@@ -23,6 +23,7 @@ import javax.net.ssl.X509TrustManager;
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.DataPointParser;
 import me.ledge.link.api.utils.RequiredDataPointParser;
+import me.ledge.link.api.utils.ActionConfigurationParser;
 import me.ledge.link.api.utils.VerificationSerializer;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
@@ -48,12 +49,14 @@ import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
+import me.ledge.link.api.vos.responses.users.LoginUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
+import me.ledge.link.api.vos.responses.workflow.ActionConfigurationVo;
 import me.ledge.link.api.wrappers.BaseLinkApiWrapper;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.interceptors.LedgeLinkOkThreeInterceptor;
@@ -124,6 +127,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         gsonBuilder.registerTypeAdapter(DataPointVo.class, new DataPointParser());
         gsonBuilder.registerTypeAdapter(RequiredDataPointVo.class, new RequiredDataPointParser());
         gsonBuilder.registerTypeAdapter(VerificationVo.class, new VerificationSerializer());
+        gsonBuilder.registerTypeAdapter(ActionConfigurationVo.class, new ActionConfigurationParser());
 
         // Adding serializeNulls option to avoid bug in API where keys with null values
         // must be present
@@ -393,11 +397,11 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public CreateUserResponseVo loginUser(LoginRequestVo requestData) throws ApiException {
-        CreateUserResponseVo result;
+    public LoginUserResponseVo loginUser(LoginRequestVo requestData) throws ApiException {
+        LoginUserResponseVo result;
 
         try {
-            Response<CreateUserResponseVo> response = mUserService.loginUser(requestData).execute();
+            Response<LoginUserResponseVo> response = mUserService.loginUser(requestData).execute();
             result = handleResponse(response, LinkApiWrapper.LOGIN_USER_PATH);
         } catch (IOException ioe) {
             result = null;

@@ -55,6 +55,7 @@ public class PhoneModel extends AbstractUserDataModel implements UserDataModel {
             PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
                     DataPointVo.DataPointType.Phone, new PhoneNumberVo());
             phoneNumber.phoneNumber = mPhone.phoneNumber;
+            phoneNumber.setVerification(mPhone.getVerification());
         }
 
         return base;
@@ -68,7 +69,8 @@ public class PhoneModel extends AbstractUserDataModel implements UserDataModel {
         PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Phone, null);
         if(phoneNumber!=null) {
-            setPhone(phoneNumber);
+            setPhone(phoneNumber.phoneNumber);
+            mPhone.setVerification(phoneNumber.getVerification());
         }
     }
 
@@ -77,12 +79,6 @@ public class PhoneModel extends AbstractUserDataModel implements UserDataModel {
      */
     public PhoneNumber getPhone() {
         return mPhone.phoneNumber;
-    }
-
-    public void setPhone(PhoneNumberVo phoneNumber) {
-        if(phoneNumber != null) {
-            setPhone(phoneNumber.phoneNumber);
-        }
     }
 
     /**
@@ -100,7 +96,10 @@ public class PhoneModel extends AbstractUserDataModel implements UserDataModel {
      */
     public void setPhone(PhoneNumber number) {
         if (number != null && PhoneHelperUtil.isValidNumber(number)) {
-            mPhone.phoneNumber = number;
+            if(!number.equals(mPhone.phoneNumber)) {
+                mPhone.invalidateVerification();
+                mPhone.phoneNumber = number;
+            }
         } else {
             mPhone.phoneNumber = null;
         }

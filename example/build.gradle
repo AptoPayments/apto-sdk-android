@@ -19,6 +19,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    // Fixed build error : Duplicate files copied in APK META-INF/xxx
+    packagingOptions {
+        exclude 'META-INF/maven/com.squareup.okhttp/okhttp/pom.xml'
+        exclude 'META-INF/maven/com.squareup.okhttp/okhttp/pom.properties'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.xml'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.properties'
+        exclude 'META-INF/LICENSE'
+        pickFirst 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        pickFirst 'META-INF/NOTICE.txt'
+    }
 }
 
 repositories {
@@ -31,9 +43,7 @@ repositories {
 }
 
 dependencies {
-    compile 'me.ledge.link.sdk:sdk:+'
-    compile 'me.ledge.link.sdk:ui:+'
-    compile 'me.ledge.link.sdk:handler-eventbus:+'
+    compile 'me.ledge.link.sdk:ui:0.1.1'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
     compile 'io.branch.sdk.android:library:2.+'
 }

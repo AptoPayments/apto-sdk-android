@@ -6,6 +6,7 @@ package me.ledge.link.api.vos.responses.config;
  */
 
 import com.google.gson.annotations.SerializedName;
+import me.ledge.link.api.vos.responses.workflow.ActionVo;
 
 public class ConfigResponseVo {
 
@@ -58,4 +59,7 @@ public class ConfigResponseVo {
 
     @SerializedName("secondary_auth_credential")
     public String secondaryAuthCredential;
+
+    @SerializedName("welcome_screen_action")
+    public ActionVo welcomeScreenAction;
 }

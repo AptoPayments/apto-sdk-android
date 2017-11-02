@@ -13,7 +13,7 @@ import me.ledge.link.sdk.ui.presenters.link.LoanAmountPresenter;
 import me.ledge.link.sdk.ui.presenters.link.LoanDataDelegate;
 import me.ledge.link.sdk.ui.presenters.link.LoanInfoModule;
 import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
-import me.ledge.link.sdk.ui.views.userdata.LoanAmountView;
+import me.ledge.link.sdk.ui.views.link.LoanAmountView;
 
 /**
  * Wires up the MVP pattern for the loan amount screen.

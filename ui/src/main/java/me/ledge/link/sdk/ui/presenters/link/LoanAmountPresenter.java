@@ -8,7 +8,7 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
-import me.ledge.link.api.vos.responses.config.DisclaimerVo;
+import me.ledge.link.api.vos.responses.config.ContentVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
@@ -19,12 +19,12 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
-import me.ledge.link.sdk.ui.views.userdata.LoanAmountView;
+import me.ledge.link.sdk.ui.views.link.LoanAmountView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
-import static me.ledge.link.api.vos.responses.config.DisclaimerVo.formatValues.plain_text;
+import static me.ledge.link.api.vos.responses.config.ContentVo.formatValues.plain_text;
 
 /**
  * Concrete {@link Presenter} for the loan amount screen.
@@ -349,7 +349,7 @@ public class LoanAmountPresenter
 
     private boolean hasValidDisclaimer(LoanProductVo loanProduct) {
         return !TextUtils.isEmpty(loanProduct.preQualificationDisclaimer.value) &&
-                DisclaimerVo.formatValues.valueOf(loanProduct.preQualificationDisclaimer.format).equals(plain_text);
+                ContentVo.formatValues.valueOf(loanProduct.preQualificationDisclaimer.format).equals(plain_text);
     }
 
     private void setDisclaimers(String disclaimers) {

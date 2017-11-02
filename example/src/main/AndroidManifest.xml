@@ -8,7 +8,8 @@
 
     <uses-sdk
             android:minSdkVersion="15"
-            android:targetSdkVersion="23" />
+            android:targetSdkVersion="24"
+            tools:overrideLibrary="br.tiagohm.markdownview"/>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -43,11 +44,11 @@
         </activity>
 
         <activity
-                android:name="me.ledge.link.sdk.ui.activities.link.TermsActivity"
-                android:theme="@style/Theme.LedgeLine.Example">
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="me.ledge.link.sdk.example.activities.MainActivity" />
+            android:name="me.ledge.link.sdk.ui.activities.link.WelcomeActivity"
+            android:theme="@style/Theme.LedgeLine.Example">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.ledge.link.sdk.example.activities.MainActivity" />
         </activity>
 
         <activity

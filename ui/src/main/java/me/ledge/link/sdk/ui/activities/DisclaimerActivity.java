@@ -9,7 +9,7 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import me.ledge.link.api.vos.responses.config.DisclaimerVo;
+import me.ledge.link.api.vos.responses.config.ContentVo;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.ModuleManager;
 import me.ledge.link.sdk.ui.R;
@@ -34,7 +34,7 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
         super.onCreate(savedInstanceState);
         setView();
 
-        switch(DisclaimerVo.formatValues.valueOf(DisclaimerUtil.disclaimer.format)) {
+        switch(ContentVo.formatValues.valueOf(DisclaimerUtil.disclaimer.format)) {
             case plain_text:
                 mView.loadPlainText(DisclaimerUtil.disclaimer.value);
                 break;

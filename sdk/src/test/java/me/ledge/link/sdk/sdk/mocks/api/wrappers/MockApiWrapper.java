@@ -43,6 +43,7 @@ import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.offers.TermVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
+import me.ledge.link.api.vos.responses.users.LoginUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
 import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
@@ -181,8 +182,8 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public CreateUserResponseVo loginUser(LoginRequestVo loginRequestVo) throws ApiException {
-        CreateUserResponseVo response = new CreateUserResponseVo();
+    public LoginUserResponseVo loginUser(LoginRequestVo loginRequestVo) throws ApiException {
+        LoginUserResponseVo response = new LoginUserResponseVo();
         response.user_token = TOKEN;
         return response;
     }

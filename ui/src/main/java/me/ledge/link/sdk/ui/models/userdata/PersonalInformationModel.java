@@ -165,9 +165,11 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     public void setEmail(String email) {
         VerbalExpression emailRegex = VerbalExpression.regex()
                 .startOfLine()
-                .anythingBut("@").atLeast(1)
+                .anythingBut(" ")
                 .then("@")
-                .anythingBut("@").atLeast(1)
+                .anythingBut(" ")
+                .then(".")
+                .anythingBut(" ")
                 .endOfLine()
                 .build();
 

@@ -173,7 +173,7 @@ public class PersonalInformationModelTest {
      */
     @Test
     public void invalidEmailIsNotStored() {
-        mModel.setEmail("michael@bluth@company.com");
+        mModel.setEmail("www.michaelbluthcompany.com");
         Assert.assertFalse("Email should NOT be stored.", mModel.hasEmail());
     }
 

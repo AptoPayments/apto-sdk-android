@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.datapoints.Address;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.responses.config.DisclaimerVo;
+import me.ledge.link.api.vos.responses.config.ContentVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
@@ -38,7 +38,7 @@ public class IdentityVerificationPresenter
         IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener {
 
     private String mDisclaimersText = "";
-    private ArrayList<DisclaimerVo> mFullScreenDisclaimers = new ArrayList<>();
+    private ArrayList<ContentVo> mFullScreenDisclaimers = new ArrayList<>();
     private IdentityVerificationDelegate mDelegate;
     private boolean mIsSSNRequired;
     private boolean mIsSSNNotAvailableAllowed;
@@ -114,6 +114,11 @@ public class IdentityVerificationPresenter
             mView.setSSN(mModel.getSocialSecurityNumber());
         }
 
+        int progressColor = getProgressBarColor(mActivity);
+        if (progressColor != 0) {
+            mView.setProgressColor(progressColor);
+        }
+
         if(((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile) {
             if(mIsSSNRequired && mView.getSocialSecurityNumber().isEmpty()) {
                 mView.setMaskedSSN();
@@ -121,24 +126,21 @@ public class IdentityVerificationPresenter
             mView.setButtonText(mActivity.getResources().getString(R.string.id_verification_update_profile_button));
             mActivity.getSupportActionBar().setTitle(mActivity.getResources().getString(R.string.id_verification_update_profile_title));
             mView.showDisclaimers(false);
+            mLoadingSpinnerManager.showLoading(false);
         }
-
-        int progressColor = getProgressBarColor(mActivity);
-        if (progressColor != 0) {
-            mView.setProgressColor(progressColor);
-        }
-
-        if (mDisclaimersText.isEmpty()) {
-            mLoadingSpinnerManager.showLoading(true);
-            CompletableFuture
-                    .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
-                    .exceptionally(ex -> {
-                        errorReceived(ex.getMessage());
-                        return null;
-                    })
-                    .thenAccept(this::partnerDisclaimersListRetrieved);
-        } else {
-            setTextDisclaimers(mDisclaimersText);
+        else {
+            if (mDisclaimersText.isEmpty()) {
+                mLoadingSpinnerManager.showLoading(true);
+                CompletableFuture
+                        .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
+                        .exceptionally(ex -> {
+                            errorReceived(ex.getMessage());
+                            return null;
+                        })
+                        .thenAccept(this::partnerDisclaimersListRetrieved);
+            } else {
+                setTextDisclaimers(mDisclaimersText);
+            }
         }
     }
 
@@ -257,7 +259,7 @@ public class IdentityVerificationPresenter
         mView.setBirthday(String.format("%02d/%02d/%02d", monthOfYear + 1, dayOfMonth, year));
     }
 
-    private void parseTextDisclaimer(DisclaimerVo textDisclaimer) {
+    private void parseTextDisclaimer(ContentVo textDisclaimer) {
         String lineBreak = "<br />";
         String partnerDivider = "<br /><br />";
         StringBuilder result = new StringBuilder();
@@ -280,9 +282,9 @@ public class IdentityVerificationPresenter
 
     private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
         for (LoanProductVo loanProduct : response.data) {
-            DisclaimerVo disclaimer = loanProduct.preQualificationDisclaimer;
+            ContentVo disclaimer = loanProduct.preQualificationDisclaimer;
             if(!disclaimer.value.isEmpty()) {
-                switch(DisclaimerVo.formatValues.valueOf(disclaimer.format)) {
+                switch(ContentVo.formatValues.valueOf(disclaimer.format)) {
                     case plain_text:
                         parseTextDisclaimer(disclaimer);
                         break;
@@ -306,7 +308,7 @@ public class IdentityVerificationPresenter
         mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error));
     }
 
-    private DisclaimerVo formatExternalUrlDisclaimer(DisclaimerVo disclaimer) {
+    private ContentVo formatExternalUrlDisclaimer(ContentVo disclaimer) {
         Address userAddress = (Address) UserStorage.getInstance().getUserData().getUniqueDataPoint(
                 DataPointVo.DataPointType.Address, null);
         disclaimer.value = disclaimer.value.replace("[language]", LanguageUtil.getLanguage()).replace("[state]", userAddress.stateCode.toUpperCase());

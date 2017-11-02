@@ -46,6 +46,7 @@
                             android:id="@+id/et_birthday"
                             style="?attr/llsdk_idVerification_editTextStyle"
                             android:inputType="date"
+                            android:focusable="false"
                             android:singleLine="true"
                             android:hint="@string/id_verification_birthday_hint" />
 
