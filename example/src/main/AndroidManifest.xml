@@ -169,7 +169,12 @@
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="me.ledge.link.sdk.ui.activities.financialaccountselector.EnableAutoPayActivity"
+            android:name="me.ledge.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="me.ledge.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity

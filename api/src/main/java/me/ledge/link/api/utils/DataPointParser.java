@@ -16,16 +16,17 @@ import me.ledge.link.api.vos.datapoints.BankAccount;
 import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.CreditScore;
+import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Email;
-import me.ledge.link.api.vos.datapoints.IncomeSource;
 import me.ledge.link.api.vos.datapoints.Housing;
 import me.ledge.link.api.vos.datapoints.Income;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.IncomeSource;
 import me.ledge.link.api.vos.datapoints.PaydayLoan;
 import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.datapoints.SSN;
 import me.ledge.link.api.vos.datapoints.TimeAtAddress;
+import me.ledge.link.api.vos.datapoints.VirtualCard;
 
 /**
  * Created by adrian on 25/01/2017.
@@ -88,6 +89,13 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                 return new BankAccount(jObject.get("account_id").getAsString(),
                         jObject.get("bank_name").getAsString(),
                         jObject.get("last_four_digits").getAsString(), false);
+            case "virtual_card":
+                return new VirtualCard(jObject.get("account_id").getAsString(),
+                        Card.CardType.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_type"))),
+                        ParsingUtils.getStringFromJson(jObject.get("pan")),
+                        ParsingUtils.getStringFromJson(jObject.get("cvv_number")),
+                        ParsingUtils.getStringFromJson(jObject.get("last_four_digits")),
+                        ParsingUtils.getStringFromJson(jObject.get("expiration")), false);
             case "payday_loan":
                 return new PaydayLoan(jObject.get("payday_loan").getAsBoolean(), verified,
                         notSpecified);

@@ -1,14 +1,14 @@
-package me.ledge.link.sdk.ui.activities.financialaccountselector;
+package me.ledge.link.sdk.ui.activities.fundingaccountselector;
 
 import android.view.View;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
-import me.ledge.link.sdk.ui.models.financialaccountselector.EnableAutoPayModel;
-import me.ledge.link.sdk.ui.presenters.financialaccountselector.EnableAutoPayDelegate;
-import me.ledge.link.sdk.ui.presenters.financialaccountselector.EnableAutoPayPresenter;
+import me.ledge.link.sdk.ui.models.fundingaccountselector.EnableAutoPayModel;
+import me.ledge.link.sdk.ui.presenters.fundingaccountselector.EnableAutoPayDelegate;
+import me.ledge.link.sdk.ui.presenters.fundingaccountselector.EnableAutoPayPresenter;
 import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
-import me.ledge.link.sdk.ui.views.financialaccountselector.EnableAutoPayView;
+import me.ledge.link.sdk.ui.views.fundingaccountselector.EnableAutoPayView;
 
 
 /**

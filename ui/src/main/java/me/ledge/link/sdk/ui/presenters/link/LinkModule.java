@@ -7,7 +7,7 @@ import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeBaseModule;
-import me.ledge.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
+import me.ledge.link.sdk.ui.presenters.fundingaccountselector.FundingAccountSelectorModule;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.storages.UIStorage;
@@ -123,9 +123,9 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void showFundingAccountSelector() {
-        FinancialAccountSelectorModule financialAccountSelectorModule = FinancialAccountSelectorModule.getInstance(this.getActivity());
-        financialAccountSelectorModule.onBack = this::showOffersList;
-        startModule(financialAccountSelectorModule);
+        FundingAccountSelectorModule fundingAccountSelectorModule = FundingAccountSelectorModule.getInstance(this.getActivity());
+        fundingAccountSelectorModule.onBack = this::showOffersList;
+        startModule(fundingAccountSelectorModule);
     }
 
     private void showHomeActivity() {

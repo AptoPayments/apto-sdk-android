@@ -284,7 +284,7 @@ public class IdentityVerificationPresenter
     private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
         for (LoanProductVo loanProduct : response.data) {
             ContentVo disclaimer = loanProduct.preQualificationDisclaimer;
-            if(!disclaimer.value.isEmpty()) {
+            if(disclaimer != null && !disclaimer.value.isEmpty()) {
                 switch(ContentVo.formatValues.valueOf(disclaimer.format)) {
                     case plain_text:
                         parseTextDisclaimer(disclaimer);

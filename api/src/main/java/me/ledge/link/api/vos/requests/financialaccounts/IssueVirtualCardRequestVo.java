@@ -23,4 +23,10 @@ public class IssueVirtualCardRequestVo extends UnauthorizedRequestVo {
      */
     public int amount;
 
+    /**
+     * Virtual card issuer.
+     */
+    @SerializedName("card_issuer")
+    public String cardIssuer;
+
 }
