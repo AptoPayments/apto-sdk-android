@@ -611,12 +611,12 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         String apiEndPoint = this.getApiEndPoint();
         try {
             // Setting VGS proxy only for this call
-            /*String vgsEndPoint = "https://tntiewv89ib.SANDBOX.verygoodproxy.com";
-            this.setApiEndPoint(vgsEndPoint, mIsCertificatePinningEnabled, false);*/
+            String vgsEndPoint = "https://tntiewv89ib.SANDBOX.verygoodproxy.com";
+            this.setApiEndPoint(vgsEndPoint, mIsCertificatePinningEnabled, false);
             Response<VirtualCard> response
                     = mFinancialAccountService.issueVirtualCard(issueVirtualCardRequestVo).execute();
             result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
-            //this.setApiEndPoint(apiEndPoint, mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
+            this.setApiEndPoint(apiEndPoint, mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
         } catch (IOException ioe) {
             result = null;
             this.setApiEndPoint(apiEndPoint, mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
