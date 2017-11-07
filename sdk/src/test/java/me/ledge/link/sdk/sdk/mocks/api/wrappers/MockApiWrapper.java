@@ -339,9 +339,19 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
+    public void deleteTeam(String s) throws ApiException {
+
+    }
+
+    @Override
     public CreateProjectResponseVo createProject(CreateProjectRequestVo createProjectRequestVo, String s) throws ApiException {
         CreateProjectResponseVo createProjectResponseVo = new CreateProjectResponseVo();
         createProjectResponseVo.project_id = "1234";
         return createProjectResponseVo;
+    }
+
+    @Override
+    public void deleteProject(String s, String s1) throws ApiException {
+
     }
 }
