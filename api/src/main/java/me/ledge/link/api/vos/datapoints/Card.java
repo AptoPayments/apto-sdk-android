@@ -1,6 +1,7 @@
 package me.ledge.link.api.vos.datapoints;
 
 import com.google.gson.JsonObject;
+import com.google.gson.annotations.SerializedName;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,10 +19,15 @@ public class Card extends FinancialAccountVo {
         AMEX
     }
 
+    @SerializedName("card_type")
     public CardType cardType;
+    @SerializedName("last_four_digits")
     public String lastFourDigits;
+    @SerializedName("pan")
     public String PANToken;
+    @SerializedName("cvv_number")
     public String CVVToken;
+    @SerializedName("expiration")
     public String expirationDate;
 
     public Card() {
@@ -36,6 +42,16 @@ public class Card extends FinancialAccountVo {
     public Card(String accountId, CardType type, String PANToken, String CVVToken, String lastFourDigits,
                 String expirationDate, boolean verified) {
         super(accountId, FinancialAccountType.Card, verified);
+        this.cardType = type;
+        this.lastFourDigits = lastFourDigits;
+        this.PANToken = PANToken;
+        this.CVVToken = CVVToken;
+        this.expirationDate = expirationDate;
+    }
+
+    protected Card(FinancialAccountType accountType, String accountId, CardType type, String PANToken, String CVVToken, String lastFourDigits,
+                String expirationDate, boolean verified) {
+        super(accountId, accountType, verified);
         this.cardType = type;
         this.lastFourDigits = lastFourDigits;
         this.PANToken = PANToken;

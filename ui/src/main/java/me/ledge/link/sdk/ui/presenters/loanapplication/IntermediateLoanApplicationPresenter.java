@@ -146,7 +146,7 @@ public class IntermediateLoanApplicationPresenter
     public void bigButtonClickHandler(int action) {
         switch (action) {
             case BigButtonModel.Action.RETRY_LOAN_APPLICATION:
-                // TODO
+                mDelegate.intermediateLoanApplicationShowPrevious(mModel);
                 break;
             case BigButtonModel.Action.CONFIRM_LOAN:
             case BigButtonModel.Action.UPLOAD_DOCUMENTS:

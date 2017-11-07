@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
-import me.ledge.link.api.vos.datapoints.Card;
+import me.ledge.link.api.vos.datapoints.VirtualCard;
 
 /**
  * Delegation interface for adding financial accounts.
@@ -14,5 +14,5 @@ public interface AddFinancialAccountListDelegate {
 
     void addBankAccount();
 
-    void virtualCardIssued(Card virtualCard);
+    void virtualCardIssued(VirtualCard virtualCard);
 }

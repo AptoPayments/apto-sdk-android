@@ -8,6 +8,7 @@ import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
@@ -308,9 +309,9 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public Card issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
-        Card response = new Card();
-        response.cardType = Card.CardType.MARQETA;
+    public VirtualCard issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
+        VirtualCard response = new VirtualCard();
+        response.cardType = VirtualCard.CardType.MARQETA;
         return response;
     }
 
