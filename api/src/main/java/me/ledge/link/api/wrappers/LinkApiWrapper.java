@@ -8,6 +8,8 @@ import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
+import me.ledge.link.api.vos.requests.dashboard.CreateProjectRequestVo;
+import me.ledge.link.api.vos.requests.dashboard.CreateTeamRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
@@ -17,6 +19,8 @@ import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
+import me.ledge.link.api.vos.responses.dashboard.CreateProjectResponseVo;
+import me.ledge.link.api.vos.responses.dashboard.CreateTeamResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
@@ -54,6 +58,14 @@ public interface LinkApiWrapper {
     String DELETE_USER_PATH = "v1/dashboard/users/deletebyphone";
     String GET_CURRENT_USER_PATH = "v1/user";
     String LOGIN_USER_PATH = "v1/user/login";
+
+    String CREATE_TEAM_PATH = "/v1/dashboard/teams";
+    String DELETE_TEAM_PATH = "/v1/dashboard/teams/{TEAM_ID}";
+
+    String CREATE_PROJECT_PATH = "/v1/dashboard/teams/{TEAM_ID}/projects";
+    String DELETE_PROJECT_PATH = "/v1/dashboard/teams//projects/";
+
+    String GET_KEYS_PATH = "/v1/dashboard/teams/{TEAM_ID}/projects/{PROJECT_ID}/keys";
 
     String INITIAL_OFFERS_PATH = "v1/link/offersrequest";
     String MORE_OFFERS_PATH = "v1/link/offersrequest/{offer_request_id}/offers";
@@ -278,4 +290,33 @@ public interface LinkApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     void deleteUser(DeleteUserRequestVo requestData) throws ApiException;
+
+    /**
+     * Create a team
+     * @param requestData Mandatory request data.
+     * @throws ApiException When there is an error making the request.
+     */
+    CreateTeamResponseVo createTeam(CreateTeamRequestVo requestData) throws ApiException;
+
+    /**
+     * Delete a team
+     * @param teamId ID of the team to delete.
+     * @throws ApiException When there is an error making the request.
+     */
+    void deleteTeam(String teamId) throws ApiException;
+
+    /**
+     * Create a project
+     * @param requestData Mandatory request data.
+     * @throws ApiException When there is an error making the request.
+     */
+    CreateProjectResponseVo createProject(CreateProjectRequestVo requestData, String teamId) throws ApiException;
+
+    /**
+     * Delete a project
+     * @param teamId ID of the team the project belongs to.
+     * @param projectId ID of the project to delete.
+     * @throws ApiException When there is an error making the request.
+     */
+    void deleteProject(String teamId, String projectId) throws ApiException;
 }
