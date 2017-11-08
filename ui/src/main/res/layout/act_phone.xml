@@ -40,7 +40,7 @@
                 android:id="@+id/et_phone"
                 style="?attr/llsdk_idVerification_editTextStyle"
                 android:hint="@string/phone_hint"
-                android:inputType="numberSigned"
+                android:inputType="phone"
                 android:maxLength="@integer/phone_number_length"
                 android:maxLines="1" />
         </android.support.design.widget.TextInputLayout>
