@@ -48,13 +48,12 @@
                 android:text="@string/disclaimer_accept" />
         </RelativeLayout>
 
-        <WebView
-            android:id="@+id/wb_pdf_webview"
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView"
             android:visibility="gone"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
             android:layout_above="@id/ll_buttons_holder"
-            android:layout_alignParentTop="true"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
         <TextView
             android:id="@+id/tv_disclaimer_text"
@@ -72,4 +71,6 @@
             android:layout_marginTop="32dp"
             android:layout_above="@id/ll_buttons_holder" />
     </RelativeLayout>
+
+    <include layout="@layout/include_rl_loading" />
 </me.ledge.link.sdk.ui.views.DisclaimerView>

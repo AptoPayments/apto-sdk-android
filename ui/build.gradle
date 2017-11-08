@@ -138,6 +138,7 @@ dependencies {
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
     compile 'com.synnapps:carouselview:0.0.10'
     compile 'com.github.tiagohm.MarkdownView:library:0.17.0'
+    compile 'com.github.barteksc:android-pdf-viewer:2.8.0'
 
     // Tests
     testCompile 'junit:junit:4.12'
