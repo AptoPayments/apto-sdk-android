@@ -2,13 +2,13 @@ package me.ledge.link.sdk.ui.views.userdata;
 
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
-import me.ledge.link.sdk.ui.views.text.PhoneNumberTextWatcher;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
@@ -57,7 +57,7 @@ public class PhoneView
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mPhoneField.addTextChangedListener(new PhoneNumberTextWatcher());
+        mPhoneField.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
     }
 
     /**
