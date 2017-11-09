@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,16 +42,24 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
         super.onCreate(savedInstanceState);
         setView();
 
+        String disclaimer = DisclaimerUtil.disclaimer.value;
         switch(ContentVo.formatValues.valueOf(DisclaimerUtil.disclaimer.format)) {
             case plain_text:
-                mView.loadPlainText(DisclaimerUtil.disclaimer.value);
+                mView.loadPlainText(disclaimer);
                 break;
             case markdown:
-                mView.loadMarkdown(DisclaimerUtil.disclaimer.value);
+                mView.loadMarkdown(disclaimer);
                 mDisclosureLoaded = true;
                 break;
             case external_url:
-                loadUrl(DisclaimerUtil.disclaimer.value);
+                String ext = disclaimer.substring(disclaimer.length() - 3);
+                if(ext.equalsIgnoreCase("PDF")) {
+                    // Only download disclaimer in case of PDF
+                    downloadFile(disclaimer);
+                }
+                else {
+                    loadUrl(disclaimer);
+                }
                 break;
         }
         LedgeBaseModule currentModule = ModuleManager.getInstance().getCurrentModule();
@@ -58,6 +69,29 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
     }
 
     private void loadUrl(String url) {
+        WebView webview = (WebView) findViewById(R.id.wb_pdf_webview);
+        webview.clearCache(true);
+        webview.clearHistory();
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+                super.onReceivedTitle(view, title);
+                mDisclosureLoaded = true;
+            }
+        });
+        webview.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+        webview.setVisibility(View.VISIBLE);
+        webview.loadUrl(url);
+    }
+
+    private void downloadFile(String url) {
         final DownloadFileTask downloadTask = new DownloadFileTask(DisclaimerActivity.this);
         downloadTask.execute(url);
     }
