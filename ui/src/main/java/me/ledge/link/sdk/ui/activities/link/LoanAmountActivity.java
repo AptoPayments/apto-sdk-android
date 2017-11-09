@@ -5,7 +5,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import me.ledge.link.sdk.ui.ModuleManager;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.UserDataActivity;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;

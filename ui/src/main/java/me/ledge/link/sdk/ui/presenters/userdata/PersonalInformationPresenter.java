@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
-import me.ledge.link.sdk.ui.ModuleManager;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.PersonalInformationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;

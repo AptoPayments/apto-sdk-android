@@ -1,11 +1,11 @@
-package me.ledge.link.sdk.ui;
+package me.ledge.link.sdk.ui.workflow;
 
 /**
  * Contains the navigation logic for each screen
  * Created by adrian on 29/12/2016.
  */
 
-public interface Router {
+public interface NavigationCommand {
 
     /**
      * Starts another activity.

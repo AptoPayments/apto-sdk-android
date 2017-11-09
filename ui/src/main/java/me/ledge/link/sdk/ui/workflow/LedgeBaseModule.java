@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui;
+package me.ledge.link.sdk.ui.workflow;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
  * Created by adrian on 29/12/2016.
  */
 
-public abstract class LedgeBaseModule implements Router, BaseDelegate {
+public abstract class LedgeBaseModule implements NavigationCommand, BaseDelegate {
 
     private Activity mActivity;
 

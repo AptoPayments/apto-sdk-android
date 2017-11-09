@@ -15,7 +15,7 @@ import java.lang.ref.WeakReference;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Income;
-import me.ledge.link.sdk.ui.ModuleManager;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockMonthlyIncomePresenter;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModule;
 import me.ledge.link.sdk.ui.mocks.views.userdata.MockMonthlyIncomeView;

@@ -2,8 +2,8 @@ package me.ledge.link.sdk.ui.presenters.link;
 
 import android.app.Activity;
 
-import me.ledge.link.sdk.ui.Command;
-import me.ledge.link.sdk.ui.LedgeBaseModule;
+import me.ledge.link.sdk.ui.workflow.Command;
+import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 import me.ledge.link.sdk.ui.activities.link.WelcomeActivity;
 
 public class WelcomeModule extends LedgeBaseModule implements WelcomeDelegate {

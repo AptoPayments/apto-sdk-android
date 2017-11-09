@@ -6,7 +6,7 @@ import android.widget.Toast;
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.LedgeBaseModule;
+import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 import me.ledge.link.sdk.ui.presenters.fundingaccountselector.FundingAccountSelectorModule;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;

@@ -6,9 +6,9 @@ import java.lang.ref.WeakReference;
 
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
-import me.ledge.link.sdk.ui.Command;
-import me.ledge.link.sdk.ui.LedgeBaseModule;
-import me.ledge.link.sdk.ui.ModuleManager;
+import me.ledge.link.sdk.ui.workflow.Command;
+import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity;
 import me.ledge.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity;
 import me.ledge.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
