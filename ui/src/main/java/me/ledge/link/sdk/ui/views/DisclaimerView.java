@@ -8,6 +8,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.barteksc.pdfviewer.PDFView;
+
+import java.io.File;
+
 import br.tiagohm.markdownview.MarkdownView;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
@@ -16,13 +20,15 @@ import me.ledge.link.sdk.ui.storages.UIStorage;
  * Displays the disclaimer webview.
  * @author Adrian
  */
-public class DisclaimerView extends RelativeLayout implements View.OnClickListener {
+public class DisclaimerView extends RelativeLayout implements View.OnClickListener, ViewWithIndeterminateLoading {
 
     private TextView mAcceptButton;
     private TextView mCancelButton;
     private MarkdownView mMarkdownView;
     private TextView mTextView;
     private ViewListener mListener;
+    private PDFView mPdfView;
+    private LoadingView mLoadingView;
 
     public DisclaimerView(Context context) {
         this(context, null);
@@ -77,6 +83,11 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
         }
     }
 
+    @Override
+    public LoadingView getLoadingView() {
+        return mLoadingView;
+    }
+
     private void setColors() {
         int primaryColor = UIStorage.getInstance().getPrimaryColor();
         mAcceptButton.setTextColor(primaryColor);
@@ -87,6 +98,8 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
         mCancelButton = (TextView) findViewById(R.id.tv_cancel_pdf);
         mMarkdownView = (MarkdownView) findViewById(R.id.md_disclaimer_markdown);
         mTextView = (TextView) findViewById(R.id.tv_disclaimer_text);
+        mPdfView = (PDFView) findViewById(R.id.pdfView);
+        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
     }
 
     public void loadMarkdown(String markDown) {
@@ -104,5 +117,10 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
         if(!message.isEmpty()) {
             Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void loadPdf(File pdfFile) {
+        mPdfView.setVisibility(VISIBLE);
+        mPdfView.fromFile(pdfFile).load();
     }
 }
