@@ -1,4 +1,4 @@
-package me.ledge.link.api.utils;
+package me.ledge.link.api.utils.parsers;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -9,8 +9,8 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 
 import me.ledge.link.api.vos.responses.config.ContentVo;
-import me.ledge.link.api.vos.responses.workflow.CallToActionVo;
 import me.ledge.link.api.vos.responses.workflow.ActionConfigurationVo;
+import me.ledge.link.api.vos.responses.workflow.CallToActionVo;
 import me.ledge.link.api.vos.responses.workflow.GenericMessageConfigurationVo;
 
 /**

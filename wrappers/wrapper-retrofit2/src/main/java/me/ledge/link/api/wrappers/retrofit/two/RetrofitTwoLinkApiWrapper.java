@@ -21,10 +21,10 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.utils.DataPointParser;
-import me.ledge.link.api.utils.RequiredDataPointParser;
-import me.ledge.link.api.utils.ActionConfigurationParser;
-import me.ledge.link.api.utils.VirtualCardParser;
+import me.ledge.link.api.utils.parsers.DataPointParser;
+import me.ledge.link.api.utils.parsers.RequiredDataPointParser;
+import me.ledge.link.api.utils.parsers.ActionConfigurationParser;
+import me.ledge.link.api.utils.parsers.VirtualCardParser;
 import me.ledge.link.api.utils.VerificationSerializer;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
