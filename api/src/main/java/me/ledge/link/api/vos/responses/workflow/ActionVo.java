@@ -26,6 +26,10 @@ public class ActionVo {
     @SerializedName("editable_status")
     public Boolean editableStatus;
 
+    /**
+     * Workflow action type
+     * @see me.ledge.link.api.utils.workflow.WorkflowActionType
+     */
     @SerializedName("action_type")
     public String actionType;
 

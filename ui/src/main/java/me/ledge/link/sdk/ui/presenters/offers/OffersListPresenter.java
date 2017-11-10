@@ -16,7 +16,6 @@ import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
 import me.ledge.common.utils.PagedList;
 import me.ledge.common.utils.web.ExternalSiteLauncher;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
-import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
@@ -39,6 +38,7 @@ import me.ledge.link.sdk.ui.views.offers.OfferListSummaryView;
 import me.ledge.link.sdk.ui.views.offers.OffersBaseView;
 import me.ledge.link.sdk.ui.views.offers.OffersCarouselView;
 import me.ledge.link.sdk.ui.views.offers.OffersListView;
+import me.ledge.link.sdk.ui.vos.ApplicationVo;
 
 /**
  * Concrete {@link Presenter} for the offers list screen.
@@ -301,8 +301,10 @@ public class OffersListPresenter
     public void showLoanApplicationScreen(LoanApplicationDetailsResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         LoanStorage.getInstance().setCurrentLoanApplication(response);
-
-        switch (response.status) {
+        ApplicationVo application = new ApplicationVo(response.id, response.next_action);
+        mDelegate.onApplicationReceived(application);
+        //TODO: move to workflow
+        /*switch (response.status) {
             case LoanApplicationStatus.APPLICATION_REJECTED:
             case LoanApplicationStatus.PENDING_LENDER_ACTION:
             case LoanApplicationStatus.PENDING_BORROWER_ACTION:
@@ -315,7 +317,7 @@ public class OffersListPresenter
             default:
                 mView.displayErrorMessage("Screen not yet implemented.");
                 break;
-        }
+        }*/
     }
 
     /**
@@ -334,7 +336,7 @@ public class OffersListPresenter
         if (LinkApiWrapper.INITIAL_OFFERS_PATH.equals(error.request_path) && mView != null) {
             mView.showError(true);
         } else if (LinkApiWrapper.CREATE_LOAN_APPLICATION_PATH.equals(error.request_path)) {
-            mDelegate.onApplicationReceived();
+            mDelegate.onApplicationReceived(null);
         }
     }
 

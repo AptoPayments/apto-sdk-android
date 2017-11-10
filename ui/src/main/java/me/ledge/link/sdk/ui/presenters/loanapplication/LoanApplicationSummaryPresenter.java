@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanProductVo;
@@ -29,6 +28,7 @@ import me.ledge.link.sdk.ui.storages.LoanStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.loanapplication.LoanApplicationSummaryView;
+import me.ledge.link.sdk.ui.vos.ApplicationVo;
 
 /**
  * Concrete {@link Presenter} for the loan application summary.
@@ -166,8 +166,10 @@ public class LoanApplicationSummaryPresenter
     public void showLoanApplicationScreen(LoanApplicationDetailsResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         LoanStorage.getInstance().setCurrentLoanApplication(response);
-
-        switch (response.status) {
+        ApplicationVo application = new ApplicationVo(response.id, response.next_action);
+        mDelegate.onApplicationReceived(application);
+        //TODO: move to workflow
+        /*switch (response.status) {
             case LoanApplicationStatus.APPLICATION_REJECTED:
             case LoanApplicationStatus.PENDING_LENDER_ACTION:
             case LoanApplicationStatus.PENDING_BORROWER_ACTION:
@@ -180,7 +182,7 @@ public class LoanApplicationSummaryPresenter
             default:
                 mView.displayErrorMessage("Screen not yet implemented.");
                 break;
-        }
+        }*/
     }
 
     /**

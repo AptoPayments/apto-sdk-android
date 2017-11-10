@@ -62,8 +62,17 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
         String trackerEventName = ParsingUtils.getStringFromJson(config.get("tracker_event_name"));
         String trackerIncrementName = ParsingUtils.getStringFromJson(config.get("tracker_increment_name"));
 
-        ContentVo content = parseContent(config.get("content").getAsJsonObject());
-        CallToActionVo callToAction = parseCallToAction(config.get("call_to_action").getAsJsonObject());
+        ContentVo content = null;
+        JsonElement contentJson = config.get("content");
+        if(!contentJson.isJsonNull()) {
+            content = parseContent(contentJson.getAsJsonObject());
+        }
+
+        JsonElement callToActionJson = config.get("call_to_action");
+        CallToActionVo callToAction = null;
+        if(!callToActionJson.isJsonNull()) {
+            callToAction = parseCallToAction(callToActionJson.getAsJsonObject());
+        }
 
         return new GenericMessageConfigurationVo(type, title, content, image, trackerEventName, trackerIncrementName, callToAction);
     }

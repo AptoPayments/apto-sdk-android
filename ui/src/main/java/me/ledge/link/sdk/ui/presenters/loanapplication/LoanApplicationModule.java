@@ -3,13 +3,9 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 import android.app.Activity;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
-import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage.OffersListStyle;
-import me.ledge.link.sdk.ui.workflow.Command;
-import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
@@ -21,6 +17,10 @@ import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentsListMod
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.presenters.offers.OffersListDelegate;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
+import me.ledge.link.sdk.ui.vos.ApplicationVo;
+import me.ledge.link.sdk.ui.workflow.Command;
+import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
+import me.ledge.link.sdk.ui.workflow.WorkflowModule;
 
 /**
  * Created by adrian on 29/12/2016.
@@ -32,7 +32,6 @@ public class LoanApplicationModule extends LedgeBaseModule
     private static LoanApplicationModule mInstance;
     public Command onUpdateUserProfile;
     public Command onBack;
-    public Command onSelectFundingAccount;
     public OffersListStyle mOffersListStyle;
 
     public static synchronized LoanApplicationModule getInstance(Activity activity) {
@@ -100,15 +99,14 @@ public class LoanApplicationModule extends LedgeBaseModule
     }
 
     @Override
-    public void onApplicationReceived() {
+    public void onApplicationReceived(ApplicationVo application) {
         LoanApplicationDetailsResponseVo loanApplication = LoanStorage.getInstance().getCurrentLoanApplication();
         if (loanApplication != null) {
-            if (loanApplication.status.equals(LoanApplicationStatus.PENDING_BORROWER_ACTION)) {
-                if (loanApplication.required_actions.total_count > 0 && loanApplication.required_actions.data[0].action.equals(LoanApplicationActionId.SELECT_FUNDING_ACCOUNT)) {
-                    onSelectFundingAccount.execute();
-                    return;
-                }
-            }
+            // TODO: replace with workflow manager
+            WorkflowModule workflowModule = new WorkflowModule(this.getActivity(), application);
+            workflowModule.onBack = this::showOffers;
+            workflowModule.initialModuleSetup();
+            return;
         }
         startActivity(IntermediateLoanApplicationActivity.class);
     }
