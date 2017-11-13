@@ -18,6 +18,7 @@ public class WorkflowModule extends LedgeBaseModule {
     public void initialModuleSetup() {
         LedgeBaseModule module = ModuleFactory.getModule(this.getActivity(), mWorkFlowObject.nextAction.actionType);
         module.onBack = this.onBack;
+        module.onFinish = this.onFinish;
         startModule(module);
     }
 

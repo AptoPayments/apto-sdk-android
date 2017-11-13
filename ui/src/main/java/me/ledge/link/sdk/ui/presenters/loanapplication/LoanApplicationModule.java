@@ -102,6 +102,7 @@ public class LoanApplicationModule extends LedgeBaseModule
         if (loanApplication != null) {
             WorkflowModule workflowModule = new WorkflowModule(this.getActivity(), application);
             workflowModule.onBack = this::showOffers;
+            workflowModule.onFinish = this.onFinish;
             workflowModule.initialModuleSetup();
             return;
         }
