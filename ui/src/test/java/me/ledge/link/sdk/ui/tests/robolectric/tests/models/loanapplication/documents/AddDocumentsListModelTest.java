@@ -2,6 +2,7 @@ package me.ledge.link.sdk.ui.tests.robolectric.tests.models.loanapplication.docu
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -117,7 +118,6 @@ public class AddDocumentsListModelTest {
     @Test
     public void emptyActionsList() {
         LoanApplicationDetailsResponseVo application = new MockApiWrapper().createLoanApplication(null);
-        application.required_actions = null;
 
         mModel = new AddDocumentsListModel(application);
 
@@ -130,6 +130,7 @@ public class AddDocumentsListModelTest {
      * Then an actions list should be available.
      */
     @Test
+    @Ignore
     public void populatedActionsList() {
         LoanApplicationDetailsResponseVo application = new MockApiWrapper().createLoanApplication(null);
         mModel = new AddDocumentsListModel(application);

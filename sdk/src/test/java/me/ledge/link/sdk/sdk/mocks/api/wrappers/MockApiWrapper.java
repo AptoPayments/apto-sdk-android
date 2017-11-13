@@ -17,7 +17,6 @@ import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
-import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.CreditScoreListResponseVo;
@@ -33,7 +32,6 @@ import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
@@ -243,8 +241,6 @@ public class MockApiWrapper implements LinkApiWrapper {
     public LoanApplicationDetailsResponseVo createLoanApplication(String offerId) {
         LoanApplicationDetailsResponseVo application = new LoanApplicationDetailsResponseVo();
         application.status = "";
-        application.required_actions = new ListResponseVo<>();
-        application.required_actions.data = new LoanApplicationActionVo[] { new LoanApplicationActionVo() };
 
         return application;
     }
