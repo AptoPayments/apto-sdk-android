@@ -49,9 +49,10 @@ public class AddDocumentsListModel implements ActivityModel, Model {
     public LoanApplicationActionVo[] getRequiredActions() {
         LoanApplicationActionVo[] actions = null;
 
-        if (mLoanApplication != null && mLoanApplication.required_actions != null) {
+        // TODO: implement workflow add documents action
+        /*if (mLoanApplication != null && mLoanApplication.required_actions != null) {
             actions = mLoanApplication.required_actions.data;
-        }
+        }*/
 
         return actions;
     }

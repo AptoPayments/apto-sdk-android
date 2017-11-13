@@ -2,17 +2,13 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.support.v7.app.AppCompatActivity;
 
-import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.models.loanapplication.ApprovedLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.loanapplication.ErrorLoanApplicationModel;
-import me.ledge.link.sdk.ui.models.loanapplication.FinishExternalLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
-import me.ledge.link.sdk.ui.models.loanapplication.PendingDocumentsModel;
 import me.ledge.link.sdk.ui.models.loanapplication.PendingLenderActionModel;
-import me.ledge.link.sdk.ui.models.loanapplication.PreApprovedLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.RejectedLoanApplicationModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -55,7 +51,8 @@ public class IntermediateLoanApplicationPresenter
      */
     private IntermediateLoanApplicationModel handleBorrowerAction(LoanApplicationDetailsResponseVo loanApplication) {
         IntermediateLoanApplicationModel model = getDefaultModel(loanApplication);
-        if (loanApplication == null || loanApplication.required_actions == null
+        // TODO: implement workflow application actions
+        /*if (loanApplication == null || loanApplication.required_actions == null
                 || loanApplication.required_actions.data == null || loanApplication.required_actions.data.length <= 0
                 || loanApplication.required_actions.data[0] == null) {
 
@@ -78,7 +75,7 @@ public class IntermediateLoanApplicationPresenter
             default:
                 // Do nothing.
                 break;
-        }
+        }*/
 
         return model;
     }

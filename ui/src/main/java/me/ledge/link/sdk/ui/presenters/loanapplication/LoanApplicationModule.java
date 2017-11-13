@@ -2,10 +2,11 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.app.Activity;
 
+import java.lang.ref.WeakReference;
+
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.sdk.storages.ConfigStorage.OffersListStyle;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
@@ -20,6 +21,7 @@ import me.ledge.link.sdk.ui.storages.LoanStorage;
 import me.ledge.link.sdk.ui.vos.ApplicationVo;
 import me.ledge.link.sdk.ui.workflow.Command;
 import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.workflow.WorkflowModule;
 
 /**
@@ -31,7 +33,6 @@ public class LoanApplicationModule extends LedgeBaseModule
         LoanAgreementDelegate, OffersListDelegate, LoanApplicationSummaryDelegate {
     private static LoanApplicationModule mInstance;
     public Command onUpdateUserProfile;
-    public OffersListStyle mOffersListStyle;
 
     public static synchronized LoanApplicationModule getInstance(Activity activity) {
         if (mInstance == null) {
@@ -48,13 +49,11 @@ public class LoanApplicationModule extends LedgeBaseModule
     public void initialModuleSetup() {
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getOffersListStyle())
-                .thenAccept((style) -> {
-                    mOffersListStyle = style;
-                    showOffers();
-                });
+                .thenAccept((style) -> showOffers());
     }
 
     private void showOffers() {
+        ModuleManager.getInstance().setModule(new WeakReference<>(this));
         startActivity(OffersListActivity.class);
     }
 
@@ -101,7 +100,6 @@ public class LoanApplicationModule extends LedgeBaseModule
     public void onApplicationReceived(ApplicationVo application) {
         LoanApplicationDetailsResponseVo loanApplication = LoanStorage.getInstance().getCurrentLoanApplication();
         if (loanApplication != null) {
-            // TODO: replace with workflow manager
             WorkflowModule workflowModule = new WorkflowModule(this.getActivity(), application);
             workflowModule.onBack = this::showOffers;
             workflowModule.initialModuleSetup();

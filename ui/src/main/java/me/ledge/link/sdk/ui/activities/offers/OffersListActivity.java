@@ -6,11 +6,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
-import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.offers.OffersListDelegate;
 import me.ledge.link.sdk.ui.presenters.offers.OffersListPresenter;
 import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
@@ -27,7 +25,8 @@ public class OffersListActivity extends MvpActivity<OffersListModel, OffersBaseV
     /** {@inheritDoc} */
     @Override
     protected OffersBaseView createView() {
-        if(((LoanApplicationModule) ModuleManager.getInstance().getCurrentModule()).mOffersListStyle.equals(ConfigStorage.OffersListStyle.carousel)) {
+        ConfigStorage.OffersListStyle offersListStyle = ConfigStorage.getInstance().getOffersListStyle();
+        if(offersListStyle.equals(ConfigStorage.OffersListStyle.carousel)) {
             return (OffersCarouselView) View.inflate(this, R.layout.act_offers_carousel, null);
         }
         else {

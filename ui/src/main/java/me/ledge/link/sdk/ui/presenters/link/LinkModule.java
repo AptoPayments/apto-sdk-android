@@ -6,7 +6,6 @@ import android.widget.Toast;
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.presenters.fundingaccountselector.FundingAccountSelectorModule;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.storages.UIStorage;
@@ -118,14 +117,7 @@ public class LinkModule extends LedgeBaseModule {
         LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(this.getActivity());
         loanApplicationModule.onUpdateUserProfile = () -> startUserDataCollectorModule(true);
         loanApplicationModule.onBack = this::showOrSkipLoanInfo;
-        //loanApplicationModule.onSelectFundingAccount = this::showFundingAccountSelector;
         startModule(loanApplicationModule);
-    }
-
-    private void showFundingAccountSelector() {
-        FundingAccountSelectorModule fundingAccountSelectorModule = FundingAccountSelectorModule.getInstance(this.getActivity());
-        fundingAccountSelectorModule.onBack = this::showOffersList;
-        startModule(fundingAccountSelectorModule);
     }
 
     private void showHomeActivity() {

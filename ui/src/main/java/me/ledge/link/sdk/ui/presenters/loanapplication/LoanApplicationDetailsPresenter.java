@@ -1,15 +1,13 @@
 package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.content.res.Resources;
+
 import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.models.loanapplication.details.ApprovedLoanApplicationDetailsModel;
-import me.ledge.link.sdk.ui.models.loanapplication.details.FinishExternalLoanApplicationDetailsModel;
 import me.ledge.link.sdk.ui.models.loanapplication.details.LoanApplicationDetailsModel;
 import me.ledge.link.sdk.ui.models.loanapplication.details.PendingLenderActionLoanApplicationDetailsModel;
-import me.ledge.link.sdk.ui.models.loanapplication.details.UploadDocsLoanApplicationDetailsModel;
 import me.ledge.link.sdk.ui.presenters.BasePresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.views.loanapplication.LoanApplicationDetailsView;
@@ -43,7 +41,7 @@ public class LoanApplicationDetailsPresenter
      * @return New Model OR null when the criteria aren't met.
      */
     private LoanApplicationDetailsModel createPendingBorrowerActionModel(LoanApplicationDetailsResponseVo application) {
-        if (application == null || application.required_actions == null || application.required_actions.data == null
+        /*if (application == null || application.required_actions == null || application.required_actions.data == null
                 || application.required_actions.data[0] == null) {
 
             return null;
@@ -71,7 +69,8 @@ public class LoanApplicationDetailsPresenter
                 break;
         }
 
-        return model;
+        return model;*/
+        return null;
     }
 
     /** {@inheritDoc} */
