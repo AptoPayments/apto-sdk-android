@@ -14,6 +14,8 @@ import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
 public abstract class LedgeBaseModule implements NavigationCommand, BaseDelegate {
 
     private Activity mActivity;
+    public Command onBack;
+    public Command onFinish;
 
     public LedgeBaseModule(Activity activity) {
         mActivity = activity;

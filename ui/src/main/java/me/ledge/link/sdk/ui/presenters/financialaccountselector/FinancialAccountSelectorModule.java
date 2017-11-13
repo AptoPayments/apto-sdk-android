@@ -10,8 +10,6 @@ import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
-import me.ledge.link.sdk.ui.workflow.Command;
-import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
@@ -20,6 +18,7 @@ import me.ledge.link.sdk.ui.activities.financialaccountselector.IntermediateFina
 import me.ledge.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 import me.ledge.link.sdk.ui.storages.UserStorage;
+import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 
 /**
  * Created by adrian on 29/12/2016.
@@ -30,8 +29,6 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
         SelectFinancialAccountListDelegate, IntermediateFinancialAccountListDelegate {
 
     private static FinancialAccountSelectorModule instance;
-    public Command onBack;
-    public Command onFinish;
 
     private FinancialAccountVo selectedFinancialAccount;
 

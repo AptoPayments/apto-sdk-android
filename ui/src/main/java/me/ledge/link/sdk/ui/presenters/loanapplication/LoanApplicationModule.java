@@ -31,7 +31,6 @@ public class LoanApplicationModule extends LedgeBaseModule
         LoanAgreementDelegate, OffersListDelegate, LoanApplicationSummaryDelegate {
     private static LoanApplicationModule mInstance;
     public Command onUpdateUserProfile;
-    public Command onBack;
     public OffersListStyle mOffersListStyle;
 
     public static synchronized LoanApplicationModule getInstance(Activity activity) {

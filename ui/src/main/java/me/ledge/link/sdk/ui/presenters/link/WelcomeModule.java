@@ -2,16 +2,12 @@ package me.ledge.link.sdk.ui.presenters.link;
 
 import android.app.Activity;
 
-import me.ledge.link.sdk.ui.workflow.Command;
-import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 import me.ledge.link.sdk.ui.activities.link.WelcomeActivity;
+import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 
 public class WelcomeModule extends LedgeBaseModule implements WelcomeDelegate {
 
     private static WelcomeModule mInstance;
-    public Command onFinish;
-    public Command onBack;
-
 
     public static synchronized WelcomeModule getInstance(Activity activity) {
         if (mInstance == null) {

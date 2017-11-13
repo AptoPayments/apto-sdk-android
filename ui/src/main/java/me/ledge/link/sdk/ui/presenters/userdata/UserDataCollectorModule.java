@@ -72,8 +72,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         TimeAtAddressDelegate, BirthdateVerificationDelegate {
 
     private static UserDataCollectorModule instance;
-    public Command onFinish;
-    public Command onBack;
     public Command onUserDoesNotHaveAllRequiredData;
     public Command onUserHasAllRequiredData;
     public LinkedList<RequiredDataPointVo> mRequiredDataPointList;
