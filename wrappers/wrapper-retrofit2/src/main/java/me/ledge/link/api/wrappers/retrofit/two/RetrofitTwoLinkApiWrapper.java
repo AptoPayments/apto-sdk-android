@@ -501,6 +501,23 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
     /** {@inheritDoc} */
     @Override
+    public LoanApplicationDetailsResponseVo getApplicationStatus(String applicationId)
+            throws ApiException {
+        LoanApplicationDetailsResponseVo result;
+        try {
+            Response<LoanApplicationDetailsResponseVo> response
+                    = mLoanApplicationService.getApplicationStatus(applicationId).execute();
+            result = handleResponse(response, LinkApiWrapper.APPLICATION_STATUS_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.APPLICATION_STATUS_PATH, ioe);
+        }
+
+        return result;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public StartVerificationResponseVo startVerification(StartVerificationRequestVo startVerificationRequestVo)
             throws ApiException {
         StartVerificationResponseVo result;

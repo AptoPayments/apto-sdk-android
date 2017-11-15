@@ -117,12 +117,7 @@ public class LinkModule extends LedgeBaseModule {
         LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(this.getActivity());
         loanApplicationModule.onUpdateUserProfile = () -> startUserDataCollectorModule(true);
         loanApplicationModule.onBack = this::showOrSkipLoanInfo;
-        loanApplicationModule.onFinish = this::getApplicationStatus;
         startModule(loanApplicationModule);
-    }
-
-    private void getApplicationStatus() {
-        // TODO: /application/id/status
     }
 
     private void showHomeActivity() {

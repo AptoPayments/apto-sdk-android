@@ -317,4 +317,12 @@ public class MockApiWrapper implements LinkApiWrapper {
         response.data = new DataPointVo[0];
         return response;
     }
+
+    @Override
+    public LoanApplicationDetailsResponseVo getApplicationStatus(String s) throws ApiException {
+        LoanApplicationDetailsResponseVo application = new LoanApplicationDetailsResponseVo();
+        application.status = "";
+
+        return application;
+    }
 }

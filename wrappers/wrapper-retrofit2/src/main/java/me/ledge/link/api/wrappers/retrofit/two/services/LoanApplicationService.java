@@ -28,4 +28,11 @@ public interface LoanApplicationService {
      */
     @GET(LinkApiWrapper.LIST_LOAN_APPLICATIONS_PATH)
     Call<LoanApplicationsListResponseVo> getLoanApplicationsList();
+
+    /**
+     * Creates a {@link Call} to get the application status.
+     * @return API call to execute.
+     */
+    @GET(LinkApiWrapper.APPLICATION_STATUS_PATH)
+    Call<LoanApplicationDetailsResponseVo> getApplicationStatus(@Path("application_id") String applicationId);
 }

@@ -3,8 +3,11 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 import android.app.Activity;
 
 import java.lang.ref.WeakReference;
+import java.util.concurrent.ExecutionException;
 
 import java8.util.concurrent.CompletableFuture;
+import java8.util.concurrent.CompletionException;
+import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
@@ -23,6 +26,9 @@ import me.ledge.link.sdk.ui.workflow.Command;
 import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.workflow.WorkflowModule;
+import me.ledge.link.sdk.ui.workflow.WorkflowObject;
+
+import static me.ledge.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
 
 /**
  * Created by adrian on 29/12/2016.
@@ -33,6 +39,7 @@ public class LoanApplicationModule extends LedgeBaseModule
         LoanAgreementDelegate, OffersListDelegate, LoanApplicationSummaryDelegate {
     private static LoanApplicationModule mInstance;
     public Command onUpdateUserProfile;
+    private WorkflowModule mWorkflowModule;
 
     public static synchronized LoanApplicationModule getInstance(Activity activity) {
         if (mInstance == null) {
@@ -100,10 +107,10 @@ public class LoanApplicationModule extends LedgeBaseModule
     public void onApplicationReceived(ApplicationVo application) {
         LoanApplicationDetailsResponseVo loanApplication = LoanStorage.getInstance().getCurrentLoanApplication();
         if (loanApplication != null) {
-            WorkflowModule workflowModule = new WorkflowModule(this.getActivity(), application);
-            workflowModule.onBack = this::showOffers;
-            workflowModule.onFinish = this.onFinish;
-            workflowModule.initialModuleSetup();
+            mWorkflowModule = new WorkflowModule(this.getActivity(), application, this::getApplicationStatus);
+            mWorkflowModule.onBack = this::showOffers;
+            mWorkflowModule.onFinish = this.onFinish;
+            mWorkflowModule.initialModuleSetup();
             return;
         }
         startActivity(IntermediateLoanApplicationActivity.class);
@@ -118,6 +125,26 @@ public class LoanApplicationModule extends LedgeBaseModule
     @Override
     public void onUpdateLoan() {
         onBack.execute();
+    }
+
+    private ApplicationVo getApplicationStatus(WorkflowObject currentObject) {
+        if(!(currentObject instanceof ApplicationVo)) {
+            throw new RuntimeException("Current workflow object is not an application!");
+        }
+        CompletableFuture<LoanApplicationDetailsResponseVo> future = CompletableFuture.supplyAsync(() -> {
+            try {
+                return getApiWrapper().getApplicationStatus(currentObject.workflowObjectId);
+            } catch (ApiException e) {
+                throw new CompletionException(e);
+            }
+        });
+        try {
+            LoanApplicationDetailsResponseVo applicationStatus = future.get();
+            return new ApplicationVo(applicationStatus.id, applicationStatus.next_action);
+        } catch (InterruptedException | ExecutionException e) {
+            future.completeExceptionally(e);
+            throw new CompletionException(e);
+        }
     }
 
     private void startNextActivity(ActivityModel model) {

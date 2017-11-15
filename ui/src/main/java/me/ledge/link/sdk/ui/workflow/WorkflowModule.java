@@ -8,17 +8,28 @@ import android.app.Activity;
 
 public class WorkflowModule extends LedgeBaseModule {
     private WorkflowObject mWorkFlowObject;
+    private Command onWorkflowModuleFinish;
+    private WorkflowObjectStatusInterface getWorkflowObjectStatus;
 
-    public WorkflowModule(Activity activity, WorkflowObject workflowObject) {
+    public WorkflowModule(Activity activity, WorkflowObject workflowObject, WorkflowObjectStatusInterface getWorkflowObjectStatus) {
         super(activity);
         mWorkFlowObject = workflowObject;
+        this.getWorkflowObjectStatus = getWorkflowObjectStatus;
     }
 
     @Override
     public void initialModuleSetup() {
-        LedgeBaseModule module = ModuleFactory.getModule(this.getActivity(), mWorkFlowObject.nextAction.actionType);
+        onWorkflowModuleFinish = () -> {
+            mWorkFlowObject = getWorkflowObjectStatus.getApplication(mWorkFlowObject);
+            startNextModule();
+        };
+        startNextModule();
+    }
+
+    public void startNextModule() {
+        LedgeBaseModule module = ModuleFactory.getModule(this.getActivity(), mWorkFlowObject.nextAction);
         module.onBack = this.onBack;
-        module.onFinish = this.onFinish;
+        module.onFinish = this.onWorkflowModuleFinish;
         startModule(module);
     }
 
