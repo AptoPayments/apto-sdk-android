@@ -9,6 +9,7 @@ import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
@@ -66,8 +67,9 @@ public interface LinkApiWrapper {
     String FINANCIAL_ACCOUNTS_PATH = "v1/user/financialaccounts";
     String PLAID_WEB_URL = "v1/bankoauth";
 
-    String APPLICATION_STATUS_PATH = "v1/applications/{application_id}/status";
-    String LIST_LOAN_APPLICATIONS_PATH = "v1/applications/pending";
+    String APPLICATION_STATUS_PATH = "v1/link/applications/{application_id}/status";
+    String LIST_LOAN_APPLICATIONS_PATH = "v1/link/applications/pending";
+    String APPLICATION_ACCOUNT_PATH = "v1/link/applications/{application_id}/accounts/";
 
     int OFFERS_REQUEST_TIMEOUT = 150; // 2.5 minutes.
 
@@ -278,4 +280,11 @@ public interface LinkApiWrapper {
      * @throws ApiException
      */
     LoanApplicationDetailsResponseVo getApplicationStatus(String applicationId) throws ApiException;
+
+    /**
+     * @param applicationId The ID of the application to link the financial account
+     * @return The application object with the current status
+     * @throws ApiException
+     */
+    LoanApplicationDetailsResponseVo setApplicationAccount(ApplicationAccountRequestVo requestData, String applicationId) throws ApiException;
 }

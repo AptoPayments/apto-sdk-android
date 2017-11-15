@@ -1,10 +1,10 @@
 package me.ledge.link.sdk.ui.views.fundingaccountselector;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,21 +22,33 @@ import me.ledge.link.sdk.ui.views.ViewWithToolbar;
  */
 public class DisplayCardView
         extends RelativeLayout
-        implements DisplayErrorMessage, ViewWithToolbar {
+        implements DisplayErrorMessage, ViewWithToolbar, View.OnClickListener {
 
     private CreditCardView mCreditCardView;
     private Toolbar mToolbar;
     private TextView mCardBalance;
     private TextView mPrimaryButton;
     private TextView mSecondaryButton;
+    private ViewListener mListener;
 
     public DisplayCardView(Context context) {
         this(context, null);
     }
 
-
     public DisplayCardView(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    /**
+     * Callbacks this {@link View} will invoke.
+     */
+    public interface ViewListener {
+        void primaryButtonClickHandler();
+        void secondaryButtonClickHandler();
+    }
+
+    public void setViewListener(ViewListener viewListener) {
+        mListener = viewListener;
     }
 
     @Override
@@ -50,6 +62,35 @@ public class DisplayCardView
         super.onFinishInflate();
         findAllViews();
         setColors();
+        setUpListeners();
+    }
+
+    @Override
+    public void displayErrorMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (mListener == null) {
+            return;
+        }
+
+        int id = view.getId();
+        if (id == R.id.tv_display_card_primary_bttn) {
+            mListener.primaryButtonClickHandler();
+        }
+        else if(id == R.id.tv_display_card_secondary_bttn) {
+            mListener.secondaryButtonClickHandler();
+        }
+    }
+
+    protected void findAllViews() {
+        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
+        mCreditCardView = (CreditCardView) findViewById(R.id.credit_card_view);
+        mCardBalance = (TextView) findViewById(R.id.tv_card_balance);
+        mPrimaryButton = (TextView) findViewById(R.id.tv_display_card_primary_bttn);
+        mSecondaryButton = (TextView) findViewById(R.id.tv_display_card_secondary_bttn);
     }
 
     private void setColors() {
@@ -63,17 +104,13 @@ public class DisplayCardView
         mSecondaryButton.setTextColor(primaryColor);
     }
 
-    @Override
-    public void displayErrorMessage(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    protected void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mCreditCardView = (CreditCardView) findViewById(R.id.credit_card_view);
-        mCardBalance = (TextView) findViewById(R.id.tv_card_balance);
-        mPrimaryButton = (TextView) findViewById(R.id.tv_display_card_primary_bttn);
-        mSecondaryButton = (TextView) findViewById(R.id.tv_display_card_secondary_bttn);
+    private void setUpListeners() {
+        if (mPrimaryButton != null) {
+            mPrimaryButton.setOnClickListener(this);
+        }
+        if (mSecondaryButton != null) {
+            mSecondaryButton.setOnClickListener(this);
+        }
     }
 
     public void setCardNumber(String cardNumber) {

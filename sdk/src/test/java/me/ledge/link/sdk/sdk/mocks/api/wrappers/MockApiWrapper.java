@@ -12,6 +12,7 @@ import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
@@ -324,5 +325,10 @@ public class MockApiWrapper implements LinkApiWrapper {
         application.status = "";
 
         return application;
+    }
+
+    @Override
+    public LoanApplicationDetailsResponseVo setApplicationAccount(ApplicationAccountRequestVo applicationAccountRequestVo, String s) throws ApiException {
+        return new LoanApplicationDetailsResponseVo();
     }
 }

@@ -21,11 +21,11 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import me.ledge.link.api.exceptions.ApiException;
+import me.ledge.link.api.utils.VerificationSerializer;
+import me.ledge.link.api.utils.parsers.ActionConfigurationParser;
 import me.ledge.link.api.utils.parsers.DataPointParser;
 import me.ledge.link.api.utils.parsers.RequiredDataPointParser;
-import me.ledge.link.api.utils.parsers.ActionConfigurationParser;
 import me.ledge.link.api.utils.parsers.VirtualCardParser;
-import me.ledge.link.api.utils.VerificationSerializer;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
@@ -34,6 +34,7 @@ import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
@@ -511,6 +512,23 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), LinkApiWrapper.APPLICATION_STATUS_PATH, ioe);
+        }
+
+        return result;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public LoanApplicationDetailsResponseVo setApplicationAccount(ApplicationAccountRequestVo applicationRequestVo, String applicationId)
+            throws ApiException {
+        LoanApplicationDetailsResponseVo result;
+        try {
+            Response<LoanApplicationDetailsResponseVo> response
+                    = mLoanApplicationService.setApplicationAccount(applicationRequestVo, applicationId).execute();
+            result = handleResponse(response, LinkApiWrapper.APPLICATION_ACCOUNT_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.APPLICATION_ACCOUNT_PATH, ioe);
         }
 
         return result;
