@@ -10,6 +10,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 
 import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
+import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountListModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 import me.ledge.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
@@ -43,7 +44,7 @@ public class SelectFinancialAccountListPresenterTest {
     @Before
     public void setUp() {
         mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
-        mModule = FinancialAccountSelectorModule.getInstance(mActivity);
+        mModule = FinancialAccountSelectorModule.getInstance(mActivity, new SelectFundingAccountConfigurationVo(true, true, true));
         mModule.onFinish = ()->{};
         createPresenter();
     }

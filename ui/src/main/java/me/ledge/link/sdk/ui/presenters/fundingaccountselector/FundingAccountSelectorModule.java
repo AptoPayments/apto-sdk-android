@@ -13,6 +13,7 @@ import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity;
@@ -31,16 +32,18 @@ public class FundingAccountSelectorModule extends LedgeBaseModule
 
     private static FundingAccountSelectorModule instance;
     private FinancialAccountVo mSelectedFinancialAccount;
+    private SelectFundingAccountConfigurationVo mConfig;
 
-    public static synchronized FundingAccountSelectorModule getInstance(Activity activity) {
+    public static synchronized FundingAccountSelectorModule getInstance(Activity activity, SelectFundingAccountConfigurationVo config) {
         if (instance == null) {
-            instance = new FundingAccountSelectorModule(activity);
+            instance = new FundingAccountSelectorModule(activity, config);
         }
         return instance;
     }
 
-    private FundingAccountSelectorModule(Activity activity) {
+    private FundingAccountSelectorModule(Activity activity, SelectFundingAccountConfigurationVo config) {
         super(activity);
+        mConfig = config;
     }
 
     @Override
@@ -49,7 +52,7 @@ public class FundingAccountSelectorModule extends LedgeBaseModule
     }
 
     private void showFinancialAccountSelector() {
-        FinancialAccountSelectorModule financialAccountSelectorModule = FinancialAccountSelectorModule.getInstance(this.getActivity());
+        FinancialAccountSelectorModule financialAccountSelectorModule = FinancialAccountSelectorModule.getInstance(this.getActivity(), mConfig);
         financialAccountSelectorModule.onBack = this.onBack;
         financialAccountSelectorModule.onFinish = () -> onFinancialAccountSelected(financialAccountSelectorModule.getFinancialAccount());
         startModule(financialAccountSelectorModule);

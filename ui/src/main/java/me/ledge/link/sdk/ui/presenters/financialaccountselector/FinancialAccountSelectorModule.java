@@ -10,6 +10,7 @@ import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
@@ -31,16 +32,18 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     private static FinancialAccountSelectorModule instance;
 
     private FinancialAccountVo selectedFinancialAccount;
+    private SelectFundingAccountConfigurationVo mConfig;
 
-    public static synchronized FinancialAccountSelectorModule getInstance(Activity activity) {
+    public static synchronized FinancialAccountSelectorModule getInstance(Activity activity, SelectFundingAccountConfigurationVo config) {
         if (instance == null) {
-            instance = new FinancialAccountSelectorModule(activity);
+            instance = new FinancialAccountSelectorModule(activity, config);
         }
         return instance;
     }
 
-    private FinancialAccountSelectorModule(Activity activity) {
+    private FinancialAccountSelectorModule(Activity activity, SelectFundingAccountConfigurationVo config) {
         super(activity);
+        mConfig = config;
     }
 
     @Override
@@ -143,5 +146,9 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     private void onFinancialAccountSelected(FinancialAccountVo selectedFinancialAccount) {
         this.selectedFinancialAccount = selectedFinancialAccount;
         onFinish.execute();
+    }
+
+    public SelectFundingAccountConfigurationVo getConfiguration() {
+        return mConfig;
     }
 }

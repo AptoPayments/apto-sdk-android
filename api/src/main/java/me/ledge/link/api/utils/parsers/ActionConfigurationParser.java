@@ -12,6 +12,7 @@ import me.ledge.link.api.vos.responses.config.ContentVo;
 import me.ledge.link.api.vos.responses.workflow.ActionConfigurationVo;
 import me.ledge.link.api.vos.responses.workflow.CallToActionVo;
 import me.ledge.link.api.vos.responses.workflow.GenericMessageConfigurationVo;
+import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 
 /**
  * Created by adrian on 25/01/2017.
@@ -31,6 +32,8 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
             switch (type) {
                 case "action_generic_message_config":
                     return parseGenericMessageConfig(config);
+                case "action_select_funding_account_config":
+                    return parseSelectFundingAccountConfig(config);
             }
         }
         return null;
@@ -75,5 +78,13 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
         }
 
         return new GenericMessageConfigurationVo(type, title, content, image, trackerEventName, trackerIncrementName, callToAction);
+    }
+
+
+    private ActionConfigurationVo parseSelectFundingAccountConfig(JsonObject config) {
+        boolean isAchEnabled = config.get("ach_enabled").getAsBoolean();
+        boolean isCardEnabled = config.get("card_enabled").getAsBoolean();
+        boolean isVirtualCardEnabled = config.get("virtual_card_enabled").getAsBoolean();
+        return new SelectFundingAccountConfigurationVo(isAchEnabled, isCardEnabled, isVirtualCardEnabled);
     }
 }
