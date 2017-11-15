@@ -51,7 +51,7 @@ public class IntermediateLoanApplicationPresenter
      */
     private IntermediateLoanApplicationModel handleBorrowerAction(LoanApplicationDetailsResponseVo loanApplication) {
         IntermediateLoanApplicationModel model = getDefaultModel(loanApplication);
-        // TODO: implement workflow application actions
+        // TODO: implement via workflow application actions
         /*if (loanApplication == null || loanApplication.required_actions == null
                 || loanApplication.required_actions.data == null || loanApplication.required_actions.data.length <= 0
                 || loanApplication.required_actions.data[0] == null) {

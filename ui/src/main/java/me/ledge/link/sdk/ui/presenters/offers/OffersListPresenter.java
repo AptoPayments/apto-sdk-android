@@ -303,21 +303,6 @@ public class OffersListPresenter
         LoanStorage.getInstance().setCurrentLoanApplication(response);
         ApplicationVo application = new ApplicationVo(response.id, response.next_action);
         mDelegate.onApplicationReceived(application);
-        //TODO: move to workflow
-        /*switch (response.status) {
-            case LoanApplicationStatus.APPLICATION_REJECTED:
-            case LoanApplicationStatus.PENDING_LENDER_ACTION:
-            case LoanApplicationStatus.PENDING_BORROWER_ACTION:
-            case LoanApplicationStatus.APPLICATION_RECEIVED:
-                mDelegate.onApplicationReceived();
-                break;
-            case LoanApplicationStatus.LENDER_REJECTED:
-            case LoanApplicationStatus.BORROWER_REJECTED:
-            case LoanApplicationStatus.LOAN_APPROVED:
-            default:
-                mView.displayErrorMessage("Screen not yet implemented.");
-                break;
-        }*/
     }
 
     /**

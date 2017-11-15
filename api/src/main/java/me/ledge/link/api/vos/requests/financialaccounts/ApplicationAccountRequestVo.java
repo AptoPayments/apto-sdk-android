@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 
 /**
- * Request data to add a new bank account.
+ * Request data to link a new account to an application.
  * @author Adrian
  */
 public class ApplicationAccountRequestVo extends UnauthorizedRequestVo {
