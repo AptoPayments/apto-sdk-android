@@ -17,7 +17,7 @@ public class ModuleFactory {
             case SELECT_FUNDING_ACCOUNT:
                 return FundingAccountSelectorModule.getInstance(activity, (SelectFundingAccountConfigurationVo)action.configuration);
             default:
-                return null;
+                return new ActionNotSupportedModule(activity);
         }
     }
 }

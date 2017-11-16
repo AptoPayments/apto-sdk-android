@@ -286,4 +286,7 @@
     <string name="disclaimer_accept">Accept</string>
     <string name="disclaimer_cancel">Cancel</string>
     <string name="disclaimer_error">Error loading disclaimer</string>
+
+    <!-- Action Not Supported -->
+    <string name="action_not_supported_error">The received workflow action is currently not supported.</string>
 </resources>
