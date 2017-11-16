@@ -7,6 +7,7 @@ import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
+import me.ledge.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
@@ -36,10 +37,10 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void showWelcomeScreen() {
-        WelcomeModule mWelcomeModule = WelcomeModule.getInstance(this.getActivity());
-        mWelcomeModule.onFinish = this::showOrSkipLoanInfo;
-        mWelcomeModule.onBack = this::showHomeActivity;
-        startModule(mWelcomeModule);
+        ShowGenericMessageModule mShowGenericMessageModule = ShowGenericMessageModule.getInstance(this.getActivity());
+        mShowGenericMessageModule.onFinish = this::showOrSkipLoanInfo;
+        mShowGenericMessageModule.onBack = this::showHomeActivity;
+        startModule(mShowGenericMessageModule);
     }
 
     private void showOrSkipLoanInfo() {

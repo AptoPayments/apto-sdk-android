@@ -9,7 +9,6 @@
 
     <!-- Welcome -->
     <string name="welcome_title">Get started</string>
-    <string name="welcome_button_next">START</string>
 
     <!-- Terms / Conditions -->
     <string name="terms_label">Find a loan</string>

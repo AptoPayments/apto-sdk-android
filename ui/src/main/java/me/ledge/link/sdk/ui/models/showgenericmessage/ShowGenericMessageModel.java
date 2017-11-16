@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.models.link;
+package me.ledge.link.sdk.ui.models.showgenericmessage;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.ActivityModel;
@@ -7,10 +7,10 @@ import me.ledge.link.sdk.ui.models.userdata.AbstractUserDataModel;
 import me.ledge.link.sdk.ui.models.userdata.UserDataModel;
 
 /**
- * Concrete {@link Model} for the welcome screen.
+ * Concrete {@link Model} for the show generic message screen.
  * @author Adrian
  */
-public class WelcomeModel
+public class ShowGenericMessageModel
         extends AbstractUserDataModel
         implements UserDataModel, ActivityModel, Model {
 
@@ -22,6 +22,7 @@ public class WelcomeModel
 
     /** {@inheritDoc} */
     @Override
+    // TODO: read title from config
     public int getActivityTitleResource() {
         return R.string.welcome_title;
     }

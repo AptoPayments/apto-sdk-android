@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui.views.link;
+package me.ledge.link.sdk.ui.views.showgenericmessage;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -18,10 +18,10 @@ import me.ledge.link.sdk.ui.views.userdata.UserDataView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
- * Displays the welcome screen.
+ * Displays the show generic message screen.
  * @author Adrian
  */
-public class WelcomeView extends UserDataView<WelcomeView.ViewListener>
+public class ShowGenericMessageView extends UserDataView<ShowGenericMessageView.ViewListener>
         implements ViewWithToolbar, ViewWithIndeterminateLoading {
 
     /**
@@ -38,7 +38,7 @@ public class WelcomeView extends UserDataView<WelcomeView.ViewListener>
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
      */
-    public WelcomeView(Context context) {
+    public ShowGenericMessageView(Context context) {
         super(context);
     }
 
@@ -47,7 +47,7 @@ public class WelcomeView extends UserDataView<WelcomeView.ViewListener>
      * @param context See {@link UserDataView#UserDataView}.
      * @param attrs See {@link UserDataView#UserDataView}.
      */
-    public WelcomeView(Context context, AttributeSet attrs) {
+    public ShowGenericMessageView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
