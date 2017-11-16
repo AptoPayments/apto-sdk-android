@@ -36,11 +36,11 @@
 
             <TextView
                 android:id="@+id/tv_next_bttn"
+                android:visibility="gone"
                 style="?attr/llsdk_bigButtonStyle"
                 android:layout_marginTop="32dp" />
 
         </LinearLayout>
     </ScrollView>
 
-    <include layout="@layout/include_rl_loading" />
 </me.ledge.link.sdk.ui.views.showgenericmessage.ShowGenericMessageView>

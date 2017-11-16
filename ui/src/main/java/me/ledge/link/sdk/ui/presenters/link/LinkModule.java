@@ -5,6 +5,8 @@ import android.widget.Toast;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.api.vos.responses.workflow.ActionVo;
+import me.ledge.link.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
@@ -23,6 +25,7 @@ public class LinkModule extends LedgeBaseModule {
     }
     private boolean mUserHasAllRequiredData;
     private boolean mShowWelcomeScreen;
+    private ActionVo mWelcomeScreenAction;
 
     @Override
     public void initialModuleSetup() {
@@ -37,7 +40,8 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void showWelcomeScreen() {
-        ShowGenericMessageModule mShowGenericMessageModule = ShowGenericMessageModule.getInstance(this.getActivity());
+        GenericMessageConfigurationVo actionConfig = (GenericMessageConfigurationVo) mWelcomeScreenAction.configuration;
+        ShowGenericMessageModule mShowGenericMessageModule = ShowGenericMessageModule.getInstance(this.getActivity(), actionConfig);
         mShowGenericMessageModule.onFinish = this::showOrSkipLoanInfo;
         mShowGenericMessageModule.onBack = this::showHomeActivity;
         startModule(mShowGenericMessageModule);
@@ -152,6 +156,9 @@ public class LinkModule extends LedgeBaseModule {
 
     private void projectConfigRetrieved(ConfigResponseVo configResponseVo) {
         mShowWelcomeScreen = (configResponseVo.welcomeScreenAction.status != 0);
+        if(mShowWelcomeScreen) {
+            mWelcomeScreenAction = configResponseVo.welcomeScreenAction;
+        }
         askDataCollectorIfUserHasAllRequiredData();
     }
 

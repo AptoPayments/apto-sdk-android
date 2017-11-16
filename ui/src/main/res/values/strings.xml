@@ -7,9 +7,6 @@
     <string name="stepper_back_button_label">BACK</string>
     <string name="stepper_next_button_label">NEXT</string>
 
-    <!-- Welcome -->
-    <string name="welcome_title">Get started</string>
-
     <!-- Terms / Conditions -->
     <string name="terms_label">Find a loan</string>
     <string name="terms_tag_line">Find the perfect loan,\nfrom your phone.</string>
@@ -288,4 +285,7 @@
 
     <!-- Action Not Supported -->
     <string name="action_not_supported_error">The received workflow action is currently not supported.</string>
+
+    <!-- Show Generic Message -->
+    <string name="show_generic_message_title"> </string>
 </resources>

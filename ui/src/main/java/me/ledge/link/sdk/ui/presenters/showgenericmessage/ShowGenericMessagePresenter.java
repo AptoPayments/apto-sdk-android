@@ -2,17 +2,13 @@ package me.ledge.link.sdk.ui.presenters.showgenericmessage;
 
 import android.support.v7.app.AppCompatActivity;
 
-import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
-import me.ledge.link.api.vos.responses.workflow.ActionVo;
 import me.ledge.link.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import me.ledge.link.sdk.ui.models.showgenericmessage.ShowGenericMessageModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;
-import me.ledge.link.sdk.ui.storages.UIStorage;
-import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.showgenericmessage.ShowGenericMessageView;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 
 /**
  * Concrete {@link Presenter} for the show generic message screen.
@@ -22,9 +18,7 @@ public class ShowGenericMessagePresenter
         extends UserDataPresenter<ShowGenericMessageModel, ShowGenericMessageView>
         implements Presenter<ShowGenericMessageModel, ShowGenericMessageView>, ShowGenericMessageView.ViewListener {
 
-    private String mGenericMessage;
     private ShowGenericMessageDelegate mDelegate;
-    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link ShowGenericMessagePresenter} instance.
@@ -58,19 +52,16 @@ public class ShowGenericMessagePresenter
     @Override
     public void attachView(ShowGenericMessageView view) {
         super.attachView(view);
-        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mView.setListener(this);
-        if (mGenericMessage == null) {
-            mLoadingSpinnerManager.showLoading(true);
-            CompletableFuture
-                    .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
-                    .exceptionally(ex -> {
-                        errorReceived(ex.getMessage());
-                        return null;
-                    })
-                    .thenAccept(this::projectConfigRetrieved);
-        } else {
-            setGenericMessage(mGenericMessage);
+        ShowGenericMessageModule module = (ShowGenericMessageModule) ModuleManager.getInstance().getCurrentModule();
+        GenericMessageConfigurationVo actionConfig = module.getConfig();
+        mActivity.setTitle(actionConfig.title);
+        setGenericMessage(actionConfig.content.value);
+        if(actionConfig.callToAction != null) {
+            mView.setCallToAction(actionConfig.callToAction.title.toUpperCase());
+        }
+        if(actionConfig.image != null) {
+            mView.setImage(actionConfig.image);
         }
     }
 
@@ -96,27 +87,7 @@ public class ShowGenericMessagePresenter
         }
     }
 
-    private void projectConfigRetrieved(ConfigResponseVo configResponseVo) {
-        // TODO: receive GenericMessageConfigurationVo as input
-        ActionVo welcomeScreenAction = configResponseVo.welcomeScreenAction;
-        GenericMessageConfigurationVo actionConfig = (GenericMessageConfigurationVo) welcomeScreenAction.configuration;
-        mActivity.runOnUiThread(() -> {
-            mActivity.setTitle(actionConfig.title);
-            mView.setCallToAction(actionConfig.callToAction.title.toUpperCase());
-            setGenericMessage(actionConfig.content.value);
-            if(actionConfig.image != null) {
-                mView.setImage(actionConfig.image);
-            }
-            mLoadingSpinnerManager.showLoading(false);
-        });
-    }
-
-    private void errorReceived(String error) {
-        mView.displayErrorMessage(error);
-    }
-
     private void setGenericMessage(String genericMessage) {
-        mGenericMessage = genericMessage;
         mView.setMarkdown(genericMessage);
     }
 }

@@ -22,8 +22,8 @@ public class ShowGenericMessageModel
 
     /** {@inheritDoc} */
     @Override
-    // TODO: read title from config
     public int getActivityTitleResource() {
-        return R.string.welcome_title;
+        // Title is overridden onAttachView
+        return R.string.show_generic_message_title;
     }
 }
