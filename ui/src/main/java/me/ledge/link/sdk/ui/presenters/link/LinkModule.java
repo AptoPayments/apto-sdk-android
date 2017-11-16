@@ -1,17 +1,27 @@
 package me.ledge.link.sdk.ui.presenters.link;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java8.util.concurrent.CompletableFuture;
+import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
 import me.ledge.link.api.vos.responses.workflow.ActionVo;
 import me.ledge.link.api.vos.responses.workflow.GenericMessageConfigurationVo;
+import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
+import me.ledge.link.sdk.ui.storages.LoanStorage;
 import me.ledge.link.sdk.ui.storages.UIStorage;
+import me.ledge.link.sdk.ui.vos.ApplicationVo;
 import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 
 /**
@@ -114,6 +124,8 @@ public class LinkModule extends LedgeBaseModule {
         userDataCollectorModule.onFinish = this::showOffersList;
         userDataCollectorModule.onBack = this::showLoanInfoOrBack;
         userDataCollectorModule.isUpdatingProfile = updateProfile;
+        userDataCollectorModule.onNoTokenRetrieved = null;
+        userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;
         startModule(userDataCollectorModule);
     }
 
@@ -142,6 +154,8 @@ public class LinkModule extends LedgeBaseModule {
             mUserHasAllRequiredData = true;
             showOrSkipWelcomeScreen();
         };
+        userDataCollectorModule.onNoTokenRetrieved = null;
+        userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;
         startModule(userDataCollectorModule);
     }
 
@@ -159,12 +173,54 @@ public class LinkModule extends LedgeBaseModule {
         if(mShowWelcomeScreen) {
             mWelcomeScreenAction = configResponseVo.welcomeScreenAction;
         }
-        askDataCollectorIfUserHasAllRequiredData();
+        getUserTokenFromDataCollector();
+    }
+
+    private void getUserTokenFromDataCollector() {
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
+        userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;
+        userDataCollectorModule.onNoTokenRetrieved = this::askDataCollectorIfUserHasAllRequiredData;
+        userDataCollectorModule.onBack = this::showHomeActivity;
+        userDataCollectorModule.isUpdatingProfile = false;
+        startModule(userDataCollectorModule);
+    }
+
+    private void getOpenApplications() {
+        Log.d("ADRIAN", "getOpenApplications: ");
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
+        LedgeLinkUi.getLoanApplicationsList(new ListRequestVo());
     }
 
     private void showError(String errorMessage) {
         if(!errorMessage.isEmpty()) {
             Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Called when the get current applications response has been received.
+     * @param applicationsList API response.
+     */
+    @Subscribe
+    public void handleResponse(LoanApplicationsListResponseVo applicationsList) {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        Log.d("ADRIAN", "LoanApplicationsListResponseVo: " + applicationsList.total_count);
+        if(applicationsList.total_count == 0) {
+            showUserDataCollector();
+        }
+        else if(applicationsList.total_count == 1) {
+            LoanApplicationDetailsResponseVo applicationResponse = applicationsList.data[0];
+            LoanStorage.getInstance().setCurrentLoanApplication(applicationResponse);
+            ApplicationVo application = new ApplicationVo(applicationResponse.id, applicationResponse.next_action);
+            LoanApplicationModule.getInstance(getActivity()).onApplicationReceived(application);
+        }
+        else {
+            // TODO: open application selector
+            // for now open the first one
+            LoanApplicationDetailsResponseVo applicationResponse = applicationsList.data[0];
+            LoanStorage.getInstance().setCurrentLoanApplication(applicationResponse);
+            ApplicationVo application = new ApplicationVo(applicationResponse.id, applicationResponse.next_action);
+            LoanApplicationModule.getInstance(getActivity()).onApplicationReceived(application);
         }
     }
 }
