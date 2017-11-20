@@ -403,9 +403,14 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
 
         if(mRequiredActivities.isEmpty()) {
-            onUserHasAllRequiredData.execute();
+            if(onUserHasAllRequiredData != null) {
+                onUserHasAllRequiredData.execute();
+            }
+            else {
+                stopModule();
+            }
         } else {
-            if (onUserHasAllRequiredData != null) {
+            if (onUserDoesNotHaveAllRequiredData != null) {
                 onUserDoesNotHaveAllRequiredData.execute();
             } else {
                 startActivity(mRequiredActivities.get(0));

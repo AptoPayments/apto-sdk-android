@@ -288,4 +288,10 @@
 
     <!-- Show Generic Message -->
     <string name="show_generic_message_title"> </string>
+
+    <!-- Pending Application Selector -->
+    <string name="select_pending_application_list_title">Open Applications</string>
+    <string name="select_pending_application_list_label">Would you like to continue with an open application?</string>
+    <string name="new_application_button">NEW APPLICATION</string>
+
 </resources>

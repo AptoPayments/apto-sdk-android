@@ -5,10 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.link.api.vos.responses.ApiErrorVo;
-import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.adapters.loanapplication.LoanApplicationPagerAdapter;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationsListModel;
@@ -81,7 +79,7 @@ public class LoanApplicationsListPresenter
         mLoadingSpinnerManager.showLoading(true);
         updateViewData();
 
-        LedgeLinkUi.getLoanApplicationsList(new ListRequestVo());
+        //LedgeLinkUi.getLoanApplicationsList(new ListRequestVo());
     }
 
     @Override

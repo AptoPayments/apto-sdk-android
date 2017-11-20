@@ -19,6 +19,7 @@ import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
@@ -210,6 +211,15 @@ public interface LinkApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     LoanApplicationsListResponseVo getLoanApplicationsList(ListRequestVo requestData)
+            throws ApiException;
+
+    /**
+     * Gets the user's pending loan applications.
+     * @param requestData Mandatory request data.
+     * @return API response.
+     * @throws ApiException When there is an error making the request.
+     */
+    LoanApplicationsSummaryListResponseVo getPendingLoanApplicationsList(ListRequestVo requestData)
             throws ApiException;
 
     /**

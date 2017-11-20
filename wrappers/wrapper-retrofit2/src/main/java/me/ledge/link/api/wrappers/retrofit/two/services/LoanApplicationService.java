@@ -3,6 +3,7 @@ package me.ledge.link.api.wrappers.retrofit.two.services;
 import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -31,6 +32,13 @@ public interface LoanApplicationService {
      */
     @GET(LinkApiWrapper.LIST_LOAN_APPLICATIONS_PATH)
     Call<LoanApplicationsListResponseVo> getLoanApplicationsList();
+
+    /**
+     * Creates a {@link Call} to get the list of open loan applications.
+     * @return API call to execute.
+     */
+    @GET(LinkApiWrapper.LIST_LOAN_APPLICATIONS_PATH)
+    Call<LoanApplicationsSummaryListResponseVo> getLoanApplicationsSummaryList();
 
     /**
      * Creates a {@link Call} to get the application status.

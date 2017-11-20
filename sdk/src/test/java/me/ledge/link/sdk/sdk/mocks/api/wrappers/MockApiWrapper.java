@@ -35,6 +35,7 @@ import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.LenderVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
@@ -253,6 +254,11 @@ public class MockApiWrapper implements LinkApiWrapper {
         response.data = new LoanApplicationDetailsResponseVo[] { createLoanApplication("") };
 
         return response;
+    }
+
+    @Override
+    public LoanApplicationsSummaryListResponseVo getPendingLoanApplicationsList(ListRequestVo listRequestVo) throws ApiException {
+        return null;
     }
 
     // TODO: add unit tests for verification tasks
