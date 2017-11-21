@@ -248,7 +248,7 @@ public class MockApiWrapper implements LinkApiWrapper {
 
     @Override
     public LoanApplicationsSummaryListResponseVo getPendingLoanApplicationsList(ListRequestVo listRequestVo) throws ApiException {
-        return null;
+        return new LoanApplicationsSummaryListResponseVo();
     }
 
     // TODO: add unit tests for verification tasks
