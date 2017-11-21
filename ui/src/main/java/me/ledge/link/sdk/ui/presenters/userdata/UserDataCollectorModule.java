@@ -35,8 +35,8 @@ import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.Command;
-import me.ledge.link.sdk.ui.LedgeBaseModule;
+import me.ledge.link.sdk.ui.workflow.Command;
+import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
@@ -72,8 +72,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         TimeAtAddressDelegate, BirthdateVerificationDelegate {
 
     private static UserDataCollectorModule instance;
-    public Command onFinish;
-    public Command onBack;
     public Command onUserDoesNotHaveAllRequiredData;
     public Command onUserHasAllRequiredData;
     public LinkedList<RequiredDataPointVo> mRequiredDataPointList;

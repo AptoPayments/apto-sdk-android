@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
+
+import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -16,6 +19,7 @@ import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.financialaccountselector.AddFinancialAccountListView;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 
 /**
  * Concrete {@link Presenter} for the add financial account screen.
@@ -46,7 +50,8 @@ public class AddFinancialAccountListPresenter
     /** {@inheritDoc} */
     @Override
     public AddFinancialAccountListModel createModel() {
-        return new AddFinancialAccountListModel();
+        FinancialAccountSelectorModule accountSelectorModule = (FinancialAccountSelectorModule) ModuleManager.getInstance().getCurrentModule();
+        return new AddFinancialAccountListModel(accountSelectorModule.getConfiguration());
     }
 
     /** {@inheritDoc} */
@@ -80,26 +85,26 @@ public class AddFinancialAccountListPresenter
         super.detachView();
     }
 
-    private AddFinancialAccountModel[] createViewData(String[] accountTypes) {
-        if (accountTypes == null || accountTypes.length <= 0) {
+    private AddFinancialAccountModel[] createViewData(ArrayList<FinancialAccountVo.FinancialAccountType> accountTypes) {
+        if (accountTypes == null || accountTypes.size() <= 0) {
             return null;
         }
 
-        AddFinancialAccountModel[] data = new AddFinancialAccountModel[accountTypes.length];
-        String type;
-
-        for (int i = 0; i < accountTypes.length; i++) {
-            type = accountTypes[i];
-
+        AddFinancialAccountModel[] data = new AddFinancialAccountModel[accountTypes.size()];
+        int i = 0;
+        for (FinancialAccountVo.FinancialAccountType type: accountTypes) {
             switch (type) {
-                case "Bank":
+                case Bank:
                     data[i] = new AddBankAccountModel();
+                    i++;
                     break;
-                case "Card":
+                case Card:
                     data[i] = new AddCardModel();
+                    i++;
                     break;
-                case "VirtualCard":
+                case VirtualCard:
                     data[i] = new AddVirtualCardModel();
+                    i++;
                     break;
             }
         }

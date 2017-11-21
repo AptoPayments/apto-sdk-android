@@ -1,4 +1,4 @@
-package me.ledge.link.api.utils;
+package me.ledge.link.api.utils.parsers;
 
 import com.google.gson.JsonElement;
 

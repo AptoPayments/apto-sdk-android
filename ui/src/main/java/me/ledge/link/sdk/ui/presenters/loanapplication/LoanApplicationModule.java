@@ -2,14 +2,14 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.app.Activity;
 
+import java.lang.ref.WeakReference;
+import java.util.concurrent.ExecutionException;
+
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
-import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
+import java8.util.concurrent.CompletionException;
+import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.sdk.storages.ConfigStorage.OffersListStyle;
-import me.ledge.link.sdk.ui.Command;
-import me.ledge.link.sdk.ui.LedgeBaseModule;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
@@ -21,6 +21,14 @@ import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentsListMod
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.presenters.offers.OffersListDelegate;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
+import me.ledge.link.sdk.ui.vos.ApplicationVo;
+import me.ledge.link.sdk.ui.workflow.Command;
+import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
+import me.ledge.link.sdk.ui.workflow.WorkflowModule;
+import me.ledge.link.sdk.ui.workflow.WorkflowObject;
+
+import static me.ledge.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
 
 /**
  * Created by adrian on 29/12/2016.
@@ -31,9 +39,7 @@ public class LoanApplicationModule extends LedgeBaseModule
         LoanAgreementDelegate, OffersListDelegate, LoanApplicationSummaryDelegate {
     private static LoanApplicationModule mInstance;
     public Command onUpdateUserProfile;
-    public Command onBack;
-    public Command onSelectFundingAccount;
-    public OffersListStyle mOffersListStyle;
+    private WorkflowModule mWorkflowModule;
 
     public static synchronized LoanApplicationModule getInstance(Activity activity) {
         if (mInstance == null) {
@@ -50,13 +56,11 @@ public class LoanApplicationModule extends LedgeBaseModule
     public void initialModuleSetup() {
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getOffersListStyle())
-                .thenAccept((style) -> {
-                    mOffersListStyle = style;
-                    showOffers();
-                });
+                .thenAccept((style) -> showOffers());
     }
 
     private void showOffers() {
+        ModuleManager.getInstance().setModule(new WeakReference<>(this));
         startActivity(OffersListActivity.class);
     }
 
@@ -100,15 +104,14 @@ public class LoanApplicationModule extends LedgeBaseModule
     }
 
     @Override
-    public void onApplicationReceived() {
+    public void onApplicationReceived(ApplicationVo application) {
         LoanApplicationDetailsResponseVo loanApplication = LoanStorage.getInstance().getCurrentLoanApplication();
         if (loanApplication != null) {
-            if (loanApplication.status.equals(LoanApplicationStatus.PENDING_BORROWER_ACTION)) {
-                if (loanApplication.required_actions.total_count > 0 && loanApplication.required_actions.data[0].action.equals(LoanApplicationActionId.SELECT_FUNDING_ACCOUNT)) {
-                    onSelectFundingAccount.execute();
-                    return;
-                }
-            }
+            mWorkflowModule = new WorkflowModule(this.getActivity(), application, this::getApplicationStatus);
+            mWorkflowModule.onBack = this::showOffers;
+            mWorkflowModule.onFinish = this.onFinish;
+            mWorkflowModule.initialModuleSetup();
+            return;
         }
         startActivity(IntermediateLoanApplicationActivity.class);
     }
@@ -122,6 +125,26 @@ public class LoanApplicationModule extends LedgeBaseModule
     @Override
     public void onUpdateLoan() {
         onBack.execute();
+    }
+
+    private ApplicationVo getApplicationStatus(WorkflowObject currentObject) {
+        if(!(currentObject instanceof ApplicationVo)) {
+            throw new RuntimeException("Current workflow object is not an application!");
+        }
+        CompletableFuture<LoanApplicationDetailsResponseVo> future = CompletableFuture.supplyAsync(() -> {
+            try {
+                return getApiWrapper().getApplicationStatus(currentObject.workflowObjectId);
+            } catch (ApiException e) {
+                throw new CompletionException(e);
+            }
+        });
+        try {
+            LoanApplicationDetailsResponseVo applicationStatus = future.get();
+            return new ApplicationVo(applicationStatus.id, applicationStatus.next_action);
+        } catch (InterruptedException | ExecutionException e) {
+            future.completeExceptionally(e);
+            throw new CompletionException(e);
+        }
     }
 
     private void startNextActivity(ActivityModel model) {

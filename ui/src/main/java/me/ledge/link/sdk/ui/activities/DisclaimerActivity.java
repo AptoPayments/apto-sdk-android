@@ -19,8 +19,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import me.ledge.link.api.vos.responses.config.ContentVo;
-import me.ledge.link.sdk.ui.LedgeBaseModule;
-import me.ledge.link.sdk.ui.ModuleManager;
+import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.utils.DisclaimerUtil;
 import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;

@@ -2,8 +2,8 @@ package me.ledge.link.sdk.ui.presenters.link;
 
 import android.app.Activity;
 
-import me.ledge.link.sdk.ui.Command;
-import me.ledge.link.sdk.ui.LedgeBaseModule;
+import me.ledge.link.sdk.ui.workflow.Command;
+import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 import me.ledge.link.sdk.ui.activities.link.LoanAmountActivity;
 
 /**
@@ -13,10 +13,8 @@ import me.ledge.link.sdk.ui.activities.link.LoanAmountActivity;
 public class LoanInfoModule extends LedgeBaseModule implements LoanDataDelegate {
 
     private static LoanInfoModule mInstance;
-    public Command onFinish;
     public Command onGetOffers;
     public Command onUpdateProfile;
-    public Command onBack;
     public boolean userHasAllRequiredData;
 
 

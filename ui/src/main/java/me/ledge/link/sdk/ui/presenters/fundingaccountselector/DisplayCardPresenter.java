@@ -16,7 +16,7 @@ import me.ledge.link.sdk.ui.views.fundingaccountselector.DisplayCardView;
  */
 public class DisplayCardPresenter
     extends ActivityPresenter<DisplayCardModel, DisplayCardView>
-    implements Presenter<DisplayCardModel, DisplayCardView> {
+    implements Presenter<DisplayCardModel, DisplayCardView>, DisplayCardView.ViewListener {
 
     private DisplayCardDelegate mDelegate;
 
@@ -34,6 +34,7 @@ public class DisplayCardPresenter
     @Override
     public void attachView(DisplayCardView view) {
         super.attachView(view);
+        view.setViewListener(this);
         Card card = mDelegate.getCard();
         view.setExpiryDate(card.expirationDate);
         view.setCardNumber(card.PANToken);
@@ -49,5 +50,15 @@ public class DisplayCardPresenter
     @Override
     public DisplayCardModel createModel() {
         return new DisplayCardModel();
+    }
+
+    @Override
+    public void primaryButtonClickHandler() {
+        mDelegate.displayCardPrimaryButtonPressed();
+    }
+
+    @Override
+    public void secondaryButtonClickHandler() {
+        mDelegate.displayCardSecondaryButtonPressed();
     }
 }

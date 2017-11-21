@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import me.ledge.link.api.vos.responses.config.ContentVo;
-import me.ledge.link.sdk.ui.Command;
+import me.ledge.link.sdk.ui.workflow.Command;
 import me.ledge.link.sdk.ui.activities.DisclaimerActivity;
 
 /**

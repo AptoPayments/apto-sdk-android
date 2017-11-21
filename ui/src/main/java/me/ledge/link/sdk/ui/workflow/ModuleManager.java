@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.ui;
+package me.ledge.link.sdk.ui.workflow;
 
 import java.lang.ref.WeakReference;
 

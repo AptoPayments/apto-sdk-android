@@ -9,6 +9,7 @@ import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
@@ -57,7 +58,6 @@ public interface LinkApiWrapper {
     String MORE_OFFERS_PATH = "v1/link/offersrequest/{offer_request_id}/offers";
 
     String CREATE_LOAN_APPLICATION_PATH = "v1/link/offers/{offer_id}/apply";
-    String LIST_LOAN_APPLICATIONS_PATH = "v1/link/offers/";
 
     String VERIFICATION_START_PATH = "v1/verifications/start";
     String VERIFICATION_STATUS_PATH = "v1/verifications/{ID}/status";
@@ -66,6 +66,10 @@ public interface LinkApiWrapper {
 
     String FINANCIAL_ACCOUNTS_PATH = "v1/user/financialaccounts";
     String PLAID_WEB_URL = "v1/bankoauth";
+
+    String APPLICATION_STATUS_PATH = "v1/link/applications/{application_id}/status";
+    String LIST_LOAN_APPLICATIONS_PATH = "v1/link/applications/pending";
+    String APPLICATION_ACCOUNT_PATH = "v1/link/applications/{application_id}/accounts/";
 
     int OFFERS_REQUEST_TIMEOUT = 150; // 2.5 minutes.
 
@@ -269,4 +273,18 @@ public interface LinkApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     UserDataListResponseVo getFinancialAccounts(UnauthorizedRequestVo requestData) throws ApiException;
+
+    /**
+     * @param applicationId The application ID to check.
+     * @return The application object with the current status and pending actions
+     * @throws ApiException
+     */
+    LoanApplicationDetailsResponseVo getApplicationStatus(String applicationId) throws ApiException;
+
+    /**
+     * @param applicationId The ID of the application to link the financial account
+     * @return The application object with the current status
+     * @throws ApiException
+     */
+    LoanApplicationDetailsResponseVo setApplicationAccount(ApplicationAccountRequestVo requestData, String applicationId) throws ApiException;
 }

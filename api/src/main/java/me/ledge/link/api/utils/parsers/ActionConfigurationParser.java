@@ -1,4 +1,4 @@
-package me.ledge.link.api.utils;
+package me.ledge.link.api.utils.parsers;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -9,9 +9,13 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 
 import me.ledge.link.api.vos.responses.config.ContentVo;
-import me.ledge.link.api.vos.responses.workflow.CallToActionVo;
 import me.ledge.link.api.vos.responses.workflow.ActionConfigurationVo;
+import me.ledge.link.api.vos.responses.workflow.CallToActionVo;
 import me.ledge.link.api.vos.responses.workflow.GenericMessageConfigurationVo;
+import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
+
+import static me.ledge.link.api.utils.workflow.WorkflowConfigType.GENERIC_MESSAGE_CONFIG;
+import static me.ledge.link.api.utils.workflow.WorkflowConfigType.SELECT_FUNDING_ACCOUNT_CONFIG;
 
 /**
  * Created by adrian on 25/01/2017.
@@ -29,8 +33,10 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
         String type = ParsingUtils.getStringFromJson(config.get("type"));
         if (type != null) {
             switch (type) {
-                case "action_generic_message_config":
+                case GENERIC_MESSAGE_CONFIG:
                     return parseGenericMessageConfig(config);
+                case SELECT_FUNDING_ACCOUNT_CONFIG:
+                    return parseSelectFundingAccountConfig(config);
             }
         }
         return null;
@@ -62,9 +68,26 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
         String trackerEventName = ParsingUtils.getStringFromJson(config.get("tracker_event_name"));
         String trackerIncrementName = ParsingUtils.getStringFromJson(config.get("tracker_increment_name"));
 
-        ContentVo content = parseContent(config.get("content").getAsJsonObject());
-        CallToActionVo callToAction = parseCallToAction(config.get("call_to_action").getAsJsonObject());
+        ContentVo content = null;
+        JsonElement contentJson = config.get("content");
+        if(!contentJson.isJsonNull()) {
+            content = parseContent(contentJson.getAsJsonObject());
+        }
+
+        JsonElement callToActionJson = config.get("call_to_action");
+        CallToActionVo callToAction = null;
+        if(!callToActionJson.isJsonNull()) {
+            callToAction = parseCallToAction(callToActionJson.getAsJsonObject());
+        }
 
         return new GenericMessageConfigurationVo(type, title, content, image, trackerEventName, trackerIncrementName, callToAction);
+    }
+
+
+    private ActionConfigurationVo parseSelectFundingAccountConfig(JsonObject config) {
+        boolean isAchEnabled = config.get("ach_enabled").getAsBoolean();
+        boolean isCardEnabled = config.get("card_enabled").getAsBoolean();
+        boolean isVirtualCardEnabled = config.get("virtual_card_enabled").getAsBoolean();
+        return new SelectFundingAccountConfigurationVo(isAchEnabled, isCardEnabled, isVirtualCardEnabled);
     }
 }

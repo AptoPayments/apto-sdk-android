@@ -12,4 +12,8 @@ public interface DisplayCardDelegate {
     void displayCardOnBackPressed();
 
     Card getCard();
+
+    void displayCardPrimaryButtonPressed();
+
+    void displayCardSecondaryButtonPressed();
 }

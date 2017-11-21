@@ -12,12 +12,12 @@ import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
-import me.ledge.link.api.vos.responses.base.ListResponseVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.CreditScoreListResponseVo;
@@ -33,7 +33,6 @@ import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
@@ -243,8 +242,6 @@ public class MockApiWrapper implements LinkApiWrapper {
     public LoanApplicationDetailsResponseVo createLoanApplication(String offerId) {
         LoanApplicationDetailsResponseVo application = new LoanApplicationDetailsResponseVo();
         application.status = "";
-        application.required_actions = new ListResponseVo<>();
-        application.required_actions.data = new LoanApplicationActionVo[] { new LoanApplicationActionVo() };
 
         return application;
     }
@@ -320,5 +317,18 @@ public class MockApiWrapper implements LinkApiWrapper {
         UserDataListResponseVo response = new UserDataListResponseVo();
         response.data = new DataPointVo[0];
         return response;
+    }
+
+    @Override
+    public LoanApplicationDetailsResponseVo getApplicationStatus(String s) throws ApiException {
+        LoanApplicationDetailsResponseVo application = new LoanApplicationDetailsResponseVo();
+        application.status = "";
+
+        return application;
+    }
+
+    @Override
+    public LoanApplicationDetailsResponseVo setApplicationAccount(ApplicationAccountRequestVo applicationAccountRequestVo, String s) throws ApiException {
+        return new LoanApplicationDetailsResponseVo();
     }
 }
