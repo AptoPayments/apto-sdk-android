@@ -1,13 +1,13 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.loanapplication;
 
-import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.loanapplication.AddDocumentsListActivity;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
 import me.ledge.link.sdk.ui.models.loanapplication.PendingDocumentsModel;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -17,7 +17,8 @@ public class PendingDocumentsModelTest {
 
     @Before
     public void setUp() {
-        mModel = new PendingDocumentsModel(new MockApiWrapper().getLoanApplicationsList(null).data[0]);
+        // TODO
+        mModel = new PendingDocumentsModel(null);
     }
 
     @Test

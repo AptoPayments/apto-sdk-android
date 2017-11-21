@@ -61,7 +61,7 @@ public class LoanApplicationDetailsPresenterTest {
     @Before
     public void setUp() {
         mResources = new ShadowContentProvider().getContext().getResources();
-        mLoanApplication = new MockApiWrapper().getLoanApplicationsList(null).data[0];
+        mLoanApplication = new MockApiWrapper().createLoanApplication("");
     }
 
     /**

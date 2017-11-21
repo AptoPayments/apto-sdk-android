@@ -256,7 +256,7 @@ public class LedgeLinkSdkTest {
     @Test
     public void loanApplicationsListTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getLoanApplicationsList(new ListRequestVo()),
+                LedgeLinkSdk.getPendingLoanApplicationsList(new ListRequestVo()),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 }

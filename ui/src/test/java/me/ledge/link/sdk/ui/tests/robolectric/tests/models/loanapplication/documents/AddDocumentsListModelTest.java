@@ -10,16 +10,13 @@ import java.util.ArrayList;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
-import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActivity;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -30,19 +27,13 @@ import static org.hamcrest.CoreMatchers.nullValue;
  */
 public class AddDocumentsListModelTest {
 
-    private class TestLoanApplicationsListActivity extends LoanApplicationsListActivity { }
+    private class TestLoanApplicationsListActivity { }
 
     private class TestHandlerConfigurator implements HandlerConfigurator {
         /** {@inheritDoc} */
         @Override
         public ArrayList<Class<? extends MvpActivity>> getProcessOrder() {
             return null;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public Class<? extends LoanApplicationsListActivity> getApplicationsListActivity() {
-            return TestLoanApplicationsListActivity.class;
         }
 
         /** {@inheritDoc} */
@@ -84,20 +75,6 @@ public class AddDocumentsListModelTest {
         Assert.assertThat("Incorrect previous Activity.",
                 (Class<IntermediateLoanApplicationActivity>) mModel.getPreviousActivity(null),
                 equalTo(IntermediateLoanApplicationActivity.class));
-    }
-
-    /**
-     * Given a {@link AddDocumentsListModel}.<br />
-     * When the "done" button is pressed.<br />
-     * Then the correct Activity should be started.
-     */
-    @Test
-    public void hasCorrectNextActivity() {
-        LedgeLinkUi.setHandlerConfiguration(new TestHandlerConfigurator());
-
-        Assert.assertThat("Incorrect next Activity.",
-                (Class<? extends LoanApplicationsListActivity>) mModel.getNextActivity(null),
-                instanceOf(LoanApplicationsListActivity.class.getClass()));
     }
 
     /**
