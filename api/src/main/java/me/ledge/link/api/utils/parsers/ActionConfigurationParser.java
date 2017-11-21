@@ -14,6 +14,9 @@ import me.ledge.link.api.vos.responses.workflow.CallToActionVo;
 import me.ledge.link.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 
+import static me.ledge.link.api.utils.workflow.WorkflowConfigType.GENERIC_MESSAGE_CONFIG;
+import static me.ledge.link.api.utils.workflow.WorkflowConfigType.SELECT_FUNDING_ACCOUNT_CONFIG;
+
 /**
  * Created by adrian on 25/01/2017.
  */
@@ -30,9 +33,9 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
         String type = ParsingUtils.getStringFromJson(config.get("type"));
         if (type != null) {
             switch (type) {
-                case "action_generic_message_config":
+                case GENERIC_MESSAGE_CONFIG:
                     return parseGenericMessageConfig(config);
-                case "action_select_funding_account_config":
+                case SELECT_FUNDING_ACCOUNT_CONFIG:
                     return parseSelectFundingAccountConfig(config);
             }
         }
