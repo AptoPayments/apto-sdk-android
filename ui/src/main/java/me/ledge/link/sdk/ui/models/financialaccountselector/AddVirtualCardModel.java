@@ -5,9 +5,8 @@ import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.storages.LinkStorage;
+import me.ledge.link.sdk.ui.storages.LoanStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
-import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
 /**
  * Concrete {@link AddFinancialAccountModel} for adding a virtual credit card.
@@ -45,9 +44,7 @@ public class AddVirtualCardModel implements AddFinancialAccountModel {
         PhoneNumberVo phoneNumber = (PhoneNumberVo) userData.getUniqueDataPoint(DataPointVo.DataPointType.Phone, null);
         request.phoneNumber = phoneNumber.getPhone().toString();
 
-        LoanDataVo loanData = LinkStorage.getInstance().getLoanData();
-        request.amount = loanData.loanAmount;
-
+        request.amount = (int) LoanStorage.getInstance().getCurrentLoanApplication().offer.loan_amount;
         request.cardIssuer = "MARQETA";
 
         return request;

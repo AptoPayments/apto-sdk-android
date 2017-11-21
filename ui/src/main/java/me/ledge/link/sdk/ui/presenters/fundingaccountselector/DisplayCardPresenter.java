@@ -6,7 +6,7 @@ import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.sdk.ui.models.fundingaccountselector.DisplayCardModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.storages.LinkStorage;
+import me.ledge.link.sdk.ui.storages.LoanStorage;
 import me.ledge.link.sdk.ui.views.fundingaccountselector.DisplayCardView;
 
 
@@ -39,7 +39,7 @@ public class DisplayCardPresenter
         view.setExpiryDate(card.expirationDate);
         view.setCardNumber(card.PANToken);
         view.setCardName(mModel.getCardHolderName());
-        view.setCardBalance(String.valueOf(LinkStorage.getInstance().getLoanData().loanAmount));
+        view.setCardBalance(String.valueOf(LoanStorage.getInstance().getCurrentLoanApplication().offer.loan_amount));
     }
 
     @Override

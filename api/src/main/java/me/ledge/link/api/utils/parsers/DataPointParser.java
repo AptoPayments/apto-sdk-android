@@ -82,9 +82,11 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         notSpecified);
             case "card":
                 return new Card(jObject.get("account_id").getAsString(),
-                        Card.CardType.valueOf(jObject.get("card_type").getAsString()), null, null,
-                        jObject.get("last_four_digits").getAsString(),
-                        jObject.get("expiration").getAsString(), false);
+                        Card.CardType.valueOf(jObject.get("card_type").getAsString()),
+                        ParsingUtils.getStringFromJson(jObject.get("pan")),
+                        ParsingUtils.getStringFromJson(jObject.get("cvv_number")),
+                        ParsingUtils.getStringFromJson(jObject.get("last_four_digits")),
+                        ParsingUtils.getStringFromJson(jObject.get("expiration")), false);
             case "bank_account":
                 return new BankAccount(jObject.get("account_id").getAsString(),
                         jObject.get("bank_name").getAsString(),

@@ -7,6 +7,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationSummaryResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
@@ -129,6 +130,7 @@ public class LinkModule extends LedgeBaseModule {
     private void collectUserData() {
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         userDataCollectorModule.onUserHasAllRequiredData = null;
+        userDataCollectorModule.onUserDoesNotHaveAllRequiredData = null;
         userDataCollectorModule.onFinish = this::showOffersList;
         userDataCollectorModule.onBack = this::showLoanInfoOrBack;
         userDataCollectorModule.isUpdatingProfile = false;
@@ -216,12 +218,24 @@ public class LinkModule extends LedgeBaseModule {
         }
         else if(applicationsList.total_count == 1) {
             LoanApplicationSummaryResponseVo applicationSummary = applicationsList.data[0];
-            LoanApplicationModule.getInstance(getActivity()).continueApplication(applicationSummary.id);
+            LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity());
+            loanApplicationModule.onBack = this::showOrSkipLoanInfo;
+            loanApplicationModule.continueApplication(applicationSummary.id);
         }
         else {
             LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity());
             loanApplicationModule.onStartNewApplication = this::showLoanInfo;
+            loanApplicationModule.onBack = this::showOrSkipLoanInfo;
             loanApplicationModule.startLoanApplicationSelector(applicationsList);
         }
+    }
+
+    /**
+     * Called when an API error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
+        showError(error.toString());
     }
 }
