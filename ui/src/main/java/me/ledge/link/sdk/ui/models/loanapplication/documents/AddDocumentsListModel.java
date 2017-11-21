@@ -1,9 +1,9 @@
 package me.ledge.link.sdk.ui.models.loanapplication.documents;
 
 import android.app.Activity;
+
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.models.ActivityModel;
@@ -40,7 +40,8 @@ public class AddDocumentsListModel implements ActivityModel, Model {
     /** {@inheritDoc} */
     @Override
     public Class getNextActivity(Activity current) {
-        return LedgeLinkUi.getHandlerConfiguration().getApplicationsListActivity();
+        // TODO: remove this when add documents action is supported
+        return null;
     }
 
     /**

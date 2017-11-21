@@ -46,7 +46,6 @@ import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.errors.ErrorResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
@@ -479,23 +478,6 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), LinkApiWrapper.CREATE_LOAN_APPLICATION_PATH, ioe);
-        }
-
-        return result;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public LoanApplicationsListResponseVo getLoanApplicationsList(ListRequestVo requestData)
-            throws ApiException {
-        LoanApplicationsListResponseVo result;
-        try {
-            Response<LoanApplicationsListResponseVo> response
-                    = mLoanApplicationService.getLoanApplicationsList().execute();
-            result = handleResponse(response, LinkApiWrapper.LIST_LOAN_APPLICATIONS_PATH);
-        } catch (IOException ioe) {
-            result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.LIST_LOAN_APPLICATIONS_PATH, ioe);
         }
 
         return result;

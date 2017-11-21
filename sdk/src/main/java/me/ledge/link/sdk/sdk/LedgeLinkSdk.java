@@ -28,7 +28,6 @@ import me.ledge.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.GetLoanApplicationStatusTask;
-import me.ledge.link.sdk.sdk.tasks.loanapplication.ListLoanApplicationsTask;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.ListPendingLoanApplicationsTask;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.SetApplicationAccountTask;
 import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;
@@ -254,20 +253,6 @@ public class LedgeLinkSdk {
         checkComponents();
 
         CreateLoanApplicationTask task = new CreateLoanApplicationTask(offerId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
-
-        return task;
-    }
-
-    /**
-     * Fetches the list of open loan applications.
-     * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
-     */
-    public static LedgeLinkApiTask getLoanApplicationsList(ListRequestVo data) {
-        checkComponents();
-
-        ListLoanApplicationsTask task = new ListLoanApplicationsTask(data, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

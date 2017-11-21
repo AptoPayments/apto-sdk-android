@@ -139,10 +139,6 @@
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActivity"
-                android:theme="@style/Theme.LedgeLine.Example" />
-
-        <activity
             android:name="me.ledge.link.sdk.ui.activities.loanapplication.SelectLoanApplicationListActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
