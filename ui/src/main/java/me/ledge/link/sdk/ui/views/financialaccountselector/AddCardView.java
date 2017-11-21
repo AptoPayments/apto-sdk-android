@@ -163,7 +163,7 @@ public class AddCardView
         return mCreditCardForm.getCreditCard().getSecurityCode();
     }
 
-    public String getCardType() {
+    public String getCardNetwork() {
         return mCreditCardForm.getCreditCard().getCardType().name();
     }
 

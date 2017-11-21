@@ -79,8 +79,8 @@ public class AddCardModel implements AddFinancialAccountModel, ActivityModel {
         return mCardHolderName;
     }
 
-    public void setCardType(String cardType) {
-        mCard.cardType = Card.CardType.valueOf(cardType.toUpperCase());
+    public void setCardNetwork(String cardNetwork) {
+        mCard.cardNetwork = Card.CardNetwork.valueOf(cardNetwork.toUpperCase());
     }
 
     public void setLastFourDigits(String lastFourDigits) {

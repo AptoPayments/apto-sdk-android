@@ -23,9 +23,7 @@ public class SelectCardModel implements SelectFinancialAccountModel {
     /** {@inheritDoc} */
     @Override
     public int getIconResourceId() {
-        switch (mCard.cardType) {
-            case MARQETA:
-                return R.drawable.ic_card_logo_marqeta;
+        switch (mCard.cardNetwork) {
             case VISA:
                 return R.drawable.icon_visa;
             case MASTERCARD:
@@ -40,7 +38,7 @@ public class SelectCardModel implements SelectFinancialAccountModel {
     /** {@inheritDoc} */
     @Override
     public String getDescription() {
-        return mCard.cardType.name() + " (...." + mCard.lastFourDigits + ")";
+        return mCard.cardNetwork.name() + " (...." + mCard.lastFourDigits + ")";
     }
 
     @Override

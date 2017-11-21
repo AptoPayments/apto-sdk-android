@@ -304,7 +304,7 @@ public class MockApiWrapper implements LinkApiWrapper {
     @Override
     public VirtualCard issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
         VirtualCard response = new VirtualCard();
-        response.cardType = VirtualCard.CardType.MARQETA;
+        response.cardNetwork = VirtualCard.CardNetwork.VISA;
         return response;
     }
 

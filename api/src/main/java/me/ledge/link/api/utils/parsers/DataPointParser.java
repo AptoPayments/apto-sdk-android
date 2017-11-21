@@ -82,7 +82,7 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         notSpecified);
             case "card":
                 return new Card(jObject.get("account_id").getAsString(),
-                        Card.CardType.valueOf(jObject.get("card_type").getAsString()),
+                        Card.CardNetwork.valueOf(jObject.get("card_type").getAsString()),
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv_number")),
                         ParsingUtils.getStringFromJson(jObject.get("last_four_digits")),
@@ -93,7 +93,7 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         jObject.get("last_four_digits").getAsString(), false);
             case "virtual_card":
                 return new VirtualCard(jObject.get("account_id").getAsString(),
-                        Card.CardType.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_type"))),
+                        Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_type"))),
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv_number")),
                         ParsingUtils.getStringFromJson(jObject.get("last_four_digits")),

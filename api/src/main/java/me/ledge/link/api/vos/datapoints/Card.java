@@ -12,15 +12,14 @@ import java.util.Date;
  */
 
 public class Card extends FinancialAccountVo {
-    public enum CardType {
-        MARQETA,
+    public enum CardNetwork {
         VISA,
         MASTERCARD,
         AMEX
     }
 
-    @SerializedName("card_type")
-    public CardType cardType;
+    @SerializedName("card_network")
+    public CardNetwork cardNetwork;
     @SerializedName("last_four_digits")
     public String lastFourDigits;
     @SerializedName("pan")
@@ -32,27 +31,27 @@ public class Card extends FinancialAccountVo {
 
     public Card() {
         super(null, FinancialAccountType.Card, false);
-        cardType = null;
+        cardNetwork = null;
         lastFourDigits = null;
         PANToken = null;
         CVVToken = null;
         expirationDate = null;
     }
 
-    public Card(String accountId, CardType type, String PANToken, String CVVToken, String lastFourDigits,
+    public Card(String accountId, CardNetwork type, String PANToken, String CVVToken, String lastFourDigits,
                 String expirationDate, boolean verified) {
         super(accountId, FinancialAccountType.Card, verified);
-        this.cardType = type;
+        this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
         this.PANToken = PANToken;
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
     }
 
-    protected Card(FinancialAccountType accountType, String accountId, CardType type, String PANToken, String CVVToken, String lastFourDigits,
-                String expirationDate, boolean verified) {
+    protected Card(FinancialAccountType accountType, String accountId, CardNetwork type, String PANToken, String CVVToken, String lastFourDigits,
+                   String expirationDate, boolean verified) {
         super(accountId, accountType, verified);
-        this.cardType = type;
+        this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
         this.PANToken = PANToken;
         this.CVVToken = CVVToken;
@@ -63,7 +62,7 @@ public class Card extends FinancialAccountVo {
     public JsonObject toJSON() {
         JsonObject gsonObject = super.toJSON();
         gsonObject.addProperty("type", "card");
-        gsonObject.addProperty("card_brand", cardType.name());
+        gsonObject.addProperty("card_brand", cardNetwork.name());
         gsonObject.addProperty("pan_token", PANToken);
         gsonObject.addProperty("cvv_token", CVVToken);
         gsonObject.addProperty("last_four", lastFourDigits);
@@ -94,7 +93,7 @@ public class Card extends FinancialAccountVo {
         if(!super.equals(o)) return false;
         Card card = (Card) o;
 
-        if (cardType != card.cardType) return false;
+        if (cardNetwork != card.cardNetwork) return false;
         if (lastFourDigits != null ? !lastFourDigits.equals(card.lastFourDigits) : card.lastFourDigits != null)
             return false;
         if (PANToken != null ? !PANToken.equals(card.PANToken) : card.PANToken != null)
@@ -107,7 +106,7 @@ public class Card extends FinancialAccountVo {
 
     @Override
     public int hashCode() {
-        int result = super.hashCode()+(cardType != null ? cardType.hashCode() : 0);
+        int result = super.hashCode()+(cardNetwork != null ? cardNetwork.hashCode() : 0);
         result = 31 * result + (lastFourDigits != null ? lastFourDigits.hashCode() : 0);
         result = 31 * result + (PANToken != null ? PANToken.hashCode() : 0);
         result = 31 * result + (CVVToken != null ? CVVToken.hashCode() : 0);
