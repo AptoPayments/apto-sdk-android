@@ -29,6 +29,20 @@ public class KeysStorage {
         return !projectKey.equals(storedProject);
     }
 
+    public static void storeProjectKey(Context context, String projectKey) {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(PREFS_PROJECT_KEY, projectKey);
+        editor.apply();
+    }
+
+    public static void storeTeamKey(Context context, String teamKey) {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(PREFS_TEAM_KEY, teamKey);
+        editor.apply();
+    }
+
     public static String getEnvironment(Context context, String defaultEnvironment) {
         SharedPreferences settings = context.getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE);
         return settings.getString(PREFS_ENVIRONMENT, defaultEnvironment);

@@ -36,14 +36,26 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
         void clearAllClickedHandler();
 
         /**
-         * Called when the "X" button has been pressed.
+         * Called when the clear token button has been pressed.
          */
         void clearUserTokenClickedHandler();
+
+        /**
+         * Called when the clear team key button has been pressed.
+         */
+        void clearTeamKeyClickedHandler();
+
+        /**
+         * Called when the clear project key button has been pressed.
+         */
+        void clearProjectKeyClickedHandler();
     }
 
     private Button mFillButton;
     private Button mClearButton;
     private ImageButton mClearUserTokenButton;
+    private ImageButton mClearTeamKeyButton;
+    private ImageButton mClearProjectKeyButton;
 
     private EditText mLoanAmountField;
     private Spinner mTimeAtAddressSpinner;
@@ -65,6 +77,8 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
     private EditText mBirthday;
     private EditText mSSN;
     private EditText mBearerToken;
+    private EditText mProjectKey;
+    private EditText mTeamKey;
     private EditText mTeamName;
     private EditText mProjectName;
     private EditText mOffersListStyle;
@@ -113,6 +127,8 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
         mFillButton = (Button) findViewById(R.id.bttn_fill_all);
         mClearButton = (Button) findViewById(R.id.bttn_clear_all);
         mClearUserTokenButton = (ImageButton) findViewById(R.id.bttn_clear_user_token);
+        mClearTeamKeyButton = (ImageButton) findViewById(R.id.bttn_clear_team_key);
+        mClearProjectKeyButton = (ImageButton) findViewById(R.id.bttn_clear_project_key);
 
         mLoanAmountField = (EditText) findViewById(R.id.et_loan_amount);
         mTimeAtAddressSpinner = (Spinner) findViewById(R.id.sp_time_at_address);
@@ -134,6 +150,8 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
         mBirthday = (EditText) findViewById(R.id.et_birthday);
         mSSN = (EditText) findViewById(R.id.et_ssn);
         mBearerToken = (EditText) findViewById(R.id.et_user_token);
+        mProjectKey = (EditText) findViewById(R.id.et_project_key);
+        mTeamKey = (EditText) findViewById(R.id.et_team_key);
         mTeamName = (EditText) findViewById(R.id.et_team_name);
         mProjectName = (EditText) findViewById(R.id.et_project_name);
         mOffersListStyle = (EditText) findViewById(R.id.et_offers_list_style);
@@ -170,6 +188,12 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
                 break;
             case R.id.bttn_clear_user_token:
                 mListener.clearUserTokenClickedHandler();
+                break;
+            case R.id.bttn_clear_project_key:
+                mListener.clearProjectKeyClickedHandler();
+                break;
+            case R.id.bttn_clear_team_key:
+                mListener.clearTeamKeyClickedHandler();
                 break;
             default:
                 // Do nothing.
@@ -474,6 +498,46 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
             mBearerToken.setText("");
             mClearUserTokenButton.setVisibility(GONE);
         }
+    }
+
+    /**
+     * Shows the stored team key.
+     * @param teamKey User token.
+     */
+    public void setTeamKey(String teamKey) {
+        if(teamKey!=null && !teamKey.isEmpty()) {
+            mTeamKey.setText(teamKey.substring(0,10) + "..." +
+                    teamKey.substring(teamKey.length()-10, teamKey.length()));
+            mClearTeamKeyButton.setVisibility(VISIBLE);
+        }
+        else {
+            mTeamKey.setText("");
+            mClearTeamKeyButton.setVisibility(GONE);
+        }
+    }
+
+    /**
+     * Shows the stored team key.
+     * @param projectKey User token.
+     */
+    public void setProjectKey(String projectKey) {
+        if(projectKey!=null && !projectKey.isEmpty()) {
+            mProjectKey.setText(projectKey.substring(0,10) + "..." +
+                    projectKey.substring(projectKey.length()-10, projectKey.length()));
+            mClearProjectKeyButton.setVisibility(VISIBLE);
+        }
+        else {
+            mProjectKey.setText("");
+            mClearProjectKeyButton.setVisibility(GONE);
+        }
+    }
+
+    public String getProjectKey() {
+        return mProjectKey.getText().toString();
+    }
+
+    public String getTeamKey() {
+        return mTeamKey.getText().toString();
     }
 
     /**

@@ -10,4 +10,5 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
 public class StartVerificationRequestVo extends UnauthorizedRequestVo {
     public DataPointVo.DataPointType datapoint_type;
     public DataPointVo data;
+    public boolean show_verification_secret;
 }

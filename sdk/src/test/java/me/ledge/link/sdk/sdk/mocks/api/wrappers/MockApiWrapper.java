@@ -11,10 +11,13 @@ import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
+import me.ledge.link.api.vos.requests.dashboard.CreateProjectRequestVo;
+import me.ledge.link.api.vos.requests.dashboard.CreateTeamRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.requests.users.DeleteUserRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
@@ -33,6 +36,9 @@ import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
+import me.ledge.link.api.vos.responses.dashboard.CreateProjectResponseVo;
+import me.ledge.link.api.vos.responses.dashboard.CreateTeamResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
@@ -330,5 +336,32 @@ public class MockApiWrapper implements LinkApiWrapper {
     @Override
     public LoanApplicationDetailsResponseVo setApplicationAccount(ApplicationAccountRequestVo applicationAccountRequestVo, String s) throws ApiException {
         return new LoanApplicationDetailsResponseVo();
+    }
+
+    @Override
+    public void deleteUser(DeleteUserRequestVo deleteUserRequestVo) throws ApiException {
+    }
+
+    @Override
+    public CreateTeamResponseVo createTeam(CreateTeamRequestVo createTeamRequestVo) throws ApiException {
+        CreateTeamResponseVo createTeamResponseVo = new CreateTeamResponseVo();
+        createTeamResponseVo.team_id = "1234";
+        return createTeamResponseVo;
+    }
+
+    @Override
+    public void deleteTeam(String s) throws ApiException {
+
+    }
+
+    @Override
+    public CreateProjectResponseVo createProject(CreateProjectRequestVo createProjectRequestVo, String s) throws ApiException {
+        CreateProjectResponseVo createProjectResponseVo = new CreateProjectResponseVo();
+        createProjectResponseVo.project_id = "1234";
+        return createProjectResponseVo;
+    }
+
+    @Override
+    public void deleteProject(String s, String s1) throws ApiException {
     }
 }

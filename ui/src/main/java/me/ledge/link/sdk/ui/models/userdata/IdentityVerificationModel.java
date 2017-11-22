@@ -54,9 +54,9 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         return birthdayFormat.format(mBirthday);
     }
 
-    public Date getDateFromString(String dateString) {
+    public Date getDateFromString(String dateString, String format) {
         if(dateString != null) {
-            SimpleDateFormat birthdayFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
+            SimpleDateFormat birthdayFormat = new SimpleDateFormat(format, Locale.US);
             try {
                 return birthdayFormat.parse(dateString);
             } catch (ParseException e) {
@@ -87,7 +87,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         Birthdate baseBirthdate = (Birthdate) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.BirthDate, null);
         if(baseBirthdate!=null) {
-            setBirthday(baseBirthdate.getDate());
+            setBirthday(baseBirthdate.getDate(), DATE_FORMAT);
         }
         SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, null);
         if(baseSSN!=null && baseSSN.getSocialSecurityNumber()!=null) {
@@ -95,8 +95,8 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         }
     }
 
-    private void setBirthday(String date) {
-        mBirthday = getDateFromString(date);
+    public void setBirthday(String date, String format) {
+        mBirthday = getDateFromString(date, format);
     }
 
     /** {@inheritDoc} */

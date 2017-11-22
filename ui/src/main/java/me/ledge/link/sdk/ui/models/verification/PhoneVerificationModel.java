@@ -117,6 +117,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
         StartVerificationRequestVo request = new StartVerificationRequestVo();
         request.data = getPhoneFromBaseData();
         request.datapoint_type = DataPointVo.DataPointType.Phone;
+        request.show_verification_secret = true;
         return request;
     }
 }
