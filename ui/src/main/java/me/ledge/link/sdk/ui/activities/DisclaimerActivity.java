@@ -199,7 +199,7 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
         protected void onPostExecute(String result) {
             mWakeLock.release();
             mLoadingSpinnerManager.showLoading(false);
-            if (result != null)
+            if (result == null)
                 mView.displayErrorMessage(getString(R.string.disclaimer_error));
             else {
                 mDisclosureLoaded = true;

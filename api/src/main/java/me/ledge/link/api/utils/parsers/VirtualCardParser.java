@@ -22,7 +22,7 @@ public class VirtualCardParser implements JsonDeserializer<VirtualCard> {
         JsonObject jObject = json.getAsJsonObject();
 
         return new VirtualCard(jObject.get("account_id").getAsString(),
-                Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_type"))),
+                Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),
                 ParsingUtils.getStringFromJson(jObject.get("pan")),
                 ParsingUtils.getStringFromJson(jObject.get("cvv_number")),
                 ParsingUtils.getStringFromJson(jObject.get("last_four_digits")),
