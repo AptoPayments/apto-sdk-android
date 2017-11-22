@@ -40,7 +40,7 @@ import me.ledge.link.api.vos.responses.dashboard.CreateProjectResponseVo;
 import me.ledge.link.api.vos.responses.dashboard.CreateTeamResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.LenderVo;
 import me.ledge.link.api.vos.responses.offers.OfferVo;
@@ -252,13 +252,9 @@ public class MockApiWrapper implements LinkApiWrapper {
         return application;
     }
 
-    /** {@inheritDoc} */
     @Override
-    public LoanApplicationsListResponseVo getLoanApplicationsList(ListRequestVo requestData) {
-        LoanApplicationsListResponseVo response = new LoanApplicationsListResponseVo();
-        response.data = new LoanApplicationDetailsResponseVo[] { createLoanApplication("") };
-
-        return response;
+    public LoanApplicationsSummaryListResponseVo getPendingLoanApplicationsList(ListRequestVo listRequestVo) throws ApiException {
+        return new LoanApplicationsSummaryListResponseVo();
     }
 
     // TODO: add unit tests for verification tasks
@@ -314,7 +310,7 @@ public class MockApiWrapper implements LinkApiWrapper {
     @Override
     public VirtualCard issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
         VirtualCard response = new VirtualCard();
-        response.cardType = VirtualCard.CardType.MARQETA;
+        response.cardNetwork = VirtualCard.CardNetwork.VISA;
         return response;
     }
 

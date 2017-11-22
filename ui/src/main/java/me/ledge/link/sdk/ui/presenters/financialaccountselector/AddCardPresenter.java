@@ -67,7 +67,7 @@ public class AddCardPresenter
     @Override
     public void addCardClickHandler() {
         if(mView.isCreditCardInputValid()) {
-            storeCardAdditionalInfo(mView.getCardType(), mView.getLastFourDigits(), mView.getExpirationDate());
+            storeCardAdditionalInfo(mView.getCardNetwork(), mView.getLastFourDigits(), mView.getExpirationDate());
             tokenizeCard(mView.getCardNumber(), mView.getSecurityCode());
         }
         else {
@@ -138,8 +138,8 @@ public class AddCardPresenter
         return String.valueOf(month) + "/" + String.valueOf(year);
     }
 
-    private void storeCardAdditionalInfo(String cardType, String lastFourDigits, String expirationDate) {
-        mModel.setCardType(cardType);
+    private void storeCardAdditionalInfo(String cardNetwork, String lastFourDigits, String expirationDate) {
+        mModel.setCardNetwork(cardNetwork);
         mModel.setLastFourDigits(lastFourDigits);
         mModel.setExpirationDate(expirationDate);
     }

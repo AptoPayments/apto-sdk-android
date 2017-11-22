@@ -44,7 +44,7 @@
         </activity>
 
         <activity
-            android:name="me.ledge.link.sdk.ui.activities.link.WelcomeActivity"
+            android:name="me.ledge.link.sdk.ui.activities.showgenericmessage.ShowGenericMessageActivity"
             android:theme="@style/Theme.LedgeLine.Example">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -139,8 +139,8 @@
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActivity"
-                android:theme="@style/Theme.LedgeLine.Example" />
+            android:name="me.ledge.link.sdk.ui.activities.loanapplication.SelectLoanApplicationListActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
             android:name="me.ledge.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity"
@@ -179,6 +179,10 @@
 
         <activity
             android:name="me.ledge.link.sdk.ui.activities.DisclaimerActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="me.ledge.link.sdk.ui.activities.ActionNotSupportedActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
     </application>

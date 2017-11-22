@@ -51,7 +51,7 @@ import me.ledge.link.api.vos.responses.dashboard.CreateProjectResponseVo;
 import me.ledge.link.api.vos.responses.dashboard.CreateTeamResponseVo;
 import me.ledge.link.api.vos.responses.errors.ErrorResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsListResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.api.vos.responses.offers.OffersListVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
@@ -493,12 +493,12 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
     /** {@inheritDoc} */
     @Override
-    public LoanApplicationsListResponseVo getLoanApplicationsList(ListRequestVo requestData)
+    public LoanApplicationsSummaryListResponseVo getPendingLoanApplicationsList(ListRequestVo requestData)
             throws ApiException {
-        LoanApplicationsListResponseVo result;
+        LoanApplicationsSummaryListResponseVo result;
         try {
-            Response<LoanApplicationsListResponseVo> response
-                    = mLoanApplicationService.getLoanApplicationsList().execute();
+            Response<LoanApplicationsSummaryListResponseVo> response
+                    = mLoanApplicationService.getLoanApplicationsSummaryList().execute();
             result = handleResponse(response, LinkApiWrapper.LIST_LOAN_APPLICATIONS_PATH);
         } catch (IOException ioe) {
             result = null;

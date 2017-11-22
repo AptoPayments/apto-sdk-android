@@ -35,7 +35,7 @@ public class SelectCardModelTest {
     private static final String EXPECTED_ACCOUNT_ID = "123";
     private static final String EXPECTED_EXPIRATION_DATE = "01/99";
     private static final String EXPECTED_LAST_FOUR_DIGITS = "4444";
-    private static final Card.CardType EXPECTED_CARD_TYPE = Card.CardType.AMEX;
+    private static final Card.CardNetwork EXPECTED_CARD_TYPE = Card.CardNetwork.AMEX;
 
     /**
      * Sets up each test.

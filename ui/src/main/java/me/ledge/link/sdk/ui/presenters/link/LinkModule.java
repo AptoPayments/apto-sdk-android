@@ -3,10 +3,21 @@ package me.ledge.link.sdk.ui.presenters.link;
 import android.app.Activity;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java8.util.concurrent.CompletableFuture;
+import me.ledge.link.api.vos.requests.base.ListRequestVo;
+import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationSummaryResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
+import me.ledge.link.api.vos.responses.workflow.ActionVo;
+import me.ledge.link.api.vos.responses.workflow.GenericMessageConfigurationVo;
+import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
+import me.ledge.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
@@ -22,6 +33,7 @@ public class LinkModule extends LedgeBaseModule {
     }
     private boolean mUserHasAllRequiredData;
     private boolean mShowWelcomeScreen;
+    private ActionVo mWelcomeScreenAction;
 
     @Override
     public void initialModuleSetup() {
@@ -36,10 +48,11 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void showWelcomeScreen() {
-        WelcomeModule mWelcomeModule = WelcomeModule.getInstance(this.getActivity());
-        mWelcomeModule.onFinish = this::showOrSkipLoanInfo;
-        mWelcomeModule.onBack = this::showHomeActivity;
-        startModule(mWelcomeModule);
+        GenericMessageConfigurationVo actionConfig = (GenericMessageConfigurationVo) mWelcomeScreenAction.configuration;
+        ShowGenericMessageModule mShowGenericMessageModule = ShowGenericMessageModule.getInstance(this.getActivity(), actionConfig);
+        mShowGenericMessageModule.onFinish = this::showOrSkipLoanInfo;
+        mShowGenericMessageModule.onBack = this::showHomeActivity;
+        startModule(mShowGenericMessageModule);
     }
 
     private void showOrSkipLoanInfo() {
@@ -79,7 +92,7 @@ public class LinkModule extends LedgeBaseModule {
         }
         else {
             loanInfoModule.onGetOffers = null;
-            loanInfoModule.onFinish = this::showUserDataCollector;
+            loanInfoModule.onFinish = this::collectUserData;
         }
         if(mShowWelcomeScreen) {
             loanInfoModule.onBack = this::showWelcomeScreen;
@@ -109,6 +122,20 @@ public class LinkModule extends LedgeBaseModule {
         userDataCollectorModule.onFinish = this::showOffersList;
         userDataCollectorModule.onBack = this::showLoanInfoOrBack;
         userDataCollectorModule.isUpdatingProfile = updateProfile;
+        userDataCollectorModule.onNoTokenRetrieved = null;
+        userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;
+        startModule(userDataCollectorModule);
+    }
+
+    private void collectUserData() {
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
+        userDataCollectorModule.onUserHasAllRequiredData = null;
+        userDataCollectorModule.onUserDoesNotHaveAllRequiredData = null;
+        userDataCollectorModule.onFinish = this::showOffersList;
+        userDataCollectorModule.onBack = this::showLoanInfoOrBack;
+        userDataCollectorModule.isUpdatingProfile = false;
+        userDataCollectorModule.onNoTokenRetrieved = null;
+        userDataCollectorModule.onTokenRetrieved = null;
         startModule(userDataCollectorModule);
     }
 
@@ -137,6 +164,8 @@ public class LinkModule extends LedgeBaseModule {
             mUserHasAllRequiredData = true;
             showOrSkipWelcomeScreen();
         };
+        userDataCollectorModule.onNoTokenRetrieved = null;
+        userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;
         startModule(userDataCollectorModule);
     }
 
@@ -151,12 +180,62 @@ public class LinkModule extends LedgeBaseModule {
 
     private void projectConfigRetrieved(ConfigResponseVo configResponseVo) {
         mShowWelcomeScreen = (configResponseVo.welcomeScreenAction.status != 0);
-        askDataCollectorIfUserHasAllRequiredData();
+        if(mShowWelcomeScreen) {
+            mWelcomeScreenAction = configResponseVo.welcomeScreenAction;
+        }
+        getUserTokenFromDataCollector();
+    }
+
+    private void getUserTokenFromDataCollector() {
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
+        userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;
+        userDataCollectorModule.onNoTokenRetrieved = this::askDataCollectorIfUserHasAllRequiredData;
+        userDataCollectorModule.onBack = this::showHomeActivity;
+        userDataCollectorModule.isUpdatingProfile = false;
+        startModule(userDataCollectorModule);
+    }
+
+    private void getOpenApplications() {
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
+        LedgeLinkUi.getPendingLoanApplicationsList(new ListRequestVo());
     }
 
     private void showError(String errorMessage) {
         if(!errorMessage.isEmpty()) {
             Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
         }
+    }
+
+    /**
+     * Called when the get current applications response has been received.
+     * @param applicationsList API response.
+     */
+    @Subscribe
+    public void handleResponse(LoanApplicationsSummaryListResponseVo applicationsList) {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        if(applicationsList.total_count == 0) {
+            showLoanInfo();
+        }
+        else if(applicationsList.total_count == 1) {
+            LoanApplicationSummaryResponseVo applicationSummary = applicationsList.data[0];
+            LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity());
+            loanApplicationModule.onBack = this::showOrSkipLoanInfo;
+            loanApplicationModule.continueApplication(applicationSummary.id);
+        }
+        else {
+            LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity());
+            loanApplicationModule.onStartNewApplication = this::showLoanInfo;
+            loanApplicationModule.onBack = this::showOrSkipLoanInfo;
+            loanApplicationModule.startLoanApplicationSelector(applicationsList);
+        }
+    }
+
+    /**
+     * Called when an API error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
+        showError(error.toString());
     }
 }

@@ -9,14 +9,17 @@ import java8.util.concurrent.CompletableFuture;
 import java8.util.concurrent.CompletionException;
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity;
+import me.ledge.link.sdk.ui.activities.loanapplication.SelectLoanApplicationListActivity;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
+import me.ledge.link.sdk.ui.models.loanapplication.SelectLoanApplicationModel;
 import me.ledge.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import me.ledge.link.sdk.ui.presenters.offers.OffersListDelegate;
@@ -36,10 +39,13 @@ import static me.ledge.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
 
 public class LoanApplicationModule extends LedgeBaseModule
         implements IntermediateLoanApplicationDelegate, AddDocumentsListDelegate,
-        LoanAgreementDelegate, OffersListDelegate, LoanApplicationSummaryDelegate {
+        LoanAgreementDelegate, OffersListDelegate, LoanApplicationSummaryDelegate,
+        SelectLoanApplicationListDelegate {
     private static LoanApplicationModule mInstance;
     public Command onUpdateUserProfile;
+    public Command onStartNewApplication;
     private WorkflowModule mWorkflowModule;
+    private LoanApplicationsSummaryListResponseVo mApplicationList;
 
     public static synchronized LoanApplicationModule getInstance(Activity activity) {
         if (mInstance == null) {
@@ -140,6 +146,7 @@ public class LoanApplicationModule extends LedgeBaseModule
         });
         try {
             LoanApplicationDetailsResponseVo applicationStatus = future.get();
+            LoanStorage.getInstance().setCurrentLoanApplication(applicationStatus);
             return new ApplicationVo(applicationStatus.id, applicationStatus.next_action);
         } catch (InterruptedException | ExecutionException e) {
             future.completeExceptionally(e);
@@ -158,5 +165,36 @@ public class LoanApplicationModule extends LedgeBaseModule
     @Override
     public void loanApplicationSummaryShowPrevious(LoanApplicationSummaryModel model) {
         showOffers();
+    }
+
+    public void continueApplication(String applicationId) {
+        ApplicationVo application = this.getApplicationStatus(new ApplicationVo(applicationId, null));
+        this.onApplicationReceived(application);
+    }
+
+    public void startLoanApplicationSelector(LoanApplicationsSummaryListResponseVo loanApplicationSummaryList) {
+        mApplicationList = loanApplicationSummaryList;
+        ModuleManager.getInstance().setModule(new WeakReference<>(this));
+        startActivity(SelectLoanApplicationListActivity.class);
+    }
+
+    @Override
+    public void selectLoanApplicationListOnBackPressed() {
+        onBack.execute();
+    }
+
+    @Override
+    public void newApplicationPressed() {
+        onStartNewApplication.execute();
+    }
+
+    @Override
+    public void applicationSelected(SelectLoanApplicationModel model) {
+        continueApplication(model.getApplicationId());
+    }
+
+    @Override
+    public LoanApplicationsSummaryListResponseVo getLoanApplicationsSummaryList() {
+        return mApplicationList;
     }
 }

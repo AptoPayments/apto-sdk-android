@@ -74,6 +74,8 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     private static UserDataCollectorModule instance;
     public Command onUserDoesNotHaveAllRequiredData;
     public Command onUserHasAllRequiredData;
+    public Command onTokenRetrieved;
+    public Command onNoTokenRetrieved;
     public LinkedList<RequiredDataPointVo> mRequiredDataPointList;
     public boolean isUpdatingProfile;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
@@ -116,7 +118,12 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     public void handleResponse(DataPointList userInfo) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         UserStorage.getInstance().setUserData(userInfo);
-        compareRequiredDataPointsWithCurrent(userInfo);
+        if(onTokenRetrieved != null) {
+            onTokenRetrieved.execute();
+        }
+        else {
+            compareRequiredDataPointsWithCurrent(userInfo);
+        }
     }
 
     /**
@@ -127,11 +134,17 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     public void handleToken(LoginUserResponseVo response) {
         if (response != null) {
             storeToken(response.user_token);
-            removeSecondaryCredentialFromRequiredList();
-            mRequiredActivities.clear();
-            // Identity Verification screen has to be added to show disclaimers
-            addRequiredActivity(IdentityVerificationActivity.class);
-            getCurrentUserOrContinue(ConfigStorage.getInstance().getPOSMode());
+            if(onTokenRetrieved != null) {
+                LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+                onTokenRetrieved.execute();
+            }
+            else {
+                removeSecondaryCredentialFromRequiredList();
+                mRequiredActivities.clear();
+                // Identity Verification screen has to be added to show disclaimers
+                addRequiredActivity(IdentityVerificationActivity.class);
+                getCurrentUserOrContinue(ConfigStorage.getInstance().getPOSMode());
+            }
         }
     }
 
@@ -390,9 +403,14 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
 
         if(mRequiredActivities.isEmpty()) {
-            onUserHasAllRequiredData.execute();
+            if(onUserHasAllRequiredData != null) {
+                onUserHasAllRequiredData.execute();
+            }
+            else {
+                stopModule();
+            }
         } else {
-            if (onUserHasAllRequiredData != null) {
+            if (onUserDoesNotHaveAllRequiredData != null) {
                 onUserDoesNotHaveAllRequiredData.execute();
             } else {
                 startActivity(mRequiredActivities.get(0));
@@ -436,7 +454,12 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     private void getCurrentUserOrContinue(boolean isPOSMode) {
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
         if (isPOSMode || userToken == null || isUpdatingProfile) {
-            compareRequiredDataPointsWithCurrent(new DataPointList());
+            if(onNoTokenRetrieved != null) {
+                onNoTokenRetrieved.execute();
+            }
+            else {
+                compareRequiredDataPointsWithCurrent(new DataPointList());
+            }
         } else {
             LedgeLinkUi.getApiWrapper().setBearerToken(userToken);
             LedgeLinkUi.getCurrentUser();

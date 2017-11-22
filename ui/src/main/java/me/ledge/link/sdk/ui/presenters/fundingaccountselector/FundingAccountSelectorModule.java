@@ -32,18 +32,18 @@ public class FundingAccountSelectorModule extends LedgeBaseModule
 
     private static FundingAccountSelectorModule instance;
     private FinancialAccountVo mSelectedFinancialAccount;
-    private SelectFundingAccountConfigurationVo mConfig;
+    private static SelectFundingAccountConfigurationVo mConfig;
 
     public static synchronized FundingAccountSelectorModule getInstance(Activity activity, SelectFundingAccountConfigurationVo config) {
+        mConfig = config;
         if (instance == null) {
-            instance = new FundingAccountSelectorModule(activity, config);
+            instance = new FundingAccountSelectorModule(activity);
         }
         return instance;
     }
 
-    private FundingAccountSelectorModule(Activity activity, SelectFundingAccountConfigurationVo config) {
+    private FundingAccountSelectorModule(Activity activity) {
         super(activity);
-        mConfig = config;
     }
 
     @Override

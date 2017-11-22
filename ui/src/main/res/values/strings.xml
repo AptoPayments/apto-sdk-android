@@ -7,10 +7,6 @@
     <string name="stepper_back_button_label">BACK</string>
     <string name="stepper_next_button_label">NEXT</string>
 
-    <!-- Welcome -->
-    <string name="welcome_title">Get started</string>
-    <string name="welcome_button_next">START</string>
-
     <!-- Terms / Conditions -->
     <string name="terms_label">Find a loan</string>
     <string name="terms_tag_line">Find the perfect loan,\nfrom your phone.</string>
@@ -286,4 +282,16 @@
     <string name="disclaimer_accept">Accept</string>
     <string name="disclaimer_cancel">Cancel</string>
     <string name="disclaimer_error">Error loading disclaimer</string>
+
+    <!-- Action Not Supported -->
+    <string name="action_not_supported_error">The received workflow action is currently not supported.</string>
+
+    <!-- Show Generic Message -->
+    <string name="show_generic_message_title"> </string>
+
+    <!-- Pending Application Selector -->
+    <string name="select_pending_application_list_title">Open Applications</string>
+    <string name="select_pending_application_list_label">Would you like to continue with an open application?</string>
+    <string name="new_application_button">NEW APPLICATION</string>
+
 </resources>

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.activities.link.LoanAmountActivity;
-import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationsListActivity;
 import me.ledge.link.sdk.ui.activities.offers.OffersListActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
@@ -41,12 +40,6 @@ public class EventBusHandlerConfigurator implements HandlerConfigurator {
         process.add(OffersListActivity.class);
 
         return process;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<? extends LoanApplicationsListActivity> getApplicationsListActivity() {
-        return LoanApplicationsListActivity.class;
     }
 
     /** {@inheritDoc} */
