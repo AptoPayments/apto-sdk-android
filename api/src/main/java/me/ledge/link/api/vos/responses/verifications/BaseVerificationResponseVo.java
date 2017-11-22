@@ -10,4 +10,5 @@ public class BaseVerificationResponseVo {
     public String verification_type;
     public String verification_id;
     public String status;
+    public String secret;
 }

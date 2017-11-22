@@ -36,6 +36,7 @@ import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.api.vos.responses.config.TimeAtAddressVo;
+import me.ledge.link.sdk.example.KeysStorage;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.SettingsView;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
@@ -68,6 +69,9 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         if( SharedPreferencesStorage.getUserToken(this, false) != null) {
             mView.setUserToken(UserStorage.getInstance().getBearerToken());
         }
+
+        mView.setProjectKey(KeysStorage.getProjectToken(this, ""));
+        mView.setTeamKey(KeysStorage.getDeveloperKey(this, ""));
 
         setUpToolbar();
         new LoadConfigTask().execute();
@@ -215,6 +219,13 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
     public void onBackPressed() {
         MainActivity.SHARED_USER_DATA.put(MainActivity.USER_DATA_KEY, new WeakReference<>(createStartData()));
         MainActivity.SHARED_LOAN_DATA.put(MainActivity.LOAN_DATA_KEY, new WeakReference<>(createLoanData()));
+        if(!mView.getProjectKey().isEmpty()) {
+            KeysStorage.storeProjectKey(this, mView.getProjectKey());
+        }
+        if(!mView.getTeamKey().isEmpty()) {
+            KeysStorage.storeTeamKey(this, mView.getTeamKey());
+        }
+
         super.onBackPressed();
     }
 
@@ -279,6 +290,18 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         mView.setUserToken("");
         LedgeLinkUi.clearUserToken(this);
         MainActivity.SHARED_USER_DATA.put(MainActivity.USER_DATA_KEY, new WeakReference<>(null));
+    }
+
+    @Override
+    public void clearTeamKeyClickedHandler() {
+        mView.setTeamKey("");
+        KeysStorage.storeTeamKey(this, "");
+    }
+
+    @Override
+    public void clearProjectKeyClickedHandler() {
+        mView.setProjectKey("");
+        KeysStorage.storeProjectKey(this, "");
     }
 
     public void loanPurposesListRetrieved(LoanPurposesResponseVo loanPurposesList) {

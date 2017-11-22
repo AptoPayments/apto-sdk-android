@@ -4,6 +4,7 @@ import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.sdk.storages.AutomationStorage;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
@@ -28,6 +29,8 @@ public class StartVerificationTask extends LedgeLinkApiTask<Void, Void, StartVer
     /** {@inheritDoc} */
     @Override
     protected StartVerificationResponseVo callApi() throws ApiException {
-        return getApiWrapper().startVerification(getRequestData());
+        StartVerificationResponseVo response = getApiWrapper().startVerification(getRequestData());
+        AutomationStorage.getInstance().verificationSecret = response.secret;
+        return response;
     }
 }

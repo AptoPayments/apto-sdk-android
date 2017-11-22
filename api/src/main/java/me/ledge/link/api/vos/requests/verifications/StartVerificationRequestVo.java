@@ -13,4 +13,5 @@ public class StartVerificationRequestVo extends UnauthorizedRequestVo {
     public DataPointVo.DataPointType datapoint_type;
     @SerializedName("datapoint")
     public DataPointVo data;
+    public boolean show_verification_secret;
 }

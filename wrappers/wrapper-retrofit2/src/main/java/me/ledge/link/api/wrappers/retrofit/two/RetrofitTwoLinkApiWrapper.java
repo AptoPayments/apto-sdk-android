@@ -33,10 +33,13 @@ import me.ledge.link.api.vos.datapoints.VerificationVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
+import me.ledge.link.api.vos.requests.dashboard.CreateProjectRequestVo;
+import me.ledge.link.api.vos.requests.dashboard.CreateTeamRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.api.vos.requests.users.DeleteUserRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
 import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
@@ -44,6 +47,8 @@ import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
+import me.ledge.link.api.vos.responses.dashboard.CreateProjectResponseVo;
+import me.ledge.link.api.vos.responses.dashboard.CreateTeamResponseVo;
 import me.ledge.link.api.vos.responses.errors.ErrorResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
@@ -63,6 +68,7 @@ import me.ledge.link.api.wrappers.BaseLinkApiWrapper;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.api.wrappers.retrofit.two.interceptors.LedgeLinkOkThreeInterceptor;
 import me.ledge.link.api.wrappers.retrofit.two.services.ConfigService;
+import me.ledge.link.api.wrappers.retrofit.two.services.DashboardService;
 import me.ledge.link.api.wrappers.retrofit.two.services.FinancialAccountService;
 import me.ledge.link.api.wrappers.retrofit.two.services.LoanApplicationService;
 import me.ledge.link.api.wrappers.retrofit.two.services.OfferService;
@@ -93,6 +99,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     private LoanApplicationService mLoanApplicationService;
     private VerificationService mVerificationService;
     private FinancialAccountService mFinancialAccountService;
+    private DashboardService mDashboardService;
 
     /**
      * Creates a new {@link RetrofitTwoLinkApiWrapper} instance.
@@ -121,6 +128,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         mLoanApplicationService = retrofit.create(LoanApplicationService.class);
         mVerificationService = retrofit.create(VerificationService.class);
         mFinancialAccountService = retrofit.create(FinancialAccountService.class);
+        mDashboardService = retrofit.create(DashboardService.class);
 
         /**
          * TODO: This is probably still slightly too generic.
@@ -666,5 +674,63 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         }
 
         return result;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void deleteUser(DeleteUserRequestVo requestData) throws ApiException {
+        try {
+            mUserService.deleteUser(requestData).execute();
+        } catch (IOException ioe) {
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.DELETE_USER_PATH, ioe);
+        }
+    }
+
+    @Override
+    public CreateTeamResponseVo createTeam(CreateTeamRequestVo requestData) throws ApiException {
+        CreateTeamResponseVo result;
+
+        try {
+            Response<CreateTeamResponseVo> response = mDashboardService.createTeam(requestData).execute();
+            result = handleResponse(response, LinkApiWrapper.CREATE_TEAM_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.CREATE_TEAM_PATH, ioe);
+        }
+
+        return result;
+    }
+
+    @Override
+    public void deleteTeam(String teamId) throws ApiException {
+        try {
+            mDashboardService.deleteTeam(teamId).execute();
+        } catch (IOException ioe) {
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.DELETE_TEAM_PATH, ioe);
+        }
+    }
+
+    @Override
+    public CreateProjectResponseVo createProject(CreateProjectRequestVo requestData, String teamId) throws ApiException {
+        CreateProjectResponseVo result;
+
+        try {
+            Response<CreateProjectResponseVo> response = mDashboardService.createProject(requestData, teamId).execute();
+            result = handleResponse(response, LinkApiWrapper.CREATE_TEAM_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.CREATE_TEAM_PATH, ioe);
+        }
+
+        return result;
+    }
+
+    @Override
+    public void deleteProject(String teamId, String projectId) throws ApiException {
+        try {
+            mDashboardService.deleteProject(teamId, projectId).execute();
+        } catch (IOException ioe) {
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.DELETE_PROJECT_PATH, ioe);
+        }
     }
 }

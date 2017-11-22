@@ -160,6 +160,10 @@ public class IdentityVerificationView
         mBirthdayField.setText(birthday);
     }
 
+    public String getBirthday() {
+        return mBirthdayField.getText().toString();
+    }
+
     /**
      * Shows the user's social security number with hyphens.
      * @param ssn social security number.
