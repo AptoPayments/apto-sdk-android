@@ -35,8 +35,6 @@ import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.workflow.Command;
-import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
@@ -60,6 +58,8 @@ import me.ledge.link.sdk.ui.presenters.verification.PhoneVerificationDelegate;
 import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
+import me.ledge.link.sdk.ui.workflow.Command;
+import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 
 /**
  * Created by adrian on 29/12/2016.
@@ -143,7 +143,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
                 mRequiredActivities.clear();
                 // Identity Verification screen has to be added to show disclaimers
                 addRequiredActivity(IdentityVerificationActivity.class);
-                getCurrentUserOrContinue(ConfigStorage.getInstance().getPOSMode());
+                getCurrentUserOrContinue(ConfigStorage.getInstance().getPOSMode(), true);
             }
         }
     }
@@ -448,10 +448,10 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
                     stopModule();
                     return null;
                 })
-                .thenAccept(this::getCurrentUserOrContinue);
+                .thenAccept((isPOSMode) -> getCurrentUserOrContinue(isPOSMode, false));
     }
 
-    private void getCurrentUserOrContinue(boolean isPOSMode) {
+    private void getCurrentUserOrContinue(boolean isPOSMode, boolean validateUserToken) {
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
         if (isPOSMode || userToken == null || isUpdatingProfile) {
             if(onNoTokenRetrieved != null) {
@@ -462,7 +462,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
             }
         } else {
             LedgeLinkUi.getApiWrapper().setBearerToken(userToken);
-            LedgeLinkUi.getCurrentUser();
+            LedgeLinkUi.getCurrentUser(validateUserToken);
         }
     }
 

@@ -159,7 +159,7 @@ public class LedgeLinkSdkTest {
     @Test
     public void getCurrentUserTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getCurrentUser(),
+                LedgeLinkSdk.getCurrentUser(false),
                 CoreMatchers.<LedgeLinkApiTask>notNullValue());
     }
 

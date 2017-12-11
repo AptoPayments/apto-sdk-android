@@ -38,7 +38,6 @@ import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.api.vos.responses.dashboard.CreateProjectResponseVo;
 import me.ledge.link.api.vos.responses.dashboard.CreateTeamResponseVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
@@ -194,7 +193,7 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public CurrentUserResponseVo getCurrentUser(UnauthorizedRequestVo unauthorizedRequestVo) throws ApiException {
+    public CurrentUserResponseVo getCurrentUser(UnauthorizedRequestVo unauthorizedRequestVo, boolean throwSessionExpiredError) throws ApiException {
         CurrentUserResponseVo response = new CurrentUserResponseVo();
         response.userData = new UserDataListResponseVo();
         response.userData.data = new DataPointVo[0];
