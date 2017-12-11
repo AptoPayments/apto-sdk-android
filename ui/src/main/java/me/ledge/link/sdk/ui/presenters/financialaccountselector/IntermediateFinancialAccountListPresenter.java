@@ -51,6 +51,10 @@ public class IntermediateFinancialAccountListPresenter
 
     @Override
     public void onBack() {
+        if(mLoadingSpinnerManager.isLoading()) {
+            return;
+        }
+        mResponseHandler.unsubscribe(this);
         mDelegate.onIntermediateFinancialAccountListBackPressed();
     }
 
@@ -85,6 +89,7 @@ public class IntermediateFinancialAccountListPresenter
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
+        mResponseHandler.unsubscribe(this);
         if (mView != null) {
             mLoadingSpinnerManager.showLoading(false);
         }

@@ -31,4 +31,8 @@ public class LoadingView extends RelativeLayout {
             setVisibility(GONE);
         }
     }
+
+    public boolean isLoading() {
+        return this.getVisibility()==VISIBLE;
+    }
 }

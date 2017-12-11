@@ -1,7 +1,8 @@
 package me.ledge.link.sdk.ui.eventbus.handlers;
 
-import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import org.greenrobot.eventbus.EventBus;
+
+import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
  * Concrete {@link ApiResponseHandler} that uses the GreenRobot {@link EventBus}.
@@ -28,13 +29,17 @@ public class EventBusThreeResponseHandler implements ApiResponseHandler {
     /** {@inheritDoc} */
     @Override
     public void subscribe(Object target) {
-        mBus.register(target);
+        if(!mBus.isRegistered(target)) {
+            mBus.register(target);
+        }
     }
 
     /** {@inheritDoc} */
     @Override
     public void unsubscribe(Object target) {
-        mBus.unregister(target);
+        if(mBus.isRegistered(target)) {
+            mBus.unregister(target);
+        }
     }
 
     /** {@inheritDoc} */

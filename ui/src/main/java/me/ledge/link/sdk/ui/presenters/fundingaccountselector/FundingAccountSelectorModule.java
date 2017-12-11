@@ -54,17 +54,17 @@ public class FundingAccountSelectorModule extends LedgeBaseModule
     private void showFinancialAccountSelector() {
         FinancialAccountSelectorModule financialAccountSelectorModule = FinancialAccountSelectorModule.getInstance(this.getActivity(), mConfig);
         financialAccountSelectorModule.onBack = this.onBack;
-        financialAccountSelectorModule.onFinish = () -> onFinancialAccountSelected(financialAccountSelectorModule.getFinancialAccount());
+        financialAccountSelectorModule.onFinish = this::onFinancialAccountSelected;
         startModule(financialAccountSelectorModule);
     }
 
     private void onFinancialAccountSelected(FinancialAccountVo selectedFinancialAccount) {
-        ModuleManager.getInstance().setModule(new WeakReference<>(this));
         mSelectedFinancialAccount = selectedFinancialAccount;
         setFundingAccount();
     }
 
     private void showEnableAutoPayScreen() {
+        ModuleManager.getInstance().setModule(new WeakReference<>(this));
         startActivity(EnableAutoPayActivity.class);
     }
 

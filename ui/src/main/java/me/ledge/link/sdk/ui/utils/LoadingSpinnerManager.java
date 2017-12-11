@@ -18,4 +18,8 @@ public class LoadingSpinnerManager {
     public void showLoading(boolean show) {
         mLoadingView.showLoading(show);
     }
+
+    public boolean isLoading() {
+        return mLoadingView.isLoading();
+    }
 }

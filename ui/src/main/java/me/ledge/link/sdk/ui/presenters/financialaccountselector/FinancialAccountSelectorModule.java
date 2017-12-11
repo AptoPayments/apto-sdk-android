@@ -12,6 +12,7 @@ import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity;
@@ -31,8 +32,8 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     private static FinancialAccountSelectorModule instance;
 
-    private FinancialAccountVo selectedFinancialAccount;
     private SelectFundingAccountConfigurationVo mConfig;
+    public SelectFinancialAccountCallback onFinish;
 
     public static synchronized FinancialAccountSelectorModule getInstance(Activity activity, SelectFundingAccountConfigurationVo config) {
         if (instance == null) {
@@ -122,6 +123,9 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Override
     public void financialAccountsReceived(DataPointList financialAccounts) {
+        if(!ModuleManager.getInstance().getCurrentModule().equals(this)) {
+            return;
+        }
         DataPointList baseUserData = UserStorage.getInstance().getUserData();
         List<DataPointVo> financialAccountsList = financialAccounts.getDataPointsOf(DataPointVo.DataPointType.FinancialAccount);
         for(DataPointVo financialAccount : financialAccountsList) {
@@ -139,13 +143,8 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
         startActivity(SelectFinancialAccountListActivity.class);
     }
 
-    public FinancialAccountVo getFinancialAccount() {
-        return selectedFinancialAccount;
-    }
-
     private void onFinancialAccountSelected(FinancialAccountVo selectedFinancialAccount) {
-        this.selectedFinancialAccount = selectedFinancialAccount;
-        onFinish.execute();
+        onFinish.returnSelectedFinancialAccount(selectedFinancialAccount);
     }
 
     public SelectFundingAccountConfigurationVo getConfiguration() {
