@@ -28,7 +28,7 @@ public class GetCurrentUserTaskTest {
     @Before
     public void setUp() {
         mTask = new RoboLinkApiTaskWrapper<>(
-                new GetCurrentUserTask(new UnauthorizedRequestVo(), new MockApiWrapper(), new MockResponseHandler())
+                new GetCurrentUserTask(new UnauthorizedRequestVo(), new MockApiWrapper(), new MockResponseHandler(), false)
         );
     }
 

@@ -190,7 +190,7 @@ public interface LinkApiWrapper {
      * @return API response.
      * @throws ApiException When there is an error making the request.
      */
-    CurrentUserResponseVo getCurrentUser(UnauthorizedRequestVo requestData) throws ApiException;
+    CurrentUserResponseVo getCurrentUser(UnauthorizedRequestVo requestData, boolean throwSessionExpiredError) throws ApiException;
 
     /**
      * Gets the initial list of loan offers.<br />

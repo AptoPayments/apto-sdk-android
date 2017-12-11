@@ -220,10 +220,10 @@ public class LedgeLinkSdk {
      * Gets the current user info.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getCurrentUser() {
+    public static LedgeLinkApiTask getCurrentUser(boolean throwSessionExpiredError) {
         checkComponents();
 
-        GetCurrentUserTask task = new GetCurrentUserTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
+        GetCurrentUserTask task = new GetCurrentUserTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler(), throwSessionExpiredError);
         task.executeOnExecutor(getExecutor());
 
         return task;

@@ -36,4 +36,6 @@ public class ApiErrorVo {
         return String.format(result, statusCode, serverCode, serverMessage);
     }
 
+    public boolean isSessionExpired = false;
+
 }

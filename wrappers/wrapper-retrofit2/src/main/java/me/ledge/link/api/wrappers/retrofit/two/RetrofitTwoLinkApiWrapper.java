@@ -272,6 +272,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         apiError.serverCode = errorResponse.code;
         apiError.serverMessage = errorResponse.message;
 
+        if(statusCode == 401) {
+            apiError.isSessionExpired = true;
+        }
+
         throwApiException(apiError, path, null);
     }
 
@@ -428,7 +432,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public CurrentUserResponseVo getCurrentUser(UnauthorizedRequestVo requestData) throws ApiException {
+    public CurrentUserResponseVo getCurrentUser(UnauthorizedRequestVo requestData, boolean throwSessionExpiredError) throws ApiException {
         CurrentUserResponseVo result;
 
         try {
@@ -437,6 +441,12 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), LinkApiWrapper.GET_CURRENT_USER_PATH, ioe);
+        } catch (ApiException apiException) {
+            if(!throwSessionExpiredError) {
+                apiException.getError().isSessionExpired = false;
+                throw apiException;
+            }
+            throw apiException;
         }
 
         return result;

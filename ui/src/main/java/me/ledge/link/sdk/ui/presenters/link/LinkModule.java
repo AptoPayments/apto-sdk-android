@@ -1,6 +1,8 @@
 package me.ledge.link.sdk.ui.presenters.link;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.support.v4.content.IntentCompat;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -8,6 +10,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
+import me.ledge.link.api.vos.responses.SessionExpiredErrorVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationSummaryResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
@@ -117,6 +120,7 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void startUserDataCollectorModule(boolean updateProfile) {
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         userDataCollectorModule.onUserHasAllRequiredData = null;
         userDataCollectorModule.onFinish = this::showOffersList;
@@ -128,6 +132,7 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void collectUserData() {
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         userDataCollectorModule.onUserHasAllRequiredData = null;
         userDataCollectorModule.onUserDoesNotHaveAllRequiredData = null;
@@ -150,10 +155,13 @@ public class LinkModule extends LedgeBaseModule {
     private void showHomeActivity() {
         Activity currentActivity = this.getActivity();
         currentActivity.finish();
-        currentActivity.startActivity(currentActivity.getIntent());
+        Intent intent = currentActivity.getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+        currentActivity.startActivity(intent);
     }
 
     private void askDataCollectorIfUserHasAllRequiredData() {
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         userDataCollectorModule.onFinish = this::showOrSkipWelcomeScreen;
         userDataCollectorModule.onUserDoesNotHaveAllRequiredData = () -> {
@@ -191,6 +199,7 @@ public class LinkModule extends LedgeBaseModule {
         userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;
         userDataCollectorModule.onNoTokenRetrieved = this::askDataCollectorIfUserHasAllRequiredData;
         userDataCollectorModule.onBack = this::showHomeActivity;
+        userDataCollectorModule.onFinish = this::askDataCollectorIfUserHasAllRequiredData;
         userDataCollectorModule.isUpdatingProfile = false;
         startModule(userDataCollectorModule);
     }
@@ -237,5 +246,15 @@ public class LinkModule extends LedgeBaseModule {
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         showError(error.toString());
+    }
+
+    /**
+     * Called when session expired error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleSessionExpiredError(SessionExpiredErrorVo error) {
+        showError(error.toString());
+        showHomeActivity();
     }
 }

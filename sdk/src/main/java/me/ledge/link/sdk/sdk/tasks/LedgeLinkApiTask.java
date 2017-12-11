@@ -3,6 +3,7 @@ package me.ledge.link.sdk.sdk.tasks;
 import android.os.AsyncTask;
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
+import me.ledge.link.api.vos.responses.SessionExpiredErrorVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
@@ -97,7 +98,12 @@ public abstract class LedgeLinkApiTask<Params, Progress, Result, Request>
         if (mSuccess) {
             mResponseHandler.publishResult(result);
         } else {
-            mResponseHandler.publishResult(mError);
+            if(mError.isSessionExpired) {
+                mResponseHandler.publishResult(new SessionExpiredErrorVo(mError));
+            }
+            else {
+                mResponseHandler.publishResult(mError);
+            }
         }
     }
 }
