@@ -8,7 +8,6 @@ import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
-import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.geocoding.handlers.GeocodingHandler;
 import me.ledge.link.sdk.ui.geocoding.vos.AddressComponentVo;
@@ -19,6 +18,7 @@ import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.userdata.HomeView;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 
 /**
  * Concrete {@link Presenter} for the address validation screen.
@@ -32,6 +32,8 @@ public class HomePresenter
     private HomeDelegate mDelegate;
     private boolean mIsHousingTypeRequired;
     private LoadingSpinnerManager mLoadingSpinnerManager;
+    private boolean mIsNextClickHandlerPending = false;
+    private GeocodingHandler mGeocodingHandler;
 
     /**
      * Creates a new {@link HomePresenter} instance.
@@ -118,15 +120,18 @@ public class HomePresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        mLoadingSpinnerManager.showLoading(true);
-        startZipValidation();
-
-        // Store data.
-        mModel.setZip(mView.getZipCode());
-        if(mIsHousingTypeRequired) {
-            mModel.setHousingType(mView.getHousingType());
+        if(mGeocodingHandler != null) {
+            mLoadingSpinnerManager.showLoading(true);
+            mIsNextClickHandlerPending = true;
         }
-        validateData();
+        else {
+            // Store data.
+            mModel.setZip(mView.getZipCode());
+            if(mIsHousingTypeRequired) {
+                mModel.setHousingType(mView.getHousingType());
+            }
+            validateData();
+        }
     }
 
     private void validateData() {
@@ -194,8 +199,13 @@ public class HomePresenter
     }
 
     private void startZipValidation() {
-        GeocodingHandler.reverseGeocode(mActivity, mView.getZipCode(), null,
+        if(mGeocodingHandler != null) {
+            mGeocodingHandler.cancel();
+        }
+        mGeocodingHandler = new GeocodingHandler();
+        mGeocodingHandler.reverseGeocode(mActivity, mView.getZipCode(), null,
                 response -> {
+                    mGeocodingHandler = null;
                     if (response == null) {
                         return;
                     }
@@ -208,8 +218,12 @@ public class HomePresenter
                             mModel.setState(addressComponent.getShortName());
                         }
                     }
+                    if(mIsNextClickHandlerPending) {
+                        this.nextClickHandler();
+                    }
                 },
                 e -> {
+                    mGeocodingHandler = null;
                     mLoadingSpinnerManager.showLoading(false);
                     mView.displayErrorMessage(e.getMessage());
                 });

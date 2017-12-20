@@ -139,7 +139,7 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
                 connection.connect();
 
                 // Expect HTTP 200 OK, so we don't mistakenly save error report instead of the file
-                if (connection.getResponseCode() != HttpURLConnection.HTTP_OK ||
+                if (connection.getResponseCode() != HttpURLConnection.HTTP_OK &&
                         connection.getResponseCode() != HttpURLConnection.HTTP_NOT_MODIFIED) {
                     return "Server returned HTTP " + connection.getResponseCode()
                             + " " + connection.getResponseMessage();
@@ -180,7 +180,7 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
                     connection.disconnect();
                 }
             }
-            return null;
+            return "OK";
         }
 
         @Override

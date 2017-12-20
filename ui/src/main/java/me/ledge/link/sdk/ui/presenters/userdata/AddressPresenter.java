@@ -156,7 +156,7 @@ public class AddressPresenter
         String address = String.format("%s,+%s,+%s,+%s",
                 mView.getAddress(), mModel.getCity(), mModel.getState(), mModel.getZip());
         String formattedAddress = address.replace(' ', '+');
-        GeocodingHandler.reverseGeocode(mActivity, formattedAddress, mModel.getCountry(),
+        new GeocodingHandler().reverseGeocode(mActivity, formattedAddress, mModel.getCountry(),
                 response -> {
                     mLoadingSpinnerManager.showLoading(false);
                     boolean isValidAddress = false;

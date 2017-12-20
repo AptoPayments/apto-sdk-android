@@ -2,6 +2,8 @@ package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
 import android.app.Activity;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 
 import me.ledge.link.api.vos.datapoints.Card;
@@ -11,6 +13,7 @@ import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
+import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
@@ -74,8 +77,8 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Override
     public void cardAdded(Card card) {
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
         LedgeLinkUi.addCard(card);
-        onFinancialAccountSelected(card);
     }
 
     @Override
@@ -134,6 +137,13 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
         UserStorage.getInstance().setUserData(baseUserData);
         showSelectFinancialAccountListSelector();
     }
+
+    @Subscribe
+    public void handleResponse(Card card) {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        onFinancialAccountSelected(card);
+    }
+
 
     private void showAddFinancialAccountListSelector() {
         startActivity(AddFinancialAccountListActivity.class);
