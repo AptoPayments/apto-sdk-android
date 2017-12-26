@@ -32,7 +32,7 @@ public class HomeView
      * Callbacks this {@link View} will invoke.
      */
     public interface ViewListener extends StepperListener, NextButtonListener {
-        void onZipFieldLostFocus();
+        void onZipFieldFilled();
     }
 
     private LoadingView mLoadingView;
@@ -89,7 +89,7 @@ public class HomeView
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     if(mZipField.getText().toString().length()==getResources().getInteger(R.integer.zip_code_length_validation) && mListener!=null)
                     {
-                        mListener.onZipFieldLostFocus();
+                        mListener.onZipFieldFilled();
                     }
                 }
 
