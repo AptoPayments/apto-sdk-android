@@ -8,6 +8,7 @@ import me.ledge.link.api.utils.loanapplication.LoanApplicationMethod;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
@@ -318,6 +319,11 @@ public class MockApiWrapper implements LinkApiWrapper {
         UserDataListResponseVo response = new UserDataListResponseVo();
         response.data = new DataPointVo[0];
         return response;
+    }
+
+    @Override
+    public FinancialAccountVo getFinancialAccount(String s) throws ApiException {
+        return new FinancialAccountVo("", FinancialAccountVo.FinancialAccountType.Card, false);
     }
 
     @Override

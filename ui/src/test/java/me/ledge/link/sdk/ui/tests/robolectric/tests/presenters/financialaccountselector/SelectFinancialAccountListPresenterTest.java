@@ -30,7 +30,7 @@ public class SelectFinancialAccountListPresenterTest {
     private SelectFinancialAccountListPresenter mPresenter;
     private AppCompatActivity mActivity;
     private FinancialAccountSelectorModule mModule;
-    private FinancialAccountVo expectedAccount;
+    private String expectedAccountId;
 
     /**
      * Creates a new {@link SelectFinancialAccountListPresenter}.
@@ -46,7 +46,7 @@ public class SelectFinancialAccountListPresenterTest {
     public void setUp() {
         mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
         mModule = FinancialAccountSelectorModule.getInstance(mActivity, new SelectFundingAccountConfigurationVo(true, true, true));
-        mModule.onFinish = selectedFinancialAccount -> expectedAccount = selectedFinancialAccount;
+        mModule.onFinish = selectedFinancialAccount -> expectedAccountId = selectedFinancialAccount;
         createPresenter();
     }
 
@@ -82,6 +82,6 @@ public class SelectFinancialAccountListPresenterTest {
             }
         };
         mPresenter.accountClickHandler(financialAccountModel);
-        Assert.assertEquals("Selected account should be passed.", expectedAccount, account);
+        Assert.assertEquals("Selected account should be passed.", expectedAccountId, account.mAccountId);
     }
 }
