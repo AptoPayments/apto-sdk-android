@@ -127,11 +127,9 @@ public class LinkModule extends LedgeBaseModule {
     private void startUserDataCollectorModule(boolean updateProfile) {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
-        userDataCollectorModule.onUserHasAllRequiredData = null;
         userDataCollectorModule.onFinish = this::showOffersList;
         userDataCollectorModule.onBack = this::showLoanInfoOrBack;
         userDataCollectorModule.isUpdatingProfile = updateProfile;
-        userDataCollectorModule.onNoTokenRetrieved = null;
         userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;
         startModule(userDataCollectorModule);
     }
@@ -139,12 +137,9 @@ public class LinkModule extends LedgeBaseModule {
     private void collectUserData() {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
-        userDataCollectorModule.onUserHasAllRequiredData = null;
-        userDataCollectorModule.onUserDoesNotHaveAllRequiredData = null;
         userDataCollectorModule.onFinish = this::showOffersList;
         userDataCollectorModule.onBack = this::showLoanInfoOrBack;
         userDataCollectorModule.isUpdatingProfile = false;
-        userDataCollectorModule.onNoTokenRetrieved = null;
         userDataCollectorModule.onTokenRetrieved = null;
         startModule(userDataCollectorModule);
     }

@@ -72,10 +72,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         TimeAtAddressDelegate, BirthdateVerificationDelegate {
 
     private static UserDataCollectorModule instance;
-    public Command onUserDoesNotHaveAllRequiredData;
-    public Command onUserHasAllRequiredData;
     public Command onTokenRetrieved;
-    public Command onNoTokenRetrieved;
     public LinkedList<RequiredDataPointVo> mRequiredDataPointList;
     public boolean isUpdatingProfile;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
@@ -403,18 +400,9 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
 
         if(mRequiredActivities.isEmpty()) {
-            if(onUserHasAllRequiredData != null) {
-                onUserHasAllRequiredData.execute();
-            }
-            else {
-                stopModule();
-            }
+            stopModule();
         } else {
-            if (onUserDoesNotHaveAllRequiredData != null) {
-                onUserDoesNotHaveAllRequiredData.execute();
-            } else {
-                startActivity(mRequiredActivities.get(0));
-            }
+            startActivity(mRequiredActivities.get(0));
         }
     }
 
@@ -455,12 +443,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     private void getCurrentUserOrContinue(boolean isPOSMode, boolean validateUserToken) {
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
         if (isPOSMode || userToken == null || isUpdatingProfile) {
-            if(onNoTokenRetrieved != null) {
-                onNoTokenRetrieved.execute();
-            }
-            else {
-                compareRequiredDataPointsWithCurrent(new DataPointList());
-            }
+            compareRequiredDataPointsWithCurrent(new DataPointList());
         } else {
             LedgeLinkUi.getApiWrapper().setBearerToken(userToken);
             LedgeLinkUi.getCurrentUser(validateUserToken);
