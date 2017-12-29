@@ -439,6 +439,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         UserStorage.getInstance().setRequiredData(requiredDataPointsList);
         mRequiredDataPointList = new LinkedList<>(Arrays.asList(requiredDataPointsList.data));
         if(!isUpdatingProfile) {
+            removePrimaryCredentialFromRequiredList();
             removeSecondaryCredentialFromRequiredList();
         }
 
@@ -486,12 +487,21 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         startModule();
     }
 
+    private void removePrimaryCredentialFromRequiredList() {
+        String primaryCredential = UIStorage.getInstance().getContextConfig().primaryAuthCredential;
+        removeCredentialFromRequiredList(primaryCredential);
+    }
+
     private void removeSecondaryCredentialFromRequiredList() {
         if(!UserStorage.getInstance().hasBearerToken()) {
             return;
         }
         String secondaryCredential = UIStorage.getInstance().getContextConfig().secondaryAuthCredential;
-        DataPointVo.DataPointType credentialType = DataPointVo.DataPointType.fromString(secondaryCredential);
+        removeCredentialFromRequiredList(secondaryCredential);
+    }
+
+    private void removeCredentialFromRequiredList(String credential) {
+        DataPointVo.DataPointType credentialType = DataPointVo.DataPointType.fromString(credential);
         for(Iterator<RequiredDataPointVo> listIterator = mRequiredDataPointList.iterator(); listIterator.hasNext();) {
             RequiredDataPointVo requiredDataPointVo = listIterator.next();
             if(requiredDataPointVo.type.equals(credentialType)) {

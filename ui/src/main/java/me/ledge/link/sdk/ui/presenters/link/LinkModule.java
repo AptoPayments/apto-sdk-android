@@ -8,6 +8,7 @@ import android.widget.Toast;
 import org.greenrobot.eventbus.Subscribe;
 
 import java8.util.concurrent.CompletableFuture;
+import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.SessionExpiredErrorVo;
@@ -22,7 +23,11 @@ import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
+import me.ledge.link.sdk.ui.presenters.verification.AuthModule;
+import me.ledge.link.sdk.ui.presenters.verification.AuthModuleConfig;
+import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UIStorage;
+import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 
 /**
@@ -160,30 +165,36 @@ public class LinkModule extends LedgeBaseModule {
         currentActivity.startActivity(intent);
     }
 
-    private void askDataCollectorIfUserHasAllRequiredData() {
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
-        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
-        userDataCollectorModule.onFinish = this::showOrSkipWelcomeScreen;
-        userDataCollectorModule.onUserDoesNotHaveAllRequiredData = () -> {
-            mUserHasAllRequiredData = false;
-            showOrSkipWelcomeScreen();
-        };
-        userDataCollectorModule.onUserHasAllRequiredData = () -> {
-            mUserHasAllRequiredData = true;
-            showOrSkipWelcomeScreen();
-        };
-        userDataCollectorModule.onNoTokenRetrieved = null;
-        userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;
-        startModule(userDataCollectorModule);
-    }
-
     private void showOrSkipWelcomeScreen() {
         if(mShowWelcomeScreen) {
             showWelcomeScreen();
         }
         else {
-            showOrSkipLoanInfo();
+            if(isStoredUserTokenValid()) {
+                getOpenApplications();
+            }
+            else {
+                DataPointList userData = UserStorage.getInstance().getUserData();
+                ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
+                AuthModuleConfig authModuleConfig = new AuthModuleConfig(config.primaryAuthCredential, config.secondaryAuthCredential);
+                AuthModule authModule = AuthModule.getInstance(this.getActivity(), userData, authModuleConfig);
+                authModule.onExistingUser = this::getOpenApplications;
+                authModule.onNewUserWithVerifiedPrimaryCredential = this::showOrSkipLoanInfo;
+                authModule.onBack = this::showHomeActivity;
+                authModule.onFinish = this::showHomeActivity;
+                startModule(authModule);
+            }
         }
+    }
+
+    private boolean isStoredUserTokenValid() {
+        boolean isPOSMode = ConfigStorage.getInstance().getPOSMode();
+        String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
+        boolean isTokenValid = !isPOSMode && userToken != null;
+        if(isTokenValid) {
+            LedgeLinkUi.getApiWrapper().setBearerToken(userToken);
+        }
+        return isTokenValid;
     }
 
     private void projectConfigRetrieved(ConfigResponseVo configResponseVo) {
@@ -191,17 +202,7 @@ public class LinkModule extends LedgeBaseModule {
         if(mShowWelcomeScreen) {
             mWelcomeScreenAction = configResponseVo.welcomeScreenAction;
         }
-        getUserTokenFromDataCollector();
-    }
-
-    private void getUserTokenFromDataCollector() {
-        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
-        userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;
-        userDataCollectorModule.onNoTokenRetrieved = this::askDataCollectorIfUserHasAllRequiredData;
-        userDataCollectorModule.onBack = this::showHomeActivity;
-        userDataCollectorModule.onFinish = this::askDataCollectorIfUserHasAllRequiredData;
-        userDataCollectorModule.isUpdatingProfile = false;
-        startModule(userDataCollectorModule);
+        showOrSkipWelcomeScreen();
     }
 
     private void getOpenApplications() {
@@ -255,6 +256,7 @@ public class LinkModule extends LedgeBaseModule {
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
         showError(error.toString());
+        LedgeLinkUi.clearUserToken(getActivity());
         showHomeActivity();
     }
 }

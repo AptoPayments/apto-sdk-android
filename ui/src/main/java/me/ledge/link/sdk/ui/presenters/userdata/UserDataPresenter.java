@@ -38,8 +38,11 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
      * @return Stepper configuration.
      */
     protected StepperConfiguration getStepperConfig() {
-        UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
-        int position = module.getRequiredActivityPosition(mActivity.getClass());
+        int position = 0;
+        if(ModuleManager.getInstance().getCurrentModule() instanceof  UserDataCollectorModule) {
+            UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
+            position = module.getRequiredActivityPosition(mActivity.getClass());
+        }
         return new StepperConfiguration(TOTAL_STEPS, position, true, true);
     }
 
