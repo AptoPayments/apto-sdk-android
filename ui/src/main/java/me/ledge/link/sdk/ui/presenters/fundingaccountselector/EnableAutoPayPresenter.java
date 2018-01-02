@@ -2,10 +2,16 @@ package me.ledge.link.sdk.ui.presenters.fundingaccountselector;
 
 import android.support.v7.app.AppCompatActivity;
 
+import org.greenrobot.eventbus.Subscribe;
+
+import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
+import me.ledge.link.sdk.sdk.LedgeLinkSdk;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.fundingaccountselector.EnableAutoPayModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.storages.UIStorage;
+import me.ledge.link.sdk.ui.utils.LoadingSpinnerManager;
 import me.ledge.link.sdk.ui.views.fundingaccountselector.EnableAutoPayView;
 
 /**
@@ -17,6 +23,7 @@ public class EnableAutoPayPresenter
         implements Presenter<EnableAutoPayModel, EnableAutoPayView>, EnableAutoPayView.ViewListener {
 
     private EnableAutoPayDelegate mDelegate;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link EnableAutoPayPresenter} instance.
@@ -25,7 +32,8 @@ public class EnableAutoPayPresenter
     public EnableAutoPayPresenter(AppCompatActivity activity, EnableAutoPayDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-        mModel.setFinancialAccount(mDelegate.getFinancialAccount());
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
+        LedgeLinkUi.getFinancialAccount(mDelegate.getFinancialAccountId());
     }
 
     /** {@inheritDoc} */
@@ -39,17 +47,10 @@ public class EnableAutoPayPresenter
     public void attachView(EnableAutoPayView view) {
         super.attachView(view);
         mView.setListener(this);
-        AutoPayViewModel enableAutoPayViewModel = mModel.getEnableAutoPayViewModel(mActivity.getResources());
-        if(enableAutoPayViewModel.showDescription) {
-            mView.displayFinancialAccountInfo(enableAutoPayViewModel.description);
-        }
-        if(enableAutoPayViewModel.showPrimaryButton) {
-            mView.setPrimaryButtonText(enableAutoPayViewModel.primaryButtonText);
-        }
-        if(enableAutoPayViewModel.showSecondaryButton) {
-            mView.setSecondaryButtonText(enableAutoPayViewModel.secondaryButtonText);
-        }
         mView.setImage(UIStorage.getInstance().getContextConfig().logoURL);
+
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
+        mLoadingSpinnerManager.showLoading(false);
     }
 
     @Override
@@ -72,5 +73,27 @@ public class EnableAutoPayPresenter
     @Override
     public void secondaryButtonClickHandler() {
         mDelegate.secondaryButtonPressed();
+    }
+
+    /**
+     * Called when the get financial account response has been received.
+     * @param account API response.
+     */
+    @Subscribe
+    public void handleResponse(FinancialAccountVo account) {
+        mModel.setFinancialAccount(account);
+        mActivity.runOnUiThread(() -> {
+            AutoPayViewModel enableAutoPayViewModel = mModel.getEnableAutoPayViewModel(mActivity.getResources());
+            if(enableAutoPayViewModel.showDescription) {
+                mView.displayFinancialAccountInfo(enableAutoPayViewModel.description);
+            }
+            if(enableAutoPayViewModel.showPrimaryButton) {
+                mView.setPrimaryButtonText(enableAutoPayViewModel.primaryButtonText);
+            }
+            if(enableAutoPayViewModel.showSecondaryButton) {
+                mView.setSecondaryButtonText(enableAutoPayViewModel.secondaryButtonText);
+            }
+            mLoadingSpinnerManager.showLoading(false);
+        });
     }
 }

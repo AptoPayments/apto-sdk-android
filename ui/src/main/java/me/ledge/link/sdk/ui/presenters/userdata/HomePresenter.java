@@ -194,7 +194,7 @@ public class HomePresenter
     }
 
     @Override
-    public void onZipFieldLostFocus() {
+    public void onZipFieldFilled() {
         startZipValidation();
     }
 

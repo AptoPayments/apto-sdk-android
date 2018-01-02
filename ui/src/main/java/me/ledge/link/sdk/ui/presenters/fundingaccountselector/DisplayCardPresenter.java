@@ -2,7 +2,12 @@ package me.ledge.link.sdk.ui.presenters.fundingaccountselector;
 
 import android.support.v7.app.AppCompatActivity;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import me.ledge.link.api.vos.datapoints.Card;
+import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
+import me.ledge.link.sdk.sdk.LedgeLinkSdk;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.fundingaccountselector.DisplayCardModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -35,11 +40,8 @@ public class DisplayCardPresenter
     public void attachView(DisplayCardView view) {
         super.attachView(view);
         view.setViewListener(this);
-        Card card = mDelegate.getCard();
-        view.setExpiryDate(card.expirationDate);
-        view.setCardNumber(card.PANToken);
-        view.setCardName(mModel.getCardHolderName());
-        view.setCardBalance(String.valueOf(LoanStorage.getInstance().getCurrentLoanApplication().offer.loan_amount));
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
+        LedgeLinkUi.getFinancialAccount(mDelegate.getFinancialAccountId());
     }
 
     @Override
@@ -60,5 +62,20 @@ public class DisplayCardPresenter
     @Override
     public void secondaryButtonClickHandler() {
         mDelegate.displayCardSecondaryButtonPressed();
+    }
+
+    /**
+     * Called when the get financial account response has been received.
+     * @param account API response.
+     */
+    @Subscribe
+    public void handleResponse(FinancialAccountVo account) {
+        Card card = (Card) account;
+        mActivity.runOnUiThread(() -> {
+            mView.setExpiryDate(card.expirationDate);
+            mView.setCardNumber(card.PANToken);
+            mView.setCardName(mModel.getCardHolderName());
+            mView.setCardBalance(String.valueOf(LoanStorage.getInstance().getCurrentLoanApplication().offer.loan_amount));
+        });
     }
 }
