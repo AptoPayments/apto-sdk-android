@@ -2,17 +2,18 @@ package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
 import android.app.Activity;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
+import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity;
@@ -21,6 +22,7 @@ import me.ledge.link.sdk.ui.activities.financialaccountselector.SelectFinancialA
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 
 /**
  * Created by adrian on 29/12/2016.
@@ -69,13 +71,13 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Override
     public void virtualCardIssued(VirtualCard virtualCard) {
-        onFinancialAccountSelected(virtualCard);
+        onFinancialAccountSelected(virtualCard.mAccountId);
     }
 
     @Override
     public void cardAdded(Card card) {
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
         LedgeLinkUi.addCard(card);
-        onFinancialAccountSelected(card);
     }
 
     @Override
@@ -108,7 +110,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Override
     public void accountSelected(SelectFinancialAccountModel model) {
-        onFinancialAccountSelected(model.getFinancialAccount());
+        onFinancialAccountSelected(model.getFinancialAccount().mAccountId);
     }
 
     @Override
@@ -135,6 +137,13 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
         showSelectFinancialAccountListSelector();
     }
 
+    @Subscribe
+    public void handleResponse(Card card) {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        onFinancialAccountSelected(card.mAccountId);
+    }
+
+
     private void showAddFinancialAccountListSelector() {
         startActivity(AddFinancialAccountListActivity.class);
     }
@@ -143,8 +152,8 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
         startActivity(SelectFinancialAccountListActivity.class);
     }
 
-    private void onFinancialAccountSelected(FinancialAccountVo selectedFinancialAccount) {
-        onFinish.returnSelectedFinancialAccount(selectedFinancialAccount);
+    private void onFinancialAccountSelected(String selectedFinancialAccountId) {
+        onFinish.returnSelectedFinancialAccount(selectedFinancialAccountId);
     }
 
     public SelectFundingAccountConfigurationVo getConfiguration() {

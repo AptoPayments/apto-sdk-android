@@ -25,10 +25,12 @@ import me.ledge.link.api.utils.VerificationSerializer;
 import me.ledge.link.api.utils.parsers.ActionConfigurationParser;
 import me.ledge.link.api.utils.parsers.DataPointParser;
 import me.ledge.link.api.utils.parsers.RequiredDataPointParser;
+import me.ledge.link.api.utils.parsers.FinancialAccountParser;
 import me.ledge.link.api.utils.parsers.VirtualCardParser;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.api.vos.datapoints.VerificationVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.base.ListRequestVo;
@@ -143,6 +145,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         gsonBuilder.registerTypeAdapter(RequiredDataPointVo.class, new RequiredDataPointParser());
         gsonBuilder.registerTypeAdapter(VerificationVo.class, new VerificationSerializer());
         gsonBuilder.registerTypeAdapter(ActionConfigurationVo.class, new ActionConfigurationParser());
+        gsonBuilder.registerTypeAdapter(FinancialAccountVo.class, new FinancialAccountParser());
         gsonBuilder.registerTypeAdapter(VirtualCard.class, new VirtualCardParser());
 
         // Adding serializeNulls option to avoid bug in API where keys with null values
@@ -681,6 +684,21 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
+        }
+
+        return result;
+    }
+
+    @Override
+    public FinancialAccountVo getFinancialAccount(String accountId) throws ApiException {
+        FinancialAccountVo result;
+
+        try {
+            Response<FinancialAccountVo> response = mFinancialAccountService.getFinancialAccount(accountId).execute();
+            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNT_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNT_PATH, ioe);
         }
 
         return result;

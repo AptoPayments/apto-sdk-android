@@ -3,6 +3,7 @@ package me.ledge.link.api.wrappers.retrofit.two.services;
 import com.google.gson.JsonObject;
 
 import me.ledge.link.api.vos.datapoints.Card;
+import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
@@ -13,6 +14,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Financial accounts related API calls.
@@ -49,4 +51,11 @@ public interface FinancialAccountService {
      */
     @GET(LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH)
     Call<UserDataListResponseVo> getFinancialAccounts();
+
+    /**
+     * Creates a {@link Call} to get a specific financial account.
+     * @return API call to execute.
+     */
+    @GET(LinkApiWrapper.FINANCIAL_ACCOUNT_PATH)
+    Call<FinancialAccountVo> getFinancialAccount(@Path("account_id") String accountId);
 }

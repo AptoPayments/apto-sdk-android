@@ -1,13 +1,13 @@
 package me.ledge.link.sdk.ui.geocoding.handlers;
 
 import android.content.Context;
-import me.ledge.link.sdk.ui.R;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 
 import me.ledge.link.imageloaders.volley.VolleySingleton;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.geocoding.vos.GeocodingResultVo;
 
 /**
@@ -15,8 +15,16 @@ import me.ledge.link.sdk.ui.geocoding.vos.GeocodingResultVo;
  */
 
 public class GeocodingHandler {
+    private boolean mIsCancelled;
 
-    public static void reverseGeocode(Context context, String address, String country, GeocodingOnSuccessCallback onSuccess, GeocodingOnErrorCallback onError) {
+    public GeocodingHandler() {
+        mIsCancelled = false;
+    }
+
+    public void reverseGeocode(Context context, String address, String country, GeocodingOnSuccessCallback onSuccess, GeocodingOnErrorCallback onError) {
+        if(mIsCancelled) {
+            return;
+        }
         String url = context.getString(R.string.google_maps_api_url);
         url+="?address="+address;
 
@@ -31,9 +39,18 @@ public class GeocodingHandler {
                 (Request.Method.GET, url, null, response -> {
                     Gson gson = new Gson();
                     GeocodingResultVo geocodingResponse = gson.fromJson(response.toString(), GeocodingResultVo.class);
-                    onSuccess.execute(geocodingResponse);
-                }, onError::execute);
-
+                    if(!mIsCancelled) {
+                        onSuccess.execute(geocodingResponse);
+                    }
+                }, (e) -> {
+                    if(!mIsCancelled) {
+                        onError.execute(e);
+                    }
+                });
         VolleySingleton.getInstance(context).addToRequestQueue(jsObjRequest);
+    }
+
+    public void cancel() {
+        mIsCancelled = true;
     }
 }

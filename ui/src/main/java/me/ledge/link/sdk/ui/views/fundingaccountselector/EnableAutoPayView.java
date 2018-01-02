@@ -12,6 +12,8 @@ import android.widget.TextView;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
+import me.ledge.link.sdk.ui.views.LoadingView;
+import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
@@ -20,12 +22,13 @@ import me.ledge.link.sdk.ui.views.ViewWithToolbar;
  */
 public class EnableAutoPayView
         extends RelativeLayout
-        implements ViewWithToolbar, View.OnClickListener {
+        implements ViewWithToolbar, View.OnClickListener, ViewWithIndeterminateLoading {
 
     /**
      * Callbacks this {@link View} will invoke.
      */
     public interface ViewListener {
+
         /**
          * Called when the primary button has been pressed.
          */
@@ -35,14 +38,14 @@ public class EnableAutoPayView
          */
         void secondaryButtonClickHandler();
     }
-
     private TextView mPrimaryButton;
+
     private TextView mSecondaryButton;
     private TextView mFinancialAccountInfo;
     private ImageView mImageView;
     private EnableAutoPayView.ViewListener mListener;
     private Toolbar mToolbar;
-
+    private LoadingView mLoadingView;
     public EnableAutoPayView(Context context) {
         super(context);
     }
@@ -58,6 +61,11 @@ public class EnableAutoPayView
         findAllViews();
         setupListeners();
         setColors();
+    }
+
+    @Override
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 
     private void setColors() {
@@ -81,6 +89,7 @@ public class EnableAutoPayView
         mFinancialAccountInfo = (TextView) findViewById(R.id.tv_financial_account_label);
         mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mImageView = (ImageView) findViewById(R.id.iv_auto_pay_logo);
+        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
     }
 
     protected void setupListeners() {

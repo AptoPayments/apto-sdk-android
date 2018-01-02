@@ -2,6 +2,8 @@ package me.ledge.link.sdk.ui.views.userdata;
 
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,7 +32,7 @@ public class HomeView
      * Callbacks this {@link View} will invoke.
      */
     public interface ViewListener extends StepperListener, NextButtonListener {
-        void onZipFieldLostFocus();
+        void onZipFieldFilled();
     }
 
     private LoadingView mLoadingView;
@@ -79,10 +81,20 @@ public class HomeView
     protected void setupListeners() {
         super.setupListeners();
         if (mZipField != null) {
-            mZipField.setOnFocusChangeListener((v, hasFocus) -> {
-                if (!hasFocus) {
-                    mListener.onZipFieldLostFocus();
+            mZipField.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    if(mZipField.getText().toString().length()==getResources().getInteger(R.integer.zip_code_length_validation) && mListener!=null)
+                    {
+                        mListener.onZipFieldFilled();
+                    }
                 }
+
+                @Override
+                public void afterTextChanged(Editable editable) {}
             });
         }
         if(mHousingTypeSpinner != null) {
