@@ -58,7 +58,7 @@ public class LinkModule extends LedgeBaseModule {
     private void showWelcomeScreen() {
         GenericMessageConfigurationVo actionConfig = (GenericMessageConfigurationVo) mWelcomeScreenAction.configuration;
         ShowGenericMessageModule mShowGenericMessageModule = ShowGenericMessageModule.getInstance(this.getActivity(), actionConfig);
-        mShowGenericMessageModule.onFinish = this::showOrSkipLoanInfo;
+        mShowGenericMessageModule.onFinish = this::checkTokenOrStartAuthModule;
         mShowGenericMessageModule.onBack = this::showHomeActivity;
         startModule(mShowGenericMessageModule);
     }
@@ -165,21 +165,29 @@ public class LinkModule extends LedgeBaseModule {
             showWelcomeScreen();
         }
         else {
-            if(isStoredUserTokenValid()) {
-                getOpenApplications();
-            }
-            else {
-                DataPointList userData = UserStorage.getInstance().getUserData();
-                ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
-                AuthModuleConfig authModuleConfig = new AuthModuleConfig(config.primaryAuthCredential, config.secondaryAuthCredential);
-                AuthModule authModule = AuthModule.getInstance(this.getActivity(), userData, authModuleConfig);
-                authModule.onExistingUser = this::getOpenApplications;
-                authModule.onNewUserWithVerifiedPrimaryCredential = this::showOrSkipLoanInfo;
-                authModule.onBack = this::showHomeActivity;
-                authModule.onFinish = this::showHomeActivity;
-                startModule(authModule);
-            }
+            checkTokenOrStartAuthModule();
         }
+    }
+
+    private void checkTokenOrStartAuthModule() {
+        if(isStoredUserTokenValid()) {
+            getOpenApplications();
+        }
+        else {
+            startAuthModule();
+        }
+    }
+
+    private void startAuthModule() {
+        DataPointList userData = UserStorage.getInstance().getUserData();
+        ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
+        AuthModuleConfig authModuleConfig = new AuthModuleConfig(config.primaryAuthCredential, config.secondaryAuthCredential);
+        AuthModule authModule = AuthModule.getInstance(this.getActivity(), userData, authModuleConfig);
+        authModule.onExistingUser = this::getOpenApplications;
+        authModule.onNewUserWithVerifiedPrimaryCredential = this::showOrSkipLoanInfo;
+        authModule.onBack = this::showHomeActivity;
+        authModule.onFinish = this::showHomeActivity;
+        startModule(authModule);
     }
 
     private boolean isStoredUserTokenValid() {
