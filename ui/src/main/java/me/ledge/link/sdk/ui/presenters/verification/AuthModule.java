@@ -1,8 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.verification;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.graphics.drawable.ColorDrawable;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -22,7 +20,6 @@ import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.PhoneActivity;
 import me.ledge.link.sdk.ui.activities.verification.BirthdateVerificationActivity;
 import me.ledge.link.sdk.ui.activities.verification.EmailVerificationActivity;
@@ -40,7 +37,6 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate,
     public Command onNewUserWithVerifiedPrimaryCredential;
     public Command onExistingUser;
 
-    private ProgressDialog mProgressDialog;
     private DataPointList mInitialUserData;
     private AuthModuleConfig mConfig;
 
@@ -224,19 +220,6 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate,
         verifications.data = verificationList;
 
         return new LoginRequestVo(verifications);
-    }
-
-    private void showLoading(boolean show) {
-        if (mProgressDialog == null) {
-            return;
-        }
-        if (show) {
-            mProgressDialog = ProgressDialog.show(getActivity(), null, null);
-            mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            mProgressDialog.setContentView(R.layout.include_rl_loading_transparent);
-        } else {
-            mProgressDialog.dismiss();
-        }
     }
 
     private void stopModule() {
