@@ -80,6 +80,7 @@ public class MockApiWrapper implements LinkApiWrapper {
     private String mBearerToken;
     private String mProjectToken;
     private String mEndPoint;
+    private String mVgsEndPoint;
 
     @Override
     public String getDeveloperKey() {
@@ -127,6 +128,16 @@ public class MockApiWrapper implements LinkApiWrapper {
     @Override
     public void setApiEndPoint(String endPoint, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         mEndPoint = endPoint;
+    }
+
+    @Override
+    public String getVgsEndPoint() {
+        return mVgsEndPoint;
+    }
+
+    @Override
+    public void setVgsEndPoint(String endPoint) {
+        mVgsEndPoint = endPoint;
     }
 
     /** {@inheritDoc} */

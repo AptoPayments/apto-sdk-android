@@ -78,6 +78,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     public void cardAdded(Card card) {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         LedgeLinkUi.addCard(card);
+        showLoading(true);
     }
 
     @Override
@@ -140,6 +141,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     @Subscribe
     public void handleResponse(Card card) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        showLoading(false);
         onFinancialAccountSelected(card.mAccountId);
     }
 

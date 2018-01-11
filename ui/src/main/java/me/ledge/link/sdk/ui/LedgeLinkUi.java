@@ -39,6 +39,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
     private static GenericImageLoader mImageLoader;
     private static HandlerConfigurator mHandlerConfiguration;
     public static boolean trustSelfSigned;
+    private static Environment mEnvironment;
 
     private enum Environment {
         local, dev, stg, sbx, prd
@@ -92,8 +93,8 @@ public class LedgeLinkUi extends LedgeLinkSdk {
         UserStorage.getInstance().setBearerToken(null);
     }
 
-    private static String getApiEndPoint(Environment env) {
-        switch(env) {
+    private static String getApiEndPoint() {
+        switch(mEnvironment) {
             case local:
                 return "http://10.0.2.2:5001";
             case dev:
@@ -109,6 +110,21 @@ public class LedgeLinkUi extends LedgeLinkSdk {
         }
     }
 
+    public static String getVGSEndPoint() {
+        switch(mEnvironment) {
+            case dev:
+                return "https://tntvqy2rqhh.SANDBOX.verygoodproxy.com";
+            case stg:
+                return "https://tntx7glvynm.SANDBOX.verygoodproxy.com";
+            case sbx:
+                return "https://tntiewv89ib.SANDBOX.verygoodproxy.com";
+            case prd:
+                return "https://tnt0mzmlavb.SANDBOX.verygoodproxy.com";
+            default:
+                return "https://tntx7glvynm.SANDBOX.verygoodproxy.com";
+        }
+    }
+
     public static void setupLedgeLink(Context context, String developerKey, String projectToken) {
         setupLedgeLink(context, developerKey, projectToken, true, true, "sbx");
     }
@@ -117,11 +133,13 @@ public class LedgeLinkUi extends LedgeLinkSdk {
      * Sets up the Ledge Link SDK.
      */
     public static void setupLedgeLink(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment) {
+        mEnvironment = Environment.valueOf(environment.toLowerCase());
         AndroidUtils utils = new AndroidUtils();
         HandlerConfigurator configurator = new EventBusHandlerConfigurator();
 
         LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
-        apiWrapper.setApiEndPoint(getApiEndPoint(Environment.valueOf(environment.toLowerCase())), certificatePinning, trustSelfSignedCertificates);
+        apiWrapper.setVgsEndPoint(getVGSEndPoint());
+        apiWrapper.setApiEndPoint(getApiEndPoint(), certificatePinning, trustSelfSignedCertificates);
         apiWrapper.setBaseRequestData(developerKey, utils.getDeviceSummary(), certificatePinning, trustSelfSignedCertificates);
         apiWrapper.setProjectToken(projectToken);
 

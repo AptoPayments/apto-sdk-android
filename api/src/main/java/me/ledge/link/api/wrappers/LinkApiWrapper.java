@@ -136,6 +136,11 @@ public interface LinkApiWrapper {
      */
     String getApiEndPoint();
 
+    /**
+     * @return VGS endpoint.
+     */
+    String getVgsEndPoint();
+
     public HashMap<String, String> getHTTPHeaders();
 
     /**
@@ -146,6 +151,12 @@ public interface LinkApiWrapper {
      * @param trustSelfSignedCerts should self signed certificates be trusted
      */
     void setApiEndPoint(String endPoint, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts);
+
+    /**
+     * Stores the VGS end point.<br />
+     * @param endPoint New end point.
+     */
+    void setVgsEndPoint(String endPoint);
 
     /**
      * Gets the Link config which includes: disclaimers, a list of loan purposes, etc.

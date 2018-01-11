@@ -232,13 +232,13 @@ public class LinkModule extends LedgeBaseModule {
         else if(applicationsList.total_count == 1) {
             LoanApplicationSummaryResponseVo applicationSummary = applicationsList.data[0];
             LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity());
-            loanApplicationModule.onBack = this::showOrSkipLoanInfo;
+            loanApplicationModule.onBack = this::showHomeActivity;
             loanApplicationModule.continueApplication(applicationSummary.id);
         }
         else {
             LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity());
             loanApplicationModule.onStartNewApplication = this::showLoanInfo;
-            loanApplicationModule.onBack = this::showOrSkipLoanInfo;
+            loanApplicationModule.onBack = this::showHomeActivity;
             loanApplicationModule.startLoanApplicationSelector(applicationsList);
         }
     }

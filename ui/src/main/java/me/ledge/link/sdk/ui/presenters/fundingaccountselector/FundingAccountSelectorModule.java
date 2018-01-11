@@ -113,6 +113,7 @@ public class FundingAccountSelectorModule extends LedgeBaseModule
         String applicationId = LoanStorage.getInstance().getCurrentLoanApplication().id;
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         LedgeLinkUi.setApplicationAccount(request, applicationId);
+        showLoading(true);
     }
 
     /**
@@ -122,6 +123,7 @@ public class FundingAccountSelectorModule extends LedgeBaseModule
     @Subscribe
     public void handleResponse(LoanApplicationDetailsResponseVo response) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        showLoading(false);
         showEnableAutoPayScreen();
     }
 
@@ -132,6 +134,7 @@ public class FundingAccountSelectorModule extends LedgeBaseModule
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        showLoading(false);
         Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
 
     }

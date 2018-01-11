@@ -62,6 +62,7 @@ public class EnableAutoPayPresenter
     @Override
     public void detachView() {
         mView.setListener(null);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
