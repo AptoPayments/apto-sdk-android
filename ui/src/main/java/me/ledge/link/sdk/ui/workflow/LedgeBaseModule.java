@@ -1,10 +1,13 @@
 package me.ledge.link.sdk.ui.workflow;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 
 import java.lang.ref.WeakReference;
 
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
 
 /**
@@ -16,6 +19,7 @@ public abstract class LedgeBaseModule implements NavigationCommand, BaseDelegate
     private Activity mActivity;
     public Command onBack;
     public Command onFinish;
+    private ProgressDialog mProgressDialog;
 
     public LedgeBaseModule(Activity activity) {
         mActivity = activity;
@@ -55,5 +59,19 @@ public abstract class LedgeBaseModule implements NavigationCommand, BaseDelegate
      */
     private Intent getStartIntent(Class activity) {
         return new Intent(mActivity, activity);
+    }
+
+    protected void showLoading(boolean show) {
+        mActivity.runOnUiThread(() -> {
+            if (show) {
+                mProgressDialog = ProgressDialog.show(mActivity,null,null);
+                mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                mProgressDialog.setContentView(R.layout.include_rl_loading_transparent);
+            } else {
+                if(mProgressDialog != null) {
+                    mProgressDialog.dismiss();
+                }
+            }
+        });
     }
 }

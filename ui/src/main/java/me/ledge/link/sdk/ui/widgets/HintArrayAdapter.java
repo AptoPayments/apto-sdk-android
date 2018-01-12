@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.widgets;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -30,6 +31,9 @@ public class HintArrayAdapter<T> extends ArrayAdapter<T> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null ) {
+            if(position>0 && position==this.getCount()) {
+                position-=1;
+            }
             View view = super.getView(position, convertView, parent);
 
             if (position == HINT_INDEX) {
@@ -44,5 +48,14 @@ public class HintArrayAdapter<T> extends ArrayAdapter<T> {
         else {
             return convertView;
         }
+    }
+
+    @Nullable
+    @Override
+    public T getItem(int position) {
+        if(position>0 && position==this.getCount()) {
+            position-=1;
+        }
+        return super.getItem(position);
     }
 }
