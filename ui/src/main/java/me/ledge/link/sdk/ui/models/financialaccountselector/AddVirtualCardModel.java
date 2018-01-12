@@ -45,7 +45,7 @@ public class AddVirtualCardModel implements AddFinancialAccountModel {
         request.phoneNumber = phoneNumber.getPhone().toString();
 
         request.amount = (int) LoanStorage.getInstance().getCurrentLoanApplication().offer.loan_amount;
-        request.cardIssuer = "MARQETA";
+        request.cardIssuer = "SHIFT";
 
         return request;
     }
