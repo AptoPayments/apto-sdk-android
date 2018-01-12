@@ -12,7 +12,7 @@ apply plugin: 'me.tatarka.retrolambda'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'android-sdk'
+    bintrayName = 'android-sdk-ui'
     bintrayOrg = 'itabulous'
 
     publishedGroupId = 'ledge.link.sdk'
@@ -100,7 +100,7 @@ repositories {
 dependencies {
     // Ledge Libraries
     compile 'me.ledge.link.sdk:sdk:0.1.1'
-    compile 'me.ledge.link.sdk:wrapper-retrofit2:0.1.1'
+    compile 'me.ledge.link.sdk:retrofit-wrapper:0.1.1'
     compile 'me.ledge.common:common:+'
 
     // 3rd Party Libraries

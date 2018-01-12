@@ -4,6 +4,37 @@ apply from: '../jacoco.gradle'
 apply from: '../javadoc.gradle'
 apply plugin: 'me.tatarka.retrolambda'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'android-sdk'
+    bintrayOrg = 'itabulous'
+
+    publishedGroupId = 'ledge.link.sdk'
+    libraryName = 'SDK'
+    artifact = 'sdk'
+
+    libraryDescription = 'An easy to use and flexible SDK for Ledge Link'
+
+    siteUrl = 'https://github.com/itabulous/sdk_android'
+    gitUrl = 'https://github.com/itabulous/sdk_android.git'
+
+    libraryVersion = '0.1'
+
+    developerId = 'adrian-ledge'
+    developerName = 'Adrian Tung'
+    developerEmail = 'adrian@ledge.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
+}
+
 android {
     compileSdkVersion androidCompileSdkVersion.toInteger()
     buildToolsVersion androidBuildToolsVersion
