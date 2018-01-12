@@ -74,4 +74,3 @@ dependencies {
     compile 'uk.com.robust-it:cloning:1.9.3'
 }
 
-apply from: 'deploy.gradle'
