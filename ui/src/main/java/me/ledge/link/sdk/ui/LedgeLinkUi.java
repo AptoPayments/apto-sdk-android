@@ -98,7 +98,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
             case local:
                 return "http://10.0.2.2:5001";
             case dev:
-                return "https://dev.ledge.me:5000";
+                return "https://dev.ledge.me";
             case stg:
                 return "https://stg.ledge.me";
             case sbx:
