@@ -1,8 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.verification;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.graphics.drawable.ColorDrawable;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -22,7 +20,6 @@ import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.PhoneActivity;
 import me.ledge.link.sdk.ui.activities.verification.BirthdateVerificationActivity;
 import me.ledge.link.sdk.ui.activities.verification.EmailVerificationActivity;
