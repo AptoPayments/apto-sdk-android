@@ -14,6 +14,37 @@ buildscript {
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'ledge_api'
+    bintrayOrg = 'itabulous'
+
+    publishedGroupId = 'ledge.link.sdk'
+    libraryName = 'API'
+    artifact = 'api'
+
+    libraryDescription = 'A wrapper for the Ledge API'
+
+    siteUrl = 'https://github.com/itabulous/sdk_android'
+    gitUrl = 'https://github.com/itabulous/sdk_android.git'
+
+    libraryVersion = '0.1'
+
+    developerId = 'adrian-ledge'
+    developerName = 'Adrian Tung'
+    developerEmail = 'adrian@ledge.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
+}
+
 android {
     compileSdkVersion androidCompileSdkVersion.toInteger()
     buildToolsVersion androidBuildToolsVersion
@@ -42,3 +73,4 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'uk.com.robust-it:cloning:1.9.3'
 }
+

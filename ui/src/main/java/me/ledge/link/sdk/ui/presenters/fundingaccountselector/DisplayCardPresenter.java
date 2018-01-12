@@ -44,6 +44,13 @@ public class DisplayCardPresenter
         LedgeLinkUi.getFinancialAccount(mDelegate.getFinancialAccountId());
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void detachView() {
+        mResponseHandler.unsubscribe(this);
+        super.detachView();
+    }
+
     @Override
     public void onBack() {
         mDelegate.displayCardOnBackPressed();

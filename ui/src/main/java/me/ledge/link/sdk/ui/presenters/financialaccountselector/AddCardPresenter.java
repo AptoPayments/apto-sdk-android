@@ -8,18 +8,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
-import com.verygoodsecurity.vaultsdk.VaultAPIError;
-import com.verygoodsecurity.vaultsdk.VaultAPIUICallback;
-
-import java.net.MalformedURLException;
-
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddCardModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
-import me.ledge.link.sdk.ui.storages.PCIVaultStorage;
 import me.ledge.link.sdk.ui.views.financialaccountselector.AddCardView;
 
 
@@ -68,7 +62,9 @@ public class AddCardPresenter
     public void addCardClickHandler() {
         if(mView.isCreditCardInputValid()) {
             storeCardAdditionalInfo(mView.getCardNetwork(), mView.getLastFourDigits(), mView.getExpirationDate());
-            tokenizeCard(mView.getCardNumber(), mView.getSecurityCode());
+            mModel.setPANToken(mView.getCardNumber());
+            mModel.setCVVToken(mView.getSecurityCode());
+            mDelegate.cardAdded(mModel.getCard());
         }
         else {
             mView.displayErrorMessage(mActivity.getString(R.string.add_card_error));
@@ -126,7 +122,9 @@ public class AddCardPresenter
             if (data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
                 CreditCard scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
                 storeCardAdditionalInfo(scanResult.getCardType().toString(), scanResult.getLastFourDigitsOfCardNumber(), formatExpiryDate(scanResult.expiryMonth, scanResult.expiryYear));
-                tokenizeCard(scanResult.cardNumber, scanResult.cvv);
+                mModel.setPANToken(mView.getCardNumber());
+                mModel.setCVVToken(mView.getSecurityCode());
+                mDelegate.cardAdded(mModel.getCard());
             }
             else {
                 mView.displayErrorMessage("Scan was canceled.");
@@ -142,42 +140,5 @@ public class AddCardPresenter
         mModel.setCardNetwork(cardNetwork);
         mModel.setLastFourDigits(lastFourDigits);
         mModel.setExpirationDate(expirationDate);
-    }
-
-    private void tokenizeCard(String cardNumber, String securityCode) {
-        VaultAPIUICallback storeSecurityCodeInVaultCallback = new VaultAPIUICallback() {
-            @Override
-            public void onSuccess(String token) {
-                mModel.setCVVToken(token);
-                mDelegate.cardAdded(mModel.getCard());
-            }
-            @Override
-            public void onFailure(VaultAPIError error) {
-                mView.displayErrorMessage("Error tokenizing cvv: " + error.name());
-            }
-        };
-
-        VaultAPIUICallback storeCardInVaultCallback = new VaultAPIUICallback() {
-            @Override
-            public void onSuccess(String token) {
-                mModel.setPANToken(token);
-
-                try {
-                    PCIVaultStorage.getInstance().storeData(mActivity, securityCode, storeSecurityCodeInVaultCallback);
-                } catch (MalformedURLException e) {
-                    mView.displayErrorMessage("VGS vault URL is incorrect: " + e.getMessage());
-                }
-            }
-            @Override
-            public void onFailure(VaultAPIError error) {
-                mView.displayErrorMessage("Error tokenizing card: " + error.name());
-            }
-        };
-
-        try {
-            PCIVaultStorage.getInstance().storeData(mActivity, cardNumber, storeCardInVaultCallback);
-        } catch (MalformedURLException e) {
-            mView.displayErrorMessage("VGS vault URL is incorrect: " + e.getMessage());
-        }
     }
 }

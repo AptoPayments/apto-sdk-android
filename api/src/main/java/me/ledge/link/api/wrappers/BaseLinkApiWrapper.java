@@ -12,6 +12,7 @@ public abstract class BaseLinkApiWrapper implements LinkApiWrapper {
     private String mProjectToken;
 
     private String mApiEndPoint;
+    private String mVgsEndPoint;
 
     /**
      * Creates a new {@link BaseLinkApiWrapper} instance.
@@ -90,5 +91,17 @@ public abstract class BaseLinkApiWrapper implements LinkApiWrapper {
     @Override
     public void setApiEndPoint(String endPoint, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         mApiEndPoint = endPoint;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getVgsEndPoint() {
+        return mVgsEndPoint;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setVgsEndPoint(String endPoint) {
+        mVgsEndPoint = endPoint;
     }
 }

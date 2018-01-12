@@ -11,6 +11,7 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -24,8 +25,8 @@ import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.utils.VerificationSerializer;
 import me.ledge.link.api.utils.parsers.ActionConfigurationParser;
 import me.ledge.link.api.utils.parsers.DataPointParser;
-import me.ledge.link.api.utils.parsers.RequiredDataPointParser;
 import me.ledge.link.api.utils.parsers.FinancialAccountParser;
+import me.ledge.link.api.utils.parsers.RequiredDataPointParser;
 import me.ledge.link.api.utils.parsers.VirtualCardParser;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
@@ -79,6 +80,7 @@ import me.ledge.link.api.wrappers.retrofit.two.services.VerificationService;
 import me.ledge.link.api.wrappers.retrofit.two.utils.ErrorUtil;
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
+import okhttp3.Protocol;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -177,7 +179,8 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         }
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                .addInterceptor(mInterceptor);
+                .addInterceptor(mInterceptor)
+                .protocols(Collections.singletonList(Protocol.HTTP_1_1)); // Avoid HTTP 2
 
         if(isCertificatePinningEnabled) {
             // Pin SSL certificates.
@@ -641,11 +644,15 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     public Card addCard(Card card) throws ApiException {
         Card result;
         try {
+            // Setting VGS proxy only for this call
+            this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
             JsonObject aRequest = card.toJSON();
             Response<Card> response
                     = mFinancialAccountService.addCard(aRequest).execute();
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
         } catch (IOException ioe) {
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = null;
             throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
         }
@@ -656,18 +663,16 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     @Override
     public VirtualCard issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
         VirtualCard result;
-        String apiEndPoint = this.getApiEndPoint();
         try {
             // Setting VGS proxy only for this call
-            String vgsEndPoint = "https://tntiewv89ib.SANDBOX.verygoodproxy.com";
-            this.setApiEndPoint(vgsEndPoint, mIsCertificatePinningEnabled, false);
+            this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
             Response<VirtualCard> response
                     = mFinancialAccountService.issueVirtualCard(issueVirtualCardRequestVo).execute();
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
-            this.setApiEndPoint(apiEndPoint, mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
         } catch (IOException ioe) {
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = null;
-            this.setApiEndPoint(apiEndPoint, mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
         }
 
@@ -692,11 +697,14 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     @Override
     public FinancialAccountVo getFinancialAccount(String accountId) throws ApiException {
         FinancialAccountVo result;
-
         try {
+            // Setting VGS proxy only for this call
+            this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
             Response<FinancialAccountVo> response = mFinancialAccountService.getFinancialAccount(accountId).execute();
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNT_PATH);
         } catch (IOException ioe) {
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = null;
             throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNT_PATH, ioe);
         }

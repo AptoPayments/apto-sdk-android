@@ -1,14 +1,18 @@
 package me.ledge.link.sdk.ui.activities.financialaccountselector;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import java.util.HashMap;
 
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -58,25 +62,22 @@ public class AddBankAccountActivity
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Uri parsedUri = Uri.parse(url);
-                if (parsedUri.getScheme().equals("ledge")) {
-                    String actionType = parsedUri.getHost();
-                    switch (actionType) {
-                        case "handlePublicToken":
-                            String token = parsedUri.getFragment();
-                            mPresenter.publicTokenReceived(token);
-                            break;
-                        case "closeLinkModal":
-                            mPresenter.onBack();
-                            break;
-                        case "handleOnExit":
-                            mPresenter.onBack();
-                            break;
+                if (parsedUri.getScheme().equals("plaidlink")) {
+                    String action = parsedUri.getHost();
+                    HashMap<String, String> linkData = parseLinkUriData(parsedUri);
+
+                    if (action.equals("connected")) {
+                        // User successfully linked
+                        mPresenter.publicTokenReceived(linkData.get("public_token"));
+                    } else if (action.equals("exit")) {
+                        mPresenter.onBack();
                     }
-
+                    // Override URL loading
                     return true;
+                } else {
+                    // Unknown case - do not override URL loading
+                    return false;
                 }
-
-                return false;
             }
 
             @Override
@@ -95,6 +96,7 @@ public class AddBankAccountActivity
         WebSettings webSettings = plaidLinkWebview.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        webSettings.setDomStorageEnabled(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             plaidLinkWebview.setLayerType(View.LAYER_TYPE_HARDWARE, null);
         } else {
@@ -104,5 +106,14 @@ public class AddBankAccountActivity
 
     private String getPlaidURL() {
         return getApiWrapper().getApiEndPoint() + "/" + LinkApiWrapper.PLAID_WEB_URL;
+    }
+
+    // Parse a Link redirect URL querystring into a HashMap for easy manipulation and access
+    public HashMap<String,String> parseLinkUriData(Uri linkUri) {
+        HashMap<String,String> linkData = new HashMap<String,String>();
+        for(String key : linkUri.getQueryParameterNames()) {
+            linkData.put(key, linkUri.getQueryParameter(key));
+        }
+        return linkData;
     }
 }
