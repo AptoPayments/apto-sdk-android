@@ -1,5 +1,5 @@
 include ':api'
-include ':wrappers:wrapper-retrofit2'
+include ':retrofit-wrapper'
 include ':sdk'
 include ':ui'
 include ':handlers:handler-eventbus'
