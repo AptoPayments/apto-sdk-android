@@ -134,6 +134,7 @@ public class AddFinancialAccountListPresenter
      */
     @Subscribe
     public void handleResponse(VirtualCard virtualCard) {
+        mResponseHandler.unsubscribe(this);
         if (mView != null) {
             mLoadingSpinnerManager.showLoading(false);
         }

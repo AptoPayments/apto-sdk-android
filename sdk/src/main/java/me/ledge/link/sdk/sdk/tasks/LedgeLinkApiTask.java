@@ -98,7 +98,7 @@ public abstract class LedgeLinkApiTask<Params, Progress, Result, Request>
         if (mSuccess) {
             mResponseHandler.publishResult(result);
         } else {
-            if(mError.isSessionExpired) {
+            if(mError.isSessionExpired || mError.serverCode==3031) {
                 mResponseHandler.publishResult(new SessionExpiredErrorVo(mError));
             }
             else {

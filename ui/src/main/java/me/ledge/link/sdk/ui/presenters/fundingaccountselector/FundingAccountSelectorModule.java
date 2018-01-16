@@ -136,6 +136,5 @@ public class FundingAccountSelectorModule extends LedgeBaseModule
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
         Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
-
     }
 }

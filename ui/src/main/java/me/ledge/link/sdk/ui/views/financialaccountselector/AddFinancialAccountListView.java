@@ -121,6 +121,10 @@ public class AddFinancialAccountListView extends CoordinatorLayout
      */
     public void setData(AddFinancialAccountModel[] data) {
         mData = data;
+        if(data == null) {
+            return;
+        }
+
         mAccountsList.removeAllViews();
 
         AddFinancialAccountCardView view;

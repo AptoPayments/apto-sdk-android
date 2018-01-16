@@ -23,9 +23,7 @@ public class BankAutoPayStrategy implements FinancialAccountStrategy {
         strategyModel.showDescription = true;
         strategyModel.description = resources.getString(R.string.enable_auto_pay_bank, mBankAccount.bankName);
 
-        strategyModel.showPrimaryButton = true;
-        strategyModel.primaryButtonText = resources.getString(R.string.enable_auto_pay_bank_primary_button);
-
+        strategyModel.showPrimaryButton = false;
         strategyModel.showSecondaryButton = false;
 
         return strategyModel;

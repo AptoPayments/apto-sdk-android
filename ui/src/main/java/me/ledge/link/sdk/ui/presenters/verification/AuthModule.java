@@ -20,6 +20,7 @@ import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.PhoneActivity;
 import me.ledge.link.sdk.ui.activities.verification.BirthdateVerificationActivity;
 import me.ledge.link.sdk.ui.activities.verification.EmailVerificationActivity;
@@ -113,7 +114,7 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate,
         showLoading(false);
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         LedgeLinkUi.clearUserToken(getActivity());
-        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.session_expired_error), Toast.LENGTH_SHORT).show();
         stopModule();
     }
 

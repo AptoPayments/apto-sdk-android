@@ -20,6 +20,7 @@ import me.ledge.link.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
@@ -233,12 +234,14 @@ public class LinkModule extends LedgeBaseModule {
             LoanApplicationSummaryResponseVo applicationSummary = applicationsList.data[0];
             LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity());
             loanApplicationModule.onBack = this::showHomeActivity;
+            loanApplicationModule.onUpdateUserProfile = () -> startUserDataCollectorModule(true);
             loanApplicationModule.continueApplication(applicationSummary.id);
         }
         else {
             LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity());
             loanApplicationModule.onStartNewApplication = this::showLoanInfo;
             loanApplicationModule.onBack = this::showHomeActivity;
+            loanApplicationModule.onUpdateUserProfile = () -> startUserDataCollectorModule(true);
             loanApplicationModule.startLoanApplicationSelector(applicationsList);
         }
     }
@@ -258,7 +261,7 @@ public class LinkModule extends LedgeBaseModule {
      */
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        showError(error.toString());
+        showError(getActivity().getResources().getString(R.string.session_expired_error));
         LedgeLinkUi.clearUserToken(getActivity());
         showHomeActivity();
     }

@@ -266,7 +266,6 @@
     <string name="enable_auto_pay_bank">Your loan is being disbursed to the account you\'ve selected: %s</string>
     <string name="enable_auto_pay_error">Incorrect account type</string>
     <string name="enable_auto_pay_card_primary_button">VIEW CARD</string>
-    <string name="enable_auto_pay_bank_primary_button">VIEW ACCOUNT</string>
     <string name="enable_auto_pay_virtual_card_primary_button">VIEW VIRTUAL CARD</string>
     <string name="enable_auto_pay_virtual_card_secondary_button">Send via SMS</string>
 
@@ -291,5 +290,8 @@
     <string name="select_pending_application_list_title">Open Applications</string>
     <string name="select_pending_application_list_label">Would you like to continue with an open application?</string>
     <string name="new_application_button">NEW APPLICATION</string>
+
+    <!-- Errors -->
+    <string name="session_expired_error">User session has expired. Please sign in with your credentials.</string>
 
 </resources>
