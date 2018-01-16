@@ -1,8 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -15,28 +13,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.Email;
-import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
-import me.ledge.link.api.vos.datapoints.VerificationVo;
-import me.ledge.link.api.vos.requests.base.ListRequestVo;
-import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
-import me.ledge.link.api.vos.responses.users.LoginUserResponseVo;
 import me.ledge.link.api.vos.responses.users.UserResponseVo;
-import me.ledge.link.api.vos.responses.verifications.BaseVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
@@ -395,6 +383,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     }
 
     private void fillRequiredActivitiesList() {
+        boolean isIdentityVerificationRequired = false;
         if(!mRequiredDataPointList.isEmpty()) {
             for (RequiredDataPointVo requiredDataPointVo : mRequiredDataPointList) {
                 switch(requiredDataPointVo.type) {
@@ -436,9 +425,13 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
                         break;
                     case SSN:
                     case BirthDate:
-                        addRequiredActivity(IdentityVerificationActivity.class);
+                        isIdentityVerificationRequired = true;
                         break;
                 }
+            }
+            // Add it to the end so it's the last activity shown
+            if(isIdentityVerificationRequired) {
+                addRequiredActivity(IdentityVerificationActivity.class);
             }
         }
         UserDataPresenter.TOTAL_STEPS = mRequiredActivities.size();

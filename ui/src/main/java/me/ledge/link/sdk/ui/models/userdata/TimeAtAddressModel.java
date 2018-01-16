@@ -12,7 +12,7 @@ import me.ledge.link.sdk.ui.models.Model;
  */
 public class TimeAtAddressModel extends AbstractUserDataModel {
 
-    public static final int DEFAULT_INDICATION = 0;
+    public static final int DEFAULT_INDICATION = -1;
 
     private TimeAtAddress mTimeAtAddress;
 
@@ -28,7 +28,7 @@ public class TimeAtAddressModel extends AbstractUserDataModel {
      * Initializes this class.
      */
     private void init() {
-        mTimeAtAddress = new TimeAtAddress(DEFAULT_INDICATION, false, false);
+        mTimeAtAddress = new TimeAtAddress();
     }
 
     /**

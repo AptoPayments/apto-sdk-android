@@ -62,6 +62,10 @@ public abstract class LedgeBaseModule implements NavigationCommand, BaseDelegate
     }
 
     protected void showLoading(boolean show) {
+        if(mActivity.isFinishing())
+        {
+            return;
+        }
         mActivity.runOnUiThread(() -> {
             if (show) {
                 mProgressDialog = ProgressDialog.show(mActivity,null,null);
