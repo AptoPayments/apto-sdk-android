@@ -72,16 +72,12 @@ public class LinkModule extends LedgeBaseModule {
         }
     }
 
-    private void showLoanInfoOrBack() {
-        if (isLoanInfoRequired()) {
-            showLoanInfo();
-        } else {
-            if(mShowWelcomeScreen) {
-                showWelcomeScreen();
-            }
-            else {
-                showHomeActivity();
-            }
+    private void showWelcomeScreenOrBack() {
+        if(mShowWelcomeScreen) {
+            showWelcomeScreen();
+        }
+        else {
+            showHomeActivity();
         }
     }
 
@@ -129,7 +125,7 @@ public class LinkModule extends LedgeBaseModule {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         userDataCollectorModule.onFinish = this::showOffersList;
-        userDataCollectorModule.onBack = this::showLoanInfoOrBack;
+        userDataCollectorModule.onBack = this::showWelcomeScreenOrBack;
         userDataCollectorModule.isUpdatingProfile = updateProfile;
         userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;
         startModule(userDataCollectorModule);
@@ -139,7 +135,7 @@ public class LinkModule extends LedgeBaseModule {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         userDataCollectorModule.onFinish = this::showOffersList;
-        userDataCollectorModule.onBack = this::showLoanInfoOrBack;
+        userDataCollectorModule.onBack = this::showWelcomeScreenOrBack;
         userDataCollectorModule.isUpdatingProfile = false;
         userDataCollectorModule.onTokenRetrieved = null;
         startModule(userDataCollectorModule);

@@ -80,6 +80,14 @@ public abstract class LedgeLinkApiTask<Params, Progress, Result, Request>
             mSuccess = true;
         } catch (ApiException ae) {
             mError = ae.getError();
+            if(mError.serverMessage == null) {
+                mError.serverMessage = ae.getMessage();
+            }
+            mSuccess = false;
+            result = null;
+        } catch (Exception e) {
+            mError = new ApiErrorVo();
+            mError.serverMessage = e.getMessage();
             mSuccess = false;
             result = null;
         }
@@ -98,7 +106,7 @@ public abstract class LedgeLinkApiTask<Params, Progress, Result, Request>
         if (mSuccess) {
             mResponseHandler.publishResult(result);
         } else {
-            if(mError.isSessionExpired || mError.serverCode==3031) {
+            if(mError!=null && (mError.isSessionExpired || mError.serverCode==3031)) {
                 mResponseHandler.publishResult(new SessionExpiredErrorVo(mError));
             }
             else {

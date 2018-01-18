@@ -96,9 +96,6 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     }
 
     private void configRetrieved(ConfigResponseVo configResponseVo) {
-        if(configResponseVo == null) {
-            return;
-        }
         runOnUiThread(()->{
             if(configResponseVo.logoURL != null && !configResponseVo.logoURL.isEmpty()) {
                 mView.setLogo(configResponseVo.logoURL);
@@ -148,7 +145,14 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                     getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
             CompletableFuture
                     .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
-                    .thenAccept(this::configRetrieved);
+                    .thenAccept(this::configRetrieved)
+                    .exceptionally((e) -> {
+                        this.runOnUiThread(() -> {
+                            mView.showLoading(false);
+                            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+                        return null;
+                    });
         }, this.getIntent().getData(), this);
     }
 
