@@ -3,7 +3,6 @@ package me.ledge.link.sdk.ui.presenters.link;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.content.IntentCompat;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -13,14 +12,12 @@ import me.ledge.link.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.api.vos.responses.ApiErrorVo;
 import me.ledge.link.api.vos.responses.SessionExpiredErrorVo;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationSummaryResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.api.vos.responses.workflow.ActionVo;
 import me.ledge.link.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
@@ -210,12 +207,6 @@ public class LinkModule extends LedgeBaseModule {
         LedgeLinkUi.getPendingLoanApplicationsList(new ListRequestVo());
     }
 
-    private void showError(String errorMessage) {
-        if(!errorMessage.isEmpty()) {
-            Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
-        }
-    }
-
     /**
      * Called when the get current applications response has been received.
      * @param applicationsList API response.
@@ -225,13 +216,6 @@ public class LinkModule extends LedgeBaseModule {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         if(applicationsList.total_count == 0) {
             showLoanInfo();
-        }
-        else if(applicationsList.total_count == 1) {
-            LoanApplicationSummaryResponseVo applicationSummary = applicationsList.data[0];
-            LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity());
-            loanApplicationModule.onBack = this::showHomeActivity;
-            loanApplicationModule.onUpdateUserProfile = () -> startUserDataCollectorModule(true);
-            loanApplicationModule.continueApplication(applicationSummary.id);
         }
         else {
             LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity());
@@ -257,8 +241,7 @@ public class LinkModule extends LedgeBaseModule {
      */
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        showError(getActivity().getResources().getString(R.string.session_expired_error));
-        LedgeLinkUi.clearUserToken(getActivity());
+        super.handleSessionExpiredError(error);
         showHomeActivity();
     }
 }

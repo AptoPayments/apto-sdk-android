@@ -11,6 +11,7 @@ import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import me.ledge.link.api.vos.responses.SessionExpiredErrorVo;
 import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
@@ -145,6 +146,16 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
         onFinancialAccountSelected(card.mAccountId);
     }
 
+    /**
+     * Called when session expired error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleSessionExpiredError(SessionExpiredErrorVo error) {
+        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        showLoading(false);
+        super.handleSessionExpiredError(error);
+    }
 
     private void showAddFinancialAccountListSelector() {
         startActivity(AddFinancialAccountListActivity.class);

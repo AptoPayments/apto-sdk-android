@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 
+import me.ledge.link.api.vos.responses.SessionExpiredErrorVo;
+import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
 
@@ -77,5 +80,18 @@ public abstract class LedgeBaseModule implements NavigationCommand, BaseDelegate
                 }
             }
         });
+    }
+
+    protected void showError(String errorMessage) {
+        if(!errorMessage.isEmpty()) {
+            Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void handleSessionExpiredError(SessionExpiredErrorVo error) {
+        mActivity.runOnUiThread(()->{
+            showError(mActivity.getResources().getString(R.string.session_expired_error));
+        });
+        LedgeLinkUi.clearUserToken(mActivity);
     }
 }
