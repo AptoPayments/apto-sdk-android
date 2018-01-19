@@ -16,6 +16,7 @@ import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.models.userdata.AbstractUserDataModel;
 import me.ledge.link.sdk.ui.models.userdata.UserDataModel;
+import me.ledge.link.sdk.ui.utils.DateUtil;
 
 /**
  * Concrete {@link Model} for the birthdate screen.
@@ -135,6 +136,10 @@ public class BirthdateVerificationModel extends AbstractUserDataModel implements
         } catch (IllegalArgumentException iae) {
             mBirthdate = null;
         }
+    }
+
+    public void setBirthdate(String birthdate, String format) {
+        mBirthdate = new DateUtil().getDateFromString(birthdate, format);
     }
 
     /**

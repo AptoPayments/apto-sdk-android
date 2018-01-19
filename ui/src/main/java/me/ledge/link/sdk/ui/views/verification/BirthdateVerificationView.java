@@ -112,4 +112,8 @@ public class BirthdateVerificationView
     public void updateBirthdateError(boolean show, int errorMessageId) {
         updateErrorDisplay(mBirthdateWrapper, show, errorMessageId);
     }
+
+    public String getBirthdate() {
+        return mBirthdateField.getText().toString();
+    }
 }

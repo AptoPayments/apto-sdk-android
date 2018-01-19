@@ -102,6 +102,7 @@ public class BirthdateVerificationPresenter
     @Override
     public void nextClickHandler() {
         // Validate input.
+        mModel.setBirthdate(mView.getBirthdate(), "MM-dd-yyyy");
         mView.updateBirthdateError(!mModel.hasValidBirthdate(), mModel.getBirthdateErrorString());
 
         if (mModel.hasValidBirthdate()) {
@@ -115,7 +116,8 @@ public class BirthdateVerificationPresenter
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         mModel.setBirthdate(year, monthOfYear, dayOfMonth);
-        mView.setBirthdate(String.format("%02d/%02d/%02d", monthOfYear + 1, dayOfMonth, year));
+        mView.setBirthdate(String.format("%02d-%02d-%02d", monthOfYear + 1, dayOfMonth, year));
+        mView.updateBirthdateError(!mModel.hasValidBirthdate(), mModel.getBirthdateErrorString());
     }
 
     /**

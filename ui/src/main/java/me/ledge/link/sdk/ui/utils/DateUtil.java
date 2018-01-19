@@ -32,4 +32,16 @@ public class DateUtil {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
         return dateFormat.format(calendar.getTime());
     }
+
+    public Date getDateFromString(String dateString, String format) {
+        if(dateString != null) {
+            SimpleDateFormat birthdayFormat = new SimpleDateFormat(format, Locale.US);
+            try {
+                return birthdayFormat.parse(dateString);
+            } catch (ParseException e) {
+                return null;
+            }
+        }
+        return null;
+    }
 }

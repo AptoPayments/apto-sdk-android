@@ -1,6 +1,5 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,6 +12,7 @@ import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.SSN;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
+import me.ledge.link.sdk.ui.utils.DateUtil;
 import ru.lanwen.verbalregex.VerbalExpression;
 
 /**
@@ -54,20 +54,6 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         return birthdayFormat.format(mBirthday);
     }
 
-    public Date getDateFromString(String dateString, String format) {
-        if(dateString != null) {
-            SimpleDateFormat birthdayFormat = new SimpleDateFormat(format, Locale.US);
-            try {
-                return birthdayFormat.parse(dateString);
-            } catch (ParseException e) {
-                return null;
-            }
-        }
-        else {
-            return null;
-        }
-    }
-
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
@@ -96,7 +82,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     }
 
     public void setBirthday(String date, String format) {
-        mBirthday = getDateFromString(date, format);
+        mBirthday = new DateUtil().getDateFromString(date, format);
     }
 
     /** {@inheritDoc} */

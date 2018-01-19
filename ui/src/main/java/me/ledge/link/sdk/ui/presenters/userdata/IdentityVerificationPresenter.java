@@ -183,7 +183,7 @@ public class IdentityVerificationPresenter
         }
 
         if(mIsBirthdayRequired) {
-            mModel.setBirthday(mView.getBirthday(), "MM/dd/yyyy");
+            mModel.setBirthday(mView.getBirthday(), "MM-dd-yyyy");
             mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
         }
         if(mIsSSNRequired && userHasUpdatedSSN()) {
@@ -257,7 +257,7 @@ public class IdentityVerificationPresenter
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         mModel.setBirthday(year, monthOfYear, dayOfMonth);
-        mView.setBirthday(String.format("%02d/%02d/%02d", monthOfYear + 1, dayOfMonth, year));
+        mView.setBirthday(String.format("%02d-%02d-%02d", monthOfYear + 1, dayOfMonth, year));
     }
 
     private void parseTextDisclaimer(ContentVo textDisclaimer) {
