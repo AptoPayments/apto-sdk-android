@@ -13,7 +13,7 @@ import me.ledge.link.sdk.ui.models.Model;
  */
 public class CreditScoreModel extends AbstractUserDataModel {
 
-    public static final int DEFAULT_CREDIT_INDICATION = 0;
+    public static final int DEFAULT_CREDIT_INDICATION = -1;
 
     private CreditScore mCreditScore;
 
@@ -37,7 +37,7 @@ public class CreditScoreModel extends AbstractUserDataModel {
      * @return Whether this is a valid credit score range.
      */
     private boolean isValidRange(int indication) {
-        return indication >= CreditScoreRange.EXCELLENT && indication <= CreditScoreRange.POOR;
+        return indication >= 0;
     }
 
     /** {@inheritDoc} */

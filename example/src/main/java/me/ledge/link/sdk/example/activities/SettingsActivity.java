@@ -28,6 +28,7 @@ import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.datapoints.SSN;
 import me.ledge.link.api.vos.datapoints.TimeAtAddress;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.api.vos.responses.config.CreditScoreVo;
 import me.ledge.link.api.vos.responses.config.HousingTypeVo;
 import me.ledge.link.api.vos.responses.config.IncomeTypeVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
@@ -393,10 +394,13 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         IdDescriptionPairDisplayVo hint =
                 new IdDescriptionPairDisplayVo(-1, getString(R.string.main_input_credit_score));
         adapter.add(hint);
-        adapter.add(new IdDescriptionPairDisplayVo(1, getString(me.ledge.link.sdk.ui.R.string.credit_score_excellent)));
-        adapter.add(new IdDescriptionPairDisplayVo(2, getString(me.ledge.link.sdk.ui.R.string.credit_score_good)));
-        adapter.add(new IdDescriptionPairDisplayVo(3, getString(me.ledge.link.sdk.ui.R.string.credit_score_fair)));
-        adapter.add(new IdDescriptionPairDisplayVo(4, getString(me.ledge.link.sdk.ui.R.string.credit_score_poor)));
+
+        CreditScoreVo[] typesList = mProjectConfig.creditScoreOpts.data;
+        if (typesList != null) {
+            for (CreditScoreVo type : typesList) {
+                adapter.add(new IdDescriptionPairDisplayVo(type.creditScoreId, type.description));
+            }
+        }
 
         mView.setCreditScoreAdapter(adapter);
     }

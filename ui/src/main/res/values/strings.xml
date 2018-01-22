@@ -100,10 +100,6 @@
 
     <!-- Credit Score -->
     <string name="credit_score_label">What\'s your credit score?</string>
-    <string name="credit_score_excellent">Excellent (760+)</string>
-    <string name="credit_score_good">Good (700&#8211;759)</string>
-    <string name="credit_score_fair">Fair (640&#8211;699)</string>
-    <string name="credit_score_poor">Poor (Below 640)</string>
     <string name="credit_score_error">Please select a credit score.</string>
 
     <!-- Payday Loan -->

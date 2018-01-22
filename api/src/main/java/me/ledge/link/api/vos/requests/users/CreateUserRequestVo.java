@@ -74,7 +74,6 @@ public class CreateUserRequestVo extends UnauthorizedRequestVo {
 
     /**
      * Self reported credit score range.
-     * @see me.ledge.link.api.utils.CreditScoreRange
      */
     public int credit_range;
 
