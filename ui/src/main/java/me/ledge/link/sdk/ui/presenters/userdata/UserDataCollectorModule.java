@@ -383,7 +383,6 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     }
 
     private void fillRequiredActivitiesList() {
-        boolean isIdentityVerificationRequired = false;
         if(!mRequiredDataPointList.isEmpty()) {
             for (RequiredDataPointVo requiredDataPointVo : mRequiredDataPointList) {
                 switch(requiredDataPointVo.type) {
@@ -423,17 +422,11 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
                     case MemberOfArmedForces:
                         addRequiredActivity(ArmedForcesActivity.class);
                         break;
-                    case SSN:
-                    case BirthDate:
-                        isIdentityVerificationRequired = true;
-                        break;
                 }
             }
-            // Add it to the end so it's the last activity shown
-            if(isIdentityVerificationRequired) {
-                addRequiredActivity(IdentityVerificationActivity.class);
-            }
         }
+        // Add it to the end so it's the last activity and is always shown
+        addRequiredActivity(IdentityVerificationActivity.class);
         UserDataPresenter.TOTAL_STEPS = mRequiredActivities.size();
     }
 

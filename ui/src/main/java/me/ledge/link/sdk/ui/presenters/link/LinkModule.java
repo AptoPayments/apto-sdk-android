@@ -65,7 +65,7 @@ public class LinkModule extends LedgeBaseModule {
         if (isLoanInfoRequired()) {
             showLoanInfo();
         } else {
-            skipLoanInfo();
+            showUserDataCollector();
         }
     }
 
@@ -87,14 +87,13 @@ public class LinkModule extends LedgeBaseModule {
     private void showLoanInfo() {
         LoanInfoModule loanInfoModule = LoanInfoModule.getInstance(this.getActivity());
         loanInfoModule.userHasAllRequiredData = mUserHasAllRequiredData;
+        loanInfoModule.onUpdateProfile = () -> startUserDataCollectorModule(true);
+        loanInfoModule.onFinish = this::collectUserData;
         if(mUserHasAllRequiredData) {
             loanInfoModule.onGetOffers = this::showOffersList;
-            loanInfoModule.onFinish = this::showOffersList;
-            loanInfoModule.onUpdateProfile = () -> startUserDataCollectorModule(true);
         }
         else {
             loanInfoModule.onGetOffers = null;
-            loanInfoModule.onFinish = this::collectUserData;
         }
         if(mShowWelcomeScreen) {
             loanInfoModule.onBack = this::showWelcomeScreen;
@@ -103,15 +102,6 @@ public class LinkModule extends LedgeBaseModule {
             loanInfoModule.onBack = this::showHomeActivity;
         }
         startModule(loanInfoModule);
-    }
-
-    private void skipLoanInfo() {
-        if(mUserHasAllRequiredData) {
-            showOffersList();
-        }
-        else {
-            showUserDataCollector();
-        }
     }
 
     private void showUserDataCollector() {
@@ -215,6 +205,7 @@ public class LinkModule extends LedgeBaseModule {
     public void handleResponse(LoanApplicationsSummaryListResponseVo applicationsList) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         if(applicationsList.total_count == 0) {
+            mUserHasAllRequiredData = false;
             showLoanInfo();
         }
         else {
