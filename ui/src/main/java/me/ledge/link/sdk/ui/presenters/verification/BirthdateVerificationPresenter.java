@@ -88,7 +88,6 @@ public class BirthdateVerificationPresenter
     public void birthdayClickHandler() {
         DatePickerFragment fragment = new DatePickerFragment();
 
-        fragment.setDate(mModel.getBirthdate());
         fragment.setThemeId(getBirthdateDialogThemeId(mActivity));
         fragment.setListener(this);
         fragment.show(mActivity.getFragmentManager(), DatePickerFragment.TAG);
