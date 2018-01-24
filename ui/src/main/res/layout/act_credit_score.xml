@@ -18,27 +18,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp">
-
-            <RadioButton
-                    style="?attr/llsdk_creditScore_radioButtonStyle"
-                    android:id="@+id/rb_excellent"
-                    android:text="@string/credit_score_excellent" />
-
-            <RadioButton
-                    style="?attr/llsdk_creditScore_radioButtonStyle"
-                    android:id="@+id/rb_good"
-                    android:text="@string/credit_score_good" />
-
-            <RadioButton
-                    style="?attr/llsdk_creditScore_radioButtonStyle"
-                    android:id="@+id/rb_fair"
-                    android:text="@string/credit_score_fair" />
-
-            <RadioButton
-                    style="?attr/llsdk_creditScore_radioButtonStyle"
-                    android:id="@+id/rb_poor"
-                    android:text="@string/credit_score_poor" />
-
         </RadioGroup>
 
         <TextView

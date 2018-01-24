@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import me.ledge.link.api.utils.CreditScoreRange;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.offers.OffersListModel;
@@ -22,7 +21,6 @@ import static org.hamcrest.core.IsNull.nullValue;
  */
 public class OffersListModelTest {
 
-    private static final int EXPECTED_CREDIT_SCORE_RANGE = CreditScoreRange.GOOD;
     private static final String EXPECTED_CURRENCY = "USD";
     private static final int EXPECTED_PURPOSE_ID = 4;
 

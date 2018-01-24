@@ -2,11 +2,10 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import java.util.HashMap;
-
-import me.ledge.link.api.utils.CreditScoreRange;
-import me.ledge.link.sdk.ui.R;
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.api.vos.responses.config.CreditScoreVo;
 import me.ledge.link.sdk.ui.models.userdata.CreditScoreModel;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.userdata.CreditScoreView;
 
 /**
@@ -17,8 +16,6 @@ public class CreditScorePresenter
         extends UserDataPresenter<CreditScoreModel, CreditScoreView>
         implements CreditScoreView.ViewListener {
 
-    private HashMap<Integer, Integer> mIdToRangeMap;
-    private HashMap<Integer, Integer> mRangeToIdMap;
     private CreditScoreDelegate mDelegate;
 
     /**
@@ -32,53 +29,6 @@ public class CreditScorePresenter
 
     /** {@inheritDoc} */
     @Override
-    protected void init() {
-        super.init();
-
-        mIdToRangeMap = new HashMap<>(4);
-        mIdToRangeMap.put(R.id.rb_excellent, CreditScoreRange.EXCELLENT);
-        mIdToRangeMap.put(R.id.rb_good, CreditScoreRange.GOOD);
-        mIdToRangeMap.put(R.id.rb_fair, CreditScoreRange.FAIR);
-        mIdToRangeMap.put(R.id.rb_poor, CreditScoreRange.POOR);
-
-        mRangeToIdMap = new HashMap<>(4);
-        mRangeToIdMap.put(CreditScoreRange.EXCELLENT, R.id.rb_excellent);
-        mRangeToIdMap.put(CreditScoreRange.GOOD, R.id.rb_good);
-        mRangeToIdMap.put(CreditScoreRange.FAIR, R.id.rb_fair);
-        mRangeToIdMap.put(CreditScoreRange.POOR, R.id.rb_poor);
-    }
-
-    /**
-     * @param map The {@link HashMap} to get the value from.
-     * @param key The key we're looking for.
-     * @return Value of the key OR -1 if not found.
-     */
-    private int getMapValue(HashMap<Integer, Integer> map, int key) {
-        Integer value = map.get(key);
-
-        if (value == null) {
-            value = -1;
-        }
-
-        return value;
-    }
-
-    /**
-     * @return Credit score range based on the checked Radio Button.
-     */
-    private int getCreditScoreRange() {
-        return getMapValue(mIdToRangeMap, mView.getScoreRangeId());
-    }
-
-    /**
-     * @return Radio Button ID based on the credit score range.
-     */
-    private int getCreditScoreRangeId() {
-        return getMapValue(mRangeToIdMap, mModel.getCreditScoreRange());
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public CreditScoreModel createModel() {
         return new CreditScoreModel();
     }
@@ -87,9 +37,8 @@ public class CreditScorePresenter
     @Override
     public void attachView(CreditScoreView view) {
         super.attachView(view);
-
+        showCreditScoreOptions(UIStorage.getInstance().getContextConfig());
         mView.setListener(this);
-        mView.setScoreRangeId(getCreditScoreRangeId());
     }
 
     @Override
@@ -107,12 +56,21 @@ public class CreditScorePresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        mModel.setCreditScoreRange(getCreditScoreRange());
+        mModel.setCreditScoreRange(mView.getScoreRangeId());
         mView.showError(!mModel.hasAllData());
 
         if (mModel.hasAllData()) {
             saveData();
             mDelegate.creditScoreStored();
+        }
+    }
+
+    private void showCreditScoreOptions(ConfigResponseVo config) {
+        CreditScoreVo[] typesList = config.creditScoreOpts.data;
+        if (typesList != null) {
+            mView.makeRadioButtons(typesList);
+            mView.setColors();
+            mView.setScoreRangeId(mModel.getCreditScoreRange());
         }
     }
 }

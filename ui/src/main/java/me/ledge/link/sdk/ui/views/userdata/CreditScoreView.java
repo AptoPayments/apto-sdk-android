@@ -5,9 +5,11 @@ import android.content.res.ColorStateList;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import me.ledge.link.api.vos.responses.config.CreditScoreVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;
@@ -62,6 +64,24 @@ public class CreditScoreView extends UserDataView<CreditScoreView.ViewListener> 
             if(v instanceof AppCompatRadioButton) {
                 ((AppCompatRadioButton) v).setSupportButtonTintList(colorStateList);
             }
+        }
+    }
+
+    public void makeRadioButtons(CreditScoreVo[] typesList) {
+        float density = getResources().getDisplayMetrics().density;
+        RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        int margin = (int)(8*density);
+        params.setMargins(0, 0, 0, margin);
+
+        for (CreditScoreVo type : typesList) {
+            AppCompatRadioButton rb = new AppCompatRadioButton(getContext());
+            rb.setText(type.description);
+            rb.setId(type.creditScoreId);
+            rb.setPadding(margin, 0, 0, 0);
+            mRadioGroup.addView(rb, params);
         }
     }
 

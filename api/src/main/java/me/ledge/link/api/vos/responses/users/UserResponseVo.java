@@ -29,7 +29,6 @@ public class UserResponseVo {
 
     /**
      * Self reported credit score range.<br />
-     * @see me.ledge.link.api.utils.CreditScoreRange
      */
     public int self_reported_credit_score_range;
 

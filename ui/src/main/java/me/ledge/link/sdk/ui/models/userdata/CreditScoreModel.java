@@ -1,6 +1,5 @@
 package me.ledge.link.sdk.ui.models.userdata;
 
-import me.ledge.link.api.utils.CreditScoreRange;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.CreditScore;
@@ -13,7 +12,7 @@ import me.ledge.link.sdk.ui.models.Model;
  */
 public class CreditScoreModel extends AbstractUserDataModel {
 
-    public static final int DEFAULT_CREDIT_INDICATION = 0;
+    public static final int DEFAULT_CREDIT_INDICATION = -1;
 
     private CreditScore mCreditScore;
 
@@ -37,7 +36,7 @@ public class CreditScoreModel extends AbstractUserDataModel {
      * @return Whether this is a valid credit score range.
      */
     private boolean isValidRange(int indication) {
-        return indication >= CreditScoreRange.EXCELLENT && indication <= CreditScoreRange.POOR;
+        return indication >= 0;
     }
 
     /** {@inheritDoc} */
@@ -75,7 +74,6 @@ public class CreditScoreModel extends AbstractUserDataModel {
 
     /**
      * @return Credit score range.
-     * @see CreditScoreRange
      */
     public int getCreditScoreRange() {
         return mCreditScore.creditScoreRange;
@@ -84,7 +82,6 @@ public class CreditScoreModel extends AbstractUserDataModel {
     /**
      * Stores a new credit score range.
      * @param indication New range.
-     * @see CreditScoreRange
      */
     public void setCreditScoreRange(int indication) {
         if (isValidRange(indication)) {

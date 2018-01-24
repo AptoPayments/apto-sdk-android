@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import me.ledge.link.api.utils.CreditScoreRange;
 import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
@@ -20,6 +19,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class CreditScoreModelTest {
 
     private CreditScoreModel mModel;
+    private final int VALID_CREDIT_SCORE = 1;
 
     /**
      * Sets up each test.
@@ -49,7 +49,7 @@ public class CreditScoreModelTest {
     @Test
     public void allDataIsSetFromBaseData() {
         DataPointList baseData = new DataPointList();
-        CreditScore baseCredit = new CreditScore(CreditScoreRange.EXCELLENT, false, false);
+        CreditScore baseCredit = new CreditScore(VALID_CREDIT_SCORE, false, false);
         baseData.add(baseCredit);
 
         mModel.setBaseData(baseData);
@@ -67,7 +67,7 @@ public class CreditScoreModelTest {
     @Test
     public void baseDataIsUpdated() {
         mModel.setBaseData(new DataPointList());
-        mModel.setCreditScoreRange(CreditScoreRange.POOR);
+        mModel.setCreditScoreRange(VALID_CREDIT_SCORE);
 
         DataPointList base = mModel.getBaseData();
         CreditScore baseCredit = (CreditScore) base.getUniqueDataPoint(
@@ -84,9 +84,9 @@ public class CreditScoreModelTest {
      */
     @Test
     public void invalidCreditScoreIsNotStored() {
-        mModel.setCreditScoreRange(8);
+        mModel.setCreditScoreRange(-1);
 
-        Assert.assertThat("An invalid credit score should be set.", mModel.getCreditScoreRange(), equalTo(0));
+        Assert.assertThat("An invalid credit score should be set.", mModel.getCreditScoreRange(), equalTo(-1));
         Assert.assertFalse("Credit score should not be valid.", mModel.hasAllData());
     }
 }

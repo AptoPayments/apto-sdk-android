@@ -1,10 +1,10 @@
 package me.ledge.link.sdk.ui.utils;
 
 import android.content.Context;
-import android.util.SparseArray;
 
-import me.ledge.link.api.utils.CreditScoreRange;
-import me.ledge.link.sdk.ui.R;
+import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.api.vos.responses.config.CreditScoreVo;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 
 /**
  * Credit score helper.
@@ -18,12 +18,9 @@ public class CreditScoreUtil {
      * @return The corresponding string value.
      */
     public static String getCreditScoreDescription(Context context, int creditScoreRange) {
-        SparseArray<String> scoreToStringMap = new SparseArray<>(4);
-        scoreToStringMap.put(CreditScoreRange.EXCELLENT, context.getString(R.string.credit_score_excellent));
-        scoreToStringMap.put(CreditScoreRange.GOOD, context.getString(R.string.credit_score_good));
-        scoreToStringMap.put(CreditScoreRange.FAIR, context.getString(R.string.credit_score_fair));
-        scoreToStringMap.put(CreditScoreRange.POOR, context.getString(R.string.credit_score_poor));
+        ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
+        CreditScoreVo[] creditScoreValues = config.creditScoreOpts.data;
+        return creditScoreValues[creditScoreRange].description;
 
-        return scoreToStringMap.get(creditScoreRange);
     }
 }
