@@ -68,10 +68,6 @@ public class BirthdateVerificationPresenter
         mResponseHandler.subscribe(this);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(false);
-
-        if(mModel.hasValidBirthdate()) {
-            mView.setBirthdate(mModel.getFormattedBirthdate());
-        }
     }
 
     @Override
