@@ -175,6 +175,9 @@
     <string name="loan_application_summary_credit_score">Credit Score</string>
     <string name="loan_application_summary_birthday">Birthday</string>
     <string name="loan_application_summary_ssn">SSN</string>
+    <string name="loan_application_summary_time_at_address">Time at Address</string>
+    <string name="loan_application_summary_payday_loan">Payday Loan</string>
+    <string name="loan_application_summary_armed_forces">Member of Armed Forces</string>
 
     <!-- Loan agreement -->
     <string name="loan_agreement_label">Confirm loan</string>

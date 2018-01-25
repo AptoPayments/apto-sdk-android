@@ -20,18 +20,22 @@ import java.util.LinkedList;
 import java.util.Set;
 
 import me.ledge.link.api.vos.datapoints.Address;
+import me.ledge.link.api.vos.datapoints.ArmedForces;
 import me.ledge.link.api.vos.datapoints.CreditScore;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Housing;
 import me.ledge.link.api.vos.datapoints.Income;
 import me.ledge.link.api.vos.datapoints.IncomeSource;
+import me.ledge.link.api.vos.datapoints.PaydayLoan;
 import me.ledge.link.api.vos.datapoints.PersonalName;
+import me.ledge.link.api.vos.datapoints.TimeAtAddress;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.utils.CreditScoreUtil;
+import me.ledge.link.sdk.ui.utils.TimeAtAddressUtil;
 import me.ledge.link.sdk.ui.views.LoadingView;
 import me.ledge.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
@@ -258,8 +262,26 @@ public class LoanApplicationSummaryView
                 addKeyValueTextView(data.getMonthlyIncomeLabel(getResources()), String.valueOf(((Income) dataPoint).monthlyNetIncome));
                 break;
             case CreditScore:
-                String creditScore = CreditScoreUtil.getCreditScoreDescription(getContext(), ((CreditScore) dataPoint).creditScoreRange);
+                String creditScore = CreditScoreUtil.getCreditScoreDescription(((CreditScore) dataPoint).creditScoreRange);
                 addKeyValueTextView(data.getCreditScoreLabel(getResources()), creditScore);
+                break;
+            case TimeAtAddress:
+                String timeAtAddress = TimeAtAddressUtil.getTimeAtAddressDescription(((TimeAtAddress) dataPoint).timeAtAddressRange);
+                addKeyValueTextView(data.getTimeAtAddressLabel(getResources()), timeAtAddress);
+                break;
+            case PayDayLoan:
+                String payDayLoan = getResources().getString(R.string.payday_loan_no);
+                if(((PaydayLoan) dataPoint).hasUsedPaydayLoan) {
+                    payDayLoan = getResources().getString(R.string.payday_loan_yes);
+                }
+                addKeyValueTextView(data.getPayDayLoanLabel(getResources()), payDayLoan);
+                break;
+            case MemberOfArmedForces:
+                String armedForces = getResources().getString(R.string.armed_forces_no);
+                if(((ArmedForces) dataPoint).isMemberOfArmedForces) {
+                    armedForces = getResources().getString(R.string.armed_forces_yes);
+                }
+                addKeyValueTextView(data.getArmedForcesLabel(getResources()), armedForces);
                 break;
         }
     }

@@ -96,7 +96,10 @@ public class LedgeLinkUi extends LedgeLinkSdk {
     private static String getApiEndPoint() {
         switch(mEnvironment) {
             case local:
+                // Emulator
                 return "http://10.0.2.2:5001";
+                // Device (don't forget to set port forwarding in chrome 5000->localhost:5001)
+                //return "http://localhost:5000";
             case dev:
                 return "https://dev.ledge.me";
             case stg:

@@ -68,10 +68,6 @@ public class BirthdateVerificationPresenter
         mResponseHandler.subscribe(this);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(false);
-
-        if(mModel.hasValidBirthdate()) {
-            mView.setBirthdate(mModel.getFormattedBirthdate());
-        }
     }
 
     @Override
@@ -92,7 +88,6 @@ public class BirthdateVerificationPresenter
     public void birthdayClickHandler() {
         DatePickerFragment fragment = new DatePickerFragment();
 
-        fragment.setDate(mModel.getBirthdate());
         fragment.setThemeId(getBirthdateDialogThemeId(mActivity));
         fragment.setListener(this);
         fragment.show(mActivity.getFragmentManager(), DatePickerFragment.TAG);

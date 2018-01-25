@@ -122,8 +122,8 @@ public class AddCardPresenter
             if (data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
                 CreditCard scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
                 storeCardAdditionalInfo(scanResult.getCardType().toString(), scanResult.getLastFourDigitsOfCardNumber(), formatExpiryDate(scanResult.expiryMonth, scanResult.expiryYear));
-                mModel.setPANToken(mView.getCardNumber());
-                mModel.setCVVToken(mView.getSecurityCode());
+                mModel.setPANToken(scanResult.cardNumber);
+                mModel.setCVVToken(scanResult.cvv);
                 mDelegate.cardAdded(mModel.getCard());
             }
             else {
