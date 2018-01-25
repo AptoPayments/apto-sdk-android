@@ -128,4 +128,16 @@ public class LoanApplicationSummaryModel extends LoanAgreementModel implements A
     public String getCreditScoreLabel(Resources resources) {
         return resources.getString(R.string.loan_application_summary_credit_score);
     }
+
+    public String getTimeAtAddressLabel(Resources resources) {
+        return resources.getString(R.string.loan_application_summary_time_at_address);
+    }
+
+    public String getPayDayLoanLabel(Resources resources) {
+        return resources.getString(R.string.loan_application_summary_payday_loan);
+    }
+
+    public String getArmedForcesLabel(Resources resources) {
+        return resources.getString(R.string.loan_application_summary_armed_forces);
+    }
 }
