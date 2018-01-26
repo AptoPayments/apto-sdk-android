@@ -1,7 +1,9 @@
 package me.ledge.link.sdk.ui.views.offers;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
@@ -122,6 +124,15 @@ public class OffersCarouselView extends OffersBaseView {
         mOffersCarouselView.setFillColor(color);
         mToolbar.setBackgroundDrawable(new ColorDrawable(color));
         mToolbar.setTitleTextColor(contrastColor);
+        Drawable backArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        backArrow.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
+        mToolbar.setNavigationIcon(backArrow);
+
+        Drawable menuIcon = mToolbar.getOverflowIcon();
+        if (menuIcon != null) {
+            menuIcon.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
+            mToolbar.setOverflowIcon(menuIcon);
+        }
     }
 
     /** {@inheritDoc} */
