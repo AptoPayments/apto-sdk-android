@@ -115,6 +115,8 @@ public class LedgeLinkUi extends LedgeLinkSdk {
 
     public static String getVGSEndPoint() {
         switch(mEnvironment) {
+            case local:
+                return getApiEndPoint();
             case dev:
                 return "https://tntvqy2rqhh.SANDBOX.verygoodproxy.com";
             case stg:
