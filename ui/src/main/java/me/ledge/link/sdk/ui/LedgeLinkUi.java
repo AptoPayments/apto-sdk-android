@@ -118,15 +118,14 @@ public class LedgeLinkUi extends LedgeLinkSdk {
             case local:
                 return getApiEndPoint();
             case dev:
-                return "https://tntvqy2rqhh.SANDBOX.verygoodproxy.com";
+                return "https://tnt9pyfmrib.SANDBOX.verygoodproxy.com";
             case stg:
-                return "https://tntx7glvynm.SANDBOX.verygoodproxy.com";
-            case sbx:
-                return "https://tntiewv89ib.SANDBOX.verygoodproxy.com";
-            case prd:
-                return "https://tnt0mzmlavb.SANDBOX.verygoodproxy.com";
             default:
-                return "https://tntx7glvynm.SANDBOX.verygoodproxy.com";
+                return "https://tntlgdzq6xb.SANDBOX.verygoodproxy.com";
+            case sbx:
+                return "https://tntt0vbjwpf.SANDBOX.verygoodproxy.com";
+            case prd:
+                return "https://tnt5ihr00de.LIVE.verygoodproxy.com";
         }
     }
 
