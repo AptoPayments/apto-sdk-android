@@ -100,7 +100,7 @@ repositories {
 dependencies {
     // Ledge Libraries
     compile 'me.ledge.link.sdk:sdk:0.1.2'
-    compile 'me.ledge.link.sdk:retrofit-wrapper:0.1.1'
+    compile 'me.ledge.link.sdk:retrofit-wrapper:0.1.2'
     compile 'me.ledge.common:common:+'
 
     // 3rd Party Libraries

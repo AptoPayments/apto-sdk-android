@@ -131,7 +131,6 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         mUserService = retrofit.create(UserService.class);
         mLoanApplicationService = retrofit.create(LoanApplicationService.class);
         mVerificationService = retrofit.create(VerificationService.class);
-        mFinancialAccountService = retrofit.create(FinancialAccountService.class);
         mDashboardService = retrofit.create(DashboardService.class);
 
         /**
@@ -139,6 +138,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
          * Long timeout only matters for the 'offer/requestOffers' API call.
          */
         mOfferService = longTimeoutRetrofit.create(OfferService.class);
+        mFinancialAccountService = longTimeoutRetrofit.create(FinancialAccountService.class);
     }
 
     private Retrofit.Builder getRetrofitBuilder() {
