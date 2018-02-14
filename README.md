@@ -26,30 +26,19 @@ compile 'me.ledge.link.sdk:ui:+'
 
 ## Requirements
 
-* Java version: 7+
+* Java version: 8+
 * Android version: 4.0.3+
 
 ## Developer Guides
 
-### Dependencies
-
-1. Install the [Ledge Common](https://github.com/itabulous/ledgecommon_android) library.
-1. Install the [Ledge Link API](https://github.com/itabulous/ledgelinkapi_android) libraries.
-
 ### Installation
 
 1. Create a `gradle.properties` file in the project root directory.
-  1. In this file, define the `HOME` property that point to your user's home directory, i.e. `HOME=C:/Users/Wijnand`.
+   * In this file, define the `HOME` property that point to your user's home directory i.e. on Windows: `HOME=C:/Users/adrian` or on Mac: `HOME=/Users/adrian`
 1. Install the SDK project: `./gradlew --parallel --configure-on-demand -p sdk install`.
 1. Install the UI project: `./gradlew --parallel --configure-on-demand -p ui install`.
-1. Install the various image loaders:
-  1. Picasso: `./gradlew --parallel -PexcludeExample=true -p imageloaders\imageloader-picasso install`. The `-PexcludeExample=true` part is important here! Without it the installation of the project will fail.
-  1. Volley: `./gradlew --parallel -PexcludeExample=true -p imageloaders\imageloader-volley install`.
-1. Install the various API response handlers:
-  1. EventBus: `./gradlew --parallel -PexcludeExample=true -p handlers\handler-eventbus install`.
-  1. Otto: `./gradlew --parallel -PexcludeExample=true -p handlers\handler-otto install`.
 
-**NOTE:** When you run any of the above Gradle commands for the second time, you can exclude the `--configure-on-demand` and `-PexcludeExample=true` options.
+**NOTE:** When you run any of the above Gradle commands for the second time, you can exclude the `--configure-on-demand`.
 
 ### Running tests
 
@@ -70,16 +59,18 @@ To run Unit tests and generate a JaCoCo coverage report, run `./gradlew --parall
 ### Example app
 
 1. In the `src/main/res/values` folder create a new file called `strings_configuration.xml`.\*
-  1. Define the `ledge_link_url_dev`.
-  1. Define the `ledge_link_developer_key_dev`.
-1. To install the example app, run `./gradlew --parallel -p example installDebug`.
+  * Define the `ledge_link_environment`.
+  * Define the `ledge_link_developer_key_dev`.
+  * Define the `ledge_link_project_token`
+1. To install the example app, run `./gradlew --parallel -p example installDebug`. Make sure you have an Android Emulator running or a connected device.
 
 \* Example of `strings_configuration.xml`:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ledge_link_url_dev">http://my.api.url</string>
+    <string name="ledge_link_environment">local</string>
     <string name="ledge_link_developer_key_dev">myApiKey</string>
+    <string name="ledge_link_project_token">myProjectToken</string>
 </resources>
 ```
 
