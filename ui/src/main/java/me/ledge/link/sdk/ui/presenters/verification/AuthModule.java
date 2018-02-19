@@ -22,16 +22,18 @@ import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.PhoneActivity;
+import me.ledge.link.sdk.ui.activities.userdata.EmailActivity;
 import me.ledge.link.sdk.ui.activities.verification.BirthdateVerificationActivity;
 import me.ledge.link.sdk.ui.activities.verification.EmailVerificationActivity;
 import me.ledge.link.sdk.ui.activities.verification.PhoneVerificationActivity;
+import me.ledge.link.sdk.ui.presenters.userdata.EmailDelegate;
 import me.ledge.link.sdk.ui.presenters.userdata.PhoneDelegate;
 import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.workflow.Command;
 import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 
-public class AuthModule extends LedgeBaseModule implements PhoneDelegate,
+public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailDelegate,
         PhoneVerificationDelegate, EmailVerificationDelegate, BirthdateVerificationDelegate {
 
     private static AuthModule instance;
@@ -129,6 +131,16 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate,
     }
 
     @Override
+    public void emailStored() {
+        startActivity(EmailVerificationActivity.class);
+    }
+
+    @Override
+    public void emailLoginOnBackPressed() {
+        super.onBack.execute();
+    }
+
+    @Override
     public void phoneVerificationSucceeded(VerificationResponseVo verification) {
         BaseVerificationResponseVo secondaryCredential = verification.secondary_credential;
         if (secondaryCredential == null) {
@@ -181,6 +193,8 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate,
 
     private void startPrimaryCredentialActivity() {
         if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Phone)) {
+            startActivity(EmailActivity.class);
+        } else if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email)) {
             startActivity(PhoneActivity.class);
         } else {
             Toast.makeText(getActivity(), "Configured primary credential is not supported!", Toast.LENGTH_SHORT).show();

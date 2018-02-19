@@ -37,6 +37,13 @@
     <string name="phone_label">We\'ll send a one-time SMS to verify your phone number. Carrier SMS fees may apply.</string>
     <string name="phone_error">Invalid phone number</string>
 
+    <!-- Email -->
+    <string name="email_title">Email address</string>
+    <string name="email_error">Invalid email</string>
+    <string name="email_label">Text for email login.</string>
+    <string name="email_hint">Email</string>
+
+
     <!-- Birthdate -->
     <string name="birthdate_title">Security Check</string>
     <string name="birthdate_hint">Birthdate (MM-DD-YYYY)</string>

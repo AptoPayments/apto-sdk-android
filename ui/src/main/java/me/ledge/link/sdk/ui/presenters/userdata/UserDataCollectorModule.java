@@ -30,6 +30,7 @@ import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.ArmedForcesActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
+import me.ledge.link.sdk.ui.activities.userdata.EmailActivity;
 import me.ledge.link.sdk.ui.activities.userdata.HomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
@@ -47,7 +48,7 @@ import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
  * Created by adrian on 29/12/2016.
  */
 
-public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDelegate,
+public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDelegate, EmailDelegate,
         IdentityVerificationDelegate, AddressDelegate, AnnualIncomeDelegate, MonthlyIncomeDelegate,
         CreditScoreDelegate, PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate,
         ArmedForcesDelegate, TimeAtAddressDelegate {
@@ -148,11 +149,20 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     }
 
     public void phoneStored() {
-        startActivity(getActivityAtPosition(PhoneActivity.class, 1));
+        startActivity(getActivityAtPosition(PhoneActivity.class, -1));
+    }
+
+    public void emailStored() {
+        startActivity(getActivityAtPosition(EmailActivity.class, -1));
     }
 
     @Override
     public void phoneOnBackPressed() {
+        onBack.execute();
+    }
+
+    @Override
+    public void emailLoginOnBackPressed() {
         onBack.execute();
     }
 
