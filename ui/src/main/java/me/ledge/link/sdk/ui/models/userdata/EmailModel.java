@@ -4,7 +4,8 @@ import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.sdk.ui.R;
-import ru.lanwen.verbalregex.VerbalExpression;
+
+import static me.ledge.link.sdk.ui.utils.EmailUtil.isValidEmail;
 
 /**
  * Created by pauteruel on 19/02/2018.
@@ -87,17 +88,7 @@ public class EmailModel extends AbstractUserDataModel implements UserDataModel {
      * @param email Email address.
      */
     public void setEmail(String email) {
-        VerbalExpression emailRegex = VerbalExpression.regex()
-                .startOfLine()
-                .anythingBut(" ")
-                .then("@")
-                .anythingBut(" ")
-                .then(".")
-                .anythingBut(" ")
-                .endOfLine()
-                .build();
-
-        if (emailRegex.testExact(email)) {
+        if (isValidEmail(email)) {
             mEmail.email = email;
         } else {
             mEmail.email = null;

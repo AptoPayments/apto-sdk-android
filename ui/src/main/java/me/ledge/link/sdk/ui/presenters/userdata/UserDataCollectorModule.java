@@ -30,7 +30,6 @@ import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.ArmedForcesActivity;
 import me.ledge.link.sdk.ui.activities.userdata.CreditScoreActivity;
-import me.ledge.link.sdk.ui.activities.userdata.EmailActivity;
 import me.ledge.link.sdk.ui.activities.userdata.HomeActivity;
 import me.ledge.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
 import me.ledge.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
