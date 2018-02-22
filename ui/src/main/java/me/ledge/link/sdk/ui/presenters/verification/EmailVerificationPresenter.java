@@ -34,6 +34,7 @@ public class EmailVerificationPresenter
     public EmailVerificationPresenter(AppCompatActivity activity, EmailVerificationDelegate delegate) {
         super(activity);
         mDelegate = delegate;
+        LedgeLinkUi.startVerification(mModel.getEmailVerificationRequest());
     }
 
     /** {@inheritDoc} */
@@ -104,9 +105,10 @@ public class EmailVerificationPresenter
             Email email = mModel.getEmailFromBaseData();
             if(email.hasVerification()) {
                 email.getVerification().setVerificationId(response.verification_id);
+                email.getVerification().setVerificationType(response.verification_type);
             }
             else{
-                email.setVerification(new VerificationVo(response.verification_id));
+                email.setVerification(new VerificationVo(response.verification_id, response.verification_type));
             }
         }
     }
@@ -123,7 +125,7 @@ public class EmailVerificationPresenter
                 mView.displayErrorMessage(mActivity.getString(R.string.email_verification_error));
             }
             else {
-                mDelegate.emailVerificationSucceeded();
+                mDelegate.emailVerificationSucceeded(response);
             }
         }
     }

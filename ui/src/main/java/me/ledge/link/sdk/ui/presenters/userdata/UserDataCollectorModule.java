@@ -149,7 +149,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     }
 
     public void phoneStored() {
-        startActivity(getActivityAtPosition(PhoneActivity.class, -1));
+        startActivity(getActivityAtPosition(PhoneActivity.class, 1));
     }
 
     public void emailStored() {

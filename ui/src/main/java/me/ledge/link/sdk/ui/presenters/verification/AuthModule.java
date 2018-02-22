@@ -172,8 +172,34 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
     }
 
     @Override
-    public void emailVerificationSucceeded() {
-        loginUser();
+    public void emailVerificationSucceeded(VerificationResponseVo verification) {
+
+        if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email)) {
+            BaseVerificationResponseVo secondaryCredential = verification.secondary_credential;
+            if (secondaryCredential == null) {
+                onNewUserWithVerifiedPrimaryCredential.execute();
+                return;
+            }
+            DataPointList userData = UserStorage.getInstance().getUserData();
+            switch (DataPointVo.DataPointType.fromString(secondaryCredential.verification_type)) {
+                case Email:
+                    DataPointVo baseEmail = mInitialUserData.getUniqueDataPoint(DataPointVo.DataPointType.Email, new Email());
+                    baseEmail.setVerification(new VerificationVo(secondaryCredential.verification_id, secondaryCredential.verification_type));
+                    userData.add(baseEmail);
+                    UserStorage.getInstance().setUserData(userData);
+                    startActivity(EmailVerificationActivity.class);
+                    break;
+                case BirthDate:
+                    DataPointVo baseBirthdate = mInitialUserData.getUniqueDataPoint(DataPointVo.DataPointType.BirthDate, new Birthdate());
+                    baseBirthdate.setVerification(new VerificationVo(secondaryCredential.verification_id, secondaryCredential.verification_type));
+                    userData.add(baseBirthdate);
+                    UserStorage.getInstance().setUserData(userData);
+                    startActivity(BirthdateVerificationActivity.class);
+                    break;
+            }
+        } else {
+            loginUser();
+        }
     }
 
     @Override
@@ -193,9 +219,9 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
 
     private void startPrimaryCredentialActivity() {
         if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Phone)) {
-            startActivity(EmailActivity.class);
-        } else if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email)) {
             startActivity(PhoneActivity.class);
+        } else if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email)) {
+            startActivity(EmailActivity.class);
         } else {
             Toast.makeText(getActivity(), "Configured primary credential is not supported!", Toast.LENGTH_SHORT).show();
         }
