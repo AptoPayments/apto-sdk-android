@@ -48,7 +48,7 @@ import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
  * Created by adrian on 29/12/2016.
  */
 
-public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDelegate, EmailDelegate,
+public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDelegate,
         IdentityVerificationDelegate, AddressDelegate, AnnualIncomeDelegate, MonthlyIncomeDelegate,
         CreditScoreDelegate, PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate,
         ArmedForcesDelegate, TimeAtAddressDelegate {
@@ -152,19 +152,11 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         startActivity(getActivityAtPosition(PhoneActivity.class, 1));
     }
 
-    public void emailStored() {
-        startActivity(getActivityAtPosition(EmailActivity.class, -1));
-    }
-
     @Override
     public void phoneOnBackPressed() {
         onBack.execute();
     }
 
-    @Override
-    public void emailLoginOnBackPressed() {
-        onBack.execute();
-    }
 
     @Override
     public void identityVerificationSucceeded() {
