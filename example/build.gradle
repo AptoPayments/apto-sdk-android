@@ -27,10 +27,10 @@ android {
             proguardFile 'config/proguard/proguard-eventbus.cfg'
             proguardFile 'config/proguard/proguard-ledgelinkapi.cfg'
             proguardFile 'config/proguard/proguard-ledgelinksdk.cfg'
-            proguardFile 'config/proguard/proguard-retrofit1.cfg'
             proguardFile 'config/proguard/proguard-retrofit2.cfg'
             proguardFile 'config/proguard/proguard-okio.cfg'
             proguardFile 'config/proguard/proguard-volley.cfg'
+            proguardFile 'config/proguard/proguard-coinbase.cfg'
             proguardFile getDefaultProguardFile('proguard-android.txt')
         }
     }
