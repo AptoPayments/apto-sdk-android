@@ -11,5 +11,6 @@ public interface EmailVerificationDelegate {
 
     void emailVerificationSucceeded(VerificationResponseVo secondaryCredential);
     void emailOnBackPressed();
+    boolean isStartVerificationRequired();
 
 }

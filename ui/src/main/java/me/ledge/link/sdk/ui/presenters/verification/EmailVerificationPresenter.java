@@ -34,7 +34,9 @@ public class EmailVerificationPresenter
     public EmailVerificationPresenter(AppCompatActivity activity, EmailVerificationDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-        LedgeLinkUi.startVerification(mModel.getEmailVerificationRequest());
+        if(mDelegate.isStartVerificationRequired()){
+            LedgeLinkUi.startVerification(mModel.getEmailVerificationRequest());
+        }
     }
 
     /** {@inheritDoc} */

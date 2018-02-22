@@ -42,6 +42,7 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
 
     private DataPointList mInitialUserData;
     private AuthModuleConfig mConfig;
+    public boolean mShouldStartVerification;
 
     private AuthModule(Activity activity, DataPointList initialUserData, AuthModuleConfig config) {
         super(activity);
@@ -138,6 +139,11 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
     @Override
     public void emailLoginOnBackPressed() {
         super.onBack.execute();
+    }
+
+    @Override
+    public boolean isStartVerificationRequired() {
+        return mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email);
     }
 
     @Override
