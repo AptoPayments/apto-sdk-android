@@ -40,7 +40,7 @@
     <!-- Email -->
     <string name="email_title">Email address</string>
     <string name="email_error">Invalid email</string>
-    <string name="email_label">Text for email login.</string>
+    <string name="email_label">Email address</string>
     <string name="email_hint">Email</string>
 
 
