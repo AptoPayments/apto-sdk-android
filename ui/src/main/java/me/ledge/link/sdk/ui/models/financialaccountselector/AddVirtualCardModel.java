@@ -1,11 +1,8 @@
 package me.ledge.link.sdk.ui.models.financialaccountselector;
 
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.CustodianVo;
 import me.ledge.link.sdk.ui.R;
-import me.ledge.link.sdk.ui.storages.LoanStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 
 /**
@@ -40,12 +37,8 @@ public class AddVirtualCardModel implements AddFinancialAccountModel {
 
     public IssueVirtualCardRequestVo getRequest() {
         IssueVirtualCardRequestVo request = new IssueVirtualCardRequestVo();
-        DataPointList userData = UserStorage.getInstance().getUserData();
-        PhoneNumberVo phoneNumber = (PhoneNumberVo) userData.getUniqueDataPoint(DataPointVo.DataPointType.Phone, null);
-        request.phoneNumber = phoneNumber.getPhone().toString();
-
-        request.amount = (int) LoanStorage.getInstance().getCurrentLoanApplication().offer.loan_amount;
         request.cardIssuer = "SHIFT";
+        request.custodian = new CustodianVo("coinbase", UserStorage.getInstance().getCoinbaseOauthToken());
 
         return request;
     }
