@@ -7,6 +7,6 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 public interface EmailDelegate {
 
     void emailStored();
-    void emailLoginOnBackPressed();
+    void emailOnBackPressed();
 
 }

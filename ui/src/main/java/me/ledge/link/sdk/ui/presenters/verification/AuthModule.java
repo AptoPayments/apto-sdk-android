@@ -42,7 +42,6 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
 
     private DataPointList mInitialUserData;
     private AuthModuleConfig mConfig;
-    public boolean mShouldStartVerification;
 
     private AuthModule(Activity activity, DataPointList initialUserData, AuthModuleConfig config) {
         super(activity);
@@ -128,7 +127,11 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
 
     @Override
     public void phoneOnBackPressed() {
-        super.onBack.execute();
+        if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Phone)) {
+            super.onBack.execute();
+        } else {
+            startPrimaryCredentialActivity();
+        }
     }
 
     @Override
@@ -137,13 +140,12 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
     }
 
     @Override
-    public void emailLoginOnBackPressed() {
-        super.onBack.execute();
-    }
-
-    @Override
-    public boolean isStartVerificationRequired() {
-        return mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email);
+    public void emailOnBackPressed() {
+        if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email)) {
+            super.onBack.execute();
+        } else {
+            startPrimaryCredentialActivity();
+        }
     }
 
     @Override
@@ -209,8 +211,8 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
     }
 
     @Override
-    public void emailOnBackPressed() {
-        startPrimaryCredentialActivity();
+    public void emailVerificationOnBackPressed() {
+        startActivity(EmailActivity.class);
     }
 
     @Override
@@ -222,6 +224,12 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
     public void birthdateOnBackPressed() {
         startPrimaryCredentialActivity();
     }
+
+    @Override
+    public boolean isStartVerificationRequired() {
+        return mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email);
+    }
+
 
     private void startPrimaryCredentialActivity() {
         if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Phone)) {

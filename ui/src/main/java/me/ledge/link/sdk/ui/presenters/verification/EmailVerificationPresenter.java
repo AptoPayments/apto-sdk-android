@@ -56,7 +56,7 @@ public class EmailVerificationPresenter
 
     @Override
     public void onBack() {
-        mDelegate.emailOnBackPressed();
+        mDelegate.emailVerificationOnBackPressed();
     }
 
     /** {@inheritDoc} */

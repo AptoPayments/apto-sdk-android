@@ -10,7 +10,7 @@ import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
 public interface EmailVerificationDelegate {
 
     void emailVerificationSucceeded(VerificationResponseVo secondaryCredential);
-    void emailOnBackPressed();
+    void emailVerificationOnBackPressed();
     boolean isStartVerificationRequired();
 
 }

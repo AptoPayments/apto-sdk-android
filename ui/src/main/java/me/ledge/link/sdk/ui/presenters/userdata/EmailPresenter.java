@@ -45,7 +45,7 @@ public class EmailPresenter
 
     @Override
     public void onBack() {
-        mDelegate.emailLoginOnBackPressed();
+        mDelegate.emailOnBackPressed();
     }
 
     /** {@inheritDoc} */
