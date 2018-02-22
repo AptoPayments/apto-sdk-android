@@ -22,6 +22,7 @@ public class UserStorage {
     private DataPointList mUserDataPoints;
     private String mBearerToken;
     private RequiredDataPointsListResponseVo mRequiredData;
+    private String mCoinbaseOauthToken;
 
     private static UserStorage mInstance;
 
@@ -139,5 +140,13 @@ public class UserStorage {
             }
         }
         return isValid;
+    }
+
+    public String getCoinbaseOauthToken() {
+        return mCoinbaseOauthToken;
+    }
+
+    public void setCoinbaseOauthToken(String coinbaseOauthToken) {
+        this.mCoinbaseOauthToken = coinbaseOauthToken;
     }
 }
