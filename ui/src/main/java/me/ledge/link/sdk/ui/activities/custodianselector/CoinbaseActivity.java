@@ -4,14 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.coinbase.android.sdk.OAuth;
 import com.coinbase.api.entity.OAuthTokensResponse;
 import com.coinbase.api.exception.CoinbaseException;
-import com.coinbase.api.exception.UnauthorizedException;
-
-import java.io.IOException;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.presenters.custodianselector.CoinbaseDelegate;
@@ -70,7 +66,9 @@ public class CoinbaseActivity extends Activity {
         protected void onPostExecute(OAuthTokensResponse oAuthTokensResponse) {
             super.onPostExecute(oAuthTokensResponse);
             if(oAuthTokensResponse != null) {
-                mCurrentModule.coinbaseTokenRetrieved(oAuthTokensResponse.getAccessToken());
+                mCurrentModule.coinbaseTokensRetrieved(
+                        oAuthTokensResponse.getAccessToken(),
+                        oAuthTokensResponse.getRefreshToken());
             }
         }
     }

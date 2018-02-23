@@ -58,8 +58,9 @@ public class CustodianSelectorModule extends LedgeBaseModule implements AddCusto
     }
 
     @Override
-    public void coinbaseTokenRetrieved(String token) {
-        UserStorage.getInstance().setCoinbaseOauthToken(token);
+    public void coinbaseTokensRetrieved(String accessToken, String refreshToken) {
+        UserStorage.getInstance().setCoinbaseAccessToken(accessToken);
+        UserStorage.getInstance().setCoinbaseRefreshToken(refreshToken);
         super.onFinish.execute();
     }
 

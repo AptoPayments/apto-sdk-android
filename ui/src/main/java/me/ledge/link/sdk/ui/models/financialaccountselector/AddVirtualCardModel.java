@@ -1,7 +1,8 @@
 package me.ledge.link.sdk.ui.models.financialaccountselector;
 
-import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.CustodianVo;
+import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 
@@ -38,7 +39,10 @@ public class AddVirtualCardModel implements AddFinancialAccountModel {
     public IssueVirtualCardRequestVo getRequest() {
         IssueVirtualCardRequestVo request = new IssueVirtualCardRequestVo();
         request.cardIssuer = "SHIFT";
-        request.custodian = new CustodianVo("coinbase", UserStorage.getInstance().getCoinbaseOauthToken());
+
+        // TODO: hardcoding to coinbase for now
+        OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(UserStorage.getInstance().getCoinbaseAccessToken(), UserStorage.getInstance().getCoinbaseRefreshToken());
+        request.custodian = new CustodianVo("coinbase", coinbaseCredentials);
 
         return request;
     }

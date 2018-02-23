@@ -6,6 +6,6 @@ package me.ledge.link.sdk.ui.presenters.custodianselector;
  * @author Adrian
  */
 public interface CoinbaseDelegate {
-    void coinbaseTokenRetrieved(String token);
+    void coinbaseTokensRetrieved(String accessToken, String refreshToken);
     void onCoinbaseException(Exception exception);
 }

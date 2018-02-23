@@ -22,7 +22,8 @@ public class UserStorage {
     private DataPointList mUserDataPoints;
     private String mBearerToken;
     private RequiredDataPointsListResponseVo mRequiredData;
-    private String mCoinbaseOauthToken;
+    private String mCoinbaseAccessToken;
+    private String mCoinbaseRefreshToken;
 
     private static UserStorage mInstance;
 
@@ -142,11 +143,19 @@ public class UserStorage {
         return isValid;
     }
 
-    public String getCoinbaseOauthToken() {
-        return mCoinbaseOauthToken;
+    public String getCoinbaseAccessToken() {
+        return mCoinbaseAccessToken;
     }
 
-    public void setCoinbaseOauthToken(String coinbaseOauthToken) {
-        this.mCoinbaseOauthToken = coinbaseOauthToken;
+    public void setCoinbaseAccessToken(String coinbaseAccessToken) {
+        this.mCoinbaseAccessToken = coinbaseAccessToken;
+    }
+
+    public String getCoinbaseRefreshToken() {
+        return mCoinbaseRefreshToken;
+    }
+
+    public void setCoinbaseRefreshToken(String coinbaseRefreshToken) {
+        this.mCoinbaseRefreshToken = coinbaseRefreshToken;
     }
 }
