@@ -22,16 +22,18 @@ import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.PhoneActivity;
+import me.ledge.link.sdk.ui.activities.userdata.EmailActivity;
 import me.ledge.link.sdk.ui.activities.verification.BirthdateVerificationActivity;
 import me.ledge.link.sdk.ui.activities.verification.EmailVerificationActivity;
 import me.ledge.link.sdk.ui.activities.verification.PhoneVerificationActivity;
+import me.ledge.link.sdk.ui.presenters.userdata.EmailDelegate;
 import me.ledge.link.sdk.ui.presenters.userdata.PhoneDelegate;
 import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.workflow.Command;
 import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 
-public class AuthModule extends LedgeBaseModule implements PhoneDelegate,
+public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailDelegate,
         PhoneVerificationDelegate, EmailVerificationDelegate, BirthdateVerificationDelegate {
 
     private static AuthModule instance;
@@ -125,7 +127,25 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate,
 
     @Override
     public void phoneOnBackPressed() {
-        super.onBack.execute();
+        if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Phone)) {
+            super.onBack.execute();
+        } else {
+            startPrimaryCredentialActivity();
+        }
+    }
+
+    @Override
+    public void emailStored() {
+        startActivity(EmailVerificationActivity.class);
+    }
+
+    @Override
+    public void emailOnBackPressed() {
+        if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email)) {
+            super.onBack.execute();
+        } else {
+            startPrimaryCredentialActivity();
+        }
     }
 
     @Override
@@ -160,13 +180,39 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate,
     }
 
     @Override
-    public void emailVerificationSucceeded() {
-        loginUser();
+    public void emailVerificationSucceeded(VerificationResponseVo verification) {
+
+        if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email)) {
+            BaseVerificationResponseVo secondaryCredential = verification.secondary_credential;
+            if (secondaryCredential == null) {
+                onNewUserWithVerifiedPrimaryCredential.execute();
+                return;
+            }
+            DataPointList userData = UserStorage.getInstance().getUserData();
+            switch (DataPointVo.DataPointType.fromString(secondaryCredential.verification_type)) {
+                case Email:
+                    DataPointVo baseEmail = mInitialUserData.getUniqueDataPoint(DataPointVo.DataPointType.Email, new Email());
+                    baseEmail.setVerification(new VerificationVo(secondaryCredential.verification_id, secondaryCredential.verification_type));
+                    userData.add(baseEmail);
+                    UserStorage.getInstance().setUserData(userData);
+                    startActivity(EmailVerificationActivity.class);
+                    break;
+                case BirthDate:
+                    DataPointVo baseBirthdate = mInitialUserData.getUniqueDataPoint(DataPointVo.DataPointType.BirthDate, new Birthdate());
+                    baseBirthdate.setVerification(new VerificationVo(secondaryCredential.verification_id, secondaryCredential.verification_type));
+                    userData.add(baseBirthdate);
+                    UserStorage.getInstance().setUserData(userData);
+                    startActivity(BirthdateVerificationActivity.class);
+                    break;
+            }
+        } else {
+            loginUser();
+        }
     }
 
     @Override
-    public void emailOnBackPressed() {
-        startPrimaryCredentialActivity();
+    public void emailVerificationOnBackPressed() {
+        startActivity(EmailActivity.class);
     }
 
     @Override
@@ -179,9 +225,17 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate,
         startPrimaryCredentialActivity();
     }
 
+    @Override
+    public boolean isStartVerificationRequired() {
+        return mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email);
+    }
+
+
     private void startPrimaryCredentialActivity() {
         if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Phone)) {
             startActivity(PhoneActivity.class);
+        } else if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email)) {
+            startActivity(EmailActivity.class);
         } else {
             Toast.makeText(getActivity(), "Configured primary credential is not supported!", Toast.LENGTH_SHORT).show();
         }
