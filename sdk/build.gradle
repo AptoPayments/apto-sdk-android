@@ -84,7 +84,7 @@ repositories {
 
 dependencies {
     // Ledge Libraries.
-    compile 'me.ledge.link.sdk:api:0.1.1'
+    compile 'me.ledge.link.sdk:api:0.1.2'
 
     // Tests
     testCompile 'junit:junit:4.12'

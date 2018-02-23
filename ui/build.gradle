@@ -100,7 +100,7 @@ repositories {
 dependencies {
     // Ledge Libraries
     compile 'me.ledge.link.sdk:sdk:0.1.3'
-    compile 'me.ledge.link.sdk:retrofit-wrapper:0.1.2'
+    compile 'me.ledge.link.sdk:retrofit-wrapper:0.1.3'
     compile 'me.ledge.common:common:+'
     // 3rd Party Libraries
     compile('com.android.support:support-v13:24.0.0') {
