@@ -99,27 +99,26 @@ repositories {
 
 dependencies {
     // Ledge Libraries
-    compile 'me.ledge.link.sdk:sdk:0.1.2'
+    compile 'me.ledge.link.sdk:sdk:0.1.3'
     compile 'me.ledge.link.sdk:retrofit-wrapper:0.1.2'
     compile 'me.ledge.common:common:+'
-
     // 3rd Party Libraries
-    compile ('com.android.support:support-v13:24.0.0') {
+    compile('com.android.support:support-v13:24.0.0') {
         exclude module: 'support-annotations'
     }
-    compile ('com.android.support:appcompat-v7:24.0.0') {
+    compile('com.android.support:appcompat-v7:24.0.0') {
         exclude module: 'support-v4'
     }
-    compile ('com.android.support:design:24.0.0') {
+    compile('com.android.support:design:24.0.0') {
         exclude module: 'support-v4'
     }
-    compile ('com.android.support:cardview-v7:24.0.0') {
+    compile('com.android.support:cardview-v7:24.0.0') {
         exclude module: 'support-v4'
     }
-    compile ('com.android.support:recyclerview-v7:24.0.0') {
+    compile('com.android.support:recyclerview-v7:24.0.0') {
         exclude module: 'support-v4'
     }
-    compile ('org.adw.library:discrete-seekbar:+') {
+    compile('org.adw.library:discrete-seekbar:+') {
         exclude module: 'support-v4'
     }
     compile 'com.android.volley:volley:1.+'
@@ -127,7 +126,7 @@ dependencies {
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:1.4'
     compile 'com.googlecode.libphonenumber:libphonenumber:8.3.1'
     compile 'com.github.ksoichiro:android-observablescrollview:1.6.0'
-    compile ('com.github.davidpizarro:pinview:1.0.0') {
+    compile('com.github.davidpizarro:pinview:1.0.0') {
         exclude module: 'appcompat-v7'
     }
     compile 'org.greenrobot:eventbus:3.0.0'
@@ -139,6 +138,9 @@ dependencies {
     compile 'com.synnapps:carouselview:0.0.10'
     compile 'com.github.tiagohm.MarkdownView:library:0.17.0'
     compile 'com.github.barteksc:android-pdf-viewer:2.8.0'
+    compile('com.coinbase.android:coinbase-android-sdk:1.0.1') {
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
 
     // Tests
     testCompile 'junit:junit:4.12'

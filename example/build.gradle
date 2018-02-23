@@ -20,6 +20,21 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    buildTypes {
+        debug {
+            minifyEnabled true
+
+            proguardFile 'config/proguard/proguard-eventbus.cfg'
+            proguardFile 'config/proguard/proguard-ledgelinkapi.cfg'
+            proguardFile 'config/proguard/proguard-ledgelinksdk.cfg'
+            proguardFile 'config/proguard/proguard-retrofit2.cfg'
+            proguardFile 'config/proguard/proguard-okio.cfg'
+            proguardFile 'config/proguard/proguard-volley.cfg'
+            proguardFile 'config/proguard/proguard-coinbase.cfg'
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+        }
+    }
+
     // Fixed build error : Duplicate files copied in APK META-INF/xxx
     packagingOptions {
         exclude 'META-INF/maven/com.squareup.okhttp/okhttp/pom.xml'
@@ -28,8 +43,13 @@ android {
         exclude 'META-INF/maven/com.squareup.okio/okio/pom.properties'
         exclude 'META-INF/LICENSE'
         pickFirst 'META-INF/license.txt'
+        pickFirst 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE'
         pickFirst 'META-INF/NOTICE.txt'
+        pickFirst 'META-INF/services/com.fasterxml.jackson.core.JsonFactory'
+        pickFirst 'META-INF/maven/com.fasterxml.jackson.core/jackson-core/pom.xml'
+        pickFirst 'META-INF/maven/com.fasterxml.jackson.core/jackson-core/pom.properties'
+        pickFirst 'META-INF/DEPENDENCIES'
     }
 }
 
