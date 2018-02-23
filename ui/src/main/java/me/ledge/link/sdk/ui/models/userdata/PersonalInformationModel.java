@@ -10,7 +10,8 @@ import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.PersonalName;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
-import ru.lanwen.verbalregex.VerbalExpression;
+
+import static me.ledge.link.sdk.ui.utils.EmailUtil.isValidEmail;
 
 
 /**
@@ -163,17 +164,8 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
      * @param email Email address.
      */
     public void setEmail(String email) {
-        VerbalExpression emailRegex = VerbalExpression.regex()
-                .startOfLine()
-                .anythingBut(" ")
-                .then("@")
-                .anythingBut(" ")
-                .then(".")
-                .anythingBut(" ")
-                .endOfLine()
-                .build();
 
-        if (emailRegex.testExact(email)) {
+        if (isValidEmail(email)) {
             mEmail.email = email;
         } else {
             mEmail.email = null;

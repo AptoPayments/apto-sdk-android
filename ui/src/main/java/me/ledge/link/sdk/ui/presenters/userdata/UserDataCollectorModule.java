@@ -156,6 +156,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         onBack.execute();
     }
 
+
     @Override
     public void identityVerificationSucceeded() {
         showLoading(true);
