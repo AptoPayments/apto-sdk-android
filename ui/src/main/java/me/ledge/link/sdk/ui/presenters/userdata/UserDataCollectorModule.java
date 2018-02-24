@@ -379,6 +379,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
             RequiredDataPointVo requiredDataPointVo = listIterator.next();
             if(requiredDataPointVo.type.equals(credentialType)) {
                 listIterator.remove();
+                break;
             }
         }
     }
@@ -423,11 +424,13 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
                     case MemberOfArmedForces:
                         addRequiredActivity(ArmedForcesActivity.class);
                         break;
+                    case SSN:
+                    case BirthDate:
+                        addRequiredActivity(IdentityVerificationActivity.class);
+                        break;
                 }
             }
         }
-        // Add it to the end so it's the last activity and is always shown
-        addRequiredActivity(IdentityVerificationActivity.class);
         UserDataPresenter.TOTAL_STEPS = mRequiredActivities.size();
     }
 

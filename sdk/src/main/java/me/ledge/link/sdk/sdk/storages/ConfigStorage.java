@@ -6,8 +6,8 @@ import java8.util.concurrent.CompletableFuture;
 import java8.util.concurrent.CompletionException;
 import me.ledge.link.api.exceptions.ApiException;
 import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
-import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.ContentVo;
+import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
@@ -112,6 +112,10 @@ public class ConfigStorage {
             });
             return (RequiredDataPointsListResponseVo) getResultFromFuture(future);
         }
+    }
+
+    public synchronized void setRequiredUserData(RequiredDataPointsListResponseVo requiredDataPoints) {
+        mLinkConfig.userRequiredData = requiredDataPoints;
     }
 
     public synchronized boolean getPOSMode() {
