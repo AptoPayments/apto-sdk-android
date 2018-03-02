@@ -75,5 +75,3 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'uk.com.robust-it:cloning:1.9.9'
 }
-
-apply from: 'deploy.gradle'
