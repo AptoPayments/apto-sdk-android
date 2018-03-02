@@ -14,6 +14,7 @@ import me.ledge.link.api.vos.requests.dashboard.CreateTeamRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.ManageCardRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.DeleteUserRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
@@ -358,4 +359,11 @@ public interface LinkApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     void deleteProject(String teamId, String projectId) throws ApiException;
+
+    /**
+     * @param requestData The state of the card
+     * @return The virtual card
+     * @throws ApiException
+     */
+    Card updateFinancialAccount(String accountId, ManageCardRequestVo requestData) throws ApiException;
 }

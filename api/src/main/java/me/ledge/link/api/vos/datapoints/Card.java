@@ -28,6 +28,8 @@ public class Card extends FinancialAccountVo {
     public String CVVToken;
     @SerializedName("expiration")
     public String expirationDate;
+    @SerializedName("state")
+    public String state;
 
     public Card() {
         super(null, FinancialAccountType.Card, false);
@@ -36,26 +38,31 @@ public class Card extends FinancialAccountVo {
         PANToken = null;
         CVVToken = null;
         expirationDate = null;
+        state = null;
     }
 
     public Card(String accountId, CardNetwork type, String PANToken, String CVVToken, String lastFourDigits,
-                String expirationDate, boolean verified) {
+                String expirationDate, String state, boolean verified) {
         super(accountId, FinancialAccountType.Card, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
         this.PANToken = PANToken;
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
+        this.state = state;
+
     }
 
     protected Card(FinancialAccountType accountType, String accountId, CardNetwork type, String PANToken, String CVVToken, String lastFourDigits,
-                   String expirationDate, boolean verified) {
+                   String expirationDate, String state, boolean verified) {
         super(accountId, accountType, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
         this.PANToken = PANToken;
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
+        this.state = state;
+
     }
 
     @Override
@@ -67,6 +74,7 @@ public class Card extends FinancialAccountVo {
         gsonObject.addProperty("cvv_token", CVVToken);
         gsonObject.addProperty("last_four", lastFourDigits);
         gsonObject.addProperty("expiration", getAPIFormatExpirationDate(expirationDate));
+        gsonObject.addProperty("state", state);
         return gsonObject;
     }
 
@@ -99,6 +107,8 @@ public class Card extends FinancialAccountVo {
         if (PANToken != null ? !PANToken.equals(card.PANToken) : card.PANToken != null)
             return false;
         if (CVVToken != null ? !CVVToken.equals(card.CVVToken) : card.CVVToken != null)
+            return false;
+        if (state != null ? !state.equals(card.state) : card.state != null)
             return false;
         return expirationDate != null ? expirationDate.equals(card.expirationDate) : card.expirationDate == null;
 
