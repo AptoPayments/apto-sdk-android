@@ -4,6 +4,8 @@ apply from: '../jacoco.gradle'
 apply from: '../javadoc.gradle'
 apply plugin: 'me.tatarka.retrolambda'
 
+version = '0.1.5'
+
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'android-sdk'
@@ -84,7 +86,7 @@ repositories {
 
 dependencies {
     // Ledge Libraries.
-    compile 'me.ledge.link.sdk:api:0.1.2'
+    compile 'me.ledge.link.sdk:api:0.1.4'
 
     // Tests
     testCompile 'junit:junit:4.12'
@@ -92,3 +94,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
 }
+
+apply from: 'deploy.gradle'

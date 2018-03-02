@@ -12,11 +12,10 @@ ext {
     androidVersionName = '0.1'
 
     mavenGroup = 'me.ledge.link.sdk'
-    mavenVersion = '0.1.5'
+    mavenVersion = '0.1.6'
 }
 
 subprojects {
-    version = mavenVersion
     group = mavenGroup
     repositories {
         maven { url 'https://jitpack.io' }

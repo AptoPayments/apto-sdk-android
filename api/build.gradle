@@ -14,6 +14,8 @@ buildscript {
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
+version = '0.1.4'
+
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'ledge_api'
@@ -71,6 +73,7 @@ dependencies {
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:1.4'
     compile 'com.googlecode.libphonenumber:libphonenumber:8.3.1'
     compile 'com.google.code.gson:gson:2.8.2'
-    compile 'uk.com.robust-it:cloning:1.9.3'
+    compile 'uk.com.robust-it:cloning:1.9.9'
 }
 
+apply from: 'deploy.gradle'

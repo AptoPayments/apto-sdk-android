@@ -273,7 +273,14 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
 
     @Override
     public void personalInformationOnBackPressed() {
-        startActivity(getActivityAtPosition(PersonalInformationActivity.class, -1));
+        Class previousActivity = getActivityAtPosition(PersonalInformationActivity.class, -1);
+        if(previousActivity==null) {
+            onBack.execute();
+        }
+        else {
+            startActivity(previousActivity);
+        }
+
     }
 
     @Override

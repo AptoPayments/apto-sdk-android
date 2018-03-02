@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<me.ledge.link.sdk.ui.views.userdata.AddressView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<me.ledge.link.sdk.ui.views.userdata.AddressView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android.support.design="http://schemas.android.com/apk/res-auto">
 
     <include layout="@layout/include_llsdk_toolbar" />
 
@@ -29,6 +29,9 @@
                     android:id="@+id/til_address"
                     style="?attr/llsdk_idVerification_inputWrapperStyle"
                     android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
+                    android:hint="@string/address_address_hint"
+                    android.support.design:hintEnabled="true"
+                    android.support.design:hintAnimationEnabled="true"
                     android:nextFocusUp="@id/til_address"
                     android:nextFocusLeft="@id/til_address">
 
@@ -36,8 +39,7 @@
                         android:id="@+id/et_address"
                         style="?attr/llsdk_idVerification_editTextStyle"
                         android:inputType="textPostalAddress"
-                        android:singleLine="true"
-                        android:hint="@string/address_address_hint" />
+                        android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
 
