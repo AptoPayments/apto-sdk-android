@@ -86,7 +86,9 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv_number")),
                         ParsingUtils.getStringFromJson(jObject.get("last_four_digits")),
-                        ParsingUtils.getStringFromJson(jObject.get("expiration")), false);
+                        ParsingUtils.getStringFromJson(jObject.get("expiration")),
+                        ParsingUtils.getStringFromJson(jObject.get("pin")),
+                        false);
             case "bank_account":
                 return new BankAccount(jObject.get("account_id").getAsString(),
                         jObject.get("bank_name").getAsString(),
@@ -97,7 +99,9 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv_number")),
                         ParsingUtils.getStringFromJson(jObject.get("last_four_digits")),
-                        ParsingUtils.getStringFromJson(jObject.get("expiration")), false);
+                        ParsingUtils.getStringFromJson(jObject.get("expiration")),
+                        ParsingUtils.getStringFromJson(jObject.get("pin")),
+                        false);
             case "payday_loan":
                 return new PaydayLoan(jObject.get("payday_loan").getAsBoolean(), verified,
                         notSpecified);

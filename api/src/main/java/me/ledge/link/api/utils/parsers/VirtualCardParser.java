@@ -26,6 +26,8 @@ public class VirtualCardParser implements JsonDeserializer<VirtualCard> {
                 ParsingUtils.getStringFromJson(jObject.get("pan")),
                 ParsingUtils.getStringFromJson(jObject.get("cvv_number")),
                 ParsingUtils.getStringFromJson(jObject.get("last_four_digits")),
-                ParsingUtils.getStringFromJson(jObject.get("expiration")), false);
+                ParsingUtils.getStringFromJson(jObject.get("expiration")),
+                ParsingUtils.getStringFromJson(jObject.get("pin")),
+                false);
     }
 }

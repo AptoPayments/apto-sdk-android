@@ -28,6 +28,8 @@ public class Card extends FinancialAccountVo {
     public String CVVToken;
     @SerializedName("expiration")
     public String expirationDate;
+    @SerializedName("pin")
+    public String pin;
 
     public Card() {
         super(null, FinancialAccountType.Card, false);
@@ -36,26 +38,30 @@ public class Card extends FinancialAccountVo {
         PANToken = null;
         CVVToken = null;
         expirationDate = null;
+        pin = null;
     }
 
     public Card(String accountId, CardNetwork type, String PANToken, String CVVToken, String lastFourDigits,
-                String expirationDate, boolean verified) {
+                String expirationDate, String pin, boolean verified) {
         super(accountId, FinancialAccountType.Card, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
         this.PANToken = PANToken;
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
+        this.pin = pin;
     }
 
     protected Card(FinancialAccountType accountType, String accountId, CardNetwork type, String PANToken, String CVVToken, String lastFourDigits,
-                   String expirationDate, boolean verified) {
+                   String expirationDate, String pin, boolean verified) {
         super(accountId, accountType, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
         this.PANToken = PANToken;
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
+        this.pin = pin;
+
     }
 
     @Override
@@ -67,6 +73,7 @@ public class Card extends FinancialAccountVo {
         gsonObject.addProperty("cvv_token", CVVToken);
         gsonObject.addProperty("last_four", lastFourDigits);
         gsonObject.addProperty("expiration", getAPIFormatExpirationDate(expirationDate));
+        gsonObject.addProperty("pin", pin);
         return gsonObject;
     }
 
