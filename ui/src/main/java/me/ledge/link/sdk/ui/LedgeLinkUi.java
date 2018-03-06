@@ -42,7 +42,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
     private static Environment mEnvironment;
 
     private enum Environment {
-        local, dev, stg, sbx, prd
+        local_emulator, local_device, dev, stg, sbx, prd
     }
 
     /**
@@ -95,11 +95,11 @@ public class LedgeLinkUi extends LedgeLinkSdk {
 
     private static String getApiEndPoint() {
         switch(mEnvironment) {
-            case local:
-                // Emulator
+            case local_emulator:
                 return "http://10.0.2.2:5001";
-                // Device (don't forget to set port forwarding in chrome 5000->localhost:5001)
-                //return "http://localhost:5000";
+            case local_device:
+                // Don't forget to set port forwarding in chrome 5000->localhost:5001
+                return "http://localhost:5000";
             case dev:
                 return "https://dev.ledge.me";
             case stg:
@@ -115,7 +115,8 @@ public class LedgeLinkUi extends LedgeLinkSdk {
 
     public static String getVGSEndPoint() {
         switch(mEnvironment) {
-            case local:
+            case local_device:
+            case local_emulator:
                 return getApiEndPoint();
             case dev:
                 return "https://tnt9pyfmrib.SANDBOX.verygoodproxy.com";
