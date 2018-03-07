@@ -7,7 +7,7 @@ import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
-import me.ledge.link.api.vos.requests.financialaccounts.ManageCardRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
@@ -67,5 +67,5 @@ public interface FinancialAccountService {
      * @return API call to execute.
      */
     @PUT(LinkApiWrapper.FINANCIAL_ACCOUNT_PATH)
-    Call<Card> updateFinancialAccount(@Path("account_id") String accountId, @Body ManageCardRequestVo state);
+    Call<Card> updateFinancialAccount(@Path("account_id") String accountId, @Body UpdateFinancialAccountRequestVo state);
 }
