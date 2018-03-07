@@ -28,11 +28,15 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
         }
         if(type.equalsIgnoreCase("card")) {
             return new Card(jObject.get("account_id").getAsString(),
-                    Card.CardNetwork.valueOf(jObject.get("card_network").getAsString()),
+                    ParsingUtils.getStringFromJson(jObject.get("last_four")),
+                    Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),
+                    ParsingUtils.getStringFromJson(jObject.get("card_brand")),
+                    ParsingUtils.getStringFromJson(jObject.get("card_issuer")),
+                    ParsingUtils.getStringFromJson(jObject.get("expiration")),
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
-                    ParsingUtils.getStringFromJson(jObject.get("cvv_number")),
-                    ParsingUtils.getStringFromJson(jObject.get("last_four_digits")),
-                    ParsingUtils.getStringFromJson(jObject.get("expiration")), false);
+                    ParsingUtils.getStringFromJson(jObject.get("cvv")),
+                    ParsingUtils.getStringFromJson(jObject.get("state")),
+                    ParsingUtils.getStringFromJson(jObject.get("balance")), false);
         }
         else if(type.equalsIgnoreCase("bank_account")) {
             return new BankAccount(jObject.get("account_id").getAsString(),
@@ -41,11 +45,15 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
         }
         else if(type.equalsIgnoreCase("virtual_card")){
             return new VirtualCard(jObject.get("account_id").getAsString(),
+                    ParsingUtils.getStringFromJson(jObject.get("last_four")),
                     Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),
+                    ParsingUtils.getStringFromJson(jObject.get("card_brand")),
+                    ParsingUtils.getStringFromJson(jObject.get("card_issuer")),
+                    ParsingUtils.getStringFromJson(jObject.get("expiration")),
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
-                    ParsingUtils.getStringFromJson(jObject.get("cvv_number")),
-                    ParsingUtils.getStringFromJson(jObject.get("last_four_digits")),
-                    ParsingUtils.getStringFromJson(jObject.get("expiration")), false);
+                    ParsingUtils.getStringFromJson(jObject.get("cvv")),
+                    ParsingUtils.getStringFromJson(jObject.get("state")),
+                    ParsingUtils.getStringFromJson(jObject.get("balance")), false);
         }
         else {
             return null;

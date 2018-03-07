@@ -20,11 +20,19 @@ public class Card extends FinancialAccountVo {
 
     @SerializedName("card_network")
     public CardNetwork cardNetwork;
-    @SerializedName("last_four_digits")
+    @SerializedName("last_four")
     public String lastFourDigits;
+    @SerializedName("card_brand")
+    public String cardBrand;
+    @SerializedName("card_issuer")
+    public String cardIssuer;
+    @SerializedName("state")
+    public String state;
+    @SerializedName("balance")
+    public String balance;
     @SerializedName("pan")
     public String PANToken;
-    @SerializedName("cvv_number")
+    @SerializedName("cvv")
     public String CVVToken;
     @SerializedName("expiration")
     public String expirationDate;
@@ -33,26 +41,38 @@ public class Card extends FinancialAccountVo {
         super(null, FinancialAccountType.Card, false);
         cardNetwork = null;
         lastFourDigits = null;
+        cardBrand = null;
+        cardIssuer = null;
+        state = null;
+        balance = null;
         PANToken = null;
         CVVToken = null;
         expirationDate = null;
     }
 
-    public Card(String accountId, CardNetwork type, String PANToken, String CVVToken, String lastFourDigits,
-                String expirationDate, boolean verified) {
+    public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
+                String PANToken, String CVVToken, String state, String balance, boolean verified) {
         super(accountId, FinancialAccountType.Card, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
+        this.cardBrand = cardBrand;
+        this.cardIssuer = cardIssuer;
+        this.state = state;
+        this.balance = balance;
         this.PANToken = PANToken;
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
     }
 
-    protected Card(FinancialAccountType accountType, String accountId, CardNetwork type, String PANToken, String CVVToken, String lastFourDigits,
-                   String expirationDate, boolean verified) {
+    protected Card(FinancialAccountType accountType, String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
+                   String PANToken, String CVVToken, String state, String balance, boolean verified) {
         super(accountId, accountType, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
+        this.cardBrand = cardBrand;
+        this.cardIssuer = cardIssuer;
+        this.state = state;
+        this.balance = balance;
         this.PANToken = PANToken;
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
@@ -63,8 +83,12 @@ public class Card extends FinancialAccountVo {
         JsonObject gsonObject = super.toJSON();
         gsonObject.addProperty("type", "card");
         gsonObject.addProperty("card_network", cardNetwork.name());
-        gsonObject.addProperty("pan_token", PANToken);
-        gsonObject.addProperty("cvv_token", CVVToken);
+        gsonObject.addProperty("card_brand", cardBrand);
+        gsonObject.addProperty("card_issuer", cardIssuer);
+        gsonObject.addProperty("state", state);
+        gsonObject.addProperty("balance", balance);
+        gsonObject.addProperty("pan", PANToken);
+        gsonObject.addProperty("cvv", CVVToken);
         gsonObject.addProperty("last_four", lastFourDigits);
         gsonObject.addProperty("expiration", getAPIFormatExpirationDate(expirationDate));
         return gsonObject;
