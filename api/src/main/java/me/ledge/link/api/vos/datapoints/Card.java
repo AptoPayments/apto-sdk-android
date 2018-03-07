@@ -95,7 +95,7 @@ public class Card extends FinancialAccountVo {
         gsonObject.addProperty("card_network", cardNetwork.name());
         gsonObject.addProperty("card_brand", cardBrand);
         gsonObject.addProperty("card_issuer", cardIssuer);
-        gsonObject.addProperty("state", state.name());
+        gsonObject.addProperty("state", state.name().toLowerCase());
         gsonObject.addProperty("balance", balance);
         gsonObject.addProperty("pan", PANToken);
         gsonObject.addProperty("cvv", CVVToken);
