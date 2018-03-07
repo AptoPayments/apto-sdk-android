@@ -124,6 +124,16 @@ public class Card extends FinancialAccountVo {
             return false;
         if (CVVToken != null ? !CVVToken.equals(card.CVVToken) : card.CVVToken != null)
             return false;
+        if (cardNetwork != null ? !cardNetwork.equals(card.cardNetwork) : card.cardNetwork != null)
+            return false;
+        if (cardBrand != null ? !cardBrand.equals(card.cardBrand) : card.cardBrand != null)
+            return false;
+        if (cardIssuer != null ? !cardIssuer.equals(card.cardIssuer) : card.cardIssuer != null)
+            return false;
+        if (state != null ? !state.equals(card.state) : card.state != null)
+            return false;
+        if (balance != null ? !balance.equals(card.balance) : card.balance != null)
+            return false;
         return expirationDate != null ? expirationDate.equals(card.expirationDate) : card.expirationDate == null;
 
     }
@@ -135,6 +145,11 @@ public class Card extends FinancialAccountVo {
         result = 31 * result + (PANToken != null ? PANToken.hashCode() : 0);
         result = 31 * result + (CVVToken != null ? CVVToken.hashCode() : 0);
         result = 31 * result + (expirationDate != null ? expirationDate.hashCode() : 0);
+        result = 31 * result + (cardNetwork != null ? cardNetwork.hashCode() : 0);
+        result = 31 * result + (cardBrand != null ? cardBrand.hashCode() : 0);
+        result = 31 * result + (cardIssuer != null ? cardIssuer.hashCode() : 0);
+        result = 31 * result + (state != null ? state.hashCode() : 0);
+        result = 31 * result + (balance != null ? balance.hashCode() : 0);
         return result;
     }
 }
