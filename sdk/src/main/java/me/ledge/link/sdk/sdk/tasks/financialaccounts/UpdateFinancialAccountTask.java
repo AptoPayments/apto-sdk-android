@@ -20,11 +20,11 @@ public class UpdateFinancialAccountTask extends LedgeLinkApiTask<Void, Void, Car
      * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      */
-    public UpdateFinancialAccountTask(UpdateFinancialAccountRequestVo requestData, String mAccountId, LinkApiWrapper apiWrapper,
+    public UpdateFinancialAccountTask(UpdateFinancialAccountRequestVo requestData, String accountId, LinkApiWrapper apiWrapper,
                        ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);
-        mAccountId = mAccountId;
+        mAccountId = accountId;
     }
 
     /** {@inheritDoc} */

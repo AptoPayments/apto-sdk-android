@@ -16,4 +16,5 @@ public class UpdateFinancialAccountRequestVo extends UnauthorizedRequestVo {
      * Manage state of a financial account
      */
     @SerializedName("state")
-    public String state;}
+    public String state;
+}
