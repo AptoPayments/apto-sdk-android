@@ -12,6 +12,7 @@ import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountPinVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
@@ -449,7 +450,7 @@ public class LedgeLinkSdk {
     public static LedgeLinkApiTask updateFinancialAccountPin(UpdateFinancialAccountPinVo data, String accountId) {
         checkComponents();
 
-        UpdateFinancialAccountTask task = new UpdateFinancialAccountPinTask(data, accountId, getApiWrapper(), getResponseHandler());
+        UpdateFinancialAccountPinTask task = new UpdateFinancialAccountPinTask(data, accountId, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;
