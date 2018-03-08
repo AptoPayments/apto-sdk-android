@@ -15,6 +15,7 @@ import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountPinVo;
+import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.DeleteUserRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
@@ -363,6 +364,13 @@ public interface LinkApiWrapper {
 
     /**
      * @param requestData The state of the card
+     * @return The virtual card
+     * @throws ApiException
+     */
+    Card updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo requestData) throws ApiException;
+
+    /**
+     * @param requestData New pin of the card
      * @return The virtual card
      * @throws ApiException
      */

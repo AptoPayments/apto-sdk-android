@@ -381,5 +381,6 @@ public class MockApiWrapper implements LinkApiWrapper {
     public updateFinancialAccountPin(Card card) throws ApiException {
     }
 
-
+    public updateFinancialAccount(Card card) throws ApiException {
+    }
 }

@@ -9,12 +9,12 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
  * Created by pauteruel on 01/03/2018.
  */
 
-public class UpdateFinancialAccountPinVo extends UnauthorizedRequestVo {
-    public String type = "pin";
+public class UpdateFinancialAccountRequestVo extends UnauthorizedRequestVo {
+    public String type = "state";
 
     /**
-     * Manage pin of a financial account
+     * Manage state of a financial account
      */
-    @SerializedName("pin")
-    public String pin;
+    @SerializedName("state")
+    public String state;
 }

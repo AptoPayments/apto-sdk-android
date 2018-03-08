@@ -20,14 +20,16 @@ public class VirtualCardParser implements JsonDeserializer<VirtualCard> {
     public VirtualCard deserialize(JsonElement json, Type iType, JsonDeserializationContext context)
             throws JsonParseException {
         JsonObject jObject = json.getAsJsonObject();
-
         return new VirtualCard(jObject.get("account_id").getAsString(),
+                ParsingUtils.getStringFromJson(jObject.get("last_four")),
                 Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),
-                ParsingUtils.getStringFromJson(jObject.get("pan")),
-                ParsingUtils.getStringFromJson(jObject.get("cvv_number")),
-                ParsingUtils.getStringFromJson(jObject.get("last_four_digits")),
+                ParsingUtils.getStringFromJson(jObject.get("card_brand")),
+                ParsingUtils.getStringFromJson(jObject.get("card_issuer")),
                 ParsingUtils.getStringFromJson(jObject.get("expiration")),
+                ParsingUtils.getStringFromJson(jObject.get("pan")),
                 ParsingUtils.getStringFromJson(jObject.get("pin")),
-                false);
+                ParsingUtils.getStringFromJson(jObject.get("cvv")),
+                Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
+                ParsingUtils.getStringFromJson(jObject.get("balance")), false);
     }
 }
