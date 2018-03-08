@@ -89,7 +89,7 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         ParsingUtils.getStringFromJson(jObject.get("expiration")),
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv")),
-                        Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state"))),
+                        Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
                         ParsingUtils.getStringFromJson(jObject.get("balance")), false);
             case "bank_account":
                 return new BankAccount(jObject.get("account_id").getAsString(),
@@ -104,7 +104,7 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         ParsingUtils.getStringFromJson(jObject.get("expiration")),
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv")),
-                        Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state"))),
+                        Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
                         ParsingUtils.getStringFromJson(jObject.get("balance")), false);
             case "payday_loan":
                 return new PaydayLoan(jObject.get("payday_loan").getAsBoolean(), verified,
