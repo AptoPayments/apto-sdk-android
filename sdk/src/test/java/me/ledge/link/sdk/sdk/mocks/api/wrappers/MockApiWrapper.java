@@ -376,4 +376,8 @@ public class MockApiWrapper implements LinkApiWrapper {
     @Override
     public void deleteProject(String s, String s1) throws ApiException {
     }
+
+    @Override
+    public updateFinancialAccount(Card card) throws ApiException {
+    }
 }

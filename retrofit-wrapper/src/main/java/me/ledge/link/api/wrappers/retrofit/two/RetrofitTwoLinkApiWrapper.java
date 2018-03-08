@@ -41,6 +41,7 @@ import me.ledge.link.api.vos.requests.dashboard.CreateTeamRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.DeleteUserRequestVo;
 import me.ledge.link.api.vos.requests.users.LoginRequestVo;
@@ -768,5 +769,24 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         } catch (IOException ioe) {
             throwApiException(new ApiErrorVo(), LinkApiWrapper.DELETE_PROJECT_PATH, ioe);
         }
+    }
+
+    @Override
+    public Card updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo card) throws ApiException {
+        Card result;
+        try {
+            // Setting VGS proxy only for this call
+            this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
+            Response<Card> response
+                    = mFinancialAccountService.updateFinancialAccount(accountId, card).execute();
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
+            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNT_PATH);
+        } catch (IOException ioe) {
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
+            result = null;
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNT_PATH, ioe);
+        }
+
+        return result;
     }
 }

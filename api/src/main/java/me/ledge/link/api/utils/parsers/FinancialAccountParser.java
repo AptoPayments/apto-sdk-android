@@ -35,7 +35,7 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("expiration")),
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
-                    ParsingUtils.getStringFromJson(jObject.get("state")),
+                    Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state"))),
                     ParsingUtils.getStringFromJson(jObject.get("balance")), false);
         }
         else if(type.equalsIgnoreCase("bank_account")) {
@@ -52,7 +52,7 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("expiration")),
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
-                    ParsingUtils.getStringFromJson(jObject.get("state")),
+                    Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state"))),
                     ParsingUtils.getStringFromJson(jObject.get("balance")), false);
         }
         else {
