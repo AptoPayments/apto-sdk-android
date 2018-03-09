@@ -34,7 +34,6 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("card_issuer")),
                     ParsingUtils.getStringFromJson(jObject.get("expiration")),
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
-                    ParsingUtils.getStringFromJson(jObject.get("pin")),
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
                     Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
                     ParsingUtils.getStringFromJson(jObject.get("balance")), false);
@@ -52,7 +51,6 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("card_issuer")),
                     ParsingUtils.getStringFromJson(jObject.get("expiration")),
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
-                    ParsingUtils.getStringFromJson(jObject.get("pin")),
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
                     Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
                     ParsingUtils.getStringFromJson(jObject.get("balance")), false);

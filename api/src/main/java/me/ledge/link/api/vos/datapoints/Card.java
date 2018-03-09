@@ -41,8 +41,6 @@ public class Card extends FinancialAccountVo {
     public String CVVToken;
     @SerializedName("expiration")
     public String expirationDate;
-    @SerializedName("pin")
-    public String pin;
     @SerializedName("state")
     public FinancialAccountState state;
 
@@ -56,12 +54,11 @@ public class Card extends FinancialAccountVo {
         PANToken = null;
         CVVToken = null;
         expirationDate = null;
-        pin = null;
         state = null;
     }
 
     public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                String PANToken, String pin, String CVVToken, FinancialAccountState state, String balance, boolean verified) {
+                String PANToken, String CVVToken, FinancialAccountState state, String balance, boolean verified) {
         super(accountId, FinancialAccountType.Card, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
@@ -72,11 +69,10 @@ public class Card extends FinancialAccountVo {
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
         this.state = state;
-        this.pin = pin;
     }
 
     protected Card(FinancialAccountType accountType, String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                   String PANToken, String pin, String CVVToken, FinancialAccountState state, String balance, boolean verified) {
+                   String PANToken, String CVVToken, FinancialAccountState state, String balance, boolean verified) {
         super(accountId, accountType, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
@@ -87,7 +83,6 @@ public class Card extends FinancialAccountVo {
         this.PANToken = PANToken;
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
-        this.pin = pin;
         this.state = state;
 
     }
@@ -105,7 +100,6 @@ public class Card extends FinancialAccountVo {
         gsonObject.addProperty("cvv", CVVToken);
         gsonObject.addProperty("last_four", lastFourDigits);
         gsonObject.addProperty("expiration", getAPIFormatExpirationDate(expirationDate));
-        gsonObject.addProperty("pin", pin);
         return gsonObject;
     }
 
@@ -137,8 +131,6 @@ public class Card extends FinancialAccountVo {
             return false;
         if (PANToken != null ? !PANToken.equals(card.PANToken) : card.PANToken != null)
             return false;
-        if (pin != null ? !pin.equals(card.pin) : card.pin != null)
-            return false;
         if (CVVToken != null ? !CVVToken.equals(card.CVVToken) : card.CVVToken != null)
             return false;
         if (cardNetwork != null ? !cardNetwork.equals(card.cardNetwork) : card.cardNetwork != null)
@@ -160,7 +152,6 @@ public class Card extends FinancialAccountVo {
         int result = super.hashCode()+(cardNetwork != null ? cardNetwork.hashCode() : 0);
         result = 31 * result + (lastFourDigits != null ? lastFourDigits.hashCode() : 0);
         result = 31 * result + (PANToken != null ? PANToken.hashCode() : 0);
-        result = 31 * result + (pin != null ? pin.hashCode() : 0);
         result = 31 * result + (CVVToken != null ? CVVToken.hashCode() : 0);
         result = 31 * result + (expirationDate != null ? expirationDate.hashCode() : 0);
         result = 31 * result + (cardNetwork != null ? cardNetwork.hashCode() : 0);
