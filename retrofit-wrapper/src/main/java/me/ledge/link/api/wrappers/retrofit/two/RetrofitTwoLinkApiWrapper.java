@@ -41,7 +41,7 @@ import me.ledge.link.api.vos.requests.dashboard.CreateTeamRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
-import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountPinVo;
+import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.api.vos.requests.users.DeleteUserRequestVo;
@@ -792,7 +792,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public Card updateFinancialAccountPin(String accountId, UpdateFinancialAccountPinVo card) throws ApiException {
+    public Card updateFinancialAccountPin(String accountId, UpdateFinancialAccountPinRequestVo card) throws ApiException {
         Card result;
         try {
             // Setting VGS proxy only for this call

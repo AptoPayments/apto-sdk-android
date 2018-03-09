@@ -5,14 +5,14 @@ import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
-import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountPinVo;
+import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 
 
 /**
  * Created by pauteruel on 02/03/2018.
  */
 
-public class UpdateFinancialAccountPinTask extends LedgeLinkApiTask<Void, Void, Card, UpdateFinancialAccountPinVo>{
+public class UpdateFinancialAccountPinTask extends LedgeLinkApiTask<Void, Void, Card, UpdateFinancialAccountPinRequestVo>{
     private String mAccountId;
     /**
      * @see LedgeLinkApiTask#LedgeLinkApiTask
@@ -20,7 +20,7 @@ public class UpdateFinancialAccountPinTask extends LedgeLinkApiTask<Void, Void, 
      * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      */
-    public UpdateFinancialAccountPinTask(UpdateFinancialAccountPinVo requestData, String accountId, LinkApiWrapper apiWrapper,
+    public UpdateFinancialAccountPinTask(UpdateFinancialAccountPinRequestVo requestData, String accountId, LinkApiWrapper apiWrapper,
                                       ApiResponseHandler responseHandler) {
         super(requestData, apiWrapper, responseHandler);
         mAccountId = accountId;

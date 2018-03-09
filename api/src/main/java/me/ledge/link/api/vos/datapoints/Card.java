@@ -57,6 +57,7 @@ public class Card extends FinancialAccountVo {
         CVVToken = null;
         expirationDate = null;
         pin = null;
+        state = null;
     }
 
     public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
