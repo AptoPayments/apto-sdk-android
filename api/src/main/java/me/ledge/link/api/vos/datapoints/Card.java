@@ -69,7 +69,6 @@ public class Card extends FinancialAccountVo {
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
         this.state = state;
-
     }
 
     protected Card(FinancialAccountType accountType, String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,

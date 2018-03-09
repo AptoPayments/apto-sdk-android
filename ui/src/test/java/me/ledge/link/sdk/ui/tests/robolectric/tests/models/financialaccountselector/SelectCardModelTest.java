@@ -44,9 +44,8 @@ public class SelectCardModelTest {
     public void setUp() {
         mockStatic(TextUtils.class);
         when(TextUtils.isEmpty(any(CharSequence.class))).thenAnswer(new IsEmptyAnswer());
-
-        mCard = new Card(EXPECTED_ACCOUNT_ID, EXPECTED_CARD_TYPE, null, null,
-                EXPECTED_LAST_FOUR_DIGITS, EXPECTED_EXPIRATION_DATE, false);
+        mCard = new Card(EXPECTED_ACCOUNT_ID, EXPECTED_LAST_FOUR_DIGITS, EXPECTED_CARD_TYPE, null,
+                null, EXPECTED_EXPIRATION_DATE, null, null,  null, null, false);
         mModel = new SelectCardModel(mCard);
     }
 
