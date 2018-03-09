@@ -4,7 +4,7 @@ apply from: '../jacoco.gradle'
 apply from: '../javadoc.gradle'
 apply plugin: 'me.tatarka.retrolambda'
 
-version = '0.1.5'
+version = '0.1.10'
 
 ext {
     bintrayRepo = 'maven'
@@ -86,7 +86,7 @@ repositories {
 
 dependencies {
     // Ledge Libraries.
-    compile 'me.ledge.link.sdk:api:0.1.4'
+    compile 'me.ledge.link.sdk:api:0.1.9'
 
     // Tests
     testCompile 'junit:junit:4.12'

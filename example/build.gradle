@@ -63,7 +63,7 @@ repositories {
 }
 
 dependencies {
-    compile 'me.ledge.link.sdk:ui:0.1.8'
+    compile 'me.ledge.link.sdk:ui:0.1.10'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
     compile 'io.branch.sdk.android:library:2.+'
 }
