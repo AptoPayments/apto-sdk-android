@@ -10,7 +10,7 @@ import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
  */
 public class IssueVirtualCardRequestVo extends UnauthorizedRequestVo {
 
-    public String type = "virtual_card";
+    public String type = "card";
 
     /**
      * Virtual card issuer.
