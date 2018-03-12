@@ -9,15 +9,15 @@ import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
+import me.ledge.link.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
+import me.ledge.link.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import me.ledge.link.api.vos.responses.users.UserDataListResponseVo;
 import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.PUT;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -46,7 +46,7 @@ public interface FinancialAccountService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH)
+    @POST(LinkApiWrapper.ISSUE_CARD_PATH)
     Call<VirtualCard> issueVirtualCard(@Body IssueVirtualCardRequestVo data);
 
     /**
@@ -74,7 +74,7 @@ public interface FinancialAccountService {
      */
 
     @POST(LinkApiWrapper.FINANCIAL_ACCOUNT_PIN_PATH)
-    Call<Card> updateFinancialAccountPin(@Path("account_id") String accountId, @Body UpdateFinancialAccountPinRequestVo pin);
+    Call<UpdateFinancialAccountPinResponseVo> updateFinancialAccountPin(@Path("account_id") String accountId, @Body UpdateFinancialAccountPinRequestVo pin);
 
      /** Creates a {@link Call} to manage card status.
      * @param state Mandatory request data.
@@ -82,5 +82,5 @@ public interface FinancialAccountService {
      */
 
     @POST(LinkApiWrapper.FINANCIAL_ACCOUNT_STATE_PATH)
-    Call<Card> updateFinancialAccount(@Path("account_id") String accountId, @Body UpdateFinancialAccountRequestVo state);
+    Call<UpdateFinancialAccountResponseVo> updateFinancialAccount(@Path("account_id") String accountId, @Body UpdateFinancialAccountRequestVo state);
 }

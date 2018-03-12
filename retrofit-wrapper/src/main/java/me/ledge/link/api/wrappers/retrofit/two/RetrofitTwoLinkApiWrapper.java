@@ -55,6 +55,8 @@ import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.api.vos.responses.dashboard.CreateProjectResponseVo;
 import me.ledge.link.api.vos.responses.dashboard.CreateTeamResponseVo;
 import me.ledge.link.api.vos.responses.errors.ErrorResponseVo;
+import me.ledge.link.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
+import me.ledge.link.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
@@ -671,11 +673,11 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
             Response<VirtualCard> response
                     = mFinancialAccountService.issueVirtualCard(issueVirtualCardRequestVo).execute();
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
-            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
+            result = handleResponse(response, LinkApiWrapper.ISSUE_CARD_PATH);
         } catch (IOException ioe) {
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.ISSUE_CARD_PATH, ioe);
         }
 
         return result;
@@ -773,12 +775,12 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public Card updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo card) throws ApiException {
-        Card result;
+    public UpdateFinancialAccountResponseVo updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo card) throws ApiException {
+        UpdateFinancialAccountResponseVo result;
         try {
             // Setting VGS proxy only for this call
             this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
-            Response<Card> response
+            Response<UpdateFinancialAccountResponseVo> response
                     = mFinancialAccountService.updateFinancialAccount(accountId, card).execute();
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNT_PATH);
@@ -792,12 +794,12 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public Card updateFinancialAccountPin(String accountId, UpdateFinancialAccountPinRequestVo card) throws ApiException {
-        Card result;
+    public UpdateFinancialAccountPinResponseVo updateFinancialAccountPin(String accountId, UpdateFinancialAccountPinRequestVo card) throws ApiException {
+        UpdateFinancialAccountPinResponseVo result;
         try {
             // Setting VGS proxy only for this call
             this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
-            Response<Card> response
+            Response<UpdateFinancialAccountPinResponseVo> response
                     = mFinancialAccountService.updateFinancialAccountPin(accountId, card).execute();
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNT_PIN_PATH);

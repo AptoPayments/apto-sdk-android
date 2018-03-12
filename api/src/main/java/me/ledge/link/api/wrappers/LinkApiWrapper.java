@@ -81,10 +81,11 @@ public interface LinkApiWrapper {
     String VERIFICATION_FINISH_PATH = "v1/verifications/{ID}/finish";
     String VERIFICATION_RESTART_PATH = "v1/verifications/{ID}/restart";
 
-    String FINANCIAL_ACCOUNTS_PATH = "v1/user/financialaccounts";
-    String FINANCIAL_ACCOUNT_PATH = "v1/user/financialaccounts/{account_id}";
-    String FINANCIAL_ACCOUNT_PIN_PATH = "v1/user/financialaccounts/{account_id}/pin";
-    String FINANCIAL_ACCOUNT_STATE_PATH = "v1/user/financialaccounts/{account_id}/state";
+    String FINANCIAL_ACCOUNTS_PATH = "v1/user/accounts";
+    String FINANCIAL_ACCOUNT_PATH = "v1/user/accounts/{account_id}";
+    String FINANCIAL_ACCOUNT_PIN_PATH = "v1/user/accounts/{account_id}/pin";
+    String FINANCIAL_ACCOUNT_STATE_PATH = "v1/user/accounts/{account_id}/state";
+    String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
     String PLAID_WEB_URL = "v1/bankoauth";
 
     String APPLICATION_STATUS_PATH = "v1/link/applications/{application_id}/status";
@@ -368,13 +369,13 @@ public interface LinkApiWrapper {
      * @return The virtual card
      * @throws ApiException
      */
-    Card updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo requestData) throws ApiException;
+    UpdateFinancialAccountRequestVo updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo requestData) throws ApiException;
 
     /**
      * @param requestData New pin of the card
      * @return The virtual card
      * @throws ApiException
      */
-    Card updateFinancialAccountPin(String accountId, UpdateFinancialAccountPinRequestVo requestData) throws ApiException;
+    UpdateFinancialAccountPinRequestVo updateFinancialAccountPin(String accountId, UpdateFinancialAccountPinRequestVo requestData) throws ApiException;
 
 }

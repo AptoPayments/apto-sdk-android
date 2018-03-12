@@ -14,7 +14,7 @@ buildscript {
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-version = '0.1.9'
+version = '0.1.13'
 
 ext {
     bintrayRepo = 'maven'
