@@ -7,7 +7,7 @@ package me.ledge.link.api.vos.datapoints;
 public class VirtualCard extends Card {
     public VirtualCard() {}
 
-    public VirtualCard(String accountId, String lastFourDigits, CardNetwork type, String CardBrand, String CardIssuer, String expirationDate, String PANToken, String CVVToken, FinancialAccountState state, String balance, boolean verified) {
-        super(FinancialAccountType.Card, accountId, lastFourDigits, type, CardBrand, CardIssuer, expirationDate, PANToken, CVVToken, state, balance, verified);
+    public VirtualCard(String accountId, String lastFourDigits, CardNetwork type, String CardBrand, String CardIssuer, String expirationDate, String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, boolean verified) {
+        super(FinancialAccountType.VirtualCard, accountId, lastFourDigits, type, CardBrand, CardIssuer, expirationDate, PANToken, CVVToken, state, balance, custodian, verified);
     }
 }

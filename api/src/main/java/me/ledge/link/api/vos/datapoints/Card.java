@@ -42,6 +42,7 @@ public class Card extends FinancialAccountVo {
     public String expirationDate;
     @SerializedName("state")
     public FinancialAccountState state;
+    public Custodian custodian;
 
     public Card() {
         super(null, FinancialAccountType.Card, false);
@@ -54,10 +55,11 @@ public class Card extends FinancialAccountVo {
         CVVToken = null;
         expirationDate = null;
         state = null;
+        custodian = null;
     }
 
     public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                String PANToken, String CVVToken, FinancialAccountState state, String balance, boolean verified) {
+                String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, boolean verified) {
         super(accountId, FinancialAccountType.Card, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
@@ -68,10 +70,12 @@ public class Card extends FinancialAccountVo {
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
         this.state = state;
+        this.custodian = custodian;
+
     }
 
     protected Card(FinancialAccountType accountType, String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                   String PANToken, String CVVToken, FinancialAccountState state, String balance, boolean verified) {
+                   String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, boolean verified) {
         super(accountId, accountType, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
@@ -83,6 +87,8 @@ public class Card extends FinancialAccountVo {
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
         this.state = state;
+        this.custodian = custodian;
+
 
     }
 
