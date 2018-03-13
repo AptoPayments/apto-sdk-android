@@ -9,6 +9,7 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 
 import me.ledge.link.api.vos.datapoints.Card;
+import me.ledge.link.api.vos.datapoints.Custodian;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 
 /**
@@ -29,6 +30,8 @@ public class VirtualCardParser implements JsonDeserializer<VirtualCard> {
                 ParsingUtils.getStringFromJson(jObject.get("pan")),
                 ParsingUtils.getStringFromJson(jObject.get("cvv")),
                 Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
-                ParsingUtils.getStringFromJson(jObject.get("balance")), false);
+                ParsingUtils.getStringFromJson(jObject.get("balance")),
+                new Custodian("coinbase", "logo"),
+                false);
     }
 }

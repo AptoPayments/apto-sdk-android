@@ -16,6 +16,7 @@ import me.ledge.link.api.vos.datapoints.BankAccount;
 import me.ledge.link.api.vos.datapoints.Birthdate;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.CreditScore;
+import me.ledge.link.api.vos.datapoints.Custodian;
 import me.ledge.link.api.vos.datapoints.DataPointVo;
 import me.ledge.link.api.vos.datapoints.Email;
 import me.ledge.link.api.vos.datapoints.Housing;
@@ -90,7 +91,9 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv")),
                         Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
-                        ParsingUtils.getStringFromJson(jObject.get("balance")), false);
+                        ParsingUtils.getStringFromJson(jObject.get("balance")),
+                        new Custodian("coinbase", "logo"),
+                        false);
             case "bank_account":
                 return new BankAccount(jObject.get("account_id").getAsString(),
                         jObject.get("bank_name").getAsString(),
@@ -105,7 +108,9 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv")),
                         Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
-                        ParsingUtils.getStringFromJson(jObject.get("balance")), false);
+                        ParsingUtils.getStringFromJson(jObject.get("balance")),
+                        new Custodian("coinbase", "logo"),
+                        false);
             case "payday_loan":
                 return new PaydayLoan(jObject.get("payday_loan").getAsBoolean(), verified,
                         notSpecified);

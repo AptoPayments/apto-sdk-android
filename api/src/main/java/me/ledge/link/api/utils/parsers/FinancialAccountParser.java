@@ -10,6 +10,7 @@ import java.lang.reflect.Type;
 
 import me.ledge.link.api.vos.datapoints.BankAccount;
 import me.ledge.link.api.vos.datapoints.Card;
+import me.ledge.link.api.vos.datapoints.Custodian;
 import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.api.vos.datapoints.VirtualCard;
 
@@ -36,7 +37,9 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
                     Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
-                    ParsingUtils.getStringFromJson(jObject.get("balance")), false);
+                    ParsingUtils.getStringFromJson(jObject.get("balance")),
+                    new Custodian("coinbase", "logo"),
+                    false);
         }
         else if(type.equalsIgnoreCase("bank_account")) {
             return new BankAccount(jObject.get("account_id").getAsString(),
@@ -53,7 +56,9 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
                     Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
-                    ParsingUtils.getStringFromJson(jObject.get("balance")), false);
+                    ParsingUtils.getStringFromJson(jObject.get("balance")),
+                    new Custodian("coinbase", "logo"),
+                    false);
         }
         else {
             return null;
