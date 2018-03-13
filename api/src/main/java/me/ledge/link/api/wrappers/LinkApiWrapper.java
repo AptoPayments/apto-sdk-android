@@ -25,6 +25,8 @@ import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
 import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.api.vos.responses.dashboard.CreateProjectResponseVo;
 import me.ledge.link.api.vos.responses.dashboard.CreateTeamResponseVo;
+import me.ledge.link.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
+import me.ledge.link.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
@@ -369,13 +371,13 @@ public interface LinkApiWrapper {
      * @return The virtual card
      * @throws ApiException
      */
-    UpdateFinancialAccountRequestVo updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo requestData) throws ApiException;
+    UpdateFinancialAccountResponseVo updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo requestData) throws ApiException;
 
     /**
      * @param requestData New pin of the card
      * @return The virtual card
      * @throws ApiException
      */
-    UpdateFinancialAccountPinRequestVo updateFinancialAccountPin(String accountId, UpdateFinancialAccountPinRequestVo requestData) throws ApiException;
+    UpdateFinancialAccountPinResponseVo updateFinancialAccountPin(String accountId, UpdateFinancialAccountPinRequestVo requestData) throws ApiException;
 
 }

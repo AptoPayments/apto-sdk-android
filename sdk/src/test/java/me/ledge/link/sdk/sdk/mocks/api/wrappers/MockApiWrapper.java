@@ -41,6 +41,8 @@ import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
 import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.api.vos.responses.dashboard.CreateProjectResponseVo;
 import me.ledge.link.api.vos.responses.dashboard.CreateTeamResponseVo;
+import me.ledge.link.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
+import me.ledge.link.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
@@ -380,12 +382,12 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public Card updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo requestData) throws ApiException {
+    public UpdateFinancialAccountResponseVo updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo requestData) throws ApiException {
         return null;
     }
 
     @Override
-    public Card updateFinancialAccountPin(String s, UpdateFinancialAccountPinRequestVo requestData) throws ApiException {
+    public UpdateFinancialAccountPinResponseVo updateFinancialAccountPin(String s, UpdateFinancialAccountPinRequestVo requestData) throws ApiException {
         return null;
     }
 }

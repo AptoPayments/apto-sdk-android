@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.sdk.tasks.financialaccounts;
 
 import me.ledge.link.api.exceptions.ApiException;
+import me.ledge.link.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
@@ -11,7 +12,7 @@ import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountPi
  * Created by pauteruel on 02/03/2018.
  */
 
-public class UpdateFinancialAccountPinTask extends LedgeLinkApiTask<Void,Void,UpdateFinancialAccountPinRequestVo,UpdateFinancialAccountPinRequestVo> {
+public class UpdateFinancialAccountPinTask extends LedgeLinkApiTask<Void,Void,UpdateFinancialAccountPinResponseVo,UpdateFinancialAccountPinRequestVo> {
     private String mAccountId;
     /**
      * @see LedgeLinkApiTask#LedgeLinkApiTask
@@ -27,7 +28,7 @@ public class UpdateFinancialAccountPinTask extends LedgeLinkApiTask<Void,Void,Up
 
     /** {@inheritDoc} */
     @Override
-    protected UpdateFinancialAccountPinRequestVo callApi() throws ApiException {
+    protected UpdateFinancialAccountPinResponseVo callApi() throws ApiException {
         return getApiWrapper().updateFinancialAccountPin(mAccountId, getRequestData());
     }
 }
