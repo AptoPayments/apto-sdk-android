@@ -7,4 +7,7 @@ import me.ledge.link.api.vos.datapoints.Card;
  */
 
 public class UpdateFinancialAccountResponseVo extends Card {
+    public UpdateFinancialAccountResponseVo(Card c) {
+        super(c);
+    }
 }

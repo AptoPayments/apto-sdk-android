@@ -27,6 +27,8 @@ import me.ledge.link.api.utils.parsers.ActionConfigurationParser;
 import me.ledge.link.api.utils.parsers.DataPointParser;
 import me.ledge.link.api.utils.parsers.FinancialAccountParser;
 import me.ledge.link.api.utils.parsers.RequiredDataPointParser;
+import me.ledge.link.api.utils.parsers.UpdateAccountParser;
+import me.ledge.link.api.utils.parsers.UpdateAccountPinParser;
 import me.ledge.link.api.utils.parsers.VirtualCardParser;
 import me.ledge.link.api.vos.datapoints.Card;
 import me.ledge.link.api.vos.datapoints.DataPointList;
@@ -153,6 +155,8 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         gsonBuilder.registerTypeAdapter(ActionConfigurationVo.class, new ActionConfigurationParser());
         gsonBuilder.registerTypeAdapter(FinancialAccountVo.class, new FinancialAccountParser());
         gsonBuilder.registerTypeAdapter(VirtualCard.class, new VirtualCardParser());
+        gsonBuilder.registerTypeAdapter(UpdateFinancialAccountResponseVo.class, new UpdateAccountParser());
+        gsonBuilder.registerTypeAdapter(UpdateFinancialAccountPinResponseVo.class, new UpdateAccountPinParser());
 
         // Adding serializeNulls option to avoid bug in API where keys with null values
         // must be present

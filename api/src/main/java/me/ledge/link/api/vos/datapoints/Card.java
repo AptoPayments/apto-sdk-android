@@ -88,8 +88,21 @@ public class Card extends FinancialAccountVo {
         this.expirationDate = expirationDate;
         this.state = state;
         this.custodian = custodian;
+    }
 
-
+    public Card(Card c) {
+        super(c.mAccountId, FinancialAccountType.Card, c.isVerified());
+        this.cardNetwork = c.cardNetwork;
+        this.lastFourDigits = c.lastFourDigits;
+        this.cardBrand = c.cardBrand;
+        this.cardIssuer = c.cardIssuer;
+        this.state = c.state;
+        this.balance = c.balance;
+        this.PANToken = c.PANToken;
+        this.CVVToken = c.CVVToken;
+        this.expirationDate = c.expirationDate;
+        this.state = c.state;
+        this.custodian = c.custodian;
     }
 
     @Override
