@@ -21,7 +21,9 @@ public class Card extends FinancialAccountVo {
     public enum FinancialAccountState {
         ACTIVE,
         INACTIVE,
-        CANCELLED
+        CANCELLED,
+        CREATED,
+        UNKNOWN
     }
 
     @SerializedName("card_network")
