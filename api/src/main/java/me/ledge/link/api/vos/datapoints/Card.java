@@ -111,10 +111,10 @@ public class Card extends FinancialAccountVo {
     public JsonObject toJSON() {
         JsonObject gsonObject = super.toJSON();
         gsonObject.addProperty("type", "card");
-        gsonObject.addProperty("card_network", cardNetwork.name());
+        gsonObject.addProperty("card_network", cardNetwork != null ? cardNetwork.name() : "");
         gsonObject.addProperty("card_brand", cardBrand);
         gsonObject.addProperty("card_issuer", cardIssuer);
-        gsonObject.addProperty("state", state.name().toLowerCase());
+        gsonObject.addProperty("state", state != null ? state.name() : "");
         gsonObject.addProperty("balance", balance);
         gsonObject.addProperty("pan", PANToken);
         gsonObject.addProperty("cvv", CVVToken);
