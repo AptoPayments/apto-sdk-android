@@ -10,7 +10,7 @@ apply from: '../javadoc.gradle'
 apply from: '../jacoco.gradle'
 apply plugin: 'me.tatarka.retrolambda'
 
-version = '0.1.12'
+version = '0.1.17'
 
 ext {
     bintrayRepo = 'maven'
@@ -101,8 +101,8 @@ repositories {
 
 dependencies {
     // Ledge Libraries
-    compile 'me.ledge.link.sdk:sdk:0.1.16'
-    compile 'me.ledge.link.sdk:retrofit-wrapper:0.1.13'
+    compile 'me.ledge.link.sdk:sdk:0.1.17'
+    compile 'me.ledge.link.sdk:retrofit-wrapper:0.1.18'
     compile 'me.ledge.common:common:+'
     // 3rd Party Libraries
     compile('com.android.support:support-v13:24.0.0') {
