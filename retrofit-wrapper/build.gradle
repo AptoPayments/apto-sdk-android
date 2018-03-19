@@ -14,7 +14,7 @@ buildscript {
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-version = '0.1.18'
+version = '0.1.19'
 
 ext {
     bintrayRepo = 'maven'
@@ -69,7 +69,7 @@ repositories {
 }
 
 dependencies {
-    compile 'me.ledge.link.sdk:api:0.1.17'
+    compile 'me.ledge.link.sdk:api:0.1.19'
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
 }
