@@ -8,7 +8,7 @@ import com.google.gson.JsonElement;
 
 class ParsingUtils {
     static String getStringFromJson(JsonElement element) {
-        if(element.isJsonNull()) {
+        if(element == null || element.isJsonNull()) {
             return null;
         }
 

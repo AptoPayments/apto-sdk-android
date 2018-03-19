@@ -28,6 +28,8 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
             return null;
         }
         if(type.equalsIgnoreCase("card")) {
+            String cardState = ParsingUtils.getStringFromJson(jObject.get("state")) == null ? ""
+                    : ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase();
             return new Card(jObject.get("account_id").getAsString(),
                     ParsingUtils.getStringFromJson(jObject.get("last_four")),
                     Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),
@@ -36,7 +38,7 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("expiration")),
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
-                    Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
+                    Card.FinancialAccountState.valueOf(cardState),
                     ParsingUtils.getStringFromJson(jObject.get("balance")),
                     new Custodian("coinbase", "logo"),
                     false);
@@ -44,9 +46,11 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
         else if(type.equalsIgnoreCase("bank_account")) {
             return new BankAccount(jObject.get("account_id").getAsString(),
                     jObject.get("bank_name").getAsString(),
-                    jObject.get("last_four_digits").getAsString(), false);
+                    jObject.get("last_four").getAsString(), false);
         }
         else if(type.equalsIgnoreCase("virtual_card")){
+            String cardState = ParsingUtils.getStringFromJson(jObject.get("state")) == null ? ""
+                    : ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase();
             return new VirtualCard(jObject.get("account_id").getAsString(),
                     ParsingUtils.getStringFromJson(jObject.get("last_four")),
                     Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),
@@ -55,7 +59,7 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("expiration")),
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
-                    Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
+                    Card.FinancialAccountState.valueOf(cardState),
                     ParsingUtils.getStringFromJson(jObject.get("balance")),
                     new Custodian("coinbase", "logo"),
                     false);

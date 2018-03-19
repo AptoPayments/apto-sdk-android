@@ -82,6 +82,8 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                 return new CreditScore(jObject.get("credit_range").getAsInt(), verified,
                         notSpecified);
             case "card":
+                String cardState = ParsingUtils.getStringFromJson(jObject.get("state")) == null ? ""
+                        : ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase();
                 return new Card(jObject.get("account_id").getAsString(),
                         ParsingUtils.getStringFromJson(jObject.get("last_four")),
                         Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),
@@ -90,14 +92,14 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         ParsingUtils.getStringFromJson(jObject.get("expiration")),
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv")),
-                        Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
+                        Card.FinancialAccountState.valueOf(cardState),
                         ParsingUtils.getStringFromJson(jObject.get("balance")),
                         new Custodian("coinbase", "logo"),
                         false);
             case "bank_account":
                 return new BankAccount(jObject.get("account_id").getAsString(),
                         jObject.get("bank_name").getAsString(),
-                        jObject.get("last_four_digits").getAsString(), false);
+                        jObject.get("last_four").getAsString(), false);
             case "virtual_card":
                 return new VirtualCard(jObject.get("account_id").getAsString(),
                         ParsingUtils.getStringFromJson(jObject.get("last_four")),

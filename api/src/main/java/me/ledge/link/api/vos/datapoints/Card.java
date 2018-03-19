@@ -56,7 +56,7 @@ public class Card extends FinancialAccountVo {
         PANToken = null;
         CVVToken = null;
         expirationDate = null;
-        state = null;
+        state = FinancialAccountState.ACTIVE;
         custodian = null;
     }
 
