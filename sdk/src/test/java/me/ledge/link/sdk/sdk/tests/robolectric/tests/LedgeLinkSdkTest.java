@@ -10,15 +10,15 @@ import org.junit.Test;
 
 import java.util.concurrent.Executor;
 
-import me.ledge.link.api.vos.datapoints.Card;
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.requests.base.ListRequestVo;
-import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
-import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
-import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.requests.users.LoginRequestVo;
-import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
-import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
+import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.requests.base.ListRequestVo;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import me.ledge.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.sdk.api.vos.requests.users.LoginRequestVo;
+import me.ledge.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
+import me.ledge.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;

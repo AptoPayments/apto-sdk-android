@@ -5,7 +5,7 @@ import android.content.res.Resources;
 import java.util.Currency;
 import java.util.Locale;
 
-import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.AbstractActivityModel;
 import me.ledge.link.sdk.ui.models.ActivityModel;

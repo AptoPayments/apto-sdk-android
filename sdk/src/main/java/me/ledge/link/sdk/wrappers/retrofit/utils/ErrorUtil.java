@@ -3,7 +3,7 @@ package me.ledge.link.sdk.wrappers.retrofit.utils;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 
-import me.ledge.link.api.vos.responses.errors.ErrorResponseVo;
+import me.ledge.link.sdk.api.vos.responses.errors.ErrorResponseVo;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Response;

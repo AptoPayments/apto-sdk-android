@@ -6,10 +6,10 @@ import com.github.ksoichiro.android.observablescrollview.ScrollState;
 
 import java8.util.concurrent.CompletableFuture;
 import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
-import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
-import me.ledge.link.api.vos.responses.config.LoanProductListVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.api.vos.responses.offers.OfferVo;
+import me.ledge.link.sdk.api.utils.loanapplication.LoanApplicationStatus;
+import me.ledge.link.sdk.api.vos.responses.config.LoanProductListVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;

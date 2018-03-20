@@ -18,7 +18,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import me.ledge.link.api.vos.responses.config.ContentVo;
+import me.ledge.link.sdk.api.vos.responses.config.ContentVo;
 import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.R;

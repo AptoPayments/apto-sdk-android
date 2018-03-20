@@ -1,8 +1,8 @@
 package me.ledge.link.sdk.wrappers.retrofit.services;
 
-import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.LinkConfigResponseVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
+import me.ledge.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

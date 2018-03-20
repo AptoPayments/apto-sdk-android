@@ -1,13 +1,13 @@
 package me.ledge.link.sdk.wrappers.retrofit.services;
 
-import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
-import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
-import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartEmailVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.StartVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
+import me.ledge.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
+import me.ledge.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
+import me.ledge.link.sdk.api.vos.responses.verifications.StartEmailVerificationResponseVo;
+import me.ledge.link.sdk.api.vos.responses.verifications.StartVerificationResponseVo;
+import me.ledge.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
+import me.ledge.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

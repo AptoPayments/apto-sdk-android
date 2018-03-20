@@ -5,8 +5,8 @@ import android.content.res.Resources;
 import java.util.ArrayList;
 
 import me.ledge.common.utils.PagedList;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.api.vos.responses.offers.OfferVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 

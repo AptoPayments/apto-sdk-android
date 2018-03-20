@@ -9,12 +9,12 @@ import android.widget.DatePicker;
 import java.util.ArrayList;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.datapoints.Address;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.responses.config.ContentVo;
-import me.ledge.link.api.vos.responses.config.LoanProductListVo;
-import me.ledge.link.api.vos.responses.config.LoanProductVo;
-import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
+import me.ledge.link.sdk.api.vos.datapoints.Address;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.responses.config.ContentVo;
+import me.ledge.link.sdk.api.vos.responses.config.LoanProductListVo;
+import me.ledge.link.sdk.api.vos.responses.config.LoanProductVo;
+import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.R;

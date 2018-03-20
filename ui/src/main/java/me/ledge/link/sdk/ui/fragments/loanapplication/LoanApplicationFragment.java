@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationDetailsPresenter;
 import me.ledge.link.sdk.ui.views.loanapplication.LoanApplicationDetailsView;

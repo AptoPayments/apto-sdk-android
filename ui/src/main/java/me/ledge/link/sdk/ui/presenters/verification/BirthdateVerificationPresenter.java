@@ -7,8 +7,8 @@ import android.widget.DatePicker;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.api.vos.responses.ApiErrorVo;
-import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
+import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
+import me.ledge.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;

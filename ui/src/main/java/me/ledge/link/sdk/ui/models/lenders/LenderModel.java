@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.models.lenders;
 
 import android.text.TextUtils;
-import me.ledge.link.api.vos.responses.offers.LenderVo;
+import me.ledge.link.sdk.api.vos.responses.offers.LenderVo;
 import me.ledge.link.sdk.ui.models.Model;
 
 /**

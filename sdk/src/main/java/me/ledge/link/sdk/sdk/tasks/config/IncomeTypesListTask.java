@@ -1,10 +1,10 @@
 package me.ledge.link.sdk.sdk.tasks.config;
 
-import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
-import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.exceptions.ApiException;
+import me.ledge.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 

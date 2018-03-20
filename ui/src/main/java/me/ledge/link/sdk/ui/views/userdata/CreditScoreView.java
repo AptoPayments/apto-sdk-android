@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import me.ledge.link.api.vos.responses.config.CreditScoreVo;
+import me.ledge.link.sdk.api.vos.responses.config.CreditScoreVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperListener;

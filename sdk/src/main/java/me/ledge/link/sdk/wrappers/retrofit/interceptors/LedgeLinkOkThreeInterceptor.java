@@ -1,11 +1,12 @@
 package me.ledge.link.sdk.wrappers.retrofit.interceptors;
 
-import me.ledge.link.api.utils.LedgeLinkHeaders;
+
+import java.io.IOException;
+
+import me.ledge.link.sdk.api.utils.LedgeLinkHeaders;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import java.io.IOException;
 
 /**
  * An OkHttp3 {@link Interceptor} that will add all required headers for API calls.

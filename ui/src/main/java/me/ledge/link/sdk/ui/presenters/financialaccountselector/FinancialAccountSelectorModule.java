@@ -6,13 +6,13 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
-import me.ledge.link.api.vos.datapoints.Card;
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.VirtualCard;
-import me.ledge.link.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
-import me.ledge.link.api.vos.responses.SessionExpiredErrorVo;
-import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
+import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import me.ledge.link.sdk.api.vos.responses.SessionExpiredErrorVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;

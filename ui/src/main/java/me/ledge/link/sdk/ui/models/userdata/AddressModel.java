@@ -2,9 +2,9 @@ package me.ledge.link.sdk.ui.models.userdata;
 
 import android.text.TextUtils;
 
-import me.ledge.link.api.vos.datapoints.Address;
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.datapoints.Address;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import ru.lanwen.verbalregex.VerbalExpression;

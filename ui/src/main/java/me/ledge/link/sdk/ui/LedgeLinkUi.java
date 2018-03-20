@@ -11,9 +11,9 @@ import com.google.android.gms.security.ProviderInstaller;
 import java.util.ArrayList;
 
 import me.ledge.common.utils.android.AndroidUtils;
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.imageloaders.volley.VolleyImageLoader;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.activities.MvpActivity;

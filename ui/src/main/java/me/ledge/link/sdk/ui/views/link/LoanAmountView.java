@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.LoadingView;

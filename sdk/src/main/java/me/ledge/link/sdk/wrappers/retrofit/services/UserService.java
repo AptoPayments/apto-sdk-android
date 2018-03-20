@@ -2,13 +2,13 @@ package me.ledge.link.sdk.wrappers.retrofit.services;
 
 import com.google.gson.JsonObject;
 
-import me.ledge.link.api.vos.requests.users.DeleteUserRequestVo;
-import me.ledge.link.api.vos.responses.users.CreateUserResponseVo;
-import me.ledge.link.api.vos.responses.users.LoginUserResponseVo;
-import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
-import me.ledge.link.api.vos.responses.users.UserResponseVo;
-import me.ledge.link.api.vos.requests.users.LoginRequestVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
+import me.ledge.link.sdk.api.vos.responses.users.CreateUserResponseVo;
+import me.ledge.link.sdk.api.vos.responses.users.LoginUserResponseVo;
+import me.ledge.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
+import me.ledge.link.sdk.api.vos.responses.users.UserResponseVo;
+import me.ledge.link.sdk.api.vos.requests.users.LoginRequestVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

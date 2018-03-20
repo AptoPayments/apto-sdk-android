@@ -1,11 +1,11 @@
 package me.ledge.link.sdk.sdk.tasks.users;
 
-import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
-import me.ledge.link.api.vos.responses.users.CurrentUserResponseVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.exceptions.ApiException;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import me.ledge.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 

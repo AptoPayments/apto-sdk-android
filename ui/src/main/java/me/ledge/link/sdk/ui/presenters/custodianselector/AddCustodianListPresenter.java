@@ -6,7 +6,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
-import me.ledge.link.api.vos.responses.ApiErrorVo;
+import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.ui.models.custodianselector.AddCoinbaseModel;
 import me.ledge.link.sdk.ui.models.custodianselector.AddCustodianListModel;
 import me.ledge.link.sdk.ui.models.custodianselector.AddCustodianModel;

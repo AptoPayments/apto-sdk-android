@@ -7,11 +7,11 @@ import java.util.concurrent.ExecutionException;
 
 import java8.util.concurrent.CompletableFuture;
 import java8.util.concurrent.CompletionException;
-import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.requests.base.UnauthorizedRequestVo;
-import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.TeamConfigResponseVo;
+import me.ledge.link.sdk.api.exceptions.ApiException;
+import me.ledge.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
+import me.ledge.link.sdk.api.vos.responses.config.TeamConfigResponseVo;
 
 import static me.ledge.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
 

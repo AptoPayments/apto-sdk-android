@@ -1,9 +1,9 @@
 package me.ledge.link.sdk.sdk.tasks.users;
 
-import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.requests.users.LoginRequestVo;
-import me.ledge.link.api.vos.responses.users.LoginUserResponseVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.exceptions.ApiException;
+import me.ledge.link.sdk.api.vos.requests.users.LoginRequestVo;
+import me.ledge.link.sdk.api.vos.responses.users.LoginUserResponseVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 

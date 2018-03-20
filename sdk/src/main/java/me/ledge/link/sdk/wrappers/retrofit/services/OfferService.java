@@ -1,10 +1,10 @@
 package me.ledge.link.sdk.wrappers.retrofit.services;
 
-import me.ledge.link.api.vos.requests.base.ListRequestVo;
-import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
-import me.ledge.link.api.vos.responses.offers.OffersListVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.vos.requests.base.ListRequestVo;
+import me.ledge.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
+import me.ledge.link.sdk.api.vos.responses.offers.OffersListVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;

@@ -2,7 +2,7 @@ package me.ledge.link.sdk.ui.presenters.showgenericmessage;
 
 import android.support.v7.app.AppCompatActivity;
 
-import me.ledge.link.api.vos.responses.workflow.GenericMessageConfigurationVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import me.ledge.link.sdk.ui.models.showgenericmessage.ShowGenericMessageModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataPresenter;

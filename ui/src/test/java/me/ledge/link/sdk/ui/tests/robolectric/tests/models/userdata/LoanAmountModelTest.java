@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.link.LoanAmountModel;
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
 import static org.hamcrest.core.IsEqual.equalTo;

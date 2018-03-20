@@ -1,9 +1,9 @@
 package me.ledge.link.sdk.wrappers.retrofit.services;
 
-import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

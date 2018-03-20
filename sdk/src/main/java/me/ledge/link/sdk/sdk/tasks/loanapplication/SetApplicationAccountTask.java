@@ -1,9 +1,9 @@
 package me.ledge.link.sdk.sdk.tasks.loanapplication;
 
-import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.exceptions.ApiException;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 

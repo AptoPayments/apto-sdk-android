@@ -2,8 +2,8 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.support.v7.app.AppCompatActivity;
 
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationSummaryResponseVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationSummaryResponseVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.sdk.ui.models.loanapplication.SelectLoanApplicationListModel;
 import me.ledge.link.sdk.ui.models.loanapplication.SelectLoanApplicationModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;

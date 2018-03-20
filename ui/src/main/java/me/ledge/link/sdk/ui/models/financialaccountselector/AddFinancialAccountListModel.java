@@ -4,8 +4,8 @@ import android.app.Activity;
 
 import java.util.ArrayList;
 
-import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
-import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
+import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.Model;

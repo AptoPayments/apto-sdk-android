@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.sdk.tests.robolectric.tests.tasks.offers;
 
-import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
+import me.ledge.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.offers.InitialOffersTask;

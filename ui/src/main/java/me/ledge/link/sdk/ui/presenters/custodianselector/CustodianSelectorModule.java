@@ -2,7 +2,7 @@ package me.ledge.link.sdk.ui.presenters.custodianselector;
 
 import android.app.Activity;
 
-import me.ledge.link.api.vos.responses.workflow.SelectCustodianConfigurationVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.SelectCustodianConfigurationVo;
 import me.ledge.link.sdk.ui.activities.custodianselector.AddCustodianListActivity;
 import me.ledge.link.sdk.ui.activities.custodianselector.CoinbaseActivity;
 import me.ledge.link.sdk.ui.storages.UserStorage;

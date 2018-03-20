@@ -2,8 +2,8 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import me.ledge.link.api.vos.responses.ApiErrorVo;
-import me.ledge.link.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.userdata.UserDataModel;

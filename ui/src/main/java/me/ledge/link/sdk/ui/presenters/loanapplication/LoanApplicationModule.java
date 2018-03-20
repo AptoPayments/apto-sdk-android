@@ -7,9 +7,9 @@ import java.util.concurrent.ExecutionException;
 
 import java8.util.concurrent.CompletableFuture;
 import java8.util.concurrent.CompletionException;
-import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
+import me.ledge.link.sdk.api.exceptions.ApiException;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity;

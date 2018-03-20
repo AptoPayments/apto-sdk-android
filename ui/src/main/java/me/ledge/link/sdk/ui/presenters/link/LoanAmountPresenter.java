@@ -7,12 +7,12 @@ import android.view.MenuItem;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
-import me.ledge.link.api.vos.responses.config.ContentVo;
-import me.ledge.link.api.vos.responses.config.LoanProductListVo;
-import me.ledge.link.api.vos.responses.config.LoanProductVo;
-import me.ledge.link.api.vos.responses.config.LoanPurposeVo;
-import me.ledge.link.api.vos.responses.config.LoanPurposesResponseVo;
+import me.ledge.link.sdk.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.api.vos.responses.config.ContentVo;
+import me.ledge.link.sdk.api.vos.responses.config.LoanProductListVo;
+import me.ledge.link.sdk.api.vos.responses.config.LoanProductVo;
+import me.ledge.link.sdk.api.vos.responses.config.LoanPurposeVo;
+import me.ledge.link.sdk.api.vos.responses.config.LoanPurposesResponseVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.R;
@@ -24,7 +24,7 @@ import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 import me.ledge.link.sdk.ui.widgets.MultiplyTransformer;
 import me.ledge.link.sdk.ui.widgets.steppers.StepperConfiguration;
 
-import static me.ledge.link.api.vos.responses.config.ContentVo.formatValues.plain_text;
+import static me.ledge.link.sdk.api.vos.responses.config.ContentVo.formatValues.plain_text;
 
 /**
  * Concrete {@link Presenter} for the loan amount screen.

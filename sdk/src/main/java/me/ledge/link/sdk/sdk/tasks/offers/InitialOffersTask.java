@@ -1,9 +1,9 @@
 package me.ledge.link.sdk.sdk.tasks.offers;
 
-import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.requests.offers.InitialOffersRequestVo;
-import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.exceptions.ApiException;
+import me.ledge.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
+import me.ledge.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 

@@ -9,11 +9,11 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import me.ledge.link.api.vos.datapoints.Address;
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.Housing;
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.api.vos.datapoints.Address;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.datapoints.Housing;
+import me.ledge.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
 import me.ledge.link.sdk.ui.models.userdata.HomeModel;

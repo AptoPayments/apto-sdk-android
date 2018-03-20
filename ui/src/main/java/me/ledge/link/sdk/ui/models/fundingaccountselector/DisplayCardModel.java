@@ -2,9 +2,9 @@ package me.ledge.link.sdk.ui.models.fundingaccountselector;
 
 import android.app.Activity;
 
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.PersonalName;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.datapoints.PersonalName;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddFinancialAccountModel;

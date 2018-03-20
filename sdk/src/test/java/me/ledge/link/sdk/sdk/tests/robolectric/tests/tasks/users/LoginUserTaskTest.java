@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import me.ledge.link.api.vos.requests.users.LoginRequestVo;
-import me.ledge.link.api.vos.responses.users.LoginUserResponseVo;
+import me.ledge.link.sdk.api.vos.requests.users.LoginRequestVo;
+import me.ledge.link.sdk.api.vos.responses.users.LoginUserResponseVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.users.LoginUserTask;

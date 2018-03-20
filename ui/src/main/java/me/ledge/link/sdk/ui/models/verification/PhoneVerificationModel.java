@@ -2,12 +2,12 @@ package me.ledge.link.sdk.ui.models.verification;
 
 import android.text.TextUtils;
 
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.VerificationVo;
-import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
-import me.ledge.link.api.vos.requests.verifications.StartVerificationRequestVo;
-import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.datapoints.VerificationVo;
+import me.ledge.link.sdk.api.vos.datapoints.PhoneNumberVo;
+import me.ledge.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
+import me.ledge.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.models.userdata.AbstractUserDataModel;

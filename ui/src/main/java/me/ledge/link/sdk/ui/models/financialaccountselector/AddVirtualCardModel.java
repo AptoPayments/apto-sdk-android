@@ -1,8 +1,8 @@
 package me.ledge.link.sdk.ui.models.financialaccountselector;
 
-import me.ledge.link.api.vos.requests.financialaccounts.CustodianVo;
-import me.ledge.link.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
-import me.ledge.link.api.vos.requests.financialaccounts.OAuthCredentialVo;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.CustodianVo;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 

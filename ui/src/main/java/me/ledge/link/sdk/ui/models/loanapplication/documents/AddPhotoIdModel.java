@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.ui.models.loanapplication.documents;
 
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationActionVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationActionVo;
 import me.ledge.link.sdk.ui.R;
 
 /**

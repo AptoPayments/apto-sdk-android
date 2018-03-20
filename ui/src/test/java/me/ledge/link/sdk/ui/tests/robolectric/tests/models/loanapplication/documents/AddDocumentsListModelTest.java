@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.ui.R;

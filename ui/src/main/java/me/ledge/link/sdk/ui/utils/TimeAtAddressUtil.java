@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.utils;
 
-import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.TimeAtAddressVo;
+import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.sdk.api.vos.responses.config.TimeAtAddressVo;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 
 /**

@@ -1,10 +1,10 @@
 package me.ledge.link.sdk.wrappers.retrofit.services;
 
-import me.ledge.link.api.vos.requests.dashboard.CreateTeamRequestVo;
-import me.ledge.link.api.vos.responses.dashboard.CreateTeamResponseVo;
-import me.ledge.link.api.vos.requests.dashboard.CreateProjectRequestVo;
-import me.ledge.link.api.vos.responses.dashboard.CreateProjectResponseVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo;
+import me.ledge.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
+import me.ledge.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
+import me.ledge.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;

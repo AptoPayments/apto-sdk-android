@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.ui.vos;
 
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 
 /**
  * Loan related data.<br />
