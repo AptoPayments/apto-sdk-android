@@ -1,4 +1,4 @@
-package me.ledge.link.api.wrappers.retrofit.two.services;
+package me.ledge.link.sdk.wrappers.retrofit.services;
 
 import com.google.gson.JsonObject;
 

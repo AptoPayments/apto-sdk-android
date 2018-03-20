@@ -1,4 +1,4 @@
-package me.ledge.link.api.wrappers.retrofit.two;
+package me.ledge.link.sdk.wrappers.retrofit;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -75,15 +75,15 @@ import me.ledge.link.api.vos.responses.verifications.VerificationStatusResponseV
 import me.ledge.link.api.vos.responses.workflow.ActionConfigurationVo;
 import me.ledge.link.api.wrappers.BaseLinkApiWrapper;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
-import me.ledge.link.api.wrappers.retrofit.two.interceptors.LedgeLinkOkThreeInterceptor;
-import me.ledge.link.api.wrappers.retrofit.two.services.ConfigService;
-import me.ledge.link.api.wrappers.retrofit.two.services.DashboardService;
-import me.ledge.link.api.wrappers.retrofit.two.services.FinancialAccountService;
-import me.ledge.link.api.wrappers.retrofit.two.services.LoanApplicationService;
-import me.ledge.link.api.wrappers.retrofit.two.services.OfferService;
-import me.ledge.link.api.wrappers.retrofit.two.services.UserService;
-import me.ledge.link.api.wrappers.retrofit.two.services.VerificationService;
-import me.ledge.link.api.wrappers.retrofit.two.utils.ErrorUtil;
+import me.ledge.link.sdk.wrappers.retrofit.interceptors.LedgeLinkOkThreeInterceptor;
+import me.ledge.link.sdk.wrappers.retrofit.services.ConfigService;
+import me.ledge.link.sdk.wrappers.retrofit.services.DashboardService;
+import me.ledge.link.sdk.wrappers.retrofit.services.FinancialAccountService;
+import me.ledge.link.sdk.wrappers.retrofit.services.LoanApplicationService;
+import me.ledge.link.sdk.wrappers.retrofit.services.OfferService;
+import me.ledge.link.sdk.wrappers.retrofit.services.UserService;
+import me.ledge.link.sdk.wrappers.retrofit.services.VerificationService;
+import me.ledge.link.sdk.wrappers.retrofit.utils.ErrorUtil;
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
 import okhttp3.Protocol;

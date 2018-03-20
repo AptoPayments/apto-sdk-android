@@ -1,4 +1,4 @@
-package me.ledge.link.api.wrappers.retrofit.two.interceptors;
+package me.ledge.link.sdk.wrappers.retrofit.interceptors;
 
 import me.ledge.link.api.utils.LedgeLinkHeaders;
 import okhttp3.Interceptor;
