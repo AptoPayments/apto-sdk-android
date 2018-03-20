@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.verification;
 
-import me.ledge.link.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 
 public class AuthModuleConfig {
 

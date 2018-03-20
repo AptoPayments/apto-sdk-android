@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import me.ledge.link.api.vos.requests.base.ListRequestVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
+import me.ledge.link.sdk.api.vos.requests.base.ListRequestVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.loanapplication.ListPendingLoanApplicationsTask;

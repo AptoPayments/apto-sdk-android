@@ -3,11 +3,11 @@ package me.ledge.link.sdk.ui.presenters.userdata;
 import android.support.v7.app.AppCompatActivity;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.HousingTypeVo;
-import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
+import me.ledge.link.sdk.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.sdk.api.vos.responses.config.HousingTypeVo;
+import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.geocoding.handlers.GeocodingHandler;
 import me.ledge.link.sdk.ui.geocoding.vos.AddressComponentVo;

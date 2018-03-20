@@ -1,11 +1,11 @@
 package me.ledge.link.sdk.sdk.tasks.financialaccounts;
 
-import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.exceptions.ApiException;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
-import me.ledge.link.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 
 
 /**

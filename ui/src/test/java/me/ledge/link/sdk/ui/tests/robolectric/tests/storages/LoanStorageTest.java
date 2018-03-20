@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import me.ledge.link.api.vos.responses.offers.InitialOffersResponseVo;
+import me.ledge.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.ui.storages.LoanStorage;
 

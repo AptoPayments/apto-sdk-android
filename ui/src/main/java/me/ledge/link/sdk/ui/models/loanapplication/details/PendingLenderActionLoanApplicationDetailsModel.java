@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.models.loanapplication.details;
 
 import android.content.res.Resources;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;

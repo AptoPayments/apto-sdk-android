@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 
-import me.ledge.link.api.vos.responses.SessionExpiredErrorVo;
+import me.ledge.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;

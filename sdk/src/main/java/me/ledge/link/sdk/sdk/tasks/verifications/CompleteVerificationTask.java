@@ -1,9 +1,9 @@
 package me.ledge.link.sdk.sdk.tasks.verifications;
 
-import me.ledge.link.api.exceptions.ApiException;
-import me.ledge.link.api.vos.requests.verifications.VerificationRequestVo;
-import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
-import me.ledge.link.api.wrappers.LinkApiWrapper;
+import me.ledge.link.sdk.api.exceptions.ApiException;
+import me.ledge.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
+import me.ledge.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
+import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 

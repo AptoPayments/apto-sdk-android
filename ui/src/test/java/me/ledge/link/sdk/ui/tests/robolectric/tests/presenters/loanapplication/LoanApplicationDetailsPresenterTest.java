@@ -10,8 +10,8 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.shadows.ShadowContentProvider;
 
-import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.api.utils.loanapplication.LoanApplicationStatus;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.ui.models.loanapplication.details.ApprovedLoanApplicationDetailsModel;
 import me.ledge.link.sdk.ui.models.loanapplication.details.FinishExternalLoanApplicationDetailsModel;

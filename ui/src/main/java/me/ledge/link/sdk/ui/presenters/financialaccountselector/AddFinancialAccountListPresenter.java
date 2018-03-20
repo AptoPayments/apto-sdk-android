@@ -6,9 +6,9 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
-import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
-import me.ledge.link.api.vos.datapoints.VirtualCard;
-import me.ledge.link.api.vos.responses.ApiErrorVo;
+import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
+import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
+import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddCardModel;

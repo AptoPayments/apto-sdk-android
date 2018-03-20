@@ -2,9 +2,9 @@ package me.ledge.link.sdk.ui.presenters.loanapplication;
 
 import android.content.res.Resources;
 
-import me.ledge.link.api.utils.loanapplication.LoanApplicationActionId;
-import me.ledge.link.api.utils.loanapplication.LoanApplicationStatus;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.api.utils.loanapplication.LoanApplicationActionId;
+import me.ledge.link.sdk.api.utils.loanapplication.LoanApplicationStatus;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.loanapplication.details.LoanApplicationDetailsModel;
 import me.ledge.link.sdk.ui.models.loanapplication.details.PendingLenderActionLoanApplicationDetailsModel;

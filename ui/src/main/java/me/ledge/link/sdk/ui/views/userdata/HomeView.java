@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.utils.KeyboardUtil;
 import me.ledge.link.sdk.ui.views.LoadingView;

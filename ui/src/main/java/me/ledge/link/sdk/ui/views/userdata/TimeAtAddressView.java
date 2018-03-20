@@ -5,7 +5,7 @@ import android.content.res.ColorStateList;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.util.AttributeSet;
 import android.view.View;
-import me.ledge.link.api.vos.responses.config.TimeAtAddressVo;
+import me.ledge.link.sdk.api.vos.responses.config.TimeAtAddressVo;
 
 import android.view.ViewGroup;
 import android.widget.RadioGroup;

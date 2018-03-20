@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
+import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.models.fundingaccountselector.EnableAutoPayModel;

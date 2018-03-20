@@ -4,12 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.PhoneNumberVo;
-import me.ledge.link.api.vos.datapoints.VerificationVo;
-import me.ledge.link.api.vos.responses.ApiErrorVo;
-import me.ledge.link.api.vos.responses.verifications.FinishVerificationResponseVo;
-import me.ledge.link.api.vos.responses.verifications.VerificationResponseVo;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.datapoints.PhoneNumberVo;
+import me.ledge.link.sdk.api.vos.datapoints.VerificationVo;
+import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
+import me.ledge.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
+import me.ledge.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.verification.PhoneVerificationModel;

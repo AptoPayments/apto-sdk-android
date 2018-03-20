@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.tests.robolectric.tests.models.offers;
 
 import android.content.res.Resources;
-import me.ledge.link.api.vos.responses.offers.OfferVo;
+import me.ledge.link.sdk.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.ui.models.offers.OfferSummaryModel;
 import org.junit.Assert;

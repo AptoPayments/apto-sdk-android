@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 
-import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
-import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
+import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountListModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 import me.ledge.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;

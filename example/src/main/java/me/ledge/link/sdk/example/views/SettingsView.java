@@ -11,7 +11,7 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Switch;
 
-import me.ledge.link.api.vos.IdDescriptionPairDisplayVo;
+import me.ledge.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.ui.widgets.HintArrayAdapter;
 

@@ -2,16 +2,16 @@ package me.ledge.link.sdk.ui.storages;
 
 import android.text.TextUtils;
 
-import me.ledge.link.api.vos.datapoints.CreditScore;
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.Housing;
-import me.ledge.link.api.vos.datapoints.IncomeSource;
-import me.ledge.link.api.vos.responses.config.CreditScoreVo;
-import me.ledge.link.api.vos.responses.config.HousingTypeVo;
-import me.ledge.link.api.vos.responses.config.IncomeTypeVo;
-import me.ledge.link.api.vos.responses.config.RequiredDataPointsListResponseVo;
-import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
+import me.ledge.link.sdk.api.vos.datapoints.CreditScore;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.datapoints.Housing;
+import me.ledge.link.sdk.api.vos.datapoints.IncomeSource;
+import me.ledge.link.sdk.api.vos.responses.config.CreditScoreVo;
+import me.ledge.link.sdk.api.vos.responses.config.HousingTypeVo;
+import me.ledge.link.sdk.api.vos.responses.config.IncomeTypeVo;
+import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
+import me.ledge.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 
 /**
  * Stores user related data.

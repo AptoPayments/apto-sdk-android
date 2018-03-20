@@ -39,8 +39,6 @@ install:
   - ./gradlew install
   - cd ~/build/itabulous/sdk_android
   - chmod +x gradlew
-  - ./gradlew --configure-on-demand -p api install
-  - ./gradlew --configure-on-demand -PexcludeExample=true -p retrofit-wrapper install
   - ./gradlew --configure-on-demand -p sdk install
 
 # Running tests.

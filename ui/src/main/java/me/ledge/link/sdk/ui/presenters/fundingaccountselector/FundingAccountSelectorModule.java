@@ -7,11 +7,11 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.lang.ref.WeakReference;
 
-import me.ledge.link.api.utils.loanapplication.LoanApplicationAccountType;
-import me.ledge.link.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
-import me.ledge.link.api.vos.responses.ApiErrorVo;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
+import me.ledge.link.sdk.api.utils.loanapplication.LoanApplicationAccountType;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
+import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity;

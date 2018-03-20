@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.models.financialaccountselector;
 
-import me.ledge.link.api.vos.datapoints.Card;
-import me.ledge.link.api.vos.datapoints.FinancialAccountVo;
+import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.sdk.ui.R;
 
 /**

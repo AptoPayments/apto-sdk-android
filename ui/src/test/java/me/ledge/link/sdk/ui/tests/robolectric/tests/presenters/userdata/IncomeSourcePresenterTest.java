@@ -13,16 +13,16 @@ import org.robolectric.annotation.Config;
 
 import java.lang.ref.WeakReference;
 
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.IncomeSource;
-import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.ContextConfigResponseVo;
-import me.ledge.link.api.vos.responses.config.IncomeTypeListResponseVo;
-import me.ledge.link.api.vos.responses.config.IncomeTypeVo;
-import me.ledge.link.api.vos.responses.config.RequiredDataPointVo;
-import me.ledge.link.api.vos.responses.config.SalaryFrequenciesListResponseVo;
-import me.ledge.link.api.vos.responses.config.SalaryFrequencyVo;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.datapoints.IncomeSource;
+import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
+import me.ledge.link.sdk.api.vos.responses.config.IncomeTypeListResponseVo;
+import me.ledge.link.sdk.api.vos.responses.config.IncomeTypeVo;
+import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointVo;
+import me.ledge.link.sdk.api.vos.responses.config.SalaryFrequenciesListResponseVo;
+import me.ledge.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import me.ledge.link.sdk.ui.BuildConfig;

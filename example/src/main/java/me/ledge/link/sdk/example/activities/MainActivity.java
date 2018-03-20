@@ -13,8 +13,8 @@ import java.util.WeakHashMap;
 
 import io.branch.referral.Branch;
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.example.KeysStorage;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;

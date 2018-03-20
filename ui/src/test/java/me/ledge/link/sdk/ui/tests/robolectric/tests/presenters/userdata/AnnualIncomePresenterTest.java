@@ -14,9 +14,9 @@ import org.robolectric.annotation.Config;
 
 import java.lang.ref.WeakReference;
 
-import me.ledge.link.api.vos.datapoints.DataPointList;
-import me.ledge.link.api.vos.datapoints.DataPointVo;
-import me.ledge.link.api.vos.datapoints.Income;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
+import me.ledge.link.sdk.api.vos.datapoints.Income;
 import me.ledge.link.sdk.ui.BuildConfig;
 import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockAnnualIncomePresenter;

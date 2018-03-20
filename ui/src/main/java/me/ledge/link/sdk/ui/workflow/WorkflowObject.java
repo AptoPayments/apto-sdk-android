@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.ui.workflow;
 
-import me.ledge.link.api.vos.responses.workflow.ActionVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.ActionVo;
 
 /**
  * Created by adrian on 09/11/2017.

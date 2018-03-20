@@ -3,7 +3,7 @@ package me.ledge.link.sdk.ui.models.loanapplication;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.text.TextUtils;
-import me.ledge.link.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;

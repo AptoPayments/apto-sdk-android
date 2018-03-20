@@ -2,7 +2,7 @@ package me.ledge.link.sdk.ui.presenters.fundingaccountselector;
 
 import android.content.res.Resources;
 
-import me.ledge.link.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.ui.R;
 
 /**

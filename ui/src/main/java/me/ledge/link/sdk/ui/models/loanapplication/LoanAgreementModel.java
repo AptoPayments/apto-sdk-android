@@ -2,8 +2,8 @@ package me.ledge.link.sdk.ui.models.loanapplication;
 
 import android.app.Activity;
 import android.content.res.Resources;
-import me.ledge.link.api.utils.TermUnit;
-import me.ledge.link.api.vos.responses.offers.OfferVo;
+import me.ledge.link.sdk.api.utils.TermUnit;
+import me.ledge.link.sdk.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
