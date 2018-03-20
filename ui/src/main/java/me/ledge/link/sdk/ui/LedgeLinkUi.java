@@ -14,7 +14,6 @@ import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.api.vos.datapoints.DataPointList;
 import me.ledge.link.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.api.wrappers.LinkApiWrapper;
-import me.ledge.link.api.wrappers.retrofit.two.RetrofitTwoLinkApiWrapper;
 import me.ledge.link.imageloaders.volley.VolleyImageLoader;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
@@ -27,6 +26,7 @@ import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.utils.HandlerConfigurator;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
+import me.ledge.link.sdk.wrappers.retrofit.RetrofitTwoLinkApiWrapper;
 
 /**
  * Ledge Line UI helper is an extension of {@link LedgeLinkSdk} to help set up the Ledge Line UI.<br />
