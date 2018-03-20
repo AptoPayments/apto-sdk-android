@@ -455,4 +455,17 @@ public class LedgeLinkSdk {
 
         return task;
     }
+
+    /**
+     * Gets the financial account's transactions.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getFinancialAccountTransactions(String accountId) {
+        checkComponents();
+
+        GetFinancialAccountTask task = new GetFinancialAccountTask(accountId, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
 }

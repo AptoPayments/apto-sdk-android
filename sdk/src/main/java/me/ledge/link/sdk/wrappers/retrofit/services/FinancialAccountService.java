@@ -9,6 +9,7 @@ import me.ledge.link.sdk.api.vos.requests.financialaccounts.AddBankAccountReques
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import me.ledge.link.sdk.api.vos.responses.users.UserDataListResponseVo;
@@ -83,4 +84,11 @@ public interface FinancialAccountService {
 
     @POST(LinkApiWrapper.FINANCIAL_ACCOUNT_STATE_PATH)
     Call<UpdateFinancialAccountResponseVo> updateFinancialAccount(@Path("account_id") String accountId, @Body UpdateFinancialAccountRequestVo state);
+
+    /**
+     * Creates a {@link Call} to get a the transaction list of specific financial account.
+     * @return API call to execute.
+     */
+    @GET(LinkApiWrapper.FINANCIAL_ACCOUNT_TRANSACTIONS_PATH)
+    Call<TransactionListResponseVo> getTransactions(@Path("account_id") String accountId);
 }
