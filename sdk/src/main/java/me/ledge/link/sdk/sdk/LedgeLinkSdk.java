@@ -11,8 +11,8 @@ import me.ledge.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
-import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import me.ledge.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import me.ledge.link.sdk.api.vos.requests.users.LoginRequestVo;
 import me.ledge.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
@@ -26,6 +26,7 @@ import me.ledge.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.AddBankAccountTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.AddCardTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTask;
+import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTransactionsTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountsTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountPinTask;
@@ -460,10 +461,10 @@ public class LedgeLinkSdk {
      * Gets the financial account's transactions.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getFinancialAccountTransactions(String accountId) {
+    public static LedgeLinkApiTask getFinancialAccountTransactions(String accountId, int page, int rows) {
         checkComponents();
 
-        GetFinancialAccountTask task = new GetFinancialAccountTask(accountId, getApiWrapper(), getResponseHandler());
+        GetFinancialAccountTransactionsTask task = new GetFinancialAccountTransactionsTask(accountId, page, rows, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

@@ -94,7 +94,7 @@ public interface LinkApiWrapper {
 
     String APPLICATION_STATUS_PATH = "v1/link/applications/{application_id}/status";
     String LIST_LOAN_APPLICATIONS_PATH = "v1/link/applications/pending";
-    String APPLICATION_ACCOUNT_PATH = "v1/link/applications/{application_id}/accounts/";
+    String APPLICATION_ACCOUNT_PATH = "v1/link/applications/{application_id}/accounts";
 
     int OFFERS_REQUEST_TIMEOUT = 150; // 2.5 minutes.
 
@@ -387,5 +387,5 @@ public interface LinkApiWrapper {
      * @return The list of transactions
      * @throws ApiException
      */
-    TransactionListResponseVo getFinancialAccountsTransactions(String accountId) throws ApiException;
+    TransactionListResponseVo getFinancialAccountsTransactions(String accountId, int page, int rows) throws ApiException;
 }

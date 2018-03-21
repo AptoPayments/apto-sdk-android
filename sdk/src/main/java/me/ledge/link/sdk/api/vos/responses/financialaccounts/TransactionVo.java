@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class TransactionVo {
 
-    public int id;
+    public String id;
 
     @SerializedName("authorized")
     public boolean isAuthorized;
@@ -18,16 +18,16 @@ public class TransactionVo {
 
     public String description;
 
-    @SerializedName("merchantName")
+    @SerializedName("merchant_name")
     public String merchantName;
 
-    @SerializedName("merchantCity")
+    @SerializedName("merchant_city")
     public String merchantCity;
 
-    @SerializedName("merchantState")
+    @SerializedName("merchant_state")
     public String merchantState;
 
-    @SerializedName("merchantCountry")
+    @SerializedName("merchant_country")
     public String merchantCountry;
 
     @SerializedName("mcc_code")

@@ -2,6 +2,8 @@ package me.ledge.link.sdk.wrappers.retrofit.services;
 
 import com.google.gson.JsonObject;
 
+import java.util.Map;
+
 import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
@@ -20,6 +22,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 
 /**
  * Financial accounts related API calls.
@@ -90,5 +93,5 @@ public interface FinancialAccountService {
      * @return API call to execute.
      */
     @GET(LinkApiWrapper.FINANCIAL_ACCOUNT_TRANSACTIONS_PATH)
-    Call<TransactionListResponseVo> getTransactions(@Path("account_id") String accountId);
+    Call<TransactionListResponseVo> getTransactions(@Path("account_id") String accountId, @QueryMap Map<String, Integer> filters);
 }
