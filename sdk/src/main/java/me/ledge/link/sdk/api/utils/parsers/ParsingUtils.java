@@ -14,4 +14,12 @@ class ParsingUtils {
 
         return element.getAsString();
     }
+
+    static String getCurrencyStringFromJson(JsonElement element) {
+        if(element == null || element.isJsonNull()) {
+            return null;
+        }
+
+        return String.format(java.util.Locale.US,"%.2f", element.getAsFloat());
+    }
 }

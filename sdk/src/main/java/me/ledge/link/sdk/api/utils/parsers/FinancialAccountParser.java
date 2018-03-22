@@ -39,7 +39,7 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
                     Card.FinancialAccountState.valueOf(cardState),
-                    ParsingUtils.getStringFromJson(jObject.get("balance")),
+                    ParsingUtils.getCurrencyStringFromJson(jObject.get("balance")),
                     new Custodian("coinbase", "logo"),
                     false);
         }
@@ -60,7 +60,7 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
                     Card.FinancialAccountState.valueOf(cardState),
-                    ParsingUtils.getStringFromJson(jObject.get("balance")),
+                    ParsingUtils.getCurrencyStringFromJson(jObject.get("balance")),
                     new Custodian("coinbase", "logo"),
                     false);
         }

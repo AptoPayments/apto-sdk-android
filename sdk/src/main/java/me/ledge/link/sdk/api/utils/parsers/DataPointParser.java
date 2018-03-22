@@ -93,7 +93,7 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv")),
                         Card.FinancialAccountState.valueOf(cardState),
-                        ParsingUtils.getStringFromJson(jObject.get("balance")),
+                        ParsingUtils.getCurrencyStringFromJson(jObject.get("balance")),
                         new Custodian("coinbase", "logo"),
                         false);
             case "bank_account":
@@ -110,7 +110,7 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv")),
                         Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
-                        ParsingUtils.getStringFromJson(jObject.get("balance")),
+                        ParsingUtils.getCurrencyStringFromJson(jObject.get("balance")),
                         new Custodian("coinbase", "logo"),
                         false);
             case "payday_loan":

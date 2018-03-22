@@ -30,7 +30,7 @@ public class VirtualCardParser implements JsonDeserializer<VirtualCard> {
                 ParsingUtils.getStringFromJson(jObject.get("pan")),
                 ParsingUtils.getStringFromJson(jObject.get("cvv")),
                 Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
-                ParsingUtils.getStringFromJson(jObject.get("balance")),
+                ParsingUtils.getCurrencyStringFromJson(jObject.get("balance")),
                 new Custodian("coinbase", "logo"),
                 false);
     }
