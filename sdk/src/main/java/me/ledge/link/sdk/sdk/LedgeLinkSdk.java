@@ -461,10 +461,10 @@ public class LedgeLinkSdk {
      * Gets the financial account's transactions.
      * @return The {@link LedgeLinkApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getFinancialAccountTransactions(String accountId, int page, int rows) {
+    public static LedgeLinkApiTask getFinancialAccountTransactions(String accountId, int rows, String lastTransactionId) {
         checkComponents();
 
-        GetFinancialAccountTransactionsTask task = new GetFinancialAccountTransactionsTask(accountId, page, rows, getApiWrapper(), getResponseHandler());
+        GetFinancialAccountTransactionsTask task = new GetFinancialAccountTransactionsTask(accountId, rows, lastTransactionId, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

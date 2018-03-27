@@ -36,6 +36,9 @@ public class TransactionVo {
     @SerializedName("mcc_name")
     public String merchantCategoryName;
 
+    @SerializedName("mcc_icon")
+    public String merchantCategoryIcon;
+
     public String state;
 
     @SerializedName("local_amount")

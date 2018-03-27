@@ -384,8 +384,10 @@ public interface LinkApiWrapper {
 
     /**
      * @param accountId The financial account ID
+     * @param rows The number of rows requested
+     * @param transactionId The last ID received
      * @return The list of transactions
      * @throws ApiException
      */
-    TransactionListResponseVo getFinancialAccountsTransactions(String accountId, int page, int rows) throws ApiException;
+    TransactionListResponseVo getFinancialAccountsTransactions(String accountId, int rows, String transactionId) throws ApiException;
 }

@@ -13,7 +13,6 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
@@ -819,13 +818,11 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public TransactionListResponseVo getFinancialAccountsTransactions(String accountId, int page, int rows) throws ApiException {
+    public TransactionListResponseVo getFinancialAccountsTransactions(String accountId, int rows, String transactionId) throws ApiException {
         TransactionListResponseVo result;
-        Map<String, Integer> filters = new HashMap<>();
-        filters.put("page", page);
-        filters.put("rows", rows);
         try {
-            Response<TransactionListResponseVo> response = mFinancialAccountService.getTransactions(accountId, filters).execute();
+            // TODO: using last transaction ID instead of page due to limitation on Card Backend
+            Response<TransactionListResponseVo> response = mFinancialAccountService.getTransactions(accountId, rows, transactionId).execute();
             result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNT_TRANSACTIONS_PATH);
         } catch (IOException ioe) {
             result = null;

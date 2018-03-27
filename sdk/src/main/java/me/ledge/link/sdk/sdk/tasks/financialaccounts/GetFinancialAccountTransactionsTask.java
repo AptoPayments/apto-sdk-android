@@ -11,8 +11,8 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * @author Adrian
  */
 public class GetFinancialAccountTransactionsTask extends LedgeLinkApiTask<Void, Void, TransactionListResponseVo, String> {
-    private int mPage;
     private int mRows;
+    private String mTransactionId;
 
     /**
      * @see LedgeLinkApiTask#LedgeLinkApiTask
@@ -20,17 +20,17 @@ public class GetFinancialAccountTransactionsTask extends LedgeLinkApiTask<Void, 
      * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      */
-    public GetFinancialAccountTransactionsTask(String requestData, int page, int rows,
+    public GetFinancialAccountTransactionsTask(String requestData, int rows, String transactionId,
                                                LinkApiWrapper apiWrapper,
                                                ApiResponseHandler responseHandler) {
         super(requestData, apiWrapper, responseHandler);
-        mPage = page;
         mRows = rows;
+        mTransactionId = transactionId;
     }
 
     /** {@inheritDoc} */
     @Override
     protected TransactionListResponseVo callApi() throws ApiException {
-        return getApiWrapper().getFinancialAccountsTransactions(getRequestData(), mPage, mRows);
+        return getApiWrapper().getFinancialAccountsTransactions(getRequestData(), mRows, mTransactionId);
     }
 }
