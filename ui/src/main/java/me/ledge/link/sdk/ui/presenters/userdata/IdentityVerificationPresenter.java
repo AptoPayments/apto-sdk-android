@@ -160,9 +160,7 @@ public class IdentityVerificationPresenter
     @Override
     public void birthdayClickHandler() {
         DatePickerFragment fragment = new DatePickerFragment();
-
         fragment.setDate(mModel.getBirthday());
-        fragment.setThemeId(getBirthdayDialogThemeId(mActivity));
         fragment.setListener(this);
         fragment.show(mActivity.getFragmentManager(), DatePickerFragment.TAG);
     }
