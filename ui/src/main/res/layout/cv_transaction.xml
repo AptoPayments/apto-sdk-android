@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.ledge.link.sdk.ui.views.card.TransactionView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="80dp"
+    android:layout_width="match_parent"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:background="@android:color/white" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:layout_toEndOf="@+id/iv_icon">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="?attr/llsdk_addDocuments_cardTitleStyle" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                style="?attr/llsdk_addDocuments_cardDescriptionStyle" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</me.ledge.link.sdk.ui.views.card.TransactionView>

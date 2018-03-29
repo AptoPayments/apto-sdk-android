@@ -310,4 +310,35 @@
     <string name="coinbase_client_id">892c3cb9743d2aa7f3037ebbaf88efb0d4bb21c2dec4067e517bf45aff1c0936</string>
     <string name="coinbase_client_secret">04d5ad68ba3ab4b7d90f1b0f48b108dff0313a3af6748272099a0341b303544c</string>
 
+    <!-- fingerprint dialog -->
+    <string name="fingerprint_description">Use your fingerprint for fast, secure access to your card.\nConfirm fingerprint to continue.</string>
+    <string name="fingerprint_hint">Touch sensor</string>
+    <string name="fingerprint_title">Use fingerprint?</string>
+
+    <!-- card management screen -->
+    <string name="card_management_card_balance">CURRENT BALANCE</string>
+    <string name="card_management_primary_button">TAP TO MANAGE CARD</string>
+    <string name="card_management_secondary_button">ACTIVATE VIRTUAL CARD</string>
+    <string name="card_management_trasactions_title">Recent Transactions</string>
+    <string name="card_activated">Card activated</string>
+    <string name="card_deactivated">Card deactivated</string>
+    <string name="pin_changed">PIN changed correctly</string>
+
+    <!-- card management bottom sheet -->
+    <string name="switch_enable_card">Enable Card</string>
+    <string name="switch_show_card_info">Show Card Info</string>
+    <string name="save_to_android_pay_label">Add Card</string>
+    <string name="report_lost_card_label">Report Lost Card</string>
+    <string name="change_pin_label">Change PIN</string>
+
+    <!-- card management enable/disable dialog -->
+    <string name="enable_card_message">You are activating your card. Are you sure?</string>
+    <string name="disable_card_message">You are deactivating your card. Are you sure?</string>
+    <string name="dialog_title">Card state</string>
+
+    <!-- Card view -->
+    <string name="card_cvv_label">CVV</string>
+    <string name="card_expiration_date_label">EXP</string>
+    <string name="card_disabled_label">CARD NOT ENABLED</string>
+
 </resources>

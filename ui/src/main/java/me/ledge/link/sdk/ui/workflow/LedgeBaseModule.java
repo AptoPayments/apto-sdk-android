@@ -84,7 +84,7 @@ public abstract class LedgeBaseModule implements NavigationCommand, BaseDelegate
 
     protected void showError(String errorMessage) {
         if(!errorMessage.isEmpty()) {
-            Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
+            getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show());
         }
     }
 

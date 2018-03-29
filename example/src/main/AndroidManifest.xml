@@ -11,7 +11,11 @@
             android:targetSdkVersion="24"
             tools:overrideLibrary="br.tiagohm.markdownview, me.ledge.link.sdk.sdk"/>
 
-
+    <uses-feature android:name="android.hardware.fingerprint"
+        android:required="false"/>
+    <uses-permission
+        android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -209,5 +213,18 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="me.ledge.link.sdk.ui.activities.card.IssueVirtualCardActivity"
+            android:theme="@style/Theme.LedgeLine.Example"
+            android:noHistory="true" />
+
+        <activity
+            android:name="me.ledge.link.sdk.ui.activities.card.ManageCardActivity"
+            android:theme="@style/Theme.LedgeLine.Example"
+            android:windowSoftInputMode="stateHidden"
+            android:parentActivityName="me.ledge.link.sdk.example.activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.ledge.link.sdk.example.activities.MainActivity" />
+        </activity>
     </application>
 </manifest>
