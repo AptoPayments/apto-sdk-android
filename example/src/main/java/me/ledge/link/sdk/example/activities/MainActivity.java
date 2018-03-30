@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         if(SHARED_LOAN_DATA.containsKey(LOAN_DATA_KEY)){
             loanData = SHARED_LOAN_DATA.get(LOAN_DATA_KEY);
         }
-        LedgeLinkUi.startProcess(this, userData.get(), loanData.get());
+        LedgeLinkUi.startLinkProcess(this, userData.get(), loanData.get());
     }
 
     @Override

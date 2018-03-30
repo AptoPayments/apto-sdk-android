@@ -11,15 +11,18 @@ import com.google.android.gms.security.ProviderInstaller;
 import java.util.ArrayList;
 
 import me.ledge.common.utils.android.AndroidUtils;
+import me.ledge.link.imageloaders.volley.VolleyImageLoader;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
+import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
-import me.ledge.link.imageloaders.volley.VolleyImageLoader;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import me.ledge.link.sdk.ui.images.GenericImageLoader;
+import me.ledge.link.sdk.ui.presenters.card.CardModule;
 import me.ledge.link.sdk.ui.presenters.link.LinkModule;
+import me.ledge.link.sdk.ui.storages.CardStorage;
 import me.ledge.link.sdk.ui.storages.LinkStorage;
 import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UIStorage;
@@ -154,13 +157,17 @@ public class LedgeLinkUi extends LedgeLinkSdk {
         trustSelfSigned = trustSelfSignedCertificates;
     }
 
+    public static void startLinkProcess(Activity activity) {
+        startLinkProcess(activity, null, null);
+    }
+
     /**
      * Starts the Ledge Line loan offers process.
      * @param activity The {@link Activity} to launch the first Ledge Line screen from.
      * @param userData Pre-fill user data. Use {@code null} if not needed.
      * @param loanData Pre-fill loan data. Use {@code null} if not needed.
      */
-    public static void startProcess(Activity activity, DataPointList userData, LoanDataVo loanData) {
+    public static void startLinkProcess(Activity activity, DataPointList userData, LoanDataVo loanData) {
         UserStorage.getInstance().setUserData(userData);
         LinkStorage.getInstance().setLoanData(loanData);
         validateToken(activity);
@@ -168,6 +175,33 @@ public class LedgeLinkUi extends LedgeLinkSdk {
             ProviderInstaller.installIfNeeded(activity.getApplicationContext());
             LinkModule linkModule = new LinkModule(activity);
             linkModule.initialModuleSetup();
+        } catch (GooglePlayServicesRepairableException e) {
+            // Thrown when Google Play Services is not installed, up-to-date, or enabled
+            // Show dialog to allow users to install, update, or otherwise enable Google Play services.
+            GoogleApiAvailability.getInstance().getErrorDialog(activity, e.getConnectionStatusCode(), 0).show();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            // Google Play services is not available entirely.
+            GoogleApiAvailability.getInstance().getErrorDialog(activity, e.errorCode, 0).show();
+        }
+    }
+
+    public static void startCardProcess(Activity activity) {
+        startCardProcess(activity, null, null);
+    }
+
+    /**
+     * Starts the Ledge Line loan offers process.
+     * @param activity The {@link Activity} to launch the first Ledge Line screen from.
+     * @param userData Pre-fill user data. Use {@code null} if not needed.
+     * @param card Pre-fill card data. Use {@code null} if not needed.
+     */
+    public static void startCardProcess(Activity activity, DataPointList userData, VirtualCard card) {
+        UserStorage.getInstance().setUserData(userData);
+        CardStorage.getInstance().setCard(card);
+        validateToken(activity);
+        try {
+            ProviderInstaller.installIfNeeded(activity.getApplicationContext());
+            new CardModule(activity).initialModuleSetup();
         } catch (GooglePlayServicesRepairableException e) {
             // Thrown when Google Play Services is not installed, up-to-date, or enabled
             // Show dialog to allow users to install, update, or otherwise enable Google Play services.
