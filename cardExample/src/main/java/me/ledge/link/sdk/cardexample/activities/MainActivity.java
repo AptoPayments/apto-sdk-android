@@ -15,7 +15,6 @@ import me.ledge.link.sdk.cardexample.KeysStorage;
 import me.ledge.link.sdk.cardexample.R;
 import me.ledge.link.sdk.cardexample.views.MainView;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
-import me.ledge.link.sdk.ui.presenters.card.CardModule;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 
 public class MainActivity extends AppCompatActivity implements MainView.ViewListener {
@@ -93,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                 mView.setSummary(configResponseVo.summary);
             }
 
+            mView.setColors();
             mView.showLoading(false);
         });
     }
