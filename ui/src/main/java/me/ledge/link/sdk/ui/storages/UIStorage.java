@@ -108,6 +108,13 @@ public class UIStorage {
         }
     }
 
+    public int getStatusBarColor() {
+        float[] hsv = new float[3];
+        Color.colorToHSV(mPrimaryColor, hsv);
+        hsv[2] *= 0.8f;
+        return Color.HSVToColor(hsv);
+    }
+
     public synchronized ConfigResponseVo getContextConfig() {
         if (mConfig != null) {
             return mConfig.projectConfiguration;
