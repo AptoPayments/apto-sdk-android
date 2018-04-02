@@ -4,7 +4,7 @@
 # Ledge Link
 Ledge Link Android SDK.
 
-For more information, see the [website](https://itabulous.github.io/ledgelinksdk_android/).
+For more information, see the [website](https://developer.ledge.me).
 
 ## Download
 
@@ -15,6 +15,7 @@ Maven:
   <groupId>me.ledge.link.sdk</groupId>
   <artifactId>ui</artifactId>
   <version>(insert latest version)</version>
+  <type>pom</type>
 </dependency>
 ```
 
@@ -56,23 +57,59 @@ To run Unit tests and generate a JaCoCo coverage report, run `./gradlew --parall
 * Unit test report: `ui/build/reports/tests/debug/index.html`.
 * Coverage report: `ui/build/reports/jacoco/testDebugUnitTestCoverage/html/index.html`.
 
-### Example app
+### Example apps
+
+There are two example apps which make use of the SDK. You can install the example app to check out the Link flow or the cardExample app which shows the Shift Card flow. 
 
 1. In the `src/main/res/values` folder create a new file called `strings_configuration.xml`.\*
   * Define the `ledge_link_environment`.
   * Define the `ledge_link_developer_key_dev`.
   * Define the `ledge_link_project_token`
-1. To install the example app, run `./gradlew --parallel -p example installDebug`. Make sure you have an Android Emulator running or a connected device.
+1. Make sure you have an Android Emulator running or a connected device.
+1. To install the Link example app, run `./gradlew --parallel -p example installDebug`.
+1. To install the Shift card example app, run `./gradlew --parallel -p cardExample installDebug`.
+    
 
 \* Example of `strings_configuration.xml`:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ledge_link_environment">local</string>
+    <string name="ledge_link_environment">local_emulator</string>
     <string name="ledge_link_developer_key_dev">myApiKey</string>
     <string name="ledge_link_project_token">myProjectToken</string>
 </resources>
 ```
+
+### Using the SDKs
+
+To run the SDK first you need to set it up with your keys and the current context:
+```java
+LedgeLinkUi.setupLedgeLink(this, "my_developer_key", "my_project_key");
+```
+Optionally, you can configure if you want to enable certificate pinning, if you want to trust self-signed ceritificates, and which environment you want to target (local_device, local_emulator, dev, stg, sbx, prd)
+```java
+LedgeLinkUi.setupLedgeLink(this, "my_developer_key", "my_project_key", true, true, "sbx");
+```
+
+After you have done the setup, you can launch the desired SDK passing in the context.
+For the Link flow use:
+```java
+LedgeLinkUi.startLinkProcess(this);
+```
+For the Shift card flow use:
+```java
+LedgeLinkUi.startCardProcess(this);
+```
+
+Aditionally, you can initialize the SDK with the datapoints you already have:
+```java
+LedgeLinkUi.startLinkProcess(this, myUserData, myLoanData);
+```
+```java
+LedgeLinkUi.startLinkProcess(this, myUserData, myCardData);
+```
+
+Where `myUserData` is a `DataPointList`, `myLoanData` is a `LoanDataVo` containing the loan amount and the loan purpose and `myCardData` is a `Card`.
 
 ### Github pages
 
