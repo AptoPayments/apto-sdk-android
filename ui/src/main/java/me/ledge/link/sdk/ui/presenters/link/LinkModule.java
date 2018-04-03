@@ -14,10 +14,13 @@ import me.ledge.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import me.ledge.link.sdk.api.vos.responses.workflow.ActionVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import me.ledge.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
@@ -111,6 +114,8 @@ public class LinkModule extends LedgeBaseModule {
     private void startUserDataCollectorModule(boolean updateProfile) {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
+        UserDataCollectorConfigurationVo config = updateProfile ? getConfigForUpdateProfile() : getConfigForLink();
+        userDataCollectorModule.setCallToActionConfig(config);
         userDataCollectorModule.onFinish = this::showOffersList;
         userDataCollectorModule.onBack = this::showWelcomeScreenOrBack;
         userDataCollectorModule.isUpdatingProfile = updateProfile;
@@ -126,6 +131,14 @@ public class LinkModule extends LedgeBaseModule {
         userDataCollectorModule.isUpdatingProfile = false;
         userDataCollectorModule.onTokenRetrieved = null;
         startModule(userDataCollectorModule);
+    }
+
+    private UserDataCollectorConfigurationVo getConfigForLink() {
+        return new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_title_get_offers), new CallToActionVo(getActivity().getString(R.string.id_verification_next_button_get_offers)));
+    }
+
+    private UserDataCollectorConfigurationVo getConfigForUpdateProfile() {
+        return new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_update_profile_title), new CallToActionVo(getActivity().getString(R.string.id_verification_update_profile_button)));
     }
 
     private void showOffersList() {

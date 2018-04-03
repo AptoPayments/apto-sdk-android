@@ -57,7 +57,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
-        return R.string.id_verification_label;
+        return R.string.id_verification_title_get_offers;
     }
 
     /** {@inheritDoc} */

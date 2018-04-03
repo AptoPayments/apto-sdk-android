@@ -21,6 +21,7 @@ import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.sdk.api.vos.responses.users.UserResponseVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
@@ -58,6 +59,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     public boolean isUpdatingProfile;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
     private DataPointList mCurrentUserDataCopy;
+    private UserDataCollectorConfigurationVo mCallToAction;
 
     private UserDataCollectorModule(Activity activity) {
         super(activity);
@@ -480,5 +482,13 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         }
 
         return result;
+    }
+
+    public UserDataCollectorConfigurationVo getCallToActionConfig() {
+        return mCallToAction;
+    }
+
+    public void setCallToActionConfig(UserDataCollectorConfigurationVo callToActionConfig) {
+        mCallToAction = callToActionConfig;
     }
 }

@@ -124,16 +124,18 @@
     <string name="armed_forces_error">Please choose an answer.</string>
 
     <!-- ID Verification -->
-    <string name="id_verification_label">Ready for your offers?</string>
+    <string name="id_verification_title_get_offers">Ready for your offers?</string>
+    <string name="id_verification_next_button_get_offers">GET OFFERS</string>
+    <string name="id_verification_title_issue_card">Ready for your card?</string>
+    <string name="id_verification_next_button_issue_card">ISSUE CARD</string>
+    <string name="id_verification_update_profile_title">Update Profile</string>
+    <string name="id_verification_update_profile_button">UPDATE PROFILE</string>
     <string name="id_verification_birthday_hint">Birthday</string>
     <string name="id_verification_birthday_error">You must be 18 years or older.</string>
     <string name="id_verification_social_security_hint">Social security #</string>
     <string name="id_verification_social_security_error">Please enter all 9 digits.</string>
     <string name="id_verification_disclaimer">Your information is private and secure.</string>
-    <string name="id_verification_button_next">GET OFFERS</string>
     <string name="id_verification_toast_api_error" formatted="false">Error: %s</string>
-    <string name="id_verification_update_profile_button">UPDATE PROFILE</string>
-    <string name="id_verification_update_profile_title">Update Profile</string>
     <string name="id_verification_ssn_itin_not_available">I don\'t have an SSN/ITIN</string>
     <string name="id_verification_disclosures_label">Disclosures:</string>
 

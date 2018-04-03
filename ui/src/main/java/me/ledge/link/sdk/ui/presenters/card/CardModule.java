@@ -19,9 +19,12 @@ import me.ledge.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.CallToActionVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.card.IssueVirtualCardActivity;
 import me.ledge.link.sdk.ui.activities.card.ManageCardActivity;
 import me.ledge.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
@@ -108,6 +111,8 @@ public class CardModule extends LedgeBaseModule {
     private void collectFinalUserData() {
         ConfigStorage.getInstance().setRequiredUserData(mFinalRequiredUserData);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(getActivity());
+        UserDataCollectorConfigurationVo config = new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_title_issue_card), new CallToActionVo(getActivity().getString(R.string.id_verification_next_button_issue_card)));
+        userDataCollectorModule.setCallToActionConfig(config);
         userDataCollectorModule.onFinish = this::issueVirtualCard;
         if(mIsExistingUser) {
             userDataCollectorModule.onBack = this::issueVirtualCard;

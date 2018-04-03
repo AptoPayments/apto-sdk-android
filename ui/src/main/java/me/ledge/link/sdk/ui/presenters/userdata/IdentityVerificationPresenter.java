@@ -15,6 +15,7 @@ import me.ledge.link.sdk.api.vos.responses.config.ContentVo;
 import me.ledge.link.sdk.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.sdk.api.vos.responses.config.LoanProductVo;
 import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.R;
@@ -45,6 +46,7 @@ public class IdentityVerificationPresenter
     private boolean mIsBirthdayRequired;
     private LoadingSpinnerManager mLoadingSpinnerManager;
     public int mDisclaimersShownCounter = 0;
+    private UserDataCollectorConfigurationVo mCallToActionConfig;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
@@ -64,6 +66,7 @@ public class IdentityVerificationPresenter
         }
 
         mIsBirthdayRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.BirthDate));
+        mCallToActionConfig = module.getCallToActionConfig();
     }
 
     /**
@@ -119,12 +122,15 @@ public class IdentityVerificationPresenter
             mView.setProgressColor(progressColor);
         }
 
+        if(mCallToActionConfig != null) {
+            mView.setButtonText(mCallToActionConfig.callToAction.title.toUpperCase());
+            mActivity.getSupportActionBar().setTitle(mCallToActionConfig.title);
+        }
+
         if(((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile) {
             if(mIsSSNRequired && mView.getSocialSecurityNumber().isEmpty()) {
                 mView.setMaskedSSN();
             }
-            mView.setButtonText(mActivity.getResources().getString(R.string.id_verification_update_profile_button));
-            mActivity.getSupportActionBar().setTitle(mActivity.getResources().getString(R.string.id_verification_update_profile_title));
             mView.showDisclaimers(false);
             mLoadingSpinnerManager.showLoading(false);
         }
