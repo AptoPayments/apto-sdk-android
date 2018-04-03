@@ -10,10 +10,10 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
@@ -46,13 +46,16 @@ public class CardModule extends LedgeBaseModule {
         super(activity);
     }
     private RequiredDataPointsListResponseVo mFinalRequiredUserData;
+    private boolean mIsExistingUser;
 
     @Override
     public void initialModuleSetup() {
         if(isStoredUserTokenValid()) {
-            checkIfUserHasAnExistingCardOrIssueNewOne();
+            mIsExistingUser = true;
+            getUserInfo();
         }
         else {
+            mIsExistingUser = false;
             UserStorage.getInstance().setUserData(null);
             startAuthModule();
         }
@@ -81,7 +84,10 @@ public class CardModule extends LedgeBaseModule {
         ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
         AuthModuleConfig authModuleConfig = new AuthModuleConfig(config.primaryAuthCredential, config.secondaryAuthCredential);
         AuthModule authModule = AuthModule.getInstance(getActivity(), null, authModuleConfig);
-        authModule.onExistingUser = this::checkIfUserHasAnExistingCardOrIssueNewOne;
+        authModule.onExistingUser = () -> {
+            mIsExistingUser = true;
+            checkIfUserHasAnExistingCardOrIssueNewOne();
+        };
         authModule.onNewUserWithVerifiedPrimaryCredential = this::collectInitialUserData;
         authModule.onBack = this::showHomeActivity;
         authModule.onFinish = this::collectInitialUserData;
@@ -103,8 +109,13 @@ public class CardModule extends LedgeBaseModule {
         ConfigStorage.getInstance().setRequiredUserData(mFinalRequiredUserData);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(getActivity());
         userDataCollectorModule.onFinish = this::issueVirtualCard;
-        userDataCollectorModule.onBack = this::showHomeActivity;
-        userDataCollectorModule.isUpdatingProfile = false;
+        if(mIsExistingUser) {
+            userDataCollectorModule.onBack = this::issueVirtualCard;
+        }
+        else {
+            userDataCollectorModule.onBack = this::showHomeActivity;
+        }
+        userDataCollectorModule.isUpdatingProfile = mIsExistingUser;
         userDataCollectorModule.onTokenRetrieved = null;
         startModule(userDataCollectorModule);
     }
@@ -142,6 +153,11 @@ public class CardModule extends LedgeBaseModule {
         getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
     }
 
+    private void getUserInfo() {
+        LedgeLinkSdk.getResponseHandler().subscribe(this);
+        LedgeLinkUi.getCurrentUser(true);
+    }
+
     private void checkIfUserHasAnExistingCardOrIssueNewOne() {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         LedgeLinkUi.getFinancialAccounts();
@@ -160,30 +176,45 @@ public class CardModule extends LedgeBaseModule {
     }
 
     /**
-     * Called when the get financial accounts response has been received.
-     * @param financialAccounts API response.
+     * Called when the get financial accounts response or get current user response has been received.
+     * @param dataPointList API response.
      */
     @Subscribe
-    public void handleFinancialAccounts(DataPointList financialAccounts) {
+    public void handleDataPointList(DataPointList dataPointList) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        if(financialAccounts == null || financialAccounts.getDataPointsOf(DataPointVo.DataPointType.FinancialAccount) == null) {
-            issueVirtualCard();
-            return;
-        }
-        VirtualCard virtualCard = findFirstVirtualCard(financialAccounts.getDataPointsOf(DataPointVo.DataPointType.FinancialAccount));
-        if(virtualCard != null) {
-            getCardData(virtualCard.mAccountId);
+        if(dataPointList.getType().equals(DataPointList.ListType.financialAccounts)) {
+            handleFinancialAccounts(dataPointList);
         }
         else {
-            issueVirtualCard();
+            handleUserData(dataPointList);
         }
     }
 
-    private VirtualCard findFirstVirtualCard(List<DataPointVo> financialAccountsList) {
+    private void handleFinancialAccounts(DataPointList financialAccounts) {
+        if(financialAccounts == null || financialAccounts.getDataPointsOf(DataPointVo.DataPointType.FinancialAccount) == null) {
+            collectInitialUserData();
+            return;
+        }
+        Card card = findFirstVirtualCard(financialAccounts.getDataPointsOf(DataPointVo.DataPointType.FinancialAccount));
+        if(card != null) {
+            getCardData(card.mAccountId);
+        }
+        else {
+            collectInitialUserData();
+        }
+    }
+
+    private void handleUserData(DataPointList userData) {
+        UserStorage.getInstance().setUserData(userData);
+        checkIfUserHasAnExistingCardOrIssueNewOne();
+    }
+
+    private Card findFirstVirtualCard(List<DataPointVo> financialAccountsList) {
         for(DataPointVo dataPoint : financialAccountsList) {
             FinancialAccountVo financialAccount = (FinancialAccountVo) dataPoint;
-            if(financialAccount.mAccountType.equals(FinancialAccountVo.FinancialAccountType.VirtualCard)) {
-                return (VirtualCard) financialAccount;
+            if(financialAccount.mAccountType.equals(FinancialAccountVo.FinancialAccountType.Card) &&
+                    ((Card) financialAccount).cardIssuer.equalsIgnoreCase("SHIFT")) {
+                return (Card) financialAccount;
             }
         }
         return null;
@@ -191,12 +222,12 @@ public class CardModule extends LedgeBaseModule {
 
     /**
      * Called when the get financial account response has been received.
-     * @param virtualCard API response.
+     * @param card API response.
      */
     @Subscribe
-    public void handleResponse(VirtualCard virtualCard) {
+    public void handleResponse(Card card) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        CardStorage.getInstance().setCard(virtualCard);
+        CardStorage.getInstance().setCard(card);
         startManageCardScreen();
     }
 

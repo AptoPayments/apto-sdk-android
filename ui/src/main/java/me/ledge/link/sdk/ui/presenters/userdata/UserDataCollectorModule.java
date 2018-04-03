@@ -170,11 +170,17 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
                 HashMap<DataPointVo.DataPointType, List<DataPointVo>> updatedDataPoints = UserStorage.getInstance().getUserData().getDataPoints();
                 DataPointList request = new DataPointList();
 
-                for (DataPointVo.DataPointType type : baseDataPoints.keySet()) {
+                for (DataPointVo.DataPointType type : updatedDataPoints.keySet()) {
                     // TO DO: for now assuming only 1 DataPoint is present, will be refactored once DataPoint ID is available
-                    DataPointVo baseDataPoint = baseDataPoints.get(type).get(0);
                     DataPointVo updatedDataPoint = updatedDataPoints.get(type).get(0);
-                    if (!baseDataPoint.equals(updatedDataPoint)) {
+                    if(baseDataPoints.containsKey(type)) {
+                        DataPointVo baseDataPoint = baseDataPoints.get(type).get(0);
+                        if (!baseDataPoint.equals(updatedDataPoint)) {
+                            request.add(updatedDataPoint);
+                        }
+                    }
+                    else {
+                        // New DataPoint
                         request.add(updatedDataPoint);
                     }
                 }
