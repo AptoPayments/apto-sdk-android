@@ -30,4 +30,11 @@
     <!-- Stepper -->
     <color name="llsdk_stepper_background">#e3e3e3</color>
     <color name="llsdk_stepper_text">#6b6b6b</color>
+
+    <!-- Card -->
+    <color name="llsdk_card_disabled">#F5F5F5</color>
+
+    <color name="colorPrimary">#9ADE83</color>
+    <color name="colorPrimaryDark">#67AB50</color>
+    <color name="colorAccent">#F2F2F2</color>
 </resources>

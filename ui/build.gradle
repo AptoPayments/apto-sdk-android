@@ -142,6 +142,7 @@ dependencies {
     compile('com.coinbase.android:coinbase-android-sdk:1.0.1') {
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
+    compile 'com.venmo.android.pin:library:1.2.0@aar'
 
     // Tests
     testCompile 'junit:junit:4.12'

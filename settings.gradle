@@ -7,3 +7,10 @@ if (!hasProperty('excludeExample') || !excludeExample.toBoolean()) {
     // '--configure-on-demand' option.
     include ':example'
 }
+
+if (!hasProperty('excludeCardExample') || !excludeExample.toBoolean()) {
+    // Nasty, but solves an issue where installing handlers would fail on:
+    // 'Could not find method compile() for arguments' when using the
+    // '--configure-on-demand' option.
+    include ':cardExample'
+}
