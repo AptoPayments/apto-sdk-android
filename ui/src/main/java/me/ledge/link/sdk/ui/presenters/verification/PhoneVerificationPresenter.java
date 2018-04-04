@@ -10,7 +10,7 @@ import me.ledge.link.sdk.api.vos.datapoints.VerificationVo;
 import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
 import me.ledge.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.verification.PhoneVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -36,7 +36,7 @@ public class PhoneVerificationPresenter
     public PhoneVerificationPresenter(AppCompatActivity activity, PhoneVerificationDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-        LedgeLinkUi.startVerification(mModel.getPhoneVerificationRequest());
+        ShiftUi.startVerification(mModel.getPhoneVerificationRequest());
     }
 
     /** {@inheritDoc} */
@@ -77,7 +77,7 @@ public class PhoneVerificationPresenter
         mModel.setVerificationCode(mView.getVerificationCode());
 
         if (mModel.hasAllData()) {
-            LedgeLinkUi.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
+            ShiftUi.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
         }
     }
 
@@ -135,7 +135,7 @@ public class PhoneVerificationPresenter
 
     @Override
     public void resendClickHandler() {
-        LedgeLinkUi.restartVerification(mModel.getVerificationId());
+        ShiftUi.restartVerification(mModel.getVerificationId());
         mView.displaySentMessage(mActivity.getString(R.string.phone_verification_resent));
     }
 

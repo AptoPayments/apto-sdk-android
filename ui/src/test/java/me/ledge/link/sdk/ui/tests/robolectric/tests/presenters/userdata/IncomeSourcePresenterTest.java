@@ -26,7 +26,7 @@ import me.ledge.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import me.ledge.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import me.ledge.link.sdk.ui.BuildConfig;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.workflow.ModuleManager;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockAnnualIncomePresenter;
 import me.ledge.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModule;
@@ -59,8 +59,8 @@ public class IncomeSourcePresenterTest {
         ModuleManager.getInstance().setModule(new WeakReference<>(userDataCollectorModule));
         mPresenter = new MockAnnualIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));
         mView = new MockAnnualIncomeView(mActivity);
-        LedgeLinkUi.setApiWrapper(new MockApiWrapper());
-        LedgeLinkUi.setResponseHandler(new MockResponseHandler());
+        ShiftUi.setApiWrapper(new MockApiWrapper());
+        ShiftUi.setResponseHandler(new MockResponseHandler());
         mPresenter.attachView(mView);
 
         ConfigResponseVo configResponseVo = new ConfigResponseVo();

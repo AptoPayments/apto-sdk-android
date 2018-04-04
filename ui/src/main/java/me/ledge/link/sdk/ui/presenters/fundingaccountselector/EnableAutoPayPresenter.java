@@ -6,7 +6,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.models.fundingaccountselector.EnableAutoPayModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -33,7 +33,7 @@ public class EnableAutoPayPresenter
         super(activity);
         mDelegate = delegate;
         LedgeLinkSdk.getResponseHandler().subscribe(this);
-        LedgeLinkUi.getFinancialAccount(mDelegate.getFinancialAccountId());
+        ShiftUi.getFinancialAccount(mDelegate.getFinancialAccountId());
     }
 
     /** {@inheritDoc} */

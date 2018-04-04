@@ -32,12 +32,12 @@ import me.ledge.link.sdk.ui.vos.LoanDataVo;
 import me.ledge.link.sdk.wrappers.retrofit.RetrofitTwoLinkApiWrapper;
 
 /**
- * Ledge Line UI helper is an extension of {@link LedgeLinkSdk} to help set up the Ledge Line UI.<br />
+ * ShiftUi is an extension of {@link LedgeLinkSdk} to help set up the SDK.<br />
  * <br />
- * Make sure to call {@link #setHandlerConfiguration} before calling {@link #startProcess}!
+ * Make sure to call {@link #setup} before calling {@link #startLinkSDK} or {@link #startCardSDK}!
  * @author Wijnand
  */
-public class LedgeLinkUi extends LedgeLinkSdk {
+public class ShiftUi extends LedgeLinkSdk {
 
     private static GenericImageLoader mImageLoader;
     private static HandlerConfigurator mHandlerConfiguration;
@@ -108,11 +108,10 @@ public class LedgeLinkUi extends LedgeLinkSdk {
             case stg:
                 return "https://stg.ledge.me";
             case sbx:
+            default:
                 return "https://sbx.ledge.me";
             case prd:
                 return "https://api.ledge.me";
-            default:
-                return "https://sbx.ledge.me";
         }
     }
 
@@ -124,23 +123,23 @@ public class LedgeLinkUi extends LedgeLinkSdk {
             case dev:
                 return "https://tnt9pyfmrib.SANDBOX.verygoodproxy.com";
             case stg:
-            default:
                 return "https://tntlgdzq6xb.SANDBOX.verygoodproxy.com";
             case sbx:
+            default:
                 return "https://tntt0vbjwpf.SANDBOX.verygoodproxy.com";
             case prd:
                 return "https://tnt5ihr00de.LIVE.verygoodproxy.com";
         }
     }
 
-    public static void setupLedgeLink(Context context, String developerKey, String projectToken) {
-        setupLedgeLink(context, developerKey, projectToken, true, true, "sbx");
+    public static void setup(Context context, String developerKey, String projectToken) {
+        setup(context, developerKey, projectToken, true, true, "sbx");
     }
 
     /**
      * Sets up the Ledge Link SDK.
      */
-    public static void setupLedgeLink(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment) {
+    public static void setup(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment) {
         mEnvironment = Environment.valueOf(environment.toLowerCase());
         AndroidUtils utils = new AndroidUtils();
         HandlerConfigurator configurator = new EventBusHandlerConfigurator();
@@ -157,8 +156,8 @@ public class LedgeLinkUi extends LedgeLinkSdk {
         trustSelfSigned = trustSelfSignedCertificates;
     }
 
-    public static void startLinkProcess(Activity activity) {
-        startLinkProcess(activity, null, null);
+    public static void startLinkSDK(Activity activity) {
+        startLinkSDK(activity, null, null);
     }
 
     /**
@@ -167,7 +166,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
      * @param userData Pre-fill user data. Use {@code null} if not needed.
      * @param loanData Pre-fill loan data. Use {@code null} if not needed.
      */
-    public static void startLinkProcess(Activity activity, DataPointList userData, LoanDataVo loanData) {
+    public static void startLinkSDK(Activity activity, DataPointList userData, LoanDataVo loanData) {
         UserStorage.getInstance().setUserData(userData);
         LinkStorage.getInstance().setLoanData(loanData);
         validateToken(activity);
@@ -185,8 +184,8 @@ public class LedgeLinkUi extends LedgeLinkSdk {
         }
     }
 
-    public static void startCardProcess(Activity activity) {
-        startCardProcess(activity, null, null);
+    public static void startCardSDK(Activity activity) {
+        startCardSDK(activity, null, null);
     }
 
     /**
@@ -195,7 +194,7 @@ public class LedgeLinkUi extends LedgeLinkSdk {
      * @param userData Pre-fill user data. Use {@code null} if not needed.
      * @param card Pre-fill card data. Use {@code null} if not needed.
      */
-    public static void startCardProcess(Activity activity, DataPointList userData, VirtualCard card) {
+    public static void startCardSDK(Activity activity, DataPointList userData, VirtualCard card) {
         UserStorage.getInstance().setUserData(userData);
         CardStorage.getInstance().setCard(card);
         validateToken(activity);

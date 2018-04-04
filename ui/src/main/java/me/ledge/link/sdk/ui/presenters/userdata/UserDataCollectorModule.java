@@ -25,7 +25,7 @@ import me.ledge.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurati
 import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AddressActivity;
 import me.ledge.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
@@ -135,7 +135,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     public void handleApiError(ApiErrorVo error) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         if(error.request_path.equals(LinkApiWrapper.GET_CURRENT_USER_PATH) && error.statusCode == 401) {
-            LedgeLinkUi.clearUserToken(getActivity());
+            ShiftUi.clearUserToken(getActivity());
         }
         stopModule();
     }
@@ -165,7 +165,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         LedgeLinkSdk.getResponseHandler().subscribe(this);
         if (!UserStorage.getInstance().hasBearerToken()) {
-            LedgeLinkUi.createUser(UserStorage.getInstance().getUserData());
+            ShiftUi.createUser(UserStorage.getInstance().getUserData());
         } else {
             if (isUpdatingProfile && !mCurrentUserDataCopy.equals(UserStorage.getInstance().getUserData())) {
                 HashMap<DataPointVo.DataPointType, List<DataPointVo>> baseDataPoints = mCurrentUserDataCopy.getDataPoints();
@@ -188,7 +188,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
                 }
 
                 if(!request.getDataPoints().isEmpty()) {
-                    LedgeLinkUi.updateUser(request);
+                    ShiftUi.updateUser(request);
                 } else {
                     stopModule();
                 }
@@ -350,8 +350,8 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         if (isPOSMode || userToken == null || isUpdatingProfile) {
             compareRequiredDataPointsWithCurrent(new DataPointList());
         } else {
-            LedgeLinkUi.getApiWrapper().setBearerToken(userToken);
-            LedgeLinkUi.getCurrentUser(validateUserToken);
+            ShiftUi.getApiWrapper().setBearerToken(userToken);
+            ShiftUi.getCurrentUser(validateUserToken);
         }
     }
 

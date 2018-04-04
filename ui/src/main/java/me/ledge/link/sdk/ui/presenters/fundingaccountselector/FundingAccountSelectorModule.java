@@ -13,7 +13,7 @@ import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity;
 import me.ledge.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity;
 import me.ledge.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
@@ -112,7 +112,7 @@ public class FundingAccountSelectorModule extends LedgeBaseModule
 
         String applicationId = LoanStorage.getInstance().getCurrentLoanApplication().id;
         LedgeLinkSdk.getResponseHandler().subscribe(this);
-        LedgeLinkUi.setApplicationAccount(request, applicationId);
+        ShiftUi.setApplicationAccount(request, applicationId);
         showLoading(true);
     }
 

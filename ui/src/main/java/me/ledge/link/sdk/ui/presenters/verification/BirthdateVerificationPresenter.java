@@ -9,7 +9,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.fragments.DatePickerFragment;
 import me.ledge.link.sdk.ui.models.verification.BirthdateVerificationModel;
@@ -101,7 +101,7 @@ public class BirthdateVerificationPresenter
         if (mModel.hasValidBirthdate()) {
             mLoadingSpinnerManager.showLoading(true);
             super.saveData();
-            LedgeLinkUi.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
+            ShiftUi.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
         }
     }
 

@@ -14,7 +14,7 @@ import me.ledge.link.sdk.api.vos.requests.financialaccounts.AddBankAccountReques
 import me.ledge.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import me.ledge.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
 import me.ledge.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity;
@@ -78,7 +78,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     @Override
     public void cardAdded(Card card) {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
-        LedgeLinkUi.addCard(card);
+        ShiftUi.addCard(card);
         showLoading(true);
     }
 
@@ -96,7 +96,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     public void bankAccountLinked(String token) {
         AddBankAccountRequestVo request = new AddBankAccountRequestVo();
         request.publicToken = token;
-        LedgeLinkUi.addBankAccount(request);
+        ShiftUi.addBankAccount(request);
         startActivity(IntermediateFinancialAccountListActivity.class);
     }
 

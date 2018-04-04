@@ -84,29 +84,30 @@ There are two example apps which make use of the SDK. You can install the exampl
 
 To run the SDK first you need to set it up with your keys and the current context:
 ```java
-LedgeLinkUi.setupLedgeLink(this, "my_developer_key", "my_project_key");
+ShiftUi.setup(this, "my_developer_key", "my_project_key");
 ```
-Optionally, you can configure if you want to enable certificate pinning, if you want to trust self-signed ceritificates, and which environment you want to target (local_device, local_emulator, dev, stg, sbx, prd)
+This is required for both the Link SDK and the Card SDK.
+Optionally, you can configure if you want to enable certificate pinning, if you want to trust self-signed certificates, and which environment you want to target ("sbx" or "prd")
 ```java
-LedgeLinkUi.setupLedgeLink(this, "my_developer_key", "my_project_key", true, true, "sbx");
+ShiftUi.setup(this, "my_developer_key", "my_project_key", true, true, "sbx");
 ```
 
 After you have done the setup, you can launch the desired SDK passing in the context.
 For the Link flow use:
 ```java
-LedgeLinkUi.startLinkProcess(this);
+ShiftUi.startLinkSDK(this);
 ```
 For the Shift card flow use:
 ```java
-LedgeLinkUi.startCardProcess(this);
+ShiftUi.startCardSDK(this);
 ```
 
 Aditionally, you can initialize the SDK with the datapoints you already have:
 ```java
-LedgeLinkUi.startLinkProcess(this, myUserData, myLoanData);
+ShiftUi.startLinkSDK(this, myUserData, myLoanData);
 ```
 ```java
-LedgeLinkUi.startLinkProcess(this, myUserData, myCardData);
+ShiftUi.startCardSDK(this, myUserData, myCardData);
 ```
 
 Where `myUserData` is a `DataPointList`, `myLoanData` is a `LoanDataVo` containing the loan amount and the loan purpose and `myCardData` is a `Card`.

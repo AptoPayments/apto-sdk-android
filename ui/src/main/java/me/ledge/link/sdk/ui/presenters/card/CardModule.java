@@ -23,7 +23,7 @@ import me.ledge.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import me.ledge.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.card.IssueVirtualCardActivity;
 import me.ledge.link.sdk.ui.activities.card.ManageCardActivity;
@@ -69,7 +69,7 @@ public class CardModule extends LedgeBaseModule {
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
         boolean isTokenValid = !isPOSMode && userToken != null;
         if(isTokenValid) {
-            LedgeLinkUi.getApiWrapper().setBearerToken(userToken);
+            ShiftUi.getApiWrapper().setBearerToken(userToken);
         }
         return isTokenValid;
     }
@@ -165,12 +165,12 @@ public class CardModule extends LedgeBaseModule {
 
     private void checkIfUserHasAnExistingCardOrIssueNewOne() {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
-        LedgeLinkUi.getFinancialAccounts();
+        ShiftUi.getFinancialAccounts();
     }
 
     private void getCardData(String accountId) {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
-        LedgeLinkUi.getFinancialAccount(accountId);
+        ShiftUi.getFinancialAccount(accountId);
     }
 
     private void startCustodianModule() {

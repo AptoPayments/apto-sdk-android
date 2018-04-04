@@ -10,7 +10,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import me.ledge.link.sdk.example.R;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.LoadingView;
 
@@ -99,7 +99,7 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     }
 
     public void setLogo(String logoURL) {
-        LedgeLinkUi.getImageLoader().load(logoURL, mLogoImageView);
+        ShiftUi.getImageLoader().load(logoURL, mLogoImageView);
     }
 
     public void setSummary(String summary) {

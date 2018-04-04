@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddCardModel;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddFinancialAccountListModel;
@@ -120,7 +120,7 @@ public class AddFinancialAccountListPresenter
         else if (model instanceof  AddVirtualCardModel) {
             mLoadingSpinnerManager.showLoading(true);
             AddVirtualCardModel mModel = (AddVirtualCardModel) model;
-            LedgeLinkUi.issueVirtualCard(mModel.getRequest());
+            ShiftUi.issueVirtualCard(mModel.getRequest());
         }
         else if (model instanceof AddCardModel) {
             mDelegate.addCard();

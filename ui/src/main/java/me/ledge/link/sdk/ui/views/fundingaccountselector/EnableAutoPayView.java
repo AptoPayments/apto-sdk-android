@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.views.LoadingView;
@@ -138,6 +138,6 @@ public class EnableAutoPayView
     }
 
     public void setImage(String imageUrl) {
-        LedgeLinkUi.getImageLoader().load(imageUrl, mImageView);
+        ShiftUi.getImageLoader().load(imageUrl, mImageView);
     }
 }

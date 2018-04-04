@@ -1,11 +1,9 @@
 package me.ledge.link.sdk.ui.activities.financialaccountselector;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
@@ -15,7 +13,7 @@ import android.webkit.WebViewClient;
 import java.util.HashMap;
 
 import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
@@ -82,7 +80,7 @@ public class AddBankAccountActivity
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                if(LedgeLinkUi.trustSelfSigned && error.getPrimaryError() == SslError.SSL_UNTRUSTED) {
+                if(ShiftUi.trustSelfSigned && error.getPrimaryError() == SslError.SSL_UNTRUSTED) {
                     handler.proceed();
                 }
                 else {
