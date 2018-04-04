@@ -93,7 +93,6 @@ public class SelectFinancialAccountListPresenter
                     data[i] = new SelectBankAccountModel((BankAccount) financialAccount);
                     break;
                 case Card:
-                case VirtualCard:
                     data[i] = new SelectCardModel((Card) financialAccount);
                     break;
             }

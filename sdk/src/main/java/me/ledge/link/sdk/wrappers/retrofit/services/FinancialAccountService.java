@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 
 import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
@@ -49,7 +48,7 @@ public interface FinancialAccountService {
      * @return API call to execute.
      */
     @POST(LinkApiWrapper.ISSUE_CARD_PATH)
-    Call<VirtualCard> issueVirtualCard(@Body IssueVirtualCardRequestVo data);
+    Call<Card> issueVirtualCard(@Body IssueVirtualCardRequestVo data);
 
     /**
      * Creates a {@link Call} to get the user's financial accounts.

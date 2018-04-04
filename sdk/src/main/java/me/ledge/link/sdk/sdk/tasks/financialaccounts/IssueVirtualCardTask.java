@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.sdk.tasks.financialaccounts;
 
 import me.ledge.link.sdk.api.exceptions.ApiException;
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
+import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.tasks.LedgeLinkApiTask;
@@ -11,7 +11,7 @@ import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * A concrete {@link LedgeLinkApiTask} to issue a virtual card.
  * @author Adrian
  */
-public class IssueVirtualCardTask extends LedgeLinkApiTask<Void, Void, VirtualCard, IssueVirtualCardRequestVo> {
+public class IssueVirtualCardTask extends LedgeLinkApiTask<Void,Void,Card,IssueVirtualCardRequestVo> {
 
     /**
      * @see LedgeLinkApiTask#LedgeLinkApiTask
@@ -27,7 +27,7 @@ public class IssueVirtualCardTask extends LedgeLinkApiTask<Void, Void, VirtualCa
 
     /** {@inheritDoc} */
     @Override
-    protected VirtualCard callApi() throws ApiException {
+    protected Card callApi() throws ApiException {
         return getApiWrapper().issueVirtualCard(getRequestData());
     }
 }

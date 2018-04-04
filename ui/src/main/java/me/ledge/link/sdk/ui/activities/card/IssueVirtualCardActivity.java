@@ -8,14 +8,14 @@ import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
+import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.CustodianVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
-import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.storages.CardStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.views.card.IssueVirtualCardView;
@@ -50,7 +50,7 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
     }
 
     @Subscribe
-    public void handleVirtualCard(VirtualCard card) {
+    public void handleVirtualCard(Card card) {
         mView.showLoading(false);
 
         if (card != null) {

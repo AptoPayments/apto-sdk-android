@@ -29,13 +29,11 @@ import me.ledge.link.sdk.api.utils.parsers.FinancialAccountParser;
 import me.ledge.link.sdk.api.utils.parsers.RequiredDataPointParser;
 import me.ledge.link.sdk.api.utils.parsers.UpdateAccountParser;
 import me.ledge.link.sdk.api.utils.parsers.UpdateAccountPinParser;
-import me.ledge.link.sdk.api.utils.parsers.VirtualCardParser;
 import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.sdk.api.vos.datapoints.VerificationVo;
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 import me.ledge.link.sdk.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
@@ -155,7 +153,6 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         gsonBuilder.registerTypeAdapter(VerificationVo.class, new VerificationSerializer());
         gsonBuilder.registerTypeAdapter(ActionConfigurationVo.class, new ActionConfigurationParser());
         gsonBuilder.registerTypeAdapter(FinancialAccountVo.class, new FinancialAccountParser());
-        gsonBuilder.registerTypeAdapter(VirtualCard.class, new VirtualCardParser());
         gsonBuilder.registerTypeAdapter(UpdateFinancialAccountResponseVo.class, new UpdateAccountParser());
         gsonBuilder.registerTypeAdapter(UpdateFinancialAccountPinResponseVo.class, new UpdateAccountPinParser());
 
@@ -670,12 +667,12 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public VirtualCard issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
-        VirtualCard result;
+    public Card issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
+        Card result;
         try {
             // Setting VGS proxy only for this call
             this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
-            Response<VirtualCard> response
+            Response<Card> response
                     = mFinancialAccountService.issueVirtualCard(issueVirtualCardRequestVo).execute();
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = handleResponse(response, LinkApiWrapper.ISSUE_CARD_PATH);

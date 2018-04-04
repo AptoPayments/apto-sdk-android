@@ -106,7 +106,7 @@ public class ManageCardPresenter
     @Override
     public void manageCardClickHandler() {
         mManageCardBottomSheet = new ManageCardBottomSheet();
-        mManageCardBottomSheet.isCardEnabled = mModel.getState().equals(ACTIVE);
+        mManageCardBottomSheet.isCardEnabled = mModel.isCardActivated();
         mManageCardBottomSheet.showCardInfo = mModel.showCardInfo;
         mManageCardBottomSheet.setViewListener(this);
         mManageCardBottomSheet.show(mFragmentManager, mManageCardBottomSheet.getTag());

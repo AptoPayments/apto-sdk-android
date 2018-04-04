@@ -6,7 +6,6 @@ import me.ledge.link.sdk.api.exceptions.ApiException;
 import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 import me.ledge.link.sdk.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
@@ -300,7 +299,7 @@ public interface LinkApiWrapper {
      * @return The virtual card
      * @throws ApiException
      */
-    VirtualCard issueVirtualCard(IssueVirtualCardRequestVo requestData) throws ApiException;
+    Card issueVirtualCard(IssueVirtualCardRequestVo requestData) throws ApiException;
 
     /**
      * Gets the user's financial accounts

@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.imageloaders.volley.VolleyImageLoader;
+import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
@@ -194,7 +194,7 @@ public class ShiftUi extends LedgeLinkSdk {
      * @param userData Pre-fill user data. Use {@code null} if not needed.
      * @param card Pre-fill card data. Use {@code null} if not needed.
      */
-    public static void startCardSDK(Activity activity, DataPointList userData, VirtualCard card) {
+    public static void startCardSDK(Activity activity, DataPointList userData, Card card) {
         UserStorage.getInstance().setUserData(userData);
         CardStorage.getInstance().setCard(card);
         validateToken(activity);

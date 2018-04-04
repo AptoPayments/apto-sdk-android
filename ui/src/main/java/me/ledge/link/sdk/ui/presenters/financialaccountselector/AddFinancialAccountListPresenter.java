@@ -6,8 +6,8 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
+import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
@@ -133,7 +133,7 @@ public class AddFinancialAccountListPresenter
      * @param virtualCard API response.
      */
     @Subscribe
-    public void handleResponse(VirtualCard virtualCard) {
+    public void handleResponse(Card virtualCard) {
         mResponseHandler.unsubscribe(this);
         if (mView != null) {
             mLoadingSpinnerManager.showLoading(false);
