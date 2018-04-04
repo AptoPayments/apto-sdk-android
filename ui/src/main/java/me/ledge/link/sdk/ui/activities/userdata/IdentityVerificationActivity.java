@@ -34,7 +34,7 @@ public class IdentityVerificationActivity
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         mPresenter.mDisclaimersShownCounter = 0;
     }
