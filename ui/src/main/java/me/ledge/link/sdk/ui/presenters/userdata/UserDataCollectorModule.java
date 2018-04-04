@@ -314,11 +314,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     private void stopModule() {
         showLoading(false);
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        if(isUpdatingProfile) {
-            onBack.execute();
-        } else {
-            onFinish.execute();
-        }
+        onFinish.execute();
     }
 
     private void storeToken(String token) {

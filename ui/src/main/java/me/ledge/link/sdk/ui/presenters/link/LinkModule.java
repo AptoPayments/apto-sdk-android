@@ -116,7 +116,12 @@ public class LinkModule extends LedgeBaseModule {
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         UserDataCollectorConfigurationVo config = updateProfile ? getConfigForUpdateProfile() : getConfigForLink();
         userDataCollectorModule.setCallToActionConfig(config);
-        userDataCollectorModule.onFinish = this::showOffersList;
+        if(updateProfile) {
+            userDataCollectorModule.onFinish = this::showWelcomeScreenOrBack;
+        }
+        else {
+            userDataCollectorModule.onFinish = this::showOffersList;
+        }
         userDataCollectorModule.onBack = this::showWelcomeScreenOrBack;
         userDataCollectorModule.isUpdatingProfile = updateProfile;
         userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;

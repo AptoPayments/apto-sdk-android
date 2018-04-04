@@ -114,12 +114,7 @@ public class CardModule extends LedgeBaseModule {
         UserDataCollectorConfigurationVo config = new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_title_issue_card), new CallToActionVo(getActivity().getString(R.string.id_verification_next_button_issue_card)));
         userDataCollectorModule.setCallToActionConfig(config);
         userDataCollectorModule.onFinish = this::issueVirtualCard;
-        if(mIsExistingUser) {
-            userDataCollectorModule.onBack = this::issueVirtualCard;
-        }
-        else {
-            userDataCollectorModule.onBack = this::showHomeActivity;
-        }
+        userDataCollectorModule.onBack = this::showHomeActivity;
         userDataCollectorModule.isUpdatingProfile = mIsExistingUser;
         userDataCollectorModule.onTokenRetrieved = null;
         startModule(userDataCollectorModule);
