@@ -160,7 +160,7 @@ public class CardModule extends LedgeBaseModule {
 
     private void getUserInfo() {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
-        LedgeLinkUi.getCurrentUser(true);
+        ShiftUi.getCurrentUser(true);
     }
 
     private void checkIfUserHasAnExistingCardOrIssueNewOne() {
