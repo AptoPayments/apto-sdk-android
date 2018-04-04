@@ -7,7 +7,7 @@ import org.greenrobot.eventbus.Subscribe;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.models.financialaccountselector.IntermediateFinancialAccountListModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -32,7 +32,7 @@ public class IntermediateFinancialAccountListPresenter
     public IntermediateFinancialAccountListPresenter(AppCompatActivity activity, IntermediateFinancialAccountListDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-        LedgeLinkUi.getFinancialAccounts();
+        ShiftUi.getFinancialAccounts();
     }
 
     @Override

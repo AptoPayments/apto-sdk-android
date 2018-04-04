@@ -5,7 +5,7 @@ import android.content.res.Resources;
 import me.ledge.link.sdk.api.utils.loanapplication.LoanApplicationActionId;
 import me.ledge.link.sdk.api.utils.loanapplication.LoanApplicationStatus;
 import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.models.loanapplication.details.LoanApplicationDetailsModel;
 import me.ledge.link.sdk.ui.models.loanapplication.details.PendingLenderActionLoanApplicationDetailsModel;
 import me.ledge.link.sdk.ui.presenters.BasePresenter;
@@ -89,7 +89,7 @@ public class LoanApplicationDetailsPresenter
             case LoanApplicationStatus.PENDING_LENDER_ACTION:
             case LoanApplicationStatus.APPLICATION_RECEIVED:
                 model = new PendingLenderActionLoanApplicationDetailsModel(
-                        mRawApplication, mResources, LedgeLinkUi.getImageLoader());
+                        mRawApplication, mResources, ShiftUi.getImageLoader());
                 break;
             default:
                 // Do nothing.

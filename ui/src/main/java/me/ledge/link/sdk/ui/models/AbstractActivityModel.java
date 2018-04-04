@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.models;
 
 import android.app.Activity;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 
 import java.util.ArrayList;
@@ -19,13 +19,13 @@ public abstract class AbstractActivityModel implements ActivityModel {
      * @return The {@link Class} of the {@link Activity} to start OR {@code null} if not found.
      */
     protected Class safeGetActivityAtPosition(Activity currentActivity, int positionOffset) {
-        ArrayList<Class<? extends MvpActivity>> order = LedgeLinkUi.getProcessOrder();
+        ArrayList<Class<? extends MvpActivity>> order = ShiftUi.getProcessOrder();
         int currentIndex = order.indexOf(currentActivity.getClass());
         int targetIndex = currentIndex + positionOffset;
         Class result = null;
 
         if (targetIndex >= 0 && targetIndex < order.size()) {
-            result = LedgeLinkUi.getProcessOrder().get(targetIndex);
+            result = ShiftUi.getProcessOrder().get(targetIndex);
         }
 
         return result;

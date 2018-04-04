@@ -29,7 +29,7 @@ import me.ledge.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.activities.card.ManageCardActivity;
 import me.ledge.link.sdk.ui.models.card.ManageCardModel;
 import me.ledge.link.sdk.ui.presenters.BasePresenter;
@@ -87,7 +87,7 @@ public class ManageCardPresenter
         scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                LedgeLinkUi.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
+                ShiftUi.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
             }
         };
         transactionsList = new ArrayList<TransactionVo>();
@@ -95,7 +95,7 @@ public class ManageCardPresenter
         mTransactionsAdapter.setViewListener(this);
         view.configureTransactionsView(linearLayoutManager, scrollListener, mTransactionsAdapter);
         LedgeLinkSdk.getResponseHandler().subscribe(this);
-        LedgeLinkUi.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
+        ShiftUi.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class ManageCardPresenter
     @Override
     public void pullToRefreshHandler() {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
-        LedgeLinkUi.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
+        ShiftUi.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
         mTransactionsAdapter.clear();
         scrollListener.resetState();
     }
@@ -136,7 +136,7 @@ public class ManageCardPresenter
         UpdateFinancialAccountRequestVo request = new UpdateFinancialAccountRequestVo();
         request.state = enable ? "active" : "inactive";
 
-        LedgeLinkUi.updateFinancialAccount(request, mModel.getAccountId());
+        ShiftUi.updateFinancialAccount(request, mModel.getAccountId());
         mView.showLoading(mActivity, true);
     }
 
@@ -271,6 +271,6 @@ public class ManageCardPresenter
     private void updateCardPin(String pin) {
         UpdateFinancialAccountPinRequestVo request = new UpdateFinancialAccountPinRequestVo();
         request.pin = pin;
-        LedgeLinkUi.updateFinancialAccountPin(request, mModel.getAccountId());
+        ShiftUi.updateFinancialAccountPin(request, mModel.getAccountId());
     }
 }

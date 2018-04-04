@@ -2,7 +2,7 @@ package me.ledge.link.sdk.ui.presenters;
 
 import android.view.View;
 import me.ledge.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.models.Model;
 
 /**
@@ -30,7 +30,7 @@ public abstract class BasePresenter<M extends Model, V extends View> implements 
      * Initializes this class.
      */
     protected void init() {
-        mResponseHandler = LedgeLinkUi.getResponseHandler();
+        mResponseHandler = ShiftUi.getResponseHandler();
         mModel = createModel();
         mView = null;
     }

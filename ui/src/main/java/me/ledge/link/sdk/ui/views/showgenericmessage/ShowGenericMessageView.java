@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import br.tiagohm.markdownview.MarkdownView;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 import me.ledge.link.sdk.ui.views.userdata.NextButtonListener;
@@ -70,6 +70,6 @@ public class ShowGenericMessageView extends UserDataView<ShowGenericMessageView.
 
     public void setImage(String imageUrl) {
         mImageView.setVisibility(VISIBLE);
-        LedgeLinkUi.getImageLoader().load(imageUrl, mImageView);
+        ShiftUi.getImageLoader().load(imageUrl, mImageView);
     }
 }

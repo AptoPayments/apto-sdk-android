@@ -19,7 +19,7 @@ import me.ledge.link.sdk.api.vos.responses.verifications.BaseVerificationRespons
 import me.ledge.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.userdata.PhoneActivity;
 import me.ledge.link.sdk.ui.activities.userdata.EmailActivity;
@@ -115,7 +115,7 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
         showLoading(false);
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        LedgeLinkUi.clearUserToken(getActivity());
+        ShiftUi.clearUserToken(getActivity());
         Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.session_expired_error), Toast.LENGTH_SHORT).show();
         stopModule();
     }
@@ -245,7 +245,7 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
         showLoading(true);
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         LedgeLinkSdk.getResponseHandler().subscribe(this);
-        LedgeLinkUi.loginUser(getLoginData());
+        ShiftUi.loginUser(getLoginData());
     }
 
     private void storeToken(String token) {
@@ -257,8 +257,8 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
     private void getCurrentUserOrContinue(boolean isPOSMode, boolean validateUserToken) {
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
         if (!isPOSMode && userToken != null) {
-            LedgeLinkUi.getApiWrapper().setBearerToken(userToken);
-            LedgeLinkUi.getCurrentUser(validateUserToken);
+            ShiftUi.getApiWrapper().setBearerToken(userToken);
+            ShiftUi.getCurrentUser(validateUserToken);
         }
     }
 

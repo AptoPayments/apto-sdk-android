@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.text.TextUtils;
 import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.activities.MvpActivity;
 import me.ledge.link.sdk.ui.models.ActivityModel;
@@ -68,7 +68,7 @@ public abstract class AbstractLoanApplicationModel implements ActivityModel, Int
     /** {@inheritDoc} */
     @Override
     public Class getPreviousActivity(Activity current) {
-        ArrayList<Class<? extends MvpActivity>> processOrder = LedgeLinkUi.getProcessOrder();
+        ArrayList<Class<? extends MvpActivity>> processOrder = ShiftUi.getProcessOrder();
         return processOrder.get(processOrder.size() - 1);
     }
 

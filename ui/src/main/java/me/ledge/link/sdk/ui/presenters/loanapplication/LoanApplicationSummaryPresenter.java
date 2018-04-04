@@ -19,7 +19,7 @@ import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointsListResponse
 import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
@@ -63,7 +63,7 @@ public class LoanApplicationSummaryPresenter
     /** {@inheritDoc} */
     @Override
     public LoanApplicationSummaryModel createModel() {
-        return new LoanApplicationSummaryModel(LoanStorage.getInstance().getSelectedOffer(), LedgeLinkUi.getImageLoader());
+        return new LoanApplicationSummaryModel(LoanStorage.getInstance().getSelectedOffer(), ShiftUi.getImageLoader());
     }
 
     /** {@inheritDoc} */
@@ -151,7 +151,7 @@ public class LoanApplicationSummaryPresenter
                 mLoadingSpinnerManager.showLoading(true);
             }
             OfferVo selectedOffer = LoanStorage.getInstance().getSelectedOffer();
-            LedgeLinkUi.createLoanApplication(selectedOffer.id);
+            ShiftUi.createLoanApplication(selectedOffer.id);
 
         } else {
             mView.scrollToBottom();

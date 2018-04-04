@@ -22,7 +22,7 @@ import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetail
 import me.ledge.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
 import me.ledge.link.sdk.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.adapters.offers.OffersListRecyclerAdapter;
 import me.ledge.link.sdk.ui.models.loanapplication.BigButtonModel;
@@ -92,7 +92,7 @@ public class OffersListPresenter
         // Fetch offers.
         InitialOffersRequestVo requestData = mModel.getInitialOffersRequest();
         requestData.rows = 25;
-        LedgeLinkUi.getInitialOffers(requestData);
+        ShiftUi.getInitialOffers(requestData);
     }
 
     /**
@@ -193,7 +193,7 @@ public class OffersListPresenter
                     mLoadingSpinnerManager.showLoading(true);
                 }
 
-                LedgeLinkUi.createLoanApplication(offer.getOfferId());
+                ShiftUi.createLoanApplication(offer.getOfferId());
             }
         }
     }
@@ -251,7 +251,7 @@ public class OffersListPresenter
      */
     public void addOffers(OfferVo[] rawOffers, String offerRequestId, boolean complete) {
         mLoanStorage.setOfferRequestId(offerRequestId);
-        mLoanStorage.addOffers(mActivity.getResources(), rawOffers, complete, LedgeLinkUi.getImageLoader());
+        mLoanStorage.addOffers(mActivity.getResources(), rawOffers, complete, ShiftUi.getImageLoader());
 
         PagedList<OfferSummaryModel> offers = mLoanStorage.getOffers();
 

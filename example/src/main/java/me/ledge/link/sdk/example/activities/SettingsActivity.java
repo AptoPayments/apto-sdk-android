@@ -41,7 +41,7 @@ import me.ledge.link.sdk.example.KeysStorage;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.SettingsView;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
@@ -289,7 +289,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
     @Override
     public void clearUserTokenClickedHandler() {
         mView.setUserToken("");
-        LedgeLinkUi.clearUserToken(this);
+        ShiftUi.clearUserToken(this);
         MainActivity.SHARED_USER_DATA.put(MainActivity.USER_DATA_KEY, new WeakReference<>(null));
     }
 

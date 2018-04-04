@@ -11,7 +11,7 @@ import me.ledge.link.sdk.api.vos.responses.config.LoanProductListVo;
 import me.ledge.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import me.ledge.link.sdk.api.vos.responses.offers.OfferVo;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import me.ledge.link.sdk.ui.presenters.ActivityPresenter;
@@ -51,7 +51,7 @@ public class LoanAgreementPresenter
             offer = application.offer;
         }
 
-        return new LoanAgreementModel(offer, LedgeLinkUi.getImageLoader());
+        return new LoanAgreementModel(offer, ShiftUi.getImageLoader());
     }
 
     /** {@inheritDoc} */

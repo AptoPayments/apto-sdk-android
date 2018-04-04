@@ -14,7 +14,7 @@ import me.ledge.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequ
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.storages.CardStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
@@ -40,7 +40,7 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
         virtualCardRequestVo.cardIssuer = "SHIFT";
         OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(UserStorage.getInstance().getCoinbaseAccessToken(), UserStorage.getInstance().getCoinbaseRefreshToken());
         virtualCardRequestVo.custodian = new CustodianVo("coinbase", coinbaseCredentials);
-        LedgeLinkUi.issueVirtualCard(virtualCardRequestVo);
+        ShiftUi.issueVirtualCard(virtualCardRequestVo);
     }
 
     @Override
