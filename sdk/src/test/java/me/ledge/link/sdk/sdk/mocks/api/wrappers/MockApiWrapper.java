@@ -392,7 +392,7 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public TransactionListResponseVo getFinancialAccountsTransactions(String s, int i, String s1) throws ApiException {
+    public TransactionListResponseVo getFinancialAccountTransactions(String s, int i, String s1) throws ApiException {
         return null;
     }
 }

@@ -815,7 +815,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public TransactionListResponseVo getFinancialAccountsTransactions(String accountId, int rows, String transactionId) throws ApiException {
+    public TransactionListResponseVo getFinancialAccountTransactions(String accountId, int rows, String transactionId) throws ApiException {
         TransactionListResponseVo result;
         try {
             // TODO: using last transaction ID instead of page due to limitation on Card Backend

@@ -388,5 +388,5 @@ public interface LinkApiWrapper {
      * @return The list of transactions
      * @throws ApiException
      */
-    TransactionListResponseVo getFinancialAccountsTransactions(String accountId, int rows, String transactionId) throws ApiException;
+    TransactionListResponseVo getFinancialAccountTransactions(String accountId, int rows, String transactionId) throws ApiException;
 }
