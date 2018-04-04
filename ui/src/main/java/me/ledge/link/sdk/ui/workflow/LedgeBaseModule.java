@@ -9,7 +9,7 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 
 import me.ledge.link.sdk.api.vos.responses.SessionExpiredErrorVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.presenters.userdata.BaseDelegate;
 
@@ -92,6 +92,6 @@ public abstract class LedgeBaseModule implements NavigationCommand, BaseDelegate
         mActivity.runOnUiThread(()->{
             showError(mActivity.getResources().getString(R.string.session_expired_error));
         });
-        LedgeLinkUi.clearUserToken(mActivity);
+        ShiftUi.clearUserToken(mActivity);
     }
 }

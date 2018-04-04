@@ -10,7 +10,7 @@ import me.ledge.link.sdk.api.vos.datapoints.VerificationVo;
 import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import me.ledge.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.verification.EmailVerificationModel;
 import me.ledge.link.sdk.ui.presenters.Presenter;
@@ -35,7 +35,7 @@ public class EmailVerificationPresenter
         super(activity);
         mDelegate = delegate;
         if(mDelegate.isStartVerificationRequired()){
-            LedgeLinkUi.startVerification(mModel.getEmailVerificationRequest());
+            ShiftUi.startVerification(mModel.getEmailVerificationRequest());
         }
     }
 
@@ -70,7 +70,7 @@ public class EmailVerificationPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        LedgeLinkUi.getVerificationStatus(mModel.getVerificationId());
+        ShiftUi.getVerificationStatus(mModel.getVerificationId());
     }
 
     /**
@@ -134,7 +134,7 @@ public class EmailVerificationPresenter
 
     @Override
     public void resendClickHandler() {
-        LedgeLinkUi.restartVerification(mModel.getVerificationId());
+        ShiftUi.restartVerification(mModel.getVerificationId());
         mView.displaySentMessage(mActivity.getString(R.string.email_verification_resent));
     }
 }

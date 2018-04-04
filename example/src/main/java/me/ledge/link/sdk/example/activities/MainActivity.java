@@ -18,7 +18,7 @@ import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.example.KeysStorage;
 import me.ledge.link.sdk.example.R;
 import me.ledge.link.sdk.example.views.MainView;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.vos.LoanDataVo;
 
@@ -138,10 +138,10 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 if(hasProjectChanged) {
-                    LedgeLinkUi.clearUserToken(this);
+                    ShiftUi.clearUserToken(this);
                 }
             }
-            LedgeLinkUi.setupLedgeLink(this, getDeveloperKey(), getProjectToken(),
+            ShiftUi.setup(this, getDeveloperKey(), getProjectToken(),
                     getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
             CompletableFuture
                     .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         if(SHARED_LOAN_DATA.containsKey(LOAN_DATA_KEY)){
             loanData = SHARED_LOAN_DATA.get(LOAN_DATA_KEY);
         }
-        LedgeLinkUi.startLinkProcess(this, userData.get(), loanData.get());
+        ShiftUi.startLinkSDK(this, userData.get(), loanData.get());
     }
 
     @Override

@@ -17,7 +17,7 @@ import me.ledge.link.sdk.api.vos.responses.workflow.ActionVo;
 import me.ledge.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.LedgeLinkUi;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import me.ledge.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
 import me.ledge.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
@@ -179,7 +179,7 @@ public class LinkModule extends LedgeBaseModule {
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
         boolean isTokenValid = !isPOSMode && userToken != null;
         if(isTokenValid) {
-            LedgeLinkUi.getApiWrapper().setBearerToken(userToken);
+            ShiftUi.getApiWrapper().setBearerToken(userToken);
         }
         return isTokenValid;
     }
@@ -194,7 +194,7 @@ public class LinkModule extends LedgeBaseModule {
 
     private void getOpenApplications() {
         LedgeLinkSdk.getResponseHandler().subscribe(this);
-        LedgeLinkUi.getPendingLoanApplicationsList(new ListRequestVo());
+        ShiftUi.getPendingLoanApplicationsList(new ListRequestVo());
     }
 
     /**
