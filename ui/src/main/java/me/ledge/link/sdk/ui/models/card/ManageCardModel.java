@@ -21,6 +21,7 @@ public class ManageCardModel implements Model {
 
     private Card mCard;
     public boolean showCardInfo;
+    private String mBalance;
 
     /**
      * Creates a new {@link ManageCardModel} instance.
@@ -102,8 +103,8 @@ public class ManageCardModel implements Model {
     }
 
     public String getCardBalance() {
-        if (mCard.balance != null) {
-            return "$" + mCard.balance;
+        if (mBalance != null && !mBalance.isEmpty()) {
+            return "$" + mBalance;
         }
         return "";
     }
@@ -117,8 +118,8 @@ public class ManageCardModel implements Model {
 
     public String getCustodianName() {
         if (mCard != null) {
-            if (mCard.custodian.getName() != null) {
-                return mCard.custodian.getName();
+            if (mCard.custodian.name != null) {
+                return mCard.custodian.name;
             } else {
                 return "Card";
             }
@@ -127,8 +128,8 @@ public class ManageCardModel implements Model {
     }
     public String getCustodianLogo() {
         if (mCard != null) {
-            if (mCard.custodian.getLogo() != null) {
-                return mCard.custodian.getLogo();
+            if (mCard.custodian.logo != null) {
+                return mCard.custodian.logo;
             } else {
                 getCustodianName();
             }
@@ -150,5 +151,9 @@ public class ManageCardModel implements Model {
 
     public void setCard(Card card) {
         mCard = card;
+    }
+
+    public void setBalance(String balance) {
+        this.mBalance = balance;
     }
 }

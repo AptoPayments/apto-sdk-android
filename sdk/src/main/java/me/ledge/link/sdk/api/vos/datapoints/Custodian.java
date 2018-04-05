@@ -1,33 +1,24 @@
 package me.ledge.link.sdk.api.vos.datapoints;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by pauteruel on 12/03/2018.
  */
 
 public class Custodian {
 
-    public String custodianName;
-    public String custodianLogo;
+    @SerializedName("name")
+    public String name;
+    public String logo;
+    @SerializedName("custodian_type")
+    public String type;
+    public String id;
 
-    public Custodian() {
-
-        this(null, null);
+    public Custodian(String name, String logo, String type, String id) {
+        this.name = name;
+        this.logo = logo;
+        this.type = type;
+        this.id = id;
     }
-
-    public Custodian(String custodianName, String custodianLogo) {
-
-        this.custodianName = custodianName;
-        this.custodianLogo = custodianLogo;
-
-    }
-
-    public String getName() {
-        return this.custodianName;
-    }
-
-    public String getLogo() {
-        return this.custodianLogo;
-    }
-
-
 }

@@ -39,7 +39,7 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
                     Card.FinancialAccountState.valueOf(cardState),
                     ParsingUtils.getCurrencyStringFromJson(jObject.get("balance")),
-                    new Custodian("coinbase", "logo"),
+                    new Custodian("coinbase", "logo", "coinbase", ""),
                     false);
         }
         else if(type.equalsIgnoreCase("bank_account")) {

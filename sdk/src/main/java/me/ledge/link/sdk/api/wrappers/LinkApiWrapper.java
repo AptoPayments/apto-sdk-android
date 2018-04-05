@@ -24,6 +24,7 @@ import me.ledge.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import me.ledge.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import me.ledge.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
@@ -88,6 +89,7 @@ public interface LinkApiWrapper {
     String FINANCIAL_ACCOUNT_PIN_PATH = "v1/user/accounts/{account_id}/pin";
     String FINANCIAL_ACCOUNT_STATE_PATH = "v1/user/accounts/{account_id}/state";
     String FINANCIAL_ACCOUNT_TRANSACTIONS_PATH = "v1/user/accounts/{account_id}/transactions";
+    String FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH = "v1/user/accounts/{account_id}/fundingsource";
     String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
     String PLAID_WEB_URL = "v1/bankoauth";
 
@@ -370,14 +372,14 @@ public interface LinkApiWrapper {
     /**
      * @param requestData The state of the card
      * @return The virtual card
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     UpdateFinancialAccountResponseVo updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo requestData) throws ApiException;
 
     /**
      * @param requestData New pin of the card
      * @return The virtual card
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     UpdateFinancialAccountPinResponseVo updateFinancialAccountPin(String accountId, UpdateFinancialAccountPinRequestVo requestData) throws ApiException;
 
@@ -386,7 +388,14 @@ public interface LinkApiWrapper {
      * @param rows The number of rows requested
      * @param transactionId The last ID received
      * @return The list of transactions
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     TransactionListResponseVo getFinancialAccountTransactions(String accountId, int rows, String transactionId) throws ApiException;
+
+    /**
+     * @param accountId The financial account ID
+     * @return The funding source of the requested financial account
+     * @throws ApiException When there is an error making the request.
+     */
+    FundingSourceVo getFinancialAccountFundingSource(String accountId) throws ApiException;
 }
