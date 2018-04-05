@@ -121,13 +121,14 @@ public class ShiftUi extends LedgeLinkSdk {
             case local_emulator:
                 return getApiEndPoint();
             case dev:
-                return "https://tnt9pyfmrib.SANDBOX.verygoodproxy.com";
+                return "https://vault.dev.ledge.me";
             case stg:
-                return "https://tntlgdzq6xb.SANDBOX.verygoodproxy.com";
+                return "https://vault.stg.ledge.me";
             case sbx:
             default:
-                return "https://tntt0vbjwpf.SANDBOX.verygoodproxy.com";
+                return "https://vault.sbx.ledge.me";
             case prd:
+                // TODO: vault not ready yet
                 return "https://tnt5ihr00de.LIVE.verygoodproxy.com";
         }
     }
