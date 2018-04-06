@@ -57,15 +57,6 @@
         android:layout_marginBottom="16dp"
         android:text="@string/card_management_secondary_button" />
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:layout_collapseMode="pin"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_scrollFlags="scroll|enterAlways"/>
-
     <TextView
         android:id="@+id/tv_transactions_title"
         android:layout_width="match_parent"
@@ -78,4 +69,15 @@
         android:textSize="16sp"
         android:textColor="@android:color/black"
         android:background="@android:color/white"/>
+
+    <ImageButton
+        android:id="@+id/ib_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/credit_card_view"
+        android:layout_alignRight="@+id/credit_card_view"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/white"
+        android:src="@drawable/ic_account_circle_black_48dp" />
+
 </RelativeLayout>

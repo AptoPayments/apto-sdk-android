@@ -343,4 +343,7 @@
     <string name="card_expiration_date_label">EXP</string>
     <string name="card_disabled_label">CARD NOT ENABLED</string>
 
+    <!-- Account management screen -->
+    <string name="funding_sources_label">Funding Sources</string>
+
 </resources>

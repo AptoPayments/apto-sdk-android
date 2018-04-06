@@ -5,6 +5,7 @@ package me.ledge.link.sdk.ui.presenters.card;
  */
 
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -31,6 +32,7 @@ import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAcco
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.ShiftUi;
+import me.ledge.link.sdk.ui.activities.card.ManageAccountActivity;
 import me.ledge.link.sdk.ui.activities.card.ManageCardActivity;
 import me.ledge.link.sdk.ui.models.card.ManageCardModel;
 import me.ledge.link.sdk.ui.presenters.BasePresenter;
@@ -117,6 +119,12 @@ public class ManageCardPresenter
     @Override
     public void activateCardBySecondaryBtnClickHandler() {
         showCardStateChangeConfirmationDialog(true);
+    }
+
+    @Override
+    public void accountClickHandler() {
+        mActivity.startActivity(new Intent(mActivity, ManageAccountActivity.class));
+        mActivity.overridePendingTransition(R.anim.enter, R.anim.exit);
     }
 
     @Override
