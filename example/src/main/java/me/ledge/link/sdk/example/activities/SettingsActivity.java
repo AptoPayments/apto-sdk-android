@@ -486,7 +486,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
 
         @Override
         protected LoanPurposesResponseVo doInBackground(Void... params) {
-            UIStorage.getInstance().init();
             return ConfigStorage.getInstance().getLoanPurposes();
         }
 

@@ -22,7 +22,7 @@ public class GetCurrentUserTask extends LedgeLinkApiTask<Void, Void, DataPointLi
      * @param requestData See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
      * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
-     * @param throwSessionExpiredError specify if a {@link me.ledge.link.api.vos.responses.SessionExpiredErrorVo} must be thrown
+     * @param throwSessionExpiredError specify if a {@link me.ledge.link.sdk.api.vos.responses.SessionExpiredErrorVo} must be thrown
      */
     public GetCurrentUserTask(UnauthorizedRequestVo requestData, LinkApiWrapper apiWrapper,
                               ApiResponseHandler responseHandler, boolean throwSessionExpiredError) {
@@ -35,7 +35,7 @@ public class GetCurrentUserTask extends LedgeLinkApiTask<Void, Void, DataPointLi
     @Override
     protected DataPointList callApi() throws ApiException {
         CurrentUserResponseVo response = getApiWrapper().getCurrentUser(getRequestData(), mThrowSessionExpiredError);
-        DataPointList dataPointList = new DataPointList();
+        DataPointList dataPointList = new DataPointList(DataPointList.ListType.userData);
         for(DataPointVo d : response.userData.data) {
             if(d != null) {
                 dataPointList.add(d);

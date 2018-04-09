@@ -21,6 +21,7 @@ import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import me.ledge.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import me.ledge.link.sdk.api.vos.responses.users.UserResponseVo;
+import me.ledge.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
@@ -58,6 +59,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     public boolean isUpdatingProfile;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
     private DataPointList mCurrentUserDataCopy;
+    private UserDataCollectorConfigurationVo mCallToAction;
 
     private UserDataCollectorModule(Activity activity) {
         super(activity);
@@ -170,11 +172,17 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
                 HashMap<DataPointVo.DataPointType, List<DataPointVo>> updatedDataPoints = UserStorage.getInstance().getUserData().getDataPoints();
                 DataPointList request = new DataPointList();
 
-                for (DataPointVo.DataPointType type : baseDataPoints.keySet()) {
+                for (DataPointVo.DataPointType type : updatedDataPoints.keySet()) {
                     // TO DO: for now assuming only 1 DataPoint is present, will be refactored once DataPoint ID is available
-                    DataPointVo baseDataPoint = baseDataPoints.get(type).get(0);
                     DataPointVo updatedDataPoint = updatedDataPoints.get(type).get(0);
-                    if (!baseDataPoint.equals(updatedDataPoint)) {
+                    if(baseDataPoints.containsKey(type)) {
+                        DataPointVo baseDataPoint = baseDataPoints.get(type).get(0);
+                        if (!baseDataPoint.equals(updatedDataPoint)) {
+                            request.add(updatedDataPoint);
+                        }
+                    }
+                    else {
+                        // New DataPoint
                         request.add(updatedDataPoint);
                     }
                 }
@@ -306,11 +314,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     private void stopModule() {
         showLoading(false);
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        if(isUpdatingProfile) {
-            onBack.execute();
-        } else {
-            onFinish.execute();
-        }
+        onFinish.execute();
     }
 
     private void storeToken(String token) {
@@ -474,5 +478,13 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         }
 
         return result;
+    }
+
+    public UserDataCollectorConfigurationVo getCallToActionConfig() {
+        return mCallToAction;
+    }
+
+    public void setCallToActionConfig(UserDataCollectorConfigurationVo callToActionConfig) {
+        mCallToAction = callToActionConfig;
     }
 }

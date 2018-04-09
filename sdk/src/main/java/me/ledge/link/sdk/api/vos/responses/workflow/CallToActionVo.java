@@ -7,6 +7,11 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class CallToActionVo {
+
+    public CallToActionVo(String title) {
+        this(null, title, null, null, null, null);
+    }
+
     public CallToActionVo(String type, String title, String actionType, String externalUrl, String trackerClickEventName, String trackerIncrementName) {
         this.type = type;
         this.title = title;

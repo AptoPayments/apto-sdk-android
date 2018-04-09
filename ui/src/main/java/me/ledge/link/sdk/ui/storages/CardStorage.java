@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.ui.storages;
 
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
+import me.ledge.link.sdk.api.vos.datapoints.Card;
 
 /**
  * Stores card related data.
@@ -8,7 +8,7 @@ import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
  */
 public class CardStorage {
 
-    private VirtualCard mCard;
+    private Card mCard;
     private static CardStorage mInstance;
 
     /**
@@ -36,16 +36,11 @@ public class CardStorage {
         return mInstance;
     }
 
-
-    public VirtualCard getCard() {
+    public Card getCard() {
         return mCard;
     }
 
-    public void setCard(VirtualCard card) {
+    public void setCard(Card card) {
         mCard = card;
-    }
-
-    public boolean hasCard() {
-        return mCard != null;
     }
 }

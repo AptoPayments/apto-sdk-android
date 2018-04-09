@@ -10,10 +10,20 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DataPointList {
+    public enum ListType {
+        userData,
+        financialAccounts
+    }
     private HashMap<DataPointVo.DataPointType, List<DataPointVo>> dataPoints;
+    private ListType type;
 
     public DataPointList() {
         dataPoints = new HashMap<>();
+    }
+
+    public DataPointList(ListType type) {
+        dataPoints = new HashMap<>();
+        this.type = type;
     }
 
     public DataPointList(DataPointList copyInstance) {
@@ -92,5 +102,13 @@ public class DataPointList {
         JsonObject result = new JsonObject();
         result.add("data_points", gsonObject);
         return result;
+    }
+
+    public void setType(ListType type) {
+        this.type = type;
+    }
+
+    public ListType getType() {
+        return this.type;
     }
 }

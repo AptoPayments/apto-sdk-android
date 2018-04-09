@@ -51,7 +51,7 @@
                 style="?attr/llsdk_bigButtonStyle"
                 android:layout_marginTop="16dp"
                 android:visibility="invisible"
-                android:text="@string/id_verification_button_next" />
+                android:text="@string/id_verification_next_button_get_offers" />
 
             <TextView
                 android:id="@+id/tv_security"

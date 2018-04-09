@@ -101,7 +101,7 @@ repositories {
 
 dependencies {
     // Ledge Libraries
-    compile 'me.ledge.link.sdk:sdk:0.1.20'
+    compile 'me.ledge.link.sdk:sdk:0.1.21'
     compile 'me.ledge.common:common:+'
     // 3rd Party Libraries
     compile('com.android.support:support-v13:24.0.0') {

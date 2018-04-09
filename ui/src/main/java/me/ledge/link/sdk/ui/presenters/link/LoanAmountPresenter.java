@@ -111,12 +111,11 @@ public class LoanAmountPresenter
     public void attachView(LoanAmountView view) {
         super.attachView(view);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
-        mView.setListener(this);
         mLoadingSpinnerManager.showLoading(true);
+        mView.setListener(this);
         if(((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData) {
             mView.showGetOffersButtonAndDisclaimers(true);
             if (mDisclaimersText == null) {
-                mLoadingSpinnerManager.showLoading(true);
                 CompletableFuture
                         .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
                         .exceptionally(ex -> {
@@ -153,6 +152,7 @@ public class LoanAmountPresenter
                 if (mModel.hasValidLoanPurpose()) {
                     mView.setPurpose(mPurposeAdapter.getPosition(mModel.getLoanPurpose()));
                 }
+                mLoadingSpinnerManager.showLoading(false);
             }
         }
     }

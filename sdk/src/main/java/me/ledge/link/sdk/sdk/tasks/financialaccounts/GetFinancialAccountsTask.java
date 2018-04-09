@@ -31,7 +31,7 @@ public class GetFinancialAccountsTask extends LedgeLinkApiTask<Void, Void, DataP
     @Override
     protected DataPointList callApi() throws ApiException {
         UserDataListResponseVo response = getApiWrapper().getFinancialAccounts(getRequestData());
-        DataPointList dataPointList = new DataPointList();
+        DataPointList dataPointList = new DataPointList(DataPointList.ListType.financialAccounts);
         for(DataPointVo d : response.data) {
             if(d != null) {
                 dataPointList.add(d);

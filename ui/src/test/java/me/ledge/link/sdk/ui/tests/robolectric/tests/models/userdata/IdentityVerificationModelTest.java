@@ -81,7 +81,7 @@ public class IdentityVerificationModelTest {
     public void hasCorrectTitleResource() {
         Assert.assertThat("Incorrect resource ID.",
                 mModel.getActivityTitleResource(),
-                equalTo(R.string.id_verification_label));
+                equalTo(R.string.id_verification_title_get_offers));
     }
 
     /**
