@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.link.sdk.ui.R;
@@ -16,12 +17,11 @@ import me.ledge.link.sdk.ui.models.card.FundingSourceModel;
  * @author Adrian
  */
 public class ManageAccountView
-        extends CoordinatorLayout {
+        extends CoordinatorLayout implements View.OnClickListener {
 
     private ViewListener mListener;
     private RecyclerView mFundingSourcesListView;
-
-    /*private ProgressBar mSpinner;*/
+    private LinearLayout mSignOutHolder;
 
     public ManageAccountView(Context context) {
         this(context, null);
@@ -31,12 +31,18 @@ public class ManageAccountView
         super(context, attrs);
     }
 
+    @Override
+    public void onClick(View view) {
+        mListener.signOut();
+    }
+
     /**
      * Callbacks this {@link View} will invoke.
      */
     public interface ViewListener {
-
+        void signOut();
     }
+
     public void setViewListener(ViewListener viewListener) {
         mListener = viewListener;
     }
@@ -51,12 +57,12 @@ public class ManageAccountView
     }
 
     protected void findAllViews() {
-        //mSpinner = (ProgressBar) findViewById(R.id.pb_progress);
         mFundingSourcesListView = (RecyclerView) findViewById(R.id.rv_funding_sources_list);
+        mSignOutHolder = (LinearLayout) findViewById(R.id.ll_sign_out);
     }
 
     private void setUpListeners() {
-
+        mSignOutHolder.setOnClickListener(this);
     }
 
     /**
@@ -73,14 +79,5 @@ public class ManageAccountView
      */
     public void setAdapter(PagedListRecyclerAdapter<FundingSourceModel, FundingSourceView> adapter) {
         mFundingSourcesListView.setAdapter(adapter);
-    }
-
-    public void showLoading(boolean show) {
-        /*if(show) {
-            mSpinner.setVisibility(View.VISIBLE);
-        }
-        else {
-            mSpinner.setVisibility(View.GONE);
-        }*/
     }
 }

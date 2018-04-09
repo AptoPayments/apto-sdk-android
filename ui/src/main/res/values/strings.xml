@@ -345,5 +345,6 @@
 
     <!-- Account management screen -->
     <string name="funding_sources_label">Funding Sources</string>
+    <string name="sign_out">SIGN OUT</string>
 
 </resources>

@@ -42,5 +42,22 @@
             android:scrollbarStyle="outsideOverlay"
             android:scrollbars="vertical" />
 
+        <LinearLayout
+            android:id="@+id/ll_sign_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/sign_out"
+                android:layout_marginRight="8dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_exit_to_app_black_24dp"/>
+        </LinearLayout>
     </LinearLayout>
 </me.ledge.link.sdk.ui.views.card.ManageAccountView>

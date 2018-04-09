@@ -6,6 +6,7 @@ package me.ledge.link.sdk.ui.presenters.card;
 
 
 import android.app.Activity;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -21,6 +22,7 @@ import me.ledge.link.sdk.ui.presenters.BasePresenter;
 import me.ledge.link.sdk.ui.presenters.Presenter;
 import me.ledge.link.sdk.ui.views.card.FundingSourceView;
 import me.ledge.link.sdk.ui.views.card.ManageAccountView;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 
 /**
  * Concrete {@link Presenter} for the manage account screen.
@@ -42,7 +44,6 @@ public class ManageAccountPresenter
     public void attachView(ManageAccountView view) {
         super.attachView(view);
         view.setViewListener(this);
-        view.showLoading(true);
         mAdapter = new FundingSourcesListRecyclerAdapter();
         mAdapter.setViewListener(this);
         view.setAdapter(mAdapter);
@@ -58,7 +59,6 @@ public class ManageAccountPresenter
     @Subscribe
     public void handleResponse(FundingSourceListVo response) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        mView.showLoading(false);
         mModel.addFundingSources(mActivity.getResources(), response.data);
         mAdapter.updateList(mModel.getFundingSources());
     }
@@ -70,5 +70,12 @@ public class ManageAccountPresenter
             fundingSource.setIsSelected(fundingSource.equals(selectedFundingSource));
         }
         mAdapter.updateList(mModel.getFundingSources());
+        Toast.makeText(mActivity, "Funding source changed", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void signOut() {
+        CardModule currentModule = (CardModule) ModuleManager.getInstance().getCurrentModule();
+        currentModule.showHomeActivity();
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -36,6 +37,7 @@ import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
+import me.ledge.link.sdk.ui.workflow.ModuleManager;
 
 import static me.ledge.link.sdk.api.vos.datapoints.DataPointVo.DataPointType.PersonalName;
 
@@ -53,6 +55,8 @@ public class CardModule extends LedgeBaseModule {
 
     @Override
     public void initialModuleSetup() {
+        WeakReference<LedgeBaseModule> moduleWeakReference = new WeakReference<>(this);
+        ModuleManager.getInstance().setModule(moduleWeakReference);
         if(isStoredUserTokenValid()) {
             mIsExistingUser = true;
             getUserInfo();
@@ -74,7 +78,7 @@ public class CardModule extends LedgeBaseModule {
         return isTokenValid;
     }
 
-    private void showHomeActivity() {
+    public void showHomeActivity() {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         Activity currentActivity = this.getActivity();
         currentActivity.finish();
@@ -150,6 +154,8 @@ public class CardModule extends LedgeBaseModule {
     }
 
     private void startManageCardScreen() {
+        WeakReference<LedgeBaseModule> moduleWeakReference = new WeakReference<>(this);
+        ModuleManager.getInstance().setModule(moduleWeakReference);
         getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
     }
 
