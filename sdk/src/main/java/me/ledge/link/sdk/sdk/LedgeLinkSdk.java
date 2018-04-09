@@ -29,6 +29,7 @@ import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountFundingS
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTransactionsTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountsTask;
+import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetUserFundingSourcesTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountPinTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountTask;
@@ -479,6 +480,19 @@ public class LedgeLinkSdk {
         checkComponents();
 
         GetFinancialAccountFundingSourceTask task = new GetFinancialAccountFundingSourceTask(accountId, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Gets the financial account's funding source.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getUserFundingSources() {
+        checkComponents();
+
+        GetUserFundingSourcesTask task = new GetUserFundingSourcesTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

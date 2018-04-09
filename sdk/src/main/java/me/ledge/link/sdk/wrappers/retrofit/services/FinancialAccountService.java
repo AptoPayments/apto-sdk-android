@@ -8,6 +8,7 @@ import me.ledge.link.sdk.api.vos.requests.financialaccounts.AddBankAccountReques
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
@@ -92,4 +93,11 @@ public interface FinancialAccountService {
      */
     @GET(LinkApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH)
     Call<FundingSourceVo> getFundingSource(@Path("account_id") String accountId);
+
+    /**
+     * Creates a {@link Call} to get the user's funding sources.
+     * @return API call to execute.
+     */
+    @GET(LinkApiWrapper.USER_FUNDING_SOURCES_PATH)
+    Call<FundingSourceListVo> getUserFundingSources();
 }

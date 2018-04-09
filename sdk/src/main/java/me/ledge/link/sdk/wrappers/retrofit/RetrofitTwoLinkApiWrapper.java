@@ -55,6 +55,7 @@ import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import me.ledge.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
 import me.ledge.link.sdk.api.vos.responses.errors.ErrorResponseVo;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
@@ -838,6 +839,19 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH, ioe);
+        }
+        return result;
+    }
+
+    @Override
+    public FundingSourceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
+        FundingSourceListVo result;
+        try {
+            Response<FundingSourceListVo> response = mFinancialAccountService.getUserFundingSources().execute();
+            result = handleResponse(response, LinkApiWrapper.USER_FUNDING_SOURCES_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.USER_FUNDING_SOURCES_PATH, ioe);
         }
         return result;
     }

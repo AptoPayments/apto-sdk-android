@@ -24,6 +24,7 @@ import me.ledge.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import me.ledge.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import me.ledge.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import me.ledge.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
@@ -90,6 +91,7 @@ public interface LinkApiWrapper {
     String FINANCIAL_ACCOUNT_STATE_PATH = "v1/user/accounts/{account_id}/state";
     String FINANCIAL_ACCOUNT_TRANSACTIONS_PATH = "v1/user/accounts/{account_id}/transactions";
     String FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH = "v1/user/accounts/{account_id}/fundingsource";
+    String USER_FUNDING_SOURCES_PATH = "v1/user/accounts/fundingsources";
     String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
     String PLAID_WEB_URL = "v1/bankoauth";
 
@@ -398,4 +400,11 @@ public interface LinkApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     FundingSourceVo getFinancialAccountFundingSource(String accountId) throws ApiException;
+
+    /**
+     * @param requestData Mandatory request data.
+     * @return The funding source of the requested financial account
+     * @throws ApiException When there is an error making the request.
+     */
+    FundingSourceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException;
 }

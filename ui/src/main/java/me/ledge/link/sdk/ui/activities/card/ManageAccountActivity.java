@@ -23,7 +23,7 @@ public class ManageAccountActivity extends FragmentMvpActivity {
     /** {@inheritDoc} */
     @Override
     protected ManageAccountPresenter createPresenter() {
-        return new ManageAccountPresenter();
+        return new ManageAccountPresenter(this);
     }
 
     @Override

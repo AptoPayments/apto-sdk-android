@@ -5,40 +5,42 @@
     android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--<android.support.v7.widget.Toolbar
-        android:id="@+id/settings_toolbar"
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:title="@string/main_toolbar_title"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>-->
+        android:id="@+id/settings_toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-    <ScrollView
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="?attr/homeAsUpIndicator" />
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_below="@+id/settings_toolbar">
+
+        <TextView
+            android:id="@+id/tv_funding_sources"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:text="@string/funding_sources_label" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_funding_sources_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/settings_toolbar">
+            android:clipToPadding="false"
+            android:paddingBottom="8dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="vertical" />
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-            <!-- Dummy to get focus on start. -->
-            <RelativeLayout
-                    android:layout_width="0px"
-                    android:layout_height="0px"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true" />
-
-            <TextView
-                android:id="@+id/tv_funding_sources"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/funding_sources_label" />
-        </LinearLayout>
-    </ScrollView>
-
-    <include layout="@layout/include_rl_loading" />
+    </LinearLayout>
 </me.ledge.link.sdk.ui.views.card.ManageAccountView>
