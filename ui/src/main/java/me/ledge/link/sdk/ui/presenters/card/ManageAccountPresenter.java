@@ -15,6 +15,7 @@ import java.util.List;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.ShiftUi;
+import me.ledge.link.sdk.ui.activities.card.ManageAccountActivity;
 import me.ledge.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
 import me.ledge.link.sdk.ui.models.card.FundingSourceModel;
 import me.ledge.link.sdk.ui.models.card.ManageAccountModel;
@@ -44,6 +45,8 @@ public class ManageAccountPresenter
     public void attachView(ManageAccountView view) {
         super.attachView(view);
         view.setViewListener(this);
+        ((ManageAccountActivity) mActivity).setSupportActionBar(mView.getToolbar());
+        ((ManageAccountActivity) mActivity).getSupportActionBar().setDisplayShowTitleEnabled(false);
         mAdapter = new FundingSourcesListRecyclerAdapter();
         mAdapter.setViewListener(this);
         view.setAdapter(mAdapter);
@@ -77,5 +80,18 @@ public class ManageAccountPresenter
     public void signOut() {
         CardModule currentModule = (CardModule) ModuleManager.getInstance().getCurrentModule();
         currentModule.showHomeActivity();
+    }
+
+    @Override
+    public void addFundingSource() {
+        CardModule currentModule = (CardModule) ModuleManager.getInstance().getCurrentModule();
+        currentModule.startCustodianModule(currentModule::startManageCardScreen, ()->{
+            Toast.makeText(mActivity, "Funding source added", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    @Override
+    public void onBack() {
+        mActivity.onBackPressed();
     }
 }

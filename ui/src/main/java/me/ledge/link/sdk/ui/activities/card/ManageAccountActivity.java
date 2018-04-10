@@ -1,6 +1,7 @@
 package me.ledge.link.sdk.ui.activities.card;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import me.ledge.link.sdk.ui.R;
@@ -35,5 +36,15 @@ public class ManageAccountActivity extends FragmentMvpActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

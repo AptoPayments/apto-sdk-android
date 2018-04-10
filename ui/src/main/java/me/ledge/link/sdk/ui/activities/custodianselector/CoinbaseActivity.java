@@ -11,6 +11,7 @@ import com.coinbase.api.exception.CoinbaseException;
 
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.presenters.custodianselector.CoinbaseDelegate;
+import me.ledge.link.sdk.ui.workflow.Command;
 import me.ledge.link.sdk.ui.workflow.ModuleManager;
 
 /**
@@ -26,7 +27,7 @@ public class CoinbaseActivity extends Activity {
     @Override
     protected void onNewIntent(final Intent intent) {
         if (intent != null && intent.getAction() != null && intent.getAction().equals("android.intent.action.VIEW")) {
-            new CompleteAuthorizationTask().execute(intent);
+            new CompleteAuthorizationTask(this::finish).execute(intent);
         }
     }
 
@@ -52,6 +53,11 @@ public class CoinbaseActivity extends Activity {
     }
 
     public class CompleteAuthorizationTask extends AsyncTask<Intent, Integer, OAuthTokensResponse> {
+        Command onFinish;
+        public CompleteAuthorizationTask(Command onFinishCallback) {
+            onFinish = onFinishCallback;
+        }
+
         @Override
         protected OAuthTokensResponse doInBackground(Intent... intents) {
             try {
@@ -70,6 +76,7 @@ public class CoinbaseActivity extends Activity {
                         oAuthTokensResponse.getAccessToken(),
                         oAuthTokensResponse.getRefreshToken());
             }
+            onFinish.execute();
         }
     }
 }

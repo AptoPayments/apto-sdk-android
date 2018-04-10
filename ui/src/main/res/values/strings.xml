@@ -346,5 +346,7 @@
     <!-- Account management screen -->
     <string name="funding_sources_label">Funding Sources</string>
     <string name="sign_out">SIGN OUT</string>
+    <string name="add_funding_source">ADD FUNDING SOURCE</string>
+    <string name="funding_source_dollar_amount" formatted="false">($%.2f)</string>
 
 </resources>

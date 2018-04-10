@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import me.ledge.common.utils.PagedList;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import me.ledge.link.sdk.ui.models.Model;
+import me.ledge.link.sdk.ui.storages.CardStorage;
 
 /**
  * Concrete {@link Model} for managing an account.
@@ -30,7 +31,11 @@ public class ManageAccountModel implements Model {
     public void addFundingSources(Resources resources, FundingSourceVo[] fundingSources) {
         ArrayList<FundingSourceModel> newFundingSources = new ArrayList<>(fundingSources.length);
         for(FundingSourceVo fundingSource : fundingSources) {
-            newFundingSources.add(new FundingSourceModel(fundingSource, resources));
+            boolean isSelected = false;
+            if(CardStorage.getInstance().getCard().custodian != null && fundingSource.custodianWallet.custodian != null) {
+                isSelected = fundingSource.custodianWallet.custodian.id.equals(CardStorage.getInstance().getCard().custodian.id);
+            }
+            newFundingSources.add(new FundingSourceModel(fundingSource, resources, isSelected));
         }
 
         mFundingSources.addAll(newFundingSources);

@@ -3,6 +3,7 @@ package me.ledge.link.sdk.ui.models.card;
 import android.content.res.Resources;
 
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.Model;
 
 /**
@@ -19,11 +20,12 @@ public class FundingSourceModel implements Model {
      * Creates a new {@link FundingSourceModel} instance.
      * @param fundingSource Raw funding source data.
      * @param resources {@link Resources} used to fetch Strings.
+     * @param isSelected if it's the current funding source
      */
-    public FundingSourceModel(FundingSourceVo fundingSource, Resources resources) {
+    public FundingSourceModel(FundingSourceVo fundingSource, Resources resources, boolean isSelected) {
         mFundingSource = fundingSource;
         mResources = resources;
-        mIsSelected = false;
+        mIsSelected = isSelected;
     }
 
 
@@ -34,11 +36,13 @@ public class FundingSourceModel implements Model {
     }
 
     public String getFundingSourceName() {
-        return mFundingSource.custodianWallet.custodian.name;
+        String capitalizedName = mFundingSource.custodianWallet.custodian.name.substring(0, 1).toUpperCase() + mFundingSource.custodianWallet.custodian.name.substring(1);
+        String amount = mResources.getString(R.string.funding_source_dollar_amount, mFundingSource.balance.amount);
+        return capitalizedName + " " + amount;
     }
 
     public String getFundingSourceBalance() {
-        return mFundingSource.balance.amount + " " + mFundingSource.balance.currency;
+        return mFundingSource.custodianWallet.balance.amount + " " + mFundingSource.custodianWallet.balance.currency;
     }
 
     /**

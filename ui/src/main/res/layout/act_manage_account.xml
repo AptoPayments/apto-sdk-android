@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@android:color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.design.widget.AppBarLayout
@@ -12,6 +13,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
         <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="?attr/homeAsUpIndicator" />
@@ -41,6 +43,29 @@
             android:paddingBottom="8dp"
             android:scrollbarStyle="outsideOverlay"
             android:scrollbars="vertical" />
+
+        <LinearLayout
+            android:id="@+id/ll_add_funding_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@string/add_funding_source"
+                android:layout_weight="1"
+                android:layout_marginLeft="16dp"/>
+            <ImageButton
+                android:id="@+id/ib_add_funding_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:background="@android:color/white"
+                android:src="@drawable/ic_add_circle_black_24dp"/>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_sign_out"

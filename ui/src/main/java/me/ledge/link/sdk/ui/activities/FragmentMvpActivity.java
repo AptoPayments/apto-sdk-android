@@ -1,7 +1,7 @@
 package me.ledge.link.sdk.ui.activities;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import me.ledge.link.sdk.ui.models.ActivityModel;
@@ -19,7 +19,7 @@ import me.ledge.link.sdk.ui.presenters.Presenter;
  * @author Wijnand
  */
 public abstract class FragmentMvpActivity<M extends ActivityModel, V extends View, P extends Presenter<M, V>>
-        extends FragmentActivity {
+        extends AppCompatActivity {
 
     protected V mView;
     protected P mPresenter;

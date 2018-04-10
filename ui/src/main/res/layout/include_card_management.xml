@@ -76,8 +76,8 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/credit_card_view"
         android:layout_alignRight="@+id/credit_card_view"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="48dp"
         android:background="@android:color/white"
-        android:src="@drawable/ic_account_circle_black_48dp" />
+        android:src="@drawable/ic_account_circle_black_36dp" />
 
 </RelativeLayout>

@@ -24,8 +24,8 @@ import me.ledge.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import me.ledge.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
-import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.ShiftUi;
 import me.ledge.link.sdk.ui.activities.card.IssueVirtualCardActivity;
 import me.ledge.link.sdk.ui.activities.card.ManageCardActivity;
 import me.ledge.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
@@ -36,6 +36,7 @@ import me.ledge.link.sdk.ui.storages.CardStorage;
 import me.ledge.link.sdk.ui.storages.SharedPreferencesStorage;
 import me.ledge.link.sdk.ui.storages.UIStorage;
 import me.ledge.link.sdk.ui.storages.UserStorage;
+import me.ledge.link.sdk.ui.workflow.Command;
 import me.ledge.link.sdk.ui.workflow.LedgeBaseModule;
 import me.ledge.link.sdk.ui.workflow.ModuleManager;
 
@@ -55,8 +56,7 @@ public class CardModule extends LedgeBaseModule {
 
     @Override
     public void initialModuleSetup() {
-        WeakReference<LedgeBaseModule> moduleWeakReference = new WeakReference<>(this);
-        ModuleManager.getInstance().setModule(moduleWeakReference);
+        setCurrentModule();
         if(isStoredUserTokenValid()) {
             mIsExistingUser = true;
             getUserInfo();
@@ -83,7 +83,7 @@ public class CardModule extends LedgeBaseModule {
         Activity currentActivity = this.getActivity();
         currentActivity.finish();
         Intent intent = currentActivity.getIntent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         currentActivity.startActivity(intent);
     }
 
@@ -150,12 +150,12 @@ public class CardModule extends LedgeBaseModule {
     }
 
     private void issueVirtualCard() {
+        setCurrentModule();
         getActivity().startActivity(new Intent(getActivity(), IssueVirtualCardActivity.class));
     }
 
-    private void startManageCardScreen() {
-        WeakReference<LedgeBaseModule> moduleWeakReference = new WeakReference<>(this);
-        ModuleManager.getInstance().setModule(moduleWeakReference);
+    public void startManageCardScreen() {
+        setCurrentModule();
         getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
     }
 
@@ -175,10 +175,22 @@ public class CardModule extends LedgeBaseModule {
     }
 
     private void startCustodianModule() {
+        startCustodianModule(this::showHomeActivity, this::collectFinalUserData);
+    }
+
+    public void startCustodianModule(Command onBackCallback, Command onFinishCallback) {
         CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity());
-        custodianSelectorModule.onBack = this::showHomeActivity;
-        custodianSelectorModule.onFinish = this::collectFinalUserData;
+        custodianSelectorModule.onBack = onBackCallback;
+        custodianSelectorModule.onFinish = ()->{
+            setCurrentModule();
+            onFinishCallback.execute();
+        };
         startModule(custodianSelectorModule);
+    }
+
+    public void setCurrentModule() {
+        WeakReference<LedgeBaseModule> moduleWeakReference = new WeakReference<>(this);
+        ModuleManager.getInstance().setModule(moduleWeakReference);
     }
 
     /**

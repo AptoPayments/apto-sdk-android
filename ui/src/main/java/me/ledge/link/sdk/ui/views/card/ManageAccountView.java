@@ -4,24 +4,30 @@ import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.card.FundingSourceModel;
+import me.ledge.link.sdk.ui.storages.UIStorage;
+import me.ledge.link.sdk.ui.views.ViewWithToolbar;
 
 /**
  * Displays the manage account screen.
  * @author Adrian
  */
 public class ManageAccountView
-        extends CoordinatorLayout implements View.OnClickListener {
+        extends CoordinatorLayout implements View.OnClickListener, ViewWithToolbar {
 
     private ViewListener mListener;
     private RecyclerView mFundingSourcesListView;
     private LinearLayout mSignOutHolder;
+    private ImageButton mAddFundingSourceButton;
+    protected Toolbar mToolbar;
 
     public ManageAccountView(Context context) {
         this(context, null);
@@ -33,7 +39,22 @@ public class ManageAccountView
 
     @Override
     public void onClick(View view) {
-        mListener.signOut();
+        int id = view.getId();
+
+        if(id == R.id.ll_sign_out) {
+            mListener.signOut();
+        }
+        else if(id == R.id.ib_add_funding_source) {
+            mListener.addFundingSource();
+        }
+        else if(id == R.id.toolbar) {
+            mListener.onBack();
+        }
+    }
+
+    @Override
+    public Toolbar getToolbar() {
+        return mToolbar;
     }
 
     /**
@@ -41,6 +62,8 @@ public class ManageAccountView
      */
     public interface ViewListener {
         void signOut();
+        void addFundingSource();
+        void onBack();
     }
 
     public void setViewListener(ViewListener viewListener) {
@@ -54,15 +77,20 @@ public class ManageAccountView
         findAllViews();
         setUpListeners();
         setupRecyclerView();
+        setColors();
     }
 
     protected void findAllViews() {
         mFundingSourcesListView = (RecyclerView) findViewById(R.id.rv_funding_sources_list);
         mSignOutHolder = (LinearLayout) findViewById(R.id.ll_sign_out);
+        mAddFundingSourceButton = (ImageButton) findViewById(R.id.ib_add_funding_source);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
     private void setUpListeners() {
         mSignOutHolder.setOnClickListener(this);
+        mAddFundingSourceButton.setOnClickListener(this);
+        mToolbar.setNavigationOnClickListener(this);
     }
 
     /**
@@ -71,6 +99,11 @@ public class ManageAccountView
     private void setupRecyclerView() {
         mFundingSourcesListView.setHasFixedSize(true);
         mFundingSourcesListView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    private void setColors() {
+        int color = UIStorage.getInstance().getPrimaryColor();
+        mAddFundingSourceButton.setColorFilter(color);
     }
 
     /**

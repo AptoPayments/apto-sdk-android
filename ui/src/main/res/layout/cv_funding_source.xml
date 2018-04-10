@@ -14,7 +14,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:padding="8dp" />
@@ -23,11 +22,12 @@
             android:id="@+id/ll_funding_source"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:padding="16dp"
+            android:layout_marginLeft="8dp"
             android:layout_toLeftOf="@id/rb_funding_source"
-            android:layout_toStartOf="@id/rb_funding_source">
+            android:layout_toStartOf="@id/rb_funding_source"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="8dp">
 
             <TextView
                 android:id="@+id/tv_title"
