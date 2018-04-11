@@ -4,11 +4,12 @@ import com.google.gson.JsonObject;
 
 import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
@@ -49,7 +50,7 @@ public interface FinancialAccountService {
      * @return API call to execute.
      */
     @POST(LinkApiWrapper.ISSUE_CARD_PATH)
-    Call<VirtualCard> issueVirtualCard(@Body IssueVirtualCardRequestVo data);
+    Call<Card> issueVirtualCard(@Body IssueVirtualCardRequestVo data);
 
     /**
      * Creates a {@link Call} to get the user's financial accounts.
@@ -65,16 +66,10 @@ public interface FinancialAccountService {
     @GET(LinkApiWrapper.FINANCIAL_ACCOUNT_PATH)
     Call<FinancialAccountVo> getFinancialAccount(@Path("account_id") String accountId);
 
-    /**
-     * Creates a {@link Call} to get a specific financial account.
-     * @return API call to execute.
-     */
-
     /** Creates a {@link Call} to change pin card.
      * @param pin Mandatory request data.
      * @return API call to execute.
      */
-
     @POST(LinkApiWrapper.FINANCIAL_ACCOUNT_PIN_PATH)
     Call<UpdateFinancialAccountPinResponseVo> updateFinancialAccountPin(@Path("account_id") String accountId, @Body UpdateFinancialAccountPinRequestVo pin);
 
@@ -82,14 +77,27 @@ public interface FinancialAccountService {
      * @param state Mandatory request data.
      * @return API call to execute.
      */
-
     @POST(LinkApiWrapper.FINANCIAL_ACCOUNT_STATE_PATH)
     Call<UpdateFinancialAccountResponseVo> updateFinancialAccount(@Path("account_id") String accountId, @Body UpdateFinancialAccountRequestVo state);
 
     /**
-     * Creates a {@link Call} to get a the transaction list of specific financial account.
+     * Creates a {@link Call} to get the transaction list of a specific financial account.
      * @return API call to execute.
      */
     @GET(LinkApiWrapper.FINANCIAL_ACCOUNT_TRANSACTIONS_PATH)
     Call<TransactionListResponseVo> getTransactions(@Path("account_id") String accountId, @Query("rows") int rows, @Query("last_transaction_id") String lastTransactionId);
+
+    /**
+     * Creates a {@link Call} to get a the funding source of a specific financial account.
+     * @return API call to execute.
+     */
+    @GET(LinkApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH)
+    Call<FundingSourceVo> getFundingSource(@Path("account_id") String accountId);
+
+    /**
+     * Creates a {@link Call} to get the user's funding sources.
+     * @return API call to execute.
+     */
+    @GET(LinkApiWrapper.USER_FUNDING_SOURCES_PATH)
+    Call<FundingSourceListVo> getUserFundingSources();
 }

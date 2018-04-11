@@ -25,9 +25,11 @@ import me.ledge.link.sdk.sdk.tasks.config.LinkConfigTask;
 import me.ledge.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.AddBankAccountTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.AddCardTask;
+import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountFundingSourceTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTransactionsTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountsTask;
+import me.ledge.link.sdk.sdk.tasks.financialaccounts.GetUserFundingSourcesTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountPinTask;
 import me.ledge.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountTask;
@@ -465,6 +467,32 @@ public class LedgeLinkSdk {
         checkComponents();
 
         GetFinancialAccountTransactionsTask task = new GetFinancialAccountTransactionsTask(accountId, rows, lastTransactionId, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Gets the financial account's funding source.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getFinancialAccountFundingSource(String accountId) {
+        checkComponents();
+
+        GetFinancialAccountFundingSourceTask task = new GetFinancialAccountFundingSourceTask(accountId, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Gets the financial account's funding source.
+     * @return The {@link LedgeLinkApiTask} that is being executed.
+     */
+    public static LedgeLinkApiTask getUserFundingSources() {
+        checkComponents();
+
+        GetUserFundingSourcesTask task = new GetUserFundingSourcesTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

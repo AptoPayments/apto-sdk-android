@@ -5,6 +5,7 @@ package me.ledge.link.sdk.ui.presenters.card;
  */
 
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -19,17 +20,19 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import me.ledge.link.sdk.ui.R;
 
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
+import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.ShiftUi;
+import me.ledge.link.sdk.ui.activities.card.ManageAccountActivity;
 import me.ledge.link.sdk.ui.activities.card.ManageCardActivity;
 import me.ledge.link.sdk.ui.models.card.ManageCardModel;
 import me.ledge.link.sdk.ui.presenters.BasePresenter;
@@ -95,6 +98,7 @@ public class ManageCardPresenter
         mTransactionsAdapter.setViewListener(this);
         view.configureTransactionsView(linearLayoutManager, scrollListener, mTransactionsAdapter);
         LedgeLinkSdk.getResponseHandler().subscribe(this);
+        ShiftUi.getFinancialAccountFundingSource(mModel.getAccountId());
         ShiftUi.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
     }
 
@@ -106,7 +110,7 @@ public class ManageCardPresenter
     @Override
     public void manageCardClickHandler() {
         mManageCardBottomSheet = new ManageCardBottomSheet();
-        mManageCardBottomSheet.isCardEnabled = mModel.getState().equals(ACTIVE);
+        mManageCardBottomSheet.isCardEnabled = mModel.isCardActivated();
         mManageCardBottomSheet.showCardInfo = mModel.showCardInfo;
         mManageCardBottomSheet.setViewListener(this);
         mManageCardBottomSheet.show(mFragmentManager, mManageCardBottomSheet.getTag());
@@ -115,6 +119,12 @@ public class ManageCardPresenter
     @Override
     public void activateCardBySecondaryBtnClickHandler() {
         showCardStateChangeConfirmationDialog(true);
+    }
+
+    @Override
+    public void accountClickHandler() {
+        mActivity.startActivity(new Intent(mActivity, ManageAccountActivity.class));
+        mActivity.overridePendingTransition(R.anim.enter, R.anim.exit);
     }
 
     @Override
@@ -266,6 +276,12 @@ public class ManageCardPresenter
         transactionsList.addAll(Arrays.asList(response.data));
         int currentSize = mTransactionsAdapter.getItemCount();
         mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count -1);
+    }
+
+    @Subscribe
+    public void handleResponse(FundingSourceVo response) {
+        mModel.setBalance(String.valueOf(response.balance.amount));
+        mTransactionsAdapter.notifyItemChanged(0);
     }
 
     private void updateCardPin(String pin) {

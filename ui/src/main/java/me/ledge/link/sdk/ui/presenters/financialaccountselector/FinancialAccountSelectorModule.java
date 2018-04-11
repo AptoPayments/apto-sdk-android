@@ -9,7 +9,6 @@ import java.util.List;
 import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import me.ledge.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
@@ -71,7 +70,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     }
 
     @Override
-    public void virtualCardIssued(VirtualCard virtualCard) {
+    public void virtualCardIssued(Card virtualCard) {
         onFinancialAccountSelected(virtualCard.mAccountId);
     }
 

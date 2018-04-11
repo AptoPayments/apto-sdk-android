@@ -29,13 +29,11 @@ import me.ledge.link.sdk.api.utils.parsers.FinancialAccountParser;
 import me.ledge.link.sdk.api.utils.parsers.RequiredDataPointParser;
 import me.ledge.link.sdk.api.utils.parsers.UpdateAccountParser;
 import me.ledge.link.sdk.api.utils.parsers.UpdateAccountPinParser;
-import me.ledge.link.sdk.api.utils.parsers.VirtualCardParser;
 import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.sdk.api.vos.datapoints.VerificationVo;
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 import me.ledge.link.sdk.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
@@ -57,6 +55,8 @@ import me.ledge.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import me.ledge.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import me.ledge.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
 import me.ledge.link.sdk.api.vos.responses.errors.ErrorResponseVo;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
@@ -155,7 +155,6 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         gsonBuilder.registerTypeAdapter(VerificationVo.class, new VerificationSerializer());
         gsonBuilder.registerTypeAdapter(ActionConfigurationVo.class, new ActionConfigurationParser());
         gsonBuilder.registerTypeAdapter(FinancialAccountVo.class, new FinancialAccountParser());
-        gsonBuilder.registerTypeAdapter(VirtualCard.class, new VirtualCardParser());
         gsonBuilder.registerTypeAdapter(UpdateFinancialAccountResponseVo.class, new UpdateAccountParser());
         gsonBuilder.registerTypeAdapter(UpdateFinancialAccountPinResponseVo.class, new UpdateAccountPinParser());
 
@@ -670,12 +669,12 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public VirtualCard issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
-        VirtualCard result;
+    public Card issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
+        Card result;
         try {
             // Setting VGS proxy only for this call
             this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
-            Response<VirtualCard> response
+            Response<Card> response
                     = mFinancialAccountService.issueVirtualCard(issueVirtualCardRequestVo).execute();
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = handleResponse(response, LinkApiWrapper.ISSUE_CARD_PATH);
@@ -818,7 +817,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     }
 
     @Override
-    public TransactionListResponseVo getFinancialAccountsTransactions(String accountId, int rows, String transactionId) throws ApiException {
+    public TransactionListResponseVo getFinancialAccountTransactions(String accountId, int rows, String transactionId) throws ApiException {
         TransactionListResponseVo result;
         try {
             // TODO: using last transaction ID instead of page due to limitation on Card Backend
@@ -827,6 +826,32 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNT_TRANSACTIONS_PATH, ioe);
+        }
+        return result;
+    }
+
+    @Override
+    public FundingSourceVo getFinancialAccountFundingSource(String accountId) throws ApiException {
+        FundingSourceVo result;
+        try {
+            Response<FundingSourceVo> response = mFinancialAccountService.getFundingSource(accountId).execute();
+            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH, ioe);
+        }
+        return result;
+    }
+
+    @Override
+    public FundingSourceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
+        FundingSourceListVo result;
+        try {
+            Response<FundingSourceListVo> response = mFinancialAccountService.getUserFundingSources().execute();
+            result = handleResponse(response, LinkApiWrapper.USER_FUNDING_SOURCES_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), LinkApiWrapper.USER_FUNDING_SOURCES_PATH, ioe);
         }
         return result;
     }

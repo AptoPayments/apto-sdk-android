@@ -27,7 +27,6 @@ import me.ledge.link.sdk.api.vos.datapoints.PersonalName;
 import me.ledge.link.sdk.api.vos.datapoints.PhoneNumberVo;
 import me.ledge.link.sdk.api.vos.datapoints.SSN;
 import me.ledge.link.sdk.api.vos.datapoints.TimeAtAddress;
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 
 /**
  * Created by adrian on 25/01/2017.
@@ -94,25 +93,12 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         ParsingUtils.getStringFromJson(jObject.get("cvv")),
                         Card.FinancialAccountState.valueOf(cardState),
                         ParsingUtils.getCurrencyStringFromJson(jObject.get("balance")),
-                        new Custodian("coinbase", "logo"),
+                        new Custodian("coinbase", "logo", "coinbase", ""),
                         false);
             case "bank_account":
                 return new BankAccount(jObject.get("account_id").getAsString(),
                         jObject.get("bank_name").getAsString(),
                         jObject.get("last_four").getAsString(), false);
-            case "virtual_card":
-                return new VirtualCard(jObject.get("account_id").getAsString(),
-                        ParsingUtils.getStringFromJson(jObject.get("last_four")),
-                        Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),
-                        ParsingUtils.getStringFromJson(jObject.get("card_brand")),
-                        ParsingUtils.getStringFromJson(jObject.get("card_issuer")),
-                        ParsingUtils.getStringFromJson(jObject.get("expiration")),
-                        ParsingUtils.getStringFromJson(jObject.get("pan")),
-                        ParsingUtils.getStringFromJson(jObject.get("cvv")),
-                        Card.FinancialAccountState.valueOf(ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase()),
-                        ParsingUtils.getCurrencyStringFromJson(jObject.get("balance")),
-                        new Custodian("coinbase", "logo"),
-                        false);
             case "payday_loan":
                 return new PaydayLoan(jObject.get("payday_loan").getAsBoolean(), verified,
                         notSpecified);

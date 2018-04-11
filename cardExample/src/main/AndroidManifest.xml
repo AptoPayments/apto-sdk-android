@@ -185,5 +185,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
+
+        <activity
+            android:name="me.ledge.link.sdk.ui.activities.card.ManageAccountActivity"
+            android:theme="@style/Theme.LedgeLine.Example">
+
+        </activity>
     </application>
 </manifest>

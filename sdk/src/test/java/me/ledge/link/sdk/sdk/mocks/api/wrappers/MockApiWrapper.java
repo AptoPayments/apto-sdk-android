@@ -9,7 +9,6 @@ import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import me.ledge.link.sdk.api.vos.datapoints.VirtualCard;
 import me.ledge.link.sdk.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import me.ledge.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
@@ -41,6 +40,8 @@ import me.ledge.link.sdk.api.vos.responses.config.SalaryFrequenciesListResponseV
 import me.ledge.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 import me.ledge.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import me.ledge.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
+import me.ledge.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
@@ -324,9 +325,9 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public VirtualCard issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
-        VirtualCard response = new VirtualCard();
-        response.cardNetwork = VirtualCard.CardNetwork.VISA;
+    public Card issueVirtualCard(IssueVirtualCardRequestVo issueVirtualCardRequestVo) throws ApiException {
+        Card response = new Card();
+        response.cardNetwork = Card.CardNetwork.VISA;
         return response;
     }
 
@@ -393,7 +394,17 @@ public class MockApiWrapper implements LinkApiWrapper {
     }
 
     @Override
-    public TransactionListResponseVo getFinancialAccountsTransactions(String s, int i, String s1) throws ApiException {
+    public TransactionListResponseVo getFinancialAccountTransactions(String s, int i, String s1) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public FundingSourceVo getFinancialAccountFundingSource(String accountId) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public FundingSourceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
         return null;
     }
 }

@@ -7,6 +7,7 @@ import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -58,6 +59,7 @@ public class TransactionsAdapter extends
     public interface ViewListener {
         void manageCardClickHandler();
         void activateCardBySecondaryBtnClickHandler();
+        void accountClickHandler();
     }
     public void setViewListener(ViewListener viewListener) {
         mListener = viewListener;
@@ -73,6 +75,7 @@ public class TransactionsAdapter extends
         public TextView mPrimaryButton;
         public TextView mSecondaryButton;
         public ImageView mCustodianLogo;
+        public ImageButton mAccountButton;
 
         // Transaction
         public TextView titleTextView;
@@ -90,6 +93,7 @@ public class TransactionsAdapter extends
                 mCardBalance = (TextView) itemView.findViewById(R.id.tv_card_balance);
                 mPrimaryButton = (TextView) itemView.findViewById(R.id.tv_display_card_primary_bttn);
                 mSecondaryButton = (TextView) itemView.findViewById(R.id.tv_display_card_secondary_bttn);
+                mAccountButton = (ImageButton) itemView.findViewById(R.id.ib_account);
             } else if (viewType == 1) {
                 titleTextView = (TextView) itemView.findViewById(R.id.tv_title);
                 descriptionTextView = (TextView) itemView.findViewById(R.id.tv_description);
@@ -143,6 +147,7 @@ public class TransactionsAdapter extends
             viewHolder.mPrimaryButton.setOnClickListener(v -> mListener.manageCardClickHandler());
             viewHolder.mCreditCardView.setOnClickListener(v -> mListener.manageCardClickHandler());
             viewHolder.mSecondaryButton.setOnClickListener(v -> mListener.activateCardBySecondaryBtnClickHandler());
+            viewHolder.mAccountButton.setOnClickListener(v -> mListener.accountClickHandler());
         } else if (position > 0) {
             TransactionVo transaction = mTransactions.get(position-1);
 

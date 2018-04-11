@@ -31,6 +31,6 @@ public class GetFinancialAccountTransactionsTask extends LedgeLinkApiTask<Void, 
     /** {@inheritDoc} */
     @Override
     protected TransactionListResponseVo callApi() throws ApiException {
-        return getApiWrapper().getFinancialAccountsTransactions(getRequestData(), mRows, mTransactionId);
+        return getApiWrapper().getFinancialAccountTransactions(getRequestData(), mRows, mTransactionId);
     }
 }
