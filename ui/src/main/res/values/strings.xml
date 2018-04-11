@@ -349,4 +349,7 @@
     <string name="add_funding_source">ADD FUNDING SOURCE</string>
     <string name="funding_source_dollar_amount" formatted="false">($%.2f)</string>
 
+    <!-- KYC Status screen -->
+    <string name="kyc_status_title">Application Status</string>
+    <string name="kyc_status_application_under_review">Your application is under review</string>
 </resources>

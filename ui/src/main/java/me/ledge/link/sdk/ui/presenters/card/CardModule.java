@@ -15,6 +15,7 @@ import me.ledge.link.sdk.api.vos.datapoints.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
 import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
@@ -26,6 +27,7 @@ import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.sdk.storages.ConfigStorage;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.ShiftUi;
+import me.ledge.link.sdk.ui.activities.KYCStatusActivity;
 import me.ledge.link.sdk.ui.activities.card.IssueVirtualCardActivity;
 import me.ledge.link.sdk.ui.activities.card.ManageCardActivity;
 import me.ledge.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
@@ -199,6 +201,7 @@ public class CardModule extends LedgeBaseModule {
      */
     @Subscribe
     public void handleDataPointList(DataPointList dataPointList) {
+
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         if(dataPointList.getType().equals(DataPointList.ListType.financialAccounts)) {
             handleFinancialAccounts(dataPointList);
@@ -246,7 +249,18 @@ public class CardModule extends LedgeBaseModule {
     public void handleResponse(Card card) {
         LedgeLinkSdk.getResponseHandler().unsubscribe(this);
         CardStorage.getInstance().setCard(card);
-        startManageCardScreen();
+
+        if(card.kycStatus.equals(KYCStatus.passed)) {
+            startManageCardScreen();
+        }
+        else {
+            Intent intent = new Intent(getActivity(), KYCStatusActivity.class);
+            intent.putExtra("KYC_STATUS", card.kycStatus.toString());
+            if(card.kycReason != null) {
+                intent.putExtra("KYC_REASON", card.kycReason[0]);
+            }
+            getActivity().startActivity(intent);
+        }
     }
 
     /**

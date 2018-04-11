@@ -7,6 +7,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
+
 /**
  * Created by adrian on 18/01/2017.
  */
@@ -44,7 +46,12 @@ public class Card extends FinancialAccountVo {
     public String expirationDate;
     @SerializedName("state")
     public FinancialAccountState state;
+    //TODO: remove custodian
     public Custodian custodian;
+    @SerializedName("kyc_status")
+    public KYCStatus kycStatus;
+    @SerializedName("kyc_reason")
+    public String[] kycReason;
 
     public Card() {
         super(null, FinancialAccountType.Card, false);
@@ -58,6 +65,8 @@ public class Card extends FinancialAccountVo {
         expirationDate = null;
         state = FinancialAccountState.ACTIVE;
         custodian = null;
+        kycStatus = null;
+        kycReason = null;
     }
 
     public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
@@ -73,11 +82,29 @@ public class Card extends FinancialAccountVo {
         this.expirationDate = expirationDate;
         this.state = state;
         this.custodian = custodian;
+        this.kycStatus = null;
+        this.kycReason = null;
+    }
 
+    public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
+                String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, KYCStatus kycStatus, String[] kycReason, boolean verified) {
+        super(accountId, FinancialAccountType.Card, verified);
+        this.cardNetwork = type;
+        this.lastFourDigits = lastFourDigits;
+        this.cardBrand = cardBrand;
+        this.cardIssuer = cardIssuer;
+        this.balance = balance;
+        this.PANToken = PANToken;
+        this.CVVToken = CVVToken;
+        this.expirationDate = expirationDate;
+        this.state = state;
+        this.custodian = custodian;
+        this.kycStatus = kycStatus;
+        this.kycReason = kycReason;
     }
 
     protected Card(FinancialAccountType accountType, String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                   String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, boolean verified) {
+                   String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, KYCStatus kycStatus, String[] kycReason, boolean verified) {
         super(accountId, accountType, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
@@ -90,6 +117,8 @@ public class Card extends FinancialAccountVo {
         this.expirationDate = expirationDate;
         this.state = state;
         this.custodian = custodian;
+        this.kycStatus = kycStatus;
+        this.kycReason = kycReason;
     }
 
     public Card(Card c) {
@@ -105,6 +134,8 @@ public class Card extends FinancialAccountVo {
         this.expirationDate = c.expirationDate;
         this.state = c.state;
         this.custodian = c.custodian;
+        this.kycStatus = c.kycStatus;
+        this.kycReason = c.kycReason;
     }
 
     @Override
