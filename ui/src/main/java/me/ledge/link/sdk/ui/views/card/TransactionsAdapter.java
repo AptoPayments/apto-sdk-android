@@ -143,6 +143,8 @@ public class TransactionsAdapter extends
                 viewHolder.mSecondaryButton.setVisibility(View.GONE);
             } else {
                 viewHolder.mCreditCardView.setCardEnabled(false);
+                viewHolder.mSecondaryButton.setBackgroundColor(UIStorage.getInstance().getPrimaryColor());
+                viewHolder.mSecondaryButton.setTextColor(UIStorage.getInstance().getPrimaryContrastColor());
                 viewHolder.mSecondaryButton.setVisibility(View.VISIBLE);
             }
 

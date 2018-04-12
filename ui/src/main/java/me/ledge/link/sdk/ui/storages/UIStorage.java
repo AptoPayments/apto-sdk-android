@@ -184,7 +184,22 @@ public class UIStorage {
                         new int[]{android.R.attr.state_checked}
                 },
                 new int[] {
-                        Color.BLACK, mPrimaryColor
+                        // bdbdbd = material gray
+                        Color.WHITE, mPrimaryColor
+                }
+        );
+    }
+
+    public ColorStateList getSwitchBackgroundColors() {
+        int materialGrayColor = Color.parseColor("#bdbdbd");
+        int statusBarColor = getStatusBarColor()==mPrimaryColor ? materialGrayColor : getStatusBarColor();
+        return new ColorStateList(
+                new int[][]{
+                        new int[]{-android.R.attr.state_checked},
+                        new int[]{android.R.attr.state_checked}
+                },
+                new int[] {
+                        materialGrayColor, statusBarColor
                 }
         );
     }

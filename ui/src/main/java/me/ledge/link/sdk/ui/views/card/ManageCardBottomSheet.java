@@ -1,12 +1,14 @@
 package me.ledge.link.sdk.ui.views.card;
 
 import android.app.Dialog;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.SwitchCompat;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
 import me.ledge.link.sdk.ui.R;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 
 
 /**
@@ -26,6 +29,7 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
     private ViewListener mListener;
     private SwitchCompat mEnableCardSwitch;
     private SwitchCompat mShowCardInfoSwitch;
+    private LinearLayout mChangePin;
     private static boolean mIsEnableCardSwitchTouched;
     private static boolean mIsShowCardInfoSwitchTouched;
     public boolean isCardEnabled;
@@ -54,24 +58,41 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
     @Override
     public Dialog onCreateDialog(final Bundle savedInstanceState) {
         final BottomSheetDialog dialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
-
         final View view = View.inflate(this.getContext(), R.layout.fragment_manage_card_bottom_sheet, null);
-        mEnableCardSwitch = (SwitchCompat) view.findViewById(R.id.sw_card_enabled);
-        mEnableCardSwitch.setOnCheckedChangeListener(this);
-        mEnableCardSwitch.setOnTouchListener(this);
-        setEnableCardSwitch(isCardEnabled);
-        mShowCardInfoSwitch = (SwitchCompat) view.findViewById(R.id.sw_show_card_info);
-        mShowCardInfoSwitch.setOnCheckedChangeListener(this);
-        mShowCardInfoSwitch.setOnTouchListener(this);
-        setShowCardInfoSwitch(showCardInfo);
-        LinearLayout mChangePin = (LinearLayout) view.findViewById(R.id.ll_change_pin);
-        mChangePin.setOnClickListener(this);
-        dialog.setContentView(view);
+        findAllViews(view);
+        setUpListeners();
+        setColors();
 
-        BottomSheetBehavior mBottomSheetBehavior = BottomSheetBehavior.from((View) view.getParent());
-        mBottomSheetBehavior.setBottomSheetCallback(mBottomSheetBehaviorCallback);
+        setEnableCardSwitch(isCardEnabled);
+        setShowCardInfoSwitch(showCardInfo);
+        dialog.setContentView(view);
+        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from((View) view.getParent());
+        bottomSheetBehavior.setBottomSheetCallback(mBottomSheetBehaviorCallback);
 
         return dialog;
+    }
+
+    private void findAllViews(View view) {
+        mEnableCardSwitch = (SwitchCompat) view.findViewById(R.id.sw_card_enabled);
+        mShowCardInfoSwitch = (SwitchCompat) view.findViewById(R.id.sw_show_card_info);
+        mChangePin = (LinearLayout) view.findViewById(R.id.ll_change_pin);
+    }
+
+    private void setUpListeners() {
+        mEnableCardSwitch.setOnCheckedChangeListener(this);
+        mEnableCardSwitch.setOnTouchListener(this);
+        mShowCardInfoSwitch.setOnCheckedChangeListener(this);
+        mShowCardInfoSwitch.setOnTouchListener(this);
+        mChangePin.setOnClickListener(this);
+    }
+
+    private void setColors() {
+        ColorStateList colorStateList = UIStorage.getInstance().getRadioButtonColors();
+        ColorStateList backgroundColors = UIStorage.getInstance().getSwitchBackgroundColors();
+        DrawableCompat.setTintList(DrawableCompat.wrap(mEnableCardSwitch.getThumbDrawable()), colorStateList);
+        DrawableCompat.setTintList(DrawableCompat.wrap(mEnableCardSwitch.getTrackDrawable()), backgroundColors);
+        DrawableCompat.setTintList(DrawableCompat.wrap(mShowCardInfoSwitch.getThumbDrawable()), colorStateList);
+        DrawableCompat.setTintList(DrawableCompat.wrap(mShowCardInfoSwitch.getTrackDrawable()), backgroundColors);
     }
 
     public void setEnableCardSwitch(boolean enable) {
