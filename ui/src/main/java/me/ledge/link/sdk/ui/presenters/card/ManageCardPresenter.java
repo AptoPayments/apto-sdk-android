@@ -46,7 +46,7 @@ import me.ledge.link.sdk.ui.views.card.ManageCardBottomSheet;
 import me.ledge.link.sdk.ui.views.card.ManageCardView;
 import me.ledge.link.sdk.ui.views.card.TransactionsAdapter;
 
-import static me.ledge.link.sdk.api.vos.datapoints.Card.FinancialAccountState.ACTIVE;
+import static me.ledge.link.sdk.api.vos.Card.FinancialAccountState.ACTIVE;
 
 /**
  * Concrete {@link Presenter} for the manage card screen.
