@@ -8,7 +8,7 @@ public class HousingTypeVo extends ConfigVo {
 
     /**
      * Housing type ID.
-     * @see me.ledge.link.api.utils.users.HousingTypeId
+     * @see com.shift.link.sdk.api.utils.users.HousingTypeId
      */
     public int housing_type_id;
 }

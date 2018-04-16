@@ -29,7 +29,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/card_management_card_balance" />
 
-    <me.ledge.link.sdk.ui.views.card.CreditCardView
+    <com.shift.link.sdk.ui.views.card.CreditCardView
         android:id="@+id/credit_card_view"
         android:layout_width="wrap_content"
         android:layout_height="225dp"

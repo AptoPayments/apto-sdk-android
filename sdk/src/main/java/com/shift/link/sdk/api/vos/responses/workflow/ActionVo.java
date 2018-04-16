@@ -28,7 +28,7 @@ public class ActionVo {
 
     /**
      * Workflow action type
-     * @see me.ledge.link.api.utils.workflow.WorkflowActionType
+     * @see com.shift.link.sdk.api.utils.workflow.WorkflowActionType
      */
     @SerializedName("action_type")
     public String actionType;

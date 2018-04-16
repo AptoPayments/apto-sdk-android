@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<me.ledge.link.sdk.ui.views.offers.LoanOfferErrorView
+<com.shift.link.sdk.ui.views.offers.LoanOfferErrorView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ll_loan_error"
         android:layout_width="wrap_content"
@@ -43,4 +43,4 @@
             android:id="@+id/tv_bttn_big"
             style="?attr/llsdk_bigButtonStyle" />
 
-</me.ledge.link.sdk.ui.views.offers.LoanOfferErrorView>
+</com.shift.link.sdk.ui.views.offers.LoanOfferErrorView>

@@ -13,7 +13,7 @@ public class TermVo {
 
     /**
      * Unit of the term.
-     * @see me.ledge.link.api.utils.TermUnit
+     * @see com.shift.link.sdk.api.utils.TermUnit
      */
     public int unit;
 

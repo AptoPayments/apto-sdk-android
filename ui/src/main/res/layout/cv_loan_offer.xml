@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<me.ledge.link.sdk.ui.views.offers.OfferListSummaryView
+<com.shift.link.sdk.ui.views.offers.OfferListSummaryView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:cv="http://schemas.android.com/apk/res-auto"
         style="?attr/llsdk_loanOfferSummary_cardStyle"
@@ -77,4 +77,4 @@
 
         </LinearLayout>
     </LinearLayout>
-</me.ledge.link.sdk.ui.views.offers.OfferListSummaryView>
+</com.shift.link.sdk.ui.views.offers.OfferListSummaryView>

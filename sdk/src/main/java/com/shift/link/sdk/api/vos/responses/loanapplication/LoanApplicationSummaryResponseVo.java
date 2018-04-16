@@ -25,7 +25,7 @@ public class LoanApplicationSummaryResponseVo {
 
     /**
      * Loan application status.
-     * @see me.ledge.link.api.utils.loanapplication.LoanApplicationState
+     * @see com.shift.link.sdk.api.utils.loanapplication.LoanApplicationState
      */
     public String status;
 

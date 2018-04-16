@@ -8,7 +8,7 @@ public class LoanApplicationActionVo {
 
     /**
      * Action ID.
-     * @see me.ledge.link.api.utils.loanapplication.LoanApplicationActionId
+     * @see com.shift.link.sdk.api.utils.loanapplication.LoanApplicationActionId
      */
     public String action;
 

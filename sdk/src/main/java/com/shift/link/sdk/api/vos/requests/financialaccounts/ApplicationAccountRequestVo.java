@@ -14,7 +14,7 @@ public class ApplicationAccountRequestVo extends UnauthorizedRequestVo {
 
     /**
      * Action type.
-     * @see me.ledge.link.api.utils.loanapplication.LoanApplicationAccountType
+     * @see com.shift.link.sdk.api.utils.loanapplication.LoanApplicationAccountType
      */
     @SerializedName("account_type")
     public int accountType;

@@ -51,7 +51,7 @@ public class OfferVo {
 
     /**
      * Loan application method.
-     * @see me.ledge.link.api.utils.loanapplication.LoanApplicationMethod
+     * @see com.shift.link.sdk.api.utils.loanapplication.LoanApplicationMethod
      */
     public String application_method;
 

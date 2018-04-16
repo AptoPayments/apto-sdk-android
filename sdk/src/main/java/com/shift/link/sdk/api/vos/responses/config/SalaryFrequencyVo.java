@@ -8,7 +8,7 @@ public class SalaryFrequencyVo extends ConfigVo {
 
     /**
      * IncomeSource status ID.
-     * @see me.ledge.link.api.utils.users.SalaryFrequencyId
+     * @see com.shift.link.sdk.api.utils.users.SalaryFrequencyId
      */
     public int salary_frequency_id;
 }
