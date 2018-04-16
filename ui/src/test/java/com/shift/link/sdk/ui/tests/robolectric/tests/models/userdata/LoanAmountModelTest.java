@@ -1,15 +1,13 @@
 package com.shift.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
+import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
+import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.models.link.LoanAmountModel;
 import com.shift.link.sdk.ui.vos.LoanDataVo;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.models.link.LoanAmountModel;
-import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
-import com.shift.link.sdk.ui.vos.LoanDataVo;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 

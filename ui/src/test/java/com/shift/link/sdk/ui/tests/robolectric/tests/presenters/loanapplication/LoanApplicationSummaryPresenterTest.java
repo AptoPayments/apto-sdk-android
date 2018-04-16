@@ -2,6 +2,8 @@ package com.shift.link.sdk.ui.tests.robolectric.tests.presenters.loanapplication
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.shift.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
+import com.shift.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import com.shift.link.sdk.ui.presenters.loanapplication.LoanApplicationSummaryPresenter;
 
 import org.junit.Assert;
@@ -10,10 +12,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
-
-import com.shift.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
-import com.shift.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
-import com.shift.link.sdk.ui.presenters.loanapplication.LoanApplicationSummaryPresenter;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.nullValue;

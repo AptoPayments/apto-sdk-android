@@ -13,16 +13,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.synnapps.carouselview.CarouselView;
-
-import java.util.List;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import com.shift.link.sdk.ui.models.offers.OfferSummaryModel;
 import com.shift.link.sdk.ui.presenters.offers.OffersListPresenter;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.views.LoadingView;
+import com.synnapps.carouselview.CarouselView;
+
+import java.util.List;
 
 /**
  * Displays the offers list.

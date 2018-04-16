@@ -3,34 +3,6 @@ package com.shift.link.sdk.ui.presenters.userdata;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.activities.MvpActivity;
-import com.shift.link.sdk.ui.activities.userdata.AddressActivity;
-import com.shift.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
-import com.shift.link.sdk.ui.activities.userdata.ArmedForcesActivity;
-import com.shift.link.sdk.ui.activities.userdata.CreditScoreActivity;
-import com.shift.link.sdk.ui.activities.userdata.HomeActivity;
-import com.shift.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
-import com.shift.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
-import com.shift.link.sdk.ui.activities.userdata.PaydayLoanActivity;
-import com.shift.link.sdk.ui.activities.userdata.PersonalInformationActivity;
-import com.shift.link.sdk.ui.activities.userdata.PhoneActivity;
-import com.shift.link.sdk.ui.activities.userdata.TimeAtAddressActivity;
-import com.shift.link.sdk.ui.storages.SharedPreferencesStorage;
-import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.workflow.Command;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
-import java8.util.concurrent.CompletableFuture;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
@@ -61,6 +33,17 @@ import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.workflow.Command;
 import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+import java8.util.concurrent.CompletableFuture;
 
 /**
  * Created by adrian on 29/12/2016.

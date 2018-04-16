@@ -2,10 +2,6 @@ package com.shift.link.sdk.ui.mocks.views.userdata;
 
 import android.content.Context;
 
-import com.shift.link.sdk.ui.views.LoadingView;
-import com.shift.link.sdk.ui.views.userdata.AnnualIncomeView;
-import com.shift.link.sdk.ui.widgets.HintArrayAdapter;
-
 import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shift.link.sdk.ui.views.LoadingView;
 import com.shift.link.sdk.ui.views.userdata.AnnualIncomeView;

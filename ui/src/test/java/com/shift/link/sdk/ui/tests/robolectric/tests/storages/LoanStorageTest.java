@@ -1,15 +1,13 @@
 package com.shift.link.sdk.ui.tests.robolectric.tests.storages;
 
+import com.shift.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
+import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shift.link.sdk.ui.storages.LoanStorage;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.shift.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
-import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
-import com.shift.link.sdk.ui.storages.LoanStorage;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.nullValue;

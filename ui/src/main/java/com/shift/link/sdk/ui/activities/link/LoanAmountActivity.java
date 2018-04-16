@@ -5,13 +5,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.shift.link.sdk.ui.activities.userdata.UserDataActivity;
-import com.shift.link.sdk.ui.presenters.link.LoanDataDelegate;
-import com.shift.link.sdk.ui.presenters.link.LoanInfoModule;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.views.link.LoanAmountView;
-
-import com.shift.link.sdk.ui.workflow.ModuleManager;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.userdata.UserDataActivity;
 import com.shift.link.sdk.ui.models.link.LoanAmountModel;
@@ -20,6 +13,7 @@ import com.shift.link.sdk.ui.presenters.link.LoanDataDelegate;
 import com.shift.link.sdk.ui.presenters.link.LoanInfoModule;
 import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
 import com.shift.link.sdk.ui.views.link.LoanAmountView;
+import com.shift.link.sdk.ui.workflow.ModuleManager;
 
 /**
  * Wires up the MVP pattern for the loan amount screen.

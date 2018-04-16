@@ -5,9 +5,6 @@ import android.app.Activity;
 import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomeDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.MonthlyIncomeDelegate;
 
-import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomeDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.MonthlyIncomeDelegate;
-
 public class MockUserDataCollectorModule implements MonthlyIncomeDelegate, AnnualIncomeDelegate {
 
     public MockUserDataCollectorModule(Activity activity) {

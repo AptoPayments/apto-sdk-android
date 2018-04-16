@@ -8,8 +8,6 @@ import android.os.Bundle;
 import com.coinbase.android.sdk.OAuth;
 import com.coinbase.api.entity.OAuthTokensResponse;
 import com.coinbase.api.exception.CoinbaseException;
-import com.shift.link.sdk.ui.presenters.custodianselector.CoinbaseDelegate;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.presenters.custodianselector.CoinbaseDelegate;
 import com.shift.link.sdk.ui.workflow.Command;

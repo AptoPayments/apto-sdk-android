@@ -2,15 +2,13 @@ package com.shift.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.views.userdata.PersonalInformationView;
-
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.responses.config.RequiredDataPointVo;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.PersonalInformationModel;
 import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.views.userdata.PersonalInformationView;
+import com.shift.link.sdk.ui.workflow.ModuleManager;
 
 /**
  * Concrete {@link Presenter} for the personal information screen.

@@ -1,8 +1,6 @@
 package com.shift.link.sdk.ui.models.userdata;
 
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
-import com.shift.link.sdk.ui.utils.PhoneHelperUtil;
-
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.datapoints.PhoneNumberVo;

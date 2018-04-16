@@ -6,9 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.shift.link.sdk.ui.presenters.loanapplication.LoanApplicationDetailsPresenter;
-import com.shift.link.sdk.ui.views.loanapplication.LoanApplicationDetailsView;
-
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.presenters.loanapplication.LoanApplicationDetailsPresenter;

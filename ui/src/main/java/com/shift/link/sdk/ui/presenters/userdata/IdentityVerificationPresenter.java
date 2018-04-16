@@ -6,7 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.DatePicker;
 
+import com.shift.link.sdk.api.vos.datapoints.Address;
+import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shift.link.sdk.api.vos.responses.config.ContentVo;
+import com.shift.link.sdk.api.vos.responses.config.LoanProductListVo;
+import com.shift.link.sdk.api.vos.responses.config.LoanProductVo;
+import com.shift.link.sdk.api.vos.responses.config.RequiredDataPointVo;
+import com.shift.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
+import com.shift.link.sdk.sdk.storages.ConfigStorage;
+import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.fragments.DatePickerFragment;
+import com.shift.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.utils.DisclaimerUtil;
@@ -19,25 +29,6 @@ import com.shift.link.sdk.ui.workflow.ModuleManager;
 import java.util.ArrayList;
 
 import java8.util.concurrent.CompletableFuture;
-import com.shift.link.sdk.api.vos.datapoints.Address;
-import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shift.link.sdk.api.vos.responses.config.ContentVo;
-import com.shift.link.sdk.api.vos.responses.config.LoanProductListVo;
-import com.shift.link.sdk.api.vos.responses.config.LoanProductVo;
-import com.shift.link.sdk.api.vos.responses.config.RequiredDataPointVo;
-import com.shift.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
-import com.shift.link.sdk.sdk.storages.ConfigStorage;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
-import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.fragments.DatePickerFragment;
-import com.shift.link.sdk.ui.models.userdata.IdentityVerificationModel;
-import com.shift.link.sdk.ui.presenters.Presenter;
-import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.utils.DisclaimerUtil;
-import com.shift.link.sdk.ui.utils.LanguageUtil;
-import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shift.link.sdk.ui.utils.ResourceUtil;
-import com.shift.link.sdk.ui.views.userdata.IdentityVerificationView;
 
 /**
  * Concrete {@link Presenter} for the ID verification screen.

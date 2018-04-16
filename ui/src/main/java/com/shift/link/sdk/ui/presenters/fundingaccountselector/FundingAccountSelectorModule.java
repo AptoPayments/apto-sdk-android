@@ -3,18 +3,6 @@ package com.shift.link.sdk.ui.presenters.fundingaccountselector;
 import android.app.Activity;
 import android.widget.Toast;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity;
-import com.shift.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity;
-import com.shift.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
-import com.shift.link.sdk.ui.storages.LoanStorage;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java.lang.ref.WeakReference;
-
 import com.shift.link.sdk.api.utils.loanapplication.LoanApplicationAccountType;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
@@ -28,6 +16,10 @@ import com.shift.link.sdk.ui.presenters.financialaccountselector.FinancialAccoun
 import com.shift.link.sdk.ui.storages.LoanStorage;
 import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import java.lang.ref.WeakReference;
 
 /**
  * Created by adrian on 29/12/2016.

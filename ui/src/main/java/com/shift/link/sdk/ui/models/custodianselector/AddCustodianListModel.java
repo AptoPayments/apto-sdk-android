@@ -2,14 +2,12 @@ package com.shift.link.sdk.ui.models.custodianselector;
 
 import android.app.Activity;
 
-import com.shift.link.sdk.ui.models.ActivityModel;
-
-import java.util.ArrayList;
-
 import com.shift.link.sdk.api.vos.responses.workflow.SelectCustodianConfigurationVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.ActivityModel;
 import com.shift.link.sdk.ui.models.Model;
+
+import java.util.ArrayList;
 
 /**
  * Created by adrian on 17/01/2017.

@@ -1,10 +1,9 @@
 package com.shift.link.sdk.ui.adapters.fundingsources;
 
+import com.shift.link.sdk.ui.models.card.FundingSourceModel;
 import com.shift.link.sdk.ui.views.card.FundingSourceView;
 
 import me.ledge.common.adapters.recyclerview.GenericViewHolder;
-import com.shift.link.sdk.ui.models.card.FundingSourceModel;
-import com.shift.link.sdk.ui.views.card.FundingSourceView;
 
 /**
  * Concrete {@link RecyclerView.ViewHolder} for the funding source list.

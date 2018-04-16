@@ -2,7 +2,15 @@ package com.shift.link.sdk.ui.tests.robolectric.tests.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.shift.link.sdk.api.vos.datapoints.DataPointList;
+import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shift.link.sdk.api.vos.datapoints.Income;
+import com.shift.link.sdk.ui.BuildConfig;
+import com.shift.link.sdk.ui.mocks.presenters.userdata.MockAnnualIncomePresenter;
+import com.shift.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModule;
+import com.shift.link.sdk.ui.mocks.views.userdata.MockAnnualIncomeView;
 import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
+import com.shift.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.views.userdata.AnnualIncomeView;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
@@ -18,19 +26,6 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.lang.ref.WeakReference;
-
-import com.shift.link.sdk.api.vos.datapoints.DataPointList;
-import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shift.link.sdk.api.vos.datapoints.Income;
-import com.shift.link.sdk.ui.BuildConfig;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
-import com.shift.link.sdk.ui.mocks.presenters.userdata.MockAnnualIncomePresenter;
-import com.shift.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModule;
-import com.shift.link.sdk.ui.mocks.views.userdata.MockAnnualIncomeView;
-import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
-import com.shift.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
-import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.views.userdata.AnnualIncomeView;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;

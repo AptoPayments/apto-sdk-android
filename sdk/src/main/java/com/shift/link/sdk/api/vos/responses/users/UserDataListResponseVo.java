@@ -1,8 +1,6 @@
 package com.shift.link.sdk.api.vos.responses.users;
 
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
-
-import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.responses.base.ListResponseVo;
 
 /**

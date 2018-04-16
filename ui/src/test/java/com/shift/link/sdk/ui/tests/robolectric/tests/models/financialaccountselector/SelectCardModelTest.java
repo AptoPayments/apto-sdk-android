@@ -2,17 +2,17 @@ package com.shift.link.sdk.ui.tests.robolectric.tests.models.financialaccountsel
 
 import android.text.TextUtils;
 
+import com.shift.link.sdk.api.vos.Card;
+import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
+import com.shift.link.sdk.ui.models.financialaccountselector.SelectCardModel;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-
-import com.shift.link.sdk.api.vos.Card;
-import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
-import com.shift.link.sdk.ui.models.financialaccountselector.SelectCardModel;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;

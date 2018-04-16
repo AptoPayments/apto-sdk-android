@@ -4,18 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.content.IntentCompat;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
-import com.shift.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
-import com.shift.link.sdk.ui.presenters.verification.AuthModule;
-import com.shift.link.sdk.ui.presenters.verification.AuthModuleConfig;
-import com.shift.link.sdk.ui.storages.SharedPreferencesStorage;
-import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java8.util.concurrent.CompletableFuture;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
@@ -28,8 +16,8 @@ import com.shift.link.sdk.api.vos.responses.workflow.GenericMessageConfiguration
 import com.shift.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import com.shift.link.sdk.sdk.LedgeLinkSdk;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
-import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import com.shift.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
 import com.shift.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
@@ -39,6 +27,10 @@ import com.shift.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import java8.util.concurrent.CompletableFuture;
 
 /**
  * Created by adrian on 29/12/2016.

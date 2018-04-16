@@ -2,10 +2,6 @@ package com.shift.link.sdk.ui.activities.userdata;
 
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.IdentityVerificationDelegate;
-import com.shift.link.sdk.ui.views.userdata.IdentityVerificationView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;

@@ -1,13 +1,13 @@
 package com.shift.link.sdk.sdk.tests.robolectric.tests.storages;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.shift.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shift.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.IsNot.not;

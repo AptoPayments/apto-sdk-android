@@ -6,11 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.views.card.IssueVirtualCardView;
-
-import org.greenrobot.eventbus.Subscribe;
-
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.CustodianVo;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
@@ -24,6 +19,8 @@ import com.shift.link.sdk.ui.activities.KYCStatusActivity;
 import com.shift.link.sdk.ui.storages.CardStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.views.card.IssueVirtualCardView;
+
+import org.greenrobot.eventbus.Subscribe;
 
 public class IssueVirtualCardActivity extends AppCompatActivity {
 

@@ -4,12 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.shift.link.sdk.ui.views.card.FundingSourceView;
-
-import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.card.FundingSourceModel;
 import com.shift.link.sdk.ui.views.card.FundingSourceView;
+
+import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 
 /**
  * A concrete {@link RecyclerView.Adapter} for the funding source list.

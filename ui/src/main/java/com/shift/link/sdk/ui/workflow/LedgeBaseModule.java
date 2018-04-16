@@ -6,15 +6,12 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.widget.Toast;
 
+import com.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo;
+import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
 
 import java.lang.ref.WeakReference;
-
-import com.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo;
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
 
 /**
  * Created by adrian on 29/12/2016.

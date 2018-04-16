@@ -8,13 +8,6 @@ package com.shift.link.sdk.ui.presenters.card;
 import android.app.Activity;
 import android.widget.Toast;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.views.card.FundingSourceView;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.List;
-
 import com.shift.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shift.link.sdk.sdk.LedgeLinkSdk;
 import com.shift.link.sdk.ui.ShiftUi;
@@ -27,6 +20,10 @@ import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.views.card.FundingSourceView;
 import com.shift.link.sdk.ui.views.card.ManageAccountView;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.List;
 
 /**
  * Concrete {@link Presenter} for the manage account screen.

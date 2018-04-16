@@ -2,19 +2,19 @@ package com.shift.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import android.text.TextUtils;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-
 import com.shift.link.sdk.api.vos.datapoints.Address;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
 import com.shift.link.sdk.ui.models.userdata.AddressModel;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.mockito.Matchers.any;

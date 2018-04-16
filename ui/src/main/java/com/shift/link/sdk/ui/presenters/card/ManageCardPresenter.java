@@ -13,21 +13,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.utils.FingerprintAuthenticationDialogFragment;
-import com.shift.link.sdk.ui.utils.FingerprintDelegate;
-import com.shift.link.sdk.ui.utils.FingerprintHandler;
-import com.shift.link.sdk.ui.views.card.EndlessRecyclerViewScrollListener;
-import com.shift.link.sdk.ui.views.card.ManageCardView;
-import com.shift.link.sdk.ui.views.card.TransactionsAdapter;
-import com.venmo.android.pin.PinFragmentConfiguration;
-import com.venmo.android.pin.PinSupportFragment;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import com.shift.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
@@ -52,6 +37,13 @@ import com.shift.link.sdk.ui.views.card.EndlessRecyclerViewScrollListener;
 import com.shift.link.sdk.ui.views.card.ManageCardBottomSheet;
 import com.shift.link.sdk.ui.views.card.ManageCardView;
 import com.shift.link.sdk.ui.views.card.TransactionsAdapter;
+import com.venmo.android.pin.PinFragmentConfiguration;
+import com.venmo.android.pin.PinSupportFragment;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static com.shift.link.sdk.api.vos.Card.FinancialAccountState.ACTIVE;
 

@@ -3,7 +3,6 @@ package com.shift.link.sdk.ui.views.card;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +10,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.HashMap;
-import java.util.List;
-
 import com.shift.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.card.ManageCardModel;
 import com.shift.link.sdk.ui.storages.UIStorage;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class TransactionsAdapter extends
         RecyclerView.Adapter<TransactionsAdapter.ViewHolder> {

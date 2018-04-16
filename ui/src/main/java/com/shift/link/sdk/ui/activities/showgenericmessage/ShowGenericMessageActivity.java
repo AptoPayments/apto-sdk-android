@@ -2,11 +2,6 @@ package com.shift.link.sdk.ui.activities.showgenericmessage;
 
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageDelegate;
-import com.shift.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessagePresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.views.showgenericmessage.ShowGenericMessageView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.userdata.UserDataActivity;
 import com.shift.link.sdk.ui.models.showgenericmessage.ShowGenericMessageModel;

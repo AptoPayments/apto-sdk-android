@@ -10,8 +10,6 @@ import com.shift.link.sdk.ui.images.GenericImageLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.shift.link.sdk.ui.images.GenericImageLoader;
-
 /**
  * Concrete implementation of the {@link GenericImageLoader} interface using
  * <a href="https://developer.android.com/training/volley/index.html">Volley</a>.

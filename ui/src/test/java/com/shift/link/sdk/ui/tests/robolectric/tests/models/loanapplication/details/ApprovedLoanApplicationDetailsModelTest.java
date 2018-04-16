@@ -2,6 +2,10 @@ package com.shift.link.sdk.ui.tests.robolectric.tests.models.loanapplication.det
 
 import android.content.res.Resources;
 
+import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.models.loanapplication.BigButtonModel;
+import com.shift.link.sdk.ui.models.loanapplication.details.ApprovedLoanApplicationDetailsModel;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -9,10 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.shadows.ShadowContentProvider;
-
-import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.models.loanapplication.BigButtonModel;
-import com.shift.link.sdk.ui.models.loanapplication.details.ApprovedLoanApplicationDetailsModel;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 

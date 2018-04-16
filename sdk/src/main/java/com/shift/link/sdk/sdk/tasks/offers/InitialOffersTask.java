@@ -1,13 +1,11 @@
 package com.shift.link.sdk.sdk.tasks.offers;
 
-import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shift.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
 import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
  * A concrete {@link LedgeLinkApiTask} to get the initial list of loan offers.

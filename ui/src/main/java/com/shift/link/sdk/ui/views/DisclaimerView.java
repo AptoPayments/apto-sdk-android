@@ -9,12 +9,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
+import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.storages.UIStorage;
 
 import java.io.File;
 
 import br.tiagohm.markdownview.MarkdownView;
-import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.storages.UIStorage;
 
 /**
  * Displays the disclaimer webview.

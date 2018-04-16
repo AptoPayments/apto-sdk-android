@@ -6,17 +6,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.shift.link.sdk.api.utils.workflow.WorkflowConfigType;
-
-import java.lang.reflect.Type;
-
 import com.shift.link.sdk.api.vos.responses.config.ContentVo;
 import com.shift.link.sdk.api.vos.responses.workflow.ActionConfigurationVo;
 import com.shift.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import com.shift.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import com.shift.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 
-import static com.shift.link.sdk.api.utils.workflow.WorkflowConfigType.GENERIC_MESSAGE_CONFIG;
-import static com.shift.link.sdk.api.utils.workflow.WorkflowConfigType.SELECT_FUNDING_ACCOUNT_CONFIG;
+import java.lang.reflect.Type;
 
 /**
  * Created by adrian on 25/01/2017.

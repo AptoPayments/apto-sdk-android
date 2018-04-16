@@ -1,7 +1,5 @@
 package com.shift.link.sdk.sdk.tasks.verifications;
 
-import com.shift.link.sdk.sdk.storages.AutomationStorage;
-
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shift.link.sdk.api.vos.responses.verifications.StartVerificationResponseVo;

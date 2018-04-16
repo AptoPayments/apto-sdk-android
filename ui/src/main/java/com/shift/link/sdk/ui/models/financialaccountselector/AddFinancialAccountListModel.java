@@ -2,15 +2,13 @@ package com.shift.link.sdk.ui.models.financialaccountselector;
 
 import android.app.Activity;
 
-import com.shift.link.sdk.ui.models.ActivityModel;
-
-import java.util.ArrayList;
-
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shift.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.ActivityModel;
 import com.shift.link.sdk.ui.models.Model;
+
+import java.util.ArrayList;
 
 /**
  * Created by adrian on 17/01/2017.

@@ -5,6 +5,7 @@ import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.loanapplication.documents.AddDocumentModel;
 import com.shift.link.sdk.ui.utils.ResourceUtil;

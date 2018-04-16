@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.shift.link.sdk.ui.views.userdata.MonthlyIncomeView;
 
-import com.shift.link.sdk.ui.views.userdata.MonthlyIncomeView;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 public class MockMonthlyIncomeView extends MonthlyIncomeView {

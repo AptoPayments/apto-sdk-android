@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.loanapplication.details.LoanApplicationDetailsModel;
 import com.shift.link.sdk.ui.storages.UIStorage;

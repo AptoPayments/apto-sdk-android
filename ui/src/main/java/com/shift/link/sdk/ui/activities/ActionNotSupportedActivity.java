@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.shift.link.sdk.ui.views.ActionNotSupportedView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.views.ActionNotSupportedView;
 

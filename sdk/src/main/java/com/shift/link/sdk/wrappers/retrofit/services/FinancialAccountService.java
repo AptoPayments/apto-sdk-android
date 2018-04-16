@@ -1,7 +1,6 @@
 package com.shift.link.sdk.wrappers.retrofit.services;
 
 import com.google.gson.JsonObject;
-
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
@@ -16,6 +15,7 @@ import com.shift.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAcc
 import com.shift.link.sdk.api.vos.responses.users.UserDataListResponseVo;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

@@ -2,14 +2,13 @@ package com.shift.link.sdk.ui.models.card;
 
 import android.content.res.Resources;
 
+import com.shift.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
+import com.shift.link.sdk.ui.models.Model;
 import com.shift.link.sdk.ui.storages.CardStorage;
 
 import java.util.ArrayList;
 
 import me.ledge.common.utils.PagedList;
-import com.shift.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
-import com.shift.link.sdk.ui.models.Model;
-import com.shift.link.sdk.ui.storages.CardStorage;
 
 /**
  * Concrete {@link Model} for managing an account.

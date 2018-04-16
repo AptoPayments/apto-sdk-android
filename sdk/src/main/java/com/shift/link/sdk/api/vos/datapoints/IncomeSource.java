@@ -1,7 +1,6 @@
 package com.shift.link.sdk.api.vos.datapoints;
 
 import com.google.gson.JsonObject;
-
 import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 
 public class IncomeSource extends DataPointVo {

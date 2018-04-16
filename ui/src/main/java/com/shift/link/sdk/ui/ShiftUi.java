@@ -7,13 +7,6 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.security.ProviderInstaller;
-import com.shift.link.sdk.ui.images.GenericImageLoader;
-import com.shift.link.sdk.ui.utils.HandlerConfigurator;
-import com.shift.link.sdk.ui.vos.LoanDataVo;
-
-import java.util.ArrayList;
-
-import me.ledge.common.utils.android.AndroidUtils;
 import com.shift.link.imageloaders.volley.VolleyImageLoader;
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
@@ -33,6 +26,10 @@ import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.utils.HandlerConfigurator;
 import com.shift.link.sdk.ui.vos.LoanDataVo;
 import com.shift.link.sdk.wrappers.retrofit.RetrofitTwoLinkApiWrapper;
+
+import java.util.ArrayList;
+
+import me.ledge.common.utils.android.AndroidUtils;
 
 /**
  * ShiftUi is an extension of {@link LedgeLinkSdk} to help set up the SDK.<br />

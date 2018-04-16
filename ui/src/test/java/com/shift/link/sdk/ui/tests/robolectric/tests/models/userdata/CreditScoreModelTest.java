@@ -1,14 +1,14 @@
 package com.shift.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.shift.link.sdk.api.vos.datapoints.CreditScore;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.CreditScoreModel;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 

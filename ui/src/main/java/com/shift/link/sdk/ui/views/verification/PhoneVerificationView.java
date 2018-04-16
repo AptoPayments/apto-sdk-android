@@ -7,7 +7,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dpizarro.pinview.library.PinView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.utils.KeyboardUtil;

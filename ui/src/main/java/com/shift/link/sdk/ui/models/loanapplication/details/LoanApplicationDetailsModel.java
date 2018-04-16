@@ -2,8 +2,6 @@ package com.shift.link.sdk.ui.models.loanapplication.details;
 
 import android.content.res.Resources;
 
-import com.shift.link.sdk.ui.images.GenericImageLoader;
-
 import com.shift.link.sdk.api.utils.TermUnit;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.ui.R;

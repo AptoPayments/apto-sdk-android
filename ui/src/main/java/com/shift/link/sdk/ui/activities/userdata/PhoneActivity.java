@@ -2,11 +2,6 @@ package com.shift.link.sdk.ui.activities.userdata;
 
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.PhoneDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.PhonePresenter;
-import com.shift.link.sdk.ui.views.userdata.PhoneView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.PhoneModel;
 import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;

@@ -5,12 +5,12 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
 import com.shift.link.sdk.ui.widgets.steppers.StepperListener;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 /**
  * TODO: Class documentation.

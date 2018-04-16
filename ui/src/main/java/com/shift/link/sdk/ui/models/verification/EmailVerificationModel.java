@@ -1,7 +1,5 @@
 package com.shift.link.sdk.ui.models.verification;
 
-import com.shift.link.sdk.ui.storages.UserStorage;
-
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.datapoints.Email;

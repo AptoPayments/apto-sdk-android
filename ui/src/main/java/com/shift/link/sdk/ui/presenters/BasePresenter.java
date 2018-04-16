@@ -2,8 +2,6 @@ package com.shift.link.sdk.ui.presenters;
 
 import android.view.View;
 
-import com.shift.link.sdk.ui.ShiftUi;
-
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.models.Model;

@@ -2,16 +2,8 @@ package com.shift.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.presenters.ActivityPresenter;
-import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.views.ViewWithToolbar;
-import com.shift.link.sdk.ui.views.userdata.NextButtonListener;
-import com.shift.link.sdk.ui.views.userdata.UserDataView;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
-
-import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
+import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.UserDataModel;
 import com.shift.link.sdk.ui.presenters.ActivityPresenter;
@@ -21,6 +13,7 @@ import com.shift.link.sdk.ui.views.userdata.NextButtonListener;
 import com.shift.link.sdk.ui.views.userdata.UserDataView;
 import com.shift.link.sdk.ui.widgets.steppers.StepperConfiguration;
 import com.shift.link.sdk.ui.widgets.steppers.StepperListener;
+import com.shift.link.sdk.ui.workflow.ModuleManager;
 
 /**
  * Generic {@link Presenter} to handle user data input screens.

@@ -7,9 +7,6 @@ import android.view.View;
 import com.shift.link.sdk.ui.models.ActivityModel;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
 
-import com.shift.link.sdk.ui.models.ActivityModel;
-import com.shift.link.sdk.ui.views.ViewWithToolbar;
-
 /**
  * Generic {@link Presenter} for an {@link AppCompatActivity}.
  * @author Wijnand

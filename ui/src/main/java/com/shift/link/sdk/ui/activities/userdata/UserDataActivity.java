@@ -3,10 +3,6 @@ package com.shift.link.sdk.ui.activities.userdata;
 import android.view.Menu;
 import android.view.View;
 
-import com.shift.link.sdk.ui.models.ActivityModel;
-import com.shift.link.sdk.ui.presenters.ActivityPresenter;
-import com.shift.link.sdk.ui.views.ViewWithToolbar;
-
 import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.ActivityModel;
 import com.shift.link.sdk.ui.presenters.ActivityPresenter;

@@ -3,11 +3,10 @@ package com.shift.link.sdk.ui.views.text;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
+
 import ru.lanwen.verbalregex.VerbalExpression;
 
 /**

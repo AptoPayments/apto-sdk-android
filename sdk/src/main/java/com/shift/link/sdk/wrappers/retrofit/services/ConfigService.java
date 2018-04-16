@@ -3,6 +3,7 @@ package com.shift.link.sdk.wrappers.retrofit.services;
 import com.shift.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shift.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 

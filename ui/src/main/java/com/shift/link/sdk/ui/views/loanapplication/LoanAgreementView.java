@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import com.shift.link.sdk.ui.storages.UIStorage;

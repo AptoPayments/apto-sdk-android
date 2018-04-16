@@ -1,7 +1,8 @@
 package com.shift.link.sdk.sdk.utils.tasks;
 
-import junit.framework.Assert;
 import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+
+import junit.framework.Assert;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

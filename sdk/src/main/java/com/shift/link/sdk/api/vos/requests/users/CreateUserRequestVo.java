@@ -3,10 +3,6 @@ package com.shift.link.sdk.api.vos.requests.users;
 import com.shift.link.sdk.api.utils.users.EmploymentStatusId;
 import com.shift.link.sdk.api.utils.users.HousingTypeId;
 import com.shift.link.sdk.api.utils.users.SalaryFrequencyId;
-
-import com.shift.link.sdk.api.utils.users.EmploymentStatusId;
-import com.shift.link.sdk.api.utils.users.HousingTypeId;
-import com.shift.link.sdk.api.utils.users.SalaryFrequencyId;
 import com.shift.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 
 /**

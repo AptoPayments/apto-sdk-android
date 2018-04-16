@@ -2,17 +2,6 @@ package com.shift.link.sdk.ui.tests.robolectric.tests.presenters.loanapplication
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.storages.LoanStorage;
-
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
-
 import com.shift.link.sdk.api.utils.loanapplication.LoanApplicationActionId;
 import com.shift.link.sdk.api.utils.loanapplication.LoanApplicationStatus;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
@@ -28,6 +17,15 @@ import com.shift.link.sdk.ui.models.loanapplication.RejectedLoanApplicationModel
 import com.shift.link.sdk.ui.presenters.loanapplication.IntermediateLoanApplicationPresenter;
 import com.shift.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import com.shift.link.sdk.ui.storages.LoanStorage;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricGradleTestRunner;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.nullValue;

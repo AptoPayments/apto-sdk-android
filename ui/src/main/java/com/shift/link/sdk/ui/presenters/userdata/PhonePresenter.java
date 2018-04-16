@@ -2,8 +2,6 @@ package com.shift.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.views.userdata.PhoneView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.PhoneModel;
 import com.shift.link.sdk.ui.presenters.Presenter;

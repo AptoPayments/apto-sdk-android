@@ -1,7 +1,6 @@
 package com.shift.link.sdk.sdk.tasks.verifications;
 
 import com.shift.link.sdk.api.exceptions.ApiException;
-
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
 import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;

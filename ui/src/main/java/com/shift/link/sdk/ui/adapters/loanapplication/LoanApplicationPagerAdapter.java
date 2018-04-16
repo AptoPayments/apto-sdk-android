@@ -5,8 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.shift.link.sdk.ui.fragments.loanapplication.LoanApplicationFragment;
-
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.ui.fragments.loanapplication.LoanApplicationFragment;
 

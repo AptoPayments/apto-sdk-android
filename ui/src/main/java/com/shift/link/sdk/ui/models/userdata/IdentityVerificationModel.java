@@ -1,5 +1,11 @@
 package com.shift.link.sdk.ui.models.userdata;
 
+import com.shift.link.sdk.api.vos.datapoints.Birthdate;
+import com.shift.link.sdk.api.vos.datapoints.DataPointList;
+import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shift.link.sdk.api.vos.datapoints.SSN;
+import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.models.Model;
 import com.shift.link.sdk.ui.utils.DateUtil;
 
 import java.text.SimpleDateFormat;
@@ -8,13 +14,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import com.shift.link.sdk.api.vos.datapoints.Birthdate;
-import com.shift.link.sdk.api.vos.datapoints.DataPointList;
-import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shift.link.sdk.api.vos.datapoints.SSN;
-import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.models.Model;
-import com.shift.link.sdk.ui.utils.DateUtil;
 import ru.lanwen.verbalregex.VerbalExpression;
 
 /**

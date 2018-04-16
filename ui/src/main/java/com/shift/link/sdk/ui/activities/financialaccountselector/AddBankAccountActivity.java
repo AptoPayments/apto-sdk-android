@@ -10,24 +10,17 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.activities.MvpActivity;
-import com.shift.link.sdk.ui.presenters.financialaccountselector.AddBankAccountDelegate;
-import com.shift.link.sdk.ui.presenters.financialaccountselector.AddBankAccountPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.views.financialaccountselector.AddBankAccountView;
-
-import java.util.HashMap;
-
 import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.AddBankAccountDelegate;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.AddBankAccountPresenter;
 import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
 import com.shift.link.sdk.ui.views.financialaccountselector.AddBankAccountView;
+
+import java.util.HashMap;
 
 import static com.shift.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
 

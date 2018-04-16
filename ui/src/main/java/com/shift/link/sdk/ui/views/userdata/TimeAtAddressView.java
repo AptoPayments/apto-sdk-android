@@ -5,12 +5,11 @@ import android.content.res.ColorStateList;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.util.AttributeSet;
 import android.view.View;
-import com.shift.link.sdk.api.vos.responses.config.TimeAtAddressVo;
-
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.shift.link.sdk.api.vos.responses.config.TimeAtAddressVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.widgets.steppers.StepperListener;

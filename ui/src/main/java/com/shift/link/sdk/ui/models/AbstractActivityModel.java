@@ -1,6 +1,7 @@
 package com.shift.link.sdk.ui.models;
 
 import android.app.Activity;
+
 import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 

@@ -2,18 +2,15 @@ package com.shift.link.sdk.ui.models.userdata;
 
 import android.text.TextUtils;
 
-import com.shift.link.sdk.ui.utils.EmailUtil;
-
-import java.util.LinkedList;
-
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.datapoints.Email;
 import com.shift.link.sdk.api.vos.datapoints.PersonalName;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.Model;
+import com.shift.link.sdk.ui.utils.EmailUtil;
 
-import static com.shift.link.sdk.ui.utils.EmailUtil.isValidEmail;
+import java.util.LinkedList;
 
 
 /**

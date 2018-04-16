@@ -2,8 +2,6 @@ package com.shift.link.sdk.ui.presenters.showgenericmessage;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.views.showgenericmessage.ShowGenericMessageView;
-
 import com.shift.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import com.shift.link.sdk.ui.models.showgenericmessage.ShowGenericMessageModel;
 import com.shift.link.sdk.ui.presenters.Presenter;

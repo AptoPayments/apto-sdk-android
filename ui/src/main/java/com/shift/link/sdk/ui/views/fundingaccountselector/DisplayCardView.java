@@ -9,12 +9,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.vinaygaba.creditcardview.CreditCardView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.views.DisplayErrorMessage;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
+import com.vinaygaba.creditcardview.CreditCardView;
 
 /**
  * Displays the display card screen.

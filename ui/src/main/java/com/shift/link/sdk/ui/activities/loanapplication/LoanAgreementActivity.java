@@ -2,11 +2,6 @@ package com.shift.link.sdk.ui.activities.loanapplication;
 
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.loanapplication.LoanAgreementDelegate;
-import com.shift.link.sdk.ui.presenters.loanapplication.LoanAgreementPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.views.loanapplication.LoanAgreementView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.loanapplication.LoanAgreementModel;

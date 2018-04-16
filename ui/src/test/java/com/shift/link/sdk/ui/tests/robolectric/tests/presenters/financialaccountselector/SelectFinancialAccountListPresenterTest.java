@@ -2,19 +2,19 @@ package com.shift.link.sdk.ui.tests.robolectric.tests.presenters.financialaccoun
 
 import android.support.v7.app.AppCompatActivity;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
-
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shift.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import com.shift.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountListModel;
 import com.shift.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.SelectFinancialAccountListPresenter;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricGradleTestRunner;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.nullValue;

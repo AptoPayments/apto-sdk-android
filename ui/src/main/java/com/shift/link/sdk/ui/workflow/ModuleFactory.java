@@ -2,8 +2,6 @@ package com.shift.link.sdk.ui.workflow;
 
 import android.app.Activity;
 
-import com.shift.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
-
 import com.shift.link.sdk.api.vos.responses.workflow.ActionVo;
 import com.shift.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import com.shift.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;

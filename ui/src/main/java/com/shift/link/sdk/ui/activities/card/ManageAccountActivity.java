@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.card.ManageAccountPresenter;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.FragmentMvpActivity;
 import com.shift.link.sdk.ui.presenters.card.ManageAccountPresenter;

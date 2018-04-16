@@ -14,8 +14,6 @@ import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.Arrays;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.views.LoadingView;
@@ -23,6 +21,8 @@ import com.shift.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
 import com.shift.link.sdk.ui.widgets.SsnEditText;
 import com.shift.link.sdk.ui.widgets.steppers.StepperListener;
+
+import java.util.Arrays;
 
 /**
  * Displays the user details screen.

@@ -13,13 +13,12 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import com.shift.link.sdk.ui.views.ViewWithToolbar;
-
-import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.card.FundingSourceModel;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
+
+import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 
 /**
  * Displays the manage account screen.

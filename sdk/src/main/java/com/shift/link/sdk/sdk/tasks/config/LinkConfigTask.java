@@ -1,13 +1,11 @@
 package com.shift.link.sdk.sdk.tasks.config;
 
-import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shift.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
  * A concrete {@link LedgeLinkApiTask} to display loan purposes.

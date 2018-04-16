@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
+
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import com.shift.link.sdk.ui.storages.UIStorage;

@@ -1,8 +1,6 @@
 package com.shift.link.sdk.api.vos.requests.users;
 
 import com.shift.link.sdk.api.vos.datapoints.VerificationVo;
-
-import com.shift.link.sdk.api.vos.datapoints.VerificationVo;
 import com.shift.link.sdk.api.vos.requests.base.ListRequestVo;
 
 /**

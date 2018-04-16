@@ -2,10 +2,6 @@ package com.shift.link.sdk.ui.activities.verification;
 
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.presenters.verification.BirthdateVerificationDelegate;
-import com.shift.link.sdk.ui.views.verification.BirthdateVerificationView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.userdata.UserDataActivity;
 import com.shift.link.sdk.ui.models.verification.BirthdateVerificationModel;

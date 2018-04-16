@@ -2,8 +2,6 @@ package com.shift.link.sdk.ui.models.loanapplication.documents;
 
 import com.shift.link.sdk.ui.vos.DocumentVo;
 
-import com.shift.link.sdk.ui.vos.DocumentVo;
-
 import java.util.ArrayList;
 
 /**

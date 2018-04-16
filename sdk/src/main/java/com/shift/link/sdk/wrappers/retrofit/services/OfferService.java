@@ -5,6 +5,7 @@ import com.shift.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shift.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
 import com.shift.link.sdk.api.vos.responses.offers.OffersListVo;
 import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;

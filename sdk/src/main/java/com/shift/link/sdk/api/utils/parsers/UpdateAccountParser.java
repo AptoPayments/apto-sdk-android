@@ -8,9 +8,6 @@ import com.shift.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAcc
 
 import java.lang.reflect.Type;
 
-import com.shift.link.sdk.api.vos.Card;
-import com.shift.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
-
 /**
  * Created by adrian on 13/03/2018.
  */

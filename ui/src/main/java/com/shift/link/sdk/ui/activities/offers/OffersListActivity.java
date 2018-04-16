@@ -5,11 +5,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.offers.OffersListDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.views.offers.OffersBaseView;
-import com.shift.link.sdk.ui.views.offers.OffersCarouselView;
-
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.MvpActivity;

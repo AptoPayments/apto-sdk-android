@@ -10,9 +10,6 @@ import android.os.Build;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.views.loanapplication.AddDocumentsListView;
-
-import me.ledge.common.utils.android.AndroidUtils;
 import com.shift.link.sdk.api.utils.loanapplication.LoanApplicationActionId;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationActionVo;
 import com.shift.link.sdk.ui.R;
@@ -27,6 +24,8 @@ import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.storages.LoanStorage;
 import com.shift.link.sdk.ui.views.loanapplication.AddDocumentsListView;
 import com.shift.link.sdk.ui.vos.DocumentVo;
+
+import me.ledge.common.utils.android.AndroidUtils;
 
 /**
  * Concrete {@link Presenter} for the add documents screen.

@@ -2,14 +2,6 @@ package com.shift.link.sdk.ui.models.loanapplication;
 
 import android.content.res.Resources;
 
-import com.shift.link.sdk.ui.images.GenericImageLoader;
-import com.shift.link.sdk.ui.models.ActivityModel;
-import com.shift.link.sdk.ui.storages.LinkStorage;
-import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.vos.LoanDataVo;
-
-import java.util.LinkedList;
-
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shift.link.sdk.api.vos.responses.offers.OfferVo;
@@ -20,6 +12,8 @@ import com.shift.link.sdk.ui.models.Model;
 import com.shift.link.sdk.ui.storages.LinkStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.vos.LoanDataVo;
+
+import java.util.LinkedList;
 
 /**
  * Loan summary {@link Model}.

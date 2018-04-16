@@ -2,17 +2,15 @@ package com.shift.link.sdk.ui.tests.robolectric.tests.models.offers;
 
 import android.content.res.Resources;
 
-import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
-
 import com.shift.link.sdk.api.vos.responses.offers.OfferVo;
 import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shift.link.sdk.ui.models.offers.OfferSummaryModel;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.RuntimeEnvironment;
 import org.robolectric.shadows.ShadowContentProvider;
 
 import static org.hamcrest.CoreMatchers.equalTo;

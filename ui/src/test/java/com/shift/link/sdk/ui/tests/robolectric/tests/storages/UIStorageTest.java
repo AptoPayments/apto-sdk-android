@@ -2,13 +2,13 @@ package com.shift.link.sdk.ui.tests.robolectric.tests.storages;
 
 import android.graphics.Color;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.shift.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shift.link.sdk.ui.storages.UIStorage;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 

@@ -4,6 +4,7 @@ import com.shift.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountR
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

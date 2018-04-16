@@ -1,7 +1,5 @@
 package com.shift.link.sdk.ui.presenters.offers;
 
-import com.shift.link.sdk.ui.vos.ApplicationVo;
-
 import com.shift.link.sdk.ui.models.offers.OfferSummaryModel;
 import com.shift.link.sdk.ui.vos.ApplicationVo;
 

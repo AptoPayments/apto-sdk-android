@@ -10,9 +10,13 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.shift.link.sdk.api.vos.responses.config.ContentVo;
+import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.utils.DisclaimerUtil;
 import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shift.link.sdk.ui.views.DisclaimerView;
+import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ModuleManager;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,14 +25,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import com.shift.link.sdk.api.vos.responses.config.ContentVo;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
-import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.utils.DisclaimerUtil;
-import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shift.link.sdk.ui.views.DisclaimerView;
 
 /**
  * Activity that loads a view with the given disclaimer.

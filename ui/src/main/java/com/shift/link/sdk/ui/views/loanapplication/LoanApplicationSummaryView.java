@@ -15,10 +15,6 @@ import android.widget.Toast;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
-
-import java.util.LinkedList;
-import java.util.Set;
-
 import com.shift.link.sdk.api.vos.datapoints.Address;
 import com.shift.link.sdk.api.vos.datapoints.ArmedForces;
 import com.shift.link.sdk.api.vos.datapoints.CreditScore;
@@ -39,6 +35,9 @@ import com.shift.link.sdk.ui.utils.TimeAtAddressUtil;
 import com.shift.link.sdk.ui.views.LoadingView;
 import com.shift.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
+
+import java.util.LinkedList;
+import java.util.Set;
 
 /**
  * Displays the application summary.

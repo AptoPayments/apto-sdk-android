@@ -2,11 +2,6 @@ package com.shift.link.sdk.ui.activities.userdata;
 
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.EmailDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.EmailPresenter;
-import com.shift.link.sdk.ui.views.userdata.EmailView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.EmailModel;
 import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;

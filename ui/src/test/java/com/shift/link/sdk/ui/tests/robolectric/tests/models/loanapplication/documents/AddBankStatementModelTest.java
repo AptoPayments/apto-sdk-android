@@ -1,10 +1,9 @@
 package com.shift.link.sdk.ui.tests.robolectric.tests.models.loanapplication.documents;
 
-import com.shift.link.sdk.ui.vos.DocumentVo;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.loanapplication.documents.AddBankStatementModel;
 import com.shift.link.sdk.ui.vos.DocumentVo;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

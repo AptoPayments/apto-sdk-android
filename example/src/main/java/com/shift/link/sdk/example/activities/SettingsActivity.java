@@ -10,8 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import java.lang.ref.WeakReference;
-
 import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shift.link.sdk.api.vos.datapoints.Address;
 import com.shift.link.sdk.api.vos.datapoints.ArmedForces;
@@ -47,6 +45,8 @@ import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.vos.LoanDataVo;
 import com.shift.link.sdk.ui.widgets.HintArrayAdapter;
+
+import java.lang.ref.WeakReference;
 
 /**
  * Settings display.

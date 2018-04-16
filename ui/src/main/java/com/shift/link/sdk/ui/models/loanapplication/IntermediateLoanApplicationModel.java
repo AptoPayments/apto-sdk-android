@@ -3,8 +3,6 @@ package com.shift.link.sdk.ui.models.loanapplication;
 import android.content.res.Resources;
 
 import com.shift.link.sdk.ui.models.ActivityModel;
-
-import com.shift.link.sdk.ui.models.ActivityModel;
 import com.shift.link.sdk.ui.models.Model;
 
 /**

@@ -3,9 +3,6 @@ package com.shift.link.sdk.ui.utils;
 import com.shift.link.sdk.ui.views.LoadingView;
 import com.shift.link.sdk.ui.views.ViewWithIndeterminateLoading;
 
-import com.shift.link.sdk.ui.views.LoadingView;
-import com.shift.link.sdk.ui.views.ViewWithIndeterminateLoading;
-
 /**
  * Created by adrian on 26/07/2017.
  */

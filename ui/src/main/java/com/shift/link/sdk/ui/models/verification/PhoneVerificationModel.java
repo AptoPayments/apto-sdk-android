@@ -2,12 +2,10 @@ package com.shift.link.sdk.ui.models.verification;
 
 import android.text.TextUtils;
 
-import com.shift.link.sdk.ui.storages.UserStorage;
-
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shift.link.sdk.api.vos.datapoints.VerificationVo;
 import com.shift.link.sdk.api.vos.datapoints.PhoneNumberVo;
+import com.shift.link.sdk.api.vos.datapoints.VerificationVo;
 import com.shift.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shift.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import com.shift.link.sdk.ui.R;

@@ -1,6 +1,7 @@
 package com.shift.link.sdk.ui.models.lenders;
 
 import android.text.TextUtils;
+
 import com.shift.link.sdk.api.vos.responses.offers.LenderVo;
 import com.shift.link.sdk.ui.models.Model;
 

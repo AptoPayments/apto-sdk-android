@@ -2,16 +2,11 @@ package com.shift.link.sdk.ui.activities.userdata;
 
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.userdata.ArmedForcesDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.ArmedForcesPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.views.userdata.ArmedForcesView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.ArmedForcesModel;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.ArmedForcesDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.ArmedForcesPresenter;
+import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
 import com.shift.link.sdk.ui.views.userdata.ArmedForcesView;
 
 /**

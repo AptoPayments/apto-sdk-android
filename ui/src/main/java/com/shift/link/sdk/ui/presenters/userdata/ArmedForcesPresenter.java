@@ -2,8 +2,6 @@ package com.shift.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.views.userdata.ArmedForcesView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.ArmedForcesModel;
 import com.shift.link.sdk.ui.views.userdata.ArmedForcesView;

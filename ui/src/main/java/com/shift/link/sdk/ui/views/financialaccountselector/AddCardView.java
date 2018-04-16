@@ -2,7 +2,6 @@ package com.shift.link.sdk.ui.views.financialaccountselector;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
@@ -10,18 +9,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.devmarvel.creditcardentry.library.CardType;
 import com.devmarvel.creditcardentry.library.CreditCard;
 import com.devmarvel.creditcardentry.library.CreditCardForm;
-import com.vinaygaba.creditcardview.CreditCardView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.utils.KeyboardUtil;
 import com.shift.link.sdk.ui.views.DisplayErrorMessage;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
-
-import static com.devmarvel.creditcardentry.library.CardType.*;
+import com.vinaygaba.creditcardview.CreditCardView;
 
 /**
  * Displays the add card screen.

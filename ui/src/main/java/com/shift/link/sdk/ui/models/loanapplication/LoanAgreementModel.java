@@ -3,10 +3,6 @@ package com.shift.link.sdk.ui.models.loanapplication;
 import android.app.Activity;
 import android.content.res.Resources;
 
-import com.shift.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
-import com.shift.link.sdk.ui.images.GenericImageLoader;
-import com.shift.link.sdk.ui.models.ActivityModel;
-
 import com.shift.link.sdk.api.utils.TermUnit;
 import com.shift.link.sdk.api.vos.responses.offers.OfferVo;
 import com.shift.link.sdk.ui.R;

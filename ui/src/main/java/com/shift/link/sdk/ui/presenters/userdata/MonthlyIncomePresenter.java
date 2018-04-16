@@ -2,10 +2,6 @@ package com.shift.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.views.userdata.MonthlyIncomeView;
-
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.datapoints.Income;
@@ -14,6 +10,8 @@ import com.shift.link.sdk.ui.models.userdata.MonthlyIncomeModel;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.views.userdata.MonthlyIncomeView;
 import com.shift.link.sdk.ui.widgets.MultiplyTransformer;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 /**
  * TODO: Class documentation.

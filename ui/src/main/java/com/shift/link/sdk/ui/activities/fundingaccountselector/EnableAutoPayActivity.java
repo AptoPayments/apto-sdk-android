@@ -2,10 +2,6 @@ package com.shift.link.sdk.ui.activities.fundingaccountselector;
 
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.fundingaccountselector.EnableAutoPayDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.views.fundingaccountselector.EnableAutoPayView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.fundingaccountselector.EnableAutoPayModel;

@@ -1,8 +1,8 @@
 package com.shift.link.sdk.ui.eventbus.handlers;
 
-import org.greenrobot.eventbus.EventBus;
-
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Concrete {@link ApiResponseHandler} that uses the GreenRobot {@link EventBus}.

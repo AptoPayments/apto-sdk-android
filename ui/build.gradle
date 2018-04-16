@@ -10,7 +10,7 @@ apply from: '../javadoc.gradle'
 apply from: '../jacoco.gradle'
 apply plugin: 'me.tatarka.retrolambda'
 
-version = '0.1.23'
+version = '0.1.24'
 
 ext {
     bintrayRepo = 'maven'
@@ -69,7 +69,7 @@ android {
 
             all {
                 include "**/*Test.class"
-                exclude '**/me/ledge/link/sdk/sdk/*'
+                exclude '**/com/shift/link/sdk/sdk/*'
             }
         }
     }
@@ -101,7 +101,7 @@ repositories {
 
 dependencies {
     // Ledge Libraries
-    compile 'me.ledge.link.sdk:sdk:0.1.24'
+    compile 'me.ledge.link.sdk:sdk:0.1.25'
     compile 'me.ledge.common:common:+'
     // 3rd Party Libraries
     compile('com.android.support:support-v13:24.0.0') {
@@ -163,7 +163,7 @@ afterEvaluate { project ->
 }
 
 task copyAppcompat(type: Copy) {
-    def projectPackage = "me/ledge/link/sdk/ui"
+    def projectPackage = "com/shift/link/sdk/ui"
 
     from "build/generated/source/r/debug/${projectPackage}".replace("/", File.separator)
     into 'src/test/java/android/support/v7/appcompat'.replace("/", File.separator)

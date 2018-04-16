@@ -2,14 +2,8 @@ package com.shift.link.sdk.ui.presenters.financialaccountselector;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.presenters.ActivityPresenter;
-import com.shift.link.sdk.ui.presenters.Presenter;
-import com.shift.link.sdk.ui.views.financialaccountselector.SelectFinancialAccountListView;
-
-import java.util.List;
-
-import com.shift.link.sdk.api.vos.datapoints.BankAccount;
 import com.shift.link.sdk.api.vos.Card;
+import com.shift.link.sdk.api.vos.datapoints.BankAccount;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shift.link.sdk.ui.models.financialaccountselector.SelectBankAccountModel;
@@ -19,6 +13,8 @@ import com.shift.link.sdk.ui.models.financialaccountselector.SelectFinancialAcco
 import com.shift.link.sdk.ui.presenters.ActivityPresenter;
 import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.views.financialaccountselector.SelectFinancialAccountListView;
+
+import java.util.List;
 
 /**
  * Concrete {@link Presenter} for the select financial account screen.

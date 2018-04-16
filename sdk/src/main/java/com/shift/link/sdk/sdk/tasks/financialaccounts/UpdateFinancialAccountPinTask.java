@@ -1,11 +1,11 @@
 package com.shift.link.sdk.sdk.tasks.financialaccounts;
 
 import com.shift.link.sdk.api.exceptions.ApiException;
+import com.shift.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shift.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
-import com.shift.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
+import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 
 /**

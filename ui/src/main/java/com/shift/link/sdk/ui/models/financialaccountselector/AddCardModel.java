@@ -2,9 +2,6 @@ package com.shift.link.sdk.ui.models.financialaccountselector;
 
 import android.app.Activity;
 
-import com.shift.link.sdk.ui.models.ActivityModel;
-import com.shift.link.sdk.ui.storages.UserStorage;
-
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;

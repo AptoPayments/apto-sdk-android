@@ -1,7 +1,5 @@
 package com.shift.link.sdk.ui.models.userdata;
 
-import com.shift.link.sdk.ui.models.AbstractActivityModel;
-
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.ui.models.AbstractActivityModel;
 

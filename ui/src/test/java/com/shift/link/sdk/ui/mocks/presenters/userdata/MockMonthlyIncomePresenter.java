@@ -5,9 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.shift.link.sdk.ui.presenters.userdata.MonthlyIncomeDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.MonthlyIncomePresenter;
 
-import com.shift.link.sdk.ui.presenters.userdata.MonthlyIncomeDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.MonthlyIncomePresenter;
-
 public class MockMonthlyIncomePresenter extends MonthlyIncomePresenter {
 
     public MockMonthlyIncomePresenter(AppCompatActivity activity, MonthlyIncomeDelegate delegate) {

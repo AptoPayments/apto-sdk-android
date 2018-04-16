@@ -3,15 +3,6 @@ package com.shift.link.sdk.ui.presenters.userdata;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 
-import com.shift.link.sdk.ui.geocoding.handlers.GeocodingHandler;
-import com.shift.link.sdk.ui.geocoding.vos.ResultVo;
-import com.shift.link.sdk.ui.presenters.Presenter;
-import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shift.link.sdk.ui.views.userdata.AddressView;
-
-import java8.util.concurrent.CompletableFuture;
-import me.ledge.common.models.countries.Usa;
-import me.ledge.common.models.countries.UsaState;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.geocoding.handlers.GeocodingHandler;
@@ -20,6 +11,10 @@ import com.shift.link.sdk.ui.models.userdata.AddressModel;
 import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shift.link.sdk.ui.views.userdata.AddressView;
+
+import java8.util.concurrent.CompletableFuture;
+import me.ledge.common.models.countries.Usa;
+import me.ledge.common.models.countries.UsaState;
 
 /**
  * Concrete {@link Presenter} for the address screen.

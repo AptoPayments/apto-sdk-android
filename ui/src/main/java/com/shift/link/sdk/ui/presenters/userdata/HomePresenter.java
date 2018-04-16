@@ -2,10 +2,6 @@ package com.shift.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shift.link.sdk.ui.views.userdata.HomeView;
-
-import java8.util.concurrent.CompletableFuture;
 import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
@@ -22,6 +18,8 @@ import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shift.link.sdk.ui.views.userdata.HomeView;
 import com.shift.link.sdk.ui.widgets.HintArrayAdapter;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
+
+import java8.util.concurrent.CompletableFuture;
 
 /**
  * Concrete {@link Presenter} for the address validation screen.

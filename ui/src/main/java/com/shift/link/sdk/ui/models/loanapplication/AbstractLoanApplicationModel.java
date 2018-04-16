@@ -4,13 +4,9 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.activities.MvpActivity;
-import com.shift.link.sdk.ui.models.ActivityModel;
-
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.ActivityModel;
 import com.shift.link.sdk.ui.models.Model;

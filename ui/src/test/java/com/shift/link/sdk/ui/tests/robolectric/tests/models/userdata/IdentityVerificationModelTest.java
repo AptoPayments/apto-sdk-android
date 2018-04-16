@@ -1,6 +1,12 @@
 package com.shift.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import com.google.i18n.phonenumbers.Phonenumber;
+import com.shift.link.sdk.api.vos.datapoints.Birthdate;
+import com.shift.link.sdk.api.vos.datapoints.DataPointList;
+import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shift.link.sdk.api.vos.datapoints.PhoneNumberVo;
+import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.models.userdata.IdentityVerificationModel;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,13 +14,6 @@ import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
-import com.shift.link.sdk.api.vos.datapoints.Birthdate;
-import com.shift.link.sdk.api.vos.datapoints.DataPointList;
-import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shift.link.sdk.api.vos.datapoints.PhoneNumberVo;
-import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.models.userdata.IdentityVerificationModel;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 

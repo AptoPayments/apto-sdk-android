@@ -3,18 +3,6 @@ package com.shift.link.sdk.ui.presenters.card;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
-import com.shift.link.sdk.ui.presenters.verification.AuthModuleConfig;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
@@ -45,6 +33,14 @@ import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.workflow.Command;
 import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import static com.shift.link.sdk.api.vos.datapoints.DataPointVo.DataPointType.PersonalName;
 

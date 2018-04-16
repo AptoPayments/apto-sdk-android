@@ -3,23 +3,22 @@ package com.shift.link.sdk.ui.presenters.loanapplication;
 import android.support.v7.app.AppCompatActivity;
 
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
-import com.shift.link.sdk.ui.views.loanapplication.LoanAgreementView;
-
-import java8.util.concurrent.CompletableFuture;
-import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
 import com.shift.link.sdk.api.utils.loanapplication.LoanApplicationStatus;
 import com.shift.link.sdk.api.vos.responses.config.LoanProductListVo;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.api.vos.responses.offers.OfferVo;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
-import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import com.shift.link.sdk.ui.presenters.ActivityPresenter;
 import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.storages.LoanStorage;
 import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shift.link.sdk.ui.views.loanapplication.LoanAgreementView;
+
+import java8.util.concurrent.CompletableFuture;
+import me.ledge.common.fragments.dialogs.NotificationDialogFragment;
 
 /**
  * Concrete {@link Presenter} for the loan agreement.

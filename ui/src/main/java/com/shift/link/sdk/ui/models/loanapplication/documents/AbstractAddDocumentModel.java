@@ -1,7 +1,5 @@
 package com.shift.link.sdk.ui.models.loanapplication.documents;
 
-import com.shift.link.sdk.ui.vos.DocumentVo;
-
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationActionVo;
 import com.shift.link.sdk.ui.vos.DocumentVo;
 

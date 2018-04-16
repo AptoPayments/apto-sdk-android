@@ -1,19 +1,17 @@
 package com.shift.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
+import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
+import com.shift.link.sdk.api.vos.datapoints.DataPointList;
+import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shift.link.sdk.api.vos.datapoints.Income;
+import com.shift.link.sdk.api.vos.datapoints.IncomeSource;
+import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.AnnualIncomeModel;
 
 import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
-import com.shift.link.sdk.api.vos.datapoints.DataPointList;
-import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shift.link.sdk.api.vos.datapoints.IncomeSource;
-import com.shift.link.sdk.api.vos.datapoints.Income;
-import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.models.userdata.AnnualIncomeModel;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 

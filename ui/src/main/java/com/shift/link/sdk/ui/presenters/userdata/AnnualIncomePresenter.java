@@ -2,18 +2,12 @@ package com.shift.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.views.userdata.AnnualIncomeView;
-
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-
-import java8.util.concurrent.CompletableFuture;
 import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shift.link.sdk.api.vos.responses.config.IncomeTypeVo;
 import com.shift.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shift.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.AnnualIncomeModel;
 import com.shift.link.sdk.ui.presenters.Presenter;
@@ -21,6 +15,11 @@ import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shift.link.sdk.ui.views.userdata.AnnualIncomeView;
 import com.shift.link.sdk.ui.widgets.HintArrayAdapter;
+import com.shift.link.sdk.ui.workflow.ModuleManager;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
+import java8.util.concurrent.CompletableFuture;
 
 /**
  * Concrete {@link Presenter} for the income screen.

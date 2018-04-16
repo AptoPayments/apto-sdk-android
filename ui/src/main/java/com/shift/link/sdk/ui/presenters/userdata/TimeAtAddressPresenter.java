@@ -2,10 +2,8 @@ package com.shift.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.views.userdata.TimeAtAddressView;
-
-import com.shift.link.sdk.api.vos.responses.config.TimeAtAddressVo;
 import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
+import com.shift.link.sdk.api.vos.responses.config.TimeAtAddressVo;
 import com.shift.link.sdk.ui.models.userdata.TimeAtAddressModel;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.views.userdata.TimeAtAddressView;

@@ -4,14 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
-import com.shift.link.sdk.ui.views.loanapplication.LoanApplicationSummaryView;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-
-import java8.util.concurrent.CompletableFuture;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shift.link.sdk.api.vos.responses.config.LoanProductListVo;
 import com.shift.link.sdk.api.vos.responses.config.LoanProductVo;
@@ -20,8 +12,8 @@ import com.shift.link.sdk.api.vos.responses.config.RequiredDataPointsListRespons
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.api.vos.responses.offers.OfferVo;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
-import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
 import com.shift.link.sdk.ui.presenters.ActivityPresenter;
 import com.shift.link.sdk.ui.presenters.Presenter;
@@ -30,6 +22,13 @@ import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shift.link.sdk.ui.views.loanapplication.LoanApplicationSummaryView;
 import com.shift.link.sdk.ui.vos.ApplicationVo;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+
+import java8.util.concurrent.CompletableFuture;
 
 /**
  * Concrete {@link Presenter} for the loan application summary.

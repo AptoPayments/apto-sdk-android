@@ -1,17 +1,15 @@
 package com.shift.link.sdk.sdk.tests.robolectric.tests.tasks.users;
 
-import com.shift.link.sdk.sdk.utils.tasks.RoboLinkApiTaskWrapper;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.shift.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shift.link.sdk.api.vos.responses.users.LoginUserResponseVo;
 import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shift.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import com.shift.link.sdk.sdk.tasks.users.LoginUserTask;
 import com.shift.link.sdk.sdk.utils.tasks.RoboLinkApiTaskWrapper;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.IsNot.not;

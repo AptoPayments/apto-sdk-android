@@ -1,7 +1,5 @@
 package com.shift.link.sdk.sdk.tasks.config;
 
-import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;

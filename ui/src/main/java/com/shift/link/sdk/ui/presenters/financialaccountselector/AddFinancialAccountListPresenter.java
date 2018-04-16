@@ -2,18 +2,6 @@ package com.shift.link.sdk.ui.presenters.financialaccountselector;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.models.financialaccountselector.AddVirtualCardModel;
-import com.shift.link.sdk.ui.presenters.ActivityPresenter;
-import com.shift.link.sdk.ui.presenters.Presenter;
-import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shift.link.sdk.ui.views.financialaccountselector.AddFinancialAccountListView;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.ArrayList;
-
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
@@ -28,6 +16,10 @@ import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shift.link.sdk.ui.views.financialaccountselector.AddFinancialAccountListView;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
 
 /**
  * Concrete {@link Presenter} for the add financial account screen.

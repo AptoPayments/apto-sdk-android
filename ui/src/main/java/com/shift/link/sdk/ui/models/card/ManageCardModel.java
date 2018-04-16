@@ -1,17 +1,15 @@
 package com.shift.link.sdk.ui.models.card;
 
+import com.shift.link.sdk.api.vos.Card;
+import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shift.link.sdk.api.vos.datapoints.PersonalName;
+import com.shift.link.sdk.ui.models.Model;
 import com.shift.link.sdk.ui.storages.UserStorage;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import com.shift.link.sdk.api.vos.Card;
-import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shift.link.sdk.api.vos.datapoints.PersonalName;
-import com.shift.link.sdk.ui.models.Model;
-import com.shift.link.sdk.ui.storages.UserStorage;
 
 import static com.shift.link.sdk.api.vos.Card.FinancialAccountState.ACTIVE;
 

@@ -2,13 +2,14 @@ package com.shift.link.sdk.ui.models.userdata;
 
 import android.text.TextUtils;
 
+import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shift.link.sdk.api.vos.datapoints.Address;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.datapoints.Housing;
-import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.Model;
+
 import ru.lanwen.verbalregex.VerbalExpression;
 
 /**

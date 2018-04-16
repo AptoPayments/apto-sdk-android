@@ -1,6 +1,7 @@
 package com.shift.link.sdk.ui.presenters;
 
 import android.view.View;
+
 import com.shift.link.sdk.ui.models.Model;
 
 /**

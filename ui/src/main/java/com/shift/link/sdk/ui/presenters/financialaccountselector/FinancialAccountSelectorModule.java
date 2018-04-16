@@ -2,19 +2,6 @@ package com.shift.link.sdk.ui.presenters.financialaccountselector;
 
 import android.app.Activity;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
-import com.shift.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity;
-import com.shift.link.sdk.ui.activities.financialaccountselector.IntermediateFinancialAccountListActivity;
-import com.shift.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity;
-import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.List;
-
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
@@ -32,6 +19,10 @@ import com.shift.link.sdk.ui.models.financialaccountselector.SelectFinancialAcco
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.List;
 
 /**
  * Created by adrian on 29/12/2016.

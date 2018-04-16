@@ -2,8 +2,6 @@ package com.shift.link.sdk.ui.storages;
 
 import com.shift.link.sdk.ui.vos.LoanDataVo;
 
-import com.shift.link.sdk.ui.vos.LoanDataVo;
-
 /**
  * Stores loan related data.
  * @author Wijnand

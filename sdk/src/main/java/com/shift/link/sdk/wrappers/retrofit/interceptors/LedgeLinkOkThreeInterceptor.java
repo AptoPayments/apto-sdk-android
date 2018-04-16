@@ -1,9 +1,10 @@
 package com.shift.link.sdk.wrappers.retrofit.interceptors;
 
 
+import com.shift.link.sdk.api.utils.LedgeLinkHeaders;
+
 import java.io.IOException;
 
-import com.shift.link.sdk.api.utils.LedgeLinkHeaders;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;

@@ -6,15 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.shift.link.sdk.example.views.MainView;
-
-import org.json.JSONException;
-
-import java.lang.ref.WeakReference;
-import java.util.WeakHashMap;
-
-import io.branch.referral.Branch;
-import java8.util.concurrent.CompletableFuture;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shift.link.sdk.example.KeysStorage;
@@ -23,6 +14,14 @@ import com.shift.link.sdk.example.views.MainView;
 import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.vos.LoanDataVo;
+
+import org.json.JSONException;
+
+import java.lang.ref.WeakReference;
+import java.util.WeakHashMap;
+
+import io.branch.referral.Branch;
+import java8.util.concurrent.CompletableFuture;
 
 /**
  * Main display.

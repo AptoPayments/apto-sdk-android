@@ -1,15 +1,13 @@
 package com.shift.link.sdk.ui.tests.robolectric.tests.models.loanapplication;
 
-import com.shift.link.sdk.ui.activities.loanapplication.AddDocumentsListActivity;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.loanapplication.AddDocumentsListActivity;
 import com.shift.link.sdk.ui.models.loanapplication.BigButtonModel;
 import com.shift.link.sdk.ui.models.loanapplication.PendingDocumentsModel;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 

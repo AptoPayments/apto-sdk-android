@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.shift.link.sdk.api.vos.responses.config.ContentVo;
-import com.shift.link.sdk.ui.workflow.Command;
 import com.shift.link.sdk.ui.activities.DisclaimerActivity;
+import com.shift.link.sdk.ui.workflow.Command;
 
 /**
  * Disclaimer helper class.

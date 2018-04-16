@@ -2,14 +2,6 @@ package com.shift.link.sdk.ui.presenters.fundingaccountselector;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.presenters.ActivityPresenter;
-import com.shift.link.sdk.ui.presenters.Presenter;
-import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shift.link.sdk.ui.views.fundingaccountselector.EnableAutoPayView;
-
-import org.greenrobot.eventbus.Subscribe;
-
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shift.link.sdk.sdk.LedgeLinkSdk;
 import com.shift.link.sdk.ui.ShiftUi;
@@ -19,6 +11,8 @@ import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shift.link.sdk.ui.views.fundingaccountselector.EnableAutoPayView;
+
+import org.greenrobot.eventbus.Subscribe;
 
 /**
  * Concrete {@link Presenter} for the enable auto-pay screen.

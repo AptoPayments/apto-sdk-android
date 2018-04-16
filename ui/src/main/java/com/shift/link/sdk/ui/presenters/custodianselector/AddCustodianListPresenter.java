@@ -2,12 +2,6 @@ package com.shift.link.sdk.ui.presenters.custodianselector;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.views.custodianselector.AddCustodianListView;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.ArrayList;
-
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shift.link.sdk.ui.models.custodianselector.AddCoinbaseModel;
 import com.shift.link.sdk.ui.models.custodianselector.AddCustodianListModel;
@@ -17,6 +11,10 @@ import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shift.link.sdk.ui.views.custodianselector.AddCustodianListView;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
 
 /**
  * Concrete {@link Presenter} for the add custodian screen.

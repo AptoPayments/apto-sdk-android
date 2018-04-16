@@ -2,14 +2,6 @@ package com.shift.link.sdk.ui.presenters.financialaccountselector;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.presenters.ActivityPresenter;
-import com.shift.link.sdk.ui.presenters.Presenter;
-import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shift.link.sdk.ui.views.financialaccountselector.IntermediateFinancialAccountListView;
-
-import org.greenrobot.eventbus.Subscribe;
-
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
@@ -19,6 +11,8 @@ import com.shift.link.sdk.ui.presenters.ActivityPresenter;
 import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shift.link.sdk.ui.views.financialaccountselector.IntermediateFinancialAccountListView;
+
+import org.greenrobot.eventbus.Subscribe;
 
 /**
  * Concrete {@link Presenter} for the intermediate screen during financial accounts loading

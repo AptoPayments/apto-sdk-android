@@ -1,13 +1,10 @@
 package com.shift.link.sdk.ui.models.userdata;
 
-import com.shift.link.sdk.ui.utils.EmailUtil;
-
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.datapoints.Email;
 import com.shift.link.sdk.ui.R;
-
-import static com.shift.link.sdk.ui.utils.EmailUtil.isValidEmail;
+import com.shift.link.sdk.ui.utils.EmailUtil;
 
 /**
  * Created by pauteruel on 19/02/2018.

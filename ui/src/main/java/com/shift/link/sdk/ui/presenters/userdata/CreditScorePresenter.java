@@ -2,8 +2,6 @@ package com.shift.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.views.userdata.CreditScoreView;
-
 import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shift.link.sdk.api.vos.responses.config.CreditScoreVo;
 import com.shift.link.sdk.ui.models.userdata.CreditScoreModel;

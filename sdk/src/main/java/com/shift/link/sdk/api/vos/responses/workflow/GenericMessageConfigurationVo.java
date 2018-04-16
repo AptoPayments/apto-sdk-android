@@ -5,7 +5,6 @@ package com.shift.link.sdk.api.vos.responses.workflow;
  */
 
 import com.google.gson.annotations.SerializedName;
-
 import com.shift.link.sdk.api.vos.responses.config.ContentVo;
 
 public class GenericMessageConfigurationVo extends ActionConfigurationVo {

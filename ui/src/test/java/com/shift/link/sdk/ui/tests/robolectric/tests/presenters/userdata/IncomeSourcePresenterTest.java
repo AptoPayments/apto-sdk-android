@@ -2,23 +2,6 @@ package com.shift.link.sdk.ui.tests.robolectric.tests.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
-import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.views.userdata.AnnualIncomeView;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
-
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.annotation.Config;
-
-import java.lang.ref.WeakReference;
-
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.datapoints.IncomeSource;
@@ -33,7 +16,6 @@ import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shift.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import com.shift.link.sdk.ui.BuildConfig;
 import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
 import com.shift.link.sdk.ui.mocks.presenters.userdata.MockAnnualIncomePresenter;
 import com.shift.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModule;
 import com.shift.link.sdk.ui.mocks.views.userdata.MockAnnualIncomeView;
@@ -42,6 +24,18 @@ import com.shift.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.views.userdata.AnnualIncomeView;
+import com.shift.link.sdk.ui.workflow.ModuleManager;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.annotation.Config;
+
+import java.lang.ref.WeakReference;
 
 import static com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper.EXPECTED_INCOME_TYPE;
 import static com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper.EXPECTED_SALARY_FREQUENCY;

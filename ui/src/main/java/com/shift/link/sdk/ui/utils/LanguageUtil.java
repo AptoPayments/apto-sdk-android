@@ -1,8 +1,8 @@
 package com.shift.link.sdk.ui.utils;
 
-import java.util.Locale;
-
 import com.shift.link.sdk.ui.storages.UIStorage;
+
+import java.util.Locale;
 
 /**
  * Language helper.

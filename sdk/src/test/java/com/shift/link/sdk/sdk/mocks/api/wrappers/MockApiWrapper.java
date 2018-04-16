@@ -1,7 +1,5 @@
 package com.shift.link.sdk.sdk.mocks.api.wrappers;
 
-import java.util.HashMap;
-
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.utils.TermUnit;
 import com.shift.link.sdk.api.utils.loanapplication.LoanApplicationMethod;
@@ -62,6 +60,8 @@ import com.shift.link.sdk.api.vos.responses.verifications.StartVerificationRespo
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+
+import java.util.HashMap;
 
 /**
  * Mock implementation of the {@link LinkApiWrapper} interface.

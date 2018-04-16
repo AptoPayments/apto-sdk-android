@@ -2,8 +2,6 @@ package com.shift.link.sdk.ui.models.loanapplication;
 
 import android.app.Activity;
 
-import com.shift.link.sdk.ui.activities.link.LoanAmountActivity;
-
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.link.LoanAmountActivity;

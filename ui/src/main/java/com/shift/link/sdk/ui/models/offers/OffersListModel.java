@@ -2,15 +2,6 @@ package com.shift.link.sdk.ui.models.offers;
 
 import android.content.res.Resources;
 
-import com.shift.link.sdk.ui.models.AbstractActivityModel;
-import com.shift.link.sdk.ui.models.ActivityModel;
-import com.shift.link.sdk.ui.models.loanapplication.BigButtonModel;
-import com.shift.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
-import com.shift.link.sdk.ui.vos.LoanDataVo;
-
-import java.util.Currency;
-import java.util.Locale;
-
 import com.shift.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.AbstractActivityModel;
@@ -19,6 +10,9 @@ import com.shift.link.sdk.ui.models.Model;
 import com.shift.link.sdk.ui.models.loanapplication.BigButtonModel;
 import com.shift.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import com.shift.link.sdk.ui.vos.LoanDataVo;
+
+import java.util.Currency;
+import java.util.Locale;
 
 /**
  * Concrete {@link Model} for the address screen.

@@ -1,10 +1,9 @@
 package com.shift.link.sdk.ui.adapters.offers;
 
+import com.shift.link.sdk.ui.models.offers.OfferSummaryModel;
 import com.shift.link.sdk.ui.views.offers.OfferListSummaryView;
 
 import me.ledge.common.adapters.recyclerview.GenericViewHolder;
-import com.shift.link.sdk.ui.models.offers.OfferSummaryModel;
-import com.shift.link.sdk.ui.views.offers.OfferListSummaryView;
 
 /**
  * Concrete {@link RecyclerView.ViewHolder} for the loan offers list.

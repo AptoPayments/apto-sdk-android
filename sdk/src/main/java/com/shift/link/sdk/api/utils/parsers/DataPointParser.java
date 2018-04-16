@@ -27,24 +27,6 @@ import com.shift.link.sdk.api.vos.datapoints.TimeAtAddress;
 
 import java.lang.reflect.Type;
 
-import com.shift.link.sdk.api.vos.datapoints.Address;
-import com.shift.link.sdk.api.vos.datapoints.ArmedForces;
-import com.shift.link.sdk.api.vos.datapoints.BankAccount;
-import com.shift.link.sdk.api.vos.datapoints.Birthdate;
-import com.shift.link.sdk.api.vos.Card;
-import com.shift.link.sdk.api.vos.datapoints.CreditScore;
-import com.shift.link.sdk.api.vos.datapoints.Custodian;
-import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shift.link.sdk.api.vos.datapoints.Email;
-import com.shift.link.sdk.api.vos.datapoints.Housing;
-import com.shift.link.sdk.api.vos.datapoints.Income;
-import com.shift.link.sdk.api.vos.datapoints.IncomeSource;
-import com.shift.link.sdk.api.vos.datapoints.PaydayLoan;
-import com.shift.link.sdk.api.vos.datapoints.PersonalName;
-import com.shift.link.sdk.api.vos.datapoints.PhoneNumberVo;
-import com.shift.link.sdk.api.vos.datapoints.SSN;
-import com.shift.link.sdk.api.vos.datapoints.TimeAtAddress;
-
 /**
  * Created by adrian on 25/01/2017.
  */

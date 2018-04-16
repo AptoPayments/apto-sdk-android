@@ -6,8 +6,6 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.shift.link.imageloaders.volley.VolleySingleton;
-
-import com.shift.link.imageloaders.volley.VolleySingleton;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.geocoding.vos.GeocodingResultVo;
 

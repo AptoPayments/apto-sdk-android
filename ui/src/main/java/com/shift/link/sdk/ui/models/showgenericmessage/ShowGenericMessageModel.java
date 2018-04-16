@@ -1,7 +1,5 @@
 package com.shift.link.sdk.ui.models.showgenericmessage;
 
-import com.shift.link.sdk.ui.models.ActivityModel;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.ActivityModel;
 import com.shift.link.sdk.ui.models.Model;

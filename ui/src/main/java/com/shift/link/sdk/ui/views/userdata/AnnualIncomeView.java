@@ -6,16 +6,16 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-
+import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.views.LoadingView;
 import com.shift.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
-import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shift.link.sdk.ui.widgets.HintArrayAdapter;
 import com.shift.link.sdk.ui.widgets.steppers.StepperListener;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 /**
  * Displays the income screen.

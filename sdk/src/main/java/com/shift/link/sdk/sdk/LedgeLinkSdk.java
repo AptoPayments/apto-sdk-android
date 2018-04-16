@@ -2,36 +2,6 @@ package com.shift.link.sdk.sdk;
 
 import android.os.AsyncTask;
 
-import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
-import com.shift.link.sdk.sdk.tasks.config.HousingTypeListTask;
-import com.shift.link.sdk.sdk.tasks.config.IncomeTypesListTask;
-import com.shift.link.sdk.sdk.tasks.config.LinkConfigTask;
-import com.shift.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
-import com.shift.link.sdk.sdk.tasks.financialaccounts.AddBankAccountTask;
-import com.shift.link.sdk.sdk.tasks.financialaccounts.AddCardTask;
-import com.shift.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountFundingSourceTask;
-import com.shift.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTask;
-import com.shift.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountsTask;
-import com.shift.link.sdk.sdk.tasks.financialaccounts.GetUserFundingSourcesTask;
-import com.shift.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
-import com.shift.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountPinTask;
-import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-import com.shift.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
-import com.shift.link.sdk.sdk.tasks.loanapplication.GetLoanApplicationStatusTask;
-import com.shift.link.sdk.sdk.tasks.loanapplication.ListPendingLoanApplicationsTask;
-import com.shift.link.sdk.sdk.tasks.loanapplication.SetApplicationAccountTask;
-import com.shift.link.sdk.sdk.tasks.offers.InitialOffersTask;
-import com.shift.link.sdk.sdk.tasks.users.CreateUserTask;
-import com.shift.link.sdk.sdk.tasks.users.GetCurrentUserTask;
-import com.shift.link.sdk.sdk.tasks.users.LoginUserTask;
-import com.shift.link.sdk.sdk.tasks.users.UpdateUserTask;
-import com.shift.link.sdk.sdk.tasks.verifications.CompleteVerificationTask;
-import com.shift.link.sdk.sdk.tasks.verifications.GetVerificationStatusTask;
-import com.shift.link.sdk.sdk.tasks.verifications.RestartVerificationTask;
-import com.shift.link.sdk.sdk.tasks.verifications.StartVerificationTask;
-
-import java.util.concurrent.Executor;
-
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.requests.base.ListRequestVo;
@@ -75,6 +45,8 @@ import com.shift.link.sdk.sdk.tasks.verifications.CompleteVerificationTask;
 import com.shift.link.sdk.sdk.tasks.verifications.GetVerificationStatusTask;
 import com.shift.link.sdk.sdk.tasks.verifications.RestartVerificationTask;
 import com.shift.link.sdk.sdk.tasks.verifications.StartVerificationTask;
+
+import java.util.concurrent.Executor;
 
 /**
  * Ledge Link SDK.<br />

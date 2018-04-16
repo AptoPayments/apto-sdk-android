@@ -3,33 +3,6 @@ package com.shift.link.sdk.wrappers.retrofit;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.shift.link.sdk.wrappers.retrofit.interceptors.LedgeLinkOkThreeInterceptor;
-import com.shift.link.sdk.wrappers.retrofit.services.ConfigService;
-import com.shift.link.sdk.wrappers.retrofit.services.DashboardService;
-import com.shift.link.sdk.wrappers.retrofit.services.FinancialAccountService;
-import com.shift.link.sdk.wrappers.retrofit.services.LoanApplicationService;
-import com.shift.link.sdk.wrappers.retrofit.services.OfferService;
-import com.shift.link.sdk.wrappers.retrofit.services.UserService;
-import com.shift.link.sdk.wrappers.retrofit.services.VerificationService;
-import com.shift.link.sdk.wrappers.retrofit.utils.ErrorUtil;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.utils.VerificationSerializer;
 import com.shift.link.sdk.api.utils.parsers.ActionConfigurationParser;
@@ -94,6 +67,24 @@ import com.shift.link.sdk.wrappers.retrofit.services.OfferService;
 import com.shift.link.sdk.wrappers.retrofit.services.UserService;
 import com.shift.link.sdk.wrappers.retrofit.services.VerificationService;
 import com.shift.link.sdk.wrappers.retrofit.utils.ErrorUtil;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
 import okhttp3.Protocol;

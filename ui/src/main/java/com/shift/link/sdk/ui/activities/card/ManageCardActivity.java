@@ -2,15 +2,11 @@ package com.shift.link.sdk.ui.activities.card;
 
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.card.ManageCardPresenter;
-import com.shift.link.sdk.ui.views.card.ManageCardView;
-import com.venmo.android.pin.PinListener;
-
 import com.shift.link.sdk.ui.R;
-
 import com.shift.link.sdk.ui.activities.FragmentMvpActivity;
 import com.shift.link.sdk.ui.presenters.card.ManageCardPresenter;
 import com.shift.link.sdk.ui.views.card.ManageCardView;
+import com.venmo.android.pin.PinListener;
 
 
 /**

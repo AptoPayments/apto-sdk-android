@@ -7,13 +7,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import br.tiagohm.markdownview.MarkdownView;
-import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
 import com.shift.link.sdk.ui.views.userdata.NextButtonListener;
 import com.shift.link.sdk.ui.views.userdata.UserDataView;
 import com.shift.link.sdk.ui.widgets.steppers.StepperListener;
+
+import br.tiagohm.markdownview.MarkdownView;
 
 /**
  * Displays the show generic message screen.

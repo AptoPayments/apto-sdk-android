@@ -3,21 +3,6 @@ package com.shift.link.sdk.ui.presenters.verification;
 import android.app.Activity;
 import android.widget.Toast;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.activities.userdata.EmailActivity;
-import com.shift.link.sdk.ui.activities.userdata.PhoneActivity;
-import com.shift.link.sdk.ui.activities.verification.BirthdateVerificationActivity;
-import com.shift.link.sdk.ui.activities.verification.EmailVerificationActivity;
-import com.shift.link.sdk.ui.activities.verification.PhoneVerificationActivity;
-import com.shift.link.sdk.ui.presenters.userdata.EmailDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.PhoneDelegate;
-import com.shift.link.sdk.ui.storages.SharedPreferencesStorage;
-import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.workflow.Command;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
-
-import org.greenrobot.eventbus.Subscribe;
-
 import com.shift.link.sdk.api.vos.datapoints.Birthdate;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
@@ -32,10 +17,10 @@ import com.shift.link.sdk.api.vos.responses.verifications.BaseVerificationRespon
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shift.link.sdk.sdk.LedgeLinkSdk;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
-import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.activities.userdata.PhoneActivity;
+import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.activities.userdata.EmailActivity;
+import com.shift.link.sdk.ui.activities.userdata.PhoneActivity;
 import com.shift.link.sdk.ui.activities.verification.BirthdateVerificationActivity;
 import com.shift.link.sdk.ui.activities.verification.EmailVerificationActivity;
 import com.shift.link.sdk.ui.activities.verification.PhoneVerificationActivity;
@@ -45,6 +30,8 @@ import com.shift.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.workflow.Command;
 import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+
+import org.greenrobot.eventbus.Subscribe;
 
 public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailDelegate,
         PhoneVerificationDelegate, EmailVerificationDelegate, BirthdateVerificationDelegate {

@@ -1,7 +1,5 @@
 package com.shift.link.sdk.sdk.tasks.users;
 
-import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shift.link.sdk.api.vos.responses.users.LoginUserResponseVo;

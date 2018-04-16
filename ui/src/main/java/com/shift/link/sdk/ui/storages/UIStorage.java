@@ -3,15 +3,16 @@ package com.shift.link.sdk.ui.storages;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 
-import java.util.concurrent.ExecutionException;
-
-import java8.util.concurrent.CompletableFuture;
-import java8.util.concurrent.CompletionException;
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shift.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shift.link.sdk.api.vos.responses.config.TeamConfigResponseVo;
+
+import java.util.concurrent.ExecutionException;
+
+import java8.util.concurrent.CompletableFuture;
+import java8.util.concurrent.CompletionException;
 
 import static com.shift.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
 

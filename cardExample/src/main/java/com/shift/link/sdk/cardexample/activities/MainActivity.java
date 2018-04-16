@@ -6,16 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import org.json.JSONException;
-
-import io.branch.referral.Branch;
-import java8.util.concurrent.CompletableFuture;
 import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shift.link.sdk.cardexample.KeysStorage;
 import com.shift.link.sdk.cardexample.R;
 import com.shift.link.sdk.cardexample.views.MainView;
 import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.storages.UIStorage;
+
+import org.json.JSONException;
+
+import io.branch.referral.Branch;
+import java8.util.concurrent.CompletableFuture;
 
 public class MainActivity extends AppCompatActivity implements MainView.ViewListener {
 

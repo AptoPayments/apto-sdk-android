@@ -2,11 +2,6 @@ package com.shift.link.sdk.ui.presenters.link;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.views.ViewWithToolbar;
-import com.shift.link.sdk.ui.views.userdata.NextButtonListener;
-import com.shift.link.sdk.ui.views.userdata.UserDataView;
-import com.shift.link.sdk.ui.vos.LoanDataVo;
-
 import com.shift.link.sdk.ui.models.link.LoanDataModel;
 import com.shift.link.sdk.ui.presenters.ActivityPresenter;
 import com.shift.link.sdk.ui.storages.LinkStorage;

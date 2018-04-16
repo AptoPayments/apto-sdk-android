@@ -1,7 +1,5 @@
 package com.shift.link.sdk.api.vos.requests.dashboard;
 
-import com.shift.link.sdk.api.vos.responses.workflow.ActionVo;
-
 import com.shift.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shift.link.sdk.api.vos.responses.workflow.ActionVo;
 

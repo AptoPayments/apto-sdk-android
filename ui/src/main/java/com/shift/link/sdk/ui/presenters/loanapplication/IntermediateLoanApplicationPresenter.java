@@ -2,12 +2,6 @@ package com.shift.link.sdk.ui.presenters.loanapplication;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.presenters.ActivityPresenter;
-import com.shift.link.sdk.ui.presenters.Presenter;
-import com.shift.link.sdk.ui.storages.LoanStorage;
-import com.shift.link.sdk.ui.views.loanapplication.IntermediateLoanApplicationView;
-import com.shift.link.sdk.ui.views.offers.LoanOfferErrorView;
-
 import com.shift.link.sdk.api.utils.loanapplication.LoanApplicationStatus;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.ui.models.loanapplication.ApprovedLoanApplicationModel;

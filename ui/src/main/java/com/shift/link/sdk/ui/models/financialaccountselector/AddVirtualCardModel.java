@@ -1,7 +1,5 @@
 package com.shift.link.sdk.ui.models.financialaccountselector;
 
-import com.shift.link.sdk.ui.storages.UserStorage;
-
 import com.shift.link.sdk.api.vos.requests.financialaccounts.CustodianVo;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;

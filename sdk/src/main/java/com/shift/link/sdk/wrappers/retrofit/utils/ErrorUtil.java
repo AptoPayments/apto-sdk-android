@@ -1,9 +1,10 @@
 package com.shift.link.sdk.wrappers.retrofit.utils;
 
+import com.shift.link.sdk.api.vos.responses.errors.ErrorResponseVo;
+
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 
-import com.shift.link.sdk.api.vos.responses.errors.ErrorResponseVo;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Response;

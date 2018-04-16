@@ -1,16 +1,5 @@
 package com.shift.link.sdk.ui.tests.robolectric.tests.models.loanapplication.documents;
 
-import com.shift.link.sdk.ui.activities.MvpActivity;
-import com.shift.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
-import com.shift.link.sdk.ui.utils.HandlerConfigurator;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import java.util.ArrayList;
-
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -19,6 +8,13 @@ import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import com.shift.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
 import com.shift.link.sdk.ui.utils.HandlerConfigurator;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;

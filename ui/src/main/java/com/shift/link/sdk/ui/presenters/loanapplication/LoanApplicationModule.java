@@ -2,24 +2,6 @@ package com.shift.link.sdk.ui.presenters.loanapplication;
 
 import android.app.Activity;
 
-import com.shift.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
-import com.shift.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity;
-import com.shift.link.sdk.ui.activities.loanapplication.SelectLoanApplicationListActivity;
-import com.shift.link.sdk.ui.activities.offers.OffersListActivity;
-import com.shift.link.sdk.ui.models.ActivityModel;
-import com.shift.link.sdk.ui.presenters.offers.OffersListDelegate;
-import com.shift.link.sdk.ui.storages.LoanStorage;
-import com.shift.link.sdk.ui.vos.ApplicationVo;
-import com.shift.link.sdk.ui.workflow.Command;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
-import com.shift.link.sdk.ui.workflow.WorkflowObject;
-
-import java.lang.ref.WeakReference;
-import java.util.concurrent.ExecutionException;
-
-import java8.util.concurrent.CompletableFuture;
-import java8.util.concurrent.CompletionException;
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
@@ -43,6 +25,12 @@ import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
 import com.shift.link.sdk.ui.workflow.WorkflowModule;
 import com.shift.link.sdk.ui.workflow.WorkflowObject;
+
+import java.lang.ref.WeakReference;
+import java.util.concurrent.ExecutionException;
+
+import java8.util.concurrent.CompletableFuture;
+import java8.util.concurrent.CompletionException;
 
 import static com.shift.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
 

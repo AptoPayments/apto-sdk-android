@@ -1,20 +1,5 @@
 package com.shift.link.sdk.ui.eventbus.utils;
 
-import com.shift.link.sdk.ui.activities.MvpActivity;
-import com.shift.link.sdk.ui.activities.link.LoanAmountActivity;
-import com.shift.link.sdk.ui.activities.offers.OffersListActivity;
-import com.shift.link.sdk.ui.activities.userdata.AddressActivity;
-import com.shift.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
-import com.shift.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
-import com.shift.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
-import com.shift.link.sdk.ui.activities.userdata.PersonalInformationActivity;
-import com.shift.link.sdk.ui.activities.verification.EmailVerificationActivity;
-import com.shift.link.sdk.ui.activities.verification.PhoneVerificationActivity;
-import com.shift.link.sdk.ui.eventbus.handlers.EventBusThreeResponseHandler;
-import com.shift.link.sdk.ui.utils.HandlerConfigurator;
-
-import java.util.ArrayList;
-
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.activities.link.LoanAmountActivity;
@@ -29,6 +14,8 @@ import com.shift.link.sdk.ui.activities.verification.EmailVerificationActivity;
 import com.shift.link.sdk.ui.activities.verification.PhoneVerificationActivity;
 import com.shift.link.sdk.ui.eventbus.handlers.EventBusThreeResponseHandler;
 import com.shift.link.sdk.ui.utils.HandlerConfigurator;
+
+import java.util.ArrayList;
 
 /**
  * EventBus specific handler configuration.

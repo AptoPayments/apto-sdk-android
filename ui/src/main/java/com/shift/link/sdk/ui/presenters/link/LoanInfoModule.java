@@ -2,9 +2,9 @@ package com.shift.link.sdk.ui.presenters.link;
 
 import android.app.Activity;
 
+import com.shift.link.sdk.ui.activities.link.LoanAmountActivity;
 import com.shift.link.sdk.ui.workflow.Command;
 import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
-import com.shift.link.sdk.ui.activities.link.LoanAmountActivity;
 
 /**
  * Created by adrian on 29/12/2016.

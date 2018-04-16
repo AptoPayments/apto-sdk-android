@@ -2,16 +2,6 @@ package com.shift.link.sdk.ui.tests.robolectric.tests.presenters.loanapplication
 
 import android.content.res.Resources;
 
-import com.shift.link.sdk.ui.presenters.loanapplication.LoanApplicationDetailsPresenter;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.shadows.ShadowContentProvider;
-
 import com.shift.link.sdk.api.utils.loanapplication.LoanApplicationStatus;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
@@ -21,6 +11,14 @@ import com.shift.link.sdk.ui.models.loanapplication.details.LoanApplicationDetai
 import com.shift.link.sdk.ui.models.loanapplication.details.PendingLenderActionLoanApplicationDetailsModel;
 import com.shift.link.sdk.ui.models.loanapplication.details.UploadDocsLoanApplicationDetailsModel;
 import com.shift.link.sdk.ui.presenters.loanapplication.LoanApplicationDetailsPresenter;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.shadows.ShadowContentProvider;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.nullValue;

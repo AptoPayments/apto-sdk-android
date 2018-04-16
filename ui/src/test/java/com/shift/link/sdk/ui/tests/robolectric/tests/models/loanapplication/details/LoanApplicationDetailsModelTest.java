@@ -2,13 +2,6 @@ package com.shift.link.sdk.ui.tests.robolectric.tests.models.loanapplication.det
 
 import android.content.res.Resources;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.shadows.ShadowContentProvider;
-
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.utils.TermUnit;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
@@ -16,6 +9,13 @@ import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
 import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shift.link.sdk.ui.models.loanapplication.details.ApprovedLoanApplicationDetailsModel;
 import com.shift.link.sdk.ui.models.loanapplication.details.LoanApplicationDetailsModel;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.shadows.ShadowContentProvider;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 

@@ -1,14 +1,5 @@
 package com.shift.link.sdk.ui.models.verification;
 
-import com.shift.link.sdk.ui.utils.DateUtil;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-
 import com.shift.link.sdk.api.vos.datapoints.Birthdate;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
@@ -19,6 +10,13 @@ import com.shift.link.sdk.ui.models.Model;
 import com.shift.link.sdk.ui.models.userdata.AbstractUserDataModel;
 import com.shift.link.sdk.ui.models.userdata.UserDataModel;
 import com.shift.link.sdk.ui.utils.DateUtil;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 /**
  * Concrete {@link Model} for the birthdate screen.

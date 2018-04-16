@@ -8,17 +8,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
+import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.models.financialaccountselector.AddCardModel;
 import com.shift.link.sdk.ui.presenters.ActivityPresenter;
 import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.views.financialaccountselector.AddCardView;
 
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
-import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.models.financialaccountselector.AddCardModel;
-import com.shift.link.sdk.ui.presenters.ActivityPresenter;
-import com.shift.link.sdk.ui.presenters.Presenter;
-import com.shift.link.sdk.ui.views.financialaccountselector.AddCardView;
 
 
 /**

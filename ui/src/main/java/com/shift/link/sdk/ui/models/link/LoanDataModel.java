@@ -3,9 +3,6 @@ package com.shift.link.sdk.ui.models.link;
 import com.shift.link.sdk.ui.models.ActivityModel;
 import com.shift.link.sdk.ui.vos.LoanDataVo;
 
-import com.shift.link.sdk.ui.models.ActivityModel;
-import com.shift.link.sdk.ui.vos.LoanDataVo;
-
 /**
  * User data input related Model.
  * @author Wijnand

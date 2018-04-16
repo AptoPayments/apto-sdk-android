@@ -4,14 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
-import com.shift.link.sdk.ui.presenters.Presenter;
-import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shift.link.sdk.ui.views.link.LoanAmountView;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
-
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-
-import java8.util.concurrent.CompletableFuture;
 import com.shift.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shift.link.sdk.api.vos.responses.config.ContentVo;
 import com.shift.link.sdk.api.vos.responses.config.LoanProductListVo;
@@ -19,7 +11,6 @@ import com.shift.link.sdk.api.vos.responses.config.LoanProductVo;
 import com.shift.link.sdk.api.vos.responses.config.LoanPurposeVo;
 import com.shift.link.sdk.api.vos.responses.config.LoanPurposesResponseVo;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.link.LoanAmountModel;
 import com.shift.link.sdk.ui.presenters.Presenter;
@@ -28,6 +19,11 @@ import com.shift.link.sdk.ui.views.link.LoanAmountView;
 import com.shift.link.sdk.ui.widgets.HintArrayAdapter;
 import com.shift.link.sdk.ui.widgets.MultiplyTransformer;
 import com.shift.link.sdk.ui.widgets.steppers.StepperConfiguration;
+import com.shift.link.sdk.ui.workflow.ModuleManager;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
+import java8.util.concurrent.CompletableFuture;
 
 import static com.shift.link.sdk.api.vos.responses.config.ContentVo.formatValues.plain_text;
 

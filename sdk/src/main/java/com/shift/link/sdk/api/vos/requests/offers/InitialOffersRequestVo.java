@@ -1,8 +1,6 @@
 package com.shift.link.sdk.api.vos.requests.offers;
 
 import com.shift.link.sdk.api.utils.offers.LoanCategory;
-
-import com.shift.link.sdk.api.utils.offers.LoanCategory;
 import com.shift.link.sdk.api.vos.requests.base.ListRequestVo;
 
 /**

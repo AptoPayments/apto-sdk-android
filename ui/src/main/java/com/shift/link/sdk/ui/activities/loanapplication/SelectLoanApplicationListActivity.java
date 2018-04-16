@@ -2,11 +2,6 @@ package com.shift.link.sdk.ui.activities.loanapplication;
 
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.loanapplication.SelectLoanApplicationListDelegate;
-import com.shift.link.sdk.ui.presenters.loanapplication.SelectLoanApplicationListPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.views.loanapplication.SelectPendingApplicationListView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.loanapplication.SelectLoanApplicationListModel;

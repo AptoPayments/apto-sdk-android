@@ -2,8 +2,6 @@ package com.shift.link.sdk.ui.presenters.loanapplication;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shift.link.sdk.ui.views.loanapplication.SelectPendingApplicationListView;
-
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationSummaryResponseVo;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import com.shift.link.sdk.ui.models.loanapplication.SelectLoanApplicationListModel;

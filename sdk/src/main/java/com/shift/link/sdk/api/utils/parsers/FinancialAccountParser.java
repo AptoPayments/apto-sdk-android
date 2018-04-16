@@ -5,14 +5,13 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-
-import java.lang.reflect.Type;
-
-import com.shift.link.sdk.api.vos.datapoints.BankAccount;
 import com.shift.link.sdk.api.vos.Card;
+import com.shift.link.sdk.api.vos.datapoints.BankAccount;
 import com.shift.link.sdk.api.vos.datapoints.Custodian;
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
+
+import java.lang.reflect.Type;
 
 /**
  * Created by adrian on 25/01/2017.

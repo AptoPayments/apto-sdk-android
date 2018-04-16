@@ -6,10 +6,6 @@ import com.shift.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomeDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
 
-import com.shift.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
-import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomeDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
-
 public class MockAnnualIncomePresenter extends AnnualIncomePresenter {
 
     public MockAnnualIncomePresenter(AppCompatActivity activity, AnnualIncomeDelegate delegate) {

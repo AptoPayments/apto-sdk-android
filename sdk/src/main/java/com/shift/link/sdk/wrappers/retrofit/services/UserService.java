@@ -1,14 +1,14 @@
 package com.shift.link.sdk.wrappers.retrofit.services;
 
 import com.google.gson.JsonObject;
-
 import com.shift.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
-import com.shift.link.sdk.api.vos.responses.users.CreateUserResponseVo;
-import com.shift.link.sdk.api.vos.responses.users.LoginUserResponseVo;
-import com.shift.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
-import com.shift.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shift.link.sdk.api.vos.requests.users.LoginRequestVo;
+import com.shift.link.sdk.api.vos.responses.users.CreateUserResponseVo;
+import com.shift.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
+import com.shift.link.sdk.api.vos.responses.users.LoginUserResponseVo;
+import com.shift.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

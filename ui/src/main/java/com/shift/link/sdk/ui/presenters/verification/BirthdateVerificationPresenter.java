@@ -5,20 +5,10 @@ import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.DatePicker;
 
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.fragments.DatePickerFragment;
-import com.shift.link.sdk.ui.models.verification.BirthdateVerificationModel;
-import com.shift.link.sdk.ui.presenters.Presenter;
-import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shift.link.sdk.ui.utils.ResourceUtil;
-import com.shift.link.sdk.ui.views.verification.BirthdateVerificationView;
-
-import org.greenrobot.eventbus.Subscribe;
-
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shift.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
-import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.R;
+import com.shift.link.sdk.ui.ShiftUi;
 import com.shift.link.sdk.ui.fragments.DatePickerFragment;
 import com.shift.link.sdk.ui.models.verification.BirthdateVerificationModel;
 import com.shift.link.sdk.ui.presenters.Presenter;
@@ -26,6 +16,8 @@ import com.shift.link.sdk.ui.presenters.userdata.UserDataPresenter;
 import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shift.link.sdk.ui.utils.ResourceUtil;
 import com.shift.link.sdk.ui.views.verification.BirthdateVerificationView;
+
+import org.greenrobot.eventbus.Subscribe;
 
 /**
  * Concrete {@link Presenter} for the birthdate screen.

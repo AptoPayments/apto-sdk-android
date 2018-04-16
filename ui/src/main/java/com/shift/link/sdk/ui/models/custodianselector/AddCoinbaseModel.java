@@ -2,8 +2,6 @@ package com.shift.link.sdk.ui.models.custodianselector;
 
 import android.app.Activity;
 
-import com.shift.link.sdk.ui.models.ActivityModel;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.ActivityModel;
 

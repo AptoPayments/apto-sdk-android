@@ -9,10 +9,11 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import me.ledge.common.views.RowView;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.card.FundingSourceModel;
 import com.shift.link.sdk.ui.storages.UIStorage;
+
+import me.ledge.common.views.RowView;
 
 
 /**

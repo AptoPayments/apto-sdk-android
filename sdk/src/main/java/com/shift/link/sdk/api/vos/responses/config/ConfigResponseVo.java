@@ -8,8 +8,6 @@ package com.shift.link.sdk.api.vos.responses.config;
 import com.google.gson.annotations.SerializedName;
 import com.shift.link.sdk.api.vos.responses.workflow.ActionVo;
 
-import com.shift.link.sdk.api.vos.responses.workflow.ActionVo;
-
 public class ConfigResponseVo {
 
     public String name;

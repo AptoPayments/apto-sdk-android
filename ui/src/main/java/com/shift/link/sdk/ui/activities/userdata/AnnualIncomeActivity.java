@@ -2,11 +2,6 @@ package com.shift.link.sdk.ui.activities.userdata;
 
 import android.view.View;
 
-import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomeDelegate;
-import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
-import com.shift.link.sdk.ui.views.userdata.AnnualIncomeView;
-
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.AnnualIncomeModel;
 import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomeDelegate;

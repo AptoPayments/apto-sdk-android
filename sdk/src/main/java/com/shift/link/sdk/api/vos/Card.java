@@ -2,15 +2,13 @@ package com.shift.link.sdk.api.vos;
 
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
+import com.shift.link.sdk.api.vos.datapoints.Custodian;
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
+import com.shift.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import com.shift.link.sdk.api.vos.datapoints.Custodian;
-import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import com.shift.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
 
 /**
  * Created by adrian on 18/01/2017.

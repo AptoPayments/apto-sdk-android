@@ -7,6 +7,7 @@ import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.Model;
+
 import ru.lanwen.verbalregex.VerbalExpression;
 
 /**

@@ -1,10 +1,6 @@
 package com.shift.link.sdk.api.wrappers;
 
 import com.shift.link.sdk.api.exceptions.ApiException;
-
-import java.util.HashMap;
-
-import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
@@ -44,6 +40,8 @@ import com.shift.link.sdk.api.vos.responses.verifications.FinishVerificationResp
 import com.shift.link.sdk.api.vos.responses.verifications.StartVerificationResponseVo;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
+
+import java.util.HashMap;
 
 /**
  * Ledge Link API Wrapper.

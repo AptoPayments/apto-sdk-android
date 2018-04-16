@@ -2,16 +2,8 @@ package com.shift.link.sdk.ui.models.fundingaccountselector;
 
 import android.content.res.Resources;
 
-import com.shift.link.sdk.ui.models.AbstractActivityModel;
-import com.shift.link.sdk.ui.presenters.fundingaccountselector.AutoPayViewModel;
-import com.shift.link.sdk.ui.presenters.fundingaccountselector.BankAutoPayStrategy;
-import com.shift.link.sdk.ui.presenters.fundingaccountselector.CardAutoPayStrategy;
-import com.shift.link.sdk.ui.presenters.fundingaccountselector.DefaultAutoPayStrategy;
-import com.shift.link.sdk.ui.presenters.fundingaccountselector.FinancialAccountStrategy;
-import com.shift.link.sdk.ui.presenters.fundingaccountselector.VirtualCardAutoPayStrategy;
-
-import com.shift.link.sdk.api.vos.datapoints.BankAccount;
 import com.shift.link.sdk.api.vos.Card;
+import com.shift.link.sdk.api.vos.datapoints.BankAccount;
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.AbstractActivityModel;
