@@ -2,7 +2,7 @@ package me.ledge.link.sdk.ui.models.financialaccountselector;
 
 import android.app.Activity;
 
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.api.vos.datapoints.PersonalName;

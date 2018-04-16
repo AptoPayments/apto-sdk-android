@@ -1,4 +1,4 @@
-package me.ledge.link.sdk.api.vos.datapoints;
+package me.ledge.link.sdk.api.vos;
 
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
@@ -7,6 +7,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import me.ledge.link.sdk.api.vos.datapoints.Custodian;
+import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
 
 /**

@@ -14,7 +14,7 @@ import me.ledge.link.sdk.api.vos.datapoints.Address;
 import me.ledge.link.sdk.api.vos.datapoints.ArmedForces;
 import me.ledge.link.sdk.api.vos.datapoints.BankAccount;
 import me.ledge.link.sdk.api.vos.datapoints.Birthdate;
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.datapoints.CreditScore;
 import me.ledge.link.sdk.api.vos.datapoints.Custodian;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;

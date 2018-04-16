@@ -5,13 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.api.vos.datapoints.PersonalName;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.storages.UserStorage;
 
-import static me.ledge.link.sdk.api.vos.datapoints.Card.FinancialAccountState.ACTIVE;
+import static me.ledge.link.sdk.api.vos.Card.FinancialAccountState.ACTIVE;
 
 /**
  * Concrete {@link Model} for managing a card.

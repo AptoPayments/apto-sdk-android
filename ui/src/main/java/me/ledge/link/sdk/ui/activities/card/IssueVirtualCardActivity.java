@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.CustodianVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.KYCStatus;

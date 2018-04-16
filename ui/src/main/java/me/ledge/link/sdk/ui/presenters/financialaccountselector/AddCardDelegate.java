@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.ui.presenters.financialaccountselector;
 
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 
 /**
  * Delegation interface for adding a card.

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import me.ledge.common.utils.android.AndroidUtils;
 import me.ledge.link.imageloaders.volley.VolleyImageLoader;
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import me.ledge.link.sdk.api.wrappers.LinkApiWrapper;

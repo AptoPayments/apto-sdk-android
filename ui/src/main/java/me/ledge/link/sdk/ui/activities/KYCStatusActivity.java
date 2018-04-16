@@ -8,7 +8,7 @@ import android.view.View;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
 import me.ledge.link.sdk.sdk.LedgeLinkSdk;
 import me.ledge.link.sdk.ui.R;

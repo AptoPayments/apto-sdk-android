@@ -29,7 +29,7 @@ import me.ledge.link.sdk.api.utils.parsers.FinancialAccountParser;
 import me.ledge.link.sdk.api.utils.parsers.RequiredDataPointParser;
 import me.ledge.link.sdk.api.utils.parsers.UpdateAccountParser;
 import me.ledge.link.sdk.api.utils.parsers.UpdateAccountPinParser;
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;

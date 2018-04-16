@@ -2,7 +2,7 @@ package me.ledge.link.sdk.wrappers.retrofit.services;
 
 import com.google.gson.JsonObject;
 
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;

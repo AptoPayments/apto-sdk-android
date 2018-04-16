@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import java.util.concurrent.Executor;
 
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.requests.base.ListRequestVo;
 import me.ledge.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
