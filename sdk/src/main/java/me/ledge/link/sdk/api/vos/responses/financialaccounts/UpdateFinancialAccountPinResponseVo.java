@@ -1,6 +1,6 @@
 package me.ledge.link.sdk.api.vos.responses.financialaccounts;
 
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 
 /**
  * Created by adrian on 12/03/2018.

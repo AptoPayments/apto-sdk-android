@@ -6,7 +6,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.sdk.api.vos.responses.ApiErrorVo;
 import me.ledge.link.sdk.ui.ShiftUi;

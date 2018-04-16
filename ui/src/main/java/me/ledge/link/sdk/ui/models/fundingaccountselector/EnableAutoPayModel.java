@@ -3,7 +3,7 @@ package me.ledge.link.sdk.ui.models.fundingaccountselector;
 import android.content.res.Resources;
 
 import me.ledge.link.sdk.api.vos.datapoints.BankAccount;
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.AbstractActivityModel;

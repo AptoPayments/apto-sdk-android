@@ -1,6 +1,9 @@
 package me.ledge.link.sdk.ui.views.card;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -103,7 +106,13 @@ public class ManageAccountView
 
     private void setColors() {
         int color = UIStorage.getInstance().getPrimaryColor();
+        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
         mAddFundingSourceButton.setColorFilter(color);
+        mToolbar.setBackgroundDrawable(new ColorDrawable(color));
+        mToolbar.setTitleTextColor(contrastColor);
+        Drawable backArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        backArrow.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
+        mToolbar.setNavigationIcon(backArrow);
     }
 
     /**

@@ -1,12 +1,15 @@
 package me.ledge.link.sdk.ui.activities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 
 import me.ledge.link.sdk.ui.models.ActivityModel;
 import me.ledge.link.sdk.ui.models.Model;
 import me.ledge.link.sdk.ui.presenters.Presenter;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 
 
 /**
@@ -45,6 +48,11 @@ public abstract class FragmentMvpActivity<M extends ActivityModel, V extends Vie
 
         mView = createView();
         setContentView(mView);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().setStatusBarColor(UIStorage.getInstance().getStatusBarColor());
+        }
         mPresenter = createPresenter();
         mPresenter.attachView(mView);
     }

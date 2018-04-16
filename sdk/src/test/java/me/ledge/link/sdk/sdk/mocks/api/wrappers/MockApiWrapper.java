@@ -5,7 +5,7 @@ import java.util.HashMap;
 import me.ledge.link.sdk.api.exceptions.ApiException;
 import me.ledge.link.sdk.api.utils.TermUnit;
 import me.ledge.link.sdk.api.utils.loanapplication.LoanApplicationMethod;
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointList;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;

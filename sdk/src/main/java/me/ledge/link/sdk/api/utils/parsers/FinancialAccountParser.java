@@ -9,9 +9,10 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 
 import me.ledge.link.sdk.api.vos.datapoints.BankAccount;
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.datapoints.Custodian;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
+import me.ledge.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
 
 /**
  * Created by adrian on 25/01/2017.
@@ -29,6 +30,8 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
         if(type.equalsIgnoreCase("card")) {
             String cardState = ParsingUtils.getStringFromJson(jObject.get("state")) == null ? ""
                     : ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase();
+            String kycStatus = ParsingUtils.getStringFromJson(jObject.get("kyc_status")) == null ? ""
+                    : ParsingUtils.getStringFromJson(jObject.get("kyc_status"));
             return new Card(jObject.get("account_id").getAsString(),
                     ParsingUtils.getStringFromJson(jObject.get("last_four")),
                     Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),
@@ -40,6 +43,9 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     Card.FinancialAccountState.valueOf(cardState),
                     ParsingUtils.getCurrencyStringFromJson(jObject.get("balance")),
                     new Custodian("coinbase", "logo", "coinbase", ""),
+                    KYCStatus.valueOf(kycStatus),
+                    //TODO
+                    null,
                     false);
         }
         else if(type.equalsIgnoreCase("bank_account")) {

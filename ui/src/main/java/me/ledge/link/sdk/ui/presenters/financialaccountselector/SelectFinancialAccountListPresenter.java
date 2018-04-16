@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.List;
 
 import me.ledge.link.sdk.api.vos.datapoints.BankAccount;
-import me.ledge.link.sdk.api.vos.datapoints.Card;
+import me.ledge.link.sdk.api.vos.Card;
 import me.ledge.link.sdk.api.vos.datapoints.DataPointVo;
 import me.ledge.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import me.ledge.link.sdk.ui.models.financialaccountselector.SelectBankAccountModel;

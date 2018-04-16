@@ -17,6 +17,7 @@ import java.util.List;
 import me.ledge.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import me.ledge.link.sdk.ui.R;
 import me.ledge.link.sdk.ui.models.card.ManageCardModel;
+import me.ledge.link.sdk.ui.storages.UIStorage;
 
 public class TransactionsAdapter extends
         RecyclerView.Adapter<TransactionsAdapter.ViewHolder> {
@@ -135,12 +136,15 @@ public class TransactionsAdapter extends
             viewHolder.mCreditCardView.setCVV(mModel.getCVV());
             viewHolder.mCreditCardView.setCardLogo(mModel.getCardNetwork());
             viewHolder.mCardBalance.setText(mModel.getCardBalance());
+            viewHolder.mCardBalance.setTextColor(UIStorage.getInstance().getPrimaryColor());
             viewHolder.mCustodianLogo.setImageResource(R.drawable.coinbase_logo);
             if (mModel.isCardActivated()) {
                 viewHolder.mCreditCardView.setCardEnabled(true);
                 viewHolder.mSecondaryButton.setVisibility(View.GONE);
             } else {
                 viewHolder.mCreditCardView.setCardEnabled(false);
+                viewHolder.mSecondaryButton.setBackgroundColor(UIStorage.getInstance().getPrimaryColor());
+                viewHolder.mSecondaryButton.setTextColor(UIStorage.getInstance().getPrimaryContrastColor());
                 viewHolder.mSecondaryButton.setVisibility(View.VISIBLE);
             }
 
