@@ -9,6 +9,6 @@
             android:minSdkVersion="15"
             android:targetSdkVersion="23" />
 
-    <application tools:replace='label' android:label="LedgeLinkSdk" />
+    <application tools:replace='label' android:label="ShiftSdk" />
 
 </manifest>
