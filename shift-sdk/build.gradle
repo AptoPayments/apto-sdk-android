@@ -10,31 +10,31 @@ apply from: '../javadoc.gradle'
 apply from: '../jacoco.gradle'
 apply plugin: 'me.tatarka.retrolambda'
 
-version = '0.1.24'
+version = '1.0.0'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'android-sdk-ui'
-    bintrayOrg = 'itabulous'
+    bintrayName = 'shift-sdk-android'
+    bintrayOrg = 'shift'
 
-    publishedGroupId = 'ledge.link.sdk'
-    libraryName = 'UI'
-    artifact = 'ui'
+    publishedGroupId = 'com.shift.android'
+    libraryName = 'ShiftSDK'
+    artifact = 'shift-sdk'
 
-    libraryDescription = 'An easy to use and flexible SDK for Ledge Link'
+    libraryDescription = 'An easy to use and flexible SDK for Shift'
 
-    siteUrl = 'https://github.com/itabulous/sdk_android'
-    gitUrl = 'https://github.com/itabulous/sdk_android.git'
+    siteUrl = 'https://github.com/ShiftFinancial/shift-sdk-android'
+    gitUrl = 'https://github.com/ShiftFinancial/shift-sdk-android.git'
 
-    libraryVersion = '0.1'
+    libraryVersion = '1.0'
 
     developerId = 'adrian-ledge'
     developerName = 'Adrian Tung'
-    developerEmail = 'adrian@ledge.com'
+    developerEmail = 'adrian@shiftpayments.com'
 
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+    licenseName = 'The MIT License'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
 }
 
 tasks.withType(Javadoc) {
@@ -101,7 +101,7 @@ repositories {
 
 dependencies {
     // Ledge Libraries
-    compile 'me.ledge.link.sdk:sdk:0.1.25'
+    compile 'com.shift.android:sdk:1.0.0'
     compile 'me.ledge.common:common:+'
     // 3rd Party Libraries
     compile('com.android.support:support-v13:24.0.0') {

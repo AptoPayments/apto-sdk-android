@@ -1,5 +1,5 @@
 include ':sdk'
-include ':ui'
+include ':shift-sdk'
 
 if (!hasProperty('excludeExample') || !excludeExample.toBoolean()) {
     // Nasty, but solves an issue where installing handlers would fail on:

@@ -11,8 +11,7 @@ ext {
     androidVersionCode = '1'
     androidVersionName = '0.1'
 
-    mavenGroup = 'me.ledge.link.sdk'
-    mavenVersion = '0.1.6'
+    mavenGroup = 'com.shift.android'
 }
 
 subprojects {
