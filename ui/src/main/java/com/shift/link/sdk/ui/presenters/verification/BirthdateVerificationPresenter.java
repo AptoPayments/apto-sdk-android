@@ -8,7 +8,7 @@ import android.widget.DatePicker;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shift.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.fragments.DatePickerFragment;
 import com.shift.link.sdk.ui.models.verification.BirthdateVerificationModel;
 import com.shift.link.sdk.ui.presenters.Presenter;
@@ -101,7 +101,7 @@ public class BirthdateVerificationPresenter
         if (mModel.hasValidBirthdate()) {
             mLoadingSpinnerManager.showLoading(true);
             super.saveData();
-            ShiftUi.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
+            ShiftPlatform.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
         }
     }
 

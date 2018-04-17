@@ -2,26 +2,26 @@ package com.shift.link.sdk.sdk.tasks.financialaccounts;
 
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shift.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
- * A concrete {@link LedgeLinkApiTask} to retrieve the financial account's transactions
+ * A concrete {@link ShiftApiTask} to retrieve the financial account's transactions
  * @author Adrian
  */
-public class GetFinancialAccountTransactionsTask extends LedgeLinkApiTask<Void, Void, TransactionListResponseVo, String> {
+public class GetFinancialAccountTransactionsTask extends ShiftApiTask<Void, Void, TransactionListResponseVo, String> {
     private int mRows;
     private String mTransactionId;
 
     /**
-     * @see LedgeLinkApiTask#LedgeLinkApiTask
-     * @param requestData See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
-     * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
-     * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
+     * @see ShiftApiTask#ShiftApiTask
+     * @param requestData See {@link ShiftApiTask#ShiftApiTask}.
+     * @param apiWrapper See {@link ShiftApiTask#ShiftApiTask}.
+     * @param responseHandler See {@link ShiftApiTask#ShiftApiTask}.
      */
     public GetFinancialAccountTransactionsTask(String requestData, int rows, String transactionId,
-                                               LinkApiWrapper apiWrapper,
+                                               ShiftApiWrapper apiWrapper,
                                                ApiResponseHandler responseHandler) {
         super(requestData, apiWrapper, responseHandler);
         mRows = rows;

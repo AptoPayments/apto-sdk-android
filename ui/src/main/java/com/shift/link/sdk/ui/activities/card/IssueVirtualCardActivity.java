@@ -9,13 +9,13 @@ import android.widget.Toast;
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.CustodianVo;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
-import com.shift.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
+import com.shift.link.sdk.api.vos.requests.financialaccounts.KycStatus;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.activities.KYCStatusActivity;
+import com.shift.link.sdk.ui.ShiftPlatform;
+import com.shift.link.sdk.ui.activities.KycStatusActivity;
 import com.shift.link.sdk.ui.storages.CardStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.views.card.IssueVirtualCardView;
@@ -38,18 +38,18 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
         IssueVirtualCardRequestVo virtualCardRequestVo = new IssueVirtualCardRequestVo();
         virtualCardRequestVo.cardIssuer = "SHIFT";
         OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(UserStorage.getInstance().getCoinbaseAccessToken(), UserStorage.getInstance().getCoinbaseRefreshToken());
         virtualCardRequestVo.custodian = new CustodianVo("coinbase", coinbaseCredentials);
-        ShiftUi.issueVirtualCard(virtualCardRequestVo);
+        ShiftPlatform.issueVirtualCard(virtualCardRequestVo);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
     }
 
     @Subscribe
@@ -58,11 +58,11 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
 
         if (card != null) {
             CardStorage.getInstance().setCard(card);
-            if(card.kycStatus.equals(KYCStatus.passed)) {
+            if(card.kycStatus.equals(KycStatus.passed)) {
                 this.startActivity(new Intent(this, ManageCardActivity.class));
             }
             else {
-                Intent intent = new Intent(this, KYCStatusActivity.class);
+                Intent intent = new Intent(this, KycStatusActivity.class);
                 intent.putExtra("KYC_STATUS", card.kycStatus.toString());
                 if(card.kycReason != null) {
                     intent.putExtra("KYC_REASON", card.kycReason[0]);

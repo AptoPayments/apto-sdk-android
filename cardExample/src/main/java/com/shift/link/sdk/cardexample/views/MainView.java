@@ -11,7 +11,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.shift.link.sdk.cardexample.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.storages.UIStorage;
 
 /**
@@ -110,7 +110,7 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     }
 
     public void setLogo(String logoURL) {
-        ShiftUi.getImageLoader().load(logoURL, mLogoImageView);
+        ShiftPlatform.getImageLoader().load(logoURL, mLogoImageView);
     }
 
     public void setSummary(String summary) {

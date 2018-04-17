@@ -3,7 +3,7 @@ package com.shift.link.sdk.ui.presenters;
 import android.view.View;
 
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.models.Model;
 
 /**
@@ -31,7 +31,7 @@ public abstract class BasePresenter<M extends Model, V extends View> implements 
      * Initializes this class.
      */
     protected void init() {
-        mResponseHandler = ShiftUi.getResponseHandler();
+        mResponseHandler = ShiftPlatform.getResponseHandler();
         mModel = createModel();
         mView = null;
     }

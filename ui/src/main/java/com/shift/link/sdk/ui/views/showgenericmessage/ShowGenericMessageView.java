@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
 import com.shift.link.sdk.ui.views.userdata.NextButtonListener;
 import com.shift.link.sdk.ui.views.userdata.UserDataView;
@@ -71,6 +71,6 @@ public class ShowGenericMessageView extends UserDataView<ShowGenericMessageView.
 
     public void setImage(String imageUrl) {
         mImageView.setVisibility(VISIBLE);
-        ShiftUi.getImageLoader().load(imageUrl, mImageView);
+        ShiftPlatform.getImageLoader().load(imageUrl, mImageView);
     }
 }

@@ -5,7 +5,7 @@ import android.content.res.Resources;
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.utils.TermUnit;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shift.link.sdk.ui.models.loanapplication.details.ApprovedLoanApplicationDetailsModel;
 import com.shift.link.sdk.ui.models.loanapplication.details.LoanApplicationDetailsModel;
@@ -27,7 +27,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class LoanApplicationDetailsModelTest {
 
     private Resources mResources;
-    private LinkApiWrapper mApiWrapper;
+    private ShiftApiWrapper mApiWrapper;
     private LoanApplicationDetailsModel mModel;
 
     /**

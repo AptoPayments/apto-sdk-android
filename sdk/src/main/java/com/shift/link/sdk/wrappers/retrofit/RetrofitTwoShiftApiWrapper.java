@@ -56,9 +56,9 @@ import com.shift.link.sdk.api.vos.responses.verifications.StartVerificationRespo
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shift.link.sdk.api.vos.responses.workflow.ActionConfigurationVo;
-import com.shift.link.sdk.api.wrappers.BaseLinkApiWrapper;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.wrappers.retrofit.interceptors.LedgeLinkOkThreeInterceptor;
+import com.shift.link.sdk.api.wrappers.BaseShiftApiWrapper;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shift.link.sdk.wrappers.retrofit.interceptors.ShiftOkThreeInterceptor;
 import com.shift.link.sdk.wrappers.retrofit.services.ConfigService;
 import com.shift.link.sdk.wrappers.retrofit.services.DashboardService;
 import com.shift.link.sdk.wrappers.retrofit.services.FinancialAccountService;
@@ -93,13 +93,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Concrete {@link LinkApiWrapper} using Retrofit 2.
+ * Concrete {@link ShiftApiWrapper} using Retrofit 2.
  * @author Wijnand
  */
-public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements LinkApiWrapper {
+public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements ShiftApiWrapper {
 
     private ErrorUtil mErrorUtil;
-    private LedgeLinkOkThreeInterceptor mInterceptor;
+    private ShiftOkThreeInterceptor mInterceptor;
 
     private boolean mIsCertificatePinningEnabled;
     private boolean mTrustSelfSignedCerts;
@@ -113,9 +113,9 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
     private DashboardService mDashboardService;
 
     /**
-     * Creates a new {@link RetrofitTwoLinkApiWrapper} instance.
+     * Creates a new {@link RetrofitTwoShiftApiWrapper} instance.
      */
-    public RetrofitTwoLinkApiWrapper() {
+    public RetrofitTwoShiftApiWrapper() {
         super();
     }
 
@@ -176,14 +176,14 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
     private OkHttpClient createLongTimeoutClient(boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         return createDefaultClientBuilder(isCertificatePinningEnabled, trustSelfSignedCerts)
-                .readTimeout(LinkApiWrapper.OFFERS_REQUEST_TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(ShiftApiWrapper.OFFERS_REQUEST_TIMEOUT, TimeUnit.SECONDS)
                 .build();
     }
 
     private OkHttpClient.Builder createDefaultClientBuilder(boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         // Send correct data in the headers.
         if (mInterceptor == null) {
-            mInterceptor = new LedgeLinkOkThreeInterceptor(getDeviceInfo(), getDeveloperKey(), getProjectToken());
+            mInterceptor = new ShiftOkThreeInterceptor(getDeviceInfo(), getDeveloperKey(), getProjectToken());
         }
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
@@ -372,10 +372,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
         try {
             Response<LinkConfigResponseVo> response = mConfigService.getLoanPurposesList().execute();
-            result = handleResponse(response, LinkApiWrapper.LINK_CONFIG_PATH);
+            result = handleResponse(response, ShiftApiWrapper.LINK_CONFIG_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.LINK_CONFIG_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.LINK_CONFIG_PATH, ioe);
         }
 
         return result;
@@ -388,10 +388,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
         try {
             Response<ContextConfigResponseVo> response = mConfigService.getUserConfig().execute();
-            result = handleResponse(response, LinkApiWrapper.CONFIG_PATH);
+            result = handleResponse(response, ShiftApiWrapper.CONFIG_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.CONFIG_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.CONFIG_PATH, ioe);
         }
 
         return result;
@@ -405,10 +405,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             JsonObject aRequest = requestData.toJSON();
             Response<CreateUserResponseVo> response = mUserService.createUser(aRequest).execute();
-            result = handleResponse(response, LinkApiWrapper.CREATE_USER_PATH);
+            result = handleResponse(response, ShiftApiWrapper.CREATE_USER_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.CREATE_USER_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.CREATE_USER_PATH, ioe);
         }
 
         return result;
@@ -421,10 +421,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             JsonObject aRequest = requestData.toJSON();
             Response<UserResponseVo> response = mUserService.updateUser(aRequest).execute();
-            result = handleResponse(response, LinkApiWrapper.UPDATE_USER_PATH);
+            result = handleResponse(response, ShiftApiWrapper.UPDATE_USER_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.UPDATE_USER_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.UPDATE_USER_PATH, ioe);
         }
 
         return result;
@@ -436,10 +436,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
         try {
             Response<LoginUserResponseVo> response = mUserService.loginUser(requestData).execute();
-            result = handleResponse(response, LinkApiWrapper.LOGIN_USER_PATH);
+            result = handleResponse(response, ShiftApiWrapper.LOGIN_USER_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.LOGIN_USER_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.LOGIN_USER_PATH, ioe);
         }
 
         return result;
@@ -451,10 +451,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
         try {
             Response<CurrentUserResponseVo> response = mUserService.getCurrentUser().execute();
-            result = handleResponse(response, LinkApiWrapper.GET_CURRENT_USER_PATH);
+            result = handleResponse(response, ShiftApiWrapper.GET_CURRENT_USER_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.GET_CURRENT_USER_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.GET_CURRENT_USER_PATH, ioe);
         } catch (ApiException apiException) {
             if(!throwSessionExpiredError) {
                 apiException.getError().isSessionExpired = false;
@@ -473,10 +473,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
         try {
             Response<InitialOffersResponseVo> response = mOfferService.getInitialOffers(requestData).execute();
-            result = handleResponse(response, LinkApiWrapper.INITIAL_OFFERS_PATH);
+            result = handleResponse(response, ShiftApiWrapper.INITIAL_OFFERS_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.INITIAL_OFFERS_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.INITIAL_OFFERS_PATH, ioe);
         }
 
         return result;
@@ -490,10 +490,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
         try {
             Response<OffersListVo> response = mOfferService.getMoreOffers(offerRequestId, requestData).execute();
-            result = handleResponse(response, LinkApiWrapper.INITIAL_OFFERS_PATH);
+            result = handleResponse(response, ShiftApiWrapper.INITIAL_OFFERS_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.INITIAL_OFFERS_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.INITIAL_OFFERS_PATH, ioe);
         }
 
         return result;
@@ -506,10 +506,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             Response<LoanApplicationDetailsResponseVo> response
                     = mLoanApplicationService.createLoanApplication(offerId).execute();
-            result = handleResponse(response, LinkApiWrapper.CREATE_LOAN_APPLICATION_PATH);
+            result = handleResponse(response, ShiftApiWrapper.CREATE_LOAN_APPLICATION_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.CREATE_LOAN_APPLICATION_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.CREATE_LOAN_APPLICATION_PATH, ioe);
         }
 
         return result;
@@ -523,10 +523,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             Response<LoanApplicationsSummaryListResponseVo> response
                     = mLoanApplicationService.getLoanApplicationsSummaryList().execute();
-            result = handleResponse(response, LinkApiWrapper.LIST_LOAN_APPLICATIONS_PATH);
+            result = handleResponse(response, ShiftApiWrapper.LIST_LOAN_APPLICATIONS_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.LIST_LOAN_APPLICATIONS_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.LIST_LOAN_APPLICATIONS_PATH, ioe);
         }
 
         return result;
@@ -540,10 +540,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             Response<LoanApplicationDetailsResponseVo> response
                     = mLoanApplicationService.getApplicationStatus(applicationId).execute();
-            result = handleResponse(response, LinkApiWrapper.APPLICATION_STATUS_PATH);
+            result = handleResponse(response, ShiftApiWrapper.APPLICATION_STATUS_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.APPLICATION_STATUS_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.APPLICATION_STATUS_PATH, ioe);
         }
 
         return result;
@@ -557,10 +557,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             Response<LoanApplicationDetailsResponseVo> response
                     = mLoanApplicationService.setApplicationAccount(applicationRequestVo, applicationId).execute();
-            result = handleResponse(response, LinkApiWrapper.APPLICATION_ACCOUNT_PATH);
+            result = handleResponse(response, ShiftApiWrapper.APPLICATION_ACCOUNT_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.APPLICATION_ACCOUNT_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.APPLICATION_ACCOUNT_PATH, ioe);
         }
 
         return result;
@@ -574,10 +574,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             Response<StartVerificationResponseVo> response
                     = mVerificationService.startVerification(startVerificationRequestVo).execute();
-            result = handleResponse(response, LinkApiWrapper.VERIFICATION_START_PATH);
+            result = handleResponse(response, ShiftApiWrapper.VERIFICATION_START_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.VERIFICATION_START_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.VERIFICATION_START_PATH, ioe);
         }
 
         return result;
@@ -591,10 +591,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             Response<FinishVerificationResponseVo> response
                     = mVerificationService.completeVerification(verificationID, verificationRequestVo).execute();
-            result = handleResponse(response, LinkApiWrapper.VERIFICATION_FINISH_PATH);
+            result = handleResponse(response, ShiftApiWrapper.VERIFICATION_FINISH_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.VERIFICATION_FINISH_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.VERIFICATION_FINISH_PATH, ioe);
         }
 
         return result;
@@ -607,10 +607,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             Response<VerificationResponseVo> response
                     = mVerificationService.restartVerification(verificationId).execute();
-            result = handleResponse(response, LinkApiWrapper.VERIFICATION_RESTART_PATH);
+            result = handleResponse(response, ShiftApiWrapper.VERIFICATION_RESTART_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.VERIFICATION_RESTART_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.VERIFICATION_RESTART_PATH, ioe);
         }
 
         return result;
@@ -624,10 +624,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
             if(verificationId!=null) {
                 Response<VerificationStatusResponseVo> response
                         = mVerificationService.getVerificationStatus(verificationId).execute();
-                result = handleResponse(response, LinkApiWrapper.VERIFICATION_STATUS_PATH);
+                result = handleResponse(response, ShiftApiWrapper.VERIFICATION_STATUS_PATH);
             }
         } catch (IOException ioe) {
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.VERIFICATION_STATUS_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.VERIFICATION_STATUS_PATH, ioe);
         }
 
         return result;
@@ -639,10 +639,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             Response<VerificationStatusResponseVo> response
                     = mFinancialAccountService.addBankAccount(addBankAccountRequestVo).execute();
-            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
         }
 
         return result;
@@ -658,11 +658,11 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
             Response<Card> response
                     = mFinancialAccountService.addCard(aRequest).execute();
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
-            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH);
         } catch (IOException ioe) {
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
         }
 
         return result;
@@ -677,11 +677,11 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
             Response<Card> response
                     = mFinancialAccountService.issueVirtualCard(issueVirtualCardRequestVo).execute();
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
-            result = handleResponse(response, LinkApiWrapper.ISSUE_CARD_PATH);
+            result = handleResponse(response, ShiftApiWrapper.ISSUE_CARD_PATH);
         } catch (IOException ioe) {
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.ISSUE_CARD_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.ISSUE_CARD_PATH, ioe);
         }
 
         return result;
@@ -693,10 +693,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
         try {
             Response<UserDataListResponseVo> response = mFinancialAccountService.getFinancialAccounts().execute();
-            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH);
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH, ioe);
         }
 
         return result;
@@ -710,11 +710,11 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
             this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
             Response<FinancialAccountVo> response = mFinancialAccountService.getFinancialAccount(accountId).execute();
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
-            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNT_PATH);
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_PATH);
         } catch (IOException ioe) {
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNT_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_PATH, ioe);
         }
 
         return result;
@@ -726,7 +726,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             mUserService.deleteUser(requestData).execute();
         } catch (IOException ioe) {
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.DELETE_USER_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.DELETE_USER_PATH, ioe);
         }
     }
 
@@ -736,10 +736,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
         try {
             Response<CreateTeamResponseVo> response = mDashboardService.createTeam(requestData).execute();
-            result = handleResponse(response, LinkApiWrapper.CREATE_TEAM_PATH);
+            result = handleResponse(response, ShiftApiWrapper.CREATE_TEAM_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.CREATE_TEAM_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.CREATE_TEAM_PATH, ioe);
         }
 
         return result;
@@ -750,7 +750,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             mDashboardService.deleteTeam(teamId).execute();
         } catch (IOException ioe) {
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.DELETE_TEAM_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.DELETE_TEAM_PATH, ioe);
         }
     }
 
@@ -760,10 +760,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
 
         try {
             Response<CreateProjectResponseVo> response = mDashboardService.createProject(requestData, teamId).execute();
-            result = handleResponse(response, LinkApiWrapper.CREATE_TEAM_PATH);
+            result = handleResponse(response, ShiftApiWrapper.CREATE_TEAM_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.CREATE_TEAM_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.CREATE_TEAM_PATH, ioe);
         }
 
         return result;
@@ -774,7 +774,7 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             mDashboardService.deleteProject(teamId, projectId).execute();
         } catch (IOException ioe) {
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.DELETE_PROJECT_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.DELETE_PROJECT_PATH, ioe);
         }
     }
 
@@ -787,11 +787,11 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
             Response<UpdateFinancialAccountResponseVo> response
                     = mFinancialAccountService.updateFinancialAccount(accountId, card).execute();
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
-            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNT_PATH);
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_PATH);
         } catch (IOException ioe) {
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNT_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_PATH, ioe);
         }
 
         return result;
@@ -806,11 +806,11 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
             Response<UpdateFinancialAccountPinResponseVo> response
                     = mFinancialAccountService.updateFinancialAccountPin(accountId, card).execute();
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
-            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNT_PIN_PATH);
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_PIN_PATH);
         } catch (IOException ioe) {
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNT_PIN_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_PIN_PATH, ioe);
         }
 
         return result;
@@ -822,10 +822,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         try {
             // TODO: using last transaction ID instead of page due to limitation on Card Backend
             Response<TransactionListResponseVo> response = mFinancialAccountService.getTransactions(accountId, rows, transactionId).execute();
-            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNT_TRANSACTIONS_PATH);
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_TRANSACTIONS_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNT_TRANSACTIONS_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_TRANSACTIONS_PATH, ioe);
         }
         return result;
     }
@@ -835,10 +835,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         FundingSourceVo result;
         try {
             Response<FundingSourceVo> response = mFinancialAccountService.getFundingSource(accountId).execute();
-            result = handleResponse(response, LinkApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH);
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH, ioe);
         }
         return result;
     }
@@ -848,10 +848,10 @@ public class RetrofitTwoLinkApiWrapper extends BaseLinkApiWrapper implements Lin
         FundingSourceListVo result;
         try {
             Response<FundingSourceListVo> response = mFinancialAccountService.getUserFundingSources().execute();
-            result = handleResponse(response, LinkApiWrapper.USER_FUNDING_SOURCES_PATH);
+            result = handleResponse(response, ShiftApiWrapper.USER_FUNDING_SOURCES_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), LinkApiWrapper.USER_FUNDING_SOURCES_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.USER_FUNDING_SOURCES_PATH, ioe);
         }
         return result;
     }

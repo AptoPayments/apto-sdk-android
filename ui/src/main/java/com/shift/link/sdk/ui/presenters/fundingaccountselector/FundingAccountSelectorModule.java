@@ -8,8 +8,8 @@ import com.shift.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountR
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity;
 import com.shift.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
@@ -111,8 +111,8 @@ public class FundingAccountSelectorModule extends LedgeBaseModule
         request.accountType = LoanApplicationAccountType.FUNDING;
 
         String applicationId = LoanStorage.getInstance().getCurrentLoanApplication().id;
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
-        ShiftUi.setApplicationAccount(request, applicationId);
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.setApplicationAccount(request, applicationId);
         showLoading(true);
     }
 
@@ -122,7 +122,7 @@ public class FundingAccountSelectorModule extends LedgeBaseModule
      */
     @Subscribe
     public void handleResponse(LoanApplicationDetailsResponseVo response) {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
         showEnableAutoPayScreen();
     }
@@ -133,7 +133,7 @@ public class FundingAccountSelectorModule extends LedgeBaseModule
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
         Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
     }

@@ -3,7 +3,7 @@ package com.shift.link.sdk.wrappers.retrofit.services;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -23,21 +23,21 @@ public interface LoanApplicationService {
      * @param offerId The offer to apply to.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.CREATE_LOAN_APPLICATION_PATH)
+    @POST(ShiftApiWrapper.CREATE_LOAN_APPLICATION_PATH)
     Call<LoanApplicationDetailsResponseVo> createLoanApplication(@Path("offer_id") String offerId);
 
     /**
      * Creates a {@link Call} to get the list of open loan applications.
      * @return API call to execute.
      */
-    @GET(LinkApiWrapper.LIST_LOAN_APPLICATIONS_PATH)
+    @GET(ShiftApiWrapper.LIST_LOAN_APPLICATIONS_PATH)
     Call<LoanApplicationsSummaryListResponseVo> getLoanApplicationsSummaryList();
 
     /**
      * Creates a {@link Call} to get the application status.
      * @return API call to execute.
      */
-    @GET(LinkApiWrapper.APPLICATION_STATUS_PATH)
+    @GET(ShiftApiWrapper.APPLICATION_STATUS_PATH)
     Call<LoanApplicationDetailsResponseVo> getApplicationStatus(@Path("application_id") String applicationId);
 
     /**
@@ -46,7 +46,7 @@ public interface LoanApplicationService {
      * @param applicationId The application where the account will be linked to.
      * @return API call to execute.
      */
-    @PUT(LinkApiWrapper.APPLICATION_ACCOUNT_PATH)
+    @PUT(ShiftApiWrapper.APPLICATION_ACCOUNT_PATH)
     Call<LoanApplicationDetailsResponseVo> setApplicationAccount(@Body ApplicationAccountRequestVo data,
                                                                  @Path("application_id") String applicationId);
 }

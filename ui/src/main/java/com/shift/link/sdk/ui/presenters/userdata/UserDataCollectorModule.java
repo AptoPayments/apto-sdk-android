@@ -12,10 +12,10 @@ import com.shift.link.sdk.api.vos.responses.config.RequiredDataPointsListRespons
 import com.shift.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shift.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shift.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.activities.userdata.AddressActivity;
 import com.shift.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
@@ -79,8 +79,8 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     public void initialModuleSetup() {
         mRequiredActivities.clear();
         mCurrentUserDataCopy = new DataPointList(UserStorage.getInstance().getUserData());
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
         CompletableFuture
                 .supplyAsync(() -> ConfigStorage.getInstance().getRequiredUserData())
                 .exceptionally(ex -> {
@@ -96,7 +96,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
      */
     @Subscribe
     public void handleResponse(DataPointList userInfo) {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         UserStorage.getInstance().setUserData(userInfo);
         if(onTokenRetrieved != null) {
             onTokenRetrieved.execute();
@@ -112,7 +112,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
      */
     @Subscribe
     public void handleToken(CreateUserResponseVo response) {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         if (response != null) {
             storeToken(response.user_token);
         }
@@ -134,9 +134,9 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        if(error.request_path.equals(LinkApiWrapper.GET_CURRENT_USER_PATH) && error.statusCode == 401) {
-            ShiftUi.clearUserToken(getActivity());
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        if(error.request_path.equals(ShiftApiWrapper.GET_CURRENT_USER_PATH) && error.statusCode == 401) {
+            ShiftPlatform.clearUserToken(getActivity());
         }
         stopModule();
     }
@@ -163,10 +163,10 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     @Override
     public void identityVerificationSucceeded() {
         showLoading(true);
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
         if (!UserStorage.getInstance().hasBearerToken()) {
-            ShiftUi.createUser(UserStorage.getInstance().getUserData());
+            ShiftPlatform.createUser(UserStorage.getInstance().getUserData());
         } else {
             if (isUpdatingProfile && !mCurrentUserDataCopy.equals(UserStorage.getInstance().getUserData())) {
                 HashMap<DataPointVo.DataPointType, List<DataPointVo>> baseDataPoints = mCurrentUserDataCopy.getDataPoints();
@@ -189,7 +189,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
                 }
 
                 if(!request.getDataPoints().isEmpty()) {
-                    ShiftUi.updateUser(request);
+                    ShiftPlatform.updateUser(request);
                 } else {
                     stopModule();
                 }
@@ -303,7 +303,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
     }
 
     private void startModule() {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
 
         if(mRequiredActivities.isEmpty()) {
             stopModule();
@@ -314,7 +314,7 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
 
     private void stopModule() {
         showLoading(false);
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         onFinish.execute();
     }
 
@@ -347,8 +347,8 @@ public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDel
         if (isPOSMode || userToken == null || isUpdatingProfile) {
             compareRequiredDataPointsWithCurrent(new DataPointList());
         } else {
-            ShiftUi.getApiWrapper().setBearerToken(userToken);
-            ShiftUi.getCurrentUser(validateUserToken);
+            ShiftPlatform.getApiWrapper().setBearerToken(userToken);
+            ShiftPlatform.getCurrentUser(validateUserToken);
         }
     }
 

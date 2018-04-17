@@ -6,7 +6,7 @@ import android.text.TextUtils;
 
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.ActivityModel;
 import com.shift.link.sdk.ui.models.Model;
@@ -69,7 +69,7 @@ public abstract class AbstractLoanApplicationModel implements ActivityModel, Int
     /** {@inheritDoc} */
     @Override
     public Class getPreviousActivity(Activity current) {
-        ArrayList<Class<? extends MvpActivity>> processOrder = ShiftUi.getProcessOrder();
+        ArrayList<Class<? extends MvpActivity>> processOrder = ShiftPlatform.getProcessOrder();
         return processOrder.get(processOrder.size() - 1);
     }
 

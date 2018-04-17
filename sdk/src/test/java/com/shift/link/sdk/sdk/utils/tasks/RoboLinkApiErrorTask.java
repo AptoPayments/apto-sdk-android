@@ -2,17 +2,17 @@ package com.shift.link.sdk.sdk.utils.tasks;
 
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shift.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
-public class RoboLinkApiErrorTask extends LedgeLinkApiTask<Void, Void, Object, Object> {
+public class RoboLinkApiErrorTask extends ShiftApiTask<Void, Void, Object, Object> {
 
     public static final String MESSAGE = "message";
     public static final int SERVER_CODE = 666;
     public static final String SERVER_MESSAGE = "server message";
 
-    public RoboLinkApiErrorTask(Object requestData, LinkApiWrapper apiWrapper, ApiResponseHandler responseHandler) {
+    public RoboLinkApiErrorTask(Object requestData, ShiftApiWrapper apiWrapper, ApiResponseHandler responseHandler) {
         super(requestData, apiWrapper, responseHandler);
     }
 

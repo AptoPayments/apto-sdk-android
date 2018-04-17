@@ -15,7 +15,7 @@ import com.shift.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shift.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import com.shift.link.sdk.ui.BuildConfig;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.mocks.presenters.userdata.MockAnnualIncomePresenter;
 import com.shift.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModule;
 import com.shift.link.sdk.ui.mocks.views.userdata.MockAnnualIncomeView;
@@ -59,8 +59,8 @@ public class IncomeSourcePresenterTest {
         ModuleManager.getInstance().setModule(new WeakReference<>(userDataCollectorModule));
         mPresenter = new MockAnnualIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));
         mView = new MockAnnualIncomeView(mActivity);
-        ShiftUi.setApiWrapper(new MockApiWrapper());
-        ShiftUi.setResponseHandler(new MockResponseHandler());
+        ShiftPlatform.setApiWrapper(new MockApiWrapper());
+        ShiftPlatform.setResponseHandler(new MockResponseHandler());
         mPresenter.attachView(mView);
 
         ConfigResponseVo configResponseVo = new ConfigResponseVo();

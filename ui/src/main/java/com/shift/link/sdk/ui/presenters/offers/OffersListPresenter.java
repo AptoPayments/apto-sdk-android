@@ -11,9 +11,9 @@ import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shift.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
 import com.shift.link.sdk.api.vos.responses.offers.OfferVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.adapters.offers.OffersListRecyclerAdapter;
 import com.shift.link.sdk.ui.models.loanapplication.BigButtonModel;
 import com.shift.link.sdk.ui.models.offers.OfferSummaryModel;
@@ -92,7 +92,7 @@ public class OffersListPresenter
         // Fetch offers.
         InitialOffersRequestVo requestData = mModel.getInitialOffersRequest();
         requestData.rows = 25;
-        ShiftUi.getInitialOffers(requestData);
+        ShiftPlatform.getInitialOffers(requestData);
     }
 
     /**
@@ -193,7 +193,7 @@ public class OffersListPresenter
                     mLoadingSpinnerManager.showLoading(true);
                 }
 
-                ShiftUi.createLoanApplication(offer.getOfferId());
+                ShiftPlatform.createLoanApplication(offer.getOfferId());
             }
         }
     }
@@ -251,7 +251,7 @@ public class OffersListPresenter
      */
     public void addOffers(OfferVo[] rawOffers, String offerRequestId, boolean complete) {
         mLoanStorage.setOfferRequestId(offerRequestId);
-        mLoanStorage.addOffers(mActivity.getResources(), rawOffers, complete, ShiftUi.getImageLoader());
+        mLoanStorage.addOffers(mActivity.getResources(), rawOffers, complete, ShiftPlatform.getImageLoader());
 
         PagedList<OfferSummaryModel> offers = mLoanStorage.getOffers();
 
@@ -318,9 +318,9 @@ public class OffersListPresenter
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
         mView.displayErrorMessage(message);
 
-        if (LinkApiWrapper.INITIAL_OFFERS_PATH.equals(error.request_path) && mView != null) {
+        if (ShiftApiWrapper.INITIAL_OFFERS_PATH.equals(error.request_path) && mView != null) {
             mView.showError(true);
-        } else if (LinkApiWrapper.CREATE_LOAN_APPLICATION_PATH.equals(error.request_path)) {
+        } else if (ShiftApiWrapper.CREATE_LOAN_APPLICATION_PATH.equals(error.request_path)) {
             mDelegate.onApplicationReceived(null);
         }
     }

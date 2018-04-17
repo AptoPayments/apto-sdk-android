@@ -59,15 +59,15 @@ import com.shift.link.sdk.api.vos.responses.verifications.FinishVerificationResp
 import com.shift.link.sdk.api.vos.responses.verifications.StartVerificationResponseVo;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
 
 import java.util.HashMap;
 
 /**
- * Mock implementation of the {@link LinkApiWrapper} interface.
+ * Mock implementation of the {@link ShiftApiWrapper} interface.
  * @author Wijnand
  */
-public class MockApiWrapper implements LinkApiWrapper {
+public class MockApiWrapper implements ShiftApiWrapper {
 
     public static final String TOKEN = "bearer_token";
 

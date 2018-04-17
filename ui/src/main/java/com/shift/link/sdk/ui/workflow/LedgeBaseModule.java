@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
 
 import java.lang.ref.WeakReference;
@@ -92,6 +92,6 @@ public abstract class LedgeBaseModule implements NavigationCommand, BaseDelegate
         mActivity.runOnUiThread(()->{
             showError(mActivity.getResources().getString(R.string.session_expired_error));
         });
-        ShiftUi.clearUserToken(mActivity);
+        ShiftPlatform.clearUserToken(mActivity);
     }
 }

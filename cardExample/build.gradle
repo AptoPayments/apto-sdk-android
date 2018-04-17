@@ -12,7 +12,7 @@ android {
         versionCode = androidVersionCode
         versionName = androidVersionName
 
-        applicationId 'me.ledge.link.sdk.cardexample'
+        applicationId 'com.shift.link.sdk.cardexample'
     }
 
     compileOptions {

@@ -16,14 +16,14 @@ import com.shift.link.sdk.ui.storages.UIStorage;
  * Displays the KYC status screen
  * @author Adrian
  */
-public class KYCStatusView extends RelativeLayout implements ViewWithToolbar, View.OnClickListener {
+public class KycStatusView extends RelativeLayout implements ViewWithToolbar, View.OnClickListener {
 
     private ViewListener mListener;
     private TextView mTextView;
     protected Toolbar mToolbar;
     private Button mRefreshButton;
 
-    public KYCStatusView(Context context, AttributeSet attrs) {
+    public KycStatusView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

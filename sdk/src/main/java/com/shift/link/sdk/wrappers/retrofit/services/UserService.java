@@ -7,7 +7,7 @@ import com.shift.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shift.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
 import com.shift.link.sdk.api.vos.responses.users.LoginUserResponseVo;
 import com.shift.link.sdk.api.vos.responses.users.UserResponseVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -25,7 +25,7 @@ public interface UserService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.CREATE_USER_PATH)
+    @POST(ShiftApiWrapper.CREATE_USER_PATH)
     Call<CreateUserResponseVo> createUser(@Body JsonObject data);
 
     /**
@@ -33,7 +33,7 @@ public interface UserService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @PUT(LinkApiWrapper.UPDATE_USER_PATH)
+    @PUT(ShiftApiWrapper.UPDATE_USER_PATH)
     Call<UserResponseVo> updateUser(@Body JsonObject data);
 
     /**
@@ -41,14 +41,14 @@ public interface UserService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.LOGIN_USER_PATH)
+    @POST(ShiftApiWrapper.LOGIN_USER_PATH)
     Call<LoginUserResponseVo> loginUser(@Body LoginRequestVo data);
 
     /**
      * Creates a {@link Call} to get the current user info.
      * @return API call to execute.
      */
-    @GET(LinkApiWrapper.GET_CURRENT_USER_PATH)
+    @GET(ShiftApiWrapper.GET_CURRENT_USER_PATH)
     Call<CurrentUserResponseVo> getCurrentUser();
 
     /**
@@ -56,6 +56,6 @@ public interface UserService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.DELETE_USER_PATH)
+    @POST(ShiftApiWrapper.DELETE_USER_PATH)
     Call<Void> deleteUser(@Body DeleteUserRequestVo data);
 }

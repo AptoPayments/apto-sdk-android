@@ -14,10 +14,10 @@ import com.shift.link.sdk.api.vos.responses.workflow.ActionVo;
 import com.shift.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import com.shift.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import com.shift.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import com.shift.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
 import com.shift.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
@@ -113,7 +113,7 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void startUserDataCollectorModule(boolean updateProfile) {
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         UserDataCollectorConfigurationVo config = updateProfile ? getConfigForUpdateProfile() : getConfigForLink();
         userDataCollectorModule.setCallToActionConfig(config);
@@ -130,7 +130,7 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void collectUserData() {
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity());
         userDataCollectorModule.onFinish = this::showOffersList;
         userDataCollectorModule.onBack = this::showWelcomeScreenOrBack;
@@ -198,7 +198,7 @@ public class LinkModule extends LedgeBaseModule {
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
         boolean isTokenValid = !isPOSMode && userToken != null;
         if(isTokenValid) {
-            ShiftUi.getApiWrapper().setBearerToken(userToken);
+            ShiftPlatform.getApiWrapper().setBearerToken(userToken);
         }
         return isTokenValid;
     }
@@ -212,8 +212,8 @@ public class LinkModule extends LedgeBaseModule {
     }
 
     private void getOpenApplications() {
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
-        ShiftUi.getPendingLoanApplicationsList(new ListRequestVo());
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.getPendingLoanApplicationsList(new ListRequestVo());
     }
 
     /**
@@ -222,7 +222,7 @@ public class LinkModule extends LedgeBaseModule {
      */
     @Subscribe
     public void handleResponse(LoanApplicationsSummaryListResponseVo applicationsList) {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         if(applicationsList.total_count == 0) {
             mUserHasAllRequiredData = false;
             showLoanInfo();

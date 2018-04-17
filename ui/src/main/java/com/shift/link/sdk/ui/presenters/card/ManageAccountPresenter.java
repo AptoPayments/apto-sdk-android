@@ -9,8 +9,8 @@ import android.app.Activity;
 import android.widget.Toast;
 
 import com.shift.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.activities.card.ManageAccountActivity;
 import com.shift.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
 import com.shift.link.sdk.ui.models.card.FundingSourceModel;
@@ -50,8 +50,8 @@ public class ManageAccountPresenter
         mAdapter = new FundingSourcesListRecyclerAdapter();
         mAdapter.setViewListener(this);
         view.setAdapter(mAdapter);
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
-        ShiftUi.getUserFundingSources();
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.getUserFundingSources();
     }
 
     @Override
@@ -61,7 +61,7 @@ public class ManageAccountPresenter
 
     @Subscribe
     public void handleResponse(FundingSourceListVo response) {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         mModel.addFundingSources(mActivity.getResources(), response.data);
         mAdapter.updateList(mModel.getFundingSources());
     }

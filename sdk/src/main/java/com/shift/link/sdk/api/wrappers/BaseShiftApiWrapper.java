@@ -1,10 +1,10 @@
 package com.shift.link.sdk.api.wrappers;
 
 /**
- * Partial implementation of the {@link LinkApiWrapper} interface.
+ * Partial implementation of the {@link ShiftApiWrapper} interface.
  * @author Wijnand
  */
-public abstract class BaseLinkApiWrapper implements LinkApiWrapper {
+public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
 
     private String mDeveloperKey;
     private String mDevice;
@@ -15,9 +15,9 @@ public abstract class BaseLinkApiWrapper implements LinkApiWrapper {
     private String mVgsEndPoint;
 
     /**
-     * Creates a new {@link BaseLinkApiWrapper} instance.
+     * Creates a new {@link BaseShiftApiWrapper} instance.
      */
-    public BaseLinkApiWrapper() {
+    public BaseShiftApiWrapper() {
         init();
     }
 
@@ -28,7 +28,7 @@ public abstract class BaseLinkApiWrapper implements LinkApiWrapper {
         mDeveloperKey = null;
         mDevice = null;
         mProjectToken = null;
-        mApiEndPoint = LinkApiWrapper.API_END_POINT;
+        mApiEndPoint = ShiftApiWrapper.API_END_POINT;
     }
 
     /** {@inheritDoc} */

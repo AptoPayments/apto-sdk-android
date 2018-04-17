@@ -44,10 +44,10 @@ import com.shift.link.sdk.api.vos.responses.verifications.VerificationStatusResp
 import java.util.HashMap;
 
 /**
- * Ledge Link API Wrapper.
+ * Shift API Wrapper.
  * @author Wijnand
  */
-public interface LinkApiWrapper {
+public interface ShiftApiWrapper {
 
     String SHA_256_PREFIX = "sha256/";
     String SSL_FINGERPRINT_ONE = "k2v657xBsOVe1PQRwOsHsw3bsGT2VzIqz5K+59sNQws=";

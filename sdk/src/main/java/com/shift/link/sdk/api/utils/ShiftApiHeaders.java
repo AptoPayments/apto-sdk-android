@@ -5,7 +5,7 @@ package com.shift.link.sdk.api.utils;
  * TODO: Move to API common project.
  * @author Wijnand
  */
-public class LedgeLinkHeaders {
+public class ShiftApiHeaders {
 
     /**
      * Device information. Suggested data:<br />

@@ -11,8 +11,8 @@ import com.shift.link.imageloaders.volley.VolleyImageLoader;
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import com.shift.link.sdk.ui.images.GenericImageLoader;
@@ -25,19 +25,19 @@ import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.utils.HandlerConfigurator;
 import com.shift.link.sdk.ui.vos.LoanDataVo;
-import com.shift.link.sdk.wrappers.retrofit.RetrofitTwoLinkApiWrapper;
+import com.shift.link.sdk.wrappers.retrofit.RetrofitTwoShiftApiWrapper;
 
 import java.util.ArrayList;
 
 import me.ledge.common.utils.android.AndroidUtils;
 
 /**
- * ShiftUi is an extension of {@link LedgeLinkSdk} to help set up the SDK.<br />
+ * ShiftPlatform is an extension of {@link ShiftLinkSdk} to help set up the SDK.<br />
  * <br />
- * Make sure to call {@link #setup} before calling {@link #startLinkSDK} or {@link #startCardSDK}!
+ * Make sure to call {@link #initialize} before calling {@link #startLinkFlow} or {@link #startCardFlow}!
  * @author Wijnand
  */
-public class ShiftUi extends LedgeLinkSdk {
+public class ShiftPlatform extends ShiftLinkSdk {
 
     private static GenericImageLoader mImageLoader;
     private static HandlerConfigurator mHandlerConfiguration;
@@ -133,19 +133,19 @@ public class ShiftUi extends LedgeLinkSdk {
         }
     }
 
-    public static void setup(Context context, String developerKey, String projectToken) {
-        setup(context, developerKey, projectToken, true, true, "sbx");
+    public static void initialize(Context context, String developerKey, String projectToken) {
+        initialize(context, developerKey, projectToken, true, true, "sbx");
     }
 
     /**
      * Sets up the Ledge Link SDK.
      */
-    public static void setup(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment) {
+    public static void initialize(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment) {
         mEnvironment = Environment.valueOf(environment.toLowerCase());
         AndroidUtils utils = new AndroidUtils();
         HandlerConfigurator configurator = new EventBusHandlerConfigurator();
 
-        LinkApiWrapper apiWrapper = new RetrofitTwoLinkApiWrapper();
+        ShiftApiWrapper apiWrapper = new RetrofitTwoShiftApiWrapper();
         apiWrapper.setVgsEndPoint(getVGSEndPoint());
         apiWrapper.setApiEndPoint(getApiEndPoint(), certificatePinning, trustSelfSignedCertificates);
         apiWrapper.setBaseRequestData(developerKey, utils.getDeviceSummary(), certificatePinning, trustSelfSignedCertificates);
@@ -157,8 +157,8 @@ public class ShiftUi extends LedgeLinkSdk {
         trustSelfSigned = trustSelfSignedCertificates;
     }
 
-    public static void startLinkSDK(Activity activity) {
-        startLinkSDK(activity, null, null);
+    public static void startLinkFlow(Activity activity) {
+        startLinkFlow(activity, null, null);
     }
 
     /**
@@ -167,7 +167,7 @@ public class ShiftUi extends LedgeLinkSdk {
      * @param userData Pre-fill user data. Use {@code null} if not needed.
      * @param loanData Pre-fill loan data. Use {@code null} if not needed.
      */
-    public static void startLinkSDK(Activity activity, DataPointList userData, LoanDataVo loanData) {
+    public static void startLinkFlow(Activity activity, DataPointList userData, LoanDataVo loanData) {
         UserStorage.getInstance().setUserData(userData);
         LinkStorage.getInstance().setLoanData(loanData);
         validateToken(activity);
@@ -185,8 +185,8 @@ public class ShiftUi extends LedgeLinkSdk {
         }
     }
 
-    public static void startCardSDK(Activity activity) {
-        startCardSDK(activity, null, null);
+    public static void startCardFlow(Activity activity) {
+        startCardFlow(activity, null, null);
     }
 
     /**
@@ -195,7 +195,7 @@ public class ShiftUi extends LedgeLinkSdk {
      * @param userData Pre-fill user data. Use {@code null} if not needed.
      * @param card Pre-fill card data. Use {@code null} if not needed.
      */
-    public static void startCardSDK(Activity activity, DataPointList userData, Card card) {
+    public static void startCardFlow(Activity activity, DataPointList userData, Card card) {
         UserStorage.getInstance().setUserData(userData);
         CardStorage.getInstance().setCard(card);
         validateToken(activity);

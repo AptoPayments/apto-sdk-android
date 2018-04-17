@@ -11,7 +11,7 @@ import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shift.link.sdk.example.KeysStorage;
 import com.shift.link.sdk.example.R;
 import com.shift.link.sdk.example.views.MainView;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.vos.LoanDataVo;
 
@@ -124,14 +124,14 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         super.onStart();
         Branch branch = Branch.getInstance(getApplicationContext());
         branch.initSession((referringParams, error) -> {
-            if (error == null && referringParams.has(KeysStorage.PREFS_ENVIRONMENT)
-                    && referringParams.has(KeysStorage.PREFS_PROJECT_KEY)
-                    && referringParams.has(KeysStorage.PREFS_TEAM_KEY)) {
+            if (error == null && referringParams.has(KeysStorage.PREF_ENVIRONMENT)
+                    && referringParams.has(KeysStorage.PREF_PROJECT_KEY)
+                    && referringParams.has(KeysStorage.PREF_TEAM_KEY)) {
                 boolean hasProjectChanged = false;
                 try {
-                    hasProjectChanged = KeysStorage.storeKeys(this, referringParams.getString(KeysStorage.PREFS_ENVIRONMENT),
-                            referringParams.getString(KeysStorage.PREFS_PROJECT_KEY),
-                            referringParams.getString(KeysStorage.PREFS_TEAM_KEY));
+                    hasProjectChanged = KeysStorage.storeKeys(this, referringParams.getString(KeysStorage.PREF_ENVIRONMENT),
+                            referringParams.getString(KeysStorage.PREF_PROJECT_KEY),
+                            referringParams.getString(KeysStorage.PREF_TEAM_KEY));
                 } catch (JSONException e) {
                     hasProjectChanged = KeysStorage.storeKeys(this, getDefaultEnvironment(),
                             getDefaultProjectToken(),
@@ -139,10 +139,10 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 if(hasProjectChanged) {
-                    ShiftUi.clearUserToken(this);
+                    ShiftPlatform.clearUserToken(this);
                 }
             }
-            ShiftUi.setup(this, getDeveloperKey(), getProjectToken(),
+            ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),
                     getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
             CompletableFuture
                     .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         if(SHARED_LOAN_DATA.containsKey(LOAN_DATA_KEY)){
             loanData = SHARED_LOAN_DATA.get(LOAN_DATA_KEY);
         }
-        ShiftUi.startLinkSDK(this, userData.get(), loanData.get());
+        ShiftPlatform.startLinkFlow(this, userData.get(), loanData.get());
     }
 
     @Override

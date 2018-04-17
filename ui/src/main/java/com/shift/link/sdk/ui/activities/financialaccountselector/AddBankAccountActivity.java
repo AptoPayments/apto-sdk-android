@@ -10,9 +10,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.AddBankAccountDelegate;
@@ -22,7 +22,7 @@ import com.shift.link.sdk.ui.views.financialaccountselector.AddBankAccountView;
 
 import java.util.HashMap;
 
-import static com.shift.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
+import static com.shift.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
 
 /**
  * Wires up the MVP pattern for the plaid webview.
@@ -80,7 +80,7 @@ public class AddBankAccountActivity
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                if(ShiftUi.trustSelfSigned && error.getPrimaryError() == SslError.SSL_UNTRUSTED) {
+                if(ShiftPlatform.trustSelfSigned && error.getPrimaryError() == SslError.SSL_UNTRUSTED) {
                     handler.proceed();
                 }
                 else {
@@ -103,7 +103,7 @@ public class AddBankAccountActivity
     }
 
     private String getPlaidURL() {
-        return getApiWrapper().getApiEndPoint() + "/" + LinkApiWrapper.PLAID_WEB_URL;
+        return getApiWrapper().getApiEndPoint() + "/" + ShiftApiWrapper.PLAID_WEB_URL;
     }
 
     // Parse a Link redirect URL querystring into a HashMap for easy manipulation and access

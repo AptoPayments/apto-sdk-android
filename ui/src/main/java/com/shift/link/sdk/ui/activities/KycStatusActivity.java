@@ -7,12 +7,12 @@ import android.util.Log;
 import android.view.View;
 
 import com.shift.link.sdk.api.vos.Card;
-import com.shift.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
+import com.shift.link.sdk.api.vos.requests.financialaccounts.KycStatus;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.storages.CardStorage;
-import com.shift.link.sdk.ui.views.KYCStatusView;
+import com.shift.link.sdk.ui.views.KycStatusView;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -21,9 +21,9 @@ import org.greenrobot.eventbus.Subscribe;
  * @author Adrian
  */
 
-public class KYCStatusActivity extends AppCompatActivity implements KYCStatusView.ViewListener {
+public class KycStatusActivity extends AppCompatActivity implements KycStatusView.ViewListener {
 
-    private KYCStatusView mView;
+    private KycStatusView mView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class KYCStatusActivity extends AppCompatActivity implements KYCStatusVie
     }
 
     private void setView() {
-        mView = (KYCStatusView) View.inflate(this, R.layout.act_kyc_status, null);
+        mView = (KycStatusView) View.inflate(this, R.layout.act_kyc_status, null);
         setContentView(mView);
         mView.getToolbar().setTitle(getString(R.string.kyc_status_title));
         mView.setViewListener(this);
@@ -48,8 +48,8 @@ public class KYCStatusActivity extends AppCompatActivity implements KYCStatusVie
 
     @Override
     public void refresh() {
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
-        ShiftUi.getFinancialAccount(CardStorage.getInstance().getCard().mAccountId);;
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.getFinancialAccount(CardStorage.getInstance().getCard().mAccountId);;
     }
 
     /**
@@ -58,10 +58,10 @@ public class KYCStatusActivity extends AppCompatActivity implements KYCStatusVie
      */
     @Subscribe
     public void handleResponse(Card card) {
-        Log.d("ADRIAN", "KYCStatusActivity handleResponse: " + card.kycStatus.toString());
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        Log.d("ADRIAN", "KycStatusActivity handleResponse: " + card.kycStatus.toString());
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         CardStorage.getInstance().setCard(card);
-        if(card.kycStatus.equals(KYCStatus.passed)) {
+        if(card.kycStatus.equals(KycStatus.passed)) {
             setResult(RESULT_OK, new Intent());
             finish();
         }

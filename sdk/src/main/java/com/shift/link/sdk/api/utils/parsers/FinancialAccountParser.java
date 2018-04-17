@@ -9,7 +9,7 @@ import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.datapoints.BankAccount;
 import com.shift.link.sdk.api.vos.datapoints.Custodian;
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import com.shift.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
+import com.shift.link.sdk.api.vos.requests.financialaccounts.KycStatus;
 
 import java.lang.reflect.Type;
 
@@ -42,7 +42,7 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     Card.FinancialAccountState.valueOf(cardState),
                     ParsingUtils.getCurrencyStringFromJson(jObject.get("balance")),
                     new Custodian("coinbase", "logo", "coinbase", ""),
-                    KYCStatus.valueOf(kycStatus),
+                    KycStatus.valueOf(kycStatus),
                     //TODO
                     null,
                     false);

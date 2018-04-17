@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.views.LoadingView;
 import com.shift.link.sdk.ui.views.ViewWithIndeterminateLoading;
@@ -138,6 +138,6 @@ public class EnableAutoPayView
     }
 
     public void setImage(String imageUrl) {
-        ShiftUi.getImageLoader().load(imageUrl, mImageView);
+        ShiftPlatform.getImageLoader().load(imageUrl, mImageView);
     }
 }

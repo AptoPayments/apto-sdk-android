@@ -1,7 +1,7 @@
 package com.shift.link.sdk.wrappers.retrofit.interceptors;
 
 
-import com.shift.link.sdk.api.utils.LedgeLinkHeaders;
+import com.shift.link.sdk.api.utils.ShiftApiHeaders;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ import okhttp3.Response;
  * An OkHttp3 {@link Interceptor} that will add all required headers for API calls.
  * @author Wijnand
  */
-public class LedgeLinkOkThreeInterceptor implements Interceptor {
+public class ShiftOkThreeInterceptor implements Interceptor {
 
     private String mDevice;
     private String mBearerToken;
@@ -21,10 +21,10 @@ public class LedgeLinkOkThreeInterceptor implements Interceptor {
     private String mProjectToken;
 
     /**
-     * Creates a new {@link LedgeLinkOkThreeInterceptor} instance.
+     * Creates a new {@link ShiftOkThreeInterceptor} instance.
      * @param device Device information.
      */
-    public LedgeLinkOkThreeInterceptor(String device, String developerKey, String projectToken) {
+    public ShiftOkThreeInterceptor(String device, String developerKey, String projectToken) {
         mDevice = device;
         mDeveloperKey = developerKey;
         mProjectToken = projectToken;
@@ -52,19 +52,19 @@ public class LedgeLinkOkThreeInterceptor implements Interceptor {
         Request original = chain.request();
 
         Request.Builder builder = original.newBuilder()
-                .header(LedgeLinkHeaders.API_VERSION_HEADER_NAME, LedgeLinkHeaders.API_VERSION_VALUE);
+                .header(ShiftApiHeaders.API_VERSION_HEADER_NAME, ShiftApiHeaders.API_VERSION_VALUE);
 
         if (hasHeaderValue(mDevice)) {
-            builder.header(LedgeLinkHeaders.DEVICE_HEADER_NAME, mDevice);
+            builder.header(ShiftApiHeaders.DEVICE_HEADER_NAME, mDevice);
         }
         if (hasHeaderValue(mBearerToken)) {
-            builder.header(LedgeLinkHeaders.BEARER_TOKEN_HEADER_NAME, mBearerToken);
+            builder.header(ShiftApiHeaders.BEARER_TOKEN_HEADER_NAME, mBearerToken);
         }
         if (hasHeaderValue(mDeveloperKey)) {
-            builder.header(LedgeLinkHeaders.DEV_KEY_HEADER_NAME, mDeveloperKey);
+            builder.header(ShiftApiHeaders.DEV_KEY_HEADER_NAME, mDeveloperKey);
         }
         if (hasHeaderValue(mProjectToken)) {
-            builder.header(LedgeLinkHeaders.PROJECT_TOKEN_HEADER_NAME, mProjectToken);
+            builder.header(ShiftApiHeaders.PROJECT_TOKEN_HEADER_NAME, mProjectToken);
         }
 
         return chain.proceed(builder.build());

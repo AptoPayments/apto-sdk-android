@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.models.financialaccountselector.IntermediateFinancialAccountListModel;
 import com.shift.link.sdk.ui.presenters.ActivityPresenter;
 import com.shift.link.sdk.ui.presenters.Presenter;
@@ -32,7 +32,7 @@ public class IntermediateFinancialAccountListPresenter
     public IntermediateFinancialAccountListPresenter(AppCompatActivity activity, IntermediateFinancialAccountListDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-        ShiftUi.getFinancialAccounts();
+        ShiftPlatform.getFinancialAccounts();
     }
 
     @Override

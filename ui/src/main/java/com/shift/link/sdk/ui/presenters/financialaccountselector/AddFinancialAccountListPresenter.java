@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
 import com.shift.link.sdk.ui.models.financialaccountselector.AddCardModel;
 import com.shift.link.sdk.ui.models.financialaccountselector.AddFinancialAccountListModel;
@@ -120,7 +120,7 @@ public class AddFinancialAccountListPresenter
         else if (model instanceof  AddVirtualCardModel) {
             mLoadingSpinnerManager.showLoading(true);
             AddVirtualCardModel mModel = (AddVirtualCardModel) model;
-            ShiftUi.issueVirtualCard(mModel.getRequest());
+            ShiftPlatform.issueVirtualCard(mModel.getRequest());
         }
         else if (model instanceof AddCardModel) {
             mDelegate.addCard();

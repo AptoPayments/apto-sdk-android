@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutionException;
 import java8.util.concurrent.CompletableFuture;
 import java8.util.concurrent.CompletionException;
 
-import static com.shift.link.sdk.sdk.LedgeLinkSdk.getApiWrapper;
+import static com.shift.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
 
 /**
  * Stores UI related data.

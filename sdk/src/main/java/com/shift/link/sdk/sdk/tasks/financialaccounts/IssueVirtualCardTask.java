@@ -3,23 +3,23 @@ package com.shift.link.sdk.sdk.tasks.financialaccounts;
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shift.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
- * A concrete {@link LedgeLinkApiTask} to issue a virtual card.
+ * A concrete {@link ShiftApiTask} to issue a virtual card.
  * @author Adrian
  */
-public class IssueVirtualCardTask extends LedgeLinkApiTask<Void,Void,Card,IssueVirtualCardRequestVo> {
+public class IssueVirtualCardTask extends ShiftApiTask<Void,Void,Card,IssueVirtualCardRequestVo> {
 
     /**
-     * @see LedgeLinkApiTask#LedgeLinkApiTask
-     * @param requestData See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
-     * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
-     * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
+     * @see ShiftApiTask#ShiftApiTask
+     * @param requestData See {@link ShiftApiTask#ShiftApiTask}.
+     * @param apiWrapper See {@link ShiftApiTask#ShiftApiTask}.
+     * @param responseHandler See {@link ShiftApiTask#ShiftApiTask}.
      */
-    public IssueVirtualCardTask(IssueVirtualCardRequestVo requestData, LinkApiWrapper apiWrapper,
+    public IssueVirtualCardTask(IssueVirtualCardRequestVo requestData, ShiftApiWrapper apiWrapper,
                                 ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);

@@ -1,6 +1,6 @@
 package com.shift.link.sdk.sdk.utils.tasks;
 
-import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import com.shift.link.sdk.sdk.tasks.ShiftApiTask;
 
 import junit.framework.Assert;
 
@@ -8,18 +8,18 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * Generic {@link LedgeLinkApiTask} wrapper that helps with fake execution of an API Task.
+ * Generic {@link ShiftApiTask} wrapper that helps with fake execution of an API Task.
  * @author Wijnand
  */
 public class RoboLinkApiTaskWrapper<Result, Request> {
 
-    private LedgeLinkApiTask<Void, Void, Result, Request> mTarget;
+    private ShiftApiTask<Void, Void, Result, Request> mTarget;
 
     /**
      * Creates a new {@link RoboLinkApiTaskWrapper} instance.
      * @param target The task to "execute".
      */
-    public RoboLinkApiTaskWrapper(LedgeLinkApiTask<Void, Void, Result, Request> target) {
+    public RoboLinkApiTaskWrapper(ShiftApiTask<Void, Void, Result, Request> target) {
         mTarget = target;
     }
 

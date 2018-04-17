@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 import com.shift.link.sdk.api.vos.datapoints.Custodian;
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import com.shift.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
+import com.shift.link.sdk.api.vos.requests.financialaccounts.KycStatus;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -50,7 +50,7 @@ public class Card extends FinancialAccountVo {
     //TODO: remove custodian
     public Custodian custodian;
     @SerializedName("kyc_status")
-    public KYCStatus kycStatus;
+    public KycStatus kycStatus;
     @SerializedName("kyc_reason")
     public String[] kycReason;
 
@@ -88,7 +88,7 @@ public class Card extends FinancialAccountVo {
     }
 
     public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, KYCStatus kycStatus, String[] kycReason, boolean verified) {
+                String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, KycStatus kycStatus, String[] kycReason, boolean verified) {
         super(accountId, FinancialAccountType.Card, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
@@ -105,7 +105,7 @@ public class Card extends FinancialAccountVo {
     }
 
     protected Card(FinancialAccountType accountType, String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                   String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, KYCStatus kycStatus, String[] kycReason, boolean verified) {
+                   String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, KycStatus kycStatus, String[] kycReason, boolean verified) {
         super(accountId, accountType, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;

@@ -3,23 +3,23 @@ package com.shift.link.sdk.sdk.tasks.users;
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.responses.users.CreateUserResponseVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shift.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
- * A concrete {@link LedgeLinkApiTask} to create a new user.
+ * A concrete {@link ShiftApiTask} to create a new user.
  * @author Wijnand
  */
-public class CreateUserTask extends LedgeLinkApiTask<Void, Void, CreateUserResponseVo, DataPointList> {
+public class CreateUserTask extends ShiftApiTask<Void, Void, CreateUserResponseVo, DataPointList> {
 
     /**
-     * @see LedgeLinkApiTask#LedgeLinkApiTask
-     * @param requestData See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
-     * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
-     * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
+     * @see ShiftApiTask#ShiftApiTask
+     * @param requestData See {@link ShiftApiTask#ShiftApiTask}.
+     * @param apiWrapper See {@link ShiftApiTask#ShiftApiTask}.
+     * @param responseHandler See {@link ShiftApiTask#ShiftApiTask}.
      */
-    public CreateUserTask(DataPointList requestData, LinkApiWrapper apiWrapper,
+    public CreateUserTask(DataPointList requestData, ShiftApiWrapper apiWrapper,
                           ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);

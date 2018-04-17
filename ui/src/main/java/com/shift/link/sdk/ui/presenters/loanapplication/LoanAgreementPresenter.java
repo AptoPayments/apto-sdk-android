@@ -9,7 +9,7 @@ import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetai
 import com.shift.link.sdk.api.vos.responses.offers.OfferVo;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import com.shift.link.sdk.ui.presenters.ActivityPresenter;
 import com.shift.link.sdk.ui.presenters.Presenter;
@@ -51,7 +51,7 @@ public class LoanAgreementPresenter
             offer = application.offer;
         }
 
-        return new LoanAgreementModel(offer, ShiftUi.getImageLoader());
+        return new LoanAgreementModel(offer, ShiftPlatform.getImageLoader());
     }
 
     /** {@inheritDoc} */

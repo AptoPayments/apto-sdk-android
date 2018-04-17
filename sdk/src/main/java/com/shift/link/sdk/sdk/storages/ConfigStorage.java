@@ -7,7 +7,7 @@ import com.shift.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shift.link.sdk.api.vos.responses.config.LoanProductListVo;
 import com.shift.link.sdk.api.vos.responses.config.LoanPurposesResponseVo;
 import com.shift.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
 
 import java.util.concurrent.ExecutionException;
 
@@ -53,7 +53,7 @@ public class ConfigStorage {
             CompletableFuture<LoanPurposesResponseVo> future = CompletableFuture.supplyAsync(() -> {
 
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.loanPurposesList;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -70,7 +70,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<ContentVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.linkDisclaimer;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -87,7 +87,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<LoanProductListVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.loanProductList;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -104,7 +104,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<RequiredDataPointsListResponseVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.userRequiredData;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -125,7 +125,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.posMode;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -142,7 +142,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.loanAmountMin;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -159,7 +159,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.loanAmountMax;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -176,7 +176,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.loanAmountIncrements;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -193,7 +193,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.loanAmountDefault;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -211,7 +211,7 @@ public class ConfigStorage {
             CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
 
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.skipLinkDisclaimer;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -228,7 +228,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.isStrictAddressValidationEnabled;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -245,7 +245,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<OffersListStyle> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return OffersListStyle.valueOf(mLinkConfig.offerListStyle);
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -262,7 +262,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.skipLoanAmount;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -279,7 +279,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = LedgeLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
                     return mLinkConfig.skipLoanPurpose;
                 } catch (ApiException e) {
                     throw new CompletionException(e);

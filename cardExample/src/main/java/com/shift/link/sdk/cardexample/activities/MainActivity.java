@@ -10,7 +10,7 @@ import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shift.link.sdk.cardexample.KeysStorage;
 import com.shift.link.sdk.cardexample.R;
 import com.shift.link.sdk.cardexample.views.MainView;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.storages.UIStorage;
 
 import org.json.JSONException;
@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 if(hasProjectChanged) {
-                    ShiftUi.clearUserToken(this);
+                    ShiftPlatform.clearUserToken(this);
                 }
             }
-            ShiftUi.setup(this, getDeveloperKey(), getProjectToken(),
+            ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),
                     getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
             CompletableFuture
                     .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
 
     @Override
     public void getStartedClickedHandler() {
-        ShiftUi.startCardSDK(this);
+        ShiftPlatform.startCardFlow(this);
     }
 
     private void configRetrieved(ConfigResponseVo configResponseVo) {

@@ -8,8 +8,8 @@ import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shift.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import com.shift.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
 import com.shift.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity;
@@ -76,8 +76,8 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Override
     public void cardAdded(Card card) {
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
-        ShiftUi.addCard(card);
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.addCard(card);
         showLoading(true);
     }
 
@@ -95,7 +95,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
     public void bankAccountLinked(String token) {
         AddBankAccountRequestVo request = new AddBankAccountRequestVo();
         request.publicToken = token;
-        ShiftUi.addBankAccount(request);
+        ShiftPlatform.addBankAccount(request);
         startActivity(IntermediateFinancialAccountListActivity.class);
     }
 
@@ -140,7 +140,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
 
     @Subscribe
     public void handleResponse(Card card) {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
         onFinancialAccountSelected(card.mAccountId);
     }
@@ -151,7 +151,7 @@ public class FinancialAccountSelectorModule extends LedgeBaseModule
      */
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
         super.handleSessionExpiredError(error);
     }

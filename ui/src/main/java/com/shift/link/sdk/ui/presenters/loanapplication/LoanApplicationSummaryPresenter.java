@@ -13,7 +13,7 @@ import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetai
 import com.shift.link.sdk.api.vos.responses.offers.OfferVo;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
 import com.shift.link.sdk.ui.presenters.ActivityPresenter;
 import com.shift.link.sdk.ui.presenters.Presenter;
@@ -63,7 +63,7 @@ public class LoanApplicationSummaryPresenter
     /** {@inheritDoc} */
     @Override
     public LoanApplicationSummaryModel createModel() {
-        return new LoanApplicationSummaryModel(LoanStorage.getInstance().getSelectedOffer(), ShiftUi.getImageLoader());
+        return new LoanApplicationSummaryModel(LoanStorage.getInstance().getSelectedOffer(), ShiftPlatform.getImageLoader());
     }
 
     /** {@inheritDoc} */
@@ -151,7 +151,7 @@ public class LoanApplicationSummaryPresenter
                 mLoadingSpinnerManager.showLoading(true);
             }
             OfferVo selectedOffer = LoanStorage.getInstance().getSelectedOffer();
-            ShiftUi.createLoanApplication(selectedOffer.id);
+            ShiftPlatform.createLoanApplication(selectedOffer.id);
 
         } else {
             mView.scrollToBottom();

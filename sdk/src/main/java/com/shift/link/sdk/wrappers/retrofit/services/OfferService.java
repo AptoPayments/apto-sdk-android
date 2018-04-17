@@ -4,7 +4,7 @@ import com.shift.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shift.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shift.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
 import com.shift.link.sdk.api.vos.responses.offers.OffersListVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,7 +22,7 @@ public interface OfferService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.INITIAL_OFFERS_PATH)
+    @POST(ShiftApiWrapper.INITIAL_OFFERS_PATH)
     Call<InitialOffersResponseVo> getInitialOffers(@Body InitialOffersRequestVo data);
 
     /**
@@ -31,7 +31,7 @@ public interface OfferService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.MORE_OFFERS_PATH)
+    @POST(ShiftApiWrapper.MORE_OFFERS_PATH)
     Call<OffersListVo> getMoreOffers(@Path("offer_request_id") String offerRequestId,
             @Body ListRequestVo data);
 }

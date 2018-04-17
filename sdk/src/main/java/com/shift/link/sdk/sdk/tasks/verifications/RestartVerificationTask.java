@@ -2,23 +2,23 @@ package com.shift.link.sdk.sdk.tasks.verifications;
 
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shift.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
- * A concrete {@link LedgeLinkApiTask} to complete user's phone verification.
+ * A concrete {@link ShiftApiTask} to complete user's phone verification.
  * @author Adrian
  */
-public class RestartVerificationTask extends LedgeLinkApiTask<Void, Void, VerificationResponseVo, String> {
+public class RestartVerificationTask extends ShiftApiTask<Void, Void, VerificationResponseVo, String> {
 
     /**
-     * @see LedgeLinkApiTask#LedgeLinkApiTask
-     * @param requestData See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
-     * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
-     * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
+     * @see ShiftApiTask#ShiftApiTask
+     * @param requestData See {@link ShiftApiTask#ShiftApiTask}.
+     * @param apiWrapper See {@link ShiftApiTask#ShiftApiTask}.
+     * @param responseHandler See {@link ShiftApiTask#ShiftApiTask}.
      */
-    public RestartVerificationTask(String requestData, LinkApiWrapper apiWrapper,
+    public RestartVerificationTask(String requestData, ShiftApiWrapper apiWrapper,
                                          ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);

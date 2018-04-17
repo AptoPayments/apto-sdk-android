@@ -3,16 +3,16 @@ package com.shift.link.sdk.sdk.tasks.loanapplication;
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shift.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
- * A concrete {@link LedgeLinkApiTask} to link an account to the given application
+ * A concrete {@link ShiftApiTask} to link an account to the given application
  * @author Adrian
  */
 public class SetApplicationAccountTask
-        extends LedgeLinkApiTask<Void, Void, LoanApplicationDetailsResponseVo, ApplicationAccountRequestVo> {
+        extends ShiftApiTask<Void, Void, LoanApplicationDetailsResponseVo, ApplicationAccountRequestVo> {
 
     private String mApplicationId;
     /**
@@ -22,7 +22,7 @@ public class SetApplicationAccountTask
      * @param apiWrapper The API wrapper instance to make API calls.
      * @param responseHandler The response handler instance used to publish results.
      */
-    public SetApplicationAccountTask(ApplicationAccountRequestVo requestData, String applicationId, LinkApiWrapper apiWrapper,
+    public SetApplicationAccountTask(ApplicationAccountRequestVo requestData, String applicationId, ShiftApiWrapper apiWrapper,
                                      ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);

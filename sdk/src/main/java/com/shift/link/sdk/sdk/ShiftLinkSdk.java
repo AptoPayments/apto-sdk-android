@@ -15,8 +15,8 @@ import com.shift.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shift.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shift.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shift.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
-import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shift.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shift.link.sdk.sdk.tasks.config.HousingTypeListTask;
 import com.shift.link.sdk.sdk.tasks.config.IncomeTypesListTask;
 import com.shift.link.sdk.sdk.tasks.config.LinkConfigTask;
@@ -49,16 +49,16 @@ import com.shift.link.sdk.sdk.tasks.verifications.StartVerificationTask;
 import java.util.concurrent.Executor;
 
 /**
- * Ledge Link SDK.<br />
+ * Shift Link SDK.<br />
  * <br />
- * Make sure to call {@link #setApiWrapper(LinkApiWrapper)} and {@link #setResponseHandler(ApiResponseHandler)} before
+ * Make sure to call {@link #setApiWrapper(ShiftApiWrapper)} and {@link #setResponseHandler(ApiResponseHandler)} before
  * making any API requests.
  *
  * @author Wijnand
  */
-public class LedgeLinkSdk {
+public class ShiftLinkSdk {
 
-    private static LinkApiWrapper mApiWrapper;
+    private static ShiftApiWrapper mApiWrapper;
     private static Executor mExecutor;
     private static ApiResponseHandler mHandler;
 
@@ -69,7 +69,7 @@ public class LedgeLinkSdk {
     protected static void checkComponents() {
         if (getApiWrapper() == null) {
             throw new NullPointerException(
-                    "Make sure to call 'setApiWrapper(LinkApiWrapper)' before invoking any API request methods!");
+                    "Make sure to call 'setApiWrapper(ShiftApiWrapper)' before invoking any API request methods!");
         } else if (getResponseHandler() == null) {
             throw new NullPointerException("Make sure to call 'setResponseHandler(ApiResponseHandler)' before " +
                     "invoking any API request methods!");
@@ -79,15 +79,15 @@ public class LedgeLinkSdk {
     /**
      * @return API wrapper.
      */
-    public static LinkApiWrapper getApiWrapper() {
+    public static ShiftApiWrapper getApiWrapper() {
         return mApiWrapper;
     }
 
     /**
-     * Stores a new {@link LinkApiWrapper} instance.
+     * Stores a new {@link ShiftApiWrapper} instance.
      * @param wrapper Api wrapper.
      */
-    public static void setApiWrapper(LinkApiWrapper wrapper) {
+    public static void setApiWrapper(ShiftApiWrapper wrapper) {
         mApiWrapper = wrapper;
     }
 
@@ -103,7 +103,7 @@ public class LedgeLinkSdk {
     }
 
     /**
-     * Stores a new {@link Executor} that will be used to execute any {@link LedgeLinkApiTask}.
+     * Stores a new {@link Executor} that will be used to execute any {@link ShiftApiTask}.
      * @param executor {@link AsyncTask} {@link Executor}.
      */
     public static void setExecutor(Executor executor) {
@@ -118,7 +118,7 @@ public class LedgeLinkSdk {
     }
 
     /**
-     * Stores a new {@link ApiResponseHandler} that will be invoked by any {@link LedgeLinkApiTask} to publish its
+     * Stores a new {@link ApiResponseHandler} that will be invoked by any {@link ShiftApiTask} to publish its
      * results.
      * @param handler Api response handler.
      */
@@ -128,9 +128,9 @@ public class LedgeLinkSdk {
 
     /**
      * Gets the loan purposes list.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getLinkConfig() {
+    public static ShiftApiTask getLinkConfig() {
         checkComponents();
 
         LinkConfigTask task
@@ -142,9 +142,9 @@ public class LedgeLinkSdk {
 
     /**
      * Gets the housing type list.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getHousingTypeList() {
+    public static ShiftApiTask getHousingTypeList() {
         checkComponents();
 
         HousingTypeListTask task
@@ -156,9 +156,9 @@ public class LedgeLinkSdk {
 
     /**
      * Gets the employment statuses list.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getIncomeTypesList() {
+    public static ShiftApiTask getIncomeTypesList() {
         checkComponents();
 
         IncomeTypesListTask task
@@ -170,9 +170,9 @@ public class LedgeLinkSdk {
 
     /**
      * Gets the salary frequencies list.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getSalaryFrequenciesList() {
+    public static ShiftApiTask getSalaryFrequenciesList() {
         checkComponents();
 
         SalaryFrequenciesListTask task
@@ -185,9 +185,9 @@ public class LedgeLinkSdk {
     /**
      * Creates a new user.
      * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask createUser(DataPointList data) {
+    public static ShiftApiTask createUser(DataPointList data) {
         checkComponents();
 
         CreateUserTask task = new CreateUserTask(data, getApiWrapper(), getResponseHandler());
@@ -199,9 +199,9 @@ public class LedgeLinkSdk {
     /**
      * Updates an existing user.
      * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask updateUser(DataPointList data) {
+    public static ShiftApiTask updateUser(DataPointList data) {
         checkComponents();
 
         UpdateUserTask task = new UpdateUserTask(data, getApiWrapper(), getResponseHandler());
@@ -213,9 +213,9 @@ public class LedgeLinkSdk {
     /**
      * Creates a new user.
      * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask loginUser(LoginRequestVo data) {
+    public static ShiftApiTask loginUser(LoginRequestVo data) {
         checkComponents();
 
         LoginUserTask task = new LoginUserTask(data, getApiWrapper(), getResponseHandler());
@@ -226,9 +226,9 @@ public class LedgeLinkSdk {
 
     /**
      * Gets the current user info.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getCurrentUser(boolean throwSessionExpiredError) {
+    public static ShiftApiTask getCurrentUser(boolean throwSessionExpiredError) {
         checkComponents();
 
         GetCurrentUserTask task = new GetCurrentUserTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler(), throwSessionExpiredError);
@@ -241,9 +241,9 @@ public class LedgeLinkSdk {
     /**
      * Creates a new user.
      * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getInitialOffers(InitialOffersRequestVo data) {
+    public static ShiftApiTask getInitialOffers(InitialOffersRequestVo data) {
         checkComponents();
 
         InitialOffersTask task = new InitialOffersTask(data, getApiWrapper(), getResponseHandler());
@@ -255,9 +255,9 @@ public class LedgeLinkSdk {
     /**
      * Creates a new loan application.
      * @param offerId The loan offer to apply to.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask createLoanApplication(String offerId) {
+    public static ShiftApiTask createLoanApplication(String offerId) {
         checkComponents();
 
         CreateLoanApplicationTask task = new CreateLoanApplicationTask(offerId, getApiWrapper(), getResponseHandler());
@@ -269,9 +269,9 @@ public class LedgeLinkSdk {
     /**
      * Fetches the list of open loan applications.
      * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getPendingLoanApplicationsList(ListRequestVo data) {
+    public static ShiftApiTask getPendingLoanApplicationsList(ListRequestVo data) {
         checkComponents();
 
         ListPendingLoanApplicationsTask task = new ListPendingLoanApplicationsTask(data, getApiWrapper(), getResponseHandler());
@@ -283,9 +283,9 @@ public class LedgeLinkSdk {
     /**
      * Fetches the current status of the application.
      * @param applicationId Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getApplicationStatus(String applicationId) {
+    public static ShiftApiTask getApplicationStatus(String applicationId) {
         checkComponents();
 
         GetLoanApplicationStatusTask task = new GetLoanApplicationStatusTask(applicationId, getApiWrapper(), getResponseHandler());
@@ -297,9 +297,9 @@ public class LedgeLinkSdk {
     /**
      * Links a financial account to the an application.
      * @param applicationId Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask setApplicationAccount(ApplicationAccountRequestVo data, String applicationId) {
+    public static ShiftApiTask setApplicationAccount(ApplicationAccountRequestVo data, String applicationId) {
         checkComponents();
 
         SetApplicationAccountTask task = new SetApplicationAccountTask(data, applicationId, getApiWrapper(), getResponseHandler());
@@ -312,9 +312,9 @@ public class LedgeLinkSdk {
     /**
      * Starts the phone verification process.
      * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask startVerification(StartVerificationRequestVo data) {
+    public static ShiftApiTask startVerification(StartVerificationRequestVo data) {
         checkComponents();
 
         StartVerificationTask task = new StartVerificationTask(data, getApiWrapper(), getResponseHandler());
@@ -326,9 +326,9 @@ public class LedgeLinkSdk {
     /**
      * Completes the verification process.
      * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask completeVerification(VerificationRequestVo data, String verificationId) {
+    public static ShiftApiTask completeVerification(VerificationRequestVo data, String verificationId) {
         checkComponents();
 
         CompleteVerificationTask task = new CompleteVerificationTask(data, verificationId, getApiWrapper(), getResponseHandler());
@@ -340,9 +340,9 @@ public class LedgeLinkSdk {
     /**
      * Retrieve the current verification status.
      * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getVerificationStatus(String data) {
+    public static ShiftApiTask getVerificationStatus(String data) {
         checkComponents();
 
         GetVerificationStatusTask task = new GetVerificationStatusTask(data, getApiWrapper(), getResponseHandler());
@@ -354,9 +354,9 @@ public class LedgeLinkSdk {
     /**
      * Restart the verification for the given verification ID
      * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask restartVerification(String data) {
+    public static ShiftApiTask restartVerification(String data) {
         checkComponents();
 
         RestartVerificationTask task = new RestartVerificationTask(data, getApiWrapper(), getResponseHandler());
@@ -368,9 +368,9 @@ public class LedgeLinkSdk {
     /**
      * Add a bank account
      * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask addBankAccount(AddBankAccountRequestVo data) {
+    public static ShiftApiTask addBankAccount(AddBankAccountRequestVo data) {
         checkComponents();
 
         AddBankAccountTask task = new AddBankAccountTask(data, getApiWrapper(), getResponseHandler());
@@ -382,9 +382,9 @@ public class LedgeLinkSdk {
     /**
      * Add a credit/debit card
      * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask addCard(Card data) {
+    public static ShiftApiTask addCard(Card data) {
         checkComponents();
 
         AddCardTask task = new AddCardTask(data, getApiWrapper(), getResponseHandler());
@@ -396,9 +396,9 @@ public class LedgeLinkSdk {
     /**
      * Issue a new virtual card
      * @param data Mandatory API request data.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask issueVirtualCard(IssueVirtualCardRequestVo data) {
+    public static ShiftApiTask issueVirtualCard(IssueVirtualCardRequestVo data) {
         checkComponents();
 
         IssueVirtualCardTask task = new IssueVirtualCardTask(data, getApiWrapper(), getResponseHandler());
@@ -409,9 +409,9 @@ public class LedgeLinkSdk {
 
     /**
      * Gets the user's financial accounts.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getFinancialAccounts() {
+    public static ShiftApiTask getFinancialAccounts() {
         checkComponents();
 
         GetFinancialAccountsTask task = new GetFinancialAccountsTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
@@ -422,9 +422,9 @@ public class LedgeLinkSdk {
 
     /**
      * Gets the user's financial accounts.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getFinancialAccount(String data) {
+    public static ShiftApiTask getFinancialAccount(String data) {
         checkComponents();
 
         GetFinancialAccountTask task = new GetFinancialAccountTask(data, getApiWrapper(), getResponseHandler());
@@ -435,9 +435,9 @@ public class LedgeLinkSdk {
 
     /**
      * Update financial account.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask updateFinancialAccount(UpdateFinancialAccountRequestVo data, String accountId) {
+    public static ShiftApiTask updateFinancialAccount(UpdateFinancialAccountRequestVo data, String accountId) {
         checkComponents();
 
         UpdateFinancialAccountTask task = new UpdateFinancialAccountTask(data, accountId, getApiWrapper(), getResponseHandler());
@@ -448,9 +448,9 @@ public class LedgeLinkSdk {
 
     /**
      * Update pin of financial account.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask updateFinancialAccountPin(UpdateFinancialAccountPinRequestVo data, String accountId) {
+    public static ShiftApiTask updateFinancialAccountPin(UpdateFinancialAccountPinRequestVo data, String accountId) {
         checkComponents();
 
         UpdateFinancialAccountPinTask task = new UpdateFinancialAccountPinTask(data, accountId, getApiWrapper(), getResponseHandler());
@@ -461,9 +461,9 @@ public class LedgeLinkSdk {
 
     /**
      * Gets the financial account's transactions.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getFinancialAccountTransactions(String accountId, int rows, String lastTransactionId) {
+    public static ShiftApiTask getFinancialAccountTransactions(String accountId, int rows, String lastTransactionId) {
         checkComponents();
 
         GetFinancialAccountTransactionsTask task = new GetFinancialAccountTransactionsTask(accountId, rows, lastTransactionId, getApiWrapper(), getResponseHandler());
@@ -474,9 +474,9 @@ public class LedgeLinkSdk {
 
     /**
      * Gets the financial account's funding source.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getFinancialAccountFundingSource(String accountId) {
+    public static ShiftApiTask getFinancialAccountFundingSource(String accountId) {
         checkComponents();
 
         GetFinancialAccountFundingSourceTask task = new GetFinancialAccountFundingSourceTask(accountId, getApiWrapper(), getResponseHandler());
@@ -487,9 +487,9 @@ public class LedgeLinkSdk {
 
     /**
      * Gets the financial account's funding source.
-     * @return The {@link LedgeLinkApiTask} that is being executed.
+     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static LedgeLinkApiTask getUserFundingSources() {
+    public static ShiftApiTask getUserFundingSources() {
         checkComponents();
 
         GetUserFundingSourcesTask task = new GetUserFundingSourcesTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());

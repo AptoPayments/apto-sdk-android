@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
@@ -16,23 +16,23 @@ import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * @param <Result> The type of the result of the background computation.
  * @param <Request> The type of request data sent to the API upon execution.
  */
-public abstract class LedgeLinkApiTask<Params, Progress, Result, Request>
+public abstract class ShiftApiTask<Params, Progress, Result, Request>
         extends AsyncTask<Params, Progress, Result> {
 
     private final Request mRequestData;
-    private final LinkApiWrapper mApiWrapper;
+    private final ShiftApiWrapper mApiWrapper;
     private final ApiResponseHandler mResponseHandler;
 
     private boolean mSuccess;
     private ApiErrorVo mError;
 
     /**
-     * Creates a new {@link LedgeLinkApiTask} instance.
+     * Creates a new {@link ShiftApiTask} instance.
      * @param requestData API request data.
      * @param apiWrapper The API wrapper instance to make API calls.
      * @param responseHandler The response handler instance used to publish results.
      */
-    public LedgeLinkApiTask(Request requestData, LinkApiWrapper apiWrapper, ApiResponseHandler responseHandler) {
+    public ShiftApiTask(Request requestData, ShiftApiWrapper apiWrapper, ApiResponseHandler responseHandler) {
         super();
         init();
 
@@ -59,7 +59,7 @@ public abstract class LedgeLinkApiTask<Params, Progress, Result, Request>
     /**
      * @return The API wrapper instance to make API calls.
      */
-    protected LinkApiWrapper getApiWrapper() {
+    protected ShiftApiWrapper getApiWrapper() {
         return mApiWrapper;
     }
 

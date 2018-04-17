@@ -7,7 +7,7 @@ import com.shift.link.sdk.api.vos.Card;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import com.shift.link.sdk.api.vos.requests.financialaccounts.KYCStatus;
+import com.shift.link.sdk.api.vos.requests.financialaccounts.KycStatus;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
@@ -15,11 +15,11 @@ import com.shift.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shift.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import com.shift.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import com.shift.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
-import com.shift.link.sdk.ui.activities.KYCStatusActivity;
+import com.shift.link.sdk.ui.ShiftPlatform;
+import com.shift.link.sdk.ui.activities.KycStatusActivity;
 import com.shift.link.sdk.ui.activities.card.IssueVirtualCardActivity;
 import com.shift.link.sdk.ui.activities.card.ManageCardActivity;
 import com.shift.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
@@ -75,13 +75,13 @@ public class CardModule extends LedgeBaseModule {
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
         boolean isTokenValid = !isPOSMode && userToken != null;
         if(isTokenValid) {
-            ShiftUi.getApiWrapper().setBearerToken(userToken);
+            ShiftPlatform.getApiWrapper().setBearerToken(userToken);
         }
         return isTokenValid;
     }
 
     public void showHomeActivity() {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         Activity currentActivity = this.getActivity();
         currentActivity.finish();
         Intent intent = currentActivity.getIntent();
@@ -162,18 +162,18 @@ public class CardModule extends LedgeBaseModule {
     }
 
     private void getUserInfo() {
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
-        ShiftUi.getCurrentUser(true);
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.getCurrentUser(true);
     }
 
     private void checkIfUserHasAnExistingCardOrIssueNewOne() {
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
-        ShiftUi.getFinancialAccounts();
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.getFinancialAccounts();
     }
 
     private void getCardData(String accountId) {
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
-        ShiftUi.getFinancialAccount(accountId);
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.getFinancialAccount(accountId);
     }
 
     private void startCustodianModule() {
@@ -202,7 +202,7 @@ public class CardModule extends LedgeBaseModule {
     @Subscribe
     public void handleDataPointList(DataPointList dataPointList) {
 
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         if(dataPointList.getType().equals(DataPointList.ListType.financialAccounts)) {
             handleFinancialAccounts(dataPointList);
         }
@@ -247,14 +247,14 @@ public class CardModule extends LedgeBaseModule {
      */
     @Subscribe
     public void handleResponse(Card card) {
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         CardStorage.getInstance().setCard(card);
 
-        if(card.kycStatus.equals(KYCStatus.passed)) {
+        if(card.kycStatus.equals(KycStatus.passed)) {
             startManageCardScreen();
         }
         else {
-            Intent intent = new Intent(getActivity(), KYCStatusActivity.class);
+            Intent intent = new Intent(getActivity(), KycStatusActivity.class);
             intent.putExtra("KYC_STATUS", card.kycStatus.toString());
             if(card.kycReason != null) {
                 intent.putExtra("KYC_REASON", card.kycReason[0]);

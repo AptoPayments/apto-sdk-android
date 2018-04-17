@@ -192,7 +192,7 @@
         </activity>
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.KYCStatusActivity"
+            android:name="com.shift.link.sdk.ui.activities.KycStatusActivity"
             android:theme="@style/Theme.LedgeLine.Example">
         </activity>
     </application>

@@ -2,7 +2,7 @@ package com.shift.link.sdk.ui.models;
 
 import android.app.Activity;
 
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 
 import java.util.ArrayList;
@@ -20,13 +20,13 @@ public abstract class AbstractActivityModel implements ActivityModel {
      * @return The {@link Class} of the {@link Activity} to start OR {@code null} if not found.
      */
     protected Class safeGetActivityAtPosition(Activity currentActivity, int positionOffset) {
-        ArrayList<Class<? extends MvpActivity>> order = ShiftUi.getProcessOrder();
+        ArrayList<Class<? extends MvpActivity>> order = ShiftPlatform.getProcessOrder();
         int currentIndex = order.indexOf(currentActivity.getClass());
         int targetIndex = currentIndex + positionOffset;
         Class result = null;
 
         if (targetIndex >= 0 && targetIndex < order.size()) {
-            result = ShiftUi.getProcessOrder().get(targetIndex);
+            result = ShiftPlatform.getProcessOrder().get(targetIndex);
         }
 
         return result;

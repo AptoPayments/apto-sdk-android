@@ -39,7 +39,7 @@ import com.shift.link.sdk.example.KeysStorage;
 import com.shift.link.sdk.example.R;
 import com.shift.link.sdk.example.views.SettingsView;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
@@ -67,7 +67,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         setContentView(mView);
         mView.showLoading(true);
 
-        if( SharedPreferencesStorage.getUserToken(this, false) != null) {
+        if(SharedPreferencesStorage.getUserToken(this, false) != null) {
             mView.setUserToken(UserStorage.getInstance().getBearerToken());
         }
 
@@ -289,7 +289,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
     @Override
     public void clearUserTokenClickedHandler() {
         mView.setUserToken("");
-        ShiftUi.clearUserToken(this);
+        ShiftPlatform.clearUserToken(this);
         MainActivity.SHARED_USER_DATA.put(MainActivity.USER_DATA_KEY, new WeakReference<>(null));
     }
 

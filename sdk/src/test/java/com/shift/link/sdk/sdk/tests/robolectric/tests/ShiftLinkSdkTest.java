@@ -11,11 +11,11 @@ import com.shift.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shift.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shift.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shift.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
 import com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shift.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import com.shift.link.sdk.sdk.mocks.util.concurrent.MockExecutor;
-import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import com.shift.link.sdk.sdk.tasks.ShiftApiTask;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.After;
@@ -28,16 +28,16 @@ import java.util.concurrent.Executor;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 /**
- * Tests the {@link LedgeLinkSdk} class.
+ * Tests the {@link ShiftLinkSdk} class.
  * @author Wijnand
  */
-public class LedgeLinkSdkTest {
+public class ShiftLinkSdkTest {
 
     @Before
     public void setUp() {
-        LedgeLinkSdk.setApiWrapper(new MockApiWrapper());
-        LedgeLinkSdk.setExecutor(new MockExecutor());
-        LedgeLinkSdk.setResponseHandler(new MockResponseHandler());
+        ShiftLinkSdk.setApiWrapper(new MockApiWrapper());
+        ShiftLinkSdk.setExecutor(new MockExecutor());
+        ShiftLinkSdk.setResponseHandler(new MockResponseHandler());
     }
 
     /**
@@ -49,9 +49,9 @@ public class LedgeLinkSdkTest {
     }
 
     private void clearMocks() {
-        LedgeLinkSdk.setApiWrapper(null);
-        LedgeLinkSdk.setExecutor(null);
-        LedgeLinkSdk.setResponseHandler(null);
+        ShiftLinkSdk.setApiWrapper(null);
+        ShiftLinkSdk.setExecutor(null);
+        ShiftLinkSdk.setResponseHandler(null);
     }
 
     /**
@@ -62,7 +62,7 @@ public class LedgeLinkSdkTest {
     @Test
     public void defaultExecutorIsUsed() {
         clearMocks();
-        Assert.assertThat("Incorrect Executor.", LedgeLinkSdk.getExecutor(), equalTo(AsyncTask.THREAD_POOL_EXECUTOR));
+        Assert.assertThat("Incorrect Executor.", ShiftLinkSdk.getExecutor(), equalTo(AsyncTask.THREAD_POOL_EXECUTOR));
     }
 
     /**
@@ -75,9 +75,9 @@ public class LedgeLinkSdkTest {
         clearMocks();
 
         MockExecutor executor = new MockExecutor();
-        LedgeLinkSdk.setExecutor(executor);
+        ShiftLinkSdk.setExecutor(executor);
 
-        Assert.assertThat("Incorrect Executor.", LedgeLinkSdk.getExecutor(), equalTo((Executor) executor));
+        Assert.assertThat("Incorrect Executor.", ShiftLinkSdk.getExecutor(), equalTo((Executor) executor));
     }
 
     /**
@@ -88,7 +88,7 @@ public class LedgeLinkSdkTest {
     @Test(expected = NullPointerException.class)
     public void noApiWrapperThrowsError() {
         clearMocks();
-        LedgeLinkSdk.createUser(null);
+        ShiftLinkSdk.createUser(null);
     }
 
     /**
@@ -99,164 +99,164 @@ public class LedgeLinkSdkTest {
     @Test(expected = NullPointerException.class)
     public void noResponseHandlerThrowsError() {
         clearMocks();
-        LedgeLinkSdk.setApiWrapper(new MockApiWrapper());
-        LedgeLinkSdk.createUser(null);
+        ShiftLinkSdk.setApiWrapper(new MockApiWrapper());
+        ShiftLinkSdk.createUser(null);
     }
 
 
     /**
      * Given an API Wrapper AND a response handler have been set.<br />
      * When trying to get the loan purpose list.<br />
-     * Then the resulting {@link LedgeLinkApiTask} should be returned.
+     * Then the resulting {@link ShiftApiTask} should be returned.
      */
     @Test
     public void linkConfigTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getLinkConfig(),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.getLinkConfig(),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     @Test
     public void housingTypeListTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getHousingTypeList(),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.getHousingTypeList(),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     @Test
     public void incomeTypesListTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getIncomeTypesList(),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.getIncomeTypesList(),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     @Test
     public void salaryFrequenciesListTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getSalaryFrequenciesList(),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.getSalaryFrequenciesList(),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     /**
      * Given an API Wrapper AND a response handler have been set.<br />
      * When trying to create a new user.<br />
-     * Then the resulting {@link LedgeLinkApiTask} should be returned.
+     * Then the resulting {@link ShiftApiTask} should be returned.
      */
     @Test
     public void createUserTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.createUser(new DataPointList()),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.createUser(new DataPointList()),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     @Test
     public void updateUserTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.updateUser(new DataPointList()),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.updateUser(new DataPointList()),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     @Test
     public void getCurrentUserTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getCurrentUser(false),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.getCurrentUser(false),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     @Test
     public void loginUserTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.loginUser(new LoginRequestVo(null)),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.loginUser(new LoginRequestVo(null)),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     /**
      * Given an API Wrapper AND a response handler have been set.<br />
      * When trying to verify the phone.<br />
-     * Then the resulting {@link LedgeLinkApiTask} should be returned.
+     * Then the resulting {@link ShiftApiTask} should be returned.
      */
     @Test
     public void startPhoneVerificationTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.startVerification(new StartVerificationRequestVo()),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.startVerification(new StartVerificationRequestVo()),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     @Test
     public void completePhoneVerificationTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.completeVerification(new VerificationRequestVo(), ""),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.completeVerification(new VerificationRequestVo(), ""),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     @Test
     public void getVerificationStatusTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getVerificationStatus(""),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.getVerificationStatus(""),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     /**
      * Given an API Wrapper AND a response handler have been set.<br />
      * When trying to add a financial account.<br />
-     * Then the resulting {@link LedgeLinkApiTask} should be returned.
+     * Then the resulting {@link ShiftApiTask} should be returned.
      */
     @Test
     public void addBankAccountTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.addBankAccount(new AddBankAccountRequestVo()),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.addBankAccount(new AddBankAccountRequestVo()),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     @Test
     public void addCardTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.addCard(new Card()),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.addCard(new Card()),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     @Test
     public void issueVirtualCardTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.issueVirtualCard(new IssueVirtualCardRequestVo()),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.issueVirtualCard(new IssueVirtualCardRequestVo()),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     @Test
     public void getFinancialAccountsTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getFinancialAccounts(),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.getFinancialAccounts(),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     /**
      * Given an API Wrapper AND a response handler have been set.<br />
      * When trying to fetch the initial list of loan offers.<br />
-     * Then the resulting {@link LedgeLinkApiTask} should be returned.
+     * Then the resulting {@link ShiftApiTask} should be returned.
      */
     @Test
     public void initialOffersTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getInitialOffers(new InitialOffersRequestVo()),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.getInitialOffers(new InitialOffersRequestVo()),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     /**
      * Given an API Wrapper AND a response handler have been set.<br />
      * When trying to create a new loan application.<br />
-     * Then the resulting {@link LedgeLinkApiTask} should be returned.
+     * Then the resulting {@link ShiftApiTask} should be returned.
      */
     @Test
     public void createLoanApplicationTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.createLoanApplication("1189998819991197253L"),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.createLoanApplication("1189998819991197253L"),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 
     @Test
     public void loanApplicationsListTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                LedgeLinkSdk.getPendingLoanApplicationsList(new ListRequestVo()),
-                CoreMatchers.<LedgeLinkApiTask>notNullValue());
+                ShiftLinkSdk.getPendingLoanApplicationsList(new ListRequestVo()),
+                CoreMatchers.<ShiftApiTask>notNullValue());
     }
 }

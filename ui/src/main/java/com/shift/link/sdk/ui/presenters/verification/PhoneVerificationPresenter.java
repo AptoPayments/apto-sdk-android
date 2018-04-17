@@ -9,7 +9,7 @@ import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shift.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.models.verification.PhoneVerificationModel;
 import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.presenters.userdata.UserDataPresenter;
@@ -36,7 +36,7 @@ public class PhoneVerificationPresenter
     public PhoneVerificationPresenter(AppCompatActivity activity, PhoneVerificationDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-        ShiftUi.startVerification(mModel.getPhoneVerificationRequest());
+        ShiftPlatform.startVerification(mModel.getPhoneVerificationRequest());
     }
 
     /** {@inheritDoc} */
@@ -77,7 +77,7 @@ public class PhoneVerificationPresenter
         mModel.setVerificationCode(mView.getVerificationCode());
 
         if (mModel.hasAllData()) {
-            ShiftUi.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
+            ShiftPlatform.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
         }
     }
 
@@ -135,7 +135,7 @@ public class PhoneVerificationPresenter
 
     @Override
     public void resendClickHandler() {
-        ShiftUi.restartVerification(mModel.getVerificationId());
+        ShiftPlatform.restartVerification(mModel.getVerificationId());
         mView.displaySentMessage(mActivity.getString(R.string.phone_verification_resent));
     }
 

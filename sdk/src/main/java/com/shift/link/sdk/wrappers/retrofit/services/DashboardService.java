@@ -4,7 +4,7 @@ import com.shift.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
 import com.shift.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo;
 import com.shift.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import com.shift.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,7 +22,7 @@ public interface DashboardService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.CREATE_TEAM_PATH)
+    @POST(ShiftApiWrapper.CREATE_TEAM_PATH)
     Call<CreateTeamResponseVo> createTeam(@Body CreateTeamRequestVo data);
 
     /**
@@ -30,7 +30,7 @@ public interface DashboardService {
      * @param teamId Mandatory request data.
      * @return API call to execute.
      */
-    @DELETE(LinkApiWrapper.DELETE_TEAM_PATH)
+    @DELETE(ShiftApiWrapper.DELETE_TEAM_PATH)
     Call<Void> deleteTeam(@Path("TEAM_ID") String teamId);
 
     /**
@@ -38,7 +38,7 @@ public interface DashboardService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.CREATE_PROJECT_PATH)
+    @POST(ShiftApiWrapper.CREATE_PROJECT_PATH)
     Call<CreateProjectResponseVo> createProject(@Body CreateProjectRequestVo data, @Path("TEAM_ID") String teamId);
 
     /**
@@ -47,6 +47,6 @@ public interface DashboardService {
      * @param projectId Mandatory request data.
      * @return API call to execute.
      */
-    @DELETE(LinkApiWrapper.DELETE_PROJECT_PATH)
+    @DELETE(ShiftApiWrapper.DELETE_PROJECT_PATH)
     Call<Void> deleteProject(@Path("TEAM_ID") String teamId, @Path("PROJECT_ID") String projectId);
 }

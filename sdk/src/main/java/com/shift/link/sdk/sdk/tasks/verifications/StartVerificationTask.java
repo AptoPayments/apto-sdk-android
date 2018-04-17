@@ -3,24 +3,24 @@ package com.shift.link.sdk.sdk.tasks.verifications;
 import com.shift.link.sdk.api.exceptions.ApiException;
 import com.shift.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shift.link.sdk.api.vos.responses.verifications.StartVerificationResponseVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shift.link.sdk.sdk.storages.AutomationStorage;
-import com.shift.link.sdk.sdk.tasks.LedgeLinkApiTask;
+import com.shift.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shift.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
- * A concrete {@link LedgeLinkApiTask} to start a verification.
+ * A concrete {@link ShiftApiTask} to start a verification.
  * @author Adrian
  */
-public class StartVerificationTask extends LedgeLinkApiTask<Void, Void, StartVerificationResponseVo, StartVerificationRequestVo> {
+public class StartVerificationTask extends ShiftApiTask<Void, Void, StartVerificationResponseVo, StartVerificationRequestVo> {
 
     /**
-     * @see LedgeLinkApiTask#LedgeLinkApiTask
-     * @param requestData See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
-     * @param apiWrapper See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
-     * @param responseHandler See {@link LedgeLinkApiTask#LedgeLinkApiTask}.
+     * @see ShiftApiTask#ShiftApiTask
+     * @param requestData See {@link ShiftApiTask#ShiftApiTask}.
+     * @param apiWrapper See {@link ShiftApiTask#ShiftApiTask}.
+     * @param responseHandler See {@link ShiftApiTask#ShiftApiTask}.
      */
-    public StartVerificationTask(StartVerificationRequestVo requestData, LinkApiWrapper apiWrapper,
+    public StartVerificationTask(StartVerificationRequestVo requestData, ShiftApiWrapper apiWrapper,
                                  ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);

@@ -15,10 +15,10 @@ import com.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shift.link.sdk.api.vos.responses.users.LoginUserResponseVo;
 import com.shift.link.sdk.api.vos.responses.verifications.BaseVerificationResponseVo;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
 import com.shift.link.sdk.sdk.storages.ConfigStorage;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.activities.userdata.EmailActivity;
 import com.shift.link.sdk.ui.activities.userdata.PhoneActivity;
 import com.shift.link.sdk.ui.activities.verification.BirthdateVerificationActivity;
@@ -74,7 +74,7 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
     @Subscribe
     public void handleResponse(DataPointList userInfo) {
         showLoading(false);
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         UserStorage.getInstance().setUserData(userInfo);
         onExistingUser.execute();
     }
@@ -101,7 +101,7 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         showLoading(false);
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
         stopModule();
     }
@@ -114,8 +114,8 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
         showLoading(false);
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        ShiftUi.clearUserToken(getActivity());
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftPlatform.clearUserToken(getActivity());
         Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.session_expired_error), Toast.LENGTH_SHORT).show();
         stopModule();
     }
@@ -243,9 +243,9 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
 
     private void loginUser() {
         showLoading(true);
-        LedgeLinkSdk.getResponseHandler().unsubscribe(this);
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
-        ShiftUi.loginUser(getLoginData());
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.loginUser(getLoginData());
     }
 
     private void storeToken(String token) {
@@ -257,8 +257,8 @@ public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailD
     private void getCurrentUserOrContinue(boolean isPOSMode, boolean validateUserToken) {
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
         if (!isPOSMode && userToken != null) {
-            ShiftUi.getApiWrapper().setBearerToken(userToken);
-            ShiftUi.getCurrentUser(validateUserToken);
+            ShiftPlatform.getApiWrapper().setBearerToken(userToken);
+            ShiftPlatform.getCurrentUser(validateUserToken);
         }
     }
 

@@ -5,7 +5,7 @@ import android.content.res.Resources;
 import com.shift.link.sdk.api.utils.loanapplication.LoanApplicationActionId;
 import com.shift.link.sdk.api.utils.loanapplication.LoanApplicationStatus;
 import com.shift.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.models.loanapplication.details.LoanApplicationDetailsModel;
 import com.shift.link.sdk.ui.models.loanapplication.details.PendingLenderActionLoanApplicationDetailsModel;
 import com.shift.link.sdk.ui.presenters.BasePresenter;
@@ -89,7 +89,7 @@ public class LoanApplicationDetailsPresenter
             case LoanApplicationStatus.PENDING_LENDER_ACTION:
             case LoanApplicationStatus.APPLICATION_RECEIVED:
                 model = new PendingLenderActionLoanApplicationDetailsModel(
-                        mRawApplication, mResources, ShiftUi.getImageLoader());
+                        mRawApplication, mResources, ShiftPlatform.getImageLoader());
                 break;
             default:
                 // Do nothing.

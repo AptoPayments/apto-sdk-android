@@ -9,7 +9,7 @@ import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shift.link.sdk.ui.R;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.models.verification.EmailVerificationModel;
 import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.presenters.userdata.UserDataPresenter;
@@ -35,7 +35,7 @@ public class EmailVerificationPresenter
         super(activity);
         mDelegate = delegate;
         if(mDelegate.isStartVerificationRequired()){
-            ShiftUi.startVerification(mModel.getEmailVerificationRequest());
+            ShiftPlatform.startVerification(mModel.getEmailVerificationRequest());
         }
     }
 
@@ -70,7 +70,7 @@ public class EmailVerificationPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        ShiftUi.getVerificationStatus(mModel.getVerificationId());
+        ShiftPlatform.getVerificationStatus(mModel.getVerificationId());
     }
 
     /**
@@ -134,7 +134,7 @@ public class EmailVerificationPresenter
 
     @Override
     public void resendClickHandler() {
-        ShiftUi.restartVerification(mModel.getVerificationId());
+        ShiftPlatform.restartVerification(mModel.getVerificationId());
         mView.displaySentMessage(mActivity.getString(R.string.email_verification_resent));
     }
 }

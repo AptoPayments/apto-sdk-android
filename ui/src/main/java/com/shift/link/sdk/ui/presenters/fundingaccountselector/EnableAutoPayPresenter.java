@@ -3,8 +3,8 @@ package com.shift.link.sdk.ui.presenters.fundingaccountselector;
 import android.support.v7.app.AppCompatActivity;
 
 import com.shift.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import com.shift.link.sdk.sdk.LedgeLinkSdk;
-import com.shift.link.sdk.ui.ShiftUi;
+import com.shift.link.sdk.sdk.ShiftLinkSdk;
+import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.models.fundingaccountselector.EnableAutoPayModel;
 import com.shift.link.sdk.ui.presenters.ActivityPresenter;
 import com.shift.link.sdk.ui.presenters.Presenter;
@@ -32,8 +32,8 @@ public class EnableAutoPayPresenter
     public EnableAutoPayPresenter(AppCompatActivity activity, EnableAutoPayDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-        LedgeLinkSdk.getResponseHandler().subscribe(this);
-        ShiftUi.getFinancialAccount(mDelegate.getFinancialAccountId());
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.getFinancialAccount(mDelegate.getFinancialAccountId());
     }
 
     /** {@inheritDoc} */

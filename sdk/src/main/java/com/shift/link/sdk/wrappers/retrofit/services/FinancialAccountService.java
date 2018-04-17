@@ -14,7 +14,7 @@ import com.shift.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAcc
 import com.shift.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import com.shift.link.sdk.api.vos.responses.users.UserDataListResponseVo;
 import com.shift.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
-import com.shift.link.sdk.api.wrappers.LinkApiWrapper;
+import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -33,7 +33,7 @@ public interface FinancialAccountService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH)
+    @POST(ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH)
     Call<VerificationStatusResponseVo> addBankAccount(@Body AddBankAccountRequestVo data);
 
     /**
@@ -41,7 +41,7 @@ public interface FinancialAccountService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH)
+    @POST(ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH)
     Call<Card> addCard(@Body JsonObject data);
 
     /**
@@ -49,55 +49,55 @@ public interface FinancialAccountService {
      * @param data Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.ISSUE_CARD_PATH)
+    @POST(ShiftApiWrapper.ISSUE_CARD_PATH)
     Call<Card> issueVirtualCard(@Body IssueVirtualCardRequestVo data);
 
     /**
      * Creates a {@link Call} to get the user's financial accounts.
      * @return API call to execute.
      */
-    @GET(LinkApiWrapper.FINANCIAL_ACCOUNTS_PATH)
+    @GET(ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH)
     Call<UserDataListResponseVo> getFinancialAccounts();
 
     /**
      * Creates a {@link Call} to get a specific financial account.
      * @return API call to execute.
      */
-    @GET(LinkApiWrapper.FINANCIAL_ACCOUNT_PATH)
+    @GET(ShiftApiWrapper.FINANCIAL_ACCOUNT_PATH)
     Call<FinancialAccountVo> getFinancialAccount(@Path("account_id") String accountId);
 
     /** Creates a {@link Call} to change pin card.
      * @param pin Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.FINANCIAL_ACCOUNT_PIN_PATH)
+    @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_PIN_PATH)
     Call<UpdateFinancialAccountPinResponseVo> updateFinancialAccountPin(@Path("account_id") String accountId, @Body UpdateFinancialAccountPinRequestVo pin);
 
      /** Creates a {@link Call} to manage card status.
      * @param state Mandatory request data.
      * @return API call to execute.
      */
-    @POST(LinkApiWrapper.FINANCIAL_ACCOUNT_STATE_PATH)
+    @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_STATE_PATH)
     Call<UpdateFinancialAccountResponseVo> updateFinancialAccount(@Path("account_id") String accountId, @Body UpdateFinancialAccountRequestVo state);
 
     /**
      * Creates a {@link Call} to get the transaction list of a specific financial account.
      * @return API call to execute.
      */
-    @GET(LinkApiWrapper.FINANCIAL_ACCOUNT_TRANSACTIONS_PATH)
+    @GET(ShiftApiWrapper.FINANCIAL_ACCOUNT_TRANSACTIONS_PATH)
     Call<TransactionListResponseVo> getTransactions(@Path("account_id") String accountId, @Query("rows") int rows, @Query("last_transaction_id") String lastTransactionId);
 
     /**
      * Creates a {@link Call} to get a the funding source of a specific financial account.
      * @return API call to execute.
      */
-    @GET(LinkApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH)
+    @GET(ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH)
     Call<FundingSourceVo> getFundingSource(@Path("account_id") String accountId);
 
     /**
      * Creates a {@link Call} to get the user's funding sources.
      * @return API call to execute.
      */
-    @GET(LinkApiWrapper.USER_FUNDING_SOURCES_PATH)
+    @GET(ShiftApiWrapper.USER_FUNDING_SOURCES_PATH)
     Call<FundingSourceListVo> getUserFundingSources();
 }
