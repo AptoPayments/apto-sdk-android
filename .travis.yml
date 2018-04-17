@@ -44,14 +44,14 @@ install:
 # Running tests.
 script:
   - ./gradlew --configure-on-demand -p sdk testDebugUnitTestCoverage
-  - cd ~/build/itabulous/sdk_android/ui
+  - cd ~/build/itabulous/sdk_android/shift-sdk
   - ../gradlew --configure-on-demand assembleDebug testDebugUnitTestCoverage
 
 after_success:
   # Copy file to expected location.
   - mkdir -p ~/build/itabulous/sdk_android/sdk/build/reports/jacoco/test
   - cp ~/build/itabulous/sdk_android/sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~/build/itabulous/sdk_android/sdk/build/reports/jacoco/test/jacocoTestReport.xml
-  - mkdir -p ~/build/itabulous/sdk_android/ui/build/reports/jacoco/test
-  - cp ~/build/itabulous/sdk_android/ui/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~/build/itabulous/sdk_android/ui/build/reports/jacoco/test/jacocoTestReport.xml
+  - mkdir -p ~/build/itabulous/sdk_android/shift-sdk/build/reports/jacoco/test
+  - cp ~/build/itabulous/sdk_android/shift-sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~/build/itabulous/sdk_android/shift-sdk/build/reports/jacoco/test/jacocoTestReport.xml
   # Send coverage info to Codecov.io.
   - bash <(curl -s https://codecov.io/bash) -t e3fe9fad-cf90-4b4c-94b8-ecdf33c73105
