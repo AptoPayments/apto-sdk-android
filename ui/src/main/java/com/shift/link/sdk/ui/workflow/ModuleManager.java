@@ -8,13 +8,13 @@ import java.lang.ref.WeakReference;
 
 public class ModuleManager {
     private static ModuleManager mInstance;
-    private WeakReference<LedgeBaseModule> mModule;
+    private WeakReference<ShiftBaseModule> mModule;
 
-    public synchronized LedgeBaseModule getCurrentModule() {
+    public synchronized ShiftBaseModule getCurrentModule() {
         return mModule.get();
     }
 
-    public synchronized void setModule(WeakReference<LedgeBaseModule> mModule) {
+    public synchronized void setModule(WeakReference<ShiftBaseModule> mModule) {
         this.mModule = mModule;
     }
 

@@ -26,7 +26,7 @@ import com.shift.link.sdk.ui.presenters.verification.AuthModuleConfig;
 import com.shift.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -36,7 +36,7 @@ import java8.util.concurrent.CompletableFuture;
  * Created by adrian on 29/12/2016.
  */
 
-public class LinkModule extends LedgeBaseModule {
+public class LinkModule extends ShiftBaseModule {
 
     public LinkModule(Activity activity) {
         super(activity);

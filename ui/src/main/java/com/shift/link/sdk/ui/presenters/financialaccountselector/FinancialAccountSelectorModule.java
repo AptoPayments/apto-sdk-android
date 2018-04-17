@@ -17,7 +17,7 @@ import com.shift.link.sdk.ui.activities.financialaccountselector.IntermediateFin
 import com.shift.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity;
 import com.shift.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -28,7 +28,7 @@ import java.util.List;
  * Created by adrian on 29/12/2016.
  */
 
-public class FinancialAccountSelectorModule extends LedgeBaseModule
+public class FinancialAccountSelectorModule extends ShiftBaseModule
         implements AddFinancialAccountListDelegate, AddCardDelegate, AddBankAccountDelegate,
         SelectFinancialAccountListDelegate, IntermediateFinancialAccountListDelegate {
 

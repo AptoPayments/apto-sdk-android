@@ -8,7 +8,7 @@ import com.shift.link.sdk.ui.activities.ActionNotSupportedActivity;
  * Created by adrian on 09/11/2017.
  */
 
-public class ActionNotSupportedModule extends LedgeBaseModule {
+public class ActionNotSupportedModule extends ShiftBaseModule {
 
     public ActionNotSupportedModule(Activity activity) {
         super(activity);

@@ -15,7 +15,7 @@ import static com.shift.link.sdk.api.utils.workflow.WorkflowActionType.SHOW_GENE
  * Created by adrian on 13/11/2017.
  */
 public class ModuleFactory {
-    public static LedgeBaseModule getModule(Activity activity, ActionVo action) {
+    public static ShiftBaseModule getModule(Activity activity, ActionVo action) {
         switch(action.actionType) {
             case SELECT_FUNDING_ACCOUNT:
                 return FundingAccountSelectorModule.getInstance(activity, (SelectFundingAccountConfigurationVo)action.configuration);

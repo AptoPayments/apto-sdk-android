@@ -14,7 +14,7 @@ import com.shift.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivi
 import com.shift.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 import com.shift.link.sdk.ui.storages.LoanStorage;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -25,7 +25,7 @@ import java.lang.ref.WeakReference;
  * Created by adrian on 29/12/2016.
  */
 
-public class FundingAccountSelectorModule extends LedgeBaseModule
+public class FundingAccountSelectorModule extends ShiftBaseModule
         implements EnableAutoPayDelegate, DisplayCardDelegate {
 
     private static FundingAccountSelectorModule instance;

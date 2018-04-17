@@ -4,9 +4,9 @@ import android.app.Activity;
 
 import com.shift.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import com.shift.link.sdk.ui.activities.showgenericmessage.ShowGenericMessageActivity;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 
-public class ShowGenericMessageModule extends LedgeBaseModule implements ShowGenericMessageDelegate {
+public class ShowGenericMessageModule extends ShiftBaseModule implements ShowGenericMessageDelegate {
 
     private static ShowGenericMessageModule mInstance;
     private static GenericMessageConfigurationVo mConfig;

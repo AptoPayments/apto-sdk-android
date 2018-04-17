@@ -14,7 +14,7 @@ import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
 
 /**
@@ -53,7 +53,7 @@ public abstract class MvpActivity<M extends ActivityModel, V extends View & View
 
         mView = createView();
         setContentView(mView);
-        LedgeBaseModule currentModule = ModuleManager.getInstance().getCurrentModule();
+        ShiftBaseModule currentModule = ModuleManager.getInstance().getCurrentModule();
         if(currentModule != null) {
             currentModule.setActivity(this);
         }

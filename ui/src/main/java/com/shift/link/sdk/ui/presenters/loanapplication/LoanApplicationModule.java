@@ -21,7 +21,7 @@ import com.shift.link.sdk.ui.presenters.offers.OffersListDelegate;
 import com.shift.link.sdk.ui.storages.LoanStorage;
 import com.shift.link.sdk.ui.vos.ApplicationVo;
 import com.shift.link.sdk.ui.workflow.Command;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
 import com.shift.link.sdk.ui.workflow.WorkflowModule;
 import com.shift.link.sdk.ui.workflow.WorkflowObject;
@@ -38,7 +38,7 @@ import static com.shift.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
  * Created by adrian on 29/12/2016.
  */
 
-public class LoanApplicationModule extends LedgeBaseModule
+public class LoanApplicationModule extends ShiftBaseModule
         implements IntermediateLoanApplicationDelegate, AddDocumentsListDelegate,
         LoanAgreementDelegate, OffersListDelegate, LoanApplicationSummaryDelegate,
         SelectLoanApplicationListDelegate {

@@ -4,13 +4,13 @@ import android.app.Activity;
 
 import com.shift.link.sdk.ui.activities.link.LoanAmountActivity;
 import com.shift.link.sdk.ui.workflow.Command;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 
 /**
  * Created by adrian on 29/12/2016.
  */
 
-public class LoanInfoModule extends LedgeBaseModule implements LoanDataDelegate {
+public class LoanInfoModule extends ShiftBaseModule implements LoanDataDelegate {
 
     private static LoanInfoModule mInstance;
     public Command onGetOffers;

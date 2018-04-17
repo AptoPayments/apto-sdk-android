@@ -15,7 +15,7 @@ import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.utils.DisclaimerUtil;
 import com.shift.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shift.link.sdk.ui.views.DisclaimerView;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
 
 import java.io.File;
@@ -62,7 +62,7 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
                 }
                 break;
         }
-        LedgeBaseModule currentModule = ModuleManager.getInstance().getCurrentModule();
+        ShiftBaseModule currentModule = ModuleManager.getInstance().getCurrentModule();
         if(currentModule != null) {
             currentModule.setActivity(this);
         }

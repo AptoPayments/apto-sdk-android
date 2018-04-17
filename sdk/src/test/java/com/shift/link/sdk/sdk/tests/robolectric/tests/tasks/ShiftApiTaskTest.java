@@ -12,7 +12,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 
-public class LedgeLinkApiTaskTest {
+public class ShiftApiTaskTest {
 
     private RoboLinkApiTaskWrapper<Object, Object> mTask;
 

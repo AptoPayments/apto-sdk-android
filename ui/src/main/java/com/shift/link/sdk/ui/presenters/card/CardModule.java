@@ -31,7 +31,7 @@ import com.shift.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.workflow.Command;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -48,7 +48,7 @@ import static com.shift.link.sdk.api.vos.datapoints.DataPointVo.DataPointType.Pe
  * Created by adrian on 23/02/2018.
  */
 
-public class CardModule extends LedgeBaseModule {
+public class CardModule extends ShiftBaseModule {
 
     public CardModule(Activity activity) {
         super(activity);
@@ -191,7 +191,7 @@ public class CardModule extends LedgeBaseModule {
     }
 
     public void setCurrentModule() {
-        WeakReference<LedgeBaseModule> moduleWeakReference = new WeakReference<>(this);
+        WeakReference<ShiftBaseModule> moduleWeakReference = new WeakReference<>(this);
         ModuleManager.getInstance().setModule(moduleWeakReference);
     }
 

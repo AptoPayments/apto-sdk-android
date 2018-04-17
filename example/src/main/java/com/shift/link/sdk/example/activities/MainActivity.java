@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     }
 
     protected String getDefaultEnvironment() {
-        return getString(R.string.ledge_link_environment);
+        return getString(R.string.shift_environment);
     }
 
     /**
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     }
 
     protected String getDefaultDeveloperKey() {
-        return getString(R.string.ledge_link_developer_key_dev);
+        return getString(R.string.shift_developer_key);
     }
 
     /**
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     }
 
     protected String getDefaultProjectToken() {
-        return getString(R.string.ledge_link_project_token);
+        return getString(R.string.shift_project_token);
     }
 
     /**

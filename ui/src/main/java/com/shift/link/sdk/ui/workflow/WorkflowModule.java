@@ -6,7 +6,7 @@ import android.app.Activity;
  * Created by adrian on 09/11/2017.
  */
 
-public class WorkflowModule extends LedgeBaseModule {
+public class WorkflowModule extends ShiftBaseModule {
     private WorkflowObject mWorkFlowObject;
     private Command onWorkflowModuleFinish;
     private WorkflowObjectStatusInterface getWorkflowObjectStatus;
@@ -27,7 +27,7 @@ public class WorkflowModule extends LedgeBaseModule {
     }
 
     public void startNextModule() {
-        LedgeBaseModule module = ModuleFactory.getModule(this.getActivity(), mWorkFlowObject.nextAction);
+        ShiftBaseModule module = ModuleFactory.getModule(this.getActivity(), mWorkFlowObject.nextAction);
         module.onBack = this.onBack;
         module.onFinish = this.onWorkflowModuleFinish;
         startModule(module);

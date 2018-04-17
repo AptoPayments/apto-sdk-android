@@ -95,7 +95,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
     }
 
     /**
-     * @return Pre-fill data for the Ledge Line SDK to use.
+     * @return Pre-fill data for the Shift Line SDK to use.
      */
     private LoanDataVo createLoanData() {
         LoanDataVo loanData = new LoanDataVo();
@@ -109,7 +109,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
     }
 
     /**
-     * @return Pre-fill data for the Ledge Line SDK to use.
+     * @return Pre-fill data for the Shift Line SDK to use.
      */
     private DataPointList createStartData() {
         DataPointList data = new DataPointList();

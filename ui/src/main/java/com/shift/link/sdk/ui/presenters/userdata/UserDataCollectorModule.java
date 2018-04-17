@@ -32,7 +32,7 @@ import com.shift.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.workflow.Command;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -49,7 +49,7 @@ import java8.util.concurrent.CompletableFuture;
  * Created by adrian on 29/12/2016.
  */
 
-public class UserDataCollectorModule extends LedgeBaseModule implements PhoneDelegate,
+public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDelegate,
         IdentityVerificationDelegate, AddressDelegate, AnnualIncomeDelegate, MonthlyIncomeDelegate,
         CreditScoreDelegate, PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate,
         ArmedForcesDelegate, TimeAtAddressDelegate {

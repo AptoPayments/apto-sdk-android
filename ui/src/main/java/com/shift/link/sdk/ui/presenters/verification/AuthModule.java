@@ -29,11 +29,11 @@ import com.shift.link.sdk.ui.presenters.userdata.PhoneDelegate;
 import com.shift.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.workflow.Command;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 
 import org.greenrobot.eventbus.Subscribe;
 
-public class AuthModule extends LedgeBaseModule implements PhoneDelegate, EmailDelegate,
+public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailDelegate,
         PhoneVerificationDelegate, EmailVerificationDelegate, BirthdateVerificationDelegate {
 
     private static AuthModule instance;

@@ -85,7 +85,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
     }
 
     /**
-     * @return Order in which the Ledge Line Activities should be shown.
+     * @return Order in which the Shift Line Activities should be shown.
      */
     public static ArrayList<Class<? extends MvpActivity>> getProcessOrder() {
         return getHandlerConfiguration().getProcessOrder();
@@ -138,7 +138,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
     }
 
     /**
-     * Sets up the Ledge Link SDK.
+     * Sets up the Shift Link SDK.
      */
     public static void initialize(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment) {
         mEnvironment = Environment.valueOf(environment.toLowerCase());
@@ -162,8 +162,8 @@ public class ShiftPlatform extends ShiftLinkSdk {
     }
 
     /**
-     * Starts the Ledge Line loan offers process.
-     * @param activity The {@link Activity} to launch the first Ledge Line screen from.
+     * Starts the Shift Line loan offers process.
+     * @param activity The {@link Activity} to launch the first Shift Line screen from.
      * @param userData Pre-fill user data. Use {@code null} if not needed.
      * @param loanData Pre-fill loan data. Use {@code null} if not needed.
      */
@@ -190,8 +190,8 @@ public class ShiftPlatform extends ShiftLinkSdk {
     }
 
     /**
-     * Starts the Ledge Line loan offers process.
-     * @param activity The {@link Activity} to launch the first Ledge Line screen from.
+     * Starts the Shift Line loan offers process.
+     * @param activity The {@link Activity} to launch the first Shift Line screen from.
      * @param userData Pre-fill user data. Use {@code null} if not needed.
      * @param card Pre-fill card data. Use {@code null} if not needed.
      */

@@ -17,21 +17,21 @@ import java.lang.ref.WeakReference;
  * Created by adrian on 29/12/2016.
  */
 
-public abstract class LedgeBaseModule implements NavigationCommand, BaseDelegate {
+public abstract class ShiftBaseModule implements NavigationCommand, BaseDelegate {
 
     private Activity mActivity;
     public Command onBack;
     public Command onFinish;
     private ProgressDialog mProgressDialog;
 
-    public LedgeBaseModule(Activity activity) {
+    public ShiftBaseModule(Activity activity) {
         mActivity = activity;
     }
 
     public abstract void initialModuleSetup();
 
-    protected void startModule(LedgeBaseModule module) {
-        WeakReference<LedgeBaseModule> moduleWeakReference = new WeakReference<>(module);
+    protected void startModule(ShiftBaseModule module) {
+        WeakReference<ShiftBaseModule> moduleWeakReference = new WeakReference<>(module);
         ModuleManager.getInstance().setModule(moduleWeakReference);
         module.initialModuleSetup();
     }

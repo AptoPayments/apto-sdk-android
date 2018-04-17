@@ -51,18 +51,18 @@ public class LoanApplicationDetailsPresenter
 
         switch (application.required_actions.data[0].action) {
             case LoanApplicationActionId.AGREE_TERMS:
-                model = new ApprovedLoanApplicationDetailsModel(application, mResources, LedgeLinkUi.getImageLoader());
+                model = new ApprovedLoanApplicationDetailsModel(application, mResources, ShiftPlatform.getImageLoader());
                 break;
             case LoanApplicationActionId.UPLOAD_PHOTO_ID:
             case LoanApplicationActionId.UPLOAD_BANK_STATEMENT:
             case LoanApplicationActionId.UPLOAD_PROOF_OF_ADDRESS:
             case LoanApplicationActionId.UNKNOWN:
                 model = new UploadDocsLoanApplicationDetailsModel(
-                        application, mResources, LedgeLinkUi.getImageLoader());
+                        application, mResources, ShiftPlatform.getImageLoader());
                 break;
             case LoanApplicationActionId.FINISH_APPLICATION_EXTERNAL:
                 model = new FinishExternalLoanApplicationDetailsModel(
-                        application, mResources, LedgeLinkUi.getImageLoader());
+                        application, mResources, ShiftPlatform.getImageLoader());
                 break;
             default:
                 // Do nothing.

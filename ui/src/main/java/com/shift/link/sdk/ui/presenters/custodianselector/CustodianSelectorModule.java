@@ -6,13 +6,13 @@ import com.shift.link.sdk.api.vos.responses.workflow.SelectCustodianConfiguratio
 import com.shift.link.sdk.ui.activities.custodianselector.AddCustodianListActivity;
 import com.shift.link.sdk.ui.activities.custodianselector.CoinbaseActivity;
 import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.workflow.LedgeBaseModule;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 
 /**
  * Created by adrian on 29/12/2016.
  */
 
-public class CustodianSelectorModule extends LedgeBaseModule implements AddCustodianListDelegate,
+public class CustodianSelectorModule extends ShiftBaseModule implements AddCustodianListDelegate,
         CoinbaseDelegate {
 
     private static CustodianSelectorModule instance;
