@@ -3854,73 +3854,76 @@ containing a value of this type.
         public static int googleg_disabled_color_18=0x7f020082;
         public static int googleg_standard_color_18=0x7f020083;
         public static int hotel=0x7f020084;
-        public static int ic_account_circle_black_48dp=0x7f020085;
+        public static int ic_account_circle_black_36dp=0x7f020085;
         public static int ic_action_next_item=0x7f020086;
         public static int ic_action_previous_item=0x7f020087;
         public static int ic_action_update_profile=0x7f020088;
-        public static int ic_android_gray_24dp=0x7f020089;
-        public static int ic_card_logo_marqeta=0x7f02008a;
-        public static int ic_check_circle_gray_24dp=0x7f02008b;
-        public static int ic_credit_card_gray_24dp=0x7f02008c;
-        public static int ic_error_gray_24dp=0x7f02008d;
-        public static int ic_fingerprint_black_24dp=0x7f02008e;
-        public static int ic_help_outline_black_24dp=0x7f02008f;
-        public static int ic_help_outline_white_24dp=0x7f020090;
-        public static int ic_lock_grey_400_24dp=0x7f020091;
-        public static int ic_verify_email=0x7f020092;
-        public static int icon_add_bank_account=0x7f020093;
-        public static int icon_add_card=0x7f020094;
-        public static int icon_add_doc_address=0x7f020095;
-        public static int icon_add_doc_bank_statement=0x7f020096;
-        public static int icon_add_doc_bottomsheet_browse=0x7f020097;
-        public static int icon_add_doc_bottomsheet_camera=0x7f020098;
-        public static int icon_add_doc_generic=0x7f020099;
-        public static int icon_add_doc_photo_id=0x7f02009a;
-        public static int icon_add_virtual_card=0x7f02009b;
-        public static int icon_amex=0x7f02009c;
-        public static int icon_cloud_arrow_up=0x7f02009d;
-        public static int icon_cloud_ckeck=0x7f02009e;
-        public static int icon_cloud_cog=0x7f02009f;
-        public static int icon_cloud_dollar=0x7f0200a0;
-        public static int icon_cloud_exclamation=0x7f0200a1;
-        public static int icon_cloud_happy=0x7f0200a2;
-        public static int icon_cloud_sad=0x7f0200a3;
-        public static int icon_coinbase=0x7f0200a4;
-        public static int icon_ledge_logo=0x7f0200a5;
-        public static int icon_loan_funded=0x7f0200a6;
-        public static int icon_mastercard=0x7f0200a7;
-        public static int icon_visa=0x7f0200a8;
-        public static int key_back=0x7f0200a9;
-        public static int master_card=0x7f0200aa;
-        public static int mastercard=0x7f0200ab;
-        public static int medicine=0x7f0200ac;
-        public static int notification_action_background=0x7f0200ad;
-        public static int notification_bg=0x7f0200ae;
-        public static int notification_bg_low=0x7f0200af;
-        public static int notification_bg_low_normal=0x7f0200b0;
-        public static int notification_bg_low_pressed=0x7f0200b1;
-        public static int notification_bg_normal=0x7f0200b2;
-        public static int notification_bg_normal_pressed=0x7f0200b3;
-        public static int notification_icon_background=0x7f0200b4;
-        public static int notification_template_icon_bg=0x7f0200c2;
-        public static int notification_template_icon_low_bg=0x7f0200c3;
-        public static int notification_tile_bg=0x7f0200b5;
-        public static int notify_panel_notification_icon_bg=0x7f0200b6;
-        public static int other=0x7f0200b7;
-        public static int pin_box=0x7f0200b8;
-        public static int pin_key_selector=0x7f0200b9;
-        public static int purchases=0x7f0200ba;
-        public static int round_rect=0x7f0200bb;
-        public static int stepper_dot_disabled=0x7f0200bc;
-        public static int stepper_dot_enabled=0x7f0200bd;
-        public static int toll_road=0x7f0200be;
-        public static int unknown_cc=0x7f0200bf;
-        public static int visa=0x7f0200c0;
-        public static int withdraw=0x7f0200c1;
+        public static int ic_add_circle_black_24dp=0x7f020089;
+        public static int ic_android_gray_24dp=0x7f02008a;
+        public static int ic_card_logo_marqeta=0x7f02008b;
+        public static int ic_check_circle_gray_24dp=0x7f02008c;
+        public static int ic_cloud_queue_black_48dp=0x7f02008d;
+        public static int ic_credit_card_gray_24dp=0x7f02008e;
+        public static int ic_error_gray_24dp=0x7f02008f;
+        public static int ic_exit_to_app_black_24dp=0x7f020090;
+        public static int ic_fingerprint_black_24dp=0x7f020091;
+        public static int ic_help_outline_black_24dp=0x7f020092;
+        public static int ic_help_outline_white_24dp=0x7f020093;
+        public static int ic_lock_grey_400_24dp=0x7f020094;
+        public static int ic_verify_email=0x7f020095;
+        public static int icon_add_bank_account=0x7f020096;
+        public static int icon_add_card=0x7f020097;
+        public static int icon_add_doc_address=0x7f020098;
+        public static int icon_add_doc_bank_statement=0x7f020099;
+        public static int icon_add_doc_bottomsheet_browse=0x7f02009a;
+        public static int icon_add_doc_bottomsheet_camera=0x7f02009b;
+        public static int icon_add_doc_generic=0x7f02009c;
+        public static int icon_add_doc_photo_id=0x7f02009d;
+        public static int icon_add_virtual_card=0x7f02009e;
+        public static int icon_amex=0x7f02009f;
+        public static int icon_cloud_arrow_up=0x7f0200a0;
+        public static int icon_cloud_ckeck=0x7f0200a1;
+        public static int icon_cloud_cog=0x7f0200a2;
+        public static int icon_cloud_dollar=0x7f0200a3;
+        public static int icon_cloud_exclamation=0x7f0200a4;
+        public static int icon_cloud_happy=0x7f0200a5;
+        public static int icon_cloud_sad=0x7f0200a6;
+        public static int icon_coinbase=0x7f0200a7;
+        public static int icon_ledge_logo=0x7f0200a8;
+        public static int icon_loan_funded=0x7f0200a9;
+        public static int icon_mastercard=0x7f0200aa;
+        public static int icon_visa=0x7f0200ab;
+        public static int key_back=0x7f0200ac;
+        public static int master_card=0x7f0200ad;
+        public static int mastercard=0x7f0200ae;
+        public static int medicine=0x7f0200af;
+        public static int notification_action_background=0x7f0200b0;
+        public static int notification_bg=0x7f0200b1;
+        public static int notification_bg_low=0x7f0200b2;
+        public static int notification_bg_low_normal=0x7f0200b3;
+        public static int notification_bg_low_pressed=0x7f0200b4;
+        public static int notification_bg_normal=0x7f0200b5;
+        public static int notification_bg_normal_pressed=0x7f0200b6;
+        public static int notification_icon_background=0x7f0200b7;
+        public static int notification_template_icon_bg=0x7f0200c5;
+        public static int notification_template_icon_low_bg=0x7f0200c6;
+        public static int notification_tile_bg=0x7f0200b8;
+        public static int notify_panel_notification_icon_bg=0x7f0200b9;
+        public static int other=0x7f0200ba;
+        public static int pin_box=0x7f0200bb;
+        public static int pin_key_selector=0x7f0200bc;
+        public static int purchases=0x7f0200bd;
+        public static int round_rect=0x7f0200be;
+        public static int stepper_dot_disabled=0x7f0200bf;
+        public static int stepper_dot_enabled=0x7f0200c0;
+        public static int toll_road=0x7f0200c1;
+        public static int unknown_cc=0x7f0200c2;
+        public static int visa=0x7f0200c3;
+        public static int withdraw=0x7f0200c4;
     }
     public static final class id {
         public static int abl_toolbar_wrapper=0x7f0e008b;
-        public static int action0=0x7f0e015b;
+        public static int action0=0x7f0e0161;
         public static int action_bar=0x7f0e007c;
         public static int action_bar_activity_content=0x7f0e0000;
         public static int action_bar_container=0x7f0e007b;
@@ -3928,17 +3931,17 @@ containing a value of this type.
         public static int action_bar_spinner=0x7f0e0001;
         public static int action_bar_subtitle=0x7f0e005a;
         public static int action_bar_title=0x7f0e0059;
-        public static int action_container=0x7f0e0158;
+        public static int action_container=0x7f0e015e;
         public static int action_context_bar=0x7f0e007d;
-        public static int action_divider=0x7f0e015f;
-        public static int action_image=0x7f0e0159;
+        public static int action_divider=0x7f0e0165;
+        public static int action_image=0x7f0e015f;
         public static int action_menu_divider=0x7f0e0002;
         public static int action_menu_presenter=0x7f0e0003;
         public static int action_mode_bar=0x7f0e0079;
         public static int action_mode_bar_stub=0x7f0e0078;
         public static int action_mode_close_button=0x7f0e005b;
-        public static int action_text=0x7f0e015a;
-        public static int actions=0x7f0e0168;
+        public static int action_text=0x7f0e0160;
+        public static int actions=0x7f0e016e;
         public static int activity_chooser_view_content=0x7f0e005c;
         public static int add=0x7f0e0031;
         public static int adjust_height=0x7f0e004b;
@@ -3950,17 +3953,18 @@ containing a value of this type.
         public static int auto=0x7f0e0044;
         public static int beginning=0x7f0e0049;
         public static int bottom=0x7f0e0013;
-        public static int bottom_sheet=0x7f0e013b;
-        public static int brand_logo=0x7f0e011e;
+        public static int bottom_sheet=0x7f0e0142;
+        public static int brand_logo=0x7f0e0125;
         public static int btn_birthday=0x7f0e00ab;
+        public static int bttn_refresh=0x7f0e00dc;
         public static int buttonPanel=0x7f0e0063;
-        public static int cancel_action=0x7f0e015c;
-        public static int card_logo=0x7f0e011d;
-        public static int card_name=0x7f0e011c;
-        public static int card_number=0x7f0e011a;
-        public static int carouselView=0x7f0e00f6;
-        public static int cb_accept_terms=0x7f0e00e6;
-        public static int cb_email_not_available=0x7f0e0100;
+        public static int cancel_action=0x7f0e0162;
+        public static int card_logo=0x7f0e0124;
+        public static int card_name=0x7f0e0123;
+        public static int card_number=0x7f0e0121;
+        public static int carouselView=0x7f0e00fd;
+        public static int cb_accept_terms=0x7f0e00e8;
+        public static int cb_email_not_available=0x7f0e0107;
         public static int cb_ssn_itin_not_available=0x7f0e00cd;
         public static int cc_card=0x7f0e0004;
         public static int cc_ccv=0x7f0e0005;
@@ -3973,163 +3977,167 @@ containing a value of this type.
         public static int center_horizontal=0x7f0e0015;
         public static int center_vertical=0x7f0e0016;
         public static int checkbox=0x7f0e0073;
-        public static int chip=0x7f0e011f;
-        public static int chronometer=0x7f0e0164;
+        public static int chip=0x7f0e0126;
+        public static int chronometer=0x7f0e016a;
         public static int clip_horizontal=0x7f0e003b;
         public static int clip_vertical=0x7f0e003c;
         public static int collapseActionView=0x7f0e004e;
-        public static int containerViewPager=0x7f0e0174;
+        public static int containerViewPager=0x7f0e017a;
         public static int contentPanel=0x7f0e0066;
         public static int credit_card_form=0x7f0e0090;
         public static int credit_card_view=0x7f0e008f;
-        public static int custodian_logo=0x7f0e0142;
+        public static int custodian_logo=0x7f0e0149;
         public static int custom=0x7f0e006d;
         public static int customPanel=0x7f0e006c;
         public static int dark=0x7f0e0055;
         public static int decor_content_parent=0x7f0e007a;
         public static int default_activity_button=0x7f0e005f;
         public static int depth=0x7f0e001e;
-        public static int design_bottom_sheet=0x7f0e012f;
-        public static int design_menu_item_action_area=0x7f0e0136;
-        public static int design_menu_item_action_area_stub=0x7f0e0135;
-        public static int design_menu_item_text=0x7f0e0134;
-        public static int design_navigation_view=0x7f0e0133;
+        public static int design_bottom_sheet=0x7f0e0136;
+        public static int design_menu_item_action_area=0x7f0e013d;
+        public static int design_menu_item_action_area_stub=0x7f0e013c;
+        public static int design_menu_item_text=0x7f0e013b;
+        public static int design_navigation_view=0x7f0e013a;
         public static int disableHome=0x7f0e0025;
         public static int discover=0x7f0e0045;
         public static int dsb_income=0x7f0e00d3;
-        public static int dsb_loan_amount=0x7f0e00e9;
+        public static int dsb_loan_amount=0x7f0e00eb;
         public static int dsw_stepper=0x7f0e0099;
         public static int edit_query=0x7f0e007e;
         public static int end=0x7f0e0017;
-        public static int end_padder=0x7f0e016e;
+        public static int end_padder=0x7f0e0174;
         public static int enterAlways=0x7f0e002c;
         public static int enterAlwaysCollapsed=0x7f0e002d;
         public static int et_address=0x7f0e009b;
         public static int et_apartment_number=0x7f0e009d;
         public static int et_birthday=0x7f0e00ad;
-        public static int et_card_name=0x7f0e0113;
-        public static int et_card_number=0x7f0e0112;
+        public static int et_card_name=0x7f0e011a;
+        public static int et_card_number=0x7f0e0119;
         public static int et_city=0x7f0e009f;
-        public static int et_cvv=0x7f0e0119;
+        public static int et_cvv=0x7f0e0120;
         public static int et_email=0x7f0e00bd;
-        public static int et_expiry_date=0x7f0e0117;
-        public static int et_first_name=0x7f0e00fc;
-        public static int et_last_name=0x7f0e00fe;
-        public static int et_phone=0x7f0e0104;
+        public static int et_expiry_date=0x7f0e011e;
+        public static int et_first_name=0x7f0e0103;
+        public static int et_last_name=0x7f0e0105;
+        public static int et_phone=0x7f0e010b;
         public static int et_social_security=0x7f0e00cb;
         public static int et_zip_code=0x7f0e00a1;
         public static int exitUntilCollapsed=0x7f0e002e;
         public static int expand_activities_button=0x7f0e005d;
         public static int expanded_menu=0x7f0e0072;
-        public static int expiry_date=0x7f0e0120;
+        public static int expiry_date=0x7f0e0127;
         public static int fill=0x7f0e003d;
         public static int fill_horizontal=0x7f0e003e;
         public static int fill_vertical=0x7f0e0038;
-        public static int fingerprint_container=0x7f0e0137;
-        public static int fingerprint_description=0x7f0e0138;
-        public static int fingerprint_icon=0x7f0e0139;
-        public static int fingerprint_status=0x7f0e013a;
+        public static int fingerprint_container=0x7f0e013e;
+        public static int fingerprint_description=0x7f0e013f;
+        public static int fingerprint_icon=0x7f0e0140;
+        public static int fingerprint_status=0x7f0e0141;
         public static int fixed=0x7f0e0057;
         public static int flow=0x7f0e001f;
         public static int home=0x7f0e000b;
         public static int homeAsUp=0x7f0e0026;
         public static int horizontal=0x7f0e001c;
-        public static int ib_account=0x7f0e0144;
+        public static int ib_account=0x7f0e014b;
+        public static int ib_add_funding_source=0x7f0e00f6;
         public static int icon=0x7f0e0061;
-        public static int icon_group=0x7f0e0169;
+        public static int icon_group=0x7f0e016f;
         public static int icon_only=0x7f0e0052;
         public static int ifRoom=0x7f0e004f;
         public static int image=0x7f0e005e;
-        public static int indicator=0x7f0e0175;
-        public static int info=0x7f0e0165;
+        public static int indicator=0x7f0e017b;
+        public static int info=0x7f0e016b;
         public static int item_touch_helper_previous_elevation=0x7f0e000c;
-        public static int iv_android_pay=0x7f0e013e;
+        public static int iv_android_pay=0x7f0e0145;
         public static int iv_auto_pay_logo=0x7f0e00c3;
-        public static int iv_card_logo=0x7f0e0115;
-        public static int iv_change_pin=0x7f0e0141;
-        public static int iv_cloud=0x7f0e0146;
-        public static int iv_icon=0x7f0e0121;
-        public static int iv_image=0x7f0e010d;
-        public static int iv_lender_logo=0x7f0e00dd;
-        public static int iv_report_stolen_card=0x7f0e013f;
+        public static int iv_card_logo=0x7f0e011c;
+        public static int iv_change_pin=0x7f0e0148;
+        public static int iv_cloud=0x7f0e00db;
+        public static int iv_icon=0x7f0e0128;
+        public static int iv_image=0x7f0e0114;
+        public static int iv_lender_logo=0x7f0e00df;
+        public static int iv_report_stolen_card=0x7f0e0146;
         public static int iv_shield_check=0x7f0e00be;
         public static int left=0x7f0e0018;
         public static int light=0x7f0e0056;
-        public static int line1=0x7f0e016a;
-        public static int line3=0x7f0e016c;
+        public static int line1=0x7f0e0170;
+        public static int line3=0x7f0e0172;
         public static int listMode=0x7f0e0022;
         public static int list_item=0x7f0e0060;
         public static int ll_accounts_list=0x7f0e0093;
-        public static int ll_back_button=0x7f0e014d;
+        public static int ll_add_funding_source=0x7f0e00f5;
+        public static int ll_back_button=0x7f0e0153;
         public static int ll_buttons_holder=0x7f0e00b0;
-        public static int ll_change_pin=0x7f0e0140;
+        public static int ll_change_pin=0x7f0e0147;
         public static int ll_documents_list=0x7f0e0095;
-        public static int ll_email_not_available_holder=0x7f0e00ff;
-        public static int ll_empty_case=0x7f0e00f4;
-        public static int ll_funding_source=0x7f0e0125;
-        public static int ll_loan_error=0x7f0e0145;
-        public static int ll_next_button=0x7f0e0150;
-        public static int ll_pin_edit_texts=0x7f0e0170;
-        public static int ll_pin_texts=0x7f0e016f;
-        public static int ll_progress_bar_holder=0x7f0e014e;
-        public static int ll_select_accounts_list=0x7f0e0109;
-        public static int ll_select_application_list=0x7f0e010c;
+        public static int ll_email_not_available_holder=0x7f0e0106;
+        public static int ll_empty_case=0x7f0e00fb;
+        public static int ll_funding_source=0x7f0e012c;
+        public static int ll_loan_error=0x7f0e014c;
+        public static int ll_next_button=0x7f0e0156;
+        public static int ll_pin_edit_texts=0x7f0e0176;
+        public static int ll_pin_texts=0x7f0e0175;
+        public static int ll_progress_bar_holder=0x7f0e0154;
+        public static int ll_select_accounts_list=0x7f0e0110;
+        public static int ll_select_application_list=0x7f0e0113;
+        public static int ll_sign_out=0x7f0e00f7;
         public static int ll_ssn_itin_not_available_holder=0x7f0e00cc;
-        public static int ll_summary=0x7f0e0126;
-        public static int lv_loanSummary_applicationInfo=0x7f0e00ed;
+        public static int ll_summary=0x7f0e012d;
+        public static int lv_loanSummary_applicationInfo=0x7f0e00ef;
         public static int masked_all=0x7f0e0040;
         public static int masked_all_but_last_four=0x7f0e0041;
         public static int mastercard=0x7f0e0046;
-        public static int md_content=0x7f0e010e;
+        public static int md_content=0x7f0e0115;
         public static int md_disclaimer_markdown=0x7f0e00b6;
-        public static int media_actions=0x7f0e015e;
-        public static int menu_info=0x7f0e0178;
-        public static int menu_refresh=0x7f0e0177;
-        public static int menu_update_profile=0x7f0e0176;
+        public static int media_actions=0x7f0e0164;
+        public static int menu_info=0x7f0e017e;
+        public static int menu_refresh=0x7f0e017d;
+        public static int menu_update_profile=0x7f0e017c;
         public static int middle=0x7f0e004a;
         public static int mini=0x7f0e0048;
         public static int multiply=0x7f0e0032;
-        public static int navigation_header_container=0x7f0e0132;
+        public static int navigation_header_container=0x7f0e0139;
         public static int never=0x7f0e0050;
         public static int none=0x7f0e0027;
         public static int normal=0x7f0e0023;
-        public static int notification_background=0x7f0e0167;
-        public static int notification_main_column=0x7f0e0161;
-        public static int notification_main_column_container=0x7f0e0160;
+        public static int notification_background=0x7f0e016d;
+        public static int notification_main_column=0x7f0e0167;
+        public static int notification_main_column_container=0x7f0e0166;
         public static int nsv_bottom_sheet=0x7f0e0096;
         public static int only_last_four=0x7f0e0042;
-        public static int osv_scroll=0x7f0e00db;
+        public static int osv_scroll=0x7f0e00dd;
         public static int parallax=0x7f0e0039;
         public static int parentPanel=0x7f0e0065;
         public static int pb_progress=0x7f0e00da;
-        public static int pb_progress_bar=0x7f0e014f;
-        public static int pb_spinner=0x7f0e00f3;
-        public static int pbw_stepper=0x7f0e014c;
+        public static int pb_progress_bar=0x7f0e0155;
+        public static int pb_spinner=0x7f0e00fa;
+        public static int pbw_stepper=0x7f0e0152;
         public static int pdfView=0x7f0e00b4;
         public static int pin=0x7f0e003a;
-        public static int pinView=0x7f0e0105;
-        public static int pin_fragment=0x7f0e014b;
-        public static int pin_header_label=0x7f0e0152;
-        public static int pin_keyboard=0x7f0e0155;
-        public static int pin_pinputview=0x7f0e0153;
-        public static int pin_progress_spinner=0x7f0e0154;
+        public static int pinView=0x7f0e010c;
+        public static int pin_fragment=0x7f0e0151;
+        public static int pin_header_label=0x7f0e0158;
+        public static int pin_keyboard=0x7f0e015b;
+        public static int pin_pinputview=0x7f0e0159;
+        public static int pin_progress_spinner=0x7f0e015a;
         public static int progress_circular=0x7f0e000d;
         public static int progress_horizontal=0x7f0e000e;
         public static int radio=0x7f0e0075;
-        public static int rb_funding_source=0x7f0e0124;
+        public static int rb_funding_source=0x7f0e012b;
         public static int rb_no=0x7f0e00a7;
         public static int rb_yes=0x7f0e00a6;
         public static int rg_armed_forces=0x7f0e00a5;
         public static int rg_credit_score=0x7f0e00ae;
-        public static int rg_payday_loan=0x7f0e00f9;
-        public static int rg_time_at_address=0x7f0e0110;
+        public static int rg_payday_loan=0x7f0e0100;
+        public static int rg_time_at_address=0x7f0e0117;
         public static int right=0x7f0e0019;
-        public static int right_icon=0x7f0e0166;
-        public static int right_side=0x7f0e0162;
+        public static int right_icon=0x7f0e016c;
+        public static int right_side=0x7f0e0168;
         public static int rl_birthday_holder=0x7f0e00aa;
-        public static int rl_image_holder=0x7f0e0171;
-        public static int rl_loading_overlay=0x7f0e0151;
-        public static int rv_offers_list=0x7f0e00f7;
+        public static int rl_image_holder=0x7f0e0177;
+        public static int rl_loading_overlay=0x7f0e0157;
+        public static int rv_funding_sources_list=0x7f0e00f4;
+        public static int rv_offers_list=0x7f0e00fe;
         public static int screen=0x7f0e0033;
         public static int scroll=0x7f0e002f;
         public static int scrollIndicatorDown=0x7f0e006b;
@@ -4147,18 +4155,18 @@ containing a value of this type.
         public static int search_src_text=0x7f0e0085;
         public static int search_voice_btn=0x7f0e0089;
         public static int select_dialog_listview=0x7f0e008a;
-        public static int settings_toolbar=0x7f0e00ef;
+        public static int settings_toolbar=0x7f0e00f1;
         public static int shortcut=0x7f0e0074;
         public static int showCustom=0x7f0e0028;
         public static int showHome=0x7f0e0029;
         public static int showTitle=0x7f0e002a;
         public static int slide_over=0x7f0e0020;
-        public static int snackbar_action=0x7f0e0131;
-        public static int snackbar_text=0x7f0e0130;
+        public static int snackbar_action=0x7f0e0138;
+        public static int snackbar_text=0x7f0e0137;
         public static int snap=0x7f0e0030;
         public static int sp_housing_type=0x7f0e00c7;
         public static int sp_income_type=0x7f0e00d5;
-        public static int sp_loan_purpose=0x7f0e00ea;
+        public static int sp_loan_purpose=0x7f0e00ec;
         public static int sp_salary_frequency=0x7f0e00d8;
         public static int sp_state=0x7f0e00a0;
         public static int spacer=0x7f0e0064;
@@ -4168,18 +4176,18 @@ containing a value of this type.
         public static int src_over=0x7f0e0036;
         public static int standard=0x7f0e0053;
         public static int start=0x7f0e001a;
-        public static int status_bar_latest_event_content=0x7f0e015d;
+        public static int status_bar_latest_event_content=0x7f0e0163;
         public static int submenuarrow=0x7f0e0076;
         public static int submit_area=0x7f0e0087;
-        public static int sv_select_accounts_list=0x7f0e0108;
-        public static int sv_select_application_list=0x7f0e010b;
-        public static int sw_card_enabled=0x7f0e013c;
-        public static int sw_show_card_info=0x7f0e013d;
-        public static int swipe_refresh_container=0x7f0e00f1;
+        public static int sv_select_accounts_list=0x7f0e010f;
+        public static int sv_select_application_list=0x7f0e0112;
+        public static int sw_card_enabled=0x7f0e0143;
+        public static int sw_show_card_info=0x7f0e0144;
+        public static int swipe_refresh_container=0x7f0e00f8;
         public static int tabMode=0x7f0e0024;
-        public static int tb_llsdk_toolbar=0x7f0e014a;
-        public static int text=0x7f0e016d;
-        public static int text2=0x7f0e016b;
+        public static int tb_llsdk_toolbar=0x7f0e0150;
+        public static int text=0x7f0e0173;
+        public static int text2=0x7f0e0171;
         public static int textSpacerNoButtons=0x7f0e006a;
         public static int textSpacerNoTitle=0x7f0e0069;
         public static int text_helper=0x7f0e0010;
@@ -4188,46 +4196,47 @@ containing a value of this type.
         public static int til_birthday=0x7f0e00ac;
         public static int til_city=0x7f0e009e;
         public static int til_email=0x7f0e00bc;
-        public static int til_first_name=0x7f0e00fb;
-        public static int til_last_name=0x7f0e00fd;
-        public static int til_phone=0x7f0e0103;
+        public static int til_first_name=0x7f0e0102;
+        public static int til_last_name=0x7f0e0104;
+        public static int til_phone=0x7f0e010a;
         public static int til_social_security=0x7f0e00ca;
         public static int til_zip_code=0x7f0e00a3;
-        public static int time=0x7f0e0163;
+        public static int time=0x7f0e0169;
         public static int title=0x7f0e0062;
         public static int titleDividerNoCustom=0x7f0e0071;
         public static int title_template=0x7f0e006f;
+        public static int toolbar=0x7f0e00f2;
         public static int top=0x7f0e001b;
         public static int topPanel=0x7f0e006e;
-        public static int touch_outside=0x7f0e012e;
-        public static int transactions_recycler_view=0x7f0e00f2;
+        public static int touch_outside=0x7f0e0135;
+        public static int transactions_recycler_view=0x7f0e00f9;
         public static int tv_accept_pdf=0x7f0e00b2;
-        public static int tv_add_account_bttn=0x7f0e0107;
+        public static int tv_add_account_bttn=0x7f0e010e;
         public static int tv_add_bttn=0x7f0e0091;
-        public static int tv_amount=0x7f0e0129;
-        public static int tv_application_disclaimer=0x7f0e00ee;
-        public static int tv_application_state=0x7f0e0172;
-        public static int tv_apply=0x7f0e012d;
+        public static int tv_amount=0x7f0e0130;
+        public static int tv_application_disclaimer=0x7f0e00f0;
+        public static int tv_application_state=0x7f0e0178;
+        public static int tv_apply=0x7f0e0134;
         public static int tv_armed_forces_error=0x7f0e00a8;
         public static int tv_armed_forces_hint=0x7f0e00a4;
         public static int tv_birthdate_label=0x7f0e00a9;
-        public static int tv_borrower_agreement_header=0x7f0e00e4;
-        public static int tv_bttn_action=0x7f0e0173;
-        public static int tv_bttn_big=0x7f0e0149;
-        public static int tv_bttn_edit_info=0x7f0e00f5;
-        public static int tv_bttn_get_offers=0x7f0e0148;
-        public static int tv_bttn_more_info=0x7f0e012c;
+        public static int tv_borrower_agreement_header=0x7f0e00e6;
+        public static int tv_bttn_action=0x7f0e0179;
+        public static int tv_bttn_big=0x7f0e014f;
+        public static int tv_bttn_edit_info=0x7f0e00fc;
+        public static int tv_bttn_get_offers=0x7f0e014e;
+        public static int tv_bttn_more_info=0x7f0e0133;
         public static int tv_cancel_pdf=0x7f0e00b1;
         public static int tv_card_balance=0x7f0e00b7;
         public static int tv_card_balance_label=0x7f0e00b8;
-        public static int tv_card_disabled_label=0x7f0e0116;
-        public static int tv_confirm_btn=0x7f0e00e8;
+        public static int tv_card_disabled_label=0x7f0e011d;
+        public static int tv_confirm_btn=0x7f0e00ea;
         public static int tv_credit_score_error=0x7f0e00af;
-        public static int tv_cvv_label=0x7f0e0118;
-        public static int tv_datapoint_key=0x7f0e0156;
-        public static int tv_datapoint_value=0x7f0e0157;
-        public static int tv_description=0x7f0e0123;
-        public static int tv_disclaimer=0x7f0e012b;
+        public static int tv_cvv_label=0x7f0e011f;
+        public static int tv_datapoint_key=0x7f0e015c;
+        public static int tv_datapoint_value=0x7f0e015d;
+        public static int tv_description=0x7f0e012a;
+        public static int tv_disclaimer=0x7f0e0132;
         public static int tv_disclaimer_text=0x7f0e00b5;
         public static int tv_disclaimers_body=0x7f0e00d1;
         public static int tv_disclaimers_header=0x7f0e00d0;
@@ -4235,58 +4244,58 @@ containing a value of this type.
         public static int tv_display_card_secondary_bttn=0x7f0e00ba;
         public static int tv_done_bttn=0x7f0e0094;
         public static int tv_email_header=0x7f0e00bb;
-        public static int tv_email_not_available=0x7f0e0101;
+        public static int tv_email_not_available=0x7f0e0108;
         public static int tv_enable_auto_pay_primary_bttn=0x7f0e00c5;
         public static int tv_enable_auto_pay_secondary_bttn=0x7f0e00c6;
-        public static int tv_error_text=0x7f0e008c;
-        public static int tv_esign_consent_disclaimer=0x7f0e00e7;
-        public static int tv_esign_disclaimer=0x7f0e00e5;
-        public static int tv_expiration_label=0x7f0e0114;
-        public static int tv_explanation=0x7f0e0147;
+        public static int tv_esign_consent_disclaimer=0x7f0e00e9;
+        public static int tv_esign_disclaimer=0x7f0e00e7;
+        public static int tv_expiration_label=0x7f0e011b;
+        public static int tv_explanation=0x7f0e014d;
         public static int tv_financial_account_label=0x7f0e00c4;
-        public static int tv_funding_sources=0x7f0e00f0;
+        public static int tv_funding_sources=0x7f0e00f3;
         public static int tv_housing_type_error=0x7f0e00c9;
         public static int tv_housing_type_hint=0x7f0e00c8;
         public static int tv_income=0x7f0e00d2;
         public static int tv_income_type_error=0x7f0e00d6;
         public static int tv_income_type_hint=0x7f0e00d4;
-        public static int tv_interest=0x7f0e0128;
-        public static int tv_lender=0x7f0e0127;
-        public static int tv_lender_name=0x7f0e00de;
+        public static int tv_interest=0x7f0e012f;
+        public static int tv_lender=0x7f0e012e;
+        public static int tv_lender_name=0x7f0e00e0;
         public static int tv_library_bttn=0x7f0e0098;
-        public static int tv_loan_amount=0x7f0e00e1;
-        public static int tv_loan_confirmation_application_info_header=0x7f0e00ec;
-        public static int tv_loan_duration=0x7f0e00e2;
-        public static int tv_loan_interest_rate=0x7f0e00e0;
-        public static int tv_loan_purpose_error=0x7f0e00eb;
-        public static int tv_monthly=0x7f0e012a;
-        public static int tv_new_application_bttn=0x7f0e010a;
+        public static int tv_loan_amount=0x7f0e00e3;
+        public static int tv_loan_confirmation_application_info_header=0x7f0e00ee;
+        public static int tv_loan_duration=0x7f0e00e4;
+        public static int tv_loan_interest_rate=0x7f0e00e2;
+        public static int tv_loan_purpose_error=0x7f0e00ed;
+        public static int tv_monthly=0x7f0e0131;
+        public static int tv_new_application_bttn=0x7f0e0111;
         public static int tv_next_bttn=0x7f0e008e;
-        public static int tv_payday_loan_error=0x7f0e00fa;
-        public static int tv_payday_loan_hint=0x7f0e00f8;
-        public static int tv_payment=0x7f0e00e3;
-        public static int tv_phone_header=0x7f0e0102;
+        public static int tv_payday_loan_error=0x7f0e0101;
+        public static int tv_payday_loan_hint=0x7f0e00ff;
+        public static int tv_payment=0x7f0e00e5;
+        public static int tv_phone_header=0x7f0e0109;
         public static int tv_photo_bttn=0x7f0e0097;
         public static int tv_resend_bttn=0x7f0e00c2;
         public static int tv_salary_frequency_error=0x7f0e00d9;
         public static int tv_salary_frequency_hint=0x7f0e00d7;
         public static int tv_scan_bttn=0x7f0e0092;
         public static int tv_security=0x7f0e00cf;
-        public static int tv_select_account_header=0x7f0e0106;
+        public static int tv_select_account_header=0x7f0e010d;
         public static int tv_ssn_itin_not_available=0x7f0e00ce;
         public static int tv_state_spinner_error=0x7f0e00a2;
+        public static int tv_status_text=0x7f0e008c;
         public static int tv_submit_bttn=0x7f0e00c1;
-        public static int tv_terms_header=0x7f0e00df;
-        public static int tv_time_at_address_error=0x7f0e0111;
-        public static int tv_time_at_address_hint=0x7f0e010f;
-        public static int tv_title=0x7f0e0122;
-        public static int tv_transactions_title=0x7f0e0143;
+        public static int tv_terms_header=0x7f0e00e1;
+        public static int tv_time_at_address_error=0x7f0e0118;
+        public static int tv_time_at_address_hint=0x7f0e0116;
+        public static int tv_title=0x7f0e0129;
+        public static int tv_transactions_title=0x7f0e014a;
         public static int tv_verification_code_header=0x7f0e00bf;
         public static int tv_verification_code_info=0x7f0e00c0;
         public static int up=0x7f0e0011;
         public static int useLogo=0x7f0e002b;
-        public static int v_divider=0x7f0e00dc;
-        public static int valid_till=0x7f0e011b;
+        public static int v_divider=0x7f0e00de;
+        public static int valid_till=0x7f0e0122;
         public static int vertical=0x7f0e001d;
         public static int view_offset_helper=0x7f0e0012;
         public static int visa=0x7f0e0047;
@@ -4372,82 +4381,83 @@ containing a value of this type.
         public static int act_income_monthly=0x7f04002d;
         public static int act_intermediate_financial_accounts_list=0x7f04002e;
         public static int act_issue_virtual_card=0x7f04002f;
-        public static int act_loan_agreement=0x7f040030;
-        public static int act_loan_amount=0x7f040031;
-        public static int act_loan_application_intermediate=0x7f040032;
-        public static int act_loan_application_summary=0x7f040033;
-        public static int act_manage_account=0x7f040034;
-        public static int act_manage_card=0x7f040035;
-        public static int act_offers_carousel=0x7f040036;
-        public static int act_offers_list=0x7f040037;
-        public static int act_payday_loan=0x7f040038;
-        public static int act_personal_information=0x7f040039;
-        public static int act_phone=0x7f04003a;
-        public static int act_phone_verification=0x7f04003b;
-        public static int act_select_financial_accounts=0x7f04003c;
-        public static int act_select_pending_application=0x7f04003d;
-        public static int act_show_generic_message=0x7f04003e;
-        public static int act_time_at_address=0x7f04003f;
-        public static int credit_card_view=0x7f040040;
-        public static int creditcardview=0x7f040041;
-        public static int cv_add_account=0x7f040042;
-        public static int cv_add_custodian=0x7f040043;
-        public static int cv_add_document=0x7f040044;
-        public static int cv_funding_source=0x7f040045;
-        public static int cv_loan_offer=0x7f040046;
-        public static int cv_select_account=0x7f040047;
-        public static int cv_select_application=0x7f040048;
-        public static int cv_transaction=0x7f040049;
-        public static int design_bottom_sheet_dialog=0x7f04004a;
-        public static int design_layout_snackbar=0x7f04004b;
-        public static int design_layout_snackbar_include=0x7f04004c;
-        public static int design_layout_tab_icon=0x7f04004d;
-        public static int design_layout_tab_text=0x7f04004e;
-        public static int design_menu_item_action_area=0x7f04004f;
-        public static int design_navigation_item=0x7f040050;
-        public static int design_navigation_item_header=0x7f040051;
-        public static int design_navigation_item_separator=0x7f040052;
-        public static int design_navigation_item_subheader=0x7f040053;
-        public static int design_navigation_menu=0x7f040054;
-        public static int design_navigation_menu_item=0x7f040055;
-        public static int fingerprint_dialog_container=0x7f040056;
-        public static int fingerprint_dialog_content=0x7f040057;
-        public static int fragment_manage_card_bottom_sheet=0x7f040058;
-        public static int include_card_management=0x7f040059;
-        public static int include_ll_loan_error=0x7f04005a;
-        public static int include_llsdk_toolbar=0x7f04005b;
-        public static int include_pin_fragment=0x7f04005c;
-        public static int include_progress_bar=0x7f04005d;
-        public static int include_rl_loading=0x7f04005e;
-        public static int include_rl_loading_transparent=0x7f04005f;
-        public static int layout_pin_view=0x7f040060;
-        public static int lv_datapoint=0x7f040061;
-        public static int notification_action=0x7f040062;
-        public static int notification_action_tombstone=0x7f040063;
-        public static int notification_media_action=0x7f040064;
-        public static int notification_media_cancel_action=0x7f040065;
-        public static int notification_template_big_media=0x7f040066;
-        public static int notification_template_big_media_custom=0x7f040067;
-        public static int notification_template_big_media_narrow=0x7f040068;
-        public static int notification_template_big_media_narrow_custom=0x7f040069;
-        public static int notification_template_custom_big=0x7f04006a;
-        public static int notification_template_icon_group=0x7f04006b;
-        public static int notification_template_lines_media=0x7f04006c;
-        public static int notification_template_media=0x7f04006d;
-        public static int notification_template_media_custom=0x7f04006e;
-        public static int notification_template_part_chronometer=0x7f04006f;
-        public static int notification_template_part_time=0x7f040070;
-        public static int partial_pin_box=0x7f040071;
-        public static int partial_pin_text=0x7f040072;
-        public static int pin_view=0x7f040073;
-        public static int pin_view_edit_mode=0x7f040074;
-        public static int select_dialog_item_material=0x7f040075;
-        public static int select_dialog_multichoice_material=0x7f040076;
-        public static int select_dialog_singlechoice_material=0x7f040077;
-        public static int support_simple_spinner_dropdown_item=0x7f040078;
-        public static int sv_loan_application_details=0x7f040079;
-        public static int sv_loan_offer=0x7f04007a;
-        public static int view_carousel=0x7f04007b;
+        public static int act_kyc_status=0x7f040030;
+        public static int act_loan_agreement=0x7f040031;
+        public static int act_loan_amount=0x7f040032;
+        public static int act_loan_application_intermediate=0x7f040033;
+        public static int act_loan_application_summary=0x7f040034;
+        public static int act_manage_account=0x7f040035;
+        public static int act_manage_card=0x7f040036;
+        public static int act_offers_carousel=0x7f040037;
+        public static int act_offers_list=0x7f040038;
+        public static int act_payday_loan=0x7f040039;
+        public static int act_personal_information=0x7f04003a;
+        public static int act_phone=0x7f04003b;
+        public static int act_phone_verification=0x7f04003c;
+        public static int act_select_financial_accounts=0x7f04003d;
+        public static int act_select_pending_application=0x7f04003e;
+        public static int act_show_generic_message=0x7f04003f;
+        public static int act_time_at_address=0x7f040040;
+        public static int credit_card_view=0x7f040041;
+        public static int creditcardview=0x7f040042;
+        public static int cv_add_account=0x7f040043;
+        public static int cv_add_custodian=0x7f040044;
+        public static int cv_add_document=0x7f040045;
+        public static int cv_funding_source=0x7f040046;
+        public static int cv_loan_offer=0x7f040047;
+        public static int cv_select_account=0x7f040048;
+        public static int cv_select_application=0x7f040049;
+        public static int cv_transaction=0x7f04004a;
+        public static int design_bottom_sheet_dialog=0x7f04004b;
+        public static int design_layout_snackbar=0x7f04004c;
+        public static int design_layout_snackbar_include=0x7f04004d;
+        public static int design_layout_tab_icon=0x7f04004e;
+        public static int design_layout_tab_text=0x7f04004f;
+        public static int design_menu_item_action_area=0x7f040050;
+        public static int design_navigation_item=0x7f040051;
+        public static int design_navigation_item_header=0x7f040052;
+        public static int design_navigation_item_separator=0x7f040053;
+        public static int design_navigation_item_subheader=0x7f040054;
+        public static int design_navigation_menu=0x7f040055;
+        public static int design_navigation_menu_item=0x7f040056;
+        public static int fingerprint_dialog_container=0x7f040057;
+        public static int fingerprint_dialog_content=0x7f040058;
+        public static int fragment_manage_card_bottom_sheet=0x7f040059;
+        public static int include_card_management=0x7f04005a;
+        public static int include_ll_loan_error=0x7f04005b;
+        public static int include_llsdk_toolbar=0x7f04005c;
+        public static int include_pin_fragment=0x7f04005d;
+        public static int include_progress_bar=0x7f04005e;
+        public static int include_rl_loading=0x7f04005f;
+        public static int include_rl_loading_transparent=0x7f040060;
+        public static int layout_pin_view=0x7f040061;
+        public static int lv_datapoint=0x7f040062;
+        public static int notification_action=0x7f040063;
+        public static int notification_action_tombstone=0x7f040064;
+        public static int notification_media_action=0x7f040065;
+        public static int notification_media_cancel_action=0x7f040066;
+        public static int notification_template_big_media=0x7f040067;
+        public static int notification_template_big_media_custom=0x7f040068;
+        public static int notification_template_big_media_narrow=0x7f040069;
+        public static int notification_template_big_media_narrow_custom=0x7f04006a;
+        public static int notification_template_custom_big=0x7f04006b;
+        public static int notification_template_icon_group=0x7f04006c;
+        public static int notification_template_lines_media=0x7f04006d;
+        public static int notification_template_media=0x7f04006e;
+        public static int notification_template_media_custom=0x7f04006f;
+        public static int notification_template_part_chronometer=0x7f040070;
+        public static int notification_template_part_time=0x7f040071;
+        public static int partial_pin_box=0x7f040072;
+        public static int partial_pin_text=0x7f040073;
+        public static int pin_view=0x7f040074;
+        public static int pin_view_edit_mode=0x7f040075;
+        public static int select_dialog_item_material=0x7f040076;
+        public static int select_dialog_multichoice_material=0x7f040077;
+        public static int select_dialog_singlechoice_material=0x7f040078;
+        public static int support_simple_spinner_dropdown_item=0x7f040079;
+        public static int sv_loan_application_details=0x7f04007a;
+        public static int sv_loan_offer=0x7f04007b;
+        public static int view_carousel=0x7f04007c;
     }
     public static final class menu {
         public static int menu_loan_amount=0x7f100000;
@@ -4529,60 +4539,61 @@ containing a value of this type.
         public static int add_financial_account_list_title=0x7f070053;
         public static int add_financial_account_virtual_card=0x7f070054;
         public static int add_financial_account_virtual_card_description=0x7f070055;
-        public static int address_address_error=0x7f070056;
-        public static int address_address_hint=0x7f070057;
-        public static int address_apartment_number_hint=0x7f070058;
-        public static int address_city_error=0x7f070059;
-        public static int address_city_hint=0x7f07005a;
-        public static int address_housing_type_error=0x7f07005b;
-        public static int address_housing_type_header=0x7f07005c;
-        public static int address_housing_type_hint=0x7f07005d;
-        public static int address_label=0x7f07005e;
-        public static int address_state_error=0x7f07005f;
-        public static int address_state_hint=0x7f070060;
-        public static int address_zip_code_error=0x7f070061;
-        public static int address_zip_code_hint=0x7f070062;
-        public static int annual_income_format=0x7f070063;
-        public static int annual_income_income_type_error=0x7f070064;
-        public static int annual_income_income_type_header=0x7f070065;
-        public static int annual_income_income_type_hint=0x7f070066;
-        public static int annual_income_label=0x7f070067;
-        public static int annual_income_salary_frequency_error=0x7f070068;
-        public static int annual_income_salary_frequency_header=0x7f070069;
-        public static int annual_income_salary_frequency_hint=0x7f07006a;
-        public static int app_name=0x7f07006b;
-        public static int appbar_scrolling_view_behavior=0x7f07006c;
-        public static int armed_forces_error=0x7f07006d;
-        public static int armed_forces_hint=0x7f07006e;
-        public static int armed_forces_label=0x7f07006f;
-        public static int armed_forces_no=0x7f070070;
-        public static int armed_forces_yes=0x7f070071;
-        public static int async_save_error=0x7f070072;
-        public static int birthdate_error=0x7f070073;
-        public static int birthdate_hint=0x7f070074;
-        public static int birthdate_label=0x7f070075;
-        public static int birthdate_title=0x7f070076;
-        public static int birthdate_verification_error=0x7f070077;
-        public static int bottom_sheet_behavior=0x7f070078;
-        public static int brand_logo=0x7f070079;
-        public static int card_activated=0x7f07007a;
-        public static int card_cvv_label=0x7f07007b;
-        public static int card_deactivated=0x7f07007c;
-        public static int card_disabled_label=0x7f07007d;
-        public static int card_expiration_date_label=0x7f07007e;
-        public static int card_logo=0x7f07007f;
-        public static int card_management_card_balance=0x7f070080;
-        public static int card_management_primary_button=0x7f070081;
-        public static int card_management_secondary_button=0x7f070082;
-        public static int card_management_trasactions_title=0x7f070083;
-        public static int card_name_hint=0x7f070084;
-        public static int card_number_hint=0x7f070085;
-        public static int change_pin_label=0x7f070086;
-        public static int character_counter_pattern=0x7f070087;
-        public static int chip_visible=0x7f070088;
-        public static int coinbase_client_id=0x7f070089;
-        public static int coinbase_client_secret=0x7f07008a;
-        public static int coinbase_redirect_uri=0x7f07008b;
+        public static int add_funding_source=0x7f070056;
+        public static int address_address_error=0x7f070057;
+        public static int address_address_hint=0x7f070058;
+        public static int address_apartment_number_hint=0x7f070059;
+        public static int address_city_error=0x7f07005a;
+        public static int address_city_hint=0x7f07005b;
+        public static int address_housing_type_error=0x7f07005c;
+        public static int address_housing_type_header=0x7f07005d;
+        public static int address_housing_type_hint=0x7f07005e;
+        public static int address_label=0x7f07005f;
+        public static int address_state_error=0x7f070060;
+        public static int address_state_hint=0x7f070061;
+        public static int address_zip_code_error=0x7f070062;
+        public static int address_zip_code_hint=0x7f070063;
+        public static int annual_income_format=0x7f070064;
+        public static int annual_income_income_type_error=0x7f070065;
+        public static int annual_income_income_type_header=0x7f070066;
+        public static int annual_income_income_type_hint=0x7f070067;
+        public static int annual_income_label=0x7f070068;
+        public static int annual_income_salary_frequency_error=0x7f070069;
+        public static int annual_income_salary_frequency_header=0x7f07006a;
+        public static int annual_income_salary_frequency_hint=0x7f07006b;
+        public static int app_name=0x7f07006c;
+        public static int appbar_scrolling_view_behavior=0x7f07006d;
+        public static int armed_forces_error=0x7f07006e;
+        public static int armed_forces_hint=0x7f07006f;
+        public static int armed_forces_label=0x7f070070;
+        public static int armed_forces_no=0x7f070071;
+        public static int armed_forces_yes=0x7f070072;
+        public static int async_save_error=0x7f070073;
+        public static int birthdate_error=0x7f070074;
+        public static int birthdate_hint=0x7f070075;
+        public static int birthdate_label=0x7f070076;
+        public static int birthdate_title=0x7f070077;
+        public static int birthdate_verification_error=0x7f070078;
+        public static int bottom_sheet_behavior=0x7f070079;
+        public static int brand_logo=0x7f07007a;
+        public static int card_activated=0x7f07007b;
+        public static int card_cvv_label=0x7f07007c;
+        public static int card_deactivated=0x7f07007d;
+        public static int card_disabled_label=0x7f07007e;
+        public static int card_expiration_date_label=0x7f07007f;
+        public static int card_logo=0x7f070080;
+        public static int card_management_card_balance=0x7f070081;
+        public static int card_management_primary_button=0x7f070082;
+        public static int card_management_secondary_button=0x7f070083;
+        public static int card_management_trasactions_title=0x7f070084;
+        public static int card_name_hint=0x7f070085;
+        public static int card_number_hint=0x7f070086;
+        public static int change_pin_label=0x7f070087;
+        public static int character_counter_pattern=0x7f070088;
+        public static int chip_visible=0x7f070089;
+        public static int coinbase_client_id=0x7f07008a;
+        public static int coinbase_client_secret=0x7f07008b;
+        public static int coinbase_redirect_uri=0x7f07008c;
         public static int common_google_play_services_enable_button=0x7f070013;
         public static int common_google_play_services_enable_text=0x7f070014;
         public static int common_google_play_services_enable_title=0x7f070015;
@@ -4600,190 +4611,194 @@ containing a value of this type.
         public static int common_open_on_phone=0x7f070021;
         public static int common_signin_button_text=0x7f070022;
         public static int common_signin_button_text_long=0x7f070023;
-        public static int confirm_n_digit_pin=0x7f07008c;
-        public static int create_n_digit_pin=0x7f07008d;
-        public static int credit_score_error=0x7f07008e;
-        public static int credit_score_label=0x7f07008f;
-        public static int dialog_title=0x7f070090;
-        public static int disable_card_message=0x7f070091;
-        public static int disclaimer_accept=0x7f070092;
-        public static int disclaimer_cancel=0x7f070093;
-        public static int disclaimer_error=0x7f070094;
-        public static int display_card_label=0x7f070095;
-        public static int display_card_primary_button=0x7f070096;
-        public static int display_card_secondary_button=0x7f070097;
-        public static int display_card_title=0x7f070098;
-        public static int email_error=0x7f070099;
-        public static int email_hint=0x7f07009a;
-        public static int email_label=0x7f07009b;
-        public static int email_title=0x7f07009c;
-        public static int email_verification_button_resend=0x7f07009d;
-        public static int email_verification_button_submit=0x7f07009e;
-        public static int email_verification_code_hint=0x7f07009f;
-        public static int email_verification_error=0x7f0700a0;
-        public static int email_verification_info=0x7f0700a1;
-        public static int email_verification_label=0x7f0700a2;
-        public static int email_verification_resent=0x7f0700a3;
-        public static int enable_auto_pay_bank=0x7f0700a4;
-        public static int enable_auto_pay_card=0x7f0700a5;
-        public static int enable_auto_pay_card_primary_button=0x7f0700a6;
-        public static int enable_auto_pay_error=0x7f0700a7;
-        public static int enable_auto_pay_title=0x7f0700a8;
-        public static int enable_auto_pay_virtual_card=0x7f0700a9;
-        public static int enable_auto_pay_virtual_card_primary_button=0x7f0700aa;
-        public static int enable_auto_pay_virtual_card_secondary_button=0x7f0700ab;
-        public static int enable_card_message=0x7f0700ac;
-        public static int expiry_date_hint=0x7f0700ad;
-        public static int fingerprint_description=0x7f0700ae;
-        public static int fingerprint_hint=0x7f0700af;
-        public static int fingerprint_title=0x7f0700b0;
-        public static int font_path=0x7f0700b1;
-        public static int funding_sources_label=0x7f0700b2;
-        public static int google_maps_api_key=0x7f0700b3;
-        public static int google_maps_api_url=0x7f0700b4;
-        public static int id_verification_birthday_error=0x7f0700b5;
-        public static int id_verification_birthday_hint=0x7f0700b6;
-        public static int id_verification_disclaimer=0x7f0700b7;
-        public static int id_verification_disclosures_label=0x7f0700b8;
-        public static int id_verification_next_button_get_offers=0x7f0700b9;
-        public static int id_verification_next_button_issue_card=0x7f0700ba;
-        public static int id_verification_social_security_error=0x7f0700bb;
-        public static int id_verification_social_security_hint=0x7f0700bc;
-        public static int id_verification_ssn_itin_not_available=0x7f0700bd;
-        public static int id_verification_title_get_offers=0x7f0700be;
-        public static int id_verification_title_issue_card=0x7f0700bf;
-        public static int id_verification_toast_api_error=0x7f0700c0;
-        public static int id_verification_update_profile_button=0x7f0700c1;
-        public static int id_verification_update_profile_title=0x7f0700c2;
-        public static int loan_agreement_borrower_agreement_header=0x7f0700c3;
-        public static int loan_agreement_button_agree=0x7f0700c4;
-        public static int loan_agreement_button_scroll_down=0x7f0700c5;
-        public static int loan_agreement_label=0x7f0700c6;
-        public static int loan_agreement_terms_amount=0x7f0700c7;
-        public static int loan_agreement_terms_amount_format=0x7f0700c8;
-        public static int loan_agreement_terms_dialog_message=0x7f0700c9;
-        public static int loan_agreement_terms_dialog_title=0x7f0700ca;
-        public static int loan_agreement_terms_duration=0x7f0700cb;
-        public static int loan_agreement_terms_header=0x7f0700cc;
-        public static int loan_agreement_terms_interest=0x7f0700cd;
-        public static int loan_agreement_terms_interest_format=0x7f0700ce;
-        public static int loan_agreement_terms_payment=0x7f0700cf;
-        public static int loan_agreement_terms_payment_format=0x7f0700d0;
-        public static int loan_amount_button_next=0x7f0700d1;
-        public static int loan_amount_format=0x7f0700d2;
-        public static int loan_amount_label=0x7f0700d3;
-        public static int loan_amount_menu_update_profile=0x7f0700d4;
-        public static int loan_amount_purpose_error=0x7f0700d5;
-        public static int loan_amount_purpose_header=0x7f0700d6;
-        public static int loan_amount_purpose_hint=0x7f0700d7;
-        public static int loan_application_button_documents_pending=0x7f0700d8;
-        public static int loan_application_button_finish_external=0x7f0700d9;
-        public static int loan_application_button_info=0x7f0700da;
-        public static int loan_application_button_offers=0x7f0700db;
-        public static int loan_application_button_pre_approved_loan=0x7f0700dc;
-        public static int loan_application_button_retry=0x7f0700dd;
-        public static int loan_application_details_disclaimer=0x7f0700de;
-        public static int loan_application_details_duration=0x7f0700df;
-        public static int loan_application_details_status_approved=0x7f0700e0;
-        public static int loan_application_details_status_pending_borrower_action_finish_external=0x7f0700e1;
-        public static int loan_application_details_status_pending_borrower_action_upload=0x7f0700e2;
-        public static int loan_application_details_status_pending_lender_action=0x7f0700e3;
-        public static int loan_application_explanation_error=0x7f0700e4;
-        public static int loan_application_label=0x7f0700e5;
-        public static int loan_application_summary_address=0x7f0700e6;
-        public static int loan_application_summary_annual_pretax_income=0x7f0700e7;
-        public static int loan_application_summary_apt_unit=0x7f0700e8;
-        public static int loan_application_summary_armed_forces=0x7f0700e9;
-        public static int loan_application_summary_birthday=0x7f0700ea;
-        public static int loan_application_summary_city=0x7f0700eb;
-        public static int loan_application_summary_credit_score=0x7f0700ec;
-        public static int loan_application_summary_email=0x7f0700ed;
-        public static int loan_application_summary_first_name=0x7f0700ee;
-        public static int loan_application_summary_housing_status=0x7f0700ef;
-        public static int loan_application_summary_income_type=0x7f0700f0;
-        public static int loan_application_summary_last_name=0x7f0700f1;
-        public static int loan_application_summary_loan_purpose=0x7f0700f2;
-        public static int loan_application_summary_monthly_net_income=0x7f0700f3;
-        public static int loan_application_summary_payday_loan=0x7f0700f4;
-        public static int loan_application_summary_phone=0x7f0700f5;
-        public static int loan_application_summary_salary_frequency=0x7f0700f6;
-        public static int loan_application_summary_ssn=0x7f0700f7;
-        public static int loan_application_summary_state=0x7f0700f8;
-        public static int loan_application_summary_time_at_address=0x7f0700f9;
-        public static int loan_application_summary_zip_code=0x7f0700fa;
-        public static int loan_applications_list_label=0x7f0700fb;
-        public static int loan_confirmation_application_info_header=0x7f0700fc;
-        public static int loan_confirmation_button_agree=0x7f0700fd;
-        public static int loan_confirmation_disclosures_header=0x7f0700fe;
-        public static int loan_confirmation_label=0x7f0700ff;
-        public static int monthly_income_format=0x7f070100;
-        public static int monthly_income_label=0x7f070101;
-        public static int new_application_button=0x7f070102;
-        public static int offers_list_dialog_disclaimer_title=0x7f070103;
-        public static int offers_list_dialog_redirect_message=0x7f070104;
-        public static int offers_list_dialog_redirect_title=0x7f070105;
-        public static int offers_list_empty_button=0x7f070106;
-        public static int offers_list_empty_text=0x7f070107;
-        public static int offers_list_label=0x7f070108;
-        public static int offers_list_menu_refresh=0x7f070109;
-        public static int offers_list_menu_update_profile=0x7f07010a;
-        public static int offers_list_summary_button_apply=0x7f07010b;
-        public static int offers_list_summary_button_more_info=0x7f07010c;
-        public static int offers_list_summary_interest_rate=0x7f07010d;
-        public static int offers_list_summary_loan_amount=0x7f07010e;
-        public static int offers_list_summary_monthly_payment=0x7f07010f;
-        public static int offers_list_terms_url=0x7f070110;
-        public static int payday_loan_error=0x7f070111;
-        public static int payday_loan_hint=0x7f070112;
-        public static int payday_loan_label=0x7f070113;
-        public static int payday_loan_no=0x7f070114;
-        public static int payday_loan_yes=0x7f070115;
-        public static int personal_info_email_error=0x7f070116;
-        public static int personal_info_email_hint=0x7f070117;
-        public static int personal_info_email_not_available=0x7f070118;
-        public static int personal_info_first_name_error=0x7f070119;
-        public static int personal_info_first_name_hint=0x7f07011a;
-        public static int personal_info_label=0x7f07011b;
-        public static int personal_info_last_name_error=0x7f07011c;
-        public static int personal_info_last_name_hint=0x7f07011d;
-        public static int phone_error=0x7f07011e;
-        public static int phone_hint=0x7f07011f;
-        public static int phone_label=0x7f070120;
-        public static int phone_title=0x7f070121;
-        public static int phone_verification_button_resend=0x7f070122;
-        public static int phone_verification_button_submit=0x7f070123;
-        public static int phone_verification_code_hint=0x7f070124;
-        public static int phone_verification_error=0x7f070125;
-        public static int phone_verification_info=0x7f070126;
-        public static int phone_verification_label=0x7f070127;
-        public static int phone_verification_resent=0x7f070128;
-        public static int pin_changed=0x7f070129;
-        public static int pin_created=0x7f07012a;
-        public static int pin_mismatch=0x7f07012b;
-        public static int report_lost_card_label=0x7f07012c;
-        public static int save_to_android_pay_label=0x7f07012d;
-        public static int saving_pin=0x7f07012e;
+        public static int confirm_n_digit_pin=0x7f07008d;
+        public static int create_n_digit_pin=0x7f07008e;
+        public static int credit_score_error=0x7f07008f;
+        public static int credit_score_label=0x7f070090;
+        public static int dialog_title=0x7f070091;
+        public static int disable_card_message=0x7f070092;
+        public static int disclaimer_accept=0x7f070093;
+        public static int disclaimer_cancel=0x7f070094;
+        public static int disclaimer_error=0x7f070095;
+        public static int display_card_label=0x7f070096;
+        public static int display_card_primary_button=0x7f070097;
+        public static int display_card_secondary_button=0x7f070098;
+        public static int display_card_title=0x7f070099;
+        public static int email_error=0x7f07009a;
+        public static int email_hint=0x7f07009b;
+        public static int email_label=0x7f07009c;
+        public static int email_title=0x7f07009d;
+        public static int email_verification_button_resend=0x7f07009e;
+        public static int email_verification_button_submit=0x7f07009f;
+        public static int email_verification_code_hint=0x7f0700a0;
+        public static int email_verification_error=0x7f0700a1;
+        public static int email_verification_info=0x7f0700a2;
+        public static int email_verification_label=0x7f0700a3;
+        public static int email_verification_resent=0x7f0700a4;
+        public static int enable_auto_pay_bank=0x7f0700a5;
+        public static int enable_auto_pay_card=0x7f0700a6;
+        public static int enable_auto_pay_card_primary_button=0x7f0700a7;
+        public static int enable_auto_pay_error=0x7f0700a8;
+        public static int enable_auto_pay_title=0x7f0700a9;
+        public static int enable_auto_pay_virtual_card=0x7f0700aa;
+        public static int enable_auto_pay_virtual_card_primary_button=0x7f0700ab;
+        public static int enable_auto_pay_virtual_card_secondary_button=0x7f0700ac;
+        public static int enable_card_message=0x7f0700ad;
+        public static int expiry_date_hint=0x7f0700ae;
+        public static int fingerprint_description=0x7f0700af;
+        public static int fingerprint_hint=0x7f0700b0;
+        public static int fingerprint_title=0x7f0700b1;
+        public static int font_path=0x7f0700b2;
+        public static int funding_source_dollar_amount=0x7f0700b3;
+        public static int funding_sources_label=0x7f0700b4;
+        public static int google_maps_api_key=0x7f0700b5;
+        public static int google_maps_api_url=0x7f0700b6;
+        public static int id_verification_birthday_error=0x7f0700b7;
+        public static int id_verification_birthday_hint=0x7f0700b8;
+        public static int id_verification_disclaimer=0x7f0700b9;
+        public static int id_verification_disclosures_label=0x7f0700ba;
+        public static int id_verification_next_button_get_offers=0x7f0700bb;
+        public static int id_verification_next_button_issue_card=0x7f0700bc;
+        public static int id_verification_social_security_error=0x7f0700bd;
+        public static int id_verification_social_security_hint=0x7f0700be;
+        public static int id_verification_ssn_itin_not_available=0x7f0700bf;
+        public static int id_verification_title_get_offers=0x7f0700c0;
+        public static int id_verification_title_issue_card=0x7f0700c1;
+        public static int id_verification_toast_api_error=0x7f0700c2;
+        public static int id_verification_update_profile_button=0x7f0700c3;
+        public static int id_verification_update_profile_title=0x7f0700c4;
+        public static int kyc_status_application_under_review=0x7f0700c5;
+        public static int kyc_status_title=0x7f0700c6;
+        public static int loan_agreement_borrower_agreement_header=0x7f0700c7;
+        public static int loan_agreement_button_agree=0x7f0700c8;
+        public static int loan_agreement_button_scroll_down=0x7f0700c9;
+        public static int loan_agreement_label=0x7f0700ca;
+        public static int loan_agreement_terms_amount=0x7f0700cb;
+        public static int loan_agreement_terms_amount_format=0x7f0700cc;
+        public static int loan_agreement_terms_dialog_message=0x7f0700cd;
+        public static int loan_agreement_terms_dialog_title=0x7f0700ce;
+        public static int loan_agreement_terms_duration=0x7f0700cf;
+        public static int loan_agreement_terms_header=0x7f0700d0;
+        public static int loan_agreement_terms_interest=0x7f0700d1;
+        public static int loan_agreement_terms_interest_format=0x7f0700d2;
+        public static int loan_agreement_terms_payment=0x7f0700d3;
+        public static int loan_agreement_terms_payment_format=0x7f0700d4;
+        public static int loan_amount_button_next=0x7f0700d5;
+        public static int loan_amount_format=0x7f0700d6;
+        public static int loan_amount_label=0x7f0700d7;
+        public static int loan_amount_menu_update_profile=0x7f0700d8;
+        public static int loan_amount_purpose_error=0x7f0700d9;
+        public static int loan_amount_purpose_header=0x7f0700da;
+        public static int loan_amount_purpose_hint=0x7f0700db;
+        public static int loan_application_button_documents_pending=0x7f0700dc;
+        public static int loan_application_button_finish_external=0x7f0700dd;
+        public static int loan_application_button_info=0x7f0700de;
+        public static int loan_application_button_offers=0x7f0700df;
+        public static int loan_application_button_pre_approved_loan=0x7f0700e0;
+        public static int loan_application_button_retry=0x7f0700e1;
+        public static int loan_application_details_disclaimer=0x7f0700e2;
+        public static int loan_application_details_duration=0x7f0700e3;
+        public static int loan_application_details_status_approved=0x7f0700e4;
+        public static int loan_application_details_status_pending_borrower_action_finish_external=0x7f0700e5;
+        public static int loan_application_details_status_pending_borrower_action_upload=0x7f0700e6;
+        public static int loan_application_details_status_pending_lender_action=0x7f0700e7;
+        public static int loan_application_explanation_error=0x7f0700e8;
+        public static int loan_application_label=0x7f0700e9;
+        public static int loan_application_summary_address=0x7f0700ea;
+        public static int loan_application_summary_annual_pretax_income=0x7f0700eb;
+        public static int loan_application_summary_apt_unit=0x7f0700ec;
+        public static int loan_application_summary_armed_forces=0x7f0700ed;
+        public static int loan_application_summary_birthday=0x7f0700ee;
+        public static int loan_application_summary_city=0x7f0700ef;
+        public static int loan_application_summary_credit_score=0x7f0700f0;
+        public static int loan_application_summary_email=0x7f0700f1;
+        public static int loan_application_summary_first_name=0x7f0700f2;
+        public static int loan_application_summary_housing_status=0x7f0700f3;
+        public static int loan_application_summary_income_type=0x7f0700f4;
+        public static int loan_application_summary_last_name=0x7f0700f5;
+        public static int loan_application_summary_loan_purpose=0x7f0700f6;
+        public static int loan_application_summary_monthly_net_income=0x7f0700f7;
+        public static int loan_application_summary_payday_loan=0x7f0700f8;
+        public static int loan_application_summary_phone=0x7f0700f9;
+        public static int loan_application_summary_salary_frequency=0x7f0700fa;
+        public static int loan_application_summary_ssn=0x7f0700fb;
+        public static int loan_application_summary_state=0x7f0700fc;
+        public static int loan_application_summary_time_at_address=0x7f0700fd;
+        public static int loan_application_summary_zip_code=0x7f0700fe;
+        public static int loan_applications_list_label=0x7f0700ff;
+        public static int loan_confirmation_application_info_header=0x7f070100;
+        public static int loan_confirmation_button_agree=0x7f070101;
+        public static int loan_confirmation_disclosures_header=0x7f070102;
+        public static int loan_confirmation_label=0x7f070103;
+        public static int monthly_income_format=0x7f070104;
+        public static int monthly_income_label=0x7f070105;
+        public static int new_application_button=0x7f070106;
+        public static int offers_list_dialog_disclaimer_title=0x7f070107;
+        public static int offers_list_dialog_redirect_message=0x7f070108;
+        public static int offers_list_dialog_redirect_title=0x7f070109;
+        public static int offers_list_empty_button=0x7f07010a;
+        public static int offers_list_empty_text=0x7f07010b;
+        public static int offers_list_label=0x7f07010c;
+        public static int offers_list_menu_refresh=0x7f07010d;
+        public static int offers_list_menu_update_profile=0x7f07010e;
+        public static int offers_list_summary_button_apply=0x7f07010f;
+        public static int offers_list_summary_button_more_info=0x7f070110;
+        public static int offers_list_summary_interest_rate=0x7f070111;
+        public static int offers_list_summary_loan_amount=0x7f070112;
+        public static int offers_list_summary_monthly_payment=0x7f070113;
+        public static int offers_list_terms_url=0x7f070114;
+        public static int payday_loan_error=0x7f070115;
+        public static int payday_loan_hint=0x7f070116;
+        public static int payday_loan_label=0x7f070117;
+        public static int payday_loan_no=0x7f070118;
+        public static int payday_loan_yes=0x7f070119;
+        public static int personal_info_email_error=0x7f07011a;
+        public static int personal_info_email_hint=0x7f07011b;
+        public static int personal_info_email_not_available=0x7f07011c;
+        public static int personal_info_first_name_error=0x7f07011d;
+        public static int personal_info_first_name_hint=0x7f07011e;
+        public static int personal_info_label=0x7f07011f;
+        public static int personal_info_last_name_error=0x7f070120;
+        public static int personal_info_last_name_hint=0x7f070121;
+        public static int phone_error=0x7f070122;
+        public static int phone_hint=0x7f070123;
+        public static int phone_label=0x7f070124;
+        public static int phone_title=0x7f070125;
+        public static int phone_verification_button_resend=0x7f070126;
+        public static int phone_verification_button_submit=0x7f070127;
+        public static int phone_verification_code_hint=0x7f070128;
+        public static int phone_verification_error=0x7f070129;
+        public static int phone_verification_info=0x7f07012a;
+        public static int phone_verification_label=0x7f07012b;
+        public static int phone_verification_resent=0x7f07012c;
+        public static int pin_changed=0x7f07012d;
+        public static int pin_created=0x7f07012e;
+        public static int pin_mismatch=0x7f07012f;
+        public static int report_lost_card_label=0x7f070130;
+        public static int save_to_android_pay_label=0x7f070131;
+        public static int saving_pin=0x7f070132;
         public static int search_menu_title=0x7f070024;
-        public static int select_financial_account_list_label=0x7f07012f;
-        public static int select_financial_account_list_title=0x7f070130;
-        public static int select_pending_application_list_label=0x7f070131;
-        public static int select_pending_application_list_title=0x7f070132;
-        public static int session_expired_error=0x7f070133;
-        public static int show_generic_message_title=0x7f070134;
+        public static int select_financial_account_list_label=0x7f070133;
+        public static int select_financial_account_list_title=0x7f070134;
+        public static int select_pending_application_list_label=0x7f070135;
+        public static int select_pending_application_list_title=0x7f070136;
+        public static int session_expired_error=0x7f070137;
+        public static int show_generic_message_title=0x7f070138;
+        public static int sign_out=0x7f070139;
         public static int status_bar_notification_info_overflow=0x7f070025;
-        public static int stepper_back_button_label=0x7f070135;
-        public static int stepper_next_button_label=0x7f070136;
-        public static int switch_enable_card=0x7f070137;
-        public static int switch_show_card_info=0x7f070138;
-        public static int terms_button_next=0x7f070139;
-        public static int terms_label=0x7f07013a;
-        public static int terms_tag_line=0x7f07013b;
-        public static int time_at_address_error=0x7f07013c;
-        public static int time_at_address_hint=0x7f07013d;
-        public static int time_at_address_label=0x7f07013e;
-        public static int user_data_menu_info=0x7f07013f;
-        public static int valid_till=0x7f070140;
-        public static int verify_n_digit_pin=0x7f070141;
+        public static int stepper_back_button_label=0x7f07013a;
+        public static int stepper_next_button_label=0x7f07013b;
+        public static int switch_enable_card=0x7f07013c;
+        public static int switch_show_card_info=0x7f07013d;
+        public static int terms_button_next=0x7f07013e;
+        public static int terms_label=0x7f07013f;
+        public static int terms_tag_line=0x7f070140;
+        public static int time_at_address_error=0x7f070141;
+        public static int time_at_address_hint=0x7f070142;
+        public static int time_at_address_label=0x7f070143;
+        public static int user_data_menu_info=0x7f070144;
+        public static int valid_till=0x7f070145;
+        public static int verify_n_digit_pin=0x7f070146;
     }
     public static final class style {
         public static int AlertDialog_AppCompat=0x7f0900a7;
@@ -5259,35 +5274,35 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActionBar_background me.ledge.link.sdk.ui:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_backgroundSplit me.ledge.link.sdk.ui:backgroundSplit}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_backgroundStacked me.ledge.link.sdk.ui:backgroundStacked}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetEnd me.ledge.link.sdk.ui:contentInsetEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetEndWithActions me.ledge.link.sdk.ui:contentInsetEndWithActions}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetLeft me.ledge.link.sdk.ui:contentInsetLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetRight me.ledge.link.sdk.ui:contentInsetRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetStart me.ledge.link.sdk.ui:contentInsetStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetStartWithNavigation me.ledge.link.sdk.ui:contentInsetStartWithNavigation}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_customNavigationLayout me.ledge.link.sdk.ui:customNavigationLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_displayOptions me.ledge.link.sdk.ui:displayOptions}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_divider me.ledge.link.sdk.ui:divider}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_elevation me.ledge.link.sdk.ui:elevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_height me.ledge.link.sdk.ui:height}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_hideOnContentScroll me.ledge.link.sdk.ui:hideOnContentScroll}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_homeAsUpIndicator me.ledge.link.sdk.ui:homeAsUpIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_homeLayout me.ledge.link.sdk.ui:homeLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_icon me.ledge.link.sdk.ui:icon}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_indeterminateProgressStyle me.ledge.link.sdk.ui:indeterminateProgressStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_itemPadding me.ledge.link.sdk.ui:itemPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_logo me.ledge.link.sdk.ui:logo}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_navigationMode me.ledge.link.sdk.ui:navigationMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_popupTheme me.ledge.link.sdk.ui:popupTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_progressBarPadding me.ledge.link.sdk.ui:progressBarPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_progressBarStyle me.ledge.link.sdk.ui:progressBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_subtitle me.ledge.link.sdk.ui:subtitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_subtitleTextStyle me.ledge.link.sdk.ui:subtitleTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_title me.ledge.link.sdk.ui:title}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_titleTextStyle me.ledge.link.sdk.ui:titleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_background com.shift.link.sdk.ui:background}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_backgroundSplit com.shift.link.sdk.ui:backgroundSplit}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_backgroundStacked com.shift.link.sdk.ui:backgroundStacked}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetEnd com.shift.link.sdk.ui:contentInsetEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetEndWithActions com.shift.link.sdk.ui:contentInsetEndWithActions}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetLeft com.shift.link.sdk.ui:contentInsetLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetRight com.shift.link.sdk.ui:contentInsetRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetStart com.shift.link.sdk.ui:contentInsetStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetStartWithNavigation com.shift.link.sdk.ui:contentInsetStartWithNavigation}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_customNavigationLayout com.shift.link.sdk.ui:customNavigationLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_displayOptions com.shift.link.sdk.ui:displayOptions}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_divider com.shift.link.sdk.ui:divider}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_elevation com.shift.link.sdk.ui:elevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_height com.shift.link.sdk.ui:height}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_hideOnContentScroll com.shift.link.sdk.ui:hideOnContentScroll}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_homeAsUpIndicator com.shift.link.sdk.ui:homeAsUpIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_homeLayout com.shift.link.sdk.ui:homeLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_icon com.shift.link.sdk.ui:icon}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_indeterminateProgressStyle com.shift.link.sdk.ui:indeterminateProgressStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_itemPadding com.shift.link.sdk.ui:itemPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_logo com.shift.link.sdk.ui:logo}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_navigationMode com.shift.link.sdk.ui:navigationMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_popupTheme com.shift.link.sdk.ui:popupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_progressBarPadding com.shift.link.sdk.ui:progressBarPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_progressBarStyle com.shift.link.sdk.ui:progressBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_subtitle com.shift.link.sdk.ui:subtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_subtitleTextStyle com.shift.link.sdk.ui:subtitleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_title com.shift.link.sdk.ui:title}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_titleTextStyle com.shift.link.sdk.ui:titleTextStyle}</code></td><td></td></tr>
            </table>
            @see #ActionBar_background
            @see #ActionBar_backgroundSplit
@@ -5330,17 +5345,17 @@ containing a value of this type.
             0x7f01009c
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#background}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#background}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:background
+          @attr name com.shift.link.sdk.ui:background
         */
         public static int ActionBar_background = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#backgroundSplit}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundSplit}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5348,11 +5363,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:backgroundSplit
+          @attr name com.shift.link.sdk.ui:backgroundSplit
         */
         public static int ActionBar_backgroundSplit = 12;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#backgroundStacked}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundStacked}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5360,11 +5375,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:backgroundStacked
+          @attr name com.shift.link.sdk.ui:backgroundStacked
         */
         public static int ActionBar_backgroundStacked = 11;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentInsetEnd}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetEnd}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5376,11 +5391,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentInsetEnd
+          @attr name com.shift.link.sdk.ui:contentInsetEnd
         */
         public static int ActionBar_contentInsetEnd = 21;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentInsetEndWithActions}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetEndWithActions}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5392,11 +5407,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentInsetEndWithActions
+          @attr name com.shift.link.sdk.ui:contentInsetEndWithActions
         */
         public static int ActionBar_contentInsetEndWithActions = 25;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentInsetLeft}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetLeft}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5408,11 +5423,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentInsetLeft
+          @attr name com.shift.link.sdk.ui:contentInsetLeft
         */
         public static int ActionBar_contentInsetLeft = 22;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentInsetRight}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetRight}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5424,11 +5439,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentInsetRight
+          @attr name com.shift.link.sdk.ui:contentInsetRight
         */
         public static int ActionBar_contentInsetRight = 23;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentInsetStart}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetStart}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5440,11 +5455,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentInsetStart
+          @attr name com.shift.link.sdk.ui:contentInsetStart
         */
         public static int ActionBar_contentInsetStart = 20;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentInsetStartWithNavigation}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetStartWithNavigation}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5456,21 +5471,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentInsetStartWithNavigation
+          @attr name com.shift.link.sdk.ui:contentInsetStartWithNavigation
         */
         public static int ActionBar_contentInsetStartWithNavigation = 24;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#customNavigationLayout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#customNavigationLayout}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:customNavigationLayout
+          @attr name com.shift.link.sdk.ui:customNavigationLayout
         */
         public static int ActionBar_customNavigationLayout = 13;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#displayOptions}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#displayOptions}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5488,21 +5503,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>showCustom</code></td><td>0x10</td><td></td></tr>
 <tr><td><code>disableHome</code></td><td>0x20</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:displayOptions
+          @attr name com.shift.link.sdk.ui:displayOptions
         */
         public static int ActionBar_displayOptions = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#divider}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#divider}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:divider
+          @attr name com.shift.link.sdk.ui:divider
         */
         public static int ActionBar_divider = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#elevation}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5514,11 +5529,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:elevation
+          @attr name com.shift.link.sdk.ui:elevation
         */
         public static int ActionBar_elevation = 26;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#height}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#height}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5530,11 +5545,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:height
+          @attr name com.shift.link.sdk.ui:height
         */
         public static int ActionBar_height = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#hideOnContentScroll}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#hideOnContentScroll}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5544,51 +5559,51 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:hideOnContentScroll
+          @attr name com.shift.link.sdk.ui:hideOnContentScroll
         */
         public static int ActionBar_hideOnContentScroll = 19;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#homeAsUpIndicator}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#homeAsUpIndicator}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:homeAsUpIndicator
+          @attr name com.shift.link.sdk.ui:homeAsUpIndicator
         */
         public static int ActionBar_homeAsUpIndicator = 28;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#homeLayout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#homeLayout}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:homeLayout
+          @attr name com.shift.link.sdk.ui:homeLayout
         */
         public static int ActionBar_homeLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#icon}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#icon}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:icon
+          @attr name com.shift.link.sdk.ui:icon
         */
         public static int ActionBar_icon = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#indeterminateProgressStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#indeterminateProgressStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:indeterminateProgressStyle
+          @attr name com.shift.link.sdk.ui:indeterminateProgressStyle
         */
         public static int ActionBar_indeterminateProgressStyle = 16;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#itemPadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#itemPadding}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5600,21 +5615,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:itemPadding
+          @attr name com.shift.link.sdk.ui:itemPadding
         */
         public static int ActionBar_itemPadding = 18;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#logo}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#logo}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:logo
+          @attr name com.shift.link.sdk.ui:logo
         */
         public static int ActionBar_logo = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#navigationMode}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#navigationMode}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5628,21 +5643,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>listMode</code></td><td>1</td><td></td></tr>
 <tr><td><code>tabMode</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:navigationMode
+          @attr name com.shift.link.sdk.ui:navigationMode
         */
         public static int ActionBar_navigationMode = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#popupTheme}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:popupTheme
+          @attr name com.shift.link.sdk.ui:popupTheme
         */
         public static int ActionBar_popupTheme = 27;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#progressBarPadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#progressBarPadding}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5654,21 +5669,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:progressBarPadding
+          @attr name com.shift.link.sdk.ui:progressBarPadding
         */
         public static int ActionBar_progressBarPadding = 17;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#progressBarStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#progressBarStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:progressBarStyle
+          @attr name com.shift.link.sdk.ui:progressBarStyle
         */
         public static int ActionBar_progressBarStyle = 15;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#subtitle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subtitle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5678,21 +5693,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:subtitle
+          @attr name com.shift.link.sdk.ui:subtitle
         */
         public static int ActionBar_subtitle = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#subtitleTextStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subtitleTextStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:subtitleTextStyle
+          @attr name com.shift.link.sdk.ui:subtitleTextStyle
         */
         public static int ActionBar_subtitleTextStyle = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#title}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#title}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5702,17 +5717,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:title
+          @attr name com.shift.link.sdk.ui:title
         */
         public static int ActionBar_title = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#titleTextStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleTextStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:titleTextStyle
+          @attr name com.shift.link.sdk.ui:titleTextStyle
         */
         public static int ActionBar_titleTextStyle = 5;
         /** Attributes that can be used with a ActionBarLayout.
@@ -5764,12 +5779,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActionMode_background me.ledge.link.sdk.ui:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_backgroundSplit me.ledge.link.sdk.ui:backgroundSplit}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_closeItemLayout me.ledge.link.sdk.ui:closeItemLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_height me.ledge.link.sdk.ui:height}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_subtitleTextStyle me.ledge.link.sdk.ui:subtitleTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_titleTextStyle me.ledge.link.sdk.ui:titleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_background com.shift.link.sdk.ui:background}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_backgroundSplit com.shift.link.sdk.ui:backgroundSplit}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_closeItemLayout com.shift.link.sdk.ui:closeItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_height com.shift.link.sdk.ui:height}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_subtitleTextStyle com.shift.link.sdk.ui:subtitleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_titleTextStyle com.shift.link.sdk.ui:titleTextStyle}</code></td><td></td></tr>
            </table>
            @see #ActionMode_background
            @see #ActionMode_backgroundSplit
@@ -5783,17 +5798,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01004a, 0x7f01005a
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#background}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#background}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:background
+          @attr name com.shift.link.sdk.ui:background
         */
         public static int ActionMode_background = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#backgroundSplit}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundSplit}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -5801,21 +5816,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:backgroundSplit
+          @attr name com.shift.link.sdk.ui:backgroundSplit
         */
         public static int ActionMode_backgroundSplit = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#closeItemLayout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#closeItemLayout}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:closeItemLayout
+          @attr name com.shift.link.sdk.ui:closeItemLayout
         */
         public static int ActionMode_closeItemLayout = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#height}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#height}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -5827,27 +5842,27 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:height
+          @attr name com.shift.link.sdk.ui:height
         */
         public static int ActionMode_height = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#subtitleTextStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subtitleTextStyle}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:subtitleTextStyle
+          @attr name com.shift.link.sdk.ui:subtitleTextStyle
         */
         public static int ActionMode_subtitleTextStyle = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#titleTextStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleTextStyle}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:titleTextStyle
+          @attr name com.shift.link.sdk.ui:titleTextStyle
         */
         public static int ActionMode_titleTextStyle = 1;
         /** Attributes that can be used with a ActivityChooserView.
@@ -5856,8 +5871,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActivityChooserView_expandActivityOverflowButtonDrawable me.ledge.link.sdk.ui:expandActivityOverflowButtonDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActivityChooserView_initialActivityCount me.ledge.link.sdk.ui:initialActivityCount}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActivityChooserView_expandActivityOverflowButtonDrawable com.shift.link.sdk.ui:expandActivityOverflowButtonDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActivityChooserView_initialActivityCount com.shift.link.sdk.ui:initialActivityCount}</code></td><td></td></tr>
            </table>
            @see #ActivityChooserView_expandActivityOverflowButtonDrawable
            @see #ActivityChooserView_initialActivityCount
@@ -5866,17 +5881,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01005b, 0x7f01005c
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#expandActivityOverflowButtonDrawable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandActivityOverflowButtonDrawable}
           attribute's value can be found in the {@link #ActivityChooserView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:expandActivityOverflowButtonDrawable
+          @attr name com.shift.link.sdk.ui:expandActivityOverflowButtonDrawable
         */
         public static int ActivityChooserView_expandActivityOverflowButtonDrawable = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#initialActivityCount}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#initialActivityCount}
           attribute's value can be found in the {@link #ActivityChooserView} array.
 
 
@@ -5886,7 +5901,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:initialActivityCount
+          @attr name com.shift.link.sdk.ui:initialActivityCount
         */
         public static int ActivityChooserView_initialActivityCount = 0;
         /** Attributes that can be used with a AlertDialog.
@@ -5896,12 +5911,12 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AlertDialog_android_layout android:layout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_buttonPanelSideLayout me.ledge.link.sdk.ui:buttonPanelSideLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_listItemLayout me.ledge.link.sdk.ui:listItemLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_listLayout me.ledge.link.sdk.ui:listLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_multiChoiceItemLayout me.ledge.link.sdk.ui:multiChoiceItemLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_showTitle me.ledge.link.sdk.ui:showTitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_singleChoiceItemLayout me.ledge.link.sdk.ui:singleChoiceItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_buttonPanelSideLayout com.shift.link.sdk.ui:buttonPanelSideLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_listItemLayout com.shift.link.sdk.ui:listItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_listLayout com.shift.link.sdk.ui:listLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_multiChoiceItemLayout com.shift.link.sdk.ui:multiChoiceItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_showTitle com.shift.link.sdk.ui:showTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_singleChoiceItemLayout com.shift.link.sdk.ui:singleChoiceItemLayout}</code></td><td></td></tr>
            </table>
            @see #AlertDialog_android_layout
            @see #AlertDialog_buttonPanelSideLayout
@@ -5922,47 +5937,47 @@ containing a value of this type.
         */
         public static int AlertDialog_android_layout = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#buttonPanelSideLayout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonPanelSideLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:buttonPanelSideLayout
+          @attr name com.shift.link.sdk.ui:buttonPanelSideLayout
         */
         public static int AlertDialog_buttonPanelSideLayout = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#listItemLayout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:listItemLayout
+          @attr name com.shift.link.sdk.ui:listItemLayout
         */
         public static int AlertDialog_listItemLayout = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#listLayout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:listLayout
+          @attr name com.shift.link.sdk.ui:listLayout
         */
         public static int AlertDialog_listLayout = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#multiChoiceItemLayout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#multiChoiceItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:multiChoiceItemLayout
+          @attr name com.shift.link.sdk.ui:multiChoiceItemLayout
         */
         public static int AlertDialog_multiChoiceItemLayout = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#showTitle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#showTitle}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
@@ -5972,17 +5987,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:showTitle
+          @attr name com.shift.link.sdk.ui:showTitle
         */
         public static int AlertDialog_showTitle = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#singleChoiceItemLayout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#singleChoiceItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:singleChoiceItemLayout
+          @attr name com.shift.link.sdk.ui:singleChoiceItemLayout
         */
         public static int AlertDialog_singleChoiceItemLayout = 4;
         /** Attributes that can be used with a AppBarLayout.
@@ -5992,8 +6007,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AppBarLayout_android_background android:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppBarLayout_elevation me.ledge.link.sdk.ui:elevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppBarLayout_expanded me.ledge.link.sdk.ui:expanded}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppBarLayout_elevation com.shift.link.sdk.ui:elevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppBarLayout_expanded com.shift.link.sdk.ui:expanded}</code></td><td></td></tr>
            </table>
            @see #AppBarLayout_android_background
            @see #AppBarLayout_elevation
@@ -6009,7 +6024,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppBarLayout_android_background = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#elevation}
           attribute's value can be found in the {@link #AppBarLayout} array.
 
 
@@ -6021,11 +6036,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:elevation
+          @attr name com.shift.link.sdk.ui:elevation
         */
         public static int AppBarLayout_elevation = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#expanded}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expanded}
           attribute's value can be found in the {@link #AppBarLayout} array.
 
 
@@ -6035,7 +6050,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:expanded
+          @attr name com.shift.link.sdk.ui:expanded
         */
         public static int AppBarLayout_expanded = 2;
         /** Attributes that can be used with a AppBarLayoutStates.
@@ -6044,8 +6059,8 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #AppBarLayoutStates_state_collapsed me.ledge.link.sdk.ui:state_collapsed}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppBarLayoutStates_state_collapsible me.ledge.link.sdk.ui:state_collapsible}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppBarLayoutStates_state_collapsed com.shift.link.sdk.ui:state_collapsed}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppBarLayoutStates_state_collapsible com.shift.link.sdk.ui:state_collapsible}</code></td><td></td></tr>
            </table>
            @see #AppBarLayoutStates_state_collapsed
            @see #AppBarLayoutStates_state_collapsible
@@ -6054,7 +6069,7 @@ containing a value of this type.
             0x7f010064, 0x7f010065
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#state_collapsed}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#state_collapsed}
           attribute's value can be found in the {@link #AppBarLayoutStates} array.
 
 
@@ -6064,11 +6079,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:state_collapsed
+          @attr name com.shift.link.sdk.ui:state_collapsed
         */
         public static int AppBarLayoutStates_state_collapsed = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#state_collapsible}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#state_collapsible}
           attribute's value can be found in the {@link #AppBarLayoutStates} array.
 
 
@@ -6078,7 +6093,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:state_collapsible
+          @attr name com.shift.link.sdk.ui:state_collapsible
         */
         public static int AppBarLayoutStates_state_collapsible = 1;
         /** Attributes that can be used with a AppBarLayout_Layout.
@@ -6087,8 +6102,8 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #AppBarLayout_Layout_layout_scrollFlags me.ledge.link.sdk.ui:layout_scrollFlags}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppBarLayout_Layout_layout_scrollInterpolator me.ledge.link.sdk.ui:layout_scrollInterpolator}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppBarLayout_Layout_layout_scrollFlags com.shift.link.sdk.ui:layout_scrollFlags}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppBarLayout_Layout_layout_scrollInterpolator com.shift.link.sdk.ui:layout_scrollInterpolator}</code></td><td></td></tr>
            </table>
            @see #AppBarLayout_Layout_layout_scrollFlags
            @see #AppBarLayout_Layout_layout_scrollInterpolator
@@ -6097,7 +6112,7 @@ containing a value of this type.
             0x7f010066, 0x7f010067
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#layout_scrollFlags}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_scrollFlags}
           attribute's value can be found in the {@link #AppBarLayout_Layout} array.
 
 
@@ -6113,17 +6128,17 @@ containing a value of this type.
 <tr><td><code>enterAlwaysCollapsed</code></td><td>0x8</td><td></td></tr>
 <tr><td><code>snap</code></td><td>0x10</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:layout_scrollFlags
+          @attr name com.shift.link.sdk.ui:layout_scrollFlags
         */
         public static int AppBarLayout_Layout_layout_scrollFlags = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#layout_scrollInterpolator}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_scrollInterpolator}
           attribute's value can be found in the {@link #AppBarLayout_Layout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:layout_scrollInterpolator
+          @attr name com.shift.link.sdk.ui:layout_scrollInterpolator
         */
         public static int AppBarLayout_Layout_layout_scrollInterpolator = 1;
         /** Attributes that can be used with a AppCompatImageView.
@@ -6133,7 +6148,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AppCompatImageView_android_src android:src}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatImageView_srcCompat me.ledge.link.sdk.ui:srcCompat}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatImageView_srcCompat com.shift.link.sdk.ui:srcCompat}</code></td><td></td></tr>
            </table>
            @see #AppCompatImageView_android_src
            @see #AppCompatImageView_srcCompat
@@ -6148,13 +6163,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatImageView_android_src = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#srcCompat}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#srcCompat}
           attribute's value can be found in the {@link #AppCompatImageView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:srcCompat
+          @attr name com.shift.link.sdk.ui:srcCompat
         */
         public static int AppCompatImageView_srcCompat = 1;
         /** Attributes that can be used with a AppCompatSeekBar.
@@ -6164,9 +6179,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AppCompatSeekBar_android_thumb android:thumb}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatSeekBar_tickMark me.ledge.link.sdk.ui:tickMark}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatSeekBar_tickMarkTint me.ledge.link.sdk.ui:tickMarkTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatSeekBar_tickMarkTintMode me.ledge.link.sdk.ui:tickMarkTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatSeekBar_tickMark com.shift.link.sdk.ui:tickMark}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatSeekBar_tickMarkTint com.shift.link.sdk.ui:tickMarkTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatSeekBar_tickMarkTintMode com.shift.link.sdk.ui:tickMarkTintMode}</code></td><td></td></tr>
            </table>
            @see #AppCompatSeekBar_android_thumb
            @see #AppCompatSeekBar_tickMark
@@ -6183,17 +6198,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatSeekBar_android_thumb = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tickMark}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tickMark}
           attribute's value can be found in the {@link #AppCompatSeekBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:tickMark
+          @attr name com.shift.link.sdk.ui:tickMark
         */
         public static int AppCompatSeekBar_tickMark = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tickMarkTint}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tickMarkTint}
           attribute's value can be found in the {@link #AppCompatSeekBar} array.
 
 
@@ -6204,11 +6219,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tickMarkTint
+          @attr name com.shift.link.sdk.ui:tickMarkTint
         */
         public static int AppCompatSeekBar_tickMarkTint = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tickMarkTintMode}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tickMarkTintMode}
           attribute's value can be found in the {@link #AppCompatSeekBar} array.
 
 
@@ -6225,7 +6240,7 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:tickMarkTintMode
+          @attr name com.shift.link.sdk.ui:tickMarkTintMode
         */
         public static int AppCompatSeekBar_tickMarkTintMode = 3;
         /** Attributes that can be used with a AppCompatTextHelper.
@@ -6303,7 +6318,7 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AppCompatTextView_android_textAppearance android:textAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTextView_textAllCaps me.ledge.link.sdk.ui:textAllCaps}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTextView_textAllCaps com.shift.link.sdk.ui:textAllCaps}</code></td><td></td></tr>
            </table>
            @see #AppCompatTextView_android_textAppearance
            @see #AppCompatTextView_textAllCaps
@@ -6318,14 +6333,14 @@ containing a value of this type.
         */
         public static int AppCompatTextView_android_textAppearance = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textAllCaps}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAllCaps}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
-          @attr name me.ledge.link.sdk.ui:textAllCaps
+          @attr name com.shift.link.sdk.ui:textAllCaps
         */
         public static int AppCompatTextView_textAllCaps = 1;
         /** Attributes that can be used with a AppCompatTheme.
@@ -6334,121 +6349,121 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarDivider me.ledge.link.sdk.ui:actionBarDivider}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarItemBackground me.ledge.link.sdk.ui:actionBarItemBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarPopupTheme me.ledge.link.sdk.ui:actionBarPopupTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarSize me.ledge.link.sdk.ui:actionBarSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarSplitStyle me.ledge.link.sdk.ui:actionBarSplitStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarStyle me.ledge.link.sdk.ui:actionBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarTabBarStyle me.ledge.link.sdk.ui:actionBarTabBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarTabStyle me.ledge.link.sdk.ui:actionBarTabStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarTabTextStyle me.ledge.link.sdk.ui:actionBarTabTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarTheme me.ledge.link.sdk.ui:actionBarTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarWidgetTheme me.ledge.link.sdk.ui:actionBarWidgetTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionButtonStyle me.ledge.link.sdk.ui:actionButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionDropDownStyle me.ledge.link.sdk.ui:actionDropDownStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionMenuTextAppearance me.ledge.link.sdk.ui:actionMenuTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionMenuTextColor me.ledge.link.sdk.ui:actionMenuTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeBackground me.ledge.link.sdk.ui:actionModeBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeCloseButtonStyle me.ledge.link.sdk.ui:actionModeCloseButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeCloseDrawable me.ledge.link.sdk.ui:actionModeCloseDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeCopyDrawable me.ledge.link.sdk.ui:actionModeCopyDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeCutDrawable me.ledge.link.sdk.ui:actionModeCutDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeFindDrawable me.ledge.link.sdk.ui:actionModeFindDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModePasteDrawable me.ledge.link.sdk.ui:actionModePasteDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModePopupWindowStyle me.ledge.link.sdk.ui:actionModePopupWindowStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeSelectAllDrawable me.ledge.link.sdk.ui:actionModeSelectAllDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeShareDrawable me.ledge.link.sdk.ui:actionModeShareDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeSplitBackground me.ledge.link.sdk.ui:actionModeSplitBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeStyle me.ledge.link.sdk.ui:actionModeStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeWebSearchDrawable me.ledge.link.sdk.ui:actionModeWebSearchDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionOverflowButtonStyle me.ledge.link.sdk.ui:actionOverflowButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionOverflowMenuStyle me.ledge.link.sdk.ui:actionOverflowMenuStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_activityChooserViewStyle me.ledge.link.sdk.ui:activityChooserViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_alertDialogButtonGroupStyle me.ledge.link.sdk.ui:alertDialogButtonGroupStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_alertDialogCenterButtons me.ledge.link.sdk.ui:alertDialogCenterButtons}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_alertDialogStyle me.ledge.link.sdk.ui:alertDialogStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_alertDialogTheme me.ledge.link.sdk.ui:alertDialogTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarDivider com.shift.link.sdk.ui:actionBarDivider}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarItemBackground com.shift.link.sdk.ui:actionBarItemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarPopupTheme com.shift.link.sdk.ui:actionBarPopupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarSize com.shift.link.sdk.ui:actionBarSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarSplitStyle com.shift.link.sdk.ui:actionBarSplitStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarStyle com.shift.link.sdk.ui:actionBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarTabBarStyle com.shift.link.sdk.ui:actionBarTabBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarTabStyle com.shift.link.sdk.ui:actionBarTabStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarTabTextStyle com.shift.link.sdk.ui:actionBarTabTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarTheme com.shift.link.sdk.ui:actionBarTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarWidgetTheme com.shift.link.sdk.ui:actionBarWidgetTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionButtonStyle com.shift.link.sdk.ui:actionButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionDropDownStyle com.shift.link.sdk.ui:actionDropDownStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionMenuTextAppearance com.shift.link.sdk.ui:actionMenuTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionMenuTextColor com.shift.link.sdk.ui:actionMenuTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeBackground com.shift.link.sdk.ui:actionModeBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeCloseButtonStyle com.shift.link.sdk.ui:actionModeCloseButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeCloseDrawable com.shift.link.sdk.ui:actionModeCloseDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeCopyDrawable com.shift.link.sdk.ui:actionModeCopyDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeCutDrawable com.shift.link.sdk.ui:actionModeCutDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeFindDrawable com.shift.link.sdk.ui:actionModeFindDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModePasteDrawable com.shift.link.sdk.ui:actionModePasteDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModePopupWindowStyle com.shift.link.sdk.ui:actionModePopupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeSelectAllDrawable com.shift.link.sdk.ui:actionModeSelectAllDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeShareDrawable com.shift.link.sdk.ui:actionModeShareDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeSplitBackground com.shift.link.sdk.ui:actionModeSplitBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeStyle com.shift.link.sdk.ui:actionModeStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeWebSearchDrawable com.shift.link.sdk.ui:actionModeWebSearchDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionOverflowButtonStyle com.shift.link.sdk.ui:actionOverflowButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionOverflowMenuStyle com.shift.link.sdk.ui:actionOverflowMenuStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_activityChooserViewStyle com.shift.link.sdk.ui:activityChooserViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_alertDialogButtonGroupStyle com.shift.link.sdk.ui:alertDialogButtonGroupStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_alertDialogCenterButtons com.shift.link.sdk.ui:alertDialogCenterButtons}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_alertDialogStyle com.shift.link.sdk.ui:alertDialogStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_alertDialogTheme com.shift.link.sdk.ui:alertDialogTheme}</code></td><td></td></tr>
            <tr><td><code>{@link #AppCompatTheme_android_windowAnimationStyle android:windowAnimationStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #AppCompatTheme_android_windowIsFloating android:windowIsFloating}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_autoCompleteTextViewStyle me.ledge.link.sdk.ui:autoCompleteTextViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_borderlessButtonStyle me.ledge.link.sdk.ui:borderlessButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarButtonStyle me.ledge.link.sdk.ui:buttonBarButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarNegativeButtonStyle me.ledge.link.sdk.ui:buttonBarNegativeButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarNeutralButtonStyle me.ledge.link.sdk.ui:buttonBarNeutralButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarPositiveButtonStyle me.ledge.link.sdk.ui:buttonBarPositiveButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarStyle me.ledge.link.sdk.ui:buttonBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonStyle me.ledge.link.sdk.ui:buttonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonStyleSmall me.ledge.link.sdk.ui:buttonStyleSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_checkboxStyle me.ledge.link.sdk.ui:checkboxStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_checkedTextViewStyle me.ledge.link.sdk.ui:checkedTextViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorAccent me.ledge.link.sdk.ui:colorAccent}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorBackgroundFloating me.ledge.link.sdk.ui:colorBackgroundFloating}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorButtonNormal me.ledge.link.sdk.ui:colorButtonNormal}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorControlActivated me.ledge.link.sdk.ui:colorControlActivated}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorControlHighlight me.ledge.link.sdk.ui:colorControlHighlight}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorControlNormal me.ledge.link.sdk.ui:colorControlNormal}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorPrimary me.ledge.link.sdk.ui:colorPrimary}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorPrimaryDark me.ledge.link.sdk.ui:colorPrimaryDark}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorSwitchThumbNormal me.ledge.link.sdk.ui:colorSwitchThumbNormal}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_controlBackground me.ledge.link.sdk.ui:controlBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dialogPreferredPadding me.ledge.link.sdk.ui:dialogPreferredPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dialogTheme me.ledge.link.sdk.ui:dialogTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dividerHorizontal me.ledge.link.sdk.ui:dividerHorizontal}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dividerVertical me.ledge.link.sdk.ui:dividerVertical}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dropDownListViewStyle me.ledge.link.sdk.ui:dropDownListViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dropdownListPreferredItemHeight me.ledge.link.sdk.ui:dropdownListPreferredItemHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_editTextBackground me.ledge.link.sdk.ui:editTextBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_editTextColor me.ledge.link.sdk.ui:editTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_editTextStyle me.ledge.link.sdk.ui:editTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_homeAsUpIndicator me.ledge.link.sdk.ui:homeAsUpIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_imageButtonStyle me.ledge.link.sdk.ui:imageButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listChoiceBackgroundIndicator me.ledge.link.sdk.ui:listChoiceBackgroundIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listDividerAlertDialog me.ledge.link.sdk.ui:listDividerAlertDialog}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listMenuViewStyle me.ledge.link.sdk.ui:listMenuViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPopupWindowStyle me.ledge.link.sdk.ui:listPopupWindowStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeight me.ledge.link.sdk.ui:listPreferredItemHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeightLarge me.ledge.link.sdk.ui:listPreferredItemHeightLarge}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeightSmall me.ledge.link.sdk.ui:listPreferredItemHeightSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemPaddingLeft me.ledge.link.sdk.ui:listPreferredItemPaddingLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemPaddingRight me.ledge.link.sdk.ui:listPreferredItemPaddingRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_panelBackground me.ledge.link.sdk.ui:panelBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_panelMenuListTheme me.ledge.link.sdk.ui:panelMenuListTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_panelMenuListWidth me.ledge.link.sdk.ui:panelMenuListWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_popupMenuStyle me.ledge.link.sdk.ui:popupMenuStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_popupWindowStyle me.ledge.link.sdk.ui:popupWindowStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_radioButtonStyle me.ledge.link.sdk.ui:radioButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_ratingBarStyle me.ledge.link.sdk.ui:ratingBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_ratingBarStyleIndicator me.ledge.link.sdk.ui:ratingBarStyleIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_ratingBarStyleSmall me.ledge.link.sdk.ui:ratingBarStyleSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_searchViewStyle me.ledge.link.sdk.ui:searchViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_seekBarStyle me.ledge.link.sdk.ui:seekBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_selectableItemBackground me.ledge.link.sdk.ui:selectableItemBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_selectableItemBackgroundBorderless me.ledge.link.sdk.ui:selectableItemBackgroundBorderless}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_spinnerDropDownItemStyle me.ledge.link.sdk.ui:spinnerDropDownItemStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_spinnerStyle me.ledge.link.sdk.ui:spinnerStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_switchStyle me.ledge.link.sdk.ui:switchStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceLargePopupMenu me.ledge.link.sdk.ui:textAppearanceLargePopupMenu}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItem me.ledge.link.sdk.ui:textAppearanceListItem}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItemSmall me.ledge.link.sdk.ui:textAppearanceListItemSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearancePopupMenuHeader me.ledge.link.sdk.ui:textAppearancePopupMenuHeader}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceSearchResultSubtitle me.ledge.link.sdk.ui:textAppearanceSearchResultSubtitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceSearchResultTitle me.ledge.link.sdk.ui:textAppearanceSearchResultTitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceSmallPopupMenu me.ledge.link.sdk.ui:textAppearanceSmallPopupMenu}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textColorAlertDialogListItem me.ledge.link.sdk.ui:textColorAlertDialogListItem}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textColorSearchUrl me.ledge.link.sdk.ui:textColorSearchUrl}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_toolbarNavigationButtonStyle me.ledge.link.sdk.ui:toolbarNavigationButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_toolbarStyle me.ledge.link.sdk.ui:toolbarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowActionBar me.ledge.link.sdk.ui:windowActionBar}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowActionBarOverlay me.ledge.link.sdk.ui:windowActionBarOverlay}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowActionModeOverlay me.ledge.link.sdk.ui:windowActionModeOverlay}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowFixedHeightMajor me.ledge.link.sdk.ui:windowFixedHeightMajor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowFixedHeightMinor me.ledge.link.sdk.ui:windowFixedHeightMinor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowFixedWidthMajor me.ledge.link.sdk.ui:windowFixedWidthMajor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowFixedWidthMinor me.ledge.link.sdk.ui:windowFixedWidthMinor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowMinWidthMajor me.ledge.link.sdk.ui:windowMinWidthMajor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowMinWidthMinor me.ledge.link.sdk.ui:windowMinWidthMinor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowNoTitle me.ledge.link.sdk.ui:windowNoTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_autoCompleteTextViewStyle com.shift.link.sdk.ui:autoCompleteTextViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_borderlessButtonStyle com.shift.link.sdk.ui:borderlessButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarButtonStyle com.shift.link.sdk.ui:buttonBarButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarNegativeButtonStyle com.shift.link.sdk.ui:buttonBarNegativeButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarNeutralButtonStyle com.shift.link.sdk.ui:buttonBarNeutralButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarPositiveButtonStyle com.shift.link.sdk.ui:buttonBarPositiveButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarStyle com.shift.link.sdk.ui:buttonBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonStyle com.shift.link.sdk.ui:buttonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonStyleSmall com.shift.link.sdk.ui:buttonStyleSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_checkboxStyle com.shift.link.sdk.ui:checkboxStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_checkedTextViewStyle com.shift.link.sdk.ui:checkedTextViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorAccent com.shift.link.sdk.ui:colorAccent}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorBackgroundFloating com.shift.link.sdk.ui:colorBackgroundFloating}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorButtonNormal com.shift.link.sdk.ui:colorButtonNormal}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorControlActivated com.shift.link.sdk.ui:colorControlActivated}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorControlHighlight com.shift.link.sdk.ui:colorControlHighlight}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorControlNormal com.shift.link.sdk.ui:colorControlNormal}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorPrimary com.shift.link.sdk.ui:colorPrimary}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorPrimaryDark com.shift.link.sdk.ui:colorPrimaryDark}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorSwitchThumbNormal com.shift.link.sdk.ui:colorSwitchThumbNormal}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_controlBackground com.shift.link.sdk.ui:controlBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dialogPreferredPadding com.shift.link.sdk.ui:dialogPreferredPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dialogTheme com.shift.link.sdk.ui:dialogTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dividerHorizontal com.shift.link.sdk.ui:dividerHorizontal}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dividerVertical com.shift.link.sdk.ui:dividerVertical}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dropDownListViewStyle com.shift.link.sdk.ui:dropDownListViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dropdownListPreferredItemHeight com.shift.link.sdk.ui:dropdownListPreferredItemHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_editTextBackground com.shift.link.sdk.ui:editTextBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_editTextColor com.shift.link.sdk.ui:editTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_editTextStyle com.shift.link.sdk.ui:editTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_homeAsUpIndicator com.shift.link.sdk.ui:homeAsUpIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_imageButtonStyle com.shift.link.sdk.ui:imageButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listChoiceBackgroundIndicator com.shift.link.sdk.ui:listChoiceBackgroundIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listDividerAlertDialog com.shift.link.sdk.ui:listDividerAlertDialog}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listMenuViewStyle com.shift.link.sdk.ui:listMenuViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPopupWindowStyle com.shift.link.sdk.ui:listPopupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeight com.shift.link.sdk.ui:listPreferredItemHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeightLarge com.shift.link.sdk.ui:listPreferredItemHeightLarge}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeightSmall com.shift.link.sdk.ui:listPreferredItemHeightSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemPaddingLeft com.shift.link.sdk.ui:listPreferredItemPaddingLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemPaddingRight com.shift.link.sdk.ui:listPreferredItemPaddingRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_panelBackground com.shift.link.sdk.ui:panelBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_panelMenuListTheme com.shift.link.sdk.ui:panelMenuListTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_panelMenuListWidth com.shift.link.sdk.ui:panelMenuListWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_popupMenuStyle com.shift.link.sdk.ui:popupMenuStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_popupWindowStyle com.shift.link.sdk.ui:popupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_radioButtonStyle com.shift.link.sdk.ui:radioButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_ratingBarStyle com.shift.link.sdk.ui:ratingBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_ratingBarStyleIndicator com.shift.link.sdk.ui:ratingBarStyleIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_ratingBarStyleSmall com.shift.link.sdk.ui:ratingBarStyleSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_searchViewStyle com.shift.link.sdk.ui:searchViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_seekBarStyle com.shift.link.sdk.ui:seekBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_selectableItemBackground com.shift.link.sdk.ui:selectableItemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_selectableItemBackgroundBorderless com.shift.link.sdk.ui:selectableItemBackgroundBorderless}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_spinnerDropDownItemStyle com.shift.link.sdk.ui:spinnerDropDownItemStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_spinnerStyle com.shift.link.sdk.ui:spinnerStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_switchStyle com.shift.link.sdk.ui:switchStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceLargePopupMenu com.shift.link.sdk.ui:textAppearanceLargePopupMenu}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItem com.shift.link.sdk.ui:textAppearanceListItem}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItemSmall com.shift.link.sdk.ui:textAppearanceListItemSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearancePopupMenuHeader com.shift.link.sdk.ui:textAppearancePopupMenuHeader}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceSearchResultSubtitle com.shift.link.sdk.ui:textAppearanceSearchResultSubtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceSearchResultTitle com.shift.link.sdk.ui:textAppearanceSearchResultTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceSmallPopupMenu com.shift.link.sdk.ui:textAppearanceSmallPopupMenu}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textColorAlertDialogListItem com.shift.link.sdk.ui:textColorAlertDialogListItem}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textColorSearchUrl com.shift.link.sdk.ui:textColorSearchUrl}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_toolbarNavigationButtonStyle com.shift.link.sdk.ui:toolbarNavigationButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_toolbarStyle com.shift.link.sdk.ui:toolbarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowActionBar com.shift.link.sdk.ui:windowActionBar}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowActionBarOverlay com.shift.link.sdk.ui:windowActionBarOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowActionModeOverlay com.shift.link.sdk.ui:windowActionModeOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowFixedHeightMajor com.shift.link.sdk.ui:windowFixedHeightMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowFixedHeightMinor com.shift.link.sdk.ui:windowFixedHeightMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowFixedWidthMajor com.shift.link.sdk.ui:windowFixedWidthMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowFixedWidthMinor com.shift.link.sdk.ui:windowFixedWidthMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowMinWidthMajor com.shift.link.sdk.ui:windowMinWidthMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowMinWidthMinor com.shift.link.sdk.ui:windowMinWidthMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowNoTitle com.shift.link.sdk.ui:windowNoTitle}</code></td><td></td></tr>
            </table>
            @see #AppCompatTheme_actionBarDivider
            @see #AppCompatTheme_actionBarItemBackground
@@ -6598,37 +6613,37 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f0100db, 0x7f0100dc, 0x7f0100dd
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionBarDivider}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarDivider}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionBarDivider
+          @attr name com.shift.link.sdk.ui:actionBarDivider
         */
         public static int AppCompatTheme_actionBarDivider = 23;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionBarItemBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarItemBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionBarItemBackground
+          @attr name com.shift.link.sdk.ui:actionBarItemBackground
         */
         public static int AppCompatTheme_actionBarItemBackground = 24;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionBarPopupTheme}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarPopupTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionBarPopupTheme
+          @attr name com.shift.link.sdk.ui:actionBarPopupTheme
         */
         public static int AppCompatTheme_actionBarPopupTheme = 17;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionBarSize}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarSize}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6648,111 +6663,111 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>wrap_content</code></td><td>0</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:actionBarSize
+          @attr name com.shift.link.sdk.ui:actionBarSize
         */
         public static int AppCompatTheme_actionBarSize = 22;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionBarSplitStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarSplitStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionBarSplitStyle
+          @attr name com.shift.link.sdk.ui:actionBarSplitStyle
         */
         public static int AppCompatTheme_actionBarSplitStyle = 19;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionBarStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionBarStyle
+          @attr name com.shift.link.sdk.ui:actionBarStyle
         */
         public static int AppCompatTheme_actionBarStyle = 18;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionBarTabBarStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarTabBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionBarTabBarStyle
+          @attr name com.shift.link.sdk.ui:actionBarTabBarStyle
         */
         public static int AppCompatTheme_actionBarTabBarStyle = 13;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionBarTabStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarTabStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionBarTabStyle
+          @attr name com.shift.link.sdk.ui:actionBarTabStyle
         */
         public static int AppCompatTheme_actionBarTabStyle = 12;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionBarTabTextStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarTabTextStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionBarTabTextStyle
+          @attr name com.shift.link.sdk.ui:actionBarTabTextStyle
         */
         public static int AppCompatTheme_actionBarTabTextStyle = 14;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionBarTheme}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionBarTheme
+          @attr name com.shift.link.sdk.ui:actionBarTheme
         */
         public static int AppCompatTheme_actionBarTheme = 20;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionBarWidgetTheme}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarWidgetTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionBarWidgetTheme
+          @attr name com.shift.link.sdk.ui:actionBarWidgetTheme
         */
         public static int AppCompatTheme_actionBarWidgetTheme = 21;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionButtonStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionButtonStyle
+          @attr name com.shift.link.sdk.ui:actionButtonStyle
         */
         public static int AppCompatTheme_actionButtonStyle = 50;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionDropDownStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionDropDownStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionDropDownStyle
+          @attr name com.shift.link.sdk.ui:actionDropDownStyle
         */
         public static int AppCompatTheme_actionDropDownStyle = 46;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionMenuTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionMenuTextAppearance}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionMenuTextAppearance
+          @attr name com.shift.link.sdk.ui:actionMenuTextAppearance
         */
         public static int AppCompatTheme_actionMenuTextAppearance = 25;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionMenuTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionMenuTextColor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6760,181 +6775,181 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionMenuTextColor
+          @attr name com.shift.link.sdk.ui:actionMenuTextColor
         */
         public static int AppCompatTheme_actionMenuTextColor = 26;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModeBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModeBackground
+          @attr name com.shift.link.sdk.ui:actionModeBackground
         */
         public static int AppCompatTheme_actionModeBackground = 29;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModeCloseButtonStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeCloseButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModeCloseButtonStyle
+          @attr name com.shift.link.sdk.ui:actionModeCloseButtonStyle
         */
         public static int AppCompatTheme_actionModeCloseButtonStyle = 28;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModeCloseDrawable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeCloseDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModeCloseDrawable
+          @attr name com.shift.link.sdk.ui:actionModeCloseDrawable
         */
         public static int AppCompatTheme_actionModeCloseDrawable = 31;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModeCopyDrawable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeCopyDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModeCopyDrawable
+          @attr name com.shift.link.sdk.ui:actionModeCopyDrawable
         */
         public static int AppCompatTheme_actionModeCopyDrawable = 33;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModeCutDrawable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeCutDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModeCutDrawable
+          @attr name com.shift.link.sdk.ui:actionModeCutDrawable
         */
         public static int AppCompatTheme_actionModeCutDrawable = 32;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModeFindDrawable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeFindDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModeFindDrawable
+          @attr name com.shift.link.sdk.ui:actionModeFindDrawable
         */
         public static int AppCompatTheme_actionModeFindDrawable = 37;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModePasteDrawable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModePasteDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModePasteDrawable
+          @attr name com.shift.link.sdk.ui:actionModePasteDrawable
         */
         public static int AppCompatTheme_actionModePasteDrawable = 34;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModePopupWindowStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModePopupWindowStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModePopupWindowStyle
+          @attr name com.shift.link.sdk.ui:actionModePopupWindowStyle
         */
         public static int AppCompatTheme_actionModePopupWindowStyle = 39;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModeSelectAllDrawable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeSelectAllDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModeSelectAllDrawable
+          @attr name com.shift.link.sdk.ui:actionModeSelectAllDrawable
         */
         public static int AppCompatTheme_actionModeSelectAllDrawable = 35;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModeShareDrawable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeShareDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModeShareDrawable
+          @attr name com.shift.link.sdk.ui:actionModeShareDrawable
         */
         public static int AppCompatTheme_actionModeShareDrawable = 36;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModeSplitBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeSplitBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModeSplitBackground
+          @attr name com.shift.link.sdk.ui:actionModeSplitBackground
         */
         public static int AppCompatTheme_actionModeSplitBackground = 30;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModeStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModeStyle
+          @attr name com.shift.link.sdk.ui:actionModeStyle
         */
         public static int AppCompatTheme_actionModeStyle = 27;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionModeWebSearchDrawable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeWebSearchDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionModeWebSearchDrawable
+          @attr name com.shift.link.sdk.ui:actionModeWebSearchDrawable
         */
         public static int AppCompatTheme_actionModeWebSearchDrawable = 38;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionOverflowButtonStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionOverflowButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionOverflowButtonStyle
+          @attr name com.shift.link.sdk.ui:actionOverflowButtonStyle
         */
         public static int AppCompatTheme_actionOverflowButtonStyle = 15;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionOverflowMenuStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionOverflowMenuStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionOverflowMenuStyle
+          @attr name com.shift.link.sdk.ui:actionOverflowMenuStyle
         */
         public static int AppCompatTheme_actionOverflowMenuStyle = 16;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#activityChooserViewStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#activityChooserViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:activityChooserViewStyle
+          @attr name com.shift.link.sdk.ui:activityChooserViewStyle
         */
         public static int AppCompatTheme_activityChooserViewStyle = 58;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#alertDialogButtonGroupStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#alertDialogButtonGroupStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:alertDialogButtonGroupStyle
+          @attr name com.shift.link.sdk.ui:alertDialogButtonGroupStyle
         */
         public static int AppCompatTheme_alertDialogButtonGroupStyle = 94;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#alertDialogCenterButtons}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#alertDialogCenterButtons}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6944,27 +6959,27 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:alertDialogCenterButtons
+          @attr name com.shift.link.sdk.ui:alertDialogCenterButtons
         */
         public static int AppCompatTheme_alertDialogCenterButtons = 95;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#alertDialogStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#alertDialogStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:alertDialogStyle
+          @attr name com.shift.link.sdk.ui:alertDialogStyle
         */
         public static int AppCompatTheme_alertDialogStyle = 93;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#alertDialogTheme}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#alertDialogTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:alertDialogTheme
+          @attr name com.shift.link.sdk.ui:alertDialogTheme
         */
         public static int AppCompatTheme_alertDialogTheme = 96;
         /**
@@ -6980,117 +6995,117 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_android_windowIsFloating = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#autoCompleteTextViewStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#autoCompleteTextViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:autoCompleteTextViewStyle
+          @attr name com.shift.link.sdk.ui:autoCompleteTextViewStyle
         */
         public static int AppCompatTheme_autoCompleteTextViewStyle = 101;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#borderlessButtonStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#borderlessButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:borderlessButtonStyle
+          @attr name com.shift.link.sdk.ui:borderlessButtonStyle
         */
         public static int AppCompatTheme_borderlessButtonStyle = 55;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#buttonBarButtonStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonBarButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:buttonBarButtonStyle
+          @attr name com.shift.link.sdk.ui:buttonBarButtonStyle
         */
         public static int AppCompatTheme_buttonBarButtonStyle = 52;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#buttonBarNegativeButtonStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonBarNegativeButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:buttonBarNegativeButtonStyle
+          @attr name com.shift.link.sdk.ui:buttonBarNegativeButtonStyle
         */
         public static int AppCompatTheme_buttonBarNegativeButtonStyle = 99;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#buttonBarNeutralButtonStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonBarNeutralButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:buttonBarNeutralButtonStyle
+          @attr name com.shift.link.sdk.ui:buttonBarNeutralButtonStyle
         */
         public static int AppCompatTheme_buttonBarNeutralButtonStyle = 100;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#buttonBarPositiveButtonStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonBarPositiveButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:buttonBarPositiveButtonStyle
+          @attr name com.shift.link.sdk.ui:buttonBarPositiveButtonStyle
         */
         public static int AppCompatTheme_buttonBarPositiveButtonStyle = 98;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#buttonBarStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:buttonBarStyle
+          @attr name com.shift.link.sdk.ui:buttonBarStyle
         */
         public static int AppCompatTheme_buttonBarStyle = 51;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#buttonStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:buttonStyle
+          @attr name com.shift.link.sdk.ui:buttonStyle
         */
         public static int AppCompatTheme_buttonStyle = 102;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#buttonStyleSmall}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonStyleSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:buttonStyleSmall
+          @attr name com.shift.link.sdk.ui:buttonStyleSmall
         */
         public static int AppCompatTheme_buttonStyleSmall = 103;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#checkboxStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#checkboxStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:checkboxStyle
+          @attr name com.shift.link.sdk.ui:checkboxStyle
         */
         public static int AppCompatTheme_checkboxStyle = 104;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#checkedTextViewStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#checkedTextViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:checkedTextViewStyle
+          @attr name com.shift.link.sdk.ui:checkedTextViewStyle
         */
         public static int AppCompatTheme_checkedTextViewStyle = 105;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorAccent}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorAccent}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7101,11 +7116,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:colorAccent
+          @attr name com.shift.link.sdk.ui:colorAccent
         */
         public static int AppCompatTheme_colorAccent = 85;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorBackgroundFloating}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorBackgroundFloating}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7116,11 +7131,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:colorBackgroundFloating
+          @attr name com.shift.link.sdk.ui:colorBackgroundFloating
         */
         public static int AppCompatTheme_colorBackgroundFloating = 92;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorButtonNormal}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorButtonNormal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7131,11 +7146,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:colorButtonNormal
+          @attr name com.shift.link.sdk.ui:colorButtonNormal
         */
         public static int AppCompatTheme_colorButtonNormal = 89;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorControlActivated}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorControlActivated}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7146,11 +7161,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:colorControlActivated
+          @attr name com.shift.link.sdk.ui:colorControlActivated
         */
         public static int AppCompatTheme_colorControlActivated = 87;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorControlHighlight}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorControlHighlight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7161,11 +7176,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:colorControlHighlight
+          @attr name com.shift.link.sdk.ui:colorControlHighlight
         */
         public static int AppCompatTheme_colorControlHighlight = 88;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorControlNormal}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorControlNormal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7176,11 +7191,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:colorControlNormal
+          @attr name com.shift.link.sdk.ui:colorControlNormal
         */
         public static int AppCompatTheme_colorControlNormal = 86;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorPrimary}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorPrimary}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7191,11 +7206,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:colorPrimary
+          @attr name com.shift.link.sdk.ui:colorPrimary
         */
         public static int AppCompatTheme_colorPrimary = 83;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorPrimaryDark}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorPrimaryDark}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7206,11 +7221,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:colorPrimaryDark
+          @attr name com.shift.link.sdk.ui:colorPrimaryDark
         */
         public static int AppCompatTheme_colorPrimaryDark = 84;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorSwitchThumbNormal}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorSwitchThumbNormal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7221,21 +7236,21 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:colorSwitchThumbNormal
+          @attr name com.shift.link.sdk.ui:colorSwitchThumbNormal
         */
         public static int AppCompatTheme_colorSwitchThumbNormal = 90;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#controlBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#controlBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:controlBackground
+          @attr name com.shift.link.sdk.ui:controlBackground
         */
         public static int AppCompatTheme_controlBackground = 91;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dialogPreferredPadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dialogPreferredPadding}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7247,51 +7262,51 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dialogPreferredPadding
+          @attr name com.shift.link.sdk.ui:dialogPreferredPadding
         */
         public static int AppCompatTheme_dialogPreferredPadding = 44;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dialogTheme}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dialogTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:dialogTheme
+          @attr name com.shift.link.sdk.ui:dialogTheme
         */
         public static int AppCompatTheme_dialogTheme = 43;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dividerHorizontal}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dividerHorizontal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:dividerHorizontal
+          @attr name com.shift.link.sdk.ui:dividerHorizontal
         */
         public static int AppCompatTheme_dividerHorizontal = 57;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dividerVertical}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dividerVertical}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:dividerVertical
+          @attr name com.shift.link.sdk.ui:dividerVertical
         */
         public static int AppCompatTheme_dividerVertical = 56;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dropDownListViewStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dropDownListViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:dropDownListViewStyle
+          @attr name com.shift.link.sdk.ui:dropDownListViewStyle
         */
         public static int AppCompatTheme_dropDownListViewStyle = 75;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dropdownListPreferredItemHeight}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dropdownListPreferredItemHeight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7303,21 +7318,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dropdownListPreferredItemHeight
+          @attr name com.shift.link.sdk.ui:dropdownListPreferredItemHeight
         */
         public static int AppCompatTheme_dropdownListPreferredItemHeight = 47;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#editTextBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#editTextBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:editTextBackground
+          @attr name com.shift.link.sdk.ui:editTextBackground
         */
         public static int AppCompatTheme_editTextBackground = 64;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#editTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#editTextColor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7325,81 +7340,81 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:editTextColor
+          @attr name com.shift.link.sdk.ui:editTextColor
         */
         public static int AppCompatTheme_editTextColor = 63;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#editTextStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#editTextStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:editTextStyle
+          @attr name com.shift.link.sdk.ui:editTextStyle
         */
         public static int AppCompatTheme_editTextStyle = 106;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#homeAsUpIndicator}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#homeAsUpIndicator}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:homeAsUpIndicator
+          @attr name com.shift.link.sdk.ui:homeAsUpIndicator
         */
         public static int AppCompatTheme_homeAsUpIndicator = 49;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#imageButtonStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#imageButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:imageButtonStyle
+          @attr name com.shift.link.sdk.ui:imageButtonStyle
         */
         public static int AppCompatTheme_imageButtonStyle = 65;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#listChoiceBackgroundIndicator}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listChoiceBackgroundIndicator}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:listChoiceBackgroundIndicator
+          @attr name com.shift.link.sdk.ui:listChoiceBackgroundIndicator
         */
         public static int AppCompatTheme_listChoiceBackgroundIndicator = 82;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#listDividerAlertDialog}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listDividerAlertDialog}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:listDividerAlertDialog
+          @attr name com.shift.link.sdk.ui:listDividerAlertDialog
         */
         public static int AppCompatTheme_listDividerAlertDialog = 45;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#listMenuViewStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listMenuViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:listMenuViewStyle
+          @attr name com.shift.link.sdk.ui:listMenuViewStyle
         */
         public static int AppCompatTheme_listMenuViewStyle = 114;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#listPopupWindowStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listPopupWindowStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:listPopupWindowStyle
+          @attr name com.shift.link.sdk.ui:listPopupWindowStyle
         */
         public static int AppCompatTheme_listPopupWindowStyle = 76;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#listPreferredItemHeight}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listPreferredItemHeight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7411,11 +7426,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:listPreferredItemHeight
+          @attr name com.shift.link.sdk.ui:listPreferredItemHeight
         */
         public static int AppCompatTheme_listPreferredItemHeight = 70;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#listPreferredItemHeightLarge}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listPreferredItemHeightLarge}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7427,11 +7442,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:listPreferredItemHeightLarge
+          @attr name com.shift.link.sdk.ui:listPreferredItemHeightLarge
         */
         public static int AppCompatTheme_listPreferredItemHeightLarge = 72;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#listPreferredItemHeightSmall}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listPreferredItemHeightSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7443,11 +7458,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:listPreferredItemHeightSmall
+          @attr name com.shift.link.sdk.ui:listPreferredItemHeightSmall
         */
         public static int AppCompatTheme_listPreferredItemHeightSmall = 71;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#listPreferredItemPaddingLeft}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listPreferredItemPaddingLeft}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7459,11 +7474,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:listPreferredItemPaddingLeft
+          @attr name com.shift.link.sdk.ui:listPreferredItemPaddingLeft
         */
         public static int AppCompatTheme_listPreferredItemPaddingLeft = 73;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#listPreferredItemPaddingRight}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listPreferredItemPaddingRight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7475,31 +7490,31 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:listPreferredItemPaddingRight
+          @attr name com.shift.link.sdk.ui:listPreferredItemPaddingRight
         */
         public static int AppCompatTheme_listPreferredItemPaddingRight = 74;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#panelBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#panelBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:panelBackground
+          @attr name com.shift.link.sdk.ui:panelBackground
         */
         public static int AppCompatTheme_panelBackground = 79;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#panelMenuListTheme}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#panelMenuListTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:panelMenuListTheme
+          @attr name com.shift.link.sdk.ui:panelMenuListTheme
         */
         public static int AppCompatTheme_panelMenuListTheme = 81;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#panelMenuListWidth}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#panelMenuListWidth}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7511,211 +7526,211 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:panelMenuListWidth
+          @attr name com.shift.link.sdk.ui:panelMenuListWidth
         */
         public static int AppCompatTheme_panelMenuListWidth = 80;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#popupMenuStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#popupMenuStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:popupMenuStyle
+          @attr name com.shift.link.sdk.ui:popupMenuStyle
         */
         public static int AppCompatTheme_popupMenuStyle = 61;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#popupWindowStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#popupWindowStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:popupWindowStyle
+          @attr name com.shift.link.sdk.ui:popupWindowStyle
         */
         public static int AppCompatTheme_popupWindowStyle = 62;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#radioButtonStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#radioButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:radioButtonStyle
+          @attr name com.shift.link.sdk.ui:radioButtonStyle
         */
         public static int AppCompatTheme_radioButtonStyle = 107;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#ratingBarStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#ratingBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:ratingBarStyle
+          @attr name com.shift.link.sdk.ui:ratingBarStyle
         */
         public static int AppCompatTheme_ratingBarStyle = 108;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#ratingBarStyleIndicator}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#ratingBarStyleIndicator}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:ratingBarStyleIndicator
+          @attr name com.shift.link.sdk.ui:ratingBarStyleIndicator
         */
         public static int AppCompatTheme_ratingBarStyleIndicator = 109;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#ratingBarStyleSmall}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#ratingBarStyleSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:ratingBarStyleSmall
+          @attr name com.shift.link.sdk.ui:ratingBarStyleSmall
         */
         public static int AppCompatTheme_ratingBarStyleSmall = 110;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#searchViewStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#searchViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:searchViewStyle
+          @attr name com.shift.link.sdk.ui:searchViewStyle
         */
         public static int AppCompatTheme_searchViewStyle = 69;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#seekBarStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#seekBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:seekBarStyle
+          @attr name com.shift.link.sdk.ui:seekBarStyle
         */
         public static int AppCompatTheme_seekBarStyle = 111;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#selectableItemBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#selectableItemBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:selectableItemBackground
+          @attr name com.shift.link.sdk.ui:selectableItemBackground
         */
         public static int AppCompatTheme_selectableItemBackground = 53;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#selectableItemBackgroundBorderless}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#selectableItemBackgroundBorderless}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:selectableItemBackgroundBorderless
+          @attr name com.shift.link.sdk.ui:selectableItemBackgroundBorderless
         */
         public static int AppCompatTheme_selectableItemBackgroundBorderless = 54;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#spinnerDropDownItemStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#spinnerDropDownItemStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:spinnerDropDownItemStyle
+          @attr name com.shift.link.sdk.ui:spinnerDropDownItemStyle
         */
         public static int AppCompatTheme_spinnerDropDownItemStyle = 48;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#spinnerStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#spinnerStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:spinnerStyle
+          @attr name com.shift.link.sdk.ui:spinnerStyle
         */
         public static int AppCompatTheme_spinnerStyle = 112;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#switchStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#switchStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:switchStyle
+          @attr name com.shift.link.sdk.ui:switchStyle
         */
         public static int AppCompatTheme_switchStyle = 113;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textAppearanceLargePopupMenu}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearanceLargePopupMenu}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:textAppearanceLargePopupMenu
+          @attr name com.shift.link.sdk.ui:textAppearanceLargePopupMenu
         */
         public static int AppCompatTheme_textAppearanceLargePopupMenu = 40;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textAppearanceListItem}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearanceListItem}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:textAppearanceListItem
+          @attr name com.shift.link.sdk.ui:textAppearanceListItem
         */
         public static int AppCompatTheme_textAppearanceListItem = 77;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textAppearanceListItemSmall}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearanceListItemSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:textAppearanceListItemSmall
+          @attr name com.shift.link.sdk.ui:textAppearanceListItemSmall
         */
         public static int AppCompatTheme_textAppearanceListItemSmall = 78;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textAppearancePopupMenuHeader}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearancePopupMenuHeader}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:textAppearancePopupMenuHeader
+          @attr name com.shift.link.sdk.ui:textAppearancePopupMenuHeader
         */
         public static int AppCompatTheme_textAppearancePopupMenuHeader = 42;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textAppearanceSearchResultSubtitle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearanceSearchResultSubtitle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:textAppearanceSearchResultSubtitle
+          @attr name com.shift.link.sdk.ui:textAppearanceSearchResultSubtitle
         */
         public static int AppCompatTheme_textAppearanceSearchResultSubtitle = 67;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textAppearanceSearchResultTitle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearanceSearchResultTitle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:textAppearanceSearchResultTitle
+          @attr name com.shift.link.sdk.ui:textAppearanceSearchResultTitle
         */
         public static int AppCompatTheme_textAppearanceSearchResultTitle = 66;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textAppearanceSmallPopupMenu}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearanceSmallPopupMenu}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:textAppearanceSmallPopupMenu
+          @attr name com.shift.link.sdk.ui:textAppearanceSmallPopupMenu
         */
         public static int AppCompatTheme_textAppearanceSmallPopupMenu = 41;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textColorAlertDialogListItem}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textColorAlertDialogListItem}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7723,11 +7738,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:textColorAlertDialogListItem
+          @attr name com.shift.link.sdk.ui:textColorAlertDialogListItem
         */
         public static int AppCompatTheme_textColorAlertDialogListItem = 97;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textColorSearchUrl}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textColorSearchUrl}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7735,31 +7750,31 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:textColorSearchUrl
+          @attr name com.shift.link.sdk.ui:textColorSearchUrl
         */
         public static int AppCompatTheme_textColorSearchUrl = 68;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#toolbarNavigationButtonStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#toolbarNavigationButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:toolbarNavigationButtonStyle
+          @attr name com.shift.link.sdk.ui:toolbarNavigationButtonStyle
         */
         public static int AppCompatTheme_toolbarNavigationButtonStyle = 60;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#toolbarStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#toolbarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:toolbarStyle
+          @attr name com.shift.link.sdk.ui:toolbarStyle
         */
         public static int AppCompatTheme_toolbarStyle = 59;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#windowActionBar}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowActionBar}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7769,11 +7784,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:windowActionBar
+          @attr name com.shift.link.sdk.ui:windowActionBar
         */
         public static int AppCompatTheme_windowActionBar = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#windowActionBarOverlay}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowActionBarOverlay}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7783,11 +7798,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:windowActionBarOverlay
+          @attr name com.shift.link.sdk.ui:windowActionBarOverlay
         */
         public static int AppCompatTheme_windowActionBarOverlay = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#windowActionModeOverlay}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowActionModeOverlay}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7797,11 +7812,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:windowActionModeOverlay
+          @attr name com.shift.link.sdk.ui:windowActionModeOverlay
         */
         public static int AppCompatTheme_windowActionModeOverlay = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#windowFixedHeightMajor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowFixedHeightMajor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7816,11 +7831,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:windowFixedHeightMajor
+          @attr name com.shift.link.sdk.ui:windowFixedHeightMajor
         */
         public static int AppCompatTheme_windowFixedHeightMajor = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#windowFixedHeightMinor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowFixedHeightMinor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7835,11 +7850,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:windowFixedHeightMinor
+          @attr name com.shift.link.sdk.ui:windowFixedHeightMinor
         */
         public static int AppCompatTheme_windowFixedHeightMinor = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#windowFixedWidthMajor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowFixedWidthMajor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7854,11 +7869,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:windowFixedWidthMajor
+          @attr name com.shift.link.sdk.ui:windowFixedWidthMajor
         */
         public static int AppCompatTheme_windowFixedWidthMajor = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#windowFixedWidthMinor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowFixedWidthMinor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7873,11 +7888,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:windowFixedWidthMinor
+          @attr name com.shift.link.sdk.ui:windowFixedWidthMinor
         */
         public static int AppCompatTheme_windowFixedWidthMinor = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#windowMinWidthMajor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowMinWidthMajor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7892,11 +7907,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:windowMinWidthMajor
+          @attr name com.shift.link.sdk.ui:windowMinWidthMajor
         */
         public static int AppCompatTheme_windowMinWidthMajor = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#windowMinWidthMinor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowMinWidthMinor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7911,11 +7926,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:windowMinWidthMinor
+          @attr name com.shift.link.sdk.ui:windowMinWidthMinor
         */
         public static int AppCompatTheme_windowMinWidthMinor = 11;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#windowNoTitle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowNoTitle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7925,7 +7940,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:windowNoTitle
+          @attr name com.shift.link.sdk.ui:windowNoTitle
         */
         public static int AppCompatTheme_windowNoTitle = 3;
         /** Attributes that can be used with a BottomSheetBehavior_Layout.
@@ -7934,9 +7949,9 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #BottomSheetBehavior_Layout_behavior_hideable me.ledge.link.sdk.ui:behavior_hideable}</code></td><td></td></tr>
-           <tr><td><code>{@link #BottomSheetBehavior_Layout_behavior_peekHeight me.ledge.link.sdk.ui:behavior_peekHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #BottomSheetBehavior_Layout_behavior_skipCollapsed me.ledge.link.sdk.ui:behavior_skipCollapsed}</code></td><td></td></tr>
+           <tr><td><code>{@link #BottomSheetBehavior_Layout_behavior_hideable com.shift.link.sdk.ui:behavior_hideable}</code></td><td></td></tr>
+           <tr><td><code>{@link #BottomSheetBehavior_Layout_behavior_peekHeight com.shift.link.sdk.ui:behavior_peekHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #BottomSheetBehavior_Layout_behavior_skipCollapsed com.shift.link.sdk.ui:behavior_skipCollapsed}</code></td><td></td></tr>
            </table>
            @see #BottomSheetBehavior_Layout_behavior_hideable
            @see #BottomSheetBehavior_Layout_behavior_peekHeight
@@ -7946,7 +7961,7 @@ containing a value of this type.
             0x7f0100de, 0x7f0100df, 0x7f0100e0
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#behavior_hideable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#behavior_hideable}
           attribute's value can be found in the {@link #BottomSheetBehavior_Layout} array.
 
 
@@ -7956,11 +7971,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:behavior_hideable
+          @attr name com.shift.link.sdk.ui:behavior_hideable
         */
         public static int BottomSheetBehavior_Layout_behavior_hideable = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#behavior_peekHeight}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#behavior_peekHeight}
           attribute's value can be found in the {@link #BottomSheetBehavior_Layout} array.
 
 
@@ -7972,11 +7987,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:behavior_peekHeight
+          @attr name com.shift.link.sdk.ui:behavior_peekHeight
         */
         public static int BottomSheetBehavior_Layout_behavior_peekHeight = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#behavior_skipCollapsed}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#behavior_skipCollapsed}
           attribute's value can be found in the {@link #BottomSheetBehavior_Layout} array.
 
 
@@ -7986,7 +8001,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:behavior_skipCollapsed
+          @attr name com.shift.link.sdk.ui:behavior_skipCollapsed
         */
         public static int BottomSheetBehavior_Layout_behavior_skipCollapsed = 2;
         /** Attributes that can be used with a ButtonBarLayout.
@@ -7995,7 +8010,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ButtonBarLayout_allowStacking me.ledge.link.sdk.ui:allowStacking}</code></td><td></td></tr>
+           <tr><td><code>{@link #ButtonBarLayout_allowStacking com.shift.link.sdk.ui:allowStacking}</code></td><td></td></tr>
            </table>
            @see #ButtonBarLayout_allowStacking
          */
@@ -8003,7 +8018,7 @@ containing a value of this type.
             0x7f0100e1
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#allowStacking}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#allowStacking}
           attribute's value can be found in the {@link #ButtonBarLayout} array.
 
 
@@ -8013,7 +8028,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:allowStacking
+          @attr name com.shift.link.sdk.ui:allowStacking
         */
         public static int ButtonBarLayout_allowStacking = 0;
         /** Attributes that can be used with a CardView.
@@ -8024,17 +8039,17 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #CardView_android_minHeight android:minHeight}</code></td><td></td></tr>
            <tr><td><code>{@link #CardView_android_minWidth android:minWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardBackgroundColor me.ledge.link.sdk.ui:cardBackgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardCornerRadius me.ledge.link.sdk.ui:cardCornerRadius}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardElevation me.ledge.link.sdk.ui:cardElevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardMaxElevation me.ledge.link.sdk.ui:cardMaxElevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardPreventCornerOverlap me.ledge.link.sdk.ui:cardPreventCornerOverlap}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardUseCompatPadding me.ledge.link.sdk.ui:cardUseCompatPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPadding me.ledge.link.sdk.ui:contentPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPaddingBottom me.ledge.link.sdk.ui:contentPaddingBottom}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPaddingLeft me.ledge.link.sdk.ui:contentPaddingLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPaddingRight me.ledge.link.sdk.ui:contentPaddingRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPaddingTop me.ledge.link.sdk.ui:contentPaddingTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardBackgroundColor com.shift.link.sdk.ui:cardBackgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardCornerRadius com.shift.link.sdk.ui:cardCornerRadius}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardElevation com.shift.link.sdk.ui:cardElevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardMaxElevation com.shift.link.sdk.ui:cardMaxElevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardPreventCornerOverlap com.shift.link.sdk.ui:cardPreventCornerOverlap}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardUseCompatPadding com.shift.link.sdk.ui:cardUseCompatPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPadding com.shift.link.sdk.ui:contentPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPaddingBottom com.shift.link.sdk.ui:contentPaddingBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPaddingLeft com.shift.link.sdk.ui:contentPaddingLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPaddingRight com.shift.link.sdk.ui:contentPaddingRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPaddingTop com.shift.link.sdk.ui:contentPaddingTop}</code></td><td></td></tr>
            </table>
            @see #CardView_android_minHeight
            @see #CardView_android_minWidth
@@ -8069,7 +8084,7 @@ containing a value of this type.
         */
         public static int CardView_android_minWidth = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#cardBackgroundColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardBackgroundColor}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8080,11 +8095,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:cardBackgroundColor
+          @attr name com.shift.link.sdk.ui:cardBackgroundColor
         */
         public static int CardView_cardBackgroundColor = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#cardCornerRadius}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardCornerRadius}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8096,11 +8111,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:cardCornerRadius
+          @attr name com.shift.link.sdk.ui:cardCornerRadius
         */
         public static int CardView_cardCornerRadius = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#cardElevation}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardElevation}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8112,11 +8127,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:cardElevation
+          @attr name com.shift.link.sdk.ui:cardElevation
         */
         public static int CardView_cardElevation = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#cardMaxElevation}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardMaxElevation}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8128,11 +8143,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:cardMaxElevation
+          @attr name com.shift.link.sdk.ui:cardMaxElevation
         */
         public static int CardView_cardMaxElevation = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#cardPreventCornerOverlap}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardPreventCornerOverlap}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8142,11 +8157,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:cardPreventCornerOverlap
+          @attr name com.shift.link.sdk.ui:cardPreventCornerOverlap
         */
         public static int CardView_cardPreventCornerOverlap = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#cardUseCompatPadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardUseCompatPadding}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8156,11 +8171,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:cardUseCompatPadding
+          @attr name com.shift.link.sdk.ui:cardUseCompatPadding
         */
         public static int CardView_cardUseCompatPadding = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentPadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentPadding}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8172,11 +8187,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentPadding
+          @attr name com.shift.link.sdk.ui:contentPadding
         */
         public static int CardView_contentPadding = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentPaddingBottom}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentPaddingBottom}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8188,11 +8203,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentPaddingBottom
+          @attr name com.shift.link.sdk.ui:contentPaddingBottom
         */
         public static int CardView_contentPaddingBottom = 12;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentPaddingLeft}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentPaddingLeft}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8204,11 +8219,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentPaddingLeft
+          @attr name com.shift.link.sdk.ui:contentPaddingLeft
         */
         public static int CardView_contentPaddingLeft = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentPaddingRight}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentPaddingRight}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8220,11 +8235,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentPaddingRight
+          @attr name com.shift.link.sdk.ui:contentPaddingRight
         */
         public static int CardView_contentPaddingRight = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentPaddingTop}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentPaddingTop}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8236,7 +8251,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentPaddingTop
+          @attr name com.shift.link.sdk.ui:contentPaddingTop
         */
         public static int CardView_contentPaddingTop = 11;
         /** Attributes that can be used with a CarouselView.
@@ -8245,22 +8260,22 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CarouselView_animateOnBoundary me.ledge.link.sdk.ui:animateOnBoundary}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_autoPlay me.ledge.link.sdk.ui:autoPlay}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_disableAutoPlayOnUserInteraction me.ledge.link.sdk.ui:disableAutoPlayOnUserInteraction}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_fillColor me.ledge.link.sdk.ui:fillColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_indicatorGravity me.ledge.link.sdk.ui:indicatorGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_indicatorMarginHorizontal me.ledge.link.sdk.ui:indicatorMarginHorizontal}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_indicatorMarginVertical me.ledge.link.sdk.ui:indicatorMarginVertical}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_indicatorOrientation me.ledge.link.sdk.ui:indicatorOrientation}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_pageColor me.ledge.link.sdk.ui:pageColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_pageTransformInterval me.ledge.link.sdk.ui:pageTransformInterval}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_pageTransformer me.ledge.link.sdk.ui:pageTransformer}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_radius me.ledge.link.sdk.ui:radius}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_slideInterval me.ledge.link.sdk.ui:slideInterval}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_snap me.ledge.link.sdk.ui:snap}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_strokeColor me.ledge.link.sdk.ui:strokeColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_strokeWidth me.ledge.link.sdk.ui:strokeWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_animateOnBoundary com.shift.link.sdk.ui:animateOnBoundary}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_autoPlay com.shift.link.sdk.ui:autoPlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_disableAutoPlayOnUserInteraction com.shift.link.sdk.ui:disableAutoPlayOnUserInteraction}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_fillColor com.shift.link.sdk.ui:fillColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_indicatorGravity com.shift.link.sdk.ui:indicatorGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_indicatorMarginHorizontal com.shift.link.sdk.ui:indicatorMarginHorizontal}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_indicatorMarginVertical com.shift.link.sdk.ui:indicatorMarginVertical}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_indicatorOrientation com.shift.link.sdk.ui:indicatorOrientation}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_pageColor com.shift.link.sdk.ui:pageColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_pageTransformInterval com.shift.link.sdk.ui:pageTransformInterval}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_pageTransformer com.shift.link.sdk.ui:pageTransformer}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_radius com.shift.link.sdk.ui:radius}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_slideInterval com.shift.link.sdk.ui:slideInterval}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_snap com.shift.link.sdk.ui:snap}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_strokeColor com.shift.link.sdk.ui:strokeColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_strokeWidth com.shift.link.sdk.ui:strokeWidth}</code></td><td></td></tr>
            </table>
            @see #CarouselView_animateOnBoundary
            @see #CarouselView_autoPlay
@@ -8286,7 +8301,7 @@ containing a value of this type.
             0x7f01003b, 0x7f01003c, 0x7f01003d, 0x7f01003e
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#animateOnBoundary}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#animateOnBoundary}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8296,11 +8311,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:animateOnBoundary
+          @attr name com.shift.link.sdk.ui:animateOnBoundary
         */
         public static int CarouselView_animateOnBoundary = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#autoPlay}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#autoPlay}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8310,11 +8325,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:autoPlay
+          @attr name com.shift.link.sdk.ui:autoPlay
         */
         public static int CarouselView_autoPlay = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#disableAutoPlayOnUserInteraction}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#disableAutoPlayOnUserInteraction}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8324,11 +8339,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:disableAutoPlayOnUserInteraction
+          @attr name com.shift.link.sdk.ui:disableAutoPlayOnUserInteraction
         */
         public static int CarouselView_disableAutoPlayOnUserInteraction = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#fillColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#fillColor}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8339,11 +8354,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:fillColor
+          @attr name com.shift.link.sdk.ui:fillColor
         */
         public static int CarouselView_fillColor = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#indicatorGravity}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#indicatorGravity}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8363,11 +8378,11 @@ containing a value of this type.
 <tr><td><code>start</code></td><td>0x00800003</td><td> Push object to the beginning of its container, not changing its size. </td></tr>
 <tr><td><code>end</code></td><td>0x00800005</td><td> Push object to the end of its container, not changing its size. </td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:indicatorGravity
+          @attr name com.shift.link.sdk.ui:indicatorGravity
         */
         public static int CarouselView_indicatorGravity = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#indicatorMarginHorizontal}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#indicatorMarginHorizontal}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8379,11 +8394,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:indicatorMarginHorizontal
+          @attr name com.shift.link.sdk.ui:indicatorMarginHorizontal
         */
         public static int CarouselView_indicatorMarginHorizontal = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#indicatorMarginVertical}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#indicatorMarginVertical}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8395,11 +8410,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:indicatorMarginVertical
+          @attr name com.shift.link.sdk.ui:indicatorMarginVertical
         */
         public static int CarouselView_indicatorMarginVertical = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#indicatorOrientation}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#indicatorOrientation}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8412,11 +8427,11 @@ containing a value of this type.
 <tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
 <tr><td><code>vertical</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:indicatorOrientation
+          @attr name com.shift.link.sdk.ui:indicatorOrientation
         */
         public static int CarouselView_indicatorOrientation = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pageColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pageColor}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8427,11 +8442,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pageColor
+          @attr name com.shift.link.sdk.ui:pageColor
         */
         public static int CarouselView_pageColor = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pageTransformInterval}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pageTransformInterval}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8441,11 +8456,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pageTransformInterval
+          @attr name com.shift.link.sdk.ui:pageTransformInterval
         */
         public static int CarouselView_pageTransformInterval = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pageTransformer}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pageTransformer}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8460,11 +8475,11 @@ containing a value of this type.
 <tr><td><code>zoom</code></td><td>2</td><td></td></tr>
 <tr><td><code>slide_over</code></td><td>3</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:pageTransformer
+          @attr name com.shift.link.sdk.ui:pageTransformer
         */
         public static int CarouselView_pageTransformer = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#radius}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#radius}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8476,11 +8491,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:radius
+          @attr name com.shift.link.sdk.ui:radius
         */
         public static int CarouselView_radius = 11;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#slideInterval}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#slideInterval}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8490,11 +8505,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:slideInterval
+          @attr name com.shift.link.sdk.ui:slideInterval
         */
         public static int CarouselView_slideInterval = 12;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#snap}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#snap}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8504,11 +8519,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:snap
+          @attr name com.shift.link.sdk.ui:snap
         */
         public static int CarouselView_snap = 13;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#strokeColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#strokeColor}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8519,11 +8534,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:strokeColor
+          @attr name com.shift.link.sdk.ui:strokeColor
         */
         public static int CarouselView_strokeColor = 14;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#strokeWidth}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#strokeWidth}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8535,7 +8550,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:strokeWidth
+          @attr name com.shift.link.sdk.ui:strokeWidth
         */
         public static int CarouselView_strokeWidth = 15;
         /** Attributes that can be used with a CirclePageIndicator.
@@ -8546,13 +8561,13 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #CirclePageIndicator_android_background android:background}</code></td><td></td></tr>
            <tr><td><code>{@link #CirclePageIndicator_android_orientation android:orientation}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_centered me.ledge.link.sdk.ui:centered}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_fillColor me.ledge.link.sdk.ui:fillColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_pageColor me.ledge.link.sdk.ui:pageColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_radius me.ledge.link.sdk.ui:radius}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_snap me.ledge.link.sdk.ui:snap}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_strokeColor me.ledge.link.sdk.ui:strokeColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_strokeWidth me.ledge.link.sdk.ui:strokeWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_centered com.shift.link.sdk.ui:centered}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_fillColor com.shift.link.sdk.ui:fillColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_pageColor com.shift.link.sdk.ui:pageColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_radius com.shift.link.sdk.ui:radius}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_snap com.shift.link.sdk.ui:snap}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_strokeColor com.shift.link.sdk.ui:strokeColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_strokeWidth com.shift.link.sdk.ui:strokeWidth}</code></td><td></td></tr>
            </table>
            @see #CirclePageIndicator_android_background
            @see #CirclePageIndicator_android_orientation
@@ -8582,7 +8597,7 @@ containing a value of this type.
         */
         public static int CirclePageIndicator_android_orientation = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#centered}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#centered}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8592,11 +8607,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:centered
+          @attr name com.shift.link.sdk.ui:centered
         */
         public static int CirclePageIndicator_centered = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#fillColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#fillColor}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8607,11 +8622,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:fillColor
+          @attr name com.shift.link.sdk.ui:fillColor
         */
         public static int CirclePageIndicator_fillColor = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pageColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pageColor}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8622,11 +8637,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pageColor
+          @attr name com.shift.link.sdk.ui:pageColor
         */
         public static int CirclePageIndicator_pageColor = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#radius}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#radius}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8638,11 +8653,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:radius
+          @attr name com.shift.link.sdk.ui:radius
         */
         public static int CirclePageIndicator_radius = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#snap}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#snap}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8652,11 +8667,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:snap
+          @attr name com.shift.link.sdk.ui:snap
         */
         public static int CirclePageIndicator_snap = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#strokeColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#strokeColor}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8667,11 +8682,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:strokeColor
+          @attr name com.shift.link.sdk.ui:strokeColor
         */
         public static int CirclePageIndicator_strokeColor = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#strokeWidth}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#strokeWidth}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8683,7 +8698,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:strokeWidth
+          @attr name com.shift.link.sdk.ui:strokeWidth
         */
         public static int CirclePageIndicator_strokeWidth = 8;
         /** Attributes that can be used with a CollapsingToolbarLayout.
@@ -8692,22 +8707,22 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_collapsedTitleGravity me.ledge.link.sdk.ui:collapsedTitleGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_collapsedTitleTextAppearance me.ledge.link.sdk.ui:collapsedTitleTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_contentScrim me.ledge.link.sdk.ui:contentScrim}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleGravity me.ledge.link.sdk.ui:expandedTitleGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMargin me.ledge.link.sdk.ui:expandedTitleMargin}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginBottom me.ledge.link.sdk.ui:expandedTitleMarginBottom}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginEnd me.ledge.link.sdk.ui:expandedTitleMarginEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginStart me.ledge.link.sdk.ui:expandedTitleMarginStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginTop me.ledge.link.sdk.ui:expandedTitleMarginTop}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleTextAppearance me.ledge.link.sdk.ui:expandedTitleTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_scrimAnimationDuration me.ledge.link.sdk.ui:scrimAnimationDuration}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_scrimVisibleHeightTrigger me.ledge.link.sdk.ui:scrimVisibleHeightTrigger}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_statusBarScrim me.ledge.link.sdk.ui:statusBarScrim}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_title me.ledge.link.sdk.ui:title}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_titleEnabled me.ledge.link.sdk.ui:titleEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_toolbarId me.ledge.link.sdk.ui:toolbarId}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_collapsedTitleGravity com.shift.link.sdk.ui:collapsedTitleGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_collapsedTitleTextAppearance com.shift.link.sdk.ui:collapsedTitleTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_contentScrim com.shift.link.sdk.ui:contentScrim}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleGravity com.shift.link.sdk.ui:expandedTitleGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMargin com.shift.link.sdk.ui:expandedTitleMargin}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginBottom com.shift.link.sdk.ui:expandedTitleMarginBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginEnd com.shift.link.sdk.ui:expandedTitleMarginEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginStart com.shift.link.sdk.ui:expandedTitleMarginStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginTop com.shift.link.sdk.ui:expandedTitleMarginTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleTextAppearance com.shift.link.sdk.ui:expandedTitleTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_scrimAnimationDuration com.shift.link.sdk.ui:scrimAnimationDuration}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_scrimVisibleHeightTrigger com.shift.link.sdk.ui:scrimVisibleHeightTrigger}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_statusBarScrim com.shift.link.sdk.ui:statusBarScrim}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_title com.shift.link.sdk.ui:title}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_titleEnabled com.shift.link.sdk.ui:titleEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_toolbarId com.shift.link.sdk.ui:toolbarId}</code></td><td></td></tr>
            </table>
            @see #CollapsingToolbarLayout_collapsedTitleGravity
            @see #CollapsingToolbarLayout_collapsedTitleTextAppearance
@@ -8733,7 +8748,7 @@ containing a value of this type.
             0x7f0100f8, 0x7f0100f9, 0x7f0100fa, 0x7f0100fb
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#collapsedTitleGravity}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#collapsedTitleGravity}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8754,21 +8769,21 @@ containing a value of this type.
 <tr><td><code>start</code></td><td>0x00800003</td><td></td></tr>
 <tr><td><code>end</code></td><td>0x00800005</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:collapsedTitleGravity
+          @attr name com.shift.link.sdk.ui:collapsedTitleGravity
         */
         public static int CollapsingToolbarLayout_collapsedTitleGravity = 13;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#collapsedTitleTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#collapsedTitleTextAppearance}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:collapsedTitleTextAppearance
+          @attr name com.shift.link.sdk.ui:collapsedTitleTextAppearance
         */
         public static int CollapsingToolbarLayout_collapsedTitleTextAppearance = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentScrim}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentScrim}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8779,11 +8794,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentScrim
+          @attr name com.shift.link.sdk.ui:contentScrim
         */
         public static int CollapsingToolbarLayout_contentScrim = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#expandedTitleGravity}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleGravity}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8804,11 +8819,11 @@ containing a value of this type.
 <tr><td><code>start</code></td><td>0x00800003</td><td></td></tr>
 <tr><td><code>end</code></td><td>0x00800005</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:expandedTitleGravity
+          @attr name com.shift.link.sdk.ui:expandedTitleGravity
         */
         public static int CollapsingToolbarLayout_expandedTitleGravity = 14;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#expandedTitleMargin}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleMargin}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8820,11 +8835,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:expandedTitleMargin
+          @attr name com.shift.link.sdk.ui:expandedTitleMargin
         */
         public static int CollapsingToolbarLayout_expandedTitleMargin = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#expandedTitleMarginBottom}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleMarginBottom}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8836,11 +8851,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:expandedTitleMarginBottom
+          @attr name com.shift.link.sdk.ui:expandedTitleMarginBottom
         */
         public static int CollapsingToolbarLayout_expandedTitleMarginBottom = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#expandedTitleMarginEnd}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleMarginEnd}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8852,11 +8867,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:expandedTitleMarginEnd
+          @attr name com.shift.link.sdk.ui:expandedTitleMarginEnd
         */
         public static int CollapsingToolbarLayout_expandedTitleMarginEnd = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#expandedTitleMarginStart}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleMarginStart}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8868,11 +8883,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:expandedTitleMarginStart
+          @attr name com.shift.link.sdk.ui:expandedTitleMarginStart
         */
         public static int CollapsingToolbarLayout_expandedTitleMarginStart = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#expandedTitleMarginTop}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleMarginTop}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8884,21 +8899,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:expandedTitleMarginTop
+          @attr name com.shift.link.sdk.ui:expandedTitleMarginTop
         */
         public static int CollapsingToolbarLayout_expandedTitleMarginTop = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#expandedTitleTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleTextAppearance}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:expandedTitleTextAppearance
+          @attr name com.shift.link.sdk.ui:expandedTitleTextAppearance
         */
         public static int CollapsingToolbarLayout_expandedTitleTextAppearance = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#scrimAnimationDuration}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#scrimAnimationDuration}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8908,11 +8923,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:scrimAnimationDuration
+          @attr name com.shift.link.sdk.ui:scrimAnimationDuration
         */
         public static int CollapsingToolbarLayout_scrimAnimationDuration = 12;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#scrimVisibleHeightTrigger}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#scrimVisibleHeightTrigger}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8924,11 +8939,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:scrimVisibleHeightTrigger
+          @attr name com.shift.link.sdk.ui:scrimVisibleHeightTrigger
         */
         public static int CollapsingToolbarLayout_scrimVisibleHeightTrigger = 11;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#statusBarScrim}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#statusBarScrim}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8939,11 +8954,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:statusBarScrim
+          @attr name com.shift.link.sdk.ui:statusBarScrim
         */
         public static int CollapsingToolbarLayout_statusBarScrim = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#title}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#title}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8953,11 +8968,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:title
+          @attr name com.shift.link.sdk.ui:title
         */
         public static int CollapsingToolbarLayout_title = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#titleEnabled}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleEnabled}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8967,17 +8982,17 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:titleEnabled
+          @attr name com.shift.link.sdk.ui:titleEnabled
         */
         public static int CollapsingToolbarLayout_titleEnabled = 15;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#toolbarId}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#toolbarId}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:toolbarId
+          @attr name com.shift.link.sdk.ui:toolbarId
         */
         public static int CollapsingToolbarLayout_toolbarId = 10;
         /** Attributes that can be used with a CollapsingToolbarLayout_Layout.
@@ -8986,8 +9001,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_Layout_layout_collapseMode me.ledge.link.sdk.ui:layout_collapseMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier me.ledge.link.sdk.ui:layout_collapseParallaxMultiplier}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_Layout_layout_collapseMode com.shift.link.sdk.ui:layout_collapseMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier com.shift.link.sdk.ui:layout_collapseParallaxMultiplier}</code></td><td></td></tr>
            </table>
            @see #CollapsingToolbarLayout_Layout_layout_collapseMode
            @see #CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier
@@ -8996,7 +9011,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f0100fc, 0x7f0100fd
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#layout_collapseMode}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_collapseMode}
           attribute's value can be found in the {@link #CollapsingToolbarLayout_Layout} array.
 
 
@@ -9010,11 +9025,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>pin</code></td><td>1</td><td></td></tr>
 <tr><td><code>parallax</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:layout_collapseMode
+          @attr name com.shift.link.sdk.ui:layout_collapseMode
         */
         public static int CollapsingToolbarLayout_Layout_layout_collapseMode = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#layout_collapseParallaxMultiplier}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_collapseParallaxMultiplier}
           attribute's value can be found in the {@link #CollapsingToolbarLayout_Layout} array.
 
 
@@ -9024,7 +9039,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:layout_collapseParallaxMultiplier
+          @attr name com.shift.link.sdk.ui:layout_collapseParallaxMultiplier
         */
         public static int CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = 1;
         /** Attributes that can be used with a ColorStateListItem.
@@ -9033,7 +9048,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ColorStateListItem_alpha me.ledge.link.sdk.ui:alpha}</code></td><td></td></tr>
+           <tr><td><code>{@link #ColorStateListItem_alpha com.shift.link.sdk.ui:alpha}</code></td><td></td></tr>
            <tr><td><code>{@link #ColorStateListItem_android_alpha android:alpha}</code></td><td></td></tr>
            <tr><td><code>{@link #ColorStateListItem_android_color android:color}</code></td><td></td></tr>
            </table>
@@ -9045,7 +9060,7 @@ containing a value of this type.
             0x010101a5, 0x0101031f, 0x7f0100fe
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#alpha}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#alpha}
           attribute's value can be found in the {@link #ColorStateListItem} array.
 
 
@@ -9055,7 +9070,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:alpha
+          @attr name com.shift.link.sdk.ui:alpha
         */
         public static int ColorStateListItem_alpha = 2;
         /**
@@ -9077,8 +9092,8 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #CompoundButton_android_button android:button}</code></td><td></td></tr>
-           <tr><td><code>{@link #CompoundButton_buttonTint me.ledge.link.sdk.ui:buttonTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #CompoundButton_buttonTintMode me.ledge.link.sdk.ui:buttonTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #CompoundButton_buttonTint com.shift.link.sdk.ui:buttonTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #CompoundButton_buttonTintMode com.shift.link.sdk.ui:buttonTintMode}</code></td><td></td></tr>
            </table>
            @see #CompoundButton_android_button
            @see #CompoundButton_buttonTint
@@ -9094,7 +9109,7 @@ containing a value of this type.
         */
         public static int CompoundButton_android_button = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#buttonTint}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonTint}
           attribute's value can be found in the {@link #CompoundButton} array.
 
 
@@ -9105,11 +9120,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:buttonTint
+          @attr name com.shift.link.sdk.ui:buttonTint
         */
         public static int CompoundButton_buttonTint = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#buttonTintMode}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonTintMode}
           attribute's value can be found in the {@link #CompoundButton} array.
 
 
@@ -9125,7 +9140,7 @@ containing a value of this type.
 <tr><td><code>multiply</code></td><td>14</td><td></td></tr>
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:buttonTintMode
+          @attr name com.shift.link.sdk.ui:buttonTintMode
         */
         public static int CompoundButton_buttonTintMode = 2;
         /** Attributes that can be used with a CoordinatorLayout.
@@ -9134,8 +9149,8 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CoordinatorLayout_keylines me.ledge.link.sdk.ui:keylines}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_statusBarBackground me.ledge.link.sdk.ui:statusBarBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_keylines com.shift.link.sdk.ui:keylines}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_statusBarBackground com.shift.link.sdk.ui:statusBarBackground}</code></td><td></td></tr>
            </table>
            @see #CoordinatorLayout_keylines
            @see #CoordinatorLayout_statusBarBackground
@@ -9144,23 +9159,23 @@ containing a value of this type.
             0x7f010101, 0x7f010102
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#keylines}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#keylines}
           attribute's value can be found in the {@link #CoordinatorLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:keylines
+          @attr name com.shift.link.sdk.ui:keylines
         */
         public static int CoordinatorLayout_keylines = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#statusBarBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#statusBarBackground}
           attribute's value can be found in the {@link #CoordinatorLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:statusBarBackground
+          @attr name com.shift.link.sdk.ui:statusBarBackground
         */
         public static int CoordinatorLayout_statusBarBackground = 1;
         /** Attributes that can be used with a CoordinatorLayout_Layout.
@@ -9170,10 +9185,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #CoordinatorLayout_Layout_android_layout_gravity android:layout_gravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_anchor me.ledge.link.sdk.ui:layout_anchor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_anchorGravity me.ledge.link.sdk.ui:layout_anchorGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_behavior me.ledge.link.sdk.ui:layout_behavior}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_keyline me.ledge.link.sdk.ui:layout_keyline}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_anchor com.shift.link.sdk.ui:layout_anchor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_anchorGravity com.shift.link.sdk.ui:layout_anchorGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_behavior com.shift.link.sdk.ui:layout_behavior}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_keyline com.shift.link.sdk.ui:layout_keyline}</code></td><td></td></tr>
            </table>
            @see #CoordinatorLayout_Layout_android_layout_gravity
            @see #CoordinatorLayout_Layout_layout_anchor
@@ -9192,17 +9207,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CoordinatorLayout_Layout_android_layout_gravity = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#layout_anchor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_anchor}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:layout_anchor
+          @attr name com.shift.link.sdk.ui:layout_anchor
         */
         public static int CoordinatorLayout_Layout_layout_anchor = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#layout_anchorGravity}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_anchorGravity}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -9227,11 +9242,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>start</code></td><td>0x00800003</td><td></td></tr>
 <tr><td><code>end</code></td><td>0x00800005</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:layout_anchorGravity
+          @attr name com.shift.link.sdk.ui:layout_anchorGravity
         */
         public static int CoordinatorLayout_Layout_layout_anchorGravity = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#layout_behavior}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_behavior}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -9241,11 +9256,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:layout_behavior
+          @attr name com.shift.link.sdk.ui:layout_behavior
         */
         public static int CoordinatorLayout_Layout_layout_behavior = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#layout_keyline}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_keyline}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -9255,7 +9270,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:layout_keyline
+          @attr name com.shift.link.sdk.ui:layout_keyline
         */
         public static int CoordinatorLayout_Layout_layout_keyline = 3;
         /** Attributes that can be used with a CreditCardForm.
@@ -9264,17 +9279,17 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CreditCardForm_card_number_hint me.ledge.link.sdk.ui:card_number_hint}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_cursor_color me.ledge.link.sdk.ui:cursor_color}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_default_text_colors me.ledge.link.sdk.ui:default_text_colors}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_helper_text_color me.ledge.link.sdk.ui:helper_text_color}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_hint_text_color me.ledge.link.sdk.ui:hint_text_color}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_include_exp me.ledge.link.sdk.ui:include_exp}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_include_helper me.ledge.link.sdk.ui:include_helper}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_include_security me.ledge.link.sdk.ui:include_security}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_include_zip me.ledge.link.sdk.ui:include_zip}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_input_background me.ledge.link.sdk.ui:input_background}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_text_color me.ledge.link.sdk.ui:text_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_card_number_hint com.shift.link.sdk.ui:card_number_hint}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_cursor_color com.shift.link.sdk.ui:cursor_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_default_text_colors com.shift.link.sdk.ui:default_text_colors}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_helper_text_color com.shift.link.sdk.ui:helper_text_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_hint_text_color com.shift.link.sdk.ui:hint_text_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_include_exp com.shift.link.sdk.ui:include_exp}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_include_helper com.shift.link.sdk.ui:include_helper}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_include_security com.shift.link.sdk.ui:include_security}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_include_zip com.shift.link.sdk.ui:include_zip}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_input_background com.shift.link.sdk.ui:input_background}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_text_color com.shift.link.sdk.ui:text_color}</code></td><td></td></tr>
            </table>
            @see #CreditCardForm_card_number_hint
            @see #CreditCardForm_cursor_color
@@ -9294,7 +9309,7 @@ containing a value of this type.
             0x7f01010f, 0x7f010110, 0x7f010111
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#card_number_hint}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#card_number_hint}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9304,11 +9319,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:card_number_hint
+          @attr name com.shift.link.sdk.ui:card_number_hint
         */
         public static int CreditCardForm_card_number_hint = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#cursor_color}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cursor_color}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9319,11 +9334,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:cursor_color
+          @attr name com.shift.link.sdk.ui:cursor_color
         */
         public static int CreditCardForm_cursor_color = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#default_text_colors}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#default_text_colors}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9333,11 +9348,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:default_text_colors
+          @attr name com.shift.link.sdk.ui:default_text_colors
         */
         public static int CreditCardForm_default_text_colors = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#helper_text_color}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#helper_text_color}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9348,11 +9363,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:helper_text_color
+          @attr name com.shift.link.sdk.ui:helper_text_color
         */
         public static int CreditCardForm_helper_text_color = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#hint_text_color}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#hint_text_color}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9363,11 +9378,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:hint_text_color
+          @attr name com.shift.link.sdk.ui:hint_text_color
         */
         public static int CreditCardForm_hint_text_color = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#include_exp}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#include_exp}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9377,11 +9392,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:include_exp
+          @attr name com.shift.link.sdk.ui:include_exp
         */
         public static int CreditCardForm_include_exp = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#include_helper}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#include_helper}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9391,11 +9406,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:include_helper
+          @attr name com.shift.link.sdk.ui:include_helper
         */
         public static int CreditCardForm_include_helper = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#include_security}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#include_security}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9405,11 +9420,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:include_security
+          @attr name com.shift.link.sdk.ui:include_security
         */
         public static int CreditCardForm_include_security = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#include_zip}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#include_zip}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9419,21 +9434,21 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:include_zip
+          @attr name com.shift.link.sdk.ui:include_zip
         */
         public static int CreditCardForm_include_zip = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#input_background}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#input_background}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:input_background
+          @attr name com.shift.link.sdk.ui:input_background
         */
         public static int CreditCardForm_input_background = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#text_color}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#text_color}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9444,7 +9459,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:text_color
+          @attr name com.shift.link.sdk.ui:text_color
         */
         public static int CreditCardForm_text_color = 5;
         /** Attributes that can be used with a CreditCardView.
@@ -9453,22 +9468,22 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CreditCardView_brandLogo me.ledge.link.sdk.ui:brandLogo}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_cardName me.ledge.link.sdk.ui:cardName}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_cardNameTextColor me.ledge.link.sdk.ui:cardNameTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_cardNumber me.ledge.link.sdk.ui:cardNumber}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_cardNumberFormat me.ledge.link.sdk.ui:cardNumberFormat}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_cardNumberTextColor me.ledge.link.sdk.ui:cardNumberTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_expiryDate me.ledge.link.sdk.ui:expiryDate}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_expiryDateTextColor me.ledge.link.sdk.ui:expiryDateTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_hintTextColor me.ledge.link.sdk.ui:hintTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_isCardNameEditable me.ledge.link.sdk.ui:isCardNameEditable}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_isCardNumberEditable me.ledge.link.sdk.ui:isCardNumberEditable}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_isEditable me.ledge.link.sdk.ui:isEditable}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_isExpiryDateEditable me.ledge.link.sdk.ui:isExpiryDateEditable}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_putChip me.ledge.link.sdk.ui:putChip}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_type me.ledge.link.sdk.ui:type}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_validTillTextColor me.ledge.link.sdk.ui:validTillTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_brandLogo com.shift.link.sdk.ui:brandLogo}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_cardName com.shift.link.sdk.ui:cardName}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_cardNameTextColor com.shift.link.sdk.ui:cardNameTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_cardNumber com.shift.link.sdk.ui:cardNumber}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_cardNumberFormat com.shift.link.sdk.ui:cardNumberFormat}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_cardNumberTextColor com.shift.link.sdk.ui:cardNumberTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_expiryDate com.shift.link.sdk.ui:expiryDate}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_expiryDateTextColor com.shift.link.sdk.ui:expiryDateTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_hintTextColor com.shift.link.sdk.ui:hintTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_isCardNameEditable com.shift.link.sdk.ui:isCardNameEditable}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_isCardNumberEditable com.shift.link.sdk.ui:isCardNumberEditable}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_isEditable com.shift.link.sdk.ui:isEditable}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_isExpiryDateEditable com.shift.link.sdk.ui:isExpiryDateEditable}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_putChip com.shift.link.sdk.ui:putChip}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_type com.shift.link.sdk.ui:type}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_validTillTextColor com.shift.link.sdk.ui:validTillTextColor}</code></td><td></td></tr>
            </table>
            @see #CreditCardView_brandLogo
            @see #CreditCardView_cardName
@@ -9494,17 +9509,17 @@ containing a value of this type.
             0x7f01011e, 0x7f01011f, 0x7f010120, 0x7f010121
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#brandLogo}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#brandLogo}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:brandLogo
+          @attr name com.shift.link.sdk.ui:brandLogo
         */
         public static int CreditCardView_brandLogo = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#cardName}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardName}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9514,11 +9529,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:cardName
+          @attr name com.shift.link.sdk.ui:cardName
         */
         public static int CreditCardView_cardName = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#cardNameTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardNameTextColor}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9529,11 +9544,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:cardNameTextColor
+          @attr name com.shift.link.sdk.ui:cardNameTextColor
         */
         public static int CreditCardView_cardNameTextColor = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#cardNumber}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardNumber}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9543,11 +9558,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:cardNumber
+          @attr name com.shift.link.sdk.ui:cardNumber
         */
         public static int CreditCardView_cardNumber = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#cardNumberFormat}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardNumberFormat}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9562,11 +9577,11 @@ containing a value of this type.
 <tr><td><code>only_last_four</code></td><td>2</td><td></td></tr>
 <tr><td><code>masked_all</code></td><td>3</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:cardNumberFormat
+          @attr name com.shift.link.sdk.ui:cardNumberFormat
         */
         public static int CreditCardView_cardNumberFormat = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#cardNumberTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardNumberTextColor}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9577,11 +9592,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:cardNumberTextColor
+          @attr name com.shift.link.sdk.ui:cardNumberTextColor
         */
         public static int CreditCardView_cardNumberTextColor = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#expiryDate}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expiryDate}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9591,11 +9606,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:expiryDate
+          @attr name com.shift.link.sdk.ui:expiryDate
         */
         public static int CreditCardView_expiryDate = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#expiryDateTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expiryDateTextColor}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9606,11 +9621,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:expiryDateTextColor
+          @attr name com.shift.link.sdk.ui:expiryDateTextColor
         */
         public static int CreditCardView_expiryDateTextColor = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#hintTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#hintTextColor}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9621,11 +9636,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:hintTextColor
+          @attr name com.shift.link.sdk.ui:hintTextColor
         */
         public static int CreditCardView_hintTextColor = 15;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#isCardNameEditable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#isCardNameEditable}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9635,11 +9650,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:isCardNameEditable
+          @attr name com.shift.link.sdk.ui:isCardNameEditable
         */
         public static int CreditCardView_isCardNameEditable = 12;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#isCardNumberEditable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#isCardNumberEditable}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9649,11 +9664,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:isCardNumberEditable
+          @attr name com.shift.link.sdk.ui:isCardNumberEditable
         */
         public static int CreditCardView_isCardNumberEditable = 11;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#isEditable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#isEditable}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9663,11 +9678,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:isEditable
+          @attr name com.shift.link.sdk.ui:isEditable
         */
         public static int CreditCardView_isEditable = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#isExpiryDateEditable}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#isExpiryDateEditable}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9677,11 +9692,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:isExpiryDateEditable
+          @attr name com.shift.link.sdk.ui:isExpiryDateEditable
         */
         public static int CreditCardView_isExpiryDateEditable = 13;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#putChip}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#putChip}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9691,11 +9706,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:putChip
+          @attr name com.shift.link.sdk.ui:putChip
         */
         public static int CreditCardView_putChip = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#type}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#type}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9712,11 +9727,11 @@ containing a value of this type.
 <tr><td><code>auto</code></td><td>4</td><td></td></tr>
 <tr><td><code>none</code></td><td>5</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:type
+          @attr name com.shift.link.sdk.ui:type
         */
         public static int CreditCardView_type = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#validTillTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#validTillTextColor}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9727,7 +9742,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:validTillTextColor
+          @attr name com.shift.link.sdk.ui:validTillTextColor
         */
         public static int CreditCardView_validTillTextColor = 14;
         /** Attributes that can be used with a DesignTheme.
@@ -9736,9 +9751,9 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #DesignTheme_bottomSheetDialogTheme me.ledge.link.sdk.ui:bottomSheetDialogTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #DesignTheme_bottomSheetStyle me.ledge.link.sdk.ui:bottomSheetStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #DesignTheme_textColorError me.ledge.link.sdk.ui:textColorError}</code></td><td></td></tr>
+           <tr><td><code>{@link #DesignTheme_bottomSheetDialogTheme com.shift.link.sdk.ui:bottomSheetDialogTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #DesignTheme_bottomSheetStyle com.shift.link.sdk.ui:bottomSheetStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #DesignTheme_textColorError com.shift.link.sdk.ui:textColorError}</code></td><td></td></tr>
            </table>
            @see #DesignTheme_bottomSheetDialogTheme
            @see #DesignTheme_bottomSheetStyle
@@ -9748,27 +9763,27 @@ containing a value of this type.
             0x7f010122, 0x7f010123, 0x7f010124
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#bottomSheetDialogTheme}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#bottomSheetDialogTheme}
           attribute's value can be found in the {@link #DesignTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:bottomSheetDialogTheme
+          @attr name com.shift.link.sdk.ui:bottomSheetDialogTheme
         */
         public static int DesignTheme_bottomSheetDialogTheme = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#bottomSheetStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#bottomSheetStyle}
           attribute's value can be found in the {@link #DesignTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:bottomSheetStyle
+          @attr name com.shift.link.sdk.ui:bottomSheetStyle
         */
         public static int DesignTheme_bottomSheetStyle = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textColorError}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textColorError}
           attribute's value can be found in the {@link #DesignTheme} array.
 
 
@@ -9779,7 +9794,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:textColorError
+          @attr name com.shift.link.sdk.ui:textColorError
         */
         public static int DesignTheme_textColorError = 2;
         /** Attributes that can be used with a DiscreteSeekBar.
@@ -9788,23 +9803,23 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_allowTrackClickToDrag me.ledge.link.sdk.ui:dsb_allowTrackClickToDrag}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorColor me.ledge.link.sdk.ui:dsb_indicatorColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorElevation me.ledge.link.sdk.ui:dsb_indicatorElevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorFormatter me.ledge.link.sdk.ui:dsb_indicatorFormatter}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorPopupEnabled me.ledge.link.sdk.ui:dsb_indicatorPopupEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorSeparation me.ledge.link.sdk.ui:dsb_indicatorSeparation}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorTextAppearance me.ledge.link.sdk.ui:dsb_indicatorTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_max me.ledge.link.sdk.ui:dsb_max}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_min me.ledge.link.sdk.ui:dsb_min}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_mirrorForRtl me.ledge.link.sdk.ui:dsb_mirrorForRtl}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_progressColor me.ledge.link.sdk.ui:dsb_progressColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_rippleColor me.ledge.link.sdk.ui:dsb_rippleColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_scrubberHeight me.ledge.link.sdk.ui:dsb_scrubberHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_thumbSize me.ledge.link.sdk.ui:dsb_thumbSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_trackColor me.ledge.link.sdk.ui:dsb_trackColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_trackHeight me.ledge.link.sdk.ui:dsb_trackHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_value me.ledge.link.sdk.ui:dsb_value}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_allowTrackClickToDrag com.shift.link.sdk.ui:dsb_allowTrackClickToDrag}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorColor com.shift.link.sdk.ui:dsb_indicatorColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorElevation com.shift.link.sdk.ui:dsb_indicatorElevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorFormatter com.shift.link.sdk.ui:dsb_indicatorFormatter}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorPopupEnabled com.shift.link.sdk.ui:dsb_indicatorPopupEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorSeparation com.shift.link.sdk.ui:dsb_indicatorSeparation}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorTextAppearance com.shift.link.sdk.ui:dsb_indicatorTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_max com.shift.link.sdk.ui:dsb_max}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_min com.shift.link.sdk.ui:dsb_min}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_mirrorForRtl com.shift.link.sdk.ui:dsb_mirrorForRtl}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_progressColor com.shift.link.sdk.ui:dsb_progressColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_rippleColor com.shift.link.sdk.ui:dsb_rippleColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_scrubberHeight com.shift.link.sdk.ui:dsb_scrubberHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_thumbSize com.shift.link.sdk.ui:dsb_thumbSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_trackColor com.shift.link.sdk.ui:dsb_trackColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_trackHeight com.shift.link.sdk.ui:dsb_trackHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_value com.shift.link.sdk.ui:dsb_value}</code></td><td></td></tr>
            </table>
            @see #DiscreteSeekBar_dsb_allowTrackClickToDrag
            @see #DiscreteSeekBar_dsb_indicatorColor
@@ -9832,7 +9847,7 @@ containing a value of this type.
             0x7f010135
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_allowTrackClickToDrag}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_allowTrackClickToDrag}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9842,11 +9857,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dsb_allowTrackClickToDrag
+          @attr name com.shift.link.sdk.ui:dsb_allowTrackClickToDrag
         */
         public static int DiscreteSeekBar_dsb_allowTrackClickToDrag = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_indicatorColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_indicatorColor}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9854,11 +9869,11 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:dsb_indicatorColor
+          @attr name com.shift.link.sdk.ui:dsb_indicatorColor
         */
         public static int DiscreteSeekBar_dsb_indicatorColor = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_indicatorElevation}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_indicatorElevation}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9870,22 +9885,22 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dsb_indicatorElevation
+          @attr name com.shift.link.sdk.ui:dsb_indicatorElevation
         */
         public static int DiscreteSeekBar_dsb_indicatorElevation = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_indicatorFormatter}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_indicatorFormatter}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-          @attr name me.ledge.link.sdk.ui:dsb_indicatorFormatter
+          @attr name com.shift.link.sdk.ui:dsb_indicatorFormatter
         */
         public static int DiscreteSeekBar_dsb_indicatorFormatter = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_indicatorPopupEnabled}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_indicatorPopupEnabled}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9895,11 +9910,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dsb_indicatorPopupEnabled
+          @attr name com.shift.link.sdk.ui:dsb_indicatorPopupEnabled
         */
         public static int DiscreteSeekBar_dsb_indicatorPopupEnabled = 12;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_indicatorSeparation}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_indicatorSeparation}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9912,21 +9927,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dsb_indicatorSeparation
+          @attr name com.shift.link.sdk.ui:dsb_indicatorSeparation
         */
         public static int DiscreteSeekBar_dsb_indicatorSeparation = 16;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_indicatorTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_indicatorTextAppearance}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:dsb_indicatorTextAppearance
+          @attr name com.shift.link.sdk.ui:dsb_indicatorTextAppearance
         */
         public static int DiscreteSeekBar_dsb_indicatorTextAppearance = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_max}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_max}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9939,11 +9954,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dsb_max
+          @attr name com.shift.link.sdk.ui:dsb_max
         */
         public static int DiscreteSeekBar_dsb_max = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_min}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_min}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9956,11 +9971,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dsb_min
+          @attr name com.shift.link.sdk.ui:dsb_min
         */
         public static int DiscreteSeekBar_dsb_min = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_mirrorForRtl}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_mirrorForRtl}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9970,11 +9985,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dsb_mirrorForRtl
+          @attr name com.shift.link.sdk.ui:dsb_mirrorForRtl
         */
         public static int DiscreteSeekBar_dsb_mirrorForRtl = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_progressColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_progressColor}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9982,11 +9997,11 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:dsb_progressColor
+          @attr name com.shift.link.sdk.ui:dsb_progressColor
         */
         public static int DiscreteSeekBar_dsb_progressColor = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_rippleColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_rippleColor}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9994,11 +10009,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:dsb_rippleColor
+          @attr name com.shift.link.sdk.ui:dsb_rippleColor
         */
         public static int DiscreteSeekBar_dsb_rippleColor = 11;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_scrubberHeight}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_scrubberHeight}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -10011,11 +10026,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dsb_scrubberHeight
+          @attr name com.shift.link.sdk.ui:dsb_scrubberHeight
         */
         public static int DiscreteSeekBar_dsb_scrubberHeight = 14;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_thumbSize}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_thumbSize}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -10028,11 +10043,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dsb_thumbSize
+          @attr name com.shift.link.sdk.ui:dsb_thumbSize
         */
         public static int DiscreteSeekBar_dsb_thumbSize = 15;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_trackColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_trackColor}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -10040,11 +10055,11 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:dsb_trackColor
+          @attr name com.shift.link.sdk.ui:dsb_trackColor
         */
         public static int DiscreteSeekBar_dsb_trackColor = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_trackHeight}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_trackHeight}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -10057,11 +10072,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dsb_trackHeight
+          @attr name com.shift.link.sdk.ui:dsb_trackHeight
         */
         public static int DiscreteSeekBar_dsb_trackHeight = 13;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dsb_value}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_value}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -10074,7 +10089,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dsb_value
+          @attr name com.shift.link.sdk.ui:dsb_value
         */
         public static int DiscreteSeekBar_dsb_value = 2;
         /** Attributes that can be used with a DrawerArrowToggle.
@@ -10083,14 +10098,14 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_arrowHeadLength me.ledge.link.sdk.ui:arrowHeadLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_arrowShaftLength me.ledge.link.sdk.ui:arrowShaftLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_barLength me.ledge.link.sdk.ui:barLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_color me.ledge.link.sdk.ui:color}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_drawableSize me.ledge.link.sdk.ui:drawableSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_gapBetweenBars me.ledge.link.sdk.ui:gapBetweenBars}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_spinBars me.ledge.link.sdk.ui:spinBars}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_thickness me.ledge.link.sdk.ui:thickness}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_arrowHeadLength com.shift.link.sdk.ui:arrowHeadLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_arrowShaftLength com.shift.link.sdk.ui:arrowShaftLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_barLength com.shift.link.sdk.ui:barLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_color com.shift.link.sdk.ui:color}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_drawableSize com.shift.link.sdk.ui:drawableSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_gapBetweenBars com.shift.link.sdk.ui:gapBetweenBars}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_spinBars com.shift.link.sdk.ui:spinBars}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_thickness com.shift.link.sdk.ui:thickness}</code></td><td></td></tr>
            </table>
            @see #DrawerArrowToggle_arrowHeadLength
            @see #DrawerArrowToggle_arrowShaftLength
@@ -10106,7 +10121,7 @@ containing a value of this type.
             0x7f01013a, 0x7f01013b, 0x7f01013c, 0x7f01013d
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#arrowHeadLength}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#arrowHeadLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10118,11 +10133,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:arrowHeadLength
+          @attr name com.shift.link.sdk.ui:arrowHeadLength
         */
         public static int DrawerArrowToggle_arrowHeadLength = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#arrowShaftLength}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#arrowShaftLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10134,11 +10149,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:arrowShaftLength
+          @attr name com.shift.link.sdk.ui:arrowShaftLength
         */
         public static int DrawerArrowToggle_arrowShaftLength = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#barLength}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#barLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10150,11 +10165,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:barLength
+          @attr name com.shift.link.sdk.ui:barLength
         */
         public static int DrawerArrowToggle_barLength = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#color}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#color}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10165,11 +10180,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:color
+          @attr name com.shift.link.sdk.ui:color
         */
         public static int DrawerArrowToggle_color = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#drawableSize}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#drawableSize}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10181,11 +10196,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:drawableSize
+          @attr name com.shift.link.sdk.ui:drawableSize
         */
         public static int DrawerArrowToggle_drawableSize = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#gapBetweenBars}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#gapBetweenBars}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10197,11 +10212,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:gapBetweenBars
+          @attr name com.shift.link.sdk.ui:gapBetweenBars
         */
         public static int DrawerArrowToggle_gapBetweenBars = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#spinBars}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#spinBars}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10211,11 +10226,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:spinBars
+          @attr name com.shift.link.sdk.ui:spinBars
         */
         public static int DrawerArrowToggle_spinBars = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#thickness}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#thickness}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10227,7 +10242,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:thickness
+          @attr name com.shift.link.sdk.ui:thickness
         */
         public static int DrawerArrowToggle_thickness = 7;
         /** Attributes that can be used with a FloatingActionButton.
@@ -10236,14 +10251,14 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #FloatingActionButton_backgroundTint me.ledge.link.sdk.ui:backgroundTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_backgroundTintMode me.ledge.link.sdk.ui:backgroundTintMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_borderWidth me.ledge.link.sdk.ui:borderWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_elevation me.ledge.link.sdk.ui:elevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_fabSize me.ledge.link.sdk.ui:fabSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_pressedTranslationZ me.ledge.link.sdk.ui:pressedTranslationZ}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_rippleColor me.ledge.link.sdk.ui:rippleColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_useCompatPadding me.ledge.link.sdk.ui:useCompatPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_backgroundTint com.shift.link.sdk.ui:backgroundTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_backgroundTintMode com.shift.link.sdk.ui:backgroundTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_borderWidth com.shift.link.sdk.ui:borderWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_elevation com.shift.link.sdk.ui:elevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_fabSize com.shift.link.sdk.ui:fabSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_pressedTranslationZ com.shift.link.sdk.ui:pressedTranslationZ}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_rippleColor com.shift.link.sdk.ui:rippleColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_useCompatPadding com.shift.link.sdk.ui:useCompatPadding}</code></td><td></td></tr>
            </table>
            @see #FloatingActionButton_backgroundTint
            @see #FloatingActionButton_backgroundTintMode
@@ -10259,7 +10274,7 @@ containing a value of this type.
             0x7f010141, 0x7f010142, 0x7f0101c8, 0x7f0101c9
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#backgroundTint}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundTint}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10270,11 +10285,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:backgroundTint
+          @attr name com.shift.link.sdk.ui:backgroundTint
         */
         public static int FloatingActionButton_backgroundTint = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#backgroundTintMode}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundTintMode}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10290,11 +10305,11 @@ containing a value of this type.
 <tr><td><code>multiply</code></td><td>14</td><td></td></tr>
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:backgroundTintMode
+          @attr name com.shift.link.sdk.ui:backgroundTintMode
         */
         public static int FloatingActionButton_backgroundTintMode = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#borderWidth}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#borderWidth}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10306,11 +10321,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:borderWidth
+          @attr name com.shift.link.sdk.ui:borderWidth
         */
         public static int FloatingActionButton_borderWidth = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#elevation}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10322,11 +10337,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:elevation
+          @attr name com.shift.link.sdk.ui:elevation
         */
         public static int FloatingActionButton_elevation = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#fabSize}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#fabSize}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10340,11 +10355,11 @@ containing a value of this type.
 <tr><td><code>normal</code></td><td>0</td><td></td></tr>
 <tr><td><code>mini</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:fabSize
+          @attr name com.shift.link.sdk.ui:fabSize
         */
         public static int FloatingActionButton_fabSize = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pressedTranslationZ}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pressedTranslationZ}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10356,11 +10371,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pressedTranslationZ
+          @attr name com.shift.link.sdk.ui:pressedTranslationZ
         */
         public static int FloatingActionButton_pressedTranslationZ = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#rippleColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#rippleColor}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10371,11 +10386,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:rippleColor
+          @attr name com.shift.link.sdk.ui:rippleColor
         */
         public static int FloatingActionButton_rippleColor = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#useCompatPadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#useCompatPadding}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10385,7 +10400,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:useCompatPadding
+          @attr name com.shift.link.sdk.ui:useCompatPadding
         */
         public static int FloatingActionButton_useCompatPadding = 5;
         /** Attributes that can be used with a ForegroundLinearLayout.
@@ -10396,7 +10411,7 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #ForegroundLinearLayout_android_foreground android:foreground}</code></td><td></td></tr>
            <tr><td><code>{@link #ForegroundLinearLayout_android_foregroundGravity android:foregroundGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #ForegroundLinearLayout_foregroundInsidePadding me.ledge.link.sdk.ui:foregroundInsidePadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #ForegroundLinearLayout_foregroundInsidePadding com.shift.link.sdk.ui:foregroundInsidePadding}</code></td><td></td></tr>
            </table>
            @see #ForegroundLinearLayout_android_foreground
            @see #ForegroundLinearLayout_android_foregroundGravity
@@ -10418,7 +10433,7 @@ containing a value of this type.
         */
         public static int ForegroundLinearLayout_android_foregroundGravity = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#foregroundInsidePadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#foregroundInsidePadding}
           attribute's value can be found in the {@link #ForegroundLinearLayout} array.
 
 
@@ -10428,7 +10443,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:foregroundInsidePadding
+          @attr name com.shift.link.sdk.ui:foregroundInsidePadding
         */
         public static int ForegroundLinearLayout_foregroundInsidePadding = 2;
         /** Attributes that can be used with a LinearLayoutCompat.
@@ -10442,10 +10457,10 @@ containing a value of this type.
            <tr><td><code>{@link #LinearLayoutCompat_android_gravity android:gravity}</code></td><td></td></tr>
            <tr><td><code>{@link #LinearLayoutCompat_android_orientation android:orientation}</code></td><td></td></tr>
            <tr><td><code>{@link #LinearLayoutCompat_android_weightSum android:weightSum}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_divider me.ledge.link.sdk.ui:divider}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_dividerPadding me.ledge.link.sdk.ui:dividerPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_measureWithLargestChild me.ledge.link.sdk.ui:measureWithLargestChild}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_showDividers me.ledge.link.sdk.ui:showDividers}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_divider com.shift.link.sdk.ui:divider}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_dividerPadding com.shift.link.sdk.ui:dividerPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_measureWithLargestChild com.shift.link.sdk.ui:measureWithLargestChild}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_showDividers com.shift.link.sdk.ui:showDividers}</code></td><td></td></tr>
            </table>
            @see #LinearLayoutCompat_android_baselineAligned
            @see #LinearLayoutCompat_android_baselineAlignedChildIndex
@@ -10493,17 +10508,17 @@ containing a value of this type.
         */
         public static int LinearLayoutCompat_android_weightSum = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#divider}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#divider}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:divider
+          @attr name com.shift.link.sdk.ui:divider
         */
         public static int LinearLayoutCompat_divider = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#dividerPadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dividerPadding}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -10515,11 +10530,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:dividerPadding
+          @attr name com.shift.link.sdk.ui:dividerPadding
         */
         public static int LinearLayoutCompat_dividerPadding = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#measureWithLargestChild}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#measureWithLargestChild}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -10529,11 +10544,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:measureWithLargestChild
+          @attr name com.shift.link.sdk.ui:measureWithLargestChild
         */
         public static int LinearLayoutCompat_measureWithLargestChild = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#showDividers}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#showDividers}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -10548,7 +10563,7 @@ containing a value of this type.
 <tr><td><code>middle</code></td><td>2</td><td></td></tr>
 <tr><td><code>end</code></td><td>4</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:showDividers
+          @attr name com.shift.link.sdk.ui:showDividers
         */
         public static int LinearLayoutCompat_showDividers = 7;
         /** Attributes that can be used with a LinearLayoutCompat_Layout.
@@ -10627,9 +10642,9 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #LoadingImageView_circleCrop me.ledge.link.sdk.ui:circleCrop}</code></td><td></td></tr>
-           <tr><td><code>{@link #LoadingImageView_imageAspectRatio me.ledge.link.sdk.ui:imageAspectRatio}</code></td><td></td></tr>
-           <tr><td><code>{@link #LoadingImageView_imageAspectRatioAdjust me.ledge.link.sdk.ui:imageAspectRatioAdjust}</code></td><td></td></tr>
+           <tr><td><code>{@link #LoadingImageView_circleCrop com.shift.link.sdk.ui:circleCrop}</code></td><td></td></tr>
+           <tr><td><code>{@link #LoadingImageView_imageAspectRatio com.shift.link.sdk.ui:imageAspectRatio}</code></td><td></td></tr>
+           <tr><td><code>{@link #LoadingImageView_imageAspectRatioAdjust com.shift.link.sdk.ui:imageAspectRatioAdjust}</code></td><td></td></tr>
            </table>
            @see #LoadingImageView_circleCrop
            @see #LoadingImageView_imageAspectRatio
@@ -10639,7 +10654,7 @@ containing a value of this type.
             0x7f010147, 0x7f010148, 0x7f010149
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#circleCrop}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#circleCrop}
           attribute's value can be found in the {@link #LoadingImageView} array.
 
 
@@ -10649,11 +10664,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:circleCrop
+          @attr name com.shift.link.sdk.ui:circleCrop
         */
         public static int LoadingImageView_circleCrop = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#imageAspectRatio}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#imageAspectRatio}
           attribute's value can be found in the {@link #LoadingImageView} array.
 
 
@@ -10663,11 +10678,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:imageAspectRatio
+          @attr name com.shift.link.sdk.ui:imageAspectRatio
         */
         public static int LoadingImageView_imageAspectRatio = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#imageAspectRatioAdjust}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#imageAspectRatioAdjust}
           attribute's value can be found in the {@link #LoadingImageView} array.
 
 
@@ -10681,7 +10696,7 @@ containing a value of this type.
 <tr><td><code>adjust_width</code></td><td>1</td><td></td></tr>
 <tr><td><code>adjust_height</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:imageAspectRatioAdjust
+          @attr name com.shift.link.sdk.ui:imageAspectRatioAdjust
         */
         public static int LoadingImageView_imageAspectRatioAdjust = 0;
         /** Attributes that can be used with a MarkdownView.
@@ -10690,7 +10705,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MarkdownView_escapeHtml me.ledge.link.sdk.ui:escapeHtml}</code></td><td></td></tr>
+           <tr><td><code>{@link #MarkdownView_escapeHtml com.shift.link.sdk.ui:escapeHtml}</code></td><td></td></tr>
            </table>
            @see #MarkdownView_escapeHtml
          */
@@ -10698,7 +10713,7 @@ containing a value of this type.
             0x7f01014a
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#escapeHtml}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#escapeHtml}
           attribute's value can be found in the {@link #MarkdownView} array.
 
 
@@ -10708,7 +10723,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:escapeHtml
+          @attr name com.shift.link.sdk.ui:escapeHtml
         */
         public static int MarkdownView_escapeHtml = 0;
         /** Attributes that can be used with a MenuGroup.
@@ -10777,9 +10792,9 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MenuItem_actionLayout me.ledge.link.sdk.ui:actionLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_actionProviderClass me.ledge.link.sdk.ui:actionProviderClass}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_actionViewClass me.ledge.link.sdk.ui:actionViewClass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_actionLayout com.shift.link.sdk.ui:actionLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_actionProviderClass com.shift.link.sdk.ui:actionProviderClass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_actionViewClass com.shift.link.sdk.ui:actionViewClass}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_alphabeticShortcut android:alphabeticShortcut}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_checkable android:checkable}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_checked android:checked}</code></td><td></td></tr>
@@ -10793,7 +10808,7 @@ containing a value of this type.
            <tr><td><code>{@link #MenuItem_android_title android:title}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_titleCondensed android:titleCondensed}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_visible android:visible}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_showAsAction me.ledge.link.sdk.ui:showAsAction}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_showAsAction com.shift.link.sdk.ui:showAsAction}</code></td><td></td></tr>
            </table>
            @see #MenuItem_actionLayout
            @see #MenuItem_actionProviderClass
@@ -10821,17 +10836,17 @@ containing a value of this type.
             0x7f01014e
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionLayout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionLayout}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:actionLayout
+          @attr name com.shift.link.sdk.ui:actionLayout
         */
         public static int MenuItem_actionLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionProviderClass}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionProviderClass}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10841,11 +10856,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:actionProviderClass
+          @attr name com.shift.link.sdk.ui:actionProviderClass
         */
         public static int MenuItem_actionProviderClass = 16;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#actionViewClass}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionViewClass}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10855,7 +10870,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:actionViewClass
+          @attr name com.shift.link.sdk.ui:actionViewClass
         */
         public static int MenuItem_actionViewClass = 15;
         /**
@@ -10937,7 +10952,7 @@ containing a value of this type.
         */
         public static int MenuItem_android_visible = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#showAsAction}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#showAsAction}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10953,7 +10968,7 @@ containing a value of this type.
 <tr><td><code>withText</code></td><td>4</td><td></td></tr>
 <tr><td><code>collapseActionView</code></td><td>8</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:showAsAction
+          @attr name com.shift.link.sdk.ui:showAsAction
         */
         public static int MenuItem_showAsAction = 13;
         /** Attributes that can be used with a MenuView.
@@ -10969,8 +10984,8 @@ containing a value of this type.
            <tr><td><code>{@link #MenuView_android_itemTextAppearance android:itemTextAppearance}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuView_android_verticalDivider android:verticalDivider}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuView_android_windowAnimationStyle android:windowAnimationStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuView_preserveIconSpacing me.ledge.link.sdk.ui:preserveIconSpacing}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuView_subMenuArrow me.ledge.link.sdk.ui:subMenuArrow}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuView_preserveIconSpacing com.shift.link.sdk.ui:preserveIconSpacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuView_subMenuArrow com.shift.link.sdk.ui:subMenuArrow}</code></td><td></td></tr>
            </table>
            @see #MenuView_android_headerBackground
            @see #MenuView_android_horizontalDivider
@@ -11030,7 +11045,7 @@ containing a value of this type.
         */
         public static int MenuView_android_windowAnimationStyle = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#preserveIconSpacing}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#preserveIconSpacing}
           attribute's value can be found in the {@link #MenuView} array.
 
 
@@ -11040,17 +11055,17 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:preserveIconSpacing
+          @attr name com.shift.link.sdk.ui:preserveIconSpacing
         */
         public static int MenuView_preserveIconSpacing = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#subMenuArrow}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subMenuArrow}
           attribute's value can be found in the {@link #MenuView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:subMenuArrow
+          @attr name com.shift.link.sdk.ui:subMenuArrow
         */
         public static int MenuView_subMenuArrow = 8;
         /** Attributes that can be used with a NavigationView.
@@ -11062,13 +11077,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><td><code>{@link #NavigationView_android_background android:background}</code></td><td></td></tr>
            <tr><td><code>{@link #NavigationView_android_fitsSystemWindows android:fitsSystemWindows}</code></td><td></td></tr>
            <tr><td><code>{@link #NavigationView_android_maxWidth android:maxWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_elevation me.ledge.link.sdk.ui:elevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_headerLayout me.ledge.link.sdk.ui:headerLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_itemBackground me.ledge.link.sdk.ui:itemBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_itemIconTint me.ledge.link.sdk.ui:itemIconTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_itemTextAppearance me.ledge.link.sdk.ui:itemTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_itemTextColor me.ledge.link.sdk.ui:itemTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_menu me.ledge.link.sdk.ui:menu}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_elevation com.shift.link.sdk.ui:elevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_headerLayout com.shift.link.sdk.ui:headerLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_itemBackground com.shift.link.sdk.ui:itemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_itemIconTint com.shift.link.sdk.ui:itemIconTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_itemTextAppearance com.shift.link.sdk.ui:itemTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_itemTextColor com.shift.link.sdk.ui:itemTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_menu com.shift.link.sdk.ui:menu}</code></td><td></td></tr>
            </table>
            @see #NavigationView_android_background
            @see #NavigationView_android_fitsSystemWindows
@@ -11105,7 +11120,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int NavigationView_android_maxWidth = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#elevation}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -11117,31 +11132,31 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:elevation
+          @attr name com.shift.link.sdk.ui:elevation
         */
         public static int NavigationView_elevation = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#headerLayout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#headerLayout}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:headerLayout
+          @attr name com.shift.link.sdk.ui:headerLayout
         */
         public static int NavigationView_headerLayout = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#itemBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#itemBackground}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:itemBackground
+          @attr name com.shift.link.sdk.ui:itemBackground
         */
         public static int NavigationView_itemBackground = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#itemIconTint}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#itemIconTint}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -11152,21 +11167,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:itemIconTint
+          @attr name com.shift.link.sdk.ui:itemIconTint
         */
         public static int NavigationView_itemIconTint = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#itemTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#itemTextAppearance}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:itemTextAppearance
+          @attr name com.shift.link.sdk.ui:itemTextAppearance
         */
         public static int NavigationView_itemTextAppearance = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#itemTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#itemTextColor}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -11177,17 +11192,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:itemTextColor
+          @attr name com.shift.link.sdk.ui:itemTextColor
         */
         public static int NavigationView_itemTextColor = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#menu}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#menu}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:menu
+          @attr name com.shift.link.sdk.ui:menu
         */
         public static int NavigationView_menu = 4;
         /** Attributes that can be used with a PinKeyboardView.
@@ -11196,12 +11211,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_keyBackground me.ledge.link.sdk.ui:pinkeyboardview_keyBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_keyUnderlineColor me.ledge.link.sdk.ui:pinkeyboardview_keyUnderlineColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_showUnderline me.ledge.link.sdk.ui:pinkeyboardview_showUnderline}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_textColor me.ledge.link.sdk.ui:pinkeyboardview_textColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_textSize me.ledge.link.sdk.ui:pinkeyboardview_textSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_underlinePadding me.ledge.link.sdk.ui:pinkeyboardview_underlinePadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_keyBackground com.shift.link.sdk.ui:pinkeyboardview_keyBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_keyUnderlineColor com.shift.link.sdk.ui:pinkeyboardview_keyUnderlineColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_showUnderline com.shift.link.sdk.ui:pinkeyboardview_showUnderline}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_textColor com.shift.link.sdk.ui:pinkeyboardview_textColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_textSize com.shift.link.sdk.ui:pinkeyboardview_textSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_underlinePadding com.shift.link.sdk.ui:pinkeyboardview_underlinePadding}</code></td><td></td></tr>
            </table>
            @see #PinKeyboardView_pinkeyboardview_keyBackground
            @see #PinKeyboardView_pinkeyboardview_keyUnderlineColor
@@ -11215,7 +11230,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01015b, 0x7f01015c
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pinkeyboardview_keyBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinkeyboardview_keyBackground}
           attribute's value can be found in the {@link #PinKeyboardView} array.
 
 
@@ -11225,11 +11240,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pinkeyboardview_keyBackground
+          @attr name com.shift.link.sdk.ui:pinkeyboardview_keyBackground
         */
         public static int PinKeyboardView_pinkeyboardview_keyBackground = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pinkeyboardview_keyUnderlineColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinkeyboardview_keyUnderlineColor}
           attribute's value can be found in the {@link #PinKeyboardView} array.
 
 
@@ -11240,11 +11255,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pinkeyboardview_keyUnderlineColor
+          @attr name com.shift.link.sdk.ui:pinkeyboardview_keyUnderlineColor
         */
         public static int PinKeyboardView_pinkeyboardview_keyUnderlineColor = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pinkeyboardview_showUnderline}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinkeyboardview_showUnderline}
           attribute's value can be found in the {@link #PinKeyboardView} array.
 
 
@@ -11254,11 +11269,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pinkeyboardview_showUnderline
+          @attr name com.shift.link.sdk.ui:pinkeyboardview_showUnderline
         */
         public static int PinKeyboardView_pinkeyboardview_showUnderline = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pinkeyboardview_textColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinkeyboardview_textColor}
           attribute's value can be found in the {@link #PinKeyboardView} array.
 
 
@@ -11269,11 +11284,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pinkeyboardview_textColor
+          @attr name com.shift.link.sdk.ui:pinkeyboardview_textColor
         */
         public static int PinKeyboardView_pinkeyboardview_textColor = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pinkeyboardview_textSize}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinkeyboardview_textSize}
           attribute's value can be found in the {@link #PinKeyboardView} array.
 
 
@@ -11285,11 +11300,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pinkeyboardview_textSize
+          @attr name com.shift.link.sdk.ui:pinkeyboardview_textSize
         */
         public static int PinKeyboardView_pinkeyboardview_textSize = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pinkeyboardview_underlinePadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinkeyboardview_underlinePadding}
           attribute's value can be found in the {@link #PinKeyboardView} array.
 
 
@@ -11301,7 +11316,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pinkeyboardview_underlinePadding
+          @attr name com.shift.link.sdk.ui:pinkeyboardview_underlinePadding
         */
         public static int PinKeyboardView_pinkeyboardview_underlinePadding = 4;
         /** Attributes that can be used with a PinView.
@@ -11310,21 +11325,21 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #PinView_colorSplit me.ledge.link.sdk.ui:colorSplit}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_colorTextPinBox me.ledge.link.sdk.ui:colorTextPinBox}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_colorTextTitles me.ledge.link.sdk.ui:colorTextTitles}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_deleteOnClick me.ledge.link.sdk.ui:deleteOnClick}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_drawablePinBox me.ledge.link.sdk.ui:drawablePinBox}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_keyboardMandatory me.ledge.link.sdk.ui:keyboardMandatory}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_nativePinBox me.ledge.link.sdk.ui:nativePinBox}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_numberCharacters me.ledge.link.sdk.ui:numberCharacters}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_numberPinBoxes me.ledge.link.sdk.ui:numberPinBoxes}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_password me.ledge.link.sdk.ui:password}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_sizeSplit me.ledge.link.sdk.ui:sizeSplit}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_split me.ledge.link.sdk.ui:split}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_textSizePinBox me.ledge.link.sdk.ui:textSizePinBox}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_textSizeTitles me.ledge.link.sdk.ui:textSizeTitles}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_titles me.ledge.link.sdk.ui:titles}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_colorSplit com.shift.link.sdk.ui:colorSplit}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_colorTextPinBox com.shift.link.sdk.ui:colorTextPinBox}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_colorTextTitles com.shift.link.sdk.ui:colorTextTitles}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_deleteOnClick com.shift.link.sdk.ui:deleteOnClick}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_drawablePinBox com.shift.link.sdk.ui:drawablePinBox}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_keyboardMandatory com.shift.link.sdk.ui:keyboardMandatory}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_nativePinBox com.shift.link.sdk.ui:nativePinBox}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_numberCharacters com.shift.link.sdk.ui:numberCharacters}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_numberPinBoxes com.shift.link.sdk.ui:numberPinBoxes}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_password com.shift.link.sdk.ui:password}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_sizeSplit com.shift.link.sdk.ui:sizeSplit}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_split com.shift.link.sdk.ui:split}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_textSizePinBox com.shift.link.sdk.ui:textSizePinBox}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_textSizeTitles com.shift.link.sdk.ui:textSizeTitles}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_titles com.shift.link.sdk.ui:titles}</code></td><td></td></tr>
            </table>
            @see #PinView_colorSplit
            @see #PinView_colorTextPinBox
@@ -11349,7 +11364,7 @@ containing a value of this type.
             0x7f010169, 0x7f01016a, 0x7f01016b
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorSplit}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorSplit}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11360,11 +11375,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:colorSplit
+          @attr name com.shift.link.sdk.ui:colorSplit
         */
         public static int PinView_colorSplit = 11;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorTextPinBox}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorTextPinBox}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11375,11 +11390,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:colorTextPinBox
+          @attr name com.shift.link.sdk.ui:colorTextPinBox
         */
         public static int PinView_colorTextPinBox = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorTextTitles}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorTextTitles}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11390,11 +11405,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:colorTextTitles
+          @attr name com.shift.link.sdk.ui:colorTextTitles
         */
         public static int PinView_colorTextTitles = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#deleteOnClick}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#deleteOnClick}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11404,21 +11419,21 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:deleteOnClick
+          @attr name com.shift.link.sdk.ui:deleteOnClick
         */
         public static int PinView_deleteOnClick = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#drawablePinBox}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#drawablePinBox}
           attribute's value can be found in the {@link #PinView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:drawablePinBox
+          @attr name com.shift.link.sdk.ui:drawablePinBox
         */
         public static int PinView_drawablePinBox = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#keyboardMandatory}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#keyboardMandatory}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11428,11 +11443,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:keyboardMandatory
+          @attr name com.shift.link.sdk.ui:keyboardMandatory
         */
         public static int PinView_keyboardMandatory = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#nativePinBox}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#nativePinBox}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11442,11 +11457,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:nativePinBox
+          @attr name com.shift.link.sdk.ui:nativePinBox
         */
         public static int PinView_nativePinBox = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#numberCharacters}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#numberCharacters}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11456,11 +11471,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:numberCharacters
+          @attr name com.shift.link.sdk.ui:numberCharacters
         */
         public static int PinView_numberCharacters = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#numberPinBoxes}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#numberPinBoxes}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11470,11 +11485,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:numberPinBoxes
+          @attr name com.shift.link.sdk.ui:numberPinBoxes
         */
         public static int PinView_numberPinBoxes = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#password}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#password}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11484,11 +11499,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:password
+          @attr name com.shift.link.sdk.ui:password
         */
         public static int PinView_password = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#sizeSplit}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#sizeSplit}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11500,11 +11515,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:sizeSplit
+          @attr name com.shift.link.sdk.ui:sizeSplit
         */
         public static int PinView_sizeSplit = 14;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#split}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#split}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11514,11 +11529,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:split
+          @attr name com.shift.link.sdk.ui:split
         */
         public static int PinView_split = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textSizePinBox}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textSizePinBox}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11530,11 +11545,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:textSizePinBox
+          @attr name com.shift.link.sdk.ui:textSizePinBox
         */
         public static int PinView_textSizePinBox = 12;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textSizeTitles}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textSizeTitles}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11546,17 +11561,17 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:textSizeTitles
+          @attr name com.shift.link.sdk.ui:textSizeTitles
         */
         public static int PinView_textSizeTitles = 13;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#titles}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titles}
           attribute's value can be found in the {@link #PinView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:titles
+          @attr name com.shift.link.sdk.ui:titles
         */
         public static int PinView_titles = 3;
         /** Attributes that can be used with a PinputView.
@@ -11565,10 +11580,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #PinputView_pinputview_backgroundColor me.ledge.link.sdk.ui:pinputview_backgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinputView_pinputview_characterPadding me.ledge.link.sdk.ui:pinputview_characterPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinputView_pinputview_foregroundColor me.ledge.link.sdk.ui:pinputview_foregroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinputView_pinputview_len me.ledge.link.sdk.ui:pinputview_len}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinputView_pinputview_backgroundColor com.shift.link.sdk.ui:pinputview_backgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinputView_pinputview_characterPadding com.shift.link.sdk.ui:pinputview_characterPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinputView_pinputview_foregroundColor com.shift.link.sdk.ui:pinputview_foregroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinputView_pinputview_len com.shift.link.sdk.ui:pinputview_len}</code></td><td></td></tr>
            </table>
            @see #PinputView_pinputview_backgroundColor
            @see #PinputView_pinputview_characterPadding
@@ -11579,7 +11594,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01016c, 0x7f01016d, 0x7f01016e, 0x7f01016f
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pinputview_backgroundColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinputview_backgroundColor}
           attribute's value can be found in the {@link #PinputView} array.
 
 
@@ -11590,11 +11605,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pinputview_backgroundColor
+          @attr name com.shift.link.sdk.ui:pinputview_backgroundColor
         */
         public static int PinputView_pinputview_backgroundColor = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pinputview_characterPadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinputview_characterPadding}
           attribute's value can be found in the {@link #PinputView} array.
 
 
@@ -11606,11 +11621,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pinputview_characterPadding
+          @attr name com.shift.link.sdk.ui:pinputview_characterPadding
         */
         public static int PinputView_pinputview_characterPadding = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pinputview_foregroundColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinputview_foregroundColor}
           attribute's value can be found in the {@link #PinputView} array.
 
 
@@ -11621,11 +11636,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pinputview_foregroundColor
+          @attr name com.shift.link.sdk.ui:pinputview_foregroundColor
         */
         public static int PinputView_pinputview_foregroundColor = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#pinputview_len}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinputview_len}
           attribute's value can be found in the {@link #PinputView} array.
 
 
@@ -11635,7 +11650,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:pinputview_len
+          @attr name com.shift.link.sdk.ui:pinputview_len
         */
         public static int PinputView_pinputview_len = 0;
         /** Attributes that can be used with a PopupWindow.
@@ -11646,7 +11661,7 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #PopupWindow_android_popupAnimationStyle android:popupAnimationStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #PopupWindow_android_popupBackground android:popupBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #PopupWindow_overlapAnchor me.ledge.link.sdk.ui:overlapAnchor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PopupWindow_overlapAnchor com.shift.link.sdk.ui:overlapAnchor}</code></td><td></td></tr>
            </table>
            @see #PopupWindow_android_popupAnimationStyle
            @see #PopupWindow_android_popupBackground
@@ -11668,7 +11683,7 @@ containing a value of this type.
         */
         public static int PopupWindow_android_popupBackground = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#overlapAnchor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#overlapAnchor}
           attribute's value can be found in the {@link #PopupWindow} array.
 
 
@@ -11678,7 +11693,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:overlapAnchor
+          @attr name com.shift.link.sdk.ui:overlapAnchor
         */
         public static int PopupWindow_overlapAnchor = 2;
         /** Attributes that can be used with a PopupWindowBackgroundState.
@@ -11687,7 +11702,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #PopupWindowBackgroundState_state_above_anchor me.ledge.link.sdk.ui:state_above_anchor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PopupWindowBackgroundState_state_above_anchor com.shift.link.sdk.ui:state_above_anchor}</code></td><td></td></tr>
            </table>
            @see #PopupWindowBackgroundState_state_above_anchor
          */
@@ -11695,7 +11710,7 @@ containing a value of this type.
             0x7f010171
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#state_above_anchor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#state_above_anchor}
           attribute's value can be found in the {@link #PopupWindowBackgroundState} array.
 
 
@@ -11705,7 +11720,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:state_above_anchor
+          @attr name com.shift.link.sdk.ui:state_above_anchor
         */
         public static int PopupWindowBackgroundState_state_above_anchor = 0;
         /** Attributes that can be used with a RecycleListView.
@@ -11714,8 +11729,8 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #RecycleListView_paddingBottomNoButtons me.ledge.link.sdk.ui:paddingBottomNoButtons}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecycleListView_paddingTopNoTitle me.ledge.link.sdk.ui:paddingTopNoTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecycleListView_paddingBottomNoButtons com.shift.link.sdk.ui:paddingBottomNoButtons}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecycleListView_paddingTopNoTitle com.shift.link.sdk.ui:paddingTopNoTitle}</code></td><td></td></tr>
            </table>
            @see #RecycleListView_paddingBottomNoButtons
            @see #RecycleListView_paddingTopNoTitle
@@ -11724,7 +11739,7 @@ containing a value of this type.
             0x7f010172, 0x7f010173
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#paddingBottomNoButtons}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#paddingBottomNoButtons}
           attribute's value can be found in the {@link #RecycleListView} array.
 
 
@@ -11736,11 +11751,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:paddingBottomNoButtons
+          @attr name com.shift.link.sdk.ui:paddingBottomNoButtons
         */
         public static int RecycleListView_paddingBottomNoButtons = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#paddingTopNoTitle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#paddingTopNoTitle}
           attribute's value can be found in the {@link #RecycleListView} array.
 
 
@@ -11752,7 +11767,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:paddingTopNoTitle
+          @attr name com.shift.link.sdk.ui:paddingTopNoTitle
         */
         public static int RecycleListView_paddingTopNoTitle = 1;
         /** Attributes that can be used with a RecyclerView.
@@ -11763,10 +11778,10 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #RecyclerView_android_descendantFocusability android:descendantFocusability}</code></td><td></td></tr>
            <tr><td><code>{@link #RecyclerView_android_orientation android:orientation}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_layoutManager me.ledge.link.sdk.ui:layoutManager}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_reverseLayout me.ledge.link.sdk.ui:reverseLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_spanCount me.ledge.link.sdk.ui:spanCount}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_stackFromEnd me.ledge.link.sdk.ui:stackFromEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_layoutManager com.shift.link.sdk.ui:layoutManager}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_reverseLayout com.shift.link.sdk.ui:reverseLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_spanCount com.shift.link.sdk.ui:spanCount}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_stackFromEnd com.shift.link.sdk.ui:stackFromEnd}</code></td><td></td></tr>
            </table>
            @see #RecyclerView_android_descendantFocusability
            @see #RecyclerView_android_orientation
@@ -11792,7 +11807,7 @@ containing a value of this type.
         */
         public static int RecyclerView_android_orientation = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#layoutManager}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layoutManager}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11802,11 +11817,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:layoutManager
+          @attr name com.shift.link.sdk.ui:layoutManager
         */
         public static int RecyclerView_layoutManager = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#reverseLayout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#reverseLayout}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11816,11 +11831,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:reverseLayout
+          @attr name com.shift.link.sdk.ui:reverseLayout
         */
         public static int RecyclerView_reverseLayout = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#spanCount}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#spanCount}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11830,11 +11845,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:spanCount
+          @attr name com.shift.link.sdk.ui:spanCount
         */
         public static int RecyclerView_spanCount = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#stackFromEnd}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#stackFromEnd}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11844,7 +11859,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:stackFromEnd
+          @attr name com.shift.link.sdk.ui:stackFromEnd
         */
         public static int RecyclerView_stackFromEnd = 5;
         /** Attributes that can be used with a ScrimInsetsFrameLayout.
@@ -11853,7 +11868,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ScrimInsetsFrameLayout_insetForeground me.ledge.link.sdk.ui:insetForeground}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrimInsetsFrameLayout_insetForeground com.shift.link.sdk.ui:insetForeground}</code></td><td></td></tr>
            </table>
            @see #ScrimInsetsFrameLayout_insetForeground
          */
@@ -11861,7 +11876,7 @@ containing a value of this type.
             0x7f010178
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#insetForeground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#insetForeground}
           attribute's value can be found in the {@link #ScrimInsetsFrameLayout} array.
 
 
@@ -11869,7 +11884,7 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:insetForeground
+          @attr name com.shift.link.sdk.ui:insetForeground
         */
         public static int ScrimInsetsFrameLayout_insetForeground = 0;
         /** Attributes that can be used with a ScrollBar.
@@ -11878,10 +11893,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ScrollBar_sb_handlerColor me.ledge.link.sdk.ui:sb_handlerColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #ScrollBar_sb_horizontal me.ledge.link.sdk.ui:sb_horizontal}</code></td><td></td></tr>
-           <tr><td><code>{@link #ScrollBar_sb_indicatorColor me.ledge.link.sdk.ui:sb_indicatorColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #ScrollBar_sb_indicatorTextColor me.ledge.link.sdk.ui:sb_indicatorTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollBar_sb_handlerColor com.shift.link.sdk.ui:sb_handlerColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollBar_sb_horizontal com.shift.link.sdk.ui:sb_horizontal}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollBar_sb_indicatorColor com.shift.link.sdk.ui:sb_indicatorColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollBar_sb_indicatorTextColor com.shift.link.sdk.ui:sb_indicatorTextColor}</code></td><td></td></tr>
            </table>
            @see #ScrollBar_sb_handlerColor
            @see #ScrollBar_sb_horizontal
@@ -11892,7 +11907,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010179, 0x7f01017a, 0x7f01017b, 0x7f01017c
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#sb_handlerColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#sb_handlerColor}
           attribute's value can be found in the {@link #ScrollBar} array.
 
 
@@ -11900,22 +11915,22 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:sb_handlerColor
+          @attr name com.shift.link.sdk.ui:sb_handlerColor
         */
         public static int ScrollBar_sb_handlerColor = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#sb_horizontal}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#sb_horizontal}
           attribute's value can be found in the {@link #ScrollBar} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
-          @attr name me.ledge.link.sdk.ui:sb_horizontal
+          @attr name com.shift.link.sdk.ui:sb_horizontal
         */
         public static int ScrollBar_sb_horizontal = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#sb_indicatorColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#sb_indicatorColor}
           attribute's value can be found in the {@link #ScrollBar} array.
 
 
@@ -11923,11 +11938,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:sb_indicatorColor
+          @attr name com.shift.link.sdk.ui:sb_indicatorColor
         */
         public static int ScrollBar_sb_indicatorColor = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#sb_indicatorTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#sb_indicatorTextColor}
           attribute's value can be found in the {@link #ScrollBar} array.
 
 
@@ -11935,7 +11950,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name me.ledge.link.sdk.ui:sb_indicatorTextColor
+          @attr name com.shift.link.sdk.ui:sb_indicatorTextColor
         */
         public static int ScrollBar_sb_indicatorTextColor = 2;
         /** Attributes that can be used with a ScrollingViewBehavior_Layout.
@@ -11944,7 +11959,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ScrollingViewBehavior_Layout_behavior_overlapTop me.ledge.link.sdk.ui:behavior_overlapTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollingViewBehavior_Layout_behavior_overlapTop com.shift.link.sdk.ui:behavior_overlapTop}</code></td><td></td></tr>
            </table>
            @see #ScrollingViewBehavior_Layout_behavior_overlapTop
          */
@@ -11952,7 +11967,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01017d
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#behavior_overlapTop}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#behavior_overlapTop}
           attribute's value can be found in the {@link #ScrollingViewBehavior_Layout} array.
 
 
@@ -11964,7 +11979,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:behavior_overlapTop
+          @attr name com.shift.link.sdk.ui:behavior_overlapTop
         */
         public static int ScrollingViewBehavior_Layout_behavior_overlapTop = 0;
         /** Attributes that can be used with a SearchView.
@@ -11977,19 +11992,19 @@ containing a value of this type.
            <tr><td><code>{@link #SearchView_android_imeOptions android:imeOptions}</code></td><td></td></tr>
            <tr><td><code>{@link #SearchView_android_inputType android:inputType}</code></td><td></td></tr>
            <tr><td><code>{@link #SearchView_android_maxWidth android:maxWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_closeIcon me.ledge.link.sdk.ui:closeIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_commitIcon me.ledge.link.sdk.ui:commitIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_defaultQueryHint me.ledge.link.sdk.ui:defaultQueryHint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_goIcon me.ledge.link.sdk.ui:goIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_iconifiedByDefault me.ledge.link.sdk.ui:iconifiedByDefault}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_layout me.ledge.link.sdk.ui:layout}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_queryBackground me.ledge.link.sdk.ui:queryBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_queryHint me.ledge.link.sdk.ui:queryHint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_searchHintIcon me.ledge.link.sdk.ui:searchHintIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_searchIcon me.ledge.link.sdk.ui:searchIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_submitBackground me.ledge.link.sdk.ui:submitBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_suggestionRowLayout me.ledge.link.sdk.ui:suggestionRowLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_voiceIcon me.ledge.link.sdk.ui:voiceIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_closeIcon com.shift.link.sdk.ui:closeIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_commitIcon com.shift.link.sdk.ui:commitIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_defaultQueryHint com.shift.link.sdk.ui:defaultQueryHint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_goIcon com.shift.link.sdk.ui:goIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_iconifiedByDefault com.shift.link.sdk.ui:iconifiedByDefault}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_layout com.shift.link.sdk.ui:layout}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_queryBackground com.shift.link.sdk.ui:queryBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_queryHint com.shift.link.sdk.ui:queryHint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_searchHintIcon com.shift.link.sdk.ui:searchHintIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_searchIcon com.shift.link.sdk.ui:searchIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_submitBackground com.shift.link.sdk.ui:submitBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_suggestionRowLayout com.shift.link.sdk.ui:suggestionRowLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_voiceIcon com.shift.link.sdk.ui:voiceIcon}</code></td><td></td></tr>
            </table>
            @see #SearchView_android_focusable
            @see #SearchView_android_imeOptions
@@ -12041,27 +12056,27 @@ containing a value of this type.
         */
         public static int SearchView_android_maxWidth = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#closeIcon}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#closeIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:closeIcon
+          @attr name com.shift.link.sdk.ui:closeIcon
         */
         public static int SearchView_closeIcon = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#commitIcon}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#commitIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:commitIcon
+          @attr name com.shift.link.sdk.ui:commitIcon
         */
         public static int SearchView_commitIcon = 13;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#defaultQueryHint}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#defaultQueryHint}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -12071,21 +12086,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:defaultQueryHint
+          @attr name com.shift.link.sdk.ui:defaultQueryHint
         */
         public static int SearchView_defaultQueryHint = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#goIcon}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#goIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:goIcon
+          @attr name com.shift.link.sdk.ui:goIcon
         */
         public static int SearchView_goIcon = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#iconifiedByDefault}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#iconifiedByDefault}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -12095,31 +12110,31 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:iconifiedByDefault
+          @attr name com.shift.link.sdk.ui:iconifiedByDefault
         */
         public static int SearchView_iconifiedByDefault = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#layout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:layout
+          @attr name com.shift.link.sdk.ui:layout
         */
         public static int SearchView_layout = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#queryBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#queryBackground}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:queryBackground
+          @attr name com.shift.link.sdk.ui:queryBackground
         */
         public static int SearchView_queryBackground = 15;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#queryHint}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#queryHint}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -12129,57 +12144,57 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:queryHint
+          @attr name com.shift.link.sdk.ui:queryHint
         */
         public static int SearchView_queryHint = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#searchHintIcon}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#searchHintIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:searchHintIcon
+          @attr name com.shift.link.sdk.ui:searchHintIcon
         */
         public static int SearchView_searchHintIcon = 11;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#searchIcon}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#searchIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:searchIcon
+          @attr name com.shift.link.sdk.ui:searchIcon
         */
         public static int SearchView_searchIcon = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#submitBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#submitBackground}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:submitBackground
+          @attr name com.shift.link.sdk.ui:submitBackground
         */
         public static int SearchView_submitBackground = 16;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#suggestionRowLayout}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#suggestionRowLayout}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:suggestionRowLayout
+          @attr name com.shift.link.sdk.ui:suggestionRowLayout
         */
         public static int SearchView_suggestionRowLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#voiceIcon}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#voiceIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:voiceIcon
+          @attr name com.shift.link.sdk.ui:voiceIcon
         */
         public static int SearchView_voiceIcon = 12;
         /** Attributes that can be used with a SignInButton.
@@ -12188,9 +12203,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #SignInButton_buttonSize me.ledge.link.sdk.ui:buttonSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #SignInButton_colorScheme me.ledge.link.sdk.ui:colorScheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #SignInButton_scopeUris me.ledge.link.sdk.ui:scopeUris}</code></td><td></td></tr>
+           <tr><td><code>{@link #SignInButton_buttonSize com.shift.link.sdk.ui:buttonSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #SignInButton_colorScheme com.shift.link.sdk.ui:colorScheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #SignInButton_scopeUris com.shift.link.sdk.ui:scopeUris}</code></td><td></td></tr>
            </table>
            @see #SignInButton_buttonSize
            @see #SignInButton_colorScheme
@@ -12200,7 +12215,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01018b, 0x7f01018c, 0x7f01018d
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#buttonSize}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonSize}
           attribute's value can be found in the {@link #SignInButton} array.
 
 
@@ -12216,11 +12231,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>wide</code></td><td>1</td><td></td></tr>
 <tr><td><code>icon_only</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:buttonSize
+          @attr name com.shift.link.sdk.ui:buttonSize
         */
         public static int SignInButton_buttonSize = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#colorScheme}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorScheme}
           attribute's value can be found in the {@link #SignInButton} array.
 
 
@@ -12236,18 +12251,18 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>light</code></td><td>1</td><td></td></tr>
 <tr><td><code>auto</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:colorScheme
+          @attr name com.shift.link.sdk.ui:colorScheme
         */
         public static int SignInButton_colorScheme = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#scopeUris}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#scopeUris}
           attribute's value can be found in the {@link #SignInButton} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-          @attr name me.ledge.link.sdk.ui:scopeUris
+          @attr name com.shift.link.sdk.ui:scopeUris
         */
         public static int SignInButton_scopeUris = 2;
         /** Attributes that can be used with a SnackbarLayout.
@@ -12257,8 +12272,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #SnackbarLayout_android_maxWidth android:maxWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #SnackbarLayout_elevation me.ledge.link.sdk.ui:elevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #SnackbarLayout_maxActionInlineWidth me.ledge.link.sdk.ui:maxActionInlineWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SnackbarLayout_elevation com.shift.link.sdk.ui:elevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #SnackbarLayout_maxActionInlineWidth com.shift.link.sdk.ui:maxActionInlineWidth}</code></td><td></td></tr>
            </table>
            @see #SnackbarLayout_android_maxWidth
            @see #SnackbarLayout_elevation
@@ -12274,7 +12289,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SnackbarLayout_android_maxWidth = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#elevation}
           attribute's value can be found in the {@link #SnackbarLayout} array.
 
 
@@ -12286,11 +12301,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:elevation
+          @attr name com.shift.link.sdk.ui:elevation
         */
         public static int SnackbarLayout_elevation = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#maxActionInlineWidth}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#maxActionInlineWidth}
           attribute's value can be found in the {@link #SnackbarLayout} array.
 
 
@@ -12302,7 +12317,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:maxActionInlineWidth
+          @attr name com.shift.link.sdk.ui:maxActionInlineWidth
         */
         public static int SnackbarLayout_maxActionInlineWidth = 2;
         /** Attributes that can be used with a Spinner.
@@ -12315,7 +12330,7 @@ containing a value of this type.
            <tr><td><code>{@link #Spinner_android_entries android:entries}</code></td><td></td></tr>
            <tr><td><code>{@link #Spinner_android_popupBackground android:popupBackground}</code></td><td></td></tr>
            <tr><td><code>{@link #Spinner_android_prompt android:prompt}</code></td><td></td></tr>
-           <tr><td><code>{@link #Spinner_popupTheme me.ledge.link.sdk.ui:popupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Spinner_popupTheme com.shift.link.sdk.ui:popupTheme}</code></td><td></td></tr>
            </table>
            @see #Spinner_android_dropDownWidth
            @see #Spinner_android_entries
@@ -12352,13 +12367,13 @@ containing a value of this type.
         */
         public static int Spinner_android_prompt = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#popupTheme}
           attribute's value can be found in the {@link #Spinner} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:popupTheme
+          @attr name com.shift.link.sdk.ui:popupTheme
         */
         public static int Spinner_popupTheme = 4;
         /** Attributes that can be used with a SwitchCompat.
@@ -12370,17 +12385,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><td><code>{@link #SwitchCompat_android_textOff android:textOff}</code></td><td></td></tr>
            <tr><td><code>{@link #SwitchCompat_android_textOn android:textOn}</code></td><td></td></tr>
            <tr><td><code>{@link #SwitchCompat_android_thumb android:thumb}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_showText me.ledge.link.sdk.ui:showText}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_splitTrack me.ledge.link.sdk.ui:splitTrack}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_switchMinWidth me.ledge.link.sdk.ui:switchMinWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_switchPadding me.ledge.link.sdk.ui:switchPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_switchTextAppearance me.ledge.link.sdk.ui:switchTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_thumbTextPadding me.ledge.link.sdk.ui:thumbTextPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_thumbTint me.ledge.link.sdk.ui:thumbTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_thumbTintMode me.ledge.link.sdk.ui:thumbTintMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_track me.ledge.link.sdk.ui:track}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_trackTint me.ledge.link.sdk.ui:trackTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_trackTintMode me.ledge.link.sdk.ui:trackTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_showText com.shift.link.sdk.ui:showText}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_splitTrack com.shift.link.sdk.ui:splitTrack}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_switchMinWidth com.shift.link.sdk.ui:switchMinWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_switchPadding com.shift.link.sdk.ui:switchPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_switchTextAppearance com.shift.link.sdk.ui:switchTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_thumbTextPadding com.shift.link.sdk.ui:thumbTextPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_thumbTint com.shift.link.sdk.ui:thumbTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_thumbTintMode com.shift.link.sdk.ui:thumbTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_track com.shift.link.sdk.ui:track}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_trackTint com.shift.link.sdk.ui:trackTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_trackTintMode com.shift.link.sdk.ui:trackTintMode}</code></td><td></td></tr>
            </table>
            @see #SwitchCompat_android_textOff
            @see #SwitchCompat_android_textOn
@@ -12422,7 +12437,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SwitchCompat_android_thumb = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#showText}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#showText}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12432,11 +12447,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:showText
+          @attr name com.shift.link.sdk.ui:showText
         */
         public static int SwitchCompat_showText = 13;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#splitTrack}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#splitTrack}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12446,11 +12461,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:splitTrack
+          @attr name com.shift.link.sdk.ui:splitTrack
         */
         public static int SwitchCompat_splitTrack = 12;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#switchMinWidth}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#switchMinWidth}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12462,11 +12477,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:switchMinWidth
+          @attr name com.shift.link.sdk.ui:switchMinWidth
         */
         public static int SwitchCompat_switchMinWidth = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#switchPadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#switchPadding}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12478,21 +12493,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:switchPadding
+          @attr name com.shift.link.sdk.ui:switchPadding
         */
         public static int SwitchCompat_switchPadding = 11;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#switchTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#switchTextAppearance}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:switchTextAppearance
+          @attr name com.shift.link.sdk.ui:switchTextAppearance
         */
         public static int SwitchCompat_switchTextAppearance = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#thumbTextPadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#thumbTextPadding}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12504,11 +12519,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:thumbTextPadding
+          @attr name com.shift.link.sdk.ui:thumbTextPadding
         */
         public static int SwitchCompat_thumbTextPadding = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#thumbTint}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#thumbTint}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12519,11 +12534,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:thumbTint
+          @attr name com.shift.link.sdk.ui:thumbTint
         */
         public static int SwitchCompat_thumbTint = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#thumbTintMode}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#thumbTintMode}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12540,21 +12555,21 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:thumbTintMode
+          @attr name com.shift.link.sdk.ui:thumbTintMode
         */
         public static int SwitchCompat_thumbTintMode = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#track}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#track}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:track
+          @attr name com.shift.link.sdk.ui:track
         */
         public static int SwitchCompat_track = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#trackTint}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#trackTint}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12565,11 +12580,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:trackTint
+          @attr name com.shift.link.sdk.ui:trackTint
         */
         public static int SwitchCompat_trackTint = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#trackTintMode}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#trackTintMode}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12586,7 +12601,7 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:trackTintMode
+          @attr name com.shift.link.sdk.ui:trackTintMode
         */
         public static int SwitchCompat_trackTintMode = 7;
         /** Attributes that can be used with a TabItem.
@@ -12630,22 +12645,22 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #TabLayout_tabBackground me.ledge.link.sdk.ui:tabBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabContentStart me.ledge.link.sdk.ui:tabContentStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabGravity me.ledge.link.sdk.ui:tabGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabIndicatorColor me.ledge.link.sdk.ui:tabIndicatorColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabIndicatorHeight me.ledge.link.sdk.ui:tabIndicatorHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabMaxWidth me.ledge.link.sdk.ui:tabMaxWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabMinWidth me.ledge.link.sdk.ui:tabMinWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabMode me.ledge.link.sdk.ui:tabMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabPadding me.ledge.link.sdk.ui:tabPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabPaddingBottom me.ledge.link.sdk.ui:tabPaddingBottom}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabPaddingEnd me.ledge.link.sdk.ui:tabPaddingEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabPaddingStart me.ledge.link.sdk.ui:tabPaddingStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabPaddingTop me.ledge.link.sdk.ui:tabPaddingTop}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabSelectedTextColor me.ledge.link.sdk.ui:tabSelectedTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabTextAppearance me.ledge.link.sdk.ui:tabTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabTextColor me.ledge.link.sdk.ui:tabTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabBackground com.shift.link.sdk.ui:tabBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabContentStart com.shift.link.sdk.ui:tabContentStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabGravity com.shift.link.sdk.ui:tabGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabIndicatorColor com.shift.link.sdk.ui:tabIndicatorColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabIndicatorHeight com.shift.link.sdk.ui:tabIndicatorHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabMaxWidth com.shift.link.sdk.ui:tabMaxWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabMinWidth com.shift.link.sdk.ui:tabMinWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabMode com.shift.link.sdk.ui:tabMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabPadding com.shift.link.sdk.ui:tabPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabPaddingBottom com.shift.link.sdk.ui:tabPaddingBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabPaddingEnd com.shift.link.sdk.ui:tabPaddingEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabPaddingStart com.shift.link.sdk.ui:tabPaddingStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabPaddingTop com.shift.link.sdk.ui:tabPaddingTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabSelectedTextColor com.shift.link.sdk.ui:tabSelectedTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabTextAppearance com.shift.link.sdk.ui:tabTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabTextColor com.shift.link.sdk.ui:tabTextColor}</code></td><td></td></tr>
            </table>
            @see #TabLayout_tabBackground
            @see #TabLayout_tabContentStart
@@ -12671,17 +12686,17 @@ containing a value of this type.
             0x7f0101a6, 0x7f0101a7, 0x7f0101a8, 0x7f0101a9
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabBackground}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabBackground}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:tabBackground
+          @attr name com.shift.link.sdk.ui:tabBackground
         */
         public static int TabLayout_tabBackground = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabContentStart}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabContentStart}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12693,11 +12708,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tabContentStart
+          @attr name com.shift.link.sdk.ui:tabContentStart
         */
         public static int TabLayout_tabContentStart = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabGravity}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabGravity}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12710,11 +12725,11 @@ containing a value of this type.
 <tr><td><code>fill</code></td><td>0</td><td></td></tr>
 <tr><td><code>center</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:tabGravity
+          @attr name com.shift.link.sdk.ui:tabGravity
         */
         public static int TabLayout_tabGravity = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabIndicatorColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabIndicatorColor}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12725,11 +12740,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tabIndicatorColor
+          @attr name com.shift.link.sdk.ui:tabIndicatorColor
         */
         public static int TabLayout_tabIndicatorColor = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabIndicatorHeight}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabIndicatorHeight}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12741,11 +12756,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tabIndicatorHeight
+          @attr name com.shift.link.sdk.ui:tabIndicatorHeight
         */
         public static int TabLayout_tabIndicatorHeight = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabMaxWidth}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabMaxWidth}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12757,11 +12772,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tabMaxWidth
+          @attr name com.shift.link.sdk.ui:tabMaxWidth
         */
         public static int TabLayout_tabMaxWidth = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabMinWidth}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabMinWidth}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12773,11 +12788,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tabMinWidth
+          @attr name com.shift.link.sdk.ui:tabMinWidth
         */
         public static int TabLayout_tabMinWidth = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabMode}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabMode}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12790,11 +12805,11 @@ containing a value of this type.
 <tr><td><code>scrollable</code></td><td>0</td><td></td></tr>
 <tr><td><code>fixed</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:tabMode
+          @attr name com.shift.link.sdk.ui:tabMode
         */
         public static int TabLayout_tabMode = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabPadding}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabPadding}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12806,11 +12821,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tabPadding
+          @attr name com.shift.link.sdk.ui:tabPadding
         */
         public static int TabLayout_tabPadding = 15;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabPaddingBottom}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabPaddingBottom}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12822,11 +12837,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tabPaddingBottom
+          @attr name com.shift.link.sdk.ui:tabPaddingBottom
         */
         public static int TabLayout_tabPaddingBottom = 14;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabPaddingEnd}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabPaddingEnd}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12838,11 +12853,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tabPaddingEnd
+          @attr name com.shift.link.sdk.ui:tabPaddingEnd
         */
         public static int TabLayout_tabPaddingEnd = 13;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabPaddingStart}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabPaddingStart}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12854,11 +12869,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tabPaddingStart
+          @attr name com.shift.link.sdk.ui:tabPaddingStart
         */
         public static int TabLayout_tabPaddingStart = 11;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabPaddingTop}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabPaddingTop}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12870,11 +12885,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tabPaddingTop
+          @attr name com.shift.link.sdk.ui:tabPaddingTop
         */
         public static int TabLayout_tabPaddingTop = 12;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabSelectedTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabSelectedTextColor}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12885,21 +12900,21 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tabSelectedTextColor
+          @attr name com.shift.link.sdk.ui:tabSelectedTextColor
         */
         public static int TabLayout_tabSelectedTextColor = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabTextAppearance}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:tabTextAppearance
+          @attr name com.shift.link.sdk.ui:tabTextAppearance
         */
         public static int TabLayout_tabTextAppearance = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#tabTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabTextColor}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12910,7 +12925,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:tabTextColor
+          @attr name com.shift.link.sdk.ui:tabTextColor
         */
         public static int TabLayout_tabTextColor = 9;
         /** Attributes that can be used with a TextAppearance.
@@ -12928,7 +12943,7 @@ containing a value of this type.
            <tr><td><code>{@link #TextAppearance_android_textSize android:textSize}</code></td><td></td></tr>
            <tr><td><code>{@link #TextAppearance_android_textStyle android:textStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #TextAppearance_android_typeface android:typeface}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextAppearance_textAllCaps me.ledge.link.sdk.ui:textAllCaps}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextAppearance_textAllCaps com.shift.link.sdk.ui:textAllCaps}</code></td><td></td></tr>
            </table>
            @see #TextAppearance_android_shadowColor
            @see #TextAppearance_android_shadowDx
@@ -13001,14 +13016,14 @@ containing a value of this type.
         */
         public static int TextAppearance_android_typeface = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#textAllCaps}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAllCaps}
           attribute's value can be found in the {@link #TextAppearance} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
-          @attr name me.ledge.link.sdk.ui:textAllCaps
+          @attr name com.shift.link.sdk.ui:textAllCaps
         */
         public static int TextAppearance_textAllCaps = 9;
         /** Attributes that can be used with a TextInputLayout.
@@ -13019,15 +13034,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #TextInputLayout_android_hint android:hint}</code></td><td></td></tr>
            <tr><td><code>{@link #TextInputLayout_android_textColorHint android:textColorHint}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_counterEnabled me.ledge.link.sdk.ui:counterEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_counterMaxLength me.ledge.link.sdk.ui:counterMaxLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_counterOverflowTextAppearance me.ledge.link.sdk.ui:counterOverflowTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_counterTextAppearance me.ledge.link.sdk.ui:counterTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_errorEnabled me.ledge.link.sdk.ui:errorEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_errorTextAppearance me.ledge.link.sdk.ui:errorTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_hintAnimationEnabled me.ledge.link.sdk.ui:hintAnimationEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_hintEnabled me.ledge.link.sdk.ui:hintEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_hintTextAppearance me.ledge.link.sdk.ui:hintTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_counterEnabled com.shift.link.sdk.ui:counterEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_counterMaxLength com.shift.link.sdk.ui:counterMaxLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_counterOverflowTextAppearance com.shift.link.sdk.ui:counterOverflowTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_counterTextAppearance com.shift.link.sdk.ui:counterTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_errorEnabled com.shift.link.sdk.ui:errorEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_errorTextAppearance com.shift.link.sdk.ui:errorTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_hintAnimationEnabled com.shift.link.sdk.ui:hintAnimationEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_hintEnabled com.shift.link.sdk.ui:hintEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_hintTextAppearance com.shift.link.sdk.ui:hintTextAppearance}</code></td><td></td></tr>
            </table>
            @see #TextInputLayout_android_hint
            @see #TextInputLayout_android_textColorHint
@@ -13059,7 +13074,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int TextInputLayout_android_textColorHint = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#counterEnabled}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#counterEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -13069,11 +13084,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:counterEnabled
+          @attr name com.shift.link.sdk.ui:counterEnabled
         */
         public static int TextInputLayout_counterEnabled = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#counterMaxLength}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#counterMaxLength}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -13083,31 +13098,31 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:counterMaxLength
+          @attr name com.shift.link.sdk.ui:counterMaxLength
         */
         public static int TextInputLayout_counterMaxLength = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#counterOverflowTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#counterOverflowTextAppearance}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:counterOverflowTextAppearance
+          @attr name com.shift.link.sdk.ui:counterOverflowTextAppearance
         */
         public static int TextInputLayout_counterOverflowTextAppearance = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#counterTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#counterTextAppearance}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:counterTextAppearance
+          @attr name com.shift.link.sdk.ui:counterTextAppearance
         */
         public static int TextInputLayout_counterTextAppearance = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#errorEnabled}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#errorEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -13117,21 +13132,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:errorEnabled
+          @attr name com.shift.link.sdk.ui:errorEnabled
         */
         public static int TextInputLayout_errorEnabled = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#errorTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#errorTextAppearance}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:errorTextAppearance
+          @attr name com.shift.link.sdk.ui:errorTextAppearance
         */
         public static int TextInputLayout_errorTextAppearance = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#hintAnimationEnabled}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#hintAnimationEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -13141,11 +13156,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:hintAnimationEnabled
+          @attr name com.shift.link.sdk.ui:hintAnimationEnabled
         */
         public static int TextInputLayout_hintAnimationEnabled = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#hintEnabled}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#hintEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -13155,17 +13170,17 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:hintEnabled
+          @attr name com.shift.link.sdk.ui:hintEnabled
         */
         public static int TextInputLayout_hintEnabled = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#hintTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#hintTextAppearance}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:hintTextAppearance
+          @attr name com.shift.link.sdk.ui:hintTextAppearance
         */
         public static int TextInputLayout_hintTextAppearance = 2;
         /** Attributes that can be used with a Theme.
@@ -13174,7 +13189,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #Theme_discreteSeekBarStyle me.ledge.link.sdk.ui:discreteSeekBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_discreteSeekBarStyle com.shift.link.sdk.ui:discreteSeekBarStyle}</code></td><td></td></tr>
            </table>
            @see #Theme_discreteSeekBarStyle
          */
@@ -13182,13 +13197,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f0101b3
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#discreteSeekBarStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#discreteSeekBarStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:discreteSeekBarStyle
+          @attr name com.shift.link.sdk.ui:discreteSeekBarStyle
         */
         public static int Theme_discreteSeekBarStyle = 0;
         /** Attributes that can be used with a Toolbar.
@@ -13199,33 +13214,33 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #Toolbar_android_gravity android:gravity}</code></td><td></td></tr>
            <tr><td><code>{@link #Toolbar_android_minHeight android:minHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_buttonGravity me.ledge.link.sdk.ui:buttonGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_collapseContentDescription me.ledge.link.sdk.ui:collapseContentDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_collapseIcon me.ledge.link.sdk.ui:collapseIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetEnd me.ledge.link.sdk.ui:contentInsetEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetEndWithActions me.ledge.link.sdk.ui:contentInsetEndWithActions}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetLeft me.ledge.link.sdk.ui:contentInsetLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetRight me.ledge.link.sdk.ui:contentInsetRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetStart me.ledge.link.sdk.ui:contentInsetStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetStartWithNavigation me.ledge.link.sdk.ui:contentInsetStartWithNavigation}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_logo me.ledge.link.sdk.ui:logo}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_logoDescription me.ledge.link.sdk.ui:logoDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_maxButtonHeight me.ledge.link.sdk.ui:maxButtonHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_navigationContentDescription me.ledge.link.sdk.ui:navigationContentDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_navigationIcon me.ledge.link.sdk.ui:navigationIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_popupTheme me.ledge.link.sdk.ui:popupTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_subtitle me.ledge.link.sdk.ui:subtitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_subtitleTextAppearance me.ledge.link.sdk.ui:subtitleTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_subtitleTextColor me.ledge.link.sdk.ui:subtitleTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_title me.ledge.link.sdk.ui:title}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMargin me.ledge.link.sdk.ui:titleMargin}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginBottom me.ledge.link.sdk.ui:titleMarginBottom}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginEnd me.ledge.link.sdk.ui:titleMarginEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginStart me.ledge.link.sdk.ui:titleMarginStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginTop me.ledge.link.sdk.ui:titleMarginTop}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMargins me.ledge.link.sdk.ui:titleMargins}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleTextAppearance me.ledge.link.sdk.ui:titleTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleTextColor me.ledge.link.sdk.ui:titleTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_buttonGravity com.shift.link.sdk.ui:buttonGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_collapseContentDescription com.shift.link.sdk.ui:collapseContentDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_collapseIcon com.shift.link.sdk.ui:collapseIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetEnd com.shift.link.sdk.ui:contentInsetEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetEndWithActions com.shift.link.sdk.ui:contentInsetEndWithActions}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetLeft com.shift.link.sdk.ui:contentInsetLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetRight com.shift.link.sdk.ui:contentInsetRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetStart com.shift.link.sdk.ui:contentInsetStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetStartWithNavigation com.shift.link.sdk.ui:contentInsetStartWithNavigation}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_logo com.shift.link.sdk.ui:logo}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_logoDescription com.shift.link.sdk.ui:logoDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_maxButtonHeight com.shift.link.sdk.ui:maxButtonHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_navigationContentDescription com.shift.link.sdk.ui:navigationContentDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_navigationIcon com.shift.link.sdk.ui:navigationIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_popupTheme com.shift.link.sdk.ui:popupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_subtitle com.shift.link.sdk.ui:subtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_subtitleTextAppearance com.shift.link.sdk.ui:subtitleTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_subtitleTextColor com.shift.link.sdk.ui:subtitleTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_title com.shift.link.sdk.ui:title}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMargin com.shift.link.sdk.ui:titleMargin}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginBottom com.shift.link.sdk.ui:titleMarginBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginEnd com.shift.link.sdk.ui:titleMarginEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginStart com.shift.link.sdk.ui:titleMarginStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginTop com.shift.link.sdk.ui:titleMarginTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMargins com.shift.link.sdk.ui:titleMargins}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleTextAppearance com.shift.link.sdk.ui:titleTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleTextColor com.shift.link.sdk.ui:titleTextColor}</code></td><td></td></tr>
            </table>
            @see #Toolbar_android_gravity
            @see #Toolbar_android_minHeight
@@ -13280,7 +13295,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int Toolbar_android_minHeight = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#buttonGravity}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonGravity}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13293,11 +13308,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>top</code></td><td>0x30</td><td></td></tr>
 <tr><td><code>bottom</code></td><td>0x50</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:buttonGravity
+          @attr name com.shift.link.sdk.ui:buttonGravity
         */
         public static int Toolbar_buttonGravity = 21;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#collapseContentDescription}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#collapseContentDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13307,21 +13322,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:collapseContentDescription
+          @attr name com.shift.link.sdk.ui:collapseContentDescription
         */
         public static int Toolbar_collapseContentDescription = 23;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#collapseIcon}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#collapseIcon}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:collapseIcon
+          @attr name com.shift.link.sdk.ui:collapseIcon
         */
         public static int Toolbar_collapseIcon = 22;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentInsetEnd}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetEnd}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13333,11 +13348,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentInsetEnd
+          @attr name com.shift.link.sdk.ui:contentInsetEnd
         */
         public static int Toolbar_contentInsetEnd = 6;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentInsetEndWithActions}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetEndWithActions}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13349,11 +13364,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentInsetEndWithActions
+          @attr name com.shift.link.sdk.ui:contentInsetEndWithActions
         */
         public static int Toolbar_contentInsetEndWithActions = 10;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentInsetLeft}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetLeft}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13365,11 +13380,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentInsetLeft
+          @attr name com.shift.link.sdk.ui:contentInsetLeft
         */
         public static int Toolbar_contentInsetLeft = 7;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentInsetRight}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetRight}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13381,11 +13396,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentInsetRight
+          @attr name com.shift.link.sdk.ui:contentInsetRight
         */
         public static int Toolbar_contentInsetRight = 8;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentInsetStart}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetStart}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13397,11 +13412,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentInsetStart
+          @attr name com.shift.link.sdk.ui:contentInsetStart
         */
         public static int Toolbar_contentInsetStart = 5;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#contentInsetStartWithNavigation}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetStartWithNavigation}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13413,21 +13428,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:contentInsetStartWithNavigation
+          @attr name com.shift.link.sdk.ui:contentInsetStartWithNavigation
         */
         public static int Toolbar_contentInsetStartWithNavigation = 9;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#logo}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#logo}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:logo
+          @attr name com.shift.link.sdk.ui:logo
         */
         public static int Toolbar_logo = 4;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#logoDescription}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#logoDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13437,11 +13452,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:logoDescription
+          @attr name com.shift.link.sdk.ui:logoDescription
         */
         public static int Toolbar_logoDescription = 26;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#maxButtonHeight}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#maxButtonHeight}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13453,11 +13468,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:maxButtonHeight
+          @attr name com.shift.link.sdk.ui:maxButtonHeight
         */
         public static int Toolbar_maxButtonHeight = 20;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#navigationContentDescription}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#navigationContentDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13467,31 +13482,31 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:navigationContentDescription
+          @attr name com.shift.link.sdk.ui:navigationContentDescription
         */
         public static int Toolbar_navigationContentDescription = 25;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#navigationIcon}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#navigationIcon}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:navigationIcon
+          @attr name com.shift.link.sdk.ui:navigationIcon
         */
         public static int Toolbar_navigationIcon = 24;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#popupTheme}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:popupTheme
+          @attr name com.shift.link.sdk.ui:popupTheme
         */
         public static int Toolbar_popupTheme = 11;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#subtitle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subtitle}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13501,21 +13516,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:subtitle
+          @attr name com.shift.link.sdk.ui:subtitle
         */
         public static int Toolbar_subtitle = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#subtitleTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subtitleTextAppearance}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:subtitleTextAppearance
+          @attr name com.shift.link.sdk.ui:subtitleTextAppearance
         */
         public static int Toolbar_subtitleTextAppearance = 13;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#subtitleTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subtitleTextColor}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13526,11 +13541,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:subtitleTextColor
+          @attr name com.shift.link.sdk.ui:subtitleTextColor
         */
         public static int Toolbar_subtitleTextColor = 28;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#title}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#title}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13540,11 +13555,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:title
+          @attr name com.shift.link.sdk.ui:title
         */
         public static int Toolbar_title = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#titleMargin}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleMargin}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13556,11 +13571,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:titleMargin
+          @attr name com.shift.link.sdk.ui:titleMargin
         */
         public static int Toolbar_titleMargin = 14;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#titleMarginBottom}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleMarginBottom}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13572,11 +13587,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:titleMarginBottom
+          @attr name com.shift.link.sdk.ui:titleMarginBottom
         */
         public static int Toolbar_titleMarginBottom = 18;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#titleMarginEnd}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleMarginEnd}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13588,11 +13603,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:titleMarginEnd
+          @attr name com.shift.link.sdk.ui:titleMarginEnd
         */
         public static int Toolbar_titleMarginEnd = 16;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#titleMarginStart}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleMarginStart}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13604,11 +13619,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:titleMarginStart
+          @attr name com.shift.link.sdk.ui:titleMarginStart
         */
         public static int Toolbar_titleMarginStart = 15;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#titleMarginTop}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleMarginTop}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13620,11 +13635,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:titleMarginTop
+          @attr name com.shift.link.sdk.ui:titleMarginTop
         */
         public static int Toolbar_titleMarginTop = 17;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#titleMargins}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleMargins}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13636,21 +13651,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:titleMargins
+          @attr name com.shift.link.sdk.ui:titleMargins
         */
         public static int Toolbar_titleMargins = 19;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#titleTextAppearance}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleTextAppearance}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:titleTextAppearance
+          @attr name com.shift.link.sdk.ui:titleTextAppearance
         */
         public static int Toolbar_titleTextAppearance = 12;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#titleTextColor}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleTextColor}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13661,7 +13676,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:titleTextColor
+          @attr name com.shift.link.sdk.ui:titleTextColor
         */
         public static int Toolbar_titleTextColor = 27;
         /** Attributes that can be used with a View.
@@ -13672,9 +13687,9 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #View_android_focusable android:focusable}</code></td><td></td></tr>
            <tr><td><code>{@link #View_android_theme android:theme}</code></td><td></td></tr>
-           <tr><td><code>{@link #View_paddingEnd me.ledge.link.sdk.ui:paddingEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #View_paddingStart me.ledge.link.sdk.ui:paddingStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #View_theme me.ledge.link.sdk.ui:theme}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_paddingEnd com.shift.link.sdk.ui:paddingEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_paddingStart com.shift.link.sdk.ui:paddingStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_theme com.shift.link.sdk.ui:theme}</code></td><td></td></tr>
            </table>
            @see #View_android_focusable
            @see #View_android_theme
@@ -13699,7 +13714,7 @@ containing a value of this type.
         */
         public static int View_android_theme = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#paddingEnd}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#paddingEnd}
           attribute's value can be found in the {@link #View} array.
 
 
@@ -13711,11 +13726,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:paddingEnd
+          @attr name com.shift.link.sdk.ui:paddingEnd
         */
         public static int View_paddingEnd = 3;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#paddingStart}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#paddingStart}
           attribute's value can be found in the {@link #View} array.
 
 
@@ -13727,17 +13742,17 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:paddingStart
+          @attr name com.shift.link.sdk.ui:paddingStart
         */
         public static int View_paddingStart = 2;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#theme}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#theme}
           attribute's value can be found in the {@link #View} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:theme
+          @attr name com.shift.link.sdk.ui:theme
         */
         public static int View_theme = 4;
         /** Attributes that can be used with a ViewBackgroundHelper.
@@ -13747,8 +13762,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #ViewBackgroundHelper_android_background android:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTint me.ledge.link.sdk.ui:backgroundTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTintMode me.ledge.link.sdk.ui:backgroundTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTint com.shift.link.sdk.ui:backgroundTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTintMode com.shift.link.sdk.ui:backgroundTintMode}</code></td><td></td></tr>
            </table>
            @see #ViewBackgroundHelper_android_background
            @see #ViewBackgroundHelper_backgroundTint
@@ -13764,7 +13779,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ViewBackgroundHelper_android_background = 0;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#backgroundTint}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundTint}
           attribute's value can be found in the {@link #ViewBackgroundHelper} array.
 
 
@@ -13775,11 +13790,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name me.ledge.link.sdk.ui:backgroundTint
+          @attr name com.shift.link.sdk.ui:backgroundTint
         */
         public static int ViewBackgroundHelper_backgroundTint = 1;
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#backgroundTintMode}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundTintMode}
           attribute's value can be found in the {@link #ViewBackgroundHelper} array.
 
 
@@ -13795,7 +13810,7 @@ containing a value of this type.
 <tr><td><code>multiply</code></td><td>14</td><td></td></tr>
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 </table>
-          @attr name me.ledge.link.sdk.ui:backgroundTintMode
+          @attr name com.shift.link.sdk.ui:backgroundTintMode
         */
         public static int ViewBackgroundHelper_backgroundTintMode = 2;
         /** Attributes that can be used with a ViewPagerIndicator.
@@ -13804,7 +13819,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ViewPagerIndicator_vpiCirclePageIndicatorStyle me.ledge.link.sdk.ui:vpiCirclePageIndicatorStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewPagerIndicator_vpiCirclePageIndicatorStyle com.shift.link.sdk.ui:vpiCirclePageIndicatorStyle}</code></td><td></td></tr>
            </table>
            @see #ViewPagerIndicator_vpiCirclePageIndicatorStyle
          */
@@ -13812,13 +13827,13 @@ containing a value of this type.
             0x7f0101ca
         };
         /**
-          <p>This symbol is the offset where the {@link me.ledge.link.sdk.ui.R.attr#vpiCirclePageIndicatorStyle}
+          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#vpiCirclePageIndicatorStyle}
           attribute's value can be found in the {@link #ViewPagerIndicator} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name me.ledge.link.sdk.ui:vpiCirclePageIndicatorStyle
+          @attr name com.shift.link.sdk.ui:vpiCirclePageIndicatorStyle
         */
         public static int ViewPagerIndicator_vpiCirclePageIndicatorStyle = 0;
         /** Attributes that can be used with a ViewStubCompat.
