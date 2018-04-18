@@ -22,6 +22,9 @@ public class ConfigStorage {
 
     private static ConfigStorage mInstance;
     private LinkConfigResponseVo mLinkConfig;
+    private String mCoinbaseClientId;
+    private String mCoinbaseClientSecret;
+
     public enum OffersListStyle {
         list, carousel
     }
@@ -300,5 +303,18 @@ public class ConfigStorage {
 
     private boolean isConfigCached() {
         return mLinkConfig != null;
+    }
+
+    public void setCoinbaseKeys(String coinbaseClientId, String coinbaseClientSecret) {
+        mCoinbaseClientId = coinbaseClientId;
+        mCoinbaseClientSecret = coinbaseClientSecret;
+    }
+
+    public String getCoinbaseClientId() {
+        return mCoinbaseClientId;
+    }
+
+    public String getCoinbaseClientSecret() {
+        return mCoinbaseClientSecret;
     }
 }

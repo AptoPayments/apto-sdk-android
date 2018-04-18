@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.coinbase.android.sdk.OAuth;
 import com.coinbase.api.entity.OAuthTokensResponse;
 import com.coinbase.api.exception.CoinbaseException;
+import com.shift.link.sdk.sdk.storages.ConfigStorage;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.presenters.custodianselector.CoinbaseDelegate;
 import com.shift.link.sdk.ui.workflow.Command;
@@ -34,8 +35,8 @@ public class CoinbaseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String REDIRECT_URI = getString(R.string.coinbase_redirect_uri);
-        CLIENT_ID = getString(R.string.coinbase_client_id);
-        CLIENT_SECRET = getString(R.string.coinbase_client_secret);
+        CLIENT_ID = ConfigStorage.getInstance().getCoinbaseClientId();
+        CLIENT_SECRET = ConfigStorage.getInstance().getCoinbaseClientSecret();
         if(ModuleManager.getInstance().getCurrentModule() instanceof CoinbaseDelegate) {
             mCurrentModule = (CoinbaseDelegate) ModuleManager.getInstance().getCurrentModule();
         }

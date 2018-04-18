@@ -308,9 +308,7 @@
     <string name="session_expired_error">User session has expired. Please sign in with your credentials.</string>
 
     <!-- Coinbase -->
-    <string name="coinbase_redirect_uri">ledge-sdk-demo://coinbase-oauth</string>
-    <string name="coinbase_client_id">892c3cb9743d2aa7f3037ebbaf88efb0d4bb21c2dec4067e517bf45aff1c0936</string>
-    <string name="coinbase_client_secret">04d5ad68ba3ab4b7d90f1b0f48b108dff0313a3af6748272099a0341b303544c</string>
+    <string name="coinbase_redirect_uri">shift-sdk-demo://coinbase-oauth</string>
 
     <!-- fingerprint dialog -->
     <string name="fingerprint_description">Use your fingerprint for fast, secure access to your card.\nConfirm fingerprint to continue.</string>

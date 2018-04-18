@@ -168,7 +168,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="ledge-sdk-demo" android:pathPrefix="coinbase-oauth" />
+                <data android:scheme="shift-sdk-demo" android:pathPrefix="coinbase-oauth" />
             </intent-filter>
         </activity>
 

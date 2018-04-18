@@ -13,6 +13,7 @@ import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shift.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shift.link.sdk.sdk.ShiftLinkSdk;
+import com.shift.link.sdk.sdk.storages.ConfigStorage;
 import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import com.shift.link.sdk.ui.images.GenericImageLoader;
@@ -155,6 +156,10 @@ public class ShiftPlatform extends ShiftLinkSdk {
         setImageLoader(new VolleyImageLoader(context));
         setHandlerConfiguration(configurator);
         trustSelfSigned = trustSelfSignedCertificates;
+    }
+
+    public static void setCoinbaseKeys(String coinbaseId, String coinbaseSecret) {
+        ConfigStorage.getInstance().setCoinbaseKeys(coinbaseId, coinbaseSecret);
     }
 
     public static void startLinkFlow(Activity activity) {
