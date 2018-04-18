@@ -40,12 +40,13 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     public void onStart() {
         super.onStart();
-        Branch branch = Branch.getInstance(getApplicationContext());
+        Branch.getInstance(this, getBranchKey());
+        Branch branch = Branch.getAutoInstance(getApplicationContext());
         branch.initSession((referringParams, error) -> {
             if (error == null && referringParams.has(KeysStorage.PREFS_ENVIRONMENT)
                     && referringParams.has(KeysStorage.PREFS_PROJECT_KEY)
                     && referringParams.has(KeysStorage.PREFS_TEAM_KEY)) {
-                boolean hasProjectChanged = false;
+                boolean hasProjectChanged;
                 try {
                     hasProjectChanged = KeysStorage.storeKeys(this, referringParams.getString(KeysStorage.PREFS_ENVIRONMENT),
                             referringParams.getString(KeysStorage.PREFS_PROJECT_KEY),
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             }
             ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),
                     getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
+            ShiftPlatform.setCoinbaseKeys(getCoinbaseClientId(), getCoinbaseClientSecret());
             CompletableFuture
                     .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
                     .thenAccept(this::configRetrieved)
@@ -143,5 +145,17 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
      */
     protected boolean getTrustSelfSignedCertificates() {
         return this.getResources().getBoolean(R.bool.trust_self_signed_certificates);
+    }
+
+    private String getBranchKey() {
+        return getString(R.string.shift_branch_key);
+    }
+
+    private String getCoinbaseClientId() {
+        return getString(R.string.shift_coinbase_client_id);
+    }
+
+    private String getCoinbaseClientSecret() {
+        return getString(R.string.shift_coinbase_client_secret);
     }
 }

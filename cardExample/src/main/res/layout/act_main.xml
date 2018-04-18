@@ -42,15 +42,15 @@
 
         <ImageView
             android:id="@+id/iv_logo"
-            android:layout_width="300dp"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:padding="64dp"
-            android:adjustViewBounds="true"
-            android:layout_margin="20dp"
-            android:scaleType="fitCenter"
             android:layout_above="@id/tv_project_summary"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:adjustViewBounds="true"
+            android:padding="64dp"
+            android:scaleType="center" />
 
         <ProgressBar
             android:id="@+id/pb_loading"

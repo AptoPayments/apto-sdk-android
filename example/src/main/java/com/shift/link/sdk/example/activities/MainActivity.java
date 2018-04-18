@@ -122,12 +122,13 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     public void onStart() {
         super.onStart();
-        Branch branch = Branch.getInstance(getApplicationContext());
+        Branch.getInstance(this, getBranchKey());
+        Branch branch = Branch.getAutoInstance(getApplicationContext());
         branch.initSession((referringParams, error) -> {
             if (error == null && referringParams.has(KeysStorage.PREF_ENVIRONMENT)
                     && referringParams.has(KeysStorage.PREF_PROJECT_KEY)
                     && referringParams.has(KeysStorage.PREF_TEAM_KEY)) {
-                boolean hasProjectChanged = false;
+                boolean hasProjectChanged;
                 try {
                     hasProjectChanged = KeysStorage.storeKeys(this, referringParams.getString(KeysStorage.PREF_ENVIRONMENT),
                             referringParams.getString(KeysStorage.PREF_PROJECT_KEY),
@@ -144,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             }
             ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),
                     getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
+            ShiftPlatform.setCoinbaseKeys(getCoinbaseClientId(), getCoinbaseClientSecret());
             CompletableFuture
                     .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
                     .thenAccept(this::configRetrieved)
@@ -180,5 +182,17 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     public void settingsClickedHandler() {
         startActivity(new Intent(this, SettingsActivity.class));
+    }
+
+    private String getBranchKey() {
+        return getString(R.string.shift_branch_key);
+    }
+
+    private String getCoinbaseClientId() {
+        return getString(R.string.shift_coinbase_client_id);
+    }
+
+    private String getCoinbaseClientSecret() {
+        return getString(R.string.shift_coinbase_client_secret);
     }
 }

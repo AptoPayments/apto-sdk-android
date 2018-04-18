@@ -23,9 +23,7 @@
             android:label="@string/app_name"
             tools:replace="label"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:name="io.branch.referral.BranchApp">
-
-        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_fctvserZdDqDxjjbCA0fnajgstdai1vp" />
+            android:name="com.shift.link.sdk.example.LinkApplication">
 
         <activity android:name="com.shift.link.sdk.example.activities.MainActivity"
             android:launchMode="singleTask"
