@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.shift.link.sdk.ui.views.financialaccountselector.AddFinancialAccountCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:cv="http://schemas.android.com/apk/res-auto"
+        style="@style/llsdk_add_documents_card"
+        cv:cardCornerRadius="4dp"
+        cv:cardElevation="2dp">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="96dp"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:background="?attr/llsdk_addDocuments_iconBackgroundUncheckedColor" />
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:layout_toRightOf="@+id/iv_icon"
+                android:layout_toEndOf="@+id/iv_icon">
+
+            <TextView
+                    android:id="@+id/tv_title"
+                    style="?attr/llsdk_addDocuments_cardTitleStyle" />
+
+            <TextView
+                    android:id="@+id/tv_description"
+                    style="?attr/llsdk_addDocuments_cardDescriptionStyle" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</com.shift.link.sdk.ui.views.financialaccountselector.AddFinancialAccountCardView>

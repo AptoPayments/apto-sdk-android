@@ -1,9 +1,8 @@
-<me.ledge.link.sdk.cardexample.views.MainView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.shift.link.sdk.cardexample.views.MainView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="me.ledge.link.sdk.cardexample.activities.MainActivity">
+    tools:context="com.shift.link.sdk.cardexample.activities.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -61,4 +60,4 @@
             android:layout_centerVertical="true" />
     </RelativeLayout>
 
-</me.ledge.link.sdk.cardexample.views.MainView>
+</com.shift.link.sdk.cardexample.views.MainView>

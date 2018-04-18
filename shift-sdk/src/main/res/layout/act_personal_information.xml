@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.shift.link.sdk.ui.views.userdata.PersonalInformationView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include layout="@layout/include_llsdk_toolbar" />
+
+    <!-- Dummy to get focus on start. -->
+    <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/abl_toolbar_wrapper"
+            android:layout_above="@+id/tv_next_bttn">
+
+        <LinearLayout
+                style="?attr/llsdk_dataContainerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_first_name"
+                    style="?attr/llsdk_idVerification_inputWrapperStyle"
+                    android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat"
+                    android:nextFocusUp="@id/til_first_name"
+                    android:nextFocusLeft="@id/til_first_name">
+
+                <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_first_name"
+                        style="?attr/llsdk_idVerification_editTextStyle"
+                        android:inputType="textCapWords"
+                        android:singleLine="true"
+                        android:hint="@string/personal_info_first_name_hint" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_last_name"
+                    style="?attr/llsdk_idVerification_inputWrapperStyle"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat"
+                    android:theme="?attr/llsdk_idVerification_inputWrapperTheme">
+
+                <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_last_name"
+                        style="?attr/llsdk_idVerification_editTextStyle"
+                        android:inputType="textCapWords"
+                        android:singleLine="true"
+                        android:hint="@string/personal_info_last_name_hint" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_email"
+                    style="?attr/llsdk_idVerification_inputWrapperStyle"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat"
+                    android:theme="?attr/llsdk_idVerification_inputWrapperTheme">
+
+                <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_email"
+                        style="?attr/llsdk_idVerification_editTextStyle"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone"
+                        android:hint="@string/personal_info_email_hint" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_email_not_available_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <CheckBox
+                    android:id="@+id/cb_email_not_available"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_email_not_available"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/personal_info_email_not_available" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/include_progress_bar" />
+
+</com.shift.link.sdk.ui.views.userdata.PersonalInformationView>
