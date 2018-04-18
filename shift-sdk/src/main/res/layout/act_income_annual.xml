@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.shift.link.sdk.ui.views.userdata.AnnualIncomeView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/include_llsdk_toolbar" />
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/abl_toolbar_wrapper"
+            android:layout_above="@+id/dsw_stepper">
+
+        <LinearLayout
+                style="?attr/llsdk_dataContainerStyle"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/tv_income"
+                    style="?attr/llsdk_userData_sliderHeaderStyle" />
+
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                    android:id="@+id/dsb_income"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="96dp" />
+
+            <TextView
+                    android:id="@+id/tv_income_type_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Design.Hint"
+                    android:textColor="?android:textColorHint"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/annual_income_income_type_header" />
+
+            <Spinner
+                    android:id="@+id/sp_income_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp" />
+
+            <TextView
+                    android:id="@+id/tv_income_type_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/llsdk_error_text"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/annual_income_income_type_error" />
+
+            <TextView
+                    android:id="@+id/tv_salary_frequency_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Design.Hint"
+                    android:textColor="?android:textColorHint"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/annual_income_salary_frequency_header" />
+
+            <Spinner
+                    android:id="@+id/sp_salary_frequency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp" />
+
+            <TextView
+                    android:id="@+id/tv_salary_frequency_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/llsdk_error_text"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/annual_income_salary_frequency_error" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/include_progress_bar" />
+    <include layout="@layout/include_rl_loading" />
+
+</com.shift.link.sdk.ui.views.userdata.AnnualIncomeView>

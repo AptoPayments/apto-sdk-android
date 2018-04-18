@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.shift.link.sdk.ui.views.userdata.CreditScoreView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/include_llsdk_toolbar" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/llsdk_user_data_entry_container"
+            android:orientation="vertical">
+
+        <RadioGroup
+                android:id="@+id/rg_credit_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+        </RadioGroup>
+
+        <TextView
+                android:id="@+id/tv_credit_score_error"
+                style="@style/llsdk_error_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/credit_score_error" />
+
+    </LinearLayout>
+
+    <include layout="@layout/include_progress_bar" />
+
+</com.shift.link.sdk.ui.views.userdata.CreditScoreView>

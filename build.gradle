@@ -1,0 +1,40 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.13"
+}
+
+ext {
+    androidCompileSdkVersion = 24
+    androidBuildToolsVersion = '23.0.0'
+    androidMinSdkVersion = 15
+    androidTargetSdkVersion = 24
+
+    androidVersionCode = '1'
+    androidVersionName = '0.1'
+
+    mavenGroup = 'com.shift.android'
+}
+
+subprojects {
+    group = mavenGroup
+    repositories {
+        maven { url 'https://jitpack.io' }
+        maven { url "https://maven.google.com" }
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        // Android Gradle plugin.
+        classpath 'com.android.tools.build:gradle:1.5.0'
+        // Android Maven plugin.
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+        // Java 8 lambda expressions support
+        classpath 'me.tatarka:gradle-retrolambda:3.5.0'
+        // Bintray plugin
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
+    }
+}

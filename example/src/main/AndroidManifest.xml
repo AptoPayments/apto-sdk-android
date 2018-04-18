@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.shift.link.sdk.example"
+        android:versionCode="1"
+        android:versionName="1.0">
+
+    <uses-sdk
+            android:minSdkVersion="15"
+            android:targetSdkVersion="24"
+            tools:overrideLibrary="br.tiagohm.markdownview, com.shift.link.sdk.sdk"/>
+
+    <uses-feature android:name="android.hardware.fingerprint"
+        android:required="false"/>
+    <uses-permission
+        android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+            android:label="@string/app_name"
+            tools:replace="label"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:name="com.shift.link.sdk.example.LinkApplication">
+
+        <activity android:name="com.shift.link.sdk.example.activities.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="ledgesdkdemolocal" android:host="open" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.shift.link.sdk.example.activities.SettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.shift.link.sdk.example.activities.MainActivity" />
+        </activity>
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.showgenericmessage.ShowGenericMessageActivity"
+            android:theme="@style/Theme.LedgeLine.Example">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.shift.link.sdk.example.activities.MainActivity" />
+        </activity>
+
+        <activity
+                android:name="com.shift.link.sdk.ui.activities.link.LoanAmountActivity"
+                android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.userdata.PhoneActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.userdata.EmailActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.verification.BirthdateVerificationActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+                android:name="com.shift.link.sdk.ui.activities.userdata.PersonalInformationActivity"
+                android:windowSoftInputMode="adjustResize"
+                android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.userdata.HomeActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+                android:name="com.shift.link.sdk.ui.activities.userdata.AddressActivity"
+                android:windowSoftInputMode="adjustResize"
+                android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.userdata.TimeAtAddressActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+                android:name="com.shift.link.sdk.ui.activities.userdata.AnnualIncomeActivity"
+                android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+                android:name="com.shift.link.sdk.ui.activities.userdata.MonthlyIncomeActivity"
+                android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+                android:name="com.shift.link.sdk.ui.activities.userdata.IdentityVerificationActivity"
+                android:windowSoftInputMode="adjustResize"
+                android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+                android:name="com.shift.link.sdk.ui.activities.userdata.CreditScoreActivity"
+                android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.userdata.PaydayLoanActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.userdata.ArmedForcesActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+                android:name="com.shift.link.sdk.ui.activities.offers.OffersListActivity"
+                android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+                android:name="com.shift.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity"
+                android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+                android:name="com.shift.link.sdk.ui.activities.loanapplication.LoanAgreementActivity"
+                android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+                android:name="com.shift.link.sdk.ui.activities.loanapplication.AddDocumentsListActivity"
+                android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.verification.PhoneVerificationActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.verification.EmailVerificationActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.loanapplication.SelectLoanApplicationListActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.financialaccountselector.AddCardActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity android:name="io.card.payment.CardIOActivity" android:configChanges="keyboardHidden|orientation" />
+
+        <activity android:name="io.card.payment.DataEntryActivity" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.financialaccountselector.IntermediateFinancialAccountListActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.DisclaimerActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.ActionNotSupportedActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.custodianselector.AddCustodianListActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.custodianselector.CoinbaseActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="adjustResize"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="ledge-sdk-demo" android:pathPrefix="coinbase-oauth" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.shift.link.sdk.ui.activities.card.IssueVirtualCardActivity"
+            android:theme="@style/Theme.LedgeLine.Example"
+            android:noHistory="true" />
+
+        <activity
+            android:name="com.shift.link.sdk.ui.activities.card.ManageCardActivity"
+            android:theme="@style/Theme.LedgeLine.Example"
+            android:windowSoftInputMode="stateHidden"
+            android:parentActivityName="com.shift.link.sdk.example.activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.shift.link.sdk.example.activities.MainActivity" />
+        </activity>
+    </application>
+</manifest>

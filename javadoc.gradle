@@ -1,0 +1,22 @@
+android.libraryVariants.all { variant ->
+    task("generate${variant.name.capitalize()}Javadoc", 
+            type: Javadoc,
+            group: 'Documentation',
+            dependsOn: "assemble${variant.name.capitalize()}") {
+
+        def projectName = project.name.toUpperCase()
+        description = "Generates Ledge Link ${projectName} Java Documentation for ${variant.name.capitalize()}."
+        title = "Ledge Link ${projectName} Java documentation"
+        source = variant.javaCompile.source
+
+        classpath += files(variant.javaCompile.classpath.files, project.android.getBootClasspath())
+
+        destinationDir = reporting.file("${project.name}-javadocs")
+        options {
+            links "http://docs.oracle.com/javase/7/docs/api/"
+            linksOffline "http://d.android.com/reference","${android.sdkDirectory}/docs/reference"
+        }
+        exclude '**/BuildConfig.java'
+        exclude '**/R.java'
+    }
+}

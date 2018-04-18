@@ -1,0 +1,63 @@
+<com.shift.link.sdk.cardexample.views.MainView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.shift.link.sdk.cardexample.activities.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_white"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:id="@+id/ll_buttons"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="32dp">
+
+            <Button
+                android:id="@+id/bttn_main_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="16dp"
+                android:visibility="invisible"
+                android:textColor="@android:color/white"
+                android:text="@string/main_button" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_project_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ll_buttons"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="20dp"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tv_project_summary"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:adjustViewBounds="true"
+            android:padding="64dp"
+            android:scaleType="center" />
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+</com.shift.link.sdk.cardexample.views.MainView>
