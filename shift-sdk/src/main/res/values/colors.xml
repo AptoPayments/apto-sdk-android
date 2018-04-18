@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic -->
+    <color name="llsdk_link_color">#00f</color>
+    <color name="llsdk_hairline_color">#aaa</color>
+    <color name="llsdk_error_text_color">#FFDD2C00</color>
+
+    <color name="llsdk_application_approved_color">#58c246</color>
+    <color name="llsdk_application_pending_borrower_action_color">#ffd52b</color>
+    <color name="llsdk_application_pending_lender_action_color">#999</color>
+
+    <!-- Dark -->
+    <color name="llsdk_dark_text_color">#fff</color>
+    <color name="llsdk_dark_text_color_hint">#777</color>
+
+    <!-- Light -->
+    <color name="llsdk_light_text_color">#000</color>
+    <color name="llsdk_light_control_activated">#333</color>
+    <color name="llsdk_light_docs_icon_unchecked">#aaa</color>
+
+    <!-- Blue -->
+    <color name="llsdk_blue_primary">#1b9af7</color>
+    <color name="llsdk_blue_primary_dark">#0880d7</color>
+    <color name="llsdk_blue_dsb_ripple">#4fb5ff</color>
+    <color name="llsdk_blue_loan_offers_card_background">#fff</color>
+    <color name="llsdk_blue_lender_image_background">#e0e0e0</color>
+    <color name="llsdk_blue_add_docs_icon_background_checked">#deeefc</color>
+    <color name="llsdk_blue_loan_agreement_button">#54c242</color>
+
+    <!-- Stepper -->
+    <color name="llsdk_stepper_background">#e3e3e3</color>
+    <color name="llsdk_stepper_text">#6b6b6b</color>
+
+    <!-- Card -->
+    <color name="llsdk_card_disabled">#F5F5F5</color>
+
+    <color name="colorPrimary">#9ADE83</color>
+    <color name="colorPrimaryDark">#67AB50</color>
+    <color name="colorAccent">#F2F2F2</color>
+</resources>

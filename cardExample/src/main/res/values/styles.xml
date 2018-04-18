@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="llsdk_big_button_style_example" parent="llsdk_big_button_style_light">
+        <item name="android:background">@color/secondary</item>
+    </style>
+
+    <style name="user_details_next_button_example" parent="llsdk_id_verification_next_button_light">
+        <item name="android:background">@color/secondary</item>
+    </style>
+
+    <style name="llsdk_plain_text_link_example" parent="llsdk_plain_text_link">
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="llsdk_terms_disclaimer_example" parent="llsdk_terms_disclaimer">
+        <item name="android:textColorLink">@color/primaryDark</item>
+    </style>
+
+    <style name="llsdk_id_verification_disclaimer_example" parent="llsdk_id_verification_disclaimer">
+        <item name="android:textColorLink">@color/primaryDark</item>
+    </style>
+
+    <style name="llsdk_value_slider_header_example" parent="llsdk_value_slider_header">
+        <item name="android:textColor">@color/primaryDark</item>
+    </style>
+
+    <style name="llsdk_discrete_seek_bar_example">
+        <item name="dsb_progressColor">@color/primaryDark</item>
+        <item name="dsb_indicatorColor">@color/primary</item>
+        <item name="dsb_rippleColor">@color/primaryDark</item>
+    </style>
+
+    <style name="llsdk_loan_offer_summary_apply_button_example" parent="llsdk_loan_offer_summary_apply_button">
+        <item name="android:textColor">@color/primary</item>
+    </style>
+</resources>

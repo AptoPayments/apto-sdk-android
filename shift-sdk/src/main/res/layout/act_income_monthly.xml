@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.shift.link.sdk.ui.views.userdata.MonthlyIncomeView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/include_llsdk_toolbar" />
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/abl_toolbar_wrapper"
+            android:layout_above="@+id/dsw_stepper">
+
+        <LinearLayout
+                style="?attr/llsdk_dataContainerStyle"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/tv_income"
+                    style="?attr/llsdk_userData_sliderHeaderStyle" />
+
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                    android:id="@+id/dsb_income"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="96dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/include_progress_bar" />
+
+</com.shift.link.sdk.ui.views.userdata.MonthlyIncomeView>

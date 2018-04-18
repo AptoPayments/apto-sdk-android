@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic -->
+    <string name="user_data_menu_info">Info &amp; terms</string>
+
+    <!-- Stepper -->
+    <string name="stepper_back_button_label">BACK</string>
+    <string name="stepper_next_button_label">NEXT</string>
+
+    <!-- Terms / Conditions -->
+    <string name="terms_label">Find a loan</string>
+    <string name="terms_tag_line">Find the perfect loan,\nfrom your phone.</string>
+    <string name="terms_button_next">FIND A LOAN</string>
+
+    <!-- Loan Amount -->
+    <string name="loan_amount_label">How much do you need?</string>
+    <string name="loan_amount_format">$%,d</string>
+    <string name="loan_amount_purpose_header">Loan purpose</string>
+    <string name="loan_amount_purpose_hint">Select a loan purpose&#8230;</string>
+    <string name="loan_amount_purpose_error">Please select a valid loan purpose.</string>
+    <string name="loan_amount_menu_update_profile">Update profile</string>
+    <string name="loan_amount_button_next">NEXT</string>
+
+    <!-- Personal Information -->
+    <string name="personal_info_label">Nice to meet you :)</string>
+    <string name="personal_info_first_name_hint">First name</string>
+    <string name="personal_info_first_name_error">Please enter your first name.</string>
+    <string name="personal_info_last_name_hint">Last name</string>
+    <string name="personal_info_last_name_error">Please enter your last name.</string>
+    <string name="personal_info_email_hint">Email</string>
+    <string name="personal_info_email_error">Please enter a valid email address.</string>
+    <string name="personal_info_email_not_available">I don\'t have an email</string>
+
+    <!-- Phone -->
+    <string name="phone_title">Get started</string>
+    <string name="phone_hint">Mobile number</string>
+    <string name="phone_label">We\'ll send a one-time SMS to verify your phone number. Carrier SMS fees may apply.</string>
+    <string name="phone_error">Invalid phone number</string>
+
+    <!-- Email -->
+    <string name="email_title">Email address</string>
+    <string name="email_error">Invalid email</string>
+    <string name="email_label">Email address</string>
+    <string name="email_hint">Email</string>
+
+
+    <!-- Birthdate -->
+    <string name="birthdate_title">Security Check</string>
+    <string name="birthdate_hint">Birthdate (MM-DD-YYYY)</string>
+    <string name="birthdate_label">Enter your birthdate below to verify your account.</string>
+    <string name="birthdate_error">You must be 18 years or older.</string>
+    <string name="birthdate_verification_error">Error: the birthdate is incorrect!</string>
+
+    <!-- Phone Verification -->
+    <string name="phone_verification_label">Phone verification</string>
+    <string name="phone_verification_code_hint">Enter your verification code</string>
+    <string name="phone_verification_info">We just sent a verification code to the number shown above.</string>
+    <string name="phone_verification_button_submit">SUBMIT</string>
+    <string name="phone_verification_button_resend">Re-send Code</string>
+    <string name="phone_verification_resent">A new code has been sent to your phone</string>
+    <string name="phone_verification_error">Error: the pin is incorrect!</string>
+
+    <!-- Email Verification -->
+    <string name="email_verification_label">Email verification</string>
+    <string name="email_verification_code_hint">Click on the link to verify your account.</string>
+    <string name="email_verification_info">We just sent a verification link to the email associated with this account.</string>
+    <string name="email_verification_button_submit">I Clicked on the Link</string>
+    <string name="email_verification_button_resend">Re-send Link</string>
+    <string name="email_verification_resent">A new link has been sent to your email</string>
+    <string name="email_verification_error">Error: the email has not been verified!</string>
+
+    <!-- Address -->
+    <string name="address_label">What\'s your address?</string>
+    <string name="address_address_hint">Address</string>
+    <string name="address_address_error">Please enter a valid address.</string>
+    <string name="address_apartment_number_hint">Unit/Apt #</string>
+    <string name="address_city_hint">City</string>
+    <string name="address_city_error">Please enter a valid city.</string>
+    <string name="address_state_hint">State</string>
+    <string name="address_state_error">Please select a state.</string>
+    <string name="address_zip_code_hint">ZIP</string>
+    <string name="address_zip_code_error">Please enter a valid ZIP, i.e. \'12345\' or \'12345&#8211;6789\'.</string>
+    <string name="address_housing_type_header">Residence</string>
+    <string name="address_housing_type_hint">Select a housing type&#8230;</string>
+    <string name="address_housing_type_error">Please select a valid housing type.</string>
+    <string name="google_maps_api_key">AIzaSyBQuKFxmTO8gmxBwnXZlgG3TJY50KpbS-0</string>
+    <string name="google_maps_api_url">https://maps.googleapis.com/maps/api/geocode/json</string>
+
+    <!-- Time at Address -->
+    <string name="time_at_address_label">Address</string>
+    <string name="time_at_address_hint">How long have you been at this address?</string>
+    <string name="time_at_address_error">Please select a time range.</string>
+
+    <!-- Annual Income -->
+    <string name="annual_income_label">What\'s your annual pretax income?</string>
+    <string name="annual_income_income_type_header">Income type</string>
+    <string name="annual_income_income_type_hint">Select an income type&#8230;</string>
+    <string name="annual_income_income_type_error">Please select a valid income type.</string>
+    <string name="annual_income_salary_frequency_header">Salary frequency</string>
+    <string name="annual_income_salary_frequency_hint">Select a salary frequency&#8230;</string>
+    <string name="annual_income_salary_frequency_error">Please select a valid salary frequency.</string>
+    <string name="annual_income_format" formatted="false">$%,d</string>
+
+    <!-- Monthly Income -->
+    <string name="monthly_income_label">What\'s your monthly net income?</string>
+    <string name="monthly_income_format" formatted="false">$%,d</string>
+
+    <!-- Credit Score -->
+    <string name="credit_score_label">What\'s your credit score?</string>
+    <string name="credit_score_error">Please select a credit score.</string>
+
+    <!-- Payday Loan -->
+    <string name="payday_loan_label">Additional Info</string>
+    <string name="payday_loan_yes">Yes</string>
+    <string name="payday_loan_no">No</string>
+    <string name="payday_loan_hint">Have you used a payday loan in the past six months?</string>
+    <string name="payday_loan_error">Please choose an answer.</string>
+
+    <!-- Armed Forces -->
+    <string name="armed_forces_label">Additional Info</string>
+    <string name="armed_forces_yes">Yes</string>
+    <string name="armed_forces_no">No</string>
+    <string name="armed_forces_hint">Are you, your spouse, or your head of household an active member of the armed forces?</string>
+    <string name="armed_forces_error">Please choose an answer.</string>
+
+    <!-- ID Verification -->
+    <string name="id_verification_title_get_offers">Ready for your offers?</string>
+    <string name="id_verification_next_button_get_offers">GET OFFERS</string>
+    <string name="id_verification_title_issue_card">Ready for your card?</string>
+    <string name="id_verification_next_button_issue_card">ISSUE CARD</string>
+    <string name="id_verification_update_profile_title">Update Profile</string>
+    <string name="id_verification_update_profile_button">UPDATE PROFILE</string>
+    <string name="id_verification_birthday_hint">Birthday</string>
+    <string name="id_verification_birthday_error">You must be 18 years or older.</string>
+    <string name="id_verification_social_security_hint">Social security #</string>
+    <string name="id_verification_social_security_error">Please enter all 9 digits.</string>
+    <string name="id_verification_disclaimer">Your information is private and secure.</string>
+    <string name="id_verification_toast_api_error" formatted="false">Error: %s</string>
+    <string name="id_verification_ssn_itin_not_available">I don\'t have an SSN/ITIN</string>
+    <string name="id_verification_disclosures_label">Disclosures:</string>
+
+    <!-- Offers List -->
+    <string name="offers_list_label">Loan offers</string>
+    <string name="offers_list_empty_text">No offers found.</string>
+    <string name="offers_list_empty_button">Update loan request</string>
+    <string name="offers_list_menu_update_profile">Update profile</string>
+    <string name="offers_list_menu_refresh">Refresh offers</string>
+    <string name="offers_list_summary_interest_rate" formatted="false">Interest rate: %.2f%%</string>
+    <string name="offers_list_summary_loan_amount" formatted="false">Amount financed: $%d</string>
+    <string name="offers_list_summary_monthly_payment" formatted="false">Monthly payment: $%.2f</string>
+    <string name="offers_list_summary_button_apply">APPLY NOW</string>
+    <string name="offers_list_summary_button_more_info">MORE INFO</string>
+    <string name="offers_list_dialog_redirect_title">Re-direct</string>
+    <string name="offers_list_dialog_redirect_message" formatted="false">You will be re-directed to the %s website to complete your application.</string>
+    <string name="offers_list_dialog_disclaimer_title">Disclaimer</string>
+    <string name="offers_list_terms_url">https://ledge.me/terms</string>
+
+    <!-- Loan application -->
+    <string name="loan_application_label">My loan</string>
+    <string name="loan_application_explanation_error">Something went wrong.</string>
+    <string name="loan_application_button_retry">RETRY</string>
+    <string name="loan_application_button_offers">Get offers</string>
+    <string name="loan_application_button_info">More info</string>
+    <string name="loan_application_button_documents_pending">ADD DOCUMENTS</string>
+    <string name="loan_application_button_pre_approved_loan">CONFIRM LOAN</string>
+    <string name="loan_application_button_finish_external">ADD INFO</string>
+
+    <!-- Loan application summary -->
+    <string name="loan_application_summary_loan_purpose">Loan Purpose</string>
+    <string name="loan_application_summary_first_name">First Name</string>
+    <string name="loan_application_summary_last_name">Last Name</string>
+    <string name="loan_application_summary_email">Email</string>
+    <string name="loan_application_summary_phone">Phone</string>
+    <string name="loan_application_summary_address">Address</string>
+    <string name="loan_application_summary_apt_unit">Apt/Unit</string>
+    <string name="loan_application_summary_city">City</string>
+    <string name="loan_application_summary_state">State</string>
+    <string name="loan_application_summary_zip_code">ZIP Code</string>
+    <string name="loan_application_summary_housing_status">Housing Status</string>
+    <string name="loan_application_summary_annual_pretax_income">Annual Pretax Income</string>
+    <string name="loan_application_summary_income_type">Income Type</string>
+    <string name="loan_application_summary_salary_frequency">Salary Frequency</string>
+    <string name="loan_application_summary_monthly_net_income">Monthly Net Income</string>
+    <string name="loan_application_summary_credit_score">Credit Score</string>
+    <string name="loan_application_summary_birthday">Birthday</string>
+    <string name="loan_application_summary_ssn">SSN</string>
+    <string name="loan_application_summary_time_at_address">Time at Address</string>
+    <string name="loan_application_summary_payday_loan">Payday Loan</string>
+    <string name="loan_application_summary_armed_forces">Member of Armed Forces</string>
+
+    <!-- Loan agreement -->
+    <string name="loan_agreement_label">Confirm loan</string>
+    <string name="loan_agreement_terms_header">LOAN TERMS</string>
+    <string name="loan_agreement_terms_interest">Interest rate (APR)</string>
+    <string name="loan_agreement_terms_interest_format">%.2f%%</string>
+    <string name="loan_agreement_terms_amount">Amount financed</string>
+    <string name="loan_agreement_terms_amount_format">$%d</string>
+    <string name="loan_agreement_terms_duration">Loan term</string>
+    <plurals name="loan_agreement_terms_duration_week">
+        <item quantity="one">%d week</item>
+        <item quantity="other">%d weeks</item>
+    </plurals>
+    <plurals name="loan_agreement_terms_duration_month">
+        <item quantity="one">%d month</item>
+        <item quantity="other">%d months</item>
+    </plurals>
+    <string name="loan_agreement_terms_payment">Monthly payment</string>
+    <string name="loan_agreement_terms_payment_format">$%.2f</string>
+    <string name="loan_agreement_borrower_agreement_header">BORROWER AGREEMENT</string>
+    <string name="loan_agreement_button_scroll_down">SCROLL DOWN TO CONFIRM</string>
+    <string name="loan_agreement_button_agree">AGREE AND FUND LOAN</string>
+    <string name="loan_agreement_terms_dialog_title">Quisque auctor</string>
+    <string name="loan_agreement_terms_dialog_message">Sed vitae felis eget lorem tempus fermentum. Praesent vel augue bibendum, gravida erat in, tincidunt nibh.</string>
+
+    <!-- Loan confirmation -->
+    <string name="loan_confirmation_label">Confirm Application</string>
+    <string name="loan_confirmation_application_info_header">APPLICATION INFO</string>
+    <string name="loan_confirmation_disclosures_header">DISCLOSURES</string>
+    <string name="loan_confirmation_button_agree">I Agree</string>
+
+    <!-- Add documents -->
+    <string name="add_documents_label">Add docs</string>
+    <string name="add_documents_title_unchecked_photo_id">Add photo ID</string>
+    <string name="add_documents_title_checked_photo_id">Photo ID</string>
+    <string name="add_documents_title_unchecked_bank_statement">Add bank statement</string>
+    <string name="add_documents_title_checked_bank_statement">Bank statement</string>
+    <string name="add_documents_title_unchecked_proof_of_address">Add proof of address</string>
+    <string name="add_documents_title_checked_proof_of_address">Proof of address</string>
+    <string name="add_documents_title_unchecked_other">Add other</string>
+    <string name="add_documents_title_checked_other">Other</string>
+    <string name="add_documents_description_checked">Added</string>
+    <string name="add_documents_button_done">DONE</string>
+    <string name="add_documents_bottom_sheet_photo">Take photo</string>
+    <string name="add_documents_bottom_sheet_library">Select from library</string>
+    <string name="add_documents_library_chooser_title">Select files</string>
+    <string name="add_documents_bottom_sheet_library_error">No file browser installed.</string>
+
+    <!-- Loan Applications List -->
+    <string name="loan_applications_list_label">My loan applications</string>
+    <string name="loan_application_details_duration">Loan term: %s</string>
+    <string name="loan_application_details_disclaimer">Sed pellentesque diam a ligula molestie ultrices. Donec interdum convallis dui, non fermentum sapien lacinia at. Donec congue velit ut rhoncus sodales.</string>
+    <string name="loan_application_details_status_approved">Application approved</string>
+    <string name="loan_application_details_status_pending_borrower_action_upload">Additional docs required</string>
+    <string name="loan_application_details_status_pending_borrower_action_finish_external">Additional info required</string>
+    <string name="loan_application_details_status_pending_lender_action">Processing application&#8230;</string>
+
+    <!-- Financial Account Selector -->
+    <string name="select_financial_account_list_title">Funding Account</string>
+    <string name="select_financial_account_list_label">Where do you want your loan deposited?</string>
+    <string name="add_financial_account_list_title">Fund Loan</string>
+    <string name="add_financial_account_list_label">How do you want to fund your loan?</string>
+    <string name="add_financial_account_bank">Bank Deposit</string>
+    <string name="add_financial_account_bank_description">We\'ll ask you to link a bank account. Transfers may take up to 3 business days</string>
+    <string name="add_financial_account_card_description">We support most major debit and prepaid cards</string>
+    <string name="add_financial_account_virtual_card">Virtual Card</string>
+    <string name="add_financial_account_virtual_card_description">We\'ll send an SMS with a link to your card</string>
+
+    <!-- Add Card -->
+    <string name="add_card_title">Add Card</string>
+    <string name="add_card_button_submit">Add Card</string>
+    <string name="add_card_button_scan">Scan Card</string>
+    <string name="add_card_error">Error: invalid card number!</string>
+
+    <!-- Add Bank Account -->
+    <string name="add_financial_account_bank_title">Select your bank</string>
+
+    <!-- Select Financial Account -->
+    <string name="add_financial_account_button">Add Account</string>
+
+    <!-- Enable Auto-Pay -->
+    <string name="enable_auto_pay_title"> </string>
+    <string name="enable_auto_pay_card">Your loan is being disbursed to the card you\'ve selected: (....%s)</string>
+    <string name="enable_auto_pay_virtual_card">Your loan has been funded to a virtual card. Show this card to an agent to make your purchase.</string>
+    <string name="enable_auto_pay_bank">Your loan is being disbursed to the account you\'ve selected: %s</string>
+    <string name="enable_auto_pay_error">Incorrect account type</string>
+    <string name="enable_auto_pay_card_primary_button">VIEW CARD</string>
+    <string name="enable_auto_pay_virtual_card_primary_button">VIEW VIRTUAL CARD</string>
+    <string name="enable_auto_pay_virtual_card_secondary_button">Send via SMS</string>
+
+    <!-- Display Card -->
+    <string name="display_card_title"> </string>
+    <string name="display_card_label">CARD BALANCE</string>
+    <string name="display_card_primary_button">ADD TO WALLET</string>
+    <string name="display_card_secondary_button">Send via SMS</string>
+
+    <!-- Disclaimers -->
+    <string name="disclaimer_accept">Accept</string>
+    <string name="disclaimer_cancel">Cancel</string>
+    <string name="disclaimer_error">Error loading disclaimer</string>
+
+    <!-- Action Not Supported -->
+    <string name="action_not_supported_error">The received workflow action is currently not supported.</string>
+
+    <!-- Show Generic Message -->
+    <string name="show_generic_message_title"> </string>
+
+    <!-- Pending Application Selector -->
+    <string name="select_pending_application_list_title">Open Applications</string>
+    <string name="select_pending_application_list_label">Would you like to continue with an open application?</string>
+    <string name="new_application_button">NEW APPLICATION</string>
+
+    <!-- Custodian Selector -->
+    <string name="add_custodian_list_title">Link Account</string>
+    <string name="add_custodian_coinbase_account">Coinbase</string>
+    <string name="add_custodian_coinbase_account_description">Link your Coinbase account.</string>
+
+    <!-- Errors -->
+    <string name="session_expired_error">User session has expired. Please sign in with your credentials.</string>
+
+    <!-- Coinbase -->
+    <string name="coinbase_redirect_uri">ledge-sdk-demo://coinbase-oauth</string>
+    <string name="coinbase_client_id">892c3cb9743d2aa7f3037ebbaf88efb0d4bb21c2dec4067e517bf45aff1c0936</string>
+    <string name="coinbase_client_secret">04d5ad68ba3ab4b7d90f1b0f48b108dff0313a3af6748272099a0341b303544c</string>
+
+    <!-- fingerprint dialog -->
+    <string name="fingerprint_description">Use your fingerprint for fast, secure access to your card.\nConfirm fingerprint to continue.</string>
+    <string name="fingerprint_hint">Touch sensor</string>
+    <string name="fingerprint_title">Use fingerprint?</string>
+
+    <!-- card management screen -->
+    <string name="card_management_card_balance">CURRENT BALANCE</string>
+    <string name="card_management_primary_button">TAP TO MANAGE CARD</string>
+    <string name="card_management_secondary_button">ACTIVATE VIRTUAL CARD</string>
+    <string name="card_management_trasactions_title">Recent Transactions</string>
+    <string name="card_activated">Card activated</string>
+    <string name="card_deactivated">Card deactivated</string>
+    <string name="pin_changed">PIN changed correctly</string>
+
+    <!-- card management bottom sheet -->
+    <string name="switch_enable_card">Enable Card</string>
+    <string name="switch_show_card_info">Show Card Info</string>
+    <string name="save_to_android_pay_label">Add Card</string>
+    <string name="report_lost_card_label">Report Lost Card</string>
+    <string name="change_pin_label">Change PIN</string>
+
+    <!-- card management enable/disable dialog -->
+    <string name="enable_card_message">You are activating your card. Are you sure?</string>
+    <string name="disable_card_message">You are deactivating your card. Are you sure?</string>
+    <string name="dialog_title">Card state</string>
+
+    <!-- Card view -->
+    <string name="card_cvv_label">CVV</string>
+    <string name="card_expiration_date_label">EXP</string>
+    <string name="card_disabled_label">CARD NOT ENABLED</string>
+
+    <!-- Account management screen -->
+    <string name="funding_sources_label">Funding Sources</string>
+    <string name="sign_out">SIGN OUT</string>
+    <string name="add_funding_source">ADD FUNDING SOURCE</string>
+    <string name="funding_source_dollar_amount" formatted="false">($%.2f)</string>
+
+    <!-- KYC Status screen -->
+    <string name="kyc_status_title">Application Status</string>
+    <string name="kyc_status_application_under_review">Your application is under review</string>
+</resources>

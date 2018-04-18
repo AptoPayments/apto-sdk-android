@@ -1,6 +1,7 @@
 # Gradle
 local.properties
 user.properties
+gradle.properties
 .gradle
 build
 
@@ -8,3 +9,9 @@ build
 *.iml
 .idea
 gen
+
+# Misc
+.DS_Store
+strings_configuration.xml
+libs/
+ui/src/test/java/android/
