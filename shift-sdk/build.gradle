@@ -163,7 +163,7 @@ afterEvaluate { project ->
 }
 
 task copyAppcompat(type: Copy) {
-    def projectPackage = "com/shift/link/sdk/ui"
+    def projectPackage = "com/shift/link/sdk/shift-sdk"
 
     from "build/generated/source/r/debug/${projectPackage}".replace("/", File.separator)
     into 'src/test/java/android/support/v7/appcompat'.replace("/", File.separator)

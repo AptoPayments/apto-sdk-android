@@ -8,14 +8,14 @@ version = '1.0.0'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'shift-sdk-android'
+    bintrayName = 'shift-sdk-core'
     bintrayOrg = 'shift'
 
     publishedGroupId = 'com.shift.android'
     libraryName = 'SDK'
     artifact = 'sdk'
 
-    libraryDescription = 'An easy to use and flexible SDK for Shift'
+    libraryDescription = 'Shift SDK core'
 
     siteUrl = 'https://github.com/ShiftFinancial/shift-sdk-android'
     gitUrl = 'https://github.com/ShiftFinancial/shift-sdk-android.git'
