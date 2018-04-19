@@ -34,13 +34,13 @@
 
             <TextView
                 android:id="@+id/tv_verification_code_header"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:layout_below="@+id/iv_shield_check"
-                android:textSize="18sp"
+                android:layout_marginTop="32dp"
                 android:gravity="center_horizontal"
-                android:text="@string/email_verification_info" />
+                android:text="@string/email_verification_info"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_verification_code_info"

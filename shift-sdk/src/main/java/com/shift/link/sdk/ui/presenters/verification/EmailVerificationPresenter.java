@@ -1,5 +1,6 @@
 package com.shift.link.sdk.ui.presenters.verification;
 
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
@@ -49,7 +50,7 @@ public class EmailVerificationPresenter
     @Override
     public void attachView(EmailVerificationView view) {
         super.attachView(view);
-        mActivity.setTitle(this.getEmail());
+        mView.setDescription(mActivity.getResources().getString(R.string.email_verification_info, this.getEmail()));
         mView.setListener(this);
         mResponseHandler.subscribe(this);
     }

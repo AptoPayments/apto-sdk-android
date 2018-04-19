@@ -39,7 +39,7 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
-        return R.string.address_label;
+        return R.string.home_title;
     }
 
     /** {@inheritDoc} */
