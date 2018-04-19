@@ -1,6 +1,5 @@
 package com.shift.link.sdk.ui.presenters.userdata;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
 import com.shift.link.sdk.ui.R;
@@ -54,7 +53,8 @@ public class PhonePresenter
 
     private boolean isVerificationRequired() {
         String primaryCredential = SharedPreferencesStorage.getPrimaryCredential(mActivity);
-        return primaryCredential.equalsIgnoreCase("phone");
+        return primaryCredential != null && primaryCredential.equalsIgnoreCase("phone");
+
     }
 
     @Override

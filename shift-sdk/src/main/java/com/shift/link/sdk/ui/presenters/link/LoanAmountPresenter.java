@@ -98,7 +98,7 @@ public class LoanAmountPresenter
     @Override
     protected StepperConfiguration getStepperConfig() {
         boolean enableNextButton = !((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData;
-        return new StepperConfiguration(TOTAL_STEPS, 0, true, enableNextButton);
+        return new StepperConfiguration(TOTAL_STEPS, 0, enableNextButton);
     }
 
     /** {@inheritDoc} */

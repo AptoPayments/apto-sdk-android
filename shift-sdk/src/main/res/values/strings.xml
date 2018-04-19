@@ -4,7 +4,6 @@
     <string name="user_data_menu_info">Info &amp; terms</string>
 
     <!-- Stepper -->
-    <string name="stepper_back_button_label">BACK</string>
     <string name="stepper_next_button_label">NEXT</string>
 
     <!-- Terms / Conditions -->

@@ -43,6 +43,9 @@ public class ManageAccountView
 
     @Override
     public void onClick(View view) {
+        if (mListener == null) {
+            return;
+        }
         int id = view.getId();
 
         if(id == R.id.ll_sign_out) {

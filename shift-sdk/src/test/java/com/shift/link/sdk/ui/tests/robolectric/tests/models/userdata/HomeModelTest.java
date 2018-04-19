@@ -56,7 +56,7 @@ public class HomeModelTest {
     public void hasCorrectTitleResource() {
         Assert.assertThat("Incorrect resource ID.",
                 mModel.getActivityTitleResource(),
-                equalTo(R.string.address_label));
+                equalTo(R.string.home_title));
     }
 
     /**
