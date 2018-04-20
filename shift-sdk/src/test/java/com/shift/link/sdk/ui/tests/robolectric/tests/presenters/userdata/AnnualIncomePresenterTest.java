@@ -25,7 +25,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.lang.ref.WeakReference;
+import java.lang.ref.SoftReference;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
@@ -46,7 +46,7 @@ public class AnnualIncomePresenterTest {
     public void setUp() {
         AppCompatActivity mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity);
-        ModuleManager.getInstance().setModule(new WeakReference<>(userDataCollectorModule));
+        ModuleManager.getInstance().setModule(new SoftReference<>(userDataCollectorModule));
         mPresenter = new MockAnnualIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));
         mView = new MockAnnualIncomeView(mActivity);
         mPresenter.attachView(mView);

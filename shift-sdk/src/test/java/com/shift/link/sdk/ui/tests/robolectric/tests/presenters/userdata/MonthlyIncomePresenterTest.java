@@ -21,7 +21,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 
-import java.lang.ref.WeakReference;
+import java.lang.ref.SoftReference;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
@@ -43,7 +43,7 @@ public class MonthlyIncomePresenterTest {
         mPresenter = new MockMonthlyIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));
         mView = new MockMonthlyIncomeView(mActivity);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity);
-        ModuleManager.getInstance().setModule(new WeakReference<>(userDataCollectorModule));
+        ModuleManager.getInstance().setModule(new SoftReference<>(userDataCollectorModule));
         mPresenter.attachView(mView);
     }
 

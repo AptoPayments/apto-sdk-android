@@ -35,7 +35,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.lang.ref.WeakReference;
+import java.lang.ref.SoftReference;
 
 import static com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper.EXPECTED_INCOME_TYPE;
 import static com.shift.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper.EXPECTED_SALARY_FREQUENCY;
@@ -56,7 +56,7 @@ public class IncomeSourcePresenterTest {
         AppCompatActivity mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity);
         userDataCollectorModule.mRequiredDataPointList.add(new RequiredDataPointVo(DataPointVo.DataPointType.IncomeSource));
-        ModuleManager.getInstance().setModule(new WeakReference<>(userDataCollectorModule));
+        ModuleManager.getInstance().setModule(new SoftReference<>(userDataCollectorModule));
         mPresenter = new MockAnnualIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));
         mView = new MockAnnualIncomeView(mActivity);
         ShiftPlatform.setApiWrapper(new MockApiWrapper());
