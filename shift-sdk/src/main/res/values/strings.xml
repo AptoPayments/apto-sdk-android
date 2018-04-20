@@ -337,7 +337,7 @@
     <!-- card management enable/disable dialog -->
     <string name="enable_card_message">You are activating your card. Are you sure?</string>
     <string name="disable_card_message">You are deactivating your card. Are you sure?</string>
-    <string name="dialog_title">Card state</string>
+    <string name="card_management_dialog_title">Card state</string>
 
     <!-- Card view -->
     <string name="card_cvv_label">CVV</string>
@@ -349,6 +349,8 @@
     <string name="sign_out">SIGN OUT</string>
     <string name="add_funding_source">ADD FUNDING SOURCE</string>
     <string name="funding_source_dollar_amount" formatted="false">($%.2f)</string>
+    <string name="account_management_dialog_title">Sign out</string>
+    <string name="account_management_dialog_message">Are you sure you want to sign out?</string>
 
     <!-- KYC Status screen -->
     <string name="kyc_status_title">Application Status</string>

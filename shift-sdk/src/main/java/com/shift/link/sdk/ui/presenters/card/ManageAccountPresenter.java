@@ -1,15 +1,13 @@
 package com.shift.link.sdk.ui.presenters.card;
 
-/**
- * Created by adrian on 27/11/2017.
- */
-
-
 import android.app.Activity;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
 import com.shift.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shift.link.sdk.sdk.ShiftLinkSdk;
+import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.activities.card.ManageAccountActivity;
 import com.shift.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
@@ -34,9 +32,9 @@ public class ManageAccountPresenter
         implements Presenter<ManageAccountModel, ManageAccountView>, ManageAccountView.ViewListener, FundingSourceView.ViewListener {
 
     private FundingSourcesListRecyclerAdapter mAdapter;
-    private Activity mActivity;
+    private ManageAccountActivity mActivity;
 
-    public ManageAccountPresenter(Activity activity) {
+    public ManageAccountPresenter(ManageAccountActivity activity) {
         mActivity = activity;
     }
 
@@ -45,8 +43,8 @@ public class ManageAccountPresenter
     public void attachView(ManageAccountView view) {
         super.attachView(view);
         view.setViewListener(this);
-        ((ManageAccountActivity) mActivity).setSupportActionBar(mView.getToolbar());
-        ((ManageAccountActivity) mActivity).getSupportActionBar().setDisplayShowTitleEnabled(false);
+        mActivity.setSupportActionBar(mView.getToolbar());
+        mActivity.getSupportActionBar().setDisplayShowTitleEnabled(false);
         mAdapter = new FundingSourcesListRecyclerAdapter();
         mAdapter.setViewListener(this);
         view.setAdapter(mAdapter);
@@ -78,8 +76,19 @@ public class ManageAccountPresenter
 
     @Override
     public void signOut() {
-        CardModule currentModule = (CardModule) ModuleManager.getInstance().getCurrentModule();
-        currentModule.showHomeActivity();
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        builder.setMessage(mActivity.getString(R.string.account_management_dialog_message))
+                .setTitle(mActivity.getString(R.string.account_management_dialog_title));
+        builder.setPositiveButton("YES", (dialog, id) -> {
+            if(mActivity.cardModule != null) {
+                mActivity.cardModule.showHomeActivity();
+            }
+        });
+        builder.setNegativeButton("NO", (dialog, id) -> dialog.dismiss());
+
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
     }
 
     @Override

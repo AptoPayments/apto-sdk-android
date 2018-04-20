@@ -5,6 +5,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.card.FundingSourceModel;
@@ -29,7 +31,7 @@ public class ManageAccountView
 
     private ViewListener mListener;
     private RecyclerView mFundingSourcesListView;
-    private LinearLayout mSignOutHolder;
+    private TextView mSignOutButton;
     private ImageButton mAddFundingSourceButton;
     protected Toolbar mToolbar;
 
@@ -48,7 +50,7 @@ public class ManageAccountView
         }
         int id = view.getId();
 
-        if(id == R.id.ll_sign_out) {
+        if(id == R.id.tv_sign_out) {
             mListener.signOut();
         }
         else if(id == R.id.ib_add_funding_source) {
@@ -89,13 +91,13 @@ public class ManageAccountView
 
     protected void findAllViews() {
         mFundingSourcesListView = (RecyclerView) findViewById(R.id.rv_funding_sources_list);
-        mSignOutHolder = (LinearLayout) findViewById(R.id.ll_sign_out);
+        mSignOutButton = (TextView) findViewById(R.id.tv_sign_out);
         mAddFundingSourceButton = (ImageButton) findViewById(R.id.ib_add_funding_source);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
     private void setUpListeners() {
-        mSignOutHolder.setOnClickListener(this);
+        mSignOutButton.setOnClickListener(this);
         mAddFundingSourceButton.setOnClickListener(this);
         mToolbar.setNavigationOnClickListener(this);
     }
@@ -114,7 +116,8 @@ public class ManageAccountView
         mAddFundingSourceButton.setColorFilter(color);
         mToolbar.setBackgroundDrawable(new ColorDrawable(color));
         mToolbar.setTitleTextColor(contrastColor);
-        Drawable backArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        mSignOutButton.setBackgroundColor(color);
+        Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
         backArrow.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
         mToolbar.setNavigationIcon(backArrow);
     }

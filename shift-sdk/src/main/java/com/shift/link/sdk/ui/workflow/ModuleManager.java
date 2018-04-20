@@ -1,6 +1,6 @@
 package com.shift.link.sdk.ui.workflow;
 
-import java.lang.ref.WeakReference;
+import java.lang.ref.SoftReference;
 
 /**
  * Created by adrian on 29/12/2016.
@@ -8,14 +8,19 @@ import java.lang.ref.WeakReference;
 
 public class ModuleManager {
     private static ModuleManager mInstance;
-    private WeakReference<ShiftBaseModule> mModule;
+    private SoftReference<ShiftBaseModule> mModule;
+
+    /**
+     * Creates a new {@link ModuleManager} instance.
+     */
+    private ModuleManager() { }
 
     public synchronized ShiftBaseModule getCurrentModule() {
         return mModule.get();
     }
 
-    public synchronized void setModule(WeakReference<ShiftBaseModule> mModule) {
-        this.mModule = mModule;
+    public synchronized void setModule(SoftReference<ShiftBaseModule> module) {
+        mModule = module;
     }
 
     public static synchronized ModuleManager getInstance() {
