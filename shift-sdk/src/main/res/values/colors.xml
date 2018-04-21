@@ -37,4 +37,7 @@
     <color name="colorPrimary">#9ADE83</color>
     <color name="colorPrimaryDark">#67AB50</color>
     <color name="colorAccent">#F2F2F2</color>
+
+    <color name="disabled_card_logo">#9E9E9E</color>
+    <color name="enabled_card_logo">#FFFFFF</color>
 </resources>

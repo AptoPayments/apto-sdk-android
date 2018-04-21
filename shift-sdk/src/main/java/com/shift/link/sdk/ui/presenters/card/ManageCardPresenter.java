@@ -74,7 +74,7 @@ public class ManageCardPresenter
         mActivity = activity;
         mFingerprintHandler = new FingerprintHandler(mActivity);
         mIsUserAuthenticated = false;
-        mLastTransactionId = "";
+        mLastTransactionId = null;
     }
 
     /** {@inheritDoc} */
@@ -131,6 +131,7 @@ public class ManageCardPresenter
     @Override
     public void pullToRefreshHandler() {
         ShiftLinkSdk.getResponseHandler().subscribe(this);
+        mLastTransactionId = null;
         ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
         mTransactionsAdapter.clear();
         scrollListener.resetState();
@@ -278,7 +279,7 @@ public class ManageCardPresenter
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
-        mLastTransactionId = response.data[response.total_count-1].id;
+        mLastTransactionId = response.data[response.data.length-1].id;
         transactionsList.addAll(Arrays.asList(response.data));
         int currentSize = mTransactionsAdapter.getItemCount();
         mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count -1);
