@@ -48,13 +48,14 @@ import static com.shift.link.sdk.api.vos.datapoints.DataPointVo.DataPointType.Pe
  * Created by adrian on 23/02/2018.
  */
 
-public class CardModule extends ShiftBaseModule {
+public class CardModule extends ShiftBaseModule implements ManageAccountDelegate {
+
+    private RequiredDataPointsListResponseVo mFinalRequiredUserData;
+    private boolean mIsExistingUser;
 
     public CardModule(Activity activity) {
         super(activity);
     }
-    private RequiredDataPointsListResponseVo mFinalRequiredUserData;
-    private boolean mIsExistingUser;
 
     @Override
     public void initialModuleSetup() {
@@ -70,6 +71,73 @@ public class CardModule extends ShiftBaseModule {
         }
     }
 
+    @Override
+    public void addFundingSource(Command onFinishCallback) {
+        startCustodianModule(this::startManageCardScreen, onFinishCallback);
+    }
+
+    @Override
+    public void onSignOut() {
+        showHomeActivity();
+    }
+
+    /**
+     * Called when the get financial account response has been received.
+     * @param card API response.
+     */
+    @Subscribe
+    public void handleResponse(Card card) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        CardStorage.getInstance().setCard(card);
+
+        if(card.kycStatus.equals(KycStatus.passed)) {
+            startManageCardScreen();
+        }
+        else {
+            Intent intent = new Intent(getActivity(), KycStatusActivity.class);
+            intent.putExtra("KYC_STATUS", card.kycStatus.toString());
+            if(card.kycReason != null) {
+                intent.putExtra("KYC_REASON", card.kycReason[0]);
+            }
+            getActivity().startActivity(intent);
+        }
+    }
+
+    /**
+     * Called when the get financial accounts response or get current user response has been received.
+     * @param dataPointList API response.
+     */
+    @Subscribe
+    public void handleDataPointList(DataPointList dataPointList) {
+
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        if(dataPointList.getType().equals(DataPointList.ListType.financialAccounts)) {
+            handleFinancialAccounts(dataPointList);
+        }
+        else {
+            handleUserData(dataPointList);
+        }
+    }
+
+    /**
+     * Called when an API error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
+        super.showError(error.toString());
+    }
+
+    /**
+     * Called when session expired error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleSessionExpiredError(SessionExpiredErrorVo error) {
+        super.handleSessionExpiredError(error);
+        showHomeActivity();
+    }
+
     private boolean isStoredUserTokenValid() {
         boolean isPOSMode = ConfigStorage.getInstance().getPOSMode();
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
@@ -80,7 +148,7 @@ public class CardModule extends ShiftBaseModule {
         return isTokenValid;
     }
 
-    public void showHomeActivity() {
+    private void showHomeActivity() {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         Activity currentActivity = this.getActivity();
         currentActivity.finish();
@@ -156,7 +224,7 @@ public class CardModule extends ShiftBaseModule {
         getActivity().startActivity(new Intent(getActivity(), IssueVirtualCardActivity.class));
     }
 
-    public void startManageCardScreen() {
+    private void startManageCardScreen() {
         setCurrentModule();
         getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
     }
@@ -180,7 +248,7 @@ public class CardModule extends ShiftBaseModule {
         startCustodianModule(this::showHomeActivity, this::collectFinalUserData);
     }
 
-    public void startCustodianModule(Command onBackCallback, Command onFinishCallback) {
+    private void startCustodianModule(Command onBackCallback, Command onFinishCallback) {
         CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity());
         custodianSelectorModule.onBack = onBackCallback;
         custodianSelectorModule.onFinish = ()->{
@@ -190,25 +258,9 @@ public class CardModule extends ShiftBaseModule {
         startModule(custodianSelectorModule);
     }
 
-    public void setCurrentModule() {
+    private void setCurrentModule() {
         SoftReference<ShiftBaseModule> moduleSoftReference = new SoftReference<>(this);
         ModuleManager.getInstance().setModule(moduleSoftReference);
-    }
-
-    /**
-     * Called when the get financial accounts response or get current user response has been received.
-     * @param dataPointList API response.
-     */
-    @Subscribe
-    public void handleDataPointList(DataPointList dataPointList) {
-
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        if(dataPointList.getType().equals(DataPointList.ListType.financialAccounts)) {
-            handleFinancialAccounts(dataPointList);
-        }
-        else {
-            handleUserData(dataPointList);
-        }
     }
 
     private void handleFinancialAccounts(DataPointList financialAccounts) {
@@ -239,47 +291,6 @@ public class CardModule extends ShiftBaseModule {
             }
         }
         return null;
-    }
-
-    /**
-     * Called when the get financial account response has been received.
-     * @param card API response.
-     */
-    @Subscribe
-    public void handleResponse(Card card) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        CardStorage.getInstance().setCard(card);
-
-        if(card.kycStatus.equals(KycStatus.passed)) {
-            startManageCardScreen();
-        }
-        else {
-            Intent intent = new Intent(getActivity(), KycStatusActivity.class);
-            intent.putExtra("KYC_STATUS", card.kycStatus.toString());
-            if(card.kycReason != null) {
-                intent.putExtra("KYC_REASON", card.kycReason[0]);
-            }
-            getActivity().startActivity(intent);
-        }
-    }
-
-    /**
-     * Called when an API error has been received.
-     * @param error API error.
-     */
-    @Subscribe
-    public void handleApiError(ApiErrorVo error) {
-        super.showError(error.toString());
-    }
-
-    /**
-     * Called when session expired error has been received.
-     * @param error API error.
-     */
-    @Subscribe
-    public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        super.handleSessionExpiredError(error);
-        showHomeActivity();
     }
 }
 

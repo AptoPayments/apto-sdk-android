@@ -7,7 +7,7 @@ import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.fundingaccountselector.DisplayCardModel;
 import com.shift.link.sdk.ui.presenters.fundingaccountselector.DisplayCardDelegate;
 import com.shift.link.sdk.ui.presenters.fundingaccountselector.DisplayCardPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.views.fundingaccountselector.DisplayCardView;
 
 /**

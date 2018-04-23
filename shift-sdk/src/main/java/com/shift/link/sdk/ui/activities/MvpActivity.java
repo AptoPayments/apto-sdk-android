@@ -10,12 +10,12 @@ import android.view.WindowManager;
 import com.shift.link.sdk.ui.models.ActivityModel;
 import com.shift.link.sdk.ui.models.Model;
 import com.shift.link.sdk.ui.presenters.ActivityPresenter;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.presenters.Presenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
-import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 
 /**
  * Generic MVP Activity, wires up the MVP parts.

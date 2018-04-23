@@ -1,10 +1,5 @@
 package com.shift.link.sdk.ui.presenters.card;
 
-/**
- * Created by adrian on 27/11/2017.
- */
-
-
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -55,17 +50,19 @@ public class ManageCardPresenter
         extends BasePresenter<ManageCardModel, ManageCardView>
         implements Presenter<ManageCardModel, ManageCardView>, ManageCardView.ViewListener, 
         ManageCardBottomSheet.ViewListener, FingerprintDelegate, TransactionsAdapter.ViewListener {
+
+    private static final String DIALOG_FRAGMENT_TAG = "fingerprintFragment";
+    private static final int ROWS = 20;
+
     private FragmentManager mFragmentManager;
     private ManageCardBottomSheet mManageCardBottomSheet;
     private FingerprintHandler mFingerprintHandler;
     private ManageCardActivity mActivity;
-    private static final String DIALOG_FRAGMENT_TAG = "fingerprintFragment";
-    private boolean mIsUserAuthenticated;
-    private EndlessRecyclerViewScrollListener scrollListener;
+    private EndlessRecyclerViewScrollListener mScrollListener;
     private TransactionsAdapter mTransactionsAdapter;
-    private ArrayList transactionsList;
+    private ArrayList mTransactionsList;
     private String mLastTransactionId;
-    private static final int ROWS = 20;
+    private boolean mIsUserAuthenticated;
     private boolean mHasTransactionListArrived = false;
     private boolean mHasFundingSourceArrived = false;
 
@@ -88,16 +85,16 @@ public class ManageCardPresenter
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         // Retain an instance so that we can call `resetState()` for fresh searches
-        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+        mScrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
             }
         };
-        transactionsList = new ArrayList<TransactionVo>();
-        mTransactionsAdapter = new TransactionsAdapter(mActivity, transactionsList, mModel);
+        mTransactionsList = new ArrayList<TransactionVo>();
+        mTransactionsAdapter = new TransactionsAdapter(mActivity, mTransactionsList, mModel);
         mTransactionsAdapter.setViewListener(this);
-        view.configureTransactionsView(linearLayoutManager, scrollListener, mTransactionsAdapter);
+        view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter);
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.getFinancialAccountFundingSource(mModel.getAccountId());
         ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
@@ -134,22 +131,13 @@ public class ManageCardPresenter
         mLastTransactionId = null;
         ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
         mTransactionsAdapter.clear();
-        scrollListener.resetState();
+        mScrollListener.resetState();
     }
 
     @Override
     public void enableCardClickHandler(boolean enable) {
         hideBottomSheet();
         showCardStateChangeConfirmationDialog(enable);
-    }
-
-    public void changeCardState(boolean enable) {
-
-        UpdateFinancialAccountRequestVo request = new UpdateFinancialAccountRequestVo();
-        request.state = enable ? "active" : "inactive";
-
-        ShiftPlatform.updateFinancialAccount(request, mModel.getAccountId());
-        mView.showLoading(mActivity, true);
     }
 
     @Override
@@ -178,25 +166,6 @@ public class ManageCardPresenter
         }
     }
 
-    public void showCardStateChangeConfirmationDialog(boolean enable) {
-        String text = enable ? mActivity.getString(R.string.enable_card_message) : mActivity.getString(R.string.disable_card_message);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-        builder.setMessage(text)
-                .setTitle(mActivity.getString(R.string.card_management_dialog_title));
-        builder.setPositiveButton("YES", (dialog, id) -> changeCardState(enable));
-        builder.setNegativeButton("NO", (dialog, id) -> {
-            if (mManageCardBottomSheet != null) {
-                mManageCardBottomSheet.setEnableCardSwitch(!enable);
-            }
-            dialog.dismiss();
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-    }
-
     @Override
     public void changePinClickHandler() {
         PinFragmentConfiguration config =
@@ -214,12 +183,6 @@ public class ManageCardPresenter
                 .replace(R.id.pin_fragment, pinFragment)
                 .commit();
         mView.showPinFragment(true);
-    }
-
-    private void hideBottomSheet() {
-        mFragmentManager.beginTransaction()
-                .detach(mManageCardBottomSheet)
-                .commit();
     }
 
     @Override
@@ -280,7 +243,7 @@ public class ManageCardPresenter
             mView.setRefreshing(false);
         }
         mLastTransactionId = response.data[response.data.length-1].id;
-        transactionsList.addAll(Arrays.asList(response.data));
+        mTransactionsList.addAll(Arrays.asList(response.data));
         int currentSize = mTransactionsAdapter.getItemCount();
         mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count -1);
     }
@@ -293,6 +256,40 @@ public class ManageCardPresenter
         }
         mModel.setBalance(String.valueOf(response.balance.amount));
         mTransactionsAdapter.notifyItemChanged(0);
+    }
+
+    private void changeCardState(boolean enable) {
+
+        UpdateFinancialAccountRequestVo request = new UpdateFinancialAccountRequestVo();
+        request.state = enable ? "active" : "inactive";
+
+        ShiftPlatform.updateFinancialAccount(request, mModel.getAccountId());
+        mView.showLoading(mActivity, true);
+    }
+
+    private void showCardStateChangeConfirmationDialog(boolean enable) {
+        String text = enable ? mActivity.getString(R.string.enable_card_message) : mActivity.getString(R.string.disable_card_message);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        builder.setMessage(text)
+                .setTitle(mActivity.getString(R.string.card_management_dialog_title));
+        builder.setPositiveButton("YES", (dialog, id) -> changeCardState(enable));
+        builder.setNegativeButton("NO", (dialog, id) -> {
+            if (mManageCardBottomSheet != null) {
+                mManageCardBottomSheet.setEnableCardSwitch(!enable);
+            }
+            dialog.dismiss();
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    private void hideBottomSheet() {
+        mFragmentManager.beginTransaction()
+                .detach(mManageCardBottomSheet)
+                .commit();
     }
 
     private void updateCardPin(String pin) {

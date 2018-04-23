@@ -11,7 +11,7 @@ import com.shift.link.sdk.ui.models.link.LoanAmountModel;
 import com.shift.link.sdk.ui.presenters.link.LoanAmountPresenter;
 import com.shift.link.sdk.ui.presenters.link.LoanDataDelegate;
 import com.shift.link.sdk.ui.presenters.link.LoanInfoModule;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.views.link.LoanAmountView;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
 

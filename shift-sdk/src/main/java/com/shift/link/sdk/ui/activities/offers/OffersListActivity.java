@@ -11,7 +11,7 @@ import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.offers.OffersListModel;
 import com.shift.link.sdk.ui.presenters.offers.OffersListDelegate;
 import com.shift.link.sdk.ui.presenters.offers.OffersListPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.views.offers.OffersBaseView;
 import com.shift.link.sdk.ui.views.offers.OffersCarouselView;
 import com.shift.link.sdk.ui.views.offers.OffersListView;

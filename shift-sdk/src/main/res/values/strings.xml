@@ -351,8 +351,10 @@
     <string name="funding_source_dollar_amount" formatted="false">($%.2f)</string>
     <string name="account_management_dialog_title">Sign out</string>
     <string name="account_management_dialog_message">Are you sure you want to sign out?</string>
+    <string name="account_management_funding_source_changed">Funding source changed</string>
 
     <!-- KYC Status screen -->
     <string name="kyc_status_title">Application Status</string>
     <string name="kyc_status_application_under_review">Your application is under review</string>
+    <string name="account_management_funding_source_added">Funding source added</string>
 </resources>

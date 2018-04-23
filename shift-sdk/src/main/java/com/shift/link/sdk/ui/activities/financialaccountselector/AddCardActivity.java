@@ -8,7 +8,7 @@ import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.financialaccountselector.AddCardModel;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.AddCardDelegate;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.AddCardPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.views.financialaccountselector.AddCardView;
 
 /**

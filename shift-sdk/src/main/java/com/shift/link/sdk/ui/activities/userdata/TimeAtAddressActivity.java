@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.TimeAtAddressModel;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.TimeAtAddressDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.TimeAtAddressPresenter;
 import com.shift.link.sdk.ui.views.userdata.TimeAtAddressView;

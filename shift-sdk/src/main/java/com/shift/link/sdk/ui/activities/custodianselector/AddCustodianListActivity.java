@@ -7,7 +7,7 @@ import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.custodianselector.AddCustodianListModel;
 import com.shift.link.sdk.ui.presenters.custodianselector.AddCustodianListDelegate;
 import com.shift.link.sdk.ui.presenters.custodianselector.AddCustodianListPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.views.custodianselector.AddCustodianListView;
 
 

@@ -7,7 +7,7 @@ import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.financialaccountselector.IntermediateFinancialAccountListModel;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.IntermediateFinancialAccountListDelegate;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.IntermediateFinancialAccountListPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.views.financialaccountselector.IntermediateFinancialAccountListView;
 
 

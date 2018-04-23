@@ -1,7 +1,5 @@
 package com.shift.link.sdk.ui.presenters.card;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
@@ -17,7 +15,6 @@ import com.shift.link.sdk.ui.presenters.BasePresenter;
 import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.views.card.FundingSourceView;
 import com.shift.link.sdk.ui.views.card.ManageAccountView;
-import com.shift.link.sdk.ui.workflow.ModuleManager;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -33,9 +30,11 @@ public class ManageAccountPresenter
 
     private FundingSourcesListRecyclerAdapter mAdapter;
     private ManageAccountActivity mActivity;
+    private ManageAccountDelegate mDelegate;
 
-    public ManageAccountPresenter(ManageAccountActivity activity) {
+    public ManageAccountPresenter(ManageAccountActivity activity, ManageAccountDelegate delegate) {
         mActivity = activity;
+        mDelegate = delegate;
     }
 
     /** {@inheritDoc} */
@@ -71,7 +70,7 @@ public class ManageAccountPresenter
             fundingSource.setIsSelected(fundingSource.equals(selectedFundingSource));
         }
         mAdapter.updateList(mModel.getFundingSources());
-        Toast.makeText(mActivity, "Funding source changed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mActivity, R.string.account_management_funding_source_changed, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -80,9 +79,8 @@ public class ManageAccountPresenter
         builder.setMessage(mActivity.getString(R.string.account_management_dialog_message))
                 .setTitle(mActivity.getString(R.string.account_management_dialog_title));
         builder.setPositiveButton("YES", (dialog, id) -> {
-            if(mActivity.cardModule != null) {
-                mActivity.cardModule.showHomeActivity();
-            }
+            mActivity.finish();
+            mDelegate.onSignOut();
         });
         builder.setNegativeButton("NO", (dialog, id) -> dialog.dismiss());
 
@@ -93,10 +91,7 @@ public class ManageAccountPresenter
 
     @Override
     public void addFundingSource() {
-        CardModule currentModule = (CardModule) ModuleManager.getInstance().getCurrentModule();
-        currentModule.startCustodianModule(currentModule::startManageCardScreen, ()->{
-            Toast.makeText(mActivity, "Funding source added", Toast.LENGTH_SHORT).show();
-        });
+        mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());
     }
 
     @Override

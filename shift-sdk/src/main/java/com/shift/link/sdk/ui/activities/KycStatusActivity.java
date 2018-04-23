@@ -3,7 +3,6 @@ package com.shift.link.sdk.ui.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
 import com.shift.link.sdk.api.vos.Card;
@@ -39,13 +38,6 @@ public class KycStatusActivity extends AppCompatActivity implements KycStatusVie
         }
     }
 
-    private void setView() {
-        mView = (KycStatusView) View.inflate(this, R.layout.act_kyc_status, null);
-        setContentView(mView);
-        mView.getToolbar().setTitle(getString(R.string.kyc_status_title));
-        mView.setViewListener(this);
-    }
-
     @Override
     public void refresh() {
         ShiftLinkSdk.getResponseHandler().subscribe(this);
@@ -58,12 +50,18 @@ public class KycStatusActivity extends AppCompatActivity implements KycStatusVie
      */
     @Subscribe
     public void handleResponse(Card card) {
-        Log.d("ADRIAN", "KycStatusActivity handleResponse: " + card.kycStatus.toString());
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         CardStorage.getInstance().setCard(card);
         if(card.kycStatus.equals(KycStatus.passed)) {
             setResult(RESULT_OK, new Intent());
             finish();
         }
+    }
+
+    private void setView() {
+        mView = (KycStatusView) View.inflate(this, R.layout.act_kyc_status, null);
+        setContentView(mView);
+        mView.getToolbar().setTitle(getString(R.string.kyc_status_title));
+        mView.setViewListener(this);
     }
 }

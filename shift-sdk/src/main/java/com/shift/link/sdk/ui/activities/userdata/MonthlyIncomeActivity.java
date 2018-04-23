@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.MonthlyIncomeModel;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.MonthlyIncomeDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.MonthlyIncomePresenter;
 import com.shift.link.sdk.ui.views.userdata.MonthlyIncomeView;

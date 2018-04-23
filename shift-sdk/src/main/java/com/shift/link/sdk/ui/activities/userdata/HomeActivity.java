@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.HomeModel;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.HomeDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.HomePresenter;
 import com.shift.link.sdk.ui.views.userdata.HomeView;

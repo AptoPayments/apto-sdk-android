@@ -17,7 +17,7 @@ import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.AddBankAccountDelegate;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.AddBankAccountPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.views.financialaccountselector.AddBankAccountView;
 
 import java.util.HashMap;

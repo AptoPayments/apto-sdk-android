@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.ShiftPlatform;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 
 import java.lang.ref.SoftReference;
 

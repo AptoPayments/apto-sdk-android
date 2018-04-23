@@ -7,7 +7,7 @@ import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.loanapplication.SelectLoanApplicationListModel;
 import com.shift.link.sdk.ui.presenters.loanapplication.SelectLoanApplicationListDelegate;
 import com.shift.link.sdk.ui.presenters.loanapplication.SelectLoanApplicationListPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.views.loanapplication.SelectPendingApplicationListView;
 
 

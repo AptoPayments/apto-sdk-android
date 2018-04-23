@@ -6,7 +6,7 @@ import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.AddressModel;
 import com.shift.link.sdk.ui.presenters.userdata.AddressDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.AddressPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.views.userdata.AddressView;
 
 /**

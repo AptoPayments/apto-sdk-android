@@ -7,7 +7,9 @@ import android.view.View;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.FragmentMvpActivity;
 import com.shift.link.sdk.ui.presenters.card.CardModule;
+import com.shift.link.sdk.ui.presenters.card.ManageAccountDelegate;
 import com.shift.link.sdk.ui.presenters.card.ManageAccountPresenter;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.views.card.ManageAccountView;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
 
@@ -31,8 +33,13 @@ public class ManageAccountActivity extends FragmentMvpActivity {
 
     /** {@inheritDoc} */
     @Override
-    protected ManageAccountPresenter createPresenter() {
-        return new ManageAccountPresenter(this);
+    protected ManageAccountPresenter createPresenter(BaseDelegate delegate) {
+        if(delegate instanceof ManageAccountDelegate) {
+            return new ManageAccountPresenter(this, (ManageAccountDelegate) delegate);
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement ManageAccountDelegate!");
+        }
     }
 
     @Override

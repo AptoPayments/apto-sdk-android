@@ -6,7 +6,7 @@ import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.AnnualIncomeModel;
 import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomeDelegate;
 import com.shift.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.views.userdata.AnnualIncomeView;
 
 /**

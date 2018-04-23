@@ -8,7 +8,7 @@ import com.shift.link.sdk.ui.activities.MvpActivity;
 import com.shift.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
 import com.shift.link.sdk.ui.presenters.loanapplication.AddDocumentsListDelegate;
 import com.shift.link.sdk.ui.presenters.loanapplication.AddDocumentsListPresenter;
-import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.views.loanapplication.AddDocumentsListView;
 
 /**

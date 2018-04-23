@@ -8,8 +8,10 @@ import android.view.WindowManager;
 
 import com.shift.link.sdk.ui.models.ActivityModel;
 import com.shift.link.sdk.ui.models.Model;
+import com.shift.link.sdk.ui.presenters.BaseDelegate;
 import com.shift.link.sdk.ui.presenters.Presenter;
 import com.shift.link.sdk.ui.storages.UIStorage;
+import com.shift.link.sdk.ui.workflow.ModuleManager;
 
 
 /**
@@ -35,7 +37,7 @@ public abstract class FragmentMvpActivity<M extends ActivityModel, V extends Vie
     /**
      * @return New {@link Presenter} instance.
      */
-    protected abstract P createPresenter();
+    protected abstract P createPresenter(BaseDelegate delegate);
 
     /**
      * Creates the {@link View} and {@link Presenter} and wires everything.<br/>
@@ -53,7 +55,7 @@ public abstract class FragmentMvpActivity<M extends ActivityModel, V extends Vie
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().setStatusBarColor(UIStorage.getInstance().getStatusBarColor());
         }
-        mPresenter = createPresenter();
+        mPresenter = createPresenter(ModuleManager.getInstance().getCurrentModule());
         mPresenter.attachView(mView);
     }
 

@@ -1,4 +1,4 @@
-package com.shift.link.sdk.ui.presenters.userdata;
+package com.shift.link.sdk.ui.presenters;
 
 /**
  * Created by adrian on 12/01/2017.
