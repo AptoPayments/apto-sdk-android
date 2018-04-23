@@ -320,12 +320,13 @@
 
     <!-- card management screen -->
     <string name="card_management_card_balance">CURRENT BALANCE</string>
-    <string name="card_management_primary_button">TAP TO MANAGE CARD</string>
+    <string name="card_management_primary_button">TAP TO MANAGE CARD OR TAP ON THE NUMBER TO COPY TO CLIPBOARD</string>
     <string name="card_management_secondary_button">ACTIVATE VIRTUAL CARD</string>
-    <string name="card_management_trasactions_title">Recent Transactions</string>
+    <string name="card_management_transactions_title">Recent Transactions</string>
     <string name="card_activated">Card activated</string>
     <string name="card_deactivated">Card deactivated</string>
-    <string name="pin_changed">PIN changed correctly</string>
+    <string name="card_management_pin_changed">PIN changed correctly</string>
+    <string name="card_management_number_copied">Card number copied to clipboard</string>
 
     <!-- card management bottom sheet -->
     <string name="switch_enable_card">Enable Card</string>

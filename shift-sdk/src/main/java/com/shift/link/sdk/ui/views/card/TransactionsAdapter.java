@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -60,6 +61,7 @@ public class TransactionsAdapter extends
         void manageCardClickHandler();
         void activateCardBySecondaryBtnClickHandler();
         void accountClickHandler();
+        void cardNumberClickHandler(String cardNumber);
     }
     public void setViewListener(ViewListener viewListener) {
         mListener = viewListener;
@@ -149,6 +151,7 @@ public class TransactionsAdapter extends
 
             viewHolder.mPrimaryButton.setOnClickListener(v -> mListener.manageCardClickHandler());
             viewHolder.mCreditCardView.setOnClickListener(v -> mListener.manageCardClickHandler());
+            viewHolder.mCreditCardView.getCardNumberView().setOnClickListener(v -> mListener.cardNumberClickHandler(((EditText)v).getText().toString()));
             viewHolder.mSecondaryButton.setOnClickListener(v -> mListener.activateCardBySecondaryBtnClickHandler());
             viewHolder.mAccountButton.setOnClickListener(v -> mListener.accountClickHandler());
         } else if (position > 0) {

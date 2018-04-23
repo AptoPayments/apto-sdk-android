@@ -1,5 +1,8 @@
 package com.shift.link.sdk.ui.presenters.card;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -126,6 +129,16 @@ public class ManageCardPresenter
     }
 
     @Override
+    public void cardNumberClickHandler(String cardNumber) {
+        ClipboardManager clipboard = (ClipboardManager) mActivity.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboard != null) {
+            ClipData clip = ClipData.newPlainText("card number", cardNumber.replaceAll("\\s+",""));
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(mActivity, mActivity.getString(R.string.card_management_number_copied), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     public void pullToRefreshHandler() {
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         mLastTransactionId = null;
@@ -208,7 +221,7 @@ public class ManageCardPresenter
     @Subscribe
     public void handleResponse(UpdateFinancialAccountPinResponseVo card) {
         mView.showLoading(mActivity, false);
-        Toast.makeText(mActivity, mActivity.getString(R.string.pin_changed), Toast.LENGTH_SHORT).show();
+        Toast.makeText(mActivity, mActivity.getString(R.string.card_management_pin_changed), Toast.LENGTH_SHORT).show();
     }
 
     /**

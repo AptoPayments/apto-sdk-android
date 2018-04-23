@@ -43,10 +43,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/credit_card_view"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:textColor="@android:color/darker_gray"
-        android:text="@string/card_management_primary_button" />
+        android:layout_margin="16dp"
+        android:gravity="center_horizontal"
+        android:text="@string/card_management_primary_button"
+        android:textColor="@android:color/darker_gray" />
 
     <TextView
         android:id="@+id/tv_display_card_secondary_bttn"
@@ -62,12 +62,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_display_card_secondary_bttn"
         android:paddingStart="16dp"
+        android:paddingLeft="16dp"
         android:layout_marginTop="16dp"
         android:paddingTop="16dp"
-        android:text="@string/card_management_trasactions_title"
+        android:text="@string/card_management_transactions_title"
         android:textSize="16sp"
         android:textColor="@android:color/black"
-        android:background="@android:color/white"/>
+        android:background="@android:color/white" />
 
     <ImageButton
         android:id="@+id/ib_account"

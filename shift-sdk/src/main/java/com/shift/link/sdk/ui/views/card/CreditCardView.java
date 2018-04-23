@@ -23,13 +23,13 @@ public class CreditCardView extends RelativeLayout {
 
     private final Context mContext;
 
-    private int mCardNumberTextColor = Color.WHITE;
-    private int mCardNameTextColor = Color.WHITE;
-    private int mExpiryDateTextColor = Color.WHITE;
-    private int mExpiryDateLabelTextColor = Color.WHITE;
-    private int mCvvTextColor = Color.WHITE;
-    private int mCvvLabelColor = Color.WHITE;
-    private int mCardNotEnabledLabelColor = Color.DKGRAY;
+    private final static int mCardNumberTextColor = Color.WHITE;
+    private final static int mCardNameTextColor = Color.WHITE;
+    private final static int mExpiryDateTextColor = Color.WHITE;
+    private final static int mExpiryDateLabelTextColor = Color.WHITE;
+    private final static int mCvvTextColor = Color.WHITE;
+    private final static int mCvvLabelColor = Color.WHITE;
+    private final static int mCardNotEnabledLabelColor = Color.DKGRAY;
     private int mEnabledCardBackground = R.drawable.card_enabled_background;
     private int mDisabledCardBackground = R.drawable.card_disabled_background;
 
@@ -120,6 +120,10 @@ public class CreditCardView extends RelativeLayout {
         else {
             disableCard();
         }
+    }
+
+    public EditText getCardNumberView() {
+        return mCardNumberView;
     }
 
     private void enableCard() {

@@ -56,6 +56,7 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment {
                         if(mFingerprintDelegate != null) {
                             mFingerprintDelegate.onAuthenticationFailed("Authentication error\n" + errString);
                         }
+                        dismiss();
                     }
 
                     @Override
@@ -65,6 +66,7 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment {
                         if(mFingerprintDelegate != null) {
                             mFingerprintDelegate.onAuthenticationFailed("Authentication failed");
                         }
+                        dismiss();
                     }
 
                     @Override
@@ -74,6 +76,7 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment {
                         if(mFingerprintDelegate != null) {
                             mFingerprintDelegate.onAuthenticationFailed("Authentication help\n" + helpString);
                         }
+                        dismiss();
                     }
 
                     @Override
