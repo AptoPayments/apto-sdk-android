@@ -37,8 +37,6 @@ public class Card extends FinancialAccountVo {
     public String cardBrand;
     @SerializedName("card_issuer")
     public String cardIssuer;
-    @SerializedName("balance")
-    public String balance;
     @SerializedName("pan")
     public String PANToken;
     @SerializedName("cvv")
@@ -60,7 +58,6 @@ public class Card extends FinancialAccountVo {
         lastFourDigits = null;
         cardBrand = null;
         cardIssuer = null;
-        balance = null;
         PANToken = null;
         CVVToken = null;
         expirationDate = null;
@@ -71,13 +68,12 @@ public class Card extends FinancialAccountVo {
     }
 
     public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, boolean verified) {
+                String PANToken, String CVVToken, FinancialAccountState state, Custodian custodian, boolean verified) {
         super(accountId, FinancialAccountType.Card, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
         this.cardBrand = cardBrand;
         this.cardIssuer = cardIssuer;
-        this.balance = balance;
         this.PANToken = PANToken;
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
@@ -88,13 +84,12 @@ public class Card extends FinancialAccountVo {
     }
 
     public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, KycStatus kycStatus, String[] kycReason, boolean verified) {
+                String PANToken, String CVVToken, FinancialAccountState state, Custodian custodian, KycStatus kycStatus, String[] kycReason, boolean verified) {
         super(accountId, FinancialAccountType.Card, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
         this.cardBrand = cardBrand;
         this.cardIssuer = cardIssuer;
-        this.balance = balance;
         this.PANToken = PANToken;
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
@@ -105,14 +100,13 @@ public class Card extends FinancialAccountVo {
     }
 
     protected Card(FinancialAccountType accountType, String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                   String PANToken, String CVVToken, FinancialAccountState state, String balance, Custodian custodian, KycStatus kycStatus, String[] kycReason, boolean verified) {
+                   String PANToken, String CVVToken, FinancialAccountState state, Custodian custodian, KycStatus kycStatus, String[] kycReason, boolean verified) {
         super(accountId, accountType, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
         this.cardBrand = cardBrand;
         this.cardIssuer = cardIssuer;
         this.state = state;
-        this.balance = balance;
         this.PANToken = PANToken;
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
@@ -129,7 +123,6 @@ public class Card extends FinancialAccountVo {
         this.cardBrand = c.cardBrand;
         this.cardIssuer = c.cardIssuer;
         this.state = c.state;
-        this.balance = c.balance;
         this.PANToken = c.PANToken;
         this.CVVToken = c.CVVToken;
         this.expirationDate = c.expirationDate;
@@ -147,7 +140,6 @@ public class Card extends FinancialAccountVo {
         gsonObject.addProperty("card_brand", cardBrand);
         gsonObject.addProperty("card_issuer", cardIssuer);
         gsonObject.addProperty("state", state != null ? state.name() : "");
-        gsonObject.addProperty("balance", balance);
         gsonObject.addProperty("pan", PANToken);
         gsonObject.addProperty("cvv", CVVToken);
         gsonObject.addProperty("last_four", lastFourDigits);
@@ -193,8 +185,6 @@ public class Card extends FinancialAccountVo {
             return false;
         if (state != null ? !state.equals(card.state) : card.state != null)
             return false;
-        if (balance != null ? !balance.equals(card.balance) : card.balance != null)
-            return false;
         return expirationDate != null ? expirationDate.equals(card.expirationDate) : card.expirationDate == null;
 
     }
@@ -210,7 +200,6 @@ public class Card extends FinancialAccountVo {
         result = 31 * result + (cardBrand != null ? cardBrand.hashCode() : 0);
         result = 31 * result + (cardIssuer != null ? cardIssuer.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
-        result = 31 * result + (balance != null ? balance.hashCode() : 0);
         return result;
     }
 }

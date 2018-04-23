@@ -91,7 +91,6 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv")),
                         Card.FinancialAccountState.valueOf(cardState),
-                        ParsingUtils.getCurrencyStringFromJson(jObject.get("balance")),
                         new Custodian("coinbase", "logo", "coinbase", ""),
                         false);
             case "bank_account":
