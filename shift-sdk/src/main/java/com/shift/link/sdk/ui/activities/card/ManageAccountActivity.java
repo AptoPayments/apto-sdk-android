@@ -6,8 +6,10 @@ import android.view.View;
 
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.FragmentMvpActivity;
+import com.shift.link.sdk.ui.presenters.card.CardModule;
 import com.shift.link.sdk.ui.presenters.card.ManageAccountPresenter;
 import com.shift.link.sdk.ui.views.card.ManageAccountView;
+import com.shift.link.sdk.ui.workflow.ModuleManager;
 
 
 /**
@@ -15,6 +17,12 @@ import com.shift.link.sdk.ui.views.card.ManageAccountView;
  */
 
 public class ManageAccountActivity extends FragmentMvpActivity {
+    public CardModule cardModule;
+
+    public ManageAccountActivity() {
+        cardModule = (CardModule) ModuleManager.getInstance().getCurrentModule();
+    }
+
     /** {@inheritDoc} */
     @Override
     protected ManageAccountView createView() {

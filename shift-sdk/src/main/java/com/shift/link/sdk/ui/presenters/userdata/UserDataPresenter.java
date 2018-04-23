@@ -43,7 +43,7 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
             UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
             position = module.getRequiredActivityPosition(mActivity.getClass());
         }
-        return new StepperConfiguration(TOTAL_STEPS, position, true, true);
+        return new StepperConfiguration(TOTAL_STEPS, position, true);
     }
 
     /**
@@ -82,12 +82,6 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
     @Override
     public void stepperNextClickHandler() {
         nextClickHandler();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void stepperBackClickHandler() {
-        this.onBack();
     }
 
     /**

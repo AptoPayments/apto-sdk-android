@@ -74,10 +74,4 @@ public abstract class LoanDataPresenter<M extends LoanDataModel, V extends UserD
     public void stepperNextClickHandler() {
         nextClickHandler();
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public void stepperBackClickHandler() {
-        this.onBack();
-    }
 }

@@ -2,6 +2,7 @@ package com.shift.link.sdk.ui.views.card;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -99,10 +100,10 @@ public class CreditCardView extends RelativeLayout {
     public void setCardLogo(Card.CardNetwork cardNetwork) {
         switch (cardNetwork) {
             case VISA:
-                mCardLogoView.setBackgroundResource(R.drawable.visa);
+                mCardLogoView.setBackgroundResource(R.drawable.ic_visa_logo);
                 break;
             case MASTERCARD:
-                mCardLogoView.setBackgroundResource(R.drawable.mastercard);
+                mCardLogoView.setBackgroundResource(R.drawable.ic_mastercard_logo);
                 break;
             case AMEX:
                 mCardLogoView.setBackgroundResource(R.drawable.amex);
@@ -128,7 +129,9 @@ public class CreditCardView extends RelativeLayout {
         mExpiryDateLabel.setTextColor(mExpiryDateLabelTextColor);
         mCvvView.setTextColor(mCvvTextColor);
         mCvvLabel.setTextColor(mCvvLabelColor);
-
+        if(mCardLogoView.getBackground() != null) {
+            mCardLogoView.getBackground().setColorFilter(getResources().getColor(R.color.enabled_card_logo), PorterDuff.Mode.SRC_ATOP);
+        }
 
         mExpiryDateView.setVisibility(VISIBLE);
         mExpiryDateLabel.setVisibility(VISIBLE);
@@ -142,6 +145,9 @@ public class CreditCardView extends RelativeLayout {
         mCardNumberView.setTextColor(mCardNotEnabledLabelColor);
         mCardNameView.setTextColor(mCardNotEnabledLabelColor);
         mCardNotEnabledLabel.setTextColor(mCardNotEnabledLabelColor);
+        if(mCardLogoView.getBackground() != null) {
+            mCardLogoView.getBackground().setColorFilter(getResources().getColor(R.color.disabled_card_logo), PorterDuff.Mode.SRC_ATOP);
+        }
 
         mExpiryDateView.setVisibility(INVISIBLE);
         mExpiryDateLabel.setVisibility(INVISIBLE);

@@ -117,4 +117,8 @@ public class EmailVerificationView
     public void displaySentMessage(String message) {
         Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
+
+    public void setDescription(String description) {
+        mEmailInfo.setText(description);
+    }
 }

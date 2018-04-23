@@ -12,7 +12,6 @@
     <!-- Stepper -->
     <attr name="llsdk_stepper_backgroundColor" format="reference|color" />
     <attr name="llsdk_stepper_textColor" format="reference|color" />
-    <attr name="llsdk_stepper_leftArrow" format="reference" />
     <attr name="llsdk_stepper_rightArrow" format="reference" />
     <attr name="llsdk_stepper_dotDisabled" format="reference" />
     <attr name="llsdk_stepper_dotEnabled" format="reference" />

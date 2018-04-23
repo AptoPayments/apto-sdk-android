@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.models.userdata.PhoneModel;
 import com.shift.link.sdk.ui.presenters.Presenter;
+import com.shift.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shift.link.sdk.ui.views.userdata.PhoneView;
 
 /**
@@ -37,11 +38,23 @@ public class PhonePresenter
     public void attachView(PhoneView view) {
         super.attachView(view);
 
-        if (mModel.hasPhone()) {
+        if(mModel.hasPhone()) {
             mView.setPhone(Long.toString(mModel.getPhone().getNationalNumber()));
+        }
+        if(isVerificationRequired()) {
+            mView.setDescription(mActivity.getResources().getString(R.string.phone_label_sms));
+        }
+        else {
+            mView.setDescription(mActivity.getResources().getString(R.string.phone_label));
         }
 
         mView.setListener(this);
+    }
+
+    private boolean isVerificationRequired() {
+        String primaryCredential = SharedPreferencesStorage.getPrimaryCredential(mActivity);
+        return primaryCredential != null && primaryCredential.equalsIgnoreCase("phone");
+
     }
 
     @Override

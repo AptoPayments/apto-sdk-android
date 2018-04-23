@@ -6,6 +6,7 @@ import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.views.ViewWithToolbar;
@@ -26,6 +27,7 @@ public class PhoneView
 
     private TextInputLayout mPhoneWrapper;
     private EditText mPhoneField;
+    private TextView mPhoneLabel;
 
     /**
      * @see UserDataView#UserDataView
@@ -51,6 +53,7 @@ public class PhoneView
 
         mPhoneWrapper = (TextInputLayout) findViewById(R.id.til_phone);
         mPhoneField = (EditText) findViewById(R.id.et_phone);
+        mPhoneLabel = (TextView) findViewById(R.id.tv_phone_header);
     }
 
     /** {@inheritDoc} */
@@ -82,5 +85,13 @@ public class PhoneView
      */
     public void updatePhoneError(boolean show, int errorMessageId) {
         updateErrorDisplay(mPhoneWrapper, show, errorMessageId);
+    }
+
+    /**
+     * Shows the label.
+     * @param description The text to set in the label.
+     */
+    public void setDescription(String description) {
+        mPhoneLabel.setText(description);
     }
 }

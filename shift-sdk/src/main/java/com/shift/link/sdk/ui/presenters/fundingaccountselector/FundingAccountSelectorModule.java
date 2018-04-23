@@ -14,12 +14,12 @@ import com.shift.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivi
 import com.shift.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity;
 import com.shift.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 import com.shift.link.sdk.ui.storages.LoanStorage;
-import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import java.lang.ref.WeakReference;
+import java.lang.ref.SoftReference;
 
 /**
  * Created by adrian on 29/12/2016.
@@ -62,7 +62,7 @@ public class FundingAccountSelectorModule extends ShiftBaseModule
     }
 
     private void showEnableAutoPayScreen() {
-        ModuleManager.getInstance().setModule(new WeakReference<>(this));
+        ModuleManager.getInstance().setModule(new SoftReference<>(this));
         startActivity(EnableAutoPayActivity.class);
     }
 

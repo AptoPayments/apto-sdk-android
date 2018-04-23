@@ -21,12 +21,12 @@ import com.shift.link.sdk.ui.presenters.offers.OffersListDelegate;
 import com.shift.link.sdk.ui.storages.LoanStorage;
 import com.shift.link.sdk.ui.vos.ApplicationVo;
 import com.shift.link.sdk.ui.workflow.Command;
-import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shift.link.sdk.ui.workflow.WorkflowModule;
 import com.shift.link.sdk.ui.workflow.WorkflowObject;
 
-import java.lang.ref.WeakReference;
+import java.lang.ref.SoftReference;
 import java.util.concurrent.ExecutionException;
 
 import java8.util.concurrent.CompletableFuture;
@@ -67,7 +67,7 @@ public class LoanApplicationModule extends ShiftBaseModule
     }
 
     private void showOffers() {
-        ModuleManager.getInstance().setModule(new WeakReference<>(this));
+        ModuleManager.getInstance().setModule(new SoftReference<>(this));
         startActivity(OffersListActivity.class);
     }
 
@@ -175,7 +175,7 @@ public class LoanApplicationModule extends ShiftBaseModule
 
     public void startLoanApplicationSelector(LoanApplicationsSummaryListResponseVo loanApplicationSummaryList) {
         mApplicationList = loanApplicationSummaryList;
-        ModuleManager.getInstance().setModule(new WeakReference<>(this));
+        ModuleManager.getInstance().setModule(new SoftReference<>(this));
         startActivity(SelectLoanApplicationListActivity.class);
     }
 

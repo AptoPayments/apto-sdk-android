@@ -66,13 +66,15 @@ public class ManageCardPresenter
     private ArrayList transactionsList;
     private String mLastTransactionId;
     private static final int ROWS = 20;
+    private boolean mHasTransactionListArrived = false;
+    private boolean mHasFundingSourceArrived = false;
 
     public ManageCardPresenter(FragmentManager fragmentManager, ManageCardActivity activity) {
         mFragmentManager = fragmentManager;
         mActivity = activity;
         mFingerprintHandler = new FingerprintHandler(mActivity);
         mIsUserAuthenticated = false;
-        mLastTransactionId = "";
+        mLastTransactionId = null;
     }
 
     /** {@inheritDoc} */
@@ -129,6 +131,7 @@ public class ManageCardPresenter
     @Override
     public void pullToRefreshHandler() {
         ShiftLinkSdk.getResponseHandler().subscribe(this);
+        mLastTransactionId = null;
         ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
         mTransactionsAdapter.clear();
         scrollListener.resetState();
@@ -180,7 +183,7 @@ public class ManageCardPresenter
 
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setMessage(text)
-                .setTitle(mActivity.getString(R.string.dialog_title));
+                .setTitle(mActivity.getString(R.string.card_management_dialog_title));
         builder.setPositiveButton("YES", (dialog, id) -> changeCardState(enable));
         builder.setNegativeButton("NO", (dialog, id) -> {
             if (mManageCardBottomSheet != null) {
@@ -251,7 +254,9 @@ public class ManageCardPresenter
      */
     @Subscribe
     public void handleResponse(UpdateFinancialAccountResponseVo card) {
-        mView.showLoading(mActivity, false);
+        if(isViewReady()) {
+            mView.showLoading(mActivity, false);
+        }
         String message = card.state.equals(ACTIVE) ? mActivity.getString(R.string.card_activated) : mActivity.getString(R.string.card_deactivated);
         Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
         mModel.setCard(card);
@@ -270,8 +275,11 @@ public class ManageCardPresenter
 
     @Subscribe
     public void handleResponse(TransactionListResponseVo response) {
-        mView.setRefreshing(false);
-        mLastTransactionId = response.data[response.total_count-1].id;
+        mHasTransactionListArrived = true;
+        if(isViewReady()) {
+            mView.setRefreshing(false);
+        }
+        mLastTransactionId = response.data[response.data.length-1].id;
         transactionsList.addAll(Arrays.asList(response.data));
         int currentSize = mTransactionsAdapter.getItemCount();
         mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count -1);
@@ -279,6 +287,10 @@ public class ManageCardPresenter
 
     @Subscribe
     public void handleResponse(FundingSourceVo response) {
+        mHasFundingSourceArrived = true;
+        if(isViewReady()) {
+            mView.setRefreshing(false);
+        }
         mModel.setBalance(String.valueOf(response.balance.amount));
         mTransactionsAdapter.notifyItemChanged(0);
     }
@@ -287,5 +299,9 @@ public class ManageCardPresenter
         UpdateFinancialAccountPinRequestVo request = new UpdateFinancialAccountPinRequestVo();
         request.pin = pin;
         ShiftPlatform.updateFinancialAccountPin(request, mModel.getAccountId());
+    }
+
+    private boolean isViewReady() {
+        return mView!=null && mHasFundingSourceArrived && mHasTransactionListArrived;
     }
 }

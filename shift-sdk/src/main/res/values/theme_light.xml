@@ -22,7 +22,6 @@
 
         <item name="llsdk_stepper_backgroundColor">@color/llsdk_stepper_background</item>
         <item name="llsdk_stepper_textColor">@color/llsdk_stepper_text</item>
-        <item name="llsdk_stepper_leftArrow">@drawable/ic_action_previous_item</item>
         <item name="llsdk_stepper_rightArrow">@drawable/ic_action_next_item</item>
         <item name="llsdk_stepper_dotDisabled">@drawable/stepper_dot_disabled</item>
         <item name="llsdk_stepper_dotEnabled">@drawable/stepper_dot_enabled</item>

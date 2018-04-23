@@ -129,8 +129,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
             default:
                 return "https://vault.sbx.ledge.me";
             case prd:
-                // TODO: vault not ready yet
-                return "https://tnt5ihr00de.LIVE.verygoodproxy.com";
+                return "https://vault.ledge.me";
         }
     }
 

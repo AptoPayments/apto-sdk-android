@@ -53,10 +53,7 @@ public interface ShiftApiWrapper {
     String SSL_FINGERPRINT_ONE = "k2v657xBsOVe1PQRwOsHsw3bsGT2VzIqz5K+59sNQws=";
     String SSL_FINGERPRINT_TWO = "5kJvNEMw0KjrCAu7eXY5HZdvyCS13BbA0VJG1RSP91w=";
     String SSL_FINGERPRINT_THREE = "emrYgpjLplsXa6OnqyXuj5BgQDPaapisB5WfVm+jrFQ=";
-
-    String API_END_POINT = "https://link.ledge.me";
     String SSL_API_HOST = "*.link.ledge.me";
-    String FORWARD_SLASH = "/";
 
     String LINK_CONFIG_PATH = "v1/config/link";
     String CONFIG_PATH = "v1/config";

@@ -31,12 +31,12 @@ import com.shift.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shift.link.sdk.ui.storages.UIStorage;
 import com.shift.link.sdk.ui.storages.UserStorage;
 import com.shift.link.sdk.ui.workflow.Command;
-import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import java.lang.ref.WeakReference;
+import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -191,8 +191,8 @@ public class CardModule extends ShiftBaseModule {
     }
 
     public void setCurrentModule() {
-        WeakReference<ShiftBaseModule> moduleWeakReference = new WeakReference<>(this);
-        ModuleManager.getInstance().setModule(moduleWeakReference);
+        SoftReference<ShiftBaseModule> moduleSoftReference = new SoftReference<>(this);
+        ModuleManager.getInstance().setModule(moduleSoftReference);
     }
 
     /**

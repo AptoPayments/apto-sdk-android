@@ -14,10 +14,10 @@
     <dimen name="llsdk_offer_carousel_image_height">108dp</dimen>
 
     <dimen name="llsdk_card_number_text_size">24sp</dimen>
-    <dimen name="llsdk_card_name_text_size">20sp</dimen>
-    <dimen name="llsdk_expiry_date_text_size">20sp</dimen>
-    <dimen name="llsdk_cvv_text_size">20sp</dimen>
-    <dimen name="llsdk_card_disabled_label_size">20sp</dimen>
+    <dimen name="llsdk_card_name_text_size">16sp</dimen>
+    <dimen name="llsdk_expiry_date_text_size">16sp</dimen>
+    <dimen name="llsdk_cvv_text_size">16sp</dimen>
+    <dimen name="llsdk_card_disabled_label_size">16sp</dimen>
     <dimen name="llsdk_card_common_margin">18dp</dimen>
     <dimen name="llsdk_card_holder_name_margin">6dp</dimen>
     <dimen name="llsdk_cvv_margin_left">15dp</dimen>

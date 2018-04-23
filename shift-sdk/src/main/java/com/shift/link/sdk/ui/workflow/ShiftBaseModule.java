@@ -11,7 +11,7 @@ import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.ShiftPlatform;
 import com.shift.link.sdk.ui.presenters.userdata.BaseDelegate;
 
-import java.lang.ref.WeakReference;
+import java.lang.ref.SoftReference;
 
 /**
  * Created by adrian on 29/12/2016.
@@ -31,8 +31,8 @@ public abstract class ShiftBaseModule implements NavigationCommand, BaseDelegate
     public abstract void initialModuleSetup();
 
     protected void startModule(ShiftBaseModule module) {
-        WeakReference<ShiftBaseModule> moduleWeakReference = new WeakReference<>(module);
-        ModuleManager.getInstance().setModule(moduleWeakReference);
+        SoftReference<ShiftBaseModule> moduleSoftReference = new SoftReference<>(module);
+        ModuleManager.getInstance().setModule(moduleSoftReference);
         module.initialModuleSetup();
     }
 

@@ -28,7 +28,7 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
         mDeveloperKey = null;
         mDevice = null;
         mProjectToken = null;
-        mApiEndPoint = ShiftApiWrapper.API_END_POINT;
+        mApiEndPoint = null;
     }
 
     /** {@inheritDoc} */

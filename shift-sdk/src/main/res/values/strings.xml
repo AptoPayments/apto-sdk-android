@@ -4,7 +4,6 @@
     <string name="user_data_menu_info">Info &amp; terms</string>
 
     <!-- Stepper -->
-    <string name="stepper_back_button_label">BACK</string>
     <string name="stepper_next_button_label">NEXT</string>
 
     <!-- Terms / Conditions -->
@@ -32,15 +31,16 @@
     <string name="personal_info_email_not_available">I don\'t have an email</string>
 
     <!-- Phone -->
-    <string name="phone_title">Get started</string>
+    <string name="phone_title">Phone number</string>
     <string name="phone_hint">Mobile number</string>
-    <string name="phone_label">We\'ll send a one-time SMS to verify your phone number. Carrier SMS fees may apply.</string>
+    <string name="phone_label">Enter your mobile number</string>
+    <string name="phone_label_sms">We\'ll send a one-time SMS to verify your phone number. Carrier SMS fees may apply.</string>
     <string name="phone_error">Invalid phone number</string>
 
     <!-- Email -->
     <string name="email_title">Email address</string>
     <string name="email_error">Invalid email</string>
-    <string name="email_label">Email address</string>
+    <string name="email_label">Enter your email address</string>
     <string name="email_hint">Email</string>
 
 
@@ -63,7 +63,7 @@
     <!-- Email Verification -->
     <string name="email_verification_label">Email verification</string>
     <string name="email_verification_code_hint">Click on the link to verify your account.</string>
-    <string name="email_verification_info">We just sent a verification link to the email associated with this account.</string>
+    <string name="email_verification_info">We just sent a verification link to:\n%s</string>
     <string name="email_verification_button_submit">I Clicked on the Link</string>
     <string name="email_verification_button_resend">Re-send Link</string>
     <string name="email_verification_resent">A new link has been sent to your email</string>
@@ -78,13 +78,16 @@
     <string name="address_city_error">Please enter a valid city.</string>
     <string name="address_state_hint">State</string>
     <string name="address_state_error">Please select a state.</string>
-    <string name="address_zip_code_hint">ZIP</string>
+    <string name="address_zip_code_hint">ZIP Code</string>
     <string name="address_zip_code_error">Please enter a valid ZIP, i.e. \'12345\' or \'12345&#8211;6789\'.</string>
     <string name="address_housing_type_header">Residence</string>
     <string name="address_housing_type_hint">Select a housing type&#8230;</string>
     <string name="address_housing_type_error">Please select a valid housing type.</string>
     <string name="google_maps_api_key">AIzaSyBQuKFxmTO8gmxBwnXZlgG3TJY50KpbS-0</string>
     <string name="google_maps_api_url">https://maps.googleapis.com/maps/api/geocode/json</string>
+
+    <!-- Home -->
+    <string name="home_title">Where do you live?</string>
 
     <!-- Time at Address -->
     <string name="time_at_address_label">Address</string>
@@ -334,7 +337,7 @@
     <!-- card management enable/disable dialog -->
     <string name="enable_card_message">You are activating your card. Are you sure?</string>
     <string name="disable_card_message">You are deactivating your card. Are you sure?</string>
-    <string name="dialog_title">Card state</string>
+    <string name="card_management_dialog_title">Card state</string>
 
     <!-- Card view -->
     <string name="card_cvv_label">CVV</string>
@@ -346,6 +349,8 @@
     <string name="sign_out">SIGN OUT</string>
     <string name="add_funding_source">ADD FUNDING SOURCE</string>
     <string name="funding_source_dollar_amount" formatted="false">($%.2f)</string>
+    <string name="account_management_dialog_title">Sign out</string>
+    <string name="account_management_dialog_message">Are you sure you want to sign out?</string>
 
     <!-- KYC Status screen -->
     <string name="kyc_status_title">Application Status</string>

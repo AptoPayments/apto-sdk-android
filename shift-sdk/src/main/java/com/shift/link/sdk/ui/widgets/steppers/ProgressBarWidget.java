@@ -16,7 +16,6 @@ import com.shift.link.sdk.ui.R;
  */
 public class ProgressBarWidget extends RelativeLayout implements View.OnClickListener {
 
-    private LinearLayout mBackButton;
     private LinearLayout mNextButton;
     private ProgressBar mProgressBar;
     private StepperListener mListener;
@@ -46,7 +45,6 @@ public class ProgressBarWidget extends RelativeLayout implements View.OnClickLis
      * Finds all relevant child {@link View}s.
      */
     private void findAllViews() {
-        mBackButton = (LinearLayout) findViewById(R.id.ll_back_button);
         mNextButton = (LinearLayout) findViewById(R.id.ll_next_button);
         mProgressBar = (ProgressBar) findViewById(R.id.pb_progress_bar);
     }
@@ -83,8 +81,13 @@ public class ProgressBarWidget extends RelativeLayout implements View.OnClickLis
      * @param position Position, current step. Zero-based.
      */
     private void updateProgressBar(int total, int position) {
-        int progress = (int) (((position+1) / (float) total)*100);
-        mProgressBar.setProgress(progress);
+        if(total <= 1) {
+            mProgressBar.setVisibility(GONE);
+        }
+        else {
+            int progress = (int) (((position+1) / (float) total)*100);
+            mProgressBar.setProgress(progress);
+        }
     }
 
     /** {@inheritDoc} */
@@ -102,9 +105,7 @@ public class ProgressBarWidget extends RelativeLayout implements View.OnClickLis
         }
 
         int id = view.getId();
-        if (id == R.id.ll_back_button) {
-            mListener.stepperBackClickHandler();
-        } else if (id == R.id.ll_next_button) {
+        if (id == R.id.ll_next_button) {
             mListener.stepperNextClickHandler();
         }
     }
@@ -114,12 +115,8 @@ public class ProgressBarWidget extends RelativeLayout implements View.OnClickLis
      * @param configuration The new configuration.
      */
     public void setConfiguration(StepperConfiguration configuration) {
-        updateFunctionality(mBackButton, configuration.isBackEnabled());
         updateFunctionality(mNextButton, configuration.isNextEnabled());
-
-        updateListener(mBackButton, configuration.isBackEnabled());
         updateListener(mNextButton, configuration.isNextEnabled());
-
         updateProgressBar(configuration.getTotalSteps(), configuration.getPosition());
     }
 
