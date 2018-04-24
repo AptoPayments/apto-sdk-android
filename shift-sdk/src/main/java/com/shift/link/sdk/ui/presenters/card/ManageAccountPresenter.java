@@ -3,6 +3,8 @@ package com.shift.link.sdk.ui.presenters.card;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
+import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
+import com.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shift.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shift.link.sdk.sdk.ShiftLinkSdk;
 import com.shift.link.sdk.ui.R;
@@ -56,13 +58,6 @@ public class ManageAccountPresenter
         return new ManageAccountModel();
     }
 
-    @Subscribe
-    public void handleResponse(FundingSourceListVo response) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        mModel.addFundingSources(mActivity.getResources(), response.data);
-        mAdapter.updateList(mModel.getFundingSources());
-    }
-
     @Override
     public void fundingSourceClickHandler(FundingSourceModel selectedFundingSource) {
         List<FundingSourceModel> fundingSources = mModel.getFundingSources().getList();
@@ -79,6 +74,7 @@ public class ManageAccountPresenter
         builder.setMessage(mActivity.getString(R.string.account_management_dialog_message))
                 .setTitle(mActivity.getString(R.string.account_management_dialog_title));
         builder.setPositiveButton("YES", (dialog, id) -> {
+            ShiftLinkSdk.getResponseHandler().unsubscribe(this);
             mActivity.finish();
             mDelegate.onSignOut();
         });
@@ -96,6 +92,34 @@ public class ManageAccountPresenter
 
     @Override
     public void onBack() {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         mActivity.onBackPressed();
+    }
+
+    @Subscribe
+    public void handleResponse(FundingSourceListVo response) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mModel.addFundingSources(mActivity.getResources(), response.data);
+        mAdapter.updateList(mModel.getFundingSources());
+    }
+
+    /**
+     * Called when an API error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
+        Toast.makeText(mActivity, "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Called when a session expired error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleSessionExpiredError(SessionExpiredErrorVo error) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mActivity.finish();
+        mDelegate.onSessionExpired(error);
     }
 }

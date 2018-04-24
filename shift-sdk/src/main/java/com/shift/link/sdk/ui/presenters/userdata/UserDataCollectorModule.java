@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
+import com.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shift.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shift.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shift.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
@@ -138,6 +139,16 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
         if(error.request_path.equals(ShiftApiWrapper.GET_CURRENT_USER_PATH) && error.statusCode == 401) {
             ShiftPlatform.clearUserToken(getActivity());
         }
+        stopModule();
+    }
+
+    /**
+     * Called when session expired error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleSessionExpiredError(SessionExpiredErrorVo error) {
+        super.handleSessionExpiredError(error);
         stopModule();
     }
 

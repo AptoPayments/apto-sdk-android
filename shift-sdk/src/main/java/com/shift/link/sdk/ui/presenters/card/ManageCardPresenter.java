@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shift.link.sdk.api.vos.responses.ApiErrorVo;
+import com.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shift.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shift.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shift.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
@@ -68,11 +69,13 @@ public class ManageCardPresenter
     private boolean mIsUserAuthenticated;
     private boolean mHasTransactionListArrived = false;
     private boolean mHasFundingSourceArrived = false;
+    private ManageCardDelegate mDelegate;
 
-    public ManageCardPresenter(FragmentManager fragmentManager, ManageCardActivity activity) {
+    public ManageCardPresenter(FragmentManager fragmentManager, ManageCardActivity activity, ManageCardDelegate delegate) {
         mFragmentManager = fragmentManager;
         mActivity = activity;
         mFingerprintHandler = new FingerprintHandler(mActivity);
+        mDelegate = delegate;
         mIsUserAuthenticated = false;
         mLastTransactionId = null;
     }
@@ -247,6 +250,18 @@ public class ManageCardPresenter
     public void handleApiError(ApiErrorVo error) {
         mView.showLoading(mActivity, false);
         Toast.makeText(mActivity, "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Called when a session expired error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleSessionExpiredError(SessionExpiredErrorVo error) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mView.showLoading(mActivity, false);
+        mActivity.finish();
+        mDelegate.onSessionExpired(error);
     }
 
     @Subscribe

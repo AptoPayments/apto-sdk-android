@@ -48,7 +48,7 @@ import static com.shift.link.sdk.api.vos.datapoints.DataPointVo.DataPointType.Pe
  * Created by adrian on 23/02/2018.
  */
 
-public class CardModule extends ShiftBaseModule implements ManageAccountDelegate {
+public class CardModule extends ShiftBaseModule implements ManageAccountDelegate, ManageCardDelegate {
 
     private RequiredDataPointsListResponseVo mFinalRequiredUserData;
     private boolean mIsExistingUser;
@@ -79,6 +79,11 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Override
     public void onSignOut() {
         showHomeActivity();
+    }
+
+    @Override
+    public void onSessionExpired(SessionExpiredErrorVo error) {
+        this.handleSessionExpiredError(error);
     }
 
     /**

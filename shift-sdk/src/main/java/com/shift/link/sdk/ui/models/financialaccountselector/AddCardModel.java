@@ -25,6 +25,7 @@ public class AddCardModel implements AddFinancialAccountModel, ActivityModel {
     public AddCardModel() {
         mCardHolderName = getUserName();
         mCard = new Card();
+        mCard.state = Card.FinancialAccountState.ACTIVE;
     }
 
     /** {@inheritDoc} */

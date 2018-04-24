@@ -5,6 +5,7 @@ import android.view.View;
 import com.shift.link.sdk.ui.R;
 import com.shift.link.sdk.ui.activities.FragmentMvpActivity;
 import com.shift.link.sdk.ui.presenters.BaseDelegate;
+import com.shift.link.sdk.ui.presenters.card.ManageCardDelegate;
 import com.shift.link.sdk.ui.presenters.card.ManageCardPresenter;
 import com.shift.link.sdk.ui.views.card.ManageCardView;
 import com.venmo.android.pin.PinListener;
@@ -24,7 +25,13 @@ public class ManageCardActivity extends FragmentMvpActivity implements PinListen
     /** {@inheritDoc} */
     @Override
     protected ManageCardPresenter createPresenter(BaseDelegate delegate) {
-        return new ManageCardPresenter(getSupportFragmentManager(), this);
+        if(delegate instanceof ManageCardDelegate) {
+            return new ManageCardPresenter(getSupportFragmentManager(), this, (ManageCardDelegate)delegate);
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement ManageCardDelegate!");
+        }
+
     }
 
     @Override
