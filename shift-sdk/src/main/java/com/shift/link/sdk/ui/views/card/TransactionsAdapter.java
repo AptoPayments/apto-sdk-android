@@ -139,15 +139,8 @@ public class TransactionsAdapter extends
             viewHolder.mCardBalance.setText(mModel.getCardBalance());
             viewHolder.mCardBalance.setTextColor(UIStorage.getInstance().getPrimaryColor());
             viewHolder.mCustodianLogo.setImageResource(R.drawable.coinbase_logo);
-            if (mModel.isCardActivated()) {
-                viewHolder.mCreditCardView.setCardEnabled(true);
-                viewHolder.mSecondaryButton.setVisibility(View.GONE);
-            } else {
-                viewHolder.mCreditCardView.setCardEnabled(false);
-                viewHolder.mSecondaryButton.setBackgroundColor(UIStorage.getInstance().getPrimaryColor());
-                viewHolder.mSecondaryButton.setTextColor(UIStorage.getInstance().getPrimaryContrastColor());
-                viewHolder.mSecondaryButton.setVisibility(View.VISIBLE);
-            }
+            viewHolder.mCreditCardView.setCardEnabled(mModel.isCardActivated());
+            showActivateCardButton(mModel.isCardCreated(), viewHolder);
 
             viewHolder.mPrimaryButton.setOnClickListener(v -> mListener.manageCardClickHandler());
             viewHolder.mCreditCardView.setOnClickListener(v -> mListener.manageCardClickHandler());
@@ -181,5 +174,16 @@ public class TransactionsAdapter extends
     public void clear() {
         mTransactions.clear();
         notifyDataSetChanged();
+    }
+
+    private void showActivateCardButton(boolean show, ViewHolder viewHolder) {
+        if(show) {
+            viewHolder.mSecondaryButton.setBackgroundColor(UIStorage.getInstance().getPrimaryColor());
+            viewHolder.mSecondaryButton.setTextColor(UIStorage.getInstance().getPrimaryContrastColor());
+            viewHolder.mSecondaryButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            viewHolder.mSecondaryButton.setVisibility(View.GONE);
+        }
     }
 }

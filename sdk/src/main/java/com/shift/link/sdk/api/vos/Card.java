@@ -43,7 +43,7 @@ public class Card extends FinancialAccountVo {
     public String CVVToken;
     @SerializedName("expiration")
     public String expirationDate;
-    @SerializedName("state")
+    @SerializedName("card_state")
     public FinancialAccountState state;
     //TODO: remove custodian
     public Custodian custodian;
@@ -61,7 +61,7 @@ public class Card extends FinancialAccountVo {
         PANToken = null;
         CVVToken = null;
         expirationDate = null;
-        state = FinancialAccountState.ACTIVE;
+        state = null;
         custodian = null;
         kycStatus = null;
         kycReason = null;
