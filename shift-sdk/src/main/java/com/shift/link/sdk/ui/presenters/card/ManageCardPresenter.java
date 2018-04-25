@@ -270,10 +270,12 @@ public class ManageCardPresenter
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
-        mLastTransactionId = response.data[response.data.length-1].id;
-        mTransactionsList.addAll(Arrays.asList(response.data));
-        int currentSize = mTransactionsAdapter.getItemCount();
-        mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count -1);
+        if (response.data.length > 0) {
+            mLastTransactionId = response.data[response.data.length-1].id;
+            mTransactionsList.addAll(Arrays.asList(response.data));
+            int currentSize = mTransactionsAdapter.getItemCount();
+            mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count -1);
+        }
     }
 
     @Subscribe

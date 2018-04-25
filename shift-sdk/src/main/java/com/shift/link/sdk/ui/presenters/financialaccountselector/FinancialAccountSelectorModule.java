@@ -7,6 +7,7 @@ import com.shift.link.sdk.api.vos.datapoints.DataPointList;
 import com.shift.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shift.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo;
+import com.shift.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shift.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import com.shift.link.sdk.sdk.ShiftLinkSdk;
 import com.shift.link.sdk.ui.ShiftPlatform;
@@ -17,8 +18,8 @@ import com.shift.link.sdk.ui.activities.financialaccountselector.IntermediateFin
 import com.shift.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity;
 import com.shift.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 import com.shift.link.sdk.ui.storages.UserStorage;
-import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shift.link.sdk.ui.workflow.ModuleManager;
+import com.shift.link.sdk.ui.workflow.ShiftBaseModule;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -93,10 +94,10 @@ public class FinancialAccountSelectorModule extends ShiftBaseModule
 
     @Override
     public void bankAccountLinked(String token) {
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
         AddBankAccountRequestVo request = new AddBankAccountRequestVo();
         request.publicToken = token;
         ShiftPlatform.addBankAccount(request);
-        startActivity(IntermediateFinancialAccountListActivity.class);
     }
 
     @Override
@@ -138,11 +139,26 @@ public class FinancialAccountSelectorModule extends ShiftBaseModule
         showSelectFinancialAccountListSelector();
     }
 
+    /**
+     * Called when the card has been linked.
+     * @param card The added card.
+     */
     @Subscribe
     public void handleResponse(Card card) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
         onFinancialAccountSelected(card.mAccountId);
+    }
+
+    /**
+     * Called when the bank account has been linked.
+     * @param verification Verification status.
+     */
+    @Subscribe
+    public void handleResponse(VerificationStatusResponseVo verification) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        showLoading(false);
+        startActivity(IntermediateFinancialAccountListActivity.class);
     }
 
     /**

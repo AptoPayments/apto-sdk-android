@@ -63,7 +63,7 @@
     <!-- Email Verification -->
     <string name="email_verification_label">Email verification</string>
     <string name="email_verification_code_hint">Click on the link to verify your account.</string>
-    <string name="email_verification_info">We just sent a verification link to:\n%s</string>
+    <string name="email_verification_info">We just sent a verification link to\n%s</string>
     <string name="email_verification_button_submit">I Clicked on the Link</string>
     <string name="email_verification_button_resend">Re-send Link</string>
     <string name="email_verification_resent">A new link has been sent to your email</string>
