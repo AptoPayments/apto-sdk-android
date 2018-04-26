@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shift.link.sdk.ui.views.financialaccountselector.AddFinancialAccountListView
+<com.shiftpayments.link.sdk.ui.views.financialaccountselector.AddFinancialAccountListView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -29,4 +29,4 @@
         </ScrollView>
     </RelativeLayout>
     <include layout="@layout/include_rl_loading" />
-</com.shift.link.sdk.ui.views.financialaccountselector.AddFinancialAccountListView>
+</com.shiftpayments.link.sdk.ui.views.financialaccountselector.AddFinancialAccountListView>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shift.link.sdk.ui.views.card.IssueVirtualCardView
+<com.shiftpayments.link.sdk.ui.views.card.IssueVirtualCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.shift.link.sdk.ui.activities.card.IssueVirtualCardActivity">
+    tools:context="com.shiftpayments.link.sdk.ui.activities.card.IssueVirtualCardActivity">
 
     <ProgressBar
         android:id="@+id/pb_progress"
@@ -12,4 +12,4 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
-</com.shift.link.sdk.ui.views.card.IssueVirtualCardView>
+</com.shiftpayments.link.sdk.ui.views.card.IssueVirtualCardView>

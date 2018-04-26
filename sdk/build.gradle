@@ -11,7 +11,7 @@ ext {
     bintrayName = 'shift-sdk-core'
     bintrayOrg = 'shift'
 
-    publishedGroupId = 'com.shift.android'
+    publishedGroupId = 'com.shiftpayments.android'
     libraryName = 'SDK'
     artifact = 'sdk'
 

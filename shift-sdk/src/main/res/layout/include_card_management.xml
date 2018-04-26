@@ -29,7 +29,7 @@
         android:text="@string/card_management_card_balance"
         android:textColor="@android:color/darker_gray" />
 
-    <com.shift.link.sdk.ui.views.card.CreditCardView
+    <com.shiftpayments.link.sdk.ui.views.card.CreditCardView
         android:id="@+id/credit_card_view"
         android:layout_width="333dp"
         android:layout_height="210dp"

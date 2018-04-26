@@ -12,7 +12,7 @@ Maven:
 
 ```xml
 <dependency>
-  <groupId>com.shift.android</groupId>
+  <groupId>com.shiftpayments.android</groupId>
   <artifactId>shift-sdk</artifactId>
   <version>(insert latest version)</version>
   <type>pom</type>
@@ -22,7 +22,7 @@ Maven:
 Or Gradle:
 
 ```groovy
-compile 'com.shift.android:shift-sdk:+'
+compile 'com.shiftpayments.android:shift-sdk:+'
 ```
 
 ## Requirements
