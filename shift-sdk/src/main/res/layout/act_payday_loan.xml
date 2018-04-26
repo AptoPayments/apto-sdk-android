@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shift.link.sdk.ui.views.userdata.PaydayLoanView
+<com.shiftpayments.link.sdk.ui.views.userdata.PaydayLoanView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -50,4 +50,4 @@
 
     <include layout="@layout/include_progress_bar" />
 
-</com.shift.link.sdk.ui.views.userdata.PaydayLoanView>
+</com.shiftpayments.link.sdk.ui.views.userdata.PaydayLoanView>

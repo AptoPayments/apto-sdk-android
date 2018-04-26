@@ -12,7 +12,7 @@ android {
         versionCode = androidVersionCode
         versionName = androidVersionName
 
-        applicationId 'com.shift.link.sdk.example'
+        applicationId 'com.shiftpayments.link.sdk.example'
     }
 
     compileOptions {
@@ -63,7 +63,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.shift.android:shift-sdk:1.0.1'
+    compile 'com.shiftpayments.android:shift-sdk:1.0.1'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
     compile 'io.branch.sdk.android:library:2.+'
 }

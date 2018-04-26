@@ -17,7 +17,7 @@ ext {
     bintrayName = 'shift-sdk-android'
     bintrayOrg = 'shift'
 
-    publishedGroupId = 'com.shift.android'
+    publishedGroupId = 'com.shiftpayments.android'
     libraryName = 'ShiftSDK'
     artifact = 'shift-sdk'
 
@@ -69,7 +69,7 @@ android {
 
             all {
                 include "**/*Test.class"
-                exclude '**/com/shift/link/sdk/sdk/*'
+                exclude '**/com.shiftpayments.link.sdk/sdk/*'
             }
         }
     }
@@ -101,7 +101,7 @@ repositories {
 
 dependencies {
     // Ledge Libraries
-    compile 'com.shift.android:sdk:1.0.1'
+    compile 'com.shiftpayments.android:sdk:1.0.1'
     compile 'me.ledge.common:common:+'
     // 3rd Party Libraries
     compile('com.android.support:support-v13:24.0.0') {
@@ -163,7 +163,7 @@ afterEvaluate { project ->
 }
 
 task copyAppcompat(type: Copy) {
-    def projectPackage = "com/shift/link/sdk/shift-sdk"
+    def projectPackage = "com.shiftpayments.link.sdk/shift-sdk"
 
     from "build/generated/source/r/debug/${projectPackage}".replace("/", File.separator)
     into 'src/test/java/android/support/v7/appcompat'.replace("/", File.separator)

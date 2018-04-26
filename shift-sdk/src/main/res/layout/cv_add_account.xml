@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shift.link.sdk.ui.views.financialaccountselector.AddFinancialAccountCardView
+<com.shiftpayments.link.sdk.ui.views.financialaccountselector.AddFinancialAccountCardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:cv="http://schemas.android.com/apk/res-auto"
         style="@style/llsdk_add_documents_card"
@@ -36,4 +36,4 @@
 
         </LinearLayout>
     </RelativeLayout>
-</com.shift.link.sdk.ui.views.financialaccountselector.AddFinancialAccountCardView>
+</com.shiftpayments.link.sdk.ui.views.financialaccountselector.AddFinancialAccountCardView>

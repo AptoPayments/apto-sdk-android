@@ -11,7 +11,7 @@ ext {
     androidVersionCode = '1'
     androidVersionName = '0.1'
 
-    mavenGroup = 'com.shift.android'
+    mavenGroup = 'com.shiftpayments.android'
 }
 
 subprojects {
