@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
@@ -25,6 +26,7 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
+import com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity;
 import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
@@ -35,17 +37,6 @@ import com.shiftpayments.link.sdk.ui.utils.FingerprintHandler;
 import com.shiftpayments.link.sdk.ui.views.card.EndlessRecyclerViewScrollListener;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardBottomSheet;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
-import com.shiftpayments.link.sdk.ui.views.card.TransactionsAdapter;
-import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
-import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
-import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
-import com.shiftpayments.link.sdk.ui.presenters.Presenter;
-import com.shiftpayments.link.sdk.ui.storages.CardStorage;
-import com.shiftpayments.link.sdk.ui.utils.FingerprintAuthenticationDialogFragment;
-import com.shiftpayments.link.sdk.ui.utils.FingerprintDelegate;
-import com.shiftpayments.link.sdk.ui.utils.FingerprintHandler;
-import com.shiftpayments.link.sdk.ui.views.card.EndlessRecyclerViewScrollListener;
-import com.shiftpayments.link.sdk.ui.views.card.ManageCardBottomSheet;
 import com.shiftpayments.link.sdk.ui.views.card.TransactionsAdapter;
 import com.venmo.android.pin.PinFragmentConfiguration;
 import com.venmo.android.pin.PinSupportFragment;
@@ -150,6 +141,12 @@ public class ManageCardPresenter
             clipboard.setPrimaryClip(clip);
             Toast.makeText(mActivity, mActivity.getString(R.string.card_management_number_copied), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void transactionClickHandler(int transactionId) {
+        Log.d("ADRIAN", "transactionClickHandler: " + transactionId);
+        mActivity.startActivity(new Intent(mActivity, TransactionDetailsActivity.class));
     }
 
     @Override

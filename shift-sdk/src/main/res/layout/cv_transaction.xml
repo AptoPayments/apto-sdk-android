@@ -6,6 +6,7 @@
     android:background="@android:color/white">
 
     <RelativeLayout
+        android:id="@+id/rl_transaction_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -14,7 +15,8 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:padding="8dp"
-            android:background="@android:color/white" />
+            android:background="@android:color/white"
+            android:clickable="false"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -22,7 +24,9 @@
             android:orientation="vertical"
             android:gravity="center_vertical"
             android:padding="8dp"
-            android:layout_toEndOf="@+id/iv_icon">
+            android:layout_toEndOf="@+id/iv_icon"
+            android:layout_toRightOf="@+id/iv_icon"
+            android:clickable="false">
 
             <TextView
                 android:id="@+id/tv_title"
