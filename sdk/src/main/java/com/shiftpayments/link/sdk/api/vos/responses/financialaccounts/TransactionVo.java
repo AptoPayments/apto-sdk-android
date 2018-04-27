@@ -1,12 +1,15 @@
 package com.shiftpayments.link.sdk.api.vos.responses.financialaccounts;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by adrian on 20/03/2018.
  */
 
-public class TransactionVo {
+public class TransactionVo implements Parcelable {
 
     public String id;
 
@@ -63,8 +66,72 @@ public class TransactionVo {
     public boolean isCardPresent;
 
     @SerializedName("emv")
-    public boolean isEMV;
+    public boolean isEmv;
 
     @SerializedName("network")
-    public String netowrk;
+    public String network;
+
+    public TransactionVo(Parcel in) {
+        id = in.readString();
+        isAuthorized = in.readInt() == 1;
+        creationTime = in.readString();
+        description = in.readString();
+        merchantName = in.readString();
+        merchantCity = in.readString();
+        merchantState = in.readString();
+        merchantCountry = in.readString();
+        merchantCategoryCode = in.readInt();
+        merchantCategoryName = in.readString();
+        merchantCategoryIcon = in.readString();
+        state = in.readString();
+        localAmount = in.readDouble();
+        localCurrency = in.readString();
+        usdAmount = in.readDouble();
+        cashBackAmount = in.readDouble();
+        isECommerce = in.readInt() == 1;
+        isInternational = in.readInt() == 1;
+        isCardPresent = in.readInt() == 1;
+        isEmv = in.readInt() == 1;
+        network = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(id);
+        parcel.writeInt(isAuthorized ? 1 : 0);
+        parcel.writeString(creationTime);
+        parcel.writeString(description);
+        parcel.writeString(merchantName);
+        parcel.writeString(merchantCity);
+        parcel.writeString(merchantState);
+        parcel.writeString(merchantCountry);
+        parcel.writeInt(merchantCategoryCode);
+        parcel.writeString(merchantCategoryName);
+        parcel.writeString(merchantCategoryIcon);
+        parcel.writeString(state);
+        parcel.writeDouble(localAmount);
+        parcel.writeString(localCurrency);
+        parcel.writeDouble(usdAmount);
+        parcel.writeDouble(cashBackAmount);
+        parcel.writeInt(isECommerce ? 1 : 0);
+        parcel.writeInt(isInternational ? 1 : 0);
+        parcel.writeInt(isCardPresent ? 1 : 0);
+        parcel.writeInt(isEmv ? 1 : 0);
+        parcel.writeString(network);
+    }
+
+    public static final Parcelable.Creator<TransactionVo> CREATOR = new Parcelable.Creator<TransactionVo>() {
+        public TransactionVo createFromParcel(Parcel in) {
+            return new TransactionVo(in);
+        }
+
+        public TransactionVo[] newArray(int size) {
+            return new TransactionVo[size];
+        }
+    };
 }

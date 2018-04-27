@@ -1,8 +1,11 @@
 package com.shiftpayments.link.sdk.ui.activities.card;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.FragmentMvpActivity;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
@@ -16,6 +19,8 @@ import com.shiftpayments.link.sdk.ui.views.card.TransactionDetailsView;
 
 public class TransactionDetailsActivity extends FragmentMvpActivity {
 
+    public static final String EXTRA_TRANSACTION = "com.shiftpayments.link.sdk.ui.presenters.card.TRANSACTION";
+
     /** {@inheritDoc} */
     @Override
     protected TransactionDetailsView createView() {
@@ -25,7 +30,9 @@ public class TransactionDetailsActivity extends FragmentMvpActivity {
     /** {@inheritDoc} */
     @Override
     protected TransactionDetailsPresenter createPresenter(BaseDelegate delegate) {
-        return new TransactionDetailsPresenter(this);
+        Intent intent = getIntent();
+        TransactionVo transactionVo = intent.getParcelableExtra(EXTRA_TRANSACTION);
+        return new TransactionDetailsPresenter(this, transactionVo);
     }
 
     @Override

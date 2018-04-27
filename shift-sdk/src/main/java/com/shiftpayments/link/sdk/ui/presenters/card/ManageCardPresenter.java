@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -47,6 +48,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static com.shiftpayments.link.sdk.api.vos.Card.FinancialAccountState.ACTIVE;
+import static com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity.EXTRA_TRANSACTION;
 
 /**
  * Concrete {@link Presenter} for the manage card screen.
@@ -145,8 +147,8 @@ public class ManageCardPresenter
 
     @Override
     public void transactionClickHandler(int transactionId) {
-        Log.d("ADRIAN", "transactionClickHandler: " + transactionId);
-        mActivity.startActivity(new Intent(mActivity, TransactionDetailsActivity.class));
+        TransactionVo transaction = (TransactionVo) mTransactionsList.get(transactionId);
+        mActivity.startActivity(getTransactionDetailsIntent(mActivity, transaction));
     }
 
     @Override
@@ -294,6 +296,12 @@ public class ManageCardPresenter
         }
         mModel.setBalance(String.valueOf(response.balance.amount));
         mTransactionsAdapter.notifyItemChanged(0);
+    }
+
+    public static Intent getTransactionDetailsIntent(Context context, TransactionVo transactionVo) {
+        Intent intent = new Intent(context, TransactionDetailsActivity.class);
+        intent.putExtra(EXTRA_TRANSACTION, transactionVo);
+        return intent;
     }
 
     private void changeCardState(boolean enable) {

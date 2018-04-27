@@ -1,5 +1,6 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity;
 import com.shiftpayments.link.sdk.ui.models.card.TransactionDetailsModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
@@ -16,7 +17,7 @@ public class TransactionDetailsPresenter
 
     private TransactionDetailsActivity mActivity;
 
-    public TransactionDetailsPresenter(TransactionDetailsActivity activity) {
+    public TransactionDetailsPresenter(TransactionDetailsActivity activity, TransactionVo transactionVo) {
         mActivity = activity;
     }
 
