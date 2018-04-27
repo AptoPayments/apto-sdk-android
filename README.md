@@ -77,6 +77,9 @@ There are two example apps which make use of the SDK. You can install the exampl
     <string name="shift_environment">local_emulator</string>
     <string name="shift_developer_key">myApiKey</string>
     <string name="shift_project_token">myProjectToken</string>
+    <string name="shift_branch_key">branch_key</string>
+    <string name="shift_coinbase_client_id">coinbase_id</string>
+    <string name="shift_coinbase_client_secret">coinbase_secret</string>
 </resources>
 ```
 
