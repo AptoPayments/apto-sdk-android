@@ -42,7 +42,8 @@ public class FundingSourceModel implements Model {
     }
 
     public String getFundingSourceBalance() {
-        return mFundingSource.custodianWallet.balance.amount + " " + mFundingSource.custodianWallet.balance.currency;
+        String currency = mFundingSource.custodianWallet.balance.currency == null ? "" : mFundingSource.custodianWallet.balance.currency;
+        return mFundingSource.custodianWallet.balance.amount + " " + currency;
     }
 
     /**

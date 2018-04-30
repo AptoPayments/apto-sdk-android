@@ -74,6 +74,7 @@ public class TransactionsAdapter extends
         // Header
         public CreditCardView mCreditCardView;
         public TextView mCardBalance;
+        public TextView mCardBalanceLabel;
         public TextView mPrimaryButton;
         public TextView mSecondaryButton;
         public ImageView mCustodianLogo;
@@ -93,6 +94,7 @@ public class TransactionsAdapter extends
                 mCustodianLogo = (ImageView) itemView.findViewById(R.id.custodian_logo);
                 mCreditCardView = (CreditCardView) itemView.findViewById(R.id.credit_card_view);
                 mCardBalance = (TextView) itemView.findViewById(R.id.tv_card_balance);
+                mCardBalanceLabel = (TextView) itemView.findViewById(R.id.tv_card_balance_label);
                 mPrimaryButton = (TextView) itemView.findViewById(R.id.tv_display_card_primary_bttn);
                 mSecondaryButton = (TextView) itemView.findViewById(R.id.tv_display_card_secondary_bttn);
                 mAccountButton = (ImageButton) itemView.findViewById(R.id.ib_account);
@@ -137,6 +139,12 @@ public class TransactionsAdapter extends
             viewHolder.mCreditCardView.setCVV(mModel.getCVV());
             viewHolder.mCreditCardView.setCardLogo(mModel.getCardNetwork());
             viewHolder.mCardBalance.setText(mModel.getCardBalance());
+            if(mModel.getCardBalance().isEmpty()) {
+                viewHolder.mCardBalanceLabel.setVisibility(View.GONE);
+            }
+            else {
+                viewHolder.mCardBalanceLabel.setVisibility(View.VISIBLE);
+            }
             viewHolder.mCardBalance.setTextColor(UIStorage.getInstance().getPrimaryColor());
             viewHolder.mCustodianLogo.setImageResource(R.drawable.coinbase_logo);
             viewHolder.mCreditCardView.setCardEnabled(mModel.isCardActivated());
