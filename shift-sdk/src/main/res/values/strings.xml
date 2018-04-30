@@ -358,4 +358,16 @@
     <string name="kyc_status_title">Application Status</string>
     <string name="kyc_status_application_under_review">Your application is under review</string>
     <string name="account_management_funding_source_added">Funding source added</string>
+
+    <!-- Transaction details screen -->
+    <string name="transaction_details_title">Transaction Details</string>
+    <string name="transaction_details_amount">Amount</string>
+    <string name="transaction_details_currency">Currency</string>
+    <string name="transaction_details_type">Type</string>
+    <string name="transaction_details_location">Location</string>
+    <string name="transaction_details_category">Category</string>
+    <string name="transaction_details_date">Transaction Date</string>
+    <string name="transaction_details_settlement_date">Settlement Date</string>
+    <string name="transaction_details_id">Shift ID</string>
+    <string name="transaction_details_transfers">Transfers</string>
 </resources>

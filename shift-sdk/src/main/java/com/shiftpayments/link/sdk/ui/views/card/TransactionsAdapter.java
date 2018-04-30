@@ -17,7 +17,6 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class TransactionsAdapter extends
@@ -25,14 +24,12 @@ public class TransactionsAdapter extends
 
     private Context mContext;
     private List<TransactionVo> mTransactions;
-    private HashMap<String, Integer> mIconMap;
     private ViewListener mListener;
     private ManageCardModel mModel;
 
     TransactionsAdapter() {
         mContext = null;
         mTransactions = null;
-        mIconMap = null;
         mModel = null;
     }
 
@@ -40,19 +37,6 @@ public class TransactionsAdapter extends
         mContext = context;
         mTransactions = transactions;
         mModel = model;
-        mIconMap = new HashMap<>();
-        mIconMap.put("plane", R.drawable.flights);
-        mIconMap.put("car", R.drawable.car);
-        mIconMap.put("glass", R.drawable.alcohol);
-        mIconMap.put("finance", R.drawable.withdraw);
-        mIconMap.put("food", R.drawable.food);
-        mIconMap.put("gas", R.drawable.fuel);
-        mIconMap.put("bed", R.drawable.hotel);
-        mIconMap.put("medical", R.drawable.medicine);
-        mIconMap.put("camera", R.drawable.other);
-        mIconMap.put("card", R.drawable.bank_card);
-        mIconMap.put("cart", R.drawable.purchases);
-        mIconMap.put("road", R.drawable.toll_road);
     }
 
     /**
@@ -155,13 +139,13 @@ public class TransactionsAdapter extends
             TransactionVo transaction = mTransactions.get(position-1);
 
             TextView titleTextView = viewHolder.titleTextView;
-            titleTextView.setText(String.valueOf(transaction.usdAmount));
+            titleTextView.setText(String.format("$%s", String.valueOf(transaction.usdAmount)));
 
             TextView descriptionTextView = viewHolder.descriptionTextView;
             descriptionTextView.setText(transaction.description);
 
             ImageView iconImageView = viewHolder.iconImageView;
-            iconImageView.setImageDrawable(mContext.getDrawable(mIconMap.get(transaction.merchantCategoryIcon)));
+            iconImageView.setImageDrawable(mContext.getDrawable(UIStorage.getInstance().getIcon(transaction.merchantCategoryIcon)));
             iconImageView.setColorFilter(Color.BLACK);
             viewHolder.transactionHolder.setOnClickListener(v -> mListener.transactionClickHandler(position-1));
         }

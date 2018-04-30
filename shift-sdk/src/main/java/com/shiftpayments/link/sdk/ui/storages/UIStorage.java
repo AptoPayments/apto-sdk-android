@@ -8,7 +8,10 @@ import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.TeamConfigResponseVo;
+import com.shiftpayments.link.sdk.ui.R;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import java8.util.concurrent.CompletableFuture;
@@ -27,6 +30,7 @@ public class UIStorage {
     private ContextConfigResponseVo mConfig;
     private final static String DEFAULT_PRIMARY_COLOR = "9ADE83";
     private final static String DEFAULT_SECONDARY_COLOR = "F2F2F2";
+    private static final Map<String, Integer> mIconMap = createIconMap();
 
     private static UIStorage mInstance;
 
@@ -203,5 +207,27 @@ public class UIStorage {
                         materialGrayColor, statusBarColor
                 }
         );
+    }
+
+    public Integer getIcon(String merchantCategory) {
+        return mIconMap.get(merchantCategory);
+    }
+
+    private static Map<String, Integer> createIconMap()
+    {
+        Map<String, Integer> iconMap = new HashMap<>();
+        iconMap.put("plane", R.drawable.flights);
+        iconMap.put("car", R.drawable.car);
+        iconMap.put("glass", R.drawable.alcohol);
+        iconMap.put("finance", R.drawable.withdraw);
+        iconMap.put("food", R.drawable.food);
+        iconMap.put("gas", R.drawable.fuel);
+        iconMap.put("bed", R.drawable.hotel);
+        iconMap.put("medical", R.drawable.medicine);
+        iconMap.put("camera", R.drawable.other);
+        iconMap.put("card", R.drawable.bank_card);
+        iconMap.put("cart", R.drawable.purchases);
+        iconMap.put("road", R.drawable.toll_road);
+        return iconMap;
     }
 }
