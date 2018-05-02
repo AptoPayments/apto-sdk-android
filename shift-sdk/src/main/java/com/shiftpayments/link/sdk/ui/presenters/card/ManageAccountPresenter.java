@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
@@ -107,6 +108,7 @@ public class ManageAccountPresenter
     @Subscribe
     public void handleResponse(FundingSourceListVo response) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mView.showFundingSourceLabel(true);
         mModel.addFundingSources(mActivity.getResources(), response.data);
         mAdapter.updateList(mModel.getFundingSources());
     }
@@ -117,7 +119,14 @@ public class ManageAccountPresenter
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        Toast.makeText(mActivity, "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+        if(error.statusCode==404) {
+            // User has no funding source
+            mView.showFundingSourceLabel(false);
+            mAdapter.updateList(mModel.getFundingSources());
+        }
+        else {
+            Toast.makeText(mActivity, "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**

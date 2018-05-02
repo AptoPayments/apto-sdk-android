@@ -138,14 +138,16 @@ public class TransactionsAdapter extends
             viewHolder.mCreditCardView.setCardName(mModel.getCardHolderName());
             viewHolder.mCreditCardView.setCVV(mModel.getCVV());
             viewHolder.mCreditCardView.setCardLogo(mModel.getCardNetwork());
-            viewHolder.mCardBalance.setText(mModel.getCardBalance());
             if(mModel.getCardBalance().isEmpty()) {
                 viewHolder.mCardBalanceLabel.setVisibility(View.GONE);
+                viewHolder.mCardBalance.setVisibility(View.GONE);
             }
             else {
+                viewHolder.mCardBalance.setText(mModel.getCardBalance());
+                viewHolder.mCardBalance.setTextColor(UIStorage.getInstance().getPrimaryColor());
+                viewHolder.mCardBalance.setVisibility(View.VISIBLE);
                 viewHolder.mCardBalanceLabel.setVisibility(View.VISIBLE);
             }
-            viewHolder.mCardBalance.setTextColor(UIStorage.getInstance().getPrimaryColor());
             viewHolder.mCustodianLogo.setImageResource(R.drawable.coinbase_logo);
             viewHolder.mCreditCardView.setCardEnabled(mModel.isCardActivated());
             showActivateCardButton(mModel.isCardCreated(), viewHolder);
