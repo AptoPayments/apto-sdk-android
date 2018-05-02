@@ -10,7 +10,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicat
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanApplicationDetailsPresenter;
 import com.shiftpayments.link.sdk.ui.views.loanapplication.LoanApplicationDetailsView;
-import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanApplicationDetailsPresenter;
 
 /**
  * Loan application details {@link Fragment}.

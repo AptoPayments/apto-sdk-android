@@ -15,13 +15,10 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.financialaccountselector.AddBankAccountModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.AddBankAccountDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.AddBankAccountPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.financialaccountselector.AddBankAccountView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.AddBankAccountDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.AddBankAccountPresenter;
 
 import java.util.HashMap;
 

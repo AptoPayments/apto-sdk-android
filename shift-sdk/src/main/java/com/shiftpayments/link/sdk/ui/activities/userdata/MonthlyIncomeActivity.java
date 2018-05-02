@@ -8,9 +8,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.MonthlyIncomeDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.MonthlyIncomePresenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.MonthlyIncomeView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.MonthlyIncomeDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.MonthlyIncomePresenter;
 
 /**
  * Wires up the MVP pattern for the monthly income screen.

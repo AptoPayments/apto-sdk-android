@@ -5,13 +5,10 @@ import android.view.View;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.financialaccountselector.AddFinancialAccountListModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.AddFinancialAccountListDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.AddFinancialAccountListPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.financialaccountselector.AddFinancialAccountListView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.AddFinancialAccountListDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.AddFinancialAccountListPresenter;
 
 
 /**

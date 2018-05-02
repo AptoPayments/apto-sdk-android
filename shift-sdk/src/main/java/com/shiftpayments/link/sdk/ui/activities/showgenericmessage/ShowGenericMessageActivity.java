@@ -5,13 +5,10 @@ import android.view.View;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.userdata.UserDataActivity;
 import com.shiftpayments.link.sdk.ui.models.showgenericmessage.ShowGenericMessageModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessagePresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.showgenericmessage.ShowGenericMessageView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessagePresenter;
 
 /**
  * Wires up the MVP pattern for the show generic message screen.

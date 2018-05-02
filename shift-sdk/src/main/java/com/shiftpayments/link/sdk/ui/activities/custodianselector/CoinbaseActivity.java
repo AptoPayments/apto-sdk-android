@@ -13,7 +13,6 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CoinbaseDelegate;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
-import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CoinbaseDelegate;
 
 /**
  * Created by adrian on 20/02/2018.

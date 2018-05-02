@@ -1,7 +1,6 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
@@ -10,14 +9,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSou
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
-import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
-import com.shiftpayments.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
-import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
-import com.shiftpayments.link.sdk.ui.models.card.ManageAccountModel;
-import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
-import com.shiftpayments.link.sdk.ui.presenters.Presenter;
-import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
-import com.shiftpayments.link.sdk.ui.views.card.ManageAccountView;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
 import com.shiftpayments.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
 import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;

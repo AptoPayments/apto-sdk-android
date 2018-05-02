@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.financialaccountselector.AddFinancialAccountModel;
-import com.shiftpayments.link.sdk.ui.models.financialaccountselector.AddFinancialAccountModel;
 
 /**
  * Displays a single request to add a financial account.

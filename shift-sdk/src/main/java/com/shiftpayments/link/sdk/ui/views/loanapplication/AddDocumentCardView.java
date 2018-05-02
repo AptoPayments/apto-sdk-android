@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.documents.AddDocumentModel;
 import com.shiftpayments.link.sdk.ui.utils.ResourceUtil;
-import com.shiftpayments.link.sdk.ui.models.loanapplication.documents.AddDocumentModel;
 
 /**
  * Displays a single request to add a document for a loan application.

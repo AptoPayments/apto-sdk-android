@@ -6,14 +6,12 @@ import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.FragmentMvpActivity;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.CardModule;
 import com.shiftpayments.link.sdk.ui.presenters.card.ManageAccountDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.ManageAccountPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.card.ManageAccountView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.card.ManageAccountDelegate;
 
 
 /**

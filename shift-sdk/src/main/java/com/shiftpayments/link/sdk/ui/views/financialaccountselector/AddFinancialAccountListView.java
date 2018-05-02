@@ -18,7 +18,6 @@ import com.shiftpayments.link.sdk.ui.views.DisplayErrorMessage;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
-import com.shiftpayments.link.sdk.ui.models.financialaccountselector.AddFinancialAccountModel;
 
 /**
  * Created by adrian on 17/01/2017.

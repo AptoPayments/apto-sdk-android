@@ -5,7 +5,6 @@ import android.app.Activity;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.loanapplication.AddDocumentsListActivity;
-import com.shiftpayments.link.sdk.ui.activities.loanapplication.AddDocumentsListActivity;
 
 /**
  * Concrete {@link IntermediateLoanApplicationModel} for a loan application that requires more documents from the user.

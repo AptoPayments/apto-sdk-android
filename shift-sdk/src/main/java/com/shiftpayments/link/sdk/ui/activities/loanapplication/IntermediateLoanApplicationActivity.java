@@ -5,13 +5,10 @@ import android.view.View;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.IntermediateLoanApplicationDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.IntermediateLoanApplicationPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.loanapplication.IntermediateLoanApplicationView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.loanapplication.IntermediateLoanApplicationDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.loanapplication.IntermediateLoanApplicationPresenter;
 
 /**
  * Wires up the MVP pattern for the screen that shows a loan in an intermediate state.

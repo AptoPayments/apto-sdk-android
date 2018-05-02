@@ -36,17 +36,6 @@ import com.shiftpayments.link.sdk.ui.views.card.EndlessRecyclerViewScrollListene
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardBottomSheet;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
 import com.shiftpayments.link.sdk.ui.views.card.TransactionsAdapter;
-import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
-import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
-import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
-import com.shiftpayments.link.sdk.ui.presenters.Presenter;
-import com.shiftpayments.link.sdk.ui.storages.CardStorage;
-import com.shiftpayments.link.sdk.ui.utils.FingerprintAuthenticationDialogFragment;
-import com.shiftpayments.link.sdk.ui.utils.FingerprintDelegate;
-import com.shiftpayments.link.sdk.ui.utils.FingerprintHandler;
-import com.shiftpayments.link.sdk.ui.views.card.EndlessRecyclerViewScrollListener;
-import com.shiftpayments.link.sdk.ui.views.card.ManageCardBottomSheet;
-import com.shiftpayments.link.sdk.ui.views.card.TransactionsAdapter;
 import com.venmo.android.pin.PinFragmentConfiguration;
 import com.venmo.android.pin.PinSupportFragment;
 
@@ -260,6 +249,7 @@ public class ManageCardPresenter
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         mView.showLoading(mActivity, false);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         if(error.statusCode==404) {
             // Card has no funding source
             mHasFundingSourceArrived = true;

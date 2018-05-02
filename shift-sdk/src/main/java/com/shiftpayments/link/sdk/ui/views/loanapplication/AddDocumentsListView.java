@@ -21,7 +21,6 @@ import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ResourceUtil;
 import com.shiftpayments.link.sdk.ui.views.DisplayErrorMessage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
-import com.shiftpayments.link.sdk.ui.models.loanapplication.documents.AddDocumentModel;
 
 /**
  * Shows the list of documents the lender requires for a loan application.

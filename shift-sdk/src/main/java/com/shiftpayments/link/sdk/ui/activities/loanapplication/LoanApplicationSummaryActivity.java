@@ -5,13 +5,10 @@ import android.view.View;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanApplicationSummaryDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanApplicationSummaryPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.loanapplication.LoanApplicationSummaryView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanApplicationSummaryDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanApplicationSummaryPresenter;
 
 /**
  * Wires up the MVP pattern for the screen that shows the application summary.

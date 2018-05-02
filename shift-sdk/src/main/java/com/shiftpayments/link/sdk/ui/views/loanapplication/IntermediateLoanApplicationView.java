@@ -11,7 +11,6 @@ import com.shiftpayments.link.sdk.ui.models.loanapplication.IntermediateLoanAppl
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.views.offers.LoanOfferErrorView;
-import com.shiftpayments.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 
 /**
  * Displays the intermediate loan state.

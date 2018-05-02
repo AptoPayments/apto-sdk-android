@@ -6,13 +6,10 @@ import android.view.View;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.AddDocumentsListDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.AddDocumentsListPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.loanapplication.AddDocumentsListView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.loanapplication.AddDocumentsListDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.loanapplication.AddDocumentsListPresenter;
 
 /**
  * Wires up the MVP pattern for the screen that shows the document upload list.

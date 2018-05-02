@@ -12,8 +12,6 @@ import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.storages.LinkStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.vos.LoanDataVo;
-import com.shiftpayments.link.sdk.ui.storages.LinkStorage;
-import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 
 import java.util.LinkedList;
 

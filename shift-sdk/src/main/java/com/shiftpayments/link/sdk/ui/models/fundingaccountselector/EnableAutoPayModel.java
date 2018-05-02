@@ -14,12 +14,6 @@ import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.CardAutoP
 import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.DefaultAutoPayStrategy;
 import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.FinancialAccountStrategy;
 import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.VirtualCardAutoPayStrategy;
-import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.AutoPayViewModel;
-import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.BankAutoPayStrategy;
-import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.CardAutoPayStrategy;
-import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.DefaultAutoPayStrategy;
-import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.FinancialAccountStrategy;
-import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.VirtualCardAutoPayStrategy;
 
 /**
  * Concrete {@link Model} for the auto-pay screen.

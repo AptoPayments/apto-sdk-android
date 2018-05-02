@@ -8,9 +8,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.IdentityVerificationDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.IdentityVerificationDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
 
 /**
  * Wires up the MVP pattern for the ID verification screen.

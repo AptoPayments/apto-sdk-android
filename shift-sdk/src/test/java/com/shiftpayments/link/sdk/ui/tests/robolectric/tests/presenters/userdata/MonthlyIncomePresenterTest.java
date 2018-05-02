@@ -12,13 +12,6 @@ import com.shiftpayments.link.sdk.ui.presenters.userdata.MonthlyIncomePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
-import com.shiftpayments.link.sdk.ui.mocks.presenters.userdata.MockMonthlyIncomePresenter;
-import com.shiftpayments.link.sdk.ui.mocks.presenters.userdata.MockUserDataCollectorModule;
-import com.shiftpayments.link.sdk.ui.mocks.views.userdata.MockMonthlyIncomeView;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.MonthlyIncomePresenter;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
-import com.shiftpayments.link.sdk.ui.storages.UserStorage;
-import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import org.junit.After;
 import org.junit.Assert;

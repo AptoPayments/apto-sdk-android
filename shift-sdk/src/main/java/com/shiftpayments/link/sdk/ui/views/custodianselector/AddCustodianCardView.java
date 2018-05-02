@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.custodianselector.AddCustodianModel;
-import com.shiftpayments.link.sdk.ui.models.custodianselector.AddCustodianModel;
 
 
 /**

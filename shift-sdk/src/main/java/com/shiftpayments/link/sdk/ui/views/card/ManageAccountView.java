@@ -12,14 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
-import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
-import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;

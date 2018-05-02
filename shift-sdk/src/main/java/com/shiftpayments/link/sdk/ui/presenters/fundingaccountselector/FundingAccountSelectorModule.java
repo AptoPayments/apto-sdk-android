@@ -16,7 +16,6 @@ import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.Financi
 import com.shiftpayments.link.sdk.ui.storages.LoanStorage;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
-import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 
 import org.greenrobot.eventbus.Subscribe;
 

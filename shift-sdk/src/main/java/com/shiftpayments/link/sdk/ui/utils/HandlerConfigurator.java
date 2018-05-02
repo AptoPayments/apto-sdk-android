@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.ui.utils;
 
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
-import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 
 import java.util.ArrayList;
 

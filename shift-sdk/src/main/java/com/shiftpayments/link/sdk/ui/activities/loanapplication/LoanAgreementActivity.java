@@ -5,13 +5,10 @@ import android.view.View;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.LoanAgreementModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanAgreementDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanAgreementPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.loanapplication.LoanAgreementView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanAgreementDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanAgreementPresenter;
 
 /**
  * Wires up the MVP pattern for the screen that shows the loan agreement.

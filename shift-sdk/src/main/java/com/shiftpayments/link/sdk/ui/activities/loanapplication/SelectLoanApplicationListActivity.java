@@ -5,13 +5,10 @@ import android.view.View;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.SelectLoanApplicationListModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.SelectLoanApplicationListDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.SelectLoanApplicationListPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.loanapplication.SelectPendingApplicationListView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.loanapplication.SelectLoanApplicationListDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.loanapplication.SelectLoanApplicationListPresenter;
 
 
 /**

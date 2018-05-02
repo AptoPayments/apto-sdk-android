@@ -10,7 +10,6 @@ import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.models.userdata.AbstractUserDataModel;
 import com.shiftpayments.link.sdk.ui.models.userdata.UserDataModel;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
-import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 
 /**
  * Concrete {@link Model} for the email information screen.

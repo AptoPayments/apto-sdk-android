@@ -8,9 +8,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.PhoneDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.PhonePresenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.PhoneView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.PhoneDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.PhonePresenter;
 
 /**
  * Wires up the MVP pattern for the phone screen.

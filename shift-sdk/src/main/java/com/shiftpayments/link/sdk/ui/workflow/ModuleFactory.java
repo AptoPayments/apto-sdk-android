@@ -7,8 +7,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.workflow.GenericMessageConfi
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.FundingAccountSelectorModule;
 import com.shiftpayments.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
-import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.FundingAccountSelectorModule;
-import com.shiftpayments.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
 
 import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.SELECT_FUNDING_ACCOUNT;
 import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.SHOW_GENERIC_MESSAGE;

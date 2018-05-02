@@ -8,9 +8,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.PaydayLoanDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.PaydayLoanPresenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.PaydayLoanView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.PaydayLoanDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.PaydayLoanPresenter;
 
 /**
  * Wires up the MVP pattern for the payday loan screen.

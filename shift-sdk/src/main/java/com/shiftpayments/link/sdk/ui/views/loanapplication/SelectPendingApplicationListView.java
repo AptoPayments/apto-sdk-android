@@ -15,7 +15,6 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.SelectLoanApplicationModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
-import com.shiftpayments.link.sdk.ui.models.loanapplication.SelectLoanApplicationModel;
 
 /**
  * Created by adrian on 17/01/2017.

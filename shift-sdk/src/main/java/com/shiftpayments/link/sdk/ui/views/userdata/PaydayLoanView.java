@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
-import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
  * Displays the payday loan screen.

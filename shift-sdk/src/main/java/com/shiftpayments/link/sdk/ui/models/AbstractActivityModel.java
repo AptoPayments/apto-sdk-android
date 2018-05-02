@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
-import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 
 import java.util.ArrayList;
 

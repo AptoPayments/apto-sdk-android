@@ -9,9 +9,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.verification.PhoneVerificationDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.verification.PhoneVerificationPresenter;
 import com.shiftpayments.link.sdk.ui.views.verification.PhoneVerificationView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.verification.PhoneVerificationDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.verification.PhoneVerificationPresenter;
 
 /**
  * Wires up the MVP pattern for the phone verification screen.

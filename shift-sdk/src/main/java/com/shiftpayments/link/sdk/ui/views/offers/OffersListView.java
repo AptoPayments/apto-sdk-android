@@ -20,9 +20,6 @@ import com.shiftpayments.link.sdk.ui.models.offers.OfferSummaryModel;
 import com.shiftpayments.link.sdk.ui.presenters.offers.OffersListPresenter;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
-import com.shiftpayments.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
-import com.shiftpayments.link.sdk.ui.models.offers.OfferSummaryModel;
-import com.shiftpayments.link.sdk.ui.presenters.offers.OffersListPresenter;
 
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 

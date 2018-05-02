@@ -8,9 +8,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.EmailDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.EmailPresenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.EmailView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.EmailDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.EmailPresenter;
 
 /**
  * Created by pauteruel on 19/02/2018.

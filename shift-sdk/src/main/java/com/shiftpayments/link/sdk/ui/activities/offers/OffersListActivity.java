@@ -9,15 +9,12 @@ import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.offers.OffersListModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.offers.OffersListDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.offers.OffersListPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.offers.OffersBaseView;
 import com.shiftpayments.link.sdk.ui.views.offers.OffersCarouselView;
 import com.shiftpayments.link.sdk.ui.views.offers.OffersListView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.offers.OffersListDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.offers.OffersListPresenter;
 
 /**
  * Wires up the MVP pattern for the offers list screen.

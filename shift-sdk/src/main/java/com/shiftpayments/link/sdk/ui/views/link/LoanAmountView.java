@@ -20,10 +20,6 @@ import com.shiftpayments.link.sdk.ui.views.userdata.NextButtonListener;
 import com.shiftpayments.link.sdk.ui.views.userdata.UserDataView;
 import com.shiftpayments.link.sdk.ui.widgets.HintArrayAdapter;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
-import com.shiftpayments.link.sdk.ui.views.userdata.NextButtonListener;
-import com.shiftpayments.link.sdk.ui.views.userdata.UserDataView;
-import com.shiftpayments.link.sdk.ui.widgets.HintArrayAdapter;
-import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 

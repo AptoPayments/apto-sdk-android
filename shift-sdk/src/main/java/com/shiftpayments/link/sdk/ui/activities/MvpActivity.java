@@ -16,9 +16,6 @@ import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
-import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 
 /**
  * Generic MVP Activity, wires up the MVP parts.

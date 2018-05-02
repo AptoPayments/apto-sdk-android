@@ -8,7 +8,6 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.ActivityModel;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
-import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 
 import java.util.List;
 

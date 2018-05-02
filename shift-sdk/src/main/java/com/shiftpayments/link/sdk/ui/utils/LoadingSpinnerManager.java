@@ -2,8 +2,6 @@ package com.shiftpayments.link.sdk.ui.utils;
 
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
-import com.shiftpayments.link.sdk.ui.views.LoadingView;
-import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 
 /**
  * Created by adrian on 26/07/2017.

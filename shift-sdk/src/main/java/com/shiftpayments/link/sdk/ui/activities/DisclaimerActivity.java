@@ -15,8 +15,8 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.utils.DisclaimerUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.DisclaimerView;
-import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
+import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 
 import java.io.File;
 import java.io.FileOutputStream;

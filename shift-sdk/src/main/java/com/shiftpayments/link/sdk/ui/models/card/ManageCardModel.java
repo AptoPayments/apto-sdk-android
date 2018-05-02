@@ -5,8 +5,6 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
-import com.shiftpayments.link.sdk.ui.models.Model;
-import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

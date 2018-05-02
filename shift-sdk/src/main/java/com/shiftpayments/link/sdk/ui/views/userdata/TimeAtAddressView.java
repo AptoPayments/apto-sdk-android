@@ -13,7 +13,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.TimeAtAddressVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
-import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
  * Displays the time at address screen.

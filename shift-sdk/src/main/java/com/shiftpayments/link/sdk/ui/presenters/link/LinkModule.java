@@ -27,11 +27,6 @@ import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
-import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
-import com.shiftpayments.link.sdk.ui.presenters.showgenericmessage.ShowGenericMessageModule;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
-import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModule;
-import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModuleConfig;
 
 import org.greenrobot.eventbus.Subscribe;
 

@@ -14,7 +14,6 @@ import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
-import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
  * Displays the address screen.

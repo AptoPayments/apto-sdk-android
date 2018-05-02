@@ -8,17 +8,12 @@ import android.view.View;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.userdata.UserDataActivity;
 import com.shiftpayments.link.sdk.ui.models.link.LoanAmountModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.link.LoanAmountPresenter;
 import com.shiftpayments.link.sdk.ui.presenters.link.LoanDataDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.link.LoanInfoModule;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.link.LoanAmountView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
-import com.shiftpayments.link.sdk.ui.activities.userdata.UserDataActivity;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.link.LoanAmountPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.link.LoanDataDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.link.LoanInfoModule;
 
 /**
  * Wires up the MVP pattern for the loan amount screen.
