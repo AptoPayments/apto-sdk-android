@@ -60,6 +60,7 @@ public class TransactionsAdapter extends
         // Header
         CreditCardView creditCardView;
         TextView cardBalance;
+        TextView cardBalanceLabel;
         TextView primaryButton;
         TextView secondaryButton;
         ImageView custodianLogo;
@@ -80,6 +81,7 @@ public class TransactionsAdapter extends
                 custodianLogo = (ImageView) itemView.findViewById(R.id.custodian_logo);
                 creditCardView = (CreditCardView) itemView.findViewById(R.id.credit_card_view);
                 cardBalance = (TextView) itemView.findViewById(R.id.tv_card_balance);
+                cardBalanceLabel = (TextView) itemView.findViewById(R.id.tv_card_balance_label);
                 primaryButton = (TextView) itemView.findViewById(R.id.tv_display_card_primary_bttn);
                 secondaryButton = (TextView) itemView.findViewById(R.id.tv_display_card_secondary_bttn);
                 accountButton = (ImageButton) itemView.findViewById(R.id.ib_account);
@@ -126,6 +128,12 @@ public class TransactionsAdapter extends
             viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
             viewHolder.cardBalance.setText(mModel.getCardBalance());
             viewHolder.cardBalance.setTextColor(UIStorage.getInstance().getPrimaryColor());
+            if(mModel.getCardBalance().isEmpty()) {
+                viewHolder.cardBalanceLabel.setVisibility(View.GONE);
+            }
+            else {
+                viewHolder.cardBalanceLabel.setVisibility(View.VISIBLE);
+            }
             viewHolder.custodianLogo.setImageResource(R.drawable.coinbase_logo);
             viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
             showActivateCardButton(mModel.isCardCreated(), viewHolder);
