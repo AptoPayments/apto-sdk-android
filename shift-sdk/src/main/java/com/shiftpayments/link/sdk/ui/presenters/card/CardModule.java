@@ -33,18 +33,6 @@ import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
-import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
-import com.shiftpayments.link.sdk.ui.activities.card.IssueVirtualCardActivity;
-import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
-import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
-import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModule;
-import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModuleConfig;
-import com.shiftpayments.link.sdk.ui.storages.CardStorage;
-import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
-import com.shiftpayments.link.sdk.ui.storages.UserStorage;
-import com.shiftpayments.link.sdk.ui.workflow.Command;
-import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -85,6 +73,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     @Override
     public void addFundingSource(Command onFinishCallback) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         startCustodianModule(this::startManageCardScreen, onFinishCallback);
     }
 
@@ -126,7 +115,6 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
      */
     @Subscribe
     public void handleDataPointList(DataPointList dataPointList) {
-
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         if(dataPointList.getType().equals(DataPointList.ListType.financialAccounts)) {
             handleFinancialAccounts(dataPointList);
@@ -152,6 +140,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
         super.handleSessionExpiredError(error);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         showHomeActivity();
     }
 
@@ -238,11 +227,13 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     private void issueVirtualCard() {
         setCurrentModule();
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         getActivity().startActivity(new Intent(getActivity(), IssueVirtualCardActivity.class));
     }
 
     private void startManageCardScreen() {
         setCurrentModule();
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
     }
 

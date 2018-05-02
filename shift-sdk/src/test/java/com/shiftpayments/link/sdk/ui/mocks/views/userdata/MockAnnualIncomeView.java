@@ -24,7 +24,7 @@ public class MockAnnualIncomeView extends AnnualIncomeView {
 
     @Override
     public void setIncome(long income) {
-        mIncome = (int)(income+0.5d);;
+        mIncome = (int)(income+0.5d);
     }
 
     @Override

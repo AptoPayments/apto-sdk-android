@@ -159,6 +159,7 @@ public class IdentityVerificationPresenter
     /** {@inheritDoc} */
     @Override
     public void detachView() {
+        mResponseHandler.unsubscribe(this);
         mView.setListener(null);
         super.detachView();
     }
