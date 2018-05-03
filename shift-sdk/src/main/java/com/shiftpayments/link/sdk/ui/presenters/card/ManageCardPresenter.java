@@ -1,11 +1,9 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
-import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -35,6 +33,7 @@ import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintAuthenticationDialogFragment;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintDelegate;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintHandler;
+import com.shiftpayments.link.sdk.ui.utils.SendEmailUtil;
 import com.shiftpayments.link.sdk.ui.views.card.EndlessRecyclerViewScrollListener;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardBottomSheet;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
@@ -206,14 +205,7 @@ public class ManageCardPresenter
 
     @Override
     public void contactSupportClickHandler() {
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-        String supportEmail = UIStorage.getInstance().getContextConfig().supportEmailAddress;
-        emailIntent.setData(Uri.parse("mailto:"+supportEmail));
-        try {
-            mActivity.startActivity(emailIntent);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
     }
 
     @Override

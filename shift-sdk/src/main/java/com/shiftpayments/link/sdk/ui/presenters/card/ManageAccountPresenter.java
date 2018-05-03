@@ -1,8 +1,5 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
@@ -19,6 +16,7 @@ import com.shiftpayments.link.sdk.ui.models.card.ManageAccountModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.utils.SendEmailUtil;
 import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
 import com.shiftpayments.link.sdk.ui.views.card.ManageAccountView;
 
@@ -97,14 +95,7 @@ public class ManageAccountPresenter
 
     @Override
     public void contactSupport() {
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-        String supportEmail = UIStorage.getInstance().getContextConfig().supportEmailAddress;
-        emailIntent.setData(Uri.parse("mailto:"+supportEmail));
-        try {
-            mActivity.startActivity(emailIntent);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
     }
 
     @Override
