@@ -10,6 +10,25 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class TransactionVo implements Parcelable {
+    public enum TransactionType {
+        SENT,
+        DEPOSIT,
+        ATM_WITHDRAWAL,
+        WITHDRAWAL,
+        SETTLEMENT,
+        PIN_PURCHASE,
+        FEE,
+        REFUND,
+        PENDING,
+        BALANCE_INQUIRY,
+        DECLINE,
+        RECEIVED,
+        REVERSAL,
+        UNSUPPORTED,
+        UNAVAILABLE
+    }
+
+    public TransactionType type;
 
     public String id;
 

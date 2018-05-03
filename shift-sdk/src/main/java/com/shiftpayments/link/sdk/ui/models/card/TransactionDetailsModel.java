@@ -40,10 +40,17 @@ public class TransactionDetailsModel implements Model {
     }
 
     public String getLocation() {
-        return mTransaction.merchantCity + ", " + mTransaction.merchantState;
+        if(mTransaction.merchantCountry == null || mTransaction.merchantCountry.isEmpty()) {
+            return mTransaction.merchantCity;
+        }
+        else if(mTransaction.merchantCountry.equalsIgnoreCase("USA")) {
+            return mTransaction.merchantCity + ", " + mTransaction.merchantState;
+        }
+        return mTransaction.merchantCity + ", " + mTransaction.merchantCountry;
     }
 
     public String getCategory() {
+        // TODO: change to merchant type
         return mTransaction.merchantCategoryName;
     }
 
