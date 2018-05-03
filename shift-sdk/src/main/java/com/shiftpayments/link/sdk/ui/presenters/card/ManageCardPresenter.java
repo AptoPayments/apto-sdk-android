@@ -1,9 +1,11 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -199,6 +201,18 @@ public class ManageCardPresenter
                 .replace(R.id.pin_fragment, pinFragment)
                 .commit();
         mView.showPinFragment(true);
+    }
+
+    @Override
+    public void contactSupportClickHandler() {
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        // TODO: read support email from config
+        emailIntent.setData(Uri.parse("support@shiftpayments.com"));
+        try {
+            mActivity.startActivity(emailIntent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

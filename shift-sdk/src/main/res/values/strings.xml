@@ -332,7 +332,7 @@
     <string name="switch_enable_card">Enable Card</string>
     <string name="switch_show_card_info">Show Card Info</string>
     <string name="save_to_android_pay_label">Add Card</string>
-    <string name="report_lost_card_label">Report Lost Card</string>
+    <string name="contact_support_label">Contact Support</string>
     <string name="change_pin_label">Change PIN</string>
 
     <!-- card management enable/disable dialog -->
