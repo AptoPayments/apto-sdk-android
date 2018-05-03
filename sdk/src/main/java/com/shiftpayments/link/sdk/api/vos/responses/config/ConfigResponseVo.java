@@ -7,7 +7,6 @@ package com.shiftpayments.link.sdk.api.vos.responses.config;
 
 import com.google.gson.annotations.SerializedName;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
-import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
 
 public class ConfigResponseVo {
 
@@ -54,6 +53,9 @@ public class ConfigResponseVo {
     public String summary;
 
     public String language;
+
+    @SerializedName("support_source_address")
+    public String supportEmailAddress;
 
     @SerializedName("primary_auth_credential")
     public String primaryAuthCredential;

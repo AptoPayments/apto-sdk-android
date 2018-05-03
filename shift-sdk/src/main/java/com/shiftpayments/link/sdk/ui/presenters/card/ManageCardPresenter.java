@@ -31,6 +31,7 @@ import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintAuthenticationDialogFragment;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintDelegate;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintHandler;
@@ -206,8 +207,8 @@ public class ManageCardPresenter
     @Override
     public void contactSupportClickHandler() {
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-        // TODO: read support email from config
-        emailIntent.setData(Uri.parse("support@shiftpayments.com"));
+        String supportEmail = UIStorage.getInstance().getContextConfig().supportEmailAddress;
+        emailIntent.setData(Uri.parse("mailto:"+supportEmail));
         try {
             mActivity.startActivity(emailIntent);
         } catch (ActivityNotFoundException e) {
