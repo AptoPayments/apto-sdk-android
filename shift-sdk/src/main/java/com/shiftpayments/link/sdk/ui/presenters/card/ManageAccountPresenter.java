@@ -1,5 +1,8 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
@@ -15,6 +18,7 @@ import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
 import com.shiftpayments.link.sdk.ui.models.card.ManageAccountModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
 import com.shiftpayments.link.sdk.ui.views.card.ManageAccountView;
 
@@ -28,7 +32,8 @@ import java.util.List;
  */
 public class ManageAccountPresenter
         extends BasePresenter<ManageAccountModel, ManageAccountView>
-        implements Presenter<ManageAccountModel, ManageAccountView>, ManageAccountView.ViewListener, FundingSourceView.ViewListener {
+        implements Presenter<ManageAccountModel, ManageAccountView>, ManageAccountView.ViewListener,
+        FundingSourceView.ViewListener {
 
     private FundingSourcesListRecyclerAdapter mAdapter;
     private ManageAccountActivity mActivity;
@@ -88,6 +93,18 @@ public class ManageAccountPresenter
     @Override
     public void addFundingSource() {
         mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());
+    }
+
+    @Override
+    public void contactSupport() {
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        String supportEmail = UIStorage.getInstance().getContextConfig().supportEmailAddress;
+        emailIntent.setData(Uri.parse("mailto:"+supportEmail));
+        try {
+            mActivity.startActivity(emailIntent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

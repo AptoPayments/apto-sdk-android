@@ -349,6 +349,7 @@
     <string name="funding_sources_label">Funding Sources</string>
     <string name="sign_out">SIGN OUT</string>
     <string name="add_funding_source">ADD FUNDING SOURCE</string>
+    <string name="account_management_contact_support">CONTACT SUPPORT</string>
     <string name="funding_source_dollar_amount" formatted="false">($%.2f)</string>
     <string name="account_management_dialog_title">Sign out</string>
     <string name="account_management_dialog_message">Are you sure you want to sign out?</string>

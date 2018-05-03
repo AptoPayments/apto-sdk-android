@@ -68,6 +68,16 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_contact_support"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textSize="16sp"
+            android:text="@string/account_management_contact_support"
+            android:layout_weight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
             android:id="@+id/tv_sign_out"
             style="@style/ledge_big_button_style"
             android:layout_gravity="center_horizontal"
