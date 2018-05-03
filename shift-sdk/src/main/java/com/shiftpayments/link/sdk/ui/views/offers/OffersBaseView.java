@@ -10,8 +10,6 @@ import com.shiftpayments.link.sdk.ui.presenters.offers.OffersListPresenter;
 import com.shiftpayments.link.sdk.ui.views.DisplayErrorMessage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
-import com.shiftpayments.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
-import com.shiftpayments.link.sdk.ui.presenters.offers.OffersListPresenter;
 
 /**
  * Created by adrian on 31/03/2017.

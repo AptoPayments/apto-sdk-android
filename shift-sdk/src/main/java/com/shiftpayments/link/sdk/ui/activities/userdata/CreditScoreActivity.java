@@ -8,9 +8,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.CreditScoreDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.CreditScorePresenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.CreditScoreView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.CreditScoreDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.CreditScorePresenter;
 
 /**
  * Wires up the MVP pattern for the credit score screen.

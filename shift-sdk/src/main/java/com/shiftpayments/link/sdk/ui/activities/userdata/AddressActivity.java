@@ -4,13 +4,10 @@ import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.AddressModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.AddressDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.AddressPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.userdata.AddressView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.AddressDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.AddressPresenter;
 
 /**
  * Wires up the MVP pattern for the address screen.

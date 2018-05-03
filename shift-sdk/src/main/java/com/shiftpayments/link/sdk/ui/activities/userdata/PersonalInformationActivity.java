@@ -8,9 +8,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.PersonalInformationDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.PersonalInformationPresenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.PersonalInformationView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.PersonalInformationDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.PersonalInformationPresenter;
 
 /**
  * Wires up the MVP pattern for the personal information screen.

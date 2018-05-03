@@ -11,8 +11,6 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.BigButtonModel;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
-import com.shiftpayments.link.sdk.ui.models.loanapplication.BigButtonModel;
-import com.shiftpayments.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 
 /**
  * Generic loan offer error display.

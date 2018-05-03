@@ -5,13 +5,10 @@ import android.view.View;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.custodianselector.AddCustodianListModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.AddCustodianListDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.AddCustodianListPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.custodianselector.AddCustodianListView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.custodianselector.AddCustodianListDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.custodianselector.AddCustodianListPresenter;
 
 
 /**

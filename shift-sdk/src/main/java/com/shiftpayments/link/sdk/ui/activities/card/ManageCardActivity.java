@@ -8,7 +8,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.ManageCardDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.ManageCardPresenter;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.venmo.android.pin.PinListener;
 
 

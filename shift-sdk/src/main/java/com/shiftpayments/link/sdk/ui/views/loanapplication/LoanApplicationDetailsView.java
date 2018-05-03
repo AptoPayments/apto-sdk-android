@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.details.LoanApplicationDetailsModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
-import com.shiftpayments.link.sdk.ui.models.loanapplication.details.LoanApplicationDetailsModel;
 
 /**
  * Displays loan application details.

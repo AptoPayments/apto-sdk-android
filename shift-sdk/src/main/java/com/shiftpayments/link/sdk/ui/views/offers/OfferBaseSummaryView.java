@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.offers.OfferSummaryModel;
-import com.shiftpayments.link.sdk.ui.models.offers.OfferSummaryModel;
 
 import me.ledge.common.views.RowView;
 

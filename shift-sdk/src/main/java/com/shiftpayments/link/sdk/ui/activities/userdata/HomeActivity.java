@@ -8,9 +8,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.HomeDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.HomePresenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.HomeView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.HomeDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.HomePresenter;
 
 /**
  * Wires up the MVP pattern for the address validation screen.

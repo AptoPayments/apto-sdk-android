@@ -10,7 +10,6 @@ import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.ActivityModel;
 import com.shiftpayments.link.sdk.ui.models.Model;
-import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 
 import java.util.ArrayList;
 

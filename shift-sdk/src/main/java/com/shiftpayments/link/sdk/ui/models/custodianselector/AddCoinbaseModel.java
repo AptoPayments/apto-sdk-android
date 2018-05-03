@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.ActivityModel;
-import com.shiftpayments.link.sdk.ui.models.ActivityModel;
 
 /**
  * Concrete {@link AddCoinbaseModel} for linking coinbase account.

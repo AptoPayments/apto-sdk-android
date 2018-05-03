@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
-import com.shiftpayments.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 
 /**
  * Displays a single financial account.

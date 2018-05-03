@@ -5,8 +5,6 @@ import android.content.res.Resources;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
-import com.shiftpayments.link.sdk.ui.models.Model;
-import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 
 import java.util.ArrayList;
 

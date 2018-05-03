@@ -3,7 +3,6 @@ package com.shiftpayments.link.sdk.ui.workflow;
 import android.app.Activity;
 
 import com.shiftpayments.link.sdk.ui.activities.ActionNotSupportedActivity;
-import com.shiftpayments.link.sdk.ui.activities.ActionNotSupportedActivity;
 
 /**
  * Created by adrian on 09/11/2017.

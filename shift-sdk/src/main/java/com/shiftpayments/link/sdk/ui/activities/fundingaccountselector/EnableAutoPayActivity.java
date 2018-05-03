@@ -5,13 +5,10 @@ import android.view.View;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.fundingaccountselector.EnableAutoPayModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.EnableAutoPayDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.EnableAutoPayPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.fundingaccountselector.EnableAutoPayView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.EnableAutoPayDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.EnableAutoPayPresenter;
 
 
 /**

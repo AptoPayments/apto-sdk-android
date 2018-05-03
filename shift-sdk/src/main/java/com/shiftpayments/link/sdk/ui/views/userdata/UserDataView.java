@@ -17,9 +17,6 @@ import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.ProgressBarWidget;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperConfiguration;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
-import com.shiftpayments.link.sdk.ui.widgets.steppers.ProgressBarWidget;
-import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperConfiguration;
-import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
  * Generic user data related View.

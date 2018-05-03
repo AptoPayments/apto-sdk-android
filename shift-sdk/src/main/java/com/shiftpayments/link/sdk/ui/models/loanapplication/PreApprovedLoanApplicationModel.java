@@ -5,7 +5,6 @@ import android.app.Activity;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.loanapplication.LoanAgreementActivity;
-import com.shiftpayments.link.sdk.ui.activities.loanapplication.LoanAgreementActivity;
 
 /**
  * Concrete {@link IntermediateLoanApplicationModel} for a loan application that has been pre-approved.

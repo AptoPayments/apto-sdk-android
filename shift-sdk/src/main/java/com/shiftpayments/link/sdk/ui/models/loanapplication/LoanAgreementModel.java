@@ -11,7 +11,6 @@ import com.shiftpayments.link.sdk.ui.images.GenericImageLoader;
 import com.shiftpayments.link.sdk.ui.models.ActivityModel;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.models.lenders.LenderModel;
-import com.shiftpayments.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 
 /**
  * Loan agreement {@link Model}.

@@ -9,7 +9,6 @@ import android.widget.EditText;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
-import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
  * Created by pauteruel on 19/02/2018.

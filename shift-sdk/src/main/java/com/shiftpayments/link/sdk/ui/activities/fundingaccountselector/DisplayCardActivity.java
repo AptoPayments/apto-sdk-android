@@ -5,13 +5,10 @@ import android.view.View;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.fundingaccountselector.DisplayCardModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.DisplayCardDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.DisplayCardPresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.fundingaccountselector.DisplayCardView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.DisplayCardDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector.DisplayCardPresenter;
 
 /**
  * Wires up the MVP pattern for the display card screen.

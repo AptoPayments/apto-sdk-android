@@ -10,8 +10,6 @@ import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.BigButtonModel;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import com.shiftpayments.link.sdk.ui.vos.LoanDataVo;
-import com.shiftpayments.link.sdk.ui.models.loanapplication.BigButtonModel;
-import com.shiftpayments.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 
 import java.util.Currency;
 import java.util.Locale;

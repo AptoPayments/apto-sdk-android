@@ -4,13 +4,10 @@ import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.AnnualIncomeModel;
+import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.AnnualIncomeDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.views.userdata.AnnualIncomeView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.AnnualIncomeDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
 
 /**
  * Wires up the MVP pattern for the income screen.

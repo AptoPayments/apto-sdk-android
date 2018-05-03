@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
-import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
 
 import me.ledge.common.views.RowView;
 

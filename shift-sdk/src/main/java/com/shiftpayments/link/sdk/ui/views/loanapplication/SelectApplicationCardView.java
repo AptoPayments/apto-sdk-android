@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.SelectLoanApplicationModel;
 import com.shiftpayments.link.sdk.ui.utils.DateUtil;
-import com.shiftpayments.link.sdk.ui.models.loanapplication.SelectLoanApplicationModel;
 
 /**
  * Displays a single loan application.

@@ -6,7 +6,6 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.offers.OffersListModel;
 import com.shiftpayments.link.sdk.ui.tests.robolectric.tests.models.userdata.LoanAmountModelTest;
 import com.shiftpayments.link.sdk.ui.vos.LoanDataVo;
-import com.shiftpayments.link.sdk.ui.tests.robolectric.tests.models.userdata.LoanAmountModelTest;
 
 import org.junit.Assert;
 import org.junit.Before;

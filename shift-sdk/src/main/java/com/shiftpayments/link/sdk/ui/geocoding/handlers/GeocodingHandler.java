@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 import com.shiftpayments.link.imageloaders.volley.VolleySingleton;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.GeocodingResultVo;
-import com.shiftpayments.link.imageloaders.volley.VolleySingleton;
 
 /**
  * Created by adrian on 01/09/2017.

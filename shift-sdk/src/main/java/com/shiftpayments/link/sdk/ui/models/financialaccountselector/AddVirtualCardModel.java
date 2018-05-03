@@ -5,7 +5,6 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtua
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
-import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 
 /**
  * Concrete {@link AddFinancialAccountModel} for adding a virtual credit card.

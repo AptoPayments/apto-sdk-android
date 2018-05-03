@@ -12,14 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
-import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
-import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
@@ -33,6 +30,7 @@ public class ManageAccountView
 
     private ViewListener mListener;
     private RecyclerView mFundingSourcesListView;
+    private TextView mFundingSourceLabel;
     private TextView mSignOutButton;
     private ImageButton mAddFundingSourceButton;
     protected Toolbar mToolbar;
@@ -68,19 +66,6 @@ public class ManageAccountView
         return mToolbar;
     }
 
-    /**
-     * Callbacks this {@link View} will invoke.
-     */
-    public interface ViewListener {
-        void signOut();
-        void addFundingSource();
-        void onBack();
-    }
-
-    public void setViewListener(ViewListener viewListener) {
-        mListener = viewListener;
-    }
-
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
@@ -91,8 +76,31 @@ public class ManageAccountView
         setColors();
     }
 
+    /**
+     * Callbacks this {@link View} will invoke.
+     */
+    public interface ViewListener {
+        void signOut();
+        void addFundingSource();
+        void onBack();
+
+    }
+    public void setViewListener(ViewListener viewListener) {
+        mListener = viewListener;
+    }
+
+    public void showFundingSourceLabel(boolean show) {
+        if(show) {
+            mFundingSourceLabel.setVisibility(VISIBLE);
+        }
+        else {
+            mFundingSourceLabel.setVisibility(GONE);
+        }
+    }
+
     protected void findAllViews() {
         mFundingSourcesListView = (RecyclerView) findViewById(R.id.rv_funding_sources_list);
+        mFundingSourceLabel = (TextView) findViewById(R.id.tv_funding_sources);
         mSignOutButton = (TextView) findViewById(R.id.tv_sign_out);
         mAddFundingSourceButton = (ImageButton) findViewById(R.id.ib_add_funding_source);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);

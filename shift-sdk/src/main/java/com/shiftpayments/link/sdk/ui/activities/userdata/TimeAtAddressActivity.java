@@ -8,9 +8,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.TimeAtAddressDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.TimeAtAddressPresenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.TimeAtAddressView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.TimeAtAddressDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.TimeAtAddressPresenter;
 
 /**
  * Wires up the MVP pattern for the time at address screen.

@@ -17,14 +17,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
 import com.shiftpayments.link.sdk.ui.views.card.ManageAccountView;
-import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
-import com.shiftpayments.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
-import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
-import com.shiftpayments.link.sdk.ui.models.card.ManageAccountModel;
-import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
-import com.shiftpayments.link.sdk.ui.presenters.Presenter;
-import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
-import com.shiftpayments.link.sdk.ui.views.card.ManageAccountView;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -107,6 +99,7 @@ public class ManageAccountPresenter
     @Subscribe
     public void handleResponse(FundingSourceListVo response) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mView.showFundingSourceLabel(true);
         mModel.addFundingSources(mActivity.getResources(), response.data);
         mAdapter.updateList(mModel.getFundingSources());
     }
@@ -117,7 +110,14 @@ public class ManageAccountPresenter
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        Toast.makeText(mActivity, "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+        if(error.statusCode==404) {
+            // User has no funding source
+            mView.showFundingSourceLabel(false);
+            mAdapter.updateList(mModel.getFundingSources());
+        }
+        else {
+            Toast.makeText(mActivity, "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**

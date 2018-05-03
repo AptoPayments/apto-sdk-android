@@ -120,6 +120,7 @@ public class BirthdateVerificationPresenter
     @Subscribe
     public void handleResponse(FinishVerificationResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
+        mResponseHandler.unsubscribe(this);
         if (response != null) {
             mModel.getVerification().setVerificationStatus(response.status);
             if(!mModel.getVerification().isVerified()) {

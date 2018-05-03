@@ -9,9 +9,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.verification.EmailVerificationDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.verification.EmailVerificationPresenter;
 import com.shiftpayments.link.sdk.ui.views.verification.EmailVerificationView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.verification.EmailVerificationDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.verification.EmailVerificationPresenter;
 
 /**
  * Wires up the MVP pattern for the email verification screen.

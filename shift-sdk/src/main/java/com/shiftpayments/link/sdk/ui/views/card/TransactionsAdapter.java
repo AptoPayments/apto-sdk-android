@@ -130,8 +130,12 @@ public class TransactionsAdapter extends
             viewHolder.cardBalance.setTextColor(UIStorage.getInstance().getPrimaryColor());
             if(mModel.getCardBalance().isEmpty()) {
                 viewHolder.cardBalanceLabel.setVisibility(View.GONE);
+                viewHolder.cardBalance.setVisibility(View.GONE);
             }
             else {
+                viewHolder.cardBalance.setText(mModel.getCardBalance());
+                viewHolder.cardBalance.setTextColor(UIStorage.getInstance().getPrimaryColor());
+                viewHolder.cardBalance.setVisibility(View.VISIBLE);
                 viewHolder.cardBalanceLabel.setVisibility(View.VISIBLE);
             }
             viewHolder.custodianLogo.setImageResource(R.drawable.coinbase_logo);

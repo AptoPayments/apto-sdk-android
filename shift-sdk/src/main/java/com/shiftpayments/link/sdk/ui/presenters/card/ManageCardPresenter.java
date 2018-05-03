@@ -259,6 +259,7 @@ public class ManageCardPresenter
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         mView.showLoading(mActivity, false);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         if(error.statusCode==404) {
             // Card has no funding source
             mHasFundingSourceArrived = true;

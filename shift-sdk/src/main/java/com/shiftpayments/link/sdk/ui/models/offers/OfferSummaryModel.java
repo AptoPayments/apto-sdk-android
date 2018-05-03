@@ -9,7 +9,6 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.images.GenericImageLoader;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.models.lenders.LenderModel;
-import com.shiftpayments.link.sdk.ui.models.lenders.LenderModel;
 
 /**
  * Concrete {@link Model} for the offer summary.

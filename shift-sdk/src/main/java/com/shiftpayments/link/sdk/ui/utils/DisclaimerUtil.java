@@ -6,8 +6,6 @@ import android.content.Intent;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
 import com.shiftpayments.link.sdk.ui.activities.DisclaimerActivity;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
-import com.shiftpayments.link.sdk.ui.activities.DisclaimerActivity;
-import com.shiftpayments.link.sdk.ui.workflow.Command;
 
 /**
  * Disclaimer helper class.

@@ -9,9 +9,6 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.verification.BirthdateVerificationDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.verification.BirthdateVerificationPresenter;
 import com.shiftpayments.link.sdk.ui.views.verification.BirthdateVerificationView;
-import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.verification.BirthdateVerificationDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.verification.BirthdateVerificationPresenter;
 
 /**
  * Wires up the MVP pattern for the birthdate screen.

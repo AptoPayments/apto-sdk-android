@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shiftpayments.link.sdk.ui.fragments.loanapplication.LoanApplicationFragment;
-import com.shiftpayments.link.sdk.ui.fragments.loanapplication.LoanApplicationFragment;
 
 /**
  * A concrete {@link FragmentStatePagerAdapter} that lists the user's open loan applications.
