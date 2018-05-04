@@ -6,7 +6,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSou
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 
 /**
  * A concrete {@link ShiftApiTask} to retrieve the user's funding sources

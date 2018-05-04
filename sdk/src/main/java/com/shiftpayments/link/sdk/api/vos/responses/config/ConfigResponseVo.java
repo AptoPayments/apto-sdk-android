@@ -7,7 +7,6 @@ package com.shiftpayments.link.sdk.api.vos.responses.config;
 
 import com.google.gson.annotations.SerializedName;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
-import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
 
 public class ConfigResponseVo {
 

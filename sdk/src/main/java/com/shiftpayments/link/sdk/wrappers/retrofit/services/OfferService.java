@@ -5,7 +5,6 @@ import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo
 import com.shiftpayments.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.offers.OffersListVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
-import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

@@ -5,6 +5,7 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
@@ -14,10 +15,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFina
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
-import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
-import com.shiftpayments.link.sdk.api.vos.Card;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 
 import retrofit2.Call;
@@ -104,4 +101,11 @@ public interface FinancialAccountService {
      */
     @GET(ShiftApiWrapper.USER_FUNDING_SOURCES_PATH)
     Call<FundingSourceListVo> getUserFundingSources();
+
+    /** Creates a {@link Call} to set the user's funding source
+     * @param accountId Mandatory request data.
+     * @return API call to execute.
+     */
+    @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH)
+    Call<FundingSourceVo> setFundingSource(@Path("account_id") String accountId, @Body SetFundingSourceRequestVo request);
 }

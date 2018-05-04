@@ -3,7 +3,6 @@ package com.shiftpayments.link.sdk.wrappers.retrofit.services;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
-import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
