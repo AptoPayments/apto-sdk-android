@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.api.vos.responses.config;
 
 import com.google.gson.annotations.SerializedName;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 
 /**
  * Info about the required DataPoint.

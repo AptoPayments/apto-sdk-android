@@ -10,7 +10,6 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.BankAccount;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Custodian;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
-import com.shiftpayments.link.sdk.api.vos.Card;
 
 import java.lang.reflect.Type;
 

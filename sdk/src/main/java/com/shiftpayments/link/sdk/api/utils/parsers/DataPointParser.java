@@ -24,7 +24,6 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PhoneNumberVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.SSN;
 import com.shiftpayments.link.sdk.api.vos.datapoints.TimeAtAddress;
-import com.shiftpayments.link.sdk.api.vos.Card;
 
 import java.lang.reflect.Type;
 

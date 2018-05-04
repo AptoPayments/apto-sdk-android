@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.api.vos.requests.dashboard;
 
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
-import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
 
 /**
  * Request data to create a project.

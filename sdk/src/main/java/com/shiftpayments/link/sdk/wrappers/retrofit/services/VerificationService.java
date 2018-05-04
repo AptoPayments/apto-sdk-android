@@ -8,7 +8,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.verifications.StartVerificat
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
-import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

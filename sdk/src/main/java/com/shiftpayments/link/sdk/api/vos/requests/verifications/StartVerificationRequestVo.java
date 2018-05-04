@@ -3,7 +3,6 @@ package com.shiftpayments.link.sdk.api.vos.requests.verifications;
 import com.google.gson.annotations.SerializedName;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
-import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 
 /**
  * Request data to verify a user datapoint.

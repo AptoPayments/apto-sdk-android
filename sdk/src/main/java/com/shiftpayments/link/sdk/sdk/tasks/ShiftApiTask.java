@@ -7,8 +7,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
-import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
  * Generic {@link AsyncTask} to make API requests.
