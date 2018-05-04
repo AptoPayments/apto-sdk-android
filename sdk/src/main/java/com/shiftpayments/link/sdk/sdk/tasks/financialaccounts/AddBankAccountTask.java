@@ -6,7 +6,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationSt
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 
 /**
  * A concrete {@link ShiftApiTask} to add a bank account.

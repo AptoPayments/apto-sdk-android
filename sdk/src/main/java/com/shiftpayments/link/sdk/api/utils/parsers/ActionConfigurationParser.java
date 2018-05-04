@@ -11,7 +11,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionConfiguration
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
-import com.shiftpayments.link.sdk.api.utils.workflow.WorkflowConfigType;
 
 import java.lang.reflect.Type;
 
