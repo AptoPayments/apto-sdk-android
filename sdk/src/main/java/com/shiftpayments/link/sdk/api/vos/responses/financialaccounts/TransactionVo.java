@@ -90,6 +90,18 @@ public class TransactionVo implements Parcelable {
     @SerializedName("network")
     public String network;
 
+    @SerializedName("decline_reason")
+    public String declineReason;
+
+    @SerializedName("hold_amount")
+    public double holdAmount;
+
+    @SerializedName("exchange_rate")
+    public double exchangeRate;
+
+    @SerializedName("settlement_date")
+    public String settlementDate;
+
     public TransactionVo(Parcel in) {
         id = in.readString();
         isAuthorized = in.readInt() == 1;
@@ -112,6 +124,10 @@ public class TransactionVo implements Parcelable {
         isCardPresent = in.readInt() == 1;
         isEmv = in.readInt() == 1;
         network = in.readString();
+        declineReason = in.readString();
+        holdAmount = in.readDouble();
+        exchangeRate = in.readDouble();
+        settlementDate = in.readString();
     }
 
     @Override
@@ -142,6 +158,10 @@ public class TransactionVo implements Parcelable {
         parcel.writeInt(isCardPresent ? 1 : 0);
         parcel.writeInt(isEmv ? 1 : 0);
         parcel.writeString(network);
+        parcel.writeString(declineReason);
+        parcel.writeDouble(holdAmount);
+        parcel.writeDouble(exchangeRate);
+        parcel.writeString(settlementDate);
     }
 
     public static final Parcelable.Creator<TransactionVo> CREATOR = new Parcelable.Creator<TransactionVo>() {
