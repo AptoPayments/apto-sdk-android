@@ -102,8 +102,12 @@ public class TransactionVo implements Parcelable {
     @SerializedName("settlement_date")
     public String settlementDate;
 
+    @SerializedName("transfers")
+    public TransferListResponseVo transferList;
+
     public TransactionVo(Parcel in) {
         id = in.readString();
+        type = TransactionType.valueOf(in.readString());
         isAuthorized = in.readInt() == 1;
         creationTime = in.readString();
         description = in.readString();
@@ -128,6 +132,7 @@ public class TransactionVo implements Parcelable {
         holdAmount = in.readDouble();
         exchangeRate = in.readDouble();
         settlementDate = in.readString();
+        transferList = in.readParcelable(TransferListResponseVo.class.getClassLoader());
     }
 
     @Override
@@ -138,6 +143,7 @@ public class TransactionVo implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
         parcel.writeString(id);
+        parcel.writeString(type.name());
         parcel.writeInt(isAuthorized ? 1 : 0);
         parcel.writeString(creationTime);
         parcel.writeString(description);
@@ -162,6 +168,7 @@ public class TransactionVo implements Parcelable {
         parcel.writeDouble(holdAmount);
         parcel.writeDouble(exchangeRate);
         parcel.writeString(settlementDate);
+        parcel.writeParcelable(transferList, flags);
     }
 
     public static final Parcelable.Creator<TransactionVo> CREATOR = new Parcelable.Creator<TransactionVo>() {
