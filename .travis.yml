@@ -34,7 +34,7 @@ before_install:
 
 install:
   # Add dependencies to local m2 repo.
-  - cd ~/build/itabulous/ledgecommon_android
+  - cd ~/build/ShiftFinancial/ledgecommon_android
   - chmod +x gradlew
   - ./gradlew install
   - cd ~/build/ShiftFinancial/shift-sdk-android-private
