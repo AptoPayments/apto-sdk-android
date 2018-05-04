@@ -23,6 +23,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
@@ -67,8 +68,6 @@ import com.shiftpayments.link.sdk.wrappers.retrofit.services.OfferService;
 import com.shiftpayments.link.sdk.wrappers.retrofit.services.UserService;
 import com.shiftpayments.link.sdk.wrappers.retrofit.services.VerificationService;
 import com.shiftpayments.link.sdk.wrappers.retrofit.utils.ErrorUtil;
-import com.shiftpayments.link.sdk.api.vos.Card;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -837,6 +836,19 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         FundingSourceVo result;
         try {
             Response<FundingSourceVo> response = mFinancialAccountService.getFundingSource(accountId).execute();
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH, ioe);
+        }
+        return result;
+    }
+
+    @Override
+    public FundingSourceVo setAccountFundingSource(String accountId, SetFundingSourceRequestVo setFundingSourceRequest) throws ApiException {
+        FundingSourceVo result;
+        try {
+            Response<FundingSourceVo> response = mFinancialAccountService.setFundingSource(accountId, setFundingSourceRequest).execute();
             result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH);
         } catch (IOException ioe) {
             result = null;

@@ -5,7 +5,6 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 
 /**
  * A concrete {@link ShiftApiTask} to retrieve the current user's financial accounts

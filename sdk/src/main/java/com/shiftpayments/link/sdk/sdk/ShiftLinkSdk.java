@@ -29,38 +29,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccoun
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountsTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetUserFundingSourcesTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountPinTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountTask;
-import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
-import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.GetLoanApplicationStatusTask;
-import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.ListPendingLoanApplicationsTask;
-import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.SetApplicationAccountTask;
-import com.shiftpayments.link.sdk.sdk.tasks.offers.InitialOffersTask;
-import com.shiftpayments.link.sdk.sdk.tasks.users.CreateUserTask;
-import com.shiftpayments.link.sdk.sdk.tasks.users.GetCurrentUserTask;
-import com.shiftpayments.link.sdk.sdk.tasks.users.LoginUserTask;
-import com.shiftpayments.link.sdk.sdk.tasks.users.UpdateUserTask;
-import com.shiftpayments.link.sdk.sdk.tasks.verifications.CompleteVerificationTask;
-import com.shiftpayments.link.sdk.sdk.tasks.verifications.GetVerificationStatusTask;
-import com.shiftpayments.link.sdk.sdk.tasks.verifications.RestartVerificationTask;
-import com.shiftpayments.link.sdk.sdk.tasks.verifications.StartVerificationTask;
-import com.shiftpayments.link.sdk.api.vos.Card;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
-import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
-import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
-import com.shiftpayments.link.sdk.sdk.tasks.config.HousingTypeListTask;
-import com.shiftpayments.link.sdk.sdk.tasks.config.IncomeTypesListTask;
-import com.shiftpayments.link.sdk.sdk.tasks.config.LinkConfigTask;
-import com.shiftpayments.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.AddBankAccountTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.AddCardTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountFundingSourceTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTransactionsTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountsTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetUserFundingSourcesTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
+import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.SetAccountFundingSourceTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountPinTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -525,6 +494,19 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetUserFundingSourcesTask task = new GetUserFundingSourcesTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Sets the financial account's funding source.
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask setAccountFundingSource(String accountId, String fundingSourceId) {
+        checkComponents();
+
+        SetAccountFundingSourceTask task = new SetAccountFundingSourceTask(accountId, fundingSourceId, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

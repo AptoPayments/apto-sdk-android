@@ -1,8 +1,8 @@
 package com.shiftpayments.link.sdk.api.vos.responses.loanapplication;
 
+import com.shiftpayments.link.sdk.api.utils.loanapplication.LoanApplicationStatus;
 import com.shiftpayments.link.sdk.api.vos.responses.offers.OfferVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
-import com.shiftpayments.link.sdk.api.utils.loanapplication.LoanApplicationStatus;
 
 /**
  * Loan application details API response object.

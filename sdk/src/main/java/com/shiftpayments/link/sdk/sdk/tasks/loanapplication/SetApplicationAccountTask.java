@@ -6,7 +6,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicat
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 
 /**
  * A concrete {@link ShiftApiTask} to link an account to the given application

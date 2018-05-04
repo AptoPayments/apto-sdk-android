@@ -11,6 +11,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
@@ -40,9 +41,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerifica
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.StartVerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
-import com.shiftpayments.link.sdk.api.vos.Card;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 
 import java.util.HashMap;
 
@@ -407,4 +405,12 @@ public interface ShiftApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     FundingSourceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException;
+
+    /**
+     * @param accountId The financial account ID.
+     * @param fundingSourceRequest The request containing the funding source ID.
+     * @return The funding source that was set
+     * @throws ApiException When there is an error making the request.
+     */
+    FundingSourceVo setAccountFundingSource(String accountId, SetFundingSourceRequestVo fundingSourceRequest) throws ApiException;
 }

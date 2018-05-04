@@ -4,9 +4,6 @@ import com.shiftpayments.link.sdk.api.utils.users.EmploymentStatusId;
 import com.shiftpayments.link.sdk.api.utils.users.HousingTypeId;
 import com.shiftpayments.link.sdk.api.utils.users.SalaryFrequencyId;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
-import com.shiftpayments.link.sdk.api.utils.users.EmploymentStatusId;
-import com.shiftpayments.link.sdk.api.utils.users.HousingTypeId;
-import com.shiftpayments.link.sdk.api.utils.users.SalaryFrequencyId;
 
 /**
  * Request data to create a new user.
