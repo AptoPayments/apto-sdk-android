@@ -17,6 +17,8 @@ import com.shiftpayments.link.sdk.ui.models.card.ManageAccountModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.utils.SendEmailUtil;
 import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
 import com.shiftpayments.link.sdk.ui.views.card.ManageAccountView;
 
@@ -30,7 +32,8 @@ import java.util.List;
  */
 public class ManageAccountPresenter
         extends BasePresenter<ManageAccountModel, ManageAccountView>
-        implements Presenter<ManageAccountModel, ManageAccountView>, ManageAccountView.ViewListener, FundingSourceView.ViewListener {
+        implements Presenter<ManageAccountModel, ManageAccountView>, ManageAccountView.ViewListener,
+        FundingSourceView.ViewListener {
 
     private FundingSourcesListRecyclerAdapter mAdapter;
     private ManageAccountActivity mActivity;
@@ -91,6 +94,11 @@ public class ManageAccountPresenter
     @Override
     public void addFundingSource() {
         mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());
+    }
+
+    @Override
+    public void contactSupport() {
+        new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
     }
 
     @Override

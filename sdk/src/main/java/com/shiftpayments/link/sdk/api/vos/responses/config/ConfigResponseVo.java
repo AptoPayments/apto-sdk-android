@@ -54,6 +54,9 @@ public class ConfigResponseVo {
 
     public String language;
 
+    @SerializedName("support_source_address")
+    public String supportEmailAddress;
+
     @SerializedName("primary_auth_credential")
     public String primaryAuthCredential;
 

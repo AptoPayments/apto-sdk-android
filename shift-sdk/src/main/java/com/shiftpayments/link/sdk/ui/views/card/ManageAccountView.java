@@ -23,17 +23,19 @@ import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 
 /**
  * Displays the manage account screen.
+ *
  * @author Adrian
  */
 public class ManageAccountView
         extends CoordinatorLayout implements View.OnClickListener, ViewWithToolbar {
 
+    protected Toolbar mToolbar;
     private ViewListener mListener;
     private RecyclerView mFundingSourcesListView;
     private TextView mFundingSourceLabel;
     private TextView mSignOutButton;
     private ImageButton mAddFundingSourceButton;
-    protected Toolbar mToolbar;
+    private TextView mContactSupportButton;
 
     public ManageAccountView(Context context) {
         this(context, null);
@@ -50,13 +52,13 @@ public class ManageAccountView
         }
         int id = view.getId();
 
-        if(id == R.id.tv_sign_out) {
+        if (id == R.id.tv_sign_out) {
             mListener.signOut();
-        }
-        else if(id == R.id.ib_add_funding_source) {
+        } else if (id == R.id.ib_add_funding_source) {
             mListener.addFundingSource();
-        }
-        else if(id == R.id.toolbar) {
+        } else if (id == R.id.tv_contact_support) {
+            mListener.contactSupport();
+        } else if (id == R.id.toolbar) {
             mListener.onBack();
         }
     }
@@ -66,7 +68,9 @@ public class ManageAccountView
         return mToolbar;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
@@ -76,24 +80,14 @@ public class ManageAccountView
         setColors();
     }
 
-    /**
-     * Callbacks this {@link View} will invoke.
-     */
-    public interface ViewListener {
-        void signOut();
-        void addFundingSource();
-        void onBack();
-
-    }
     public void setViewListener(ViewListener viewListener) {
         mListener = viewListener;
     }
 
     public void showFundingSourceLabel(boolean show) {
-        if(show) {
+        if (show) {
             mFundingSourceLabel.setVisibility(VISIBLE);
-        }
-        else {
+        } else {
             mFundingSourceLabel.setVisibility(GONE);
         }
     }
@@ -103,12 +97,14 @@ public class ManageAccountView
         mFundingSourceLabel = (TextView) findViewById(R.id.tv_funding_sources);
         mSignOutButton = (TextView) findViewById(R.id.tv_sign_out);
         mAddFundingSourceButton = (ImageButton) findViewById(R.id.ib_add_funding_source);
+        mContactSupportButton = (TextView) findViewById(R.id.tv_contact_support);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
     private void setUpListeners() {
         mSignOutButton.setOnClickListener(this);
         mAddFundingSourceButton.setOnClickListener(this);
+        mContactSupportButton.setOnClickListener(this);
         mToolbar.setNavigationOnClickListener(this);
     }
 
@@ -138,5 +134,15 @@ public class ManageAccountView
      */
     public void setAdapter(PagedListRecyclerAdapter<FundingSourceModel, FundingSourceView> adapter) {
         mFundingSourcesListView.setAdapter(adapter);
+    }
+
+    /**
+     * Callbacks this {@link View} will invoke.
+     */
+    public interface ViewListener {
+        void signOut();
+        void addFundingSource();
+        void contactSupport();
+        void onBack();
     }
 }
