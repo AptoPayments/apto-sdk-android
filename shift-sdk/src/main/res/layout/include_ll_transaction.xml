@@ -2,8 +2,7 @@
 <com.shiftpayments.link.sdk.ui.views.card.TransactionView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cv_transaction_view"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:background="@android:color/white">
+    android:layout_height="80dp">
 
     <RelativeLayout
         android:id="@+id/rl_transaction_holder"
@@ -25,7 +24,6 @@
             android:layout_alignParentStart="true"
             android:layout_alignRight="@id/strut"
             android:layout_centerInParent="true"
-            android:background="@android:color/white"
             android:clickable="false" />
 
         <LinearLayout

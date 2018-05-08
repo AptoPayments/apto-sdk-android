@@ -10,24 +10,18 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class TransactionVo implements Parcelable {
-    public enum TransactionType {
-        SENT,
-        DEPOSIT,
-        ATM_WITHDRAWAL,
-        WITHDRAWAL,
-        SETTLEMENT,
-        PIN_PURCHASE,
-        FEE,
-        REFUND,
-        PENDING,
-        BALANCE_INQUIRY,
-        DECLINE,
-        RECEIVED,
-        REVERSAL,
-        UNSUPPORTED,
-        UNAVAILABLE
-    }
 
+    public static final Parcelable.Creator<TransactionVo> CREATOR = new Parcelable.Creator<TransactionVo>() {
+        public TransactionVo createFromParcel(Parcel in) {
+            return new TransactionVo(in);
+        }
+
+        public TransactionVo[] newArray(int size) {
+            return new TransactionVo[size];
+        }
+    };
+
+    @SerializedName("transaction_type")
     public TransactionType type;
 
     public String id;
@@ -40,40 +34,20 @@ public class TransactionVo implements Parcelable {
 
     public String description;
 
-    @SerializedName("merchant_name")
-    public String merchantName;
+    public MerchantVo merchant;
 
-    @SerializedName("merchant_city")
-    public String merchantCity;
-
-    @SerializedName("merchant_state")
-    public String merchantState;
-
-    @SerializedName("merchant_country")
-    public String merchantCountry;
-
-    @SerializedName("mcc_code")
-    public int merchantCategoryCode;
-
-    @SerializedName("mcc_name")
-    public String merchantCategoryName;
-
-    @SerializedName("mcc_icon")
-    public String merchantCategoryIcon;
+    public StoreVo store;
 
     public String state;
 
     @SerializedName("local_amount")
-    public double localAmount;
-
-    @SerializedName("local_currency")
-    public String localCurrency;
+    public MoneyVo localAmount;
 
     @SerializedName("usd_amount")
     public double usdAmount;
 
     @SerializedName("cashback_amount")
-    public double cashBackAmount;
+    public MoneyVo cashBackAmount;
 
     @SerializedName("ecommerce")
     public boolean isECommerce;
@@ -94,7 +68,16 @@ public class TransactionVo implements Parcelable {
     public String declineReason;
 
     @SerializedName("hold_amount")
-    public double holdAmount;
+    public MoneyVo holdAmount;
+
+    @SerializedName("billing_amount")
+    public MoneyVo billingAmount;
+
+    @SerializedName("fee_amount")
+    public MoneyVo fee;
+
+    @SerializedName("native_balance")
+    public MoneyVo nativeBalance;
 
     @SerializedName("exchange_rate")
     public double exchangeRate;
@@ -102,8 +85,11 @@ public class TransactionVo implements Parcelable {
     @SerializedName("settlement_date")
     public String settlementDate;
 
-    @SerializedName("transfers")
-    public TransferListResponseVo transferList;
+    @SerializedName("last_message")
+    public String lastMessage;
+
+    @SerializedName("adjustments")
+    public AdjustmentListResponseVo adjustmentsList;
 
     public TransactionVo(Parcel in) {
         id = in.readString();
@@ -111,28 +97,26 @@ public class TransactionVo implements Parcelable {
         isAuthorized = in.readInt() == 1;
         creationTime = in.readString();
         description = in.readString();
-        merchantName = in.readString();
-        merchantCity = in.readString();
-        merchantState = in.readString();
-        merchantCountry = in.readString();
-        merchantCategoryCode = in.readInt();
-        merchantCategoryName = in.readString();
-        merchantCategoryIcon = in.readString();
+        merchant = in.readParcelable(MerchantVo.class.getClassLoader());
+        store = in.readParcelable(StoreVo.class.getClassLoader());
         state = in.readString();
-        localAmount = in.readDouble();
-        localCurrency = in.readString();
+        localAmount = in.readParcelable(MoneyVo.class.getClassLoader());
         usdAmount = in.readDouble();
-        cashBackAmount = in.readDouble();
+        cashBackAmount = in.readParcelable(MoneyVo.class.getClassLoader());
         isECommerce = in.readInt() == 1;
         isInternational = in.readInt() == 1;
         isCardPresent = in.readInt() == 1;
         isEmv = in.readInt() == 1;
         network = in.readString();
         declineReason = in.readString();
-        holdAmount = in.readDouble();
+        holdAmount = in.readParcelable(MoneyVo.class.getClassLoader());
+        billingAmount = in.readParcelable(MoneyVo.class.getClassLoader());
+        fee = in.readParcelable(MoneyVo.class.getClassLoader());
+        nativeBalance = in.readParcelable(MoneyVo.class.getClassLoader());
         exchangeRate = in.readDouble();
         settlementDate = in.readString();
-        transferList = in.readParcelable(TransferListResponseVo.class.getClassLoader());
+        lastMessage = in.readString();
+        adjustmentsList = in.readParcelable(AdjustmentListResponseVo.class.getClassLoader());
     }
 
     @Override
@@ -147,37 +131,87 @@ public class TransactionVo implements Parcelable {
         parcel.writeInt(isAuthorized ? 1 : 0);
         parcel.writeString(creationTime);
         parcel.writeString(description);
-        parcel.writeString(merchantName);
-        parcel.writeString(merchantCity);
-        parcel.writeString(merchantState);
-        parcel.writeString(merchantCountry);
-        parcel.writeInt(merchantCategoryCode);
-        parcel.writeString(merchantCategoryName);
-        parcel.writeString(merchantCategoryIcon);
+        parcel.writeParcelable(merchant, flags);
+        parcel.writeParcelable(store, flags);
         parcel.writeString(state);
-        parcel.writeDouble(localAmount);
-        parcel.writeString(localCurrency);
+        parcel.writeParcelable(localAmount, flags);
         parcel.writeDouble(usdAmount);
-        parcel.writeDouble(cashBackAmount);
+        parcel.writeParcelable(cashBackAmount, flags);
         parcel.writeInt(isECommerce ? 1 : 0);
         parcel.writeInt(isInternational ? 1 : 0);
         parcel.writeInt(isCardPresent ? 1 : 0);
         parcel.writeInt(isEmv ? 1 : 0);
         parcel.writeString(network);
         parcel.writeString(declineReason);
-        parcel.writeDouble(holdAmount);
+        parcel.writeParcelable(holdAmount, flags);
+        parcel.writeParcelable(billingAmount, flags);
+        parcel.writeParcelable(fee, flags);
+        parcel.writeParcelable(nativeBalance, flags);
         parcel.writeDouble(exchangeRate);
         parcel.writeString(settlementDate);
-        parcel.writeParcelable(transferList, flags);
+        parcel.writeString(lastMessage);
+        parcel.writeParcelable(adjustmentsList, flags);
     }
 
-    public static final Parcelable.Creator<TransactionVo> CREATOR = new Parcelable.Creator<TransactionVo>() {
-        public TransactionVo createFromParcel(Parcel in) {
-            return new TransactionVo(in);
-        }
+    public enum TransactionType {
+        @SerializedName("sent")
+        SENT,
+        @SerializedName("deposit")
+        DEPOSIT,
+        @SerializedName("atm_withdrawal")
+        ATM_WITHDRAWAL,
+        @SerializedName("withdrawal")
+        WITHDRAWAL,
+        @SerializedName("settlement")
+        SETTLEMENT,
+        @SerializedName("pin_purchase")
+        PIN_PURCHASE,
+        @SerializedName("fee")
+        FEE,
+        @SerializedName("refund")
+        REFUND,
+        @SerializedName("pending")
+        PENDING,
+        @SerializedName("decline")
+        DECLINE,
+        @SerializedName("received")
+        RECEIVED,
+        @SerializedName("reversal")
+        REVERSAL,
+        @SerializedName("other")
+        OTHER;
 
-        public TransactionVo[] newArray(int size) {
-            return new TransactionVo[size];
+        @Override
+        public String toString() {
+            switch (this) {
+                case SENT:
+                    return "Sent";
+                case DEPOSIT:
+                    return "Deposited";
+                case ATM_WITHDRAWAL:
+                    return "ATM withdrawal";
+                case WITHDRAWAL:
+                    return "Withdrawal";
+                case SETTLEMENT:
+                    return "Purchase";
+                case PIN_PURCHASE:
+                    return "PIN purchase";
+                case FEE:
+                    return "Fee";
+                case REFUND:
+                    return "Refund";
+                case PENDING:
+                case DECLINE:
+                    return "Merchant";
+                case RECEIVED:
+                    return "Received";
+                case REVERSAL:
+                    return "Reversal";
+                case OTHER:
+                    return "Other";
+                default:
+                    return "Unavailable";
+            }
         }
-    };
+    }
 }

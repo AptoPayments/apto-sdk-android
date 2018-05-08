@@ -9,9 +9,10 @@ import com.shiftpayments.link.sdk.api.vos.responses.base.ListResponseVo;
  * Created by adrian on 04/05/2018.
  */
 
-public class TransferListResponseVo extends ListResponseVo<TransferVo[]> implements Parcelable {
-    protected TransferListResponseVo(Parcel in) {
-        super.data = (TransferVo[]) in.readArray(TransferVo.class.getClassLoader());
+public class AdjustmentListResponseVo extends ListResponseVo<AdjustmentVo[]> implements Parcelable {
+
+    protected AdjustmentListResponseVo(Parcel in) {
+        super.data = in.createTypedArray(AdjustmentVo.CREATOR);
         super.has_more = in.readInt() == 1;
         super.page = in.readInt();
         super.rows = in.readInt();
@@ -19,15 +20,15 @@ public class TransferListResponseVo extends ListResponseVo<TransferVo[]> impleme
         super.type = in.readString();
     }
 
-    public static final Creator<TransferListResponseVo> CREATOR = new Creator<TransferListResponseVo>() {
+    public static final Creator<AdjustmentListResponseVo> CREATOR = new Creator<AdjustmentListResponseVo>() {
         @Override
-        public TransferListResponseVo createFromParcel(Parcel in) {
-            return new TransferListResponseVo(in);
+        public AdjustmentListResponseVo createFromParcel(Parcel in) {
+            return new AdjustmentListResponseVo(in);
         }
 
         @Override
-        public TransferListResponseVo[] newArray(int size) {
-            return new TransferListResponseVo[size];
+        public AdjustmentListResponseVo[] newArray(int size) {
+            return new AdjustmentListResponseVo[size];
         }
     };
 
@@ -38,7 +39,7 @@ public class TransferListResponseVo extends ListResponseVo<TransferVo[]> impleme
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeArray(super.data);
+        parcel.writeTypedArray(super.data, i);
         parcel.writeInt(super.has_more ? 1 : 0);
         parcel.writeInt(super.page);
         parcel.writeInt(super.rows);

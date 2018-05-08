@@ -157,7 +157,7 @@ public class TransactionsAdapter extends
             descriptionTextView.setText(transaction.description);
 
             ImageView iconImageView = viewHolder.iconImageView;
-            iconImageView.setImageDrawable(mContext.getDrawable(UIStorage.getInstance().getIcon(transaction.merchantCategoryIcon)));
+            iconImageView.setImageDrawable(mContext.getDrawable(UIStorage.getInstance().getIcon(transaction.merchant.mcc.merchantCategoryIcon)));
             iconImageView.setColorFilter(Color.BLACK);
             viewHolder.transactionHolder.setOnClickListener(v -> mListener.transactionClickHandler(position-1));
         }
