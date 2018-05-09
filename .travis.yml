@@ -27,31 +27,31 @@ notifications:
 # Set up.
 before_install:
   # Dependencies
-  - git clone git@github.com:itabulous/ledgecommon_android.git ~/build/itabulous/ledgecommon_android/
+  - git clone git@github.com:itabulous/ledgecommon_android.git ~/build/ShiftFinancial/ledgecommon_android/
   # Create gradle.properties files.
-  - echo "HOME=$HOME" > ~/build/itabulous/ledgecommon_android/gradle.properties
-  - echo "HOME=$HOME" > ~/build/itabulous/sdk_android/gradle.properties
+  - echo "HOME=$HOME" > ~/build/ShiftFinancial/ledgecommon_android/gradle.properties
+  - echo "HOME=$HOME" > ~/build/ShiftFinancial/shift-sdk-android-private/gradle.properties
 
 install:
   # Add dependencies to local m2 repo.
-  - cd ~/build/itabulous/ledgecommon_android
+  - cd ~/build/ShiftFinancial/ledgecommon_android
   - chmod +x gradlew
   - ./gradlew install
-  - cd ~/build/itabulous/sdk_android
+  - cd ~/build/ShiftFinancial/shift-sdk-android-private
   - chmod +x gradlew
   - ./gradlew --configure-on-demand -p sdk install
 
 # Running tests.
 script:
   - ./gradlew --configure-on-demand -p sdk testDebugUnitTestCoverage
-  - cd ~/build/itabulous/sdk_android/shift-sdk
+  - cd ~/build/ShiftFinancial/shift-sdk-android-private/shift-sdk
   - ../gradlew --configure-on-demand assembleDebug testDebugUnitTestCoverage
 
 after_success:
   # Copy file to expected location.
-  - mkdir -p ~/build/itabulous/sdk_android/sdk/build/reports/jacoco/test
-  - cp ~/build/itabulous/sdk_android/sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~/build/itabulous/sdk_android/sdk/build/reports/jacoco/test/jacocoTestReport.xml
-  - mkdir -p ~/build/itabulous/sdk_android/shift-sdk/build/reports/jacoco/test
-  - cp ~/build/itabulous/sdk_android/shift-sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~/build/itabulous/sdk_android/shift-sdk/build/reports/jacoco/test/jacocoTestReport.xml
+  - mkdir -p ~/build/ShiftFinancial/shift-sdk-android-private/sdk/build/reports/jacoco/test
+  - cp ~/build/ShiftFinancial/shift-sdk-android-private/sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~/build/ShiftFinancial/shift-sdk-android-private/sdk/build/reports/jacoco/test/jacocoTestReport.xml
+  - mkdir -p ~/build/ShiftFinancial/shift-sdk-android-private/shift-sdk/build/reports/jacoco/test
+  - cp ~/build/ShiftFinancial/shift-sdk-android-private/shift-sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~/build/ShiftFinancial/shift-sdk-android-private/shift-sdk/build/reports/jacoco/test/jacocoTestReport.xml
   # Send coverage info to Codecov.io.
   - bash <(curl -s https://codecov.io/bash) -t e3fe9fad-cf90-4b4c-94b8-ecdf33c73105

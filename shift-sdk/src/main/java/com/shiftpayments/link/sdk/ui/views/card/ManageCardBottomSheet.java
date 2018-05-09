@@ -26,22 +26,16 @@ import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 public class ManageCardBottomSheet extends BottomSheetDialogFragment
         implements CompoundButton.OnCheckedChangeListener, CompoundButton.OnTouchListener, View.OnClickListener {
 
-    private ViewListener mListener;
-    private SwitchCompat mEnableCardSwitch;
-    private SwitchCompat mShowCardInfoSwitch;
-    private LinearLayout mChangePin;
     private static boolean mIsEnableCardSwitchTouched;
     private static boolean mIsShowCardInfoSwitchTouched;
     public boolean isCardEnabled;
     public boolean showCardInfo;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
+    private ViewListener mListener;
+    private SwitchCompat mEnableCardSwitch;
+    private SwitchCompat mShowCardInfoSwitch;
+    private LinearLayout mChangePin;
+    private LinearLayout mContactSupport;
     private BottomSheetBehavior.BottomSheetCallback mBottomSheetBehaviorCallback = new BottomSheetBehavior.BottomSheetCallback() {
-
         @Override
         public void onStateChanged(@NonNull View bottomSheet, int newState) {
             if (newState == BottomSheetBehavior.STATE_HIDDEN) {
@@ -53,6 +47,11 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
         public void onSlide(@NonNull View bottomSheet, float slideOffset) {
         }
     };
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @NonNull
     @Override
@@ -72,37 +71,6 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
         return dialog;
     }
 
-    private void findAllViews(View view) {
-        mEnableCardSwitch = (SwitchCompat) view.findViewById(R.id.sw_card_enabled);
-        mShowCardInfoSwitch = (SwitchCompat) view.findViewById(R.id.sw_show_card_info);
-        mChangePin = (LinearLayout) view.findViewById(R.id.ll_change_pin);
-    }
-
-    private void setUpListeners() {
-        mEnableCardSwitch.setOnCheckedChangeListener(this);
-        mEnableCardSwitch.setOnTouchListener(this);
-        mShowCardInfoSwitch.setOnCheckedChangeListener(this);
-        mShowCardInfoSwitch.setOnTouchListener(this);
-        mChangePin.setOnClickListener(this);
-    }
-
-    private void setColors() {
-        ColorStateList colorStateList = UIStorage.getInstance().getRadioButtonColors();
-        ColorStateList backgroundColors = UIStorage.getInstance().getSwitchBackgroundColors();
-        DrawableCompat.setTintList(DrawableCompat.wrap(mEnableCardSwitch.getThumbDrawable()), colorStateList);
-        DrawableCompat.setTintList(DrawableCompat.wrap(mEnableCardSwitch.getTrackDrawable()), backgroundColors);
-        DrawableCompat.setTintList(DrawableCompat.wrap(mShowCardInfoSwitch.getThumbDrawable()), colorStateList);
-        DrawableCompat.setTintList(DrawableCompat.wrap(mShowCardInfoSwitch.getTrackDrawable()), backgroundColors);
-    }
-
-    public void setEnableCardSwitch(boolean enable) {
-        mEnableCardSwitch.setChecked(enable);
-    }
-
-    public void setShowCardInfoSwitch(boolean enable) {
-        mShowCardInfoSwitch.setChecked(enable);
-    }
-
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
         if (mListener == null) {
@@ -115,8 +83,7 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
                 mIsEnableCardSwitchTouched = false;
                 mListener.enableCardClickHandler(isChecked);
             }
-        }
-        else if(id == R.id.sw_show_card_info) {
+        } else if (id == R.id.sw_show_card_info) {
             if (mIsShowCardInfoSwitchTouched) {
                 mIsShowCardInfoSwitchTouched = false;
                 mListener.showCardInfoClickHandler(isChecked);
@@ -126,10 +93,9 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        if(view.getId() == R.id.sw_card_enabled) {
+        if (view.getId() == R.id.sw_card_enabled) {
             mIsEnableCardSwitchTouched = true;
-        }
-        else if(view.getId() == R.id.sw_show_card_info) {
+        } else if (view.getId() == R.id.sw_show_card_info) {
             mIsShowCardInfoSwitchTouched = true;
         }
         return false;
@@ -143,7 +109,46 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
 
         if (view.getId() == R.id.ll_change_pin) {
             mListener.changePinClickHandler();
+        } else if (view.getId() == R.id.ll_contact_support) {
+            mListener.contactSupportClickHandler();
         }
+    }
+
+    public void setViewListener(ViewListener viewListener) {
+        mListener = viewListener;
+    }
+
+    public void setEnableCardSwitch(boolean enable) {
+        mEnableCardSwitch.setChecked(enable);
+    }
+
+    public void setShowCardInfoSwitch(boolean enable) {
+        mShowCardInfoSwitch.setChecked(enable);
+    }
+
+    private void findAllViews(View view) {
+        mEnableCardSwitch = (SwitchCompat) view.findViewById(R.id.sw_card_enabled);
+        mShowCardInfoSwitch = (SwitchCompat) view.findViewById(R.id.sw_show_card_info);
+        mChangePin = (LinearLayout) view.findViewById(R.id.ll_change_pin);
+        mContactSupport = (LinearLayout) view.findViewById(R.id.ll_contact_support);
+    }
+
+    private void setUpListeners() {
+        mEnableCardSwitch.setOnCheckedChangeListener(this);
+        mEnableCardSwitch.setOnTouchListener(this);
+        mShowCardInfoSwitch.setOnCheckedChangeListener(this);
+        mShowCardInfoSwitch.setOnTouchListener(this);
+        mChangePin.setOnClickListener(this);
+        mContactSupport.setOnClickListener(this);
+    }
+
+    private void setColors() {
+        ColorStateList colorStateList = UIStorage.getInstance().getRadioButtonColors();
+        ColorStateList backgroundColors = UIStorage.getInstance().getSwitchBackgroundColors();
+        DrawableCompat.setTintList(DrawableCompat.wrap(mEnableCardSwitch.getThumbDrawable()), colorStateList);
+        DrawableCompat.setTintList(DrawableCompat.wrap(mEnableCardSwitch.getTrackDrawable()), backgroundColors);
+        DrawableCompat.setTintList(DrawableCompat.wrap(mShowCardInfoSwitch.getThumbDrawable()), colorStateList);
+        DrawableCompat.setTintList(DrawableCompat.wrap(mShowCardInfoSwitch.getTrackDrawable()), backgroundColors);
     }
 
     /**
@@ -153,9 +158,6 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
         void enableCardClickHandler(boolean enable);
         void showCardInfoClickHandler(boolean show);
         void changePinClickHandler();
-    }
-
-    public void setViewListener(ViewListener viewListener) {
-        mListener = viewListener;
+        void contactSupportClickHandler();
     }
 }
