@@ -66,4 +66,8 @@ public class FundingSourceModel implements Model {
     public boolean isSelected() {
         return mIsSelected;
     }
+
+    public double getSpendableAmount() {
+        return mFundingSource.amountSpendable.amount;
+    }
 }

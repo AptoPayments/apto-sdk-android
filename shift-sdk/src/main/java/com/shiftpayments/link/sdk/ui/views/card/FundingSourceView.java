@@ -79,6 +79,8 @@ public class FundingSourceView extends CardView implements RowView<FundingSource
      */
     private void setUpListeners() {
         mButton.setOnClickListener(this);
+        mTitleField.setOnClickListener(this);
+        mDescriptionField.setOnClickListener(this);
     }
 
     private void setColor() {
@@ -95,7 +97,7 @@ public class FundingSourceView extends CardView implements RowView<FundingSource
         }
 
         int id = view.getId();
-        if (id == R.id.rb_funding_source) {
+        if (id == R.id.rb_funding_source || id == R.id.tv_title || id == R.id.tv_description ) {
             mListener.fundingSourceClickHandler(mData);
         }
     }

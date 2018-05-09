@@ -36,6 +36,8 @@ public class ManageAccountView
     private TextView mSignOutButton;
     private ImageButton mAddFundingSourceButton;
     private TextView mContactSupportButton;
+    private TextView mSpendableAmount;
+    private TextView mSpendableAmountLabel;
 
     public ManageAccountView(Context context) {
         this(context, null);
@@ -92,6 +94,18 @@ public class ManageAccountView
         }
     }
 
+    public void showSpendableAmountLabel(boolean show) {
+        if (show) {
+            mSpendableAmountLabel.setVisibility(VISIBLE);
+        } else {
+            mSpendableAmountLabel.setVisibility(GONE);
+        }
+    }
+
+    public void setSpendableAmount(String amount) {
+        mSpendableAmount.setText(amount);
+    }
+
     protected void findAllViews() {
         mFundingSourcesListView = (RecyclerView) findViewById(R.id.rv_funding_sources_list);
         mFundingSourceLabel = (TextView) findViewById(R.id.tv_funding_sources);
@@ -99,6 +113,8 @@ public class ManageAccountView
         mAddFundingSourceButton = (ImageButton) findViewById(R.id.ib_add_funding_source);
         mContactSupportButton = (TextView) findViewById(R.id.tv_contact_support);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mSpendableAmount = (TextView) findViewById(R.id.tv_spendable_amount);
+        mSpendableAmountLabel = (TextView) findViewById(R.id.tv_spendable_amount_label);
     }
 
     private void setUpListeners() {
@@ -117,15 +133,16 @@ public class ManageAccountView
     }
 
     private void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
+        int primaryColor = UIStorage.getInstance().getPrimaryColor();
         int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        mAddFundingSourceButton.setColorFilter(color);
-        mToolbar.setBackgroundDrawable(new ColorDrawable(color));
+        mAddFundingSourceButton.setColorFilter(primaryColor);
+        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
         mToolbar.setTitleTextColor(contrastColor);
-        mSignOutButton.setBackgroundColor(color);
+        mSignOutButton.setBackgroundColor(primaryColor);
         Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
         backArrow.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
         mToolbar.setNavigationIcon(backArrow);
+        mSpendableAmount.setTextColor(primaryColor);
     }
 
     /**

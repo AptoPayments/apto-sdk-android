@@ -13,7 +13,6 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.ArmedForces;
 import com.shiftpayments.link.sdk.api.vos.datapoints.BankAccount;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Birthdate;
 import com.shiftpayments.link.sdk.api.vos.datapoints.CreditScore;
-import com.shiftpayments.link.sdk.api.vos.datapoints.Custodian;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Email;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Housing;
@@ -91,7 +90,6 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         ParsingUtils.getStringFromJson(jObject.get("pan")),
                         ParsingUtils.getStringFromJson(jObject.get("cvv")),
                         Card.FinancialAccountState.valueOf(cardState),
-                        new Custodian("coinbase", "logo", "coinbase", ""),
                         false);
             case "bank_account":
                 return new BankAccount(jObject.get("account_id").getAsString(),
