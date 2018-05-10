@@ -16,6 +16,7 @@ import com.shiftpayments.link.sdk.ui.models.link.LoanAmountModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.link.LoanAmountView;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 import com.shiftpayments.link.sdk.ui.widgets.HintArrayAdapter;
 import com.shiftpayments.link.sdk.ui.widgets.MultiplyTransformer;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperConfiguration;
@@ -200,7 +201,8 @@ public class LoanAmountPresenter
     /** {@inheritDoc} */
     @Override
     public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
-        mView.updateAmountText(mActivity.getString(R.string.loan_amount_format, value * mAmountIncrement));
+        // TODO: hardcoded currency
+        mView.updateAmountText(new AmountVo(value * mAmountIncrement, "USD").toString());
     }
 
     /** {@inheritDoc} */

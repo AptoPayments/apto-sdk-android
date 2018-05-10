@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.AdjustmentVo;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 import java.util.List;
 
@@ -59,7 +60,8 @@ public class AdjustmentsAdapter extends
         }
         adjustmentView.setId("ID: " + adjustment.externalId);
         adjustmentView.setExchangeRate(adjustment.exchangeRate);
-        adjustmentView.setAmount(String.format("$%s", String.valueOf(adjustment.localAmount.amount)));
+        AmountVo amount = new AmountVo(adjustment.localAmount.amount, adjustment.localAmount.currency);
+        adjustmentView.setAmount(amount.toString());
     }
 
     @Override

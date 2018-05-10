@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.MonthlyIncomeModel;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.views.userdata.MonthlyIncomeView;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 import com.shiftpayments.link.sdk.ui.widgets.MultiplyTransformer;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
@@ -98,7 +99,8 @@ public class MonthlyIncomePresenter
     /** {@inheritDoc} */
     @Override
     public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
-        mView.updateIncomeText(mActivity.getString(R.string.monthly_income_format, value * mIncomeMultiplier));
+        // TODO: hardcoded currency
+        mView.updateIncomeText(new AmountVo(value * mIncomeMultiplier, "USD").toString());
     }
 
     /** {@inheritDoc} */
