@@ -43,9 +43,6 @@ public class TransactionVo implements Parcelable {
     @SerializedName("local_amount")
     public MoneyVo localAmount;
 
-    @SerializedName("usd_amount")
-    public double usdAmount;
-
     @SerializedName("cashback_amount")
     public MoneyVo cashBackAmount;
 
@@ -79,9 +76,6 @@ public class TransactionVo implements Parcelable {
     @SerializedName("native_balance")
     public MoneyVo nativeBalance;
 
-    @SerializedName("exchange_rate")
-    public double exchangeRate;
-
     @SerializedName("settlement_date")
     public String settlementDate;
 
@@ -101,7 +95,6 @@ public class TransactionVo implements Parcelable {
         store = in.readParcelable(StoreVo.class.getClassLoader());
         state = in.readString();
         localAmount = in.readParcelable(MoneyVo.class.getClassLoader());
-        usdAmount = in.readDouble();
         cashBackAmount = in.readParcelable(MoneyVo.class.getClassLoader());
         isECommerce = in.readInt() == 1;
         isInternational = in.readInt() == 1;
@@ -113,7 +106,6 @@ public class TransactionVo implements Parcelable {
         billingAmount = in.readParcelable(MoneyVo.class.getClassLoader());
         fee = in.readParcelable(MoneyVo.class.getClassLoader());
         nativeBalance = in.readParcelable(MoneyVo.class.getClassLoader());
-        exchangeRate = in.readDouble();
         settlementDate = in.readString();
         lastMessage = in.readString();
         adjustmentsList = in.readParcelable(AdjustmentListResponseVo.class.getClassLoader());
@@ -135,7 +127,6 @@ public class TransactionVo implements Parcelable {
         parcel.writeParcelable(store, flags);
         parcel.writeString(state);
         parcel.writeParcelable(localAmount, flags);
-        parcel.writeDouble(usdAmount);
         parcel.writeParcelable(cashBackAmount, flags);
         parcel.writeInt(isECommerce ? 1 : 0);
         parcel.writeInt(isInternational ? 1 : 0);
@@ -147,7 +138,6 @@ public class TransactionVo implements Parcelable {
         parcel.writeParcelable(billingAmount, flags);
         parcel.writeParcelable(fee, flags);
         parcel.writeParcelable(nativeBalance, flags);
-        parcel.writeDouble(exchangeRate);
         parcel.writeString(settlementDate);
         parcel.writeString(lastMessage);
         parcel.writeParcelable(adjustmentsList, flags);

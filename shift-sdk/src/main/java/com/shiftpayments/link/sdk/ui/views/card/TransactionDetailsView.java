@@ -21,8 +21,6 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 
-import org.w3c.dom.Text;
-
 
 /**
  * Displays a single transaction
@@ -33,6 +31,7 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     protected Toolbar mToolbar;
     private ImageView mLogoView;
     private TransactionView mTransactionView;
+    private TextView mAmountLabel;
     private TextView mDetailAmount;
     private TextView mCurrency;
     private TextView mType;
@@ -152,6 +151,10 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         findViewById(R.id.cashback_amount_separator).setVisibility(VISIBLE);
     }
 
+    public void setAmountLabel(String label) {
+        mAmountLabel.setText(label);
+    }
+
     /**
      * Finds all references to child Views.
      */
@@ -159,6 +162,7 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mLogoView = (ImageView) findViewById(R.id.iv_custodian_logo);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mTransactionView = (TransactionView) findViewById(R.id.cv_transaction_view);
+        mAmountLabel = (TextView) findViewById(R.id.tv_amount_label);
         mDetailAmount = (TextView) findViewById(R.id.tv_transaction_amount);
         mCurrency = (TextView) findViewById(R.id.tv_transaction_currency);
         mType = (TextView) findViewById(R.id.tv_transaction_type);

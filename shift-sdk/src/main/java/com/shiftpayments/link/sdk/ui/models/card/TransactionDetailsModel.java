@@ -29,15 +29,22 @@ public class TransactionDetailsModel implements Model {
         return mTransaction.description;
     }
 
+    public String getMerchantName() {
+        return mTransaction.merchant.name;
+    }
+
     public String getLocalAmount() {
         if(mTransaction.localAmount != null) {
-            return String.valueOf(mTransaction.localAmount.amount);
+            return "$" + String.valueOf(mTransaction.localAmount.amount);
         }
         return UNAVAILABLE;
     }
 
-    public String getUsdAmount() {
-        return "$" + String.valueOf(mTransaction.usdAmount);
+    public String getNativeBalance() {
+        if(mTransaction.nativeBalance != null) {
+            return String.valueOf(mTransaction.nativeBalance.amount);
+        }
+        return UNAVAILABLE;
     }
 
     public String getCurrency() {

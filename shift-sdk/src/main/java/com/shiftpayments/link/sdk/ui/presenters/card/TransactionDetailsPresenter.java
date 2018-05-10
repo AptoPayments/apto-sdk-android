@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.ui.presenters.card;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
+import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity;
 import com.shiftpayments.link.sdk.ui.models.card.TransactionDetailsModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
@@ -38,15 +39,18 @@ public class TransactionDetailsPresenter
         switch (mModel.getTransactionType()) {
             case DECLINE:
                 mView.setTransactionAmount("Declined");
+                mView.setAmountLabel(mActivity.getResources().getString(R.string.transaction_details_declined_amount));
                 mView.setDeclineReason(mModel.getDeclinedReason());
                 break;
             case PENDING:
+                mView.setAmountLabel(mActivity.getResources().getString(R.string.transaction_details_amount));
                 mView.setTransactionAmount("Pending");
                 break;
             default:
-                mView.setTransactionAmount(mModel.getLocalAmount());
+                mView.setAmountLabel(mActivity.getResources().getString(R.string.transaction_details_amount));
+                mView.setTransactionAmount(mModel.getNativeBalance());
         }
-        mView.setDetailAmount(mModel.getUsdAmount());
+        mView.setDetailAmount(mModel.getLocalAmount());
         mView.setCurrency(mModel.getCurrency());
         mView.setType(mModel.getTransactionType().toString());
         mView.setLocation(mModel.getLocation());
@@ -59,7 +63,7 @@ public class TransactionDetailsPresenter
         if(mModel.hasCashbackAmount()) {
             mView.setCashbackAmount(mModel.getCashbackAmount());
         }
-        mView.setTransactionDescription(mModel.getDescription());
+        mView.setTransactionDescription(mModel.getMerchantName());
         mView.setTransactionId(mModel.getTransactionId());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

@@ -375,5 +375,6 @@
     <string name="transaction_details_adjustment_to">To your %s account</string>
     <string name="transaction_details_decline_reason">Decline Reason</string>
     <string name="transaction_details_fee_amount">Merchant Fee</string>
-    <string name="transaction_details_cashback_amount">Cashback Amount</string>
+    <string name="transaction_details_cashback_amount">Cash Back</string>
+    <string name="transaction_details_declined_amount">Declined Amount</string>
 </resources>

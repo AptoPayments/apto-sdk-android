@@ -151,7 +151,7 @@ public class TransactionsAdapter extends
             TransactionVo transaction = mTransactions.get(position-1);
 
             TextView titleTextView = viewHolder.titleTextView;
-            titleTextView.setText(String.format("$%s", String.valueOf(transaction.usdAmount)));
+            titleTextView.setText(String.format("$%s", String.valueOf(transaction.localAmount.amount)));
 
             TextView descriptionTextView = viewHolder.descriptionTextView;
             descriptionTextView.setText(transaction.description);

@@ -50,6 +50,7 @@
 
                 <TextView
                     style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:id="@+id/tv_amount_label"
                     android:layout_toLeftOf="@+id/strut_amount"
                     android:text="@string/transaction_details_amount" />
 
