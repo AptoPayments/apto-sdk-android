@@ -348,6 +348,7 @@
     <string name="account_management_dialog_title">Sign out</string>
     <string name="account_management_dialog_message">Are you sure you want to sign out?</string>
     <string name="account_management_funding_source_changed">Funding source changed</string>
+    <string name="account_management_spendable_amount_label">SPENDABLE AMOUNT</string>
 
     <!-- KYC Status screen -->
     <string name="kyc_status_title">Application Status</string>

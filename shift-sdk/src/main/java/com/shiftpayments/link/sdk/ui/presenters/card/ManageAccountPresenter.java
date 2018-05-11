@@ -110,14 +110,19 @@ public class ManageAccountPresenter
     @Subscribe
     public void handleResponse(FundingSourceListVo response) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        mView.showFundingSourceLabel(true);
         mModel.addFundingSources(mActivity.getResources(), response.data);
+        mView.setSpendableAmount(mModel.getSpendableAmount());
+        mView.showFundingSourceLabel(true);
+        mView.showSpendableAmountLabel(true);
         mAdapter.updateList(mModel.getFundingSources());
     }
 
     @Subscribe
     public void handleResponse(FundingSourceVo response) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mModel.setSelectedFundingSource(response.id);
+        mAdapter.updateList(mModel.getFundingSources());
+        mView.setSpendableAmount(mModel.getSpendableAmount());
         Toast.makeText(mActivity, R.string.account_management_funding_source_changed, Toast.LENGTH_SHORT).show();
     }
 
@@ -130,6 +135,7 @@ public class ManageAccountPresenter
         if(error.statusCode==404) {
             // User has no funding source
             mView.showFundingSourceLabel(false);
+            mView.showSpendableAmountLabel(false);
             mAdapter.updateList(mModel.getFundingSources());
         }
         else {

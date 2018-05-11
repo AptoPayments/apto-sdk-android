@@ -7,7 +7,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.BankAccount;
-import com.shiftpayments.link.sdk.api.vos.datapoints.Custodian;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
 
@@ -40,7 +39,6 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("pan")),
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
                     Card.FinancialAccountState.valueOf(cardState),
-                    new Custodian("coinbase", "logo", "coinbase", ""),
                     KycStatus.valueOf(kycStatus),
                     //TODO
                     null,

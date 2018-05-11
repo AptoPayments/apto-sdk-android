@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.api.vos;
 
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
-import com.shiftpayments.link.sdk.api.vos.datapoints.Custodian;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
 
@@ -45,8 +44,6 @@ public class Card extends FinancialAccountVo {
     public String expirationDate;
     @SerializedName("card_state")
     public FinancialAccountState state;
-    //TODO: remove custodian
-    public Custodian custodian;
     @SerializedName("kyc_status")
     public KycStatus kycStatus;
     @SerializedName("kyc_reason")
@@ -62,13 +59,12 @@ public class Card extends FinancialAccountVo {
         CVVToken = null;
         expirationDate = null;
         state = null;
-        custodian = null;
         kycStatus = null;
         kycReason = null;
     }
 
     public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                String PANToken, String CVVToken, FinancialAccountState state, Custodian custodian, boolean verified) {
+                String PANToken, String CVVToken, FinancialAccountState state, boolean verified) {
         super(accountId, FinancialAccountType.Card, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
@@ -78,13 +74,12 @@ public class Card extends FinancialAccountVo {
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
         this.state = state;
-        this.custodian = custodian;
         this.kycStatus = null;
         this.kycReason = null;
     }
 
     public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                String PANToken, String CVVToken, FinancialAccountState state, Custodian custodian, KycStatus kycStatus, String[] kycReason, boolean verified) {
+                String PANToken, String CVVToken, FinancialAccountState state, KycStatus kycStatus, String[] kycReason, boolean verified) {
         super(accountId, FinancialAccountType.Card, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
@@ -94,13 +89,12 @@ public class Card extends FinancialAccountVo {
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
         this.state = state;
-        this.custodian = custodian;
         this.kycStatus = kycStatus;
         this.kycReason = kycReason;
     }
 
     protected Card(FinancialAccountType accountType, String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
-                   String PANToken, String CVVToken, FinancialAccountState state, Custodian custodian, KycStatus kycStatus, String[] kycReason, boolean verified) {
+                   String PANToken, String CVVToken, FinancialAccountState state, KycStatus kycStatus, String[] kycReason, boolean verified) {
         super(accountId, accountType, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
@@ -111,7 +105,6 @@ public class Card extends FinancialAccountVo {
         this.CVVToken = CVVToken;
         this.expirationDate = expirationDate;
         this.state = state;
-        this.custodian = custodian;
         this.kycStatus = kycStatus;
         this.kycReason = kycReason;
     }
@@ -127,7 +120,6 @@ public class Card extends FinancialAccountVo {
         this.CVVToken = c.CVVToken;
         this.expirationDate = c.expirationDate;
         this.state = c.state;
-        this.custodian = c.custodian;
         this.kycStatus = c.kycStatus;
         this.kycReason = c.kycReason;
     }
