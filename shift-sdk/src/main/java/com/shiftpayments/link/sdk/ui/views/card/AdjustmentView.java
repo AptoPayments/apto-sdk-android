@@ -46,16 +46,6 @@ public class AdjustmentView extends FrameLayout {
         findAllViews();
     }
 
-    /**
-     * Finds all references to child Views.
-     */
-    private void findAllViews() {
-        mDescriptionField = (TextView) findViewById(R.id.tv_transfer_description);
-        mId = (TextView) findViewById(R.id.tv_transfer_id);
-        mExchangeRate = (TextView) findViewById(R.id.tv_transfer_exchange_rate);
-        mAmount = (TextView) findViewById(R.id.tv_transfer_amount);
-    }
-
     public void setDescription(String description) {
         mDescriptionField.setText(description);
     }
@@ -70,5 +60,19 @@ public class AdjustmentView extends FrameLayout {
 
     public void setAmount(String amount) {
         mAmount.setText(amount);
+    }
+
+    public void setAmountColor(int color) {
+        mAmount.setTextColor(color);
+    }
+
+    /**
+     * Finds all references to child Views.
+     */
+    private void findAllViews() {
+        mDescriptionField = (TextView) findViewById(R.id.tv_transfer_description);
+        mId = (TextView) findViewById(R.id.tv_transfer_id);
+        mExchangeRate = (TextView) findViewById(R.id.tv_transfer_exchange_rate);
+        mAmount = (TextView) findViewById(R.id.tv_transfer_amount);
     }
 }

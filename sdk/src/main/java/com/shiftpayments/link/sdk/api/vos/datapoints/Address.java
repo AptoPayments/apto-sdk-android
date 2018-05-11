@@ -1,8 +1,13 @@
 package com.shiftpayments.link.sdk.api.vos.datapoints;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.JsonObject;
 
-public class Address extends DataPointVo {
+import java.util.ArrayList;
+
+public class Address extends DataPointVo implements Parcelable {
     public String address;
     public String apUnit;
     public String country;
@@ -25,6 +30,27 @@ public class Address extends DataPointVo {
         this.zip = zip;
     }
 
+    protected Address(Parcel in) {
+        address = in.readString();
+        apUnit = in.readString();
+        country = in.readString();
+        city = in.readString();
+        stateCode = in.readString();
+        zip = in.readString();
+    }
+
+    public static final Creator<Address> CREATOR = new Creator<Address>() {
+        @Override
+        public Address createFromParcel(Parcel in) {
+            return new Address(in);
+        }
+
+        @Override
+        public Address[] newArray(int size) {
+            return new Address[size];
+        }
+    };
+
     public void update(Address addressToCopy) {
         this.address = addressToCopy.address;
         this.apUnit = addressToCopy.apUnit;
@@ -32,26 +58,6 @@ public class Address extends DataPointVo {
         this.city = addressToCopy.city;
         this.stateCode = addressToCopy.stateCode;
         this.zip = addressToCopy.zip;
-    }
-
-    public String addressDescription() {
-        if( "US".equalsIgnoreCase(this.country)) {
-            String retVal = "";
-            if (this.address != null) {
-                retVal += this.address;
-            }
-            if (this.city != null) {
-                retVal += ", " + this.city;
-            }
-            if (this.stateCode != null) {
-                retVal += ", " + this.stateCode;
-            }
-            if (this.zip != null) {
-                retVal += ", " + this.zip;
-            }
-            return retVal;
-        }
-        return null;
     }
 
     @Override
@@ -68,7 +74,23 @@ public class Address extends DataPointVo {
 
     @Override
     public String toString() {
-        return addressDescription();
+        ArrayList<String> addressArray = new ArrayList<>();
+        if (this.address != null && !this.address.isEmpty()) {
+            addressArray.add(this.address);
+        }
+        if (this.city != null && !this.city.isEmpty()) {
+            addressArray.add(this.city);
+        }
+        if (this.stateCode != null && !this.stateCode.isEmpty()) {
+            addressArray.add(this.stateCode);
+        }
+        if (this.zip != null && !this.zip.isEmpty()) {
+            addressArray.add(this.zip);
+        }
+        if (this.country != null && !this.country.isEmpty()) {
+            addressArray.add(this.country);
+        }
+        return android.text.TextUtils.join(", ", addressArray);
     }
 
     @Override
@@ -100,5 +122,20 @@ public class Address extends DataPointVo {
         result = 31 * result + (stateCode != null ? stateCode.hashCode() : 0);
         result = 31 * result + (zip != null ? zip.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(address);
+        parcel.writeString(apUnit);
+        parcel.writeString(country);
+        parcel.writeString(city);
+        parcel.writeString(stateCode);
+        parcel.writeString(zip);
     }
 }

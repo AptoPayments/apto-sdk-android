@@ -1,7 +1,7 @@
 package com.shiftpayments.link.sdk.ui.models.card;
 
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.AdjustmentVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.ui.models.Model;
 
 import java.text.SimpleDateFormat;
@@ -52,13 +52,10 @@ public class TransactionDetailsModel implements Model {
     }
 
     public String getLocation() {
-        if(mTransaction.store.address.country == null || mTransaction.store.address.country.isEmpty()) {
-            return mTransaction.store.address.city;
+        if(mTransaction.store.address != null) {
+            return mTransaction.store.address.toString();
         }
-        else if(mTransaction.store.address.country.equalsIgnoreCase("USA")) {
-            return mTransaction.store.address.city + ", " + mTransaction.store.address.state;
-        }
-        return mTransaction.store.address.city + ", " + mTransaction.store.address.country;
+        return UNAVAILABLE;
     }
 
     public String getCategory() {
@@ -76,13 +73,17 @@ public class TransactionDetailsModel implements Model {
     }
 
     public String getSettlementDate() {
-        if(isStringFilled(mTransaction.settlementDate)) {
-            return getFormattedDate(mTransaction.settlementDate);
+        if(isStringFilled(mTransaction.settlement.date)) {
+            return getFormattedDate(mTransaction.settlement.date);
         }
         return UNAVAILABLE;
     }
 
     public String getTransactionId() {
+        return mTransaction.externalId;
+    }
+
+    public String getShiftId() {
         return mTransaction.id;
     }
 
@@ -115,6 +116,14 @@ public class TransactionDetailsModel implements Model {
 
     public String getCashbackAmount() {
         return String.valueOf(mTransaction.cashBackAmount.amount);
+    }
+
+    public boolean hasHoldAmount() {
+        return mTransaction.holdAmount != null;
+    }
+
+    public String getHoldAmount() {
+        return String.valueOf(mTransaction.holdAmount.amount);
     }
 
     private String getFormattedDate(String timestamp) {

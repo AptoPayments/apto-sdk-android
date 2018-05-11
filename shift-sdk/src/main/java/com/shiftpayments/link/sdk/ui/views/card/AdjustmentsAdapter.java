@@ -49,16 +49,21 @@ public class AdjustmentsAdapter extends
         if(adjustment.fundingSourceName != null && !adjustment.fundingSourceName.isEmpty()) {
             if(adjustment.type.equals(AdjustmentVo.AdjustmentType.CAPTURE)) {
                 adjustmentView.setDescription(mContext.getResources().getString(R.string.transaction_details_adjustment_from, adjustment.fundingSourceName));
+                adjustmentView.setAmountColor(mContext.getResources().getColor(R.color.positive_adjustment));
             }
             else if(adjustment.type.equals(AdjustmentVo.AdjustmentType.REFUND)) {
                 adjustmentView.setDescription(mContext.getResources().getString(R.string.transaction_details_adjustment_to, adjustment.fundingSourceName));
+                adjustmentView.setAmountColor(mContext.getResources().getColor(R.color.negative_adjustment));
             }
             else {
                 adjustmentView.setDescription(adjustment.fundingSourceName);
             }
         }
         adjustmentView.setId("ID: " + adjustment.externalId);
-        adjustmentView.setExchangeRate(adjustment.exchangeRate);
+        // TODO: use new amount class when merged
+        String exchangeRate = String.format("1 %s = %s %s", adjustment.nativeAmount.currency,
+                adjustment.exchangeRate, adjustment.localAmount.currency);
+        adjustmentView.setExchangeRate(exchangeRate);
         adjustmentView.setAmount(String.format("$%s", String.valueOf(adjustment.localAmount.amount)));
     }
 
