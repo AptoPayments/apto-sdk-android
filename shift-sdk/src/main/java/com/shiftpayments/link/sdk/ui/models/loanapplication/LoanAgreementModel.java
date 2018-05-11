@@ -11,6 +11,7 @@ import com.shiftpayments.link.sdk.ui.images.GenericImageLoader;
 import com.shiftpayments.link.sdk.ui.models.ActivityModel;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.models.lenders.LenderModel;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 /**
  * Loan agreement {@link Model}.
@@ -110,8 +111,8 @@ public class LoanAgreementModel implements ActivityModel, Model {
     /**
      * @return Total loan amount text.
      */
-    public String getTotalAmount(Resources resources) {
-        return resources.getString(R.string.loan_agreement_terms_amount_format, mOffer.loan_amount);
+    public String getTotalAmount() {
+        return new AmountVo(mOffer.loan_amount, mOffer.currency).toString();
     }
 
     /**
@@ -135,7 +136,7 @@ public class LoanAgreementModel implements ActivityModel, Model {
     /**
      * @return Single payment amount text.
      */
-    public String getPaymentAmount(Resources resources) {
-        return resources.getString(R.string.loan_agreement_terms_payment_format, mOffer.payment_amount);
+    public String getPaymentAmount() {
+        return new AmountVo(mOffer.payment_amount, mOffer.currency).toString();
     }
 }

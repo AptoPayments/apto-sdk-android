@@ -3,8 +3,8 @@ package com.shiftpayments.link.sdk.ui.models.card;
 import android.content.res.Resources;
 
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
-import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.Model;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 /**
  * Concrete {@link Model} for the funding source.
@@ -37,7 +37,7 @@ public class FundingSourceModel implements Model {
 
     public String getFundingSourceName() {
         String capitalizedName = mFundingSource.custodianWallet.custodian.name.substring(0, 1).toUpperCase() + mFundingSource.custodianWallet.custodian.name.substring(1);
-        String amount = mResources.getString(R.string.funding_source_dollar_amount, mFundingSource.balance.amount);
+        String amount = new AmountVo(mFundingSource.balance.amount, mFundingSource.balance.currency).toString();
         return capitalizedName + " " + amount;
     }
 
@@ -67,7 +67,7 @@ public class FundingSourceModel implements Model {
         return mIsSelected;
     }
 
-    public double getSpendableAmount() {
-        return mFundingSource.amountSpendable.amount;
+    public String getSpendableAmount() {
+        return new AmountVo(mFundingSource.amountSpendable.amount, mFundingSource.amountSpendable.currency).toString();
     }
 }

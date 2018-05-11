@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.images.GenericImageLoader;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.models.lenders.LenderModel;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 /**
  * Concrete {@link Model} for the offer summary.
@@ -63,8 +64,10 @@ public class OfferSummaryModel implements Model {
         }
 
         mInterestText = mResources.getString(getInterestFormatId(), mRawOffer.interest_rate);
-        mAmountText = mResources.getString(getAmountFormatId(), mRawOffer.loan_amount);
-        mMonthlyPaymentText = mResources.getString(getPaymentFormatId(), mRawOffer.payment_amount);
+        String amountFinanced = new AmountVo(mRawOffer.loan_amount, mRawOffer.currency).toString();
+        mAmountText = mResources.getString(getAmountFormatId(), amountFinanced);
+        String monthlyPayment = new AmountVo(mRawOffer.payment_amount, mRawOffer.currency).toString();
+        mMonthlyPaymentText = mResources.getString(getPaymentFormatId(), monthlyPayment);
     }
 
     /**

@@ -53,7 +53,7 @@ public class ManageAccountModel implements Model {
 
     public String getSpendableAmount() {
         if(mSelectedFundingSource != null) {
-            return String.valueOf(mSelectedFundingSource.getSpendableAmount());
+            return mSelectedFundingSource.getSpendableAmount();
         }
         return "";
     }
