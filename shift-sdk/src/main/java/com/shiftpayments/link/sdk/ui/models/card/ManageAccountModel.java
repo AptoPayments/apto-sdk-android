@@ -17,6 +17,7 @@ import me.ledge.common.utils.PagedList;
 public class ManageAccountModel implements Model {
 
     private PagedList<FundingSourceModel> mFundingSources;
+    private FundingSourceModel mSelectedFundingSource;
 
     /**
      * Creates a new {@link ManageAccountModel} instance.
@@ -33,10 +34,14 @@ public class ManageAccountModel implements Model {
         ArrayList<FundingSourceModel> newFundingSources = new ArrayList<>(fundingSources.length);
         for(FundingSourceVo fundingSource : fundingSources) {
             boolean isSelected = false;
-            if(CardStorage.getInstance().getCard().custodian != null && fundingSource.custodianWallet.custodian != null) {
-                isSelected = fundingSource.custodianWallet.custodian.id.equals(CardStorage.getInstance().getCard().custodian.id);
+            if(CardStorage.getInstance().hasFundingSourceId() && fundingSource.id != null) {
+                isSelected = CardStorage.getInstance().getFundingSourceId().equals(fundingSource.id);
             }
-            newFundingSources.add(new FundingSourceModel(fundingSource, resources, isSelected));
+            FundingSourceModel fundingSourceModel = new FundingSourceModel(fundingSource, resources, isSelected);
+            newFundingSources.add(fundingSourceModel);
+            if(isSelected) {
+                mSelectedFundingSource = fundingSourceModel;
+            }
         }
 
         mFundingSources.addAll(newFundingSources);
@@ -44,5 +49,21 @@ public class ManageAccountModel implements Model {
 
     public PagedList<FundingSourceModel> getFundingSources() {
         return mFundingSources;
+    }
+
+    public String getSpendableAmount() {
+        if(mSelectedFundingSource != null) {
+            return String.valueOf(mSelectedFundingSource.getSpendableAmount());
+        }
+        return "";
+    }
+
+    public void setSelectedFundingSource(String id) {
+        ArrayList<FundingSourceModel> fundingSources = new ArrayList<>(mFundingSources.getList());
+        for(FundingSourceModel fundingSource : fundingSources) {
+            if(fundingSource.getFundingSourceId().equals(id)) {
+                mSelectedFundingSource = fundingSource;
+            }
+        }
     }
 }

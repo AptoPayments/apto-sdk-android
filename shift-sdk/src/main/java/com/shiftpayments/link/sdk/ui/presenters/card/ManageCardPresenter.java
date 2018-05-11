@@ -301,6 +301,7 @@ public class ManageCardPresenter
             mView.setRefreshing(false);
         }
         mModel.setBalance(String.valueOf(response.balance.amount));
+        CardStorage.getInstance().setFundingSourceId(response.id);
         mTransactionsAdapter.notifyItemChanged(0);
     }
 

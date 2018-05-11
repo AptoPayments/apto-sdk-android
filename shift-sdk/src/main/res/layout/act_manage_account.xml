@@ -27,6 +27,23 @@
         android:layout_below="@+id/settings_toolbar">
 
         <TextView
+            android:id="@+id/tv_spendable_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="42sp"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/tv_spendable_amount_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:text="@string/account_management_spendable_amount_label"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
             android:id="@+id/tv_funding_sources"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

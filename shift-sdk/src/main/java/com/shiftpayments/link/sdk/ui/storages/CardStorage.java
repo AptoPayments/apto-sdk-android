@@ -10,6 +10,7 @@ public class CardStorage {
 
     private Card mCard;
     private static CardStorage mInstance;
+    private String mFundingSourceId;
 
     /**
      * Creates a new {@link CardStorage} instance.
@@ -42,5 +43,17 @@ public class CardStorage {
 
     public void setCard(Card card) {
         mCard = card;
+    }
+
+    public void setFundingSourceId(String fundingSourceId) {
+        mFundingSourceId = fundingSourceId;
+    }
+
+    public String getFundingSourceId() {
+        return mFundingSourceId;
+    }
+
+    public boolean hasFundingSourceId() {
+        return mFundingSourceId != null && !mFundingSourceId.isEmpty();
     }
 }

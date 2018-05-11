@@ -117,27 +117,6 @@ public class ManageCardModel implements Model {
         return "";
     }
 
-    public String getCustodianName() {
-        if (mCard != null) {
-            if (mCard.custodian.name != null) {
-                return mCard.custodian.name;
-            } else {
-                return "Card";
-            }
-        }
-        return "";
-    }
-    public String getCustodianLogo() {
-        if (mCard != null) {
-            if (mCard.custodian.logo != null) {
-                return mCard.custodian.logo;
-            } else {
-                getCustodianName();
-            }
-        }
-        return "";
-    }
-
     public Card.FinancialAccountState getState() {
         if (mCard != null) {
             return mCard.state;
