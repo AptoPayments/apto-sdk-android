@@ -3,12 +3,14 @@ package com.shiftpayments.link.sdk.api.vos.responses.financialaccounts;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.shiftpayments.link.sdk.api.vos.datapoints.Address;
+
 public class StoreVo implements Parcelable {
-    public StoreAddressVo address;
+    public Address address;
     public LocationVo location;
 
     protected StoreVo(Parcel in) {
-        address = in.readParcelable(StoreAddressVo.class.getClassLoader());
+        address = in.readParcelable(Address.class.getClassLoader());
         location = in.readParcelable(LocationVo.class.getClassLoader());
     }
 

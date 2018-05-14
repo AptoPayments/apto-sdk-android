@@ -40,4 +40,7 @@
 
     <color name="disabled_card_logo">#9E9E9E</color>
     <color name="enabled_card_logo">#FFFFFF</color>
+
+    <color name="positive_adjustment">#52a03b</color>
+    <color name="negative_adjustment">#962e26</color>
 </resources>

@@ -364,7 +364,8 @@
     <string name="transaction_details_category">Category</string>
     <string name="transaction_details_date">Transaction Date</string>
     <string name="transaction_details_settlement_date">Settlement Date</string>
-    <string name="transaction_details_id">Shift ID</string>
+    <string name="transaction_details_id">ID</string>
+    <string name="transaction_details_shift_id">Shift ID</string>
     <string name="transaction_details_transfers">Transfers</string>
     <string name="transaction_details_adjustment_from">From your %s account</string>
     <string name="transaction_details_adjustment_to">To your %s account</string>
@@ -372,4 +373,5 @@
     <string name="transaction_details_fee_amount">Merchant Fee</string>
     <string name="transaction_details_cashback_amount">Cash Back</string>
     <string name="transaction_details_declined_amount">Declined Amount</string>
+    <string name="transaction_details_hold_amount">Hold Amount</string>
 </resources>

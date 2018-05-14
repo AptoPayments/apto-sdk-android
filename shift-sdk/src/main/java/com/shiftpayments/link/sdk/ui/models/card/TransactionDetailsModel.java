@@ -53,13 +53,10 @@ public class TransactionDetailsModel implements Model {
     }
 
     public String getLocation() {
-        if(mTransaction.store.address.country == null || mTransaction.store.address.country.isEmpty()) {
-            return mTransaction.store.address.city;
+        if(mTransaction.store.address != null) {
+            return mTransaction.store.address.toString();
         }
-        else if(mTransaction.store.address.country.equalsIgnoreCase("USA")) {
-            return mTransaction.store.address.city + ", " + mTransaction.store.address.state;
-        }
-        return mTransaction.store.address.city + ", " + mTransaction.store.address.country;
+        return UNAVAILABLE;
     }
 
     public String getCategory() {
@@ -77,13 +74,17 @@ public class TransactionDetailsModel implements Model {
     }
 
     public String getSettlementDate() {
-        if(isStringFilled(mTransaction.settlementDate)) {
-            return getFormattedDate(mTransaction.settlementDate);
+        if(isStringFilled(mTransaction.settlement.date)) {
+            return getFormattedDate(mTransaction.settlement.date);
         }
         return UNAVAILABLE;
     }
 
     public String getTransactionId() {
+        return mTransaction.externalId;
+    }
+
+    public String getShiftId() {
         return mTransaction.id;
     }
 
@@ -116,6 +117,14 @@ public class TransactionDetailsModel implements Model {
 
     public String getCashbackAmount() {
         return new AmountVo(mTransaction.cashBackAmount.amount, mTransaction.cashBackAmount.currency).toString();
+    }
+
+    public boolean hasHoldAmount() {
+        return mTransaction.holdAmount != null;
+    }
+
+    public String getHoldAmount() {
+        return new AmountVo(mTransaction.holdAmount.amount, mTransaction.holdAmount.currency).toString();
     }
 
     private String getFormattedDate(String timestamp) {

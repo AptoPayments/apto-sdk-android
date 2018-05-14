@@ -26,6 +26,9 @@ public class TransactionVo implements Parcelable {
 
     public String id;
 
+    @SerializedName("external_id")
+    public String externalId;
+
     @SerializedName("authorized")
     public boolean isAuthorized;
 
@@ -76,8 +79,8 @@ public class TransactionVo implements Parcelable {
     @SerializedName("native_balance")
     public MoneyVo nativeBalance;
 
-    @SerializedName("settlement_date")
-    public String settlementDate;
+    @SerializedName("settlement")
+    public SettlementVo settlement;
 
     @SerializedName("last_message")
     public String lastMessage;
@@ -87,6 +90,7 @@ public class TransactionVo implements Parcelable {
 
     public TransactionVo(Parcel in) {
         id = in.readString();
+        externalId = in.readString();
         type = TransactionType.valueOf(in.readString());
         isAuthorized = in.readInt() == 1;
         creationTime = in.readString();
@@ -106,7 +110,7 @@ public class TransactionVo implements Parcelable {
         billingAmount = in.readParcelable(MoneyVo.class.getClassLoader());
         fee = in.readParcelable(MoneyVo.class.getClassLoader());
         nativeBalance = in.readParcelable(MoneyVo.class.getClassLoader());
-        settlementDate = in.readString();
+        settlement = in.readParcelable(SettlementVo.class.getClassLoader());
         lastMessage = in.readString();
         adjustmentsList = in.readParcelable(AdjustmentListResponseVo.class.getClassLoader());
     }
@@ -119,6 +123,7 @@ public class TransactionVo implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
         parcel.writeString(id);
+        parcel.writeString(externalId);
         parcel.writeString(type.name());
         parcel.writeInt(isAuthorized ? 1 : 0);
         parcel.writeString(creationTime);
@@ -138,7 +143,7 @@ public class TransactionVo implements Parcelable {
         parcel.writeParcelable(billingAmount, flags);
         parcel.writeParcelable(fee, flags);
         parcel.writeParcelable(nativeBalance, flags);
-        parcel.writeString(settlementDate);
+        parcel.writeParcelable(settlement, flags);
         parcel.writeString(lastMessage);
         parcel.writeParcelable(adjustmentsList, flags);
     }
@@ -168,6 +173,8 @@ public class TransactionVo implements Parcelable {
         RECEIVED,
         @SerializedName("reversal")
         REVERSAL,
+        @SerializedName("unsupported")
+        UNSUPPORTED,
         @SerializedName("other")
         OTHER;
 
@@ -192,6 +199,7 @@ public class TransactionVo implements Parcelable {
                     return "Refund";
                 case PENDING:
                 case DECLINE:
+                case UNSUPPORTED:
                     return "Merchant";
                 case RECEIVED:
                     return "Received";

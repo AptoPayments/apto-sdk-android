@@ -57,6 +57,9 @@ public class TransactionDetailsPresenter
         mView.setCategory(mModel.getCategory());
         mView.setTransactionDate(mModel.getTransactionDate());
         mView.setSettlementDate(mModel.getSettlementDate());
+        if(mModel.hasHoldAmount()) {
+            mView.setHoldAmount(mModel.getHoldAmount());
+        }
         if(mModel.hasFeeAmount()) {
             mView.setFeeAmount(mModel.getFeeAmount());
         }
@@ -65,6 +68,7 @@ public class TransactionDetailsPresenter
         }
         mView.setTransactionDescription(mModel.getMerchantName());
         mView.setTransactionId(mModel.getTransactionId());
+        mView.setShiftId(mModel.getShiftId());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         AdjustmentsAdapter adapter = new AdjustmentsAdapter(Arrays.asList(mModel.getTransferList()), mActivity);

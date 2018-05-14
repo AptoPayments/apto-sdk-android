@@ -7,9 +7,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class MccVo implements Parcelable {
 
-    @SerializedName("code")
-    public int merchantCategoryCode;
-
     @SerializedName("name")
     public String merchantCategoryName;
 
@@ -17,7 +14,6 @@ public class MccVo implements Parcelable {
     public String merchantCategoryIcon;
 
     protected MccVo(Parcel in) {
-        merchantCategoryCode = in.readInt();
         merchantCategoryName = in.readString();
         merchantCategoryIcon = in.readString();
     }
@@ -41,7 +37,6 @@ public class MccVo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(merchantCategoryCode);
         parcel.writeString(merchantCategoryName);
         parcel.writeString(merchantCategoryIcon);
     }

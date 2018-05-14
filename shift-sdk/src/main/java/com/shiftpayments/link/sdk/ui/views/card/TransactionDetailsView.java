@@ -40,6 +40,7 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private TextView mTransactionDate;
     private TextView mSettlementDate;
     private TextView mTransactionId;
+    private TextView mShiftId;
     private RecyclerView mAdjustmentsRecyclerView;
     private ImageView mShiftLogo;
     private TextView mDeclineReason;
@@ -48,6 +49,8 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private RelativeLayout mFeeHolder;
     private TextView mCashbackAmount;
     private RelativeLayout mCashbackAmountHolder;
+    private TextView mHoldAmount;
+    private RelativeLayout mHoldAmountHolder;
 
     /**
      * @see CardView#CardView
@@ -128,6 +131,10 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mTransactionId.setText(id);
     }
 
+    public void setShiftId(String id) {
+        mShiftId.setText(id);
+    }
+
     public void configureAdjustmentsAdapter(LinearLayoutManager manager, AdjustmentsAdapter adapter) {
         mAdjustmentsRecyclerView.setLayoutManager(manager);
         mAdjustmentsRecyclerView.setAdapter(adapter);
@@ -143,6 +150,12 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mFee.setText(fee);
         mFeeHolder.setVisibility(VISIBLE);
         findViewById(R.id.fee_amount_separator).setVisibility(VISIBLE);
+    }
+
+    public void setHoldAmount(String amount) {
+        mHoldAmount.setText(amount);
+        mHoldAmountHolder.setVisibility(VISIBLE);
+        findViewById(R.id.hold_amount_separator).setVisibility(VISIBLE);
     }
 
     public void setCashbackAmount(String cashback) {
@@ -171,6 +184,7 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mTransactionDate = (TextView) findViewById(R.id.tv_transaction_date);
         mSettlementDate = (TextView) findViewById(R.id.tv_transaction_settlement_date);
         mTransactionId = (TextView) findViewById(R.id.tv_transaction_id);
+        mShiftId = (TextView) findViewById(R.id.tv_shift_transaction_id);
         mAdjustmentsRecyclerView = (RecyclerView) findViewById(R.id.adjustments_recycler_view);
         mShiftLogo = (ImageView) findViewById(R.id.iv_shift_logo);
         mDeclineReason = (TextView) findViewById(R.id.tv_transaction_decline_reason);
@@ -179,6 +193,8 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mFeeHolder = (RelativeLayout) findViewById(R.id.rl_fee_amount);
         mCashbackAmount = (TextView) findViewById(R.id.tv_cashback_amount);
         mCashbackAmountHolder = (RelativeLayout) findViewById(R.id.rl_cashback_amount);
+        mHoldAmount = (TextView) findViewById(R.id.tv_hold_amount);
+        mHoldAmountHolder = (RelativeLayout) findViewById(R.id.rl_hold_amount);
     }
 
     private void setColors() {

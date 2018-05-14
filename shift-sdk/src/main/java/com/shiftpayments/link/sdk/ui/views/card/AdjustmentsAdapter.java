@@ -50,16 +50,21 @@ public class AdjustmentsAdapter extends
         if(adjustment.fundingSourceName != null && !adjustment.fundingSourceName.isEmpty()) {
             if(adjustment.type.equals(AdjustmentVo.AdjustmentType.CAPTURE)) {
                 adjustmentView.setDescription(mContext.getResources().getString(R.string.transaction_details_adjustment_from, adjustment.fundingSourceName));
+                adjustmentView.setAmountColor(mContext.getResources().getColor(R.color.positive_adjustment));
             }
             else if(adjustment.type.equals(AdjustmentVo.AdjustmentType.REFUND)) {
                 adjustmentView.setDescription(mContext.getResources().getString(R.string.transaction_details_adjustment_to, adjustment.fundingSourceName));
+                adjustmentView.setAmountColor(mContext.getResources().getColor(R.color.negative_adjustment));
             }
             else {
                 adjustmentView.setDescription(adjustment.fundingSourceName);
             }
         }
         adjustmentView.setId("ID: " + adjustment.externalId);
-        adjustmentView.setExchangeRate(adjustment.exchangeRate);
+        AmountVo nativeAmount = new AmountVo(1, adjustment.nativeAmount.currency);
+        AmountVo exchangeRateAmount = new AmountVo(Double.parseDouble(adjustment.exchangeRate), adjustment.localAmount.currency);
+        String exchangeRate = String.format("%s = %s", nativeAmount.toString(), exchangeRateAmount.toString());
+        adjustmentView.setExchangeRate(exchangeRate);
         AmountVo amount = new AmountVo(adjustment.localAmount.amount, adjustment.localAmount.currency);
         adjustmentView.setAmount(amount.toString());
     }

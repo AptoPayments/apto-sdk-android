@@ -63,6 +63,31 @@
             <View style="@style/llsdk_horizontal_hairline" />
 
             <RelativeLayout
+                android:id="@+id/rl_hold_amount"
+                style="@style/llsdk_transaction_details_holder"
+                android:visibility="gone">
+
+                <View
+                    android:id="@+id/strut_hold_amount"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_hold_amount"
+                    android:text="@string/transaction_details_hold_amount" />
+
+                <TextView
+                    android:id="@+id/tv_hold_amount"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_hold_amount" />
+
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline"
+                android:id="@+id/hold_amount_separator"
+                android:visibility="gone"/>
+
+            <RelativeLayout
                 android:id="@+id/rl_decline_reason"
                 style="@style/llsdk_transaction_details_holder"
                 android:visibility="gone">
@@ -250,6 +275,25 @@
             <View style="@style/llsdk_horizontal_hairline"
                 android:id="@+id/fee_amount_separator"
                 android:visibility="gone"/>
+
+            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+
+                <View
+                    android:id="@+id/strut_shift_transaction_id"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_shift_transaction_id"
+                    android:text="@string/transaction_details_shift_id" />
+
+                <TextView
+                    android:id="@+id/tv_shift_transaction_id"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_shift_transaction_id" />
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline" />
 
             <RelativeLayout style="@style/llsdk_transaction_details_holder">
 

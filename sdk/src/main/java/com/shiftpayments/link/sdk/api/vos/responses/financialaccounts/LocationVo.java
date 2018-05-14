@@ -7,12 +7,6 @@ public class LocationVo implements Parcelable {
     public double latitude;
     public double longitude;
 
-    public LocationVo() {
-        // TODO: remove when backend is ready
-        latitude = 1.0;
-        longitude = 2.3;
-    }
-
     protected LocationVo(Parcel in) {
         latitude = in.readDouble();
         longitude = in.readDouble();
