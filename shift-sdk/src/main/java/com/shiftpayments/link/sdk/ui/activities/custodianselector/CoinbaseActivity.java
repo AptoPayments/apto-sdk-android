@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.coinbase.android.sdk.OAuth;
+import com.coinbase.api.entity.OAuthCodeRequest;
 import com.coinbase.api.entity.OAuthTokensResponse;
 import com.coinbase.api.exception.CoinbaseException;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
@@ -13,6 +14,8 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CoinbaseDelegate;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
+
+import org.joda.money.Money;
 
 /**
  * Created by adrian on 20/02/2018.
@@ -46,7 +49,10 @@ public class CoinbaseActivity extends Activity {
 
         // Launch the web browser or Coinbase app to authenticate the user.
         try {
-            OAuth.beginAuthorization(this, CLIENT_ID, "user", REDIRECT_URI, null);
+            OAuthCodeRequest.Meta meta = new OAuthCodeRequest.Meta();
+            meta.setSendLimitAmount(Money.parse("USD 1"));
+            meta.setSendLimitPeriod(OAuthCodeRequest.Meta.Period.DAILY);
+            OAuth.beginAuthorization(this, CLIENT_ID, "wallet:user:read,wallet:user:read,wallet:accounts:read,wallet:transactions:read,wallet:transactions:send,wallet:buys:create", REDIRECT_URI, meta);
         } catch (CoinbaseException e) {
             mCurrentModule.onCoinbaseException(e);
         }

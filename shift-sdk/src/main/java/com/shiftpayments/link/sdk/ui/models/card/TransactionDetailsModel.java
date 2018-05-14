@@ -6,7 +6,9 @@ import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -42,7 +44,7 @@ public class TransactionDetailsModel implements Model {
     }
 
     public String getNativeBalance() {
-        if(mTransaction.nativeBalance != null) {
+        if(mTransaction.nativeBalance != null && mTransaction.nativeBalance.hasAmount()) {
             return new AmountVo(mTransaction.nativeBalance.amount, mTransaction.nativeBalance.currency).toString();
         }
         return UNAVAILABLE;
@@ -73,11 +75,19 @@ public class TransactionDetailsModel implements Model {
         return UNAVAILABLE;
     }
 
+    public boolean hasSettlementDate() {
+        return mTransaction.settlement != null && mTransaction.settlement.date != null;
+    }
+
     public String getSettlementDate() {
         if(isStringFilled(mTransaction.settlement.date)) {
             return getFormattedDate(mTransaction.settlement.date);
         }
         return UNAVAILABLE;
+    }
+
+    public boolean hasTransactionId() {
+        return isStringFilled(mTransaction.externalId);
     }
 
     public String getTransactionId() {
@@ -92,8 +102,11 @@ public class TransactionDetailsModel implements Model {
         return mTransaction.type;
     }
 
-    public AdjustmentVo[] getTransferList() {
-        return mTransaction.adjustmentsList.data;
+    public List<AdjustmentVo> getTransferList() {
+        if(mTransaction.adjustmentsList != null) {
+            return Arrays.asList(mTransaction.adjustmentsList.data);
+        }
+        return null;
     }
 
     public String getDeclinedReason() {
@@ -104,7 +117,7 @@ public class TransactionDetailsModel implements Model {
     }
 
     public boolean hasFeeAmount() {
-        return mTransaction.fee != null;
+        return mTransaction.fee != null && mTransaction.fee.hasAmount();
     }
 
     public String getFeeAmount() {
@@ -112,7 +125,7 @@ public class TransactionDetailsModel implements Model {
     }
 
     public boolean hasCashbackAmount() {
-        return mTransaction.cashBackAmount != null;
+        return mTransaction.cashBackAmount != null && mTransaction.cashBackAmount.hasAmount();
     }
 
     public String getCashbackAmount() {
@@ -120,7 +133,7 @@ public class TransactionDetailsModel implements Model {
     }
 
     public boolean hasHoldAmount() {
-        return mTransaction.holdAmount != null;
+        return mTransaction.holdAmount != null && mTransaction.holdAmount.hasAmount();
     }
 
     public String getHoldAmount() {

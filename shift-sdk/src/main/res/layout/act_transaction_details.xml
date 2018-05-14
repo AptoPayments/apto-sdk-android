@@ -207,7 +207,10 @@
 
             <View style="@style/llsdk_horizontal_hairline" />
 
-            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+            <RelativeLayout
+                android:id="@+id/rl_settlement_date"
+                android:visibility="gone"
+                style="@style/llsdk_transaction_details_holder">
 
                 <View
                     android:id="@+id/strut_settlement_date"
@@ -224,7 +227,9 @@
                     android:layout_toRightOf="@+id/strut_settlement_date" />
             </RelativeLayout>
 
-            <View style="@style/llsdk_horizontal_hairline" />
+            <View style="@style/llsdk_horizontal_hairline"
+                android:id="@+id/settlement_date_separator"
+                android:visibility="gone"/>
 
             <RelativeLayout
                 android:id="@+id/rl_fee_amount"
@@ -295,7 +300,9 @@
 
             <View style="@style/llsdk_horizontal_hairline" />
 
-            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+            <RelativeLayout style="@style/llsdk_transaction_details_holder"
+                android:id="@+id/rl_transaction_id"
+                android:visibility="gone">
 
                 <View
                     android:id="@+id/strut_transaction_id"
@@ -312,7 +319,9 @@
                     android:layout_toRightOf="@+id/strut_transaction_id" />
             </RelativeLayout>
 
-            <View style="@style/llsdk_horizontal_hairline" />
+            <View style="@style/llsdk_horizontal_hairline"
+                android:id="@+id/transaction_id_seperator"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tv_transfers_header"

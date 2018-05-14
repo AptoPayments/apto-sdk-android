@@ -60,17 +60,26 @@ public class AdjustmentsAdapter extends
                 adjustmentView.setDescription(adjustment.fundingSourceName);
             }
         }
-        adjustmentView.setId("ID: " + adjustment.externalId);
-        AmountVo nativeAmount = new AmountVo(1, adjustment.nativeAmount.currency);
-        AmountVo exchangeRateAmount = new AmountVo(Double.parseDouble(adjustment.exchangeRate), adjustment.localAmount.currency);
-        String exchangeRate = String.format("%s = %s", nativeAmount.toString(), exchangeRateAmount.toString());
-        adjustmentView.setExchangeRate(exchangeRate);
-        AmountVo amount = new AmountVo(adjustment.localAmount.amount, adjustment.localAmount.currency);
-        adjustmentView.setAmount(amount.toString());
+        if(adjustment.externalId != null) {
+            adjustmentView.setId("ID: " + adjustment.externalId);
+        }
+        if(adjustment.nativeAmount != null && adjustment.exchangeRate != null) {
+            AmountVo nativeAmount = new AmountVo(1, adjustment.nativeAmount.currency);
+            AmountVo exchangeRateAmount = new AmountVo(Double.parseDouble(adjustment.exchangeRate), adjustment.localAmount.currency);
+            String exchangeRate = String.format("%s = %s", nativeAmount.toString(), exchangeRateAmount.toString());
+            adjustmentView.setExchangeRate(exchangeRate);
+        }
+        if(adjustment.localAmount != null) {
+            AmountVo amount = new AmountVo(adjustment.localAmount.amount, adjustment.localAmount.currency);
+            adjustmentView.setAmount(amount.toString());
+        }
     }
 
     @Override
     public int getItemCount() {
+        if(mAdjustments == null) {
+            return 0;
+        }
         return mAdjustments.size();
     }
 }

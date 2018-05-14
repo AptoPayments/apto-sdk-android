@@ -38,8 +38,10 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private TextView mLocation;
     private TextView mCategory;
     private TextView mTransactionDate;
+    private RelativeLayout mSettlementDateHolder;
     private TextView mSettlementDate;
     private TextView mTransactionId;
+    private RelativeLayout mTransactionIdHolder;
     private TextView mShiftId;
     private RecyclerView mAdjustmentsRecyclerView;
     private ImageView mShiftLogo;
@@ -125,10 +127,14 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
 
     public void setSettlementDate(String date) {
         mSettlementDate.setText(date);
+        mSettlementDateHolder.setVisibility(VISIBLE);
+        findViewById(R.id.settlement_date_separator).setVisibility(VISIBLE);
     }
 
     public void setTransactionId(String id) {
         mTransactionId.setText(id);
+        mTransactionIdHolder.setVisibility(VISIBLE);
+        findViewById(R.id.settlement_date_separator).setVisibility(VISIBLE);
     }
 
     public void setShiftId(String id) {
@@ -183,7 +189,9 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mCategory = (TextView) findViewById(R.id.tv_transaction_category);
         mTransactionDate = (TextView) findViewById(R.id.tv_transaction_date);
         mSettlementDate = (TextView) findViewById(R.id.tv_transaction_settlement_date);
+        mSettlementDateHolder = (RelativeLayout) findViewById(R.id.rl_settlement_date);
         mTransactionId = (TextView) findViewById(R.id.tv_transaction_id);
+        mTransactionIdHolder = (RelativeLayout) findViewById(R.id.rl_transaction_id);
         mShiftId = (TextView) findViewById(R.id.tv_shift_transaction_id);
         mAdjustmentsRecyclerView = (RecyclerView) findViewById(R.id.adjustments_recycler_view);
         mShiftLogo = (ImageView) findViewById(R.id.iv_shift_logo);

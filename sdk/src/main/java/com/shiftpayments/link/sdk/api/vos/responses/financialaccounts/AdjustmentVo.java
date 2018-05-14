@@ -39,7 +39,8 @@ public class AdjustmentVo implements Parcelable {
     public AdjustmentVo(Parcel in) {
         id = in.readString();
         externalId = in.readString();
-        type = AdjustmentVo.AdjustmentType.valueOf(in.readString());
+        String rawType = in.readString();
+        type = AdjustmentVo.AdjustmentType.valueOf(rawType == null ? "OTHER" : rawType);
         exchangeRate = in.readString();
         nativeAmount = in.readParcelable(MoneyVo.class.getClassLoader());
         creationTime = in.readString();
@@ -56,7 +57,7 @@ public class AdjustmentVo implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(id);
         parcel.writeString(externalId);
-        parcel.writeString(type.name());
+        parcel.writeString(type==null ? null : type.name());
         parcel.writeString(exchangeRate);
         parcel.writeParcelable(nativeAmount, i);
         parcel.writeString(creationTime);
@@ -72,6 +73,7 @@ public class AdjustmentVo implements Parcelable {
         @SerializedName("hold")
         HOLD,
         @SerializedName("release")
-        RELEASE
+        RELEASE,
+        OTHER;
     }
 }
