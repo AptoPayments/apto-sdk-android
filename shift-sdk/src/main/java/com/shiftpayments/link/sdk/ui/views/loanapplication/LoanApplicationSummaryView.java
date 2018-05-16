@@ -35,6 +35,7 @@ import com.shiftpayments.link.sdk.ui.utils.TimeAtAddressUtil;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 import java.util.LinkedList;
 import java.util.Set;
@@ -204,9 +205,9 @@ public class LoanApplicationSummaryView
         }
 
         mLoanInterestField.setText(data.getInterestRate(getResources()));
-        mLoanAmountField.setText(data.getTotalAmount(getResources()));
+        mLoanAmountField.setText(data.getTotalAmount());
         mLoanDurationField.setText(data.getTerm(getResources()));
-        mPaymentField.setText(data.getPaymentAmount(getResources()));
+        mPaymentField.setText(data.getPaymentAmount());
 
         addKeyValueTextView(data.getLoanPurposeLabel(getResources()), data.getLoanPurpose());
 
@@ -257,8 +258,12 @@ public class LoanApplicationSummaryView
                 addKeyValueTextView(data.getSalaryFrequencyLabel(getResources()), ((IncomeSource) dataPoint).salaryFrequency.toString());
                 break;
             case Income:
-                addKeyValueTextView(data.getAnnualIncomeLabel(getResources()), String.valueOf(((Income) dataPoint).annualGrossIncome));
-                addKeyValueTextView(data.getMonthlyIncomeLabel(getResources()), String.valueOf(((Income) dataPoint).monthlyNetIncome));
+                // TODO: hardcoded currency
+                String annualGrossIncome = new AmountVo(((Income) dataPoint).annualGrossIncome, "USD").toString();
+                addKeyValueTextView(data.getAnnualIncomeLabel(getResources()), annualGrossIncome);
+                // TODO: hardcoded currency
+                String monthlyNetIncome = new AmountVo(((Income) dataPoint).monthlyNetIncome, "USD").toString();
+                addKeyValueTextView(data.getMonthlyIncomeLabel(getResources()), monthlyNetIncome);
                 break;
             case CreditScore:
                 String creditScore = CreditScoreUtil.getCreditScoreDescription(((CreditScore) dataPoint).creditScoreRange);

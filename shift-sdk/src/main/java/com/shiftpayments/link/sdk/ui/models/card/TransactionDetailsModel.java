@@ -3,9 +3,12 @@ package com.shiftpayments.link.sdk.ui.models.card;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.AdjustmentVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.ui.models.Model;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -35,14 +38,14 @@ public class TransactionDetailsModel implements Model {
 
     public String getLocalAmount() {
         if(mTransaction.localAmount != null) {
-            return "$" + String.valueOf(mTransaction.localAmount.amount);
+            return new AmountVo(mTransaction.localAmount.amount, mTransaction.localAmount.currency).toString();
         }
         return UNAVAILABLE;
     }
 
     public String getNativeBalance() {
-        if(mTransaction.nativeBalance != null) {
-            return String.valueOf(mTransaction.nativeBalance.amount);
+        if(mTransaction.nativeBalance != null && mTransaction.nativeBalance.hasAmount()) {
+            return new AmountVo(mTransaction.nativeBalance.amount, mTransaction.nativeBalance.currency).toString();
         }
         return UNAVAILABLE;
     }
@@ -72,11 +75,19 @@ public class TransactionDetailsModel implements Model {
         return UNAVAILABLE;
     }
 
+    public boolean hasSettlementDate() {
+        return mTransaction.settlement != null && mTransaction.settlement.date != null;
+    }
+
     public String getSettlementDate() {
         if(isStringFilled(mTransaction.settlement.date)) {
             return getFormattedDate(mTransaction.settlement.date);
         }
         return UNAVAILABLE;
+    }
+
+    public boolean hasTransactionId() {
+        return isStringFilled(mTransaction.externalId);
     }
 
     public String getTransactionId() {
@@ -91,8 +102,11 @@ public class TransactionDetailsModel implements Model {
         return mTransaction.type;
     }
 
-    public AdjustmentVo[] getTransferList() {
-        return mTransaction.adjustmentsList.data;
+    public List<AdjustmentVo> getTransferList() {
+        if(mTransaction.adjustmentsList != null) {
+            return Arrays.asList(mTransaction.adjustmentsList.data);
+        }
+        return null;
     }
 
     public String getDeclinedReason() {
@@ -103,27 +117,27 @@ public class TransactionDetailsModel implements Model {
     }
 
     public boolean hasFeeAmount() {
-        return mTransaction.fee != null;
+        return mTransaction.fee != null && mTransaction.fee.hasAmount();
     }
 
     public String getFeeAmount() {
-        return String.valueOf(mTransaction.fee.amount);
+        return new AmountVo(mTransaction.fee.amount, mTransaction.fee.currency).toString();
     }
 
     public boolean hasCashbackAmount() {
-        return mTransaction.cashBackAmount != null;
+        return mTransaction.cashBackAmount != null && mTransaction.cashBackAmount.hasAmount();
     }
 
     public String getCashbackAmount() {
-        return String.valueOf(mTransaction.cashBackAmount.amount);
+        return new AmountVo(mTransaction.cashBackAmount.amount, mTransaction.cashBackAmount.currency).toString();
     }
 
     public boolean hasHoldAmount() {
-        return mTransaction.holdAmount != null;
+        return mTransaction.holdAmount != null && mTransaction.holdAmount.hasAmount();
     }
 
     public String getHoldAmount() {
-        return String.valueOf(mTransaction.holdAmount.amount);
+        return new AmountVo(mTransaction.holdAmount.amount, mTransaction.holdAmount.currency).toString();
     }
 
     private String getFormattedDate(String timestamp) {

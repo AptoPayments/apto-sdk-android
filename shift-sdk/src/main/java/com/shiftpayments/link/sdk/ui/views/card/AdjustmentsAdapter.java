@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.AdjustmentVo;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 import java.util.List;
 
@@ -59,16 +60,26 @@ public class AdjustmentsAdapter extends
                 adjustmentView.setDescription(adjustment.fundingSourceName);
             }
         }
-        adjustmentView.setId("ID: " + adjustment.externalId);
-        // TODO: use new amount class when merged
-        String exchangeRate = String.format("1 %s = %s %s", adjustment.nativeAmount.currency,
-                adjustment.exchangeRate, adjustment.localAmount.currency);
-        adjustmentView.setExchangeRate(exchangeRate);
-        adjustmentView.setAmount(String.format("$%s", String.valueOf(adjustment.localAmount.amount)));
+        if(adjustment.externalId != null) {
+            adjustmentView.setId("ID: " + adjustment.externalId);
+        }
+        if(adjustment.nativeAmount != null && adjustment.exchangeRate != null) {
+            AmountVo nativeAmount = new AmountVo(1, adjustment.nativeAmount.currency);
+            AmountVo exchangeRateAmount = new AmountVo(Double.parseDouble(adjustment.exchangeRate), adjustment.localAmount.currency);
+            String exchangeRate = String.format("%s = %s", nativeAmount.toString(), exchangeRateAmount.toString());
+            adjustmentView.setExchangeRate(exchangeRate);
+        }
+        if(adjustment.localAmount != null) {
+            AmountVo amount = new AmountVo(adjustment.localAmount.amount, adjustment.localAmount.currency);
+            adjustmentView.setAmount(amount.toString());
+        }
     }
 
     @Override
     public int getItemCount() {
+        if(mAdjustments == null) {
+            return 0;
+        }
         return mAdjustments.size();
     }
 }

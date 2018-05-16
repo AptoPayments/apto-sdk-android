@@ -123,6 +123,7 @@ public class ManageAccountPresenter
         mModel.setSelectedFundingSource(response.id);
         mAdapter.updateList(mModel.getFundingSources());
         mView.setSpendableAmount(mModel.getSpendableAmount());
+        mView.showSpendableAmountLabel(true);
         Toast.makeText(mActivity, R.string.account_management_funding_source_changed, Toast.LENGTH_SHORT).show();
     }
 

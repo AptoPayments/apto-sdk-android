@@ -16,6 +16,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.Transactio
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 import java.util.List;
 
@@ -151,7 +152,7 @@ public class TransactionsAdapter extends
             TransactionVo transaction = mTransactions.get(position-1);
 
             TextView titleTextView = viewHolder.titleTextView;
-            titleTextView.setText(String.format("$%s", String.valueOf(transaction.localAmount.amount)));
+            titleTextView.setText(new AmountVo(transaction.localAmount.amount, transaction.localAmount.currency).toString());
 
             TextView descriptionTextView = viewHolder.descriptionTextView;
             descriptionTextView.setText(transaction.description);

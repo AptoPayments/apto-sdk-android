@@ -5,6 +5,7 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,7 +23,7 @@ public class ManageCardModel implements Model {
 
     private Card mCard;
     public boolean showCardInfo;
-    private String mBalance;
+    private AmountVo mBalance;
 
     /**
      * Creates a new {@link ManageCardModel} instance.
@@ -104,8 +105,8 @@ public class ManageCardModel implements Model {
     }
 
     public String getCardBalance() {
-        if (mBalance != null && !mBalance.isEmpty()) {
-            return "$" + mBalance;
+        if (mBalance != null) {
+            return mBalance.toString();
         }
         return "";
     }
@@ -138,7 +139,7 @@ public class ManageCardModel implements Model {
         mCard = card;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(AmountVo balance) {
         this.mBalance = balance;
     }
 }

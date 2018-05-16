@@ -79,6 +79,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     @Override
     public void onSignOut() {
+        ShiftPlatform.clearUserToken(getActivity());
         showHomeActivity();
     }
 

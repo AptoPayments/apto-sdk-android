@@ -13,7 +13,6 @@
 
     <!-- Loan Amount -->
     <string name="loan_amount_label">How much do you need?</string>
-    <string name="loan_amount_format">$%,d</string>
     <string name="loan_amount_purpose_header">Loan purpose</string>
     <string name="loan_amount_purpose_hint">Select a loan purpose&#8230;</string>
     <string name="loan_amount_purpose_error">Please select a valid loan purpose.</string>
@@ -102,11 +101,9 @@
     <string name="annual_income_salary_frequency_header">Salary frequency</string>
     <string name="annual_income_salary_frequency_hint">Select a salary frequency&#8230;</string>
     <string name="annual_income_salary_frequency_error">Please select a valid salary frequency.</string>
-    <string name="annual_income_format" formatted="false">$%,d</string>
 
     <!-- Monthly Income -->
     <string name="monthly_income_label">What\'s your monthly net income?</string>
-    <string name="monthly_income_format" formatted="false">$%,d</string>
 
     <!-- Credit Score -->
     <string name="credit_score_label">What\'s your credit score?</string>
@@ -149,8 +146,8 @@
     <string name="offers_list_menu_update_profile">Update profile</string>
     <string name="offers_list_menu_refresh">Refresh offers</string>
     <string name="offers_list_summary_interest_rate" formatted="false">Interest rate: %.2f%%</string>
-    <string name="offers_list_summary_loan_amount" formatted="false">Amount financed: $%d</string>
-    <string name="offers_list_summary_monthly_payment" formatted="false">Monthly payment: $%.2f</string>
+    <string name="offers_list_summary_loan_amount" formatted="false">Amount financed: %s</string>
+    <string name="offers_list_summary_monthly_payment" formatted="false">Monthly payment: %s</string>
     <string name="offers_list_summary_button_apply">APPLY NOW</string>
     <string name="offers_list_summary_button_more_info">MORE INFO</string>
     <string name="offers_list_dialog_redirect_title">Re-direct</string>
@@ -197,7 +194,6 @@
     <string name="loan_agreement_terms_interest">Interest rate (APR)</string>
     <string name="loan_agreement_terms_interest_format">%.2f%%</string>
     <string name="loan_agreement_terms_amount">Amount financed</string>
-    <string name="loan_agreement_terms_amount_format">$%d</string>
     <string name="loan_agreement_terms_duration">Loan term</string>
     <plurals name="loan_agreement_terms_duration_week">
         <item quantity="one">%d week</item>
@@ -208,7 +204,6 @@
         <item quantity="other">%d months</item>
     </plurals>
     <string name="loan_agreement_terms_payment">Monthly payment</string>
-    <string name="loan_agreement_terms_payment_format">$%.2f</string>
     <string name="loan_agreement_borrower_agreement_header">BORROWER AGREEMENT</string>
     <string name="loan_agreement_button_scroll_down">SCROLL DOWN TO CONFIRM</string>
     <string name="loan_agreement_button_agree">AGREE AND FUND LOAN</string>
@@ -350,7 +345,6 @@
     <string name="sign_out">SIGN OUT</string>
     <string name="add_funding_source">ADD FUNDING SOURCE</string>
     <string name="account_management_contact_support">CONTACT SUPPORT</string>
-    <string name="funding_source_dollar_amount" formatted="false">($%.2f)</string>
     <string name="account_management_dialog_title">Sign out</string>
     <string name="account_management_dialog_message">Are you sure you want to sign out?</string>
     <string name="account_management_funding_source_changed">Funding source changed</string>

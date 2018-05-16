@@ -14,6 +14,7 @@ import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.userdata.AnnualIncomeView;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 import com.shiftpayments.link.sdk.ui.widgets.HintArrayAdapter;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
@@ -215,7 +216,8 @@ public class AnnualIncomePresenter
     /** {@inheritDoc} */
     @Override
     public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
-        mView.updateIncomeText(mActivity.getString(R.string.annual_income_format, value * mIncomeMultiplier));
+        // TODO: hardcoded currency
+        mView.updateIncomeText(new AmountVo(value * mIncomeMultiplier, "USD").toString());
     }
 
     /** {@inheritDoc} */

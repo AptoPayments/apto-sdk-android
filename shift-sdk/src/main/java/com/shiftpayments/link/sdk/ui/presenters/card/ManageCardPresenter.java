@@ -39,6 +39,7 @@ import com.shiftpayments.link.sdk.ui.views.card.EndlessRecyclerViewScrollListene
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardBottomSheet;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
 import com.shiftpayments.link.sdk.ui.views.card.TransactionsAdapter;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 import com.venmo.android.pin.PinFragmentConfiguration;
 import com.venmo.android.pin.PinSupportFragment;
 
@@ -111,6 +112,12 @@ public class ManageCardPresenter
     }
 
     @Override
+    public void detachView() {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        super.detachView();
+    }
+
+    @Override
     public ManageCardModel createModel() {
         return new ManageCardModel(CardStorage.getInstance().getCard());
     }
@@ -155,6 +162,9 @@ public class ManageCardPresenter
     public void pullToRefreshHandler() {
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         mLastTransactionId = null;
+        mHasFundingSourceArrived = false;
+        mHasTransactionListArrived = false;
+        ShiftPlatform.getFinancialAccountFundingSource(mModel.getAccountId());
         ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
         mTransactionsAdapter.clear();
         mScrollListener.resetState();
@@ -264,11 +274,11 @@ public class ManageCardPresenter
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         mView.showLoading(mActivity, false);
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mView.setRefreshing(false);
         if(error.statusCode==404) {
             // Card has no funding source
             mHasFundingSourceArrived = true;
-            mModel.setBalance("");
+            mModel.setBalance(null);
             mTransactionsAdapter.notifyItemChanged(0);
         }
         else {
@@ -282,7 +292,6 @@ public class ManageCardPresenter
      */
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         mView.showLoading(mActivity, false);
         mActivity.finish();
         mDelegate.onSessionExpired(error);
@@ -308,7 +317,9 @@ public class ManageCardPresenter
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
-        mModel.setBalance(String.valueOf(response.balance.amount));
+        if(response.balance.hasAmount()) {
+            mModel.setBalance(new AmountVo(response.balance.amount, response.balance.currency));
+        }
         CardStorage.getInstance().setFundingSourceId(response.id);
         mTransactionsAdapter.notifyItemChanged(0);
     }

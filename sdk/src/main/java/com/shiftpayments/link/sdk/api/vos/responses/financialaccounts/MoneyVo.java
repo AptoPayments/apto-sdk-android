@@ -13,12 +13,12 @@ public class MoneyVo implements Parcelable {
 
     public String currency;
 
-    public double amount;
+    public Double amount;
 
     protected MoneyVo(Parcel in) {
         type = in.readString();
         currency = in.readString();
-        amount = in.readDouble();
+        amount = (Double) in.readValue(Double.class.getClassLoader());
     }
 
     public static final Creator<MoneyVo> CREATOR = new Creator<MoneyVo>() {
@@ -42,6 +42,10 @@ public class MoneyVo implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(type);
         parcel.writeString(currency);
-        parcel.writeDouble(amount);
+        parcel.writeValue(amount);
+    }
+
+    public boolean hasAmount() {
+        return amount != null;
     }
 }

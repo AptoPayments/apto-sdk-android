@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.tests.robolectric.tests.models.loanapplica
 
 import android.content.res.Resources;
 
+import com.shiftpayments.link.sdk.api.vos.responses.offers.OfferVo;
 import com.shiftpayments.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
@@ -31,7 +32,9 @@ public class LoanAgreementModelTest {
      */
     @Before
     public void setUp() {
-        mModel = new LoanAgreementModel(new MockApiWrapper().getInitialOffers(null).offers.data[0], null);
+        OfferVo offer = new MockApiWrapper().getInitialOffers(null).offers.data[0];
+        offer.currency = "USD";
+        mModel = new LoanAgreementModel(offer, null);
         mResources = new ShadowContentProvider().getContext().getResources();
     }
 
@@ -122,7 +125,7 @@ public class LoanAgreementModelTest {
      */
     @Test
     public void correctTotalAmountText() {
-        Assert.assertThat("Incorrect total amount text.", mModel.getTotalAmount(mResources), equalTo("$5555"));
+        Assert.assertThat("Incorrect total amount text.", mModel.getTotalAmount(), equalTo("$5555"));
     }
 
     /**
@@ -142,6 +145,6 @@ public class LoanAgreementModelTest {
      */
     @Test
     public void correctPaymentText() {
-        Assert.assertThat("Incorrect payment text.", mModel.getPaymentAmount(mResources), equalTo("$123.45"));
+        Assert.assertThat("Incorrect payment text.", mModel.getPaymentAmount(), equalTo("$123.45"));
     }
 }

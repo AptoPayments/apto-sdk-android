@@ -187,9 +187,9 @@ public class LoanAgreementView
         }
 
         mLoanInterestField.setText(data.getInterestRate(getResources()));
-        mLoanAmountField.setText(data.getTotalAmount(getResources()));
+        mLoanAmountField.setText(data.getTotalAmount());
         mLoanDurationField.setText(data.getTerm(getResources()));
-        mPaymentField.setText(data.getPaymentAmount(getResources()));
+        mPaymentField.setText(data.getPaymentAmount());
     }
 
     @Override
