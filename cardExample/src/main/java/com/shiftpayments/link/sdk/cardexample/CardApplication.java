@@ -1,9 +1,10 @@
 package com.shiftpayments.link.sdk.cardexample;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
+
 import io.branch.referral.Branch;
 
-public class CardApplication extends Application {
+public class CardApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
