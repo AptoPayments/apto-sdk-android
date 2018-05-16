@@ -25,6 +25,7 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
+import com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity;
 import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
@@ -47,6 +48,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static com.shiftpayments.link.sdk.api.vos.Card.FinancialAccountState.ACTIVE;
+import static com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity.EXTRA_TRANSACTION;
 
 /**
  * Concrete {@link Presenter} for the manage card screen.
@@ -141,6 +143,12 @@ public class ManageCardPresenter
             clipboard.setPrimaryClip(clip);
             Toast.makeText(mActivity, mActivity.getString(R.string.card_management_number_copied), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void transactionClickHandler(int transactionId) {
+        TransactionVo transaction = (TransactionVo) mTransactionsList.get(transactionId);
+        mActivity.startActivity(getTransactionDetailsIntent(mActivity, transaction));
     }
 
     @Override
@@ -303,6 +311,12 @@ public class ManageCardPresenter
         mModel.setBalance(String.valueOf(response.balance.amount));
         CardStorage.getInstance().setFundingSourceId(response.id);
         mTransactionsAdapter.notifyItemChanged(0);
+    }
+
+    public static Intent getTransactionDetailsIntent(Context context, TransactionVo transactionVo) {
+        Intent intent = new Intent(context, TransactionDetailsActivity.class);
+        intent.putExtra(EXTRA_TRANSACTION, transactionVo);
+        return intent;
     }
 
     private void changeCardState(boolean enable) {

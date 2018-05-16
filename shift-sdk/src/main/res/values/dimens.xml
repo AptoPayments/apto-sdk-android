@@ -29,4 +29,7 @@
     <dimen name="llsdk_brand_logo_width">120dp</dimen>
     <dimen name="llsdk_brand_logo_height">40dp</dimen>
     <dimen name="llsdk_dummy_view_params">0dp</dimen>
+
+    <dimen name="llsdk_transaction_details_title_text_size">24sp</dimen>
+    <dimen name="llsdk_transaction_details_description_text_size">16sp</dimen>
 </resources>

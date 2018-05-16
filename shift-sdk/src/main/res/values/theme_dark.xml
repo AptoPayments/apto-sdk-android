@@ -56,6 +56,11 @@
         <item name="llsdk_loanAgreement_summaryValuesStyle">@style/llsdk_loan_agreement_summary_values</item>
         <item name="llsdk_loanAgreement_buttonColorOne">@color/llsdk_dark_text_color</item>
         <item name="llsdk_loanAgreement_buttonColorTwo">@color/llsdk_light_text_color</item>
+
+        <item name="llsdk_transactionDetails_cardTitleStyle">@style/llsdk_transaction_details_card_title</item>
+        <item name="llsdk_transactionDetails_cardDescriptionStyle">@style/llsdk_transaction_details_card_description</item>
+        <item name="llsdk_transactionDetails_detailHeaderTextStyle">@style/llsdk_transaction_details_detail_header</item>
+        <item name="llsdk_transactionDetails_detailValueTextStyle">@style/llsdk_transaction_details_detail_text</item>
     </style>
 
     <style

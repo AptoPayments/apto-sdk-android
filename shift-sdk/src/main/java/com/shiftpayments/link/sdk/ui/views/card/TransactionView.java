@@ -1,6 +1,8 @@
 package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
@@ -8,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
-
 
 /**
  * Displays a single transaction
@@ -19,7 +20,6 @@ public class TransactionView extends FrameLayout {
     private ImageView mIconView;
     private TextView mTitleField;
     private TextView mDescriptionField;
-    //private Transaction mData;
 
     /**
      * @see CardView#CardView
@@ -38,6 +38,13 @@ public class TransactionView extends FrameLayout {
         super(context, attrs);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        findAllViews();
+    }
+
     /**
      * Finds all references to child Views.
      */
@@ -47,10 +54,16 @@ public class TransactionView extends FrameLayout {
         mDescriptionField = (TextView) findViewById(R.id.tv_description);
     }
 
-    /** {@inheritDoc} */
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        findAllViews();
+    public void setTransactionIcon(Drawable icon) {
+        mIconView.setImageDrawable(icon);
+        mIconView.setColorFilter(Color.BLACK);
+    }
+
+    public void setTitle(String title) {
+        mTitleField.setText(title);
+    }
+
+    public void setDescription(String description) {
+        mDescriptionField.setText(description);
     }
 }

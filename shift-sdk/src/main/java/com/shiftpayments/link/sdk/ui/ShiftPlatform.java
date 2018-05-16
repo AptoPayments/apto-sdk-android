@@ -220,8 +220,8 @@ public class ShiftPlatform extends ShiftLinkSdk {
         String storedPrimaryCredential = SharedPreferencesStorage.getPrimaryCredential(context);
         String storedSecondaryCredential = SharedPreferencesStorage.getSecondaryCredential(context);
         ConfigResponseVo contextConfig = UIStorage.getInstance().getContextConfig();
-        if(!contextConfig.primaryAuthCredential.equals(storedPrimaryCredential) ||
-                !contextConfig.secondaryAuthCredential.equals(storedSecondaryCredential)) {
+        if(!contextConfig.primaryAuthCredential.equalsIgnoreCase(storedPrimaryCredential) ||
+                !contextConfig.secondaryAuthCredential.equalsIgnoreCase(storedSecondaryCredential)) {
             clearUserToken(context);
         }
     }

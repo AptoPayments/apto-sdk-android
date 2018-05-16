@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.shiftpayments.link.sdk.ui.views.card.TransactionDetailsView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/settings_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:title="@string/transaction_details_title" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settings_toolbar"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_custodian_logo"
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal" />
+
+            <include layout="@layout/include_ll_transaction" />
+
+            <View style="@style/llsdk_horizontal_hairline" />
+
+            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+
+                <View
+                    android:id="@+id/strut_amount"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:id="@+id/tv_amount_label"
+                    android:layout_toLeftOf="@+id/strut_amount"
+                    android:text="@string/transaction_details_amount" />
+
+                <TextView
+                    android:id="@+id/tv_transaction_amount"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_amount" />
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline" />
+
+            <RelativeLayout
+                android:id="@+id/rl_hold_amount"
+                style="@style/llsdk_transaction_details_holder"
+                android:visibility="gone">
+
+                <View
+                    android:id="@+id/strut_hold_amount"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_hold_amount"
+                    android:text="@string/transaction_details_hold_amount" />
+
+                <TextView
+                    android:id="@+id/tv_hold_amount"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_hold_amount" />
+
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline"
+                android:id="@+id/hold_amount_separator"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_decline_reason"
+                style="@style/llsdk_transaction_details_holder"
+                android:visibility="gone">
+
+                <View
+                    android:id="@+id/strut_decline_reason"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_decline_reason"
+                    android:text="@string/transaction_details_decline_reason" />
+
+                <TextView
+                    android:id="@+id/tv_transaction_decline_reason"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_decline_reason" />
+
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline"
+                android:id="@+id/decline_reason_separator"
+                android:visibility="gone"/>
+
+            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+
+                <View
+                    android:id="@+id/strut_currency"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_currency"
+                    android:text="@string/transaction_details_currency" />
+
+                <TextView
+                    android:id="@+id/tv_transaction_currency"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_currency" />
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline" />
+
+            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+
+                <View
+                    android:id="@+id/strut_type"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_type"
+                    android:text="@string/transaction_details_type" />
+
+                <TextView
+                    android:id="@+id/tv_transaction_type"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_type" />
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline" />
+
+            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+
+                <View
+                    android:id="@+id/strut_location"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_location"
+                    android:text="@string/transaction_details_location" />
+
+                <TextView
+                    android:id="@+id/tv_transaction_location"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_location" />
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline" />
+
+            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+
+                <View
+                    android:id="@+id/strut_category"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_category"
+                    android:text="@string/transaction_details_category" />
+
+                <TextView
+                    android:id="@+id/tv_transaction_category"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_category" />
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline" />
+
+            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+
+                <View
+                    android:id="@+id/strut_transaction_date"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_transaction_date"
+                    android:text="@string/transaction_details_date" />
+
+                <TextView
+                    android:id="@+id/tv_transaction_date"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_transaction_date" />
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline" />
+
+            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+
+                <View
+                    android:id="@+id/strut_settlement_date"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_settlement_date"
+                    android:text="@string/transaction_details_settlement_date" />
+
+                <TextView
+                    android:id="@+id/tv_transaction_settlement_date"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_settlement_date" />
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline" />
+
+            <RelativeLayout
+                android:id="@+id/rl_fee_amount"
+                style="@style/llsdk_transaction_details_holder"
+                android:visibility="gone">
+
+                <View
+                    android:id="@+id/strut_fee_amount"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_fee_amount"
+                    android:text="@string/transaction_details_fee_amount" />
+
+                <TextView
+                    android:id="@+id/tv_fee_amount"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_fee_amount" />
+
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline"
+                android:id="@+id/cashback_amount_separator"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_cashback_amount"
+                style="@style/llsdk_transaction_details_holder"
+                android:visibility="gone">
+
+                <View
+                    android:id="@+id/strut_cashback_amount"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_cashback_amount"
+                    android:text="@string/transaction_details_cashback_amount" />
+
+                <TextView
+                    android:id="@+id/tv_cashback_amount"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_cashback_amount" />
+
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline"
+                android:id="@+id/fee_amount_separator"
+                android:visibility="gone"/>
+
+            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+
+                <View
+                    android:id="@+id/strut_shift_transaction_id"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_shift_transaction_id"
+                    android:text="@string/transaction_details_shift_id" />
+
+                <TextView
+                    android:id="@+id/tv_shift_transaction_id"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_shift_transaction_id" />
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline" />
+
+            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+
+                <View
+                    android:id="@+id/strut_transaction_id"
+                    style="@style/llsdk_strutStyle" />
+
+                <TextView
+                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+                    android:layout_toLeftOf="@+id/strut_transaction_id"
+                    android:text="@string/transaction_details_id" />
+
+                <TextView
+                    android:id="@+id/tv_transaction_id"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/strut_transaction_id" />
+            </RelativeLayout>
+
+            <View style="@style/llsdk_horizontal_hairline" />
+
+            <TextView
+                android:id="@+id/tv_transfers_header"
+                style="?attr/llsdk_loanAgreement_sectionHeaderStyle"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="16dp"
+                android:text="@string/transaction_details_transfers" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/adjustments_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:nestedScrollingEnabled="false"
+                android:padding="8dp" />
+
+            <ImageView
+                android:id="@+id/iv_shift_logo"
+                android:src="@drawable/ic_shift"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</com.shiftpayments.link.sdk.ui.views.card.TransactionDetailsView>
