@@ -42,7 +42,7 @@ public class Card extends FinancialAccountVo {
     public String CVVToken;
     @SerializedName("expiration")
     public String expirationDate;
-    @SerializedName("card_state")
+    @SerializedName("state")
     public FinancialAccountState state;
     @SerializedName("kyc_status")
     public KycStatus kycStatus;

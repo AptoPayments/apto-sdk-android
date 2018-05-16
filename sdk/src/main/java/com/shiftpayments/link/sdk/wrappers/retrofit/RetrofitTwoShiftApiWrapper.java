@@ -156,6 +156,7 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         gsonBuilder.registerTypeAdapter(VerificationVo.class, new VerificationSerializer());
         gsonBuilder.registerTypeAdapter(ActionConfigurationVo.class, new ActionConfigurationParser());
         gsonBuilder.registerTypeAdapter(FinancialAccountVo.class, new FinancialAccountParser());
+        gsonBuilder.registerTypeAdapter(Card.class, new FinancialAccountParser());
         gsonBuilder.registerTypeAdapter(UpdateFinancialAccountResponseVo.class, new UpdateAccountParser());
         gsonBuilder.registerTypeAdapter(UpdateFinancialAccountPinResponseVo.class, new UpdateAccountPinParser());
 
