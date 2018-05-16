@@ -16,9 +16,11 @@ import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
+import com.shiftpayments.link.sdk.ui.presenters.card.IssueVirtualCardDelegate;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.views.card.IssueVirtualCardView;
+import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -26,6 +28,17 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
 
     private IssueVirtualCardView mView;
     static final int KYC_STATUS_INTENT = 1;
+    public static final String EXTRA_KYC_STATUS = "com.shiftpayments.link.sdk.ui.activities.card.KYC_STATUS";
+    public static final String EXTRA_KYC_REASON = "com.shiftpayments.link.sdk.ui.activities.card.KYC_REASON";
+
+    @Override
+    public void onBackPressed() {
+        if(ModuleManager.getInstance().getCurrentModule() instanceof IssueVirtualCardDelegate) {
+            IssueVirtualCardDelegate delegate = (IssueVirtualCardDelegate) ModuleManager.getInstance().getCurrentModule();
+            delegate.onBack();
+        }
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +75,7 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
                 this.startActivity(new Intent(this, ManageCardActivity.class));
             }
             else {
-                Intent intent = new Intent(this, KycStatusActivity.class);
-                intent.putExtra("KYC_STATUS", card.kycStatus.toString());
-                if(card.kycReason != null) {
-                    intent.putExtra("KYC_REASON", card.kycReason[0]);
-                }
-                this.startActivityForResult(intent, KYC_STATUS_INTENT);
+                startKycStatusActivity(card.kycStatus.toString(), card.kycReason != null ? card.kycReason[0] : null);
             }
         }
     }
@@ -89,5 +97,14 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
                 this.startActivity(new Intent(this, ManageCardActivity.class));
             }
         }
+    }
+
+    private void startKycStatusActivity(String kycStatus, String kycReason) {
+        Intent intent = new Intent(this, KycStatusActivity.class);
+        intent.putExtra(EXTRA_KYC_STATUS, kycStatus);
+        if(kycReason != null) {
+            intent.putExtra(EXTRA_KYC_REASON, kycReason);
+        }
+        this.startActivityForResult(intent, KYC_STATUS_INTENT);
     }
 }

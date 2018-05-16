@@ -20,7 +20,6 @@ import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
-import com.shiftpayments.link.sdk.ui.activities.card.IssueVirtualCardActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
@@ -229,7 +228,12 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     private void issueVirtualCard() {
         setCurrentModule();
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        getActivity().startActivity(new Intent(getActivity(), IssueVirtualCardActivity.class));
+        IssueVirtualCardModule issueVirtualCardModule = new IssueVirtualCardModule(getActivity());
+        issueVirtualCardModule.onBack = () -> {
+            SoftReference<ShiftBaseModule> userDataCollectorModule = new SoftReference<>(UserDataCollectorModule.getInstance(getActivity()));
+            ModuleManager.getInstance().setModule(userDataCollectorModule);
+        };
+        startModule(issueVirtualCardModule);
     }
 
     private void startManageCardScreen() {
