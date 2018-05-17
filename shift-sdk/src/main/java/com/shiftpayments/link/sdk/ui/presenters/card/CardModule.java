@@ -229,6 +229,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         setCurrentModule();
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         IssueVirtualCardModule issueVirtualCardModule = new IssueVirtualCardModule(getActivity());
+        issueVirtualCardModule.onFinish = this::startManageCardScreen;
         issueVirtualCardModule.onBack = () -> {
             SoftReference<ShiftBaseModule> userDataCollectorModule = new SoftReference<>(UserDataCollectorModule.getInstance(getActivity()));
             ModuleManager.getInstance().setModule(userDataCollectorModule);

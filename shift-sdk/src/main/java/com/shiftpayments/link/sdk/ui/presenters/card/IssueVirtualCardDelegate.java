@@ -7,4 +7,5 @@ package com.shiftpayments.link.sdk.ui.presenters.card;
 public interface IssueVirtualCardDelegate {
 
     void onBack();
+    void onCardIssued();
 }

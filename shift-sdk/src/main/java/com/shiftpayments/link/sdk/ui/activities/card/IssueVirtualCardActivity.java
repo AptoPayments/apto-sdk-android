@@ -30,13 +30,11 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
     static final int KYC_STATUS_INTENT = 1;
     public static final String EXTRA_KYC_STATUS = "com.shiftpayments.link.sdk.ui.activities.card.KYC_STATUS";
     public static final String EXTRA_KYC_REASON = "com.shiftpayments.link.sdk.ui.activities.card.KYC_REASON";
+    private IssueVirtualCardDelegate mDelegate;
 
     @Override
     public void onBackPressed() {
-        if(ModuleManager.getInstance().getCurrentModule() instanceof IssueVirtualCardDelegate) {
-            IssueVirtualCardDelegate delegate = (IssueVirtualCardDelegate) ModuleManager.getInstance().getCurrentModule();
-            delegate.onBack();
-        }
+        mDelegate.onBack();
         super.onBackPressed();
     }
 
@@ -46,6 +44,12 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
         mView = (IssueVirtualCardView) View.inflate(this, R.layout.act_issue_virtual_card, null);
         setContentView(mView);
         mView.showLoading(true);
+        if(ModuleManager.getInstance().getCurrentModule() instanceof IssueVirtualCardDelegate) {
+            mDelegate = (IssueVirtualCardDelegate) ModuleManager.getInstance().getCurrentModule();
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement IssueVirtualCardDelegate!");
+        }
     }
 
     @Override
@@ -72,7 +76,7 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
         if (card != null) {
             CardStorage.getInstance().setCard(card);
             if(card.kycStatus.equals(KycStatus.passed)) {
-                this.startActivity(new Intent(this, ManageCardActivity.class));
+                mDelegate.onCardIssued();
             }
             else {
                 startKycStatusActivity(card.kycStatus.toString(), card.kycReason != null ? card.kycReason[0] : null);
@@ -94,7 +98,7 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == KYC_STATUS_INTENT) {
             if (resultCode == RESULT_OK) {
-                this.startActivity(new Intent(this, ManageCardActivity.class));
+                mDelegate.onCardIssued();
             }
         }
     }
