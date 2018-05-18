@@ -133,14 +133,20 @@ public class ShiftPlatform extends ShiftLinkSdk {
         }
     }
 
+    public static void setFirebaseToken(String firebaseToken) {
+        if(getApiWrapper() != null) {
+            getApiWrapper().setFirebaseToken(firebaseToken);
+        }
+    }
+
     public static void initialize(Context context, String developerKey, String projectToken) {
-        initialize(context, developerKey, projectToken, true, true, "sbx");
+        initialize(context, developerKey, projectToken, true, true, "sbx", null);
     }
 
     /**
      * Sets up the Shift Link SDK.
      */
-    public static void initialize(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment) {
+    public static void initialize(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment, String firebaseToken) {
         mEnvironment = Environment.valueOf(environment.toLowerCase());
         AndroidUtils utils = new AndroidUtils();
         HandlerConfigurator configurator = new EventBusHandlerConfigurator();
@@ -150,6 +156,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
         apiWrapper.setApiEndPoint(getApiEndPoint(), certificatePinning, trustSelfSignedCertificates);
         apiWrapper.setBaseRequestData(developerKey, utils.getDeviceSummary(), certificatePinning, trustSelfSignedCertificates);
         apiWrapper.setProjectToken(projectToken);
+        apiWrapper.setFirebaseToken(firebaseToken);
 
         setApiWrapper(apiWrapper);
         setImageLoader(new VolleyImageLoader(context));

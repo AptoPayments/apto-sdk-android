@@ -151,6 +151,17 @@ public interface ShiftApiWrapper {
      */
     String getVgsEndPoint();
 
+    /**
+     * Stores a new Firebase Instance ID token.
+     * @param token Firebase token.
+     */
+    void setFirebaseToken(String token);
+
+    /**
+     * @return stored Firebase Instance Id token.
+     */
+    String getFirebaseToken();
+
     public HashMap<String, String> getHTTPHeaders();
 
     /**

@@ -10,6 +10,7 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
     private String mDevice;
     private String mBearerToken;
     private String mProjectToken;
+    private String mFirebaseToken;
 
     private String mApiEndPoint;
     private String mVgsEndPoint;
@@ -104,4 +105,17 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
     public void setVgsEndPoint(String endPoint) {
         mVgsEndPoint = endPoint;
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getFirebaseToken() {
+        return mFirebaseToken;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setFirebaseToken(String firebaseToken) {
+        mFirebaseToken = firebaseToken;
+    }
+
 }
