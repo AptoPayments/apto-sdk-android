@@ -21,6 +21,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.config.HousingTypeListTask;
 import com.shiftpayments.link.sdk.sdk.tasks.config.IncomeTypesListTask;
 import com.shiftpayments.link.sdk.sdk.tasks.config.LinkConfigTask;
 import com.shiftpayments.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
+import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.ActivateFinancialAccountPinTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.AddBankAccountTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.AddCardTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountFundingSourceTask;
@@ -442,6 +443,19 @@ public class ShiftLinkSdk {
         checkComponents();
 
         UpdateFinancialAccountTask task = new UpdateFinancialAccountTask(data, accountId, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Activate financial account.
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask activateFinancialAccount(String accountId) {
+        checkComponents();
+
+        ActivateFinancialAccountPinTask task = new ActivateFinancialAccountPinTask(accountId, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

@@ -15,6 +15,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinan
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
@@ -133,7 +134,7 @@ public class ManageCardPresenter
 
     @Override
     public void activateCardBySecondaryBtnClickHandler() {
-        showCardStateChangeConfirmationDialog(true);
+        showActivateCardConfirmationDialog();
     }
 
     @Override
@@ -268,6 +269,20 @@ public class ManageCardPresenter
     }
 
     /**
+     * Called when the activated card response has been received.
+     * @param card API response.
+     */
+    @Subscribe
+    public void handleResponse(ActivateFinancialAccountResponseVo card) {
+        if(isViewReady()) {
+            mView.showLoading(mActivity, false);
+        }
+        Toast.makeText(mActivity, mActivity.getString(R.string.card_activated), Toast.LENGTH_SHORT).show();
+        mModel.setCard(card);
+        mTransactionsAdapter.notifyItemChanged(0);
+    }
+
+    /**
      * Called when an API error has been received.
      * @param error API error.
      */
@@ -339,6 +354,11 @@ public class ManageCardPresenter
         mView.showLoading(mActivity, true);
     }
 
+    private void activateCard() {
+        ShiftPlatform.activateFinancialAccount(mModel.getAccountId());
+        mView.showLoading(mActivity, true);
+    }
+
     private void showCardStateChangeConfirmationDialog(boolean enable) {
         String text = enable ? mActivity.getString(R.string.enable_card_message) : mActivity.getString(R.string.disable_card_message);
 
@@ -349,6 +369,23 @@ public class ManageCardPresenter
         builder.setNegativeButton("NO", (dialog, id) -> {
             if (mManageCardBottomSheet != null) {
                 mManageCardBottomSheet.setEnableCardSwitch(!enable);
+            }
+            dialog.dismiss();
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    private void showActivateCardConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        builder.setMessage(mActivity.getString(R.string.enable_card_message))
+                .setTitle(mActivity.getString(R.string.card_management_dialog_title));
+        builder.setPositiveButton("YES", (dialog, id) -> activateCard());
+        builder.setNegativeButton("NO", (dialog, id) -> {
+            if (mManageCardBottomSheet != null) {
+                mManageCardBottomSheet.setEnableCardSwitch(false);
             }
             dialog.dismiss();
         });

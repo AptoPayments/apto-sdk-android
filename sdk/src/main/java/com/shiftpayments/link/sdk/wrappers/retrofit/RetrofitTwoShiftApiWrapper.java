@@ -38,6 +38,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.errors.ErrorResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
@@ -794,6 +795,25 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = null;
             throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_PATH, ioe);
+        }
+
+        return result;
+    }
+
+    @Override
+    public ActivateFinancialAccountResponseVo activateFinancialAccount(String accountId) throws ApiException {
+        ActivateFinancialAccountResponseVo result;
+        try {
+            // Setting VGS proxy only for this call
+            this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
+            Response<ActivateFinancialAccountResponseVo> response
+                    = mFinancialAccountService.activateFinancialAccount(accountId).execute();
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_ACTIVATE_PATH);
+        } catch (IOException ioe) {
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_ACTIVATE_PATH, ioe);
         }
 
         return result;

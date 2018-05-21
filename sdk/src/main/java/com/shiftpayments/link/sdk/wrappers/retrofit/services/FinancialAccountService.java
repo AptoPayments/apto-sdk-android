@@ -8,6 +8,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtua
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
@@ -80,6 +81,13 @@ public interface FinancialAccountService {
      */
     @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_STATE_PATH)
     Call<UpdateFinancialAccountResponseVo> updateFinancialAccount(@Path("account_id") String accountId, @Body UpdateFinancialAccountRequestVo state);
+
+    /** Creates a {@link Call} to activate a card.
+     * @param accountId Mandatory request data.
+     * @return API call to execute.
+     */
+    @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_ACTIVATE_PATH)
+    Call<ActivateFinancialAccountResponseVo> activateFinancialAccount(@Path("account_id") String accountId);
 
     /**
      * Creates a {@link Call} to get the transaction list of a specific financial account.
