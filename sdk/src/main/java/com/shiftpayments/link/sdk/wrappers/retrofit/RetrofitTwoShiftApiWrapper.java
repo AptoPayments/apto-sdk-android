@@ -6,10 +6,12 @@ import com.google.gson.JsonObject;
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.utils.VerificationSerializer;
 import com.shiftpayments.link.sdk.api.utils.parsers.ActionConfigurationParser;
+import com.shiftpayments.link.sdk.api.utils.parsers.ActivateAccountParser;
 import com.shiftpayments.link.sdk.api.utils.parsers.DataPointParser;
+import com.shiftpayments.link.sdk.api.utils.parsers.DisableAccountParser;
+import com.shiftpayments.link.sdk.api.utils.parsers.EnableAccountParser;
 import com.shiftpayments.link.sdk.api.utils.parsers.FinancialAccountParser;
 import com.shiftpayments.link.sdk.api.utils.parsers.RequiredDataPointParser;
-import com.shiftpayments.link.sdk.api.utils.parsers.UpdateAccountParser;
 import com.shiftpayments.link.sdk.api.utils.parsers.UpdateAccountPinParser;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
@@ -25,7 +27,6 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.Application
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
@@ -39,11 +40,12 @@ import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateProjectRespo
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.errors.ErrorResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
@@ -158,7 +160,9 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         gsonBuilder.registerTypeAdapter(ActionConfigurationVo.class, new ActionConfigurationParser());
         gsonBuilder.registerTypeAdapter(FinancialAccountVo.class, new FinancialAccountParser());
         gsonBuilder.registerTypeAdapter(Card.class, new FinancialAccountParser());
-        gsonBuilder.registerTypeAdapter(UpdateFinancialAccountResponseVo.class, new UpdateAccountParser());
+        gsonBuilder.registerTypeAdapter(ActivateFinancialAccountResponseVo.class, new ActivateAccountParser());
+        gsonBuilder.registerTypeAdapter(EnableFinancialAccountResponseVo.class, new EnableAccountParser());
+        gsonBuilder.registerTypeAdapter(DisableFinancialAccountResponseVo.class, new DisableAccountParser());
         gsonBuilder.registerTypeAdapter(UpdateFinancialAccountPinResponseVo.class, new UpdateAccountPinParser());
 
         // Adding serializeNulls option to avoid bug in API where keys with null values
@@ -782,25 +786,6 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     }
 
     @Override
-    public UpdateFinancialAccountResponseVo updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo card) throws ApiException {
-        UpdateFinancialAccountResponseVo result;
-        try {
-            // Setting VGS proxy only for this call
-            this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
-            Response<UpdateFinancialAccountResponseVo> response
-                    = mFinancialAccountService.updateFinancialAccount(accountId, card).execute();
-            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
-            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_PATH);
-        } catch (IOException ioe) {
-            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
-            result = null;
-            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_PATH, ioe);
-        }
-
-        return result;
-    }
-
-    @Override
     public ActivateFinancialAccountResponseVo activateFinancialAccount(String accountId) throws ApiException {
         ActivateFinancialAccountResponseVo result;
         try {
@@ -814,6 +799,44 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
             this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
             result = null;
             throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_ACTIVATE_PATH, ioe);
+        }
+
+        return result;
+    }
+
+    @Override
+    public EnableFinancialAccountResponseVo enableFinancialAccount(String accountId) throws ApiException {
+        EnableFinancialAccountResponseVo result;
+        try {
+            // Setting VGS proxy only for this call
+            this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
+            Response<EnableFinancialAccountResponseVo> response
+                    = mFinancialAccountService.enableFinancialAccount(accountId).execute();
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_ENABLE_PATH);
+        } catch (IOException ioe) {
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_ENABLE_PATH, ioe);
+        }
+
+        return result;
+    }
+
+    @Override
+    public DisableFinancialAccountResponseVo disableFinancialAccount(String accountId) throws ApiException {
+        DisableFinancialAccountResponseVo result;
+        try {
+            // Setting VGS proxy only for this call
+            this.setApiEndPoint(getVgsEndPoint(), mIsCertificatePinningEnabled, false);
+            Response<DisableFinancialAccountResponseVo> response
+                    = mFinancialAccountService.disableFinancialAccount(accountId).execute();
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_DISABLE_PATH);
+        } catch (IOException ioe) {
+            this.setApiEndPoint(getApiEndPoint(), mIsCertificatePinningEnabled, mTrustSelfSignedCerts);
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_DISABLE_PATH, ioe);
         }
 
         return result;

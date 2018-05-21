@@ -7,13 +7,13 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAcco
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
@@ -75,19 +75,26 @@ public interface FinancialAccountService {
     @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_PIN_PATH)
     Call<UpdateFinancialAccountPinResponseVo> updateFinancialAccountPin(@Path("account_id") String accountId, @Body UpdateFinancialAccountPinRequestVo pin);
 
-     /** Creates a {@link Call} to manage card status.
-     * @param state Mandatory request data.
-     * @return API call to execute.
-     */
-    @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_STATE_PATH)
-    Call<UpdateFinancialAccountResponseVo> updateFinancialAccount(@Path("account_id") String accountId, @Body UpdateFinancialAccountRequestVo state);
-
     /** Creates a {@link Call} to activate a card.
      * @param accountId Mandatory request data.
      * @return API call to execute.
      */
     @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_ACTIVATE_PATH)
     Call<ActivateFinancialAccountResponseVo> activateFinancialAccount(@Path("account_id") String accountId);
+
+    /** Creates a {@link Call} to enable a card.
+     * @param accountId Mandatory request data.
+     * @return API call to execute.
+     */
+    @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_ENABLE_PATH)
+    Call<EnableFinancialAccountResponseVo> enableFinancialAccount(@Path("account_id") String accountId);
+
+    /** Creates a {@link Call} to disable a card.
+     * @param accountId Mandatory request data.
+     * @return API call to execute.
+     */
+    @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_DISABLE_PATH)
+    Call<DisableFinancialAccountResponseVo> disableFinancialAccount(@Path("account_id") String accountId);
 
     /**
      * Creates a {@link Call} to get the transaction list of a specific financial account.

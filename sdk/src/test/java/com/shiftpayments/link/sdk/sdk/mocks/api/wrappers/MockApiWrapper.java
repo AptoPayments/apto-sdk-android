@@ -16,7 +16,6 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.Application
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
@@ -39,11 +38,13 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequenciesList
 import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
@@ -385,7 +386,17 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public UpdateFinancialAccountResponseVo updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo requestData) throws ApiException {
+    public ActivateFinancialAccountResponseVo activateFinancialAccount(String s) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public EnableFinancialAccountResponseVo enableFinancialAccount(String s) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public DisableFinancialAccountResponseVo disableFinancialAccount(String s) throws ApiException {
         return null;
     }
 

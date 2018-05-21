@@ -11,16 +11,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
@@ -49,7 +50,6 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static com.shiftpayments.link.sdk.api.vos.Card.FinancialAccountState.ACTIVE;
 import static com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity.EXTRA_TRANSACTION;
 
 /**
@@ -254,18 +254,21 @@ public class ManageCardPresenter
     }
 
     /**
-     * Called when the updateStatus response has been received.
+     * Called when the enable card response has been received.
      * @param card API response.
      */
     @Subscribe
-    public void handleResponse(UpdateFinancialAccountResponseVo card) {
-        if(isViewReady()) {
-            mView.showLoading(mActivity, false);
-        }
-        String message = card.state.equals(ACTIVE) ? mActivity.getString(R.string.card_activated) : mActivity.getString(R.string.card_deactivated);
-        Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
-        mModel.setCard(card);
-        mTransactionsAdapter.notifyItemChanged(0);
+    public void handleResponse(EnableFinancialAccountResponseVo card) {
+        showToastAndUpdateCard(card, mActivity.getString(R.string.card_enabled));
+    }
+
+    /**
+     * Called when the disable card response has been received.
+     * @param card API response.
+     */
+    @Subscribe
+    public void handleResponse(DisableFinancialAccountResponseVo card) {
+        showToastAndUpdateCard(card, mActivity.getString(R.string.card_disabled));
     }
 
     /**
@@ -274,12 +277,7 @@ public class ManageCardPresenter
      */
     @Subscribe
     public void handleResponse(ActivateFinancialAccountResponseVo card) {
-        if(isViewReady()) {
-            mView.showLoading(mActivity, false);
-        }
-        Toast.makeText(mActivity, mActivity.getString(R.string.card_activated), Toast.LENGTH_SHORT).show();
-        mModel.setCard(card);
-        mTransactionsAdapter.notifyItemChanged(0);
+        showToastAndUpdateCard(card, mActivity.getString(R.string.card_activated));
     }
 
     /**
@@ -346,11 +344,12 @@ public class ManageCardPresenter
     }
 
     private void changeCardState(boolean enable) {
-
-        UpdateFinancialAccountRequestVo request = new UpdateFinancialAccountRequestVo();
-        request.state = enable ? "active" : "inactive";
-
-        ShiftPlatform.updateFinancialAccount(request, mModel.getAccountId());
+        if(enable) {
+            ShiftPlatform.enableFinancialAccount(mModel.getAccountId());
+        }
+        else {
+            ShiftPlatform.disableFinancialAccount(mModel.getAccountId());
+        }
         mView.showLoading(mActivity, true);
     }
 
@@ -409,5 +408,14 @@ public class ManageCardPresenter
 
     private boolean isViewReady() {
         return mView!=null && mHasFundingSourceArrived && mHasTransactionListArrived;
+    }
+
+    private void showToastAndUpdateCard(Card card, String message) {
+        if(isViewReady()) {
+            mView.showLoading(mActivity, false);
+        }
+        Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
+        mModel.setCard(card);
+        mTransactionsAdapter.notifyItemChanged(0);
     }
 }
