@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnScrollListener {
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private int visibleThreshold = 5;
+    private static final int VISIBLE_THRESHOLD = 5;
     // The current offset index of data you have loaded
     private int currentPage = 0;
     // The total number of items in the dataset after the last load
@@ -20,7 +20,7 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
     // Sets the starting page index
     private int startingPageIndex = 0;
 
-    RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     public EndlessRecyclerViewScrollListener(LinearLayoutManager layoutManager) {
         this.mLayoutManager = layoutManager;
@@ -44,10 +44,9 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
     // but first we check if we are waiting for the previous load to finish.
     @Override
     public void onScrolled(RecyclerView view, int dx, int dy) {
-        int lastVisibleItemPosition = 0;
+        int lastVisibleItemPosition = ((LinearLayoutManager) mLayoutManager).findLastVisibleItemPosition();
         int totalItemCount = mLayoutManager.getItemCount()-1;
 
-        lastVisibleItemPosition = ((LinearLayoutManager) mLayoutManager).findLastVisibleItemPosition();
         // If the total item count is zero and the previous isn't, assume the
         // list is invalidated and should be reset back to initial state
         if (totalItemCount < previousTotalItemCount) {
@@ -66,10 +65,10 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
         }
 
         // If it isn’t currently loading, we check to see if we have breached
-        // the visibleThreshold and need to reload more data.
+        // the VISIBLE_THRESHOLD and need to reload more data.
         // If we do need to reload some more data, we execute onLoadMore to fetch the data.
         // threshold should reflect how many total columns there are too
-        if (!this.loading && (lastVisibleItemPosition + visibleThreshold) > totalItemCount) {
+        if (!this.loading && (lastVisibleItemPosition + VISIBLE_THRESHOLD) > totalItemCount) {
             currentPage++;
             this.loading = true;
             onLoadMore(currentPage, totalItemCount, view);

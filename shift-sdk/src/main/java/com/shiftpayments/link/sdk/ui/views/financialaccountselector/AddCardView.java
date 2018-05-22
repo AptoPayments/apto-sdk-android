@@ -48,10 +48,6 @@ public class AddCardView
     private Toolbar mToolbar;
     private AddCardView.ViewListener mListener;
 
-    /**
-     * @see AddCardView#AddCardView
-     * @param context See {@link AddCardView#AddCardView}.
-     */
     public AddCardView(Context context) {
         this(context, null);
     }
@@ -79,51 +75,9 @@ public class AddCardView
         setColors();
     }
 
-    private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
-        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
-        mToolbar.setTitleTextColor(contrastColor);
-        mAddCardButton.setBackgroundColor(primaryColor);
-        mAddCardButton.setTextColor(contrastColor);
-        mScanCardButton.setTextColor(primaryColor);
-    }
-
     @Override
     public void displayErrorMessage(String message) {
         Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    protected void findAllViews() {
-        mAddCardButton = (TextView) findViewById(R.id.tv_add_bttn);
-        mScanCardButton = (TextView) findViewById(R.id.tv_scan_bttn);
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mCreditCardForm = (CreditCardForm) findViewById(R.id.credit_card_form);
-        mCreditCardView = (CreditCardView) findViewById(R.id.credit_card_view);
-    }
-
-    protected void setupListeners() {
-        if (mAddCardButton != null) {
-            mAddCardButton.setOnClickListener(this);
-        }
-        if (mScanCardButton != null) {
-            mScanCardButton.setOnClickListener(this);
-        }
-
-        mCreditCardForm.setOnCardValidCallback(creditCard -> {
-            updateCreditCardView(creditCard);
-            KeyboardUtil.hideKeyboard(AddCardView.super.getContext());
-        });
-    }
-
-    private void updateCreditCardView(CreditCard creditCard) {
-        mCreditCardView.setCardNumber(creditCard.getCardNumber());
-        mCreditCardView.setExpiryDate(creditCard.getExpDate());
-        mCreditCardView.setType(creditCard.getCardType().ordinal());
-    }
-
-    public void setListener(ViewListener listener) {
-        mListener = listener;
     }
 
     /** {@inheritDoc} */
@@ -140,6 +94,10 @@ public class AddCardView
         else if (id == R.id.tv_scan_bttn) {
             mListener.scanClickHandler();
         }
+    }
+
+    public void setListener(ViewListener listener) {
+        mListener = listener;
     }
 
     public void setCardName(String name) {
@@ -169,5 +127,43 @@ public class AddCardView
 
     public String getExpirationDate() {
         return mCreditCardForm.getCreditCard().getExpDate();
+    }
+
+    private void findAllViews() {
+        mAddCardButton = (TextView) findViewById(R.id.tv_add_bttn);
+        mScanCardButton = (TextView) findViewById(R.id.tv_scan_bttn);
+        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
+        mCreditCardForm = (CreditCardForm) findViewById(R.id.credit_card_form);
+        mCreditCardView = (CreditCardView) findViewById(R.id.credit_card_view);
+    }
+
+    private void setupListeners() {
+        if (mAddCardButton != null) {
+            mAddCardButton.setOnClickListener(this);
+        }
+        if (mScanCardButton != null) {
+            mScanCardButton.setOnClickListener(this);
+        }
+
+        mCreditCardForm.setOnCardValidCallback(creditCard -> {
+            updateCreditCardView(creditCard);
+            KeyboardUtil.hideKeyboard(AddCardView.super.getContext());
+        });
+    }
+
+    private void updateCreditCardView(CreditCard creditCard) {
+        mCreditCardView.setCardNumber(creditCard.getCardNumber());
+        mCreditCardView.setExpiryDate(creditCard.getExpDate());
+        mCreditCardView.setType(creditCard.getCardType().ordinal());
+    }
+
+    private void setColors() {
+        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
+        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
+        mToolbar.setTitleTextColor(contrastColor);
+        mAddCardButton.setBackgroundColor(primaryColor);
+        mAddCardButton.setTextColor(contrastColor);
+        mScanCardButton.setTextColor(primaryColor);
     }
 }

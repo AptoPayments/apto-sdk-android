@@ -39,7 +39,7 @@ public class BirthdateVerificationModel extends AbstractUserDataModel implements
     /**
      * Initializes this class.
      */
-    protected void init() {
+    private void init() {
         mMinimumAge = 0;
         mBirthdate = null;
         mVerification = new VerificationVo();

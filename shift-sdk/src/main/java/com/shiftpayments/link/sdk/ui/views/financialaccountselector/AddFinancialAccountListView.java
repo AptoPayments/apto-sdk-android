@@ -30,7 +30,6 @@ public class AddFinancialAccountListView extends CoordinatorLayout
     private LinearLayout mAccountsList;
 
     private AddFinancialAccountListView.ViewListener mListener;
-    private AddFinancialAccountModel[] mData;
     private LoadingView mLoadingView;
 
     /**
@@ -120,7 +119,6 @@ public class AddFinancialAccountListView extends CoordinatorLayout
      * @param data Latest data.
      */
     public void setData(AddFinancialAccountModel[] data) {
-        mData = data;
         if(data == null) {
             return;
         }

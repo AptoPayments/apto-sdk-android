@@ -9,7 +9,7 @@ import com.shiftpayments.link.sdk.ui.vos.LoanDataVo;
  */
 public abstract class AbstractLoanDataModel extends AbstractActivityModel implements LoanDataModel {
 
-    protected LoanDataVo mBase;
+    private LoanDataVo mBase;
 
     /** {@inheritDoc} */
     @Override

@@ -29,18 +29,6 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
         mIncome = new Income();
     }
 
-    private boolean hasValidKey(IdDescriptionPairDisplayVo pair) {
-        return pair != null && pair.getKey() >= 0;
-    }
-
-    /**
-     * @param income Income to validate.
-     * @return Whether the income is within the allowed range.
-     */
-    protected boolean isValid(long income) {
-        return income >= mMinIncome && income <= mMaxIncome;
-    }
-
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
@@ -183,5 +171,17 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
 
     public boolean hasValidSalaryFrequency() {
         return hasValidKey(mSalaryFrequency);
+    }
+
+    private boolean hasValidKey(IdDescriptionPairDisplayVo pair) {
+        return pair != null && pair.getKey() >= 0;
+    }
+
+    /**
+     * @param income Income to validate.
+     * @return Whether the income is within the allowed range.
+     */
+    protected boolean isValid(long income) {
+        return income >= mMinIncome && income <= mMaxIncome;
     }
 }

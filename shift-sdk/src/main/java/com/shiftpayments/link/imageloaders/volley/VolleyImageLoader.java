@@ -41,7 +41,7 @@ public class VolleyImageLoader implements GenericImageLoader {
      * Initializes this class.
      */
     private void init() {
-        mContainers = new ArrayList<ImageLoader.ImageContainer>();
+        mContainers = new ArrayList<>();
     }
 
     /**

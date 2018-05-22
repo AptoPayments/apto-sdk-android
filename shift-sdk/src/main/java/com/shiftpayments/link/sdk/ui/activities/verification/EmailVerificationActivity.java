@@ -3,7 +3,7 @@ package com.shiftpayments.link.sdk.ui.activities.verification;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.activities.userdata.UserDataActivity;
+import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.verification.EmailVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.verification.EmailVerificationDelegate;
@@ -15,7 +15,7 @@ import com.shiftpayments.link.sdk.ui.views.verification.EmailVerificationView;
  * @author Adrian
  */
 public class EmailVerificationActivity
-        extends UserDataActivity<EmailVerificationModel, EmailVerificationView, EmailVerificationPresenter> {
+        extends MvpActivity<EmailVerificationModel, EmailVerificationView, EmailVerificationPresenter> {
 
     /** {@inheritDoc} */
     @Override

@@ -89,7 +89,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
         showLoading(false);
         if (response != null) {
             storeToken(response.user_token);
-            getCurrentUserOrContinue(ConfigStorage.getInstance().getPOSMode(), true);
+            getCurrentUserOrContinue(ConfigStorage.getInstance().getPOSMode());
         }
     }
 
@@ -254,11 +254,11 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
         SharedPreferencesStorage.storeCredentials(getActivity(), mConfig.primaryCredentialType.getType(), mConfig.secondaryCredentialType.getType());
     }
 
-    private void getCurrentUserOrContinue(boolean isPOSMode, boolean validateUserToken) {
+    private void getCurrentUserOrContinue(boolean isPOSMode) {
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
         if (!isPOSMode && userToken != null) {
             ShiftPlatform.getApiWrapper().setBearerToken(userToken);
-            ShiftPlatform.getCurrentUser(validateUserToken);
+            ShiftPlatform.getCurrentUser(true);
         }
     }
 

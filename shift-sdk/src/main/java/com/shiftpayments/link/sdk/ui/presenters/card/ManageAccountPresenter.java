@@ -110,7 +110,7 @@ public class ManageAccountPresenter
     @Subscribe
     public void handleResponse(FundingSourceListVo response) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        mModel.addFundingSources(mActivity.getResources(), response.data);
+        mModel.addFundingSources(response.data);
         mView.setSpendableAmount(mModel.getSpendableAmount());
         mView.showFundingSourceLabel(true);
         mView.showSpendableAmountLabel(true);

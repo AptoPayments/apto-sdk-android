@@ -1,7 +1,5 @@
 package com.shiftpayments.link.sdk.ui.models.card;
 
-import android.content.res.Resources;
-
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
@@ -12,22 +10,18 @@ import com.shiftpayments.link.sdk.ui.vos.AmountVo;
  */
 public class FundingSourceModel implements Model {
 
-    protected final FundingSourceVo mFundingSource;
+    private final FundingSourceVo mFundingSource;
     private boolean mIsSelected;
-    protected final Resources mResources;
 
     /**
      * Creates a new {@link FundingSourceModel} instance.
      * @param fundingSource Raw funding source data.
-     * @param resources {@link Resources} used to fetch Strings.
      * @param isSelected if it's the current funding source
      */
-    public FundingSourceModel(FundingSourceVo fundingSource, Resources resources, boolean isSelected) {
+    public FundingSourceModel(FundingSourceVo fundingSource, boolean isSelected) {
         mFundingSource = fundingSource;
-        mResources = resources;
         mIsSelected = isSelected;
     }
-
 
     /** {@inheritDoc} */
     @Override

@@ -350,16 +350,16 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
                     stopModule();
                     return null;
                 })
-                .thenAccept((isPOSMode) -> getCurrentUserOrContinue(isPOSMode, false));
+                .thenAccept(this::getCurrentUserOrContinue);
     }
 
-    private void getCurrentUserOrContinue(boolean isPOSMode, boolean validateUserToken) {
+    private void getCurrentUserOrContinue(boolean isPOSMode) {
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
         if (isPOSMode || userToken == null || isUpdatingProfile) {
             compareRequiredDataPointsWithCurrent(new DataPointList());
         } else {
             ShiftPlatform.getApiWrapper().setBearerToken(userToken);
-            ShiftPlatform.getCurrentUser(validateUserToken);
+            ShiftPlatform.getCurrentUser(false);
         }
     }
 

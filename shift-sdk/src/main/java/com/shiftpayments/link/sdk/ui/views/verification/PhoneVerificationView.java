@@ -35,12 +35,11 @@ public class PhoneVerificationView
         void resendClickHandler();
     }
 
+    private static final int CODE_LENGTH = 6;
     private PinView mPinView;
     private TextView mSubmitButton;
     private TextView mResendButton;
     private LoadingView mLoadingView;
-    final int CODE_LENGTH = 6;
-
 
     /**
      * @see UserDataView#UserDataView
@@ -72,7 +71,7 @@ public class PhoneVerificationView
     }
 
     @Override
-    public void setColors() {
+    protected void setColors() {
         super.setColors();
 
         int color = UIStorage.getInstance().getPrimaryColor();
@@ -127,12 +126,13 @@ public class PhoneVerificationView
         showToast(message);
     }
 
-    public void displaySentMessage(String message) {
-        showToast(message);
+    @Override
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 
-    private void showToast(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
+    public void displaySentMessage(String message) {
+        showToast(message);
     }
 
     /**
@@ -146,14 +146,13 @@ public class PhoneVerificationView
         mPinView.clear();
     }
 
-    public void configurePinView() {
+    private void showToast(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void configurePinView() {
         mPinView.setPin(CODE_LENGTH);
         mPinView.setKeyboardMandatory(false);
         mPinView.setMaskPassword(false);
-    }
-
-    @Override
-    public LoadingView getLoadingView() {
-        return mLoadingView;
     }
 }

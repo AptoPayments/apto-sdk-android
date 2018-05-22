@@ -39,7 +39,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     /**
      * Initializes this class.
      */
-    protected void init() {
+    private void init() {
         mMinimumAge = 0;
         mExpectedSSNLength = 0;
         mBirthday = null;

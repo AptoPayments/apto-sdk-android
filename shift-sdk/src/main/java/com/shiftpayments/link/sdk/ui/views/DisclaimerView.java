@@ -58,15 +58,6 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
         setColors();
     }
 
-    protected void setupListeners() {
-        if (mAcceptButton != null) {
-            mAcceptButton.setOnClickListener(this);
-        }
-        if (mCancelButton != null) {
-            mCancelButton.setOnClickListener(this);
-        }
-    }
-
     /** {@inheritDoc} */
     @Override
     public void onClick(View view) {
@@ -86,20 +77,6 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
     @Override
     public LoadingView getLoadingView() {
         return mLoadingView;
-    }
-
-    private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
-        mAcceptButton.setTextColor(primaryColor);
-    }
-
-    protected void findAllViews() {
-        mAcceptButton = (TextView) findViewById(R.id.tv_accept_pdf);
-        mCancelButton = (TextView) findViewById(R.id.tv_cancel_pdf);
-        mMarkdownView = (MarkdownView) findViewById(R.id.md_disclaimer_markdown);
-        mTextView = (TextView) findViewById(R.id.tv_disclaimer_text);
-        mPdfView = (PDFView) findViewById(R.id.pdfView);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
     }
 
     public void loadMarkdown(String markDown) {
@@ -122,5 +99,28 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
     public void loadPdf(File pdfFile) {
         mPdfView.setVisibility(VISIBLE);
         mPdfView.fromFile(pdfFile).load();
+    }
+
+    private void findAllViews() {
+        mAcceptButton = (TextView) findViewById(R.id.tv_accept_pdf);
+        mCancelButton = (TextView) findViewById(R.id.tv_cancel_pdf);
+        mMarkdownView = (MarkdownView) findViewById(R.id.md_disclaimer_markdown);
+        mTextView = (TextView) findViewById(R.id.tv_disclaimer_text);
+        mPdfView = (PDFView) findViewById(R.id.pdfView);
+        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+    }
+
+    private void setupListeners() {
+        if (mAcceptButton != null) {
+            mAcceptButton.setOnClickListener(this);
+        }
+        if (mCancelButton != null) {
+            mCancelButton.setOnClickListener(this);
+        }
+    }
+
+    private void setColors() {
+        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        mAcceptButton.setTextColor(primaryColor);
     }
 }

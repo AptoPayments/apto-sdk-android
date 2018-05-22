@@ -35,10 +35,6 @@ public class ProgressBarWidget extends RelativeLayout implements View.OnClickLis
      */
     public ProgressBarWidget(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
-    }
-
-    private void init() {
     }
 
     /**

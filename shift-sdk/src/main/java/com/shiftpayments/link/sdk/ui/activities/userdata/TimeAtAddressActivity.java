@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.ui.activities.userdata;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.userdata.TimeAtAddressModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.TimeAtAddressDelegate;
@@ -13,7 +14,7 @@ import com.shiftpayments.link.sdk.ui.views.userdata.TimeAtAddressView;
  * Wires up the MVP pattern for the time at address screen.
  * @author Adrian
  */
-public class TimeAtAddressActivity extends UserDataActivity<TimeAtAddressModel, TimeAtAddressView, TimeAtAddressPresenter> {
+public class TimeAtAddressActivity extends MvpActivity<TimeAtAddressModel, TimeAtAddressView, TimeAtAddressPresenter> {
 
     /** {@inheritDoc} */
     @Override

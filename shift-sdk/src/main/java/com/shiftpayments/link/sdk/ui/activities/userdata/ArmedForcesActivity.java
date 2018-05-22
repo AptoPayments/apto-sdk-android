@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.ui.activities.userdata;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.userdata.ArmedForcesModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.ArmedForcesDelegate;
@@ -13,7 +14,7 @@ import com.shiftpayments.link.sdk.ui.views.userdata.ArmedForcesView;
  * Wires up the MVP pattern for the member of the armed forces screen.
  * @author Adrian
  */
-public class ArmedForcesActivity extends UserDataActivity<ArmedForcesModel, ArmedForcesView, ArmedForcesPresenter> {
+public class ArmedForcesActivity extends MvpActivity<ArmedForcesModel, ArmedForcesView, ArmedForcesPresenter> {
 
     /** {@inheritDoc} */
     @Override

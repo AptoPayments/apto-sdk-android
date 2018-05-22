@@ -31,7 +31,6 @@ public class AddCustodianListView extends CoordinatorLayout
     private LinearLayout mAccountsList;
 
     private AddCustodianListView.ViewListener mListener;
-    private AddCustodianModel[] mData;
     private LoadingView mLoadingView;
 
     /**
@@ -121,7 +120,6 @@ public class AddCustodianListView extends CoordinatorLayout
      * @param data Latest data.
      */
     public void setData(AddCustodianModel[] data) {
-        mData = data;
         if(data == null) {
             return;
         }

@@ -28,7 +28,7 @@ import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
  */
 public class TransactionDetailsView extends CoordinatorLayout implements ViewWithToolbar {
 
-    protected Toolbar mToolbar;
+    private Toolbar mToolbar;
     private ImageView mLogoView;
     private TransactionView mTransactionView;
     private TextView mAmountLabel;

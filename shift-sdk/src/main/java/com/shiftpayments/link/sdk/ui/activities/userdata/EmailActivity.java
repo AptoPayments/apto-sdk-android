@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.ui.activities.userdata;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.userdata.EmailModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.EmailDelegate;
@@ -14,7 +15,7 @@ import com.shiftpayments.link.sdk.ui.views.userdata.EmailView;
  */
 
 public class EmailActivity
-    extends UserDataActivity<EmailModel, EmailView, EmailPresenter> {
+    extends MvpActivity<EmailModel, EmailView, EmailPresenter> {
 
     /** {@inheritDoc} */
     @Override

@@ -1,7 +1,5 @@
 package com.shiftpayments.link.sdk.ui.models.card;
 
-import android.content.res.Resources;
-
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
@@ -30,14 +28,14 @@ public class ManageAccountModel implements Model {
      * Adds a list of funding sources.
      * @param fundingSources List of funding sources.
      */
-    public void addFundingSources(Resources resources, FundingSourceVo[] fundingSources) {
+    public void addFundingSources(FundingSourceVo[] fundingSources) {
         ArrayList<FundingSourceModel> newFundingSources = new ArrayList<>(fundingSources.length);
         for(FundingSourceVo fundingSource : fundingSources) {
             boolean isSelected = false;
             if(CardStorage.getInstance().hasFundingSourceId() && fundingSource.id != null) {
                 isSelected = CardStorage.getInstance().getFundingSourceId().equals(fundingSource.id);
             }
-            FundingSourceModel fundingSourceModel = new FundingSourceModel(fundingSource, resources, isSelected);
+            FundingSourceModel fundingSourceModel = new FundingSourceModel(fundingSource, isSelected);
             newFundingSources.add(fundingSourceModel);
             if(isSelected) {
                 mSelectedFundingSource = fundingSourceModel;

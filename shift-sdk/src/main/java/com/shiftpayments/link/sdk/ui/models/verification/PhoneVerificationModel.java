@@ -32,7 +32,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
     /**
      * Initializes this class.
      */
-    protected void init() {
+    private void init() {
         setBaseData(UserStorage.getInstance().getUserData());
     }
 

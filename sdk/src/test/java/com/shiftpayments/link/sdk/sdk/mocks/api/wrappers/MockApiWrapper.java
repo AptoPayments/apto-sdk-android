@@ -79,6 +79,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     public static final long OFFER_ONE_AMOUNT = 5555;
     public static final float OFFER_ONE_INTEREST = 19.9f;
     public static final float OFFER_ONE_PAYMENT = 123.45f;
+    public static final String OFFER_ONE_CURRENCY = "USD";
     public static final String OFFER_ONE_APPLICATION_URL = "http://www.moremoney.com/";
     public static final int EXPECTED_INCOME_TYPE = 1;
     public static final int EXPECTED_SALARY_FREQUENCY = 2;
@@ -150,8 +151,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
 
     /** {@inheritDoc} */
     public HashMap<String, String> getHTTPHeaders() {
-        HashMap<String, String> response = new HashMap<>();
-        return response;
+        return new HashMap<>();
     }
 
     /** {@inheritDoc} */
@@ -201,8 +201,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     /** {@inheritDoc} */
     @Override
     public UserResponseVo updateUser(DataPointList requestData) throws ApiException {
-        UserResponseVo response = new UserResponseVo();
-        return response;
+        return new UserResponseVo();
     }
 
     @Override
@@ -228,6 +227,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
         offerOne.loan_amount = OFFER_ONE_AMOUNT;
         offerOne.interest_rate = OFFER_ONE_INTEREST;
         offerOne.payment_amount = OFFER_ONE_PAYMENT;
+        offerOne.currency = OFFER_ONE_CURRENCY;
         offerOne.application_method = LoanApplicationMethod.WEB;
         offerOne.application_url = OFFER_ONE_APPLICATION_URL;
         offerOne.term = new TermVo();

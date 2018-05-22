@@ -236,7 +236,7 @@ public class LoanAgreementView
 
     /**
      * Updates the looks of the bottom button.
-     * @param fullyScrolled boolen - Whether the View is fully scrolled.
+     * @param fullyScrolled boolean - Whether the View is fully scrolled.
      */
     public void updateBottomButton(boolean fullyScrolled) {
         if (mConfirmButton == null) {

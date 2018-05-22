@@ -41,10 +41,36 @@ public class IntermediateFinancialAccountListView
         super(context, attrs);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        findAllViews();
+        setColors();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Toolbar getToolbar() {
+        return mToolbar;
+    }
+
+    @Override
+    public LoadingView getLoadingView() {
+        return mLoadingView;
+    }
+
+    private void setColors() {
+        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
+        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
+        mToolbar.setTitleTextColor(contrastColor);
+    }
+
     /**
      * Finds all references to child Views.
      */
-    protected void findAllViews() {
+    private void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
     }
@@ -60,31 +86,5 @@ public class IntermediateFinancialAccountListView
         } else {
             view.setVisibility(GONE);
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        findAllViews();
-        setColors();
-    }
-
-    private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
-        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
-        mToolbar.setTitleTextColor(contrastColor);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Toolbar getToolbar() {
-        return mToolbar;
-    }
-
-    @Override
-    public LoadingView getLoadingView() {
-        return mLoadingView;
     }
 }

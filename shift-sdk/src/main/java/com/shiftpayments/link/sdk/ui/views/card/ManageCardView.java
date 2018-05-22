@@ -68,22 +68,6 @@ public class ManageCardView
         mListener.pullToRefreshHandler();
     }
 
-    protected void findAllViews() {
-        mPinView = (FrameLayout) findViewById(R.id.pin_fragment);
-        mSpinner = (ProgressBar) findViewById(R.id.pb_spinner);
-        mTransactionsRecyclerView = (RecyclerView) findViewById(R.id.transactions_recycler_view);
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_container);
-    }
-
-    private void setUpListeners() {
-        if (mTransactionsRecyclerView != null) {
-            mTransactionsRecyclerView.setAdapter(new TransactionsAdapter());
-        }
-        if(mSwipeRefreshLayout != null) {
-            mSwipeRefreshLayout.setOnRefreshListener(this);
-        }
-    }
-
     public void configureTransactionsView(LinearLayoutManager linearLayoutManager, EndlessRecyclerViewScrollListener scrollListener, TransactionsAdapter adapter) {
         if (mTransactionsRecyclerView != null) {
             mTransactionsRecyclerView.setLayoutManager(linearLayoutManager);
@@ -106,5 +90,21 @@ public class ManageCardView
 
     public void setRefreshing(boolean isRefreshing) {
         mSwipeRefreshLayout.setRefreshing(isRefreshing);
+    }
+
+    private void findAllViews() {
+        mPinView = (FrameLayout) findViewById(R.id.pin_fragment);
+        mSpinner = (ProgressBar) findViewById(R.id.pb_spinner);
+        mTransactionsRecyclerView = (RecyclerView) findViewById(R.id.transactions_recycler_view);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_container);
+    }
+
+    private void setUpListeners() {
+        if (mTransactionsRecyclerView != null) {
+            mTransactionsRecyclerView.setAdapter(new TransactionsAdapter());
+        }
+        if(mSwipeRefreshLayout != null) {
+            mSwipeRefreshLayout.setOnRefreshListener(this);
+        }
     }
 }

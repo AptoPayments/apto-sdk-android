@@ -28,7 +28,6 @@ public class SelectPendingApplicationListView extends CoordinatorLayout
     private TextView mNewApplicationButton;
 
     private SelectPendingApplicationListView.ViewListener mListener;
-    private SelectLoanApplicationModel[] mData;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -78,30 +77,6 @@ public class SelectPendingApplicationListView extends CoordinatorLayout
         setColors();
     }
 
-    private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
-        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
-        mToolbar.setTitleTextColor(contrastColor);
-        mNewApplicationButton.setBackgroundColor(primaryColor);
-        mNewApplicationButton.setTextColor(contrastColor);
-    }
-
-    /**
-     * Finds all references to child Views.
-     */
-    private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mApplicationsList = (LinearLayout) findViewById(R.id.ll_select_application_list);
-        mNewApplicationButton = (TextView) findViewById(R.id.tv_new_application_bttn);
-    }
-
-    protected void setupListeners() {
-        if (mNewApplicationButton != null) {
-            mNewApplicationButton.setOnClickListener(this);
-        }
-    }
-
     public interface ViewListener {
         /**
          * Called when one of the application has been clicked.
@@ -125,7 +100,6 @@ public class SelectPendingApplicationListView extends CoordinatorLayout
      * @param data Latest data.
      */
     public void setData(SelectLoanApplicationModel[] data) {
-        mData = data;
         mApplicationsList.removeAllViews();
 
         SelectApplicationCardView view;
@@ -136,6 +110,30 @@ public class SelectPendingApplicationListView extends CoordinatorLayout
             view.setData(model);
             view.setOnClickListener(this);
             mApplicationsList.addView(view);
+        }
+    }
+
+    private void setColors() {
+        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
+        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
+        mToolbar.setTitleTextColor(contrastColor);
+        mNewApplicationButton.setBackgroundColor(primaryColor);
+        mNewApplicationButton.setTextColor(contrastColor);
+    }
+
+    /**
+     * Finds all references to child Views.
+     */
+    private void findAllViews() {
+        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
+        mApplicationsList = (LinearLayout) findViewById(R.id.ll_select_application_list);
+        mNewApplicationButton = (TextView) findViewById(R.id.tv_new_application_bttn);
+    }
+
+    private void setupListeners() {
+        if (mNewApplicationButton != null) {
+            mNewApplicationButton.setOnClickListener(this);
         }
     }
 }

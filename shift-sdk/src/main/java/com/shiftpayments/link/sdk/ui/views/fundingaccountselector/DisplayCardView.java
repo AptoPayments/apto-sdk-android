@@ -84,7 +84,27 @@ public class DisplayCardView
         }
     }
 
-    protected void findAllViews() {
+    public void setCardNumber(String cardNumber) {
+        mCreditCardView.setCardNumber(cardNumber);
+    }
+
+    public void setExpiryDate(String expiryDate) {
+        mCreditCardView.setExpiryDate(expiryDate);
+    }
+
+    public void setType(int type) {
+        mCreditCardView.setType(type);
+    }
+
+    public void setCardName(String name) {
+        mCreditCardView.setCardName(name);
+    }
+
+    public void setCardBalance(String amount) {
+        mCardBalance.setText(amount);
+    }
+
+    private void findAllViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
         mCreditCardView = (CreditCardView) findViewById(R.id.credit_card_view);
         mCardBalance = (TextView) findViewById(R.id.tv_card_balance);
@@ -110,25 +130,5 @@ public class DisplayCardView
         if (mSecondaryButton != null) {
             mSecondaryButton.setOnClickListener(this);
         }
-    }
-
-    public void setCardNumber(String cardNumber) {
-        mCreditCardView.setCardNumber(cardNumber);
-    }
-
-    public void setExpiryDate(String expiryDate) {
-        mCreditCardView.setExpiryDate(expiryDate);
-    }
-
-    public void setType(int type) {
-        mCreditCardView.setType(type);
-    }
-
-    public void setCardName(String name) {
-        mCreditCardView.setCardName(name);
-    }
-
-    public void setCardBalance(String amount) {
-        mCardBalance.setText(amount);
     }
 }

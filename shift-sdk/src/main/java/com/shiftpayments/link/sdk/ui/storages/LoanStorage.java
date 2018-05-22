@@ -58,7 +58,7 @@ public class LoanStorage {
      * @param id Loan offers request ID.
      */
     public void setOfferRequestId(String id) {
-        if (id != mOfferRequestId) {
+        if (id!=null && !id.equals(mOfferRequestId)) {
             mOffers = new PagedList<>();
         }
 
@@ -70,7 +70,7 @@ public class LoanStorage {
      * @param offers List of offers.
      */
     public void addOffers(Resources resources, OfferVo[] offers, boolean complete, GenericImageLoader imageLoader) {
-        ArrayList<OfferSummaryModel> newOffers = new ArrayList<OfferSummaryModel>(offers.length);
+        ArrayList<OfferSummaryModel> newOffers = new ArrayList<>(offers.length);
         for (OfferVo offer : offers) {
             newOffers.add(new OfferSummaryModel(offer, resources, imageLoader));
         }

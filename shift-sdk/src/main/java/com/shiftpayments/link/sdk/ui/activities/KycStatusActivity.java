@@ -41,7 +41,7 @@ public class KycStatusActivity extends AppCompatActivity implements KycStatusVie
     @Override
     public void refresh() {
         ShiftLinkSdk.getResponseHandler().subscribe(this);
-        ShiftPlatform.getFinancialAccount(CardStorage.getInstance().getCard().mAccountId);;
+        ShiftPlatform.getFinancialAccount(CardStorage.getInstance().getCard().mAccountId);
     }
 
     /**

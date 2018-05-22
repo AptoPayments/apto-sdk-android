@@ -108,7 +108,7 @@ public class AddBankAccountActivity
 
     // Parse a Link redirect URL querystring into a HashMap for easy manipulation and access
     public HashMap<String,String> parseLinkUriData(Uri linkUri) {
-        HashMap<String,String> linkData = new HashMap<String,String>();
+        HashMap<String,String> linkData = new HashMap<>();
         for(String key : linkUri.getQueryParameterNames()) {
             linkData.put(key, linkUri.getQueryParameter(key));
         }
