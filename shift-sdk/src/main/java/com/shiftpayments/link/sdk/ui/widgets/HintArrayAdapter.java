@@ -37,7 +37,7 @@ public class HintArrayAdapter<T> extends ArrayAdapter<T> {
             View view = super.getView(position, convertView, parent);
 
             if (position == HINT_INDEX) {
-                TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                TextView textView = view.findViewById(android.R.id.text1);
                 CharSequence text = textView.getText();
 
                 textView.setText("");

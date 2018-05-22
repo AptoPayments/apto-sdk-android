@@ -32,7 +32,7 @@ public class ArmedForcesModel extends AbstractUserDataModel {
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
-        return R.string.payday_loan_label;
+        return R.string.armed_forces_label;
     }
 
     /** {@inheritDoc} */
