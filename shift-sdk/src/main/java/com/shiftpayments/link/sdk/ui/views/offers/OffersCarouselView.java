@@ -143,13 +143,13 @@ public class OffersCarouselView extends OffersBaseView {
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mOffersCarouselView = (CarouselView) findViewById(R.id.carouselView);
-        mEmptyCaseHolder = (LinearLayout) findViewById(R.id.ll_empty_case);
-        mUpdateButton = (TextView) findViewById(R.id.tv_bttn_edit_info);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mOffersCarouselView = findViewById(R.id.carouselView);
+        mEmptyCaseHolder = findViewById(R.id.ll_empty_case);
+        mUpdateButton = findViewById(R.id.tv_bttn_edit_info);
 
-        mErrorView = (LoanOfferErrorView) findViewById(R.id.ll_loan_error);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mErrorView = findViewById(R.id.ll_loan_error);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
     }
 
     /**

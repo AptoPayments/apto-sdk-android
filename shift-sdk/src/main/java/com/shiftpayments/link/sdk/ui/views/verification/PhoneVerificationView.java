@@ -62,10 +62,10 @@ public class PhoneVerificationView
     @Override
     protected void findAllViews() {
         super.findAllViews();
-        mPinView = (PinView) findViewById(R.id.pinView);
-        mSubmitButton = (TextView) findViewById(R.id.tv_submit_bttn);
-        mResendButton = (TextView) findViewById(R.id.tv_resend_bttn);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mPinView = findViewById(R.id.pinView);
+        mSubmitButton = findViewById(R.id.tv_submit_bttn);
+        mResendButton = findViewById(R.id.tv_resend_bttn);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
         configurePinView();
         setColors();
     }

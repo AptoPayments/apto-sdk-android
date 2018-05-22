@@ -63,17 +63,17 @@ public class AnnualIncomeView
     protected void findAllViews() {
         super.findAllViews();
 
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
-        mIncomeText = (TextView) findViewById(R.id.tv_income);
-        mIncomeSlider = (DiscreteSeekBar) findViewById(R.id.dsb_income);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
+        mIncomeText = findViewById(R.id.tv_income);
+        mIncomeSlider = findViewById(R.id.dsb_income);
 
-        mIncomeTypeHint = (TextView) findViewById(R.id.tv_income_type_hint);
-        mIncomeTypeSpinner = (Spinner) findViewById(R.id.sp_income_type);
-        mIncomeTypeError = (TextView) findViewById(R.id.tv_income_type_error);
+        mIncomeTypeHint = findViewById(R.id.tv_income_type_hint);
+        mIncomeTypeSpinner = findViewById(R.id.sp_income_type);
+        mIncomeTypeError = findViewById(R.id.tv_income_type_error);
 
-        mSalaryFrequencyHint = (TextView) findViewById(R.id.tv_salary_frequency_hint);
-        mSalaryFrequencySpinner = (Spinner) findViewById(R.id.sp_salary_frequency);
-        mSalaryFrequencyError = (TextView) findViewById(R.id.tv_salary_frequency_error);
+        mSalaryFrequencyHint = findViewById(R.id.tv_salary_frequency_hint);
+        mSalaryFrequencySpinner = findViewById(R.id.sp_salary_frequency);
+        mSalaryFrequencyError = findViewById(R.id.tv_salary_frequency_error);
     }
 
     /** {@inheritDoc} */

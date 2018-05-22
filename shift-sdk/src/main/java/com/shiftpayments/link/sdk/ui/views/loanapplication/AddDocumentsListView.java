@@ -87,12 +87,12 @@ public class AddDocumentsListView extends CoordinatorLayout implements DisplayEr
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mDocumentsList = (LinearLayout) findViewById(R.id.ll_documents_list);
-        mDoneButton = (TextView) findViewById(R.id.tv_done_bttn);
-        mBottomSheet = (NestedScrollView) findViewById(R.id.nsv_bottom_sheet);
-        mPhotoButton = (TextView) findViewById(R.id.tv_photo_bttn);
-        mLibraryButton = (TextView) findViewById(R.id.tv_library_bttn);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mDocumentsList = findViewById(R.id.ll_documents_list);
+        mDoneButton = findViewById(R.id.tv_done_bttn);
+        mBottomSheet = findViewById(R.id.nsv_bottom_sheet);
+        mPhotoButton = findViewById(R.id.tv_photo_bttn);
+        mLibraryButton = findViewById(R.id.tv_library_bttn);
     }
 
     /**

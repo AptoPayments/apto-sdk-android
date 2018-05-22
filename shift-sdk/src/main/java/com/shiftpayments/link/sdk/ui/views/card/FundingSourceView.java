@@ -60,9 +60,9 @@ public class FundingSourceView extends CardView implements RowView<FundingSource
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mTitleField = (TextView) findViewById(R.id.tv_title);
-        mDescriptionField = (TextView) findViewById(R.id.tv_description);
-        mButton = (RadioButton) findViewById(R.id.rb_funding_source);
+        mTitleField = findViewById(R.id.tv_title);
+        mDescriptionField = findViewById(R.id.tv_description);
+        mButton = findViewById(R.id.rb_funding_source);
     }
 
     /** {@inheritDoc} */

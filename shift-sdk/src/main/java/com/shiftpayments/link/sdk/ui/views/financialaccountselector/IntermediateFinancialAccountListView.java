@@ -71,8 +71,8 @@ public class IntermediateFinancialAccountListView
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
     }
 
     /**

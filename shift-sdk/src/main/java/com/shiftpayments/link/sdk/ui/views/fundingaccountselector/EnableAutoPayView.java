@@ -117,12 +117,12 @@ public class EnableAutoPayView
     }
 
     private void findAllViews() {
-        mPrimaryButton = (TextView) findViewById(R.id.tv_enable_auto_pay_primary_bttn);
-        mSecondaryButton = (TextView) findViewById(R.id.tv_enable_auto_pay_secondary_bttn);
-        mFinancialAccountInfo = (TextView) findViewById(R.id.tv_financial_account_label);
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mImageView = (ImageView) findViewById(R.id.iv_auto_pay_logo);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mPrimaryButton = findViewById(R.id.tv_enable_auto_pay_primary_bttn);
+        mSecondaryButton = findViewById(R.id.tv_enable_auto_pay_secondary_bttn);
+        mFinancialAccountInfo = findViewById(R.id.tv_financial_account_label);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mImageView = findViewById(R.id.iv_auto_pay_logo);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
     }
 
     private void setColors() {

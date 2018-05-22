@@ -130,11 +130,11 @@ public class AddCardView
     }
 
     private void findAllViews() {
-        mAddCardButton = (TextView) findViewById(R.id.tv_add_bttn);
-        mScanCardButton = (TextView) findViewById(R.id.tv_scan_bttn);
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mCreditCardForm = (CreditCardForm) findViewById(R.id.credit_card_form);
-        mCreditCardView = (CreditCardView) findViewById(R.id.credit_card_view);
+        mAddCardButton = findViewById(R.id.tv_add_bttn);
+        mScanCardButton = findViewById(R.id.tv_scan_bttn);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mCreditCardForm = findViewById(R.id.credit_card_form);
+        mCreditCardView = findViewById(R.id.credit_card_view);
     }
 
     private void setupListeners() {

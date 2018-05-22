@@ -58,6 +58,6 @@ public class AddBankAccountView
     }
 
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
     }
 }

@@ -178,31 +178,31 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mLogoView = (ImageView) findViewById(R.id.iv_custodian_logo);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mTransactionView = (TransactionView) findViewById(R.id.cv_transaction_view);
-        mAmountLabel = (TextView) findViewById(R.id.tv_amount_label);
-        mDetailAmount = (TextView) findViewById(R.id.tv_transaction_amount);
-        mCurrency = (TextView) findViewById(R.id.tv_transaction_currency);
-        mType = (TextView) findViewById(R.id.tv_transaction_type);
-        mLocation = (TextView) findViewById(R.id.tv_transaction_location);
-        mCategory = (TextView) findViewById(R.id.tv_transaction_category);
-        mTransactionDate = (TextView) findViewById(R.id.tv_transaction_date);
-        mSettlementDate = (TextView) findViewById(R.id.tv_transaction_settlement_date);
-        mSettlementDateHolder = (RelativeLayout) findViewById(R.id.rl_settlement_date);
-        mTransactionId = (TextView) findViewById(R.id.tv_transaction_id);
-        mTransactionIdHolder = (RelativeLayout) findViewById(R.id.rl_transaction_id);
-        mShiftId = (TextView) findViewById(R.id.tv_shift_transaction_id);
-        mAdjustmentsRecyclerView = (RecyclerView) findViewById(R.id.adjustments_recycler_view);
-        mShiftLogo = (ImageView) findViewById(R.id.iv_shift_logo);
-        mDeclineReason = (TextView) findViewById(R.id.tv_transaction_decline_reason);
-        mDeclineReasonHolder = (RelativeLayout) findViewById(R.id.rl_decline_reason);
-        mFee = (TextView) findViewById(R.id.tv_fee_amount);
-        mFeeHolder = (RelativeLayout) findViewById(R.id.rl_fee_amount);
-        mCashbackAmount = (TextView) findViewById(R.id.tv_cashback_amount);
-        mCashbackAmountHolder = (RelativeLayout) findViewById(R.id.rl_cashback_amount);
-        mHoldAmount = (TextView) findViewById(R.id.tv_hold_amount);
-        mHoldAmountHolder = (RelativeLayout) findViewById(R.id.rl_hold_amount);
+        mLogoView = findViewById(R.id.iv_custodian_logo);
+        mToolbar = findViewById(R.id.toolbar);
+        mTransactionView = findViewById(R.id.cv_transaction_view);
+        mAmountLabel = findViewById(R.id.tv_amount_label);
+        mDetailAmount = findViewById(R.id.tv_transaction_amount);
+        mCurrency = findViewById(R.id.tv_transaction_currency);
+        mType = findViewById(R.id.tv_transaction_type);
+        mLocation = findViewById(R.id.tv_transaction_location);
+        mCategory = findViewById(R.id.tv_transaction_category);
+        mTransactionDate = findViewById(R.id.tv_transaction_date);
+        mSettlementDate = findViewById(R.id.tv_transaction_settlement_date);
+        mSettlementDateHolder = findViewById(R.id.rl_settlement_date);
+        mTransactionId = findViewById(R.id.tv_transaction_id);
+        mTransactionIdHolder = findViewById(R.id.rl_transaction_id);
+        mShiftId = findViewById(R.id.tv_shift_transaction_id);
+        mAdjustmentsRecyclerView = findViewById(R.id.adjustments_recycler_view);
+        mShiftLogo = findViewById(R.id.iv_shift_logo);
+        mDeclineReason = findViewById(R.id.tv_transaction_decline_reason);
+        mDeclineReasonHolder = findViewById(R.id.rl_decline_reason);
+        mFee = findViewById(R.id.tv_fee_amount);
+        mFeeHolder = findViewById(R.id.rl_fee_amount);
+        mCashbackAmount = findViewById(R.id.tv_cashback_amount);
+        mCashbackAmountHolder = findViewById(R.id.rl_cashback_amount);
+        mHoldAmount = findViewById(R.id.tv_hold_amount);
+        mHoldAmountHolder = findViewById(R.id.rl_hold_amount);
     }
 
     private void setColors() {

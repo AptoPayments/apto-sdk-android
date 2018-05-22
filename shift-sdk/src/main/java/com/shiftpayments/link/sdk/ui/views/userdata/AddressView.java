@@ -69,20 +69,20 @@ public class AddressView
     protected void findAllViews() {
         super.findAllViews();
 
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
-        mAddressWrapper = (TextInputLayout) findViewById(R.id.til_address);
-        mAddressField = (EditText) findViewById(R.id.et_address);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
+        mAddressWrapper = findViewById(R.id.til_address);
+        mAddressField = findViewById(R.id.et_address);
 
-        mApartmentField = (EditText) findViewById(R.id.et_apartment_number);
+        mApartmentField = findViewById(R.id.et_apartment_number);
 
-        mCityWrapper = (TextInputLayout) findViewById(R.id.til_city);
-        mCityField = (EditText) findViewById(R.id.et_city);
+        mCityWrapper = findViewById(R.id.til_city);
+        mCityField = findViewById(R.id.et_city);
 
-        mStateSpinner = (Spinner) findViewById(R.id.sp_state);
-        mStateErrorField = (TextView) findViewById(R.id.tv_state_spinner_error);
+        mStateSpinner = findViewById(R.id.sp_state);
+        mStateErrorField = findViewById(R.id.tv_state_spinner_error);
 
-        mZipWrapper = (TextInputLayout) findViewById(R.id.til_zip_code);
-        mZipField = (EditText) findViewById(R.id.et_zip_code);
+        mZipWrapper = findViewById(R.id.til_zip_code);
+        mZipField = findViewById(R.id.et_zip_code);
     }
 
     /** {@inheritDoc} */

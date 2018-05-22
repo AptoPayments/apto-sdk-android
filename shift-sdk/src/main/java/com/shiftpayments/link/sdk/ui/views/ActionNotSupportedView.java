@@ -48,7 +48,7 @@ public class ActionNotSupportedView extends RelativeLayout implements ViewWithTo
     }
 
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mTextView = (TextView) findViewById(R.id.tv_status_text);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mTextView = findViewById(R.id.tv_status_text);
     }
 }

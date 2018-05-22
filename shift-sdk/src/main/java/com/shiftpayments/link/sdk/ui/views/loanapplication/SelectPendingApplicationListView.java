@@ -126,9 +126,9 @@ public class SelectPendingApplicationListView extends CoordinatorLayout
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mApplicationsList = (LinearLayout) findViewById(R.id.ll_select_application_list);
-        mNewApplicationButton = (TextView) findViewById(R.id.tv_new_application_bttn);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mApplicationsList = findViewById(R.id.ll_select_application_list);
+        mNewApplicationButton = findViewById(R.id.tv_new_application_bttn);
     }
 
     private void setupListeners() {

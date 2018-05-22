@@ -102,12 +102,12 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
     }
 
     private void findAllViews() {
-        mAcceptButton = (TextView) findViewById(R.id.tv_accept_pdf);
-        mCancelButton = (TextView) findViewById(R.id.tv_cancel_pdf);
-        mMarkdownView = (MarkdownView) findViewById(R.id.md_disclaimer_markdown);
-        mTextView = (TextView) findViewById(R.id.tv_disclaimer_text);
-        mPdfView = (PDFView) findViewById(R.id.pdfView);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mAcceptButton = findViewById(R.id.tv_accept_pdf);
+        mCancelButton = findViewById(R.id.tv_cancel_pdf);
+        mMarkdownView = findViewById(R.id.md_disclaimer_markdown);
+        mTextView = findViewById(R.id.tv_disclaimer_text);
+        mPdfView = findViewById(R.id.pdfView);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
     }
 
     private void setupListeners() {

@@ -42,8 +42,8 @@ public class IntermediateLoanApplicationView extends RelativeLayout implements V
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mErrorView = (LoanOfferErrorView) findViewById(R.id.ll_loan_error);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mErrorView = findViewById(R.id.ll_loan_error);
     }
 
     /** {@inheritDoc} */

@@ -48,8 +48,8 @@ public class EmailView
     protected void findAllViews() {
         super.findAllViews();
 
-        mEmailWrapper = (TextInputLayout) findViewById(R.id.til_email);
-        mEmailField = (EditText) findViewById(R.id.et_email);
+        mEmailWrapper = findViewById(R.id.til_email);
+        mEmailField = findViewById(R.id.et_email);
     }
 
     /**

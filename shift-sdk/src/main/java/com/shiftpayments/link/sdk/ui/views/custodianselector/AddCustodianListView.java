@@ -54,9 +54,9 @@ public class AddCustodianListView extends CoordinatorLayout
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mAccountsList = (LinearLayout) findViewById(R.id.ll_accounts_list);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mAccountsList = findViewById(R.id.ll_accounts_list);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
     }
 
     @Override

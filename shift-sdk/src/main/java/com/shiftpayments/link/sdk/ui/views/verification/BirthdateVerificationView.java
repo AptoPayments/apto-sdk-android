@@ -62,10 +62,10 @@ public class BirthdateVerificationView
     @Override
     protected void findAllViews() {
         super.findAllViews();
-        mBirthdateButton = (Button) findViewById(R.id.btn_birthday);
-        mBirthdateWrapper = (TextInputLayout) findViewById(R.id.til_birthday);
-        mBirthdateField = (AppCompatEditText) findViewById(R.id.et_birthday);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mBirthdateButton = findViewById(R.id.btn_birthday);
+        mBirthdateWrapper = findViewById(R.id.til_birthday);
+        mBirthdateField = findViewById(R.id.et_birthday);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
     }
 
     /** {@inheritDoc} */

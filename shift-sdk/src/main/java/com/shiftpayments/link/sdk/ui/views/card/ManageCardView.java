@@ -93,10 +93,10 @@ public class ManageCardView
     }
 
     private void findAllViews() {
-        mPinView = (FrameLayout) findViewById(R.id.pin_fragment);
-        mSpinner = (ProgressBar) findViewById(R.id.pb_spinner);
-        mTransactionsRecyclerView = (RecyclerView) findViewById(R.id.transactions_recycler_view);
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_container);
+        mPinView = findViewById(R.id.pin_fragment);
+        mSpinner = findViewById(R.id.pb_spinner);
+        mTransactionsRecyclerView = findViewById(R.id.transactions_recycler_view);
+        mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_container);
     }
 
     private void setUpListeners() {

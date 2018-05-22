@@ -172,13 +172,13 @@ public class OffersListView extends OffersBaseView {
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mOffersListView = (RecyclerView) findViewById(R.id.rv_offers_list);
-        mEmptyCaseHolder = (LinearLayout) findViewById(R.id.ll_empty_case);
-        mUpdateButton = (TextView) findViewById(R.id.tv_bttn_edit_info);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mOffersListView = findViewById(R.id.rv_offers_list);
+        mEmptyCaseHolder = findViewById(R.id.ll_empty_case);
+        mUpdateButton = findViewById(R.id.tv_bttn_edit_info);
 
-        mErrorView = (LoanOfferErrorView) findViewById(R.id.ll_loan_error);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mErrorView = findViewById(R.id.ll_loan_error);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
     }
 
     /**

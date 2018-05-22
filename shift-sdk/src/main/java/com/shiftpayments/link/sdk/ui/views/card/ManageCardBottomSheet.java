@@ -121,10 +121,10 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
     }
 
     private void findAllViews(View view) {
-        mEnableCardSwitch = (SwitchCompat) view.findViewById(R.id.sw_card_enabled);
-        mShowCardInfoSwitch = (SwitchCompat) view.findViewById(R.id.sw_show_card_info);
-        mChangePin = (LinearLayout) view.findViewById(R.id.ll_change_pin);
-        mContactSupport = (LinearLayout) view.findViewById(R.id.ll_contact_support);
+        mEnableCardSwitch = view.findViewById(R.id.sw_card_enabled);
+        mShowCardInfoSwitch = view.findViewById(R.id.sw_show_card_info);
+        mChangePin = view.findViewById(R.id.ll_change_pin);
+        mContactSupport = view.findViewById(R.id.ll_contact_support);
     }
 
     private void setUpListeners() {

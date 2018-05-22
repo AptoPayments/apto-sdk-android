@@ -105,11 +105,11 @@ public class DisplayCardView
     }
 
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mCreditCardView = (CreditCardView) findViewById(R.id.credit_card_view);
-        mCardBalance = (TextView) findViewById(R.id.tv_card_balance);
-        mPrimaryButton = (TextView) findViewById(R.id.tv_display_card_primary_bttn);
-        mSecondaryButton = (TextView) findViewById(R.id.tv_display_card_secondary_bttn);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mCreditCardView = findViewById(R.id.credit_card_view);
+        mCardBalance = findViewById(R.id.tv_card_balance);
+        mPrimaryButton = findViewById(R.id.tv_display_card_primary_bttn);
+        mSecondaryButton = findViewById(R.id.tv_display_card_secondary_bttn);
     }
 
     private void setColors() {

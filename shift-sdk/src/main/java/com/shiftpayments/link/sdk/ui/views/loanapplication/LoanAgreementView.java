@@ -98,20 +98,20 @@ public class LoanAgreementView
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mScrollView = (ObservableScrollView) findViewById(R.id.osv_scroll);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mScrollView = findViewById(R.id.osv_scroll);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
 
-        mLenderLogo = (ImageView) findViewById(R.id.iv_lender_logo);
-        mLenderNameField = (TextView) findViewById(R.id.tv_lender_name);
-        mLoanInterestField = (TextView) findViewById(R.id.tv_loan_interest_rate);
-        mLoanAmountField = (TextView) findViewById(R.id.tv_loan_amount);
-        mLoanDurationField = (TextView) findViewById(R.id.tv_loan_duration);
-        mPaymentField = (TextView) findViewById(R.id.tv_payment);
-        mConfirmButton = (TextView) findViewById(R.id.tv_confirm_btn);
-        mAcceptTermsCheck = (CheckBox) findViewById(R.id.cb_accept_terms);
-        mDisclaimer = (TextView) findViewById(R.id.tv_esign_disclaimer);
-        mConsentDisclaimer = (TextView) findViewById(R.id.tv_esign_consent_disclaimer);
+        mLenderLogo = findViewById(R.id.iv_lender_logo);
+        mLenderNameField = findViewById(R.id.tv_lender_name);
+        mLoanInterestField = findViewById(R.id.tv_loan_interest_rate);
+        mLoanAmountField = findViewById(R.id.tv_loan_amount);
+        mLoanDurationField = findViewById(R.id.tv_loan_duration);
+        mPaymentField = findViewById(R.id.tv_payment);
+        mConfirmButton = findViewById(R.id.tv_confirm_btn);
+        mAcceptTermsCheck = findViewById(R.id.cb_accept_terms);
+        mDisclaimer = findViewById(R.id.tv_esign_disclaimer);
+        mConsentDisclaimer = findViewById(R.id.tv_esign_consent_disclaimer);
     }
 
     /**

@@ -79,8 +79,8 @@ public class KycStatusView extends RelativeLayout implements ViewWithToolbar, Vi
     }
 
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mTextView = (TextView) findViewById(R.id.tv_status_text);
-        mRefreshButton = (Button) findViewById(R.id.bttn_refresh);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mTextView = findViewById(R.id.tv_status_text);
+        mRefreshButton = findViewById(R.id.bttn_refresh);
     }
 }

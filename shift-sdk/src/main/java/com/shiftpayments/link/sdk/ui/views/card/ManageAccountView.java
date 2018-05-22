@@ -126,14 +126,14 @@ public class ManageAccountView
     }
 
     private void findAllViews() {
-        mFundingSourcesListView = (RecyclerView) findViewById(R.id.rv_funding_sources_list);
-        mFundingSourceLabel = (TextView) findViewById(R.id.tv_funding_sources);
-        mSignOutButton = (TextView) findViewById(R.id.tv_sign_out);
-        mAddFundingSourceButton = (ImageButton) findViewById(R.id.ib_add_funding_source);
-        mContactSupportButton = (TextView) findViewById(R.id.tv_contact_support);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mSpendableAmount = (TextView) findViewById(R.id.tv_spendable_amount);
-        mSpendableAmountLabel = (TextView) findViewById(R.id.tv_spendable_amount_label);
+        mFundingSourcesListView = findViewById(R.id.rv_funding_sources_list);
+        mFundingSourceLabel = findViewById(R.id.tv_funding_sources);
+        mSignOutButton = findViewById(R.id.tv_sign_out);
+        mAddFundingSourceButton = findViewById(R.id.ib_add_funding_source);
+        mContactSupportButton = findViewById(R.id.tv_contact_support);
+        mToolbar = findViewById(R.id.toolbar);
+        mSpendableAmount = findViewById(R.id.tv_spendable_amount);
+        mSpendableAmountLabel = findViewById(R.id.tv_spendable_amount_label);
     }
 
     private void setUpListeners() {

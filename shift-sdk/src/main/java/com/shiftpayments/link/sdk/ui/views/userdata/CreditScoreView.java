@@ -49,8 +49,8 @@ public class CreditScoreView extends UserDataView<CreditScoreView.ViewListener> 
     @Override
     protected void findAllViews() {
         super.findAllViews();
-        mRadioGroup = (RadioGroup) findViewById(R.id.rg_credit_score);
-        mErrorText = (TextView) findViewById(R.id.tv_credit_score_error);
+        mRadioGroup = findViewById(R.id.rg_credit_score);
+        mErrorText = findViewById(R.id.tv_credit_score_error);
         showError(false);
     }
 

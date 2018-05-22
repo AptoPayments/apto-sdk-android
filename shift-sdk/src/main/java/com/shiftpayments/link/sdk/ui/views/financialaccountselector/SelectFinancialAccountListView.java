@@ -126,9 +126,9 @@ public class SelectFinancialAccountListView extends CoordinatorLayout
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mAccountsList = (LinearLayout) findViewById(R.id.ll_select_accounts_list);
-        mAddAccountButton = (TextView) findViewById(R.id.tv_add_account_bttn);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mAccountsList = findViewById(R.id.ll_select_accounts_list);
+        mAddAccountButton = findViewById(R.id.tv_add_account_bttn);
     }
 
     private void setupListeners() {
