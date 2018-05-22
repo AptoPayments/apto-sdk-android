@@ -41,9 +41,9 @@ public class AddFinancialAccountCardView extends CardView {
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mIconView = (ImageView) findViewById(R.id.iv_icon);
-        mTitleField = (TextView) findViewById(R.id.tv_title);
-        mDescriptionField = (TextView) findViewById(R.id.tv_description);
+        mIconView = findViewById(R.id.iv_icon);
+        mTitleField = findViewById(R.id.tv_title);
+        mDescriptionField = findViewById(R.id.tv_description);
     }
 
     /** {@inheritDoc} */

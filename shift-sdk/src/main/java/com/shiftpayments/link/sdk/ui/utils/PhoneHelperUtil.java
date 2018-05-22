@@ -17,16 +17,6 @@ public class PhoneHelperUtil {
         return mPhoneUtil.format(phoneNumber, INTERNATIONAL);
     }
 
-    public static String formatStringPhone(String phoneNumber) {
-        Phonenumber.PhoneNumber number = null;
-        try {
-            number = mPhoneUtil.parse(phoneNumber, "US");
-        } catch (NumberParseException e) {
-            number = null;
-        }
-        return mPhoneUtil.format(number, INTERNATIONAL);
-    }
-
     public static boolean isValidNumber(Phonenumber.PhoneNumber number) {
         return  mPhoneUtil.isValidNumber(number);
     }

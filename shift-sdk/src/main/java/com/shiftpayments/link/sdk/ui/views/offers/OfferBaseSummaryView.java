@@ -60,15 +60,15 @@ public abstract class OfferBaseSummaryView extends CardView implements RowView<O
      * Locates all child Views.
      */
     private void findAllViews() {
-        mLenderNameField = (TextView) findViewById(R.id.tv_lender);
-        mLenderLogo = (ImageView) findViewById(R.id.iv_lender_logo);
+        mLenderNameField = findViewById(R.id.tv_lender);
+        mLenderLogo = findViewById(R.id.iv_lender_logo);
 
-        mInterestField = (TextView) findViewById(R.id.tv_interest);
-        mAmountField = (TextView) findViewById(R.id.tv_amount);
-        mMonthlyPaymentField = (TextView) findViewById(R.id.tv_monthly);
-        mMoreInfoButton = (TextView) findViewById(R.id.tv_bttn_more_info);
-        mApplyButton = (TextView) findViewById(R.id.tv_apply);
-        mDisclaimerField = (TextView) findViewById(R.id.tv_disclaimer);
+        mInterestField = findViewById(R.id.tv_interest);
+        mAmountField = findViewById(R.id.tv_amount);
+        mMonthlyPaymentField = findViewById(R.id.tv_monthly);
+        mMoreInfoButton = findViewById(R.id.tv_bttn_more_info);
+        mApplyButton = findViewById(R.id.tv_apply);
+        mDisclaimerField = findViewById(R.id.tv_disclaimer);
 
     }
 

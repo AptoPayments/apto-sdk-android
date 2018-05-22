@@ -10,7 +10,6 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAcco
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
@@ -21,8 +20,11 @@ import com.shiftpayments.link.sdk.sdk.tasks.config.HousingTypeListTask;
 import com.shiftpayments.link.sdk.sdk.tasks.config.IncomeTypesListTask;
 import com.shiftpayments.link.sdk.sdk.tasks.config.LinkConfigTask;
 import com.shiftpayments.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
+import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.ActivateFinancialAccountTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.AddBankAccountTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.AddCardTask;
+import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.DisableFinancialAccountTask;
+import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.EnableFinancialAccountTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountFundingSourceTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTransactionsTask;
@@ -31,7 +33,6 @@ import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetUserFundingSour
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.SetAccountFundingSourceTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountPinTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
 import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.GetLoanApplicationStatusTask;
@@ -435,13 +436,39 @@ public class ShiftLinkSdk {
     }
 
     /**
-     * Update financial account.
+     * Activate financial account.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask updateFinancialAccount(UpdateFinancialAccountRequestVo data, String accountId) {
+    public static ShiftApiTask activateFinancialAccount(String accountId) {
         checkComponents();
 
-        UpdateFinancialAccountTask task = new UpdateFinancialAccountTask(data, accountId, getApiWrapper(), getResponseHandler());
+        ActivateFinancialAccountTask task = new ActivateFinancialAccountTask(accountId, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Enable financial account.
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask enableFinancialAccount(String accountId) {
+        checkComponents();
+
+        EnableFinancialAccountTask task = new EnableFinancialAccountTask(accountId, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Disable financial account.
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask disableFinancialAccount(String accountId) {
+        checkComponents();
+
+        DisableFinancialAccountTask task = new DisableFinancialAccountTask(accountId, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

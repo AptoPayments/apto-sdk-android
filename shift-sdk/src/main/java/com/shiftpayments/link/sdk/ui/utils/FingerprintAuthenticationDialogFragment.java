@@ -60,7 +60,7 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment {
                     }
 
                     @Override
-                    //onAuthenticationFailed is called when the fingerprint doesn’t match with any of the fingerprints registered on the device
+                    //onAuthenticationFailed is called when the fingerprint doesn't match with any of the fingerprints registered on the device
                     public void onAuthenticationFailed() {
                         mFingerprintHandler.stopListening();
                         if(mFingerprintDelegate != null) {

@@ -67,17 +67,118 @@ public class OffersListView extends OffersBaseView {
         super(context, attrs);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        findAllViews();
+        setUpListeners();
+        setupRecyclerView();
+        setColors();
+
+        showEmptyCase(false);
+        showError(false);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Toolbar getToolbar() {
+        return mToolbar;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onClick(View view) {
+        if (mListener != null && view.getId() == R.id.tv_bttn_edit_info) {
+            mListener.updateClickedHandler();
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void displayErrorMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setListener(OffersListPresenter offersListPresenter) {
+        this.setListener((ViewListener) offersListPresenter);
+    }
+
+    @Override
+    public void setData(IntermediateLoanApplicationModel data) {
+        mErrorView.setData(data);
+    }
+
+    @Override
+    public LoadingView getLoadingView() {
+        return mLoadingView;
+    }
+
+    /**
+     * Stores a new {@link PagedListRecyclerAdapter} for the {@link RecyclerView} to use.
+     * @param adapter The adapter to use.
+     */
+    public void setAdapter(PagedListRecyclerAdapter<OfferSummaryModel, OfferListSummaryView> adapter) {
+        mOffersListView.setAdapter(adapter);
+    }
+
+    /**
+     * Updates the empty case visibility.
+     * @param show Whether the empty case should be shown.
+     */
+    public void showEmptyCase(boolean show) {
+        showView(show, mEmptyCaseHolder);
+    }
+
+    /**
+     * Updates the error visibility.
+     * @param show Whether the error should be shown.
+     */
+    public void showError(boolean show) {
+        showView(show, mErrorView);
+    }
+
+    /**
+     * Stores a new {@link ViewListener}.
+     * @param listener New {@link ViewListener}.
+     */
+    private void setListener(ViewListener listener) {
+        mListener = listener;
+        mErrorView.setListener(listener);
+    }
+
+    private void setColors() {
+        int color = UIStorage.getInstance().getPrimaryColor();
+        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
+        if (mUpdateButton != null) {
+            mUpdateButton.setBackgroundColor(color);
+            mUpdateButton.setTextColor(contrastColor);
+        }
+        mToolbar.setBackgroundDrawable(new ColorDrawable(color));
+        mToolbar.setTitleTextColor(contrastColor);
+        Drawable backArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        backArrow.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
+        mToolbar.setNavigationIcon(backArrow);
+
+        Drawable menuIcon = mToolbar.getOverflowIcon();
+        if (menuIcon != null) {
+            menuIcon.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
+            mToolbar.setOverflowIcon(menuIcon);
+        }
+    }
+
     /**
      * Finds all references to child Views.
      */
-    protected void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mOffersListView = (RecyclerView) findViewById(R.id.rv_offers_list);
-        mEmptyCaseHolder = (LinearLayout) findViewById(R.id.ll_empty_case);
-        mUpdateButton = (TextView) findViewById(R.id.tv_bttn_edit_info);
+    private void findAllViews() {
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mOffersListView = findViewById(R.id.rv_offers_list);
+        mEmptyCaseHolder = findViewById(R.id.ll_empty_case);
+        mUpdateButton = findViewById(R.id.tv_bttn_edit_info);
 
-        mErrorView = (LoanOfferErrorView) findViewById(R.id.ll_loan_error);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mErrorView = findViewById(R.id.ll_loan_error);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
     }
 
     /**
@@ -106,106 +207,5 @@ public class OffersListView extends OffersBaseView {
         } else {
             view.setVisibility(GONE);
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        findAllViews();
-        setUpListeners();
-        setupRecyclerView();
-        setColors();
-
-        showEmptyCase(false);
-        showError(false);
-    }
-
-    private void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
-        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        if (mUpdateButton != null) {
-            mUpdateButton.setBackgroundColor(color);
-            mUpdateButton.setTextColor(contrastColor);
-        }
-        mToolbar.setBackgroundDrawable(new ColorDrawable(color));
-        mToolbar.setTitleTextColor(contrastColor);
-        Drawable backArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-        backArrow.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
-        mToolbar.setNavigationIcon(backArrow);
-
-        Drawable menuIcon = mToolbar.getOverflowIcon();
-        if (menuIcon != null) {
-            menuIcon.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
-            mToolbar.setOverflowIcon(menuIcon);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Toolbar getToolbar() {
-        return mToolbar;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onClick(View view) {
-        if (mListener != null && view.getId() == R.id.tv_bttn_edit_info) {
-            mListener.updateClickedHandler();
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void displayErrorMessage(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void setListener(OffersListPresenter offersListPresenter) {
-        this.setListener((ViewListener) offersListPresenter);
-    }
-
-    /**
-     * Stores a new {@link ViewListener}.
-     * @param listener New {@link ViewListener}.
-     */
-    public void setListener(ViewListener listener) {
-        mListener = listener;
-        mErrorView.setListener(listener);
-    }
-
-    /**
-     * Stores a new {@link PagedListRecyclerAdapter} for the {@link RecyclerView} to use.
-     * @param adapter The adapter to use.
-     */
-    public void setAdapter(PagedListRecyclerAdapter<OfferSummaryModel, OfferListSummaryView> adapter) {
-        mOffersListView.setAdapter(adapter);
-    }
-
-    @Override
-    public void setData(IntermediateLoanApplicationModel data) {
-        mErrorView.setData(data);
-    }
-
-    /**
-     * Updates the empty case visibility.
-     * @param show Whether the empty case should be shown.
-     */
-    public void showEmptyCase(boolean show) {
-        showView(show, mEmptyCaseHolder);
-    }
-
-    /**
-     * Updates the error visibility.
-     * @param show Whether the error should be shown.
-     */
-    public void showError(boolean show) {
-        showView(show, mErrorView);
-    }
-
-    @Override
-    public LoadingView getLoadingView() {
-        return mLoadingView;
     }
 }

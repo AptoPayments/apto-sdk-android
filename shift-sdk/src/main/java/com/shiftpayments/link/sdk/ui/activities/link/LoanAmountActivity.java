@@ -6,7 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.activities.userdata.UserDataActivity;
+import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.link.LoanAmountModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.link.LoanAmountPresenter;
@@ -20,7 +20,7 @@ import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
  * @author Wijnand
  */
 public class LoanAmountActivity
-        extends UserDataActivity<LoanAmountModel, LoanAmountView, LoanAmountPresenter> {
+        extends MvpActivity<LoanAmountModel, LoanAmountView, LoanAmountPresenter> {
 
     /** {@inheritDoc} */
     @Override

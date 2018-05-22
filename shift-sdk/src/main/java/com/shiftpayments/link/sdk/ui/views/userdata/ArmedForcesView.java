@@ -47,8 +47,8 @@ public class ArmedForcesView extends UserDataView<ArmedForcesView.ViewListener> 
     @Override
     protected void findAllViews() {
         super.findAllViews();
-        mRadioGroup = (RadioGroup) findViewById(R.id.rg_armed_forces);
-        mErrorText = (TextView) findViewById(R.id.tv_armed_forces_error);
+        mRadioGroup = findViewById(R.id.rg_armed_forces);
+        mErrorText = findViewById(R.id.tv_armed_forces_error);
         showError(false);
     }
 

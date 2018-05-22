@@ -3,7 +3,7 @@ package com.shiftpayments.link.sdk.ui.activities.verification;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.activities.userdata.UserDataActivity;
+import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.verification.PhoneVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.verification.PhoneVerificationDelegate;
@@ -15,7 +15,7 @@ import com.shiftpayments.link.sdk.ui.views.verification.PhoneVerificationView;
  * @author Adrian
  */
 public class PhoneVerificationActivity
-        extends UserDataActivity<PhoneVerificationModel, PhoneVerificationView, PhoneVerificationPresenter> {
+        extends MvpActivity<PhoneVerificationModel, PhoneVerificationView, PhoneVerificationPresenter> {
 
     /** {@inheritDoc} */
     @Override

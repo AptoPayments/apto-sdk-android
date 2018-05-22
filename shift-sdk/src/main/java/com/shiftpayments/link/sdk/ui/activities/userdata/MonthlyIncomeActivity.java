@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.ui.activities.userdata;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.userdata.MonthlyIncomeModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.MonthlyIncomeDelegate;
@@ -14,7 +15,7 @@ import com.shiftpayments.link.sdk.ui.views.userdata.MonthlyIncomeView;
  * @author Wijnand
  */
 public class MonthlyIncomeActivity
-        extends UserDataActivity<MonthlyIncomeModel, MonthlyIncomeView, MonthlyIncomePresenter> {
+        extends MvpActivity<MonthlyIncomeModel, MonthlyIncomeView, MonthlyIncomePresenter> {
 
     /** {@inheritDoc} */
     @Override

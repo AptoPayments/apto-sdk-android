@@ -35,18 +35,14 @@ public class ProgressBarWidget extends RelativeLayout implements View.OnClickLis
      */
     public ProgressBarWidget(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
-    }
-
-    private void init() {
     }
 
     /**
      * Finds all relevant child {@link View}s.
      */
     private void findAllViews() {
-        mNextButton = (LinearLayout) findViewById(R.id.ll_next_button);
-        mProgressBar = (ProgressBar) findViewById(R.id.pb_progress_bar);
+        mNextButton = findViewById(R.id.ll_next_button);
+        mProgressBar = findViewById(R.id.pb_progress_bar);
     }
 
     /**

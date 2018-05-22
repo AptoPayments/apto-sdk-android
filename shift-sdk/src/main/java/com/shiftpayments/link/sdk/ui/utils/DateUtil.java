@@ -18,7 +18,7 @@ public class DateUtil {
     public static String formatISO8601Timestamp(String timestamp, String format) {
         Calendar calendar = GregorianCalendar.getInstance();
         String s = timestamp.replace("Z", "+00:00");
-        Date date = null;
+        Date date;
         try {
             s = s.substring(0, 22) + s.substring(23);  // to get rid of the ":"
             date = new SimpleDateFormat(ISO8601_DATE_FORMAT, Locale.US).parse(s);

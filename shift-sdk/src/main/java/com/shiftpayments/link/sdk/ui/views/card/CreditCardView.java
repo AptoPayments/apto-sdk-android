@@ -63,14 +63,14 @@ public class CreditCardView extends RelativeLayout {
         final LayoutInflater inflater = LayoutInflater.from(mContext);
         inflater.inflate(R.layout.credit_card_view, this, true);
 
-        mCardNumberView = (EditText) findViewById(R.id.et_card_number);
-        mCardNameView = (EditText) findViewById(R.id.et_card_name);
-        mExpiryDateLabel = (TextView) findViewById(R.id.tv_expiration_label);
-        mExpiryDateView = (EditText) findViewById(R.id.et_expiry_date);
-        mCvvLabel = (TextView) findViewById(R.id.tv_cvv_label);
-        mCvvView = (EditText) findViewById(R.id.et_cvv);
-        mCardLogoView = (ImageView) findViewById(R.id.iv_card_logo);
-        mCardNotEnabledLabel = (TextView) findViewById(R.id.tv_card_disabled_label);
+        mCardNumberView = findViewById(R.id.et_card_number);
+        mCardNameView = findViewById(R.id.et_card_name);
+        mExpiryDateLabel = findViewById(R.id.tv_expiration_label);
+        mExpiryDateView = findViewById(R.id.et_expiry_date);
+        mCvvLabel = findViewById(R.id.tv_cvv_label);
+        mCvvView = findViewById(R.id.et_cvv);
+        mCardLogoView = findViewById(R.id.iv_card_logo);
+        mCardNotEnabledLabel = findViewById(R.id.tv_card_disabled_label);
     }
 
     @Override

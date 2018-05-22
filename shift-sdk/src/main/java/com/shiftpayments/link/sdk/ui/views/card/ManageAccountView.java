@@ -29,7 +29,7 @@ import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 public class ManageAccountView
         extends CoordinatorLayout implements View.OnClickListener, ViewWithToolbar {
 
-    protected Toolbar mToolbar;
+    private Toolbar mToolbar;
     private ViewListener mListener;
     private RecyclerView mFundingSourcesListView;
     private TextView mFundingSourceLabel;
@@ -106,15 +106,34 @@ public class ManageAccountView
         mSpendableAmount.setText(amount);
     }
 
-    protected void findAllViews() {
-        mFundingSourcesListView = (RecyclerView) findViewById(R.id.rv_funding_sources_list);
-        mFundingSourceLabel = (TextView) findViewById(R.id.tv_funding_sources);
-        mSignOutButton = (TextView) findViewById(R.id.tv_sign_out);
-        mAddFundingSourceButton = (ImageButton) findViewById(R.id.ib_add_funding_source);
-        mContactSupportButton = (TextView) findViewById(R.id.tv_contact_support);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mSpendableAmount = (TextView) findViewById(R.id.tv_spendable_amount);
-        mSpendableAmountLabel = (TextView) findViewById(R.id.tv_spendable_amount_label);
+    /**
+     * Stores a new {@link PagedListRecyclerAdapter} for the {@link RecyclerView} to use.
+     * @param adapter The adapter to use.
+     */
+    public void setAdapter(PagedListRecyclerAdapter<FundingSourceModel, FundingSourceView> adapter) {
+        mFundingSourcesListView.setAdapter(adapter);
+    }
+
+    /**
+     * Callbacks this {@link View} will invoke.
+     */
+    public interface ViewListener {
+
+        void signOut();
+        void addFundingSource();
+        void contactSupport();
+        void onBack();
+    }
+
+    private void findAllViews() {
+        mFundingSourcesListView = findViewById(R.id.rv_funding_sources_list);
+        mFundingSourceLabel = findViewById(R.id.tv_funding_sources);
+        mSignOutButton = findViewById(R.id.tv_sign_out);
+        mAddFundingSourceButton = findViewById(R.id.ib_add_funding_source);
+        mContactSupportButton = findViewById(R.id.tv_contact_support);
+        mToolbar = findViewById(R.id.toolbar);
+        mSpendableAmount = findViewById(R.id.tv_spendable_amount);
+        mSpendableAmountLabel = findViewById(R.id.tv_spendable_amount_label);
     }
 
     private void setUpListeners() {
@@ -143,23 +162,5 @@ public class ManageAccountView
         backArrow.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
         mToolbar.setNavigationIcon(backArrow);
         mSpendableAmount.setTextColor(primaryColor);
-    }
-
-    /**
-     * Stores a new {@link PagedListRecyclerAdapter} for the {@link RecyclerView} to use.
-     * @param adapter The adapter to use.
-     */
-    public void setAdapter(PagedListRecyclerAdapter<FundingSourceModel, FundingSourceView> adapter) {
-        mFundingSourcesListView.setAdapter(adapter);
-    }
-
-    /**
-     * Callbacks this {@link View} will invoke.
-     */
-    public interface ViewListener {
-        void signOut();
-        void addFundingSource();
-        void contactSupport();
-        void onBack();
     }
 }

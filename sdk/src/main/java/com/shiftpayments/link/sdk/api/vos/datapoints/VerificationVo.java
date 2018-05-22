@@ -6,7 +6,7 @@ public class VerificationVo {
     public enum VerificationStatus{
         PENDING,
         PASSED,
-        FAILED;
+        FAILED
     }
 
     private VerificationStatus mVerificationStatus;
@@ -85,7 +85,7 @@ public class VerificationVo {
     }
 
     public JsonObject toJSON() {
-        JsonObject gsonObject = new JsonObject();;
+        JsonObject gsonObject = new JsonObject();
         gsonObject.addProperty("secret", mSecret);
         gsonObject.addProperty("verification_id", String.valueOf(mVerificationId));
         gsonObject.addProperty("verification_type", mVerificationType);

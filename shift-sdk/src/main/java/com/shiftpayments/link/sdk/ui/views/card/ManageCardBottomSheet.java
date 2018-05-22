@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.BottomSheetDialogFragment;
@@ -47,11 +46,6 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
         public void onSlide(@NonNull View bottomSheet, float slideOffset) {
         }
     };
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @NonNull
     @Override
@@ -127,10 +121,10 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
     }
 
     private void findAllViews(View view) {
-        mEnableCardSwitch = (SwitchCompat) view.findViewById(R.id.sw_card_enabled);
-        mShowCardInfoSwitch = (SwitchCompat) view.findViewById(R.id.sw_show_card_info);
-        mChangePin = (LinearLayout) view.findViewById(R.id.ll_change_pin);
-        mContactSupport = (LinearLayout) view.findViewById(R.id.ll_contact_support);
+        mEnableCardSwitch = view.findViewById(R.id.sw_card_enabled);
+        mShowCardInfoSwitch = view.findViewById(R.id.sw_show_card_info);
+        mChangePin = view.findViewById(R.id.ll_change_pin);
+        mContactSupport = view.findViewById(R.id.ll_contact_support);
     }
 
     private void setUpListeners() {

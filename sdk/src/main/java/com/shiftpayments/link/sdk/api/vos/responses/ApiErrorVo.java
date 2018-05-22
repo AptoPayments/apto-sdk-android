@@ -33,7 +33,7 @@ public class ApiErrorVo {
     @Override
     public String toString() {
         String result = "%d / %d: %s";
-        return String.format(result, statusCode, serverCode, serverMessage);
+        return String.format(java.util.Locale.getDefault(), result, statusCode, serverCode, serverMessage);
     }
 
     public boolean isSessionExpired = false;

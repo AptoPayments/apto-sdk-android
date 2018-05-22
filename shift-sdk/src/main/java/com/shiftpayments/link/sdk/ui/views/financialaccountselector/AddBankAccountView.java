@@ -57,7 +57,7 @@ public class AddBankAccountView
         mToolbar.setTitleTextColor(contrastColor);
     }
 
-    protected void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
+    private void findAllViews() {
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
     }
 }

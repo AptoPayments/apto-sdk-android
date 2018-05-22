@@ -47,8 +47,8 @@ public class PaydayLoanView extends UserDataView<PaydayLoanView.ViewListener> {
     @Override
     protected void findAllViews() {
         super.findAllViews();
-        mRadioGroup = (RadioGroup) findViewById(R.id.rg_payday_loan);
-        mErrorText = (TextView) findViewById(R.id.tv_payday_loan_error);
+        mRadioGroup = findViewById(R.id.rg_payday_loan);
+        mErrorText = findViewById(R.id.tv_payday_loan_error);
         showError(false);
     }
 

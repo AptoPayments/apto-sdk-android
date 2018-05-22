@@ -58,9 +58,9 @@ public class EmailVerificationView
     @Override
     protected void findAllViews() {
         super.findAllViews();
-        mSubmitButton = (TextView) findViewById(R.id.tv_submit_bttn);
-        mResendButton = (TextView) findViewById(R.id.tv_resend_bttn);
-        mEmailInfo = (TextView) findViewById(R.id.tv_verification_code_header);
+        mSubmitButton = findViewById(R.id.tv_submit_bttn);
+        mResendButton = findViewById(R.id.tv_resend_bttn);
+        mEmailInfo = findViewById(R.id.tv_verification_code_header);
     }
 
     /** {@inheritDoc} */

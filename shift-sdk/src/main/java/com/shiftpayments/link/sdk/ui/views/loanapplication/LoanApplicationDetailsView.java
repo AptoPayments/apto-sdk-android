@@ -61,14 +61,14 @@ public class LoanApplicationDetailsView extends ScrollView implements View.OnCli
      * Finds all relevant child Views.
      */
     private void findAllViews() {
-        mLenderImage = (ImageView) findViewById(R.id.iv_lender_logo);
-        mLenderNameField = (TextView) findViewById(R.id.tv_lender_name);
-        mApplicationStateField = (TextView) findViewById(R.id.tv_application_state);
-        mInterestRateField = (TextView) findViewById(R.id.tv_loan_interest_rate);
-        mTotalAmountField = (TextView) findViewById(R.id.tv_loan_amount);
-        mPaymentField = (TextView) findViewById(R.id.tv_payment);
-        mDurationField = (TextView) findViewById(R.id.tv_loan_duration);
-        mActionButton = (TextView) findViewById(R.id.tv_bttn_action);
+        mLenderImage = findViewById(R.id.iv_lender_logo);
+        mLenderNameField = findViewById(R.id.tv_lender_name);
+        mApplicationStateField = findViewById(R.id.tv_application_state);
+        mInterestRateField = findViewById(R.id.tv_loan_interest_rate);
+        mTotalAmountField = findViewById(R.id.tv_loan_amount);
+        mPaymentField = findViewById(R.id.tv_payment);
+        mDurationField = findViewById(R.id.tv_loan_duration);
+        mActionButton = findViewById(R.id.tv_bttn_action);
     }
 
     /**

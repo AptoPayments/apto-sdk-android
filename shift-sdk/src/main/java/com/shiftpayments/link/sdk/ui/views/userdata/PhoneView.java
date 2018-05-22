@@ -51,9 +51,9 @@ public class PhoneView
     protected void findAllViews() {
         super.findAllViews();
 
-        mPhoneWrapper = (TextInputLayout) findViewById(R.id.til_phone);
-        mPhoneField = (EditText) findViewById(R.id.et_phone);
-        mPhoneLabel = (TextView) findViewById(R.id.tv_phone_header);
+        mPhoneWrapper = findViewById(R.id.til_phone);
+        mPhoneField = findViewById(R.id.et_phone);
+        mPhoneLabel = findViewById(R.id.tv_phone_header);
     }
 
     /** {@inheritDoc} */

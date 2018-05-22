@@ -13871,5 +13871,5 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           @attr name android:layout
         */
         public static int ViewStubCompat_android_layout = 1;
-    };
+    }
 }

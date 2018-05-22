@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.ui.activities.userdata;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.userdata.AddressModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.AddressDelegate;
@@ -14,7 +15,7 @@ import com.shiftpayments.link.sdk.ui.views.userdata.AddressView;
  * @author Wijnand
  */
 public class AddressActivity
-        extends UserDataActivity<AddressModel, AddressView, AddressPresenter> {
+        extends MvpActivity<AddressModel, AddressView, AddressPresenter> {
 
     /** {@inheritDoc} */
     @Override

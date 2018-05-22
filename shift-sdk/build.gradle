@@ -59,7 +59,7 @@ android {
 
     sourceSets {
         test {
-            java.srcDirs = ['../sdk/src/test/java', 'src/test/java'];
+            java.srcDirs = ['../sdk/src/test/java', 'src/test/java']
         }
     }
 

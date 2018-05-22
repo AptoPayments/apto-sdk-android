@@ -77,7 +77,7 @@ public class ShiftLinkSdkTest {
         MockExecutor executor = new MockExecutor();
         ShiftLinkSdk.setExecutor(executor);
 
-        Assert.assertThat("Incorrect Executor.", ShiftLinkSdk.getExecutor(), equalTo((Executor) executor));
+        Assert.assertThat("Incorrect Executor.", ShiftLinkSdk.getExecutor(), equalTo(executor));
     }
 
     /**

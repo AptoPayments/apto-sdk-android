@@ -16,7 +16,6 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.Application
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
@@ -39,11 +38,13 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequenciesList
 import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
@@ -78,6 +79,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     public static final long OFFER_ONE_AMOUNT = 5555;
     public static final float OFFER_ONE_INTEREST = 19.9f;
     public static final float OFFER_ONE_PAYMENT = 123.45f;
+    public static final String OFFER_ONE_CURRENCY = "USD";
     public static final String OFFER_ONE_APPLICATION_URL = "http://www.moremoney.com/";
     public static final int EXPECTED_INCOME_TYPE = 1;
     public static final int EXPECTED_SALARY_FREQUENCY = 2;
@@ -149,8 +151,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
 
     /** {@inheritDoc} */
     public HashMap<String, String> getHTTPHeaders() {
-        HashMap<String, String> response = new HashMap<>();
-        return response;
+        return new HashMap<>();
     }
 
     /** {@inheritDoc} */
@@ -200,8 +201,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     /** {@inheritDoc} */
     @Override
     public UserResponseVo updateUser(DataPointList requestData) throws ApiException {
-        UserResponseVo response = new UserResponseVo();
-        return response;
+        return new UserResponseVo();
     }
 
     @Override
@@ -227,6 +227,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
         offerOne.loan_amount = OFFER_ONE_AMOUNT;
         offerOne.interest_rate = OFFER_ONE_INTEREST;
         offerOne.payment_amount = OFFER_ONE_PAYMENT;
+        offerOne.currency = OFFER_ONE_CURRENCY;
         offerOne.application_method = LoanApplicationMethod.WEB;
         offerOne.application_url = OFFER_ONE_APPLICATION_URL;
         offerOne.term = new TermVo();
@@ -385,7 +386,17 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public UpdateFinancialAccountResponseVo updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo requestData) throws ApiException {
+    public ActivateFinancialAccountResponseVo activateFinancialAccount(String s) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public EnableFinancialAccountResponseVo enableFinancialAccount(String s) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public DisableFinancialAccountResponseVo disableFinancialAccount(String s) throws ApiException {
         return null;
     }
 

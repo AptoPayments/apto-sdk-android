@@ -17,8 +17,7 @@ import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 public class ActionNotSupportedView extends RelativeLayout implements ViewWithToolbar {
 
     private TextView mTextView;
-    protected Toolbar mToolbar;
-
+    private Toolbar mToolbar;
 
     public ActionNotSupportedView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -37,6 +36,10 @@ public class ActionNotSupportedView extends RelativeLayout implements ViewWithTo
         return mToolbar;
     }
 
+    public void setErrorText(String error) {
+        mTextView.setText(error);
+    }
+
     private void setColors() {
         int primaryColor = UIStorage.getInstance().getPrimaryColor();
         int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
@@ -44,12 +47,8 @@ public class ActionNotSupportedView extends RelativeLayout implements ViewWithTo
         mToolbar.setTitleTextColor(contrastColor);
     }
 
-    protected void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mTextView = (TextView) findViewById(R.id.tv_status_text);
-    }
-
-    public void setErrorText(String error) {
-        mTextView.setText(error);
+    private void findAllViews() {
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mTextView = findViewById(R.id.tv_status_text);
     }
 }

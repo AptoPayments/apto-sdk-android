@@ -70,13 +70,13 @@ public class LoanAmountView
     protected void findAllViews() {
         super.findAllViews();
 
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
-        mAmountText = (TextView) findViewById(R.id.tv_loan_amount);
-        mAmountSlider = (DiscreteSeekBar) findViewById(R.id.dsb_loan_amount);
-        mPurposeSpinner = (Spinner) findViewById(R.id.sp_loan_purpose);
-        mPurposeErrorField = (TextView) findViewById(R.id.tv_loan_purpose_error);
-        mDisclaimersHeader = (TextView) findViewById(R.id.tv_disclaimers_header);
-        mDisclaimersField = (TextView) findViewById(R.id.tv_disclaimers_body);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
+        mAmountText = findViewById(R.id.tv_loan_amount);
+        mAmountSlider = findViewById(R.id.dsb_loan_amount);
+        mPurposeSpinner = findViewById(R.id.sp_loan_purpose);
+        mPurposeErrorField = findViewById(R.id.tv_loan_purpose_error);
+        mDisclaimersHeader = findViewById(R.id.tv_disclaimers_header);
+        mDisclaimersField = findViewById(R.id.tv_disclaimers_body);
         mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
 
         setColors(UIStorage.getInstance().getPrimaryColor());

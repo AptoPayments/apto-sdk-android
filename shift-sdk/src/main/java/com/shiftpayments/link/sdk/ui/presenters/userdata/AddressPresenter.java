@@ -117,16 +117,14 @@ public class AddressPresenter
         }
         else {
             mLoadingSpinnerManager.showLoading(true);
-            startAddressVerification(()->{
-                mActivity.runOnUiThread(() -> {
-                    if(mModel.hasVerifiedAddress()) {
-                        validateData();
-                    }
-                    else {
-                        mView.updateAddressError(true, R.string.address_address_error);
-                    }
-                });
-            });
+            startAddressVerification(()-> mActivity.runOnUiThread(() -> {
+                if(mModel.hasVerifiedAddress()) {
+                    validateData();
+                }
+                else {
+                    mView.updateAddressError(true, R.string.address_address_error);
+                }
+            }));
         }
     }
 
@@ -181,9 +179,8 @@ public class AddressPresenter
 
     @Override
     public void onAddressLostFocus() {
-        startAddressVerification(()->{
-            mActivity.runOnUiThread(() -> mView.updateAddressError(mModel.hasValidAddress(), R.string.address_address_error));
-        });
+        startAddressVerification(()-> mActivity.runOnUiThread(
+                () -> mView.updateAddressError(mModel.hasValidAddress(), R.string.address_address_error)));
     }
 }
 

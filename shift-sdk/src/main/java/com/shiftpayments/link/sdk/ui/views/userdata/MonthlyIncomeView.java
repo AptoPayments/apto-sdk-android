@@ -52,8 +52,8 @@ public class MonthlyIncomeView
     protected void findAllViews() {
         super.findAllViews();
 
-        mIncomeText = (TextView) findViewById(R.id.tv_income);
-        mIncomeSlider = (DiscreteSeekBar) findViewById(R.id.dsb_income);
+        mIncomeText = findViewById(R.id.tv_income);
+        mIncomeSlider = findViewById(R.id.dsb_income);
     }
 
     @Override
