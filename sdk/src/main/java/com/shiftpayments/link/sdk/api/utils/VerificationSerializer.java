@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
  */
 
 public class VerificationSerializer implements JsonSerializer<VerificationVo>{
+    @SuppressWarnings("RedundantCast")
     @Override
     public JsonElement serialize(VerificationVo src, Type typeOfSrc, JsonSerializationContext context) {
         // Cast to Object required due to Gson library limitations: https://stackoverflow.com/a/15016251

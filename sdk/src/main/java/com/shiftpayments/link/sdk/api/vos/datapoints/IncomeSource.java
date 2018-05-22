@@ -14,8 +14,8 @@ public class IncomeSource extends DataPointVo {
     public IncomeSource(int incomeType, int salaryFrequency, boolean verified,
                         boolean notSpecified) {
         super(DataPointType.IncomeSource, verified, notSpecified);
-        this.incomeType = new IdDescriptionPairDisplayVo(incomeType, null);;
-        this.salaryFrequency = new IdDescriptionPairDisplayVo(salaryFrequency, null);;
+        this.incomeType = new IdDescriptionPairDisplayVo(incomeType, null);
+        this.salaryFrequency = new IdDescriptionPairDisplayVo(salaryFrequency, null);
     }
 
     @Override

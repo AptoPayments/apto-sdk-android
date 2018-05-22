@@ -53,9 +53,9 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                         jObject.get("phone_number").getAsString(), verified, notSpecified);
             case "email":
                 if(notSpecified) {
-                    return new Email(null, verified, notSpecified);
+                    return new Email(null, verified, true);
                 }
-                return new Email(jObject.get("email").getAsString(), verified, notSpecified);
+                return new Email(jObject.get("email").getAsString(), verified, false);
             case "birthdate":
                 return new Birthdate(jObject.get("date").getAsString(), verified, notSpecified);
             case "ssn":
@@ -108,6 +108,7 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
         return null;
     }
 
+    @SuppressWarnings("RedundantCast")
     @Override
     public JsonElement serialize(DataPointVo src, Type typeOfSrc, JsonSerializationContext context) {
         // Cast to Object required due to Gson library limitations: https://stackoverflow.com/a/15016251

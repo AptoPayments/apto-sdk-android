@@ -154,7 +154,7 @@ public interface ShiftApiWrapper {
      */
     String getVgsEndPoint();
 
-    public HashMap<String, String> getHTTPHeaders();
+    HashMap<String, String> getHTTPHeaders();
 
     /**
      * Stores a new API end point.<br />
@@ -274,35 +274,35 @@ public interface ShiftApiWrapper {
     /**
      * @param verificationId The verification ID to check.
      * @return The verification object with the current status.
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     VerificationStatusResponseVo getVerificationStatus(String verificationId) throws ApiException;
 
     /**
      * @param verificationId The verification ID to restart.
      * @return A verification object with the verification ID.
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     VerificationResponseVo restartVerification(String verificationId) throws ApiException;
 
     /**
      * @param requestData The tokenized bank account.
      * @return The verification object with the current status.
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     VerificationStatusResponseVo addBankAccount(AddBankAccountRequestVo requestData) throws ApiException;
 
     /**
      * @param requestData The card DataPoint.
      * @return The same DataPoint with the accountId filled in.
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     Card addCard(Card requestData) throws ApiException;
 
     /**
      * @param requestData The user's phone and the amount
      * @return The virtual card
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     Card issueVirtualCard(IssueVirtualCardRequestVo requestData) throws ApiException;
 
@@ -325,14 +325,14 @@ public interface ShiftApiWrapper {
     /**
      * @param applicationId The application ID to check.
      * @return The application object with the current status and pending actions
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     LoanApplicationDetailsResponseVo getApplicationStatus(String applicationId) throws ApiException;
 
     /**
      * @param applicationId The ID of the application to link the financial account
      * @return The application object with the current status
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     LoanApplicationDetailsResponseVo setApplicationAccount(ApplicationAccountRequestVo requestData, String applicationId) throws ApiException;
 

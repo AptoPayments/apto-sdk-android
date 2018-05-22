@@ -1,6 +1,6 @@
 package com.shiftpayments.link.sdk.api.vos.responses.users;
 
-/**
+/*
  * Current user data in response.
  * @author Adrian
  */

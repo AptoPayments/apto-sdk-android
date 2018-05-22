@@ -1,5 +1,7 @@
 package com.shiftpayments.link.sdk.wrappers.retrofit;
 
+import android.annotation.SuppressLint;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -77,7 +79,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Collections;
 import java.util.HashMap;
@@ -85,7 +86,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
@@ -144,7 +144,7 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         mVerificationService = retrofit.create(VerificationService.class);
         mDashboardService = retrofit.create(DashboardService.class);
 
-        /**
+        /*
          * TODO: This is probably still slightly too generic.
          * Long timeout only matters for the 'offer/requestOffers' API call.
          */
@@ -221,14 +221,16 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
                 return new X509Certificate[0];
             }
 
+            @SuppressLint("TrustAllX509TrustManager")
             @Override
             public void checkServerTrusted(final X509Certificate[] chain,
-                                           final String authType) throws CertificateException {
+                                           final String authType) {
             }
 
+            @SuppressLint("TrustAllX509TrustManager")
             @Override
             public void checkClientTrusted(final X509Certificate[] chain,
-                                           final String authType) throws CertificateException {
+                                           final String authType) {
             }
         }};
 
@@ -243,15 +245,12 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
             return builder;
         }
 
-        HostnameVerifier hostnameVerifier = new HostnameVerifier() {
-            @Override
-            public boolean verify(String hostname, SSLSession session) {
-                try {
-                    URL url = new URL(getApiEndPoint());
-                    return hostname.equals(url.getHost());
-                } catch (MalformedURLException e) {
-                    return false;
-                }
+        HostnameVerifier hostnameVerifier = (hostname, session) -> {
+            try {
+                URL url = new URL(getApiEndPoint());
+                return hostname.equals(url.getHost());
+            } catch (MalformedURLException e) {
+                return false;
             }
         };
         builder.hostnameVerifier(hostnameVerifier);
@@ -263,7 +262,7 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
      * @param requestPath The request path.
      * @param <T> Type of the API response.
      * @return Parsed response OR null if the call wasn't successful.
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     private <T> T handleResponse(Response<T> response, String requestPath) throws ApiException {
         T result;

@@ -8,7 +8,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
- * A concrete {@link ShiftApiTask} to login an exisiting user.
+ * A concrete {@link ShiftApiTask} to login an existing user.
  * @author Wijnand
  */
 public class LoginUserTask extends ShiftApiTask<Void, Void, LoginUserResponseVo, LoginRequestVo> {
