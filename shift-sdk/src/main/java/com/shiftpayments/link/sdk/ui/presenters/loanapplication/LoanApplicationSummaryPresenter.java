@@ -102,9 +102,8 @@ public class LoanApplicationSummaryPresenter
             applicationDisclaimer.append(partnerDivider);
         }
 
-        mActivity.runOnUiThread(() -> {
-            mView.setDisclaimer(applicationDisclaimer.substring(0, applicationDisclaimer.length() - partnerDivider.length()));
-        });
+        mActivity.runOnUiThread(() -> mView.setDisclaimer(
+                applicationDisclaimer.substring(0, applicationDisclaimer.length() - partnerDivider.length())));
     }
 
     @Override

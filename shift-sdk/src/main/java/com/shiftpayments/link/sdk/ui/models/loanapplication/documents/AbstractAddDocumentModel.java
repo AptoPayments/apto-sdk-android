@@ -26,7 +26,7 @@ public abstract class AbstractAddDocumentModel implements AddDocumentModel {
     /**
      * Initializes this class.
      */
-    protected void init() {
+    private void init() {
         mDocumentList = new ArrayList<>();
     }
 

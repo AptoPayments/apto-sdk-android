@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.ui.activities.userdata;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.IdentityVerificationDelegate;
@@ -14,7 +15,7 @@ import com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView;
  * @author Wijnand
  */
 public class IdentityVerificationActivity
-        extends UserDataActivity<IdentityVerificationModel, IdentityVerificationView, IdentityVerificationPresenter> {
+        extends MvpActivity<IdentityVerificationModel, IdentityVerificationView, IdentityVerificationPresenter> {
 
     /** {@inheritDoc} */
     @Override

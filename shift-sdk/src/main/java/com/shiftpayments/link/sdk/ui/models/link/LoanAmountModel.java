@@ -16,13 +16,7 @@ public class LoanAmountModel extends AbstractLoanDataModel implements LoanDataMo
     private int mAmount;
     private IdDescriptionPairDisplayVo mLoanPurpose;
 
-    /**
-     * @param amount Amount to validate.
-     * @return Whether the amount is within the allowed range.
-     */
-    protected boolean isValid(int amount) {
-        return amount >= mMinAmount && amount <= mMaxAmount;
-    }
+
 
     /** {@inheritDoc} */
     @Override
@@ -136,5 +130,13 @@ public class LoanAmountModel extends AbstractLoanDataModel implements LoanDataMo
      */
     public boolean hasValidLoanPurpose() {
         return mLoanPurpose != null && mLoanPurpose.getKey() >= 0;
+    }
+
+    /**
+     * @param amount Amount to validate.
+     * @return Whether the amount is within the allowed range.
+     */
+    private boolean isValid(int amount) {
+        return amount >= mMinAmount && amount <= mMaxAmount;
     }
 }

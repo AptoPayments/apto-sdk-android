@@ -41,7 +41,7 @@ public class SelectApplicationCardView extends CardView {
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mTitleField = (TextView) findViewById(R.id.tv_title);
+        mTitleField = findViewById(R.id.tv_title);
     }
 
     /** {@inheritDoc} */

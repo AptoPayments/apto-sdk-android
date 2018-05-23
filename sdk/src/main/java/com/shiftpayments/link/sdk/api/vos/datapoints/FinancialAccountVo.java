@@ -43,14 +43,10 @@ public class FinancialAccountVo extends DataPointVo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if(!super.equals(o)) return false;
+        if (!super.equals(o)) return false;
         FinancialAccountVo that = (FinancialAccountVo) o;
 
-        if (mAccountId != null ? !mAccountId.equals(that.mAccountId) : that.mAccountId != null)
-            return false;
-        if (mAccountType != that.mAccountType) return false;
-
-        return true;
+        return (mAccountId != null ? mAccountId.equals(that.mAccountId) : that.mAccountId == null) && mAccountType == that.mAccountType;
     }
 
     @Override

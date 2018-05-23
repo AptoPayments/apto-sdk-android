@@ -39,7 +39,7 @@ public class IssueVirtualCardView extends RelativeLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mSpinner = (ProgressBar) findViewById(R.id.pb_progress);
+        mSpinner = findViewById(R.id.pb_progress);
     }
 
     public void showLoading(boolean show) {

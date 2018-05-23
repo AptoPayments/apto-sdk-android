@@ -74,6 +74,6 @@ public class AdjustmentVo implements Parcelable {
         HOLD,
         @SerializedName("release")
         RELEASE,
-        OTHER;
+        OTHER
     }
 }

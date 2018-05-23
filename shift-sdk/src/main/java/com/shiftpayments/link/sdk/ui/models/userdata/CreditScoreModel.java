@@ -12,7 +12,7 @@ import com.shiftpayments.link.sdk.ui.models.Model;
  */
 public class CreditScoreModel extends AbstractUserDataModel {
 
-    public static final int DEFAULT_CREDIT_INDICATION = -1;
+    private static final int DEFAULT_CREDIT_INDICATION = -1;
 
     private CreditScore mCreditScore;
 

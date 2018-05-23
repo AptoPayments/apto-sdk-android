@@ -79,18 +79,18 @@ public class TransactionsAdapter extends
             super(itemView);
 
             if (viewType == 0) {
-                custodianLogo = (ImageView) itemView.findViewById(R.id.custodian_logo);
-                creditCardView = (CreditCardView) itemView.findViewById(R.id.credit_card_view);
-                cardBalance = (TextView) itemView.findViewById(R.id.tv_card_balance);
-                cardBalanceLabel = (TextView) itemView.findViewById(R.id.tv_card_balance_label);
-                primaryButton = (TextView) itemView.findViewById(R.id.tv_display_card_primary_bttn);
-                secondaryButton = (TextView) itemView.findViewById(R.id.tv_display_card_secondary_bttn);
-                accountButton = (ImageButton) itemView.findViewById(R.id.ib_account);
+                custodianLogo = itemView.findViewById(R.id.custodian_logo);
+                creditCardView = itemView.findViewById(R.id.credit_card_view);
+                cardBalance = itemView.findViewById(R.id.tv_card_balance);
+                cardBalanceLabel = itemView.findViewById(R.id.tv_card_balance_label);
+                primaryButton = itemView.findViewById(R.id.tv_display_card_primary_bttn);
+                secondaryButton = itemView.findViewById(R.id.tv_display_card_secondary_bttn);
+                accountButton = itemView.findViewById(R.id.ib_account);
             } else if (viewType == 1) {
-                titleTextView = (TextView) itemView.findViewById(R.id.tv_title);
-                descriptionTextView = (TextView) itemView.findViewById(R.id.tv_description);
-                iconImageView = (ImageView) itemView.findViewById(R.id.iv_icon);
-                transactionHolder = (RelativeLayout) itemView.findViewById(R.id.rl_transaction_holder);
+                titleTextView = itemView.findViewById(R.id.tv_title);
+                descriptionTextView = itemView.findViewById(R.id.tv_description);
+                iconImageView = itemView.findViewById(R.id.iv_icon);
+                transactionHolder = itemView.findViewById(R.id.rl_transaction_holder);
             }
         }
     }

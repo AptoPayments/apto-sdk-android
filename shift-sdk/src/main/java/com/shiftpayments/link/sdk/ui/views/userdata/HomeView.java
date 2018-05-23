@@ -66,14 +66,14 @@ public class HomeView
     protected void findAllViews() {
         super.findAllViews();
 
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
 
-        mZipWrapper = (TextInputLayout) findViewById(R.id.til_zip_code);
-        mZipField = (EditText) findViewById(R.id.et_zip_code);
+        mZipWrapper = findViewById(R.id.til_zip_code);
+        mZipField = findViewById(R.id.et_zip_code);
 
-        mHousingTypeSpinner = (Spinner) findViewById(R.id.sp_housing_type);
-        mHousingTypeError = (TextView) findViewById(R.id.tv_housing_type_error);
-        mHousingTypeHint = (TextView) findViewById(R.id.tv_housing_type_hint);
+        mHousingTypeSpinner = findViewById(R.id.sp_housing_type);
+        mHousingTypeError = findViewById(R.id.tv_housing_type_error);
+        mHousingTypeHint = findViewById(R.id.tv_housing_type_hint);
     }
 
     /** {@inheritDoc} */

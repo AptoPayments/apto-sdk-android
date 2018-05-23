@@ -84,12 +84,32 @@ public class DisplayCardView
         }
     }
 
-    protected void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mCreditCardView = (CreditCardView) findViewById(R.id.credit_card_view);
-        mCardBalance = (TextView) findViewById(R.id.tv_card_balance);
-        mPrimaryButton = (TextView) findViewById(R.id.tv_display_card_primary_bttn);
-        mSecondaryButton = (TextView) findViewById(R.id.tv_display_card_secondary_bttn);
+    public void setCardNumber(String cardNumber) {
+        mCreditCardView.setCardNumber(cardNumber);
+    }
+
+    public void setExpiryDate(String expiryDate) {
+        mCreditCardView.setExpiryDate(expiryDate);
+    }
+
+    public void setType(int type) {
+        mCreditCardView.setType(type);
+    }
+
+    public void setCardName(String name) {
+        mCreditCardView.setCardName(name);
+    }
+
+    public void setCardBalance(String amount) {
+        mCardBalance.setText(amount);
+    }
+
+    private void findAllViews() {
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mCreditCardView = findViewById(R.id.credit_card_view);
+        mCardBalance = findViewById(R.id.tv_card_balance);
+        mPrimaryButton = findViewById(R.id.tv_display_card_primary_bttn);
+        mSecondaryButton = findViewById(R.id.tv_display_card_secondary_bttn);
     }
 
     private void setColors() {
@@ -110,25 +130,5 @@ public class DisplayCardView
         if (mSecondaryButton != null) {
             mSecondaryButton.setOnClickListener(this);
         }
-    }
-
-    public void setCardNumber(String cardNumber) {
-        mCreditCardView.setCardNumber(cardNumber);
-    }
-
-    public void setExpiryDate(String expiryDate) {
-        mCreditCardView.setExpiryDate(expiryDate);
-    }
-
-    public void setType(int type) {
-        mCreditCardView.setType(type);
-    }
-
-    public void setCardName(String name) {
-        mCreditCardView.setCardName(name);
-    }
-
-    public void setCardBalance(String amount) {
-        mCardBalance.setText(amount);
     }
 }

@@ -20,7 +20,7 @@ public class KycStatusView extends RelativeLayout implements ViewWithToolbar, Vi
 
     private ViewListener mListener;
     private TextView mTextView;
-    protected Toolbar mToolbar;
+    private Toolbar mToolbar;
     private Button mRefreshButton;
 
     public KycStatusView(Context context, AttributeSet attrs) {
@@ -61,6 +61,10 @@ public class KycStatusView extends RelativeLayout implements ViewWithToolbar, Vi
         mListener = viewListener;
     }
 
+    public void setStatusText(String status) {
+        mTextView.setText(status);
+    }
+
     private void setUpListeners() {
      mRefreshButton.setOnClickListener(this);
     }
@@ -74,13 +78,9 @@ public class KycStatusView extends RelativeLayout implements ViewWithToolbar, Vi
 
     }
 
-    protected void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mTextView = (TextView) findViewById(R.id.tv_status_text);
-        mRefreshButton = (Button) findViewById(R.id.bttn_refresh);
-    }
-
-    public void setStatusText(String status) {
-        mTextView.setText(status);
+    private void findAllViews() {
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mTextView = findViewById(R.id.tv_status_text);
+        mRefreshButton = findViewById(R.id.bttn_refresh);
     }
 }

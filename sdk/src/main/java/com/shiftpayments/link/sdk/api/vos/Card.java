@@ -144,7 +144,7 @@ public class Card extends FinancialAccountVo {
         final String API_FORMAT = "yyyy-MM";
 
         String formattedExpirationDate;
-        final SimpleDateFormat dateFormat = new SimpleDateFormat(CARD_EXPIRATION_FORMAT);
+        final SimpleDateFormat dateFormat = new SimpleDateFormat(CARD_EXPIRATION_FORMAT, java.util.Locale.getDefault());
         try {
             Date date = dateFormat.parse(expirationDate);
             dateFormat.applyPattern(API_FORMAT);

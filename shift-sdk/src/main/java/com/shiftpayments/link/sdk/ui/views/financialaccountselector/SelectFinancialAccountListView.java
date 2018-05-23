@@ -28,7 +28,6 @@ public class SelectFinancialAccountListView extends CoordinatorLayout
     private TextView mAddAccountButton;
 
     private SelectFinancialAccountListView.ViewListener mListener;
-    private SelectFinancialAccountModel[] mData;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -78,30 +77,6 @@ public class SelectFinancialAccountListView extends CoordinatorLayout
         setColors();
     }
 
-    private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
-        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
-        mToolbar.setTitleTextColor(contrastColor);
-        mAddAccountButton.setBackgroundColor(primaryColor);
-        mAddAccountButton.setTextColor(contrastColor);
-    }
-
-    /**
-     * Finds all references to child Views.
-     */
-    private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mAccountsList = (LinearLayout) findViewById(R.id.ll_select_accounts_list);
-        mAddAccountButton = (TextView) findViewById(R.id.tv_add_account_bttn);
-    }
-
-    protected void setupListeners() {
-        if (mAddAccountButton != null) {
-            mAddAccountButton.setOnClickListener(this);
-        }
-    }
-
     public interface ViewListener {
         /**
          * Called when one of the document cards has been clicked.
@@ -125,7 +100,6 @@ public class SelectFinancialAccountListView extends CoordinatorLayout
      * @param data Latest data.
      */
     public void setData(SelectFinancialAccountModel[] data) {
-        mData = data;
         mAccountsList.removeAllViews();
 
         SelectFinancialAccountCardView view;
@@ -136,6 +110,30 @@ public class SelectFinancialAccountListView extends CoordinatorLayout
             view.setData(model);
             view.setOnClickListener(this);
             mAccountsList.addView(view);
+        }
+    }
+
+    private void setColors() {
+        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
+        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
+        mToolbar.setTitleTextColor(contrastColor);
+        mAddAccountButton.setBackgroundColor(primaryColor);
+        mAddAccountButton.setTextColor(contrastColor);
+    }
+
+    /**
+     * Finds all references to child Views.
+     */
+    private void findAllViews() {
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mAccountsList = findViewById(R.id.ll_select_accounts_list);
+        mAddAccountButton = findViewById(R.id.tv_add_account_bttn);
+    }
+
+    private void setupListeners() {
+        if (mAddAccountButton != null) {
+            mAddAccountButton.setOnClickListener(this);
         }
     }
 }

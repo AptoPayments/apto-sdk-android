@@ -54,9 +54,9 @@ public class ShowGenericMessageView extends UserDataView<ShowGenericMessageView.
     protected void findAllViews() {
         super.findAllViews();
 
-        mMarkdownView = (MarkdownView) findViewById(R.id.md_content);
-        mNextButton = (TextView) findViewById(R.id.tv_next_bttn);
-        mImageView = (ImageView) findViewById(R.id.iv_image);
+        mMarkdownView = findViewById(R.id.md_content);
+        mNextButton = findViewById(R.id.tv_next_bttn);
+        mImageView = findViewById(R.id.iv_image);
     }
 
     public void setMarkdown(String markdown) {

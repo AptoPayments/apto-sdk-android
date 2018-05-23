@@ -11,6 +11,6 @@ public class EmploymentStatusId {
     public static final int NOT_EMPLOYED = 2;
     public static final int SELF_EMPLOYED = 3;
     public static final int MILITARY = 4;
-    public static final int REITRED_BENEFITS = 5;
+    public static final int RETIRED_BENEFITS = 5;
 
 }

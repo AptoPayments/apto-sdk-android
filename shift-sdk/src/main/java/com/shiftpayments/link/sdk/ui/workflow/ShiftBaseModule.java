@@ -89,9 +89,7 @@ public abstract class ShiftBaseModule implements NavigationCommand, BaseDelegate
     }
 
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        mActivity.runOnUiThread(()->{
-            showError(mActivity.getResources().getString(R.string.session_expired_error));
-        });
+        mActivity.runOnUiThread(()-> showError(mActivity.getResources().getString(R.string.session_expired_error)));
         ShiftPlatform.clearUserToken(mActivity);
     }
 }

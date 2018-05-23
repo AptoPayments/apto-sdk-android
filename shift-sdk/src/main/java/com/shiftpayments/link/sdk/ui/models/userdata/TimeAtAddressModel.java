@@ -12,7 +12,7 @@ import com.shiftpayments.link.sdk.ui.models.Model;
  */
 public class TimeAtAddressModel extends AbstractUserDataModel {
 
-    public static final int DEFAULT_INDICATION = -1;
+    private static final int DEFAULT_INDICATION = -1;
 
     private TimeAtAddress mTimeAtAddress;
 

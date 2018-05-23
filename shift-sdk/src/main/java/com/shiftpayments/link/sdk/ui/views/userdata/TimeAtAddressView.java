@@ -49,8 +49,8 @@ public class TimeAtAddressView extends UserDataView<TimeAtAddressView.ViewListen
     @Override
     protected void findAllViews() {
         super.findAllViews();
-        mRadioGroup = (RadioGroup) findViewById(R.id.rg_time_at_address);
-        mErrorText = (TextView) findViewById(R.id.tv_time_at_address_error);
+        mRadioGroup = findViewById(R.id.rg_time_at_address);
+        mErrorText = findViewById(R.id.tv_time_at_address_error);
         showError(false);
     }
 

@@ -32,7 +32,7 @@ public class AdjustmentsAdapter extends
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
-            adjustmentView = (AdjustmentView) itemView.findViewById(R.id.cv_adjustment_view);
+            adjustmentView = itemView.findViewById(R.id.cv_adjustment_view);
         }
     }
 

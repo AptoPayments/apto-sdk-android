@@ -13,7 +13,6 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.Application
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
@@ -23,11 +22,13 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponse
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.offers.InitialOffersResponseVo;
@@ -86,7 +87,9 @@ public interface ShiftApiWrapper {
     String FINANCIAL_ACCOUNTS_PATH = "v1/user/accounts";
     String FINANCIAL_ACCOUNT_PATH = "v1/user/accounts/{account_id}";
     String FINANCIAL_ACCOUNT_PIN_PATH = "v1/user/accounts/{account_id}/pin";
-    String FINANCIAL_ACCOUNT_STATE_PATH = "v1/user/accounts/{account_id}/state";
+    String FINANCIAL_ACCOUNT_ACTIVATE_PATH = "v1/user/accounts/{account_id}/activate";
+    String FINANCIAL_ACCOUNT_ENABLE_PATH = "v1/user/accounts/{account_id}/enable";
+    String FINANCIAL_ACCOUNT_DISABLE_PATH = "v1/user/accounts/{account_id}/disable";
     String FINANCIAL_ACCOUNT_TRANSACTIONS_PATH = "v1/user/accounts/{account_id}/transactions";
     String FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH = "v1/user/accounts/{account_id}/fundingsource";
     String USER_FUNDING_SOURCES_PATH = "v1/user/accounts/fundingsources";
@@ -162,7 +165,7 @@ public interface ShiftApiWrapper {
      */
     String getFirebaseToken();
 
-    public HashMap<String, String> getHTTPHeaders();
+    HashMap<String, String> getHTTPHeaders();
 
     /**
      * Stores a new API end point.<br />
@@ -282,35 +285,35 @@ public interface ShiftApiWrapper {
     /**
      * @param verificationId The verification ID to check.
      * @return The verification object with the current status.
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     VerificationStatusResponseVo getVerificationStatus(String verificationId) throws ApiException;
 
     /**
      * @param verificationId The verification ID to restart.
      * @return A verification object with the verification ID.
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     VerificationResponseVo restartVerification(String verificationId) throws ApiException;
 
     /**
      * @param requestData The tokenized bank account.
      * @return The verification object with the current status.
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     VerificationStatusResponseVo addBankAccount(AddBankAccountRequestVo requestData) throws ApiException;
 
     /**
      * @param requestData The card DataPoint.
      * @return The same DataPoint with the accountId filled in.
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     Card addCard(Card requestData) throws ApiException;
 
     /**
      * @param requestData The user's phone and the amount
      * @return The virtual card
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     Card issueVirtualCard(IssueVirtualCardRequestVo requestData) throws ApiException;
 
@@ -333,14 +336,14 @@ public interface ShiftApiWrapper {
     /**
      * @param applicationId The application ID to check.
      * @return The application object with the current status and pending actions
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     LoanApplicationDetailsResponseVo getApplicationStatus(String applicationId) throws ApiException;
 
     /**
      * @param applicationId The ID of the application to link the financial account
      * @return The application object with the current status
-     * @throws ApiException
+     * @throws ApiException When there is an error making the request.
      */
     LoanApplicationDetailsResponseVo setApplicationAccount(ApplicationAccountRequestVo requestData, String applicationId) throws ApiException;
 
@@ -381,11 +384,25 @@ public interface ShiftApiWrapper {
     void deleteProject(String teamId, String projectId) throws ApiException;
 
     /**
-     * @param requestData The state of the card
-     * @return The virtual card
+     * @param accountId The ID of the financial account
+     * @return The financial account
      * @throws ApiException When there is an error making the request.
      */
-    UpdateFinancialAccountResponseVo updateFinancialAccount(String accountId, UpdateFinancialAccountRequestVo requestData) throws ApiException;
+    ActivateFinancialAccountResponseVo activateFinancialAccount(String accountId) throws ApiException;
+
+    /**
+     * @param accountId The ID of the financial account
+     * @return The financial account
+     * @throws ApiException When there is an error making the request.
+     */
+    EnableFinancialAccountResponseVo enableFinancialAccount(String accountId) throws ApiException;
+
+    /**
+     * @param accountId ID of the financial account
+     * @return The financial account
+     * @throws ApiException When there is an error making the request.
+     */
+    DisableFinancialAccountResponseVo disableFinancialAccount(String accountId) throws ApiException;
 
     /**
      * @param requestData New pin of the card

@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public abstract class AbstractLoanApplicationModel implements ActivityModel, IntermediateLoanApplicationModel, Model {
 
-    protected final LoanApplicationDetailsResponseVo mLoanApplication;
+    private final LoanApplicationDetailsResponseVo mLoanApplication;
 
     /**
      * Creates a new {@link AbstractLoanApplicationModel} instance.

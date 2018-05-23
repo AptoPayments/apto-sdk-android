@@ -59,7 +59,7 @@ android {
 
     sourceSets {
         test {
-            java.srcDirs = ['../sdk/src/test/java', 'src/test/java'];
+            java.srcDirs = ['../sdk/src/test/java', 'src/test/java']
         }
     }
 
@@ -100,8 +100,8 @@ repositories {
 }
 
 dependencies {
-    // Ledge Libraries
-    compile 'com.shiftpayments.android:sdk:1.0.2'
+    // Shift Libraries
+    compile 'com.shiftpayments.android:sdk:1.0.3'
     compile 'me.ledge.common:common:+'
     // 3rd Party Libraries
     compile('com.android.support:support-v13:24.0.0') {

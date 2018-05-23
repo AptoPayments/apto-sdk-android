@@ -52,9 +52,9 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
      * Finds all references to child Views.
      */
     protected void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mNextButton = (TextView) findViewById(R.id.tv_next_bttn);
-        mStepper = (ProgressBarWidget) findViewById(R.id.pbw_stepper);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mNextButton = findViewById(R.id.tv_next_bttn);
+        mStepper = findViewById(R.id.pbw_stepper);
     }
 
     /**

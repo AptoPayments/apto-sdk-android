@@ -3,7 +3,7 @@ package com.shiftpayments.link.sdk.ui.activities.verification;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.activities.userdata.UserDataActivity;
+import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.verification.BirthdateVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.verification.BirthdateVerificationDelegate;
@@ -15,7 +15,7 @@ import com.shiftpayments.link.sdk.ui.views.verification.BirthdateVerificationVie
  * @author Adrian
  */
 public class BirthdateVerificationActivity
-        extends UserDataActivity<BirthdateVerificationModel, BirthdateVerificationView, BirthdateVerificationPresenter> {
+        extends MvpActivity<BirthdateVerificationModel, BirthdateVerificationView, BirthdateVerificationPresenter> {
 
     /** {@inheritDoc} */
     @Override

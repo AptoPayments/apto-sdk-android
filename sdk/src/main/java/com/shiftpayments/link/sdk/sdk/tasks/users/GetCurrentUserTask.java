@@ -22,7 +22,7 @@ public class GetCurrentUserTask extends ShiftApiTask<Void, Void, DataPointList, 
      * @param requestData See {@link ShiftApiTask#ShiftApiTask}.
      * @param apiWrapper See {@link ShiftApiTask#ShiftApiTask}.
      * @param responseHandler See {@link ShiftApiTask#ShiftApiTask}.
-     * @param throwSessionExpiredError specify if a {@link me.shift.link.sdk.api.vos.responses.SessionExpiredErrorVo} must be thrown
+     * @param throwSessionExpiredError specify if a {@link com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo} must be thrown
      */
     public GetCurrentUserTask(UnauthorizedRequestVo requestData, ShiftApiWrapper apiWrapper,
                               ApiResponseHandler responseHandler, boolean throwSessionExpiredError) {

@@ -85,22 +85,22 @@ public class IdentityVerificationView
     @Override
     protected void findAllViews() {
         super.findAllViews();
-        mBirthdayButton = (Button) findViewById(R.id.btn_birthday);
-        mBirthdayWrapper = (TextInputLayout) findViewById(R.id.til_birthday);
-        mBirthdayField = (AppCompatEditText) findViewById(R.id.et_birthday);
+        mBirthdayButton = findViewById(R.id.btn_birthday);
+        mBirthdayWrapper = findViewById(R.id.til_birthday);
+        mBirthdayField = findViewById(R.id.et_birthday);
 
-        mSocialSecurityWrapper = (TextInputLayout) findViewById(R.id.til_social_security);
-        mSocialSecurityField = (SsnEditText) findViewById(R.id.et_social_security);
-        mSocialSecurityAvailableCheck = (CheckBox) findViewById(R.id.cb_ssn_itin_not_available);
-        mSocialSecurityAvailableField = (TextView) findViewById(R.id.tv_ssn_itin_not_available);
+        mSocialSecurityWrapper = findViewById(R.id.til_social_security);
+        mSocialSecurityField = findViewById(R.id.et_social_security);
+        mSocialSecurityAvailableCheck = findViewById(R.id.cb_ssn_itin_not_available);
+        mSocialSecurityAvailableField = findViewById(R.id.tv_ssn_itin_not_available);
 
-        mDisclaimer = (TextView) findViewById(R.id.tv_security);
-        mDisclaimersHeader = (TextView) findViewById(R.id.tv_disclaimers_header);
-        mDisclaimersField = (TextView) findViewById(R.id.tv_disclaimers_body);
+        mDisclaimer = findViewById(R.id.tv_security);
+        mDisclaimersHeader = findViewById(R.id.tv_disclaimers_header);
+        mDisclaimersField = findViewById(R.id.tv_disclaimers_body);
         mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
 
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
-        mProgressBar = (ProgressBar) findViewById(R.id.pb_progress);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
+        mProgressBar = findViewById(R.id.pb_progress);
     }
 
     /** {@inheritDoc} */

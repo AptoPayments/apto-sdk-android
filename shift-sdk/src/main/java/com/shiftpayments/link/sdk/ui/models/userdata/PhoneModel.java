@@ -29,7 +29,7 @@ public class PhoneModel extends AbstractUserDataModel implements UserDataModel {
     /**
      * Initializes this class.
      */
-    protected void init() {
+    private void init() {
         mPhone = new PhoneNumberVo();
     }
 

@@ -69,39 +69,6 @@ public class OffersCarouselView extends OffersBaseView {
         super(context, attrs);
     }
 
-    /**
-     * Finds all references to child Views.
-     */
-    protected void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mOffersCarouselView = (CarouselView) findViewById(R.id.carouselView);
-        mEmptyCaseHolder = (LinearLayout) findViewById(R.id.ll_empty_case);
-        mUpdateButton = (TextView) findViewById(R.id.tv_bttn_edit_info);
-
-        mErrorView = (LoanOfferErrorView) findViewById(R.id.ll_loan_error);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
-    }
-
-    /**
-     * Sets up all child View listeners.
-     */
-    private void setUpListeners() {
-        mUpdateButton.setOnClickListener(this);
-    }
-
-    /**
-     * Updates a {@link View}'s visibility.
-     * @param show Whether the view should be shown.
-     * @param view The view to update.
-     */
-    private void showView(boolean show, View view) {
-        if (show) {
-            view.setVisibility(VISIBLE);
-        } else {
-            view.setVisibility(GONE);
-        }
-    }
-
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
@@ -112,27 +79,6 @@ public class OffersCarouselView extends OffersBaseView {
 
         showEmptyCase(false);
         showError(false);
-    }
-
-    private void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
-        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        if (mUpdateButton != null) {
-            mUpdateButton.setBackgroundColor(color);
-            mUpdateButton.setTextColor(contrastColor);
-        }
-        mOffersCarouselView.setFillColor(color);
-        mToolbar.setBackgroundDrawable(new ColorDrawable(color));
-        mToolbar.setTitleTextColor(contrastColor);
-        Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
-        backArrow.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
-        mToolbar.setNavigationIcon(backArrow);
-
-        Drawable menuIcon = mToolbar.getOverflowIcon();
-        if (menuIcon != null) {
-            menuIcon.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
-            mToolbar.setOverflowIcon(menuIcon);
-        }
     }
 
     /** {@inheritDoc} */
@@ -155,19 +101,14 @@ public class OffersCarouselView extends OffersBaseView {
         Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
     }
 
-    /**
-     * Stores a new {@link ViewListener}.
-     * @param listener New {@link ViewListener}.
-     */
-    public void setListener(ViewListener listener) {
-        mListener = listener;
-        mErrorView.setListener(listener);
-    }
-
-
     @Override
     public void setListener(OffersListPresenter offersListPresenter) {
         this.setListener((ViewListener) offersListPresenter);
+    }
+
+    @Override
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 
     public void setCarouselViewListener(com.synnapps.carouselview.ViewListener viewListener) {
@@ -198,8 +139,66 @@ public class OffersCarouselView extends OffersBaseView {
         showView(show, mErrorView);
     }
 
-    @Override
-    public LoadingView getLoadingView() {
-        return mLoadingView;
+    /**
+     * Finds all references to child Views.
+     */
+    private void findAllViews() {
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mOffersCarouselView = findViewById(R.id.carouselView);
+        mEmptyCaseHolder = findViewById(R.id.ll_empty_case);
+        mUpdateButton = findViewById(R.id.tv_bttn_edit_info);
+
+        mErrorView = findViewById(R.id.ll_loan_error);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
+    }
+
+    /**
+     * Sets up all child View listeners.
+     */
+    private void setUpListeners() {
+        mUpdateButton.setOnClickListener(this);
+    }
+
+    /**
+     * Updates a {@link View}'s visibility.
+     * @param show Whether the view should be shown.
+     * @param view The view to update.
+     */
+    private void showView(boolean show, View view) {
+        if (show) {
+            view.setVisibility(VISIBLE);
+        } else {
+            view.setVisibility(GONE);
+        }
+    }
+
+    /**
+     * Stores a new {@link ViewListener}.
+     * @param listener New {@link ViewListener}.
+     */
+    private void setListener(ViewListener listener) {
+        mListener = listener;
+        mErrorView.setListener(listener);
+    }
+
+    private void setColors() {
+        int color = UIStorage.getInstance().getPrimaryColor();
+        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
+        if (mUpdateButton != null) {
+            mUpdateButton.setBackgroundColor(color);
+            mUpdateButton.setTextColor(contrastColor);
+        }
+        mOffersCarouselView.setFillColor(color);
+        mToolbar.setBackgroundDrawable(new ColorDrawable(color));
+        mToolbar.setTitleTextColor(contrastColor);
+        Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
+        backArrow.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
+        mToolbar.setNavigationIcon(backArrow);
+
+        Drawable menuIcon = mToolbar.getOverflowIcon();
+        if (menuIcon != null) {
+            menuIcon.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
+            mToolbar.setOverflowIcon(menuIcon);
+        }
     }
 }

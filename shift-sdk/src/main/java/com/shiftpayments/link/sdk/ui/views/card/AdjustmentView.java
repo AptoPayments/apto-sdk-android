@@ -67,9 +67,9 @@ public class AdjustmentView extends FrameLayout {
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mDescriptionField = (TextView) findViewById(R.id.tv_transfer_description);
-        mId = (TextView) findViewById(R.id.tv_transfer_id);
-        mExchangeRate = (TextView) findViewById(R.id.tv_transfer_exchange_rate);
-        mAmount = (TextView) findViewById(R.id.tv_transfer_amount);
+        mDescriptionField = findViewById(R.id.tv_transfer_description);
+        mId = findViewById(R.id.tv_transfer_id);
+        mExchangeRate = findViewById(R.id.tv_transfer_exchange_rate);
+        mAmount = findViewById(R.id.tv_transfer_amount);
     }
 }

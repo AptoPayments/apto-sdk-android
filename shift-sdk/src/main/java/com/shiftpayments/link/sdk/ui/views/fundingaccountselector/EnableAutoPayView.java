@@ -68,34 +68,9 @@ public class EnableAutoPayView
         return mLoadingView;
     }
 
-    private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
-        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
-        mToolbar.setTitleTextColor(contrastColor);
-        mPrimaryButton.setTextColor(contrastColor);
-        mPrimaryButton.setBackgroundColor(primaryColor);
-        mSecondaryButton.setTextColor(primaryColor);
-    }
-
     @Override
     public Toolbar getToolbar() {
         return mToolbar;
-    }
-
-    protected void findAllViews() {
-        mPrimaryButton = (TextView) findViewById(R.id.tv_enable_auto_pay_primary_bttn);
-        mSecondaryButton = (TextView) findViewById(R.id.tv_enable_auto_pay_secondary_bttn);
-        mFinancialAccountInfo = (TextView) findViewById(R.id.tv_financial_account_label);
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mImageView = (ImageView) findViewById(R.id.iv_auto_pay_logo);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
-    }
-
-    protected void setupListeners() {
-        if (mPrimaryButton != null) {
-            mPrimaryButton.setOnClickListener(this);
-        }
     }
 
     /** {@inheritDoc} */
@@ -139,5 +114,30 @@ public class EnableAutoPayView
 
     public void setImage(String imageUrl) {
         ShiftPlatform.getImageLoader().load(imageUrl, mImageView);
+    }
+
+    private void findAllViews() {
+        mPrimaryButton = findViewById(R.id.tv_enable_auto_pay_primary_bttn);
+        mSecondaryButton = findViewById(R.id.tv_enable_auto_pay_secondary_bttn);
+        mFinancialAccountInfo = findViewById(R.id.tv_financial_account_label);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mImageView = findViewById(R.id.iv_auto_pay_logo);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
+    }
+
+    private void setColors() {
+        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
+        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
+        mToolbar.setTitleTextColor(contrastColor);
+        mPrimaryButton.setTextColor(contrastColor);
+        mPrimaryButton.setBackgroundColor(primaryColor);
+        mSecondaryButton.setTextColor(primaryColor);
+    }
+
+    private void setupListeners() {
+        if (mPrimaryButton != null) {
+            mPrimaryButton.setOnClickListener(this);
+        }
     }
 }

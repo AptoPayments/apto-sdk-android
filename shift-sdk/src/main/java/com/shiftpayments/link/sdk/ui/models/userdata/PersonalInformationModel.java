@@ -35,7 +35,7 @@ public class PersonalInformationModel extends AbstractUserDataModel implements U
     /**
      * Initializes this class.
      */
-    protected void init() {
+    private void init() {
         mPersonalName = new PersonalName();
         mEmail = new Email();
         mEmailNotSpecified = false;

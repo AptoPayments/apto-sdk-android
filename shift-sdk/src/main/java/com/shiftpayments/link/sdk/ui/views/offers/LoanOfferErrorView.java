@@ -57,12 +57,12 @@ public class LoanOfferErrorView extends LinearLayout implements View.OnClickList
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mCloudImage = (ImageView) findViewById(R.id.iv_cloud);
-        mExplanationField = (TextView) findViewById(R.id.tv_explanation);
-        mOffersButton = (TextView) findViewById(R.id.tv_bttn_get_offers);
+        mCloudImage = findViewById(R.id.iv_cloud);
+        mExplanationField = findViewById(R.id.tv_explanation);
+        mOffersButton = findViewById(R.id.tv_bttn_get_offers);
 
-        mButtonsHolder = (LinearLayout) findViewById(R.id.ll_buttons_holder);
-        mBigButton = (TextView) findViewById(R.id.tv_bttn_big);
+        mButtonsHolder = findViewById(R.id.ll_buttons_holder);
+        mBigButton = findViewById(R.id.tv_bttn_big);
     }
 
     /**

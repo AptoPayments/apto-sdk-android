@@ -116,20 +116,20 @@ public class LoanApplicationSummaryView
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_llsdk_toolbar);
-        mScrollView = (ObservableScrollView) findViewById(R.id.osv_scroll);
-        mLoadingView = (LoadingView) findViewById(R.id.rl_loading_overlay);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
+        mScrollView = findViewById(R.id.osv_scroll);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
 
-        mLenderLogo = (ImageView) findViewById(R.id.iv_lender_logo);
-        mLenderNameField = (TextView) findViewById(R.id.tv_lender_name);
-        mLoanInterestField = (TextView) findViewById(R.id.tv_loan_interest_rate);
-        mLoanAmountField = (TextView) findViewById(R.id.tv_loan_amount);
-        mLoanDurationField = (TextView) findViewById(R.id.tv_loan_duration);
-        mPaymentField = (TextView) findViewById(R.id.tv_payment);
-        mConfirmButton = (TextView) findViewById(R.id.tv_confirm_btn);
-        mDisclaimer = (TextView) findViewById(R.id.tv_application_disclaimer);
-        mDisclaimerHeader = (TextView) findViewById(R.id.tv_borrower_agreement_header);
-        mApplicationInfoLinearLayout = (LinearLayout) findViewById(R.id.lv_loanSummary_applicationInfo);
+        mLenderLogo = findViewById(R.id.iv_lender_logo);
+        mLenderNameField = findViewById(R.id.tv_lender_name);
+        mLoanInterestField = findViewById(R.id.tv_loan_interest_rate);
+        mLoanAmountField = findViewById(R.id.tv_loan_amount);
+        mLoanDurationField = findViewById(R.id.tv_loan_duration);
+        mPaymentField = findViewById(R.id.tv_payment);
+        mConfirmButton = findViewById(R.id.tv_confirm_btn);
+        mDisclaimer = findViewById(R.id.tv_application_disclaimer);
+        mDisclaimerHeader = findViewById(R.id.tv_borrower_agreement_header);
+        mApplicationInfoLinearLayout = findViewById(R.id.lv_loanSummary_applicationInfo);
     }
 
     /**
@@ -297,8 +297,8 @@ public class LoanApplicationSummaryView
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view = inflater.inflate(R.layout.lv_datapoint, mApplicationInfoLinearLayout, false);
-        TextView dataPointKeyField = (TextView) view.findViewById(R.id.tv_datapoint_key);
-        TextView dataPointValueField = (TextView) view.findViewById(R.id.tv_datapoint_value);
+        TextView dataPointKeyField = view.findViewById(R.id.tv_datapoint_key);
+        TextView dataPointValueField = view.findViewById(R.id.tv_datapoint_value);
         dataPointKeyField.setText(key);
         dataPointValueField.setText(value);
         mApplicationInfoLinearLayout.addView(view);

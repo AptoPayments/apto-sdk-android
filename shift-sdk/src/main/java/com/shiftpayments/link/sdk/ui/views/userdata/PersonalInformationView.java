@@ -87,17 +87,17 @@ public class PersonalInformationView
     protected void findAllViews() {
         super.findAllViews();
 
-        mFirstNameWrapper = (TextInputLayout) findViewById(R.id.til_first_name);
-        mFirstNameField = (EditText) findViewById(R.id.et_first_name);
+        mFirstNameWrapper = findViewById(R.id.til_first_name);
+        mFirstNameField = findViewById(R.id.et_first_name);
 
-        mLastNameWrapper = (TextInputLayout) findViewById(R.id.til_last_name);
-        mLastNameField = (EditText) findViewById(R.id.et_last_name);
+        mLastNameWrapper = findViewById(R.id.til_last_name);
+        mLastNameField = findViewById(R.id.et_last_name);
 
-        mEmailWrapper = (TextInputLayout) findViewById(R.id.til_email);
-        mEmailField = (EditText) findViewById(R.id.et_email);
+        mEmailWrapper = findViewById(R.id.til_email);
+        mEmailField = findViewById(R.id.et_email);
 
-        mEmailAvailableCheck = (CheckBox) findViewById(R.id.cb_email_not_available);
-        mEmailAvailableField = (TextView) findViewById(R.id.tv_email_not_available);
+        mEmailAvailableCheck = findViewById(R.id.cb_email_not_available);
+        mEmailAvailableField = findViewById(R.id.tv_email_not_available);
     }
 
     /** {@inheritDoc} */
