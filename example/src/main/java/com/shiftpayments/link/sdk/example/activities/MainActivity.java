@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                 }
             }
             ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),
-                    getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment(), null);
+                    getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
             ShiftPlatform.setCoinbaseKeys(getCoinbaseClientId(), getCoinbaseClientSecret());
             CompletableFuture
                     .supplyAsync(()-> UIStorage.getInstance().getContextConfig())

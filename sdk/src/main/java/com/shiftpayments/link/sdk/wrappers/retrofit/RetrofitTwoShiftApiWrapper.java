@@ -32,6 +32,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinan
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificationsRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
@@ -55,6 +56,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.offers.OffersListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.LoginUserResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.PushNotificationRegistrationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
@@ -896,6 +898,19 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH, ioe);
+        }
+        return result;
+    }
+
+    @Override
+    public PushNotificationRegistrationResponseVo registerNotificationsToken(RegisterPushNotificationsRequestVo request) throws ApiException {
+        PushNotificationRegistrationResponseVo result;
+        try {
+            Response<PushNotificationRegistrationResponseVo> response = mUserService.registerPushNotifications(request).execute();
+            result = handleResponse(response, ShiftApiWrapper.REGISTER_PUSH_NOTIFICATION_TOKEN_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.REGISTER_PUSH_NOTIFICATION_TOKEN_PATH, ioe);
         }
         return result;
     }

@@ -42,6 +42,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import com.shiftpayments.link.sdk.sdk.tasks.users.CreateUserTask;
 import com.shiftpayments.link.sdk.sdk.tasks.users.GetCurrentUserTask;
 import com.shiftpayments.link.sdk.sdk.tasks.users.LoginUserTask;
+import com.shiftpayments.link.sdk.sdk.tasks.users.RegisterPushNotificationsTask;
 import com.shiftpayments.link.sdk.sdk.tasks.users.UpdateUserTask;
 import com.shiftpayments.link.sdk.sdk.tasks.verifications.CompleteVerificationTask;
 import com.shiftpayments.link.sdk.sdk.tasks.verifications.GetVerificationStatusTask;
@@ -534,6 +535,19 @@ public class ShiftLinkSdk {
         checkComponents();
 
         SetAccountFundingSourceTask task = new SetAccountFundingSourceTask(accountId, fundingSourceId, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Registers the device to receive push notifications
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask registerPushNotificationToken(String token) {
+        checkComponents();
+
+        RegisterPushNotificationsTask task = new RegisterPushNotificationsTask(token, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;
