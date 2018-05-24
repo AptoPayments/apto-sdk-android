@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.activities.custodianselector;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -28,7 +29,7 @@ public class CoinbaseActivity extends Activity {
     private String CLIENT_ID;
     private String CLIENT_SECRET;
     private String REDIRECT_URI;
-    private OAuthCodeRequest.Meta meta = new OAuthCodeRequest.Meta();
+    private OAuthCodeRequest.Meta META = new OAuthCodeRequest.Meta();
 
     @Override
     protected void onNewIntent(final Intent intent) {
@@ -49,12 +50,12 @@ public class CoinbaseActivity extends Activity {
         CLIENT_ID = ConfigStorage.getInstance().getCoinbaseClientId();
         CLIENT_SECRET = ConfigStorage.getInstance().getCoinbaseClientSecret();
         REDIRECT_URI = getString(R.string.coinbase_redirect_uri);
-        meta.setSendLimitAmount(Money.parse("USD 1"));
-        meta.setSendLimitPeriod(OAuthCodeRequest.Meta.Period.DAILY);
+        META.setSendLimitAmount(Money.parse("USD 1"));
+        META.setSendLimitPeriod(OAuthCodeRequest.Meta.Period.DAILY);
 
         // Launch the web browser or Coinbase app to authenticate the user.
         try {
-            OAuth.beginAuthorization(this, CLIENT_ID, SCOPE, REDIRECT_URI, meta);
+            OAuth.beginAuthorization(this, CLIENT_ID, SCOPE, REDIRECT_URI, META);
         } catch (CoinbaseException e) {
             mCurrentModule.onCoinbaseException(e);
         }
@@ -69,14 +70,15 @@ public class CoinbaseActivity extends Activity {
         @Override
         protected OAuthTokensResponse doInBackground(Intent... intents) {
             try {
-                String csrfToken = intents[0].getData().getQueryParameter("state");
+                Uri redirectUri = intents[0].getData();
+                String csrfToken = redirectUri.getQueryParameter("state");
                 if(csrfToken == null) {
                     // User has done 2FA -> relaunch oauth
-                    OAuth.beginAuthorization(CoinbaseActivity.this, CLIENT_ID, SCOPE, REDIRECT_URI, meta);
+                    OAuth.beginAuthorization(CoinbaseActivity.this, CLIENT_ID, SCOPE, REDIRECT_URI, META);
                     return null;
                 }
                 else {
-                    return OAuth.completeAuthorization(CoinbaseActivity.this, CLIENT_ID, CLIENT_SECRET, intents[0].getData());
+                    return OAuth.completeAuthorization(CoinbaseActivity.this, CLIENT_ID, CLIENT_SECRET, redirectUri);
                 }
             } catch (Exception e) {
                 mCurrentModule.onCoinbaseException(e);
