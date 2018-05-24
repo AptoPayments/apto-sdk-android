@@ -23,9 +23,12 @@ import org.joda.money.Money;
 
 public class CoinbaseActivity extends Activity {
 
+    private final static String SCOPE = "wallet:user:read,wallet:user:read,wallet:accounts:read,wallet:transactions:read,wallet:transactions:send,wallet:buys:create";
     private CoinbaseDelegate mCurrentModule;
     private String CLIENT_ID;
     private String CLIENT_SECRET;
+    private String REDIRECT_URI;
+    private OAuthCodeRequest.Meta meta = new OAuthCodeRequest.Meta();
 
     @Override
     protected void onNewIntent(final Intent intent) {
@@ -37,22 +40,21 @@ public class CoinbaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String REDIRECT_URI = getString(R.string.coinbase_redirect_uri);
-        CLIENT_ID = ConfigStorage.getInstance().getCoinbaseClientId();
-        CLIENT_SECRET = ConfigStorage.getInstance().getCoinbaseClientSecret();
         if(ModuleManager.getInstance().getCurrentModule() instanceof CoinbaseDelegate) {
             mCurrentModule = (CoinbaseDelegate) ModuleManager.getInstance().getCurrentModule();
         }
         else {
             throw new NullPointerException("Received Module does not implement CoinbaseDelegate!");
         }
+        CLIENT_ID = ConfigStorage.getInstance().getCoinbaseClientId();
+        CLIENT_SECRET = ConfigStorage.getInstance().getCoinbaseClientSecret();
+        REDIRECT_URI = getString(R.string.coinbase_redirect_uri);
+        meta.setSendLimitAmount(Money.parse("USD 1"));
+        meta.setSendLimitPeriod(OAuthCodeRequest.Meta.Period.DAILY);
 
         // Launch the web browser or Coinbase app to authenticate the user.
         try {
-            OAuthCodeRequest.Meta meta = new OAuthCodeRequest.Meta();
-            meta.setSendLimitAmount(Money.parse("USD 1"));
-            meta.setSendLimitPeriod(OAuthCodeRequest.Meta.Period.DAILY);
-            OAuth.beginAuthorization(this, CLIENT_ID, "wallet:user:read,wallet:user:read,wallet:accounts:read,wallet:transactions:read,wallet:transactions:send,wallet:buys:create", REDIRECT_URI, meta);
+            OAuth.beginAuthorization(this, CLIENT_ID, SCOPE, REDIRECT_URI, meta);
         } catch (CoinbaseException e) {
             mCurrentModule.onCoinbaseException(e);
         }
@@ -67,7 +69,15 @@ public class CoinbaseActivity extends Activity {
         @Override
         protected OAuthTokensResponse doInBackground(Intent... intents) {
             try {
-                return OAuth.completeAuthorization(CoinbaseActivity.this, CLIENT_ID, CLIENT_SECRET, intents[0].getData());
+                String csrfToken = intents[0].getData().getQueryParameter("state");
+                if(csrfToken == null) {
+                    // User has done 2FA -> relaunch oauth
+                    OAuth.beginAuthorization(CoinbaseActivity.this, CLIENT_ID, SCOPE, REDIRECT_URI, meta);
+                    return null;
+                }
+                else {
+                    return OAuth.completeAuthorization(CoinbaseActivity.this, CLIENT_ID, CLIENT_SECRET, intents[0].getData());
+                }
             } catch (Exception e) {
                 mCurrentModule.onCoinbaseException(e);
                 return null;
@@ -81,8 +91,8 @@ public class CoinbaseActivity extends Activity {
                 mCurrentModule.coinbaseTokensRetrieved(
                         oAuthTokensResponse.getAccessToken(),
                         oAuthTokensResponse.getRefreshToken());
+                onFinish.execute();
             }
-            onFinish.execute();
         }
     }
 }
