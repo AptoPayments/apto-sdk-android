@@ -10,7 +10,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.StartOAuthResponseVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
-import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CoinbaseDelegate;
+import com.shiftpayments.link.sdk.ui.presenters.custodianselector.OAuthDelegate;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -19,21 +19,28 @@ import org.greenrobot.eventbus.Subscribe;
  * Created by adrian on 20/02/2018.
  */
 
-public class CoinbaseActivity extends Activity {
+public class OAuthActivity extends Activity {
 
-    private CoinbaseDelegate mCurrentModule;
+    private OAuthDelegate mCurrentModule;
     private Thread mGetStatusThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (ModuleManager.getInstance().getCurrentModule() instanceof CoinbaseDelegate) {
-            mCurrentModule = (CoinbaseDelegate) ModuleManager.getInstance().getCurrentModule();
+        if (ModuleManager.getInstance().getCurrentModule() instanceof OAuthDelegate) {
+            mCurrentModule = (OAuthDelegate) ModuleManager.getInstance().getCurrentModule();
         } else {
-            throw new NullPointerException("Received Module does not implement CoinbaseDelegate!");
+            throw new NullPointerException("Received Module does not implement OAuthDelegate!");
         }
         ShiftLinkSdk.getResponseHandler().subscribe(this);
-        ShiftPlatform.startOAuth("COINBASE");
+        ShiftPlatform.startOAuth(mCurrentModule.getProvider());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mGetStatusThread.interrupt();
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
     }
 
     /**
@@ -42,7 +49,6 @@ public class CoinbaseActivity extends Activity {
      */
     @Subscribe
     public void handleResponse(StartOAuthResponseVo response) {
-        // TODO: open in webview instead
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(response.url));
         startActivity(browserIntent);
         getStatusPeriodically(response.id);
@@ -56,7 +62,7 @@ public class CoinbaseActivity extends Activity {
     public void handleResponse(OAuthStatusResponseVo response) {
         if(response.status.equals("passed")) {
             mGetStatusThread.interrupt();
-            mCurrentModule.coinbaseTokensRetrieved(
+            mCurrentModule.oAuthTokensRetrieved(
                     response.tokens.access,
                     response.tokens.refresh);
             this.finish();
@@ -70,7 +76,7 @@ public class CoinbaseActivity extends Activity {
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         mGetStatusThread.interrupt();
-        mCurrentModule.onCoinbaseException(error);
+        mCurrentModule.onOAuthError(error);
     }
 
     private void getStatusPeriodically(String id) {

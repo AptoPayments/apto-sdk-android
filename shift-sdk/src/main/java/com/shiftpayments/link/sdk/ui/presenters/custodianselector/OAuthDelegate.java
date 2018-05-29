@@ -7,7 +7,8 @@ import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
  *
  * @author Adrian
  */
-public interface CoinbaseDelegate {
-    void coinbaseTokensRetrieved(String accessToken, String refreshToken);
-    void onCoinbaseException(ApiErrorVo exception);
+public interface OAuthDelegate {
+    String getProvider();
+    void oAuthTokensRetrieved(String accessToken, String refreshToken);
+    void onOAuthError(ApiErrorVo error);
 }
