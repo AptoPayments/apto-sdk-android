@@ -113,7 +113,6 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
      */
     @Subscribe
     public void handleToken(CreateUserResponseVo response) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         if (response != null) {
             storeToken(response.user_token);
         }
@@ -135,7 +134,6 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         if(error.request_path.equals(ShiftApiWrapper.GET_CURRENT_USER_PATH) && error.statusCode == 401) {
             ShiftPlatform.clearUserToken(getActivity());
         }

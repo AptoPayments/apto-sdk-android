@@ -25,6 +25,20 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:name="com.shiftpayments.link.sdk.cardexample.CardApplication">
 
+        <service
+            android:name=".ShiftFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".ShiftFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
         <activity android:name="com.shiftpayments.link.sdk.cardexample.activities.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">

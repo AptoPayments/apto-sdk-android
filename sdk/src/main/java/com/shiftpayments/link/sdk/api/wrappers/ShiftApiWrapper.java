@@ -16,6 +16,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinan
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificationsRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
@@ -36,6 +37,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.offers.OffersListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.LoginUserResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.PushNotificationRegistrationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
@@ -95,6 +97,8 @@ public interface ShiftApiWrapper {
     String USER_FUNDING_SOURCES_PATH = "v1/user/accounts/fundingsources";
     String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
     String PLAID_WEB_URL = "v1/bankoauth";
+
+    String REGISTER_PUSH_NOTIFICATION_TOKEN_PATH = "/v1/user/pushdevice";
 
     String APPLICATION_STATUS_PATH = "v1/link/applications/{application_id}/status";
     String LIST_LOAN_APPLICATIONS_PATH = "v1/link/applications/pending";
@@ -430,4 +434,11 @@ public interface ShiftApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     FundingSourceVo setAccountFundingSource(String accountId, SetFundingSourceRequestVo fundingSourceRequest) throws ApiException;
+
+    /**
+     * Register a Firebase Token to receive push notifications
+     * @param requestData Firebase Instance ID token
+     * @throws ApiException When there is an error making the request.
+     */
+    PushNotificationRegistrationResponseVo registerNotificationsToken(RegisterPushNotificationsRequestVo requestData) throws ApiException;
 }

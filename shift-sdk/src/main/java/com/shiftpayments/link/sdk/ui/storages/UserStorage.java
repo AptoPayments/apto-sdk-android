@@ -12,6 +12,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.HousingTypeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.IncomeTypeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
+import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 
 /**
  * Stores user related data.
@@ -24,6 +25,7 @@ public class UserStorage {
     private RequiredDataPointsListResponseVo mRequiredData;
     private String mCoinbaseAccessToken;
     private String mCoinbaseRefreshToken;
+    private String mFirebaseToken;
 
     private static UserStorage mInstance;
 
@@ -85,6 +87,7 @@ public class UserStorage {
      */
     public void setBearerToken(String bearerToken) {
         mBearerToken = bearerToken;
+        registerFirebaseToken();
     }
 
     public boolean hasBearerToken() {
@@ -157,5 +160,20 @@ public class UserStorage {
 
     public void setCoinbaseRefreshToken(String coinbaseRefreshToken) {
         this.mCoinbaseRefreshToken = coinbaseRefreshToken;
+    }
+
+    public void setFirebaseToken(String firebaseToken) {
+        this.mFirebaseToken = firebaseToken;
+        registerFirebaseToken();
+    }
+
+    private void registerFirebaseToken() {
+        if(isValid(mBearerToken) && isValid(mFirebaseToken)) {
+            ShiftLinkSdk.registerPushNotificationToken(mFirebaseToken);
+        }
+    }
+
+    private boolean isValid(String token) {
+        return token != null && !token.isEmpty();
     }
 }

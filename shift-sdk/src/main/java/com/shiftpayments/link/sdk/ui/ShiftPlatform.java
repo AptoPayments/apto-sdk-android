@@ -103,7 +103,8 @@ public class ShiftPlatform extends ShiftLinkSdk {
                 return "http://10.0.2.2:5001";
             case local_device:
                 // Don't forget to set port forwarding in chrome 5000->localhost:5001
-                return "http://localhost:5000";
+                /*return "http://localhost:5000";*/
+                return "http://local.ledge.me:5001";
             case dev:
                 return "https://dev.ledge.me";
             case stg:
@@ -131,6 +132,10 @@ public class ShiftPlatform extends ShiftLinkSdk {
             case prd:
                 return "https://vault.ledge.me";
         }
+    }
+
+    public static void setFirebaseToken(String firebaseToken) {
+        UserStorage.getInstance().setFirebaseToken(firebaseToken);
     }
 
     public static void initialize(Context context, String developerKey, String projectToken) {

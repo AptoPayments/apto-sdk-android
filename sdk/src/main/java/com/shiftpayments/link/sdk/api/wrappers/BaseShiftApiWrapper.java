@@ -31,10 +31,20 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
         mApiEndPoint = null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDeveloperKey() {
         return mDeveloperKey;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setDeveloperKey(String developerKey) {
+        mDeveloperKey = developerKey;
     }
 
     /**
@@ -44,62 +54,74 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
         return mDevice;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setBaseRequestData(String developerKey, String device, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         mDeveloperKey = developerKey;
         mDevice = device;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBearerToken() {
         return mBearerToken;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setBearerToken(String token) {
         mBearerToken = token;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setDeveloperKey(String developerKey) {
-        mDeveloperKey = developerKey;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setProjectToken(String token) {
-        mProjectToken = token;
-    }
-
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getProjectToken() {
         return mProjectToken;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setProjectToken(String token) {
+        mProjectToken = token;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getApiEndPoint() {
         return mApiEndPoint;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setApiEndPoint(String endPoint, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         mApiEndPoint = endPoint;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getVgsEndPoint() {
         return mVgsEndPoint;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setVgsEndPoint(String endPoint) {
         mVgsEndPoint = endPoint;

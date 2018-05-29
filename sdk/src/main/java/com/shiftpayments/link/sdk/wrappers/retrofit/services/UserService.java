@@ -3,9 +3,11 @@ package com.shiftpayments.link.sdk.wrappers.retrofit.services;
 import com.google.gson.JsonObject;
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificationsRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.LoginUserResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.PushNotificationRegistrationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 
@@ -58,4 +60,12 @@ public interface UserService {
      */
     @POST(ShiftApiWrapper.DELETE_USER_PATH)
     Call<Void> deleteUser(@Body DeleteUserRequestVo data);
+
+    /**
+     * Creates a {@link Call} to register a push notification token.
+     * @param data Mandatory request data.
+     * @return API call to execute.
+     */
+    @POST(ShiftApiWrapper.REGISTER_PUSH_NOTIFICATION_TOKEN_PATH)
+    Call<PushNotificationRegistrationResponseVo> registerPushNotifications(@Body RegisterPushNotificationsRequestVo data);
 }
