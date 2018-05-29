@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.presenters.custodianselector;
 
 import android.app.Activity;
 
+import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectCustodianConfigurationVo;
 import com.shiftpayments.link.sdk.ui.activities.custodianselector.AddCustodianListActivity;
 import com.shiftpayments.link.sdk.ui.activities.custodianselector.CoinbaseActivity;
@@ -65,7 +66,7 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
     }
 
     @Override
-    public void onCoinbaseException(Exception exception) {
-        super.showError(exception.getMessage());
+    public void onCoinbaseException(ApiErrorVo error) {
+        super.showError(error.toString());
     }
 }

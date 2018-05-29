@@ -1,5 +1,7 @@
 package com.shiftpayments.link.sdk.ui.presenters.custodianselector;
 
+import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
+
 /**
  * Delegation interface with the Coinbase activity.
  *
@@ -7,5 +9,5 @@ package com.shiftpayments.link.sdk.ui.presenters.custodianselector;
  */
 public interface CoinbaseDelegate {
     void coinbaseTokensRetrieved(String accessToken, String refreshToken);
-    void onCoinbaseException(Exception exception);
+    void onCoinbaseException(ApiErrorVo exception);
 }
