@@ -209,7 +209,7 @@ public class LoanAmountView
     public void showGetOffersButtonAndDisclaimers(boolean show) {
         if(show) {
             mNextButton.setVisibility(VISIBLE);
-            mStepper.setVisibility(GONE);
+            mProgresBar.setVisibility(GONE);
         }
         else {
             mNextButton.setVisibility(GONE);

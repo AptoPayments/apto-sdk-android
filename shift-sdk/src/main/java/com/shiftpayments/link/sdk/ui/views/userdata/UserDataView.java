@@ -29,7 +29,7 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     protected L mListener;
     protected Toolbar mToolbar;
     protected TextView mNextButton;
-    protected ProgressBarWidget mStepper;
+    protected ProgressBarWidget mProgresBar;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -54,7 +54,7 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     protected void findAllViews() {
         mToolbar = findViewById(R.id.tb_llsdk_toolbar);
         mNextButton = findViewById(R.id.tv_next_bttn);
-        mStepper = findViewById(R.id.pbw_stepper);
+        mProgresBar = findViewById(R.id.pbw_progress_bar_wrapper);
     }
 
     /**
@@ -64,8 +64,8 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
         if (mNextButton != null) {
             mNextButton.setOnClickListener(this);
         }
-        if (mStepper != null) {
-            mStepper.setListener(mListener);
+        if (mProgresBar != null) {
+            mProgresBar.setListener(mListener);
         }
     }
 
@@ -78,8 +78,8 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
         }
         mToolbar.setBackgroundDrawable(new ColorDrawable(color));
         mToolbar.setTitleTextColor(contrastColor);
-        if(mStepper != null) {
-            mStepper.setProgressBarColor(color);
+        if(mProgresBar != null) {
+            mProgresBar.setProgressBarColor(color);
         }
     }
 
@@ -140,8 +140,8 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     public void setListener(L listener) {
         mListener = listener;
 
-        if (mStepper != null) {
-            mStepper.setListener(listener);
+        if (mProgresBar != null) {
+            mProgresBar.setListener(listener);
         }
     }
 
@@ -150,8 +150,8 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
      * @param configuration New configuration.
      */
     public void setStepperConfiguration(StepperConfiguration configuration) {
-        if (mStepper != null) {
-            mStepper.setConfiguration(configuration);
+        if (mProgresBar != null) {
+            mProgresBar.setConfiguration(configuration);
         }
     }
 }
