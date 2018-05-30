@@ -126,6 +126,13 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
         return mToolbar;
     }
 
+    @Override
+    public void displayErrorMessage(String message) {
+        if(!message.isEmpty()) {
+            Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
+        }
+    }
+
     /**
      * Stores a new {@link L}istener.
      * @param listener New {@link L}istener.
@@ -145,13 +152,6 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     public void setStepperConfiguration(StepperConfiguration configuration) {
         if (mStepper != null) {
             mStepper.setConfiguration(configuration);
-        }
-    }
-
-    @Override
-    public void displayErrorMessage(String message) {
-        if(!message.isEmpty()) {
-            Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -41,7 +41,7 @@ public class ProgressBarWidget extends RelativeLayout implements View.OnClickLis
      * Finds all relevant child {@link View}s.
      */
     private void findAllViews() {
-        mNextButton = findViewById(R.id.ll_next_button);
+        //mNextButton = findViewById(R.id.ll_next_button);
         mProgressBar = findViewById(R.id.pb_progress_bar);
     }
 
@@ -101,9 +101,9 @@ public class ProgressBarWidget extends RelativeLayout implements View.OnClickLis
         }
 
         int id = view.getId();
-        if (id == R.id.ll_next_button) {
+        /*if (id == R.id.ll_next_button) {
             mListener.stepperNextClickHandler();
-        }
+        }*/
     }
 
     /**
@@ -111,8 +111,10 @@ public class ProgressBarWidget extends RelativeLayout implements View.OnClickLis
      * @param configuration The new configuration.
      */
     public void setConfiguration(StepperConfiguration configuration) {
+/*
         updateFunctionality(mNextButton, configuration.isNextEnabled());
         updateListener(mNextButton, configuration.isNextEnabled());
+*/
         updateProgressBar(configuration.getTotalSteps(), configuration.getPosition());
     }
 

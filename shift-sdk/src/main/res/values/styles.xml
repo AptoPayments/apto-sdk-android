@@ -4,12 +4,10 @@
     <!--
         STEPPER
     -->
-
-    <style name="llsdk_stepper">
+    <style name="llsdk_progress_bar">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">56dp</item>
-        <item name="android:background">?attr/llsdk_stepper_backgroundColor</item>
-        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_below">@+id/abl_toolbar_wrapper</item>
     </style>
     <style name="llsdk_stepper_button_holder">
         <item name="android:layout_width">wrap_content</item>
@@ -54,8 +52,7 @@
     <style name="llsdk_user_data_entry_container">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_below">@+id/abl_toolbar_wrapper</item>
-        <item name="android:layout_above">@+id/pbw_stepper</item>
+        <item name="android:layout_below">@+id/pb_progress_bar</item>
         <item name="android:padding">16dp</item>
     </style>
 
