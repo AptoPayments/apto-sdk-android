@@ -79,6 +79,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    retrolambda {
+        defaultMethods true
+    }
+
     buildTypes {
         debug {
             testCoverageEnabled true

@@ -33,6 +33,12 @@
         <item name="android:textColor">?attr/llsdk_stepper_textColor</item>
     </style>
 
+    <style name="toolbar_button_next">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="llsdk_stepper_bar_holder">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -52,7 +58,7 @@
     <style name="llsdk_user_data_entry_container">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_below">@+id/pb_progress_bar</item>
+        <item name="android:layout_below">@+id/pbw_progress_bar_wrapper</item>
         <item name="android:padding">16dp</item>
     </style>
 

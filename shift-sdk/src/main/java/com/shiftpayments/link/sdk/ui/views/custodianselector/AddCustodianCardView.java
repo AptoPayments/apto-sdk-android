@@ -11,7 +11,7 @@ import com.shiftpayments.link.sdk.ui.models.custodianselector.AddCustodianModel;
 
 
 /**
- * Displays a single request to add a financial account.
+ * Displays a single request to add a custodian.
  * @author Adrian
  */
 public class AddCustodianCardView extends CardView {

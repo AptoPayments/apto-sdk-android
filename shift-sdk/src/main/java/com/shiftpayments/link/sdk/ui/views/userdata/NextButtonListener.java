@@ -9,6 +9,8 @@ public interface NextButtonListener {
     /**
      * Called when the "next" button has been pressed.
      */
-    void nextClickHandler();
+    default void nextClickHandler() {
+
+    }
 
 }

@@ -77,7 +77,6 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
             mNextButton.setTextColor(contrastColor);
         }
         mToolbar.setBackgroundDrawable(new ColorDrawable(color));
-        mToolbar.setTitleTextColor(contrastColor);
         if(mProgresBar != null) {
             mProgresBar.setProgressBarColor(color);
         }

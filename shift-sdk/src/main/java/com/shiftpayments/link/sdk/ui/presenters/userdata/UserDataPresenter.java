@@ -21,7 +21,7 @@ import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
  */
 public abstract class UserDataPresenter<M extends UserDataModel, V extends UserDataView & ViewWithToolbar>
         extends ActivityPresenter<M, V>
-        implements StepperListener, NextButtonListener {
+        implements StepperListener {
 
     protected static int TOTAL_STEPS;
 

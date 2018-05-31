@@ -3,10 +3,12 @@ package com.shiftpayments.link.sdk.ui.activities;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.ActivityModel;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
@@ -83,18 +85,24 @@ public abstract class MvpActivity<M extends ActivityModel, V extends View & View
         mPresenter.onBack();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_next, menu);
+        return true;
+    }
+
     /** {@inheritDoc} */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean handled = true;
 
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mPresenter.onBack();
-                break;
-            default:
-                handled = false;
-                break;
+        int i = item.getItemId();
+        if (i == android.R.id.home) {
+            mPresenter.onBack();
+        } else if (i == R.id.action_next) {
+            mPresenter.nextClickHandler();
+        } else {
+            handled = false;
         }
 
         return handled || super.onOptionsItemSelected(item);

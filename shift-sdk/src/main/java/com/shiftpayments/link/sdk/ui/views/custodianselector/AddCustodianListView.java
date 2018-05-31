@@ -84,9 +84,7 @@ public class AddCustodianListView extends CoordinatorLayout
 
     private void setColors() {
         int primaryColor = UIStorage.getInstance().getPrimaryColor();
-        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
         mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
-        mToolbar.setTitleTextColor(contrastColor);
     }
 
     @Override

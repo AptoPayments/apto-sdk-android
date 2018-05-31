@@ -3,8 +3,8 @@
     <!-- Generic -->
     <string name="user_data_menu_info">Info &amp; terms</string>
 
-    <!-- Stepper -->
-    <string name="stepper_next_button_label">NEXT</string>
+    <!-- Toolbar -->
+    <string name="toolbar_next_button_label">Next</string>
 
     <!-- Loan Amount -->
     <string name="loan_amount_label">How much do you need?</string>
@@ -365,4 +365,5 @@
     <string name="transaction_details_cashback_amount">Cash Back</string>
     <string name="transaction_details_declined_amount">Declined Amount</string>
     <string name="transaction_details_hold_amount">Hold Amount</string>
+
 </resources>
