@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:theme="@style/AppTheme.Toolbar"
             app:popupTheme="?attr/llsdk_toolbarPopupTheme" />
 
 </android.support.design.widget.AppBarLayout>
