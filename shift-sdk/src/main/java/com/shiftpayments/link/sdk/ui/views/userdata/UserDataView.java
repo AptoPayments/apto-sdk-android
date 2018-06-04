@@ -4,10 +4,12 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -17,6 +19,9 @@ import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.ProgressBarWidget;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperConfiguration;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
 
 /**
  * Generic user data related View.
@@ -28,8 +33,8 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
 
     protected L mListener;
     protected Toolbar mToolbar;
-    protected TextView mNextButton;
-    protected ProgressBarWidget mProgresBar;
+    protected ProgressBarWidget mProgressBar;
+    protected Observable<Boolean> mUiFieldsObservable;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -53,32 +58,23 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
      */
     protected void findAllViews() {
         mToolbar = findViewById(R.id.tb_llsdk_toolbar);
-        mNextButton = findViewById(R.id.tv_next_bttn);
-        mProgresBar = findViewById(R.id.pbw_progress_bar_wrapper);
+        mProgressBar = findViewById(R.id.pbw_progress_bar_wrapper);
     }
 
     /**
      * Sets up all required listeners.
      */
     protected void setupListeners() {
-        if (mNextButton != null) {
-            mNextButton.setOnClickListener(this);
-        }
-        if (mProgresBar != null) {
-            mProgresBar.setListener(mListener);
+        if (mProgressBar != null) {
+            mProgressBar.setListener(mListener);
         }
     }
 
     protected void setColors() {
         int color = UIStorage.getInstance().getPrimaryColor();
-        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        if (mNextButton != null) {
-            mNextButton.setBackgroundColor(color);
-            mNextButton.setTextColor(contrastColor);
-        }
         mToolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.llsdk_actionbar_background)));
-        if(mProgresBar != null) {
-            mProgresBar.setProgressBarColor(color);
+        if(mProgressBar != null) {
+            mProgressBar.setProgressBarColor(color);
         }
     }
 
@@ -139,8 +135,8 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     public void setListener(L listener) {
         mListener = listener;
 
-        if (mProgresBar != null) {
-            mProgresBar.setListener(listener);
+        if (mProgressBar != null) {
+            mProgressBar.setListener(listener);
         }
     }
 
@@ -149,8 +145,37 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
      * @param configuration New configuration.
      */
     public void setStepperConfiguration(StepperConfiguration configuration) {
-        if (mProgresBar != null) {
-            mProgresBar.setConfiguration(configuration);
+        if (mProgressBar != null) {
+            mProgressBar.setConfiguration(configuration);
         }
+    }
+
+    public boolean hasNextButton() {
+        MenuItem item = mToolbar.getMenu().findItem(R.id.action_next);
+        return item != null;
+    }
+
+    public void enableNextButton(boolean enable) {
+        mToolbar.post(() -> {
+            MenuItem item = mToolbar.getMenu().findItem(R.id.action_next);
+            SpannableString spanString = new SpannableString(item.getTitle());
+            if(enable) {
+                spanString.setSpan(new ForegroundColorSpan(UIStorage.getInstance().getPrimaryColor()), 0, spanString.length(), 0);
+            }
+            else {
+                spanString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.llsdk_hairline_color)), 0, spanString.length(), 0);
+            }
+            item.setTitle(spanString);
+        });
+    }
+
+    public void setObserver(Observer<Boolean> observer) {
+        if(mUiFieldsObservable != null) {
+            mUiFieldsObservable.subscribe(observer);
+        }
+    }
+
+    public void setUiFieldsObservable(Observable<Boolean> observable) {
+        mUiFieldsObservable = observable;
     }
 }

@@ -246,7 +246,7 @@ public class IdentityVerificationView
     }
 
     public void setButtonText(String buttonText) {
-        super.mNextButton.setText(buttonText);
+        /*super.mNextButton.setText(buttonText);*/
     }
 
     public void showDisclaimers(boolean show) {

@@ -9,11 +9,13 @@ import com.shiftpayments.link.sdk.ui.models.userdata.UserDataModel;
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
-import com.shiftpayments.link.sdk.ui.views.userdata.NextButtonListener;
 import com.shiftpayments.link.sdk.ui.views.userdata.UserDataView;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperConfiguration;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Generic {@link Presenter} to handle user data input screens.
@@ -24,6 +26,7 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
         implements StepperListener {
 
     protected static int TOTAL_STEPS;
+    private Observer<Boolean> mUiFieldsObserver;
 
     /**
      * Creates a new {@link UserDataPresenter} instance.
@@ -32,6 +35,7 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
     public UserDataPresenter(AppCompatActivity activity) {
         super(activity);
         populateModelFromStorage();
+        createObserver();
     }
 
     /**
@@ -70,6 +74,10 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
     public void attachView(V view) {
         super.attachView(view);
         mView.setStepperConfiguration(getStepperConfig());
+        mView.setObserver(mUiFieldsObserver);
+        if(mView.hasNextButton()) {
+            mView.enableNextButton(false);
+        }
     }
 
     /** {@inheritDoc} */
@@ -85,5 +93,26 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
     public void setApiError(ApiErrorVo error) {
         String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
         mView.displayErrorMessage(message);
+    }
+
+    private void createObserver() {
+        mUiFieldsObserver = new Observer<Boolean>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+            }
+
+            @Override
+            public void onNext(Boolean aBoolean) {
+                mActivity.runOnUiThread(() -> mView.enableNextButton(aBoolean));
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        };
     }
 }

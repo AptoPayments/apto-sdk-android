@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
 
+import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
@@ -50,6 +51,9 @@ public class EmailView
 
         mEmailWrapper = findViewById(R.id.til_email);
         mEmailField = findViewById(R.id.et_email);
+        super.setUiFieldsObservable(RxTextView.textChanges(mEmailField)
+                .map(charSequence -> (charSequence.length() > 0))
+                .distinctUntilChanged());
     }
 
     /**
@@ -76,4 +80,8 @@ public class EmailView
         updateErrorDisplay(mEmailWrapper, show, errorMessageId);
     }
 
+    public boolean hasAllData() {
+        // TODO: move to interface
+        return !getEmail().isEmpty();
+    }
 }

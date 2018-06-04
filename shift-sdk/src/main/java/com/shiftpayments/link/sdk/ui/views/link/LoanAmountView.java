@@ -208,11 +208,11 @@ public class LoanAmountView
 
     public void showGetOffersButtonAndDisclaimers(boolean show) {
         if(show) {
-            mNextButton.setVisibility(VISIBLE);
-            mProgresBar.setVisibility(GONE);
+            /*mNextButton.setVisibility(VISIBLE);*/
+            mProgressBar.setVisibility(GONE);
         }
         else {
-            mNextButton.setVisibility(GONE);
+            /*mNextButton.setVisibility(GONE);*/
             mDisclaimersHeader.setVisibility(GONE);
             mDisclaimersField.setVisibility(GONE);
             getToolbar().setOverflowIcon(null);
