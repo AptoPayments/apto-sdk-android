@@ -73,7 +73,7 @@ public class AnnualIncomeModelTest {
      */
     @Test
     public void noDataSet() {
-        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
+        Assert.assertFalse("There should be missing data.", mModel.hasValidData());
     }
 
     /**
@@ -89,7 +89,7 @@ public class AnnualIncomeModelTest {
 
         mModel.setBaseData(base);
 
-        Assert.assertFalse("Data should still be incomplete.", mModel.hasAllData());
+        Assert.assertFalse("Data should still be incomplete.", mModel.hasValidData());
         Assert.assertThat("Incorrect income.", mModel.getAnnualIncome(), equalTo(baseIncome.annualGrossIncome));
     }
 
@@ -106,7 +106,7 @@ public class AnnualIncomeModelTest {
 
         mModel.setBaseData(base);
 
-        Assert.assertFalse("Data should still be incomplete.", mModel.hasAllData());
+        Assert.assertFalse("Data should still be incomplete.", mModel.hasValidData());
         Assert.assertThat("Incorrect income source.", mModel.getIncomeType().getKey(), equalTo(baseIncomeSource.incomeType.getKey()));
         Assert.assertThat("Incorrect salary frequency.", mModel.getSalaryFrequency().getKey(), equalTo(baseIncomeSource.salaryFrequency.getKey()));
     }

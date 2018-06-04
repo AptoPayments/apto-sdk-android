@@ -79,7 +79,7 @@ public class AddressModelTest {
         Assert.assertThat("Incorrect apartment number.", mModel.getApartmentNumber(), equalTo(baseAddress.apUnit));
         Assert.assertThat("Incorrect city.", mModel.getCity(), equalTo(baseAddress.city));
         Assert.assertThat("Incorrect state.", mModel.getState(), equalTo(baseAddress.stateCode));
-        Assert.assertTrue("All data should be set.", mModel.hasAllData());
+        Assert.assertTrue("All data should be set.", mModel.hasValidData());
     }
 
     /**

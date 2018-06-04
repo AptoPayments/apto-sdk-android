@@ -81,7 +81,7 @@ public class ShowGenericMessagePresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        if (mModel.hasAllData()) {
+        if (mModel.hasValidData()) {
             saveData();
             mDelegate.showGenericMessageScreenOnNextPressed();
         }

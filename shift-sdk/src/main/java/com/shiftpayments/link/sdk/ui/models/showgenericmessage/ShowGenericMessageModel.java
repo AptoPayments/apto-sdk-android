@@ -16,7 +16,7 @@ public class ShowGenericMessageModel
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return true;
     }
 

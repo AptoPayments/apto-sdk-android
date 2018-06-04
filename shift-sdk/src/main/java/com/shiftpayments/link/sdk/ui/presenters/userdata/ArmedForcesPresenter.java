@@ -62,9 +62,9 @@ public class ArmedForcesPresenter
     @Override
     public void nextClickHandler() {
         mModel.setArmedForces(getArmedForces());
-        mView.showError(!mModel.hasAllData());
+        mView.showError(!mModel.hasValidData());
 
-        if (mModel.hasAllData()) {
+        if (mModel.hasValidData()) {
             saveData();
             mDelegate.armedForcesStored();
         }

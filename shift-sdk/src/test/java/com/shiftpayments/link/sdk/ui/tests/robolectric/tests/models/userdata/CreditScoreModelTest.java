@@ -56,7 +56,7 @@ public class CreditScoreModelTest {
 
         Assert.assertThat("Incorrect credit score range.",
                 mModel.getCreditScoreRange(), equalTo(baseCredit.creditScoreRange));
-        Assert.assertTrue("All data should be set.", mModel.hasAllData());
+        Assert.assertTrue("All data should be set.", mModel.hasValidData());
     }
 
     /**
@@ -87,6 +87,6 @@ public class CreditScoreModelTest {
         mModel.setCreditScoreRange(-1);
 
         Assert.assertThat("An invalid credit score should be set.", mModel.getCreditScoreRange(), equalTo(-1));
-        Assert.assertFalse("Credit score should not be valid.", mModel.hasAllData());
+        Assert.assertFalse("Credit score should not be valid.", mModel.hasValidData());
     }
 }

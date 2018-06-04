@@ -44,7 +44,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return hasVerificationCode();
     }
 

@@ -41,7 +41,7 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return isEmailVerified();
     }
 

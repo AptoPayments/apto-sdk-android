@@ -139,7 +139,7 @@ public class HomePresenter
         mView.updateZipError(!mModel.hasValidZip(), R.string.address_zip_code_error);
         if(mIsHousingTypeRequired) {
             mView.updateHousingTypeError(!mModel.hasValidHousingType());
-            if (mModel.hasAllData()) {
+            if (mModel.hasValidData()) {
                 saveDataAndExit();
             }
         }

@@ -25,7 +25,7 @@ public class PaydayLoanModel extends AbstractUserDataModel {
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return mPaydayLoan.hasUsedPaydayLoan!=null;
     }
 

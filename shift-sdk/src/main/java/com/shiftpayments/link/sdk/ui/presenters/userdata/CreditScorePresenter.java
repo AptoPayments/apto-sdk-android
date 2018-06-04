@@ -57,9 +57,9 @@ public class CreditScorePresenter
     @Override
     public void nextClickHandler() {
         mModel.setCreditScoreRange(mView.getScoreRangeId());
-        mView.showError(!mModel.hasAllData());
+        mView.showError(!mModel.hasValidData());
 
-        if (mModel.hasAllData()) {
+        if (mModel.hasValidData()) {
             saveData();
             mDelegate.creditScoreStored();
         }

@@ -129,7 +129,7 @@ public class AddressPresenter
     }
 
     private void validateData() {
-        if (mModel.hasAllData()) {
+        if (mModel.hasValidData()) {
             saveData();
             mDelegate.addressStored();
         }

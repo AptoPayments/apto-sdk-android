@@ -40,7 +40,7 @@ public class MonthlyIncomeModel extends AbstractUserDataModel implements UserDat
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return hasValidIncome();
     }
 

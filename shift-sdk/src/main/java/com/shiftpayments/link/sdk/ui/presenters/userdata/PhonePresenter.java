@@ -75,7 +75,7 @@ public class PhonePresenter
         mModel.setPhone(mView.getPhone());
         mView.updatePhoneError(!mModel.hasPhone(), R.string.phone_error);
 
-        if(mModel.hasAllData()) {
+        if(mModel.hasValidData()) {
             saveData();
             mDelegate.phoneStored();
         }

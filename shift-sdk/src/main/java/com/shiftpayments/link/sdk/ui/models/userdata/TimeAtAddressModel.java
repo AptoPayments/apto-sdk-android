@@ -41,7 +41,7 @@ public class TimeAtAddressModel extends AbstractUserDataModel {
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return isValidRange(mTimeAtAddress.timeAtAddressRange);
     }
 

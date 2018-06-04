@@ -68,7 +68,7 @@ public class IdentityVerificationModelTest {
         mModel.setBirthday(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DATE));
         mModel.setSocialSecurityNumber(EXPECTED_SSN);
 
-        Assert.assertTrue("All data should be set.", mModel.hasAllData());
+        Assert.assertTrue("All data should be set.", mModel.hasValidData());
     }
 
     /**
@@ -94,7 +94,7 @@ public class IdentityVerificationModelTest {
         mModel.setBirthday(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DATE));
 
         Assert.assertTrue("Birthday should be valid.", mModel.hasValidBirthday());
-        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
+        Assert.assertFalse("There should be missing data.", mModel.hasValidData());
     }
 
     /**
@@ -118,7 +118,7 @@ public class IdentityVerificationModelTest {
     public void validSsnIsStored() {
         mModel.setSocialSecurityNumber(EXPECTED_SSN);
         Assert.assertTrue("SSN should be stored.", mModel.hasValidSsn());
-        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
+        Assert.assertFalse("There should be missing data.", mModel.hasValidData());
     }
 
     /**
