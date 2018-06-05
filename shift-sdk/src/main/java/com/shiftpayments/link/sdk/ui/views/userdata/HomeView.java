@@ -26,7 +26,7 @@ import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
  */
 public class HomeView
         extends UserDataView<HomeView.ViewListener>
-        implements ViewWithToolbar, ViewWithIndeterminateLoading, View.OnClickListener {
+        implements ViewWithToolbar, ViewWithIndeterminateLoading {
 
     /**
      * Callbacks this {@link View} will invoke.
@@ -81,6 +81,7 @@ public class HomeView
     protected void setupListeners() {
         super.setupListeners();
         if (mZipField != null) {
+            super.setUiFieldsObservable(mZipField);
             mZipField.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
@@ -106,6 +107,13 @@ public class HomeView
                 return false;
             });
         }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        mZipField.requestFocus();
     }
 
     /**

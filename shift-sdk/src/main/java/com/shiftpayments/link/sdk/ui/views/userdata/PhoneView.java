@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,7 +19,7 @@ import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
  */
 public class PhoneView
         extends UserDataView<PhoneView.ViewListener>
-        implements ViewWithToolbar, View.OnClickListener {
+        implements ViewWithToolbar {
 
     /**
      * Callbacks this {@link View} will invoke.
@@ -61,6 +62,21 @@ public class PhoneView
     protected void onFinishInflate() {
         super.onFinishInflate();
         mPhoneField.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        mPhoneField.requestFocus();
+    }
+
+    @Override
+    protected void setupListeners() {
+        super.setupListeners();
+        mPhoneField.setOnKeyListener((v, keyCode, event) -> {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                mListener.nextClickHandler();
+                return true;
+            }
+            return false;
+        });
+        super.setUiFieldsObservable(mPhoneField);
     }
 
     /**

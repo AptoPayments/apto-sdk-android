@@ -86,9 +86,6 @@ public class BirthdateVerificationView
         if (id == R.id.btn_birthday) {
             mListener.birthdayClickHandler();
         }
-        else {
-            super.onClick(view);
-        }
     }
 
     @Override

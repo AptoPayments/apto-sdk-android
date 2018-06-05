@@ -58,9 +58,6 @@ public class EmailPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        if(!mView.hasAllData()) {
-            return;
-        }
         mModel.setEmail(mView.getEmail());
         mView.updateEmailError(!mModel.hasEmail(), R.string.email_error);
 

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Menu;
 
 import com.coinbase.android.sdk.OAuth;
 import com.coinbase.api.entity.OAuthCodeRequest;
@@ -60,12 +59,6 @@ public class CoinbaseActivity extends Activity {
         } catch (CoinbaseException e) {
             mCurrentModule.onCoinbaseException(e);
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Do not show next button for this screen
-        return true;
     }
 
     public class CompleteAuthorizationTask extends AsyncTask<Intent, Integer, OAuthTokensResponse> {

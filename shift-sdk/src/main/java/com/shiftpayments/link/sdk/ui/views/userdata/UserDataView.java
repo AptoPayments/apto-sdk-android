@@ -9,9 +9,12 @@ import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.DisplayErrorMessage;
@@ -19,6 +22,8 @@ import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.ProgressBarWidget;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperConfiguration;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
+
+import java.util.ArrayList;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -29,7 +34,7 @@ import io.reactivex.Observer;
  */
 public class UserDataView<L extends StepperListener & NextButtonListener>
         extends RelativeLayout
-        implements DisplayErrorMessage, ViewWithToolbar, View.OnClickListener {
+        implements DisplayErrorMessage, ViewWithToolbar {
 
     protected L mListener;
     protected Toolbar mToolbar;
@@ -104,19 +109,6 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
 
     /** {@inheritDoc} */
     @Override
-    public void onClick(View view) {
-        if (mListener == null) {
-            return;
-        }
-
-        int id = view.getId();
-        if (id == R.id.tv_next_bttn) {
-            mListener.nextClickHandler();
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public Toolbar getToolbar() {
         return mToolbar;
     }
@@ -158,14 +150,25 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     public void enableNextButton(boolean enable) {
         mToolbar.post(() -> {
             MenuItem item = mToolbar.getMenu().findItem(R.id.action_next);
-            SpannableString spanString = new SpannableString(item.getTitle());
+            int color;
             if(enable) {
-                spanString.setSpan(new ForegroundColorSpan(UIStorage.getInstance().getPrimaryColor()), 0, spanString.length(), 0);
+                color = UIStorage.getInstance().getPrimaryColor();
             }
             else {
-                spanString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.llsdk_hairline_color)), 0, spanString.length(), 0);
+                color = getResources().getColor(R.color.llsdk_hairline_color);
             }
-            item.setTitle(spanString);
+            View view = findViewById(R.id.action_next);
+            // Cast to a TextView instance if the menu item was found
+            if (view != null && view instanceof TextView) {
+                ((TextView) view).setTextColor(color);
+            }
+            else {
+                SpannableString spanString = new SpannableString(item.getTitle());
+                ForegroundColorSpan fcs = new ForegroundColorSpan(color);
+                spanString.setSpan(fcs, 0, spanString.length(), 0);
+                item.setTitle(spanString);
+            }
+            item.setEnabled(enable);
         });
     }
 
@@ -175,7 +178,37 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
         }
     }
 
-    public void setUiFieldsObservable(Observable<Boolean> observable) {
-        mUiFieldsObservable = observable;
+    public void setUiFieldsObservable(EditText field) {
+        mUiFieldsObservable = getObservable(field);
+    }
+
+    private Observable<Boolean> getObservable(EditText field) {
+        return RxTextView.textChanges(field)
+                .map(charSequence -> (charSequence.length() > 0))
+                .distinctUntilChanged();
+    }
+
+    public void setUiFieldsObservable(ArrayList<EditText> fields) {
+        if(fields.size() == 2) {
+            mUiFieldsObservable = getObservableForTwoFields(fields.get(0), fields.get(1));
+        }
+        else if (fields.size() == 3) {
+            mUiFieldsObservable = getObservableForThreeFields(fields.get(0), fields.get(1), fields.get(2));
+        }
+    }
+
+    private Observable<Boolean> getObservableForTwoFields(EditText first, EditText second) {
+        return Observable.combineLatest(
+                getObservable(first),
+                getObservable(second),
+                ((firstValid, secondValid) -> (firstValid && secondValid)));
+    }
+
+    private Observable<Boolean> getObservableForThreeFields(EditText first, EditText second, EditText third) {
+        return Observable.combineLatest(
+                getObservable(first),
+                getObservable(second),
+                getObservable(third),
+                ((firstValid, secondValid, thirdValid) -> (firstValid && secondValid && thirdValid)));
     }
 }

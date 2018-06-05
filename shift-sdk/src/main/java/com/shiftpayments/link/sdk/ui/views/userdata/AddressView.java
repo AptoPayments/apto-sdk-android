@@ -15,13 +15,15 @@ import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
+import java.util.ArrayList;
+
 /**
  * Displays the address screen.
  * @author Wijnand
  */
 public class AddressView
         extends UserDataView<AddressView.ViewListener>
-        implements ViewWithToolbar, ViewWithIndeterminateLoading, View.OnClickListener {
+        implements ViewWithToolbar, ViewWithIndeterminateLoading {
 
     /**
      * Callbacks this {@link View} will invoke.
@@ -96,8 +98,19 @@ public class AddressView
                 }
             });
         }
+        ArrayList<EditText> mFields = new ArrayList<>();
+        mFields.add(mAddressField);
+        mFields.add(mCityField);
+        mFields.add(mZipField);
+        super.setUiFieldsObservable(mFields);
     }
-    
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        mAddressField.requestFocus();
+    }
+
     /**
      * Stores a new {@link ArrayAdapter} to use with the state {@link Spinner}.
      * @param adapter The new Adapter.

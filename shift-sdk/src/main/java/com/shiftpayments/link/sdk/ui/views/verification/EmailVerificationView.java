@@ -36,7 +36,6 @@ public class EmailVerificationView
     private TextView mResendButton;
     private TextView mEmailInfo;
 
-
     /**
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.

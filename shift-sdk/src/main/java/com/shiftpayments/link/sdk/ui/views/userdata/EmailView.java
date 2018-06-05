@@ -3,10 +3,10 @@ package com.shiftpayments.link.sdk.ui.views.userdata;
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
-import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
@@ -17,7 +17,7 @@ import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
 public class EmailView
         extends UserDataView<EmailView.ViewListener>
-        implements ViewWithToolbar, View.OnClickListener {
+        implements ViewWithToolbar {
 
     /**
      * Callbacks this {@link View} will invoke.
@@ -51,9 +51,21 @@ public class EmailView
 
         mEmailWrapper = findViewById(R.id.til_email);
         mEmailField = findViewById(R.id.et_email);
-        super.setUiFieldsObservable(RxTextView.textChanges(mEmailField)
-                .map(charSequence -> (charSequence.length() > 0))
-                .distinctUntilChanged());
+        mEmailField.requestFocus();
+    }
+
+    @Override
+    protected void setupListeners() {
+        super.setupListeners();
+        mEmailField.setOnKeyListener((v, keyCode, event) -> {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                mListener.nextClickHandler();
+                return true;
+            }
+            return false;
+        });
+        super.setUiFieldsObservable(mEmailField);
     }
 
     /**

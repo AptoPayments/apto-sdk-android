@@ -36,18 +36,20 @@ public class LoanAmountView
      */
     public interface ViewListener
             extends StepperListener, NextButtonListener, DiscreteSeekBar.OnProgressChangeListener {
-    }
 
+    }
     private LoadingView mLoadingView;
+
     private TextView mAmountText;
     private DiscreteSeekBar mAmountSlider;
-
     private Spinner mPurposeSpinner;
-    private TextView mPurposeErrorField;
 
+    private TextView mPurposeErrorField;
     private TextView mDisclaimersHeader;
+
     private TextView mDisclaimersField;
 
+    private TextView mNextButton;
     /**
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
@@ -65,6 +67,18 @@ public class LoanAmountView
         super(context, attrs);
     }
 
+    @Override
+    public void onClick(View view) {
+        if (mListener == null) {
+            return;
+        }
+
+        int id = view.getId();
+        if (id == R.id.tv_next_bttn) {
+            mListener.nextClickHandler();
+        }
+    }
+
     /** {@inheritDoc} */
     @Override
     protected void findAllViews() {
@@ -78,7 +92,7 @@ public class LoanAmountView
         mDisclaimersHeader = findViewById(R.id.tv_disclaimers_header);
         mDisclaimersField = findViewById(R.id.tv_disclaimers_body);
         mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
-
+        mNextButton = findViewById(R.id.tv_next_bttn);
         setColors(UIStorage.getInstance().getPrimaryColor());
         updatePurposeError(false);
         setToolbarIcon();
@@ -208,11 +222,11 @@ public class LoanAmountView
 
     public void showGetOffersButtonAndDisclaimers(boolean show) {
         if(show) {
-            /*mNextButton.setVisibility(VISIBLE);*/
+            mNextButton.setVisibility(VISIBLE);
             mProgressBar.setVisibility(GONE);
         }
         else {
-            /*mNextButton.setVisibility(GONE);*/
+            mNextButton.setVisibility(GONE);
             mDisclaimersHeader.setVisibility(GONE);
             mDisclaimersField.setVisibility(GONE);
             getToolbar().setOverflowIcon(null);

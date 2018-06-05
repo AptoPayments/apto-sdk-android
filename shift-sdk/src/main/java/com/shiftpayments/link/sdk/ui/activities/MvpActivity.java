@@ -52,7 +52,6 @@ public abstract class MvpActivity<M extends ActivityModel, V extends View & View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mView = createView();
         setContentView(mView);
         ShiftBaseModule currentModule = ModuleManager.getInstance().getCurrentModule();
