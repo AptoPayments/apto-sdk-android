@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
@@ -161,12 +159,6 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
             // Cast to a TextView instance if the menu item was found
             if (view != null && view instanceof TextView) {
                 ((TextView) view).setTextColor(color);
-            }
-            else {
-                SpannableString spanString = new SpannableString(item.getTitle());
-                ForegroundColorSpan fcs = new ForegroundColorSpan(color);
-                spanString.setSpan(fcs, 0, spanString.length(), 0);
-                item.setTitle(spanString);
             }
             item.setEnabled(enable);
         });

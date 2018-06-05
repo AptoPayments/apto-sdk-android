@@ -66,6 +66,10 @@ public class PersonalInformationPresenter
             mView.setLastName(mModel.getLastName());
         }
         mView.showEmail(mIsEmailRequired);
+        if(mIsEmailRequired) {
+            // Observer must be set again to take email into account
+            mView.setObserver(mUiFieldsObserver);
+        }
         if (mIsEmailRequired && mModel.hasEmail()) {
             mView.setEmail(mModel.getEmail());
         }

@@ -93,7 +93,7 @@ public class LoanAmountView
         mDisclaimersField = findViewById(R.id.tv_disclaimers_body);
         mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
         mNextButton = findViewById(R.id.tv_next_bttn);
-        setColors(UIStorage.getInstance().getPrimaryColor());
+        setColors();
         updatePurposeError(false);
         setToolbarIcon();
     }
@@ -103,12 +103,15 @@ public class LoanAmountView
         getToolbar().setOverflowIcon(drawable);
     }
 
-    private void setColors(int color) {
+    @Override
+    protected void setColors() {
+        int color = UIStorage.getInstance().getPrimaryColor();
         mAmountText.setTextColor(color);
         mAmountSlider.setRippleColor(color);
         mAmountSlider.setScrubberColor(color);
         mAmountSlider.setTrackColor(color);
         mAmountSlider.setThumbColor(color, color);
+        mNextButton.setBackgroundColor(color);
     }
 
     /** {@inheritDoc} */

@@ -26,7 +26,7 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
         implements StepperListener {
 
     protected static int TOTAL_STEPS;
-    private Observer<Boolean> mUiFieldsObserver;
+    protected Observer<Boolean> mUiFieldsObserver;
 
     /**
      * Creates a new {@link UserDataPresenter} instance.
