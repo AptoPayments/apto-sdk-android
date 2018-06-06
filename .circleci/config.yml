@@ -60,10 +60,10 @@ jobs:
       - run:
           name: Coverage Info
           command: |
-                mkdir -p ~repo/sdk/build/reports/jacoco/test
-                cp ~repo/sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~repo/sdk/build/reports/jacoco/test/jacocoTestReport.xml
-                mkdir -p ~repo/shift-sdk/build/reports/jacoco/test
-                cp ~repo/shift-sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~repo/shift-sdk/build/reports/jacoco/test/jacocoTestReport.xml
+                mkdir -p $HOME/repo/sdk/build/reports/jacoco/test
+                cp $HOME/repo/sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml $HOME/repo/sdk/build/reports/jacoco/test/jacocoTestReport.xml
+                mkdir -p $HOME/repo/shift-sdk/build/reports/jacoco/test
+                cp $HOME/repo/shift-sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml $HOME/repo/shift-sdk/build/reports/jacoco/test/jacocoTestReport.xml
                 bash <(curl -s https://codecov.io/bash) -t e3fe9fad-cf90-4b4c-94b8-ecdf33c73105
 
 
