@@ -22,19 +22,16 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}
-
       - run:
-          name: Setup Properties
+          name: Setup Properties and Permissions
           command: |
             echo 'export TERM=xterm' >> $BASH_ENV
             echo "HOME=$HOME" > /home/circleci/repo/shift-sdk/gradle.properties
+            sudo chmod +x gradlew
 
-      - run:
-          name: Gradle Wrapper Permissions
-          command: sudo chmod +x gradlew
+      # Download and cache dependencies
+      - restore_cache:
+          key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}-{{ checksum "shift-sdk/build.gradle" }}
 
       - run:
           name: Download Dependencies
@@ -45,9 +42,9 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle
-          key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}
+          key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}-{{ checksum "shift-sdk/build.gradle" }}
 
-      # run tests!
+      # Run tests
       - run:
           name: SDK Unit Tests
           command: ./gradlew --configure-on-demand -p sdk testDebugUnitTestCoverage
