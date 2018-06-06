@@ -63,5 +63,17 @@ jobs:
                 cp $HOME/repo/shift-sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml $HOME/repo/shift-sdk/build/reports/jacoco/test/jacocoTestReport.xml
                 bash <(curl -s https://codecov.io/bash) -t e3fe9fad-cf90-4b4c-94b8-ecdf33c73105
 
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/junit/
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/junit/ \;
+          when: always
+
+      - store_test_results:
+          path: ~/junit
+      - store_artifacts:
+          path: ~/junit
+
 
 
