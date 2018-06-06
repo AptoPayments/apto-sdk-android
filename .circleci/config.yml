@@ -5,6 +5,7 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/repo
     docker:
       # specify the version you desire here
       - image: circleci/android:api-23-alpha
@@ -13,8 +14,6 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
-
-    working_directory: ~/repo
 
     environment:
       # Customize the JVM maximum heap limit
@@ -25,7 +24,7 @@ jobs:
 
       # Download and cache dependencies
       - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "sdk/build.gradle" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}
 
        - run:
           name: Download Dependencies
@@ -34,7 +33,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "sdk/build.gradle" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}
 
       # run tests!
       - run: ./gradlew --configure-on-demand -p sdk testDebugUnitTestCoverage
