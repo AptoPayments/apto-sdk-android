@@ -36,7 +36,7 @@ jobs:
 
       - run:
           name: Download Dependencies
-          command: ./gradlew --configure-on-demand -p sdk install
+          command: ./gradlew --configure-on-demand -p sdk install; ./gradlew --configure-on-demand -p shift-sdk install
 
       - save_cache:
           paths:
@@ -44,7 +44,13 @@ jobs:
           key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}
 
       # run tests!
-      - run: ./gradlew --configure-on-demand -p sdk testDebugUnitTestCoverage
+      - run:
+          name: SDK Unit Tests
+          command: ./gradlew --configure-on-demand -p sdk testDebugUnitTestCoverage
+
+      - run:
+          name: Shift-SDK Unit Tests
+          command: ./gradlew --configure-on-demand -p shift-sdk testDebugUnitTestCoverage
 
 
 
