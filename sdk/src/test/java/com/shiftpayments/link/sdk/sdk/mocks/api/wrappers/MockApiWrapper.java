@@ -56,9 +56,9 @@ import com.shiftpayments.link.sdk.api.vos.responses.offers.TermVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.LoginUserResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.PushNotificationRegistrationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.users.PushNotificationRegistrationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.StartVerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
@@ -145,16 +145,6 @@ public class MockApiWrapper implements ShiftApiWrapper {
     @Override
     public String getVgsEndPoint() {
         return mVgsEndPoint;
-    }
-
-    @Override
-    public void setFirebaseToken(String token) {
-        mFirebaseToken = token;
-    }
-
-    @Override
-    public String getFirebaseToken() {
-        return mFirebaseToken;
     }
 
     @Override

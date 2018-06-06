@@ -1,0 +1,67 @@
+# Java Gradle CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      # specify the version you desire here
+      - image: circleci/android:api-23-alpha
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx4608M
+
+    steps:
+      - checkout
+
+      - run:
+          name: Setup Properties and Permissions
+          command: |
+            echo 'export TERM=xterm' >> $BASH_ENV
+            echo "HOME=$HOME" > /home/circleci/repo/shift-sdk/gradle.properties
+            sudo chmod +x gradlew
+
+      # Download and cache dependencies
+      - restore_cache:
+          key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}-{{ checksum "shift-sdk/build.gradle" }}
+
+      - run:
+          name: Download Dependencies
+          command: |
+            ./gradlew --configure-on-demand -p sdk install
+            ./gradlew --configure-on-demand -p shift-sdk install
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}-{{ checksum "shift-sdk/build.gradle" }}
+
+      # Run tests
+      - run:
+          name: SDK Unit Tests
+          command: ./gradlew --configure-on-demand -p sdk testDebugUnitTestCoverage
+
+      - run:
+          name: Shift-SDK Unit Tests
+          command: ./gradlew --configure-on-demand -p shift-sdk testDebugUnitTestCoverage
+
+      # Send coverage info to Codecov.io.
+      - run:
+          name: Coverage Info
+          command: |
+                mkdir -p $HOME/repo/sdk/build/reports/jacoco/test
+                cp $HOME/repo/sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml $HOME/repo/sdk/build/reports/jacoco/test/jacocoTestReport.xml
+                mkdir -p $HOME/repo/shift-sdk/build/reports/jacoco/test
+                cp $HOME/repo/shift-sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml $HOME/repo/shift-sdk/build/reports/jacoco/test/jacocoTestReport.xml
+                bash <(curl -s https://codecov.io/bash) -t e3fe9fad-cf90-4b4c-94b8-ecdf33c73105
+
+
+
