@@ -2,9 +2,10 @@ package com.shiftpayments.link.sdk.ui.presenters.custodianselector;
 
 import android.app.Activity;
 
+import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectCustodianConfigurationVo;
 import com.shiftpayments.link.sdk.ui.activities.custodianselector.AddCustodianListActivity;
-import com.shiftpayments.link.sdk.ui.activities.custodianselector.CoinbaseActivity;
+import com.shiftpayments.link.sdk.ui.activities.custodianselector.OAuthActivity;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 
@@ -13,9 +14,10 @@ import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
  */
 
 public class CustodianSelectorModule extends ShiftBaseModule implements AddCustodianListDelegate,
-        CoinbaseDelegate {
+        OAuthDelegate {
 
     private static CustodianSelectorModule instance;
+    private String mProvider;
 
     public static synchronized CustodianSelectorModule getInstance(Activity activity) {
         if (instance == null) {
@@ -49,23 +51,30 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
 
     @Override
     public void addCoinbase() {
-        startActivity(CoinbaseActivity.class);
+        mProvider = "COINBASE";
+        startActivity(OAuthActivity.class);
     }
 
     @Override
     public void addDwolla() {
-        // TODO
+        mProvider = "DWOLLA";
+        startActivity(OAuthActivity.class);
     }
 
     @Override
-    public void coinbaseTokensRetrieved(String accessToken, String refreshToken) {
+    public String getProvider() {
+        return mProvider;
+    }
+
+    @Override
+    public void oAuthTokensRetrieved(String accessToken, String refreshToken) {
         UserStorage.getInstance().setCoinbaseAccessToken(accessToken);
         UserStorage.getInstance().setCoinbaseRefreshToken(refreshToken);
         super.onFinish.execute();
     }
 
     @Override
-    public void onCoinbaseException(Exception exception) {
-        super.showError(exception.getMessage());
+    public void onOAuthError(ApiErrorVo error) {
+        super.showError(error.toString());
     }
 }

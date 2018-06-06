@@ -41,8 +41,10 @@ import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.SetApplicationAccoun
 import com.shiftpayments.link.sdk.sdk.tasks.offers.InitialOffersTask;
 import com.shiftpayments.link.sdk.sdk.tasks.users.CreateUserTask;
 import com.shiftpayments.link.sdk.sdk.tasks.users.GetCurrentUserTask;
+import com.shiftpayments.link.sdk.sdk.tasks.users.GetOAuthStatusTask;
 import com.shiftpayments.link.sdk.sdk.tasks.users.LoginUserTask;
 import com.shiftpayments.link.sdk.sdk.tasks.users.RegisterPushNotificationsTask;
+import com.shiftpayments.link.sdk.sdk.tasks.users.StartOAuthTask;
 import com.shiftpayments.link.sdk.sdk.tasks.users.UpdateUserTask;
 import com.shiftpayments.link.sdk.sdk.tasks.verifications.CompleteVerificationTask;
 import com.shiftpayments.link.sdk.sdk.tasks.verifications.GetVerificationStatusTask;
@@ -548,6 +550,32 @@ public class ShiftLinkSdk {
         checkComponents();
 
         RegisterPushNotificationsTask task = new RegisterPushNotificationsTask(token, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Requests a URL to start the OAuth for the given provider
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask startOAuth(String provider) {
+        checkComponents();
+
+        StartOAuthTask task = new StartOAuthTask(provider, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Requests the OAuth status
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask getOAuthStatus(String id) {
+        checkComponents();
+
+        GetOAuthStatusTask task = new GetOAuthStatusTask(id, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

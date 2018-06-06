@@ -17,6 +17,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificationsRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.StartOAuthRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
@@ -37,7 +38,9 @@ import com.shiftpayments.link.sdk.api.vos.responses.offers.OffersListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.LoginUserResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.PushNotificationRegistrationResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.StartOAuthResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
@@ -85,6 +88,9 @@ public interface ShiftApiWrapper {
     String VERIFICATION_STATUS_PATH = "v1/verifications/{ID}/status";
     String VERIFICATION_FINISH_PATH = "v1/verifications/{ID}/finish";
     String VERIFICATION_RESTART_PATH = "v1/verifications/{ID}/restart";
+
+    String OAUTH_START_PATH = "v1/oauth";
+    String OAUTH_STATUS_PATH = "v1/oauth/{ID}";
 
     String FINANCIAL_ACCOUNTS_PATH = "v1/user/accounts";
     String FINANCIAL_ACCOUNT_PATH = "v1/user/accounts/{account_id}";
@@ -441,4 +447,20 @@ public interface ShiftApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     PushNotificationRegistrationResponseVo registerNotificationsToken(RegisterPushNotificationsRequestVo requestData) throws ApiException;
+
+    /**
+     * Start the oAuth
+     * @param requestData oAuth provider
+     * @return The URL where the user should be redirected
+     * @throws ApiException When there is an error making the request.
+     */
+    StartOAuthResponseVo startOAuth(StartOAuthRequestVo requestData) throws ApiException;
+
+    /**
+     * Get the oAuth status
+     * @param oAuthId oAuth ID
+     * @return The URL where the user should be redirected
+     * @throws ApiException When there is an error making the request.
+     */
+    OAuthStatusResponseVo getOAuthStatus(String oAuthId) throws ApiException;
 }
