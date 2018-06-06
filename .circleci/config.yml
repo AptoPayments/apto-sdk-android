@@ -27,6 +27,10 @@ jobs:
           key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}
 
       - run:
+          name: export $TERM so that all subsequent steps can see the variable
+          command: echo 'export TERM=xterm' >> $BASH_ENV
+
+      - run:
           name: Chmod permissions
           command: sudo chmod +x gradlew
 
