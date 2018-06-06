@@ -27,16 +27,20 @@ jobs:
           key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}
 
       - run:
-          name: export $TERM so that all subsequent steps can see the variable
-          command: echo 'export TERM=xterm' >> $BASH_ENV; echo "HOME=$HOME" > /home/circleci/repo/shift-sdk/gradle.properties
+          name: Setup Properties
+          command: |
+            echo 'export TERM=xterm' >> $BASH_ENV
+            echo "HOME=$HOME" > /home/circleci/repo/shift-sdk/gradle.properties
 
       - run:
-          name: Chmod permissions
+          name: Gradle Wrapper Permissions
           command: sudo chmod +x gradlew
 
       - run:
           name: Download Dependencies
-          command: ./gradlew --configure-on-demand -p sdk install; ./gradlew --configure-on-demand -p shift-sdk install
+          command: |
+            ./gradlew --configure-on-demand -p sdk install
+            ./gradlew --configure-on-demand -p shift-sdk install
 
       - save_cache:
           paths:
@@ -52,6 +56,15 @@ jobs:
           name: Shift-SDK Unit Tests
           command: ./gradlew --configure-on-demand -p shift-sdk testDebugUnitTestCoverage
 
+      # Send coverage info to Codecov.io.
+      - run:
+          name: Coverage Info
+          command: |
+                mkdir -p ~repo/sdk/build/reports/jacoco/test
+                cp ~repo/sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~repo/sdk/build/reports/jacoco/test/jacocoTestReport.xml
+                mkdir -p ~repo/shift-sdk/build/reports/jacoco/test
+                cp ~repo/shift-sdk/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml ~repo/shift-sdk/build/reports/jacoco/test/jacocoTestReport.xml
+                bash <(curl -s https://codecov.io/bash) -t e3fe9fad-cf90-4b4c-94b8-ecdf33c73105
 
 
 
