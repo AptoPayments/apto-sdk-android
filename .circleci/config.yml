@@ -24,16 +24,16 @@ jobs:
 
       # Download and cache dependencies
       - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}
+          key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}
 
-       - run:
+      - run:
           name: Download Dependencies
           command: ./gradlew --configure-on-demand -p sdk install
 
       - save_cache:
           paths:
             - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}
+          key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}
 
       # run tests!
       - run: ./gradlew --configure-on-demand -p sdk testDebugUnitTestCoverage
