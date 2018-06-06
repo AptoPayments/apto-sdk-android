@@ -28,7 +28,7 @@ jobs:
 
       - run:
           name: export $TERM so that all subsequent steps can see the variable
-          command: echo 'export TERM=xterm' >> $BASH_ENV
+          command: echo 'export TERM=xterm' >> $BASH_ENV; echo "HOME=$HOME" > /home/circleci/repo/shift-sdk/gradle.properties
 
       - run:
           name: Chmod permissions
