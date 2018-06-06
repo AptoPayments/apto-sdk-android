@@ -62,9 +62,9 @@ public class PaydayLoanPresenter
     @Override
     public void nextClickHandler() {
         mModel.setPaydayLoan(getPaydayLoan());
-        mView.showError(!mModel.hasAllData());
+        mView.showError(!mModel.hasValidData());
 
-        if (mModel.hasAllData()) {
+        if (mModel.hasValidData()) {
             saveData();
             mDelegate.paydayLoanStored();
         }

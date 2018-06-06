@@ -1,5 +1,6 @@
 package com.shiftpayments.link.sdk.ui.activities.userdata;
 
+import android.view.Menu;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -38,5 +39,11 @@ public class IdentityVerificationActivity
     public void onResume() {
         super.onResume();
         mPresenter.mDisclaimersShownCounter = 0;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Do not show next button for this screen
+        return true;
     }
 }

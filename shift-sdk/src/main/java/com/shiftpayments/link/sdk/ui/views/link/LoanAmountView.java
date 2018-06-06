@@ -36,18 +36,20 @@ public class LoanAmountView
      */
     public interface ViewListener
             extends StepperListener, NextButtonListener, DiscreteSeekBar.OnProgressChangeListener {
-    }
 
+    }
     private LoadingView mLoadingView;
+
     private TextView mAmountText;
     private DiscreteSeekBar mAmountSlider;
-
     private Spinner mPurposeSpinner;
-    private TextView mPurposeErrorField;
 
+    private TextView mPurposeErrorField;
     private TextView mDisclaimersHeader;
+
     private TextView mDisclaimersField;
 
+    private TextView mNextButton;
     /**
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
@@ -65,6 +67,18 @@ public class LoanAmountView
         super(context, attrs);
     }
 
+    @Override
+    public void onClick(View view) {
+        if (mListener == null) {
+            return;
+        }
+
+        int id = view.getId();
+        if (id == R.id.tv_next_bttn) {
+            mListener.nextClickHandler();
+        }
+    }
+
     /** {@inheritDoc} */
     @Override
     protected void findAllViews() {
@@ -78,8 +92,8 @@ public class LoanAmountView
         mDisclaimersHeader = findViewById(R.id.tv_disclaimers_header);
         mDisclaimersField = findViewById(R.id.tv_disclaimers_body);
         mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
-
-        setColors(UIStorage.getInstance().getPrimaryColor());
+        mNextButton = findViewById(R.id.tv_next_bttn);
+        setColors();
         updatePurposeError(false);
         setToolbarIcon();
     }
@@ -89,12 +103,15 @@ public class LoanAmountView
         getToolbar().setOverflowIcon(drawable);
     }
 
-    private void setColors(int color) {
+    @Override
+    protected void setColors() {
+        int color = UIStorage.getInstance().getPrimaryColor();
         mAmountText.setTextColor(color);
         mAmountSlider.setRippleColor(color);
         mAmountSlider.setScrubberColor(color);
         mAmountSlider.setTrackColor(color);
         mAmountSlider.setThumbColor(color, color);
+        mNextButton.setBackgroundColor(color);
     }
 
     /** {@inheritDoc} */
@@ -209,7 +226,7 @@ public class LoanAmountView
     public void showGetOffersButtonAndDisclaimers(boolean show) {
         if(show) {
             mNextButton.setVisibility(VISIBLE);
-            mStepper.setVisibility(GONE);
+            mProgressBar.setVisibility(GONE);
         }
         else {
             mNextButton.setVisibility(GONE);

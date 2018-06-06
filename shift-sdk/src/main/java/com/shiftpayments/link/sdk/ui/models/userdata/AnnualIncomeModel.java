@@ -37,7 +37,7 @@ public class AnnualIncomeModel extends AbstractUserDataModel implements UserData
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return hasValidIncome() && hasValidIncomeType() && hasValidSalaryFrequency();
     }
 

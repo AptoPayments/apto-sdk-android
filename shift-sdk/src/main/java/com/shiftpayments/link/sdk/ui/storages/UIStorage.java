@@ -98,9 +98,9 @@ public class UIStorage {
         }
     }
 
-    public int getStatusBarColor() {
+    public int getStatusBarColor(int actionBarColor) {
         float[] hsv = new float[3];
-        Color.colorToHSV(mPrimaryColor, hsv);
+        Color.colorToHSV(actionBarColor, hsv);
         hsv[2] *= 0.8f;
         return Color.HSVToColor(hsv);
     }
@@ -197,7 +197,8 @@ public class UIStorage {
 
     public ColorStateList getSwitchBackgroundColors() {
         int materialGrayColor = Color.parseColor("#bdbdbd");
-        int statusBarColor = getStatusBarColor()==mPrimaryColor ? materialGrayColor : getStatusBarColor();
+        int statusBarColor = Color.parseColor("#FFF9F9F9");
+        statusBarColor = statusBarColor==mPrimaryColor ? materialGrayColor : statusBarColor;
         return new ColorStateList(
                 new int[][]{
                         new int[]{-android.R.attr.state_checked},

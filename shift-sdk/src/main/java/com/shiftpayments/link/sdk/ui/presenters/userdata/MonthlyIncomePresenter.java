@@ -90,7 +90,7 @@ public class MonthlyIncomePresenter
     @Override
     public void nextClickHandler() {
         mModel.setMonthlyIncome(mView.getIncome() * mIncomeMultiplier);
-        if (mModel.hasAllData()) {
+        if (mModel.hasValidData()) {
             saveData();
             mDelegate.monthlyIncomeStored();
         }

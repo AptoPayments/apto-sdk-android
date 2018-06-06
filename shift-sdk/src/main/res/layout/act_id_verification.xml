@@ -5,6 +5,7 @@
         android:layout_height="match_parent">
 
     <include layout="@layout/include_llsdk_toolbar" />
+    <include layout="@layout/include_progress_bar" />
 
     <!-- Dummy to get focus on start. -->
     <RelativeLayout
@@ -25,7 +26,7 @@
                     android:id="@+id/rl_birthday_holder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/abl_toolbar_wrapper">
+                    android:layout_below="@+id/pbw_progress_bar_wrapper">
 
                 <Button
                         android:id="@+id/btn_birthday"
@@ -123,7 +124,6 @@
         </RelativeLayout>
     </ScrollView>
 
-    <include layout="@layout/include_progress_bar" />
     <include layout="@layout/include_rl_loading" />
 
 </com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView>

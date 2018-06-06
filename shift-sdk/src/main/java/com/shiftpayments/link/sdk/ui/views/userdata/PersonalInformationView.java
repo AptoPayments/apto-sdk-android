@@ -15,6 +15,8 @@ import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
+import java.util.ArrayList;
+
 /**
  * Displays the personal information screen.
  * @author Wijnand
@@ -41,6 +43,8 @@ public class PersonalInformationView
     private CheckBox mEmailAvailableCheck;
     private TextView mEmailAvailableField;
 
+    ArrayList<EditText> mFields;
+
     /**
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
@@ -64,6 +68,10 @@ public class PersonalInformationView
         super.setupListeners();
         mEmailField.setOnClickListener(this);
         mEmailAvailableCheck.setOnClickListener(this);
+        mFields = new ArrayList<>();
+        mFields.add(mFirstNameField);
+        mFields.add(mLastNameField);
+        super.setUiFieldsObservable(mFields);
     }
 
     /** {@inheritDoc} */
@@ -76,9 +84,6 @@ public class PersonalInformationView
         int id = view.getId();
         if (id == R.id.cb_email_not_available) {
             mListener.emailCheckBoxClickHandler();
-        }
-        else {
-            super.onClick(view);
         }
     }
 
@@ -194,6 +199,8 @@ public class PersonalInformationView
     public void showEmail(boolean show) {
         if(show) {
             mEmailField.setVisibility(VISIBLE);
+            mFields.add(mEmailField);
+            super.setUiFieldsObservable(mFields);
         }
         else {
             mEmailField.setVisibility(GONE);

@@ -6,6 +6,7 @@
     xmlns:android.support.design="http://schemas.android.com/tools">
 
     <include layout="@layout/include_llsdk_toolbar" />
+    <include layout="@layout/include_progress_bar" />
 
     <!-- Dummy to get focus on start. -->
     <RelativeLayout
@@ -47,7 +48,5 @@
                 android:maxLines="1" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
-
-    <include layout="@layout/include_progress_bar" />
 
 </com.shiftpayments.link.sdk.ui.views.userdata.EmailView>

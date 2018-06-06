@@ -44,7 +44,7 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return hasValidZip() && hasValidHousingType();
     }
 

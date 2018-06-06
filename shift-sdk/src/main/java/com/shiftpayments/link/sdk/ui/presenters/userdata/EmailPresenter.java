@@ -61,10 +61,9 @@ public class EmailPresenter
         mModel.setEmail(mView.getEmail());
         mView.updateEmailError(!mModel.hasEmail(), R.string.email_error);
 
-        if(mModel.hasAllData()) {
+        if(mModel.hasValidData()) {
             saveData();
             mDelegate.emailStored();
         }
     }
-
 }

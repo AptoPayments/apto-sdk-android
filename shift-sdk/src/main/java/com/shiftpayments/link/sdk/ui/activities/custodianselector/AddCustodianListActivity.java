@@ -1,5 +1,6 @@
 package com.shiftpayments.link.sdk.ui.activities.custodianselector;
 
+import android.view.Menu;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -33,5 +34,11 @@ public class AddCustodianListActivity
         else {
             throw new NullPointerException("Received Module does not implement AddCustodianListDelegate!");
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Do not show next button for this screen
+        return true;
     }
 }

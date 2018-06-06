@@ -42,11 +42,11 @@ public class LoanAmountActivity
     /** {@inheritDoc} */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(!((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData) {
-            return false;
+        if(((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_loan_amount, menu);
+            return true;
         }
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_loan_amount, menu);
 
         return super.onCreateOptionsMenu(menu);
     }

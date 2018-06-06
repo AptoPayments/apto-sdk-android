@@ -42,7 +42,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return hasValidAddress() && hasValidCity() && hasValidState() && hasValidZip();
     }
 

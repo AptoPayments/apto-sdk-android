@@ -190,12 +190,12 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
             }
             DataPointList userData = UserStorage.getInstance().getUserData();
             switch (DataPointVo.DataPointType.fromString(secondaryCredential.verification_type)) {
-                case Email:
-                    DataPointVo baseEmail = mInitialUserData.getUniqueDataPoint(DataPointVo.DataPointType.Email, new Email());
-                    baseEmail.setVerification(new VerificationVo(secondaryCredential.verification_id, secondaryCredential.verification_type));
-                    userData.add(baseEmail);
+                case Phone:
+                    DataPointVo basePhone = mInitialUserData.getUniqueDataPoint(DataPointVo.DataPointType.Phone, new Email());
+                    basePhone.setVerification(new VerificationVo(secondaryCredential.verification_id, secondaryCredential.verification_type));
+                    userData.add(basePhone);
                     UserStorage.getInstance().setUserData(userData);
-                    startActivity(EmailVerificationActivity.class);
+                    startActivity(PhoneActivity.class);
                     break;
                 case BirthDate:
                     DataPointVo baseBirthdate = mInitialUserData.getUniqueDataPoint(DataPointVo.DataPointType.BirthDate, new Birthdate());

@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.SsnEditText;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -55,6 +57,7 @@ public class IdentityVerificationView
 
     private LoadingView mLoadingView;
     private ProgressBar mProgressBar;
+    private TextView mNextButton;
 
     /**
      * @see UserDataView#UserDataView
@@ -73,12 +76,14 @@ public class IdentityVerificationView
         super(context, attrs);
     }
 
-    /** {@inheritDoc} */
     @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+    public void setColors() {
+        super.setColors();
+
+        int primaryColor = UIStorage.getInstance().getPrimaryColor();
         ((AppCompatCheckBox) mSocialSecurityAvailableCheck).setSupportButtonTintList(
-                ColorStateList.valueOf(UIStorage.getInstance().getPrimaryColor()));
+                ColorStateList.valueOf(primaryColor));
+        mNextButton.setBackgroundColor(primaryColor);
     }
 
     /** {@inheritDoc} */
@@ -99,6 +104,8 @@ public class IdentityVerificationView
         mDisclaimersField = findViewById(R.id.tv_disclaimers_body);
         mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
 
+        mNextButton = findViewById(R.id.tv_next_bttn);
+
         mLoadingView = findViewById(R.id.rl_loading_overlay);
         mProgressBar = findViewById(R.id.pb_progress);
     }
@@ -111,6 +118,11 @@ public class IdentityVerificationView
         mBirthdayField.setOnClickListener(this);
         mSocialSecurityField.setOnClickListener(this);
         mSocialSecurityAvailableCheck.setOnClickListener(this);
+        mNextButton.setOnClickListener(this);
+        ArrayList<EditText> mFields = new ArrayList<>();
+        mFields.add(mBirthdayField);
+        mFields.add(mSocialSecurityField);
+        super.setUiFieldsObservable(mFields);
     }
 
     /** {@inheritDoc} */
@@ -127,8 +139,8 @@ public class IdentityVerificationView
         else if (id == R.id.cb_ssn_itin_not_available) {
             mListener.ssnCheckBoxClickHandler();
         }
-        else {
-            super.onClick(view);
+        else if (id == R.id.tv_next_bttn) {
+            mListener.nextClickHandler();
         }
     }
 
@@ -246,7 +258,7 @@ public class IdentityVerificationView
     }
 
     public void setButtonText(String buttonText) {
-        super.mNextButton.setText(buttonText);
+        mNextButton.setText(buttonText);
     }
 
     public void showDisclaimers(boolean show) {

@@ -154,5 +154,6 @@ public class PhoneVerificationView
         mPinView.setPin(CODE_LENGTH);
         mPinView.setKeyboardMandatory(false);
         mPinView.setMaskPassword(false);
+        mPinView.requestFocus();
     }
 }

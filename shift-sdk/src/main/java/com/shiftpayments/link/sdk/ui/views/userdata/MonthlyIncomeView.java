@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.ui.views.userdata;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -19,7 +18,7 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
  */
 public class MonthlyIncomeView
         extends UserDataView<MonthlyIncomeView.ViewListener>
-        implements ViewWithToolbar, View.OnClickListener {
+        implements ViewWithToolbar {
 
     /**
      * Callbacks this View will invoke.

@@ -1,7 +1,6 @@
 package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
@@ -153,14 +152,12 @@ public class ManageAccountView
 
     private void setColors() {
         int primaryColor = UIStorage.getInstance().getPrimaryColor();
-        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
+        mSpendableAmount.setTextColor(primaryColor);
         mAddFundingSourceButton.setColorFilter(primaryColor);
-        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
-        mToolbar.setTitleTextColor(contrastColor);
         mSignOutButton.setBackgroundColor(primaryColor);
         Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
-        backArrow.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
+        int actionBarColor = getResources().getColor(R.color.llsdk_actionbar_background);
+        mToolbar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
         mToolbar.setNavigationIcon(backArrow);
-        mSpendableAmount.setTextColor(primaryColor);
     }
 }

@@ -5,11 +5,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.DisplayErrorMessage;
@@ -18,18 +21,23 @@ import com.shiftpayments.link.sdk.ui.widgets.steppers.ProgressBarWidget;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperConfiguration;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
+import java.util.ArrayList;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+
 /**
  * Generic user data related View.
  * @author Wijnand
  */
 public class UserDataView<L extends StepperListener & NextButtonListener>
         extends RelativeLayout
-        implements DisplayErrorMessage, ViewWithToolbar, View.OnClickListener {
+        implements DisplayErrorMessage, ViewWithToolbar {
 
     protected L mListener;
     protected Toolbar mToolbar;
-    protected TextView mNextButton;
-    protected ProgressBarWidget mStepper;
+    protected ProgressBarWidget mProgressBar;
+    protected Observable<Boolean> mUiFieldsObservable;
 
     /**
      * @see RelativeLayout#RelativeLayout
@@ -53,33 +61,23 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
      */
     protected void findAllViews() {
         mToolbar = findViewById(R.id.tb_llsdk_toolbar);
-        mNextButton = findViewById(R.id.tv_next_bttn);
-        mStepper = findViewById(R.id.pbw_stepper);
+        mProgressBar = findViewById(R.id.pbw_progress_bar_wrapper);
     }
 
     /**
      * Sets up all required listeners.
      */
     protected void setupListeners() {
-        if (mNextButton != null) {
-            mNextButton.setOnClickListener(this);
-        }
-        if (mStepper != null) {
-            mStepper.setListener(mListener);
+        if (mProgressBar != null) {
+            mProgressBar.setListener(mListener);
         }
     }
 
     protected void setColors() {
         int color = UIStorage.getInstance().getPrimaryColor();
-        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        if (mNextButton != null) {
-            mNextButton.setBackgroundColor(color);
-            mNextButton.setTextColor(contrastColor);
-        }
-        mToolbar.setBackgroundDrawable(new ColorDrawable(color));
-        mToolbar.setTitleTextColor(contrastColor);
-        if(mStepper != null) {
-            mStepper.setProgressBarColor(color);
+        mToolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.llsdk_actionbar_background)));
+        if(mProgressBar != null) {
+            mProgressBar.setProgressBarColor(color);
         }
     }
 
@@ -109,21 +107,15 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
 
     /** {@inheritDoc} */
     @Override
-    public void onClick(View view) {
-        if (mListener == null) {
-            return;
-        }
-
-        int id = view.getId();
-        if (id == R.id.tv_next_bttn) {
-            mListener.nextClickHandler();
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public Toolbar getToolbar() {
         return mToolbar;
+    }
+
+    @Override
+    public void displayErrorMessage(String message) {
+        if(!message.isEmpty()) {
+            Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
@@ -133,8 +125,8 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     public void setListener(L listener) {
         mListener = listener;
 
-        if (mStepper != null) {
-            mStepper.setListener(listener);
+        if (mProgressBar != null) {
+            mProgressBar.setListener(listener);
         }
     }
 
@@ -143,15 +135,72 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
      * @param configuration New configuration.
      */
     public void setStepperConfiguration(StepperConfiguration configuration) {
-        if (mStepper != null) {
-            mStepper.setConfiguration(configuration);
+        if (mProgressBar != null) {
+            mProgressBar.setConfiguration(configuration);
         }
     }
 
-    @Override
-    public void displayErrorMessage(String message) {
-        if(!message.isEmpty()) {
-            Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
+    public boolean hasNextButton() {
+        MenuItem item = mToolbar.getMenu().findItem(R.id.action_next);
+        return item != null;
+    }
+
+    public void enableNextButton(boolean enable) {
+        mToolbar.post(() -> {
+            MenuItem item = mToolbar.getMenu().findItem(R.id.action_next);
+            int color;
+            if(enable) {
+                color = UIStorage.getInstance().getPrimaryColor();
+            }
+            else {
+                color = getResources().getColor(R.color.llsdk_hairline_color);
+            }
+            View view = findViewById(R.id.action_next);
+            // Cast to a TextView instance if the menu item was found
+            if (view != null && view instanceof TextView) {
+                ((TextView) view).setTextColor(color);
+            }
+            item.setEnabled(enable);
+        });
+    }
+
+    public void setObserver(Observer<Boolean> observer) {
+        if(mUiFieldsObservable != null) {
+            mUiFieldsObservable.subscribe(observer);
         }
+    }
+
+    public void setUiFieldsObservable(EditText field) {
+        mUiFieldsObservable = getObservable(field);
+    }
+
+    private Observable<Boolean> getObservable(EditText field) {
+        return RxTextView.textChanges(field)
+                .map(charSequence -> (charSequence.length() > 0))
+                .distinctUntilChanged();
+    }
+
+    public void setUiFieldsObservable(ArrayList<EditText> fields) {
+        if(fields.size() == 2) {
+            mUiFieldsObservable = getObservableForTwoFields(fields.get(0), fields.get(1));
+        }
+        else if (fields.size() == 3) {
+            mUiFieldsObservable = getObservableForThreeFields(fields.get(0), fields.get(1), fields.get(2));
+        }
+    }
+
+    private Observable<Boolean> getObservableForTwoFields(EditText first, EditText second) {
+        return Observable.combineLatest(
+                getObservable(first),
+                getObservable(second),
+                ((firstValid, secondValid) -> (firstValid && secondValid)));
+    }
+
+    private Observable<Boolean> getObservableForThreeFields(EditText first, EditText second, EditText third) {
+        return Observable.combineLatest(
+                getObservable(first),
+                getObservable(second),
+                getObservable(third),
+                ((firstValid, secondValid, thirdValid) -> (firstValid && secondValid && thirdValid)));
     }
 }

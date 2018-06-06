@@ -1,5 +1,6 @@
 package com.shiftpayments.link.sdk.ui.activities.verification;
 
+import android.view.Menu;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -32,5 +33,11 @@ public class PhoneVerificationActivity
         else {
             throw new NullPointerException("Received Module does not implement PhoneVerificationDelegate!");
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Do not show next button for this screen
+        return true;
     }
 }

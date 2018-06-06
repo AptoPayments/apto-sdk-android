@@ -16,7 +16,7 @@
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/abl_toolbar_wrapper"
+            android:layout_below="@+id/pbw_progress_bar_wrapper"
             android:layout_above="@+id/tv_next_bttn">
 
         <LinearLayout

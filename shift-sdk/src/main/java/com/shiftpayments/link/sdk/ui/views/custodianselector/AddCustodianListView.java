@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.custodianselector.AddCustodianModel;
-import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.DisplayErrorMessage;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
@@ -83,10 +82,8 @@ public class AddCustodianListView extends CoordinatorLayout
     }
 
     private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
-        int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
-        mToolbar.setTitleTextColor(contrastColor);
+        int actionBarColor = getResources().getColor(R.color.llsdk_actionbar_background);
+        mToolbar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
     }
 
     @Override

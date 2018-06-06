@@ -25,7 +25,7 @@ public class ArmedForcesModel extends AbstractUserDataModel {
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return mArmedForces.isMemberOfArmedForces!=null;
     }
 

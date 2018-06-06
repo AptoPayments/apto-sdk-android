@@ -6,13 +6,15 @@ import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.models.ActivityModel;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
+import com.shiftpayments.link.sdk.ui.views.userdata.NextButtonListener;
 
 /**
  * Generic {@link Presenter} for an {@link AppCompatActivity}.
  * @author Wijnand
  */
 public abstract class ActivityPresenter<M extends ActivityModel, V extends View & ViewWithToolbar>
-        extends BasePresenter<M, V> {
+        extends BasePresenter<M, V>
+        implements NextButtonListener {
 
     protected final AppCompatActivity mActivity;
     private ActionBar mActionBar;

@@ -4,12 +4,20 @@
     <!--
         STEPPER
     -->
-
-    <style name="llsdk_stepper">
+    <style name="llsdk_progress_bar">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">56dp</item>
-        <item name="android:background">?attr/llsdk_stepper_backgroundColor</item>
-        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_below">@+id/abl_toolbar_wrapper</item>
+    </style>
+    <style name="AppTheme.Toolbar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionButtonStyle">@style/AppTheme.Toolbar.ActionButton</item>
+    </style>
+    <style name="Base.AppTheme.Toolbar.ActionButton" parent="@style/Widget.AppCompat.ActionButton">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+    </style>
+    <style name="AppTheme.Toolbar.ActionButton" parent="@style/Base.AppTheme.Toolbar.ActionButton">
+        <item name="android:paddingEnd">20dp</item>
     </style>
     <style name="llsdk_stepper_button_holder">
         <item name="android:layout_width">wrap_content</item>
@@ -35,6 +43,12 @@
         <item name="android:textColor">?attr/llsdk_stepper_textColor</item>
     </style>
 
+    <style name="toolbar_button_next">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="llsdk_stepper_bar_holder">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -54,8 +68,7 @@
     <style name="llsdk_user_data_entry_container">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_below">@+id/abl_toolbar_wrapper</item>
-        <item name="android:layout_above">@+id/pbw_stepper</item>
+        <item name="android:layout_below">@+id/pbw_progress_bar_wrapper</item>
         <item name="android:padding">16dp</item>
     </style>
 

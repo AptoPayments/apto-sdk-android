@@ -75,7 +75,7 @@ public class BirthdateVerificationModel extends AbstractUserDataModel implements
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return hasValidBirthdate();
     }
 

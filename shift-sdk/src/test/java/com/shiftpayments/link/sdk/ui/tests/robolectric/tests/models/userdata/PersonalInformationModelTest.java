@@ -77,7 +77,7 @@ public class PersonalInformationModelTest {
         Assert.assertThat("Incorrect first name.", mModel.getFirstName(), equalTo(baseName.firstName));
         Assert.assertThat("Incorrect last name.", mModel.getLastName(), equalTo(baseName.lastName));
         Assert.assertThat("Incorrect email address.", mModel.getEmail(), equalTo(baseEmail.email));
-        Assert.assertTrue("All data should be set.", mModel.hasAllData());
+        Assert.assertTrue("All data should be set.", mModel.hasValidData());
     }
 
     /**
@@ -102,7 +102,7 @@ public class PersonalInformationModelTest {
         Assert.assertThat("Incorrect first name.", baseName.firstName, equalTo(mModel.getFirstName()));
         Assert.assertThat("Incorrect last name.", baseName.lastName, equalTo(mModel.getLastName()));
         Assert.assertThat("Incorrect email address.", baseEmail.email, equalTo(mModel.getEmail()));
-        Assert.assertTrue("All data should be set.", mModel.hasAllData());
+        Assert.assertTrue("All data should be set.", mModel.hasValidData());
     }
 
     /**
@@ -115,7 +115,7 @@ public class PersonalInformationModelTest {
         mModel.setFirstName(EXPECTED_FIRST_NAME);
         Assert.assertTrue("First name should be stored.", mModel.hasFirstName());
         Assert.assertThat("Incorrect first name.", mModel.getFirstName(), equalTo(EXPECTED_FIRST_NAME));
-        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
+        Assert.assertFalse("There should be missing data.", mModel.hasValidData());
     }
 
     /**
@@ -139,7 +139,7 @@ public class PersonalInformationModelTest {
         mModel.setLastName(EXPECTED_LAST_NAME);
         Assert.assertTrue("Last name should be stored.", mModel.hasLastName());
         Assert.assertThat("Incorrect last name.", mModel.getLastName(), equalTo(EXPECTED_LAST_NAME));
-        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
+        Assert.assertFalse("There should be missing data.", mModel.hasValidData());
     }
 
     /**
@@ -163,7 +163,7 @@ public class PersonalInformationModelTest {
         mModel.setEmail(EXPECTED_EMAIL);
         Assert.assertTrue("Email should be stored.", mModel.hasEmail());
         Assert.assertThat("Incorrect email.", mModel.getEmail(), equalTo(EXPECTED_EMAIL));
-        Assert.assertFalse("There should be missing data.", mModel.hasAllData());
+        Assert.assertFalse("There should be missing data.", mModel.hasValidData());
     }
 
     /**

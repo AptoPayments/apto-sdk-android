@@ -66,9 +66,9 @@ public class TimeAtAddressPresenter
     @Override
     public void nextClickHandler() {
         mModel.setTimeAtAddressRange(mView.getScoreRangeId());
-        mView.showError(!mModel.hasAllData());
+        mView.showError(!mModel.hasValidData());
 
-        if (mModel.hasAllData()) {
+        if (mModel.hasValidData()) {
             saveData();
             mDelegate.timeAtAddressStored();
         }

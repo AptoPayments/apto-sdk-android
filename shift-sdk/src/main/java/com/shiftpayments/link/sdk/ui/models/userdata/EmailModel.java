@@ -35,9 +35,13 @@ public class EmailModel extends AbstractUserDataModel implements UserDataModel {
         return R.string.email_title;
     }
 
+    public boolean hasAllData() {
+        return this.hasEmail();
+    }
+
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return hasEmail();
     }
 

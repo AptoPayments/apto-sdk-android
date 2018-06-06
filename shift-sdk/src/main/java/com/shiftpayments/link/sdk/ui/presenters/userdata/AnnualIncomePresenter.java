@@ -197,7 +197,7 @@ public class AnnualIncomePresenter
             mView.updateIncomeTypeError(!mModel.hasValidIncomeType());
             mView.updateSalaryFrequencyError(!mModel.hasValidSalaryFrequency());
 
-            if(mModel.hasAllData()) {
+            if(mModel.hasValidData()) {
                 saveDataAndExit();
             }
         }

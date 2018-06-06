@@ -198,7 +198,7 @@ public class IdentityVerificationPresenter
         }
 
         if(mIsSSNRequired && mIsBirthdayRequired) {
-            if(mModel.hasAllData() || ((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
+            if(mModel.hasValidData() || ((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
                     && !userHasUpdatedSSN() && mModel.hasValidBirthday()) {
                 saveDataAndExit();
             }

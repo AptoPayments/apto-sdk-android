@@ -41,7 +41,7 @@ public class CreditScoreModel extends AbstractUserDataModel {
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasAllData() {
+    public boolean hasValidData() {
         return isValidRange(mCreditScore.creditScoreRange);
     }
 

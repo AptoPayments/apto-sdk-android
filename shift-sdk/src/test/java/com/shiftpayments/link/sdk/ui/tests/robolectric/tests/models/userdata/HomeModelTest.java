@@ -76,7 +76,7 @@ public class HomeModelTest {
 
         Assert.assertThat("Incorrect zip.", mModel.getZip(), equalTo(baseAddress.zip));
         Assert.assertThat("Incorrect housing type.", mModel.getHousingType().getKey(), equalTo(baseHousing.housingType.getKey()));
-        Assert.assertTrue("All data should be set.", mModel.hasAllData());
+        Assert.assertTrue("All data should be set.", mModel.hasValidData());
     }
 
     /**
