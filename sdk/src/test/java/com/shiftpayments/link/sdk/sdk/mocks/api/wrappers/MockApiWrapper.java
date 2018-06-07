@@ -20,6 +20,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificationsRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.StartOAuthRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
@@ -56,7 +57,9 @@ import com.shiftpayments.link.sdk.api.vos.responses.offers.TermVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.LoginUserResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.PushNotificationRegistrationResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.StartOAuthResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
@@ -430,6 +433,16 @@ public class MockApiWrapper implements ShiftApiWrapper {
 
     @Override
     public PushNotificationRegistrationResponseVo registerNotificationsToken(RegisterPushNotificationsRequestVo requestData) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public StartOAuthResponseVo startOAuth(StartOAuthRequestVo requestData) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public OAuthStatusResponseVo getOAuthStatus(String oAuthId) throws ApiException {
         return null;
     }
 }

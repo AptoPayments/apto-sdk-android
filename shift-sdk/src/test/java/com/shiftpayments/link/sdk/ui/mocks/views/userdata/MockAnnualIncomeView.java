@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.ui.mocks.views.userdata;
 
 import android.content.Context;
+import android.support.v7.widget.Toolbar;
 
 import com.shiftpayments.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
@@ -15,11 +16,12 @@ public class MockAnnualIncomeView extends AnnualIncomeView {
 
     public MockAnnualIncomeView(Context context) {
         super(context);
-        init();
+        init(context);
     }
 
-    private void init() {
+    private void init(Context context) {
         mIncome = 0;
+        mToolbar = new Toolbar(context);
     }
 
     @Override
