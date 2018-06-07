@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="llsdk_body_text_size">18sp</dimen>
+    <dimen name="llsdk_body_text_size">20sp</dimen>
+    <dimen name="llsdk_hint_text_size">16sp</dimen>
     <dimen name="llsdk_big_button_height">48dp</dimen>
 
     <dimen name="llsdk_offer_summary_header_size">24sp</dimen>

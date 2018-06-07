@@ -4,6 +4,9 @@
     <color name="llsdk_link_color">#00f</color>
     <color name="llsdk_hairline_color">#aaa</color>
     <color name="llsdk_error_text_color">#FFDD2C00</color>
+    <color name="llsdk_hint_text_color">#FFBABABA</color>
+    <color name="llsdk_label_text_color">#FF232325</color>
+    <color name="llsdk_text_color">#FF2B2D35</color>
 
     <color name="llsdk_application_approved_color">#58c246</color>
     <color name="llsdk_application_pending_borrower_action_color">#ffd52b</color>

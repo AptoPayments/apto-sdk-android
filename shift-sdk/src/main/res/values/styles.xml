@@ -139,7 +139,17 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/llsdk_body_text_size</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/llsdk_text_color</item>
+    </style>
+
+    <style name="llsdk_id_verification_text_input_hint">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/llsdk_hint_text_size</item>
+        <item name="android:textColor">@color/llsdk_hint_text_color</item>
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="llsdk_id_verification_disclaimer">

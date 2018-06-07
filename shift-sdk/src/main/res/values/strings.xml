@@ -30,10 +30,10 @@
     <string name="phone_error">Invalid phone number</string>
 
     <!-- Email -->
-    <string name="email_title">Email address</string>
+    <string name="email_title">Account details</string>
     <string name="email_error">Invalid email</string>
     <string name="email_label">Enter your email address</string>
-    <string name="email_hint">Email</string>
+    <string name="email_hint">emailaddress@example.com</string>
 
 
     <!-- Birthdate -->
