@@ -12,17 +12,16 @@ import com.shiftpayments.link.sdk.ui.mocks.views.userdata.MockAnnualIncomeView;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.AnnualIncomePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.tests.robolectric.LibraryProjectTestRunner;
 import com.shiftpayments.link.sdk.ui.views.userdata.AnnualIncomeView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.lang.ref.SoftReference;
@@ -31,7 +30,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(LibraryProjectTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class AnnualIncomePresenterTest {
 
@@ -53,7 +52,6 @@ public class AnnualIncomePresenterTest {
     }
 
     @Test
-    @Ignore
     public void absoluteAnnualGrossIncomeStoredInModel() {
         ((MockAnnualIncomePresenter) mPresenter).setModelMaxIncome(TEST_MAX_INCOME);
         ((MockAnnualIncomePresenter) mPresenter).setMultiplier(EXPECTED_MULTIPLIER);

@@ -11,6 +11,7 @@ import com.shiftpayments.link.sdk.ui.mocks.views.userdata.MockMonthlyIncomeView;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.MonthlyIncomePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.tests.robolectric.LibraryProjectTestRunner;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import org.junit.After;
@@ -19,7 +20,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
 
 import java.lang.ref.SoftReference;
 
@@ -27,7 +27,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(LibraryProjectTestRunner.class)
 public class MonthlyIncomePresenterTest {
 
     private static final double EXPECTED_INCOME = 900;

@@ -5,13 +5,13 @@ import android.content.res.Resources;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.BigButtonModel;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.details.FinishExternalLoanApplicationDetailsModel;
+import com.shiftpayments.link.sdk.ui.tests.robolectric.LibraryProjectTestRunner;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.shadows.ShadowContentProvider;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -20,7 +20,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
  * Tests the {@link FinishExternalLoanApplicationDetailsModel} class.
  * @author Wijnand
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(LibraryProjectTestRunner.class)
 public class FinishExternalLoanApplicationDetailsModelTest {
 
     private Resources mResources;

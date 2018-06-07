@@ -11,13 +11,13 @@ import com.shiftpayments.link.sdk.ui.models.loanapplication.details.LoanApplicat
 import com.shiftpayments.link.sdk.ui.models.loanapplication.details.PendingLenderActionLoanApplicationDetailsModel;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.details.UploadDocsLoanApplicationDetailsModel;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanApplicationDetailsPresenter;
+import com.shiftpayments.link.sdk.ui.tests.robolectric.LibraryProjectTestRunner;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.shadows.ShadowContentProvider;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -29,7 +29,7 @@ import static org.hamcrest.core.IsNot.not;
  * Tests the {@link LoanApplicationDetailsPresenter} class.
  * @author Wijnand
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(LibraryProjectTestRunner.class)
 public class LoanApplicationDetailsPresenterTest {
 
     private LoanApplicationDetailsPresenter mPresenter;

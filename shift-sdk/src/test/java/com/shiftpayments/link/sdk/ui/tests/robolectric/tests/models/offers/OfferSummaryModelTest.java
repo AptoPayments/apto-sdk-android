@@ -5,12 +5,12 @@ import android.content.res.Resources;
 import com.shiftpayments.link.sdk.api.vos.responses.offers.OfferVo;
 import com.shiftpayments.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shiftpayments.link.sdk.ui.models.offers.OfferSummaryModel;
+import com.shiftpayments.link.sdk.ui.tests.robolectric.LibraryProjectTestRunner;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.shadows.ShadowContentProvider;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -22,7 +22,7 @@ import static org.hamcrest.core.IsNot.not;
  * Tests the {@link OfferSummaryModel} class.
  * @author Wijnand
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(LibraryProjectTestRunner.class)
 public class OfferSummaryModelTest {
 
     private static final String EXPECTED_AMOUNT_TEXT = "Amount financed: $5555";

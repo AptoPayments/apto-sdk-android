@@ -17,6 +17,7 @@ import com.shiftpayments.link.sdk.ui.models.loanapplication.RejectedLoanApplicat
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.IntermediateLoanApplicationPresenter;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import com.shiftpayments.link.sdk.ui.storages.LoanStorage;
+import com.shiftpayments.link.sdk.ui.tests.robolectric.LibraryProjectTestRunner;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -25,7 +26,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -35,7 +35,7 @@ import static org.hamcrest.core.IsNot.not;
  * Tests the {@link IntermediateLoanApplicationPresenter} class.
  * @author Wijnand
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(LibraryProjectTestRunner.class)
 public class IntermediateLoanApplicationPresenterTest {
 
     private IntermediateLoanApplicationPresenter mPresenter;

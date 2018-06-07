@@ -8,13 +8,13 @@ import com.shiftpayments.link.sdk.ui.models.financialaccountselector.SelectFinan
 import com.shiftpayments.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.SelectFinancialAccountListPresenter;
+import com.shiftpayments.link.sdk.ui.tests.robolectric.LibraryProjectTestRunner;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -24,7 +24,7 @@ import static org.hamcrest.core.IsNot.not;
  * Tests the {@link SelectFinancialAccountListPresenter} class.
  * @author Adrian
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(LibraryProjectTestRunner.class)
 public class SelectFinancialAccountListPresenterTest {
 
     private SelectFinancialAccountListPresenter mPresenter;
