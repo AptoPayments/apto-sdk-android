@@ -141,8 +141,7 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     }
 
     public boolean hasNextButton() {
-        MenuItem item = mToolbar.getMenu().findItem(R.id.action_next);
-        return item != null;
+        return mToolbar.getMenu().findItem(R.id.action_next) != null;
     }
 
     public void enableNextButton(boolean enable) {

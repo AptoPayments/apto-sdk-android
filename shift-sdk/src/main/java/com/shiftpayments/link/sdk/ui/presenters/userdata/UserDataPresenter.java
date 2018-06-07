@@ -35,7 +35,6 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
     public UserDataPresenter(AppCompatActivity activity) {
         super(activity);
         populateModelFromStorage();
-        createObserver();
     }
 
     /**
@@ -74,6 +73,7 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
     public void attachView(V view) {
         super.attachView(view);
         mView.setStepperConfiguration(getStepperConfig());
+        createObserver();
         mView.setObserver(mUiFieldsObserver);
         if(mView.hasNextButton()) {
             mView.enableNextButton(false);

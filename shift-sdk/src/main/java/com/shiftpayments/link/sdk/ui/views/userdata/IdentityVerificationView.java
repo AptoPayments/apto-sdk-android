@@ -119,10 +119,6 @@ public class IdentityVerificationView
         mSocialSecurityField.setOnClickListener(this);
         mSocialSecurityAvailableCheck.setOnClickListener(this);
         mNextButton.setOnClickListener(this);
-        ArrayList<EditText> mFields = new ArrayList<>();
-        mFields.add(mBirthdayField);
-        mFields.add(mSocialSecurityField);
-        super.setUiFieldsObservable(mFields);
     }
 
     /** {@inheritDoc} */
