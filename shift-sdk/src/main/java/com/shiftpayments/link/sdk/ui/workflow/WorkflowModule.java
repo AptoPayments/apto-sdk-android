@@ -7,7 +7,7 @@ import android.app.Activity;
  */
 
 public class WorkflowModule extends ShiftBaseModule {
-    private WorkflowObject mWorkFlowObject;
+    protected WorkflowObject mWorkFlowObject;
     private Command onWorkflowModuleFinish;
     private WorkflowObjectStatusInterface getWorkflowObjectStatus;
 

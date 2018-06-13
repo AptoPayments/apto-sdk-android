@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.ui.presenters.card;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
@@ -11,37 +12,37 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
-import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
+import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
-import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
-import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
-import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModule;
 import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModuleConfig;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
+import com.shiftpayments.link.sdk.ui.storages.LoanStorage;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.vos.ApplicationVo;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
+import com.shiftpayments.link.sdk.ui.workflow.WorkflowObject;
 
 import org.greenrobot.eventbus.Subscribe;
 
 import java.lang.ref.SoftReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-import static com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo.DataPointType.PersonalName;
+import java8.util.concurrent.CompletableFuture;
+import java8.util.concurrent.CompletionException;
+
+import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.COLLECT_USER_DATA;
+import static com.shiftpayments.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
 
 /**
  * Created by adrian on 23/02/2018.
@@ -49,7 +50,6 @@ import static com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo.DataPoin
 
 public class CardModule extends ShiftBaseModule implements ManageAccountDelegate, ManageCardDelegate {
 
-    private RequiredDataPointsListResponseVo mFinalRequiredUserData;
     private boolean mIsExistingUser;
 
     public CardModule(Activity activity) {
@@ -73,7 +73,8 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Override
     public void addFundingSource(Command onFinishCallback) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        startCustodianModule(this::startManageCardScreen, onFinishCallback);
+        // TODO
+        //startCustodianModule(this::startManageCardScreen, onFinishCallback);
     }
 
     @Override
@@ -171,70 +172,44 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
             mIsExistingUser = true;
             checkIfUserHasAnExistingCardOrIssueNewOne();
         };
-        authModule.onNewUserWithVerifiedPrimaryCredential = this::collectInitialUserData;
+        authModule.onNewUserWithVerifiedPrimaryCredential = this::startNewCardModule;
         authModule.onBack = this::showHomeActivity;
-        authModule.onFinish = this::collectInitialUserData;
+        authModule.onFinish = this::startNewCardModule;
         startModule(authModule);
     }
 
-    private void collectInitialUserData() {
-        storeFinalRequiredDataPoints();
-        setInitialRequiredDataPoints();
-        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(getActivity());
-        userDataCollectorModule.onFinish = this::startCustodianModule;
-        userDataCollectorModule.onBack = this::showHomeActivity;
-        userDataCollectorModule.isUpdatingProfile = false;
-        userDataCollectorModule.onTokenRetrieved = null;
-        startModule(userDataCollectorModule);
+    private void startNewCardModule() {
+        // TODO: get application from backend
+        ActionVo action = new ActionVo();
+        action.actionType = COLLECT_USER_DATA;
+        ApplicationVo cardApplication = new ApplicationVo("", action);
+        NewCardModule newCardModule = new NewCardModule(getActivity(), cardApplication, this::getApplicationStatus);
+        newCardModule.onBack = this::showHomeActivity;
+        newCardModule.onFinish = this.onFinish;
+        newCardModule.initialModuleSetup();
     }
 
-    private void collectFinalUserData() {
-        ConfigStorage.getInstance().setRequiredUserData(mFinalRequiredUserData);
-        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(getActivity());
-        UserDataCollectorConfigurationVo config = new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_title_issue_card), new CallToActionVo(getActivity().getString(R.string.id_verification_next_button_issue_card)));
-        userDataCollectorModule.setCallToActionConfig(config);
-        userDataCollectorModule.onFinish = this::issueVirtualCard;
-        userDataCollectorModule.onBack = this::showHomeActivity;
-        userDataCollectorModule.isUpdatingProfile = mIsExistingUser;
-        userDataCollectorModule.onTokenRetrieved = null;
-        startModule(userDataCollectorModule);
-    }
-
-    private void setInitialRequiredDataPoints() {
-        // TODO: we need to split the user data collection in two
-        // 1) initial user data: first name + last name
-        // 2) final user data: rest of the required datapoints
-        RequiredDataPointsListResponseVo initialRequiredUserData = new RequiredDataPointsListResponseVo();
-        RequiredDataPointVo[] requiredDataPointList = new RequiredDataPointVo[1];
-        requiredDataPointList[0] = new RequiredDataPointVo(PersonalName);
-        initialRequiredUserData.data = requiredDataPointList;
-        ConfigStorage.getInstance().setRequiredUserData(initialRequiredUserData);
-    }
-
-    private void storeFinalRequiredDataPoints() {
-        mFinalRequiredUserData = ConfigStorage.getInstance().getRequiredUserData();
-        RequiredDataPointVo[] requiredDataPointArray = mFinalRequiredUserData.data;
-        List<RequiredDataPointVo> requiredDataPointsList = new ArrayList<>(Arrays.asList(requiredDataPointArray));
-        for (Iterator<RequiredDataPointVo> iter = requiredDataPointsList.listIterator(); iter.hasNext(); ) {
-            RequiredDataPointVo dataPoint = iter.next();
-            if (dataPoint.type.equals(PersonalName)) {
-                iter.remove();
-            }
+    private ApplicationVo getApplicationStatus(WorkflowObject currentObject) {
+        if(!(currentObject instanceof ApplicationVo)) {
+            throw new RuntimeException("Current workflow object is not an application!");
         }
-
-        mFinalRequiredUserData.data = requiredDataPointsList.toArray(new RequiredDataPointVo[requiredDataPointsList.size()]);
-    }
-
-    private void issueVirtualCard() {
-        setCurrentModule();
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        IssueVirtualCardModule issueVirtualCardModule = new IssueVirtualCardModule(getActivity());
-        issueVirtualCardModule.onFinish = this::startManageCardScreen;
-        issueVirtualCardModule.onBack = () -> {
-            SoftReference<ShiftBaseModule> userDataCollectorModule = new SoftReference<>(UserDataCollectorModule.getInstance(getActivity()));
-            ModuleManager.getInstance().setModule(userDataCollectorModule);
-        };
-        startModule(issueVirtualCardModule);
+        CompletableFuture<LoanApplicationDetailsResponseVo> future = CompletableFuture.supplyAsync(() -> {
+            try {
+                // TODO: replace call with card get application status call
+                return getApiWrapper().getApplicationStatus(currentObject.workflowObjectId);
+            } catch (ApiException e) {
+                throw new CompletionException(e);
+            }
+        });
+        try {
+            // TODO: replace call with card get application status call
+            LoanApplicationDetailsResponseVo applicationStatus = future.get();
+            LoanStorage.getInstance().setCurrentLoanApplication(applicationStatus);
+            return new ApplicationVo(applicationStatus.id, applicationStatus.next_action);
+        } catch (InterruptedException | ExecutionException e) {
+            future.completeExceptionally(e);
+            throw new CompletionException(e);
+        }
     }
 
     private void startManageCardScreen() {
@@ -258,20 +233,6 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         ShiftPlatform.getFinancialAccount(accountId);
     }
 
-    private void startCustodianModule() {
-        startCustodianModule(this::showHomeActivity, this::collectFinalUserData);
-    }
-
-    private void startCustodianModule(Command onBackCallback, Command onFinishCallback) {
-        CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity());
-        custodianSelectorModule.onBack = onBackCallback;
-        custodianSelectorModule.onFinish = ()->{
-            setCurrentModule();
-            onFinishCallback.execute();
-        };
-        startModule(custodianSelectorModule);
-    }
-
     private void setCurrentModule() {
         SoftReference<ShiftBaseModule> moduleSoftReference = new SoftReference<>(this);
         ModuleManager.getInstance().setModule(moduleSoftReference);
@@ -279,7 +240,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     private void handleFinancialAccounts(DataPointList financialAccounts) {
         if(financialAccounts == null || financialAccounts.getDataPointsOf(DataPointVo.DataPointType.FinancialAccount) == null) {
-            collectInitialUserData();
+            startNewCardModule();
             return;
         }
         Card card = findFirstVirtualCard(financialAccounts.getDataPointsOf(DataPointVo.DataPointType.FinancialAccount));
@@ -287,7 +248,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
             getCardData(card.mAccountId);
         }
         else {
-            collectInitialUserData();
+            startNewCardModule();
         }
     }
 
