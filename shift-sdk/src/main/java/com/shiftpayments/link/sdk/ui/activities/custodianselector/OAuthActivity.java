@@ -92,6 +92,11 @@ public class OAuthActivity extends Activity {
             }
         });
         mGetStatusThread.start();
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        this.finish();
     }
 }

@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.ui.presenters.custodianselector;
 
 import android.app.Activity;
+import android.content.Intent;
 
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectCustodianConfigurationVo;
@@ -52,13 +53,13 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
     @Override
     public void addCoinbase() {
         mProvider = "COINBASE";
-        startActivity(OAuthActivity.class);
+        startOAuthActivity();
     }
 
     @Override
     public void addDwolla() {
         mProvider = "DWOLLA";
-        startActivity(OAuthActivity.class);
+        startOAuthActivity();
     }
 
     @Override
@@ -76,5 +77,9 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
     @Override
     public void onOAuthError(ApiErrorVo error) {
         super.showError(error.toString());
+    }
+
+    private void startOAuthActivity() {
+        getActivity().startActivity(new Intent(getActivity(), OAuthActivity.class));
     }
 }
