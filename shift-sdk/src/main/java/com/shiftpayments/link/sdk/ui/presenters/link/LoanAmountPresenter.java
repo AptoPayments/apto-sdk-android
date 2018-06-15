@@ -14,13 +14,13 @@ import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.link.LoanAmountModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.link.LoanAmountView;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 import com.shiftpayments.link.sdk.ui.widgets.HintArrayAdapter;
 import com.shiftpayments.link.sdk.ui.widgets.MultiplyTransformer;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperConfiguration;
-import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
@@ -98,8 +98,7 @@ public class LoanAmountPresenter
     /** {@inheritDoc} */
     @Override
     protected StepperConfiguration getStepperConfig() {
-        boolean enableNextButton = !((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData;
-        return new StepperConfiguration(TOTAL_STEPS, 0, enableNextButton);
+        return new StepperConfiguration(TOTAL_STEPS, 0, false);
     }
 
     /** {@inheritDoc} */
@@ -115,7 +114,7 @@ public class LoanAmountPresenter
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(true);
         mView.setListener(this);
-        if(((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData) {
+        if(UserStorage.getInstance().hasUserData()) {
             mView.showGetOffersButtonAndDisclaimers(true);
             if (mDisclaimersText == null) {
                 CompletableFuture

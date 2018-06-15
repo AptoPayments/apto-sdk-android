@@ -52,8 +52,8 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     private boolean mIsExistingUser;
 
-    public CardModule(Activity activity) {
-        super(activity);
+    public CardModule(Activity activity, Command onFinish, Command onBack) {
+        super(activity, onFinish, onBack);
     }
 
     @Override
@@ -167,14 +167,12 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     private void startAuthModule() {
         ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
         AuthModuleConfig authModuleConfig = new AuthModuleConfig(config.primaryAuthCredential, config.secondaryAuthCredential);
-        AuthModule authModule = AuthModule.getInstance(getActivity(), null, authModuleConfig);
+        AuthModule authModule = AuthModule.getInstance(getActivity(), null, authModuleConfig, this::startNewCardModule, this::showHomeActivity);
         authModule.onExistingUser = () -> {
             mIsExistingUser = true;
             checkIfUserHasAnExistingCardOrIssueNewOne();
         };
         authModule.onNewUserWithVerifiedPrimaryCredential = this::startNewCardModule;
-        authModule.onBack = this::showHomeActivity;
-        authModule.onFinish = this::startNewCardModule;
         startModule(authModule);
     }
 
@@ -183,10 +181,8 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         ActionVo action = new ActionVo();
         action.actionType = COLLECT_USER_DATA;
         ApplicationVo cardApplication = new ApplicationVo("", action);
-        NewCardModule newCardModule = new NewCardModule(getActivity(), cardApplication, this::getApplicationStatus);
-        newCardModule.onBack = this::showHomeActivity;
-        newCardModule.onFinish = this.onFinish;
-        newCardModule.initialModuleSetup();
+        new NewCardModule(getActivity(), cardApplication, this::getApplicationStatus, this::startManageCardScreen,
+                this::showHomeActivity).initialModuleSetup();
     }
 
     private ApplicationVo getApplicationStatus(WorkflowObject currentObject) {

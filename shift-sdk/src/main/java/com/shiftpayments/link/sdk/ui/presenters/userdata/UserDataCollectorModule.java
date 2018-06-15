@@ -63,15 +63,19 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     private DataPointList mCurrentUserDataCopy;
     private UserDataCollectorConfigurationVo mCallToAction;
 
-    private UserDataCollectorModule(Activity activity) {
-        super(activity);
+    private UserDataCollectorModule(Activity activity, Command onFinish, Command onBack) {
+        super(activity, onFinish, onBack);
         mRequiredDataPointList = new LinkedList<>();
         mRequiredActivities = new ArrayList<>();
     }
 
-    public static synchronized UserDataCollectorModule getInstance(Activity activity) {
+    public static synchronized UserDataCollectorModule getInstance(Activity activity, Command onFinish, Command onBack) {
         if (instance == null) {
-            instance = new UserDataCollectorModule(activity);
+            instance = new UserDataCollectorModule(activity, onFinish, onBack);
+        }
+        else {
+            instance.onFinish = onFinish;
+            instance.onBack = onBack;
         }
         return instance;
     }

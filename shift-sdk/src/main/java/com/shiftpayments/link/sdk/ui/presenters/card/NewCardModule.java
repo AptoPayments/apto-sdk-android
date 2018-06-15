@@ -32,8 +32,10 @@ public class NewCardModule extends WorkflowModule {
 
     private RequiredDataPointsListResponseVo mFinalRequiredUserData;
 
-    public NewCardModule(Activity activity, WorkflowObject workflowObject, WorkflowObjectStatusInterface getWorkflowObjectStatus) {
-        super(activity, workflowObject, getWorkflowObjectStatus);
+    public NewCardModule(Activity activity, WorkflowObject workflowObject,
+                         WorkflowObjectStatusInterface getWorkflowObjectStatus, Command onFinish,
+                         Command onBack) {
+        super(activity, workflowObject, getWorkflowObjectStatus, onFinish, onBack);
     }
 
     @Override
@@ -43,17 +45,15 @@ public class NewCardModule extends WorkflowModule {
                 collectInitialUserData();
                 return;
             default:
-                new ActionNotSupportedModule(getActivity()).initialModuleSetup();
+                new ActionNotSupportedModule(getActivity(), this.onFinish, this.onBack).initialModuleSetup();
         }
     }
 
     private void collectInitialUserData() {
         storeFinalRequiredDataPoints();
         setInitialRequiredDataPoints();
-        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(getActivity());
         // TODO: read next action
-        userDataCollectorModule.onFinish = this::startCustodianModule;
-        userDataCollectorModule.onBack = super.onBack;
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(getActivity(), this::startCustodianModule, super.onBack);
         userDataCollectorModule.isUpdatingProfile = false;
         userDataCollectorModule.onTokenRetrieved = null;
         startModule(userDataCollectorModule);
@@ -61,11 +61,9 @@ public class NewCardModule extends WorkflowModule {
 
     private void collectFinalUserData() {
         ConfigStorage.getInstance().setRequiredUserData(mFinalRequiredUserData);
-        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(getActivity());
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(getActivity(), this::issueVirtualCard, super.onBack);
         UserDataCollectorConfigurationVo config = new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_title_issue_card), new CallToActionVo(getActivity().getString(R.string.id_verification_next_button_issue_card)));
         userDataCollectorModule.setCallToActionConfig(config);
-        userDataCollectorModule.onFinish = this::issueVirtualCard;
-        userDataCollectorModule.onBack = super.onBack;
         // TODO
         userDataCollectorModule.isUpdatingProfile = false;
         //userDataCollectorModule.isUpdatingProfile = mIsExistingUser;
@@ -103,25 +101,24 @@ public class NewCardModule extends WorkflowModule {
     }
 
     private void startCustodianModule(Command onBackCallback, Command onFinishCallback) {
-        CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity());
-        custodianSelectorModule.onBack = onBackCallback;
-        custodianSelectorModule.onFinish = ()->{
+        Command onFinish = ()->{
             setCurrentModule();
             onFinishCallback.execute();
         };
+        CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity(), onFinish, onBackCallback);
         startModule(custodianSelectorModule);
     }
 
     private void issueVirtualCard() {
         setCurrentModule();
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        IssueVirtualCardModule issueVirtualCardModule = new IssueVirtualCardModule(getActivity());
-        issueVirtualCardModule.onFinish = super.onFinish;
-        issueVirtualCardModule.onBack = () -> {
-            SoftReference<ShiftBaseModule> userDataCollectorModule = new SoftReference<>(UserDataCollectorModule.getInstance(getActivity()));
-            ModuleManager.getInstance().setModule(userDataCollectorModule);
-        };
+        IssueVirtualCardModule issueVirtualCardModule = new IssueVirtualCardModule(getActivity(), this.onFinish, this::onIssueVirtualCardBackPressed);
         startModule(issueVirtualCardModule);
+    }
+
+    private void onIssueVirtualCardBackPressed() {
+        SoftReference<ShiftBaseModule> userDataCollectorModule = new SoftReference<>(UserDataCollectorModule.getInstance(getActivity(), this.onFinish, super.onBack));
+        ModuleManager.getInstance().setModule(userDataCollectorModule);
     }
 
     private void setCurrentModule() {

@@ -70,7 +70,7 @@ public class IntermediateLoanApplicationPresenterTest {
     @Before
     public void setUp() {
         AppCompatActivity activity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
-        mPresenter = new IntermediateLoanApplicationPresenter(activity, LoanApplicationModule.getInstance(activity));
+        mPresenter = new IntermediateLoanApplicationPresenter(activity, LoanApplicationModule.getInstance(activity, null, null));
     }
 
     /**

@@ -8,6 +8,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectCustodianConf
 import com.shiftpayments.link.sdk.ui.activities.custodianselector.AddCustodianListActivity;
 import com.shiftpayments.link.sdk.ui.activities.custodianselector.OAuthActivity;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 
 /**
@@ -20,15 +21,15 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
     private static CustodianSelectorModule instance;
     private String mProvider;
 
-    public static synchronized CustodianSelectorModule getInstance(Activity activity) {
+    public static synchronized CustodianSelectorModule getInstance(Activity activity, Command onFinish, Command onBack) {
         if (instance == null) {
-            instance = new CustodianSelectorModule(activity);
+            instance = new CustodianSelectorModule(activity, onFinish, onBack);
         }
         return instance;
     }
 
-    private CustodianSelectorModule(Activity activity) {
-        super(activity);
+    private CustodianSelectorModule(Activity activity, Command onFinish, Command onBack) {
+        super(activity, onFinish, onBack);
     }
 
     @Override

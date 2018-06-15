@@ -26,6 +26,7 @@ public class UserStorage {
     private String mCoinbaseAccessToken;
     private String mCoinbaseRefreshToken;
     private String mFirebaseToken;
+    private String mSelectedFinancialAccountId;
 
     private static UserStorage mInstance;
 
@@ -165,6 +166,18 @@ public class UserStorage {
     public void setFirebaseToken(String firebaseToken) {
         this.mFirebaseToken = firebaseToken;
         registerFirebaseToken();
+    }
+
+    public String getSelectedFinancialAccountId() {
+        return mSelectedFinancialAccountId;
+    }
+
+    public void setSelectedFinancialAccountId(String selectedFinancialAccountId) {
+        mSelectedFinancialAccountId = selectedFinancialAccountId;
+    }
+
+    public boolean hasUserData() {
+        return mUserDataPoints != null && !mUserDataPoints.getDataPoints().isEmpty();
     }
 
     private void registerFirebaseToken() {

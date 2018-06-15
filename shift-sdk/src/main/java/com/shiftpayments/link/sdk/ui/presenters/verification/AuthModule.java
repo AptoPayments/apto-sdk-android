@@ -43,8 +43,9 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
     private DataPointList mInitialUserData;
     private AuthModuleConfig mConfig;
 
-    private AuthModule(Activity activity, DataPointList initialUserData, AuthModuleConfig config) {
-        super(activity);
+    private AuthModule(Activity activity, DataPointList initialUserData, AuthModuleConfig config,
+                       Command onFinish, Command onBack) {
+        super(activity, onFinish, onBack);
         if (initialUserData == null) {
             mInitialUserData = new DataPointList();
         } else {
@@ -54,9 +55,13 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
         SharedPreferencesStorage.storeCredentials(getActivity(), mConfig.primaryCredentialType.getType(), mConfig.secondaryCredentialType.getType());
     }
 
-    public static synchronized AuthModule getInstance(Activity activity, DataPointList initialUserData, AuthModuleConfig config) {
+    public static synchronized AuthModule getInstance(Activity activity, DataPointList initialUserData, AuthModuleConfig config, Command onFinish, Command onBack) {
         if (instance == null) {
-            instance = new AuthModule(activity, initialUserData, config);
+            instance = new AuthModule(activity, initialUserData, config, onFinish, onBack);
+        }
+        else {
+            instance.onFinish = onFinish;
+            instance.onBack = onBack;
         }
         return instance;
     }

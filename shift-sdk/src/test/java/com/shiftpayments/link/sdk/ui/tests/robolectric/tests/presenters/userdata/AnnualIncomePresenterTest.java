@@ -44,7 +44,7 @@ public class AnnualIncomePresenterTest {
     @Before
     public void setUp() {
         AppCompatActivity mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
-        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity);
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity, null, null);
         ModuleManager.getInstance().setModule(new SoftReference<>(userDataCollectorModule));
         mPresenter = new MockAnnualIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));
         mView = new MockAnnualIncomeView(mActivity);

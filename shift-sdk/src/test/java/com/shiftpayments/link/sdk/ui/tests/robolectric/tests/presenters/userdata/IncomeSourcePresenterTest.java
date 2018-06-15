@@ -54,7 +54,7 @@ public class IncomeSourcePresenterTest {
     @Before
     public void setUp() {
         AppCompatActivity mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
-        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity);
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity, null, null);
         userDataCollectorModule.mRequiredDataPointList.add(new RequiredDataPointVo(DataPointVo.DataPointType.IncomeSource));
         ModuleManager.getInstance().setModule(new SoftReference<>(userDataCollectorModule));
         mPresenter = new MockAnnualIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));

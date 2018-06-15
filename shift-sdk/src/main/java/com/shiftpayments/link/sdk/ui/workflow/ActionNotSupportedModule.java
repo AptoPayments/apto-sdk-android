@@ -10,8 +10,8 @@ import com.shiftpayments.link.sdk.ui.activities.ActionNotSupportedActivity;
 
 public class ActionNotSupportedModule extends ShiftBaseModule {
 
-    public ActionNotSupportedModule(Activity activity) {
-        super(activity);
+    public ActionNotSupportedModule(Activity activity, Command onFinish, Command onBack) {
+        super(activity, onFinish, onBack);
     }
 
     @Override

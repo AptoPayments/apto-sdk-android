@@ -31,7 +31,7 @@ public class LoanApplicationSummaryPresenterTest {
      * Creates a new {@link LoanApplicationSummaryPresenter}.
      */
     private void createPresenter() {
-        mPresenter = new LoanApplicationSummaryPresenter(mActivity, LoanApplicationModule.getInstance(mActivity));
+        mPresenter = new LoanApplicationSummaryPresenter(mActivity, LoanApplicationModule.getInstance(mActivity, null, null));
     }
 
     /**

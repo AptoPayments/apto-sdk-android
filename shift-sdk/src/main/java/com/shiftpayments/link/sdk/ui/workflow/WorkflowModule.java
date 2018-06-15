@@ -11,8 +11,10 @@ public class WorkflowModule extends ShiftBaseModule {
     private Command onWorkflowModuleFinish;
     private WorkflowObjectStatusInterface getWorkflowObjectStatus;
 
-    public WorkflowModule(Activity activity, WorkflowObject workflowObject, WorkflowObjectStatusInterface getWorkflowObjectStatus) {
-        super(activity);
+    public WorkflowModule(Activity activity, WorkflowObject workflowObject,
+                          WorkflowObjectStatusInterface getWorkflowObjectStatus, Command onFinish,
+                          Command onBack) {
+        super(activity, onFinish, onBack);
         mWorkFlowObject = workflowObject;
         this.getWorkflowObjectStatus = getWorkflowObjectStatus;
     }
@@ -27,9 +29,7 @@ public class WorkflowModule extends ShiftBaseModule {
     }
 
     public void startNextModule() {
-        ShiftBaseModule module = ModuleFactory.getModule(this.getActivity(), mWorkFlowObject.nextAction);
-        module.onBack = this.onBack;
-        module.onFinish = this.onWorkflowModuleFinish;
+        ShiftBaseModule module = ModuleFactory.getModule(this.getActivity(), mWorkFlowObject.nextAction, onWorkflowModuleFinish, onBack);
         startModule(module);
     }
 
