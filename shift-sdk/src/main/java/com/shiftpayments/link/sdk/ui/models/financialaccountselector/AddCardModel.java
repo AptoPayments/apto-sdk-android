@@ -16,14 +16,12 @@ import com.shiftpayments.link.sdk.ui.storages.UserStorage;
  */
 public class AddCardModel implements AddFinancialAccountModel, ActivityModel {
 
-    private String mCardHolderName;
     private Card mCard;
 
     /**
      * Creates a new {@link AddCardModel} instance.
      */
     public AddCardModel() {
-        mCardHolderName = getUserName();
         mCard = new Card();
         mCard.state = Card.FinancialAccountState.ACTIVE;
     }
@@ -68,16 +66,12 @@ public class AddCardModel implements AddFinancialAccountModel, ActivityModel {
         return mCard;
     }
 
-    private String getUserName() {
+    public String getCardHolderName() {
         DataPointList userData = UserStorage.getInstance().getUserData();
         PersonalName userName = (PersonalName) userData.getUniqueDataPoint(
                 DataPointVo.DataPointType.PersonalName, new PersonalName());
 
         return userName.firstName + " " + userName.lastName;
-    }
-
-    public String getCardHolderName() {
-        return mCardHolderName;
     }
 
     public void setCardNetwork(String cardNetwork) {

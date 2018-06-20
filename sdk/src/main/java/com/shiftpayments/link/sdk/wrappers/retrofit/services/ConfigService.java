@@ -1,5 +1,6 @@
 package com.shiftpayments.link.sdk.wrappers.retrofit.services;
 
+import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
@@ -13,11 +14,11 @@ import retrofit2.http.GET;
  */
 public interface ConfigService {
     /**
-     * Creates a {@link Call} to get the loan purposes list.
+     * Creates a {@link Call} to get the link config.
      * @return API call to execute.
      */
     @GET(ShiftApiWrapper.LINK_CONFIG_PATH)
-    Call<LinkConfigResponseVo> getLoanPurposesList();
+    Call<LinkConfigResponseVo> getLinkConfig();
 
     /**
      * Creates a {@link Call} to get the config.
@@ -26,4 +27,11 @@ public interface ConfigService {
      */
     @GET(ShiftApiWrapper.CONFIG_PATH)
     Call<ContextConfigResponseVo> getUserConfig();
+
+    /**
+     * Creates a {@link Call} to get the card config.
+     * @return API call to execute.
+     */
+    @GET(ShiftApiWrapper.CARD_CONFIG_PATH)
+    Call<CardConfigResponseVo> getCardConfig();
 }

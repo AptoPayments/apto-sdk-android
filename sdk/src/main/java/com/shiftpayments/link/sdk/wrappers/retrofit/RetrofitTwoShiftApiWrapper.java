@@ -20,6 +20,7 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.VerificationVo;
+import com.shiftpayments.link.sdk.api.vos.requests.CreateCardApplicationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
@@ -37,6 +38,8 @@ import com.shiftpayments.link.sdk.api.vos.requests.users.StartOAuthRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
@@ -70,6 +73,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionConfiguration
 import com.shiftpayments.link.sdk.api.wrappers.BaseShiftApiWrapper;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.wrappers.retrofit.interceptors.ShiftOkThreeInterceptor;
+import com.shiftpayments.link.sdk.wrappers.retrofit.services.CardApplicationService;
 import com.shiftpayments.link.sdk.wrappers.retrofit.services.ConfigService;
 import com.shiftpayments.link.sdk.wrappers.retrofit.services.DashboardService;
 import com.shiftpayments.link.sdk.wrappers.retrofit.services.FinancialAccountService;
@@ -120,6 +124,7 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     private VerificationService mVerificationService;
     private FinancialAccountService mFinancialAccountService;
     private DashboardService mDashboardService;
+    private CardApplicationService mCardApplicationService;
 
     /**
      * Creates a new {@link RetrofitTwoShiftApiWrapper} instance.
@@ -148,6 +153,7 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         mLoanApplicationService = retrofit.create(LoanApplicationService.class);
         mVerificationService = retrofit.create(VerificationService.class);
         mDashboardService = retrofit.create(DashboardService.class);
+        mCardApplicationService = retrofit.create(CardApplicationService.class);
 
         /*
          * TODO: This is probably still slightly too generic.
@@ -382,11 +388,26 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         LinkConfigResponseVo result;
 
         try {
-            Response<LinkConfigResponseVo> response = mConfigService.getLoanPurposesList().execute();
+            Response<LinkConfigResponseVo> response = mConfigService.getLinkConfig().execute();
             result = handleResponse(response, ShiftApiWrapper.LINK_CONFIG_PATH);
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), ShiftApiWrapper.LINK_CONFIG_PATH, ioe);
+        }
+
+        return result;
+    }
+
+    @Override
+    public CardConfigResponseVo getCardConfig(UnauthorizedRequestVo requestData) throws ApiException {
+        CardConfigResponseVo result;
+
+        try {
+            Response<CardConfigResponseVo> response = mConfigService.getCardConfig().execute();
+            result = handleResponse(response, ShiftApiWrapper.CARD_CONFIG_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.CARD_CONFIG_PATH, ioe);
         }
 
         return result;
@@ -545,16 +566,16 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
 
     /** {@inheritDoc} */
     @Override
-    public LoanApplicationDetailsResponseVo getApplicationStatus(String applicationId)
+    public LoanApplicationDetailsResponseVo getLoanApplicationStatus(String applicationId)
             throws ApiException {
         LoanApplicationDetailsResponseVo result;
         try {
             Response<LoanApplicationDetailsResponseVo> response
                     = mLoanApplicationService.getApplicationStatus(applicationId).execute();
-            result = handleResponse(response, ShiftApiWrapper.APPLICATION_STATUS_PATH);
+            result = handleResponse(response, ShiftApiWrapper.LINK_APPLICATION_STATUS_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), ShiftApiWrapper.APPLICATION_STATUS_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.LINK_APPLICATION_STATUS_PATH, ioe);
         }
 
         return result;
@@ -568,10 +589,10 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         try {
             Response<LoanApplicationDetailsResponseVo> response
                     = mLoanApplicationService.setApplicationAccount(applicationRequestVo, applicationId).execute();
-            result = handleResponse(response, ShiftApiWrapper.APPLICATION_ACCOUNT_PATH);
+            result = handleResponse(response, ShiftApiWrapper.LINK_APPLICATION_ACCOUNT_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), ShiftApiWrapper.APPLICATION_ACCOUNT_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.LINK_APPLICATION_ACCOUNT_PATH, ioe);
         }
 
         return result;
@@ -940,6 +961,33 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), ShiftApiWrapper.OAUTH_STATUS_PATH, ioe);
+        }
+        return result;
+    }
+
+    @Override
+    public CardApplicationResponseVo createCardApplication(String cardProductId) throws ApiException {
+        CardApplicationResponseVo result;
+        try {
+            CreateCardApplicationRequestVo request = new CreateCardApplicationRequestVo(cardProductId);
+            Response<CardApplicationResponseVo> response = mCardApplicationService.createCardApplication(request).execute();
+            result = handleResponse(response, ShiftApiWrapper.CREATE_CARD_APPLICATION_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.CREATE_CARD_APPLICATION_PATH, ioe);
+        }
+        return result;
+    }
+
+    @Override
+    public CardApplicationResponseVo getCardApplicationStatus(String applicationId) throws ApiException {
+        CardApplicationResponseVo result;
+        try {
+            Response<CardApplicationResponseVo> response = mCardApplicationService.getApplicationStatus(applicationId).execute();
+            result = handleResponse(response, ShiftApiWrapper.CARD_APPLICATION_STATUS_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.CARD_APPLICATION_STATUS_PATH, ioe);
         }
         return result;
     }

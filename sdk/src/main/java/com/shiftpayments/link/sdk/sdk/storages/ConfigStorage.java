@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.sdk.storages;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductListVo;
@@ -22,6 +23,7 @@ public class ConfigStorage {
 
     private static ConfigStorage mInstance;
     private LinkConfigResponseVo mLinkConfig;
+    private CardConfigResponseVo mCardConfig;
     private String mCoinbaseClientId;
     private String mCoinbaseClientSecret;
 
@@ -49,7 +51,7 @@ public class ConfigStorage {
     }
 
     public synchronized LoanPurposesResponseVo getLoanPurposes() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.loanPurposesList;
         }
         else {
@@ -67,7 +69,7 @@ public class ConfigStorage {
     }
 
     public synchronized ContentVo getLinkDisclaimer() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.linkDisclaimer;
         }
         else {
@@ -84,7 +86,7 @@ public class ConfigStorage {
     }
 
     public synchronized LoanProductListVo getLoanProducts() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.loanProductList;
         }
         else {
@@ -101,7 +103,7 @@ public class ConfigStorage {
     }
 
     public synchronized RequiredDataPointsListResponseVo getRequiredUserData() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.userRequiredData;
         }
         else {
@@ -122,7 +124,7 @@ public class ConfigStorage {
     }
 
     public synchronized boolean getPOSMode() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.posMode;
         }
         else {
@@ -139,7 +141,7 @@ public class ConfigStorage {
     }
 
     public synchronized double getMinLoanAmount() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.loanAmountMin;
         }
         else {
@@ -156,7 +158,7 @@ public class ConfigStorage {
     }
 
     public synchronized double getMaxLoanAmount() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.loanAmountMax;
         }
         else {
@@ -173,7 +175,7 @@ public class ConfigStorage {
     }
 
     public synchronized double getLoanAmountIncrements() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.loanAmountIncrements;
         }
         else {
@@ -190,7 +192,7 @@ public class ConfigStorage {
     }
 
     public synchronized double getLoanAmountDefault() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.loanAmountDefault;
         }
         else {
@@ -207,7 +209,7 @@ public class ConfigStorage {
     }
 
     public synchronized boolean getSkipLinkDisclaimer() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.skipLinkDisclaimer;
         }
         else {
@@ -225,7 +227,7 @@ public class ConfigStorage {
     }
 
     public synchronized boolean isStrictAddressValidationEnabled() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.isStrictAddressValidationEnabled;
         }
         else {
@@ -242,7 +244,7 @@ public class ConfigStorage {
     }
 
     public synchronized OffersListStyle getOffersListStyle() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return OffersListStyle.valueOf(mLinkConfig.offerListStyle);
         }
         else {
@@ -259,7 +261,7 @@ public class ConfigStorage {
     }
 
     public synchronized boolean getSkipLoanAmount() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.skipLoanAmount;
         }
         else {
@@ -276,7 +278,7 @@ public class ConfigStorage {
     }
 
     public synchronized boolean getSkipLoanPurpose() {
-        if(isConfigCached()) {
+        if(isLinkConfigCached()) {
             return mLinkConfig.skipLoanPurpose;
         }
         else {
@@ -301,8 +303,12 @@ public class ConfigStorage {
         }
     }
 
-    private boolean isConfigCached() {
+    private boolean isLinkConfigCached() {
         return mLinkConfig != null;
+    }
+
+    private boolean isCardConfigCached() {
+        return mCardConfig != null;
     }
 
     public void setCoinbaseKeys(String coinbaseClientId, String coinbaseClientSecret) {
@@ -316,5 +322,26 @@ public class ConfigStorage {
 
     public String getCoinbaseClientSecret() {
         return mCoinbaseClientSecret;
+    }
+
+    public synchronized CardConfigResponseVo getCardConfig() {
+        if(isCardConfigCached()) {
+            return mCardConfig;
+        }
+        else {
+            CompletableFuture<CardConfigResponseVo> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    mCardConfig = ShiftLinkSdk.getApiWrapper().getCardConfig(new UnauthorizedRequestVo());
+                    return mCardConfig;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            });
+            return (CardConfigResponseVo) getResultFromFuture(future);
+        }
+    }
+
+    public synchronized void setCardConfig(CardConfigResponseVo cardConfig) {
+        mCardConfig = cardConfig;
     }
 }

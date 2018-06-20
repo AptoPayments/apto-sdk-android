@@ -114,7 +114,7 @@ public class LoanAmountPresenter
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(true);
         mView.setListener(this);
-        if(UserStorage.getInstance().hasUserData()) {
+        if(UserStorage.getInstance().hasBearerToken()) {
             mView.showGetOffersButtonAndDisclaimers(true);
             if (mDisclaimersText == null) {
                 CompletableFuture

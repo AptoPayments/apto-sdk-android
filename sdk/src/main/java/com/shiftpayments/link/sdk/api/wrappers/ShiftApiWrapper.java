@@ -20,6 +20,8 @@ import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificatio
 import com.shiftpayments.link.sdk.api.vos.requests.users.StartOAuthRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
@@ -63,6 +65,7 @@ public interface ShiftApiWrapper {
     String SSL_API_HOST = "*.link.ledge.me";
 
     String LINK_CONFIG_PATH = "v1/config/link";
+    String CARD_CONFIG_PATH = "v1/config/card";
     String CONFIG_PATH = "v1/config";
 
     String CREATE_USER_PATH = "v1/user";
@@ -83,6 +86,7 @@ public interface ShiftApiWrapper {
     String MORE_OFFERS_PATH = "v1/link/offersrequest/{offer_request_id}/offers";
 
     String CREATE_LOAN_APPLICATION_PATH = "v1/link/offers/{offer_id}/apply";
+    String CREATE_CARD_APPLICATION_PATH = "v1/user/accounts/apply";
 
     String VERIFICATION_START_PATH = "v1/verifications/start";
     String VERIFICATION_STATUS_PATH = "v1/verifications/{ID}/status";
@@ -102,13 +106,14 @@ public interface ShiftApiWrapper {
     String FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH = "v1/user/accounts/{account_id}/fundingsource";
     String USER_FUNDING_SOURCES_PATH = "v1/user/accounts/fundingsources";
     String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
+    String CARD_APPLICATION_STATUS_PATH = "v1/user/accounts/applications/{application_id}/status";
     String PLAID_WEB_URL = "v1/bankoauth";
 
     String REGISTER_PUSH_NOTIFICATION_TOKEN_PATH = "/v1/user/pushdevice";
 
-    String APPLICATION_STATUS_PATH = "v1/link/applications/{application_id}/status";
+    String LINK_APPLICATION_STATUS_PATH = "v1/link/applications/{application_id}/status";
     String LIST_LOAN_APPLICATIONS_PATH = "v1/link/applications/pending";
-    String APPLICATION_ACCOUNT_PATH = "v1/link/applications/{application_id}/accounts";
+    String LINK_APPLICATION_ACCOUNT_PATH = "v1/link/applications/{application_id}/accounts";
 
     int OFFERS_REQUEST_TIMEOUT = 150; // 2.5 minutes.
 
@@ -188,6 +193,14 @@ public interface ShiftApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     LinkConfigResponseVo getLinkConfig(UnauthorizedRequestVo requestData) throws ApiException;
+
+    /**
+     * Gets the Card config
+     * @param requestData Mandatory request data.
+     * @return API response.
+     * @throws ApiException When there is an error making the request.
+     */
+    CardConfigResponseVo getCardConfig(UnauthorizedRequestVo requestData) throws ApiException;
 
     /**
      * @param requestData Mandatory request data.
@@ -337,7 +350,7 @@ public interface ShiftApiWrapper {
      * @return The application object with the current status and pending actions
      * @throws ApiException When there is an error making the request.
      */
-    LoanApplicationDetailsResponseVo getApplicationStatus(String applicationId) throws ApiException;
+    LoanApplicationDetailsResponseVo getLoanApplicationStatus(String applicationId) throws ApiException;
 
     /**
      * @param applicationId The ID of the application to link the financial account
@@ -463,4 +476,20 @@ public interface ShiftApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     OAuthStatusResponseVo getOAuthStatus(String oAuthId) throws ApiException;
+
+    /**
+     * Creates a new card application.
+     * @param cardProductId The ID of the card product used.
+     * @return API response.
+     * @throws ApiException When there is an error making the request.
+     */
+    CardApplicationResponseVo createCardApplication(String cardProductId) throws ApiException;
+
+    /**
+     * Gets the card application status.
+     * @param applicationId The ID of the card application
+     * @return API response.
+     * @throws ApiException When there is an error making the request.
+     */
+    CardApplicationResponseVo getCardApplicationStatus(String applicationId) throws ApiException;
 }

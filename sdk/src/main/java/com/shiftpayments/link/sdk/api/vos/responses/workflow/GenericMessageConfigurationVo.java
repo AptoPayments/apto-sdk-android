@@ -5,6 +5,7 @@ package com.shiftpayments.link.sdk.api.vos.responses.workflow;
  */
 
 import com.google.gson.annotations.SerializedName;
+import com.shiftpayments.link.sdk.api.utils.workflow.WorkflowConfigType;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
 
 public class GenericMessageConfigurationVo extends ActionConfigurationVo {
@@ -31,6 +32,7 @@ public class GenericMessageConfigurationVo extends ActionConfigurationVo {
     public CallToActionVo callToAction;
 
     public GenericMessageConfigurationVo(String type, String title, ContentVo content, String image, String trackerEventName, String trackerIncrementName, CallToActionVo callToAction) {
+        super(WorkflowConfigType.GENERIC_MESSAGE_CONFIG);
         this.type = type;
         this.title = title;
         this.content = content;

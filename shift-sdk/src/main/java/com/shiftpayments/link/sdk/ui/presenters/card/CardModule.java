@@ -11,18 +11,18 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
+import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
 import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModule;
 import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModuleConfig;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
-import com.shiftpayments.link.sdk.ui.storages.LoanStorage;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
@@ -41,7 +41,6 @@ import java.util.concurrent.ExecutionException;
 import java8.util.concurrent.CompletableFuture;
 import java8.util.concurrent.CompletionException;
 
-import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.COLLECT_USER_DATA;
 import static com.shiftpayments.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
 
 /**
@@ -50,8 +49,6 @@ import static com.shiftpayments.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
 
 public class CardModule extends ShiftBaseModule implements ManageAccountDelegate, ManageCardDelegate {
 
-    private boolean mIsExistingUser;
-
     public CardModule(Activity activity, Command onFinish, Command onBack) {
         super(activity, onFinish, onBack);
     }
@@ -59,22 +56,19 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Override
     public void initialModuleSetup() {
         setCurrentModule();
-        if(isStoredUserTokenValid()) {
-            mIsExistingUser = true;
-            getUserInfo();
-        }
-        else {
-            mIsExistingUser = false;
-            UserStorage.getInstance().setUserData(null);
-            startAuthModule();
-        }
+        CompletableFuture
+                .supplyAsync(()-> ConfigStorage.getInstance().getCardConfig())
+                .exceptionally(ex -> {
+                    super.showError(ex.toString());
+                    return null;
+                })
+                .thenAccept(this::handleConfig);
     }
 
     @Override
     public void addFundingSource(Command onFinishCallback) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        // TODO
-        //startCustodianModule(this::startManageCardScreen, onFinishCallback);
+        startCustodianModule(onFinishCallback, this::startManageCardScreen);
     }
 
     @Override
@@ -86,6 +80,21 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Override
     public void onSessionExpired(SessionExpiredErrorVo error) {
         this.handleSessionExpiredError(error);
+    }
+
+    /**
+     * Called when the card config has been received.
+     * @param config API response.
+     */
+    public void handleConfig(CardConfigResponseVo config) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        if(isStoredUserTokenValid()) {
+            getUserInfo();
+        }
+        else {
+            UserStorage.getInstance().setUserData(null);
+            startAuthModule();
+        }
     }
 
     /**
@@ -123,6 +132,19 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         else {
             handleUserData(dataPointList);
         }
+    }
+
+    /**
+     * Called when create card application has been received.
+     * @param application Card Application.
+     */
+    @Subscribe
+    public void handleApplication(CardApplicationResponseVo application) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ApplicationVo cardApplication = new ApplicationVo(application.id, application.nextAction);
+        CardStorage.getInstance().setApplication(cardApplication);
+        new NewCardModule(getActivity(), cardApplication, this::getApplicationStatus, this::startManageCardScreen,
+                this::showHomeActivity).initialModuleSetup();
     }
 
     /**
@@ -168,40 +190,36 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
         AuthModuleConfig authModuleConfig = new AuthModuleConfig(config.primaryAuthCredential, config.secondaryAuthCredential);
         AuthModule authModule = AuthModule.getInstance(getActivity(), null, authModuleConfig, this::startNewCardModule, this::showHomeActivity);
-        authModule.onExistingUser = () -> {
-            mIsExistingUser = true;
-            checkIfUserHasAnExistingCardOrIssueNewOne();
-        };
+        authModule.onExistingUser = this::checkIfUserHasAnExistingCardOrIssueNewOne;
         authModule.onNewUserWithVerifiedPrimaryCredential = this::startNewCardModule;
         startModule(authModule);
     }
 
     private void startNewCardModule() {
-        // TODO: get application from backend
-        ActionVo action = new ActionVo();
-        action.actionType = COLLECT_USER_DATA;
-        ApplicationVo cardApplication = new ApplicationVo("", action);
-        new NewCardModule(getActivity(), cardApplication, this::getApplicationStatus, this::startManageCardScreen,
-                this::showHomeActivity).initialModuleSetup();
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.createCardApplication(ConfigStorage.getInstance().getCardConfig().cardProduct.id);
+    }
+
+    private void startCustodianModule(Command onFinish, Command onBack) {
+        CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity(), onFinish, onBack);
+        startModule(custodianSelectorModule);
     }
 
     private ApplicationVo getApplicationStatus(WorkflowObject currentObject) {
         if(!(currentObject instanceof ApplicationVo)) {
             throw new RuntimeException("Current workflow object is not an application!");
         }
-        CompletableFuture<LoanApplicationDetailsResponseVo> future = CompletableFuture.supplyAsync(() -> {
+        CardStorage.getInstance().setApplication((ApplicationVo) currentObject);
+        CompletableFuture<CardApplicationResponseVo> future = CompletableFuture.supplyAsync(() -> {
             try {
-                // TODO: replace call with card get application status call
-                return getApiWrapper().getApplicationStatus(currentObject.workflowObjectId);
+                return getApiWrapper().getCardApplicationStatus(currentObject.workflowObjectId);
             } catch (ApiException e) {
                 throw new CompletionException(e);
             }
         });
         try {
-            // TODO: replace call with card get application status call
-            LoanApplicationDetailsResponseVo applicationStatus = future.get();
-            LoanStorage.getInstance().setCurrentLoanApplication(applicationStatus);
-            return new ApplicationVo(applicationStatus.id, applicationStatus.next_action);
+            CardApplicationResponseVo applicationStatus = future.get();
+            return new ApplicationVo(applicationStatus.id, applicationStatus.nextAction);
         } catch (InterruptedException | ExecutionException e) {
             future.completeExceptionally(e);
             throw new CompletionException(e);

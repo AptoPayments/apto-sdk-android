@@ -18,7 +18,6 @@ import com.shiftpayments.link.sdk.ui.models.loanapplication.LoanApplicationSumma
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.LoanStorage;
-import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.loanapplication.LoanApplicationSummaryView;
 import com.shiftpayments.link.sdk.ui.vos.ApplicationVo;
@@ -57,7 +56,7 @@ public class LoanApplicationSummaryPresenter
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
                 .thenAccept(this::applicationDisclaimerRetrieved);
-        setRequiredData(UserStorage.getInstance().getRequiredData());
+        setRequiredData(ConfigStorage.getInstance().getRequiredUserData());
     }
 
     /** {@inheritDoc} */

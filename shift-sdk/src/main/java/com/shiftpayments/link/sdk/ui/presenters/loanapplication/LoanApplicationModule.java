@@ -145,7 +145,7 @@ public class LoanApplicationModule extends ShiftBaseModule
         }
         CompletableFuture<LoanApplicationDetailsResponseVo> future = CompletableFuture.supplyAsync(() -> {
             try {
-                return getApiWrapper().getApplicationStatus(currentObject.workflowObjectId);
+                return getApiWrapper().getLoanApplicationStatus(currentObject.workflowObjectId);
             } catch (ApiException e) {
                 throw new CompletionException(e);
             }

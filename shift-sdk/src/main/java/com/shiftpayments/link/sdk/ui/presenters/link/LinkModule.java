@@ -58,6 +58,50 @@ public class LinkModule extends ShiftBaseModule {
                 .thenAccept(this::projectConfigRetrieved);
     }
 
+    /**
+     * Called when the get current applications response has been received.
+     * @param applicationsList API response.
+     */
+    @Subscribe
+    public void handleResponse(LoanApplicationsSummaryListResponseVo applicationsList) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        if(applicationsList.total_count == 0) {
+            mUserHasAllRequiredData = false;
+            showLoanInfo();
+        }
+        else {
+            mUserHasAllRequiredData = true;
+            LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity(), this::showLoanInfo, this::showHomeActivity);
+            loanApplicationModule.startLoanApplicationSelector(applicationsList);
+        }
+    }
+
+    @Subscribe
+    public void handleUserData(DataPointList userData) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        UserStorage.getInstance().setUserData(userData);
+        getOpenApplications();
+    }
+
+    /**
+     * Called when an API error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
+        showError(error.toString());
+    }
+
+    /**
+     * Called when session expired error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleSessionExpiredError(SessionExpiredErrorVo error) {
+        super.handleSessionExpiredError(error);
+        showHomeActivity();
+    }
+
     private void showWelcomeScreen() {
         GenericMessageConfigurationVo actionConfig = (GenericMessageConfigurationVo) mWelcomeScreenAction.configuration;
         ShowGenericMessageModule showGenericMessageModule = ShowGenericMessageModule.getInstance(this.getActivity(), this::checkTokenOrStartAuthModule, this::showHomeActivity, actionConfig);
@@ -68,7 +112,7 @@ public class LinkModule extends ShiftBaseModule {
         if (isLoanInfoRequired()) {
             showLoanInfo();
         } else {
-            showUserDataCollector();
+            startUserDataCollectorModule();
         }
     }
 
@@ -89,58 +133,25 @@ public class LinkModule extends ShiftBaseModule {
 
     private void showLoanInfo() {
         Command onBack;
-        Command onFinish;
-        if(mUserHasAllRequiredData) {
-            onFinish = this::showOffersList;
-        }
-        else {
-            onFinish = this::collectUserData;
-        }
         if(mShowWelcomeScreen) {
             onBack = this::showWelcomeScreen;
         }
         else {
             onBack = this::showHomeActivity;
         }
-        LoanInfoModule loanInfoModule = LoanInfoModule.getInstance(this.getActivity(), onFinish, onBack);
+        LoanInfoModule loanInfoModule = LoanInfoModule.getInstance(this.getActivity(), this::showOffersList, onBack);
         startModule(loanInfoModule);
     }
 
-    private void showUserDataCollector() {
-        startUserDataCollectorModule(false);
-    }
-
-    private void startUserDataCollectorModule(boolean updateProfile) {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
-        Command onFinish;
-        if(updateProfile) {
-            onFinish = this::showWelcomeScreenOrBack;
-        }
-        else {
-            onFinish = this::showOffersList;
-        }
-        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity(), onFinish, this::showWelcomeScreenOrBack);
-        userDataCollectorModule.isUpdatingProfile = updateProfile;
-        UserDataCollectorConfigurationVo config = updateProfile ? getConfigForUpdateProfile() : getConfigForLink();
-        userDataCollectorModule.setCallToActionConfig(config);
-        userDataCollectorModule.onTokenRetrieved = this::getOpenApplications;
-        startModule(userDataCollectorModule);
-    }
-
-    private void collectUserData() {
+    private void startUserDataCollectorModule() {
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity(), this::showOffersList, this::showWelcomeScreenOrBack);
-        userDataCollectorModule.isUpdatingProfile = false;
-        userDataCollectorModule.onTokenRetrieved = null;
+        userDataCollectorModule.setCallToActionConfig(getConfigForLink());
         startModule(userDataCollectorModule);
     }
 
     private UserDataCollectorConfigurationVo getConfigForLink() {
         return new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_title_get_offers), new CallToActionVo(getActivity().getString(R.string.id_verification_next_button_get_offers)));
-    }
-
-    private UserDataCollectorConfigurationVo getConfigForUpdateProfile() {
-        return new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_update_profile_title), new CallToActionVo(getActivity().getString(R.string.id_verification_update_profile_button)));
     }
 
     private void showOffersList() {
@@ -168,7 +179,7 @@ public class LinkModule extends ShiftBaseModule {
 
     private void checkTokenOrStartAuthModule() {
         if(isStoredUserTokenValid()) {
-            getOpenApplications();
+            getUserInfo();
         }
         else {
             startAuthModule();
@@ -203,44 +214,14 @@ public class LinkModule extends ShiftBaseModule {
         showOrSkipWelcomeScreen();
     }
 
+    private void getUserInfo() {
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.getCurrentUser(true);
+    }
+
     private void getOpenApplications() {
+        mUserHasAllRequiredData = true;
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.getPendingLoanApplicationsList(new ListRequestVo());
-    }
-
-    /**
-     * Called when the get current applications response has been received.
-     * @param applicationsList API response.
-     */
-    @Subscribe
-    public void handleResponse(LoanApplicationsSummaryListResponseVo applicationsList) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        if(applicationsList.total_count == 0) {
-            mUserHasAllRequiredData = false;
-            showLoanInfo();
-        }
-        else {
-            LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity(), this::showLoanInfo, this::showHomeActivity);
-            loanApplicationModule.startLoanApplicationSelector(applicationsList);
-        }
-    }
-
-    /**
-     * Called when an API error has been received.
-     * @param error API error.
-     */
-    @Subscribe
-    public void handleApiError(ApiErrorVo error) {
-        showError(error.toString());
-    }
-
-    /**
-     * Called when session expired error has been received.
-     * @param error API error.
-     */
-    @Subscribe
-    public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        super.handleSessionExpiredError(error);
-        showHomeActivity();
     }
 }

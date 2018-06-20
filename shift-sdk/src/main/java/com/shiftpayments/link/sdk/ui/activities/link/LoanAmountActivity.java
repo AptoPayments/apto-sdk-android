@@ -41,7 +41,7 @@ public class LoanAmountActivity
     /** {@inheritDoc} */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(UserStorage.getInstance().hasUserData()) {
+        if(UserStorage.getInstance().hasBearerToken()) {
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.menu_loan_amount, menu);
             return true;
