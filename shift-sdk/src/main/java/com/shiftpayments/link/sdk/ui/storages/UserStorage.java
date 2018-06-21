@@ -10,7 +10,6 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.IncomeSource;
 import com.shiftpayments.link.sdk.api.vos.responses.config.CreditScoreVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.HousingTypeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.IncomeTypeVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 
@@ -22,7 +21,6 @@ public class UserStorage {
 
     private DataPointList mUserDataPoints;
     private String mBearerToken;
-    private RequiredDataPointsListResponseVo mRequiredData;
     private String mCoinbaseAccessToken;
     private String mCoinbaseRefreshToken;
     private String mFirebaseToken;
@@ -93,14 +91,6 @@ public class UserStorage {
 
     public boolean hasBearerToken() {
         return !TextUtils.isEmpty(mBearerToken);
-    }
-
-    public RequiredDataPointsListResponseVo getRequiredData() {
-        return mRequiredData;
-    }
-
-    public void setRequiredData(RequiredDataPointsListResponseVo requiredData) {
-        mRequiredData = requiredData;
     }
 
     private boolean isHousingTypeValid(Housing housing) {

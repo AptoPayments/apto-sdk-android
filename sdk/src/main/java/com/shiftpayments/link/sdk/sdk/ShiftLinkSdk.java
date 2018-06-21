@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
@@ -35,6 +36,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccoun
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetUserFundingSourcesTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.SetAccountFundingSourceTask;
+import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.SetBalanceStoreTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountPinTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
@@ -621,6 +623,20 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetCardApplicationStatusTask task = new GetCardApplicationStatusTask(applicationId, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Sets the balance store data
+     * @param request The custodian
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask setBalanceStore(String applicationId, SetBalanceStoreRequestVo request) {
+        checkComponents();
+
+        SetBalanceStoreTask task = new SetBalanceStoreTask(applicationId, request, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

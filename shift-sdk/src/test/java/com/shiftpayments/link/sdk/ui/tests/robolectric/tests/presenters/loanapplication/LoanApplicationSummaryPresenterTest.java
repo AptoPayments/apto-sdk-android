@@ -2,6 +2,9 @@ package com.shiftpayments.link.sdk.ui.tests.robolectric.tests.presenters.loanapp
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.shiftpayments.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
+import com.shiftpayments.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
+import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.LoanApplicationSummaryModel;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanApplicationModule;
 import com.shiftpayments.link.sdk.ui.presenters.loanapplication.LoanApplicationSummaryPresenter;
@@ -40,6 +43,8 @@ public class LoanApplicationSummaryPresenterTest {
     @Before
     public void setUp() {
         mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
+        ShiftPlatform.setApiWrapper(new MockApiWrapper());
+        ShiftPlatform.setResponseHandler(new MockResponseHandler());
         createPresenter();
     }
 

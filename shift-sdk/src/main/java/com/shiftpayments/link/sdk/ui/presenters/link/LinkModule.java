@@ -39,16 +39,15 @@ import java8.util.concurrent.CompletableFuture;
 
 public class LinkModule extends ShiftBaseModule {
 
-    public LinkModule(Activity activity, Command onFinish, Command onBack) {
-        super(activity, onFinish, onBack);
-    }
-    private boolean mUserHasAllRequiredData;
     private boolean mShowWelcomeScreen;
     private ActionVo mWelcomeScreenAction;
 
+    public LinkModule(Activity activity, Command onFinish, Command onBack) {
+        super(activity, onFinish, onBack);
+    }
+
     @Override
     public void initialModuleSetup() {
-        mUserHasAllRequiredData = false;
         CompletableFuture
                 .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
                 .exceptionally(ex -> {
@@ -66,11 +65,9 @@ public class LinkModule extends ShiftBaseModule {
     public void handleResponse(LoanApplicationsSummaryListResponseVo applicationsList) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         if(applicationsList.total_count == 0) {
-            mUserHasAllRequiredData = false;
             showLoanInfo();
         }
         else {
-            mUserHasAllRequiredData = true;
             LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(getActivity(), this::showLoanInfo, this::showHomeActivity);
             loanApplicationModule.startLoanApplicationSelector(applicationsList);
         }
@@ -155,7 +152,6 @@ public class LinkModule extends ShiftBaseModule {
     }
 
     private void showOffersList() {
-        mUserHasAllRequiredData = true;
         LoanApplicationModule loanApplicationModule = LoanApplicationModule.getInstance(this.getActivity(), this.onFinish, this::showOrSkipLoanInfo);
         startModule(loanApplicationModule);
     }
@@ -220,7 +216,6 @@ public class LinkModule extends ShiftBaseModule {
     }
 
     private void getOpenApplications() {
-        mUserHasAllRequiredData = true;
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.getPendingLoanApplicationsList(new ListRequestVo());
     }

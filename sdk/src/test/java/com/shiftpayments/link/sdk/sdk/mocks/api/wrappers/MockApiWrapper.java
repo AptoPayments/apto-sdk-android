@@ -14,6 +14,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
@@ -23,6 +24,9 @@ import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificatio
 import com.shiftpayments.link.sdk.api.vos.requests.users.StartOAuthRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.CreditScoreListResponseVo;
@@ -171,6 +175,11 @@ public class MockApiWrapper implements ShiftApiWrapper {
         response.userRequiredData.data = new RequiredDataPointVo[0];
 
         return response;
+    }
+
+    @Override
+    public CardConfigResponseVo getCardConfig(UnauthorizedRequestVo unauthorizedRequestVo) throws ApiException {
+        return null;
     }
 
     /** {@inheritDoc} */
@@ -352,7 +361,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public LoanApplicationDetailsResponseVo getApplicationStatus(String s) throws ApiException {
+    public LoanApplicationDetailsResponseVo getLoanApplicationStatus(String s) throws ApiException {
         LoanApplicationDetailsResponseVo application = new LoanApplicationDetailsResponseVo();
         application.status = "";
 
@@ -443,6 +452,21 @@ public class MockApiWrapper implements ShiftApiWrapper {
 
     @Override
     public OAuthStatusResponseVo getOAuthStatus(String oAuthId) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public CardApplicationResponseVo createCardApplication(String s) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public CardApplicationResponseVo getCardApplicationStatus(String s) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public ApiEmptyResponseVo setBalanceStore(String s, SetBalanceStoreRequestVo setBalanceStoreRequestVo) throws ApiException {
         return null;
     }
 }

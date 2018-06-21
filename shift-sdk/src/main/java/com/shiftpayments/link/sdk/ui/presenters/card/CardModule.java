@@ -49,8 +49,12 @@ import static com.shiftpayments.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
 
 public class CardModule extends ShiftBaseModule implements ManageAccountDelegate, ManageCardDelegate {
 
+    private NewCardModule mNewCardModule;
+
     public CardModule(Activity activity, Command onFinish, Command onBack) {
         super(activity, onFinish, onBack);
+        mNewCardModule = new NewCardModule(getActivity(), this::getApplicationStatus, this::startManageCardScreen,
+                this::showHomeActivity);
     }
 
     @Override
@@ -135,19 +139,6 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     /**
-     * Called when create card application has been received.
-     * @param application Card Application.
-     */
-    @Subscribe
-    public void handleApplication(CardApplicationResponseVo application) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        ApplicationVo cardApplication = new ApplicationVo(application.id, application.nextAction);
-        CardStorage.getInstance().setApplication(cardApplication);
-        new NewCardModule(getActivity(), cardApplication, this::getApplicationStatus, this::startManageCardScreen,
-                this::showHomeActivity).initialModuleSetup();
-    }
-
-    /**
      * Called when an API error has been received.
      * @param error API error.
      */
@@ -165,6 +156,18 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         super.handleSessionExpiredError(error);
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         showHomeActivity();
+    }
+
+    /**
+     * Called when create card application has been received.
+     * @param application Card Application.
+     */
+    @Subscribe
+    public void handleApplication(CardApplicationResponseVo application) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ApplicationVo cardApplication = new ApplicationVo(application.id, application.nextAction);
+        CardStorage.getInstance().setApplication(cardApplication);
+        mNewCardModule.startNextModule();
     }
 
     private boolean isStoredUserTokenValid() {
@@ -196,8 +199,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void startNewCardModule() {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
-        ShiftPlatform.createCardApplication(ConfigStorage.getInstance().getCardConfig().cardProduct.id);
+        mNewCardModule.initialModuleSetup();
     }
 
     private void startCustodianModule(Command onFinish, Command onBack) {

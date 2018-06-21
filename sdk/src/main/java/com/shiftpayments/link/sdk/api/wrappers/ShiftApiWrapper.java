@@ -6,6 +6,7 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
@@ -20,6 +21,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificatio
 import com.shiftpayments.link.sdk.api.vos.requests.users.StartOAuthRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
@@ -107,6 +109,7 @@ public interface ShiftApiWrapper {
     String USER_FUNDING_SOURCES_PATH = "v1/user/accounts/fundingsources";
     String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
     String CARD_APPLICATION_STATUS_PATH = "v1/user/accounts/applications/{application_id}/status";
+    String SET_BALANCE_STORE_PATH = "v1/user/accounts/applications/{application_id}/select_balance_store";
     String PLAID_WEB_URL = "v1/bankoauth";
 
     String REGISTER_PUSH_NOTIFICATION_TOKEN_PATH = "/v1/user/pushdevice";
@@ -492,4 +495,12 @@ public interface ShiftApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     CardApplicationResponseVo getCardApplicationStatus(String applicationId) throws ApiException;
+
+    /**
+     * Set balance store.
+     * @param applicationId The ID of the card application
+     * @param requestData Balance store data.
+     * @throws ApiException When there is an error making the request.
+     */
+    ApiEmptyResponseVo setBalanceStore(String applicationId, SetBalanceStoreRequestVo requestData) throws ApiException;
 }

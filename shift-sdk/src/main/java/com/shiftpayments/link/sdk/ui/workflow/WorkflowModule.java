@@ -9,7 +9,7 @@ import android.app.Activity;
 public class WorkflowModule extends ShiftBaseModule {
     protected WorkflowObject mWorkFlowObject;
     private Command onWorkflowModuleFinish;
-    private WorkflowObjectStatusInterface getWorkflowObjectStatus;
+    protected WorkflowObjectStatusInterface getWorkflowObjectStatus;
 
     public WorkflowModule(Activity activity, WorkflowObject workflowObject,
                           WorkflowObjectStatusInterface getWorkflowObjectStatus, Command onFinish,
@@ -17,6 +17,10 @@ public class WorkflowModule extends ShiftBaseModule {
         super(activity, onFinish, onBack);
         mWorkFlowObject = workflowObject;
         this.getWorkflowObjectStatus = getWorkflowObjectStatus;
+    }
+
+    public WorkflowModule(Activity activity, WorkflowObjectStatusInterface getWorkflowObjectStatus, Command onFinish, Command onBack) {
+        this(activity, null, getWorkflowObjectStatus, onFinish, onBack);
     }
 
     @Override

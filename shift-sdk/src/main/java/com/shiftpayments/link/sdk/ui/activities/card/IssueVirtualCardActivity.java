@@ -7,10 +7,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.CustodianVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
@@ -18,8 +16,6 @@ import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
 import com.shiftpayments.link.sdk.ui.presenters.card.IssueVirtualCardDelegate;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
-import com.shiftpayments.link.sdk.ui.storages.LoanStorage;
-import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.views.card.IssueVirtualCardView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
@@ -58,10 +54,7 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
         super.onStart();
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         IssueVirtualCardRequestVo virtualCardRequestVo = new IssueVirtualCardRequestVo();
-        virtualCardRequestVo.applicationId = LoanStorage.getInstance().getCurrentLoanApplication().id;
-        /*virtualCardRequestVo.cardIssuer = "SHIFT";*/
-        OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(UserStorage.getInstance().getCoinbaseAccessToken(), UserStorage.getInstance().getCoinbaseRefreshToken());
-        virtualCardRequestVo.custodian = new CustodianVo("coinbase", coinbaseCredentials);
+        virtualCardRequestVo.applicationId = CardStorage.getInstance().getApplication().workflowObjectId;
         ShiftPlatform.issueVirtualCard(virtualCardRequestVo);
     }
 

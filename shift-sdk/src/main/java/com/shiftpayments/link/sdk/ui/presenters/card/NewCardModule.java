@@ -2,25 +2,33 @@ package com.shiftpayments.link.sdk.ui.presenters.card;
 
 import android.app.Activity;
 
+import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointGroupVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CollectUserDataActionConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
+import com.shiftpayments.link.sdk.ui.storages.CardStorage;
+import com.shiftpayments.link.sdk.ui.vos.ApplicationVo;
 import com.shiftpayments.link.sdk.ui.workflow.ActionNotSupportedModule;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 import com.shiftpayments.link.sdk.ui.workflow.WorkflowModule;
-import com.shiftpayments.link.sdk.ui.workflow.WorkflowObject;
 import com.shiftpayments.link.sdk.ui.workflow.WorkflowObjectStatusInterface;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.COLLECT_USER_DATA;
 import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.ISSUE_CARD;
@@ -28,16 +36,38 @@ import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.S
 
 public class NewCardModule extends WorkflowModule {
 
-    private RequiredDataPointsListResponseVo mFinalRequiredUserData;
-
-    public NewCardModule(Activity activity, WorkflowObject workflowObject,
+    public NewCardModule(Activity activity,
                          WorkflowObjectStatusInterface getWorkflowObjectStatus, Command onFinish,
                          Command onBack) {
-        super(activity, workflowObject, getWorkflowObjectStatus, onFinish, onBack);
+        super(activity, getWorkflowObjectStatus, onFinish, onBack);
+    }
+
+    @Override
+    public void initialModuleSetup() {
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.createCardApplication(ConfigStorage.getInstance().getCardConfig().cardProduct.id);
     }
 
     @Override
     public void startNextModule() {
+        mWorkFlowObject = getWorkflowObjectStatus.getApplication(mWorkFlowObject);
+        startAppropriateModule();
+    }
+
+    /**
+     * Called when create card application has been received.
+     * @param application Card Application.
+     */
+    @Subscribe
+    public void handleApplication(CardApplicationResponseVo application) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ApplicationVo cardApplication = new ApplicationVo(application.id, application.nextAction);
+        CardStorage.getInstance().setApplication(cardApplication);
+        mWorkFlowObject = cardApplication;
+        startAppropriateModule();
+    }
+
+    private void startAppropriateModule() {
         switch (mWorkFlowObject.nextAction.actionType) {
             case COLLECT_USER_DATA:
                 startUserDataCollector();
@@ -55,12 +85,15 @@ public class NewCardModule extends WorkflowModule {
 
     private void startUserDataCollector() {
         CollectUserDataActionConfigurationVo configuration = (CollectUserDataActionConfigurationVo) mWorkFlowObject.nextAction.configuration;
-        DataPointGroupVo dataPointGroup = configuration.requiredDataPointsList.data[0];
-        ConfigStorage.getInstance().setRequiredUserData(dataPointGroup.datapoints);
+        List<RequiredDataPointVo> requiredDataPointList = new ArrayList<>();
+        for(DataPointGroupVo dataPointGroup : configuration.requiredDataPointsList.data) {
+            requiredDataPointList.addAll(Arrays.asList(dataPointGroup.datapoints.data));
+        }
+        ConfigStorage.getInstance().setRequiredUserData(requiredDataPointList.toArray(new RequiredDataPointVo[0]));
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(getActivity(), this::startNextModule, super.onBack);
+        // TODO: read this config from storage
         UserDataCollectorConfigurationVo config = new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_title_issue_card), new CallToActionVo(getActivity().getString(R.string.id_verification_next_button_issue_card)));
         userDataCollectorModule.setCallToActionConfig(config);
-        userDataCollectorModule.isUpdatingProfile = false;
         startModule(userDataCollectorModule);
     }
 
@@ -79,7 +112,6 @@ public class NewCardModule extends WorkflowModule {
 
     private void issueVirtualCard() {
         setCurrentModule();
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         IssueVirtualCardModule issueVirtualCardModule = new IssueVirtualCardModule(getActivity(), this.onFinish, this::onIssueVirtualCardBackPressed);
         startModule(issueVirtualCardModule);
     }

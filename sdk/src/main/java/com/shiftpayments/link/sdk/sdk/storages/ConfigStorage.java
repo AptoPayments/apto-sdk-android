@@ -7,7 +7,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanPurposesResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 
 import java.util.concurrent.ExecutionException;
@@ -102,25 +102,26 @@ public class ConfigStorage {
         }
     }
 
-    public synchronized RequiredDataPointsListResponseVo getRequiredUserData() {
+    public synchronized RequiredDataPointVo[] getRequiredUserData() {
         if(isLinkConfigCached()) {
-            return mLinkConfig.userRequiredData;
+            return mLinkConfig.userRequiredData.data;
         }
         else {
-            CompletableFuture<RequiredDataPointsListResponseVo> future = CompletableFuture.supplyAsync(() -> {
+            CompletableFuture<RequiredDataPointVo[]> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
-                    return mLinkConfig.userRequiredData;
+                    return mLinkConfig.userRequiredData.data;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
             });
-            return (RequiredDataPointsListResponseVo) getResultFromFuture(future);
+            return (RequiredDataPointVo[]) getResultFromFuture(future);
         }
     }
 
-    public synchronized void setRequiredUserData(RequiredDataPointsListResponseVo requiredDataPoints) {
-        mLinkConfig.userRequiredData = requiredDataPoints;
+    public synchronized void setRequiredUserData(RequiredDataPointVo[] requiredDataPoints) {
+        // TODO: UserDataCollector should not read this from here, it should be an input to the module
+        mLinkConfig.userRequiredData.data = requiredDataPoints;
     }
 
     public synchronized boolean getPOSMode() {

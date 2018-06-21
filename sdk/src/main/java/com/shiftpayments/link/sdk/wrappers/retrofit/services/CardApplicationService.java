@@ -1,6 +1,6 @@
 package com.shiftpayments.link.sdk.wrappers.retrofit.services;
 
-import com.shiftpayments.link.sdk.api.vos.requests.CreateCardApplicationRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.CreateCardApplicationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 
@@ -15,7 +15,6 @@ import retrofit2.http.Path;
  * @author Adrian
  */
 public interface CardApplicationService {
-
 
     /** Creates a {@link Call} to create the card application
      * @param request Mandatory request data.

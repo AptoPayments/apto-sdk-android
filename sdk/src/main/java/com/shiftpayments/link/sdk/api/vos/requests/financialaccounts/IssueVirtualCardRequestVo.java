@@ -8,17 +8,6 @@ import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
  * @author Adrian
  */
 public class IssueVirtualCardRequestVo extends UnauthorizedRequestVo {
-
-    public String type = "card";
-
     @SerializedName("application_id")
     public String applicationId;
-
-    /**
-     * Virtual card issuer.
-     */
-    @SerializedName("card_issuer")
-    public String cardIssuer;
-
-    public CustodianVo custodian;
 }

@@ -20,9 +20,10 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.VerificationVo;
-import com.shiftpayments.link.sdk.api.vos.requests.CreateCardApplicationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.CreateCardApplicationRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
@@ -37,6 +38,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificatio
 import com.shiftpayments.link.sdk.api.vos.requests.users.StartOAuthRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
@@ -101,6 +103,7 @@ import javax.net.ssl.X509TrustManager;
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
 import okhttp3.Protocol;
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -280,6 +283,28 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
 
         if (response.isSuccessful()) {
             result = response.body();
+        } else {
+            handleErrorResponse(response, requestPath);
+            result = null;
+        }
+
+        return result;
+    }
+
+    /**
+     * @param <T> Type of the API response.
+     * @param response API response.
+     * @param requestPath The request path.
+     * @return Parsed response OR null if the call wasn't successful.
+     * @throws ApiException When there is an error making the request.
+     */
+    private <T> ApiEmptyResponseVo handleEmptyResponse(Response<T> response, String requestPath) throws ApiException {
+        ApiEmptyResponseVo result = new ApiEmptyResponseVo();
+
+        if (response.isSuccessful()) {
+            result.statusCode = response.code();
+            result.requestPath = requestPath;
+            result.headers = response.headers();
         } else {
             handleErrorResponse(response, requestPath);
             result = null;
@@ -988,6 +1013,19 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), ShiftApiWrapper.CARD_APPLICATION_STATUS_PATH, ioe);
+        }
+        return result;
+    }
+
+    @Override
+    public ApiEmptyResponseVo setBalanceStore(String applicationId, SetBalanceStoreRequestVo requestData) throws ApiException {
+        ApiEmptyResponseVo result;
+        try {
+            Response<ResponseBody> response = mFinancialAccountService.setBalanceStore(applicationId, requestData).execute();
+            result = handleEmptyResponse(response, ShiftApiWrapper.SET_BALANCE_STORE_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.SET_BALANCE_STORE_PATH, ioe);
         }
         return result;
     }

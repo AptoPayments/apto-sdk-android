@@ -34,6 +34,7 @@ public class DataPointGroupParser implements JsonDeserializer<DataPointGroupVo> 
 
         RequiredDataPointsListResponseVo requiredDataPointsListResponse = new RequiredDataPointsListResponseVo();
         requiredDataPointsListResponse.data = requiredDataPointArrayList.toArray(new RequiredDataPointVo[0]);
+        // TODO: Not working because backend is returning ints instead of booleans
         /*requiredDataPointsListResponse.data = new GsonBuilder().create().fromJson(requiredDataPointJsonArray, RequiredDataPointVo[].class);*/
         return new DataPointGroupVo(type, datapointGroupId, datapointGroupType, name, description, order, requiredDataPointsListResponse);
     }

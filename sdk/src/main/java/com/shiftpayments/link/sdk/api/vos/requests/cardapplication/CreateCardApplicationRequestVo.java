@@ -1,4 +1,4 @@
-package com.shiftpayments.link.sdk.api.vos.requests;
+package com.shiftpayments.link.sdk.api.vos.requests.cardapplication;
 
 import com.google.gson.annotations.SerializedName;
 

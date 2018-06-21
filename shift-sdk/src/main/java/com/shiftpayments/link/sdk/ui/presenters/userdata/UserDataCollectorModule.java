@@ -9,7 +9,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
@@ -315,9 +314,8 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
         }
     }
 
-    private void storeRequiredData(RequiredDataPointsListResponseVo requiredDataPointsList) {
-        UserStorage.getInstance().setRequiredData(requiredDataPointsList);
-        mRequiredDataPointList = new LinkedList<>(Arrays.asList(requiredDataPointsList.data));
+    private void storeRequiredData(RequiredDataPointVo[] requiredDataPointsList) {
+        mRequiredDataPointList = new LinkedList<>(Arrays.asList(requiredDataPointsList));
         if(!isUpdatingProfile) {
             removePrimaryCredentialFromRequiredList();
             removeSecondaryCredentialFromRequiredList();

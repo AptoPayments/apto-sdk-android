@@ -8,7 +8,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.offers.OfferVo;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
@@ -78,9 +77,9 @@ public class LoanApplicationSummaryPresenter
         mView.setData(mModel);
     }
 
-    private void setRequiredData(RequiredDataPointsListResponseVo requiredDataPointsList) {
+    private void setRequiredData(RequiredDataPointVo[] requiredDataPointsList) {
         if(requiredDataPointsList != null) {
-            LinkedList<RequiredDataPointVo> requiredDataPointsLinkedList = new LinkedList<>(Arrays.asList(requiredDataPointsList.data));
+            LinkedList<RequiredDataPointVo> requiredDataPointsLinkedList = new LinkedList<>(Arrays.asList(requiredDataPointsList));
             mModel.setRequiredData(requiredDataPointsLinkedList);
         }
     }
