@@ -100,6 +100,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     public void handleResponse(DataPointList userInfo) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         UserStorage.getInstance().setUserData(userInfo);
+        mCurrentUserDataCopy = new DataPointList(UserStorage.getInstance().getUserData());
         compareRequiredDataPointsWithCurrent(userInfo);
     }
 
@@ -318,7 +319,6 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
         mRequiredDataPointList = new LinkedList<>(Arrays.asList(requiredDataPointsList));
         if(!isUpdatingProfile) {
             removePrimaryCredentialFromRequiredList();
-            removeSecondaryCredentialFromRequiredList();
         }
 
         CompletableFuture

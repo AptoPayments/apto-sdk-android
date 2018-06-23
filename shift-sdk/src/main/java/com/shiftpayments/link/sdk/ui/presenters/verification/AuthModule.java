@@ -10,6 +10,7 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.Email;
 import com.shiftpayments.link.sdk.api.vos.datapoints.VerificationVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
@@ -38,7 +39,6 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
         PhoneVerificationDelegate, EmailVerificationDelegate, BirthdateVerificationDelegate {
 
     private static AuthModule instance;
-    public Command onNewUserWithVerifiedPrimaryCredential;
     public Command onExistingUser;
 
     private DataPointList mInitialUserData;
@@ -105,13 +105,22 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
      */
     @Subscribe
     public void handleToken(CreateUserResponseVo response) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
         if (response != null) {
             storeToken(response.user_token);
         }
-        // TODO: refactor to use onFinish
-        onNewUserWithVerifiedPrimaryCredential.execute();
+        onFinish.execute();
     }
+
+    /**
+     * Called when the empty response of the Register Push Notifications Task has been received.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleApiEmptyResponse(ApiEmptyResponseVo response) {
+    }
+
 
     /**
      * Called when an API error has been received.

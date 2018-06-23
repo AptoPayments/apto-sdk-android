@@ -23,12 +23,12 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.VerificationVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.CreateCardApplicationRequestVo;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
@@ -63,7 +63,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.LoginUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.users.PushNotificationRegistrationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.StartOAuthResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
@@ -952,11 +951,11 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     }
 
     @Override
-    public PushNotificationRegistrationResponseVo registerNotificationsToken(RegisterPushNotificationsRequestVo request) throws ApiException {
-        PushNotificationRegistrationResponseVo result;
+    public ApiEmptyResponseVo registerNotificationsToken(RegisterPushNotificationsRequestVo request) throws ApiException {
+        ApiEmptyResponseVo result;
         try {
-            Response<PushNotificationRegistrationResponseVo> response = mUserService.registerPushNotifications(request).execute();
-            result = handleResponse(response, ShiftApiWrapper.REGISTER_PUSH_NOTIFICATION_TOKEN_PATH);
+            Response<ResponseBody> response = mUserService.registerPushNotifications(request).execute();
+            result = handleEmptyResponse(response, ShiftApiWrapper.REGISTER_PUSH_NOTIFICATION_TOKEN_PATH);
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), ShiftApiWrapper.REGISTER_PUSH_NOTIFICATION_TOKEN_PATH, ioe);

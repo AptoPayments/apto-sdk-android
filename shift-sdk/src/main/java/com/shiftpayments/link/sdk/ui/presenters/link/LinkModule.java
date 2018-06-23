@@ -186,9 +186,8 @@ public class LinkModule extends ShiftBaseModule {
         DataPointList userData = UserStorage.getInstance().getUserData();
         ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
         AuthModuleConfig authModuleConfig = new AuthModuleConfig(config.primaryAuthCredential, config.secondaryAuthCredential);
-        AuthModule authModule = AuthModule.getInstance(this.getActivity(), userData, authModuleConfig, this::showHomeActivity, this::showHomeActivity);
+        AuthModule authModule = AuthModule.getInstance(this.getActivity(), userData, authModuleConfig, this::showOrSkipLoanInfo, this::showHomeActivity);
         authModule.onExistingUser = this::getOpenApplications;
-        authModule.onNewUserWithVerifiedPrimaryCredential = this::showOrSkipLoanInfo;
         startModule(authModule);
     }
 

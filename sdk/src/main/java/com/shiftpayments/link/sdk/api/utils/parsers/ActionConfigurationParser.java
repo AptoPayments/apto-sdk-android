@@ -104,6 +104,7 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
         }
         DataPointGroupsListVo dataPointGroupsListVo = new DataPointGroupsListVo();
         dataPointGroupsListVo.data = dataPointGroupVoArrayList.toArray(new DataPointGroupVo[0]);
+        dataPointGroupsListVo.total_count = dataPointGroupVoArrayList.size();
         return new CollectUserDataActionConfigurationVo(dataPointGroupsListVo);
     }
 }

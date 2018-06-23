@@ -5,19 +5,33 @@ import com.google.gson.annotations.SerializedName;
 
 public class DataPointVo {
     public enum DataPointType{
+        @SerializedName("name")
         PersonalName("NAME"),
+        @SerializedName("phone")
         Phone("PHONE"),
+        @SerializedName("email")
         Email("EMAIL"),
+        @SerializedName("birthdate")
         BirthDate("BIRTHDATE"),
+        @SerializedName("ssn")
         SSN("SSN"),
+        @SerializedName("address")
         Address("ADDRESS"),
+        @SerializedName("housing")
         Housing("HOUSING"),
+        @SerializedName("income_source")
         IncomeSource("INCOME_SOURCE"),
+        @SerializedName("income")
         Income("INCOME"),
+        @SerializedName("credit_score")
         CreditScore("CREDIT_SCORE"),
+        @SerializedName("financial_account")
         FinancialAccount("FINANCIAL_ACCOUNT"),
+        @SerializedName("payday_loan")
         PayDayLoan("PAYDAY_LOAN"),
+        @SerializedName("member_of_armed_forces")
         MemberOfArmedForces("MEMBER_OF_ARMED_FORCES"),
+        @SerializedName("time_at_address")
         TimeAtAddress("TIME_AT_ADDRESS");
 
         private String type;
@@ -110,6 +124,7 @@ public class DataPointVo {
             gsonObject.add("verification", mVerification.toJSON());
         }
         gsonObject.addProperty("not_specified", mNotSpecified);
+        gsonObject.addProperty("verified", mVerified);
         return gsonObject;
     }
 

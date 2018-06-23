@@ -1,5 +1,6 @@
 package com.shiftpayments.link.sdk.api.utils.parsers;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -11,7 +12,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 public class DataPointGroupParser implements JsonDeserializer<DataPointGroupVo> {
     @Override
@@ -23,19 +23,11 @@ public class DataPointGroupParser implements JsonDeserializer<DataPointGroupVo> 
         String name = ParsingUtils.getStringFromJson(dataPointGroupJson.get("name"));
         String description = ParsingUtils.getStringFromJson(dataPointGroupJson.get("description"));
         int order = dataPointGroupJson.get("order").getAsInt();
-        RequiredDataPointParser requiredDataPointParser = new RequiredDataPointParser();
         JsonArray requiredDataPointJsonArray = dataPointGroupJson.get("datapoints").getAsJsonObject().getAsJsonArray("data");
-        ArrayList<RequiredDataPointVo> requiredDataPointArrayList = new ArrayList<>();
-
-        for(JsonElement requiredDataPointJson : requiredDataPointJsonArray) {
-            RequiredDataPointVo requiredDataPoint = requiredDataPointParser.deserialize(requiredDataPointJson, iType, context);
-            requiredDataPointArrayList.add(requiredDataPoint);
-        }
-
+        RequiredDataPointVo[] requiredDataPoints = new GsonBuilder().create().fromJson(requiredDataPointJsonArray, RequiredDataPointVo[].class);
         RequiredDataPointsListResponseVo requiredDataPointsListResponse = new RequiredDataPointsListResponseVo();
-        requiredDataPointsListResponse.data = requiredDataPointArrayList.toArray(new RequiredDataPointVo[0]);
-        // TODO: Not working because backend is returning ints instead of booleans
-        /*requiredDataPointsListResponse.data = new GsonBuilder().create().fromJson(requiredDataPointJsonArray, RequiredDataPointVo[].class);*/
+        requiredDataPointsListResponse.data = requiredDataPoints;
+        requiredDataPointsListResponse.total_count = requiredDataPoints.length;
         return new DataPointGroupVo(type, datapointGroupId, datapointGroupType, name, description, order, requiredDataPointsListResponse);
     }
 }

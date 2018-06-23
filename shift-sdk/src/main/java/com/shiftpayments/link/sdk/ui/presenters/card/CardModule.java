@@ -91,7 +91,6 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
      * @param config API response.
      */
     public void handleConfig(CardConfigResponseVo config) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         if(isStoredUserTokenValid()) {
             getUserInfo();
         }
@@ -158,18 +157,6 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         showHomeActivity();
     }
 
-    /**
-     * Called when create card application has been received.
-     * @param application Card Application.
-     */
-    @Subscribe
-    public void handleApplication(CardApplicationResponseVo application) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        ApplicationVo cardApplication = new ApplicationVo(application.id, application.nextAction);
-        CardStorage.getInstance().setApplication(cardApplication);
-        mNewCardModule.startNextModule();
-    }
-
     private boolean isStoredUserTokenValid() {
         boolean isPOSMode = ConfigStorage.getInstance().getPOSMode();
         String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
@@ -190,15 +177,16 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void startAuthModule() {
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
         ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
         AuthModuleConfig authModuleConfig = new AuthModuleConfig(config.primaryAuthCredential, config.secondaryAuthCredential);
         AuthModule authModule = AuthModule.getInstance(getActivity(), null, authModuleConfig, this::startNewCardModule, this::showHomeActivity);
         authModule.onExistingUser = this::checkIfUserHasAnExistingCardOrIssueNewOne;
-        authModule.onNewUserWithVerifiedPrimaryCredential = this::startNewCardModule;
         startModule(authModule);
     }
 
     private void startNewCardModule() {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         mNewCardModule.initialModuleSetup();
     }
 
