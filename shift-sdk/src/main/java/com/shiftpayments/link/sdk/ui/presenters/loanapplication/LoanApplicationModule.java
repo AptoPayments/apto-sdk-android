@@ -107,7 +107,7 @@ public class LoanApplicationModule extends ShiftBaseModule
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity(), this.onBack, this.onBack);
         UserDataCollectorConfigurationVo config = new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_update_profile_title), new CallToActionVo(getActivity().getString(R.string.id_verification_update_profile_button)));
-        userDataCollectorModule.setCallToActionConfig(config);
+        ConfigStorage.getInstance().setUserDataCollectorConfig(config);
         userDataCollectorModule.isUpdatingProfile = true;
         startModule(userDataCollectorModule);
     }

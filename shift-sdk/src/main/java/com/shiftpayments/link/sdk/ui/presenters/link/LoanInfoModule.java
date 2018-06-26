@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
+import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.link.LoanAmountActivity;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
@@ -48,7 +49,7 @@ public class LoanInfoModule extends ShiftBaseModule implements LoanDataDelegate 
     public void onUpdateUserProfile() {
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity(), this.onBack, this.onBack);
         UserDataCollectorConfigurationVo config = new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_update_profile_title), new CallToActionVo(getActivity().getString(R.string.id_verification_update_profile_button)));
-        userDataCollectorModule.setCallToActionConfig(config);
+        ConfigStorage.getInstance().setUserDataCollectorConfig(config);
         userDataCollectorModule.isUpdatingProfile = true;
         startModule(userDataCollectorModule);
     }

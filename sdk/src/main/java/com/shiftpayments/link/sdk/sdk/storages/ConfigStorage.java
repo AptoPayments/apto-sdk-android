@@ -8,6 +8,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanPurposesResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 
 import java.util.concurrent.ExecutionException;
@@ -24,6 +25,7 @@ public class ConfigStorage {
     private static ConfigStorage mInstance;
     private LinkConfigResponseVo mLinkConfig;
     private CardConfigResponseVo mCardConfig;
+    private UserDataCollectorConfigurationVo mUserDataCollectorConfig;
     private String mCoinbaseClientId;
     private String mCoinbaseClientSecret;
 
@@ -344,5 +346,13 @@ public class ConfigStorage {
 
     public synchronized void setCardConfig(CardConfigResponseVo cardConfig) {
         mCardConfig = cardConfig;
+    }
+
+    public synchronized UserDataCollectorConfigurationVo getUserDataCollectorConfig() {
+        return mUserDataCollectorConfig;
+    }
+
+    public synchronized void setUserDataCollectorConfig(UserDataCollectorConfigurationVo userDataCollectorConfig) {
+        mUserDataCollectorConfig = userDataCollectorConfig;
     }
 }

@@ -58,7 +58,6 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     public boolean isUpdatingProfile;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
     private DataPointList mCurrentUserDataCopy;
-    private UserDataCollectorConfigurationVo mCallToAction;
 
     private UserDataCollectorModule(Activity activity, Command onFinish, Command onBack) {
         super(activity, onFinish, onBack);
@@ -468,10 +467,6 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     }
 
     public UserDataCollectorConfigurationVo getCallToActionConfig() {
-        return mCallToAction;
-    }
-
-    public void setCallToActionConfig(UserDataCollectorConfigurationVo callToActionConfig) {
-        mCallToAction = callToActionConfig;
+        return ConfigStorage.getInstance().getUserDataCollectorConfig();
     }
 }

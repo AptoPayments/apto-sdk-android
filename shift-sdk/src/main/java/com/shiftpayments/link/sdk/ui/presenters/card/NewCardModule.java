@@ -91,22 +91,17 @@ public class NewCardModule extends WorkflowModule {
         }
         ConfigStorage.getInstance().setRequiredUserData(requiredDataPointList.toArray(new RequiredDataPointVo[0]));
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(getActivity(), this::startNextModule, super.onBack);
-        // TODO: read this config from storage
         UserDataCollectorConfigurationVo config = new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_title_issue_card), new CallToActionVo(getActivity().getString(R.string.id_verification_next_button_issue_card)));
-        userDataCollectorModule.setCallToActionConfig(config);
+        ConfigStorage.getInstance().setUserDataCollectorConfig(config);
         startModule(userDataCollectorModule);
     }
 
     private void startCustodianModule() {
-        startCustodianModule(this::startNextModule, super.onBack);
-    }
-
-    private void startCustodianModule(Command onFinishCallback, Command onBackCallback) {
         Command onFinish = ()->{
             setCurrentModule();
-            onFinishCallback.execute();
+            this.startNextModule();
         };
-        CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity(), onFinish, onBackCallback);
+        CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity(), onFinish, super.onBack);
         startModule(custodianSelectorModule);
     }
 

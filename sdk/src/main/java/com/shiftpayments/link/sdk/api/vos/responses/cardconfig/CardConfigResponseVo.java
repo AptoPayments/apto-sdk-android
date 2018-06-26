@@ -14,8 +14,4 @@ public class CardConfigResponseVo {
 
     @SerializedName("card_product")
     public CardProductVo cardProduct;
-
-    // TODO: check if required
-    @SerializedName("available_card_products")
-    public AvailableCardProductListResponseVo availableCardProducts;
 }

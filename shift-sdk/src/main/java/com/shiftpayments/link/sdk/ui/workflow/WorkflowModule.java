@@ -36,5 +36,4 @@ public class WorkflowModule extends ShiftBaseModule {
         ShiftBaseModule module = ModuleFactory.getModule(this.getActivity(), mWorkFlowObject.nextAction, onWorkflowModuleFinish, onBack);
         startModule(module);
     }
-
 }

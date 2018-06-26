@@ -143,7 +143,7 @@ public class LinkModule extends ShiftBaseModule {
     private void startUserDataCollectorModule() {
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity(), this::showOffersList, this::showWelcomeScreenOrBack);
-        userDataCollectorModule.setCallToActionConfig(getConfigForLink());
+        ConfigStorage.getInstance().setUserDataCollectorConfig(getConfigForLink());
         startModule(userDataCollectorModule);
     }
 
