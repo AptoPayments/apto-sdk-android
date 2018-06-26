@@ -392,9 +392,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
                         addRequiredActivity(PersonalInformationActivity.class);
                         break;
                     case Phone:
-                        if(!mRequiredActivities.contains(PhoneActivity.class)) {
-                            mRequiredActivities.add(0, PhoneActivity.class);
-                        }
+                        addRequiredActivity(PhoneActivity.class);
                         break;
                     case Email:
                         addRequiredActivity(PersonalInformationActivity.class);
