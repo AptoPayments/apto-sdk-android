@@ -62,7 +62,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.LoginUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.users.PushNotificationRegistrationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.StartOAuthResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
@@ -441,7 +440,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public PushNotificationRegistrationResponseVo registerNotificationsToken(RegisterPushNotificationsRequestVo requestData) throws ApiException {
+    public ApiEmptyResponseVo registerNotificationsToken(RegisterPushNotificationsRequestVo requestData) throws ApiException {
         return null;
     }
 

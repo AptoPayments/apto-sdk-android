@@ -77,9 +77,6 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
 
     @Override
     public void oAuthTokensRetrieved(String accessToken, String refreshToken) {
-        // TODO: remove from storage
-        /*UserStorage.getInstance().setCoinbaseAccessToken(accessToken);
-        UserStorage.getInstance().setCoinbaseRefreshToken(refreshToken);*/
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(accessToken, refreshToken);
         SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
