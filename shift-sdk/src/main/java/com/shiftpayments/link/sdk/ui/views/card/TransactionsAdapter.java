@@ -13,7 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
+import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
@@ -139,7 +141,7 @@ public class TransactionsAdapter extends
                 viewHolder.cardBalance.setVisibility(View.VISIBLE);
                 viewHolder.cardBalanceLabel.setVisibility(View.VISIBLE);
             }
-            viewHolder.custodianLogo.setImageResource(R.drawable.coinbase_logo);
+            ShiftPlatform.getImageLoader().load(UIStorage.getInstance().getContextConfig().logoURL, viewHolder.custodianLogo);
             viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
             showActivateCardButton(mModel.isCardCreated(), viewHolder);
 
