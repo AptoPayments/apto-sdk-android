@@ -39,7 +39,8 @@
     <!-- Birthdate -->
     <string name="birthdate_title">Security Check</string>
     <string name="birthdate_hint">When is your birthday?</string>
-    <string name="birthdate_hint_month">Choose month</string>
+    <string name="birthdate_label_month">Choose month</string>
+    <string name="birthdate_hint_month">month</string>
     <string name="birthdate_hint_day">day</string>
     <string name="birthdate_hint_year">year</string>
     <string name="birthdate_label">Enter your birthdate below to verify your account.</string>

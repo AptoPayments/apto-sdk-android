@@ -38,9 +38,10 @@ public class IdentityVerificationView
      */
     public interface ViewListener extends StepperListener, NextButtonListener {
         void ssnCheckBoxClickHandler();
+        void monthClickHandler();
     }
 
-    private Spinner mBirthdayMonthSpinner;
+    private EditText mBirthdayMonth;
     private EditText mBirthdayDay;
     private EditText mBirthdayYear;
     private TextView mBirthdateErrorView;
@@ -88,7 +89,7 @@ public class IdentityVerificationView
     @Override
     protected void findAllViews() {
         super.findAllViews();
-        mBirthdayMonthSpinner = findViewById(R.id.sp_birthday_month);
+        mBirthdayMonth = findViewById(R.id.et_birthday_month);
         mBirthdayDay = findViewById(R.id.et_birthday_day);
         mBirthdayYear = findViewById(R.id.et_birthday_year);
         mBirthdateErrorView = findViewById(R.id.tv_birthdate_error);
@@ -116,6 +117,7 @@ public class IdentityVerificationView
         mSocialSecurityField.setOnClickListener(this);
         mSocialSecurityAvailableCheck.setOnClickListener(this);
         mNextButton.setOnClickListener(this);
+        mBirthdayMonth.setOnClickListener(this);
     }
 
     /** {@inheritDoc} */
@@ -132,25 +134,24 @@ public class IdentityVerificationView
         else if (id == R.id.tv_next_bttn) {
             mListener.nextClickHandler();
         }
-    }
-
-    public void setBirthdayMonthAdapter(ArrayAdapter<String> adapter) {
-        mBirthdayMonthSpinner.setAdapter(adapter);
+        else if (id == R.id.et_birthday_month) {
+            mListener.monthClickHandler();
+        }
     }
 
     /**
      * @return The selected month.
      */
-    public int getBirthdayMonth() {
-        return mBirthdayMonthSpinner.getSelectedItemPosition();
+    public String getBirthdayMonth() {
+        return mBirthdayMonth.getText().toString();
     }
 
     /**
      * Sets a new month.
-     * @param index Month index.
+     * @param month Month.
      */
-    public void setBirthdayMonth(int index) {
-        mBirthdayMonthSpinner.setSelection(index);
+    public void setBirthdayMonth(String month) {
+        mBirthdayMonth.setText(month);
     }
 
     /**
@@ -296,12 +297,12 @@ public class IdentityVerificationView
 
     public void showBirthday(boolean show) {
         if(show) {
-            mBirthdayMonthSpinner.setVisibility(VISIBLE);
+            mBirthdayMonth.setVisibility(VISIBLE);
             mBirthdayDay.setVisibility(VISIBLE);
             mBirthdayYear.setVisibility(VISIBLE);
         }
         else {
-            mBirthdayMonthSpinner.setVisibility(GONE);
+            mBirthdayMonth.setVisibility(GONE);
             mBirthdayDay.setVisibility(GONE);
             mBirthdayYear.setVisibility(GONE);
         }

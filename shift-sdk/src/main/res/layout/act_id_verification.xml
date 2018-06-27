@@ -2,7 +2,8 @@
 <com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include layout="@layout/include_llsdk_toolbar" />
     <include layout="@layout/include_progress_bar" />
@@ -36,19 +37,23 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_birthdate_hint">
 
-                <Spinner
-                    android:id="@+id/sp_birthday_month"
+                <EditText
+                    android:id="@+id/et_birthday_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:textColor="@color/colorPrimary"
-                    android:prompt="@string/birthdate_hint_month"
-                    android:spinnerMode="dialog" />
+                    android:inputType="none"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:paddingRight="2dp"
+                    android:hint="@string/birthdate_hint_month"
+                    android:textSize="@dimen/llsdk_body_text_size"
+                    android:background="@android:color/transparent" />
 
                 <EditText
                     android:id="@+id/month_split"
                     style="@style/llsdk_birthdate_slash"
-                    android:layout_toRightOf="@id/sp_birthday_month"
+                    android:layout_toRightOf="@id/et_birthday_month"
                     android:text="/"/>
 
                 <EditText
@@ -90,8 +95,9 @@
                     android:id="@+id/til_social_security"
                     style="?attr/llsdk_idVerification_inputWrapperStyle"
                     android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat"
                     android:layout_below="@+id/rl_birthday_holder"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="24dp">
 
                 <com.shiftpayments.link.sdk.ui.widgets.SsnEditText
                         android:id="@+id/et_social_security"
