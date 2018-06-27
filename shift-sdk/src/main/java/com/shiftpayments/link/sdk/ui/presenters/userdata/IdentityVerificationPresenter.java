@@ -1,10 +1,9 @@
 package com.shiftpayments.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.widget.DatePicker;
+import android.widget.ArrayAdapter;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.Address;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
@@ -16,7 +15,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.fragments.DatePickerFragment;
 import com.shiftpayments.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
@@ -38,7 +36,7 @@ import java8.util.concurrent.CompletableFuture;
 public class IdentityVerificationPresenter
         extends UserDataPresenter<IdentityVerificationModel, IdentityVerificationView>
         implements Presenter<IdentityVerificationModel, IdentityVerificationView>,
-        IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener {
+        IdentityVerificationView.ViewListener {
 
     private String mDisclaimersText = "";
     private ArrayList<ContentVo> mFullScreenDisclaimers = new ArrayList<>();
@@ -107,10 +105,13 @@ public class IdentityVerificationPresenter
         super.attachView(view);
         mView.setListener(this);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
+        mView.setBirthdayMonthAdapter(getBirthdayAdapter());
 
         mView.showBirthday(mIsBirthdayRequired);
         if(mIsBirthdayRequired && mModel.hasValidBirthday()) {
-            mView.setBirthday(mModel.getFormattedBirthday());
+            mView.setBirthdayMonth(mModel.getBirthdateMonth());
+            mView.setBirthdayDay(mModel.getBirthdateDay());
+            mView.setBirthdayYear(mModel.getBirthdateYear());
         }
 
         mView.showSSN(mIsSSNRequired);
@@ -165,15 +166,6 @@ public class IdentityVerificationPresenter
         super.detachView();
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void birthdayClickHandler() {
-        DatePickerFragment fragment = new DatePickerFragment();
-        fragment.setDate(mModel.getBirthday());
-        fragment.setListener(this);
-        fragment.show(mActivity.getFragmentManager(), DatePickerFragment.TAG);
-    }
-
     @Override
     public void ssnCheckBoxClickHandler() {
         mView.enableSSNField(!mView.isSSNCheckboxChecked());
@@ -190,7 +182,9 @@ public class IdentityVerificationPresenter
         }
 
         if(mIsBirthdayRequired) {
-            mModel.setBirthday(mView.getBirthday(), "MM-dd-yyyy");
+            int day = mView.getBirthdayDay().isEmpty() ? 0 : Integer.valueOf(mView.getBirthdayDay());
+            int year = mView.getBirthdayYear().isEmpty() ? 0 : Integer.valueOf(mView.getBirthdayYear());
+            mModel.setBirthday(year, mView.getBirthdayMonth(), day);
             mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
         }
         if(mIsSSNRequired && userHasUpdatedSSN()) {
@@ -258,13 +252,6 @@ public class IdentityVerificationPresenter
         else {
             DisclaimerUtil.showDisclaimer(mActivity, mFullScreenDisclaimers.get(mDisclaimersShownCounter), this::showDisclaimersCallback);
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        mModel.setBirthday(year, monthOfYear, dayOfMonth);
-        mView.setBirthday(String.format("%02d-%02d-%02d", monthOfYear + 1, dayOfMonth, year));
     }
 
     private void parseTextDisclaimer(ContentVo textDisclaimer) {
@@ -336,5 +323,13 @@ public class IdentityVerificationPresenter
                 DataPointVo.DataPointType.Address, null);
         disclaimer.value = disclaimer.value.replace("[language]", LanguageUtil.getLanguage()).replace("[state]", userAddress.stateCode.toUpperCase());
         return disclaimer;
+    }
+
+    private ArrayAdapter<String> getBirthdayAdapter() {
+        String[] monthsOfYear = {"January", "February", "March", "April", "May", "June", "July",
+                                "August", "September", "October", "November", "December"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(mActivity, R.layout.custom_spinner_dropdown_item, monthsOfYear);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        return adapter;
     }
 }
