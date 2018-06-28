@@ -17,7 +17,8 @@ public class Card extends FinancialAccountVo {
     public enum CardNetwork {
         VISA,
         MASTERCARD,
-        AMEX
+        AMEX,
+        UNKNOWN
     }
 
     public enum FinancialAccountState {
