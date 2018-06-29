@@ -24,8 +24,10 @@ public abstract class ShiftBaseModule implements NavigationCommand, BaseDelegate
     public Command onFinish;
     private ProgressDialog mProgressDialog;
 
-    public ShiftBaseModule(Activity activity) {
+    public ShiftBaseModule(Activity activity, Command onFinish, Command onBack) {
         mActivity = activity;
+        this.onFinish = onFinish;
+        this.onBack = onBack;
     }
 
     public abstract void initialModuleSetup();

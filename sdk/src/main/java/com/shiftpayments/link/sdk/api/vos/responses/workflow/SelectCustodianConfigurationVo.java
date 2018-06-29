@@ -15,6 +15,7 @@ public class SelectCustodianConfigurationVo extends ActionConfigurationVo {
     public boolean isDwollaEnabled;
 
     public SelectCustodianConfigurationVo(boolean isCoinbaseEnabled, boolean isDwollaEnabled) {
+        super(null);
         this.isCoinbaseEnabled = isCoinbaseEnabled;
         this.isDwollaEnabled = isDwollaEnabled;
     }

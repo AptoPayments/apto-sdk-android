@@ -8,6 +8,7 @@ import com.shiftpayments.link.sdk.ui.models.financialaccountselector.SelectFinan
 import com.shiftpayments.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.SelectFinancialAccountListPresenter;
+import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.tests.robolectric.LibraryProjectTestRunner;
 
 import org.junit.Assert;
@@ -30,7 +31,6 @@ public class SelectFinancialAccountListPresenterTest {
     private SelectFinancialAccountListPresenter mPresenter;
     private AppCompatActivity mActivity;
     private FinancialAccountSelectorModule mModule;
-    private String expectedAccountId;
 
     /**
      * Creates a new {@link SelectFinancialAccountListPresenter}.
@@ -45,8 +45,7 @@ public class SelectFinancialAccountListPresenterTest {
     @Before
     public void setUp() {
         mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
-        mModule = FinancialAccountSelectorModule.getInstance(mActivity, new SelectFundingAccountConfigurationVo(true, true, true));
-        mModule.onFinish = selectedFinancialAccount -> expectedAccountId = selectedFinancialAccount;
+        mModule = FinancialAccountSelectorModule.getInstance(mActivity, ()->{}, null, new SelectFundingAccountConfigurationVo(true, true, true));
         createPresenter();
     }
 
@@ -82,6 +81,7 @@ public class SelectFinancialAccountListPresenterTest {
             }
         };
         mPresenter.accountClickHandler(financialAccountModel);
+        String expectedAccountId = UserStorage.getInstance().getSelectedFinancialAccountId();
         Assert.assertEquals("Selected account should be passed.", expectedAccountId, account.mAccountId);
     }
 }

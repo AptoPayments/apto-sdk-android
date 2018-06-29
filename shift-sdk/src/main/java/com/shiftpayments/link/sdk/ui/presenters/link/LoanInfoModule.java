@@ -2,7 +2,12 @@ package com.shiftpayments.link.sdk.ui.presenters.link;
 
 import android.app.Activity;
 
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
+import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
+import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.link.LoanAmountActivity;
+import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 
@@ -13,20 +18,16 @@ import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 public class LoanInfoModule extends ShiftBaseModule implements LoanDataDelegate {
 
     private static LoanInfoModule mInstance;
-    public Command onGetOffers;
-    public Command onUpdateProfile;
-    public boolean userHasAllRequiredData;
 
-
-    public static synchronized  LoanInfoModule getInstance(Activity activity) {
+    public static synchronized  LoanInfoModule getInstance(Activity activity, Command onFinish, Command onBack) {
         if (mInstance == null) {
-            mInstance = new LoanInfoModule(activity);
+            mInstance = new LoanInfoModule(activity, onFinish, onBack);
         }
         return mInstance;
     }
 
-    private LoanInfoModule(Activity activity) {
-        super(activity);
+    private LoanInfoModule(Activity activity, Command onFinish, Command onBack) {
+        super(activity, onFinish, onBack);
     }
 
     @Override
@@ -36,12 +37,7 @@ public class LoanInfoModule extends ShiftBaseModule implements LoanDataDelegate 
 
     @Override
     public void loanDataPresented() {
-        if(onGetOffers != null) {
-            onGetOffers.execute();
-        }
-        else {
-            onFinish.execute();
-        }
+        onFinish.execute();
     }
 
     @Override
@@ -51,6 +47,10 @@ public class LoanInfoModule extends ShiftBaseModule implements LoanDataDelegate 
 
     @Override
     public void onUpdateUserProfile() {
-        onUpdateProfile.execute();
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity(), this.onBack, this.onBack);
+        UserDataCollectorConfigurationVo config = new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_update_profile_title), new CallToActionVo(getActivity().getString(R.string.id_verification_update_profile_button)));
+        ConfigStorage.getInstance().setUserDataCollectorConfig(config);
+        userDataCollectorModule.isUpdatingProfile = true;
+        startModule(userDataCollectorModule);
     }
 }

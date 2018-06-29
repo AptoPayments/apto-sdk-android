@@ -50,7 +50,7 @@
             android:layout_margin="20dp"
             android:adjustViewBounds="true"
             android:padding="64dp"
-            android:scaleType="center" />
+            android:scaleType="centerInside" />
 
         <ProgressBar
             android:id="@+id/pb_loading"

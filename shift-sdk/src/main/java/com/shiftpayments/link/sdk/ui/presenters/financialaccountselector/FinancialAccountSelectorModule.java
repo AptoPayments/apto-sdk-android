@@ -18,6 +18,7 @@ import com.shiftpayments.link.sdk.ui.activities.financialaccountselector.Interme
 import com.shiftpayments.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity;
 import com.shiftpayments.link.sdk.ui.models.financialaccountselector.SelectFinancialAccountModel;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 
@@ -36,17 +37,16 @@ public class FinancialAccountSelectorModule extends ShiftBaseModule
     private static FinancialAccountSelectorModule instance;
 
     private SelectFundingAccountConfigurationVo mConfig;
-    public SelectFinancialAccountCallback onFinish;
 
-    public static synchronized FinancialAccountSelectorModule getInstance(Activity activity, SelectFundingAccountConfigurationVo config) {
+    public static synchronized FinancialAccountSelectorModule getInstance(Activity activity, Command onFinish, Command onBack, SelectFundingAccountConfigurationVo config) {
         if (instance == null) {
-            instance = new FinancialAccountSelectorModule(activity, config);
+            instance = new FinancialAccountSelectorModule(activity, onFinish, onBack, config);
         }
         return instance;
     }
 
-    private FinancialAccountSelectorModule(Activity activity, SelectFundingAccountConfigurationVo config) {
-        super(activity);
+    private FinancialAccountSelectorModule(Activity activity, Command onFinish, Command onBack, SelectFundingAccountConfigurationVo config) {
+        super(activity, onFinish, onBack);
         mConfig = config;
     }
 
@@ -181,7 +181,8 @@ public class FinancialAccountSelectorModule extends ShiftBaseModule
     }
 
     private void onFinancialAccountSelected(String selectedFinancialAccountId) {
-        onFinish.returnSelectedFinancialAccount(selectedFinancialAccountId);
+        UserStorage.getInstance().setSelectedFinancialAccountId(selectedFinancialAccountId);
+        onFinish.execute();
     }
 
     public SelectFundingAccountConfigurationVo getConfiguration() {

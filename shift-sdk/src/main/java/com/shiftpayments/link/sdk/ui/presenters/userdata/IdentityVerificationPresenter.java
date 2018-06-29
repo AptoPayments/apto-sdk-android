@@ -8,6 +8,7 @@ import android.widget.DatePicker;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.Address;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductVo;
@@ -291,20 +292,35 @@ public class IdentityVerificationPresenter
         for (LoanProductVo loanProduct : response.data) {
             ContentVo disclaimer = loanProduct.preQualificationDisclaimer;
             if(disclaimer != null && !disclaimer.value.isEmpty()) {
-                switch(ContentVo.formatValues.valueOf(disclaimer.format)) {
-                    case plain_text:
-                        parseTextDisclaimer(disclaimer);
-                        break;
-                    case markdown:
-                        mFullScreenDisclaimers.add(disclaimer);
-                        break;
-                    case external_url:
-                        mFullScreenDisclaimers.add(formatExternalUrlDisclaimer(disclaimer));
-                        break;
-                }
+                parseDisclaimerContent(disclaimer);
             }
         }
         setTextDisclaimers(mDisclaimersText);
+        setCardDisclaimers();
+    }
+
+    private void setCardDisclaimers() {
+        CardConfigResponseVo cardConfig = ConfigStorage.getInstance().getCardConfig();
+        if(cardConfig != null) {
+            ContentVo disclaimer = cardConfig.cardProduct.disclaimerAction.configuration.disclaimer;
+            if(disclaimer != null) {
+                parseDisclaimerContent(disclaimer);
+            }
+        }
+    }
+
+    private void parseDisclaimerContent(ContentVo disclaimer) {
+        switch(ContentVo.formatValues.valueOf(disclaimer.format)) {
+            case plain_text:
+                parseTextDisclaimer(disclaimer);
+                break;
+            case markdown:
+                mFullScreenDisclaimers.add(disclaimer);
+                break;
+            case external_url:
+                mFullScreenDisclaimers.add(formatExternalUrlDisclaimer(disclaimer));
+                break;
+        }
     }
 
     private void errorReceived(String error) {

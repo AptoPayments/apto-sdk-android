@@ -42,7 +42,7 @@ public class MonthlyIncomePresenterTest {
         mActivity = Robolectric.buildActivity(AppCompatActivity.class).create().get();
         mPresenter = new MockMonthlyIncomePresenter(mActivity, new MockUserDataCollectorModule(mActivity));
         mView = new MockMonthlyIncomeView(mActivity);
-        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity);
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(mActivity, null, null);
         ModuleManager.getInstance().setModule(new SoftReference<>(userDataCollectorModule));
         mPresenter.attachView(mView);
     }

@@ -9,8 +9,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
@@ -56,22 +54,24 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
         ArmedForcesDelegate, TimeAtAddressDelegate {
 
     private static UserDataCollectorModule instance;
-    public Command onTokenRetrieved;
     public LinkedList<RequiredDataPointVo> mRequiredDataPointList;
     public boolean isUpdatingProfile;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
     private DataPointList mCurrentUserDataCopy;
-    private UserDataCollectorConfigurationVo mCallToAction;
 
-    private UserDataCollectorModule(Activity activity) {
-        super(activity);
+    private UserDataCollectorModule(Activity activity, Command onFinish, Command onBack) {
+        super(activity, onFinish, onBack);
         mRequiredDataPointList = new LinkedList<>();
         mRequiredActivities = new ArrayList<>();
     }
 
-    public static synchronized UserDataCollectorModule getInstance(Activity activity) {
+    public static synchronized UserDataCollectorModule getInstance(Activity activity, Command onFinish, Command onBack) {
         if (instance == null) {
-            instance = new UserDataCollectorModule(activity);
+            instance = new UserDataCollectorModule(activity, onFinish, onBack);
+        }
+        else {
+            instance.onFinish = onFinish;
+            instance.onBack = onBack;
         }
         return instance;
     }
@@ -99,24 +99,8 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     public void handleResponse(DataPointList userInfo) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         UserStorage.getInstance().setUserData(userInfo);
-        if(onTokenRetrieved != null) {
-            onTokenRetrieved.execute();
-        }
-        else {
-            compareRequiredDataPointsWithCurrent(userInfo);
-        }
-    }
-
-    /**
-     * Called when the create user response has been received.
-     * @param response API response.
-     */
-    @Subscribe
-    public void handleToken(CreateUserResponseVo response) {
-        if (response != null) {
-            storeToken(response.user_token);
-        }
-        stopModule();
+        mCurrentUserDataCopy = new DataPointList(UserStorage.getInstance().getUserData());
+        compareRequiredDataPointsWithCurrent(userInfo);
     }
 
     /**
@@ -125,7 +109,9 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
      */
     @Subscribe
     public void handleUserDetails(UserResponseVo response) {
-        stopModule();
+        showLoading(false);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        onFinish.execute();
     }
 
     /**
@@ -171,42 +157,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
 
     @Override
     public void identityVerificationSucceeded() {
-        showLoading(true);
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
-        if (!UserStorage.getInstance().hasBearerToken()) {
-            ShiftPlatform.createUser(UserStorage.getInstance().getUserData());
-        } else {
-            if (isUpdatingProfile && !mCurrentUserDataCopy.equals(UserStorage.getInstance().getUserData())) {
-                HashMap<DataPointVo.DataPointType, List<DataPointVo>> baseDataPoints = mCurrentUserDataCopy.getDataPoints();
-                HashMap<DataPointVo.DataPointType, List<DataPointVo>> updatedDataPoints = UserStorage.getInstance().getUserData().getDataPoints();
-                DataPointList request = new DataPointList();
-
-                for (DataPointVo.DataPointType type : updatedDataPoints.keySet()) {
-                    // TO DO: for now assuming only 1 DataPoint is present, will be refactored once DataPoint ID is available
-                    DataPointVo updatedDataPoint = updatedDataPoints.get(type).get(0);
-                    if(baseDataPoints.containsKey(type)) {
-                        DataPointVo baseDataPoint = baseDataPoints.get(type).get(0);
-                        if (!baseDataPoint.equals(updatedDataPoint)) {
-                            request.add(updatedDataPoint);
-                        }
-                    }
-                    else {
-                        // New DataPoint
-                        request.add(updatedDataPoint);
-                    }
-                }
-
-                if(!request.getDataPoints().isEmpty()) {
-                    ShiftPlatform.updateUser(request);
-                } else {
-                    stopModule();
-                }
-            }
-            else {
-                stopModule();
-            }
-        }
+        stopModule();
     }
 
     @Override
@@ -322,9 +273,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     }
 
     private void stopModule() {
-        showLoading(false);
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        onFinish.execute();
+        updateUser();
     }
 
     private void storeToken(String token) {
@@ -334,12 +283,41 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
         SharedPreferencesStorage.storeCredentials(getActivity(), config.primaryAuthCredential, config.secondaryAuthCredential);
     }
 
-    private void storeRequiredData(RequiredDataPointsListResponseVo requiredDataPointsList) {
-        UserStorage.getInstance().setRequiredData(requiredDataPointsList);
-        mRequiredDataPointList = new LinkedList<>(Arrays.asList(requiredDataPointsList.data));
+    private void updateUser() {
+        showLoading(true);
+        HashMap<DataPointVo.DataPointType, List<DataPointVo>> baseDataPoints = mCurrentUserDataCopy.getDataPoints();
+        HashMap<DataPointVo.DataPointType, List<DataPointVo>> updatedDataPoints = UserStorage.getInstance().getUserData().getDataPoints();
+        DataPointList request = new DataPointList();
+
+        for (DataPointVo.DataPointType type : updatedDataPoints.keySet()) {
+            // TO DO: for now assuming only 1 DataPoint is present, will be refactored once DataPoint ID is available
+            DataPointVo updatedDataPoint = updatedDataPoints.get(type).get(0);
+            if(baseDataPoints.containsKey(type)) {
+                DataPointVo baseDataPoint = baseDataPoints.get(type).get(0);
+                if (!baseDataPoint.equals(updatedDataPoint)) {
+                    request.add(updatedDataPoint);
+                }
+            }
+            else {
+                // New DataPoint
+                request.add(updatedDataPoint);
+            }
+        }
+
+        if(!request.getDataPoints().isEmpty()) {
+            ShiftLinkSdk.getResponseHandler().subscribe(this);
+            ShiftPlatform.updateUser(request);
+        }
+        else {
+            showLoading(false);
+            onFinish.execute();
+        }
+    }
+
+    private void storeRequiredData(RequiredDataPointVo[] requiredDataPointsList) {
+        mRequiredDataPointList = new LinkedList<>(Arrays.asList(requiredDataPointsList));
         if(!isUpdatingProfile) {
             removePrimaryCredentialFromRequiredList();
-            removeSecondaryCredentialFromRequiredList();
         }
 
         CompletableFuture
@@ -413,9 +391,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
                         addRequiredActivity(PersonalInformationActivity.class);
                         break;
                     case Phone:
-                        if(!mRequiredActivities.contains(PhoneActivity.class)) {
-                            mRequiredActivities.add(0, PhoneActivity.class);
-                        }
+                        addRequiredActivity(PhoneActivity.class);
                         break;
                     case Email:
                         addRequiredActivity(PersonalInformationActivity.class);
@@ -491,10 +467,6 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     }
 
     public UserDataCollectorConfigurationVo getCallToActionConfig() {
-        return mCallToAction;
-    }
-
-    public void setCallToActionConfig(UserDataCollectorConfigurationVo callToActionConfig) {
-        mCallToAction = callToActionConfig;
+        return ConfigStorage.getInstance().getUserDataCollectorConfig();
     }
 }

@@ -28,6 +28,6 @@ public class GetLoanApplicationStatusTask
     /** {@inheritDoc} */
     @Override
     protected LoanApplicationDetailsResponseVo callApi() throws ApiException {
-        return getApiWrapper().getApplicationStatus(getRequestData());
+        return getApiWrapper().getLoanApplicationStatus(getRequestData());
     }
 }

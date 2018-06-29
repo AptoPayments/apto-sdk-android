@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.ui.storages;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
+import com.shiftpayments.link.sdk.ui.vos.ApplicationVo;
 
 /**
  * Stores card related data.
@@ -11,6 +12,7 @@ public class CardStorage {
     private Card mCard;
     private static CardStorage mInstance;
     private String mFundingSourceId;
+    private ApplicationVo mApplication;
 
     /**
      * Creates a new {@link CardStorage} instance.
@@ -55,5 +57,13 @@ public class CardStorage {
 
     public boolean hasFundingSourceId() {
         return mFundingSourceId != null && !mFundingSourceId.isEmpty();
+    }
+
+    public ApplicationVo getApplication() {
+        return mApplication;
+    }
+
+    public void setApplication(ApplicationVo application) {
+        mApplication = application;
     }
 }
