@@ -28,9 +28,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_verify_email"
-                android:layout_alignParentTop="true" />
+                android:layout_marginTop="64dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_onboarding_secure_account" />
 
             <TextView
                 android:id="@+id/tv_verification_code_header"
