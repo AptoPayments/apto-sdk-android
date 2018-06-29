@@ -182,7 +182,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
         validateToken(activity);
         try {
             ProviderInstaller.installIfNeeded(activity.getApplicationContext());
-            LinkModule linkModule = new LinkModule(activity);
+            LinkModule linkModule = new LinkModule(activity, activity::finish, activity::onBackPressed);
             linkModule.initialModuleSetup();
         } catch (GooglePlayServicesRepairableException e) {
             // Thrown when Google Play Services is not installed, up-to-date, or enabled
@@ -210,7 +210,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
         validateToken(activity);
         try {
             ProviderInstaller.installIfNeeded(activity.getApplicationContext());
-            new CardModule(activity).initialModuleSetup();
+            new CardModule(activity, activity::finish, activity::onBackPressed).initialModuleSetup();
         } catch (GooglePlayServicesRepairableException e) {
             // Thrown when Google Play Services is not installed, up-to-date, or enabled
             // Show dialog to allow users to install, update, or otherwise enable Google Play services.

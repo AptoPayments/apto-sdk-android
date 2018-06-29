@@ -44,7 +44,7 @@ public class AddDocumentsListPresenterTest {
      * Creates the {@link AddDocumentsListPresenter}.
      */
     private void createPresenter() {
-        mPresenter = new AddDocumentsListPresenter(mActivity, LoanApplicationModule.getInstance(mActivity));
+        mPresenter = new AddDocumentsListPresenter(mActivity, LoanApplicationModule.getInstance(mActivity, null, null));
     }
 
     /**

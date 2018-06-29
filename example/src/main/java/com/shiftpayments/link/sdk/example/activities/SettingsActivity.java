@@ -32,7 +32,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.IncomeTypeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanPurposeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanPurposesResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.TimeAtAddressVo;
 import com.shiftpayments.link.sdk.example.KeysStorage;
@@ -430,8 +429,8 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
     }
 
     public void showRequiredFields() {
-        RequiredDataPointsListResponseVo requiredUserData = ConfigStorage.getInstance().getRequiredUserData();
-        for(RequiredDataPointVo requiredDataPoint : requiredUserData.data) {
+        RequiredDataPointVo[] requiredUserData = ConfigStorage.getInstance().getRequiredUserData();
+        for(RequiredDataPointVo requiredDataPoint : requiredUserData) {
             switch(requiredDataPoint.type) {
                 case PersonalName:
                     mView.showPersonalName();

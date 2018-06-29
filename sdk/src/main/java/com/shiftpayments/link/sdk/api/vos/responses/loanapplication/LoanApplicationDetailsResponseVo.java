@@ -8,6 +8,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
  * Loan application details API response object.
  * @author Wijnand
  */
+// TODO: extend new ApplicationResponseVo
 public class LoanApplicationDetailsResponseVo {
 
     /**

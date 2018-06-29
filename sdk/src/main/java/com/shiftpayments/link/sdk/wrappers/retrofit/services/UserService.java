@@ -9,11 +9,11 @@ import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.CurrentUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.LoginUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.users.PushNotificationRegistrationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.StartOAuthResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -71,7 +71,7 @@ public interface UserService {
      * @return API call to execute.
      */
     @POST(ShiftApiWrapper.REGISTER_PUSH_NOTIFICATION_TOKEN_PATH)
-    Call<PushNotificationRegistrationResponseVo> registerPushNotifications(@Body RegisterPushNotificationsRequestVo data);
+    Call<ResponseBody> registerPushNotifications(@Body RegisterPushNotificationsRequestVo data);
 
     /**
      * Creates a {@link Call} to start oAuth

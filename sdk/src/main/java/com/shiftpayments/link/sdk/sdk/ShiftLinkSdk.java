@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
@@ -16,6 +17,9 @@ import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificati
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
+import com.shiftpayments.link.sdk.sdk.tasks.cardapplication.CreateCardApplicationTask;
+import com.shiftpayments.link.sdk.sdk.tasks.cardapplication.GetCardApplicationStatusTask;
+import com.shiftpayments.link.sdk.sdk.tasks.config.CardConfigTask;
 import com.shiftpayments.link.sdk.sdk.tasks.config.HousingTypeListTask;
 import com.shiftpayments.link.sdk.sdk.tasks.config.IncomeTypesListTask;
 import com.shiftpayments.link.sdk.sdk.tasks.config.LinkConfigTask;
@@ -32,6 +36,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccoun
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetUserFundingSourcesTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.SetAccountFundingSourceTask;
+import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.SetBalanceStoreTask;
 import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountPinTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
@@ -132,7 +137,7 @@ public class ShiftLinkSdk {
     }
 
     /**
-     * Gets the loan purposes list.
+     * Gets the link config.
      * @return The {@link ShiftApiTask} that is being executed.
      */
     public static ShiftApiTask getLinkConfig() {
@@ -140,6 +145,20 @@ public class ShiftLinkSdk {
 
         LinkConfigTask task
                 = new LinkConfigTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Gets the card config.
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask getCardConfig() {
+        checkComponents();
+
+        CardConfigTask task
+                = new CardConfigTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;
@@ -290,7 +309,7 @@ public class ShiftLinkSdk {
      * @param applicationId Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getApplicationStatus(String applicationId) {
+    public static ShiftApiTask getLoanApplicationStatus(String applicationId) {
         checkComponents();
 
         GetLoanApplicationStatusTask task = new GetLoanApplicationStatusTask(applicationId, getApiWrapper(), getResponseHandler());
@@ -576,6 +595,48 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetOAuthStatusTask task = new GetOAuthStatusTask(id, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Creates a new card application.
+     * @param cardProductId The card product ID.
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask createCardApplication(String cardProductId) {
+        checkComponents();
+
+        CreateCardApplicationTask task = new CreateCardApplicationTask(cardProductId, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Gets the card application status.
+     * @param applicationId The card product ID.
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask getCardApplicationStatus(String applicationId) {
+        checkComponents();
+
+        GetCardApplicationStatusTask task = new GetCardApplicationStatusTask(applicationId, getApiWrapper(), getResponseHandler());
+        task.executeOnExecutor(getExecutor());
+
+        return task;
+    }
+
+    /**
+     * Sets the balance store data
+     * @param request The custodian
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask setBalanceStore(String applicationId, SetBalanceStoreRequestVo request) {
+        checkComponents();
+
+        SetBalanceStoreTask task = new SetBalanceStoreTask(applicationId, request, getApiWrapper(), getResponseHandler());
         task.executeOnExecutor(getExecutor());
 
         return task;

@@ -37,7 +37,7 @@ public interface LoanApplicationService {
      * Creates a {@link Call} to get the application status.
      * @return API call to execute.
      */
-    @GET(ShiftApiWrapper.APPLICATION_STATUS_PATH)
+    @GET(ShiftApiWrapper.LINK_APPLICATION_STATUS_PATH)
     Call<LoanApplicationDetailsResponseVo> getApplicationStatus(@Path("application_id") String applicationId);
 
     /**
@@ -46,7 +46,7 @@ public interface LoanApplicationService {
      * @param applicationId The application where the account will be linked to.
      * @return API call to execute.
      */
-    @PUT(ShiftApiWrapper.APPLICATION_ACCOUNT_PATH)
+    @PUT(ShiftApiWrapper.LINK_APPLICATION_ACCOUNT_PATH)
     Call<LoanApplicationDetailsResponseVo> setApplicationAccount(@Body ApplicationAccountRequestVo data,
                                                                  @Path("application_id") String applicationId);
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import com.shiftpayments.link.sdk.ui.activities.showgenericmessage.ShowGenericMessageActivity;
+import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 
 public class ShowGenericMessageModule extends ShiftBaseModule implements ShowGenericMessageDelegate {
@@ -11,16 +12,16 @@ public class ShowGenericMessageModule extends ShiftBaseModule implements ShowGen
     private static ShowGenericMessageModule mInstance;
     private static GenericMessageConfigurationVo mConfig;
 
-    public static synchronized ShowGenericMessageModule getInstance(Activity activity, GenericMessageConfigurationVo actionConfig) {
+    public static synchronized ShowGenericMessageModule getInstance(Activity activity, Command onFinish, Command onBack, GenericMessageConfigurationVo actionConfig) {
         mConfig = actionConfig;
         if (mInstance == null) {
-            mInstance = new ShowGenericMessageModule(activity);
+            mInstance = new ShowGenericMessageModule(activity, onFinish, onBack);
         }
         return mInstance;
     }
 
-    private ShowGenericMessageModule(Activity activity) {
-        super(activity);
+    private ShowGenericMessageModule(Activity activity, Command onFinish, Command onBack) {
+        super(activity, onFinish, onBack);
     }
 
     @Override

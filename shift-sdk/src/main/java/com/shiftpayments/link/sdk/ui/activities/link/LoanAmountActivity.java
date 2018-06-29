@@ -11,9 +11,8 @@ import com.shiftpayments.link.sdk.ui.models.link.LoanAmountModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.link.LoanAmountPresenter;
 import com.shiftpayments.link.sdk.ui.presenters.link.LoanDataDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.link.LoanInfoModule;
+import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.views.link.LoanAmountView;
-import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 /**
  * Wires up the MVP pattern for the loan amount screen.
@@ -42,7 +41,7 @@ public class LoanAmountActivity
     /** {@inheritDoc} */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(((LoanInfoModule) ModuleManager.getInstance().getCurrentModule()).userHasAllRequiredData) {
+        if(UserStorage.getInstance().hasBearerToken()) {
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.menu_loan_amount, menu);
             return true;

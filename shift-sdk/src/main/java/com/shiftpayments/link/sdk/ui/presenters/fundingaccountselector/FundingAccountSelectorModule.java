@@ -14,6 +14,8 @@ import com.shiftpayments.link.sdk.ui.activities.fundingaccountselector.DisplayCa
 import com.shiftpayments.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity;
 import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 import com.shiftpayments.link.sdk.ui.storages.LoanStorage;
+import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 
@@ -29,19 +31,18 @@ public class FundingAccountSelectorModule extends ShiftBaseModule
         implements EnableAutoPayDelegate, DisplayCardDelegate {
 
     private static FundingAccountSelectorModule instance;
-    private String mSelectedFinancialAccountId;
     private static SelectFundingAccountConfigurationVo mConfig;
 
-    public static synchronized FundingAccountSelectorModule getInstance(Activity activity, SelectFundingAccountConfigurationVo config) {
+    public static synchronized FundingAccountSelectorModule getInstance(Activity activity, Command onFinish, Command onBack, SelectFundingAccountConfigurationVo config) {
         mConfig = config;
         if (instance == null) {
-            instance = new FundingAccountSelectorModule(activity);
+            instance = new FundingAccountSelectorModule(activity, onFinish, onBack);
         }
         return instance;
     }
 
-    private FundingAccountSelectorModule(Activity activity) {
-        super(activity);
+    private FundingAccountSelectorModule(Activity activity, Command onFinish, Command onBack) {
+        super(activity, onFinish, onBack);
     }
 
     @Override
@@ -50,15 +51,12 @@ public class FundingAccountSelectorModule extends ShiftBaseModule
     }
 
     private void showFinancialAccountSelector() {
-        FinancialAccountSelectorModule financialAccountSelectorModule = FinancialAccountSelectorModule.getInstance(this.getActivity(), mConfig);
-        financialAccountSelectorModule.onBack = this.onBack;
-        financialAccountSelectorModule.onFinish = this::onFinancialAccountSelected;
+        FinancialAccountSelectorModule financialAccountSelectorModule = FinancialAccountSelectorModule.getInstance(this.getActivity(), this::onFinancialAccountSelected, this.onBack, mConfig);
         startModule(financialAccountSelectorModule);
     }
 
-    private void onFinancialAccountSelected(String selectedFinancialAccountId) {
-        mSelectedFinancialAccountId = selectedFinancialAccountId;
-        setFundingAccount();
+    private void onFinancialAccountSelected() {
+        setFundingAccount(UserStorage.getInstance().getSelectedFinancialAccountId());
     }
 
     private void showEnableAutoPayScreen() {
@@ -87,7 +85,7 @@ public class FundingAccountSelectorModule extends ShiftBaseModule
 
     @Override
     public String getFinancialAccountId() {
-        return mSelectedFinancialAccountId;
+        return UserStorage.getInstance().getSelectedFinancialAccountId();
     }
 
     @Override
@@ -105,9 +103,9 @@ public class FundingAccountSelectorModule extends ShiftBaseModule
         // TODO
     }
 
-    private void setFundingAccount() {
+    private void setFundingAccount(String accountId) {
         ApplicationAccountRequestVo request = new ApplicationAccountRequestVo();
-        request.accountId = mSelectedFinancialAccountId;
+        request.accountId = accountId;
         request.accountType = LoanApplicationAccountType.FUNDING;
 
         String applicationId = LoanStorage.getInstance().getCurrentLoanApplication().id;

@@ -5,6 +5,7 @@ package com.shiftpayments.link.sdk.api.vos.responses.workflow;
  */
 
 import com.google.gson.annotations.SerializedName;
+import com.shiftpayments.link.sdk.api.utils.workflow.WorkflowConfigType;
 
 public class SelectFundingAccountConfigurationVo extends ActionConfigurationVo {
 
@@ -18,6 +19,7 @@ public class SelectFundingAccountConfigurationVo extends ActionConfigurationVo {
     public boolean isVirtualCardEnabled;
 
     public SelectFundingAccountConfigurationVo(boolean isACHEnabled, boolean isCardEnabled, boolean isVirtualCardEnabled) {
+        super(WorkflowConfigType.SELECT_FUNDING_ACCOUNT_CONFIG);
         this.isACHEnabled = isACHEnabled;
         this.isCardEnabled = isCardEnabled;
         this.isVirtualCardEnabled = isVirtualCardEnabled;

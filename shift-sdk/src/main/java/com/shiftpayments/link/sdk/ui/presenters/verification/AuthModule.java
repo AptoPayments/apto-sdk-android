@@ -10,8 +10,10 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.Email;
 import com.shiftpayments.link.sdk.api.vos.datapoints.VerificationVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.LoginUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.BaseVerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
@@ -37,14 +39,14 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
         PhoneVerificationDelegate, EmailVerificationDelegate, BirthdateVerificationDelegate {
 
     private static AuthModule instance;
-    public Command onNewUserWithVerifiedPrimaryCredential;
     public Command onExistingUser;
 
     private DataPointList mInitialUserData;
     private AuthModuleConfig mConfig;
 
-    private AuthModule(Activity activity, DataPointList initialUserData, AuthModuleConfig config) {
-        super(activity);
+    private AuthModule(Activity activity, DataPointList initialUserData, AuthModuleConfig config,
+                       Command onFinish, Command onBack) {
+        super(activity, onFinish, onBack);
         if (initialUserData == null) {
             mInitialUserData = new DataPointList();
         } else {
@@ -54,9 +56,13 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
         SharedPreferencesStorage.storeCredentials(getActivity(), mConfig.primaryCredentialType.getType(), mConfig.secondaryCredentialType.getType());
     }
 
-    public static synchronized AuthModule getInstance(Activity activity, DataPointList initialUserData, AuthModuleConfig config) {
+    public static synchronized AuthModule getInstance(Activity activity, DataPointList initialUserData, AuthModuleConfig config, Command onFinish, Command onBack) {
         if (instance == null) {
-            instance = new AuthModule(activity, initialUserData, config);
+            instance = new AuthModule(activity, initialUserData, config, onFinish, onBack);
+        }
+        else {
+            instance.onFinish = onFinish;
+            instance.onBack = onBack;
         }
         return instance;
     }
@@ -92,6 +98,29 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
             getCurrentUserOrContinue(ConfigStorage.getInstance().getPOSMode());
         }
     }
+
+    /**
+     * Called when the create user response has been received.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleToken(CreateUserResponseVo response) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        showLoading(false);
+        if (response != null) {
+            storeToken(response.user_token);
+        }
+        onFinish.execute();
+    }
+
+    /**
+     * Called when the empty response of the Register Push Notifications Task has been received.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleApiEmptyResponse(ApiEmptyResponseVo response) {
+    }
+
 
     /**
      * Called when an API error has been received.
@@ -152,7 +181,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
     public void phoneVerificationSucceeded(VerificationResponseVo verification) {
         BaseVerificationResponseVo secondaryCredential = verification.secondary_credential;
         if (secondaryCredential == null) {
-            onNewUserWithVerifiedPrimaryCredential.execute();
+            createUser();
             return;
         }
         DataPointList userData = UserStorage.getInstance().getUserData();
@@ -185,7 +214,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
         if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email)) {
             BaseVerificationResponseVo secondaryCredential = verification.secondary_credential;
             if (secondaryCredential == null) {
-                onNewUserWithVerifiedPrimaryCredential.execute();
+                createUser();
                 return;
             }
             DataPointList userData = UserStorage.getInstance().getUserData();
@@ -246,6 +275,13 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.loginUser(getLoginData());
+    }
+
+    private void createUser() {
+        showLoading(true);
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.createUser(UserStorage.getInstance().getUserData());
     }
 
     private void storeToken(String token) {

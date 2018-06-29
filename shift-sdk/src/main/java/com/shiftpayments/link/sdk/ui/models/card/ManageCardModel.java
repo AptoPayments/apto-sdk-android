@@ -58,7 +58,7 @@ public class ManageCardModel implements Model {
         if(mCard != null) {
             return mCard.cardNetwork;
         }
-        return null;
+        return Card.CardNetwork.UNKNOWN;
     }
 
     public String getCardNumber() {

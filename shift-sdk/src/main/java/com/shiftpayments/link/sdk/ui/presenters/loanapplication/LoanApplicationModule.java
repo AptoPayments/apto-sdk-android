@@ -5,7 +5,11 @@ import android.app.Activity;
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
+import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
+import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import com.shiftpayments.link.sdk.ui.activities.loanapplication.LoanApplicationSummaryActivity;
 import com.shiftpayments.link.sdk.ui.activities.loanapplication.SelectLoanApplicationListActivity;
@@ -18,6 +22,7 @@ import com.shiftpayments.link.sdk.ui.models.loanapplication.SelectLoanApplicatio
 import com.shiftpayments.link.sdk.ui.models.loanapplication.documents.AddDocumentsListModel;
 import com.shiftpayments.link.sdk.ui.models.offers.OfferSummaryModel;
 import com.shiftpayments.link.sdk.ui.presenters.offers.OffersListDelegate;
+import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import com.shiftpayments.link.sdk.ui.storages.LoanStorage;
 import com.shiftpayments.link.sdk.ui.vos.ApplicationVo;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
@@ -43,20 +48,17 @@ public class LoanApplicationModule extends ShiftBaseModule
         LoanAgreementDelegate, OffersListDelegate, LoanApplicationSummaryDelegate,
         SelectLoanApplicationListDelegate {
     private static LoanApplicationModule mInstance;
-    public Command onUpdateUserProfile;
-    public Command onStartNewApplication;
-    private WorkflowModule mWorkflowModule;
     private LoanApplicationsSummaryListResponseVo mApplicationList;
 
-    public static synchronized LoanApplicationModule getInstance(Activity activity) {
+    public static synchronized LoanApplicationModule getInstance(Activity activity, Command onFinish, Command onBack) {
         if (mInstance == null) {
-            mInstance = new LoanApplicationModule(activity);
+            mInstance = new LoanApplicationModule(activity, onFinish, onBack);
         }
         return mInstance;
     }
 
-    private LoanApplicationModule(Activity activity) {
-        super(activity);
+    private LoanApplicationModule(Activity activity, Command onFinish, Command onBack) {
+        super(activity, onFinish, onBack);
     }
 
     @Override
@@ -102,7 +104,12 @@ public class LoanApplicationModule extends ShiftBaseModule
     }
 
     public void onUpdateUserProfile() {
-        onUpdateUserProfile.execute();
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity(), this.onBack, this.onBack);
+        UserDataCollectorConfigurationVo config = new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_update_profile_title), new CallToActionVo(getActivity().getString(R.string.id_verification_update_profile_button)));
+        ConfigStorage.getInstance().setUserDataCollectorConfig(config);
+        userDataCollectorModule.isUpdatingProfile = true;
+        startModule(userDataCollectorModule);
     }
 
     @Override
@@ -114,10 +121,8 @@ public class LoanApplicationModule extends ShiftBaseModule
     public void onApplicationReceived(ApplicationVo application) {
         LoanApplicationDetailsResponseVo loanApplication = LoanStorage.getInstance().getCurrentLoanApplication();
         if (loanApplication != null) {
-            mWorkflowModule = new WorkflowModule(this.getActivity(), application, this::getApplicationStatus);
-            mWorkflowModule.onBack = this::showOffers;
-            mWorkflowModule.onFinish = this.onFinish;
-            mWorkflowModule.initialModuleSetup();
+            new WorkflowModule(this.getActivity(), application, this::getApplicationStatus,
+                    this.onFinish, this::showOffers).initialModuleSetup();
             return;
         }
         startActivity(IntermediateLoanApplicationActivity.class);
@@ -140,7 +145,7 @@ public class LoanApplicationModule extends ShiftBaseModule
         }
         CompletableFuture<LoanApplicationDetailsResponseVo> future = CompletableFuture.supplyAsync(() -> {
             try {
-                return getApiWrapper().getApplicationStatus(currentObject.workflowObjectId);
+                return getApiWrapper().getLoanApplicationStatus(currentObject.workflowObjectId);
             } catch (ApiException e) {
                 throw new CompletionException(e);
             }
@@ -186,7 +191,7 @@ public class LoanApplicationModule extends ShiftBaseModule
 
     @Override
     public void newApplicationPressed() {
-        onStartNewApplication.execute();
+        onFinish.execute();
     }
 
     @Override

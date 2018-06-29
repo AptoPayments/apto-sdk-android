@@ -8,7 +8,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.offers.OfferVo;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
@@ -18,7 +17,6 @@ import com.shiftpayments.link.sdk.ui.models.loanapplication.LoanApplicationSumma
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.LoanStorage;
-import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.loanapplication.LoanApplicationSummaryView;
 import com.shiftpayments.link.sdk.ui.vos.ApplicationVo;
@@ -57,7 +55,7 @@ public class LoanApplicationSummaryPresenter
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
                 .thenAccept(this::applicationDisclaimerRetrieved);
-        setRequiredData(UserStorage.getInstance().getRequiredData());
+        setRequiredData(ConfigStorage.getInstance().getRequiredUserData());
     }
 
     /** {@inheritDoc} */
@@ -79,9 +77,9 @@ public class LoanApplicationSummaryPresenter
         mView.setData(mModel);
     }
 
-    private void setRequiredData(RequiredDataPointsListResponseVo requiredDataPointsList) {
+    private void setRequiredData(RequiredDataPointVo[] requiredDataPointsList) {
         if(requiredDataPointsList != null) {
-            LinkedList<RequiredDataPointVo> requiredDataPointsLinkedList = new LinkedList<>(Arrays.asList(requiredDataPointsList.data));
+            LinkedList<RequiredDataPointVo> requiredDataPointsLinkedList = new LinkedList<>(Arrays.asList(requiredDataPointsList));
             mModel.setRequiredData(requiredDataPointsLinkedList);
         }
     }

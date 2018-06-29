@@ -8,7 +8,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
- * A concrete {@link ShiftApiTask} to display loan purposes.
+ * A concrete {@link ShiftApiTask} to get the Link config
  * @author wijnand
  */
 public class LinkConfigTask extends ShiftApiTask<Void, Void, LinkConfigResponseVo, UnauthorizedRequestVo> {

@@ -1,5 +1,6 @@
 package com.shiftpayments.link.sdk.api.utils.parsers;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -7,12 +8,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.shiftpayments.link.sdk.api.utils.workflow.WorkflowConfigType;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointGroupVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointGroupsListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.CollectUserDataActionConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 /**
  * Created by adrian on 25/01/2017.
@@ -34,6 +39,8 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
                     return parseGenericMessageConfig(config);
                 case WorkflowConfigType.SELECT_FUNDING_ACCOUNT_CONFIG:
                     return parseSelectFundingAccountConfig(config);
+                case WorkflowConfigType.COLLECT_USER_DATA_CONFIG:
+                    return parseCollectUserDataConfig(config, iType, context);
             }
         }
         return null;
@@ -80,11 +87,24 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
         return new GenericMessageConfigurationVo(type, title, content, image, trackerEventName, trackerIncrementName, callToAction);
     }
 
-
     private ActionConfigurationVo parseSelectFundingAccountConfig(JsonObject config) {
         boolean isAchEnabled = config.get("ach_enabled").getAsBoolean();
         boolean isCardEnabled = config.get("card_enabled").getAsBoolean();
         boolean isVirtualCardEnabled = config.get("virtual_card_enabled").getAsBoolean();
         return new SelectFundingAccountConfigurationVo(isAchEnabled, isCardEnabled, isVirtualCardEnabled);
+    }
+
+    private ActionConfigurationVo parseCollectUserDataConfig(JsonObject config, Type iType, JsonDeserializationContext context) {
+        DataPointGroupParser dataPointGroupParser = new DataPointGroupParser();
+        JsonArray requiredDatapointGroupsArray = config.get("required_datapoint_groups").getAsJsonObject().get("data").getAsJsonArray();
+        ArrayList<DataPointGroupVo> dataPointGroupVoArrayList = new ArrayList<>();
+        for(JsonElement requiredDatapointGroup : requiredDatapointGroupsArray) {
+            DataPointGroupVo dataPointGroup = dataPointGroupParser.deserialize(requiredDatapointGroup, iType, context);
+            dataPointGroupVoArrayList.add(dataPointGroup);
+        }
+        DataPointGroupsListVo dataPointGroupsListVo = new DataPointGroupsListVo();
+        dataPointGroupsListVo.data = dataPointGroupVoArrayList.toArray(new DataPointGroupVo[0]);
+        dataPointGroupsListVo.total_count = dataPointGroupVoArrayList.size();
+        return new CollectUserDataActionConfigurationVo(dataPointGroupsListVo);
     }
 }

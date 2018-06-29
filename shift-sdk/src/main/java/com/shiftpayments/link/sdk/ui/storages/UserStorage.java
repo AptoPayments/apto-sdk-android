@@ -10,7 +10,6 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.IncomeSource;
 import com.shiftpayments.link.sdk.api.vos.responses.config.CreditScoreVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.HousingTypeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.IncomeTypeVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 
@@ -22,10 +21,8 @@ public class UserStorage {
 
     private DataPointList mUserDataPoints;
     private String mBearerToken;
-    private RequiredDataPointsListResponseVo mRequiredData;
-    private String mCoinbaseAccessToken;
-    private String mCoinbaseRefreshToken;
     private String mFirebaseToken;
+    private String mSelectedFinancialAccountId;
 
     private static UserStorage mInstance;
 
@@ -94,14 +91,6 @@ public class UserStorage {
         return !TextUtils.isEmpty(mBearerToken);
     }
 
-    public RequiredDataPointsListResponseVo getRequiredData() {
-        return mRequiredData;
-    }
-
-    public void setRequiredData(RequiredDataPointsListResponseVo requiredData) {
-        mRequiredData = requiredData;
-    }
-
     private boolean isHousingTypeValid(Housing housing) {
         HousingTypeVo[] validHousingTypes = UIStorage.getInstance().getContextConfig().housingTypeOpts.data;
         boolean isValid = false;
@@ -146,25 +135,21 @@ public class UserStorage {
         return isValid;
     }
 
-    public String getCoinbaseAccessToken() {
-        return mCoinbaseAccessToken;
-    }
-
-    public void setCoinbaseAccessToken(String coinbaseAccessToken) {
-        this.mCoinbaseAccessToken = coinbaseAccessToken;
-    }
-
-    public String getCoinbaseRefreshToken() {
-        return mCoinbaseRefreshToken;
-    }
-
-    public void setCoinbaseRefreshToken(String coinbaseRefreshToken) {
-        this.mCoinbaseRefreshToken = coinbaseRefreshToken;
-    }
-
     public void setFirebaseToken(String firebaseToken) {
         this.mFirebaseToken = firebaseToken;
         registerFirebaseToken();
+    }
+
+    public String getSelectedFinancialAccountId() {
+        return mSelectedFinancialAccountId;
+    }
+
+    public void setSelectedFinancialAccountId(String selectedFinancialAccountId) {
+        mSelectedFinancialAccountId = selectedFinancialAccountId;
+    }
+
+    public boolean hasUserData() {
+        return mUserDataPoints != null && !mUserDataPoints.getDataPoints().isEmpty();
     }
 
     private void registerFirebaseToken() {
