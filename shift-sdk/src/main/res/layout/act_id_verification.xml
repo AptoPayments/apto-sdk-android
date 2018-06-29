@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -40,6 +41,7 @@
                         android:id="@+id/til_birthday"
                         style="?attr/llsdk_idVerification_inputWrapperStyle"
                         android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat"
                         android:nextFocusUp="@id/til_birthday"
                         android:nextFocusLeft="@id/til_birthday">
 
@@ -58,6 +60,7 @@
                     android:id="@+id/til_social_security"
                     style="?attr/llsdk_idVerification_inputWrapperStyle"
                     android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat"
                     android:layout_below="@+id/rl_birthday_holder">
 
                 <com.shiftpayments.link.sdk.ui.widgets.SsnEditText

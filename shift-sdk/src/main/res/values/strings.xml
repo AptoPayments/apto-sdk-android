@@ -25,7 +25,7 @@
     <!-- Phone -->
     <string name="phone_title">Phone number</string>
     <string name="phone_hint">Mobile number</string>
-    <string name="phone_label">Enter your mobile number</string>
+    <string name="phone_label">To identify you, we need your phone number</string>
     <string name="phone_label_sms">We\'ll send a one-time SMS to verify your phone number. Carrier SMS fees may apply.</string>
     <string name="phone_error">Invalid phone number</string>
 

@@ -156,6 +156,11 @@ public class TransactionsAdapter extends
                 viewHolder.noTransactionsImage.setVisibility(View.VISIBLE);
                 viewHolder.noTransactionsText.setVisibility(View.VISIBLE);
             }
+            else {
+                viewHolder.transactionsTitle.setVisibility(View.VISIBLE);
+                viewHolder.noTransactionsImage.setVisibility(View.GONE);
+                viewHolder.noTransactionsText.setVisibility(View.GONE);
+            }
 
             setListeners(viewHolder);
         } else if (position > 0) {

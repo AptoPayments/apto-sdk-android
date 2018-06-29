@@ -189,8 +189,7 @@ public class UIStorage {
                         new int[]{android.R.attr.state_checked}
                 },
                 new int[] {
-                        // bdbdbd = material gray
-                        Color.WHITE, mPrimaryColor
+                        Color.GRAY, mPrimaryColor
                 }
         );
     }
