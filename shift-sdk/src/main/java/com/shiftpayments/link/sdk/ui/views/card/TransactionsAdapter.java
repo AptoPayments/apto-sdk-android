@@ -68,6 +68,9 @@ public class TransactionsAdapter extends
         TextView secondaryButton;
         ImageView custodianLogo;
         ImageButton accountButton;
+        TextView transactionsTitle;
+        ImageView noTransactionsImage;
+        TextView noTransactionsText;
 
         // Transaction
         TextView titleTextView;
@@ -88,6 +91,9 @@ public class TransactionsAdapter extends
                 primaryButton = itemView.findViewById(R.id.tv_display_card_primary_bttn);
                 secondaryButton = itemView.findViewById(R.id.tv_display_card_secondary_bttn);
                 accountButton = itemView.findViewById(R.id.ib_account);
+                transactionsTitle = itemView.findViewById(R.id.tv_transactions_title);
+                noTransactionsImage = itemView.findViewById(R.id.iv_no_transactions);
+                noTransactionsText = itemView.findViewById(R.id.tv_no_transactions);
             } else if (viewType == 1) {
                 titleTextView = itemView.findViewById(R.id.tv_title);
                 descriptionTextView = itemView.findViewById(R.id.tv_description);
@@ -145,11 +151,13 @@ public class TransactionsAdapter extends
             viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
             showActivateCardButton(mModel.isCardCreated(), viewHolder);
 
-            viewHolder.primaryButton.setOnClickListener(v -> mListener.manageCardClickHandler());
-            viewHolder.creditCardView.setOnClickListener(v -> mListener.manageCardClickHandler());
-            viewHolder.creditCardView.getCardNumberView().setOnClickListener(v -> mListener.cardNumberClickHandler(((EditText)v).getText().toString()));
-            viewHolder.secondaryButton.setOnClickListener(v -> mListener.activateCardBySecondaryBtnClickHandler());
-            viewHolder.accountButton.setOnClickListener(v -> mListener.accountClickHandler());
+            if(mTransactions.size() == 0 && !mModel.isCardCreated()) {
+                viewHolder.transactionsTitle.setVisibility(View.GONE);
+                viewHolder.noTransactionsImage.setVisibility(View.VISIBLE);
+                viewHolder.noTransactionsText.setVisibility(View.VISIBLE);
+            }
+
+            setListeners(viewHolder);
         } else if (position > 0) {
             TransactionVo transaction = mTransactions.get(position-1);
 
@@ -178,6 +186,14 @@ public class TransactionsAdapter extends
     public void clear() {
         mTransactions.clear();
         notifyDataSetChanged();
+    }
+
+    private void setListeners(ViewHolder viewHolder) {
+        viewHolder.primaryButton.setOnClickListener(v -> mListener.manageCardClickHandler());
+        viewHolder.creditCardView.setOnClickListener(v -> mListener.manageCardClickHandler());
+        viewHolder.creditCardView.getCardNumberView().setOnClickListener(v -> mListener.cardNumberClickHandler(((EditText)v).getText().toString()));
+        viewHolder.secondaryButton.setOnClickListener(v -> mListener.activateCardBySecondaryBtnClickHandler());
+        viewHolder.accountButton.setOnClickListener(v -> mListener.accountClickHandler());
     }
 
     private void showActivateCardButton(boolean show, ViewHolder viewHolder) {

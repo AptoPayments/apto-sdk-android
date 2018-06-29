@@ -53,7 +53,7 @@
     <string name="phone_verification_error">Error: the pin is incorrect!</string>
 
     <!-- Email Verification -->
-    <string name="email_verification_label">Email verification</string>
+    <string name="email_verification_title">Secure your account</string>
     <string name="email_verification_code_hint">Click on the link to verify your account.</string>
     <string name="email_verification_info">We just sent a verification link to\n%s</string>
     <string name="email_verification_button_submit">I Clicked on the Link</string>
@@ -313,6 +313,7 @@
     <string name="card_disabled">Card disabled</string>
     <string name="card_management_pin_changed">PIN changed correctly</string>
     <string name="card_management_number_copied">Card number copied to clipboard</string>
+    <string name="card_management_no_transactions">You have no transactions yet.\nStart now!</string>
 
     <!-- card management bottom sheet -->
     <string name="switch_enable_card">Enable Card</string>

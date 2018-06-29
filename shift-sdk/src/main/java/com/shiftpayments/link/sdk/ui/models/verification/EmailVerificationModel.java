@@ -36,7 +36,7 @@ public class EmailVerificationModel extends AbstractUserDataModel implements Use
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
-        return R.string.email_verification_label;
+        return R.string.email_verification_title;
     }
 
     /** {@inheritDoc} */
