@@ -313,6 +313,7 @@
     <string name="card_disabled">Card disabled</string>
     <string name="card_management_pin_changed">PIN changed correctly</string>
     <string name="card_management_number_copied">Card number copied to clipboard</string>
+    <string name="card_management_no_transactions">You have no transactions yet.\nStart now!</string>
 
     <!-- card management bottom sheet -->
     <string name="switch_enable_card">Enable Card</string>
