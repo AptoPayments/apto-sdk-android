@@ -1,10 +1,15 @@
 package com.shiftpayments.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
+import android.app.AlertDialog;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.widget.DatePicker;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckedTextView;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.Address;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
@@ -16,9 +21,9 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.fragments.DatePickerFragment;
 import com.shiftpayments.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.utils.DisclaimerUtil;
 import com.shiftpayments.link.sdk.ui.utils.LanguageUtil;
@@ -28,6 +33,7 @@ import com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import java8.util.concurrent.CompletableFuture;
 
@@ -38,7 +44,7 @@ import java8.util.concurrent.CompletableFuture;
 public class IdentityVerificationPresenter
         extends UserDataPresenter<IdentityVerificationModel, IdentityVerificationView>
         implements Presenter<IdentityVerificationModel, IdentityVerificationView>,
-        IdentityVerificationView.ViewListener, DatePickerDialog.OnDateSetListener {
+        IdentityVerificationView.ViewListener {
 
     private String mDisclaimersText = "";
     private ArrayList<ContentVo> mFullScreenDisclaimers = new ArrayList<>();
@@ -110,7 +116,10 @@ public class IdentityVerificationPresenter
 
         mView.showBirthday(mIsBirthdayRequired);
         if(mIsBirthdayRequired && mModel.hasValidBirthday()) {
-            mView.setBirthday(mModel.getFormattedBirthday());
+            String month = mActivity.getResources().getStringArray(R.array.months_of_year)[mModel.getBirthdateMonth()];
+            mView.setBirthdayMonth(month);
+            mView.setBirthdayDay(mModel.getBirthdateDay());
+            mView.setBirthdayYear(mModel.getBirthdateYear());
         }
 
         mView.showSSN(mIsSSNRequired);
@@ -165,19 +174,15 @@ public class IdentityVerificationPresenter
         super.detachView();
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void birthdayClickHandler() {
-        DatePickerFragment fragment = new DatePickerFragment();
-        fragment.setDate(mModel.getBirthday());
-        fragment.setListener(this);
-        fragment.show(mActivity.getFragmentManager(), DatePickerFragment.TAG);
-    }
-
     @Override
     public void ssnCheckBoxClickHandler() {
         mView.enableSSNField(!mView.isSSNCheckboxChecked());
         mView.updateSocialSecurityError(false, 0);
+    }
+
+    @Override
+    public void monthClickHandler() {
+        showMonthPicker();
     }
 
     /** {@inheritDoc} */
@@ -190,7 +195,11 @@ public class IdentityVerificationPresenter
         }
 
         if(mIsBirthdayRequired) {
-            mModel.setBirthday(mView.getBirthday(), "MM-dd-yyyy");
+            int day = mView.getBirthdayDay().isEmpty() ? 0 : Integer.valueOf(mView.getBirthdayDay());
+            int year = mView.getBirthdayYear().isEmpty() ? 0 : Integer.valueOf(mView.getBirthdayYear());
+            String[] months = mActivity.getResources().getStringArray(R.array.months_of_year);
+            int month = Arrays.asList(months).indexOf(mView.getBirthdayMonth());
+            mModel.setBirthday(year, month, day);
             mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
         }
         if(mIsSSNRequired && userHasUpdatedSSN()) {
@@ -258,13 +267,6 @@ public class IdentityVerificationPresenter
         else {
             DisclaimerUtil.showDisclaimer(mActivity, mFullScreenDisclaimers.get(mDisclaimersShownCounter), this::showDisclaimersCallback);
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        mModel.setBirthday(year, monthOfYear, dayOfMonth);
-        mView.setBirthday(String.format("%02d-%02d-%02d", monthOfYear + 1, dayOfMonth, year));
     }
 
     private void parseTextDisclaimer(ContentVo textDisclaimer) {
@@ -336,5 +338,32 @@ public class IdentityVerificationPresenter
                 DataPointVo.DataPointType.Address, null);
         disclaimer.value = disclaimer.value.replace("[language]", LanguageUtil.getLanguage()).replace("[state]", userAddress.stateCode.toUpperCase());
         return disclaimer;
+    }
+
+    private void showMonthPicker() {
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(mActivity, android.R.layout.select_dialog_singlechoice);
+        String[] monthsOfYear = mActivity.getResources().getStringArray(R.array.months_of_year);
+        arrayAdapter.addAll(monthsOfYear);
+
+        AlertDialog dialog = new AlertDialog.Builder(mActivity)
+            .setTitle(R.string.birthdate_label_month)
+            .setPositiveButton(android.R.string.ok, null)
+            .setAdapter(arrayAdapter, null)
+            .create();
+
+        dialog.setOnShowListener(dialogInterface -> {
+            Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            button.setOnClickListener(view -> dialog.dismiss());
+        });
+        dialog.getListView().setOnItemClickListener(
+                (parent, view, position, id) -> {
+                    CheckedTextView checkedTextView = (CheckedTextView) view;
+                    Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(mActivity, R.drawable.abc_btn_radio_material));
+                    DrawableCompat.setTintList(drawable, UIStorage.getInstance().getRadioButtonColors());
+                    checkedTextView.setCheckMarkDrawable(drawable);
+                    checkedTextView.toggle();
+                    mView.setBirthdayMonth(arrayAdapter.getItem(position));
+                });
+        dialog.show();
     }
 }
