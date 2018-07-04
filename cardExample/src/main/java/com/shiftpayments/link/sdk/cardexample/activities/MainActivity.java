@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             }
             ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),
                     getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
-            ShiftPlatform.setCoinbaseKeys(getCoinbaseClientId(), getCoinbaseClientSecret());
             CompletableFuture
                     .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
                     .thenAccept(this::configRetrieved)
@@ -149,13 +148,5 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
 
     private String getBranchKey() {
         return getString(R.string.shift_branch_key);
-    }
-
-    private String getCoinbaseClientId() {
-        return getString(R.string.shift_coinbase_client_id);
-    }
-
-    private String getCoinbaseClientSecret() {
-        return getString(R.string.shift_coinbase_client_secret);
     }
 }

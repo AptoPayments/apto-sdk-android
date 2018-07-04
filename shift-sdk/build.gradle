@@ -143,9 +143,6 @@ dependencies {
     compile 'com.synnapps:carouselview:0.0.10'
     compile 'com.github.tiagohm.MarkdownView:library:0.17.0'
     compile 'com.github.barteksc:android-pdf-viewer:2.8.0'
-    compile('com.coinbase.android:coinbase-android-sdk:1.0.1') {
-        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
-    }
     compile 'com.venmo.android.pin:library:1.2.0@aar'
     compile "io.reactivex.rxjava2:rxjava:2.1.14"
     compile 'io.reactivex.rxjava2:rxandroid:2.0.2'
