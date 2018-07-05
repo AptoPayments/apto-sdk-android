@@ -166,7 +166,6 @@ public class ManageCardPresenter
         mHasFundingSourceArrived = false;
         mHasTransactionListArrived = false;
         ShiftPlatform.getFinancialAccountFundingSource(mModel.getAccountId());
-        ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
         mTransactionsAdapter.clear();
         mScrollListener.resetState();
     }
@@ -316,9 +315,15 @@ public class ManageCardPresenter
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
-        mLastTransactionId = response.data[response.data.length-1].id;
         mTransactionsList.addAll(Arrays.asList(response.data));
         int currentSize = mTransactionsAdapter.getItemCount();
+        if(response.total_count <= 0) {
+            mView.showNoTransactionsImage(true);
+        }
+        else {
+            mLastTransactionId = response.data[response.data.length-1].id;
+            mView.showNoTransactionsImage(false);
+        }
         mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count -1);
     }
 
@@ -332,7 +337,7 @@ public class ManageCardPresenter
             mModel.setBalance(new AmountVo(response.balance.amount, response.balance.currency));
         }
         CardStorage.getInstance().setFundingSourceId(response.id);
-        mTransactionsAdapter.notifyItemChanged(0);
+        ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
     }
 
     public static Intent getTransactionDetailsIntent(Context context, TransactionVo transactionVo) {

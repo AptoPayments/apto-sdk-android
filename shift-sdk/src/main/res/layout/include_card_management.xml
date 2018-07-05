@@ -71,31 +71,6 @@
         android:textColor="@android:color/black"
         android:background="@android:color/white" />
 
-    <ImageView
-        android:id="@+id/iv_no_transactions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_emptycase_transactions"
-        android:layout_below="@+id/tv_display_card_primary_bttn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:gravity="center_horizontal"
-        android:visibility="gone"/>
-
-    <TextView
-        android:id="@+id/tv_no_transactions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_no_transactions"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="8dp"
-        android:gravity="center_horizontal"
-        android:text="@string/card_management_no_transactions"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/darker_gray"
-        android:visibility="gone"/>
-
     <ImageButton
         android:id="@+id/ib_account"
         android:layout_width="wrap_content"
