@@ -2,6 +2,7 @@
 <resources>
     <!-- Generic -->
     <string name="user_data_menu_info">Info &amp; terms</string>
+    <string name="toast_api_error" formatted="false">Error: %s</string>
 
     <!-- Toolbar -->
     <string name="toolbar_next_button_label">Next</string>
@@ -34,7 +35,6 @@
     <string name="email_error">Invalid email</string>
     <string name="email_label">Enter your email address</string>
     <string name="email_hint">emailaddress@example.com</string>
-
 
     <!-- Birthdate -->
     <string name="birthdate_title">Security Check</string>
@@ -131,7 +131,6 @@
     <string name="id_verification_social_security_hint">Social security #</string>
     <string name="id_verification_social_security_error">Please enter all 9 digits.</string>
     <string name="id_verification_disclaimer">Your information is private and secure.</string>
-    <string name="id_verification_toast_api_error" formatted="false">Error: %s</string>
     <string name="id_verification_ssn_itin_not_available">I don\'t have an SSN/ITIN</string>
     <string name="id_verification_disclosures_label">Disclosures:</string>
 
@@ -251,6 +250,7 @@
     <string name="add_card_button_submit">Add Card</string>
     <string name="add_card_button_scan">Scan Card</string>
     <string name="add_card_error">Error: invalid card number!</string>
+    <string name="scan_cancelled">Scan was canceled.</string>
 
     <!-- Add Bank Account -->
     <string name="add_financial_account_bank_title">Select your bank</string>
@@ -297,6 +297,7 @@
 
     <!-- Errors -->
     <string name="session_expired_error">User session has expired. Please sign in with your credentials.</string>
+    <string name="no_camera_permission_error">Unable to scan card if camera permissions are not granted!</string>
 
     <!-- Coinbase -->
     <string name="coinbase_redirect_uri">shift-sdk-demo://coinbase-oauth</string>

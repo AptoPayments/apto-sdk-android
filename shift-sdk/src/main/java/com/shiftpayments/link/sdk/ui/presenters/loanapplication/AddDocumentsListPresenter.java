@@ -22,6 +22,7 @@ import com.shiftpayments.link.sdk.ui.models.loanapplication.documents.AddProofOf
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.LoanStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.views.loanapplication.AddDocumentsListView;
 import com.shiftpayments.link.sdk.ui.vos.DocumentVo;
 
@@ -76,7 +77,7 @@ public class AddDocumentsListPresenter
                     Intent.createChooser(fileIntent, mActivity.getString(R.string.add_documents_library_chooser_title)),
                     PICK_FILE_REQUEST_CODE);
         } catch (ActivityNotFoundException anfe) {
-            mView.displayErrorMessage(mActivity.getString(R.string.add_documents_bottom_sheet_library_error));
+            ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.add_documents_bottom_sheet_library_error), mActivity);
         }
     }
 

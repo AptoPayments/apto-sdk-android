@@ -14,6 +14,7 @@ import com.shiftpayments.link.sdk.ui.geocoding.vos.ResultVo;
 import com.shiftpayments.link.sdk.ui.models.userdata.HomeModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.userdata.HomeView;
 import com.shiftpayments.link.sdk.ui.widgets.HintArrayAdapter;
@@ -88,7 +89,7 @@ public class HomePresenter
                 CompletableFuture
                         .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
                         .exceptionally(ex -> {
-                            mView.displayErrorMessage(ex.getMessage());
+                            ApiErrorUtil.showErrorMessage(ex, mActivity);
                             return null;
                         })
                         .thenAccept(this::handleHousingTypes);
@@ -226,7 +227,7 @@ public class HomePresenter
                 e -> {
                     mGeocodingHandler = null;
                     mLoadingSpinnerManager.showLoading(false);
-                    mView.displayErrorMessage(e.getMessage());
+                    ApiErrorUtil.showErrorMessage(e, mActivity);
                 });
     }
 }

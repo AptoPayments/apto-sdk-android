@@ -130,7 +130,7 @@ public class PhoneVerificationPresenter
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        setApiError(error);
+        super.setApiError(error);
     }
 
     @Override

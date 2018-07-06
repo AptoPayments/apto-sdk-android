@@ -86,7 +86,7 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
 
     @Override
     public void onOAuthError(ApiErrorVo error) {
-        super.showError(error.toString());
+        super.showError(error);
     }
 
     @Subscribe

@@ -12,6 +12,7 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.financialaccountselector.AddCardModel;
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.views.financialaccountselector.AddCardView;
 
 import io.card.payment.CardIOActivity;
@@ -68,7 +69,7 @@ public class AddCardPresenter
             mDelegate.cardAdded(mModel.getCard());
         }
         else {
-            mView.displayErrorMessage(mActivity.getString(R.string.add_card_error));
+            ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.add_card_error), mActivity);
         }
     }
 
@@ -101,8 +102,8 @@ public class AddCardPresenter
 
         if (requestCode == REQUEST_CAMERA_PERMISSION_INTENT_CODE) {
             if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-               mView.displayErrorMessage("Unable to scan card if camera permissions are not granted!");
-               return;
+                ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.no_camera_permission_error), mActivity);
+                return;
             }
             startScanCardActivity();
         }
@@ -128,7 +129,7 @@ public class AddCardPresenter
                 mDelegate.cardAdded(mModel.getCard());
             }
             else {
-                mView.displayErrorMessage("Scan was canceled.");
+                ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.scan_cancelled), mActivity);
             }
         }
     }

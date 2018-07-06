@@ -12,6 +12,7 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.AnnualIncomeModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.userdata.AnnualIncomeView;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
@@ -56,7 +57,7 @@ public class AnnualIncomePresenter
         CompletableFuture
                 .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
                 .exceptionally(ex -> {
-                    mView.displayErrorMessage(ex.getMessage());
+                    ApiErrorUtil.showErrorMessage(ex, mActivity);
                     return null;
                 })
                 .thenAccept(this::contextConfigRetrieved);

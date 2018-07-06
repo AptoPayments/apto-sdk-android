@@ -9,12 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.financialaccountselector.AddFinancialAccountModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
-import com.shiftpayments.link.sdk.ui.views.DisplayErrorMessage;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
@@ -24,7 +22,7 @@ import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
  */
 
 public class AddFinancialAccountListView extends CoordinatorLayout
-        implements ViewWithToolbar, View.OnClickListener, ViewWithIndeterminateLoading, DisplayErrorMessage {
+        implements ViewWithToolbar, View.OnClickListener, ViewWithIndeterminateLoading {
 
     private Toolbar mToolbar;
     private LinearLayout mAccountsList;
@@ -91,11 +89,6 @@ public class AddFinancialAccountListView extends CoordinatorLayout
     @Override
     public LoadingView getLoadingView() {
         return mLoadingView;
-    }
-
-    @Override
-    public void displayErrorMessage(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public interface ViewListener {

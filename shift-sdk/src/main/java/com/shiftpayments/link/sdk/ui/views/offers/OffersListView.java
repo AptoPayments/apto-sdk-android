@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
@@ -92,12 +91,6 @@ public class OffersListView extends OffersBaseView {
         if (mListener != null && view.getId() == R.id.tv_bttn_edit_info) {
             mListener.updateClickedHandler();
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void displayErrorMessage(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override

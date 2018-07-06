@@ -7,7 +7,6 @@ import android.widget.RelativeLayout;
 
 import com.shiftpayments.link.sdk.ui.models.loanapplication.IntermediateLoanApplicationModel;
 import com.shiftpayments.link.sdk.ui.presenters.offers.OffersListPresenter;
-import com.shiftpayments.link.sdk.ui.views.DisplayErrorMessage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 
@@ -16,7 +15,7 @@ import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
  */
 
 public abstract class OffersBaseView extends RelativeLayout
-        implements DisplayErrorMessage, ViewWithToolbar, ViewWithIndeterminateLoading, View.OnClickListener {
+        implements ViewWithToolbar, ViewWithIndeterminateLoading, View.OnClickListener {
     /**
      * @see RelativeLayout#RelativeLayout
      * @param context See {@link RelativeLayout#RelativeLayout}.

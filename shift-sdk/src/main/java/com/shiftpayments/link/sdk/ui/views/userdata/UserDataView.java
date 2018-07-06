@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
-import com.shiftpayments.link.sdk.ui.views.DisplayErrorMessage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.ProgressBarWidget;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperConfiguration;
@@ -32,7 +31,7 @@ import io.reactivex.Observer;
  */
 public class UserDataView<L extends StepperListener & NextButtonListener>
         extends RelativeLayout
-        implements DisplayErrorMessage, ViewWithToolbar {
+        implements ViewWithToolbar {
 
     protected L mListener;
     protected Toolbar mToolbar;
@@ -109,13 +108,6 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     @Override
     public Toolbar getToolbar() {
         return mToolbar;
-    }
-
-    @Override
-    public void displayErrorMessage(String message) {
-        if(!message.isEmpty()) {
-            Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
-        }
     }
 
     /**

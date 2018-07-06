@@ -121,7 +121,6 @@ public class PhoneVerificationView
     }
 
     /** {@inheritDoc} */
-    @Override
     public void displayErrorMessage(String message) {
         showToast(message);
     }

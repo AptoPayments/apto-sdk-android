@@ -30,6 +30,7 @@ import com.shiftpayments.link.sdk.ui.presenters.userdata.EmailDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.PhoneDelegate;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 
@@ -131,7 +132,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
     public void handleApiError(ApiErrorVo error) {
         showLoading(false);
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
+        ApiErrorUtil.showErrorMessage(error, getActivity());
         stopModule();
     }
 

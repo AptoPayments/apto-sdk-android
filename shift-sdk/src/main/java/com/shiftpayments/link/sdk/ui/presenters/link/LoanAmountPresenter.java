@@ -15,6 +15,7 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.link.LoanAmountModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.link.LoanAmountView;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
@@ -302,8 +303,8 @@ public class LoanAmountPresenter
             mLoadingSpinnerManager.showLoading(false);
         }
 
-        String message = mActivity.getString(R.string.id_verification_toast_api_error, error);
-        mView.displayErrorMessage(message);
+        String message = mActivity.getString(R.string.toast_api_error, error);
+        ApiErrorUtil.showErrorMessage(message, mActivity);
     }
 
     private boolean isAllDataReadyForView() {

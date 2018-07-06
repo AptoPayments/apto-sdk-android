@@ -8,6 +8,7 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.UserDataModel;
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.views.userdata.UserDataView;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperConfiguration;
@@ -91,8 +92,7 @@ public abstract class UserDataPresenter<M extends UserDataModel, V extends UserD
      * @param error API error.
      */
     public void setApiError(ApiErrorVo error) {
-        String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
-        mView.displayErrorMessage(message);
+        ApiErrorUtil.showErrorMessage(error, mActivity);
     }
 
     private void createObserver() {

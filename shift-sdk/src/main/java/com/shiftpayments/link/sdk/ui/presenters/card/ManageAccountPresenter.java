@@ -18,6 +18,7 @@ import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.SendEmailUtil;
 import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
 import com.shiftpayments.link.sdk.ui.views.card.ManageAccountView;
@@ -140,7 +141,7 @@ public class ManageAccountPresenter
             mAdapter.updateList(mModel.getFundingSources());
         }
         else {
-            Toast.makeText(mActivity, "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+            ApiErrorUtil.showErrorMessage(error, mActivity);
         }
     }
 

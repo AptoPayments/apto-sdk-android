@@ -89,7 +89,7 @@ public class EmailVerificationPresenter
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        setApiError(error);
+        super.setApiError(error);
     }
 
     private String getEmail() {

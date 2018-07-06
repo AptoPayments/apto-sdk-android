@@ -25,6 +25,7 @@ import com.shiftpayments.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.DisclaimerUtil;
 import com.shiftpayments.link.sdk.ui.utils.LanguageUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
@@ -330,7 +331,7 @@ public class IdentityVerificationPresenter
             mLoadingSpinnerManager.showLoading(false);
         }
 
-        mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error));
+        ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.toast_api_error, error), mActivity);
     }
 
     private ContentVo formatExternalUrlDisclaimer(ContentVo disclaimer) {

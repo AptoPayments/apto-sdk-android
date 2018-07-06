@@ -7,14 +7,12 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.devmarvel.creditcardentry.library.CreditCard;
 import com.devmarvel.creditcardentry.library.CreditCardForm;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.KeyboardUtil;
-import com.shiftpayments.link.sdk.ui.views.DisplayErrorMessage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.vinaygaba.creditcardview.CreditCardView;
 
@@ -24,7 +22,7 @@ import com.vinaygaba.creditcardview.CreditCardView;
  */
 public class AddCardView
         extends RelativeLayout
-        implements DisplayErrorMessage, ViewWithToolbar, View.OnClickListener {
+        implements ViewWithToolbar, View.OnClickListener {
 
     /**
      * Callbacks this {@link View} will invoke.
@@ -73,11 +71,6 @@ public class AddCardView
         findAllViews();
         setupListeners();
         setColors();
-    }
-
-    @Override
-    public void displayErrorMessage(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     /** {@inheritDoc} */
