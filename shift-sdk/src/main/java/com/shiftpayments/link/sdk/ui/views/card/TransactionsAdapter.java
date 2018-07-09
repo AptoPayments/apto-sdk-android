@@ -117,19 +117,16 @@ public class TransactionsAdapter extends
         switch (viewType) {
             case 0: // Header view
                 View headerView = inflater.inflate(R.layout.include_card_management, parent, false);
-                viewHolder = new ViewHolder(headerView, viewType);
-                break;
+                return new ViewHolder(headerView, viewType);
             default: // Transaction list
                 View transactionView = inflater.inflate(R.layout.cv_transaction, parent, false);
-                viewHolder = new ViewHolder(transactionView, viewType);
-                break;
+                return new ViewHolder(transactionView, viewType);
         }
-        setListeners(viewHolder);
-        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
+        setListeners(viewHolder);
         if (position == 0) {
             viewHolder.creditCardView.setExpiryDate(mModel.getExpirationDate());
             viewHolder.creditCardView.setCardNumber(mModel.getCardNumber());
