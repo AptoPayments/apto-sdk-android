@@ -126,7 +126,7 @@ public class TransactionsAdapter extends
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        setListeners(viewHolder);
+        setListeners(viewHolder, position);
         if (position == 0) {
             viewHolder.creditCardView.setExpiryDate(mModel.getExpirationDate());
             viewHolder.creditCardView.setCardNumber(mModel.getCardNumber());
@@ -177,8 +177,7 @@ public class TransactionsAdapter extends
         notifyDataSetChanged();
     }
 
-    private void setListeners(ViewHolder viewHolder) {
-        int position = viewHolder.getPosition();
+    private void setListeners(ViewHolder viewHolder, int position) {
         if (position == 0) {
             viewHolder.primaryButton.setOnClickListener(v -> mListener.manageCardClickHandler());
             viewHolder.creditCardView.setOnClickListener(v -> mListener.manageCardClickHandler());
