@@ -8,13 +8,13 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.utils.DateUtil;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 
 import ru.lanwen.verbalregex.VerbalExpression;
+
+import static com.shiftpayments.link.sdk.ui.utils.DateUtil.BIRTHDATE_DATE_FORMAT;
 
 /**
  * Concrete {@link Model} for the ID verification screen.
@@ -23,7 +23,6 @@ import ru.lanwen.verbalregex.VerbalExpression;
 public class IdentityVerificationModel extends AbstractUserDataModel implements UserDataModel {
 
     private int mExpectedSSNLength;
-    private static final String DATE_FORMAT = "MM-dd-yyyy";
     private int mMinimumAge;
     private Date mBirthday;
     private String mSocialSecurityNumber;
@@ -55,7 +54,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         Birthdate baseBirthdate = (Birthdate) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.BirthDate, null);
         if(baseBirthdate!=null) {
-            mBirthday = new DateUtil().getDateFromString(baseBirthdate.getDate(), DATE_FORMAT);
+            mBirthday = new DateUtil().getDateFromString(baseBirthdate.getDate(), BIRTHDATE_DATE_FORMAT);
         }
         SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, null);
         if(baseSSN!=null && baseSSN.getSocialSecurityNumber()!=null) {
@@ -95,8 +94,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      * @return Formatted birthday.
      */
     private String getFormattedBirthday() {
-        SimpleDateFormat birthdayFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
-        return birthdayFormat.format(mBirthday);
+        return new DateUtil().getBirthdayFormat().format(mBirthday);
     }
 
     public String getBirthdateDay() {
