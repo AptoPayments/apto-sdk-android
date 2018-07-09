@@ -10,7 +10,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
 
@@ -27,6 +29,8 @@ public class ManageCardView
     private ProgressBar mSpinner;
     private RecyclerView mTransactionsRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private ImageView mNoTransactionsImage;
+    private TextView mNoTransactionsText;
 
     public ManageCardView(Context context) {
         this(context, null);
@@ -97,6 +101,8 @@ public class ManageCardView
         mSpinner = findViewById(R.id.pb_spinner);
         mTransactionsRecyclerView = findViewById(R.id.transactions_recycler_view);
         mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_container);
+        mNoTransactionsImage = findViewById(R.id.iv_no_transactions);
+        mNoTransactionsText = findViewById(R.id.tv_no_transactions);
     }
 
     private void setUpListeners() {
@@ -105,6 +111,17 @@ public class ManageCardView
         }
         if(mSwipeRefreshLayout != null) {
             mSwipeRefreshLayout.setOnRefreshListener(this);
+        }
+    }
+
+    public void showNoTransactionsImage(boolean show) {
+        if(show) {
+            mNoTransactionsImage.setVisibility(VISIBLE);
+            mNoTransactionsText.setVisibility(VISIBLE);
+        }
+        else {
+            mNoTransactionsImage.setVisibility(GONE);
+            mNoTransactionsText.setVisibility(GONE);
         }
     }
 }

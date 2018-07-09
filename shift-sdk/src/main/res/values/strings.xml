@@ -25,20 +25,24 @@
     <!-- Phone -->
     <string name="phone_title">Phone number</string>
     <string name="phone_hint">Mobile number</string>
-    <string name="phone_label">Enter your mobile number</string>
+    <string name="phone_label">To identify you, we need your phone number</string>
     <string name="phone_label_sms">We\'ll send a one-time SMS to verify your phone number. Carrier SMS fees may apply.</string>
     <string name="phone_error">Invalid phone number</string>
 
     <!-- Email -->
-    <string name="email_title">Email address</string>
+    <string name="email_title">Account details</string>
     <string name="email_error">Invalid email</string>
     <string name="email_label">Enter your email address</string>
-    <string name="email_hint">Email</string>
+    <string name="email_hint">emailaddress@example.com</string>
 
 
     <!-- Birthdate -->
     <string name="birthdate_title">Security Check</string>
-    <string name="birthdate_hint">Birthdate (MM-DD-YYYY)</string>
+    <string name="birthdate_hint">When is your birthday?</string>
+    <string name="birthdate_label_month">Choose month</string>
+    <string name="birthdate_hint_month">month</string>
+    <string name="birthdate_hint_day">day</string>
+    <string name="birthdate_hint_year">year</string>
     <string name="birthdate_label">Enter your birthdate below to verify your account.</string>
     <string name="birthdate_error">You must be 18 years or older.</string>
     <string name="birthdate_verification_error">Error: the birthdate is incorrect!</string>
@@ -123,7 +127,6 @@
     <string name="id_verification_next_button_issue_card">ISSUE CARD</string>
     <string name="id_verification_update_profile_title">Update Profile</string>
     <string name="id_verification_update_profile_button">UPDATE PROFILE</string>
-    <string name="id_verification_birthday_hint">Birthday</string>
     <string name="id_verification_birthday_error">You must be 18 years or older.</string>
     <string name="id_verification_social_security_hint">Social security #</string>
     <string name="id_verification_social_security_error">Please enter all 9 digits.</string>

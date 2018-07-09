@@ -4,15 +4,15 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatCheckBox;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -23,7 +23,6 @@ import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.SsnEditText;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -38,27 +37,27 @@ public class IdentityVerificationView
      * Callbacks this View will invoke.
      */
     public interface ViewListener extends StepperListener, NextButtonListener {
-        void birthdayClickHandler();
         void ssnCheckBoxClickHandler();
+        void monthClickHandler();
     }
 
-    private Button mBirthdayButton;
-    private TextInputLayout mBirthdayWrapper;
-    private AppCompatEditText mBirthdayField;
-
+    private EditText mBirthdayMonth;
+    private EditText mBirthdayDay;
+    private EditText mBirthdayYear;
+    private TextView mBirthdateErrorView;
     private TextInputLayout mSocialSecurityWrapper;
+
     private SsnEditText mSocialSecurityField;
     private CheckBox mSocialSecurityAvailableCheck;
     private TextView mSocialSecurityAvailableField;
-
     private TextView mDisclaimer;
+
     private TextView mDisclaimersHeader;
     private TextView mDisclaimersField;
-
     private LoadingView mLoadingView;
+
     private ProgressBar mProgressBar;
     private TextView mNextButton;
-
     /**
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
@@ -90,9 +89,10 @@ public class IdentityVerificationView
     @Override
     protected void findAllViews() {
         super.findAllViews();
-        mBirthdayButton = findViewById(R.id.btn_birthday);
-        mBirthdayWrapper = findViewById(R.id.til_birthday);
-        mBirthdayField = findViewById(R.id.et_birthday);
+        mBirthdayMonth = findViewById(R.id.et_birthday_month);
+        mBirthdayDay = findViewById(R.id.et_birthday_day);
+        mBirthdayYear = findViewById(R.id.et_birthday_year);
+        mBirthdateErrorView = findViewById(R.id.tv_birthdate_error);
 
         mSocialSecurityWrapper = findViewById(R.id.til_social_security);
         mSocialSecurityField = findViewById(R.id.et_social_security);
@@ -114,11 +114,10 @@ public class IdentityVerificationView
     @Override
     protected void setupListeners() {
         super.setupListeners();
-        mBirthdayButton.setOnClickListener(this);
-        mBirthdayField.setOnClickListener(this);
         mSocialSecurityField.setOnClickListener(this);
         mSocialSecurityAvailableCheck.setOnClickListener(this);
         mNextButton.setOnClickListener(this);
+        mBirthdayMonth.setOnClickListener(this);
     }
 
     /** {@inheritDoc} */
@@ -129,15 +128,30 @@ public class IdentityVerificationView
         }
 
         int id = view.getId();
-        if (id == R.id.btn_birthday || id == R.id.et_birthday) {
-            mListener.birthdayClickHandler();
-        }
-        else if (id == R.id.cb_ssn_itin_not_available) {
+        if (id == R.id.cb_ssn_itin_not_available) {
             mListener.ssnCheckBoxClickHandler();
         }
         else if (id == R.id.tv_next_bttn) {
             mListener.nextClickHandler();
         }
+        else if (id == R.id.et_birthday_month) {
+            mListener.monthClickHandler();
+        }
+    }
+
+    /**
+     * @return The selected month.
+     */
+    public String getBirthdayMonth() {
+        return mBirthdayMonth.getText().toString();
+    }
+
+    /**
+     * Sets a new month.
+     * @param month Month.
+     */
+    public void setBirthdayMonth(String month) {
+        mBirthdayMonth.setText(month);
     }
 
     /**
@@ -160,16 +174,20 @@ public class IdentityVerificationView
         return mSocialSecurityField.getSsn();
     }
 
-    /**
-     * Shows the user's birthday.
-     * @param birthday Formatted birthday.
-     */
-    public void setBirthday(String birthday) {
-        mBirthdayField.setText(birthday);
+    public void setBirthdayDay(String day) {
+        mBirthdayDay.setText(day);
     }
 
-    public String getBirthday() {
-        return mBirthdayField.getText().toString();
+    public String getBirthdayDay() {
+        return mBirthdayDay.getText().toString();
+    }
+
+    public void setBirthdayYear(String year) {
+        mBirthdayYear.setText(year);
+    }
+
+    public String getBirthdayYear() {
+        return mBirthdayYear.getText().toString();
     }
 
     /**
@@ -231,7 +249,14 @@ public class IdentityVerificationView
      * @param errorMessageId Error message resource ID.
      */
     public void updateBirthdayError(boolean show, int errorMessageId) {
-        updateErrorDisplay(mBirthdayWrapper, show, errorMessageId);
+        if(show) {
+            String error = getResources().getString(errorMessageId);
+            mBirthdateErrorView.setText(error);
+            mBirthdateErrorView.setVisibility(VISIBLE);
+        }
+        else {
+            mBirthdateErrorView.setVisibility(GONE);
+        }
     }
 
     /**
@@ -272,12 +297,14 @@ public class IdentityVerificationView
 
     public void showBirthday(boolean show) {
         if(show) {
-            mBirthdayButton.setVisibility(VISIBLE);
-            mBirthdayField.setVisibility(VISIBLE);
+            mBirthdayMonth.setVisibility(VISIBLE);
+            mBirthdayDay.setVisibility(VISIBLE);
+            mBirthdayYear.setVisibility(VISIBLE);
         }
         else {
-            mBirthdayButton.setVisibility(GONE);
-            mBirthdayField.setVisibility(GONE);
+            mBirthdayMonth.setVisibility(GONE);
+            mBirthdayDay.setVisibility(GONE);
+            mBirthdayYear.setVisibility(GONE);
         }
     }
 }

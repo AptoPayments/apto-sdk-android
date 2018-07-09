@@ -35,7 +35,7 @@
         <item name="llsdk_creditScore_radioButtonStyle">@style/llsdk_credit_score_radio</item>
 
         <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.Blue.TextInput</item>
-        <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_base</item>
+        <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_hint</item>
         <item name="llsdk_idVerification_editTextStyle">@style/llsdk_id_verification_text_input_base</item>
         <item name="llsdk_idVerification_disclaimerStyle">@style/llsdk_id_verification_disclaimer_blue</item>
 

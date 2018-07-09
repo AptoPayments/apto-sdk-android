@@ -26,8 +26,6 @@ public class ConfigStorage {
     private LinkConfigResponseVo mLinkConfig;
     private CardConfigResponseVo mCardConfig;
     private UserDataCollectorConfigurationVo mUserDataCollectorConfig;
-    private String mCoinbaseClientId;
-    private String mCoinbaseClientSecret;
 
     public enum OffersListStyle {
         list, carousel
@@ -312,19 +310,6 @@ public class ConfigStorage {
 
     private boolean isCardConfigCached() {
         return mCardConfig != null;
-    }
-
-    public void setCoinbaseKeys(String coinbaseClientId, String coinbaseClientSecret) {
-        mCoinbaseClientId = coinbaseClientId;
-        mCoinbaseClientSecret = coinbaseClientSecret;
-    }
-
-    public String getCoinbaseClientId() {
-        return mCoinbaseClientId;
-    }
-
-    public String getCoinbaseClientSecret() {
-        return mCoinbaseClientSecret;
     }
 
     public synchronized CardConfigResponseVo getCardConfig() {

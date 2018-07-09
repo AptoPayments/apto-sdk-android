@@ -8,13 +8,13 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.utils.DateUtil;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 
 import ru.lanwen.verbalregex.VerbalExpression;
+
+import static com.shiftpayments.link.sdk.ui.utils.DateUtil.BIRTHDATE_DATE_FORMAT;
 
 /**
  * Concrete {@link Model} for the ID verification screen.
@@ -23,7 +23,6 @@ import ru.lanwen.verbalregex.VerbalExpression;
 public class IdentityVerificationModel extends AbstractUserDataModel implements UserDataModel {
 
     private int mExpectedSSNLength;
-    private static final String DATE_FORMAT = "MM-dd-yyyy";
     private int mMinimumAge;
     private Date mBirthday;
     private String mSocialSecurityNumber;
@@ -34,25 +33,6 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      */
     public IdentityVerificationModel() {
         init();
-    }
-
-    /**
-     * Initializes this class.
-     */
-    private void init() {
-        mMinimumAge = 0;
-        mExpectedSSNLength = 0;
-        mBirthday = null;
-        mSocialSecurityNumber = null;
-        mSocialSecurityNumberNotSpecified = false;
-    }
-
-    /**
-     * @return Formatted birthday.
-     */
-    public String getFormattedBirthday() {
-        SimpleDateFormat birthdayFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
-        return birthdayFormat.format(mBirthday);
     }
 
     /** {@inheritDoc} */
@@ -74,16 +54,12 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         Birthdate baseBirthdate = (Birthdate) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.BirthDate, null);
         if(baseBirthdate!=null) {
-            setBirthday(baseBirthdate.getDate(), DATE_FORMAT);
+            mBirthday = new DateUtil().getDateFromString(baseBirthdate.getDate(), BIRTHDATE_DATE_FORMAT);
         }
         SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, null);
         if(baseSSN!=null && baseSSN.getSocialSecurityNumber()!=null) {
             setSocialSecurityNumber(baseSSN.getSocialSecurityNumber());
         }
-    }
-
-    public void setBirthday(String date, String format) {
-        mBirthday = new DateUtil().getDateFromString(date, format);
     }
 
     /** {@inheritDoc} */
@@ -104,6 +80,36 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     }
 
     /**
+     * Initializes this class.
+     */
+    private void init() {
+        mMinimumAge = 0;
+        mExpectedSSNLength = 0;
+        mBirthday = null;
+        mSocialSecurityNumber = null;
+        mSocialSecurityNumberNotSpecified = false;
+    }
+
+    /**
+     * @return Formatted birthday.
+     */
+    private String getFormattedBirthday() {
+        return new DateUtil().getBirthdayFormat().format(mBirthday);
+    }
+
+    public String getBirthdateDay() {
+        return String.valueOf(mBirthday.getDay());
+    }
+
+    public String getBirthdateYear() {
+        return String.valueOf(mBirthday.getYear());
+    }
+
+    public int getBirthdateMonth() {
+        return mBirthday.getMonth();
+    }
+
+    /**
      * Stores a new minimum age.
      * @param age New age.
      */
@@ -120,13 +126,6 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     }
 
     /**
-     * @return Birthday.
-     */
-    public Date getBirthday() {
-        return mBirthday;
-    }
-
-    /**
      * Stores the birthday.
      * @param year Year of birth.
      * @param monthOfYear Month of birth.
@@ -135,6 +134,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     public void setBirthday(int year, int monthOfYear, int dayOfMonth) {
         try {
             Calendar birth = new GregorianCalendar(year, monthOfYear, dayOfMonth);
+            birth.setLenient(false);
             mBirthday = birth.getTime();
         } catch (IllegalArgumentException iae) {
             mBirthday = null;
