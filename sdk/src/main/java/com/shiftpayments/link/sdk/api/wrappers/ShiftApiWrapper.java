@@ -50,8 +50,10 @@ import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerifica
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.StartVerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
+import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 
 import java.util.HashMap;
+import java.util.concurrent.Executor;
 
 /**
  * Shift API Wrapper.
@@ -172,6 +174,12 @@ public interface ShiftApiWrapper {
     String getVgsEndPoint();
 
     HashMap<String, String> getHTTPHeaders();
+
+    boolean isConnectedToInternet();
+
+    void enqueueApiCall(ShiftApiTask task);
+
+    Executor getExecutor();
 
     /**
      * Stores a new API end point.<br />

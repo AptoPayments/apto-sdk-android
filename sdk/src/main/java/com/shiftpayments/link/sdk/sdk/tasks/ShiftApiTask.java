@@ -77,8 +77,17 @@ public abstract class ShiftApiTask<Params, Progress, Result, Request>
         Result result;
 
         try {
-            result = callApi();
-            mSuccess = true;
+            if(getApiWrapper().isConnectedToInternet()) {
+                result = callApi();
+                mSuccess = true;
+            }
+            else {
+                // TODO: throw custom exception
+                mSuccess = false;
+                mError = new ApiErrorVo();
+                mError.serverMessage = "No internet connectivity!";
+                result = null;
+            }
         } catch (ApiException ae) {
             mError = ae.getError();
             if(mError.serverMessage == null) {

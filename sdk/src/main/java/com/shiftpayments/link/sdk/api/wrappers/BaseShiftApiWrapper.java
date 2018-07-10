@@ -1,10 +1,21 @@
 package com.shiftpayments.link.sdk.api.wrappers;
 
+import android.os.AsyncTask;
+
+import com.shiftpayments.link.sdk.api.utils.NetworkDelegate;
+import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.LinkedBlockingQueue;
+
 /**
  * Partial implementation of the {@link ShiftApiWrapper} interface.
  * @author Wijnand
  */
-public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
+public abstract class BaseShiftApiWrapper implements ShiftApiWrapper, NetworkDelegate {
+
+    public LinkedBlockingQueue<ShiftApiTask> pendingApiCalls;
+    private boolean mIsConnectedToInternet;
 
     private String mDeveloperKey;
     private String mDevice;
@@ -29,6 +40,8 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
         mDevice = null;
         mProjectToken = null;
         mApiEndPoint = null;
+        mIsConnectedToInternet = true;
+        pendingApiCalls = new LinkedBlockingQueue<>();
     }
 
     /**
@@ -125,5 +138,35 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
     @Override
     public void setVgsEndPoint(String endPoint) {
         mVgsEndPoint = endPoint;
+    }
+
+    @Override
+    public boolean isConnectedToInternet() {
+        return mIsConnectedToInternet;
+    }
+
+    @Override
+    public void onNetworkStatusChanged(boolean isConnected) {
+        mIsConnectedToInternet = isConnected;
+        if(mIsConnectedToInternet) {
+            executePendingApiCalls();
+        }
+    }
+
+    @Override
+    public void enqueueApiCall(ShiftApiTask task) {
+        pendingApiCalls.add(task);
+    }
+
+    @Override
+    public Executor getExecutor() {
+        return AsyncTask.THREAD_POOL_EXECUTOR;
+    }
+
+    private void executePendingApiCalls() {
+        for(ShiftApiTask call : pendingApiCalls) {
+            call.executeOnExecutor(getExecutor());
+            pendingApiCalls.remove(call);
+        }
     }
 }
