@@ -57,11 +57,12 @@ public class ShiftLinkSdkTest {
     /**
      * Given no Task {@link Executor} has been set yet.<br />
      * When trying to get a reference to the {@link Executor}.<br />
-     * Then the default {@link Executor} should be returned.
+     * Then the default {@link Executor} from the ApiWrapper should be returned.
      */
     @Test
     public void defaultExecutorIsUsed() {
         clearMocks();
+        ShiftLinkSdk.setApiWrapper(new MockApiWrapper());
         Assert.assertThat("Incorrect Executor.", ShiftLinkSdk.getExecutor(), equalTo(AsyncTask.THREAD_POOL_EXECUTOR));
     }
 

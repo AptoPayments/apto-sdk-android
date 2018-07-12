@@ -10,6 +10,10 @@ public class NetworkBroadcast extends BroadcastReceiver {
 
     private NetworkDelegate mDelegate;
 
+    public NetworkBroadcast() {
+        mDelegate = null;
+    }
+
     public NetworkBroadcast(NetworkDelegate delegate) {
         mDelegate = delegate;
     }
