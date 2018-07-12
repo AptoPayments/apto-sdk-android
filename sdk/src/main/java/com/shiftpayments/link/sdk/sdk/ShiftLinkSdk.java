@@ -2,6 +2,8 @@ package com.shiftpayments.link.sdk.sdk;
 
 import android.os.AsyncTask;
 
+import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
+import com.shiftpayments.link.sdk.api.utils.NetworkDelegate;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
@@ -72,6 +74,8 @@ public class ShiftLinkSdk {
     private static ShiftApiWrapper mApiWrapper;
     private static Executor mExecutor;
     private static ApiResponseHandler mHandler;
+    private static NetworkManager mNetworkManager;
+
 
     /**
      * Checks if all required components have been set. Will throw {@link NullPointerException}s when a component
@@ -100,6 +104,7 @@ public class ShiftLinkSdk {
      */
     public static void setApiWrapper(ShiftApiWrapper wrapper) {
         mApiWrapper = wrapper;
+        NetworkManager.setApiWrapper(wrapper);
     }
 
     /**
@@ -135,16 +140,24 @@ public class ShiftLinkSdk {
      */
     public static void setResponseHandler(ApiResponseHandler handler) {
         mHandler = handler;
+        NetworkManager.setApiResponseHandler(handler);
+    }
+
+    public static NetworkDelegate getNetworkDelegate() {
+        return mNetworkManager;
     }
 
     private static void executeOrEnqueueTask(ShiftApiTask task) {
-        if(getApiWrapper().isConnectedToInternet()) {
+        if(NetworkManager.isConnectedToInternet) {
             task.executeOnExecutor(getExecutor());
         }
         else {
             getApiWrapper().enqueueApiCall(task);
             getResponseHandler().publishResult(new NoConnectionErrorVo());
-            getApiWrapper().getOnNoInternetConnectionCallback().onNoInternetConnection();
+            NetworkCallback callback = getApiWrapper().getOnNoInternetConnectionCallback();
+            if(callback != null) {
+                callback.onNoInternetConnection();
+            }
         }
     }
 

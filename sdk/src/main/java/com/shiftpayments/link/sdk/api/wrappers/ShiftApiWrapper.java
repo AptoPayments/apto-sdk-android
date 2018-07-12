@@ -176,13 +176,13 @@ public interface ShiftApiWrapper {
 
     HashMap<String, String> getHTTPHeaders();
 
-    boolean isConnectedToInternet();
-
     void enqueueApiCall(ShiftApiTask task);
 
     Executor getExecutor();
 
     void setOnNoInternetConnectionCallback(NetworkCallback onNoInternetConnection);
+
+    void executePendingApiCalls();
 
     NetworkCallback getOnNoInternetConnectionCallback();
 

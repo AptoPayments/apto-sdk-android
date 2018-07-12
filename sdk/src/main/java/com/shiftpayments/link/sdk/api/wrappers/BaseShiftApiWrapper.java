@@ -3,7 +3,6 @@ package com.shiftpayments.link.sdk.api.wrappers;
 import android.os.AsyncTask;
 
 import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
-import com.shiftpayments.link.sdk.api.utils.NetworkDelegate;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 
 import java.util.concurrent.Executor;
@@ -13,10 +12,9 @@ import java.util.concurrent.LinkedBlockingQueue;
  * Partial implementation of the {@link ShiftApiWrapper} interface.
  * @author Wijnand
  */
-public abstract class BaseShiftApiWrapper implements ShiftApiWrapper, NetworkDelegate {
+public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
 
-    public LinkedBlockingQueue<ShiftApiTask> pendingApiCalls;
-    private boolean mIsConnectedToInternet;
+    private LinkedBlockingQueue<ShiftApiTask> pendingApiCalls;
     private NetworkCallback mOnNoInternetConnection;
 
     private String mDeveloperKey;
@@ -42,7 +40,6 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper, NetworkDel
         mDevice = null;
         mProjectToken = null;
         mApiEndPoint = null;
-        mIsConnectedToInternet = true;
         pendingApiCalls = new LinkedBlockingQueue<>();
     }
 
@@ -143,19 +140,6 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper, NetworkDel
     }
 
     @Override
-    public boolean isConnectedToInternet() {
-        return mIsConnectedToInternet;
-    }
-
-    @Override
-    public void onNetworkStatusChanged(boolean isConnected) {
-        mIsConnectedToInternet = isConnected;
-        if(mIsConnectedToInternet) {
-            executePendingApiCalls();
-        }
-    }
-
-    @Override
     public void enqueueApiCall(ShiftApiTask task) {
         pendingApiCalls.add(task);
     }
@@ -175,7 +159,8 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper, NetworkDel
         return mOnNoInternetConnection;
     }
 
-    private void executePendingApiCalls() {
+    @Override
+    public void executePendingApiCalls() {
         for(ShiftApiTask call : pendingApiCalls) {
             call.executeOnExecutor(getExecutor());
             pendingApiCalls.remove(call);

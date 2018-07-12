@@ -16,10 +16,9 @@ public class NetworkBroadcast extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, final Intent intent) {
-        if(mDelegate==null) {
-            throw new NullPointerException("No delegate configured!");
+        if(mDelegate!=null) {
+            mDelegate.onNetworkStatusChanged(isConnectedToInternet(context));
         }
-        mDelegate.onNetworkStatusChanged(isConnectedToInternet(context));
     }
 
     boolean isConnectedToInternet(Context context) {

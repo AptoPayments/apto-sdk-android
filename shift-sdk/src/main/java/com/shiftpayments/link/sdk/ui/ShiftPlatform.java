@@ -3,7 +3,6 @@ package com.shiftpayments.link.sdk.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.IntentFilter;
-import android.widget.Toast;
 
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -14,7 +13,6 @@ import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
-import com.shiftpayments.link.sdk.api.wrappers.BaseShiftApiWrapper;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
@@ -159,15 +157,12 @@ public class ShiftPlatform extends ShiftLinkSdk {
         apiWrapper.setApiEndPoint(getApiEndPoint(), certificatePinning, trustSelfSignedCertificates);
         apiWrapper.setBaseRequestData(developerKey, utils.getDeviceSummary(), certificatePinning, trustSelfSignedCertificates);
         apiWrapper.setProjectToken(projectToken);
-        if(onNoInternetConnection == null) {
-            onNoInternetConnection = getNoConnectionCallback((Activity) context);
-        }
         apiWrapper.setOnNoInternetConnectionCallback(onNoInternetConnection);
 
         Context applicationContext = context.getApplicationContext();
         // Register receiver for apps targeting Android 7.0+
         // https://developer.android.com/training/monitoring-device-state/connectivity-monitoring#MonitorChanges
-        applicationContext.registerReceiver(new NetworkBroadcast((BaseShiftApiWrapper) apiWrapper), new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+        applicationContext.registerReceiver(new NetworkBroadcast(getNetworkDelegate()), new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
 
         setApiWrapper(apiWrapper);
         setImageLoader(new VolleyImageLoader(context));
@@ -238,17 +233,5 @@ public class ShiftPlatform extends ShiftLinkSdk {
                 !contextConfig.secondaryAuthCredential.equalsIgnoreCase(storedSecondaryCredential)) {
             clearUserToken(context);
         }
-    }
-
-    private static NetworkCallback getNoConnectionCallback(Activity activity) {
-        return () -> {
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    // TODO: pending UI
-                    Toast.makeText(activity, "Blocking UI", Toast.LENGTH_SHORT).show();
-                }
-            });
-        };
     }
 }
