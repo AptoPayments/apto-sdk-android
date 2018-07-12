@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.api.wrappers;
 
 import android.os.AsyncTask;
 
+import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
 import com.shiftpayments.link.sdk.api.utils.NetworkDelegate;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 
@@ -16,6 +17,7 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper, NetworkDel
 
     public LinkedBlockingQueue<ShiftApiTask> pendingApiCalls;
     private boolean mIsConnectedToInternet;
+    private NetworkCallback mOnNoInternetConnection;
 
     private String mDeveloperKey;
     private String mDevice;
@@ -161,6 +163,16 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper, NetworkDel
     @Override
     public Executor getExecutor() {
         return AsyncTask.THREAD_POOL_EXECUTOR;
+    }
+
+    @Override
+    public void setOnNoInternetConnectionCallback(NetworkCallback onNoInternetConnection) {
+        mOnNoInternetConnection = onNoInternetConnection;
+    }
+
+    @Override
+    public NetworkCallback getOnNoInternetConnectionCallback() {
+        return mOnNoInternetConnection;
     }
 
     private void executePendingApiCalls() {

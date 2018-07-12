@@ -61,8 +61,12 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                     ShiftPlatform.clearUserToken(this);
                 }
             }
+            else if (error != null) {
+                mView.showLoading(false);
+                Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
             ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),
-                    getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment());
+                    getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment(), null);
             CompletableFuture
                     .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
                     .thenAccept(this::configRetrieved)

@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
+import com.shiftpayments.link.sdk.api.vos.responses.NoConnectionErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -82,10 +83,8 @@ public abstract class ShiftApiTask<Params, Progress, Result, Request>
                 mSuccess = true;
             }
             else {
-                // TODO: throw custom exception
                 mSuccess = false;
-                mError = new ApiErrorVo();
-                mError.serverMessage = "No internet connectivity!";
+                mError = new NoConnectionErrorVo();
                 result = null;
             }
         } catch (ApiException ae) {

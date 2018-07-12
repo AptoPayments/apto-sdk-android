@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.api.wrappers;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
+import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
@@ -180,6 +181,10 @@ public interface ShiftApiWrapper {
     void enqueueApiCall(ShiftApiTask task);
 
     Executor getExecutor();
+
+    void setOnNoInternetConnectionCallback(NetworkCallback onNoInternetConnection);
+
+    NetworkCallback getOnNoInternetConnectionCallback();
 
     /**
      * Stores a new API end point.<br />
