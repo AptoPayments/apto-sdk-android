@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.sdk;
 
 import com.shiftpayments.link.sdk.api.utils.NetworkDelegate;
 import com.shiftpayments.link.sdk.api.vos.responses.ConnectionEstablishedVo;
+import com.shiftpayments.link.sdk.api.vos.responses.NoConnectionErrorVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
@@ -17,6 +18,9 @@ public class NetworkManager implements NetworkDelegate {
         if(isConnectedToInternet) {
             mHandler.publishResult(new ConnectionEstablishedVo());
             mApiWrapper.executePendingApiCalls();
+        }
+        else {
+            mHandler.publishResult(new NoConnectionErrorVo());
         }
     }
 
