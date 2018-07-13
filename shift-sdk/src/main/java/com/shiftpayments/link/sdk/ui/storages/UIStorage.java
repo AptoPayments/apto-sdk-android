@@ -118,7 +118,7 @@ public class UIStorage {
                     throw new CompletionException(e);
                 }
             });
-            return (ConfigResponseVo) getResultFromFuture(future);
+            return future.join();
         }
     }
 
@@ -135,7 +135,7 @@ public class UIStorage {
                     throw new CompletionException(e);
                 }
             });
-            return (TeamConfigResponseVo) getResultFromFuture(future);
+            return future.join();
         }
     }
 

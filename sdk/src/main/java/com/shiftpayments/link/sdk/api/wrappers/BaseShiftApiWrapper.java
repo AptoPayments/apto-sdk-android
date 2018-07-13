@@ -1,10 +1,21 @@
 package com.shiftpayments.link.sdk.api.wrappers;
 
+import android.os.AsyncTask;
+
+import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
+import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.LinkedBlockingQueue;
+
 /**
  * Partial implementation of the {@link ShiftApiWrapper} interface.
  * @author Wijnand
  */
 public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
+
+    private LinkedBlockingQueue<ShiftApiTask> pendingApiCalls;
+    private NetworkCallback mOnNoInternetConnection;
 
     private String mDeveloperKey;
     private String mDevice;
@@ -29,6 +40,7 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
         mDevice = null;
         mProjectToken = null;
         mApiEndPoint = null;
+        pendingApiCalls = new LinkedBlockingQueue<>();
     }
 
     /**
@@ -125,5 +137,33 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
     @Override
     public void setVgsEndPoint(String endPoint) {
         mVgsEndPoint = endPoint;
+    }
+
+    @Override
+    public void enqueueApiCall(ShiftApiTask task) {
+        pendingApiCalls.add(task);
+    }
+
+    @Override
+    public Executor getExecutor() {
+        return AsyncTask.THREAD_POOL_EXECUTOR;
+    }
+
+    @Override
+    public void setOnNoInternetConnectionCallback(NetworkCallback onNoInternetConnection) {
+        mOnNoInternetConnection = onNoInternetConnection;
+    }
+
+    @Override
+    public NetworkCallback getOnNoInternetConnectionCallback() {
+        return mOnNoInternetConnection;
+    }
+
+    @Override
+    public void executePendingApiCalls() {
+        for(ShiftApiTask call : pendingApiCalls) {
+            call.executeOnExecutor(getExecutor());
+            pendingApiCalls.remove(call);
+        }
     }
 }
