@@ -120,11 +120,6 @@ public class PhoneVerificationView
         }
     }
 
-    /** {@inheritDoc} */
-    public void displayErrorMessage(String message) {
-        showToast(message);
-    }
-
     @Override
     public LoadingView getLoadingView() {
         return mLoadingView;
