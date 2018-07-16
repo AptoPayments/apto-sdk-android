@@ -501,7 +501,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public ApiEmptyResponseVo acceptDisclaimer(String s, AcceptDisclaimerRequestVo acceptDisclaimerRequestVo) throws ApiException {
+    public ApiEmptyResponseVo acceptDisclaimer(AcceptDisclaimerRequestVo acceptDisclaimerRequestVo) throws ApiException {
         return null;
     }
 }
