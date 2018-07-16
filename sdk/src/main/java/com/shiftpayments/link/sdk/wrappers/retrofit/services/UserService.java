@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.wrappers.retrofit.services;
 
 import com.google.gson.JsonObject;
+import com.shiftpayments.link.sdk.api.vos.requests.users.AcceptDisclaimerRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificationsRequestVo;
@@ -87,4 +88,12 @@ public interface UserService {
      */
     @GET(ShiftApiWrapper.OAUTH_STATUS_PATH)
     Call<OAuthStatusResponseVo> getOAuthStatus(@Path("ID") String id);
+
+    /**
+     * Creates a {@link Call} to start oAuth
+     * @param data Mandatory request data.
+     * @return API call to execute.
+     */
+    @POST(ShiftApiWrapper.ACCEPT_DISCLAIMER_PATH)
+    Call<ResponseBody> acceptDisclaimer(@Path("application_id") String applicationId, @Body AcceptDisclaimerRequestVo data);
 }

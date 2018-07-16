@@ -9,5 +9,6 @@ public class WorkflowConfigType {
     public static final String GENERIC_MESSAGE_CONFIG = "action_generic_message_config";
     public static final String SELECT_FUNDING_ACCOUNT_CONFIG = "action_select_funding_account_config";
     public static final String COLLECT_USER_DATA_CONFIG = "action_collect_user_data_config";
+    public static final String SHOW_DISCLAIMER_CONFIG = "action_disclaimer_config";
 
 }

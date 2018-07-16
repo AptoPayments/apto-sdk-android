@@ -32,6 +32,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceS
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.AcceptDisclaimerRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificationsRequestVo;
@@ -1025,6 +1026,19 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), ShiftApiWrapper.SET_BALANCE_STORE_PATH, ioe);
+        }
+        return result;
+    }
+
+    @Override
+    public ApiEmptyResponseVo acceptDisclaimer(String applicationId, AcceptDisclaimerRequestVo requestData) throws ApiException {
+        ApiEmptyResponseVo result;
+        try {
+            Response<ResponseBody> response = mUserService.acceptDisclaimer(applicationId, requestData).execute();
+            result = handleEmptyResponse(response, ShiftApiWrapper.ACCEPT_DISCLAIMER_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.ACCEPT_DISCLAIMER_PATH, ioe);
         }
         return result;
     }

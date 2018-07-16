@@ -4,15 +4,11 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatCheckBox;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -52,8 +48,6 @@ public class IdentityVerificationView
     private TextView mSocialSecurityAvailableField;
     private TextView mDisclaimer;
 
-    private TextView mDisclaimersHeader;
-    private TextView mDisclaimersField;
     private LoadingView mLoadingView;
 
     private ProgressBar mProgressBar;
@@ -100,9 +94,6 @@ public class IdentityVerificationView
         mSocialSecurityAvailableField = findViewById(R.id.tv_ssn_itin_not_available);
 
         mDisclaimer = findViewById(R.id.tv_security);
-        mDisclaimersHeader = findViewById(R.id.tv_disclaimers_header);
-        mDisclaimersField = findViewById(R.id.tv_disclaimers_body);
-        mDisclaimersField.setMovementMethod(LinkMovementMethod.getInstance());
 
         mNextButton = findViewById(R.id.tv_next_bttn);
 
@@ -268,11 +259,6 @@ public class IdentityVerificationView
         updateErrorDisplay(mSocialSecurityWrapper, show, errorMessageId);
     }
 
-    public void setDisclaimers(String disclaimers) {
-        mDisclaimersHeader.setVisibility(VISIBLE);
-        mDisclaimersField.setText(Html.fromHtml(disclaimers));
-    }
-
     @Override
     public LoadingView getLoadingView() {
         return mLoadingView;
@@ -280,19 +266,6 @@ public class IdentityVerificationView
 
     public void setButtonText(String buttonText) {
         mNextButton.setText(buttonText);
-    }
-
-    public void showDisclaimers(boolean show) {
-        if(show) {
-            mDisclaimer.setVisibility(VISIBLE);
-            mDisclaimersHeader.setVisibility(VISIBLE);
-            mDisclaimersField.setVisibility(VISIBLE);
-        }
-        else {
-            mDisclaimer.setVisibility(GONE);
-            mDisclaimersHeader.setVisibility(GONE);
-            mDisclaimersField.setVisibility(GONE);
-        }
     }
 
     public void showBirthday(boolean show) {

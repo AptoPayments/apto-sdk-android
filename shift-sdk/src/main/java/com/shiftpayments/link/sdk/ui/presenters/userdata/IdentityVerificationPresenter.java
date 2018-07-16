@@ -6,36 +6,22 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 
-import com.shiftpayments.link.sdk.api.vos.datapoints.Address;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductListVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
-import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
-import com.shiftpayments.link.sdk.ui.storages.UserStorage;
-import com.shiftpayments.link.sdk.ui.utils.DisclaimerUtil;
-import com.shiftpayments.link.sdk.ui.utils.LanguageUtil;
-import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.utils.ResourceUtil;
 import com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-
-import java8.util.concurrent.CompletableFuture;
 
 /**
  * Concrete {@link Presenter} for the ID verification screen.
@@ -46,14 +32,10 @@ public class IdentityVerificationPresenter
         implements Presenter<IdentityVerificationModel, IdentityVerificationView>,
         IdentityVerificationView.ViewListener {
 
-    private String mDisclaimersText = "";
-    private ArrayList<ContentVo> mFullScreenDisclaimers = new ArrayList<>();
     private IdentityVerificationDelegate mDelegate;
     private boolean mIsSSNRequired;
     private boolean mIsSSNNotAvailableAllowed;
     private boolean mIsBirthdayRequired;
-    private LoadingSpinnerManager mLoadingSpinnerManager;
-    public int mDisclaimersShownCounter = 0;
     private UserDataCollectorConfigurationVo mCallToActionConfig;
 
     /**
@@ -112,7 +94,6 @@ public class IdentityVerificationPresenter
     public void attachView(IdentityVerificationView view) {
         super.attachView(view);
         mView.setListener(this);
-        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
 
         mView.showBirthday(mIsBirthdayRequired);
         if(mIsBirthdayRequired && mModel.hasValidBirthday()) {
@@ -141,22 +122,6 @@ public class IdentityVerificationPresenter
         if(((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile) {
             if(mIsSSNRequired && mView.getSocialSecurityNumber().isEmpty()) {
                 mView.setMaskedSSN();
-            }
-            mView.showDisclaimers(false);
-            mLoadingSpinnerManager.showLoading(false);
-        }
-        else {
-            if (mDisclaimersText.isEmpty()) {
-                mLoadingSpinnerManager.showLoading(true);
-                CompletableFuture
-                        .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
-                        .exceptionally(ex -> {
-                            errorReceived(ex.getMessage());
-                            return null;
-                        })
-                        .thenAccept(this::partnerDisclaimersListRetrieved);
-            } else {
-                setTextDisclaimers(mDisclaimersText);
             }
         }
     }
@@ -225,7 +190,7 @@ public class IdentityVerificationPresenter
             }
         }
         else {
-            showDisclaimerOrExit();
+            saveDataAndExit();
         }
     }
 
@@ -238,106 +203,7 @@ public class IdentityVerificationPresenter
 
     private void saveDataAndExit() {
         super.saveData();
-        showDisclaimerOrExit();
-    }
-
-    private void showDisclaimerOrExit() {
-        mLoadingSpinnerManager.showLoading(true);
-        if (mFullScreenDisclaimers.isEmpty()) {
-            exit();
-        } else {
-            showFullScreenDisclaimers();
-        }
-        mLoadingSpinnerManager.showLoading(false);
-    }
-
-    private void exit() {
         mDelegate.identityVerificationSucceeded();
-    }
-
-    private void showFullScreenDisclaimers() {
-        DisclaimerUtil.showDisclaimer(mActivity, mFullScreenDisclaimers.get(0), this::showDisclaimersCallback);
-    }
-
-    private void showDisclaimersCallback() {
-        mDisclaimersShownCounter++;
-        if(mDisclaimersShownCounter == mFullScreenDisclaimers.size()) {
-            exit();
-        }
-        else {
-            DisclaimerUtil.showDisclaimer(mActivity, mFullScreenDisclaimers.get(mDisclaimersShownCounter), this::showDisclaimersCallback);
-        }
-    }
-
-    private void parseTextDisclaimer(ContentVo textDisclaimer) {
-        String lineBreak = "<br />";
-        String partnerDivider = "<br /><br />";
-        StringBuilder result = new StringBuilder();
-        if (!TextUtils.isEmpty(textDisclaimer.value)) {
-            result.append(textDisclaimer.value.replaceAll("\\r?\\n", lineBreak));
-            result.append(partnerDivider);
-        }
-
-        mDisclaimersText += result.substring(0, result.length() - partnerDivider.length());
-    }
-
-    private void setTextDisclaimers(String disclaimers) {
-        mActivity.runOnUiThread(() -> {
-            if(!disclaimers.isEmpty()) {
-                mView.setDisclaimers(disclaimers);
-            }
-            mLoadingSpinnerManager.showLoading(false);
-        });
-    }
-
-    private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
-        for (LoanProductVo loanProduct : response.data) {
-            ContentVo disclaimer = loanProduct.preQualificationDisclaimer;
-            if(disclaimer != null && !disclaimer.value.isEmpty()) {
-                parseDisclaimerContent(disclaimer);
-            }
-        }
-        setTextDisclaimers(mDisclaimersText);
-        setCardDisclaimers();
-    }
-
-    private void setCardDisclaimers() {
-        CardConfigResponseVo cardConfig = ConfigStorage.getInstance().getCardConfig();
-        if(cardConfig != null) {
-            ContentVo disclaimer = cardConfig.cardProduct.disclaimerAction.configuration.disclaimer;
-            if(disclaimer != null) {
-                parseDisclaimerContent(disclaimer);
-            }
-        }
-    }
-
-    private void parseDisclaimerContent(ContentVo disclaimer) {
-        switch(ContentVo.formatValues.valueOf(disclaimer.format)) {
-            case plain_text:
-                parseTextDisclaimer(disclaimer);
-                break;
-            case markdown:
-                mFullScreenDisclaimers.add(disclaimer);
-                break;
-            case external_url:
-                mFullScreenDisclaimers.add(formatExternalUrlDisclaimer(disclaimer));
-                break;
-        }
-    }
-
-    private void errorReceived(String error) {
-        if (mView != null) {
-            mLoadingSpinnerManager.showLoading(false);
-        }
-
-        mView.displayErrorMessage(mActivity.getString(R.string.id_verification_toast_api_error, error));
-    }
-
-    private ContentVo formatExternalUrlDisclaimer(ContentVo disclaimer) {
-        Address userAddress = (Address) UserStorage.getInstance().getUserData().getUniqueDataPoint(
-                DataPointVo.DataPointType.Address, null);
-        disclaimer.value = disclaimer.value.replace("[language]", LanguageUtil.getLanguage()).replace("[state]", userAddress.stateCode.toUpperCase());
-        return disclaimer;
     }
 
     private void showMonthPicker() {

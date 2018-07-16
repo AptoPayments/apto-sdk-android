@@ -36,12 +36,6 @@ public class IdentityVerificationActivity
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        mPresenter.mDisclaimersShownCounter = 0;
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Do not show next button for this screen
         return true;

@@ -7,6 +7,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.shiftpayments.link.sdk.api.utils.workflow.WorkflowConfigType;
+import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.DisclaimerConfiguration;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointGroupVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointGroupsListVo;
@@ -41,6 +42,8 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
                     return parseSelectFundingAccountConfig(config);
                 case WorkflowConfigType.COLLECT_USER_DATA_CONFIG:
                     return parseCollectUserDataConfig(config, iType, context);
+                case WorkflowConfigType.SHOW_DISCLAIMER_CONFIG:
+                    return parseShowDisclaimerConfig(config);
             }
         }
         return null;
@@ -106,5 +109,15 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
         dataPointGroupsListVo.data = dataPointGroupVoArrayList.toArray(new DataPointGroupVo[0]);
         dataPointGroupsListVo.total_count = dataPointGroupVoArrayList.size();
         return new CollectUserDataActionConfigurationVo(dataPointGroupsListVo);
+    }
+
+    private ActionConfigurationVo parseShowDisclaimerConfig(JsonObject config) {
+        String type = config.get("type").getAsString();
+        ContentVo content = null;
+        JsonElement contentJson = config.get("disclaimer");
+        if(!contentJson.isJsonNull()) {
+            content = parseContent(contentJson.getAsJsonObject());
+        }
+        return new DisclaimerConfiguration(type, content);
     }
 }

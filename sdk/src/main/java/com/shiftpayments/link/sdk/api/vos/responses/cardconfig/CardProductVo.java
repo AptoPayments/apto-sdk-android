@@ -20,8 +20,6 @@ public class CardProductVo {
     public String status;
     @SerializedName("shared")
     public Boolean shared;
-    @SerializedName("disclaimer_action")
-    public DisclaimerAction disclaimerAction;
     @SerializedName("card_issuer")
     public String cardIssuer;
     @SerializedName("external_id")

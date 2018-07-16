@@ -14,6 +14,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtua
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.AcceptDisclaimerRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
@@ -46,6 +47,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.GetLoanApplicationSt
 import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.ListPendingLoanApplicationsTask;
 import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.SetApplicationAccountTask;
 import com.shiftpayments.link.sdk.sdk.tasks.offers.InitialOffersTask;
+import com.shiftpayments.link.sdk.sdk.tasks.users.AcceptDisclaimerTask;
 import com.shiftpayments.link.sdk.sdk.tasks.users.CreateUserTask;
 import com.shiftpayments.link.sdk.sdk.tasks.users.GetCurrentUserTask;
 import com.shiftpayments.link.sdk.sdk.tasks.users.GetOAuthStatusTask;
@@ -660,6 +662,20 @@ public class ShiftLinkSdk {
         checkComponents();
 
         SetBalanceStoreTask task = new SetBalanceStoreTask(applicationId, request, getApiWrapper(), getResponseHandler());
+        executeOrEnqueueTask(task);
+
+        return task;
+    }
+
+    /**
+     * Request to be sent when the user accepts the disclaimer
+     * @param request The application ID, Workflow ID and Action ID
+     * @return The {@link ShiftApiTask} that is being executed.
+     */
+    public static ShiftApiTask acceptDisclaimer(String applicationId, AcceptDisclaimerRequestVo request) {
+        checkComponents();
+
+        AcceptDisclaimerTask task = new AcceptDisclaimerTask(applicationId, request, getApiWrapper(), getResponseHandler());
         executeOrEnqueueTask(task);
 
         return task;
