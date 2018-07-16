@@ -113,7 +113,7 @@ public interface ShiftApiWrapper {
     String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
     String CARD_APPLICATION_STATUS_PATH = "v1/user/accounts/applications/{application_id}/status";
     String SET_BALANCE_STORE_PATH = "v1/user/accounts/applications/{application_id}/select_balance_store";
-    String ACCEPT_DISCLAIMER_PATH = "v1/user/accounts/applications/{application_id}/acceptdisclaimer";
+    String ACCEPT_DISCLAIMER_PATH = "/v1/disclaimers/accept";
     String PLAID_WEB_URL = "v1/bankoauth";
 
     String REGISTER_PUSH_NOTIFICATION_TOKEN_PATH = "/v1/user/pushdevice";
@@ -520,9 +520,8 @@ public interface ShiftApiWrapper {
 
     /**
      * Accepts the disclaimer
-     * @param applicationId The ID of the application
      * @param requestData Workflow ID and Action ID.
      * @throws ApiException When there is an error making the request.
      */
-    ApiEmptyResponseVo acceptDisclaimer(String applicationId, AcceptDisclaimerRequestVo requestData) throws ApiException;
+    ApiEmptyResponseVo acceptDisclaimer(AcceptDisclaimerRequestVo requestData) throws ApiException;
 }

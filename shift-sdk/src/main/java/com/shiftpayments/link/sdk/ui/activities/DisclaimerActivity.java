@@ -148,7 +148,7 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
     public void acceptClickHandler() {
         if(mDisclosureLoaded) {
             AcceptDisclaimerRequestVo request = new AcceptDisclaimerRequestVo(DisclaimerUtil.workflowId, DisclaimerUtil.actionId);
-            ShiftLinkSdk.acceptDisclaimer(DisclaimerUtil.applicationId, request);
+            ShiftLinkSdk.acceptDisclaimer(request);
         }
     }
 

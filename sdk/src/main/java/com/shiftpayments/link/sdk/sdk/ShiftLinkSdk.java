@@ -672,10 +672,10 @@ public class ShiftLinkSdk {
      * @param request The application ID, Workflow ID and Action ID
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask acceptDisclaimer(String applicationId, AcceptDisclaimerRequestVo request) {
+    public static ShiftApiTask acceptDisclaimer(AcceptDisclaimerRequestVo request) {
         checkComponents();
 
-        AcceptDisclaimerTask task = new AcceptDisclaimerTask(applicationId, request, getApiWrapper(), getResponseHandler());
+        AcceptDisclaimerTask task = new AcceptDisclaimerTask(request, getApiWrapper(), getResponseHandler());
         executeOrEnqueueTask(task);
 
         return task;

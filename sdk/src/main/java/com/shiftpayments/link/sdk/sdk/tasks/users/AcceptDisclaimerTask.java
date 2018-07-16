@@ -13,25 +13,20 @@ import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  */
 public class AcceptDisclaimerTask extends ShiftApiTask<Void, Void, ApiEmptyResponseVo, AcceptDisclaimerRequestVo> {
 
-    private String mApplicationId;
-
     /**
      * @see ShiftApiTask#ShiftApiTask
-     * @param applicationId See {@link ShiftApiTask#ShiftApiTask}.
      * @param requestData See {@link ShiftApiTask#ShiftApiTask}.
      * @param apiWrapper See {@link ShiftApiTask#ShiftApiTask}.
      * @param responseHandler See {@link ShiftApiTask#ShiftApiTask}.
      */
-    public AcceptDisclaimerTask(String applicationId, AcceptDisclaimerRequestVo requestData, ShiftApiWrapper apiWrapper,
+    public AcceptDisclaimerTask(AcceptDisclaimerRequestVo requestData, ShiftApiWrapper apiWrapper,
                                 ApiResponseHandler responseHandler) {
-
         super(requestData, apiWrapper, responseHandler);
-        mApplicationId = applicationId;
     }
 
     /** {@inheritDoc} */
     @Override
     protected ApiEmptyResponseVo callApi() throws ApiException {
-        return getApiWrapper().acceptDisclaimer(mApplicationId, getRequestData());
+        return getApiWrapper().acceptDisclaimer(getRequestData());
     }
 }

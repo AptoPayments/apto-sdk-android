@@ -107,6 +107,7 @@ public class NewCardModule extends WorkflowModule {
             setCurrentModule();
             this.startNextModule();
         };
+        setCurrentModule();
         CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity(), onFinish, super.onBack);
         startModule(custodianSelectorModule);
     }
@@ -132,12 +133,9 @@ public class NewCardModule extends WorkflowModule {
             setCurrentModule();
             this.startNextModule();
         };
-        String applicationId = CardStorage.getInstance().getApplication().applicationId;
-        String workflowObjectId = mWorkFlowObject.workflowObjectId;
-        String actionId = mWorkFlowObject.nextAction.actionId;
         ShowDisclaimerModule disclaimerModule = ShowDisclaimerModule.getInstance(getActivity(),
                 onFinishCallback, onBack, (DisclaimerConfiguration) mWorkFlowObject.nextAction.configuration,
-                applicationId, workflowObjectId, actionId);
+                mWorkFlowObject.workflowObjectId, mWorkFlowObject.nextAction.actionId);
         disclaimerModule.initialModuleSetup();
     }
 }

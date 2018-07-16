@@ -1031,10 +1031,10 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     }
 
     @Override
-    public ApiEmptyResponseVo acceptDisclaimer(String applicationId, AcceptDisclaimerRequestVo requestData) throws ApiException {
+    public ApiEmptyResponseVo acceptDisclaimer(AcceptDisclaimerRequestVo requestData) throws ApiException {
         ApiEmptyResponseVo result;
         try {
-            Response<ResponseBody> response = mUserService.acceptDisclaimer(applicationId, requestData).execute();
+            Response<ResponseBody> response = mUserService.acceptDisclaimer(requestData).execute();
             result = handleEmptyResponse(response, ShiftApiWrapper.ACCEPT_DISCLAIMER_PATH);
         } catch (IOException ioe) {
             result = null;

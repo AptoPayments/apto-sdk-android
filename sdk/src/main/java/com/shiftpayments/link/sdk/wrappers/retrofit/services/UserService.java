@@ -95,5 +95,5 @@ public interface UserService {
      * @return API call to execute.
      */
     @POST(ShiftApiWrapper.ACCEPT_DISCLAIMER_PATH)
-    Call<ResponseBody> acceptDisclaimer(@Path("application_id") String applicationId, @Body AcceptDisclaimerRequestVo data);
+    Call<ResponseBody> acceptDisclaimer(@Body AcceptDisclaimerRequestVo data);
 }

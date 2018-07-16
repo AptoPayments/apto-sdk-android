@@ -191,6 +191,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void startCustodianModule(Command onFinish, Command onBack) {
+        setCurrentModule();
         CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity(), onFinish, onBack);
         startModule(custodianSelectorModule);
     }

@@ -80,7 +80,7 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(accessToken, refreshToken);
         SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
-        ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().workflowObjectId, setBalanceStoreRequest);
+        ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
 
     }
 
