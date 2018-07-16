@@ -124,6 +124,9 @@ public class TransactionVo implements Parcelable {
     public void writeToParcel(Parcel parcel, int flags) {
         parcel.writeString(id);
         parcel.writeString(externalId);
+        if(type==null) {
+            type = TransactionType.OTHER;
+        }
         parcel.writeString(type.name());
         parcel.writeInt(isAuthorized ? 1 : 0);
         parcel.writeString(creationTime);

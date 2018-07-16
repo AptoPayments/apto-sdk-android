@@ -2,6 +2,8 @@ package com.shiftpayments.link.sdk.sdk;
 
 import android.os.AsyncTask;
 
+import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
+import com.shiftpayments.link.sdk.api.utils.NetworkDelegate;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
@@ -71,6 +73,8 @@ public class ShiftLinkSdk {
     private static ShiftApiWrapper mApiWrapper;
     private static Executor mExecutor;
     private static ApiResponseHandler mHandler;
+    private static NetworkManager mNetworkManager;
+
 
     /**
      * Checks if all required components have been set. Will throw {@link NullPointerException}s when a component
@@ -99,6 +103,7 @@ public class ShiftLinkSdk {
      */
     public static void setApiWrapper(ShiftApiWrapper wrapper) {
         mApiWrapper = wrapper;
+        NetworkManager.setApiWrapper(wrapper);
     }
 
     /**
@@ -106,7 +111,7 @@ public class ShiftLinkSdk {
      */
     public static Executor getExecutor() {
         if (mExecutor == null) {
-            setExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            setExecutor(getApiWrapper().getExecutor());
         }
 
         return mExecutor;
@@ -134,6 +139,24 @@ public class ShiftLinkSdk {
      */
     public static void setResponseHandler(ApiResponseHandler handler) {
         mHandler = handler;
+        NetworkManager.setApiResponseHandler(handler);
+    }
+
+    public static NetworkDelegate getNetworkDelegate() {
+        return mNetworkManager;
+    }
+
+    private static void executeOrEnqueueTask(ShiftApiTask task) {
+        if(NetworkManager.isConnectedToInternet) {
+            task.executeOnExecutor(getExecutor());
+        }
+        else {
+            getApiWrapper().enqueueApiCall(task);
+            NetworkCallback callback = getApiWrapper().getOnNoInternetConnectionCallback();
+            if(callback != null) {
+                callback.onNoInternetConnection();
+            }
+        }
     }
 
     /**
@@ -145,7 +168,7 @@ public class ShiftLinkSdk {
 
         LinkConfigTask task
                 = new LinkConfigTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -159,7 +182,7 @@ public class ShiftLinkSdk {
 
         CardConfigTask task
                 = new CardConfigTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -173,7 +196,7 @@ public class ShiftLinkSdk {
 
         HousingTypeListTask task
                 = new HousingTypeListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -187,7 +210,7 @@ public class ShiftLinkSdk {
 
         IncomeTypesListTask task
                 = new IncomeTypesListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -201,7 +224,7 @@ public class ShiftLinkSdk {
 
         SalaryFrequenciesListTask task
                 = new SalaryFrequenciesListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -215,7 +238,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         CreateUserTask task = new CreateUserTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -229,7 +252,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         UpdateUserTask task = new UpdateUserTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -243,7 +266,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         LoginUserTask task = new LoginUserTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -256,7 +279,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetCurrentUserTask task = new GetCurrentUserTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler(), throwSessionExpiredError);
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -271,7 +294,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         InitialOffersTask task = new InitialOffersTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -285,7 +308,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         CreateLoanApplicationTask task = new CreateLoanApplicationTask(offerId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -299,7 +322,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         ListPendingLoanApplicationsTask task = new ListPendingLoanApplicationsTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -313,7 +336,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetLoanApplicationStatusTask task = new GetLoanApplicationStatusTask(applicationId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -327,7 +350,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         SetApplicationAccountTask task = new SetApplicationAccountTask(data, applicationId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -342,7 +365,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         StartVerificationTask task = new StartVerificationTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -356,7 +379,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         CompleteVerificationTask task = new CompleteVerificationTask(data, verificationId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -370,7 +393,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetVerificationStatusTask task = new GetVerificationStatusTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -384,7 +407,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         RestartVerificationTask task = new RestartVerificationTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -398,7 +421,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         AddBankAccountTask task = new AddBankAccountTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -412,7 +435,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         AddCardTask task = new AddCardTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -426,7 +449,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         IssueVirtualCardTask task = new IssueVirtualCardTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -439,7 +462,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetFinancialAccountsTask task = new GetFinancialAccountsTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -452,7 +475,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetFinancialAccountTask task = new GetFinancialAccountTask(data, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -465,7 +488,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         ActivateFinancialAccountTask task = new ActivateFinancialAccountTask(accountId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -478,7 +501,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         EnableFinancialAccountTask task = new EnableFinancialAccountTask(accountId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -491,7 +514,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         DisableFinancialAccountTask task = new DisableFinancialAccountTask(accountId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -504,7 +527,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         UpdateFinancialAccountPinTask task = new UpdateFinancialAccountPinTask(data, accountId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -517,7 +540,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetFinancialAccountTransactionsTask task = new GetFinancialAccountTransactionsTask(accountId, rows, lastTransactionId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -530,7 +553,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetFinancialAccountFundingSourceTask task = new GetFinancialAccountFundingSourceTask(accountId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -543,7 +566,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetUserFundingSourcesTask task = new GetUserFundingSourcesTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -556,7 +579,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         SetAccountFundingSourceTask task = new SetAccountFundingSourceTask(accountId, fundingSourceId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -569,7 +592,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         RegisterPushNotificationsTask task = new RegisterPushNotificationsTask(token, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -582,7 +605,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         StartOAuthTask task = new StartOAuthTask(provider, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -595,7 +618,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetOAuthStatusTask task = new GetOAuthStatusTask(id, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -609,7 +632,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         CreateCardApplicationTask task = new CreateCardApplicationTask(cardProductId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -623,7 +646,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         GetCardApplicationStatusTask task = new GetCardApplicationStatusTask(applicationId, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }
@@ -637,7 +660,7 @@ public class ShiftLinkSdk {
         checkComponents();
 
         SetBalanceStoreTask task = new SetBalanceStoreTask(applicationId, request, getApiWrapper(), getResponseHandler());
-        task.executeOnExecutor(getExecutor());
+        executeOrEnqueueTask(task);
 
         return task;
     }

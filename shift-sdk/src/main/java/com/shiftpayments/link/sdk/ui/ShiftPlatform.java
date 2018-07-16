@@ -2,12 +2,14 @@ package com.shiftpayments.link.sdk.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.IntentFilter;
 
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.security.ProviderInstaller;
 import com.shiftpayments.link.imageloaders.volley.VolleyImageLoader;
+import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
@@ -24,6 +26,7 @@ import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.utils.HandlerConfigurator;
+import com.shiftpayments.link.sdk.ui.utils.NetworkBroadcast;
 import com.shiftpayments.link.sdk.ui.vos.LoanDataVo;
 import com.shiftpayments.link.sdk.wrappers.retrofit.RetrofitTwoShiftApiWrapper;
 
@@ -138,13 +141,13 @@ public class ShiftPlatform extends ShiftLinkSdk {
     }
 
     public static void initialize(Context context, String developerKey, String projectToken) {
-        initialize(context, developerKey, projectToken, true, true, "sbx");
+        initialize(context, developerKey, projectToken, true, true, "sbx", null);
     }
 
     /**
      * Sets up the Shift Link SDK.
      */
-    public static void initialize(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment) {
+    public static void initialize(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment, NetworkCallback onNoInternetConnection) {
         mEnvironment = Environment.valueOf(environment.toLowerCase());
         AndroidUtils utils = new AndroidUtils();
         HandlerConfigurator configurator = new EventBusHandlerConfigurator();
@@ -154,6 +157,12 @@ public class ShiftPlatform extends ShiftLinkSdk {
         apiWrapper.setApiEndPoint(getApiEndPoint(), certificatePinning, trustSelfSignedCertificates);
         apiWrapper.setBaseRequestData(developerKey, utils.getDeviceSummary(), certificatePinning, trustSelfSignedCertificates);
         apiWrapper.setProjectToken(projectToken);
+        apiWrapper.setOnNoInternetConnectionCallback(onNoInternetConnection);
+
+        Context applicationContext = context.getApplicationContext();
+        // Register receiver for apps targeting Android 7.0+
+        // https://developer.android.com/training/monitoring-device-state/connectivity-monitoring#MonitorChanges
+        applicationContext.registerReceiver(new NetworkBroadcast(getNetworkDelegate()), new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
 
         setApiWrapper(apiWrapper);
         setImageLoader(new VolleyImageLoader(context));

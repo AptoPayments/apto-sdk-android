@@ -1,6 +1,9 @@
 package com.shiftpayments.link.sdk.sdk.mocks.api.wrappers;
 
+import android.os.AsyncTask;
+
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
+import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
 import com.shiftpayments.link.sdk.api.utils.TermUnit;
 import com.shiftpayments.link.sdk.api.utils.loanapplication.LoanApplicationMethod;
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -70,8 +73,10 @@ import com.shiftpayments.link.sdk.api.vos.responses.verifications.StartVerificat
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 
 import java.util.HashMap;
+import java.util.concurrent.Executor;
 
 /**
  * Mock implementation of the {@link ShiftApiWrapper} interface.
@@ -98,7 +103,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     private String mProjectToken;
     private String mEndPoint;
     private String mVgsEndPoint;
-    private String mFirebaseToken;
+    private NetworkCallback mNetworkCallback;
 
     @Override
     public String getDeveloperKey() {
@@ -161,6 +166,31 @@ public class MockApiWrapper implements ShiftApiWrapper {
     /** {@inheritDoc} */
     public HashMap<String, String> getHTTPHeaders() {
         return new HashMap<>();
+    }
+
+    @Override
+    public void enqueueApiCall(ShiftApiTask shiftApiTask) {
+
+    }
+
+    @Override
+    public Executor getExecutor() {
+        return AsyncTask.THREAD_POOL_EXECUTOR;
+    }
+
+    @Override
+    public void setOnNoInternetConnectionCallback(NetworkCallback networkCallback) {
+        mNetworkCallback = networkCallback;
+    }
+
+    @Override
+    public void executePendingApiCalls() {
+
+    }
+
+    @Override
+    public NetworkCallback getOnNoInternetConnectionCallback() {
+        return mNetworkCallback;
     }
 
     /** {@inheritDoc} */

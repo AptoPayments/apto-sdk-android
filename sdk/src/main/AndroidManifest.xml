@@ -9,6 +9,7 @@
             android:minSdkVersion="15"
             android:targetSdkVersion="23" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application tools:replace='label' android:label="ShiftSdk" />
 
 </manifest>

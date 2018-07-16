@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.api.wrappers;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
+import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
@@ -50,8 +51,10 @@ import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerifica
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.StartVerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
+import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 
 import java.util.HashMap;
+import java.util.concurrent.Executor;
 
 /**
  * Shift API Wrapper.
@@ -172,6 +175,16 @@ public interface ShiftApiWrapper {
     String getVgsEndPoint();
 
     HashMap<String, String> getHTTPHeaders();
+
+    void enqueueApiCall(ShiftApiTask task);
+
+    Executor getExecutor();
+
+    void setOnNoInternetConnectionCallback(NetworkCallback onNoInternetConnection);
+
+    void executePendingApiCalls();
+
+    NetworkCallback getOnNoInternetConnectionCallback();
 
     /**
      * Stores a new API end point.<br />
