@@ -13,6 +13,7 @@ import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.models.verification.EmailVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataPresenter;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.views.verification.EmailVerificationView;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -125,7 +126,7 @@ public class EmailVerificationPresenter
             Email email = mModel.getEmailFromBaseData();
             email.getVerification().setVerificationStatus(response.status);
             if(!email.getVerification().isVerified()) {
-                mView.displayErrorMessage(mActivity.getString(R.string.email_verification_error));
+                ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.email_verification_error), mActivity);
             }
             else {
                 mResponseHandler.unsubscribe(this);

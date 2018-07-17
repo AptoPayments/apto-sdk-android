@@ -18,6 +18,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.users.AcceptDisclaimerRequest
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.NoConnectionErrorVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shiftpayments.link.sdk.sdk.tasks.cardapplication.CreateCardApplicationTask;
@@ -75,7 +76,7 @@ public class ShiftLinkSdk {
     private static ShiftApiWrapper mApiWrapper;
     private static Executor mExecutor;
     private static ApiResponseHandler mHandler;
-    private static NetworkManager mNetworkManager;
+    private static NetworkManager mNetworkManager = new NetworkManager();
 
 
     /**
@@ -157,6 +158,9 @@ public class ShiftLinkSdk {
             NetworkCallback callback = getApiWrapper().getOnNoInternetConnectionCallback();
             if(callback != null) {
                 callback.onNoInternetConnection();
+            }
+            else {
+                mHandler.publishResult(new NoConnectionErrorVo());
             }
         }
     }

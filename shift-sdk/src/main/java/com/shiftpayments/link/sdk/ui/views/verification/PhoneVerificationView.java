@@ -126,7 +126,7 @@ public class PhoneVerificationView
     }
 
     public void displaySentMessage(String message) {
-        showToast(message);
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -138,10 +138,6 @@ public class PhoneVerificationView
 
     public void clearPinView() {
         mPinView.clear();
-    }
-
-    private void showToast(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     private void configurePinView() {

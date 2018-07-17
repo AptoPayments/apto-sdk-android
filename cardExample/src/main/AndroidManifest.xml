@@ -212,5 +212,10 @@
             android:name="com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity"
             android:theme="@style/Theme.LedgeLine.Example">
         </activity>
+
+        <activity
+            android:name="com.shiftpayments.link.sdk.ui.activities.NoConnectionActivity"
+            android:theme="@style/Theme.LedgeLine.Example">
+        </activity>
     </application>
 </manifest>
