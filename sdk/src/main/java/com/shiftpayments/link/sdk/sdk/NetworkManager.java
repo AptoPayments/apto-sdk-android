@@ -8,7 +8,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 public class NetworkManager implements NetworkDelegate {
 
-    public static boolean isConnectedToInternet;
+    public static boolean isConnectedToInternet = true;
     private static ShiftApiWrapper mApiWrapper;
     private static ApiResponseHandler mHandler;
 

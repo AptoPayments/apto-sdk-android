@@ -9,7 +9,10 @@ import com.shiftpayments.link.sdk.ui.workflow.WorkflowObject;
 
 public class ApplicationVo extends WorkflowObject {
 
-    public ApplicationVo(String workflowObjectId, ActionVo nextAction) {
+    public String applicationId;
+
+    public ApplicationVo(String applicationId, ActionVo nextAction, String workflowObjectId) {
         super(workflowObjectId, nextAction);
+        this.applicationId = applicationId;
     }
 }

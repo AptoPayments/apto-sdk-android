@@ -2,21 +2,34 @@ package com.shiftpayments.link.sdk.ui.activities;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
+import com.shiftpayments.link.sdk.api.vos.datapoints.Address;
+import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.AcceptDisclaimerRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
+import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.utils.DisclaimerUtil;
+import com.shiftpayments.link.sdk.ui.utils.LanguageUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.DisclaimerView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -45,13 +58,15 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
         String disclaimer = DisclaimerUtil.disclaimer.value;
         switch(ContentVo.formatValues.valueOf(DisclaimerUtil.disclaimer.format)) {
             case plain_text:
-                mView.loadPlainText(disclaimer);
+                showTextDisclaimer(disclaimer);
+                mDisclosureLoaded = true;
                 break;
             case markdown:
                 mView.loadMarkdown(disclaimer);
                 mDisclosureLoaded = true;
                 break;
             case external_url:
+                disclaimer = parseUrl(disclaimer);
                 String ext = disclaimer.substring(disclaimer.length() - 3);
                 if(ext.equalsIgnoreCase("PDF")) {
                     // Only download disclaimer in case of PDF
@@ -68,10 +83,22 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
         }
     }
 
+    private String parseUrl(String url) {
+        Address userAddress = (Address) UserStorage.getInstance().getUserData().getUniqueDataPoint(
+                DataPointVo.DataPointType.Address, null);
+        if(userAddress != null) {
+            url = url.replace("[language]", LanguageUtil.getLanguage()).replace("[state]", userAddress.stateCode.toUpperCase());
+        }
+        return url;
+    }
+
     private void loadUrl(String url) {
         WebView webview = (WebView) findViewById(R.id.wb_pdf_webview);
         webview.clearCache(true);
         webview.clearHistory();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            webview.getSettings().setSafeBrowsingEnabled(false);
+        }
         webview.getSettings().setJavaScriptEnabled(true);
         webview.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -106,16 +133,48 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+    }
+
+    @Override
     public void acceptClickHandler() {
         if(mDisclosureLoaded) {
-            DisclaimerUtil.onAccept.execute();
-            this.finish();
+            AcceptDisclaimerRequestVo request = new AcceptDisclaimerRequestVo(DisclaimerUtil.workflowId, DisclaimerUtil.actionId);
+            ShiftLinkSdk.acceptDisclaimer(request);
         }
     }
 
     @Override
     public void cancelClickHandler() {
         this.finish();
+    }
+
+    /**
+     * Called when the accept disclaimer response has been received
+     * @param response None
+     */
+    @Subscribe
+    public void handleResponse(ApiEmptyResponseVo response) {
+        DisclaimerUtil.onAccept.execute();
+        this.finish();
+    }
+
+    /**
+     * Called when an API error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
+        // TODO: handle this with manager after merge
+        Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show();
     }
 
     private class DownloadFileTask extends AsyncTask<String, Integer, String> {
@@ -206,5 +265,18 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
                 mView.loadPdf(new File(getFilesDir(), mFileName));
             }
         }
+    }
+
+    private void showTextDisclaimer(String textDisclaimer) {
+        String disclaimer = "";
+        String lineBreak = "<br />";
+        String partnerDivider = "<br /><br />";
+        StringBuilder result = new StringBuilder();
+        if (!TextUtils.isEmpty(textDisclaimer)) {
+            result.append(textDisclaimer.replaceAll("\\r?\\n", lineBreak));
+            result.append(partnerDivider);
+        }
+        disclaimer += result.substring(0, result.length() - partnerDivider.length());
+        mView.loadPlainText(disclaimer);
     }
 }

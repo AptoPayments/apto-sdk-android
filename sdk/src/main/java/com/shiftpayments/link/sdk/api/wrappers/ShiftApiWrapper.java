@@ -5,6 +5,7 @@ import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.AcceptDisclaimerRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
@@ -112,6 +113,7 @@ public interface ShiftApiWrapper {
     String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
     String CARD_APPLICATION_STATUS_PATH = "v1/user/accounts/applications/{application_id}/status";
     String SET_BALANCE_STORE_PATH = "v1/user/accounts/applications/{application_id}/select_balance_store";
+    String ACCEPT_DISCLAIMER_PATH = "/v1/disclaimers/accept";
     String PLAID_WEB_URL = "v1/bankoauth";
 
     String REGISTER_PUSH_NOTIFICATION_TOKEN_PATH = "/v1/user/pushdevice";
@@ -515,4 +517,11 @@ public interface ShiftApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     ApiEmptyResponseVo setBalanceStore(String applicationId, SetBalanceStoreRequestVo requestData) throws ApiException;
+
+    /**
+     * Accepts the disclaimer
+     * @param requestData Workflow ID and Action ID.
+     * @throws ApiException When there is an error making the request.
+     */
+    ApiEmptyResponseVo acceptDisclaimer(AcceptDisclaimerRequestVo requestData) throws ApiException;
 }
