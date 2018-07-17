@@ -164,7 +164,8 @@ public class LoanApplicationSummaryPresenter
     public void showLoanApplicationScreen(LoanApplicationDetailsResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         LoanStorage.getInstance().setCurrentLoanApplication(response);
-        ApplicationVo application = new ApplicationVo(response.id, response.next_action);
+        // TODO: set correct workflow object ID
+        ApplicationVo application = new ApplicationVo(response.id, response.next_action, response.id);
         mDelegate.onApplicationReceived(application);
     }
 

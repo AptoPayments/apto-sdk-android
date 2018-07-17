@@ -21,6 +21,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceS
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.AcceptDisclaimerRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificationsRequestVo;
@@ -496,6 +497,11 @@ public class MockApiWrapper implements ShiftApiWrapper {
 
     @Override
     public ApiEmptyResponseVo setBalanceStore(String s, SetBalanceStoreRequestVo setBalanceStoreRequestVo) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public ApiEmptyResponseVo acceptDisclaimer(AcceptDisclaimerRequestVo acceptDisclaimerRequestVo) throws ApiException {
         return null;
     }
 }

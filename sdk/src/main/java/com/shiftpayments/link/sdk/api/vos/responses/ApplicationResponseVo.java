@@ -14,6 +14,9 @@ public class ApplicationResponseVo {
 
     public String id;
 
+    @SerializedName("workflow_object_id")
+    public String workflowObjectId;
+
     @SerializedName("application_type")
     public ApplicationType applicationType;
 

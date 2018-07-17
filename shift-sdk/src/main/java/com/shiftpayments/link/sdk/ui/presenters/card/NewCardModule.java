@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.ui.presenters.card;
 import android.app.Activity;
 
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.DisclaimerConfiguration;
 import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointGroupVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
@@ -13,6 +14,7 @@ import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
+import com.shiftpayments.link.sdk.ui.presenters.showdisclaimer.showgenericmessage.ShowDisclaimerModule;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.vos.ApplicationVo;
@@ -33,6 +35,7 @@ import java.util.List;
 import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.COLLECT_USER_DATA;
 import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.ISSUE_CARD;
 import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.SELECT_BALANCE_STORE;
+import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.SHOW_DISCLAIMER;
 
 public class NewCardModule extends WorkflowModule {
 
@@ -61,7 +64,7 @@ public class NewCardModule extends WorkflowModule {
     @Subscribe
     public void handleApplication(CardApplicationResponseVo application) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        ApplicationVo cardApplication = new ApplicationVo(application.id, application.nextAction);
+        ApplicationVo cardApplication = new ApplicationVo(application.id, application.nextAction, application.workflowObjectId);
         CardStorage.getInstance().setApplication(cardApplication);
         mWorkFlowObject = cardApplication;
         startAppropriateModule();
@@ -77,6 +80,9 @@ public class NewCardModule extends WorkflowModule {
                 break;
             case ISSUE_CARD:
                 issueVirtualCard();
+                break;
+            case SHOW_DISCLAIMER:
+                showDisclaimer();
                 break;
             default:
                 new ActionNotSupportedModule(getActivity(), this.onFinish, this.onBack).initialModuleSetup();
@@ -101,6 +107,7 @@ public class NewCardModule extends WorkflowModule {
             setCurrentModule();
             this.startNextModule();
         };
+        setCurrentModule();
         CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity(), onFinish, super.onBack);
         startModule(custodianSelectorModule);
     }
@@ -119,5 +126,16 @@ public class NewCardModule extends WorkflowModule {
     private void setCurrentModule() {
         SoftReference<ShiftBaseModule> moduleSoftReference = new SoftReference<>(this);
         ModuleManager.getInstance().setModule(moduleSoftReference);
+    }
+
+    private void showDisclaimer() {
+        Command onFinishCallback = ()->{
+            setCurrentModule();
+            this.startNextModule();
+        };
+        ShowDisclaimerModule disclaimerModule = ShowDisclaimerModule.getInstance(getActivity(),
+                onFinishCallback, onBack, (DisclaimerConfiguration) mWorkFlowObject.nextAction.configuration,
+                mWorkFlowObject.workflowObjectId, mWorkFlowObject.nextAction.actionId);
+        disclaimerModule.initialModuleSetup();
     }
 }

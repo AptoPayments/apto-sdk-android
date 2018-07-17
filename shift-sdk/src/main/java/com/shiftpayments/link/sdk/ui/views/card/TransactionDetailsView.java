@@ -76,17 +76,12 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     protected void onFinishInflate() {
         super.onFinishInflate();
         findAllViews();
-        setLogo();
         setColors();
     }
 
     @Override
     public Toolbar getToolbar() {
         return mToolbar;
-    }
-
-    public void setLogo() {
-        mLogoView.setImageResource(R.drawable.coinbase_logo);
     }
 
     public void setTransactionIcon(Drawable icon) {

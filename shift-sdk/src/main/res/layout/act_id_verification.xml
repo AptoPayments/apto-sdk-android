@@ -142,26 +142,7 @@
                     android:layout_below="@+id/tv_next_bttn"
                     android:layout_centerHorizontal="true"
                     android:text="@string/id_verification_disclaimer" />
-
-            <TextView
-                    android:id="@+id/tv_disclaimers_header"
-                    style="?attr/llsdk_idVerification_disclaimerStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_below="@+id/tv_security"
-                    android:visibility="gone"
-                    android:text="@string/id_verification_disclosures_label" />
-
-            <TextView
-                    android:id="@+id/tv_disclaimers_body"
-                    style="?attr/llsdk_idVerification_disclaimerStyle"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="48dp"
-                    android:layout_below="@+id/tv_disclaimers_header" />
-
         </RelativeLayout>
     </ScrollView>
-
-    <include layout="@layout/include_rl_loading" />
 
 </com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView>

@@ -54,7 +54,7 @@ public class IssueVirtualCardActivity extends AppCompatActivity {
         super.onStart();
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         IssueVirtualCardRequestVo virtualCardRequestVo = new IssueVirtualCardRequestVo();
-        virtualCardRequestVo.applicationId = CardStorage.getInstance().getApplication().workflowObjectId;
+        virtualCardRequestVo.applicationId = CardStorage.getInstance().getApplication().applicationId;
         ShiftPlatform.issueVirtualCard(virtualCardRequestVo);
     }
 

@@ -192,6 +192,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void startCustodianModule(Command onFinish, Command onBack) {
+        setCurrentModule();
         CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity(), onFinish, onBack);
         startModule(custodianSelectorModule);
     }
@@ -200,17 +201,18 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         if(!(currentObject instanceof ApplicationVo)) {
             throw new RuntimeException("Current workflow object is not an application!");
         }
-        CardStorage.getInstance().setApplication((ApplicationVo) currentObject);
+        ApplicationVo currentApplication = (ApplicationVo) currentObject;
+        CardStorage.getInstance().setApplication(currentApplication);
         CompletableFuture<CardApplicationResponseVo> future = CompletableFuture.supplyAsync(() -> {
             try {
-                return getApiWrapper().getCardApplicationStatus(currentObject.workflowObjectId);
+                return getApiWrapper().getCardApplicationStatus(currentApplication.applicationId);
             } catch (ApiException e) {
                 throw new CompletionException(e);
             }
         });
         try {
             CardApplicationResponseVo applicationStatus = future.get();
-            return new ApplicationVo(applicationStatus.id, applicationStatus.nextAction);
+            return new ApplicationVo(applicationStatus.id, applicationStatus.nextAction, applicationStatus.workflowObjectId);
         } catch (InterruptedException | ExecutionException e) {
             future.completeExceptionally(e);
             throw new CompletionException(e);

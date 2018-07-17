@@ -153,7 +153,8 @@ public class LoanApplicationModule extends ShiftBaseModule
         try {
             LoanApplicationDetailsResponseVo applicationStatus = future.get();
             LoanStorage.getInstance().setCurrentLoanApplication(applicationStatus);
-            return new ApplicationVo(applicationStatus.id, applicationStatus.next_action);
+            // TODO: set correct workflow object ID
+            return new ApplicationVo(applicationStatus.id, applicationStatus.next_action, applicationStatus.id);
         } catch (InterruptedException | ExecutionException e) {
             future.completeExceptionally(e);
             throw new CompletionException(e);
@@ -174,7 +175,7 @@ public class LoanApplicationModule extends ShiftBaseModule
     }
 
     public void continueApplication(String applicationId) {
-        ApplicationVo application = this.getApplicationStatus(new ApplicationVo(applicationId, null));
+        ApplicationVo application = this.getApplicationStatus(new ApplicationVo(applicationId, null, null));
         this.onApplicationReceived(application);
     }
 
