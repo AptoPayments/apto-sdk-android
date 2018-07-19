@@ -1,6 +1,6 @@
 package com.shiftpayments.link.sdk.sdk.tests.robolectric.tests.storages;
 
-import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.config.GetLinkConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
@@ -26,7 +26,7 @@ public class ConfigStorageTest {
     @Before
     public void setUp() {
         mStorage = ConfigStorage.getInstance();
-        LinkConfigResponseVo configResponse = new MockApiWrapper().getLinkConfig(new UnauthorizedRequestVo());
+        LinkConfigResponseVo configResponse = new MockApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
         mStorage.setLinkConfig(configResponse);
     }
 

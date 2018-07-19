@@ -16,6 +16,6 @@ public class CurrentUserRequestVo extends UnauthorizedRequestVo {
 
     @Override
     public ShiftApiTask getApiTask(ShiftApiWrapper shiftApiWrapper, ApiResponseHandler responseHandler) {
-        return new GetCurrentUserTask(this, shiftApiWrapper, responseHandler, throwSessionExpiredError);
+        return new GetCurrentUserTask(this, shiftApiWrapper, responseHandler);
     }
 }

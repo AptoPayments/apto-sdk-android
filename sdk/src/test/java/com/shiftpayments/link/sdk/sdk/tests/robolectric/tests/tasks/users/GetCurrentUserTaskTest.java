@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.sdk.tests.robolectric.tests.tasks.users;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.CurrentUserRequestVo;
 import com.shiftpayments.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shiftpayments.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import com.shiftpayments.link.sdk.sdk.tasks.users.GetCurrentUserTask;
@@ -28,7 +29,7 @@ public class GetCurrentUserTaskTest {
     @Before
     public void setUp() {
         mTask = new RoboLinkApiTaskWrapper<>(
-                new GetCurrentUserTask(new UnauthorizedRequestVo(), new MockApiWrapper(), new MockResponseHandler(), false)
+                new GetCurrentUserTask(new CurrentUserRequestVo(false), new MockApiWrapper(), new MockResponseHandler())
         );
     }
 
