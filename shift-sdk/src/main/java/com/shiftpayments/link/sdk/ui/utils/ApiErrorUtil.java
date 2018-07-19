@@ -20,8 +20,15 @@ public class ApiErrorUtil {
         if(!error.toString().isEmpty()) {
             String message = mErrorMapping.get(error.serverCode);
             if(message == null) {
-                // TODO: use default errors for 400 / 500 http codes
-                message = context.getString(R.string.toast_api_error, error.toString());
+                if(error.statusCode >= 400 && error.statusCode < 600) {
+                    message = "Something went wrong.";
+                    if(error.statusCode<500) {
+                        message += " Error code: " + error.serverCode;
+                    }
+                }
+                else {
+                    message = context.getString(R.string.toast_api_error, error.toString());
+                }
             }
             showSnackBar(message, context);
         }

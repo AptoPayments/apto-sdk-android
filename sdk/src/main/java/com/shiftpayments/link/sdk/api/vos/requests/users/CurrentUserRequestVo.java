@@ -1,26 +1,21 @@
 package com.shiftpayments.link.sdk.api.vos.requests.users;
 
-import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-import com.shiftpayments.link.sdk.sdk.tasks.users.CreateUserTask;
+import com.shiftpayments.link.sdk.sdk.tasks.users.GetCurrentUserTask;
 
-/**
- * Request data to create a new user.
- * @author Wijnand
- */
-public class CreateUserRequestVo extends UnauthorizedRequestVo {
+public class CurrentUserRequestVo extends UnauthorizedRequestVo {
 
-    private DataPointList data;
+    public boolean throwSessionExpiredError;
 
-    public CreateUserRequestVo(DataPointList data) {
-        this.data = data;
+    public CurrentUserRequestVo(boolean throwSessionExpiredError) {
+        this.throwSessionExpiredError = throwSessionExpiredError;
     }
 
     @Override
     public ShiftApiTask getApiTask(ShiftApiWrapper shiftApiWrapper, ApiResponseHandler responseHandler) {
-        return new CreateUserTask(data, shiftApiWrapper, responseHandler);
+        return new GetCurrentUserTask(this, shiftApiWrapper, responseHandler, throwSessionExpiredError);
     }
 }

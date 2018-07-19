@@ -5,7 +5,6 @@ import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import com.shiftpayments.link.sdk.api.vos.requests.users.AcceptDisclaimerRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
@@ -17,6 +16,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceS
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.AcceptDisclaimerRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.DeleteUserRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificationsRequestVo;
@@ -52,7 +52,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerifica
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.StartVerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
-import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 
 import java.util.HashMap;
 import java.util.concurrent.Executor;
@@ -178,7 +177,7 @@ public interface ShiftApiWrapper {
 
     HashMap<String, String> getHTTPHeaders();
 
-    void enqueueApiCall(ShiftApiTask task);
+    void enqueueApiCall(UnauthorizedRequestVo request);
 
     Executor getExecutor();
 

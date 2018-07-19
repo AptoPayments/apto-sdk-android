@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shiftpayments.link.sdk.ui.views.NoConnectionView
+<com.shiftpayments.link.sdk.ui.views.SystemMaintenanceView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
@@ -12,22 +12,22 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_header_text"
+            android:id="@+id/tv_body_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center_horizontal"
-            android:textSize="22sp"
-            android:text="@string/no_connection_header"/>
+            android:textSize="14sp"
+            android:text="@string/system_maintenance_body"/>
 
         <TextView
-            android:id="@+id/tv_body_text"
+            android:id="@+id/tv_header_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_header_text"
             android:gravity="center_horizontal"
-            android:textSize="14sp"
-            android:text="@string/no_connection_body"/>
+            android:layout_above="@+id/tv_body_text"
+            android:textSize="22sp"
+            android:text="@string/system_maintenance_header"/>
 
         <ImageView
             android:id="@+id/iv_cloud"
@@ -36,8 +36,17 @@
             android:layout_above="@+id/tv_header_text"
             android:layout_centerHorizontal="true"
             android:adjustViewBounds="true"
-            android:padding="32dp"
+            android:layout_margin="32dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_no_internet_connection" />
+            android:src="@drawable/ic_exclamation" />
+
+        <TextView
+            android:id="@+id/tv_try_again_bttn"
+            android:layout_width="288dp"
+            style="?attr/llsdk_bigButtonStyle"
+            android:layout_below="@+id/tv_body_text"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/system_maintenance_button" />
     </RelativeLayout>
-</com.shiftpayments.link.sdk.ui.views.NoConnectionView>
+</com.shiftpayments.link.sdk.ui.views.SystemMaintenanceView>

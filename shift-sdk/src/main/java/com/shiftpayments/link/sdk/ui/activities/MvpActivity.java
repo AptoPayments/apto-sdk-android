@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.shiftpayments.link.sdk.api.vos.responses.NoConnectionErrorVo;
+import com.shiftpayments.link.sdk.api.vos.responses.SystemMaintenanceVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.ActivityModel;
@@ -131,5 +132,14 @@ public abstract class MvpActivity<M extends ActivityModel, V extends View & View
     @Subscribe
     public void handleResponse(NoConnectionErrorVo error) {
         this.startActivity(new Intent(this, NoConnectionActivity.class));
+    }
+
+    /**
+     * Called when the backend is down for maintenance
+     * @param error Error
+     */
+    @Subscribe
+    public void handleResponse(SystemMaintenanceVo error) {
+        this.startActivity(new Intent(this, SystemMaintenanceActivity.class));
     }
 }

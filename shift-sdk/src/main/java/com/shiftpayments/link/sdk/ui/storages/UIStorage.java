@@ -4,7 +4,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
-import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.config.GetProjectConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.TeamConfigResponseVo;
@@ -64,7 +64,7 @@ public class UIStorage {
             CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
 
                 try {
-                    setConfig(getApiWrapper().getUserConfig(new UnauthorizedRequestVo()));
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
                     return mPrimaryColor;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -87,7 +87,7 @@ public class UIStorage {
             CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
 
                 try {
-                    setConfig(getApiWrapper().getUserConfig(new UnauthorizedRequestVo()));
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
                     return mSecondaryColor;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -112,7 +112,7 @@ public class UIStorage {
         else {
             CompletableFuture<ConfigResponseVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    setConfig(getApiWrapper().getUserConfig(new UnauthorizedRequestVo()));
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
                     return mConfig.projectConfiguration;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -129,7 +129,7 @@ public class UIStorage {
         else {
             CompletableFuture<TeamConfigResponseVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    setConfig(getApiWrapper().getUserConfig(new UnauthorizedRequestVo()));
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
                     return mConfig.teamConfiguration;
                 } catch (ApiException e) {
                     throw new CompletionException(e);

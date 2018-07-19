@@ -2,6 +2,10 @@ package com.shiftpayments.link.sdk.api.vos.requests.offers;
 
 import com.shiftpayments.link.sdk.api.utils.offers.LoanCategory;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
+import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
+import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
+import com.shiftpayments.link.sdk.sdk.tasks.offers.InitialOffersTask;
 
 /**
  * Request data for the first loan offers API call.
@@ -35,4 +39,8 @@ public class InitialOffersRequestVo extends ListRequestVo {
      */
     public int desired_months = 12;
 
+    @Override
+    public ShiftApiTask getApiTask(ShiftApiWrapper shiftApiWrapper, ApiResponseHandler responseHandler) {
+        return new InitialOffersTask(this, shiftApiWrapper, responseHandler);
+    }
 }

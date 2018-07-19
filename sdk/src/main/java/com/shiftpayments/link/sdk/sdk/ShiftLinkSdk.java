@@ -8,58 +8,45 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.CreateCardApplicationRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.GetCardApplicationStatusRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.config.GetCardConfigRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.config.GetLinkConfigRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.DisableFinancialAccountRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.EnableFinancialAccountRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.GetFinancialAccountFundingSourceRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.GetFinancialAccountRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.GetFinancialAccountTransactionsRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.GetFinancialAccountsRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.GetUserFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.loanapplication.CreateLoanApplicationRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.loanapplication.GetLoanApplicationStatusRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.loanapplication.GetPendingLoanApplicationListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.offers.InitialOffersRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.AcceptDisclaimerRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.CreateUserRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.CurrentUserRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.GetOAuthStatusRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.users.LoginRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.RegisterPushNotificationsRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.StartOAuthRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.users.UpdateUserRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.verifications.GetVerificationRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.verifications.RestartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.NoConnectionErrorVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
-import com.shiftpayments.link.sdk.sdk.tasks.cardapplication.CreateCardApplicationTask;
-import com.shiftpayments.link.sdk.sdk.tasks.cardapplication.GetCardApplicationStatusTask;
-import com.shiftpayments.link.sdk.sdk.tasks.config.CardConfigTask;
-import com.shiftpayments.link.sdk.sdk.tasks.config.HousingTypeListTask;
-import com.shiftpayments.link.sdk.sdk.tasks.config.IncomeTypesListTask;
-import com.shiftpayments.link.sdk.sdk.tasks.config.LinkConfigTask;
-import com.shiftpayments.link.sdk.sdk.tasks.config.SalaryFrequenciesListTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.ActivateFinancialAccountTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.AddBankAccountTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.AddCardTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.DisableFinancialAccountTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.EnableFinancialAccountTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountFundingSourceTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountTransactionsTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetFinancialAccountsTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.GetUserFundingSourcesTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.IssueVirtualCardTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.SetAccountFundingSourceTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.SetBalanceStoreTask;
-import com.shiftpayments.link.sdk.sdk.tasks.financialaccounts.UpdateFinancialAccountPinTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
-import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.CreateLoanApplicationTask;
-import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.GetLoanApplicationStatusTask;
-import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.ListPendingLoanApplicationsTask;
-import com.shiftpayments.link.sdk.sdk.tasks.loanapplication.SetApplicationAccountTask;
-import com.shiftpayments.link.sdk.sdk.tasks.offers.InitialOffersTask;
-import com.shiftpayments.link.sdk.sdk.tasks.users.AcceptDisclaimerTask;
-import com.shiftpayments.link.sdk.sdk.tasks.users.CreateUserTask;
-import com.shiftpayments.link.sdk.sdk.tasks.users.GetCurrentUserTask;
-import com.shiftpayments.link.sdk.sdk.tasks.users.GetOAuthStatusTask;
-import com.shiftpayments.link.sdk.sdk.tasks.users.LoginUserTask;
-import com.shiftpayments.link.sdk.sdk.tasks.users.RegisterPushNotificationsTask;
-import com.shiftpayments.link.sdk.sdk.tasks.users.StartOAuthTask;
-import com.shiftpayments.link.sdk.sdk.tasks.users.UpdateUserTask;
-import com.shiftpayments.link.sdk.sdk.tasks.verifications.CompleteVerificationTask;
-import com.shiftpayments.link.sdk.sdk.tasks.verifications.GetVerificationStatusTask;
-import com.shiftpayments.link.sdk.sdk.tasks.verifications.RestartVerificationTask;
-import com.shiftpayments.link.sdk.sdk.tasks.verifications.StartVerificationTask;
 
 import java.util.concurrent.Executor;
 
@@ -77,7 +64,6 @@ public class ShiftLinkSdk {
     private static Executor mExecutor;
     private static ApiResponseHandler mHandler;
     private static NetworkManager mNetworkManager = new NetworkManager();
-
 
     /**
      * Checks if all required components have been set. Will throw {@link NullPointerException}s when a component
@@ -149,12 +135,13 @@ public class ShiftLinkSdk {
         return mNetworkManager;
     }
 
-    private static void executeOrEnqueueTask(ShiftApiTask task) {
+    private static void executeOrEnqueueRequest(UnauthorizedRequestVo request) {
+        request.mHandler = getResponseHandler();
         if(NetworkManager.isConnectedToInternet) {
-            task.executeOnExecutor(getExecutor());
+            request.getApiTask(mApiWrapper, mHandler).executeOnExecutor(getExecutor());
         }
         else {
-            getApiWrapper().enqueueApiCall(task);
+            getApiWrapper().enqueueApiCall(request);
             NetworkCallback callback = getApiWrapper().getOnNoInternetConnectionCallback();
             if(callback != null) {
                 callback.onNoInternetConnection();
@@ -167,72 +154,48 @@ public class ShiftLinkSdk {
 
     /**
      * Gets the link config.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getLinkConfig() {
+    public static void getLinkConfig() {
         checkComponents();
-
-        LinkConfigTask task
-                = new LinkConfigTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        GetLinkConfigRequestVo request = new GetLinkConfigRequestVo();
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Gets the card config.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getCardConfig() {
+    public static void getCardConfig() {
         checkComponents();
-
-        CardConfigTask task
-                = new CardConfigTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        GetCardConfigRequestVo request = new GetCardConfigRequestVo();
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Gets the housing type list.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getHousingTypeList() {
+    public static void getHousingTypeList() {
         checkComponents();
-
-        HousingTypeListTask task
-                = new HousingTypeListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        //TODO
     }
 
     /**
      * Gets the employment statuses list.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getIncomeTypesList() {
+    public static void getIncomeTypesList() {
         checkComponents();
-
-        IncomeTypesListTask task
-                = new IncomeTypesListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        //TODO
     }
 
     /**
      * Gets the salary frequencies list.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getSalaryFrequenciesList() {
+    public static void getSalaryFrequenciesList() {
         checkComponents();
-
-        SalaryFrequenciesListTask task
-                = new SalaryFrequenciesListTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        //TODO
     }
 
     /**
@@ -240,13 +203,10 @@ public class ShiftLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask createUser(DataPointList data) {
+    public static void createUser(DataPointList data) {
         checkComponents();
-
-        CreateUserTask task = new CreateUserTask(data, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        CreateUserRequestVo request = new CreateUserRequestVo(data);
+        executeOrEnqueueRequest(request);
     }
 
     /**
@@ -254,13 +214,10 @@ public class ShiftLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask updateUser(DataPointList data) {
+    public static void updateUser(DataPointList data) {
         checkComponents();
-
-        UpdateUserTask task = new UpdateUserTask(data, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        UpdateUserRequestVo request = new UpdateUserRequestVo(data);
+        executeOrEnqueueRequest(request);
     }
 
     /**
@@ -268,41 +225,29 @@ public class ShiftLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask loginUser(LoginRequestVo data) {
+    public static void loginUser(LoginRequestVo data) {
         checkComponents();
-
-        LoginUserTask task = new LoginUserTask(data, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        executeOrEnqueueRequest(data);
     }
 
     /**
      * Gets the current user info.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getCurrentUser(boolean throwSessionExpiredError) {
+    public static void getCurrentUser(boolean throwSessionExpiredError) {
         checkComponents();
-
-        GetCurrentUserTask task = new GetCurrentUserTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler(), throwSessionExpiredError);
-        executeOrEnqueueTask(task);
-
-        return task;
+        CurrentUserRequestVo request = new CurrentUserRequestVo(throwSessionExpiredError);
+        executeOrEnqueueRequest(request);
     }
-
 
     /**
      * Creates a new user.
      * @param data Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getInitialOffers(InitialOffersRequestVo data) {
+    public static void getInitialOffers(InitialOffersRequestVo data) {
         checkComponents();
-
-        InitialOffersTask task = new InitialOffersTask(data, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        executeOrEnqueueRequest(data);
     }
 
     /**
@@ -310,13 +255,10 @@ public class ShiftLinkSdk {
      * @param offerId The loan offer to apply to.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask createLoanApplication(String offerId) {
+    public static void createLoanApplication(String offerId) {
         checkComponents();
-
-        CreateLoanApplicationTask task = new CreateLoanApplicationTask(offerId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        CreateLoanApplicationRequestVo request = new CreateLoanApplicationRequestVo(offerId);
+        executeOrEnqueueRequest(request);
     }
 
     /**
@@ -324,13 +266,10 @@ public class ShiftLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getPendingLoanApplicationsList(ListRequestVo data) {
+    public static void getPendingLoanApplicationsList(ListRequestVo data) {
         checkComponents();
-
-        ListPendingLoanApplicationsTask task = new ListPendingLoanApplicationsTask(data, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        GetPendingLoanApplicationListRequestVo request = new GetPendingLoanApplicationListRequestVo(data);
+        executeOrEnqueueRequest(request);
     }
 
     /**
@@ -338,13 +277,10 @@ public class ShiftLinkSdk {
      * @param applicationId Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getLoanApplicationStatus(String applicationId) {
+    public static void getLoanApplicationStatus(String applicationId) {
         checkComponents();
-
-        GetLoanApplicationStatusTask task = new GetLoanApplicationStatusTask(applicationId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        GetLoanApplicationStatusRequestVo request = new GetLoanApplicationStatusRequestVo(applicationId);
+        executeOrEnqueueRequest(request);
     }
 
     /**
@@ -352,42 +288,37 @@ public class ShiftLinkSdk {
      * @param applicationId Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask setApplicationAccount(ApplicationAccountRequestVo data, String applicationId) {
+    public static void setApplicationAccount(ApplicationAccountRequestVo data, String applicationId) {
         checkComponents();
 
-        SetApplicationAccountTask task = new SetApplicationAccountTask(data, applicationId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        // TODO: refactor
+        data.applicationId = applicationId;
+        executeOrEnqueueRequest(data);
     }
-
 
     /**
      * Starts the phone verification process.
      * @param data Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask startVerification(StartVerificationRequestVo data) {
+    public static void startVerification(StartVerificationRequestVo data) {
         checkComponents();
-
-        StartVerificationTask task = new StartVerificationTask(data, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        data.mHandler = getResponseHandler();
+        executeOrEnqueueRequest(data);
     }
+
 
     /**
      * Completes the verification process.
      * @param data Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask completeVerification(VerificationRequestVo data, String verificationId) {
+    public static void completeVerification(VerificationRequestVo data, String verificationId) {
         checkComponents();
 
-        CompleteVerificationTask task = new CompleteVerificationTask(data, verificationId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        // TODO: refactor
+        data.verificationId = verificationId;
+        executeOrEnqueueRequest(data);
     }
 
     /**
@@ -395,13 +326,10 @@ public class ShiftLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getVerificationStatus(String data) {
+    public static void getVerificationStatus(String data) {
         checkComponents();
-
-        GetVerificationStatusTask task = new GetVerificationStatusTask(data, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        GetVerificationRequestVo request = new GetVerificationRequestVo(data);
+        executeOrEnqueueRequest(request);
     }
 
     /**
@@ -409,13 +337,10 @@ public class ShiftLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask restartVerification(String data) {
+    public static void restartVerification(String data) {
         checkComponents();
-
-        RestartVerificationTask task = new RestartVerificationTask(data, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        RestartVerificationRequestVo request = new RestartVerificationRequestVo(data);
+        executeOrEnqueueRequest(request);
     }
 
     /**
@@ -423,13 +348,9 @@ public class ShiftLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask addBankAccount(AddBankAccountRequestVo data) {
+    public static void addBankAccount(AddBankAccountRequestVo data) {
         checkComponents();
-
-        AddBankAccountTask task = new AddBankAccountTask(data, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        executeOrEnqueueRequest(data);
     }
 
     /**
@@ -437,13 +358,10 @@ public class ShiftLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask addCard(Card data) {
+    public static void addCard(Card data) {
         checkComponents();
-
-        AddCardTask task = new AddCardTask(data, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        AddCardRequestVo request = new AddCardRequestVo(data);
+        executeOrEnqueueRequest(request);
     }
 
     /**
@@ -451,182 +369,145 @@ public class ShiftLinkSdk {
      * @param data Mandatory API request data.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask issueVirtualCard(IssueVirtualCardRequestVo data) {
+    public static void issueVirtualCard(IssueVirtualCardRequestVo data) {
         checkComponents();
-
-        IssueVirtualCardTask task = new IssueVirtualCardTask(data, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        executeOrEnqueueRequest(data);
     }
 
     /**
      * Gets the user's financial accounts.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getFinancialAccounts() {
+    public static void getFinancialAccounts() {
         checkComponents();
-
-        GetFinancialAccountsTask task = new GetFinancialAccountsTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        GetFinancialAccountsRequestVo request = new GetFinancialAccountsRequestVo();
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Gets the user's financial accounts.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getFinancialAccount(String data) {
+    public static void getFinancialAccount(String data) {
         checkComponents();
-
-        GetFinancialAccountTask task = new GetFinancialAccountTask(data, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        GetFinancialAccountRequestVo request = new GetFinancialAccountRequestVo(data);
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Activate financial account.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask activateFinancialAccount(String accountId) {
+    public static void activateFinancialAccount(String accountId) {
         checkComponents();
-
-        ActivateFinancialAccountTask task = new ActivateFinancialAccountTask(accountId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        ActivateFinancialAccountRequestVo request = new ActivateFinancialAccountRequestVo(accountId);
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Enable financial account.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask enableFinancialAccount(String accountId) {
+    public static void enableFinancialAccount(String accountId) {
         checkComponents();
-
-        EnableFinancialAccountTask task = new EnableFinancialAccountTask(accountId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        EnableFinancialAccountRequestVo request = new EnableFinancialAccountRequestVo(accountId);
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Disable financial account.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask disableFinancialAccount(String accountId) {
+    public static void disableFinancialAccount(String accountId) {
         checkComponents();
-
-        DisableFinancialAccountTask task = new DisableFinancialAccountTask(accountId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        DisableFinancialAccountRequestVo request = new DisableFinancialAccountRequestVo(accountId);
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Update pin of financial account.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask updateFinancialAccountPin(UpdateFinancialAccountPinRequestVo data, String accountId) {
+    public static void updateFinancialAccountPin(UpdateFinancialAccountPinRequestVo data, String accountId) {
         checkComponents();
 
-        UpdateFinancialAccountPinTask task = new UpdateFinancialAccountPinTask(data, accountId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        // TODO: refactor
+        data.accountId = accountId;
+        executeOrEnqueueRequest(data);
     }
 
     /**
      * Gets the financial account's transactions.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getFinancialAccountTransactions(String accountId, int rows, String lastTransactionId) {
+    public static void getFinancialAccountTransactions(String accountId, int rows, String lastTransactionId) {
         checkComponents();
-
-        GetFinancialAccountTransactionsTask task = new GetFinancialAccountTransactionsTask(accountId, rows, lastTransactionId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        GetFinancialAccountTransactionsRequestVo request = new GetFinancialAccountTransactionsRequestVo(accountId, rows, lastTransactionId);
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Gets the financial account's funding source.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getFinancialAccountFundingSource(String accountId) {
+    public static void getFinancialAccountFundingSource(String accountId) {
         checkComponents();
-
-        GetFinancialAccountFundingSourceTask task = new GetFinancialAccountFundingSourceTask(accountId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        GetFinancialAccountFundingSourceRequestVo request = new GetFinancialAccountFundingSourceRequestVo(accountId);
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Gets the financial account's funding source.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getUserFundingSources() {
+    public static void getUserFundingSources() {
         checkComponents();
-
-        GetUserFundingSourcesTask task = new GetUserFundingSourcesTask(new UnauthorizedRequestVo(), getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        GetUserFundingSourceRequestVo request = new GetUserFundingSourceRequestVo();
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Sets the financial account's funding source.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask setAccountFundingSource(String accountId, String fundingSourceId) {
+    public static void setAccountFundingSource(String accountId, String fundingSourceId) {
         checkComponents();
 
-        SetAccountFundingSourceTask task = new SetAccountFundingSourceTask(accountId, fundingSourceId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        SetFundingSourceRequestVo request = new SetFundingSourceRequestVo(fundingSourceId);
+        // TODO: refactor
+        request.accountId = accountId;
+        
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Registers the device to receive push notifications
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask registerPushNotificationToken(String token) {
+    public static void registerPushNotificationToken(String token) {
         checkComponents();
-
-        RegisterPushNotificationsTask task = new RegisterPushNotificationsTask(token, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        RegisterPushNotificationsRequestVo request = new RegisterPushNotificationsRequestVo(token);
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Requests a URL to start the OAuth for the given provider
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask startOAuth(String provider) {
+    public static void startOAuth(String provider) {
         checkComponents();
-
-        StartOAuthTask task = new StartOAuthTask(provider, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        StartOAuthRequestVo request = new StartOAuthRequestVo(provider);
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Requests the OAuth status
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getOAuthStatus(String id) {
+    public static void getOAuthStatus(String id) {
         checkComponents();
-
-        GetOAuthStatusTask task = new GetOAuthStatusTask(id, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        GetOAuthStatusRequestVo request = new GetOAuthStatusRequestVo(id);
+        executeOrEnqueueRequest(request);
     }
 
     /**
@@ -634,13 +515,10 @@ public class ShiftLinkSdk {
      * @param cardProductId The card product ID.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask createCardApplication(String cardProductId) {
+    public static void createCardApplication(String cardProductId) {
         checkComponents();
-
-        CreateCardApplicationTask task = new CreateCardApplicationTask(cardProductId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        CreateCardApplicationRequestVo request = new CreateCardApplicationRequestVo(cardProductId);
+        executeOrEnqueueRequest(request);
     }
 
     /**
@@ -648,13 +526,10 @@ public class ShiftLinkSdk {
      * @param applicationId The card product ID.
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask getCardApplicationStatus(String applicationId) {
+    public static void getCardApplicationStatus(String applicationId) {
         checkComponents();
-
-        GetCardApplicationStatusTask task = new GetCardApplicationStatusTask(applicationId, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        GetCardApplicationStatusRequestVo request = new GetCardApplicationStatusRequestVo(applicationId);
+        executeOrEnqueueRequest(request);
     }
 
     /**
@@ -662,13 +537,12 @@ public class ShiftLinkSdk {
      * @param request The custodian
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask setBalanceStore(String applicationId, SetBalanceStoreRequestVo request) {
+    public static void setBalanceStore(String applicationId, SetBalanceStoreRequestVo request) {
         checkComponents();
 
-        SetBalanceStoreTask task = new SetBalanceStoreTask(applicationId, request, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        // TODO: refactor
+        request.applicationId = applicationId;
+        executeOrEnqueueRequest(request);
     }
 
     /**
@@ -676,12 +550,8 @@ public class ShiftLinkSdk {
      * @param request The application ID, Workflow ID and Action ID
      * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static ShiftApiTask acceptDisclaimer(AcceptDisclaimerRequestVo request) {
+    public static void acceptDisclaimer(AcceptDisclaimerRequestVo request) {
         checkComponents();
-
-        AcceptDisclaimerTask task = new AcceptDisclaimerTask(request, getApiWrapper(), getResponseHandler());
-        executeOrEnqueueTask(task);
-
-        return task;
+        executeOrEnqueueRequest(request);
     }
 }

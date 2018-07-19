@@ -3,10 +3,11 @@ package com.shiftpayments.link.sdk.api.wrappers;
 import android.os.AsyncTask;
 
 import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
+import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 
+import java.util.LinkedHashSet;
 import java.util.concurrent.Executor;
-import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Partial implementation of the {@link ShiftApiWrapper} interface.
@@ -14,7 +15,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
 
-    private LinkedBlockingQueue<ShiftApiTask> pendingApiCalls;
+    private LinkedHashSet<UnauthorizedRequestVo> pendingApiCalls;
     private NetworkCallback mOnNoInternetConnection;
 
     private String mDeveloperKey;
@@ -40,7 +41,7 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
         mDevice = null;
         mProjectToken = null;
         mApiEndPoint = null;
-        pendingApiCalls = new LinkedBlockingQueue<>();
+        pendingApiCalls = new LinkedHashSet<>();
     }
 
     /**
@@ -140,8 +141,8 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public void enqueueApiCall(ShiftApiTask task) {
-        pendingApiCalls.add(task);
+    public void enqueueApiCall(UnauthorizedRequestVo request) {
+        pendingApiCalls.add(request);
     }
 
     @Override
@@ -161,9 +162,10 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
 
     @Override
     public void executePendingApiCalls() {
-        for(ShiftApiTask call : pendingApiCalls) {
-            call.executeOnExecutor(getExecutor());
-            pendingApiCalls.remove(call);
+        for(UnauthorizedRequestVo request : pendingApiCalls) {
+            ShiftApiTask newApiTask = request.getApiTask(this, request.mHandler);
+            newApiTask.executeOnExecutor(getExecutor());
+            pendingApiCalls.remove(request);
         }
     }
 }

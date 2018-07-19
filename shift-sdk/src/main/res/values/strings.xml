@@ -370,4 +370,13 @@
     <string name="transaction_details_declined_amount">Declined Amount</string>
     <string name="transaction_details_hold_amount">Hold Amount</string>
 
+    <!-- No internet connection screen -->
+    <string name="no_connection_header">Hey!</string>
+    <string name="no_connection_body">There is no internet connection</string>
+
+    <!-- System maintenance screen -->
+    <string name="system_maintenance_header">Error</string>
+    <string name="system_maintenance_body">We’re currently undergoing system maintenance.\nPlease check back later</string>
+    <string name="system_maintenance_button">TRY AGAIN</string>
+
 </resources>

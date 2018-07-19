@@ -1,27 +1,24 @@
-package com.shiftpayments.link.sdk.api.vos.requests.dashboard;
+package com.shiftpayments.link.sdk.api.vos.requests.users;
 
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
+import com.shiftpayments.link.sdk.sdk.tasks.users.GetOAuthStatusTask;
 
 /**
- * Request data to create a team.
+ * Request data to get oAuth status.
  * @author Adrian
  */
-public class CreateTeamRequestVo extends UnauthorizedRequestVo {
+public class GetOAuthStatusRequestVo extends UnauthorizedRequestVo {
+    public String id;
 
-    public String name;
-
-    public String website;
-
-    public int isolated_team;
-
-    public int isolated_project;
+    public GetOAuthStatusRequestVo(String id) {
+        this.id = id;
+    }
 
     @Override
     public ShiftApiTask getApiTask(ShiftApiWrapper shiftApiWrapper, ApiResponseHandler responseHandler) {
-        // TODO
-        return null;
+        return new GetOAuthStatusTask(id, shiftApiWrapper, responseHandler);
     }
 }

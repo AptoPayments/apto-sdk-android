@@ -2,6 +2,9 @@ package com.shiftpayments.link.sdk.api.vos.requests.dashboard;
 
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
+import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
+import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 /**
  * Request data to create a project.
@@ -30,4 +33,10 @@ public class CreateProjectRequestVo extends UnauthorizedRequestVo {
     public String tracker_activate;
     public String secondary_auth_credential;
     public ActionVo welcome_screen_action;
+
+    @Override
+    public ShiftApiTask getApiTask(ShiftApiWrapper shiftApiWrapper, ApiResponseHandler responseHandler) {
+        // TODO
+        return null;
+    }
 }
