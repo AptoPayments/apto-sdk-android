@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -44,7 +43,7 @@ import java.net.URL;
  * @author Adrian
  */
 
-public class DisclaimerActivity extends AppCompatActivity implements DisclaimerView.ViewListener {
+public class DisclaimerActivity extends BaseActivity implements DisclaimerView.ViewListener {
 
     private DisclaimerView mView;
     private boolean mDisclosureLoaded = false;

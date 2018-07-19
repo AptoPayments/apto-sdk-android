@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.ui.activities.card;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -12,6 +11,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
+import com.shiftpayments.link.sdk.ui.activities.BaseActivity;
 import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
 import com.shiftpayments.link.sdk.ui.presenters.card.IssueVirtualCardDelegate;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
@@ -21,7 +21,7 @@ import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import org.greenrobot.eventbus.Subscribe;
 
-public class IssueVirtualCardActivity extends AppCompatActivity {
+public class IssueVirtualCardActivity extends BaseActivity {
 
     private IssueVirtualCardView mView;
     static final int KYC_STATUS_INTENT = 1;

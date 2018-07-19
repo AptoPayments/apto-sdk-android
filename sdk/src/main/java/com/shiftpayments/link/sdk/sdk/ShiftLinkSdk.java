@@ -12,6 +12,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.CreateCardApp
 import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.GetCardApplicationStatusRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.config.GetCardConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.config.GetLinkConfigRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.config.GetProjectConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivateFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddCardRequestVo;
@@ -163,7 +164,6 @@ public class ShiftLinkSdk {
 
     /**
      * Gets the card config.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getCardConfig() {
         checkComponents();
@@ -173,35 +173,34 @@ public class ShiftLinkSdk {
 
     /**
      * Gets the housing type list.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getHousingTypeList() {
         checkComponents();
-        //TODO
+        GetProjectConfigRequestVo request = new GetProjectConfigRequestVo();
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Gets the employment statuses list.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getIncomeTypesList() {
         checkComponents();
-        //TODO
+        GetProjectConfigRequestVo request = new GetProjectConfigRequestVo();
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Gets the salary frequencies list.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getSalaryFrequenciesList() {
         checkComponents();
-        //TODO
+        GetProjectConfigRequestVo request = new GetProjectConfigRequestVo();
+        executeOrEnqueueRequest(request);
     }
 
     /**
      * Creates a new user.
      * @param data Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void createUser(DataPointList data) {
         checkComponents();
@@ -212,7 +211,6 @@ public class ShiftLinkSdk {
     /**
      * Updates an existing user.
      * @param data Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void updateUser(DataPointList data) {
         checkComponents();
@@ -223,7 +221,6 @@ public class ShiftLinkSdk {
     /**
      * Creates a new user.
      * @param data Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void loginUser(LoginRequestVo data) {
         checkComponents();
@@ -232,7 +229,6 @@ public class ShiftLinkSdk {
 
     /**
      * Gets the current user info.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getCurrentUser(boolean throwSessionExpiredError) {
         checkComponents();
@@ -243,7 +239,6 @@ public class ShiftLinkSdk {
     /**
      * Creates a new user.
      * @param data Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getInitialOffers(InitialOffersRequestVo data) {
         checkComponents();
@@ -253,7 +248,6 @@ public class ShiftLinkSdk {
     /**
      * Creates a new loan application.
      * @param offerId The loan offer to apply to.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void createLoanApplication(String offerId) {
         checkComponents();
@@ -264,7 +258,6 @@ public class ShiftLinkSdk {
     /**
      * Fetches the list of open loan applications.
      * @param data Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getPendingLoanApplicationsList(ListRequestVo data) {
         checkComponents();
@@ -275,7 +268,6 @@ public class ShiftLinkSdk {
     /**
      * Fetches the current status of the application.
      * @param applicationId Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getLoanApplicationStatus(String applicationId) {
         checkComponents();
@@ -285,25 +277,19 @@ public class ShiftLinkSdk {
 
     /**
      * Links a financial account to the an application.
-     * @param applicationId Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
+     * @param data Mandatory API request data.
      */
-    public static void setApplicationAccount(ApplicationAccountRequestVo data, String applicationId) {
+    public static void setApplicationAccount(ApplicationAccountRequestVo data) {
         checkComponents();
-
-        // TODO: refactor
-        data.applicationId = applicationId;
         executeOrEnqueueRequest(data);
     }
 
     /**
      * Starts the phone verification process.
      * @param data Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void startVerification(StartVerificationRequestVo data) {
         checkComponents();
-        data.mHandler = getResponseHandler();
         executeOrEnqueueRequest(data);
     }
 
@@ -311,20 +297,15 @@ public class ShiftLinkSdk {
     /**
      * Completes the verification process.
      * @param data Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static void completeVerification(VerificationRequestVo data, String verificationId) {
+    public static void completeVerification(VerificationRequestVo data) {
         checkComponents();
-
-        // TODO: refactor
-        data.verificationId = verificationId;
         executeOrEnqueueRequest(data);
     }
 
     /**
      * Retrieve the current verification status.
      * @param data Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getVerificationStatus(String data) {
         checkComponents();
@@ -335,7 +316,6 @@ public class ShiftLinkSdk {
     /**
      * Restart the verification for the given verification ID
      * @param data Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void restartVerification(String data) {
         checkComponents();
@@ -346,7 +326,6 @@ public class ShiftLinkSdk {
     /**
      * Add a bank account
      * @param data Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void addBankAccount(AddBankAccountRequestVo data) {
         checkComponents();
@@ -356,7 +335,6 @@ public class ShiftLinkSdk {
     /**
      * Add a credit/debit card
      * @param data Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void addCard(Card data) {
         checkComponents();
@@ -367,7 +345,6 @@ public class ShiftLinkSdk {
     /**
      * Issue a new virtual card
      * @param data Mandatory API request data.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void issueVirtualCard(IssueVirtualCardRequestVo data) {
         checkComponents();
@@ -376,7 +353,6 @@ public class ShiftLinkSdk {
 
     /**
      * Gets the user's financial accounts.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getFinancialAccounts() {
         checkComponents();
@@ -386,7 +362,6 @@ public class ShiftLinkSdk {
 
     /**
      * Gets the user's financial accounts.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getFinancialAccount(String data) {
         checkComponents();
@@ -396,7 +371,6 @@ public class ShiftLinkSdk {
 
     /**
      * Activate financial account.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void activateFinancialAccount(String accountId) {
         checkComponents();
@@ -406,7 +380,6 @@ public class ShiftLinkSdk {
 
     /**
      * Enable financial account.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void enableFinancialAccount(String accountId) {
         checkComponents();
@@ -416,7 +389,6 @@ public class ShiftLinkSdk {
 
     /**
      * Disable financial account.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void disableFinancialAccount(String accountId) {
         checkComponents();
@@ -426,19 +398,14 @@ public class ShiftLinkSdk {
 
     /**
      * Update pin of financial account.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
-    public static void updateFinancialAccountPin(UpdateFinancialAccountPinRequestVo data, String accountId) {
+    public static void updateFinancialAccountPin(UpdateFinancialAccountPinRequestVo data) {
         checkComponents();
-
-        // TODO: refactor
-        data.accountId = accountId;
         executeOrEnqueueRequest(data);
     }
 
     /**
      * Gets the financial account's transactions.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getFinancialAccountTransactions(String accountId, int rows, String lastTransactionId) {
         checkComponents();
@@ -448,7 +415,6 @@ public class ShiftLinkSdk {
 
     /**
      * Gets the financial account's funding source.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getFinancialAccountFundingSource(String accountId) {
         checkComponents();
@@ -458,7 +424,6 @@ public class ShiftLinkSdk {
 
     /**
      * Gets the financial account's funding source.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getUserFundingSources() {
         checkComponents();
@@ -468,21 +433,16 @@ public class ShiftLinkSdk {
 
     /**
      * Sets the financial account's funding source.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void setAccountFundingSource(String accountId, String fundingSourceId) {
         checkComponents();
-
         SetFundingSourceRequestVo request = new SetFundingSourceRequestVo(fundingSourceId);
-        // TODO: refactor
         request.accountId = accountId;
-        
         executeOrEnqueueRequest(request);
     }
 
     /**
      * Registers the device to receive push notifications
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void registerPushNotificationToken(String token) {
         checkComponents();
@@ -492,7 +452,6 @@ public class ShiftLinkSdk {
 
     /**
      * Requests a URL to start the OAuth for the given provider
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void startOAuth(String provider) {
         checkComponents();
@@ -502,7 +461,6 @@ public class ShiftLinkSdk {
 
     /**
      * Requests the OAuth status
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getOAuthStatus(String id) {
         checkComponents();
@@ -513,7 +471,6 @@ public class ShiftLinkSdk {
     /**
      * Creates a new card application.
      * @param cardProductId The card product ID.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void createCardApplication(String cardProductId) {
         checkComponents();
@@ -524,7 +481,6 @@ public class ShiftLinkSdk {
     /**
      * Gets the card application status.
      * @param applicationId The card product ID.
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void getCardApplicationStatus(String applicationId) {
         checkComponents();
@@ -535,12 +491,9 @@ public class ShiftLinkSdk {
     /**
      * Sets the balance store data
      * @param request The custodian
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void setBalanceStore(String applicationId, SetBalanceStoreRequestVo request) {
         checkComponents();
-
-        // TODO: refactor
         request.applicationId = applicationId;
         executeOrEnqueueRequest(request);
     }
@@ -548,7 +501,6 @@ public class ShiftLinkSdk {
     /**
      * Request to be sent when the user accepts the disclaimer
      * @param request The application ID, Workflow ID and Action ID
-     * @return The {@link ShiftApiTask} that is being executed.
      */
     public static void acceptDisclaimer(AcceptDisclaimerRequestVo request) {
         checkComponents();

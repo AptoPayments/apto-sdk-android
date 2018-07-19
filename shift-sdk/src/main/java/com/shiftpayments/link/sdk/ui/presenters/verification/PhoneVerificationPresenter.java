@@ -78,7 +78,7 @@ public class PhoneVerificationPresenter
         mModel.setVerificationCode(mView.getVerificationCode());
 
         if (mModel.hasValidData()) {
-            ShiftPlatform.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
+            ShiftPlatform.completeVerification(mModel.getVerificationRequest());
         }
     }
 

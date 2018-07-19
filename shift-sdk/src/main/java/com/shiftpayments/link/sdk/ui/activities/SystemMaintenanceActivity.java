@@ -1,7 +1,6 @@
 package com.shiftpayments.link.sdk.ui.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
@@ -13,7 +12,7 @@ import com.shiftpayments.link.sdk.ui.views.SystemMaintenanceView;
  * @author Adrian
  */
 
-public class SystemMaintenanceActivity extends AppCompatActivity
+public class SystemMaintenanceActivity extends BaseActivity
         implements SystemMaintenanceView.ViewListener {
 
     @Override

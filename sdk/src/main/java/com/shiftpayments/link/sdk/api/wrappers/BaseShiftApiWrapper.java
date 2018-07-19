@@ -6,6 +6,7 @@ import com.shiftpayments.link.sdk.api.utils.NetworkCallback;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.concurrent.Executor;
 
@@ -162,10 +163,11 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
 
     @Override
     public void executePendingApiCalls() {
-        for(UnauthorizedRequestVo request : pendingApiCalls) {
+        for (final Iterator iterator = pendingApiCalls.iterator(); iterator.hasNext(); ) {
+            UnauthorizedRequestVo request = (UnauthorizedRequestVo) iterator.next();
             ShiftApiTask newApiTask = request.getApiTask(this, request.mHandler);
             newApiTask.executeOnExecutor(getExecutor());
-            pendingApiCalls.remove(request);
+            iterator.remove();
         }
     }
 }

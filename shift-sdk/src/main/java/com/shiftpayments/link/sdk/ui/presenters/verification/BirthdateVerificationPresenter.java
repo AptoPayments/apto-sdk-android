@@ -102,7 +102,7 @@ public class BirthdateVerificationPresenter
         if (mModel.hasValidBirthdate()) {
             mLoadingSpinnerManager.showLoading(true);
             super.saveData();
-            ShiftPlatform.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
+            ShiftPlatform.completeVerification(mModel.getVerificationRequest());
         }
     }
 

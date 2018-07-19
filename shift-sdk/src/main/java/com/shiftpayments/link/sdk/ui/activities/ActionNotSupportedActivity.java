@@ -1,7 +1,6 @@
 package com.shiftpayments.link.sdk.ui.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -12,7 +11,7 @@ import com.shiftpayments.link.sdk.ui.views.ActionNotSupportedView;
  * @author Adrian
  */
 
-public class ActionNotSupportedActivity extends AppCompatActivity {
+public class ActionNotSupportedActivity extends BaseActivity {
 
     private ActionNotSupportedView mView;
 

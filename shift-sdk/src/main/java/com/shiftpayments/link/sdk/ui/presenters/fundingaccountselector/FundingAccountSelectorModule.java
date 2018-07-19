@@ -107,10 +107,10 @@ public class FundingAccountSelectorModule extends ShiftBaseModule
         ApplicationAccountRequestVo request = new ApplicationAccountRequestVo();
         request.accountId = accountId;
         request.accountType = LoanApplicationAccountType.FUNDING;
+        request.applicationId = LoanStorage.getInstance().getCurrentLoanApplication().id;
 
-        String applicationId = LoanStorage.getInstance().getCurrentLoanApplication().id;
         ShiftLinkSdk.getResponseHandler().subscribe(this);
-        ShiftPlatform.setApplicationAccount(request, applicationId);
+        ShiftPlatform.setApplicationAccount(request);
         showLoading(true);
     }
 

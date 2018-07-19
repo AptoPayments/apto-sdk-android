@@ -186,7 +186,7 @@ public class ShiftLinkSdkTest {
     @Test
     public void completePhoneVerificationTaskIsCreated() {
         Assert.assertThat("Task should have been created.",
-                ShiftLinkSdk.completeVerification(new VerificationRequestVo(), ""),
+                ShiftLinkSdk.completeVerification(new VerificationRequestVo()),
                 CoreMatchers.<ShiftApiTask>notNullValue());
     }
 

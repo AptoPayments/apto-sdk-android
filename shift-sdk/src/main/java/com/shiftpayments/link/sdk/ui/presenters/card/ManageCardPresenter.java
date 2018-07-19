@@ -407,7 +407,8 @@ public class ManageCardPresenter
     private void updateCardPin(String pin) {
         UpdateFinancialAccountPinRequestVo request = new UpdateFinancialAccountPinRequestVo();
         request.pin = pin;
-        ShiftPlatform.updateFinancialAccountPin(request, mModel.getAccountId());
+        request.accountId = mModel.getAccountId();
+        ShiftPlatform.updateFinancialAccountPin(request);
     }
 
     private boolean isViewReady() {

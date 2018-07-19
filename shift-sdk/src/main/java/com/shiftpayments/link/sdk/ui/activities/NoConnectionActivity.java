@@ -1,7 +1,6 @@
 package com.shiftpayments.link.sdk.ui.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.api.vos.responses.ConnectionEstablishedVo;
@@ -16,7 +15,7 @@ import org.greenrobot.eventbus.Subscribe;
  * @author Adrian
  */
 
-public class NoConnectionActivity extends AppCompatActivity {
+public class NoConnectionActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

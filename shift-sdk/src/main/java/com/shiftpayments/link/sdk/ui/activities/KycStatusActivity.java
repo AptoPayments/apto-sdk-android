@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -20,7 +19,7 @@ import org.greenrobot.eventbus.Subscribe;
  * @author Adrian
  */
 
-public class KycStatusActivity extends AppCompatActivity implements KycStatusView.ViewListener {
+public class KycStatusActivity extends BaseActivity implements KycStatusView.ViewListener {
 
     private KycStatusView mView;
 
