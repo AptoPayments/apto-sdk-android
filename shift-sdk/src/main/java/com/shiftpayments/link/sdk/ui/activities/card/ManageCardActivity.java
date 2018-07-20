@@ -16,6 +16,9 @@ import com.venmo.android.pin.PinListener;
  */
 
 public class ManageCardActivity extends FragmentMvpActivity implements PinListener {
+
+    private ManageCardDelegate mDelegate;
+
     /** {@inheritDoc} */
     @Override
     protected ManageCardView createView() {
@@ -26,7 +29,8 @@ public class ManageCardActivity extends FragmentMvpActivity implements PinListen
     @Override
     protected ManageCardPresenter createPresenter(BaseDelegate delegate) {
         if(delegate instanceof ManageCardDelegate) {
-            return new ManageCardPresenter(getSupportFragmentManager(), this, (ManageCardDelegate)delegate);
+            mDelegate = (ManageCardDelegate) delegate;
+            return new ManageCardPresenter(getSupportFragmentManager(), this, mDelegate);
         }
         else {
             throw new NullPointerException("Received Module does not implement ManageCardDelegate!");
@@ -42,5 +46,11 @@ public class ManageCardActivity extends FragmentMvpActivity implements PinListen
     @Override
     public void onPinCreated() {
         // Do nothing
+    }
+
+    @Override
+    public void onBackPressed() {
+        mDelegate.onManageCardBackPressed();
+        super.onBackPressed();
     }
 }

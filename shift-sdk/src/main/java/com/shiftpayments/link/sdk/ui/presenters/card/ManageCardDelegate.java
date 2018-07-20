@@ -9,5 +9,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 public interface ManageCardDelegate {
 
     void onSessionExpired(SessionExpiredErrorVo error);
+    void onManageCardBackPressed();
 
 }
