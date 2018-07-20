@@ -223,6 +223,12 @@ public class IdentityVerificationPresenter
         });
         dialog.getListView().setOnItemClickListener(
                 (parent, view, position, id) -> {
+                    for(int i=0; i<parent.getChildCount(); i++) {
+                        CheckedTextView child = (CheckedTextView) parent.getChildAt(i);
+                        if(child.isChecked()) {
+                            child.toggle();
+                        }
+                    }
                     CheckedTextView checkedTextView = (CheckedTextView) view;
                     Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(mActivity, R.drawable.abc_btn_radio_material));
                     DrawableCompat.setTintList(drawable, UIStorage.getInstance().getRadioButtonColors());
