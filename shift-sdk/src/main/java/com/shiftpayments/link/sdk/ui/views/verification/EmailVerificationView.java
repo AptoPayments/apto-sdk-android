@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
-import com.shiftpayments.link.sdk.ui.views.DisplayErrorMessage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.views.userdata.NextButtonListener;
 import com.shiftpayments.link.sdk.ui.views.userdata.UserDataView;
@@ -20,7 +19,7 @@ import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
  */
 public class EmailVerificationView
         extends UserDataView<EmailVerificationView.ViewListener>
-        implements DisplayErrorMessage, ViewWithToolbar, View.OnClickListener {
+        implements ViewWithToolbar, View.OnClickListener {
 
     /**
      * Callbacks this {@link View} will invoke.
@@ -105,12 +104,6 @@ public class EmailVerificationView
         else if (id == R.id.tv_resend_bttn) {
             mListener.resendClickHandler();
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void displayErrorMessage(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public void displaySentMessage(String message) {

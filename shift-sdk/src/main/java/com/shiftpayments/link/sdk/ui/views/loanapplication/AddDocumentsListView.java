@@ -13,20 +13,18 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.documents.AddDocumentModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ResourceUtil;
-import com.shiftpayments.link.sdk.ui.views.DisplayErrorMessage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 
 /**
  * Shows the list of documents the lender requires for a loan application.
  * @author Wijnand
  */
-public class AddDocumentsListView extends CoordinatorLayout implements DisplayErrorMessage, ViewWithToolbar, View.OnClickListener {
+public class AddDocumentsListView extends CoordinatorLayout implements ViewWithToolbar, View.OnClickListener {
 
     /**
      * Callbacks that this View will invoke.
@@ -165,12 +163,6 @@ public class AddDocumentsListView extends CoordinatorLayout implements DisplayEr
     @Override
     public Toolbar getToolbar() {
         return mToolbar;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void displayErrorMessage(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     /**

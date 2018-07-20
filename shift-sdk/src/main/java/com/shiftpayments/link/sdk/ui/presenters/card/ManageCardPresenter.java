@@ -33,6 +33,7 @@ import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintAuthenticationDialogFragment;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintDelegate;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintHandler;
@@ -238,7 +239,7 @@ public class ManageCardPresenter
     public void onAuthenticationFailed(String error) {
         mIsUserAuthenticated = false;
         mModel.showCardInfo = false;
-        Toast.makeText(mActivity, error, Toast.LENGTH_SHORT).show();
+        ApiErrorUtil.showErrorMessage(error, mActivity);
         mManageCardBottomSheet.setShowCardInfoSwitch(mModel.showCardInfo);
     }
 
@@ -294,7 +295,7 @@ public class ManageCardPresenter
             mTransactionsAdapter.notifyItemChanged(0);
         }
         else {
-            Toast.makeText(mActivity, "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+            ApiErrorUtil.showErrorMessage(error, mActivity);
         }
     }
 
@@ -406,7 +407,8 @@ public class ManageCardPresenter
     private void updateCardPin(String pin) {
         UpdateFinancialAccountPinRequestVo request = new UpdateFinancialAccountPinRequestVo();
         request.pin = pin;
-        ShiftPlatform.updateFinancialAccountPin(request, mModel.getAccountId());
+        request.accountId = mModel.getAccountId();
+        ShiftPlatform.updateFinancialAccountPin(request);
     }
 
     private boolean isViewReady() {

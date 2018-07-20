@@ -186,6 +186,7 @@ public class BirthdateVerificationModel extends AbstractUserDataModel implements
     public VerificationRequestVo getVerificationRequest() {
         VerificationRequestVo request = new VerificationRequestVo();
         request.secret = getFormattedBirthdate();
+        request.verificationId = getVerificationId();
         return request;
     }
 

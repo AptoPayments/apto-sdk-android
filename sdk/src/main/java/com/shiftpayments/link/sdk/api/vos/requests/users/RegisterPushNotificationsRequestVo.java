@@ -2,6 +2,10 @@ package com.shiftpayments.link.sdk.api.vos.requests.users;
 
 import com.google.gson.annotations.SerializedName;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
+import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
+import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
+import com.shiftpayments.link.sdk.sdk.tasks.users.RegisterPushNotificationsTask;
 
 /**
  * Request data to register a device for push notifications.
@@ -18,5 +22,10 @@ public class RegisterPushNotificationsRequestVo extends UnauthorizedRequestVo {
     public RegisterPushNotificationsRequestVo(String token) {
         deviceType = "ANDROID";
         pushToken = token;
+    }
+
+    @Override
+    public ShiftApiTask getApiTask(ShiftApiWrapper shiftApiWrapper, ApiResponseHandler responseHandler) {
+        return new RegisterPushNotificationsTask(pushToken, shiftApiWrapper, responseHandler);
     }
 }

@@ -238,5 +238,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.shiftpayments.link.sdk.example.activities.MainActivity" />
         </activity>
+
+        <activity
+            android:name="com.shiftpayments.link.sdk.ui.activities.NoConnectionActivity"
+            android:theme="@style/Theme.LedgeLine.Example">
+        </activity>
+
+        <activity
+            android:name="com.shiftpayments.link.sdk.ui.activities.SystemMaintenanceActivity"
+            android:theme="@style/Theme.LedgeLine.Example">
+        </activity>
     </application>
 </manifest>

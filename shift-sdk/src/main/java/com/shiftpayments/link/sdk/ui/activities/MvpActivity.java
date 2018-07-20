@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.ui.activities;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +28,7 @@ import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
  * @author Wijnand
  */
 public abstract class MvpActivity<M extends ActivityModel, V extends View & ViewWithToolbar, P extends ActivityPresenter<M, V>>
-        extends AppCompatActivity {
+        extends BaseActivity {
 
     protected V mView;
     protected P mPresenter;

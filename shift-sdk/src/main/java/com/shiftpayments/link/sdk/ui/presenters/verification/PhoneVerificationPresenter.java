@@ -13,6 +13,7 @@ import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.models.verification.PhoneVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataPresenter;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.utils.PhoneHelperUtil;
 import com.shiftpayments.link.sdk.ui.views.verification.PhoneVerificationView;
@@ -77,7 +78,7 @@ public class PhoneVerificationPresenter
         mModel.setVerificationCode(mView.getVerificationCode());
 
         if (mModel.hasValidData()) {
-            ShiftPlatform.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
+            ShiftPlatform.completeVerification(mModel.getVerificationRequest());
         }
     }
 
@@ -130,7 +131,7 @@ public class PhoneVerificationPresenter
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        setApiError(error);
+        super.setApiError(error);
     }
 
     @Override
@@ -140,7 +141,7 @@ public class PhoneVerificationPresenter
     }
 
     private void displayWrongCodeMessage() {
-        mView.displayErrorMessage(mActivity.getString(R.string.phone_verification_error));
+        ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.phone_verification_error), mActivity);
         mView.clearPinView();
     }
 }

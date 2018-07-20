@@ -13,6 +13,7 @@ import com.shiftpayments.link.sdk.ui.fragments.DatePickerFragment;
 import com.shiftpayments.link.sdk.ui.models.verification.BirthdateVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataPresenter;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.utils.ResourceUtil;
 import com.shiftpayments.link.sdk.ui.views.verification.BirthdateVerificationView;
@@ -101,7 +102,7 @@ public class BirthdateVerificationPresenter
         if (mModel.hasValidBirthdate()) {
             mLoadingSpinnerManager.showLoading(true);
             super.saveData();
-            ShiftPlatform.completeVerification(mModel.getVerificationRequest(), mModel.getVerificationId());
+            ShiftPlatform.completeVerification(mModel.getVerificationRequest());
         }
     }
 
@@ -123,7 +124,7 @@ public class BirthdateVerificationPresenter
         if (response != null) {
             mModel.getVerification().setVerificationStatus(response.status);
             if(!mModel.getVerification().isVerified()) {
-                mView.displayErrorMessage(mActivity.getString(R.string.birthdate_verification_error));
+                ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.birthdate_verification_error), mActivity);
             }
             else {
                 mDelegate.birthdateSucceeded();
@@ -137,6 +138,6 @@ public class BirthdateVerificationPresenter
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        setApiError(error);
+        super.setApiError(error);
     }
 }

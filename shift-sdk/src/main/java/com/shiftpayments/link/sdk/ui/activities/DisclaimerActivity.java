@@ -5,13 +5,11 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.Address;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
@@ -22,6 +20,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.DisclaimerUtil;
 import com.shiftpayments.link.sdk.ui.utils.LanguageUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
@@ -44,7 +43,7 @@ import java.net.URL;
  * @author Adrian
  */
 
-public class DisclaimerActivity extends AppCompatActivity implements DisclaimerView.ViewListener {
+public class DisclaimerActivity extends BaseActivity implements DisclaimerView.ViewListener {
 
     private DisclaimerView mView;
     private boolean mDisclosureLoaded = false;
@@ -173,8 +172,7 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        // TODO: handle this with manager after merge
-        Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show();
+        ApiErrorUtil.showErrorMessage(error, this);
     }
 
     private class DownloadFileTask extends AsyncTask<String, Integer, String> {
@@ -259,7 +257,8 @@ public class DisclaimerActivity extends AppCompatActivity implements DisclaimerV
             mWakeLock.release();
             mLoadingSpinnerManager.showLoading(false);
             if (result == null)
-                mView.displayErrorMessage(getString(R.string.disclaimer_error));
+                ApiErrorUtil.showErrorMessage(getString(R.string.disclaimer_error),
+                        DisclaimerActivity.this);
             else {
                 mDisclosureLoaded = true;
                 mView.loadPdf(new File(getFilesDir(), mFileName));

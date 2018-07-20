@@ -1,7 +1,6 @@
 package com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector;
 
 import android.app.Activity;
-import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.utils.loanapplication.LoanApplicationAccountType;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
@@ -15,6 +14,7 @@ import com.shiftpayments.link.sdk.ui.activities.fundingaccountselector.EnableAut
 import com.shiftpayments.link.sdk.ui.presenters.financialaccountselector.FinancialAccountSelectorModule;
 import com.shiftpayments.link.sdk.ui.storages.LoanStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
@@ -107,10 +107,10 @@ public class FundingAccountSelectorModule extends ShiftBaseModule
         ApplicationAccountRequestVo request = new ApplicationAccountRequestVo();
         request.accountId = accountId;
         request.accountType = LoanApplicationAccountType.FUNDING;
+        request.applicationId = LoanStorage.getInstance().getCurrentLoanApplication().id;
 
-        String applicationId = LoanStorage.getInstance().getCurrentLoanApplication().id;
         ShiftLinkSdk.getResponseHandler().subscribe(this);
-        ShiftPlatform.setApplicationAccount(request, applicationId);
+        ShiftPlatform.setApplicationAccount(request);
         showLoading(true);
     }
 
@@ -133,6 +133,6 @@ public class FundingAccountSelectorModule extends ShiftBaseModule
     public void handleApiError(ApiErrorVo error) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
-        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
+        ApiErrorUtil.showErrorMessage(error, getActivity());
     }
 }

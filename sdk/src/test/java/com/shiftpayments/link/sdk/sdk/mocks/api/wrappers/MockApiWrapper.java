@@ -74,7 +74,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.verifications.StartVerificat
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
-import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 
 import java.util.HashMap;
 import java.util.concurrent.Executor;
@@ -170,7 +169,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public void enqueueApiCall(ShiftApiTask shiftApiTask) {
+    public void enqueueApiCall(UnauthorizedRequestVo unauthorizedRequestVo) {
 
     }
 

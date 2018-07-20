@@ -13,6 +13,7 @@ import com.shiftpayments.link.sdk.ui.models.financialaccountselector.AddFinancia
 import com.shiftpayments.link.sdk.ui.models.financialaccountselector.AddVirtualCardModel;
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.financialaccountselector.AddFinancialAccountListView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
@@ -149,7 +150,7 @@ public class AddFinancialAccountListPresenter
     public void handleApiError(ApiErrorVo error) {
         if (mView != null) {
             mLoadingSpinnerManager.showLoading(false);
-            mView.displayErrorMessage("API Error: " + error);
+            ApiErrorUtil.showErrorMessage(error, mActivity);
         }
     }
 }

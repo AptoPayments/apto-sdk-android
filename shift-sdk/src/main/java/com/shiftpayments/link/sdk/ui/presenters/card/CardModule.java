@@ -26,6 +26,7 @@ import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.vos.ApplicationVo;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
@@ -63,7 +64,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getCardConfig())
                 .exceptionally(ex -> {
-                    super.showError(ex.toString());
+                    ApiErrorUtil.showErrorMessage(ex, getActivity());
                     return null;
                 })
                 .thenAccept(this::handleConfig);
@@ -84,6 +85,11 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Override
     public void onSessionExpired(SessionExpiredErrorVo error) {
         this.handleSessionExpiredError(error);
+    }
+
+    @Override
+    public void onManageCardBackPressed() {
+        showHomeActivity();
     }
 
     /**
@@ -143,7 +149,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        super.showError(error.toString());
+        super.showError(error);
     }
 
     /**

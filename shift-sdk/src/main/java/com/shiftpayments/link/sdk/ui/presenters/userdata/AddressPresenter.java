@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.ui.geocoding.handlers.GeocodingHandler;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.ResultVo;
 import com.shiftpayments.link.sdk.ui.models.userdata.AddressModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.userdata.AddressView;
 
@@ -169,11 +170,9 @@ public class AddressPresenter
                         callback.execute();
                     }
                 },
-                e -> {
+                ex -> {
                     mLoadingSpinnerManager.showLoading(false);
-                    if(e.getMessage() != null) {
-                        mView.displayErrorMessage(e.getMessage());
-                    }
+                    ApiErrorUtil.showErrorMessage(ex, mActivity);
                 });
     }
 

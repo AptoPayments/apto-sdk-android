@@ -26,6 +26,7 @@ import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModuleConfig;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 
@@ -51,7 +52,7 @@ public class LinkModule extends ShiftBaseModule {
         CompletableFuture
                 .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
                 .exceptionally(ex -> {
-                    showError(ex.getMessage());
+                    ApiErrorUtil.showErrorMessage(ex, getActivity());
                     return null;
                 })
                 .thenAccept(this::projectConfigRetrieved);
@@ -86,7 +87,7 @@ public class LinkModule extends ShiftBaseModule {
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        showError(error.toString());
+        super.showError(error);
     }
 
     /**

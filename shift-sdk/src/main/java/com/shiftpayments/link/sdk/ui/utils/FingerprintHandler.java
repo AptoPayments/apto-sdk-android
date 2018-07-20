@@ -10,7 +10,6 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.support.v4.app.ActivityCompat;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -75,20 +74,20 @@ public class FingerprintHandler {
 
     public boolean isFingerprintAuthPossible() {
         if(!mFingerprintManager.isHardwareDetected()) {
-            Toast.makeText(mContext, "Your device doesn't support fingerprint authentication", Toast.LENGTH_SHORT).show();
+            ApiErrorUtil.showErrorMessage("Your device doesn't support fingerprint authentication", mContext);
             return false;
         }
         if(ActivityCompat.checkSelfPermission(mContext, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(mContext, "Please enable the fingerprint permission", Toast.LENGTH_SHORT).show();
+            ApiErrorUtil.showErrorMessage("Please enable the fingerprint permission", mContext);
             return false;
         }
         if(!mFingerprintManager.hasEnrolledFingerprints()) {
-            Toast.makeText(mContext, "No fingerprint configured. Please register at least one fingerprint in your device's Settings", Toast.LENGTH_SHORT).show();
+            ApiErrorUtil.showErrorMessage("No fingerprint configured. Please register at least one fingerprint in your device's Settings", mContext);
             return false;
         }
         KeyguardManager keyguardManager = (KeyguardManager) mContext.getSystemService(KEYGUARD_SERVICE);
         if(!keyguardManager.isKeyguardSecure()) {
-            Toast.makeText(mContext, "Please enable lockscreen security in your device's Settings", Toast.LENGTH_SHORT).show();
+            ApiErrorUtil.showErrorMessage("Please enable lockscreen security in your device's Settings", mContext);
             return false;
         }
         return true;

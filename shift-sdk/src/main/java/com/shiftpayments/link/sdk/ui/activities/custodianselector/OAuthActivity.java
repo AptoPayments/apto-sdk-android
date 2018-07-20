@@ -1,6 +1,5 @@
 package com.shiftpayments.link.sdk.ui.activities.custodianselector;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.StartOAuthResponseVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
+import com.shiftpayments.link.sdk.ui.activities.BaseActivity;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.OAuthDelegate;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
@@ -19,7 +19,7 @@ import org.greenrobot.eventbus.Subscribe;
  * Created by adrian on 20/02/2018.
  */
 
-public class OAuthActivity extends Activity {
+public class OAuthActivity extends BaseActivity {
 
     private OAuthDelegate mCurrentModule;
     private Thread mGetStatusThread;

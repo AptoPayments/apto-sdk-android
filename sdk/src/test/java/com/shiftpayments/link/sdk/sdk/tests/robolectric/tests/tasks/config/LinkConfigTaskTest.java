@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.sdk.tests.robolectric.tests.tasks.config;
 
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.config.GetLinkConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shiftpayments.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
@@ -21,7 +22,7 @@ public class LinkConfigTaskTest {
     @Before
     public void setUp() {
         mTask = new RoboLinkApiTaskWrapper<>(new LinkConfigTask(
-                new UnauthorizedRequestVo(), new MockApiWrapper(), new MockResponseHandler()
+                new GetLinkConfigRequestVo(), new MockApiWrapper(), new MockResponseHandler()
         ));
     }
 

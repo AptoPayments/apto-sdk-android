@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.widget.Toast;
 
+import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 
 import java.lang.ref.SoftReference;
 
@@ -84,14 +85,12 @@ public abstract class ShiftBaseModule implements NavigationCommand, BaseDelegate
         });
     }
 
-    protected void showError(String errorMessage) {
-        if(!errorMessage.isEmpty()) {
-            getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show());
-        }
+    protected void showError(ApiErrorVo error) {
+        ApiErrorUtil.showErrorMessage(error, getActivity());
     }
 
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        mActivity.runOnUiThread(()-> showError(mActivity.getResources().getString(R.string.session_expired_error)));
+        ApiErrorUtil.showErrorMessage(error, mActivity);
         ShiftPlatform.clearUserToken(mActivity);
     }
 }

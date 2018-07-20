@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import com.shiftpayments.link.sdk.ui.R;
@@ -88,12 +87,6 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
     public void loadPlainText(String text) {
         mTextView.setVisibility(VISIBLE);
         mTextView.setText(text);
-    }
-
-    public void displayErrorMessage(String message) {
-        if(!message.isEmpty()) {
-            Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
-        }
     }
 
     public void loadPdf(File pdfFile) {

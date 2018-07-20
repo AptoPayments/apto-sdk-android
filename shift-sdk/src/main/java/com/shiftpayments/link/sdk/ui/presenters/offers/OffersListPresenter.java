@@ -22,6 +22,7 @@ import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.LinkStorage;
 import com.shiftpayments.link.sdk.ui.storages.LoanStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.offers.OfferBaseSummaryView;
 import com.shiftpayments.link.sdk.ui.views.offers.OfferCarouselSummaryView;
@@ -316,8 +317,8 @@ public class OffersListPresenter
             mLoadingSpinnerManager.showLoading(false);
         }
 
-        String message = mActivity.getString(R.string.id_verification_toast_api_error, error.toString());
-        mView.displayErrorMessage(message);
+        String message = mActivity.getString(R.string.toast_api_error, error.toString());
+        ApiErrorUtil.showErrorMessage(error, mActivity);
 
         if (ShiftApiWrapper.INITIAL_OFFERS_PATH.equals(error.request_path) && mView != null) {
             mView.showError(true);

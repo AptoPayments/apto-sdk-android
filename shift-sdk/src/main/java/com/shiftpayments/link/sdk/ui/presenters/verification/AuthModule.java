@@ -1,7 +1,6 @@
 package com.shiftpayments.link.sdk.ui.presenters.verification;
 
 import android.app.Activity;
-import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.Birthdate;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
@@ -19,7 +18,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.verifications.BaseVerificati
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
-import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.userdata.EmailActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.PhoneActivity;
@@ -30,6 +28,7 @@ import com.shiftpayments.link.sdk.ui.presenters.userdata.EmailDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.PhoneDelegate;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 
@@ -131,7 +130,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
     public void handleApiError(ApiErrorVo error) {
         showLoading(false);
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
+        ApiErrorUtil.showErrorMessage(error, getActivity());
         stopModule();
     }
 
@@ -145,7 +144,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
         showLoading(false);
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         ShiftPlatform.clearUserToken(getActivity());
-        Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.session_expired_error), Toast.LENGTH_SHORT).show();
+        ApiErrorUtil.showErrorMessage(error, getActivity());
         stopModule();
     }
 
@@ -266,7 +265,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
         } else if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email)) {
             startActivity(EmailActivity.class);
         } else {
-            Toast.makeText(getActivity(), "Configured primary credential is not supported!", Toast.LENGTH_SHORT).show();
+            ApiErrorUtil.showErrorMessage("Configured primary credential is not supported!", getActivity());
         }
     }
 
