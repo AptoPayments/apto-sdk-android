@@ -10,6 +10,8 @@ import com.shiftpayments.link.sdk.api.vos.responses.SystemMaintenanceVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
+import java.net.ConnectException;
+
 /**
  * Generic {@link AsyncTask} to make API requests.
  *
@@ -76,23 +78,23 @@ public abstract class ShiftApiTask<Params, Progress, Result, Request>
      */
     @Override
     protected Result doInBackground(Params... params) {
-        Result result;
+        Result result = null;
+        mSuccess = false;
 
         try {
             result = callApi();
             mSuccess = true;
         } catch (ApiException ae) {
             mError = ae.getError();
+            if(ae.getCause() instanceof ConnectException) {
+                mError.statusCode = 503;
+            }
             if(mError.serverMessage == null) {
                 mError.serverMessage = ae.getMessage();
             }
-            mSuccess = false;
-            result = null;
         } catch (Exception e) {
             mError = new ApiErrorVo();
             mError.serverMessage = e.getMessage();
-            mSuccess = false;
-            result = null;
         }
 
         return result;
