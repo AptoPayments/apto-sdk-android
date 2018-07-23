@@ -12,6 +12,7 @@ import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.BaseActivity;
+import com.shiftpayments.link.sdk.ui.activities.IssueCardErrorActivity;
 import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
 import com.shiftpayments.link.sdk.ui.presenters.card.IssueVirtualCardDelegate;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
@@ -86,7 +87,12 @@ public class IssueVirtualCardActivity extends BaseActivity {
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         mView.showLoading(false);
-        ApiErrorUtil.showErrorMessage(error, this);
+        if(error.statusCode==500) {
+            this.startActivity(new Intent(this, IssueCardErrorActivity.class));
+        }
+        else {
+            ApiErrorUtil.showErrorMessage(error, this);
+        }
     }
 
     @Override
