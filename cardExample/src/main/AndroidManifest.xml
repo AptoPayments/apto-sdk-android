@@ -222,5 +222,10 @@
             android:name="com.shiftpayments.link.sdk.ui.activities.SystemMaintenanceActivity"
             android:theme="@style/Theme.LedgeLine.Example">
         </activity>
+
+        <activity
+            android:name="com.shiftpayments.link.sdk.ui.activities.IssueCardErrorActivity"
+            android:theme="@style/Theme.LedgeLine.Example">
+        </activity>
     </application>
 </manifest>

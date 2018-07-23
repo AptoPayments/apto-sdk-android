@@ -10,20 +10,20 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 
 /**
- * Displays the system maintenance screen.
+ * Displays the issue card error screen.
  * @author Adrian
  */
-public class SystemMaintenanceView extends RelativeLayout implements View.OnClickListener {
+public class IssueCardErrorView extends RelativeLayout implements View.OnClickListener {
 
     private TextView mHeader;
     private TextView mBody;
     private TextView mTryAgainButton;
     private ViewListener mListener;
 
-    public SystemMaintenanceView(Context context) {
+    public IssueCardErrorView(Context context) {
         super(context);
     }
-    public SystemMaintenanceView(Context context, AttributeSet attrs) {
+    public IssueCardErrorView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
