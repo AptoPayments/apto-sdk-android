@@ -216,18 +216,18 @@ public class UIStorage {
     private static Map<String, Integer> createIconMap()
     {
         Map<String, Integer> iconMap = new HashMap<>();
-        iconMap.put("plane", R.drawable.flights);
-        iconMap.put("car", R.drawable.car);
-        iconMap.put("glass", R.drawable.alcohol);
-        iconMap.put("finance", R.drawable.withdraw);
-        iconMap.put("food", R.drawable.food);
-        iconMap.put("gas", R.drawable.fuel);
-        iconMap.put("bed", R.drawable.hotel);
-        iconMap.put("medical", R.drawable.medicine);
-        iconMap.put("camera", R.drawable.other);
-        iconMap.put("card", R.drawable.bank_card);
-        iconMap.put("cart", R.drawable.purchases);
-        iconMap.put("road", R.drawable.toll_road);
+        iconMap.put("plane", R.drawable.ic_flights);
+        iconMap.put("car", R.drawable.ic_car);
+        iconMap.put("glass", R.drawable.ic_alcohol);
+        iconMap.put("finance", R.drawable.ic_withdraw);
+        iconMap.put("food", R.drawable.ic_food);
+        iconMap.put("gas", R.drawable.ic_fuel);
+        iconMap.put("bed", R.drawable.ic_hotel);
+        iconMap.put("medical", R.drawable.ic_medicine);
+        iconMap.put("camera", R.drawable.ic_other);
+        iconMap.put("card", R.drawable.ic_bank_card);
+        iconMap.put("cart", R.drawable.ic_purchases);
+        iconMap.put("road", R.drawable.ic_toll_road);
         return iconMap;
     }
 }

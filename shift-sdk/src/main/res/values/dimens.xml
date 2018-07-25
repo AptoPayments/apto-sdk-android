@@ -33,4 +33,8 @@
 
     <dimen name="llsdk_transaction_details_title_text_size">24sp</dimen>
     <dimen name="llsdk_transaction_details_description_text_size">16sp</dimen>
+
+    <dimen name="llsdk_manage_card_title_text_size">16sp</dimen>
+    <dimen name="llsdk_manage_card_description_text_size">10sp</dimen>
+    <dimen name="llsdk_manage_card_amount_text_size">18sp</dimen>
 </resources>

@@ -55,6 +55,12 @@ public class DateUtil {
         return null;
     }
 
+    public static String getFormattedTransactionDate(String timestamp) {
+        Date date = new Date(Long.parseLong(timestamp));
+        SimpleDateFormat expectedFormat = new SimpleDateFormat("EEE, MMM dd 'at' hh:mm a", Locale.US);
+        return expectedFormat.format(date);
+    }
+
     public SimpleDateFormat getBirthdayFormat() {
         return new SimpleDateFormat(BIRTHDATE_DATE_FORMAT, mLocale);
     }

@@ -341,6 +341,9 @@ public class ManageCardPresenter
         if(response.balance.hasAmount()) {
             mModel.setBalance(new AmountVo(response.balance.amount, response.balance.currency));
         }
+        if(response.amountSpendable.hasAmount()) {
+            mModel.setSpendableAmount(new AmountVo(response.amountSpendable.amount, response.amountSpendable.currency));
+        }
         CardStorage.getInstance().setFundingSourceId(response.id);
         mTransactionsAdapter.notifyItemChanged(0);
         if(isViewReady()) {

@@ -6,11 +6,13 @@
 
     <TextView
         android:id="@+id/tv_card_balance"
-        android:layout_below="@+id/tv_card_balance_label"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tv_card_balance_label"
+        android:layout_marginLeft="16dp"
         android:textSize="22sp"
-        android:layout_alignParentStart="true" />
+        android:textColor="@color/llsdk_secondary_text_color"/>
 
     <TextView
         android:id="@+id/tv_card_balance_label"
@@ -18,11 +20,35 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:textSize="12sp"
         android:text="@string/card_management_card_balance"
-        android:textColor="@android:color/darker_gray" />
+        android:textColor="@color/llsdk_secondary_text_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_spendable_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tv_card_spendable_balance_label"
+        android:layout_marginRight="16dp"
+        android:textSize="22sp"
+        android:textColor="@color/llsdk_secondary_text_color"/>
+
+    <TextView
+        android:id="@+id/tv_card_spendable_balance_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/card_management_card_spendable_balance"
+        android:textColor="@color/llsdk_secondary_text_color"
+        android:textSize="12sp" />
 
     <com.shiftpayments.link.sdk.ui.views.card.CreditCardView
         android:id="@+id/credit_card_view"
@@ -30,20 +56,21 @@
         android:layout_height="210dp"
         android:layout_below="@id/tv_card_balance"
         android:layout_centerHorizontal="true"
-        android:layout_margin="8dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
         android:layout_marginTop="21dp" />
 
     <TextView
         android:id="@+id/tv_display_card_primary_bttn"
-        android:layout_width="wrap_content"
+        android:layout_width="209dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/credit_card_view"
         android:layout_centerHorizontal="true"
-        android:layout_margin="16dp"
-        android:textSize="12sp"
+        android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
         android:text="@string/card_management_primary_button"
-        android:textColor="@android:color/darker_gray" />
+        android:textColor="@color/llsdk_tertiary_text_color"
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/tv_display_card_secondary_bttn"
@@ -55,15 +82,13 @@
 
     <TextView
         android:id="@+id/tv_transactions_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_display_card_secondary_bttn"
-        android:paddingStart="16dp"
-        android:paddingLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:paddingTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="21dp"
         android:text="@string/card_management_transactions_title"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:background="@android:color/white" />
+        android:textColor="@color/llsdk_secondary_text_color"
+        android:textSize="12sp"
+        android:textStyle="bold" />
 </RelativeLayout>

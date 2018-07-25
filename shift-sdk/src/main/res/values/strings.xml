@@ -308,9 +308,10 @@
 
     <!-- card management screen -->
     <string name="card_management_card_balance">Current balance</string>
-    <string name="card_management_primary_button">TAP TO MANAGE CARD OR TAP ON THE NUMBER TO COPY TO CLIPBOARD</string>
+    <string name="card_management_card_spendable_balance">Spendable today</string>
+    <string name="card_management_primary_button">Tap to manage card or tap on the number to copy to clipboard</string>
     <string name="card_management_secondary_button">ACTIVATE VIRTUAL CARD</string>
-    <string name="card_management_transactions_title">Recent Transactions</string>
+    <string name="card_management_transactions_title">Most recent</string>
     <string name="card_activated">Card activated</string>
     <string name="card_enabled">Card enabled</string>
     <string name="card_disabled">Card disabled</string>

@@ -24,6 +24,7 @@ public class ManageCardModel implements Model {
     private Card mCard;
     public boolean showCardInfo;
     private AmountVo mBalance;
+    private AmountVo mSpendableAmount;
 
     /**
      * Creates a new {@link ManageCardModel} instance.
@@ -111,6 +112,13 @@ public class ManageCardModel implements Model {
         return "";
     }
 
+    public String getSpendableAmount() {
+        if (mSpendableAmount != null) {
+            return mSpendableAmount.toString();
+        }
+        return "";
+    }
+
     public String getAccountId() {
         if(mCard != null) {
             return mCard.mAccountId;
@@ -140,6 +148,10 @@ public class ManageCardModel implements Model {
     }
 
     public void setBalance(AmountVo balance) {
-        this.mBalance = balance;
+        mBalance = balance;
+    }
+
+    public void setSpendableAmount(AmountVo amount) {
+        mSpendableAmount = amount;
     }
 }

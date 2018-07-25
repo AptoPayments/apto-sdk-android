@@ -338,6 +338,31 @@
         <item name="android:background">@android:color/white</item>
     </style>
 
+    <!-- Manage card -->
+    <style name="llsdk_manage_card_card_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_primary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_title_text_size</item>
+    </style>
+    <style name="llsdk_manage_card_card_description">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_tertiary_text_color</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_description_text_size</item>
+    </style>
+    <style name="llsdk_manage_card_card_amount">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_primary_text_color</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">19dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_amount_text_size</item>
+        <item name="android:clickable">false</item>
+    </style>
+
     <!--
         LIGHT
     -->

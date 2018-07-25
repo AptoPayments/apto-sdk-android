@@ -3,13 +3,11 @@ package com.shiftpayments.link.sdk.ui.models.card;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.AdjustmentVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.ui.models.Model;
+import com.shiftpayments.link.sdk.ui.utils.DateUtil;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Concrete {@link Model} for the transaction details.
@@ -70,7 +68,7 @@ public class TransactionDetailsModel implements Model {
 
     public String getTransactionDate() {
         if(isStringFilled(mTransaction.creationTime)) {
-            return getFormattedDate(mTransaction.creationTime);
+            return DateUtil.getFormattedTransactionDate(mTransaction.creationTime);
         }
         return UNAVAILABLE;
     }
@@ -81,7 +79,7 @@ public class TransactionDetailsModel implements Model {
 
     public String getSettlementDate() {
         if(isStringFilled(mTransaction.settlement.date)) {
-            return getFormattedDate(mTransaction.settlement.date);
+            return DateUtil.getFormattedTransactionDate(mTransaction.settlement.date);
         }
         return UNAVAILABLE;
     }
@@ -138,12 +136,6 @@ public class TransactionDetailsModel implements Model {
 
     public String getHoldAmount() {
         return new AmountVo(mTransaction.holdAmount.amount, mTransaction.holdAmount.currency).toString();
-    }
-
-    private String getFormattedDate(String timestamp) {
-        Date date = new Date(Long.parseLong(timestamp));
-        SimpleDateFormat expectedFormat = new SimpleDateFormat("EEE, MMM dd 'at' hh:mm a", Locale.US);
-        return expectedFormat.format(date);
     }
 
     private boolean isStringFilled(String string) {

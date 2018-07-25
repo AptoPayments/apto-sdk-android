@@ -129,7 +129,7 @@ public class ManageCardView
 
     private void setColors() {
         mToolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.llsdk_actionbar_background)));
-        Drawable drawable = ContextCompat.getDrawable(getContext(),R.drawable.ic_action_update_profile);
+        Drawable drawable = ContextCompat.getDrawable(getContext(),R.drawable.ic_icon_account);
         mToolbar.setOverflowIcon(drawable);
 
     }

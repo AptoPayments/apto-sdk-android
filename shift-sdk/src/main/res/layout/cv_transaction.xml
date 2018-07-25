@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.shiftpayments.link.sdk.ui.views.card.TransactionView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="80dp"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:id="@+id/cv_transaction_view"
     android:background="@android:color/white">
@@ -9,34 +9,43 @@
     <RelativeLayout
         android:id="@+id/rl_transaction_holder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="19dp">
 
         <ImageView
             android:id="@+id/iv_icon"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:padding="8dp"
-            android:background="@android:color/white"
+            android:adjustViewBounds="true"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="28dp"
             android:clickable="false"/>
 
         <LinearLayout
+            android:id="@+id/ll_transactions_info_holder"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:padding="8dp"
             android:layout_toEndOf="@+id/iv_icon"
+            android:layout_toLeftOf="@+id/tv_transaction_amount"
             android:layout_toRightOf="@+id/iv_icon"
-            android:clickable="false">
+            android:layout_toStartOf="@+id/tv_transaction_amount"
+            android:clickable="false"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_title"
-                style="?attr/llsdk_addDocuments_cardTitleStyle" />
+                style="?attr/llsdk_manageCard_cardTitleStyle" />
 
             <TextView
                 android:id="@+id/tv_description"
-                style="?attr/llsdk_addDocuments_cardDescriptionStyle" />
+                style="?attr/llsdk_manageCard_cardDescriptionStyle" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_transaction_amount"
+            style="?attr/llsdk_manageCard_cardAmountStyle"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
 </com.shiftpayments.link.sdk.ui.views.card.TransactionView>
