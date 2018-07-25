@@ -4,20 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/custodian_logo"
-        android:layout_width="150dp"
-        android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal" />
-
     <TextView
         android:id="@+id/tv_card_balance"
-        android:layout_below="@+id/custodian_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="42sp"
-        android:gravity="center_horizontal" />
+        android:layout_below="@+id/ib_account"
+        android:gravity="center_horizontal"
+        android:textSize="42sp" />
 
     <TextView
         android:id="@+id/tv_card_balance_label"
