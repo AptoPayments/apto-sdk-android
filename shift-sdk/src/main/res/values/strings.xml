@@ -379,4 +379,8 @@
     <string name="system_maintenance_body">We’re currently undergoing system maintenance.\nPlease check back later</string>
     <string name="system_maintenance_button">TRY AGAIN</string>
 
+    <!-- Issue card error screen -->
+    <string name="issue_card_error_header">Error</string>
+    <string name="issue_card_error_body">There was an error while issuing your card</string>
+    <string name="issue_card_error_button">TRY AGAIN</string>
 </resources>

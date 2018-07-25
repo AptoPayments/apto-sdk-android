@@ -119,24 +119,6 @@ public class ManageCardPresenter
         getTransactions();
     }
 
-    private void getFundingSource() {
-        try {
-            mSemaphore.acquire();
-            ShiftPlatform.getFinancialAccountFundingSource(mModel.getAccountId());
-        } catch (InterruptedException e) {
-            ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
-        }
-    }
-
-    private void getTransactions() {
-        try {
-            mSemaphore.acquire();
-            ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
-        } catch (InterruptedException e) {
-            ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
-        }
-    }
-
     @Override
     public void detachView() {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
@@ -453,5 +435,23 @@ public class ManageCardPresenter
         Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
         mModel.setCard(card);
         mTransactionsAdapter.notifyItemChanged(0);
+    }
+
+    private void getFundingSource() {
+        try {
+            mSemaphore.acquire();
+            ShiftPlatform.getFinancialAccountFundingSource(mModel.getAccountId());
+        } catch (InterruptedException e) {
+            ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
+        }
+    }
+
+    private void getTransactions() {
+        try {
+            mSemaphore.acquire();
+            ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
+        } catch (InterruptedException e) {
+            ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
+        }
     }
 }

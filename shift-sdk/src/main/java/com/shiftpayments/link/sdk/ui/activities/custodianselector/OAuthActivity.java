@@ -43,6 +43,14 @@ public class OAuthActivity extends BaseActivity {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // This activity will listen for the OAuth status response in background
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+    }
+
+
     /**
      * Called when the start oAuth response has been received.
      * @param response API response.
