@@ -172,6 +172,7 @@ public class TransactionsAdapter extends
                     v -> mListener.cardNumberClickHandler(((EditText)v).getText().toString()));
             viewHolder.secondaryButton.setOnClickListener(
                     v -> mListener.activateCardBySecondaryBtnClickHandler());
+            viewHolder.accountButton.setOnClickListener(v -> mListener.accountClickHandler());
         }
         else if (position > 0) {
             viewHolder.transactionHolder.setOnClickListener(
