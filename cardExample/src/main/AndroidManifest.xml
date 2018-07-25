@@ -172,7 +172,7 @@
 
         <activity
             android:name="com.shiftpayments.link.sdk.ui.activities.custodianselector.OAuthActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:theme="@style/Theme.AppCompat.Translucent"
             android:windowSoftInputMode="adjustResize"
             android:launchMode="singleTask"
             android:alwaysRetainTaskState="true" >
