@@ -1,5 +1,7 @@
 package com.shiftpayments.link.sdk.ui.activities.card;
 
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -36,6 +38,15 @@ public class ManageCardActivity extends FragmentMvpActivity implements PinListen
             throw new NullPointerException("Received Module does not implement ManageCardDelegate!");
         }
 
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_update_profile, menu);
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

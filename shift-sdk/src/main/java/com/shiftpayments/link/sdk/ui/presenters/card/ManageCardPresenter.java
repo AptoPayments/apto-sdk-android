@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +23,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSou
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
+import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
@@ -50,6 +52,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.Semaphore;
 
 import static com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity.EXTRA_TRANSACTION;
 
@@ -65,6 +68,7 @@ public class ManageCardPresenter
     private static final String DIALOG_FRAGMENT_TAG = "fingerprintFragment";
     private static final int ROWS = 20;
 
+    private ActionBar mActionBar;
     private FragmentManager mFragmentManager;
     private ManageCardBottomSheet mManageCardBottomSheet;
     private FingerprintHandler mFingerprintHandler;
@@ -74,9 +78,9 @@ public class ManageCardPresenter
     private ArrayList mTransactionsList;
     private String mLastTransactionId;
     private boolean mIsUserAuthenticated;
-    private boolean mHasTransactionListArrived = false;
-    private boolean mHasFundingSourceArrived = false;
     private ManageCardDelegate mDelegate;
+    private Semaphore mSemaphore;
+    private static final int NUMBER_OF_CONCURRENT_CALLS = 2;
 
     public ManageCardPresenter(FragmentManager fragmentManager, ManageCardActivity activity, ManageCardDelegate delegate) {
         mFragmentManager = fragmentManager;
@@ -85,12 +89,14 @@ public class ManageCardPresenter
         mDelegate = delegate;
         mIsUserAuthenticated = false;
         mLastTransactionId = null;
+        mSemaphore = new Semaphore(NUMBER_OF_CONCURRENT_CALLS);
     }
 
     /** {@inheritDoc} */
     @Override
     public void attachView(ManageCardView view) {
         super.attachView(view);
+        setupToolbar();
         view.setViewListener(this);
         view.showLoading(mActivity, false);
 
@@ -109,8 +115,26 @@ public class ManageCardPresenter
         mTransactionsAdapter.setViewListener(this);
         view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter);
         ShiftLinkSdk.getResponseHandler().subscribe(this);
-        ShiftPlatform.getFinancialAccountFundingSource(mModel.getAccountId());
-        ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
+        getFundingSource();
+        getTransactions();
+    }
+
+    private void getFundingSource() {
+        try {
+            mSemaphore.acquire();
+            ShiftPlatform.getFinancialAccountFundingSource(mModel.getAccountId());
+        } catch (InterruptedException e) {
+            ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
+        }
+    }
+
+    private void getTransactions() {
+        try {
+            mSemaphore.acquire();
+            ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
+        } catch (InterruptedException e) {
+            ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
+        }
     }
 
     @Override
@@ -164,9 +188,8 @@ public class ManageCardPresenter
     public void pullToRefreshHandler() {
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         mLastTransactionId = null;
-        mHasFundingSourceArrived = false;
-        mHasTransactionListArrived = false;
-        ShiftPlatform.getFinancialAccountFundingSource(mModel.getAccountId());
+        getFundingSource();
+        getTransactions();
         mTransactionsAdapter.clear();
         mScrollListener.resetState();
     }
@@ -288,9 +311,11 @@ public class ManageCardPresenter
     public void handleApiError(ApiErrorVo error) {
         mView.showLoading(mActivity, false);
         mView.setRefreshing(false);
+        if(error.request_path.equals(ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH) || error.request_path.equals(ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH)) {
+            mSemaphore.release();
+        }
         if(error.statusCode==404) {
             // Card has no funding source
-            mHasFundingSourceArrived = true;
             mModel.setBalance(null);
             mTransactionsAdapter.notifyItemChanged(0);
         }
@@ -312,10 +337,7 @@ public class ManageCardPresenter
 
     @Subscribe
     public void handleResponse(TransactionListResponseVo response) {
-        mHasTransactionListArrived = true;
-        if(isViewReady()) {
-            mView.setRefreshing(false);
-        }
+        mSemaphore.release();
         mTransactionsList.addAll(Arrays.asList(response.data));
         int currentSize = mTransactionsAdapter.getItemCount();
         if(response.total_count <= 0) {
@@ -326,19 +348,28 @@ public class ManageCardPresenter
             mView.showNoTransactionsImage(false);
         }
         mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count -1);
+        if(isViewReady()) {
+            mView.setRefreshing(false);
+        }
     }
 
     @Subscribe
     public void handleResponse(FundingSourceVo response) {
-        mHasFundingSourceArrived = true;
-        if(isViewReady()) {
-            mView.setRefreshing(false);
-        }
+        mSemaphore.release();
         if(response.balance.hasAmount()) {
             mModel.setBalance(new AmountVo(response.balance.amount, response.balance.currency));
         }
         CardStorage.getInstance().setFundingSourceId(response.id);
-        ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
+        mTransactionsAdapter.notifyItemChanged(0);
+        if(isViewReady()) {
+            mView.setRefreshing(false);
+        }
+    }
+
+    protected void setupToolbar() {
+        mActivity.setSupportActionBar(mView.getToolbar());
+        mActionBar = mActivity.getSupportActionBar();
+        mActionBar.setTitle(null);
     }
 
     public static Intent getTransactionDetailsIntent(Context context, TransactionVo transactionVo) {
@@ -412,7 +443,7 @@ public class ManageCardPresenter
     }
 
     private boolean isViewReady() {
-        return mView!=null && mHasFundingSourceArrived && mHasTransactionListArrived;
+        return mView!=null && mSemaphore.availablePermits()==NUMBER_OF_CONCURRENT_CALLS;
     }
 
     private void showToastAndUpdateCard(Card card, String message) {

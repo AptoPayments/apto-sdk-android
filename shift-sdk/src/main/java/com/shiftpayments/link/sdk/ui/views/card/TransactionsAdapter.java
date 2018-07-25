@@ -66,7 +66,6 @@ public class TransactionsAdapter extends
         TextView cardBalanceLabel;
         TextView primaryButton;
         TextView secondaryButton;
-        ImageView custodianLogo;
         ImageButton accountButton;
         TextView transactionsTitle;
 
@@ -82,13 +81,12 @@ public class TransactionsAdapter extends
             super(itemView);
 
             if (viewType == 0) {
-                custodianLogo = itemView.findViewById(R.id.custodian_logo);
                 creditCardView = itemView.findViewById(R.id.credit_card_view);
                 cardBalance = itemView.findViewById(R.id.tv_card_balance);
                 cardBalanceLabel = itemView.findViewById(R.id.tv_card_balance_label);
                 primaryButton = itemView.findViewById(R.id.tv_display_card_primary_bttn);
                 secondaryButton = itemView.findViewById(R.id.tv_display_card_secondary_bttn);
-                accountButton = itemView.findViewById(R.id.ib_account);
+                /*accountButton = itemView.findViewById(R.id.ib_account);*/
                 transactionsTitle = itemView.findViewById(R.id.tv_transactions_title);
             } else if (viewType == 1) {
                 titleTextView = itemView.findViewById(R.id.tv_title);
@@ -113,7 +111,6 @@ public class TransactionsAdapter extends
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        ViewHolder viewHolder;
         switch (viewType) {
             case 0: // Header view
                 View headerView = inflater.inflate(R.layout.include_card_management, parent, false);
@@ -133,32 +130,22 @@ public class TransactionsAdapter extends
             viewHolder.creditCardView.setCardName(mModel.getCardHolderName());
             viewHolder.creditCardView.setCVV(mModel.getCVV());
             viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
-            viewHolder.cardBalance.setText(mModel.getCardBalance());
-            viewHolder.cardBalance.setTextColor(UIStorage.getInstance().getPrimaryColor());
-            if(mModel.getCardBalance().isEmpty()) {
-                viewHolder.cardBalanceLabel.setVisibility(View.GONE);
-                viewHolder.cardBalance.setVisibility(View.GONE);
-            }
-            else {
-                viewHolder.cardBalance.setText(mModel.getCardBalance());
-                viewHolder.cardBalance.setTextColor(UIStorage.getInstance().getPrimaryColor());
-                viewHolder.cardBalance.setVisibility(View.VISIBLE);
-                viewHolder.cardBalanceLabel.setVisibility(View.VISIBLE);
-            }
-            ShiftPlatform.getImageLoader().load(UIStorage.getInstance().getContextConfig().logoURL, viewHolder.custodianLogo);
+            showCardBalance(!mModel.getCardBalance().isEmpty(), viewHolder);
             viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
             showActivateCardButton(mModel.isCardCreated(), viewHolder);
         } else if (position > 0) {
             TransactionVo transaction = mTransactions.get(position-1);
 
             TextView titleTextView = viewHolder.titleTextView;
-            titleTextView.setText(new AmountVo(transaction.localAmount.amount, transaction.localAmount.currency).toString());
+            titleTextView.setText(new AmountVo(transaction.localAmount.amount,
+                    transaction.localAmount.currency).toString());
 
             TextView descriptionTextView = viewHolder.descriptionTextView;
             descriptionTextView.setText(transaction.description);
 
             ImageView iconImageView = viewHolder.iconImageView;
-            iconImageView.setImageDrawable(mContext.getDrawable(UIStorage.getInstance().getIcon(transaction.merchant.mcc.merchantCategoryIcon)));
+            iconImageView.setImageDrawable(mContext.getDrawable(UIStorage.getInstance().getIcon(
+                    transaction.merchant.mcc.merchantCategoryIcon)));
             iconImageView.setColorFilter(Color.BLACK);
         }
     }
@@ -181,23 +168,41 @@ public class TransactionsAdapter extends
         if (position == 0) {
             viewHolder.primaryButton.setOnClickListener(v -> mListener.manageCardClickHandler());
             viewHolder.creditCardView.setOnClickListener(v -> mListener.manageCardClickHandler());
-            viewHolder.creditCardView.getCardNumberView().setOnClickListener(v -> mListener.cardNumberClickHandler(((EditText)v).getText().toString()));
-            viewHolder.secondaryButton.setOnClickListener(v -> mListener.activateCardBySecondaryBtnClickHandler());
-            viewHolder.accountButton.setOnClickListener(v -> mListener.accountClickHandler());
+            viewHolder.creditCardView.getCardNumberView().setOnClickListener(
+                    v -> mListener.cardNumberClickHandler(((EditText)v).getText().toString()));
+            viewHolder.secondaryButton.setOnClickListener(
+                    v -> mListener.activateCardBySecondaryBtnClickHandler());
+/*            viewHolder.accountButton.setOnClickListener(v -> mListener.accountClickHandler());*/
         }
         else if (position > 0) {
-            viewHolder.transactionHolder.setOnClickListener(v -> mListener.transactionClickHandler(position-1));
+            viewHolder.transactionHolder.setOnClickListener(
+                    v -> mListener.transactionClickHandler(position-1));
         }
     }
 
     private void showActivateCardButton(boolean show, ViewHolder viewHolder) {
         if(show) {
-            viewHolder.secondaryButton.setBackgroundColor(UIStorage.getInstance().getPrimaryColor());
-            viewHolder.secondaryButton.setTextColor(UIStorage.getInstance().getPrimaryContrastColor());
+            viewHolder.secondaryButton.setBackgroundColor(
+                    UIStorage.getInstance().getPrimaryColor());
+            viewHolder.secondaryButton.setTextColor(
+                    UIStorage.getInstance().getPrimaryContrastColor());
             viewHolder.secondaryButton.setVisibility(View.VISIBLE);
         }
         else {
             viewHolder.secondaryButton.setVisibility(View.GONE);
+        }
+    }
+
+    private void showCardBalance(boolean show, ViewHolder viewHolder) {
+        if(show) {
+            viewHolder.cardBalance.setText(mModel.getCardBalance());
+            viewHolder.cardBalance.setTextColor(UIStorage.getInstance().getPrimaryColor());
+            viewHolder.cardBalance.setVisibility(View.VISIBLE);
+            viewHolder.cardBalanceLabel.setVisibility(View.VISIBLE);
+        }
+        else {
+            viewHolder.cardBalanceLabel.setVisibility(View.GONE);
+            viewHolder.cardBalance.setVisibility(View.GONE);
         }
     }
 }
