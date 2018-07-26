@@ -22,6 +22,7 @@ import com.shiftpayments.link.sdk.ui.R;
 public class CreditCardView extends RelativeLayout {
 
     private final Context mContext;
+    private final static double CARD_ASPECT_RATIO = 1.586;
 
     private final static int mCardNumberTextColor = Color.WHITE;
     private final static int mCardNameTextColor = Color.WHITE;
@@ -76,9 +77,16 @@ public class CreditCardView extends RelativeLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-
         enableCard();
         setBackgroundResource(mEnabledCardBackground);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = (int) (width / CARD_ASPECT_RATIO);
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     public void setExpiryDate(String expiryDate) {

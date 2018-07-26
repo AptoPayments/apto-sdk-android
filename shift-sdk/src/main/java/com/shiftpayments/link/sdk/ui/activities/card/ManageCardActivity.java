@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.activities.card;
 
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -47,6 +48,17 @@ public class ManageCardActivity extends FragmentMvpActivity implements PinListen
         inflater.inflate(R.menu.menu_update_profile, menu);
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int i = item.getItemId();
+        if (i == R.id.menu_update_profile) {
+            ((ManageCardPresenter) mPresenter).accountClickHandler();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

@@ -14,11 +14,11 @@
 
         <ImageView
             android:id="@+id/iv_icon"
-            android:layout_width="40dp"
+            android:layout_width="35dp"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            android:layout_marginLeft="23dp"
-            android:layout_marginRight="28dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="25dp"
             android:clickable="false"/>
 
         <LinearLayout

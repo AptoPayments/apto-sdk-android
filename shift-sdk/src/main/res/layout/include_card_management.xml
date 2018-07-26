@@ -22,7 +22,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:text="@string/card_management_card_balance"
         android:textColor="@color/llsdk_secondary_text_color"
         android:textSize="12sp" />
@@ -45,15 +45,15 @@
         android:layout_alignParentTop="true"
         android:layout_marginBottom="8dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:text="@string/card_management_card_spendable_balance"
         android:textColor="@color/llsdk_secondary_text_color"
         android:textSize="12sp" />
 
     <com.shiftpayments.link.sdk.ui.views.card.CreditCardView
         android:id="@+id/credit_card_view"
-        android:layout_width="333dp"
-        android:layout_height="210dp"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
         android:layout_below="@id/tv_card_balance"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="28dp"

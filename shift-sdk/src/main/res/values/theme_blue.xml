@@ -18,7 +18,7 @@
         <item name="colorAccent">@color/llsdk_blue_primary</item>
 
         <item name="llsdk_toolbarTheme">@style/Theme.LedgeLine.Sdk.Blue.Toolbar</item>
-        <item name="llsdk_toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="llsdk_toolbarPopupTheme">@style/Theme.LedgeLine.Sdk.Blue.Toolbar.Popup</item>
         <item name="llsdk_dataContainerStyle">@style/llsdk_user_data_entry_container</item>
         <item name="llsdk_bigButtonStyle">@style/llsdk_big_button_style_blue</item>
         <item name="llsdk_nextButtonStyle">@style/llsdk_user_data_next_button_blue</item>
@@ -83,6 +83,17 @@
             parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <item name="android:background">@color/llsdk_blue_primary</item>
+        <item name="android:actionButtonStyle">@style/llsdk_action_button_style</item>
+        <item name="actionButtonStyle">@style/llsdk_action_button_style</item>
+    </style>
+
+    <style
+        name="Theme.LedgeLine.Sdk.Blue.Toolbar.Popup"
+        parent="@style/ThemeOverlay.AppCompat.Light">
+
+        <item name="android:background">@color/llsdk_blue_primary</item>
+        <item name="android:actionButtonStyle">@style/llsdk_action_button_style</item>
+        <item name="actionButtonStyle">@style/llsdk_action_button_style</item>
     </style>
 
     <style

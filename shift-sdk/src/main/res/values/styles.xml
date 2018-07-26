@@ -20,7 +20,7 @@
         <item name="actionButtonStyle">@style/AppTheme.Toolbar.ActionButton</item>
     </style>
     <style name="Base.AppTheme.Toolbar.ActionButton" parent="@style/Widget.AppCompat.ActionButton">
-        <item name="android:minWidth">0dp</item>
+        <item name="android:minWidth">50dp</item>
         <item name="android:minHeight">0dp</item>
     </style>
     <style name="AppTheme.Toolbar.ActionButton" parent="@style/Base.AppTheme.Toolbar.ActionButton">
@@ -361,6 +361,12 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">@dimen/llsdk_manage_card_amount_text_size</item>
         <item name="android:clickable">false</item>
+    </style>
+
+    <style name="llsdk_action_button_style" parent="Widget.AppCompat.ActionButton">
+        <item name="android:minWidth">40dp</item>
+        <item name="android:maxWidth">50dp</item>
+        <item name="android:width">50dp</item>
     </style>
 
     <!--

@@ -3,9 +3,7 @@ package com.shiftpayments.link.sdk.ui.views.card;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -129,9 +127,6 @@ public class ManageCardView
 
     private void setColors() {
         mToolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.llsdk_actionbar_background)));
-        Drawable drawable = ContextCompat.getDrawable(getContext(),R.drawable.ic_icon_account);
-        mToolbar.setOverflowIcon(drawable);
-
     }
 
     public void showNoTransactionsImage(boolean show) {
