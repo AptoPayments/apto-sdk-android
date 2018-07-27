@@ -352,7 +352,7 @@
     <string name="account_management_funding_source_added">Funding source added</string>
 
     <!-- Transaction details screen -->
-    <string name="transaction_details_title">Transaction Details</string>
+    <string name="transaction_details_direction">Direction</string>
     <string name="transaction_details_amount">Amount</string>
     <string name="transaction_details_currency">Currency</string>
     <string name="transaction_details_type">Type</string>

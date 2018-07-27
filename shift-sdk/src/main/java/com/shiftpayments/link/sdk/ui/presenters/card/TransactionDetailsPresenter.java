@@ -8,7 +8,6 @@ import com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity;
 import com.shiftpayments.link.sdk.ui.models.card.TransactionDetailsModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
-import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.card.AdjustmentsAdapter;
 import com.shiftpayments.link.sdk.ui.views.card.TransactionDetailsView;
 
@@ -32,30 +31,30 @@ public class TransactionDetailsPresenter
     public void attachView(TransactionDetailsView view) {
         super.attachView(view);
         mActivity.setSupportActionBar(mView.getToolbar());
-        Integer icon = UIStorage.getInstance().getIcon(mModel.getTransaction().merchant.mcc.merchantCategoryIcon);
-        mView.setTransactionIcon(mActivity.getDrawable(icon));
         switch (mModel.getTransactionType()) {
             case DECLINE:
-                mView.setTransactionAmount("Declined");
+                /*mView.setTransactionAmount("Declined");*/
                 mView.setAmountLabel(mActivity.getResources().getString(R.string.transaction_details_declined_amount));
                 mView.setDeclineReason(mModel.getDeclinedReason());
                 break;
             case PENDING:
                 mView.setAmountLabel(mActivity.getResources().getString(R.string.transaction_details_amount));
-                mView.setTransactionAmount("Pending");
+                /*mView.setTransactionAmount("Pending");*/
                 break;
             default:
                 mView.setAmountLabel(mActivity.getResources().getString(R.string.transaction_details_amount));
-                mView.setTransactionAmount(mModel.getLocalAmount());
+                /*mView.setTransactionAmount(mModel.getLocalAmount());*/
         }
+
+        mView.setTitle(mModel.getMerchantName() + " " + mModel.getLocalAmount());
         mView.setTransactionDate(mModel.getTransactionDate());
         mView.setShiftId(mModel.getShiftId());
         mView.setType(mModel.getTransactionType().toString());
         mView.setDetailAmount(mModel.getLocalAmount());
         mView.setCurrency(mModel.getCurrency());
         mView.setLocation(mModel.getLocation());
+        mView.setTransactionAddress(mModel.getLocation());
         mView.setCategory(mModel.getCategory());
-        mView.setTransactionDescription(mModel.getMerchantName());
         if(mModel.hasSettlementDate()) {
             mView.setSettlementDate(mModel.getSettlementDate());
         }

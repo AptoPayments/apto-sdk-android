@@ -31,7 +31,10 @@ public class TransactionDetailsModel implements Model {
     }
 
     public String getMerchantName() {
-        return mTransaction.merchant.name;
+        if(mTransaction.merchant.name != null) {
+            return mTransaction.merchant.name;
+        }
+        return "";
     }
 
     public String getLocalAmount() {
