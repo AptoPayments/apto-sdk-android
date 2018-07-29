@@ -132,7 +132,8 @@ public class TransactionsAdapter extends
             viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
             showCardBalance(!mModel.getCardBalance().isEmpty(), viewHolder);
             viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
-            showActivateCardButton(mModel.isCardCreated(), viewHolder);
+            showActivateCardButton(UIStorage.getInstance().showActivateCardButton()
+                    && mModel.isCardCreated(), viewHolder);
         } else if (position > 0) {
             TransactionVo transaction = mTransactions.get(position-1);
 

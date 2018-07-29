@@ -27,7 +27,9 @@ import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.utils.HandlerConfigurator;
 import com.shiftpayments.link.sdk.ui.utils.NetworkBroadcast;
+import com.shiftpayments.link.sdk.ui.utils.ShiftSdkOptionsBuilder;
 import com.shiftpayments.link.sdk.ui.vos.LoanDataVo;
+import com.shiftpayments.link.sdk.ui.vos.ShiftSdkOptions;
 import com.shiftpayments.link.sdk.wrappers.retrofit.RetrofitTwoShiftApiWrapper;
 
 import java.util.ArrayList;
@@ -141,13 +143,14 @@ public class ShiftPlatform extends ShiftLinkSdk {
     }
 
     public static void initialize(Context context, String developerKey, String projectToken) {
-        initialize(context, developerKey, projectToken, true, true, "sbx", null);
+        ShiftSdkOptions options = new ShiftSdkOptionsBuilder().buildOptions();
+        initialize(context, developerKey, projectToken, true, true, "sbx", null, options);
     }
 
     /**
      * Sets up the Shift Link SDK.
      */
-    public static void initialize(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment, NetworkCallback onNoInternetConnection) {
+    public static void initialize(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment, NetworkCallback onNoInternetConnection, ShiftSdkOptions options) {
         mEnvironment = Environment.valueOf(environment.toLowerCase());
         AndroidUtils utils = new AndroidUtils();
         HandlerConfigurator configurator = new EventBusHandlerConfigurator();
@@ -168,6 +171,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
         setImageLoader(new VolleyImageLoader(context));
         setHandlerConfiguration(configurator);
         trustSelfSigned = trustSelfSignedCertificates;
+        UIStorage.getInstance().setSdkOptions(options);
     }
 
     public static void startLinkFlow(Activity activity) {

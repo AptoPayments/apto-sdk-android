@@ -13,7 +13,9 @@ import com.shiftpayments.link.sdk.example.R;
 import com.shiftpayments.link.sdk.example.views.MainView;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.utils.ShiftSdkOptionsBuilder;
 import com.shiftpayments.link.sdk.ui.vos.LoanDataVo;
+import com.shiftpayments.link.sdk.ui.vos.ShiftSdkOptions;
 
 import org.json.JSONException;
 
@@ -143,8 +145,9 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                     ShiftPlatform.clearUserToken(this);
                 }
             }
+            ShiftSdkOptions options = new ShiftSdkOptionsBuilder().buildOptions();
             ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),
-                    getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment(), null);
+                    getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment(), null, options);
             CompletableFuture
                     .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
                     .thenAccept(this::configRetrieved)
