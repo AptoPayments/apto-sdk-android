@@ -4,10 +4,6 @@
     <color name="llsdk_primary_text_color">#FF2B2D35</color>
     <color name="llsdk_secondary_text_color">#FF54565F</color>
     <color name="llsdk_tertiary_text_color">#FFBBBDBD</color>
-    <color name="llsdk_topbar_text_color">#ffffff</color>
-
-    <color name="llsdk_success_color">#db1d0e</color>
-    <color name="llsdk_error_color">#FFDC4337</color>
 
     <color name="llsdk_link_color">#00f</color>
     <color name="llsdk_hairline_color">#aaa</color>
@@ -15,7 +11,6 @@
     <color name="llsdk_hint_text_color">#FFBABABA</color>
     <color name="llsdk_label_text_color">#FF232325</color>
     <color name="llsdk_text_color">#FF2B2D35</color>
-    <color name="llsdk_snackbar_background">#FFDC4337</color>
 
     <color name="llsdk_application_approved_color">#58c246</color>
     <color name="llsdk_application_pending_borrower_action_color">#ffd52b</color>

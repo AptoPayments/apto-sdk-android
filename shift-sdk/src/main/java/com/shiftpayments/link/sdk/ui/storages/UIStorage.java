@@ -34,6 +34,16 @@ public class UIStorage {
     private Integer mTextTertiaryColor;
     private Integer mTextTopbarColor;
     private ContextConfigResponseVo mConfig;
+    // Define default colors here instead of in colors.xml to avoid having to pass in context
+    private final static String DEFAULT_PRIMARY_COLOR = "F90D00";
+    private final static String DEFAULT_SECONDARY_COLOR = "FF9500";
+    private final static String DEFAULT_TERTIARY_COLOR = "FFCC00";
+    private final static String DEFAULT_SUCCESS_COLOR = "DB1D0E";
+    private final static String DEFAULT_ERROR_COLOR = "FFDC4337";
+    private final static String DEFAULT_PRIMARY_TEXT_COLOR = "FF2B2D35";
+    private final static String DEFAULT_SECONDARY_TEXT_COLOR = "FF54565F";
+    private final static String DEFAULT_TERTIARY_TEXT_COLOR = "FFBBBDBD";
+    private final static String DEFAULT_TOPBAR_TEXT_COLOR = "FFFFFF";
     private static final Map<String, Integer> mIconMap = createIconMap();
 
     private static UIStorage mInstance;
@@ -76,7 +86,7 @@ public class UIStorage {
 
             });
             if (getResultFromFuture(future) == null) {
-                return R.color.colorPrimary;
+                return convertHexToInt(DEFAULT_PRIMARY_COLOR);
             } else {
                 return (Integer) getResultFromFuture(future);
             }
@@ -97,7 +107,7 @@ public class UIStorage {
                 }
             });
             if (getResultFromFuture(future) == null) {
-                return R.color.colorPrimaryDark;
+                return convertHexToInt(DEFAULT_SECONDARY_COLOR);
             } else {
                 return (Integer) getResultFromFuture(future);
             }
@@ -118,7 +128,7 @@ public class UIStorage {
                 }
             });
             if (getResultFromFuture(future) == null) {
-                return R.color.colorAccent;
+                return convertHexToInt(DEFAULT_TERTIARY_COLOR);
             } else {
                 return (Integer) getResultFromFuture(future);
             }
@@ -139,7 +149,7 @@ public class UIStorage {
                 }
             });
             if (getResultFromFuture(future) == null) {
-                return R.color.llsdk_success_color;
+                return convertHexToInt(DEFAULT_SUCCESS_COLOR);
             } else {
                 return (Integer) getResultFromFuture(future);
             }
@@ -160,7 +170,7 @@ public class UIStorage {
                 }
             });
             if (getResultFromFuture(future) == null) {
-                return R.color.llsdk_error_color;
+                return convertHexToInt(DEFAULT_ERROR_COLOR);
             } else {
                 return (Integer) getResultFromFuture(future);
             }
@@ -181,7 +191,7 @@ public class UIStorage {
                 }
             });
             if (getResultFromFuture(future) == null) {
-                return R.color.llsdk_primary_text_color;
+                return convertHexToInt(DEFAULT_PRIMARY_TEXT_COLOR);
             } else {
                 return (Integer) getResultFromFuture(future);
             }
@@ -202,7 +212,7 @@ public class UIStorage {
                 }
             });
             if (getResultFromFuture(future) == null) {
-                return R.color.llsdk_secondary_text_color;
+                return convertHexToInt(DEFAULT_SECONDARY_TEXT_COLOR);
             } else {
                 return (Integer) getResultFromFuture(future);
             }
@@ -223,7 +233,7 @@ public class UIStorage {
                 }
             });
             if (getResultFromFuture(future) == null) {
-                return R.color.llsdk_tertiary_text_color;
+                return convertHexToInt(DEFAULT_TERTIARY_TEXT_COLOR);
             } else {
                 return (Integer) getResultFromFuture(future);
             }
@@ -244,7 +254,7 @@ public class UIStorage {
                 }
             });
             if (getResultFromFuture(future) == null) {
-                return R.color.llsdk_topbar_text_color;
+                return convertHexToInt(DEFAULT_TOPBAR_TEXT_COLOR);
             } else {
                 return (Integer) getResultFromFuture(future);
             }

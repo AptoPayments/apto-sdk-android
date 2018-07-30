@@ -25,6 +25,7 @@
                 android:layout_gravity="center_horizontal"
                 android:padding="16dp"
                 android:visibility="invisible"
+                android:background="@android:color/white"
                 android:textColor="@android:color/white"
                 android:text="@string/main_button" />
         </LinearLayout>

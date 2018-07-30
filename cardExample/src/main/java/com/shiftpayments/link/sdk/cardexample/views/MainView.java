@@ -51,7 +51,6 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
         super.onFinishInflate();
         findAllViews();
         setUpListeners();
-        setColors();
     }
 
     /**

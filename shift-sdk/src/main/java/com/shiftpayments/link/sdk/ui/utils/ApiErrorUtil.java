@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 
 public class ApiErrorUtil {
 
@@ -73,7 +74,7 @@ public class ApiErrorUtil {
         final View rootView = getRootView((Activity) context);
         if(rootView != null) {
             Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
-            snackbar.getView().setBackgroundColor(context.getResources().getColor(R.color.llsdk_snackbar_background));
+            snackbar.getView().setBackgroundColor(UIStorage.getInstance().getErrorColor());
             TextView snackbarTextView = snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
             snackbarTextView.setTextSize(18);
             snackbarTextView.setMaxLines(3);

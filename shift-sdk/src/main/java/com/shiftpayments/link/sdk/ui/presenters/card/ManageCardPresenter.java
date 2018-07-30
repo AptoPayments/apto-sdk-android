@@ -313,6 +313,7 @@ public class ManageCardPresenter
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
         mView.showLoading(mActivity, false);
+        mView.setRefreshing(false);
         mActivity.finish();
         mDelegate.onSessionExpired(error);
     }

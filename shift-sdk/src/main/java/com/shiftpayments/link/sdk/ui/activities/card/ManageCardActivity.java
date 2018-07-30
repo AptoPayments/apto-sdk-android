@@ -1,5 +1,8 @@
 package com.shiftpayments.link.sdk.ui.activities.card;
 
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -10,6 +13,7 @@ import com.shiftpayments.link.sdk.ui.activities.FragmentMvpActivity;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.ManageCardDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.ManageCardPresenter;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
 import com.venmo.android.pin.PinListener;
 
@@ -46,6 +50,11 @@ public class ManageCardActivity extends FragmentMvpActivity implements PinListen
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_update_profile, menu);
+        Drawable accountIcon = getResources().getDrawable(R.drawable.ic_icon_account);
+        final PorterDuffColorFilter colorFilter
+                = new PorterDuffColorFilter(UIStorage.getInstance().getPrimaryColor(), PorterDuff.Mode.MULTIPLY);
+        accountIcon.setColorFilter(colorFilter);
+        menu.getItem(0).setIcon(accountIcon);
 
         return super.onCreateOptionsMenu(menu);
     }
