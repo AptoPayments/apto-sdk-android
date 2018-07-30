@@ -36,7 +36,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private TextView mDetailAmount;
     private TextView mCurrency;
     private TextView mType;
-    private TextView mLocation;
     private TextView mCategory;
     private TextView mTransactionDate;
     private RelativeLayout mSettlementDateHolder;
@@ -99,10 +98,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
 
     public void setType(String type) {
         mType.setText(type);
-    }
-
-    public void setLocation(String location) {
-        mLocation.setText(location);
     }
 
     public void setCategory(String category) {
@@ -178,7 +173,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mDetailAmount = findViewById(R.id.tv_transaction_amount);
         mCurrency = findViewById(R.id.tv_transaction_currency);
         mType = findViewById(R.id.tv_transaction_type);
-        mLocation = findViewById(R.id.tv_transaction_location);
         mCategory = findViewById(R.id.tv_transaction_category);
         mTransactionDate = findViewById(R.id.tv_transaction_date);
         mSettlementDate = findViewById(R.id.tv_transaction_settlement_date);

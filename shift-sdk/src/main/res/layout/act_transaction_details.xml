@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/white">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
@@ -62,14 +63,19 @@
 
             <TextView
                 android:id="@+id/tv_direction_header"
+                style="@style/llsdk_transaction_details_title"
+                android:layout_marginTop="12dp"
+                android:text="@string/transaction_details_direction" />
+
+            <include layout="@layout/include_ll_transaction_address" />
+
+            <TextView
+                android:id="@+id/tv_details_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/llsdk_transaction_details_title"
                 android:layout_marginTop="12dp"
-                android:paddingLeft="16dp"
-                android:text="@string/transaction_details_direction" />
-
-            <include layout="@layout/include_ll_transaction_address" />
+                android:text="@string/transaction_details_title" />
 
             <RelativeLayout style="@style/llsdk_transaction_details_holder">
 
@@ -163,23 +169,6 @@
                     android:id="@+id/tv_transaction_type"
                     style="?attr/llsdk_transactionDetails_detailValueTextStyle"
                     android:layout_toRightOf="@+id/strut_type" />
-            </RelativeLayout>
-
-            <RelativeLayout style="@style/llsdk_transaction_details_holder">
-
-                <View
-                    android:id="@+id/strut_location"
-                    style="@style/llsdk_strutStyle" />
-
-                <TextView
-                    style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
-                    android:layout_toLeftOf="@+id/strut_location"
-                    android:text="@string/transaction_details_location" />
-
-                <TextView
-                    android:id="@+id/tv_transaction_location"
-                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
-                    android:layout_toRightOf="@+id/strut_location" />
             </RelativeLayout>
 
             <RelativeLayout style="@style/llsdk_transaction_details_holder">
@@ -318,10 +307,9 @@
 
             <TextView
                 android:id="@+id/tv_transfers_header"
-                style="?attr/llsdk_loanAgreement_sectionHeaderStyle"
+                style="@style/llsdk_transaction_details_title"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:paddingLeft="16dp"
                 android:text="@string/transaction_details_transfers" />
 
             <android.support.v7.widget.RecyclerView

@@ -52,7 +52,6 @@ public class TransactionDetailsPresenter
         mView.setType(mModel.getTransactionType().toString());
         mView.setDetailAmount(mModel.getLocalAmount());
         mView.setCurrency(mModel.getCurrency());
-        mView.setLocation(mModel.getLocation());
         mView.setTransactionAddress(mModel.getLocation());
         mView.setCategory(mModel.getCategory());
         if(mModel.hasSettlementDate()) {
