@@ -122,23 +122,6 @@ public class UIStorage {
         }
     }
 
-    public synchronized TeamConfigResponseVo getTeamConfig() {
-        if(mConfig != null) {
-            return mConfig.teamConfiguration;
-        }
-        else {
-            CompletableFuture<TeamConfigResponseVo> future = CompletableFuture.supplyAsync(() -> {
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mConfig.teamConfiguration;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            });
-            return future.join();
-        }
-    }
-
     public synchronized int getPrimaryContrastColor() {
         if(mPrimaryColor==null) {
             return 0;
