@@ -7,7 +7,6 @@ import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.requests.config.GetProjectConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.TeamConfigResponseVo;
 import com.shiftpayments.link.sdk.ui.R;
 
 import java.util.HashMap;
@@ -27,9 +26,14 @@ public class UIStorage {
 
     private Integer mPrimaryColor;
     private Integer mSecondaryColor;
+    private Integer mTertiaryColor;
+    private Integer mErrorColor;
+    private Integer mSuccessColor;
+    private Integer mTextPrimaryColor;
+    private Integer mTextSecondaryColor;
+    private Integer mTextTertiaryColor;
+    private Integer mTextTopbarColor;
     private ContextConfigResponseVo mConfig;
-    private final static String DEFAULT_PRIMARY_COLOR = "9ADE83";
-    private final static String DEFAULT_SECONDARY_COLOR = "F2F2F2";
     private static final Map<String, Integer> mIconMap = createIconMap();
 
     private static UIStorage mInstance;
@@ -72,7 +76,7 @@ public class UIStorage {
 
             });
             if (getResultFromFuture(future) == null) {
-                return 0;
+                return R.color.colorPrimary;
             } else {
                 return (Integer) getResultFromFuture(future);
             }
@@ -85,16 +89,165 @@ public class UIStorage {
         }
         else {
             CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-
                 try {
                     setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
                     return mSecondaryColor;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
                 }
-
             });
-            return (Integer) getResultFromFuture(future);
+            if (getResultFromFuture(future) == null) {
+                return R.color.colorPrimaryDark;
+            } else {
+                return (Integer) getResultFromFuture(future);
+            }
+        }
+    }
+
+    public synchronized Integer getTertiaryColor() {
+        if(mTertiaryColor != null) {
+            return mTertiaryColor;
+        }
+        else {
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
+                    return mTertiaryColor;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            });
+            if (getResultFromFuture(future) == null) {
+                return R.color.colorAccent;
+            } else {
+                return (Integer) getResultFromFuture(future);
+            }
+        }
+    }
+
+    public synchronized Integer getSuccessColor() {
+        if(mSuccessColor != null) {
+            return mSuccessColor;
+        }
+        else {
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
+                    return mSuccessColor;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            });
+            if (getResultFromFuture(future) == null) {
+                return R.color.llsdk_success_color;
+            } else {
+                return (Integer) getResultFromFuture(future);
+            }
+        }
+    }
+
+    public synchronized Integer getErrorColor() {
+        if(mErrorColor != null) {
+            return mErrorColor;
+        }
+        else {
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
+                    return mErrorColor;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            });
+            if (getResultFromFuture(future) == null) {
+                return R.color.llsdk_error_color;
+            } else {
+                return (Integer) getResultFromFuture(future);
+            }
+        }
+    }
+
+    public synchronized Integer getTextPrimaryColor() {
+        if(mTextPrimaryColor != null) {
+            return mTextPrimaryColor;
+        }
+        else {
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
+                    return mTextPrimaryColor;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            });
+            if (getResultFromFuture(future) == null) {
+                return R.color.llsdk_primary_text_color;
+            } else {
+                return (Integer) getResultFromFuture(future);
+            }
+        }
+    }
+
+    public synchronized Integer getTextSecondaryColor() {
+        if(mTextSecondaryColor != null) {
+            return mTextSecondaryColor;
+        }
+        else {
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
+                    return mTextSecondaryColor;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            });
+            if (getResultFromFuture(future) == null) {
+                return R.color.llsdk_secondary_text_color;
+            } else {
+                return (Integer) getResultFromFuture(future);
+            }
+        }
+    }
+
+    public synchronized Integer getTextTertiaryColor() {
+        if(mTextTertiaryColor != null) {
+            return mTextTertiaryColor;
+        }
+        else {
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
+                    return mTextTertiaryColor;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            });
+            if (getResultFromFuture(future) == null) {
+                return R.color.llsdk_tertiary_text_color;
+            } else {
+                return (Integer) getResultFromFuture(future);
+            }
+        }
+    }
+
+    public synchronized Integer getTextTopbarColor() {
+        if(mTextTopbarColor != null) {
+            return mTextTopbarColor;
+        }
+        else {
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
+                    return mTextTopbarColor;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            });
+            if (getResultFromFuture(future) == null) {
+                return R.color.llsdk_topbar_text_color;
+            } else {
+                return (Integer) getResultFromFuture(future);
+            }
         }
     }
 
@@ -140,16 +293,33 @@ public class UIStorage {
     }
 
     private void setColors() {
-        String hexColor = mConfig.projectConfiguration.primaryColor;
-        if(hexColor == null) {
-            hexColor = DEFAULT_PRIMARY_COLOR;
+        if(mConfig.projectConfiguration.primaryColor != null) {
+            mPrimaryColor = convertHexToInt(mConfig.projectConfiguration.primaryColor);
         }
-        mPrimaryColor = convertHexToInt(hexColor);
-        hexColor = mConfig.projectConfiguration.secondaryColor;
-        if(hexColor == null) {
-            hexColor = DEFAULT_SECONDARY_COLOR;
+        if(mConfig.projectConfiguration.secondaryColor != null) {
+            mSecondaryColor = convertHexToInt(mConfig.projectConfiguration.secondaryColor);
         }
-        mSecondaryColor = convertHexToInt(hexColor);
+        if(mConfig.projectConfiguration.tertiaryColor != null) {
+            mTertiaryColor = convertHexToInt(mConfig.projectConfiguration.tertiaryColor);
+        }
+        if(mConfig.projectConfiguration.errorColor != null) {
+            mErrorColor = convertHexToInt(mConfig.projectConfiguration.errorColor);
+        }
+        if(mConfig.projectConfiguration.successColor != null) {
+            mSuccessColor = convertHexToInt(mConfig.projectConfiguration.successColor);
+        }
+        if(mConfig.projectConfiguration.textPrimaryColor != null) {
+            mTextPrimaryColor = convertHexToInt(mConfig.projectConfiguration.textPrimaryColor);
+        }
+        if(mConfig.projectConfiguration.textSecondaryColor != null) {
+            mTextSecondaryColor = convertHexToInt(mConfig.projectConfiguration.textSecondaryColor);
+        }
+        if(mConfig.projectConfiguration.textTertiaryColor != null) {
+            mTextTertiaryColor = convertHexToInt(mConfig.projectConfiguration.textTertiaryColor);
+        }
+        if(mConfig.projectConfiguration.textTopbarColor != null) {
+            mTextTopbarColor = convertHexToInt(mConfig.projectConfiguration.textTopbarColor);
+        }
     }
 
     private int convertHexToInt(String hexColor) {

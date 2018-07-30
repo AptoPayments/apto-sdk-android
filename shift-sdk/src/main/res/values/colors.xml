@@ -4,6 +4,10 @@
     <color name="llsdk_primary_text_color">#FF2B2D35</color>
     <color name="llsdk_secondary_text_color">#FF54565F</color>
     <color name="llsdk_tertiary_text_color">#FFBBBDBD</color>
+    <color name="llsdk_topbar_text_color">#ffffff</color>
+
+    <color name="llsdk_success_color">#db1d0e</color>
+    <color name="llsdk_error_color">#FFDC4337</color>
 
     <color name="llsdk_link_color">#00f</color>
     <color name="llsdk_hairline_color">#aaa</color>
