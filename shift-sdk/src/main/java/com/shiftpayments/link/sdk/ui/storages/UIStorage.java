@@ -238,10 +238,10 @@ public class UIStorage {
     }
 
     public boolean showAddFundingSourceButton() {
-        return mSdkOptions.showAddFundingSourceButton;
+        return mSdkOptions.features.get(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton);
     }
 
     public boolean showActivateCardButton() {
-        return mSdkOptions.showActivateCardButton;
+        return mSdkOptions.features.get(ShiftSdkOptions.OptionKeys.showActivateCardButton);
     }
 }

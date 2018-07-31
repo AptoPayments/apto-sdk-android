@@ -93,14 +93,12 @@ This is required for both the Link SDK and the Card SDK.
 Optionally, you can configure if you want to enable certificate pinning, if you want to trust self-signed certificates, 
 which environment you want to target ("sbx" or "prd"), a callback to be executed when there is no internet connection and additional options to configure the SDK.
 
-To generate the options you can use the ShiftSdkOptionsBuilder.
 The list of options are: showTransactionList, showAccountManagement, showChangePIN, showLockCard,
 showActivateCardButton and showAddFundingSourceButton. They are by default true.
 ```java
-ShiftSdkOptions options = new ShiftSdkOptionsBuilder()
-                                            .enableCardActivation(false)
-                                            .enableAddingFundingSources(false)
-                                            .buildOptions();
+ShiftSdkOptions options = new ShiftSdkOptions();
+options.features.put(ShiftSdkOptions.OptionKeys.showActivateCardButton, false);
+options.features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, false);
 ShiftPlatform.initialize(this, "my_developer_key", "my_project_key", true, true, "sbx", onNoInternetCallback, options);
 ```
 

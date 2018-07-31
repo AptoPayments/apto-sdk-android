@@ -27,7 +27,6 @@ import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.utils.HandlerConfigurator;
 import com.shiftpayments.link.sdk.ui.utils.NetworkBroadcast;
-import com.shiftpayments.link.sdk.ui.utils.ShiftSdkOptionsBuilder;
 import com.shiftpayments.link.sdk.ui.vos.LoanDataVo;
 import com.shiftpayments.link.sdk.ui.vos.ShiftSdkOptions;
 import com.shiftpayments.link.sdk.wrappers.retrofit.RetrofitTwoShiftApiWrapper;
@@ -143,7 +142,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
     }
 
     public static void initialize(Context context, String developerKey, String projectToken) {
-        ShiftSdkOptions options = new ShiftSdkOptionsBuilder().buildOptions();
+        ShiftSdkOptions options = new ShiftSdkOptions();
         initialize(context, developerKey, projectToken, true, true, "sbx", null, options);
     }
 

@@ -12,7 +12,6 @@ import com.shiftpayments.link.sdk.cardexample.R;
 import com.shiftpayments.link.sdk.cardexample.views.MainView;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
-import com.shiftpayments.link.sdk.ui.utils.ShiftSdkOptionsBuilder;
 import com.shiftpayments.link.sdk.ui.vos.ShiftSdkOptions;
 
 import org.json.JSONException;
@@ -67,10 +66,9 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                 mView.showLoading(false);
                 Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-            ShiftSdkOptions options = new ShiftSdkOptionsBuilder()
-                                            .enableCardActivation(false)
-                                            .enableAddingFundingSources(false)
-                                            .buildOptions();
+            ShiftSdkOptions options = new ShiftSdkOptions();
+            options.features.put(ShiftSdkOptions.OptionKeys.showActivateCardButton, false);
+            options.features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, false);
             ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),
                     getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment(), null, options);
             CompletableFuture
