@@ -115,7 +115,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
             default:
                 return "https://sbx.ledge.me";
             case prd:
-                return "https://api.ledge.me";
+                return "https://api.ux.8583.io";
         }
     }
 
