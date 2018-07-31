@@ -24,4 +24,8 @@ public class ShiftSdkOptions {
         features.put(OptionKeys.showActivateCardButton, true);
         features.put(OptionKeys.showAddFundingSourceButton, true);
     }
+
+    public ShiftSdkOptions(Map<OptionKeys, Boolean> features) {
+        this.features = features;
+    }
 }

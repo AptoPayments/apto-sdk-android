@@ -96,9 +96,10 @@ which environment you want to target ("sbx" or "prd"), a callback to be executed
 The list of options are: showTransactionList, showAccountManagement, showChangePIN, showLockCard,
 showActivateCardButton and showAddFundingSourceButton. They are by default true.
 ```java
-ShiftSdkOptions options = new ShiftSdkOptions();
-options.features.put(ShiftSdkOptions.OptionKeys.showActivateCardButton, false);
-options.features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, false);
+HashMap<ShiftSdkOptions.OptionKeys, Boolean> features = new HashMap<>();
+features.put(ShiftSdkOptions.OptionKeys.showActivateCardButton, false);
+features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, false);
+ShiftSdkOptions options = new ShiftSdkOptions(features);
 ShiftPlatform.initialize(this, "my_developer_key", "my_project_key", true, true, "sbx", onNoInternetCallback, options);
 ```
 

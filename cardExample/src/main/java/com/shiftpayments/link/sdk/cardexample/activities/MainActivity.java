@@ -16,6 +16,8 @@ import com.shiftpayments.link.sdk.ui.vos.ShiftSdkOptions;
 
 import org.json.JSONException;
 
+import java.util.HashMap;
+
 import io.branch.referral.Branch;
 import java8.util.concurrent.CompletableFuture;
 
@@ -66,9 +68,11 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                 mView.showLoading(false);
                 Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-            ShiftSdkOptions options = new ShiftSdkOptions();
-            options.features.put(ShiftSdkOptions.OptionKeys.showActivateCardButton, false);
-            options.features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, false);
+            HashMap<ShiftSdkOptions.OptionKeys, Boolean> features = new HashMap<>();
+            features.put(ShiftSdkOptions.OptionKeys.showActivateCardButton, false);
+            features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, false);
+            ShiftSdkOptions options = new ShiftSdkOptions(features);
+
             ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),
                     getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment(), null, options);
             CompletableFuture
