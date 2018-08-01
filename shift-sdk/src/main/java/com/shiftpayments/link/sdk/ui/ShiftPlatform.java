@@ -133,7 +133,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
             default:
                 return "https://vault.sbx.ledge.me";
             case prd:
-                return "https://vault.ledge.me";
+                return "https://vault.ux.8583.io";
         }
     }
 
