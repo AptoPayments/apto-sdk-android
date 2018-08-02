@@ -355,7 +355,7 @@ public class ManageCardPresenter
     protected void setupToolbar() {
         mActivity.setSupportActionBar(mView.getToolbar());
         mActionBar = mActivity.getSupportActionBar();
-        mActionBar.setTitle(null);
+        mActionBar.setTitle(mActivity.getString(R.string.card_management_title));
     }
 
     public static Intent getTransactionDetailsIntent(Context context, TransactionVo transactionVo) {

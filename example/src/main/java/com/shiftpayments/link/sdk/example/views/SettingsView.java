@@ -79,7 +79,6 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
     private EditText mBearerToken;
     private EditText mProjectKey;
     private EditText mTeamKey;
-    private EditText mTeamName;
     private EditText mProjectName;
     private EditText mOffersListStyle;
     private Switch mArmedForces;
@@ -152,7 +151,6 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
         mBearerToken = (EditText) findViewById(R.id.et_user_token);
         mProjectKey = (EditText) findViewById(R.id.et_project_key);
         mTeamKey = (EditText) findViewById(R.id.et_team_key);
-        mTeamName = (EditText) findViewById(R.id.et_team_name);
         mProjectName = (EditText) findViewById(R.id.et_project_name);
         mOffersListStyle = (EditText) findViewById(R.id.et_offers_list_style);
         mArmedForces = (Switch) findViewById(R.id.sw_armed_forces);
@@ -600,14 +598,6 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
      */
     public void setStrictAddressValidation(boolean enabled) {
         mAddressValidation.setChecked(enabled);
-    }
-
-    /**
-     * Shows the team name.
-     * @param team Team name
-     */
-    public void setTeamName(String team) {
-        mTeamName.setText(team);
     }
 
     /**

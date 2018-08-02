@@ -64,7 +64,9 @@
     <attr name="llsdk_transactionDetails_cardTitleStyle" format="reference" />
     <attr name="llsdk_transactionDetails_cardDescriptionStyle" format="reference" />
     <attr name="llsdk_transactionDetails_detailHeaderTextStyle" format="reference" />
+    <attr name="llsdk_transactionDetails_detailLabelTextStyle" format="reference" />
     <attr name="llsdk_transactionDetails_detailValueTextStyle" format="reference" />
+    <attr name="llsdk_transactionDetails_detailValueLongTextStyle" format="reference" />
 
     <!-- Manage Card -->
     <attr name="llsdk_manageCard_cardTitleStyle" format="reference" />

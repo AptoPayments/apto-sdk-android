@@ -31,8 +31,10 @@
     <dimen name="llsdk_brand_logo_height">40dp</dimen>
     <dimen name="llsdk_dummy_view_params">0dp</dimen>
 
-    <dimen name="llsdk_transaction_details_title_text_size">24sp</dimen>
+    <dimen name="llsdk_transaction_details_header_text_size">14sp</dimen>
+    <dimen name="llsdk_transaction_details_label_text_size">16sp</dimen>
     <dimen name="llsdk_transaction_details_description_text_size">18sp</dimen>
+    <dimen name="llsdk_transaction_details_long_text_size">12sp</dimen>
 
     <dimen name="llsdk_manage_card_title_text_size">16sp</dimen>
     <dimen name="llsdk_manage_card_description_text_size">10sp</dimen>

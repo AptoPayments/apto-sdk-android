@@ -333,7 +333,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         mView.setSkipDisclaimers(ConfigStorage.getInstance().getSkipLinkDisclaimer());
         mView.setStrictAddressValidation(ConfigStorage.getInstance().isStrictAddressValidationEnabled());
         mView.setProjectName(mProjectConfig.name);
-        mView.setTeamName(UIStorage.getInstance().getTeamConfig().name);
     }
 
     private void displayHousingType() {

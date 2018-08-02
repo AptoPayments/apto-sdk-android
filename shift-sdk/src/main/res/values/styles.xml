@@ -303,7 +303,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/llsdk_light_text_color</item>
-        <item name="android:textSize">@dimen/llsdk_transaction_details_title_text_size</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_label_text_size</item>
     </style>
     <style name="llsdk_transaction_details_card_description">
         <item name="android:layout_width">wrap_content</item>
@@ -311,42 +311,54 @@
         <item name="android:drawablePadding">4dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textColor">@color/llsdk_light_text_color</item>
-        <item name="android:textSize">@dimen/llsdk_transaction_details_description_text_size</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_label_text_size</item>
     </style>
     <style name="llsdk_transaction_details_detail_header">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_alignParentLeft">true</item>
-        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
         <item name="android:background">@android:color/white</item>
-        <item name="android:textSize">@dimen/llsdk_transaction_details_description_text_size</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_header_text_size</item>
     </style>
-
-    <style name="llsdk_transaction_details_title">
-        <item name="android:layout_width">match_parent</item>
+    <style name="llsdk_transaction_details_label">
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
         <item name="android:fontFamily">Roboto</item>
-        <item name="android:textColor">#FF000000</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/llsdk_primary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_label_text_size</item>
         <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:paddingBottom">12dp</item>
         <item name="android:background">@android:color/white</item>
     </style>
-
     <style name="llsdk_transaction_details_detail_text">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
         <item name="android:textSize">@dimen/llsdk_transaction_details_description_text_size</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">11dp</item>
         <item name="android:gravity">right</item>
         <item name="android:paddingRight">18dp</item>
+        <item name="android:maxLines">1</item>
     </style>
-
+    <style name="llsdk_transaction_details_long_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_tertiary_text_color</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginTop">-8dp</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_long_text_size</item>
+    </style>
     <style name="llsdk_transaction_details_holder">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:paddingTop">8dp</item>
         <item name="android:background">@android:color/white</item>
     </style>
 

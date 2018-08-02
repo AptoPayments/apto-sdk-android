@@ -32,9 +32,7 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private AppBarLayout mAppBarLayout;
     private ImageView mHeader;
     private TransactionView mTransactionView;
-    private TextView mAmountLabel;
     private TextView mDetailAmount;
-    private TextView mCurrency;
     private TextView mType;
     private TextView mCategory;
     private TextView mTransactionDate;
@@ -52,6 +50,8 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private RelativeLayout mCashbackAmountHolder;
     private TextView mHoldAmount;
     private RelativeLayout mHoldAmountHolder;
+    private ImageView mAddressImageView;
+    private TextView mTransfersHeader;
 
     /**
      * @see CardView#CardView
@@ -92,10 +92,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mDetailAmount.setText(amount);
     }
 
-    public void setCurrency(String currency) {
-        mCurrency.setText(currency);
-    }
-
     public void setType(String type) {
         mType.setText(type);
     }
@@ -127,6 +123,15 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mAdjustmentsRecyclerView.setAdapter(adapter);
     }
 
+    public void showTransfersHeader(boolean show) {
+        if(show) {
+            mTransfersHeader.setVisibility(VISIBLE);
+        }
+        else {
+            mTransfersHeader.setVisibility(GONE);
+        }
+    }
+
     public void setDeclineReason(String reason) {
         mDeclineReason.setText(reason);
         mDeclineReasonHolder.setVisibility(VISIBLE);
@@ -147,10 +152,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mCashbackAmountHolder.setVisibility(VISIBLE);
     }
 
-    public void setAmountLabel(String label) {
-        mAmountLabel.setText(label);
-    }
-
     public void setTitle(String title) {
         mCollapsingToolbar.setTitle(title);
     }
@@ -169,9 +170,7 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mAppBarLayout = findViewById(R.id.settings_toolbar);
         mHeader = findViewById(R.id.iv_header);
         mTransactionView = findViewById(R.id.cv_transaction_view);
-        mAmountLabel = findViewById(R.id.tv_amount_label);
         mDetailAmount = findViewById(R.id.tv_transaction_amount);
-        mCurrency = findViewById(R.id.tv_transaction_currency);
         mType = findViewById(R.id.tv_transaction_type);
         mCategory = findViewById(R.id.tv_transaction_category);
         mTransactionDate = findViewById(R.id.tv_transaction_date);
@@ -189,6 +188,8 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mCashbackAmountHolder = findViewById(R.id.rl_cashback_amount);
         mHoldAmount = findViewById(R.id.tv_hold_amount);
         mHoldAmountHolder = findViewById(R.id.rl_hold_amount);
+        mAddressImageView = findViewById(R.id.iv_address_icon);
+        mTransfersHeader = findViewById(R.id.tv_transfers_header);
     }
 
     private void setColors() {
@@ -208,5 +209,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mCollapsingToolbar.setCollapsedTitleTextColor(contrastColor);
         mCollapsingToolbar.setExpandedTitleColor(contrastColor);
         mCollapsingToolbar.setBackgroundColor(primaryColor);
+        mAddressImageView.setColorFilter(primaryColor);
     }
 }

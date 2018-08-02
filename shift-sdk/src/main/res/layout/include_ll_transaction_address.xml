@@ -11,7 +11,7 @@
         android:background="@android:color/white">
 
         <ImageView
-            android:id="@+id/iv_icon"
+            android:id="@+id/iv_address_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -25,8 +25,8 @@
 
         <TextView
             android:id="@+id/tv_address"
-            android:layout_toEndOf="@+id/iv_icon"
-            android:layout_toRightOf="@+id/iv_icon"
+            android:layout_toEndOf="@+id/iv_address_icon"
+            android:layout_toRightOf="@+id/iv_address_icon"
             android:clickable="false"
             android:layout_marginTop="13dp"
             style="?attr/llsdk_transactionDetails_cardDescriptionStyle" />
