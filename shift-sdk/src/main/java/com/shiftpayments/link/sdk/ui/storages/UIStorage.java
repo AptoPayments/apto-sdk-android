@@ -8,6 +8,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.config.GetProjectConfigReques
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.vos.ShiftSdkOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +35,8 @@ public class UIStorage {
     private Integer mTextTertiaryColor;
     private Integer mTextTopbarColor;
     private ContextConfigResponseVo mConfig;
+    private ShiftSdkOptions mSdkOptions;
+
     // Define default colors here instead of in colors.xml to avoid having to pass in context
     private final static String DEFAULT_PRIMARY_COLOR = "F90D00";
     private final static String DEFAULT_SECONDARY_COLOR = "FF9500";
@@ -392,5 +395,17 @@ public class UIStorage {
         iconMap.put("cart", R.drawable.ic_purchases);
         iconMap.put("road", R.drawable.ic_toll_road);
         return iconMap;
+    }
+
+    public void setSdkOptions(ShiftSdkOptions sdkOptions) {
+        mSdkOptions = sdkOptions;
+    }
+
+    public boolean showAddFundingSourceButton() {
+        return mSdkOptions.features.get(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton);
+    }
+
+    public boolean showActivateCardButton() {
+        return mSdkOptions.features.get(ShiftSdkOptions.OptionKeys.showActivateCardButton);
     }
 }

@@ -282,7 +282,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textColor">@color/llsdk_light_text_color</item>
         <item name="android:textSize">@dimen/llsdk_terms_section_header_text_size</item>
     </style>
 
@@ -295,7 +295,7 @@
     <style name="llsdk_loan_agreement_summary_values" parent="llsdk_loan_agreement_summary_text">
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_alignParentEnd">true</item>
-        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textColor">@color/llsdk_light_text_color</item>
     </style>
 
     <!-- Transaction details -->

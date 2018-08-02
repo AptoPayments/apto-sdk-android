@@ -90,9 +90,17 @@ To run the SDK first you need to set it up with your keys and the current contex
 ShiftPlatform.initialize(this, "my_developer_key", "my_project_key");
 ```
 This is required for both the Link SDK and the Card SDK.
-Optionally, you can configure if you want to enable certificate pinning, if you want to trust self-signed certificates, and which environment you want to target ("sbx" or "prd")
+Optionally, you can configure if you want to enable certificate pinning, if you want to trust self-signed certificates, 
+which environment you want to target ("sbx" or "prd"), a callback to be executed when there is no internet connection and additional options to configure the SDK.
+
+The list of options are: showTransactionList, showAccountManagement, showChangePIN, showLockCard,
+showActivateCardButton and showAddFundingSourceButton. They are by default true.
 ```java
-ShiftPlatform.initialize(this, "my_developer_key", "my_project_key", true, true, "sbx");
+HashMap<ShiftSdkOptions.OptionKeys, Boolean> features = new HashMap<>();
+features.put(ShiftSdkOptions.OptionKeys.showActivateCardButton, false);
+features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, false);
+ShiftSdkOptions options = new ShiftSdkOptions(features);
+ShiftPlatform.initialize(this, "my_developer_key", "my_project_key", true, true, "sbx", onNoInternetCallback, options);
 ```
 
 After you have done the setup, you can launch the desired SDK passing in the context.

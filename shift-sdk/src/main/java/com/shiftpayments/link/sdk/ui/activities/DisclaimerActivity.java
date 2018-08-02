@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -48,6 +49,7 @@ public class DisclaimerActivity extends BaseActivity implements DisclaimerView.V
     private DisclaimerView mView;
     private boolean mDisclosureLoaded = false;
     private LoadingSpinnerManager mLoadingSpinnerManager;
+    private WebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,29 +94,29 @@ public class DisclaimerActivity extends BaseActivity implements DisclaimerView.V
     }
 
     private void loadUrl(String url) {
-        WebView webview = (WebView) findViewById(R.id.wb_pdf_webview);
-        webview.clearCache(true);
-        webview.clearHistory();
+        mWebView = (WebView) findViewById(R.id.wb_pdf_webview);
+        mWebView.clearCache(true);
+        mWebView.clearHistory();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            webview.getSettings().setSafeBrowsingEnabled(false);
+            mWebView.getSettings().setSafeBrowsingEnabled(false);
         }
-        webview.getSettings().setJavaScriptEnabled(true);
-        webview.setWebChromeClient(new WebChromeClient() {
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
                 mDisclosureLoaded = true;
             }
         });
-        webview.setWebViewClient(new WebViewClient(){
+        mWebView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
         });
-        webview.setVisibility(View.VISIBLE);
-        webview.loadUrl(url);
+        mWebView.setVisibility(View.VISIBLE);
+        mWebView.loadUrl(url);
     }
 
     private void downloadFile(String url) {
@@ -154,6 +156,20 @@ public class DisclaimerActivity extends BaseActivity implements DisclaimerView.V
     @Override
     public void cancelClickHandler() {
         this.finish();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    if (mWebView.canGoBack()) {
+                        mWebView.goBack();
+                    }
+                    return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     /**

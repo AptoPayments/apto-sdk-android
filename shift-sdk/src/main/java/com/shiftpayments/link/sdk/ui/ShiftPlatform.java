@@ -28,6 +28,7 @@ import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.utils.HandlerConfigurator;
 import com.shiftpayments.link.sdk.ui.utils.NetworkBroadcast;
 import com.shiftpayments.link.sdk.ui.vos.LoanDataVo;
+import com.shiftpayments.link.sdk.ui.vos.ShiftSdkOptions;
 import com.shiftpayments.link.sdk.wrappers.retrofit.RetrofitTwoShiftApiWrapper;
 
 import java.util.ArrayList;
@@ -115,7 +116,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
             default:
                 return "https://sbx.ledge.me";
             case prd:
-                return "https://api.ledge.me";
+                return "https://api.ux.8583.io";
         }
     }
 
@@ -132,7 +133,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
             default:
                 return "https://vault.sbx.ledge.me";
             case prd:
-                return "https://vault.ledge.me";
+                return "https://vault.ux.8583.io";
         }
     }
 
@@ -141,13 +142,14 @@ public class ShiftPlatform extends ShiftLinkSdk {
     }
 
     public static void initialize(Context context, String developerKey, String projectToken) {
-        initialize(context, developerKey, projectToken, true, true, "sbx", null);
+        ShiftSdkOptions options = new ShiftSdkOptions();
+        initialize(context, developerKey, projectToken, true, true, "sbx", null, options);
     }
 
     /**
      * Sets up the Shift Link SDK.
      */
-    public static void initialize(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment, NetworkCallback onNoInternetConnection) {
+    public static void initialize(Context context, String developerKey, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment, NetworkCallback onNoInternetConnection, ShiftSdkOptions options) {
         mEnvironment = Environment.valueOf(environment.toLowerCase());
         AndroidUtils utils = new AndroidUtils();
         HandlerConfigurator configurator = new EventBusHandlerConfigurator();
@@ -168,6 +170,7 @@ public class ShiftPlatform extends ShiftLinkSdk {
         setImageLoader(new VolleyImageLoader(context));
         setHandlerConfiguration(configurator);
         trustSelfSigned = trustSelfSignedCertificates;
+        UIStorage.getInstance().setSdkOptions(options);
     }
 
     public static void startLinkFlow(Activity activity) {
