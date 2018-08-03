@@ -125,7 +125,7 @@ public class LoanAgreementModelTest {
      */
     @Test
     public void correctTotalAmountText() {
-        Assert.assertThat("Incorrect total amount text.", mModel.getTotalAmount(), equalTo("$ 555"));
+        Assert.assertThat("Incorrect total amount text.", mModel.getTotalAmount(), equalTo("$ 5555"));
     }
 
     /**
