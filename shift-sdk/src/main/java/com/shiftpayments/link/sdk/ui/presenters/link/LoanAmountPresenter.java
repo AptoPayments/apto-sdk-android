@@ -1,0 +1,380 @@
+package com.shiftpayments.link.sdk.ui.presenters.link;
+
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.view.MenuItem;
+
+import com.shiftpayments.link.sdk.api.vos.IdDescriptionPairDisplayVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductListVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.LoanPurposeVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.LoanPurposesResponseVo;
+import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
+import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.models.link.LoanAmountModel;
+import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
+import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
+import com.shiftpayments.link.sdk.ui.views.link.LoanAmountView;
+import com.shiftpayments.link.sdk.ui.vos.AmountVo;
+import com.shiftpayments.link.sdk.ui.widgets.HintArrayAdapter;
+import com.shiftpayments.link.sdk.ui.widgets.MultiplyTransformer;
+import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperConfiguration;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
+import java8.util.concurrent.CompletableFuture;
+
+import static com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo.formatValues.plain_text;
+
+/**
+ * Concrete {@link Presenter} for the loan amount screen.
+ * @author Wijnand
+ */
+public class LoanAmountPresenter
+        extends LoanDataPresenter<LoanAmountModel, LoanAmountView>
+        implements LoanAmountView.ViewListener {
+
+    private int mAmountIncrement;
+    private HintArrayAdapter<IdDescriptionPairDisplayVo> mPurposeAdapter;
+    private LoanDataDelegate mDelegate;
+    private boolean isMaxLoanAmountReady;
+    private boolean isMinLoanAmountReady;
+    private boolean isDefaultLoanAmountReady;
+    private boolean isLoanPurposesReady;
+    private boolean isLoanIncrementsReady;
+    private boolean isLoanAmountRequired;
+    private boolean isLoanPurposeRequired;
+    private String mDisclaimersText;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
+
+    /**
+     * Creates a new {@link LoanAmountPresenter} instance.
+     * @param activity Activity.
+     */
+    public LoanAmountPresenter(AppCompatActivity activity, LoanDataDelegate delegate) {
+        super(activity);
+        mDelegate = delegate;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void init() {
+        super.init();
+        mPurposeAdapter = null;
+        isMaxLoanAmountReady = false;
+        isMinLoanAmountReady = false;
+        isDefaultLoanAmountReady = false;
+        isLoanPurposesReady = false;
+        isLoanIncrementsReady = false;
+        isLoanAmountRequired = !ConfigStorage.getInstance().getSkipLoanAmount();
+        isLoanPurposeRequired = !ConfigStorage.getInstance().getSkipLoanPurpose();
+        retrieveValuesFromConfig();
+    }
+
+    /**
+     * @param loanPurposesList List of loan purposes.
+     * @return A new {@link HintArrayAdapter} to use for the loan purpose drop-down.
+     */
+    private HintArrayAdapter<IdDescriptionPairDisplayVo> getPurposeAdapter(LoanPurposeVo[] loanPurposesList) {
+        HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
+                = new HintArrayAdapter<>(mActivity, android.R.layout.simple_spinner_dropdown_item);
+
+        IdDescriptionPairDisplayVo hint
+                = new IdDescriptionPairDisplayVo(-1, mActivity.getString(R.string.loan_amount_purpose_hint));
+
+        adapter.add(hint);
+
+        if (loanPurposesList != null) {
+            for (LoanPurposeVo purpose : loanPurposesList) {
+                adapter.add(new IdDescriptionPairDisplayVo(purpose.loan_purpose_id, purpose.description));
+            }
+        }
+
+        return adapter;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected StepperConfiguration getStepperConfig() {
+        return new StepperConfiguration(TOTAL_STEPS, 0, false);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public LoanAmountModel createModel() {
+        return new LoanAmountModel();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void attachView(LoanAmountView view) {
+        super.attachView(view);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
+        mLoadingSpinnerManager.showLoading(true);
+        mView.setListener(this);
+        if(UserStorage.getInstance().hasBearerToken()) {
+            mView.showGetOffersButtonAndDisclaimers(true);
+            if (mDisclaimersText == null) {
+                CompletableFuture
+                        .supplyAsync(()-> ConfigStorage.getInstance().getLoanProducts())
+                        .exceptionally(ex -> {
+                            errorReceived(ex.getMessage());
+                            return null;
+                        })
+                        .thenAccept(this::partnerDisclaimersListRetrieved);
+            } else {
+                setDisclaimers(mDisclaimersText);
+            }
+        }
+        else {
+            mView.showGetOffersButtonAndDisclaimers(false);
+        }
+
+        mView.showLoanAmount(isLoanAmountRequired);
+        mView.showLoanPurpose(isLoanPurposeRequired);
+
+        if(isLoanPurposeRequired) {
+            if (mPurposeAdapter == null) {
+                mView.setPurposeAdapter(getPurposeAdapter(null));
+
+                // Load loan purpose list.
+                CompletableFuture
+                        .supplyAsync(()-> ConfigStorage.getInstance().getLoanPurposes())
+                        .exceptionally(ex -> {
+                            errorReceived(ex.getMessage());
+                            return null;
+                        })
+                        .thenAccept(this::loanPurposesListRetrieved);
+            } else {
+                mView.setPurposeAdapter(mPurposeAdapter);
+
+                if (mModel.hasValidLoanPurpose()) {
+                    mView.setPurpose(mPurposeAdapter.getPosition(mModel.getLoanPurpose()));
+                }
+                mLoadingSpinnerManager.showLoading(false);
+            }
+        }
+    }
+
+    @Override
+    public void onBack() {
+        mDelegate.loanDataOnBackPressed();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void detachView() {
+        mView.setListener(null);
+        super.detachView();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void nextClickHandler() {
+        if(isLoanAmountRequired) {
+            mModel.setAmount(mView.getAmount() * mAmountIncrement);
+        }
+        if(isLoanPurposeRequired) {
+            mModel.setLoanPurpose(mView.getPurpose());
+            mView.updatePurposeError(!mModel.hasValidLoanPurpose());
+        }
+
+        if (isLoanAmountRequired && isLoanPurposeRequired && mModel.hasAllData()) {
+            saveDataAndExit();
+        }
+        else if (!isLoanPurposeRequired && isLoanAmountRequired && mModel.hasValidAmount()) {
+            saveDataAndExit();
+        }
+        else if (!isLoanAmountRequired && isLoanPurposeRequired && mModel.hasValidLoanPurpose()) {
+            saveDataAndExit();
+        }
+    }
+
+    private void saveDataAndExit() {
+        saveData();
+        mDelegate.loanDataPresented();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
+        // TODO: hardcoded currency
+        mView.updateAmountText(new AmountVo(value * mAmountIncrement, "USD").toString());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onStartTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onStopTrackingTouch(DiscreteSeekBar seekBar) { /* Do nothing. */ }
+
+    private void retrieveValuesFromConfig() {
+        if(isLoanAmountRequired) {
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getMaxLoanAmount())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::maxLoanAmountRetrieved);
+
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getMinLoanAmount())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::minLoanAmountRetrieved);
+
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getLoanAmountDefault())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::defaultLoanAmountRetrieved);
+
+            CompletableFuture
+                    .supplyAsync(()-> ConfigStorage.getInstance().getLoanAmountIncrements())
+                    .exceptionally(ex -> {
+                        errorReceived(ex.getMessage());
+                        return null;
+                    })
+                    .thenAccept(this::loanAmountIncrementsRetrieved);
+        }
+    }
+
+    /**
+     * Stores a new list of loan purposes and updates the View.
+     * @param loanPurposesList New list.
+     */
+    private void setLoanPurposeList(LoanPurposeVo[] loanPurposesList) {
+        mPurposeAdapter = getPurposeAdapter(loanPurposesList);
+
+        isLoanPurposesReady = true;
+        mView.setPurposeAdapter(mPurposeAdapter);
+
+        if (mModel.hasValidLoanPurpose()) {
+            mView.setPurpose(mPurposeAdapter.getPosition(mModel.getLoanPurpose()));
+        }
+
+        updateViewIfReady();
+    }
+
+    private void loanPurposesListRetrieved(LoanPurposesResponseVo purposeList) {
+        setLoanPurposeList(purposeList.data);
+    }
+
+    private void maxLoanAmountRetrieved(double maxLoanAmount) {
+        isMaxLoanAmountReady = true;
+        mModel.setMaxAmount((int) maxLoanAmount);
+        updateViewIfReady();
+    }
+
+    private void minLoanAmountRetrieved(double minLoanAmount) {
+        isMinLoanAmountReady = true;
+        mModel.setMinAmount((int) minLoanAmount);
+        updateViewIfReady();
+    }
+
+    private void defaultLoanAmountRetrieved(double defaultLoanAmount) {
+        isDefaultLoanAmountReady = true;
+        mModel.setAmount((int) defaultLoanAmount);
+        updateViewIfReady();
+    }
+
+    private void loanAmountIncrementsRetrieved(double amountIncrement) {
+        isLoanIncrementsReady = true;
+        mAmountIncrement = (int) amountIncrement;
+        updateViewIfReady();
+    }
+
+    private void partnerDisclaimersListRetrieved(LoanProductListVo response) {
+        setDisclaimers(parseDisclaimersResponse(response));
+    }
+
+    private void errorReceived(String error) {
+        if (mView != null) {
+            mLoadingSpinnerManager.showLoading(false);
+        }
+
+        String message = mActivity.getString(R.string.toast_api_error, error);
+        ApiErrorUtil.showErrorMessage(message, mActivity);
+    }
+
+    private boolean isAllDataReadyForView() {
+        boolean isViewReady = true;
+        if(isLoanAmountRequired) {
+            isViewReady = isMinLoanAmountReady && isMaxLoanAmountReady && isDefaultLoanAmountReady
+                    && isLoanIncrementsReady;
+        }
+        if(isLoanPurposeRequired) {
+            isViewReady = isViewReady && isLoanPurposesReady;
+        }
+        return isViewReady;
+    }
+
+    private void updateViewIfReady() {
+        if(isAllDataReadyForView()) {
+            super.populateModelFromStorage();
+            if(isLoanAmountRequired) {
+                mView.setSeekBarTransformer(new MultiplyTransformer(mAmountIncrement));
+                mView.setMinMax((mModel.getMinAmount() / mAmountIncrement)+1, mModel.getMaxAmount() / mAmountIncrement);
+                mView.setAmount(mModel.getAmount() / mAmountIncrement);
+            }
+            mLoadingSpinnerManager.showLoading(false);
+        }
+    }
+
+    private String parseDisclaimersResponse(LoanProductListVo productDisclaimerList) {
+        if (productDisclaimerList == null) {
+            return "";
+        }
+
+        String lineBreak = "<br />";
+        String partnerDivider = "<br /><br />";
+        StringBuilder result = new StringBuilder();
+
+        for(LoanProductVo loanProduct : productDisclaimerList.data) {
+            if (hasValidDisclaimer(loanProduct)) {
+                result.append(loanProduct.preQualificationDisclaimer.value.replaceAll("\\r?\\n", lineBreak));
+                result.append(partnerDivider);
+            }
+        }
+
+        return result.substring(0, result.length() - partnerDivider.length());
+    }
+
+    private boolean hasValidDisclaimer(LoanProductVo loanProduct) {
+        return !TextUtils.isEmpty(loanProduct.preQualificationDisclaimer.value) &&
+                ContentVo.formatValues.valueOf(loanProduct.preQualificationDisclaimer.format).equals(plain_text);
+    }
+
+    private void setDisclaimers(String disclaimers) {
+        mDisclaimersText = disclaimers;
+        mActivity.runOnUiThread(() -> {
+            if(!disclaimers.isEmpty()) {
+                mView.setDisclaimers(disclaimers);
+            }
+            mLoadingSpinnerManager.showLoading(false);
+        });
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        boolean handled = true;
+
+        int id = item.getItemId();
+        if (id == R.id.menu_update_profile) {
+            mDelegate.onUpdateUserProfile();
+        } else {
+            handled = false;
+        }
+
+        return handled;
+    }
+}

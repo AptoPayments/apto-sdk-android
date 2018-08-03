@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="llsdk_body_text_size">18sp</dimen>
+    <dimen name="llsdk_body_text_size">20sp</dimen>
+    <dimen name="llsdk_hint_text_size">16sp</dimen>
     <dimen name="llsdk_big_button_height">48dp</dimen>
 
     <dimen name="llsdk_offer_summary_header_size">24sp</dimen>
@@ -14,10 +15,10 @@
     <dimen name="llsdk_offer_carousel_image_height">108dp</dimen>
 
     <dimen name="llsdk_card_number_text_size">24sp</dimen>
-    <dimen name="llsdk_card_name_text_size">20sp</dimen>
-    <dimen name="llsdk_expiry_date_text_size">20sp</dimen>
-    <dimen name="llsdk_cvv_text_size">20sp</dimen>
-    <dimen name="llsdk_card_disabled_label_size">20sp</dimen>
+    <dimen name="llsdk_card_name_text_size">16sp</dimen>
+    <dimen name="llsdk_expiry_date_text_size">16sp</dimen>
+    <dimen name="llsdk_cvv_text_size">16sp</dimen>
+    <dimen name="llsdk_card_disabled_label_size">16sp</dimen>
     <dimen name="llsdk_card_common_margin">18dp</dimen>
     <dimen name="llsdk_card_holder_name_margin">6dp</dimen>
     <dimen name="llsdk_cvv_margin_left">15dp</dimen>
@@ -29,4 +30,7 @@
     <dimen name="llsdk_brand_logo_width">120dp</dimen>
     <dimen name="llsdk_brand_logo_height">40dp</dimen>
     <dimen name="llsdk_dummy_view_params">0dp</dimen>
+
+    <dimen name="llsdk_transaction_details_title_text_size">24sp</dimen>
+    <dimen name="llsdk_transaction_details_description_text_size">16sp</dimen>
 </resources>

@@ -27,7 +27,6 @@
 
         <item name="llsdk_stepper_backgroundColor">@color/llsdk_stepper_background</item>
         <item name="llsdk_stepper_textColor">@color/llsdk_stepper_text</item>
-        <item name="llsdk_stepper_leftArrow">@drawable/ic_action_previous_item</item>
         <item name="llsdk_stepper_rightArrow">@drawable/ic_action_next_item</item>
         <item name="llsdk_stepper_dotDisabled">@drawable/stepper_dot_disabled</item>
         <item name="llsdk_stepper_dotEnabled">@drawable/stepper_dot_enabled</item>
@@ -36,7 +35,7 @@
         <item name="llsdk_creditScore_radioButtonStyle">@style/llsdk_credit_score_radio</item>
 
         <item name="llsdk_idVerification_inputWrapperTheme">@style/Theme.LedgeLine.Sdk.Blue.TextInput</item>
-        <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_base</item>
+        <item name="llsdk_idVerification_inputWrapperStyle">@style/llsdk_id_verification_text_input_hint</item>
         <item name="llsdk_idVerification_editTextStyle">@style/llsdk_id_verification_text_input_base</item>
         <item name="llsdk_idVerification_disclaimerStyle">@style/llsdk_id_verification_disclaimer_blue</item>
 
@@ -68,6 +67,11 @@
         <item name="llsdk_loanAgreement_summaryValuesStyle">@style/llsdk_loan_agreement_summary_values</item>
         <item name="llsdk_loanAgreement_buttonColorOne">@color/llsdk_blue_loan_agreement_button</item>
         <item name="llsdk_loanAgreement_buttonColorTwo">@android:color/white</item>
+
+        <item name="llsdk_transactionDetails_cardTitleStyle">@style/llsdk_transaction_details_card_title</item>
+        <item name="llsdk_transactionDetails_cardDescriptionStyle">@style/llsdk_transaction_details_card_description</item>
+        <item name="llsdk_transactionDetails_detailHeaderTextStyle">@style/llsdk_transaction_details_detail_header</item>
+        <item name="llsdk_transactionDetails_detailValueTextStyle">@style/llsdk_transaction_details_detail_text</item>
     </style>
 
     <style

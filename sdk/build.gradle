@@ -4,14 +4,14 @@ apply from: '../jacoco.gradle'
 apply from: '../javadoc.gradle'
 apply plugin: 'me.tatarka.retrolambda'
 
-version = '1.0.0'
+version = '1.0.7'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'shift-sdk-core'
+    bintrayName = 'shift-sdk-core-new'
     bintrayOrg = 'shift'
 
-    publishedGroupId = 'com.shift.android'
+    publishedGroupId = 'com.shiftpayments.android'
     libraryName = 'SDK'
     artifact = 'sdk'
 

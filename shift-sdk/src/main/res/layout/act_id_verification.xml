@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shift.link.sdk.ui.views.userdata.IdentityVerificationView
+<com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include layout="@layout/include_llsdk_toolbar" />
+    <include layout="@layout/include_progress_bar" />
 
     <!-- Dummy to get focus on start. -->
     <RelativeLayout
@@ -21,49 +23,88 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/tv_birthdate_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/birthdate_hint"
+                android:textSize="14sp" />
+
             <RelativeLayout
-                    android:id="@+id/rl_birthday_holder"
-                    android:layout_width="match_parent"
+                android:id="@+id/rl_birthday_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_birthdate_hint">
+
+                <EditText
+                    android:id="@+id/et_birthday_month"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/abl_toolbar_wrapper">
+                    android:inputType="none"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:paddingRight="2dp"
+                    android:hint="@string/birthdate_hint_month"
+                    android:textSize="@dimen/llsdk_body_text_size"
+                    android:background="@android:color/transparent" />
 
-                <Button
-                        android:id="@+id/btn_birthday"
-                        android:layout_width="match_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_alignTop="@+id/til_birthday"
-                        android:layout_alignBottom="@+id/til_birthday"
-                        android:background="@android:color/transparent" />
+                <EditText
+                    android:id="@+id/month_split"
+                    style="@style/llsdk_birthdate_slash"
+                    android:layout_toRightOf="@id/et_birthday_month"
+                    android:text="/"/>
 
-                <android.support.design.widget.TextInputLayout
-                        android:id="@+id/til_birthday"
-                        style="?attr/llsdk_idVerification_inputWrapperStyle"
-                        android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
-                        android:nextFocusUp="@id/til_birthday"
-                        android:nextFocusLeft="@id/til_birthday">
+                <EditText
+                    android:id="@+id/et_birthday_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="@string/birthdate_hint_day"
+                    android:maxLength="2"
+                    android:textSize="@dimen/llsdk_body_text_size"
+                    android:background="@android:color/transparent"
+                    android:layout_toRightOf="@id/month_split" />
 
-                    <android.support.design.widget.TextInputEditText
-                            android:id="@+id/et_birthday"
-                            style="?attr/llsdk_idVerification_editTextStyle"
-                            android:inputType="date"
-                            android:focusable="false"
-                            android:singleLine="true"
-                            android:hint="@string/id_verification_birthday_hint" />
+                <EditText
+                    android:id="@+id/day_split"
+                    style="@style/llsdk_birthdate_slash"
+                    android:layout_toRightOf="@id/et_birthday_day"
+                    android:text="/"/>
 
-                </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/et_birthday_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="@string/birthdate_hint_year"
+                    android:textSize="@dimen/llsdk_body_text_size"
+                    android:maxLength="4"
+                    android:background="@android:color/transparent"
+                    android:layout_toRightOf="@id/day_split" />
+
+                <TextView
+                    android:id="@+id/tv_birthdate_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_below="@+id/et_birthday_day"
+                    style="@style/llsdk_error_text"/>
             </RelativeLayout>
 
             <android.support.design.widget.TextInputLayout
                     android:id="@+id/til_social_security"
                     style="?attr/llsdk_idVerification_inputWrapperStyle"
                     android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
-                    android:layout_below="@+id/rl_birthday_holder">
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat"
+                    android:layout_below="@+id/rl_birthday_holder"
+                    android:layout_marginTop="24dp">
 
-                <com.shift.link.sdk.ui.widgets.SsnEditText
+                <com.shiftpayments.link.sdk.ui.widgets.SsnEditText
                         android:id="@+id/et_social_security"
                         style="?attr/llsdk_idVerification_editTextStyle"
                         android:hint="@string/id_verification_social_security_hint" />
-
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
@@ -103,27 +144,7 @@
                     android:layout_below="@+id/tv_next_bttn"
                     android:layout_centerHorizontal="true"
                     android:text="@string/id_verification_disclaimer" />
-
-            <TextView
-                    android:id="@+id/tv_disclaimers_header"
-                    style="?attr/llsdk_idVerification_disclaimerStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_below="@+id/tv_security"
-                    android:visibility="gone"
-                    android:text="@string/id_verification_disclosures_label" />
-
-            <TextView
-                    android:id="@+id/tv_disclaimers_body"
-                    style="?attr/llsdk_idVerification_disclaimerStyle"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="48dp"
-                    android:layout_below="@+id/tv_disclaimers_header" />
-
         </RelativeLayout>
     </ScrollView>
 
-    <include layout="@layout/include_progress_bar" />
-    <include layout="@layout/include_rl_loading" />
-
-</com.shift.link.sdk.ui.views.userdata.IdentityVerificationView>
+</com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView>

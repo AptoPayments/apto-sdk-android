@@ -2,7 +2,7 @@
 <manifest
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        package="com.shift.link.sdk.ui"
+        package="com.shiftpayments.link.sdk.ui"
         android:versionCode="1"
         android:versionName="1.0">
 
@@ -11,10 +11,16 @@
             android:targetSdkVersion="24"
             tools:overrideLibrary="br.tiagohm.markdownview"/>
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <application
-            android:label="ShiftUi"
-            tools:replace="label" />
+    <application android:label="ShiftUi">
+        <receiver android:name=".utils.NetworkBroadcast" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+    </application>
 
 </manifest>

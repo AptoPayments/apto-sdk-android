@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shift.link.sdk.ui.views.userdata.EmailView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.shiftpayments.link.sdk.ui.views.userdata.EmailView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android.support.design="http://schemas.android.com/tools">
 
     <include layout="@layout/include_llsdk_toolbar" />
+    <include layout="@layout/include_progress_bar" />
 
     <!-- Dummy to get focus on start. -->
     <RelativeLayout
@@ -22,20 +23,12 @@
         android:layout_below="@+id/abl_toolbar_wrapper"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_email_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/email_label"
-            android:textSize="18sp" />
-
         <android.support.design.widget.TextInputLayout
             android:id="@+id/til_email"
             style="?attr/llsdk_idVerification_inputWrapperStyle"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="96dp"
             android:theme="?attr/llsdk_idVerification_inputWrapperTheme"
-            android:hint="@string/email_hint"
+            android:hint="@string/email_label"
             android.support.design:hintEnabled="true"
             android.support.design:hintAnimationEnabled="true"
             app:hintTextAppearance="@style/TextAppearance.AppCompat">
@@ -43,11 +36,10 @@
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/et_email"
                 style="?attr/llsdk_idVerification_editTextStyle"
+                android:hint="@string/email_hint"
                 android:inputType="textEmailAddress"
                 android:maxLines="1" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
-    <include layout="@layout/include_progress_bar" />
-
-</com.shift.link.sdk.ui.views.userdata.EmailView>
+</com.shiftpayments.link.sdk.ui.views.userdata.EmailView>

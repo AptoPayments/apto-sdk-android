@@ -15,3 +15,5 @@ gen
 strings_configuration.xml
 libs/
 ui/src/test/java/android/
+google-services.json
+captures

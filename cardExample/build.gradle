@@ -12,7 +12,13 @@ android {
         versionCode = androidVersionCode
         versionName = androidVersionName
 
-        applicationId 'com.shift.link.sdk.cardexample'
+        applicationId 'com.shiftpayments.link.sdk.cardexample'
+        multiDexEnabled true
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
     }
 
     compileOptions {
@@ -22,7 +28,7 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled true
+            minifyEnabled false
 
             proguardFile 'config/proguard/proguard-eventbus.cfg'
             proguardFile 'config/proguard/proguard-ledgelinkapi.cfg'
@@ -63,7 +69,11 @@ repositories {
 }
 
 dependencies {
-    compile 'com.shift.android:shift-sdk:1.0.0'
+    compile 'com.android.support:multidex:1.0.3'
+    compile 'com.shiftpayments.android:shift-sdk:1.1.2'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
     compile 'io.branch.sdk.android:library:2.+'
+    compile 'com.google.firebase:firebase-messaging:11.4.2'
 }
+
+apply plugin: 'com.google.gms.google-services'

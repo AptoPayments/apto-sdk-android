@@ -5274,35 +5274,35 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActionBar_background com.shift.link.sdk.ui:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_backgroundSplit com.shift.link.sdk.ui:backgroundSplit}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_backgroundStacked com.shift.link.sdk.ui:backgroundStacked}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetEnd com.shift.link.sdk.ui:contentInsetEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetEndWithActions com.shift.link.sdk.ui:contentInsetEndWithActions}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetLeft com.shift.link.sdk.ui:contentInsetLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetRight com.shift.link.sdk.ui:contentInsetRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetStart com.shift.link.sdk.ui:contentInsetStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetStartWithNavigation com.shift.link.sdk.ui:contentInsetStartWithNavigation}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_customNavigationLayout com.shift.link.sdk.ui:customNavigationLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_displayOptions com.shift.link.sdk.ui:displayOptions}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_divider com.shift.link.sdk.ui:divider}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_elevation com.shift.link.sdk.ui:elevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_height com.shift.link.sdk.ui:height}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_hideOnContentScroll com.shift.link.sdk.ui:hideOnContentScroll}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_homeAsUpIndicator com.shift.link.sdk.ui:homeAsUpIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_homeLayout com.shift.link.sdk.ui:homeLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_icon com.shift.link.sdk.ui:icon}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_indeterminateProgressStyle com.shift.link.sdk.ui:indeterminateProgressStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_itemPadding com.shift.link.sdk.ui:itemPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_logo com.shift.link.sdk.ui:logo}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_navigationMode com.shift.link.sdk.ui:navigationMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_popupTheme com.shift.link.sdk.ui:popupTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_progressBarPadding com.shift.link.sdk.ui:progressBarPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_progressBarStyle com.shift.link.sdk.ui:progressBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_subtitle com.shift.link.sdk.ui:subtitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_subtitleTextStyle com.shift.link.sdk.ui:subtitleTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_title com.shift.link.sdk.ui:title}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_titleTextStyle com.shift.link.sdk.ui:titleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_background com.shiftpayments.link.sdk.ui:background}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_backgroundSplit com.shiftpayments.link.sdk.ui:backgroundSplit}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_backgroundStacked com.shiftpayments.link.sdk.ui:backgroundStacked}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetEnd com.shiftpayments.link.sdk.ui:contentInsetEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetEndWithActions com.shiftpayments.link.sdk.ui:contentInsetEndWithActions}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetLeft com.shiftpayments.link.sdk.ui:contentInsetLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetRight com.shiftpayments.link.sdk.ui:contentInsetRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetStart com.shiftpayments.link.sdk.ui:contentInsetStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetStartWithNavigation com.shiftpayments.link.sdk.ui:contentInsetStartWithNavigation}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_customNavigationLayout com.shiftpayments.link.sdk.ui:customNavigationLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_displayOptions com.shiftpayments.link.sdk.ui:displayOptions}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_divider com.shiftpayments.link.sdk.ui:divider}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_elevation com.shiftpayments.link.sdk.ui:elevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_height com.shiftpayments.link.sdk.ui:height}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_hideOnContentScroll com.shiftpayments.link.sdk.ui:hideOnContentScroll}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_homeAsUpIndicator com.shiftpayments.link.sdk.ui:homeAsUpIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_homeLayout com.shiftpayments.link.sdk.ui:homeLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_icon com.shiftpayments.link.sdk.ui:icon}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_indeterminateProgressStyle com.shiftpayments.link.sdk.ui:indeterminateProgressStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_itemPadding com.shiftpayments.link.sdk.ui:itemPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_logo com.shiftpayments.link.sdk.ui:logo}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_navigationMode com.shiftpayments.link.sdk.ui:navigationMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_popupTheme com.shiftpayments.link.sdk.ui:popupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_progressBarPadding com.shiftpayments.link.sdk.ui:progressBarPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_progressBarStyle com.shiftpayments.link.sdk.ui:progressBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_subtitle com.shiftpayments.link.sdk.ui:subtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_subtitleTextStyle com.shiftpayments.link.sdk.ui:subtitleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_title com.shiftpayments.link.sdk.ui:title}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_titleTextStyle com.shiftpayments.link.sdk.ui:titleTextStyle}</code></td><td></td></tr>
            </table>
            @see #ActionBar_background
            @see #ActionBar_backgroundSplit
@@ -5345,17 +5345,17 @@ containing a value of this type.
             0x7f01009c
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#background}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#background}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:background
+          @attr name com.shiftpayments.link.sdk.ui:background
         */
         public static int ActionBar_background = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundSplit}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#backgroundSplit}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5363,11 +5363,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:backgroundSplit
+          @attr name com.shiftpayments.link.sdk.ui:backgroundSplit
         */
         public static int ActionBar_backgroundSplit = 12;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundStacked}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#backgroundStacked}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5375,11 +5375,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:backgroundStacked
+          @attr name com.shiftpayments.link.sdk.ui:backgroundStacked
         */
         public static int ActionBar_backgroundStacked = 11;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetEnd}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentInsetEnd}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5391,11 +5391,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentInsetEnd
+          @attr name com.shiftpayments.link.sdk.ui:contentInsetEnd
         */
         public static int ActionBar_contentInsetEnd = 21;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetEndWithActions}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentInsetEndWithActions}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5407,11 +5407,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentInsetEndWithActions
+          @attr name com.shiftpayments.link.sdk.ui:contentInsetEndWithActions
         */
         public static int ActionBar_contentInsetEndWithActions = 25;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetLeft}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentInsetLeft}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5423,11 +5423,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentInsetLeft
+          @attr name com.shiftpayments.link.sdk.ui:contentInsetLeft
         */
         public static int ActionBar_contentInsetLeft = 22;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetRight}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentInsetRight}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5439,11 +5439,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentInsetRight
+          @attr name com.shiftpayments.link.sdk.ui:contentInsetRight
         */
         public static int ActionBar_contentInsetRight = 23;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetStart}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentInsetStart}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5455,11 +5455,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentInsetStart
+          @attr name com.shiftpayments.link.sdk.ui:contentInsetStart
         */
         public static int ActionBar_contentInsetStart = 20;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetStartWithNavigation}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentInsetStartWithNavigation}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5471,21 +5471,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentInsetStartWithNavigation
+          @attr name com.shiftpayments.link.sdk.ui:contentInsetStartWithNavigation
         */
         public static int ActionBar_contentInsetStartWithNavigation = 24;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#customNavigationLayout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#customNavigationLayout}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:customNavigationLayout
+          @attr name com.shiftpayments.link.sdk.ui:customNavigationLayout
         */
         public static int ActionBar_customNavigationLayout = 13;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#displayOptions}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#displayOptions}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5503,21 +5503,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>showCustom</code></td><td>0x10</td><td></td></tr>
 <tr><td><code>disableHome</code></td><td>0x20</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:displayOptions
+          @attr name com.shiftpayments.link.sdk.ui:displayOptions
         */
         public static int ActionBar_displayOptions = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#divider}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#divider}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:divider
+          @attr name com.shiftpayments.link.sdk.ui:divider
         */
         public static int ActionBar_divider = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#elevation}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5529,11 +5529,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:elevation
+          @attr name com.shiftpayments.link.sdk.ui:elevation
         */
         public static int ActionBar_elevation = 26;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#height}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#height}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5545,11 +5545,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:height
+          @attr name com.shiftpayments.link.sdk.ui:height
         */
         public static int ActionBar_height = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#hideOnContentScroll}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#hideOnContentScroll}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5559,51 +5559,51 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:hideOnContentScroll
+          @attr name com.shiftpayments.link.sdk.ui:hideOnContentScroll
         */
         public static int ActionBar_hideOnContentScroll = 19;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#homeAsUpIndicator}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#homeAsUpIndicator}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:homeAsUpIndicator
+          @attr name com.shiftpayments.link.sdk.ui:homeAsUpIndicator
         */
         public static int ActionBar_homeAsUpIndicator = 28;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#homeLayout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#homeLayout}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:homeLayout
+          @attr name com.shiftpayments.link.sdk.ui:homeLayout
         */
         public static int ActionBar_homeLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#icon}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#icon}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:icon
+          @attr name com.shiftpayments.link.sdk.ui:icon
         */
         public static int ActionBar_icon = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#indeterminateProgressStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#indeterminateProgressStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:indeterminateProgressStyle
+          @attr name com.shiftpayments.link.sdk.ui:indeterminateProgressStyle
         */
         public static int ActionBar_indeterminateProgressStyle = 16;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#itemPadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#itemPadding}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5615,21 +5615,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:itemPadding
+          @attr name com.shiftpayments.link.sdk.ui:itemPadding
         */
         public static int ActionBar_itemPadding = 18;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#logo}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#logo}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:logo
+          @attr name com.shiftpayments.link.sdk.ui:logo
         */
         public static int ActionBar_logo = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#navigationMode}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#navigationMode}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5643,21 +5643,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>listMode</code></td><td>1</td><td></td></tr>
 <tr><td><code>tabMode</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:navigationMode
+          @attr name com.shiftpayments.link.sdk.ui:navigationMode
         */
         public static int ActionBar_navigationMode = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#popupTheme}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:popupTheme
+          @attr name com.shiftpayments.link.sdk.ui:popupTheme
         */
         public static int ActionBar_popupTheme = 27;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#progressBarPadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#progressBarPadding}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5669,21 +5669,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:progressBarPadding
+          @attr name com.shiftpayments.link.sdk.ui:progressBarPadding
         */
         public static int ActionBar_progressBarPadding = 17;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#progressBarStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#progressBarStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:progressBarStyle
+          @attr name com.shiftpayments.link.sdk.ui:progressBarStyle
         */
         public static int ActionBar_progressBarStyle = 15;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subtitle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#subtitle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5693,21 +5693,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:subtitle
+          @attr name com.shiftpayments.link.sdk.ui:subtitle
         */
         public static int ActionBar_subtitle = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subtitleTextStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#subtitleTextStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:subtitleTextStyle
+          @attr name com.shiftpayments.link.sdk.ui:subtitleTextStyle
         */
         public static int ActionBar_subtitleTextStyle = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#title}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#title}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -5717,17 +5717,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:title
+          @attr name com.shiftpayments.link.sdk.ui:title
         */
         public static int ActionBar_title = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleTextStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#titleTextStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:titleTextStyle
+          @attr name com.shiftpayments.link.sdk.ui:titleTextStyle
         */
         public static int ActionBar_titleTextStyle = 5;
         /** Attributes that can be used with a ActionBarLayout.
@@ -5779,12 +5779,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActionMode_background com.shift.link.sdk.ui:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_backgroundSplit com.shift.link.sdk.ui:backgroundSplit}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_closeItemLayout com.shift.link.sdk.ui:closeItemLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_height com.shift.link.sdk.ui:height}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_subtitleTextStyle com.shift.link.sdk.ui:subtitleTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_titleTextStyle com.shift.link.sdk.ui:titleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_background com.shiftpayments.link.sdk.ui:background}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_backgroundSplit com.shiftpayments.link.sdk.ui:backgroundSplit}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_closeItemLayout com.shiftpayments.link.sdk.ui:closeItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_height com.shiftpayments.link.sdk.ui:height}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_subtitleTextStyle com.shiftpayments.link.sdk.ui:subtitleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_titleTextStyle com.shiftpayments.link.sdk.ui:titleTextStyle}</code></td><td></td></tr>
            </table>
            @see #ActionMode_background
            @see #ActionMode_backgroundSplit
@@ -5798,17 +5798,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01004a, 0x7f01005a
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#background}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#background}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:background
+          @attr name com.shiftpayments.link.sdk.ui:background
         */
         public static int ActionMode_background = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundSplit}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#backgroundSplit}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -5816,21 +5816,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:backgroundSplit
+          @attr name com.shiftpayments.link.sdk.ui:backgroundSplit
         */
         public static int ActionMode_backgroundSplit = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#closeItemLayout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#closeItemLayout}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:closeItemLayout
+          @attr name com.shiftpayments.link.sdk.ui:closeItemLayout
         */
         public static int ActionMode_closeItemLayout = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#height}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#height}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -5842,27 +5842,27 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:height
+          @attr name com.shiftpayments.link.sdk.ui:height
         */
         public static int ActionMode_height = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subtitleTextStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#subtitleTextStyle}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:subtitleTextStyle
+          @attr name com.shiftpayments.link.sdk.ui:subtitleTextStyle
         */
         public static int ActionMode_subtitleTextStyle = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleTextStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#titleTextStyle}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:titleTextStyle
+          @attr name com.shiftpayments.link.sdk.ui:titleTextStyle
         */
         public static int ActionMode_titleTextStyle = 1;
         /** Attributes that can be used with a ActivityChooserView.
@@ -5871,8 +5871,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActivityChooserView_expandActivityOverflowButtonDrawable com.shift.link.sdk.ui:expandActivityOverflowButtonDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActivityChooserView_initialActivityCount com.shift.link.sdk.ui:initialActivityCount}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActivityChooserView_expandActivityOverflowButtonDrawable com.shiftpayments.link.sdk.ui:expandActivityOverflowButtonDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActivityChooserView_initialActivityCount com.shiftpayments.link.sdk.ui:initialActivityCount}</code></td><td></td></tr>
            </table>
            @see #ActivityChooserView_expandActivityOverflowButtonDrawable
            @see #ActivityChooserView_initialActivityCount
@@ -5881,17 +5881,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01005b, 0x7f01005c
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandActivityOverflowButtonDrawable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#expandActivityOverflowButtonDrawable}
           attribute's value can be found in the {@link #ActivityChooserView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:expandActivityOverflowButtonDrawable
+          @attr name com.shiftpayments.link.sdk.ui:expandActivityOverflowButtonDrawable
         */
         public static int ActivityChooserView_expandActivityOverflowButtonDrawable = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#initialActivityCount}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#initialActivityCount}
           attribute's value can be found in the {@link #ActivityChooserView} array.
 
 
@@ -5901,7 +5901,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:initialActivityCount
+          @attr name com.shiftpayments.link.sdk.ui:initialActivityCount
         */
         public static int ActivityChooserView_initialActivityCount = 0;
         /** Attributes that can be used with a AlertDialog.
@@ -5911,12 +5911,12 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AlertDialog_android_layout android:layout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_buttonPanelSideLayout com.shift.link.sdk.ui:buttonPanelSideLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_listItemLayout com.shift.link.sdk.ui:listItemLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_listLayout com.shift.link.sdk.ui:listLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_multiChoiceItemLayout com.shift.link.sdk.ui:multiChoiceItemLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_showTitle com.shift.link.sdk.ui:showTitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_singleChoiceItemLayout com.shift.link.sdk.ui:singleChoiceItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_buttonPanelSideLayout com.shiftpayments.link.sdk.ui:buttonPanelSideLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_listItemLayout com.shiftpayments.link.sdk.ui:listItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_listLayout com.shiftpayments.link.sdk.ui:listLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_multiChoiceItemLayout com.shiftpayments.link.sdk.ui:multiChoiceItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_showTitle com.shiftpayments.link.sdk.ui:showTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_singleChoiceItemLayout com.shiftpayments.link.sdk.ui:singleChoiceItemLayout}</code></td><td></td></tr>
            </table>
            @see #AlertDialog_android_layout
            @see #AlertDialog_buttonPanelSideLayout
@@ -5937,47 +5937,47 @@ containing a value of this type.
         */
         public static int AlertDialog_android_layout = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonPanelSideLayout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#buttonPanelSideLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:buttonPanelSideLayout
+          @attr name com.shiftpayments.link.sdk.ui:buttonPanelSideLayout
         */
         public static int AlertDialog_buttonPanelSideLayout = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listItemLayout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#listItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:listItemLayout
+          @attr name com.shiftpayments.link.sdk.ui:listItemLayout
         */
         public static int AlertDialog_listItemLayout = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listLayout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#listLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:listLayout
+          @attr name com.shiftpayments.link.sdk.ui:listLayout
         */
         public static int AlertDialog_listLayout = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#multiChoiceItemLayout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#multiChoiceItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:multiChoiceItemLayout
+          @attr name com.shiftpayments.link.sdk.ui:multiChoiceItemLayout
         */
         public static int AlertDialog_multiChoiceItemLayout = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#showTitle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#showTitle}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
@@ -5987,17 +5987,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:showTitle
+          @attr name com.shiftpayments.link.sdk.ui:showTitle
         */
         public static int AlertDialog_showTitle = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#singleChoiceItemLayout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#singleChoiceItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:singleChoiceItemLayout
+          @attr name com.shiftpayments.link.sdk.ui:singleChoiceItemLayout
         */
         public static int AlertDialog_singleChoiceItemLayout = 4;
         /** Attributes that can be used with a AppBarLayout.
@@ -6007,8 +6007,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AppBarLayout_android_background android:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppBarLayout_elevation com.shift.link.sdk.ui:elevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppBarLayout_expanded com.shift.link.sdk.ui:expanded}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppBarLayout_elevation com.shiftpayments.link.sdk.ui:elevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppBarLayout_expanded com.shiftpayments.link.sdk.ui:expanded}</code></td><td></td></tr>
            </table>
            @see #AppBarLayout_android_background
            @see #AppBarLayout_elevation
@@ -6024,7 +6024,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppBarLayout_android_background = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#elevation}
           attribute's value can be found in the {@link #AppBarLayout} array.
 
 
@@ -6036,11 +6036,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:elevation
+          @attr name com.shiftpayments.link.sdk.ui:elevation
         */
         public static int AppBarLayout_elevation = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expanded}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#expanded}
           attribute's value can be found in the {@link #AppBarLayout} array.
 
 
@@ -6050,7 +6050,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:expanded
+          @attr name com.shiftpayments.link.sdk.ui:expanded
         */
         public static int AppBarLayout_expanded = 2;
         /** Attributes that can be used with a AppBarLayoutStates.
@@ -6059,8 +6059,8 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #AppBarLayoutStates_state_collapsed com.shift.link.sdk.ui:state_collapsed}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppBarLayoutStates_state_collapsible com.shift.link.sdk.ui:state_collapsible}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppBarLayoutStates_state_collapsed com.shiftpayments.link.sdk.ui:state_collapsed}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppBarLayoutStates_state_collapsible com.shiftpayments.link.sdk.ui:state_collapsible}</code></td><td></td></tr>
            </table>
            @see #AppBarLayoutStates_state_collapsed
            @see #AppBarLayoutStates_state_collapsible
@@ -6069,7 +6069,7 @@ containing a value of this type.
             0x7f010064, 0x7f010065
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#state_collapsed}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#state_collapsed}
           attribute's value can be found in the {@link #AppBarLayoutStates} array.
 
 
@@ -6079,11 +6079,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:state_collapsed
+          @attr name com.shiftpayments.link.sdk.ui:state_collapsed
         */
         public static int AppBarLayoutStates_state_collapsed = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#state_collapsible}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#state_collapsible}
           attribute's value can be found in the {@link #AppBarLayoutStates} array.
 
 
@@ -6093,7 +6093,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:state_collapsible
+          @attr name com.shiftpayments.link.sdk.ui:state_collapsible
         */
         public static int AppBarLayoutStates_state_collapsible = 1;
         /** Attributes that can be used with a AppBarLayout_Layout.
@@ -6102,8 +6102,8 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #AppBarLayout_Layout_layout_scrollFlags com.shift.link.sdk.ui:layout_scrollFlags}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppBarLayout_Layout_layout_scrollInterpolator com.shift.link.sdk.ui:layout_scrollInterpolator}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppBarLayout_Layout_layout_scrollFlags com.shiftpayments.link.sdk.ui:layout_scrollFlags}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppBarLayout_Layout_layout_scrollInterpolator com.shiftpayments.link.sdk.ui:layout_scrollInterpolator}</code></td><td></td></tr>
            </table>
            @see #AppBarLayout_Layout_layout_scrollFlags
            @see #AppBarLayout_Layout_layout_scrollInterpolator
@@ -6112,7 +6112,7 @@ containing a value of this type.
             0x7f010066, 0x7f010067
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_scrollFlags}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#layout_scrollFlags}
           attribute's value can be found in the {@link #AppBarLayout_Layout} array.
 
 
@@ -6128,17 +6128,17 @@ containing a value of this type.
 <tr><td><code>enterAlwaysCollapsed</code></td><td>0x8</td><td></td></tr>
 <tr><td><code>snap</code></td><td>0x10</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:layout_scrollFlags
+          @attr name com.shiftpayments.link.sdk.ui:layout_scrollFlags
         */
         public static int AppBarLayout_Layout_layout_scrollFlags = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_scrollInterpolator}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#layout_scrollInterpolator}
           attribute's value can be found in the {@link #AppBarLayout_Layout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:layout_scrollInterpolator
+          @attr name com.shiftpayments.link.sdk.ui:layout_scrollInterpolator
         */
         public static int AppBarLayout_Layout_layout_scrollInterpolator = 1;
         /** Attributes that can be used with a AppCompatImageView.
@@ -6148,7 +6148,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AppCompatImageView_android_src android:src}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatImageView_srcCompat com.shift.link.sdk.ui:srcCompat}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatImageView_srcCompat com.shiftpayments.link.sdk.ui:srcCompat}</code></td><td></td></tr>
            </table>
            @see #AppCompatImageView_android_src
            @see #AppCompatImageView_srcCompat
@@ -6163,13 +6163,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatImageView_android_src = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#srcCompat}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#srcCompat}
           attribute's value can be found in the {@link #AppCompatImageView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:srcCompat
+          @attr name com.shiftpayments.link.sdk.ui:srcCompat
         */
         public static int AppCompatImageView_srcCompat = 1;
         /** Attributes that can be used with a AppCompatSeekBar.
@@ -6179,9 +6179,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AppCompatSeekBar_android_thumb android:thumb}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatSeekBar_tickMark com.shift.link.sdk.ui:tickMark}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatSeekBar_tickMarkTint com.shift.link.sdk.ui:tickMarkTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatSeekBar_tickMarkTintMode com.shift.link.sdk.ui:tickMarkTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatSeekBar_tickMark com.shiftpayments.link.sdk.ui:tickMark}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatSeekBar_tickMarkTint com.shiftpayments.link.sdk.ui:tickMarkTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatSeekBar_tickMarkTintMode com.shiftpayments.link.sdk.ui:tickMarkTintMode}</code></td><td></td></tr>
            </table>
            @see #AppCompatSeekBar_android_thumb
            @see #AppCompatSeekBar_tickMark
@@ -6198,17 +6198,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatSeekBar_android_thumb = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tickMark}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tickMark}
           attribute's value can be found in the {@link #AppCompatSeekBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:tickMark
+          @attr name com.shiftpayments.link.sdk.ui:tickMark
         */
         public static int AppCompatSeekBar_tickMark = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tickMarkTint}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tickMarkTint}
           attribute's value can be found in the {@link #AppCompatSeekBar} array.
 
 
@@ -6219,11 +6219,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tickMarkTint
+          @attr name com.shiftpayments.link.sdk.ui:tickMarkTint
         */
         public static int AppCompatSeekBar_tickMarkTint = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tickMarkTintMode}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tickMarkTintMode}
           attribute's value can be found in the {@link #AppCompatSeekBar} array.
 
 
@@ -6240,7 +6240,7 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:tickMarkTintMode
+          @attr name com.shiftpayments.link.sdk.ui:tickMarkTintMode
         */
         public static int AppCompatSeekBar_tickMarkTintMode = 3;
         /** Attributes that can be used with a AppCompatTextHelper.
@@ -6318,7 +6318,7 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AppCompatTextView_android_textAppearance android:textAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTextView_textAllCaps com.shift.link.sdk.ui:textAllCaps}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTextView_textAllCaps com.shiftpayments.link.sdk.ui:textAllCaps}</code></td><td></td></tr>
            </table>
            @see #AppCompatTextView_android_textAppearance
            @see #AppCompatTextView_textAllCaps
@@ -6333,14 +6333,14 @@ containing a value of this type.
         */
         public static int AppCompatTextView_android_textAppearance = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAllCaps}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textAllCaps}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
-          @attr name com.shift.link.sdk.ui:textAllCaps
+          @attr name com.shiftpayments.link.sdk.ui:textAllCaps
         */
         public static int AppCompatTextView_textAllCaps = 1;
         /** Attributes that can be used with a AppCompatTheme.
@@ -6349,121 +6349,121 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarDivider com.shift.link.sdk.ui:actionBarDivider}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarItemBackground com.shift.link.sdk.ui:actionBarItemBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarPopupTheme com.shift.link.sdk.ui:actionBarPopupTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarSize com.shift.link.sdk.ui:actionBarSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarSplitStyle com.shift.link.sdk.ui:actionBarSplitStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarStyle com.shift.link.sdk.ui:actionBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarTabBarStyle com.shift.link.sdk.ui:actionBarTabBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarTabStyle com.shift.link.sdk.ui:actionBarTabStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarTabTextStyle com.shift.link.sdk.ui:actionBarTabTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarTheme com.shift.link.sdk.ui:actionBarTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarWidgetTheme com.shift.link.sdk.ui:actionBarWidgetTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionButtonStyle com.shift.link.sdk.ui:actionButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionDropDownStyle com.shift.link.sdk.ui:actionDropDownStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionMenuTextAppearance com.shift.link.sdk.ui:actionMenuTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionMenuTextColor com.shift.link.sdk.ui:actionMenuTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeBackground com.shift.link.sdk.ui:actionModeBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeCloseButtonStyle com.shift.link.sdk.ui:actionModeCloseButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeCloseDrawable com.shift.link.sdk.ui:actionModeCloseDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeCopyDrawable com.shift.link.sdk.ui:actionModeCopyDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeCutDrawable com.shift.link.sdk.ui:actionModeCutDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeFindDrawable com.shift.link.sdk.ui:actionModeFindDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModePasteDrawable com.shift.link.sdk.ui:actionModePasteDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModePopupWindowStyle com.shift.link.sdk.ui:actionModePopupWindowStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeSelectAllDrawable com.shift.link.sdk.ui:actionModeSelectAllDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeShareDrawable com.shift.link.sdk.ui:actionModeShareDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeSplitBackground com.shift.link.sdk.ui:actionModeSplitBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeStyle com.shift.link.sdk.ui:actionModeStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeWebSearchDrawable com.shift.link.sdk.ui:actionModeWebSearchDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionOverflowButtonStyle com.shift.link.sdk.ui:actionOverflowButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionOverflowMenuStyle com.shift.link.sdk.ui:actionOverflowMenuStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_activityChooserViewStyle com.shift.link.sdk.ui:activityChooserViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_alertDialogButtonGroupStyle com.shift.link.sdk.ui:alertDialogButtonGroupStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_alertDialogCenterButtons com.shift.link.sdk.ui:alertDialogCenterButtons}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_alertDialogStyle com.shift.link.sdk.ui:alertDialogStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_alertDialogTheme com.shift.link.sdk.ui:alertDialogTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarDivider com.shiftpayments.link.sdk.ui:actionBarDivider}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarItemBackground com.shiftpayments.link.sdk.ui:actionBarItemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarPopupTheme com.shiftpayments.link.sdk.ui:actionBarPopupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarSize com.shiftpayments.link.sdk.ui:actionBarSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarSplitStyle com.shiftpayments.link.sdk.ui:actionBarSplitStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarStyle com.shiftpayments.link.sdk.ui:actionBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarTabBarStyle com.shiftpayments.link.sdk.ui:actionBarTabBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarTabStyle com.shiftpayments.link.sdk.ui:actionBarTabStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarTabTextStyle com.shiftpayments.link.sdk.ui:actionBarTabTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarTheme com.shiftpayments.link.sdk.ui:actionBarTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarWidgetTheme com.shiftpayments.link.sdk.ui:actionBarWidgetTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionButtonStyle com.shiftpayments.link.sdk.ui:actionButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionDropDownStyle com.shiftpayments.link.sdk.ui:actionDropDownStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionMenuTextAppearance com.shiftpayments.link.sdk.ui:actionMenuTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionMenuTextColor com.shiftpayments.link.sdk.ui:actionMenuTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeBackground com.shiftpayments.link.sdk.ui:actionModeBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeCloseButtonStyle com.shiftpayments.link.sdk.ui:actionModeCloseButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeCloseDrawable com.shiftpayments.link.sdk.ui:actionModeCloseDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeCopyDrawable com.shiftpayments.link.sdk.ui:actionModeCopyDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeCutDrawable com.shiftpayments.link.sdk.ui:actionModeCutDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeFindDrawable com.shiftpayments.link.sdk.ui:actionModeFindDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModePasteDrawable com.shiftpayments.link.sdk.ui:actionModePasteDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModePopupWindowStyle com.shiftpayments.link.sdk.ui:actionModePopupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeSelectAllDrawable com.shiftpayments.link.sdk.ui:actionModeSelectAllDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeShareDrawable com.shiftpayments.link.sdk.ui:actionModeShareDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeSplitBackground com.shiftpayments.link.sdk.ui:actionModeSplitBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeStyle com.shiftpayments.link.sdk.ui:actionModeStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeWebSearchDrawable com.shiftpayments.link.sdk.ui:actionModeWebSearchDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionOverflowButtonStyle com.shiftpayments.link.sdk.ui:actionOverflowButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionOverflowMenuStyle com.shiftpayments.link.sdk.ui:actionOverflowMenuStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_activityChooserViewStyle com.shiftpayments.link.sdk.ui:activityChooserViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_alertDialogButtonGroupStyle com.shiftpayments.link.sdk.ui:alertDialogButtonGroupStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_alertDialogCenterButtons com.shiftpayments.link.sdk.ui:alertDialogCenterButtons}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_alertDialogStyle com.shiftpayments.link.sdk.ui:alertDialogStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_alertDialogTheme com.shiftpayments.link.sdk.ui:alertDialogTheme}</code></td><td></td></tr>
            <tr><td><code>{@link #AppCompatTheme_android_windowAnimationStyle android:windowAnimationStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #AppCompatTheme_android_windowIsFloating android:windowIsFloating}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_autoCompleteTextViewStyle com.shift.link.sdk.ui:autoCompleteTextViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_borderlessButtonStyle com.shift.link.sdk.ui:borderlessButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarButtonStyle com.shift.link.sdk.ui:buttonBarButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarNegativeButtonStyle com.shift.link.sdk.ui:buttonBarNegativeButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarNeutralButtonStyle com.shift.link.sdk.ui:buttonBarNeutralButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarPositiveButtonStyle com.shift.link.sdk.ui:buttonBarPositiveButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarStyle com.shift.link.sdk.ui:buttonBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonStyle com.shift.link.sdk.ui:buttonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonStyleSmall com.shift.link.sdk.ui:buttonStyleSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_checkboxStyle com.shift.link.sdk.ui:checkboxStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_checkedTextViewStyle com.shift.link.sdk.ui:checkedTextViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorAccent com.shift.link.sdk.ui:colorAccent}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorBackgroundFloating com.shift.link.sdk.ui:colorBackgroundFloating}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorButtonNormal com.shift.link.sdk.ui:colorButtonNormal}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorControlActivated com.shift.link.sdk.ui:colorControlActivated}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorControlHighlight com.shift.link.sdk.ui:colorControlHighlight}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorControlNormal com.shift.link.sdk.ui:colorControlNormal}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorPrimary com.shift.link.sdk.ui:colorPrimary}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorPrimaryDark com.shift.link.sdk.ui:colorPrimaryDark}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorSwitchThumbNormal com.shift.link.sdk.ui:colorSwitchThumbNormal}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_controlBackground com.shift.link.sdk.ui:controlBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dialogPreferredPadding com.shift.link.sdk.ui:dialogPreferredPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dialogTheme com.shift.link.sdk.ui:dialogTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dividerHorizontal com.shift.link.sdk.ui:dividerHorizontal}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dividerVertical com.shift.link.sdk.ui:dividerVertical}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dropDownListViewStyle com.shift.link.sdk.ui:dropDownListViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dropdownListPreferredItemHeight com.shift.link.sdk.ui:dropdownListPreferredItemHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_editTextBackground com.shift.link.sdk.ui:editTextBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_editTextColor com.shift.link.sdk.ui:editTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_editTextStyle com.shift.link.sdk.ui:editTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_homeAsUpIndicator com.shift.link.sdk.ui:homeAsUpIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_imageButtonStyle com.shift.link.sdk.ui:imageButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listChoiceBackgroundIndicator com.shift.link.sdk.ui:listChoiceBackgroundIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listDividerAlertDialog com.shift.link.sdk.ui:listDividerAlertDialog}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listMenuViewStyle com.shift.link.sdk.ui:listMenuViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPopupWindowStyle com.shift.link.sdk.ui:listPopupWindowStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeight com.shift.link.sdk.ui:listPreferredItemHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeightLarge com.shift.link.sdk.ui:listPreferredItemHeightLarge}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeightSmall com.shift.link.sdk.ui:listPreferredItemHeightSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemPaddingLeft com.shift.link.sdk.ui:listPreferredItemPaddingLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemPaddingRight com.shift.link.sdk.ui:listPreferredItemPaddingRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_panelBackground com.shift.link.sdk.ui:panelBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_panelMenuListTheme com.shift.link.sdk.ui:panelMenuListTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_panelMenuListWidth com.shift.link.sdk.ui:panelMenuListWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_popupMenuStyle com.shift.link.sdk.ui:popupMenuStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_popupWindowStyle com.shift.link.sdk.ui:popupWindowStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_radioButtonStyle com.shift.link.sdk.ui:radioButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_ratingBarStyle com.shift.link.sdk.ui:ratingBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_ratingBarStyleIndicator com.shift.link.sdk.ui:ratingBarStyleIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_ratingBarStyleSmall com.shift.link.sdk.ui:ratingBarStyleSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_searchViewStyle com.shift.link.sdk.ui:searchViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_seekBarStyle com.shift.link.sdk.ui:seekBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_selectableItemBackground com.shift.link.sdk.ui:selectableItemBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_selectableItemBackgroundBorderless com.shift.link.sdk.ui:selectableItemBackgroundBorderless}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_spinnerDropDownItemStyle com.shift.link.sdk.ui:spinnerDropDownItemStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_spinnerStyle com.shift.link.sdk.ui:spinnerStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_switchStyle com.shift.link.sdk.ui:switchStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceLargePopupMenu com.shift.link.sdk.ui:textAppearanceLargePopupMenu}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItem com.shift.link.sdk.ui:textAppearanceListItem}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItemSmall com.shift.link.sdk.ui:textAppearanceListItemSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearancePopupMenuHeader com.shift.link.sdk.ui:textAppearancePopupMenuHeader}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceSearchResultSubtitle com.shift.link.sdk.ui:textAppearanceSearchResultSubtitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceSearchResultTitle com.shift.link.sdk.ui:textAppearanceSearchResultTitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceSmallPopupMenu com.shift.link.sdk.ui:textAppearanceSmallPopupMenu}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textColorAlertDialogListItem com.shift.link.sdk.ui:textColorAlertDialogListItem}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textColorSearchUrl com.shift.link.sdk.ui:textColorSearchUrl}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_toolbarNavigationButtonStyle com.shift.link.sdk.ui:toolbarNavigationButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_toolbarStyle com.shift.link.sdk.ui:toolbarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowActionBar com.shift.link.sdk.ui:windowActionBar}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowActionBarOverlay com.shift.link.sdk.ui:windowActionBarOverlay}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowActionModeOverlay com.shift.link.sdk.ui:windowActionModeOverlay}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowFixedHeightMajor com.shift.link.sdk.ui:windowFixedHeightMajor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowFixedHeightMinor com.shift.link.sdk.ui:windowFixedHeightMinor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowFixedWidthMajor com.shift.link.sdk.ui:windowFixedWidthMajor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowFixedWidthMinor com.shift.link.sdk.ui:windowFixedWidthMinor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowMinWidthMajor com.shift.link.sdk.ui:windowMinWidthMajor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowMinWidthMinor com.shift.link.sdk.ui:windowMinWidthMinor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowNoTitle com.shift.link.sdk.ui:windowNoTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_autoCompleteTextViewStyle com.shiftpayments.link.sdk.ui:autoCompleteTextViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_borderlessButtonStyle com.shiftpayments.link.sdk.ui:borderlessButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarButtonStyle com.shiftpayments.link.sdk.ui:buttonBarButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarNegativeButtonStyle com.shiftpayments.link.sdk.ui:buttonBarNegativeButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarNeutralButtonStyle com.shiftpayments.link.sdk.ui:buttonBarNeutralButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarPositiveButtonStyle com.shiftpayments.link.sdk.ui:buttonBarPositiveButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarStyle com.shiftpayments.link.sdk.ui:buttonBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonStyle com.shiftpayments.link.sdk.ui:buttonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonStyleSmall com.shiftpayments.link.sdk.ui:buttonStyleSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_checkboxStyle com.shiftpayments.link.sdk.ui:checkboxStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_checkedTextViewStyle com.shiftpayments.link.sdk.ui:checkedTextViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorAccent com.shiftpayments.link.sdk.ui:colorAccent}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorBackgroundFloating com.shiftpayments.link.sdk.ui:colorBackgroundFloating}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorButtonNormal com.shiftpayments.link.sdk.ui:colorButtonNormal}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorControlActivated com.shiftpayments.link.sdk.ui:colorControlActivated}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorControlHighlight com.shiftpayments.link.sdk.ui:colorControlHighlight}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorControlNormal com.shiftpayments.link.sdk.ui:colorControlNormal}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorPrimary com.shiftpayments.link.sdk.ui:colorPrimary}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorPrimaryDark com.shiftpayments.link.sdk.ui:colorPrimaryDark}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorSwitchThumbNormal com.shiftpayments.link.sdk.ui:colorSwitchThumbNormal}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_controlBackground com.shiftpayments.link.sdk.ui:controlBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dialogPreferredPadding com.shiftpayments.link.sdk.ui:dialogPreferredPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dialogTheme com.shiftpayments.link.sdk.ui:dialogTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dividerHorizontal com.shiftpayments.link.sdk.ui:dividerHorizontal}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dividerVertical com.shiftpayments.link.sdk.ui:dividerVertical}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dropDownListViewStyle com.shiftpayments.link.sdk.ui:dropDownListViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dropdownListPreferredItemHeight com.shiftpayments.link.sdk.ui:dropdownListPreferredItemHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_editTextBackground com.shiftpayments.link.sdk.ui:editTextBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_editTextColor com.shiftpayments.link.sdk.ui:editTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_editTextStyle com.shiftpayments.link.sdk.ui:editTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_homeAsUpIndicator com.shiftpayments.link.sdk.ui:homeAsUpIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_imageButtonStyle com.shiftpayments.link.sdk.ui:imageButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listChoiceBackgroundIndicator com.shiftpayments.link.sdk.ui:listChoiceBackgroundIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listDividerAlertDialog com.shiftpayments.link.sdk.ui:listDividerAlertDialog}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listMenuViewStyle com.shiftpayments.link.sdk.ui:listMenuViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPopupWindowStyle com.shiftpayments.link.sdk.ui:listPopupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeight com.shiftpayments.link.sdk.ui:listPreferredItemHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeightLarge com.shiftpayments.link.sdk.ui:listPreferredItemHeightLarge}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeightSmall com.shiftpayments.link.sdk.ui:listPreferredItemHeightSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemPaddingLeft com.shiftpayments.link.sdk.ui:listPreferredItemPaddingLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemPaddingRight com.shiftpayments.link.sdk.ui:listPreferredItemPaddingRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_panelBackground com.shiftpayments.link.sdk.ui:panelBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_panelMenuListTheme com.shiftpayments.link.sdk.ui:panelMenuListTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_panelMenuListWidth com.shiftpayments.link.sdk.ui:panelMenuListWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_popupMenuStyle com.shiftpayments.link.sdk.ui:popupMenuStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_popupWindowStyle com.shiftpayments.link.sdk.ui:popupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_radioButtonStyle com.shiftpayments.link.sdk.ui:radioButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_ratingBarStyle com.shiftpayments.link.sdk.ui:ratingBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_ratingBarStyleIndicator com.shiftpayments.link.sdk.ui:ratingBarStyleIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_ratingBarStyleSmall com.shiftpayments.link.sdk.ui:ratingBarStyleSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_searchViewStyle com.shiftpayments.link.sdk.ui:searchViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_seekBarStyle com.shiftpayments.link.sdk.ui:seekBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_selectableItemBackground com.shiftpayments.link.sdk.ui:selectableItemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_selectableItemBackgroundBorderless com.shiftpayments.link.sdk.ui:selectableItemBackgroundBorderless}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_spinnerDropDownItemStyle com.shiftpayments.link.sdk.ui:spinnerDropDownItemStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_spinnerStyle com.shiftpayments.link.sdk.ui:spinnerStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_switchStyle com.shiftpayments.link.sdk.ui:switchStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceLargePopupMenu com.shiftpayments.link.sdk.ui:textAppearanceLargePopupMenu}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItem com.shiftpayments.link.sdk.ui:textAppearanceListItem}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItemSmall com.shiftpayments.link.sdk.ui:textAppearanceListItemSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearancePopupMenuHeader com.shiftpayments.link.sdk.ui:textAppearancePopupMenuHeader}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceSearchResultSubtitle com.shiftpayments.link.sdk.ui:textAppearanceSearchResultSubtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceSearchResultTitle com.shiftpayments.link.sdk.ui:textAppearanceSearchResultTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceSmallPopupMenu com.shiftpayments.link.sdk.ui:textAppearanceSmallPopupMenu}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textColorAlertDialogListItem com.shiftpayments.link.sdk.ui:textColorAlertDialogListItem}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textColorSearchUrl com.shiftpayments.link.sdk.ui:textColorSearchUrl}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_toolbarNavigationButtonStyle com.shiftpayments.link.sdk.ui:toolbarNavigationButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_toolbarStyle com.shiftpayments.link.sdk.ui:toolbarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowActionBar com.shiftpayments.link.sdk.ui:windowActionBar}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowActionBarOverlay com.shiftpayments.link.sdk.ui:windowActionBarOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowActionModeOverlay com.shiftpayments.link.sdk.ui:windowActionModeOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowFixedHeightMajor com.shiftpayments.link.sdk.ui:windowFixedHeightMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowFixedHeightMinor com.shiftpayments.link.sdk.ui:windowFixedHeightMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowFixedWidthMajor com.shiftpayments.link.sdk.ui:windowFixedWidthMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowFixedWidthMinor com.shiftpayments.link.sdk.ui:windowFixedWidthMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowMinWidthMajor com.shiftpayments.link.sdk.ui:windowMinWidthMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowMinWidthMinor com.shiftpayments.link.sdk.ui:windowMinWidthMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowNoTitle com.shiftpayments.link.sdk.ui:windowNoTitle}</code></td><td></td></tr>
            </table>
            @see #AppCompatTheme_actionBarDivider
            @see #AppCompatTheme_actionBarItemBackground
@@ -6613,37 +6613,37 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f0100db, 0x7f0100dc, 0x7f0100dd
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarDivider}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionBarDivider}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionBarDivider
+          @attr name com.shiftpayments.link.sdk.ui:actionBarDivider
         */
         public static int AppCompatTheme_actionBarDivider = 23;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarItemBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionBarItemBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionBarItemBackground
+          @attr name com.shiftpayments.link.sdk.ui:actionBarItemBackground
         */
         public static int AppCompatTheme_actionBarItemBackground = 24;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarPopupTheme}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionBarPopupTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionBarPopupTheme
+          @attr name com.shiftpayments.link.sdk.ui:actionBarPopupTheme
         */
         public static int AppCompatTheme_actionBarPopupTheme = 17;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarSize}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionBarSize}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6663,111 +6663,111 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>wrap_content</code></td><td>0</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:actionBarSize
+          @attr name com.shiftpayments.link.sdk.ui:actionBarSize
         */
         public static int AppCompatTheme_actionBarSize = 22;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarSplitStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionBarSplitStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionBarSplitStyle
+          @attr name com.shiftpayments.link.sdk.ui:actionBarSplitStyle
         */
         public static int AppCompatTheme_actionBarSplitStyle = 19;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionBarStyle
+          @attr name com.shiftpayments.link.sdk.ui:actionBarStyle
         */
         public static int AppCompatTheme_actionBarStyle = 18;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarTabBarStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionBarTabBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionBarTabBarStyle
+          @attr name com.shiftpayments.link.sdk.ui:actionBarTabBarStyle
         */
         public static int AppCompatTheme_actionBarTabBarStyle = 13;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarTabStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionBarTabStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionBarTabStyle
+          @attr name com.shiftpayments.link.sdk.ui:actionBarTabStyle
         */
         public static int AppCompatTheme_actionBarTabStyle = 12;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarTabTextStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionBarTabTextStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionBarTabTextStyle
+          @attr name com.shiftpayments.link.sdk.ui:actionBarTabTextStyle
         */
         public static int AppCompatTheme_actionBarTabTextStyle = 14;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarTheme}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionBarTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionBarTheme
+          @attr name com.shiftpayments.link.sdk.ui:actionBarTheme
         */
         public static int AppCompatTheme_actionBarTheme = 20;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionBarWidgetTheme}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionBarWidgetTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionBarWidgetTheme
+          @attr name com.shiftpayments.link.sdk.ui:actionBarWidgetTheme
         */
         public static int AppCompatTheme_actionBarWidgetTheme = 21;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionButtonStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionButtonStyle
+          @attr name com.shiftpayments.link.sdk.ui:actionButtonStyle
         */
         public static int AppCompatTheme_actionButtonStyle = 50;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionDropDownStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionDropDownStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionDropDownStyle
+          @attr name com.shiftpayments.link.sdk.ui:actionDropDownStyle
         */
         public static int AppCompatTheme_actionDropDownStyle = 46;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionMenuTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionMenuTextAppearance}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionMenuTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:actionMenuTextAppearance
         */
         public static int AppCompatTheme_actionMenuTextAppearance = 25;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionMenuTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionMenuTextColor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6775,181 +6775,181 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:actionMenuTextColor
+          @attr name com.shiftpayments.link.sdk.ui:actionMenuTextColor
         */
         public static int AppCompatTheme_actionMenuTextColor = 26;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModeBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModeBackground
+          @attr name com.shiftpayments.link.sdk.ui:actionModeBackground
         */
         public static int AppCompatTheme_actionModeBackground = 29;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeCloseButtonStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModeCloseButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModeCloseButtonStyle
+          @attr name com.shiftpayments.link.sdk.ui:actionModeCloseButtonStyle
         */
         public static int AppCompatTheme_actionModeCloseButtonStyle = 28;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeCloseDrawable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModeCloseDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModeCloseDrawable
+          @attr name com.shiftpayments.link.sdk.ui:actionModeCloseDrawable
         */
         public static int AppCompatTheme_actionModeCloseDrawable = 31;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeCopyDrawable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModeCopyDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModeCopyDrawable
+          @attr name com.shiftpayments.link.sdk.ui:actionModeCopyDrawable
         */
         public static int AppCompatTheme_actionModeCopyDrawable = 33;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeCutDrawable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModeCutDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModeCutDrawable
+          @attr name com.shiftpayments.link.sdk.ui:actionModeCutDrawable
         */
         public static int AppCompatTheme_actionModeCutDrawable = 32;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeFindDrawable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModeFindDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModeFindDrawable
+          @attr name com.shiftpayments.link.sdk.ui:actionModeFindDrawable
         */
         public static int AppCompatTheme_actionModeFindDrawable = 37;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModePasteDrawable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModePasteDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModePasteDrawable
+          @attr name com.shiftpayments.link.sdk.ui:actionModePasteDrawable
         */
         public static int AppCompatTheme_actionModePasteDrawable = 34;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModePopupWindowStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModePopupWindowStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModePopupWindowStyle
+          @attr name com.shiftpayments.link.sdk.ui:actionModePopupWindowStyle
         */
         public static int AppCompatTheme_actionModePopupWindowStyle = 39;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeSelectAllDrawable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModeSelectAllDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModeSelectAllDrawable
+          @attr name com.shiftpayments.link.sdk.ui:actionModeSelectAllDrawable
         */
         public static int AppCompatTheme_actionModeSelectAllDrawable = 35;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeShareDrawable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModeShareDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModeShareDrawable
+          @attr name com.shiftpayments.link.sdk.ui:actionModeShareDrawable
         */
         public static int AppCompatTheme_actionModeShareDrawable = 36;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeSplitBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModeSplitBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModeSplitBackground
+          @attr name com.shiftpayments.link.sdk.ui:actionModeSplitBackground
         */
         public static int AppCompatTheme_actionModeSplitBackground = 30;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModeStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModeStyle
+          @attr name com.shiftpayments.link.sdk.ui:actionModeStyle
         */
         public static int AppCompatTheme_actionModeStyle = 27;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionModeWebSearchDrawable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionModeWebSearchDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionModeWebSearchDrawable
+          @attr name com.shiftpayments.link.sdk.ui:actionModeWebSearchDrawable
         */
         public static int AppCompatTheme_actionModeWebSearchDrawable = 38;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionOverflowButtonStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionOverflowButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionOverflowButtonStyle
+          @attr name com.shiftpayments.link.sdk.ui:actionOverflowButtonStyle
         */
         public static int AppCompatTheme_actionOverflowButtonStyle = 15;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionOverflowMenuStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionOverflowMenuStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionOverflowMenuStyle
+          @attr name com.shiftpayments.link.sdk.ui:actionOverflowMenuStyle
         */
         public static int AppCompatTheme_actionOverflowMenuStyle = 16;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#activityChooserViewStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#activityChooserViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:activityChooserViewStyle
+          @attr name com.shiftpayments.link.sdk.ui:activityChooserViewStyle
         */
         public static int AppCompatTheme_activityChooserViewStyle = 58;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#alertDialogButtonGroupStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#alertDialogButtonGroupStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:alertDialogButtonGroupStyle
+          @attr name com.shiftpayments.link.sdk.ui:alertDialogButtonGroupStyle
         */
         public static int AppCompatTheme_alertDialogButtonGroupStyle = 94;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#alertDialogCenterButtons}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#alertDialogCenterButtons}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -6959,27 +6959,27 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:alertDialogCenterButtons
+          @attr name com.shiftpayments.link.sdk.ui:alertDialogCenterButtons
         */
         public static int AppCompatTheme_alertDialogCenterButtons = 95;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#alertDialogStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#alertDialogStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:alertDialogStyle
+          @attr name com.shiftpayments.link.sdk.ui:alertDialogStyle
         */
         public static int AppCompatTheme_alertDialogStyle = 93;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#alertDialogTheme}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#alertDialogTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:alertDialogTheme
+          @attr name com.shiftpayments.link.sdk.ui:alertDialogTheme
         */
         public static int AppCompatTheme_alertDialogTheme = 96;
         /**
@@ -6995,117 +6995,117 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int AppCompatTheme_android_windowIsFloating = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#autoCompleteTextViewStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#autoCompleteTextViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:autoCompleteTextViewStyle
+          @attr name com.shiftpayments.link.sdk.ui:autoCompleteTextViewStyle
         */
         public static int AppCompatTheme_autoCompleteTextViewStyle = 101;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#borderlessButtonStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#borderlessButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:borderlessButtonStyle
+          @attr name com.shiftpayments.link.sdk.ui:borderlessButtonStyle
         */
         public static int AppCompatTheme_borderlessButtonStyle = 55;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonBarButtonStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#buttonBarButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:buttonBarButtonStyle
+          @attr name com.shiftpayments.link.sdk.ui:buttonBarButtonStyle
         */
         public static int AppCompatTheme_buttonBarButtonStyle = 52;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonBarNegativeButtonStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#buttonBarNegativeButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:buttonBarNegativeButtonStyle
+          @attr name com.shiftpayments.link.sdk.ui:buttonBarNegativeButtonStyle
         */
         public static int AppCompatTheme_buttonBarNegativeButtonStyle = 99;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonBarNeutralButtonStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#buttonBarNeutralButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:buttonBarNeutralButtonStyle
+          @attr name com.shiftpayments.link.sdk.ui:buttonBarNeutralButtonStyle
         */
         public static int AppCompatTheme_buttonBarNeutralButtonStyle = 100;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonBarPositiveButtonStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#buttonBarPositiveButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:buttonBarPositiveButtonStyle
+          @attr name com.shiftpayments.link.sdk.ui:buttonBarPositiveButtonStyle
         */
         public static int AppCompatTheme_buttonBarPositiveButtonStyle = 98;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonBarStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#buttonBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:buttonBarStyle
+          @attr name com.shiftpayments.link.sdk.ui:buttonBarStyle
         */
         public static int AppCompatTheme_buttonBarStyle = 51;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#buttonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:buttonStyle
+          @attr name com.shiftpayments.link.sdk.ui:buttonStyle
         */
         public static int AppCompatTheme_buttonStyle = 102;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonStyleSmall}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#buttonStyleSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:buttonStyleSmall
+          @attr name com.shiftpayments.link.sdk.ui:buttonStyleSmall
         */
         public static int AppCompatTheme_buttonStyleSmall = 103;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#checkboxStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#checkboxStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:checkboxStyle
+          @attr name com.shiftpayments.link.sdk.ui:checkboxStyle
         */
         public static int AppCompatTheme_checkboxStyle = 104;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#checkedTextViewStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#checkedTextViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:checkedTextViewStyle
+          @attr name com.shiftpayments.link.sdk.ui:checkedTextViewStyle
         */
         public static int AppCompatTheme_checkedTextViewStyle = 105;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorAccent}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorAccent}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7116,11 +7116,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:colorAccent
+          @attr name com.shiftpayments.link.sdk.ui:colorAccent
         */
         public static int AppCompatTheme_colorAccent = 85;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorBackgroundFloating}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorBackgroundFloating}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7131,11 +7131,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:colorBackgroundFloating
+          @attr name com.shiftpayments.link.sdk.ui:colorBackgroundFloating
         */
         public static int AppCompatTheme_colorBackgroundFloating = 92;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorButtonNormal}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorButtonNormal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7146,11 +7146,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:colorButtonNormal
+          @attr name com.shiftpayments.link.sdk.ui:colorButtonNormal
         */
         public static int AppCompatTheme_colorButtonNormal = 89;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorControlActivated}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorControlActivated}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7161,11 +7161,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:colorControlActivated
+          @attr name com.shiftpayments.link.sdk.ui:colorControlActivated
         */
         public static int AppCompatTheme_colorControlActivated = 87;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorControlHighlight}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorControlHighlight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7176,11 +7176,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:colorControlHighlight
+          @attr name com.shiftpayments.link.sdk.ui:colorControlHighlight
         */
         public static int AppCompatTheme_colorControlHighlight = 88;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorControlNormal}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorControlNormal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7191,11 +7191,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:colorControlNormal
+          @attr name com.shiftpayments.link.sdk.ui:colorControlNormal
         */
         public static int AppCompatTheme_colorControlNormal = 86;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorPrimary}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorPrimary}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7206,11 +7206,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:colorPrimary
+          @attr name com.shiftpayments.link.sdk.ui:colorPrimary
         */
         public static int AppCompatTheme_colorPrimary = 83;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorPrimaryDark}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorPrimaryDark}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7221,11 +7221,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:colorPrimaryDark
+          @attr name com.shiftpayments.link.sdk.ui:colorPrimaryDark
         */
         public static int AppCompatTheme_colorPrimaryDark = 84;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorSwitchThumbNormal}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorSwitchThumbNormal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7236,21 +7236,21 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:colorSwitchThumbNormal
+          @attr name com.shiftpayments.link.sdk.ui:colorSwitchThumbNormal
         */
         public static int AppCompatTheme_colorSwitchThumbNormal = 90;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#controlBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#controlBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:controlBackground
+          @attr name com.shiftpayments.link.sdk.ui:controlBackground
         */
         public static int AppCompatTheme_controlBackground = 91;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dialogPreferredPadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dialogPreferredPadding}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7262,51 +7262,51 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dialogPreferredPadding
+          @attr name com.shiftpayments.link.sdk.ui:dialogPreferredPadding
         */
         public static int AppCompatTheme_dialogPreferredPadding = 44;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dialogTheme}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dialogTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:dialogTheme
+          @attr name com.shiftpayments.link.sdk.ui:dialogTheme
         */
         public static int AppCompatTheme_dialogTheme = 43;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dividerHorizontal}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dividerHorizontal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:dividerHorizontal
+          @attr name com.shiftpayments.link.sdk.ui:dividerHorizontal
         */
         public static int AppCompatTheme_dividerHorizontal = 57;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dividerVertical}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dividerVertical}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:dividerVertical
+          @attr name com.shiftpayments.link.sdk.ui:dividerVertical
         */
         public static int AppCompatTheme_dividerVertical = 56;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dropDownListViewStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dropDownListViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:dropDownListViewStyle
+          @attr name com.shiftpayments.link.sdk.ui:dropDownListViewStyle
         */
         public static int AppCompatTheme_dropDownListViewStyle = 75;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dropdownListPreferredItemHeight}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dropdownListPreferredItemHeight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7318,21 +7318,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dropdownListPreferredItemHeight
+          @attr name com.shiftpayments.link.sdk.ui:dropdownListPreferredItemHeight
         */
         public static int AppCompatTheme_dropdownListPreferredItemHeight = 47;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#editTextBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#editTextBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:editTextBackground
+          @attr name com.shiftpayments.link.sdk.ui:editTextBackground
         */
         public static int AppCompatTheme_editTextBackground = 64;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#editTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#editTextColor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7340,81 +7340,81 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:editTextColor
+          @attr name com.shiftpayments.link.sdk.ui:editTextColor
         */
         public static int AppCompatTheme_editTextColor = 63;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#editTextStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#editTextStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:editTextStyle
+          @attr name com.shiftpayments.link.sdk.ui:editTextStyle
         */
         public static int AppCompatTheme_editTextStyle = 106;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#homeAsUpIndicator}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#homeAsUpIndicator}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:homeAsUpIndicator
+          @attr name com.shiftpayments.link.sdk.ui:homeAsUpIndicator
         */
         public static int AppCompatTheme_homeAsUpIndicator = 49;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#imageButtonStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#imageButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:imageButtonStyle
+          @attr name com.shiftpayments.link.sdk.ui:imageButtonStyle
         */
         public static int AppCompatTheme_imageButtonStyle = 65;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listChoiceBackgroundIndicator}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#listChoiceBackgroundIndicator}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:listChoiceBackgroundIndicator
+          @attr name com.shiftpayments.link.sdk.ui:listChoiceBackgroundIndicator
         */
         public static int AppCompatTheme_listChoiceBackgroundIndicator = 82;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listDividerAlertDialog}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#listDividerAlertDialog}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:listDividerAlertDialog
+          @attr name com.shiftpayments.link.sdk.ui:listDividerAlertDialog
         */
         public static int AppCompatTheme_listDividerAlertDialog = 45;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listMenuViewStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#listMenuViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:listMenuViewStyle
+          @attr name com.shiftpayments.link.sdk.ui:listMenuViewStyle
         */
         public static int AppCompatTheme_listMenuViewStyle = 114;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listPopupWindowStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#listPopupWindowStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:listPopupWindowStyle
+          @attr name com.shiftpayments.link.sdk.ui:listPopupWindowStyle
         */
         public static int AppCompatTheme_listPopupWindowStyle = 76;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listPreferredItemHeight}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#listPreferredItemHeight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7426,11 +7426,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:listPreferredItemHeight
+          @attr name com.shiftpayments.link.sdk.ui:listPreferredItemHeight
         */
         public static int AppCompatTheme_listPreferredItemHeight = 70;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listPreferredItemHeightLarge}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#listPreferredItemHeightLarge}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7442,11 +7442,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:listPreferredItemHeightLarge
+          @attr name com.shiftpayments.link.sdk.ui:listPreferredItemHeightLarge
         */
         public static int AppCompatTheme_listPreferredItemHeightLarge = 72;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listPreferredItemHeightSmall}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#listPreferredItemHeightSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7458,11 +7458,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:listPreferredItemHeightSmall
+          @attr name com.shiftpayments.link.sdk.ui:listPreferredItemHeightSmall
         */
         public static int AppCompatTheme_listPreferredItemHeightSmall = 71;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listPreferredItemPaddingLeft}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#listPreferredItemPaddingLeft}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7474,11 +7474,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:listPreferredItemPaddingLeft
+          @attr name com.shiftpayments.link.sdk.ui:listPreferredItemPaddingLeft
         */
         public static int AppCompatTheme_listPreferredItemPaddingLeft = 73;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#listPreferredItemPaddingRight}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#listPreferredItemPaddingRight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7490,31 +7490,31 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:listPreferredItemPaddingRight
+          @attr name com.shiftpayments.link.sdk.ui:listPreferredItemPaddingRight
         */
         public static int AppCompatTheme_listPreferredItemPaddingRight = 74;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#panelBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#panelBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:panelBackground
+          @attr name com.shiftpayments.link.sdk.ui:panelBackground
         */
         public static int AppCompatTheme_panelBackground = 79;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#panelMenuListTheme}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#panelMenuListTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:panelMenuListTheme
+          @attr name com.shiftpayments.link.sdk.ui:panelMenuListTheme
         */
         public static int AppCompatTheme_panelMenuListTheme = 81;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#panelMenuListWidth}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#panelMenuListWidth}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7526,211 +7526,211 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:panelMenuListWidth
+          @attr name com.shiftpayments.link.sdk.ui:panelMenuListWidth
         */
         public static int AppCompatTheme_panelMenuListWidth = 80;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#popupMenuStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#popupMenuStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:popupMenuStyle
+          @attr name com.shiftpayments.link.sdk.ui:popupMenuStyle
         */
         public static int AppCompatTheme_popupMenuStyle = 61;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#popupWindowStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#popupWindowStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:popupWindowStyle
+          @attr name com.shiftpayments.link.sdk.ui:popupWindowStyle
         */
         public static int AppCompatTheme_popupWindowStyle = 62;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#radioButtonStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#radioButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:radioButtonStyle
+          @attr name com.shiftpayments.link.sdk.ui:radioButtonStyle
         */
         public static int AppCompatTheme_radioButtonStyle = 107;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#ratingBarStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#ratingBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:ratingBarStyle
+          @attr name com.shiftpayments.link.sdk.ui:ratingBarStyle
         */
         public static int AppCompatTheme_ratingBarStyle = 108;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#ratingBarStyleIndicator}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#ratingBarStyleIndicator}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:ratingBarStyleIndicator
+          @attr name com.shiftpayments.link.sdk.ui:ratingBarStyleIndicator
         */
         public static int AppCompatTheme_ratingBarStyleIndicator = 109;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#ratingBarStyleSmall}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#ratingBarStyleSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:ratingBarStyleSmall
+          @attr name com.shiftpayments.link.sdk.ui:ratingBarStyleSmall
         */
         public static int AppCompatTheme_ratingBarStyleSmall = 110;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#searchViewStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#searchViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:searchViewStyle
+          @attr name com.shiftpayments.link.sdk.ui:searchViewStyle
         */
         public static int AppCompatTheme_searchViewStyle = 69;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#seekBarStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#seekBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:seekBarStyle
+          @attr name com.shiftpayments.link.sdk.ui:seekBarStyle
         */
         public static int AppCompatTheme_seekBarStyle = 111;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#selectableItemBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#selectableItemBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:selectableItemBackground
+          @attr name com.shiftpayments.link.sdk.ui:selectableItemBackground
         */
         public static int AppCompatTheme_selectableItemBackground = 53;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#selectableItemBackgroundBorderless}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#selectableItemBackgroundBorderless}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:selectableItemBackgroundBorderless
+          @attr name com.shiftpayments.link.sdk.ui:selectableItemBackgroundBorderless
         */
         public static int AppCompatTheme_selectableItemBackgroundBorderless = 54;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#spinnerDropDownItemStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#spinnerDropDownItemStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:spinnerDropDownItemStyle
+          @attr name com.shiftpayments.link.sdk.ui:spinnerDropDownItemStyle
         */
         public static int AppCompatTheme_spinnerDropDownItemStyle = 48;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#spinnerStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#spinnerStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:spinnerStyle
+          @attr name com.shiftpayments.link.sdk.ui:spinnerStyle
         */
         public static int AppCompatTheme_spinnerStyle = 112;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#switchStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#switchStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:switchStyle
+          @attr name com.shiftpayments.link.sdk.ui:switchStyle
         */
         public static int AppCompatTheme_switchStyle = 113;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearanceLargePopupMenu}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textAppearanceLargePopupMenu}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:textAppearanceLargePopupMenu
+          @attr name com.shiftpayments.link.sdk.ui:textAppearanceLargePopupMenu
         */
         public static int AppCompatTheme_textAppearanceLargePopupMenu = 40;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearanceListItem}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textAppearanceListItem}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:textAppearanceListItem
+          @attr name com.shiftpayments.link.sdk.ui:textAppearanceListItem
         */
         public static int AppCompatTheme_textAppearanceListItem = 77;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearanceListItemSmall}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textAppearanceListItemSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:textAppearanceListItemSmall
+          @attr name com.shiftpayments.link.sdk.ui:textAppearanceListItemSmall
         */
         public static int AppCompatTheme_textAppearanceListItemSmall = 78;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearancePopupMenuHeader}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textAppearancePopupMenuHeader}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:textAppearancePopupMenuHeader
+          @attr name com.shiftpayments.link.sdk.ui:textAppearancePopupMenuHeader
         */
         public static int AppCompatTheme_textAppearancePopupMenuHeader = 42;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearanceSearchResultSubtitle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textAppearanceSearchResultSubtitle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:textAppearanceSearchResultSubtitle
+          @attr name com.shiftpayments.link.sdk.ui:textAppearanceSearchResultSubtitle
         */
         public static int AppCompatTheme_textAppearanceSearchResultSubtitle = 67;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearanceSearchResultTitle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textAppearanceSearchResultTitle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:textAppearanceSearchResultTitle
+          @attr name com.shiftpayments.link.sdk.ui:textAppearanceSearchResultTitle
         */
         public static int AppCompatTheme_textAppearanceSearchResultTitle = 66;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAppearanceSmallPopupMenu}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textAppearanceSmallPopupMenu}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:textAppearanceSmallPopupMenu
+          @attr name com.shiftpayments.link.sdk.ui:textAppearanceSmallPopupMenu
         */
         public static int AppCompatTheme_textAppearanceSmallPopupMenu = 41;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textColorAlertDialogListItem}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textColorAlertDialogListItem}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7738,11 +7738,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:textColorAlertDialogListItem
+          @attr name com.shiftpayments.link.sdk.ui:textColorAlertDialogListItem
         */
         public static int AppCompatTheme_textColorAlertDialogListItem = 97;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textColorSearchUrl}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textColorSearchUrl}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7750,31 +7750,31 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:textColorSearchUrl
+          @attr name com.shiftpayments.link.sdk.ui:textColorSearchUrl
         */
         public static int AppCompatTheme_textColorSearchUrl = 68;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#toolbarNavigationButtonStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#toolbarNavigationButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:toolbarNavigationButtonStyle
+          @attr name com.shiftpayments.link.sdk.ui:toolbarNavigationButtonStyle
         */
         public static int AppCompatTheme_toolbarNavigationButtonStyle = 60;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#toolbarStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#toolbarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:toolbarStyle
+          @attr name com.shiftpayments.link.sdk.ui:toolbarStyle
         */
         public static int AppCompatTheme_toolbarStyle = 59;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowActionBar}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#windowActionBar}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7784,11 +7784,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:windowActionBar
+          @attr name com.shiftpayments.link.sdk.ui:windowActionBar
         */
         public static int AppCompatTheme_windowActionBar = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowActionBarOverlay}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#windowActionBarOverlay}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7798,11 +7798,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:windowActionBarOverlay
+          @attr name com.shiftpayments.link.sdk.ui:windowActionBarOverlay
         */
         public static int AppCompatTheme_windowActionBarOverlay = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowActionModeOverlay}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#windowActionModeOverlay}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7812,11 +7812,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:windowActionModeOverlay
+          @attr name com.shiftpayments.link.sdk.ui:windowActionModeOverlay
         */
         public static int AppCompatTheme_windowActionModeOverlay = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowFixedHeightMajor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#windowFixedHeightMajor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7831,11 +7831,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:windowFixedHeightMajor
+          @attr name com.shiftpayments.link.sdk.ui:windowFixedHeightMajor
         */
         public static int AppCompatTheme_windowFixedHeightMajor = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowFixedHeightMinor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#windowFixedHeightMinor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7850,11 +7850,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:windowFixedHeightMinor
+          @attr name com.shiftpayments.link.sdk.ui:windowFixedHeightMinor
         */
         public static int AppCompatTheme_windowFixedHeightMinor = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowFixedWidthMajor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#windowFixedWidthMajor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7869,11 +7869,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:windowFixedWidthMajor
+          @attr name com.shiftpayments.link.sdk.ui:windowFixedWidthMajor
         */
         public static int AppCompatTheme_windowFixedWidthMajor = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowFixedWidthMinor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#windowFixedWidthMinor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7888,11 +7888,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:windowFixedWidthMinor
+          @attr name com.shiftpayments.link.sdk.ui:windowFixedWidthMinor
         */
         public static int AppCompatTheme_windowFixedWidthMinor = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowMinWidthMajor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#windowMinWidthMajor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7907,11 +7907,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:windowMinWidthMajor
+          @attr name com.shiftpayments.link.sdk.ui:windowMinWidthMajor
         */
         public static int AppCompatTheme_windowMinWidthMajor = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowMinWidthMinor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#windowMinWidthMinor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7926,11 +7926,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:windowMinWidthMinor
+          @attr name com.shiftpayments.link.sdk.ui:windowMinWidthMinor
         */
         public static int AppCompatTheme_windowMinWidthMinor = 11;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#windowNoTitle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#windowNoTitle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -7940,7 +7940,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:windowNoTitle
+          @attr name com.shiftpayments.link.sdk.ui:windowNoTitle
         */
         public static int AppCompatTheme_windowNoTitle = 3;
         /** Attributes that can be used with a BottomSheetBehavior_Layout.
@@ -7949,9 +7949,9 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #BottomSheetBehavior_Layout_behavior_hideable com.shift.link.sdk.ui:behavior_hideable}</code></td><td></td></tr>
-           <tr><td><code>{@link #BottomSheetBehavior_Layout_behavior_peekHeight com.shift.link.sdk.ui:behavior_peekHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #BottomSheetBehavior_Layout_behavior_skipCollapsed com.shift.link.sdk.ui:behavior_skipCollapsed}</code></td><td></td></tr>
+           <tr><td><code>{@link #BottomSheetBehavior_Layout_behavior_hideable com.shiftpayments.link.sdk.ui:behavior_hideable}</code></td><td></td></tr>
+           <tr><td><code>{@link #BottomSheetBehavior_Layout_behavior_peekHeight com.shiftpayments.link.sdk.ui:behavior_peekHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #BottomSheetBehavior_Layout_behavior_skipCollapsed com.shiftpayments.link.sdk.ui:behavior_skipCollapsed}</code></td><td></td></tr>
            </table>
            @see #BottomSheetBehavior_Layout_behavior_hideable
            @see #BottomSheetBehavior_Layout_behavior_peekHeight
@@ -7961,7 +7961,7 @@ containing a value of this type.
             0x7f0100de, 0x7f0100df, 0x7f0100e0
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#behavior_hideable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#behavior_hideable}
           attribute's value can be found in the {@link #BottomSheetBehavior_Layout} array.
 
 
@@ -7971,11 +7971,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:behavior_hideable
+          @attr name com.shiftpayments.link.sdk.ui:behavior_hideable
         */
         public static int BottomSheetBehavior_Layout_behavior_hideable = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#behavior_peekHeight}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#behavior_peekHeight}
           attribute's value can be found in the {@link #BottomSheetBehavior_Layout} array.
 
 
@@ -7987,11 +7987,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:behavior_peekHeight
+          @attr name com.shiftpayments.link.sdk.ui:behavior_peekHeight
         */
         public static int BottomSheetBehavior_Layout_behavior_peekHeight = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#behavior_skipCollapsed}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#behavior_skipCollapsed}
           attribute's value can be found in the {@link #BottomSheetBehavior_Layout} array.
 
 
@@ -8001,7 +8001,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:behavior_skipCollapsed
+          @attr name com.shiftpayments.link.sdk.ui:behavior_skipCollapsed
         */
         public static int BottomSheetBehavior_Layout_behavior_skipCollapsed = 2;
         /** Attributes that can be used with a ButtonBarLayout.
@@ -8010,7 +8010,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ButtonBarLayout_allowStacking com.shift.link.sdk.ui:allowStacking}</code></td><td></td></tr>
+           <tr><td><code>{@link #ButtonBarLayout_allowStacking com.shiftpayments.link.sdk.ui:allowStacking}</code></td><td></td></tr>
            </table>
            @see #ButtonBarLayout_allowStacking
          */
@@ -8018,7 +8018,7 @@ containing a value of this type.
             0x7f0100e1
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#allowStacking}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#allowStacking}
           attribute's value can be found in the {@link #ButtonBarLayout} array.
 
 
@@ -8028,7 +8028,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:allowStacking
+          @attr name com.shiftpayments.link.sdk.ui:allowStacking
         */
         public static int ButtonBarLayout_allowStacking = 0;
         /** Attributes that can be used with a CardView.
@@ -8039,17 +8039,17 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #CardView_android_minHeight android:minHeight}</code></td><td></td></tr>
            <tr><td><code>{@link #CardView_android_minWidth android:minWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardBackgroundColor com.shift.link.sdk.ui:cardBackgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardCornerRadius com.shift.link.sdk.ui:cardCornerRadius}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardElevation com.shift.link.sdk.ui:cardElevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardMaxElevation com.shift.link.sdk.ui:cardMaxElevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardPreventCornerOverlap com.shift.link.sdk.ui:cardPreventCornerOverlap}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardUseCompatPadding com.shift.link.sdk.ui:cardUseCompatPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPadding com.shift.link.sdk.ui:contentPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPaddingBottom com.shift.link.sdk.ui:contentPaddingBottom}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPaddingLeft com.shift.link.sdk.ui:contentPaddingLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPaddingRight com.shift.link.sdk.ui:contentPaddingRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPaddingTop com.shift.link.sdk.ui:contentPaddingTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardBackgroundColor com.shiftpayments.link.sdk.ui:cardBackgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardCornerRadius com.shiftpayments.link.sdk.ui:cardCornerRadius}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardElevation com.shiftpayments.link.sdk.ui:cardElevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardMaxElevation com.shiftpayments.link.sdk.ui:cardMaxElevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardPreventCornerOverlap com.shiftpayments.link.sdk.ui:cardPreventCornerOverlap}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardUseCompatPadding com.shiftpayments.link.sdk.ui:cardUseCompatPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPadding com.shiftpayments.link.sdk.ui:contentPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPaddingBottom com.shiftpayments.link.sdk.ui:contentPaddingBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPaddingLeft com.shiftpayments.link.sdk.ui:contentPaddingLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPaddingRight com.shiftpayments.link.sdk.ui:contentPaddingRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPaddingTop com.shiftpayments.link.sdk.ui:contentPaddingTop}</code></td><td></td></tr>
            </table>
            @see #CardView_android_minHeight
            @see #CardView_android_minWidth
@@ -8084,7 +8084,7 @@ containing a value of this type.
         */
         public static int CardView_android_minWidth = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardBackgroundColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#cardBackgroundColor}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8095,11 +8095,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:cardBackgroundColor
+          @attr name com.shiftpayments.link.sdk.ui:cardBackgroundColor
         */
         public static int CardView_cardBackgroundColor = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardCornerRadius}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#cardCornerRadius}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8111,11 +8111,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:cardCornerRadius
+          @attr name com.shiftpayments.link.sdk.ui:cardCornerRadius
         */
         public static int CardView_cardCornerRadius = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardElevation}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#cardElevation}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8127,11 +8127,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:cardElevation
+          @attr name com.shiftpayments.link.sdk.ui:cardElevation
         */
         public static int CardView_cardElevation = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardMaxElevation}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#cardMaxElevation}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8143,11 +8143,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:cardMaxElevation
+          @attr name com.shiftpayments.link.sdk.ui:cardMaxElevation
         */
         public static int CardView_cardMaxElevation = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardPreventCornerOverlap}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#cardPreventCornerOverlap}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8157,11 +8157,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:cardPreventCornerOverlap
+          @attr name com.shiftpayments.link.sdk.ui:cardPreventCornerOverlap
         */
         public static int CardView_cardPreventCornerOverlap = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardUseCompatPadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#cardUseCompatPadding}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8171,11 +8171,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:cardUseCompatPadding
+          @attr name com.shiftpayments.link.sdk.ui:cardUseCompatPadding
         */
         public static int CardView_cardUseCompatPadding = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentPadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentPadding}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8187,11 +8187,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentPadding
+          @attr name com.shiftpayments.link.sdk.ui:contentPadding
         */
         public static int CardView_contentPadding = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentPaddingBottom}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentPaddingBottom}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8203,11 +8203,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentPaddingBottom
+          @attr name com.shiftpayments.link.sdk.ui:contentPaddingBottom
         */
         public static int CardView_contentPaddingBottom = 12;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentPaddingLeft}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentPaddingLeft}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8219,11 +8219,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentPaddingLeft
+          @attr name com.shiftpayments.link.sdk.ui:contentPaddingLeft
         */
         public static int CardView_contentPaddingLeft = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentPaddingRight}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentPaddingRight}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8235,11 +8235,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentPaddingRight
+          @attr name com.shiftpayments.link.sdk.ui:contentPaddingRight
         */
         public static int CardView_contentPaddingRight = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentPaddingTop}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentPaddingTop}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -8251,7 +8251,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentPaddingTop
+          @attr name com.shiftpayments.link.sdk.ui:contentPaddingTop
         */
         public static int CardView_contentPaddingTop = 11;
         /** Attributes that can be used with a CarouselView.
@@ -8260,22 +8260,22 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CarouselView_animateOnBoundary com.shift.link.sdk.ui:animateOnBoundary}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_autoPlay com.shift.link.sdk.ui:autoPlay}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_disableAutoPlayOnUserInteraction com.shift.link.sdk.ui:disableAutoPlayOnUserInteraction}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_fillColor com.shift.link.sdk.ui:fillColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_indicatorGravity com.shift.link.sdk.ui:indicatorGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_indicatorMarginHorizontal com.shift.link.sdk.ui:indicatorMarginHorizontal}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_indicatorMarginVertical com.shift.link.sdk.ui:indicatorMarginVertical}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_indicatorOrientation com.shift.link.sdk.ui:indicatorOrientation}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_pageColor com.shift.link.sdk.ui:pageColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_pageTransformInterval com.shift.link.sdk.ui:pageTransformInterval}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_pageTransformer com.shift.link.sdk.ui:pageTransformer}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_radius com.shift.link.sdk.ui:radius}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_slideInterval com.shift.link.sdk.ui:slideInterval}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_snap com.shift.link.sdk.ui:snap}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_strokeColor com.shift.link.sdk.ui:strokeColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CarouselView_strokeWidth com.shift.link.sdk.ui:strokeWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_animateOnBoundary com.shiftpayments.link.sdk.ui:animateOnBoundary}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_autoPlay com.shiftpayments.link.sdk.ui:autoPlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_disableAutoPlayOnUserInteraction com.shiftpayments.link.sdk.ui:disableAutoPlayOnUserInteraction}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_fillColor com.shiftpayments.link.sdk.ui:fillColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_indicatorGravity com.shiftpayments.link.sdk.ui:indicatorGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_indicatorMarginHorizontal com.shiftpayments.link.sdk.ui:indicatorMarginHorizontal}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_indicatorMarginVertical com.shiftpayments.link.sdk.ui:indicatorMarginVertical}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_indicatorOrientation com.shiftpayments.link.sdk.ui:indicatorOrientation}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_pageColor com.shiftpayments.link.sdk.ui:pageColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_pageTransformInterval com.shiftpayments.link.sdk.ui:pageTransformInterval}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_pageTransformer com.shiftpayments.link.sdk.ui:pageTransformer}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_radius com.shiftpayments.link.sdk.ui:radius}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_slideInterval com.shiftpayments.link.sdk.ui:slideInterval}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_snap com.shiftpayments.link.sdk.ui:snap}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_strokeColor com.shiftpayments.link.sdk.ui:strokeColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CarouselView_strokeWidth com.shiftpayments.link.sdk.ui:strokeWidth}</code></td><td></td></tr>
            </table>
            @see #CarouselView_animateOnBoundary
            @see #CarouselView_autoPlay
@@ -8301,7 +8301,7 @@ containing a value of this type.
             0x7f01003b, 0x7f01003c, 0x7f01003d, 0x7f01003e
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#animateOnBoundary}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#animateOnBoundary}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8311,11 +8311,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:animateOnBoundary
+          @attr name com.shiftpayments.link.sdk.ui:animateOnBoundary
         */
         public static int CarouselView_animateOnBoundary = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#autoPlay}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#autoPlay}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8325,11 +8325,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:autoPlay
+          @attr name com.shiftpayments.link.sdk.ui:autoPlay
         */
         public static int CarouselView_autoPlay = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#disableAutoPlayOnUserInteraction}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#disableAutoPlayOnUserInteraction}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8339,11 +8339,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:disableAutoPlayOnUserInteraction
+          @attr name com.shiftpayments.link.sdk.ui:disableAutoPlayOnUserInteraction
         */
         public static int CarouselView_disableAutoPlayOnUserInteraction = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#fillColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#fillColor}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8354,11 +8354,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:fillColor
+          @attr name com.shiftpayments.link.sdk.ui:fillColor
         */
         public static int CarouselView_fillColor = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#indicatorGravity}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#indicatorGravity}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8378,11 +8378,11 @@ containing a value of this type.
 <tr><td><code>start</code></td><td>0x00800003</td><td> Push object to the beginning of its container, not changing its size. </td></tr>
 <tr><td><code>end</code></td><td>0x00800005</td><td> Push object to the end of its container, not changing its size. </td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:indicatorGravity
+          @attr name com.shiftpayments.link.sdk.ui:indicatorGravity
         */
         public static int CarouselView_indicatorGravity = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#indicatorMarginHorizontal}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#indicatorMarginHorizontal}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8394,11 +8394,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:indicatorMarginHorizontal
+          @attr name com.shiftpayments.link.sdk.ui:indicatorMarginHorizontal
         */
         public static int CarouselView_indicatorMarginHorizontal = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#indicatorMarginVertical}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#indicatorMarginVertical}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8410,11 +8410,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:indicatorMarginVertical
+          @attr name com.shiftpayments.link.sdk.ui:indicatorMarginVertical
         */
         public static int CarouselView_indicatorMarginVertical = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#indicatorOrientation}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#indicatorOrientation}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8427,11 +8427,11 @@ containing a value of this type.
 <tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
 <tr><td><code>vertical</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:indicatorOrientation
+          @attr name com.shiftpayments.link.sdk.ui:indicatorOrientation
         */
         public static int CarouselView_indicatorOrientation = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pageColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pageColor}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8442,11 +8442,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pageColor
+          @attr name com.shiftpayments.link.sdk.ui:pageColor
         */
         public static int CarouselView_pageColor = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pageTransformInterval}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pageTransformInterval}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8456,11 +8456,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pageTransformInterval
+          @attr name com.shiftpayments.link.sdk.ui:pageTransformInterval
         */
         public static int CarouselView_pageTransformInterval = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pageTransformer}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pageTransformer}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8475,11 +8475,11 @@ containing a value of this type.
 <tr><td><code>zoom</code></td><td>2</td><td></td></tr>
 <tr><td><code>slide_over</code></td><td>3</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:pageTransformer
+          @attr name com.shiftpayments.link.sdk.ui:pageTransformer
         */
         public static int CarouselView_pageTransformer = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#radius}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#radius}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8491,11 +8491,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:radius
+          @attr name com.shiftpayments.link.sdk.ui:radius
         */
         public static int CarouselView_radius = 11;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#slideInterval}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#slideInterval}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8505,11 +8505,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:slideInterval
+          @attr name com.shiftpayments.link.sdk.ui:slideInterval
         */
         public static int CarouselView_slideInterval = 12;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#snap}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#snap}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8519,11 +8519,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:snap
+          @attr name com.shiftpayments.link.sdk.ui:snap
         */
         public static int CarouselView_snap = 13;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#strokeColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#strokeColor}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8534,11 +8534,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:strokeColor
+          @attr name com.shiftpayments.link.sdk.ui:strokeColor
         */
         public static int CarouselView_strokeColor = 14;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#strokeWidth}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#strokeWidth}
           attribute's value can be found in the {@link #CarouselView} array.
 
 
@@ -8550,7 +8550,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:strokeWidth
+          @attr name com.shiftpayments.link.sdk.ui:strokeWidth
         */
         public static int CarouselView_strokeWidth = 15;
         /** Attributes that can be used with a CirclePageIndicator.
@@ -8561,13 +8561,13 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #CirclePageIndicator_android_background android:background}</code></td><td></td></tr>
            <tr><td><code>{@link #CirclePageIndicator_android_orientation android:orientation}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_centered com.shift.link.sdk.ui:centered}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_fillColor com.shift.link.sdk.ui:fillColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_pageColor com.shift.link.sdk.ui:pageColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_radius com.shift.link.sdk.ui:radius}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_snap com.shift.link.sdk.ui:snap}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_strokeColor com.shift.link.sdk.ui:strokeColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CirclePageIndicator_strokeWidth com.shift.link.sdk.ui:strokeWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_centered com.shiftpayments.link.sdk.ui:centered}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_fillColor com.shiftpayments.link.sdk.ui:fillColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_pageColor com.shiftpayments.link.sdk.ui:pageColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_radius com.shiftpayments.link.sdk.ui:radius}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_snap com.shiftpayments.link.sdk.ui:snap}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_strokeColor com.shiftpayments.link.sdk.ui:strokeColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_strokeWidth com.shiftpayments.link.sdk.ui:strokeWidth}</code></td><td></td></tr>
            </table>
            @see #CirclePageIndicator_android_background
            @see #CirclePageIndicator_android_orientation
@@ -8597,7 +8597,7 @@ containing a value of this type.
         */
         public static int CirclePageIndicator_android_orientation = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#centered}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#centered}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8607,11 +8607,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:centered
+          @attr name com.shiftpayments.link.sdk.ui:centered
         */
         public static int CirclePageIndicator_centered = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#fillColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#fillColor}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8622,11 +8622,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:fillColor
+          @attr name com.shiftpayments.link.sdk.ui:fillColor
         */
         public static int CirclePageIndicator_fillColor = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pageColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pageColor}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8637,11 +8637,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pageColor
+          @attr name com.shiftpayments.link.sdk.ui:pageColor
         */
         public static int CirclePageIndicator_pageColor = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#radius}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#radius}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8653,11 +8653,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:radius
+          @attr name com.shiftpayments.link.sdk.ui:radius
         */
         public static int CirclePageIndicator_radius = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#snap}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#snap}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8667,11 +8667,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:snap
+          @attr name com.shiftpayments.link.sdk.ui:snap
         */
         public static int CirclePageIndicator_snap = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#strokeColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#strokeColor}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8682,11 +8682,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:strokeColor
+          @attr name com.shiftpayments.link.sdk.ui:strokeColor
         */
         public static int CirclePageIndicator_strokeColor = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#strokeWidth}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#strokeWidth}
           attribute's value can be found in the {@link #CirclePageIndicator} array.
 
 
@@ -8698,7 +8698,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:strokeWidth
+          @attr name com.shiftpayments.link.sdk.ui:strokeWidth
         */
         public static int CirclePageIndicator_strokeWidth = 8;
         /** Attributes that can be used with a CollapsingToolbarLayout.
@@ -8707,22 +8707,22 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_collapsedTitleGravity com.shift.link.sdk.ui:collapsedTitleGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_collapsedTitleTextAppearance com.shift.link.sdk.ui:collapsedTitleTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_contentScrim com.shift.link.sdk.ui:contentScrim}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleGravity com.shift.link.sdk.ui:expandedTitleGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMargin com.shift.link.sdk.ui:expandedTitleMargin}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginBottom com.shift.link.sdk.ui:expandedTitleMarginBottom}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginEnd com.shift.link.sdk.ui:expandedTitleMarginEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginStart com.shift.link.sdk.ui:expandedTitleMarginStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginTop com.shift.link.sdk.ui:expandedTitleMarginTop}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleTextAppearance com.shift.link.sdk.ui:expandedTitleTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_scrimAnimationDuration com.shift.link.sdk.ui:scrimAnimationDuration}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_scrimVisibleHeightTrigger com.shift.link.sdk.ui:scrimVisibleHeightTrigger}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_statusBarScrim com.shift.link.sdk.ui:statusBarScrim}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_title com.shift.link.sdk.ui:title}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_titleEnabled com.shift.link.sdk.ui:titleEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_toolbarId com.shift.link.sdk.ui:toolbarId}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_collapsedTitleGravity com.shiftpayments.link.sdk.ui:collapsedTitleGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_collapsedTitleTextAppearance com.shiftpayments.link.sdk.ui:collapsedTitleTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_contentScrim com.shiftpayments.link.sdk.ui:contentScrim}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleGravity com.shiftpayments.link.sdk.ui:expandedTitleGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMargin com.shiftpayments.link.sdk.ui:expandedTitleMargin}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginBottom com.shiftpayments.link.sdk.ui:expandedTitleMarginBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginEnd com.shiftpayments.link.sdk.ui:expandedTitleMarginEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginStart com.shiftpayments.link.sdk.ui:expandedTitleMarginStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleMarginTop com.shiftpayments.link.sdk.ui:expandedTitleMarginTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_expandedTitleTextAppearance com.shiftpayments.link.sdk.ui:expandedTitleTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_scrimAnimationDuration com.shiftpayments.link.sdk.ui:scrimAnimationDuration}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_scrimVisibleHeightTrigger com.shiftpayments.link.sdk.ui:scrimVisibleHeightTrigger}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_statusBarScrim com.shiftpayments.link.sdk.ui:statusBarScrim}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_title com.shiftpayments.link.sdk.ui:title}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_titleEnabled com.shiftpayments.link.sdk.ui:titleEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_toolbarId com.shiftpayments.link.sdk.ui:toolbarId}</code></td><td></td></tr>
            </table>
            @see #CollapsingToolbarLayout_collapsedTitleGravity
            @see #CollapsingToolbarLayout_collapsedTitleTextAppearance
@@ -8748,7 +8748,7 @@ containing a value of this type.
             0x7f0100f8, 0x7f0100f9, 0x7f0100fa, 0x7f0100fb
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#collapsedTitleGravity}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#collapsedTitleGravity}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8769,21 +8769,21 @@ containing a value of this type.
 <tr><td><code>start</code></td><td>0x00800003</td><td></td></tr>
 <tr><td><code>end</code></td><td>0x00800005</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:collapsedTitleGravity
+          @attr name com.shiftpayments.link.sdk.ui:collapsedTitleGravity
         */
         public static int CollapsingToolbarLayout_collapsedTitleGravity = 13;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#collapsedTitleTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#collapsedTitleTextAppearance}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:collapsedTitleTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:collapsedTitleTextAppearance
         */
         public static int CollapsingToolbarLayout_collapsedTitleTextAppearance = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentScrim}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentScrim}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8794,11 +8794,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentScrim
+          @attr name com.shiftpayments.link.sdk.ui:contentScrim
         */
         public static int CollapsingToolbarLayout_contentScrim = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleGravity}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#expandedTitleGravity}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8819,11 +8819,11 @@ containing a value of this type.
 <tr><td><code>start</code></td><td>0x00800003</td><td></td></tr>
 <tr><td><code>end</code></td><td>0x00800005</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:expandedTitleGravity
+          @attr name com.shiftpayments.link.sdk.ui:expandedTitleGravity
         */
         public static int CollapsingToolbarLayout_expandedTitleGravity = 14;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleMargin}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#expandedTitleMargin}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8835,11 +8835,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:expandedTitleMargin
+          @attr name com.shiftpayments.link.sdk.ui:expandedTitleMargin
         */
         public static int CollapsingToolbarLayout_expandedTitleMargin = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleMarginBottom}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#expandedTitleMarginBottom}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8851,11 +8851,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:expandedTitleMarginBottom
+          @attr name com.shiftpayments.link.sdk.ui:expandedTitleMarginBottom
         */
         public static int CollapsingToolbarLayout_expandedTitleMarginBottom = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleMarginEnd}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#expandedTitleMarginEnd}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8867,11 +8867,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:expandedTitleMarginEnd
+          @attr name com.shiftpayments.link.sdk.ui:expandedTitleMarginEnd
         */
         public static int CollapsingToolbarLayout_expandedTitleMarginEnd = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleMarginStart}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#expandedTitleMarginStart}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8883,11 +8883,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:expandedTitleMarginStart
+          @attr name com.shiftpayments.link.sdk.ui:expandedTitleMarginStart
         */
         public static int CollapsingToolbarLayout_expandedTitleMarginStart = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleMarginTop}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#expandedTitleMarginTop}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8899,21 +8899,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:expandedTitleMarginTop
+          @attr name com.shiftpayments.link.sdk.ui:expandedTitleMarginTop
         */
         public static int CollapsingToolbarLayout_expandedTitleMarginTop = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expandedTitleTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#expandedTitleTextAppearance}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:expandedTitleTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:expandedTitleTextAppearance
         */
         public static int CollapsingToolbarLayout_expandedTitleTextAppearance = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#scrimAnimationDuration}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#scrimAnimationDuration}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8923,11 +8923,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:scrimAnimationDuration
+          @attr name com.shiftpayments.link.sdk.ui:scrimAnimationDuration
         */
         public static int CollapsingToolbarLayout_scrimAnimationDuration = 12;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#scrimVisibleHeightTrigger}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#scrimVisibleHeightTrigger}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8939,11 +8939,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:scrimVisibleHeightTrigger
+          @attr name com.shiftpayments.link.sdk.ui:scrimVisibleHeightTrigger
         */
         public static int CollapsingToolbarLayout_scrimVisibleHeightTrigger = 11;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#statusBarScrim}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#statusBarScrim}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8954,11 +8954,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:statusBarScrim
+          @attr name com.shiftpayments.link.sdk.ui:statusBarScrim
         */
         public static int CollapsingToolbarLayout_statusBarScrim = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#title}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#title}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8968,11 +8968,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:title
+          @attr name com.shiftpayments.link.sdk.ui:title
         */
         public static int CollapsingToolbarLayout_title = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleEnabled}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#titleEnabled}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
@@ -8982,17 +8982,17 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:titleEnabled
+          @attr name com.shiftpayments.link.sdk.ui:titleEnabled
         */
         public static int CollapsingToolbarLayout_titleEnabled = 15;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#toolbarId}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#toolbarId}
           attribute's value can be found in the {@link #CollapsingToolbarLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:toolbarId
+          @attr name com.shiftpayments.link.sdk.ui:toolbarId
         */
         public static int CollapsingToolbarLayout_toolbarId = 10;
         /** Attributes that can be used with a CollapsingToolbarLayout_Layout.
@@ -9001,8 +9001,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_Layout_layout_collapseMode com.shift.link.sdk.ui:layout_collapseMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier com.shift.link.sdk.ui:layout_collapseParallaxMultiplier}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_Layout_layout_collapseMode com.shiftpayments.link.sdk.ui:layout_collapseMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier com.shiftpayments.link.sdk.ui:layout_collapseParallaxMultiplier}</code></td><td></td></tr>
            </table>
            @see #CollapsingToolbarLayout_Layout_layout_collapseMode
            @see #CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier
@@ -9011,7 +9011,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f0100fc, 0x7f0100fd
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_collapseMode}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#layout_collapseMode}
           attribute's value can be found in the {@link #CollapsingToolbarLayout_Layout} array.
 
 
@@ -9025,11 +9025,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>pin</code></td><td>1</td><td></td></tr>
 <tr><td><code>parallax</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:layout_collapseMode
+          @attr name com.shiftpayments.link.sdk.ui:layout_collapseMode
         */
         public static int CollapsingToolbarLayout_Layout_layout_collapseMode = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_collapseParallaxMultiplier}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#layout_collapseParallaxMultiplier}
           attribute's value can be found in the {@link #CollapsingToolbarLayout_Layout} array.
 
 
@@ -9039,7 +9039,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:layout_collapseParallaxMultiplier
+          @attr name com.shiftpayments.link.sdk.ui:layout_collapseParallaxMultiplier
         */
         public static int CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = 1;
         /** Attributes that can be used with a ColorStateListItem.
@@ -9048,7 +9048,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ColorStateListItem_alpha com.shift.link.sdk.ui:alpha}</code></td><td></td></tr>
+           <tr><td><code>{@link #ColorStateListItem_alpha com.shiftpayments.link.sdk.ui:alpha}</code></td><td></td></tr>
            <tr><td><code>{@link #ColorStateListItem_android_alpha android:alpha}</code></td><td></td></tr>
            <tr><td><code>{@link #ColorStateListItem_android_color android:color}</code></td><td></td></tr>
            </table>
@@ -9060,7 +9060,7 @@ containing a value of this type.
             0x010101a5, 0x0101031f, 0x7f0100fe
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#alpha}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#alpha}
           attribute's value can be found in the {@link #ColorStateListItem} array.
 
 
@@ -9070,7 +9070,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:alpha
+          @attr name com.shiftpayments.link.sdk.ui:alpha
         */
         public static int ColorStateListItem_alpha = 2;
         /**
@@ -9092,8 +9092,8 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #CompoundButton_android_button android:button}</code></td><td></td></tr>
-           <tr><td><code>{@link #CompoundButton_buttonTint com.shift.link.sdk.ui:buttonTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #CompoundButton_buttonTintMode com.shift.link.sdk.ui:buttonTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #CompoundButton_buttonTint com.shiftpayments.link.sdk.ui:buttonTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #CompoundButton_buttonTintMode com.shiftpayments.link.sdk.ui:buttonTintMode}</code></td><td></td></tr>
            </table>
            @see #CompoundButton_android_button
            @see #CompoundButton_buttonTint
@@ -9109,7 +9109,7 @@ containing a value of this type.
         */
         public static int CompoundButton_android_button = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonTint}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#buttonTint}
           attribute's value can be found in the {@link #CompoundButton} array.
 
 
@@ -9120,11 +9120,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:buttonTint
+          @attr name com.shiftpayments.link.sdk.ui:buttonTint
         */
         public static int CompoundButton_buttonTint = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonTintMode}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#buttonTintMode}
           attribute's value can be found in the {@link #CompoundButton} array.
 
 
@@ -9140,7 +9140,7 @@ containing a value of this type.
 <tr><td><code>multiply</code></td><td>14</td><td></td></tr>
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:buttonTintMode
+          @attr name com.shiftpayments.link.sdk.ui:buttonTintMode
         */
         public static int CompoundButton_buttonTintMode = 2;
         /** Attributes that can be used with a CoordinatorLayout.
@@ -9149,8 +9149,8 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CoordinatorLayout_keylines com.shift.link.sdk.ui:keylines}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_statusBarBackground com.shift.link.sdk.ui:statusBarBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_keylines com.shiftpayments.link.sdk.ui:keylines}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_statusBarBackground com.shiftpayments.link.sdk.ui:statusBarBackground}</code></td><td></td></tr>
            </table>
            @see #CoordinatorLayout_keylines
            @see #CoordinatorLayout_statusBarBackground
@@ -9159,23 +9159,23 @@ containing a value of this type.
             0x7f010101, 0x7f010102
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#keylines}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#keylines}
           attribute's value can be found in the {@link #CoordinatorLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:keylines
+          @attr name com.shiftpayments.link.sdk.ui:keylines
         */
         public static int CoordinatorLayout_keylines = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#statusBarBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#statusBarBackground}
           attribute's value can be found in the {@link #CoordinatorLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:statusBarBackground
+          @attr name com.shiftpayments.link.sdk.ui:statusBarBackground
         */
         public static int CoordinatorLayout_statusBarBackground = 1;
         /** Attributes that can be used with a CoordinatorLayout_Layout.
@@ -9185,10 +9185,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #CoordinatorLayout_Layout_android_layout_gravity android:layout_gravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_anchor com.shift.link.sdk.ui:layout_anchor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_anchorGravity com.shift.link.sdk.ui:layout_anchorGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_behavior com.shift.link.sdk.ui:layout_behavior}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_keyline com.shift.link.sdk.ui:layout_keyline}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_anchor com.shiftpayments.link.sdk.ui:layout_anchor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_anchorGravity com.shiftpayments.link.sdk.ui:layout_anchorGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_behavior com.shiftpayments.link.sdk.ui:layout_behavior}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_keyline com.shiftpayments.link.sdk.ui:layout_keyline}</code></td><td></td></tr>
            </table>
            @see #CoordinatorLayout_Layout_android_layout_gravity
            @see #CoordinatorLayout_Layout_layout_anchor
@@ -9207,17 +9207,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CoordinatorLayout_Layout_android_layout_gravity = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_anchor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#layout_anchor}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:layout_anchor
+          @attr name com.shiftpayments.link.sdk.ui:layout_anchor
         */
         public static int CoordinatorLayout_Layout_layout_anchor = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_anchorGravity}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#layout_anchorGravity}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -9242,11 +9242,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>start</code></td><td>0x00800003</td><td></td></tr>
 <tr><td><code>end</code></td><td>0x00800005</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:layout_anchorGravity
+          @attr name com.shiftpayments.link.sdk.ui:layout_anchorGravity
         */
         public static int CoordinatorLayout_Layout_layout_anchorGravity = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_behavior}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#layout_behavior}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -9256,11 +9256,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:layout_behavior
+          @attr name com.shiftpayments.link.sdk.ui:layout_behavior
         */
         public static int CoordinatorLayout_Layout_layout_behavior = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout_keyline}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#layout_keyline}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -9270,7 +9270,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:layout_keyline
+          @attr name com.shiftpayments.link.sdk.ui:layout_keyline
         */
         public static int CoordinatorLayout_Layout_layout_keyline = 3;
         /** Attributes that can be used with a CreditCardForm.
@@ -9279,17 +9279,17 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CreditCardForm_card_number_hint com.shift.link.sdk.ui:card_number_hint}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_cursor_color com.shift.link.sdk.ui:cursor_color}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_default_text_colors com.shift.link.sdk.ui:default_text_colors}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_helper_text_color com.shift.link.sdk.ui:helper_text_color}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_hint_text_color com.shift.link.sdk.ui:hint_text_color}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_include_exp com.shift.link.sdk.ui:include_exp}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_include_helper com.shift.link.sdk.ui:include_helper}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_include_security com.shift.link.sdk.ui:include_security}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_include_zip com.shift.link.sdk.ui:include_zip}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_input_background com.shift.link.sdk.ui:input_background}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardForm_text_color com.shift.link.sdk.ui:text_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_card_number_hint com.shiftpayments.link.sdk.ui:card_number_hint}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_cursor_color com.shiftpayments.link.sdk.ui:cursor_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_default_text_colors com.shiftpayments.link.sdk.ui:default_text_colors}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_helper_text_color com.shiftpayments.link.sdk.ui:helper_text_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_hint_text_color com.shiftpayments.link.sdk.ui:hint_text_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_include_exp com.shiftpayments.link.sdk.ui:include_exp}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_include_helper com.shiftpayments.link.sdk.ui:include_helper}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_include_security com.shiftpayments.link.sdk.ui:include_security}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_include_zip com.shiftpayments.link.sdk.ui:include_zip}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_input_background com.shiftpayments.link.sdk.ui:input_background}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardForm_text_color com.shiftpayments.link.sdk.ui:text_color}</code></td><td></td></tr>
            </table>
            @see #CreditCardForm_card_number_hint
            @see #CreditCardForm_cursor_color
@@ -9309,7 +9309,7 @@ containing a value of this type.
             0x7f01010f, 0x7f010110, 0x7f010111
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#card_number_hint}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#card_number_hint}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9319,11 +9319,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:card_number_hint
+          @attr name com.shiftpayments.link.sdk.ui:card_number_hint
         */
         public static int CreditCardForm_card_number_hint = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cursor_color}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#cursor_color}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9334,11 +9334,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:cursor_color
+          @attr name com.shiftpayments.link.sdk.ui:cursor_color
         */
         public static int CreditCardForm_cursor_color = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#default_text_colors}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#default_text_colors}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9348,11 +9348,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:default_text_colors
+          @attr name com.shiftpayments.link.sdk.ui:default_text_colors
         */
         public static int CreditCardForm_default_text_colors = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#helper_text_color}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#helper_text_color}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9363,11 +9363,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:helper_text_color
+          @attr name com.shiftpayments.link.sdk.ui:helper_text_color
         */
         public static int CreditCardForm_helper_text_color = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#hint_text_color}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#hint_text_color}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9378,11 +9378,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:hint_text_color
+          @attr name com.shiftpayments.link.sdk.ui:hint_text_color
         */
         public static int CreditCardForm_hint_text_color = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#include_exp}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#include_exp}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9392,11 +9392,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:include_exp
+          @attr name com.shiftpayments.link.sdk.ui:include_exp
         */
         public static int CreditCardForm_include_exp = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#include_helper}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#include_helper}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9406,11 +9406,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:include_helper
+          @attr name com.shiftpayments.link.sdk.ui:include_helper
         */
         public static int CreditCardForm_include_helper = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#include_security}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#include_security}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9420,11 +9420,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:include_security
+          @attr name com.shiftpayments.link.sdk.ui:include_security
         */
         public static int CreditCardForm_include_security = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#include_zip}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#include_zip}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9434,21 +9434,21 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:include_zip
+          @attr name com.shiftpayments.link.sdk.ui:include_zip
         */
         public static int CreditCardForm_include_zip = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#input_background}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#input_background}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:input_background
+          @attr name com.shiftpayments.link.sdk.ui:input_background
         */
         public static int CreditCardForm_input_background = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#text_color}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#text_color}
           attribute's value can be found in the {@link #CreditCardForm} array.
 
 
@@ -9459,7 +9459,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:text_color
+          @attr name com.shiftpayments.link.sdk.ui:text_color
         */
         public static int CreditCardForm_text_color = 5;
         /** Attributes that can be used with a CreditCardView.
@@ -9468,22 +9468,22 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CreditCardView_brandLogo com.shift.link.sdk.ui:brandLogo}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_cardName com.shift.link.sdk.ui:cardName}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_cardNameTextColor com.shift.link.sdk.ui:cardNameTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_cardNumber com.shift.link.sdk.ui:cardNumber}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_cardNumberFormat com.shift.link.sdk.ui:cardNumberFormat}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_cardNumberTextColor com.shift.link.sdk.ui:cardNumberTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_expiryDate com.shift.link.sdk.ui:expiryDate}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_expiryDateTextColor com.shift.link.sdk.ui:expiryDateTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_hintTextColor com.shift.link.sdk.ui:hintTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_isCardNameEditable com.shift.link.sdk.ui:isCardNameEditable}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_isCardNumberEditable com.shift.link.sdk.ui:isCardNumberEditable}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_isEditable com.shift.link.sdk.ui:isEditable}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_isExpiryDateEditable com.shift.link.sdk.ui:isExpiryDateEditable}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_putChip com.shift.link.sdk.ui:putChip}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_type com.shift.link.sdk.ui:type}</code></td><td></td></tr>
-           <tr><td><code>{@link #CreditCardView_validTillTextColor com.shift.link.sdk.ui:validTillTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_brandLogo com.shiftpayments.link.sdk.ui:brandLogo}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_cardName com.shiftpayments.link.sdk.ui:cardName}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_cardNameTextColor com.shiftpayments.link.sdk.ui:cardNameTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_cardNumber com.shiftpayments.link.sdk.ui:cardNumber}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_cardNumberFormat com.shiftpayments.link.sdk.ui:cardNumberFormat}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_cardNumberTextColor com.shiftpayments.link.sdk.ui:cardNumberTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_expiryDate com.shiftpayments.link.sdk.ui:expiryDate}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_expiryDateTextColor com.shiftpayments.link.sdk.ui:expiryDateTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_hintTextColor com.shiftpayments.link.sdk.ui:hintTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_isCardNameEditable com.shiftpayments.link.sdk.ui:isCardNameEditable}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_isCardNumberEditable com.shiftpayments.link.sdk.ui:isCardNumberEditable}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_isEditable com.shiftpayments.link.sdk.ui:isEditable}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_isExpiryDateEditable com.shiftpayments.link.sdk.ui:isExpiryDateEditable}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_putChip com.shiftpayments.link.sdk.ui:putChip}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_type com.shiftpayments.link.sdk.ui:type}</code></td><td></td></tr>
+           <tr><td><code>{@link #CreditCardView_validTillTextColor com.shiftpayments.link.sdk.ui:validTillTextColor}</code></td><td></td></tr>
            </table>
            @see #CreditCardView_brandLogo
            @see #CreditCardView_cardName
@@ -9509,17 +9509,17 @@ containing a value of this type.
             0x7f01011e, 0x7f01011f, 0x7f010120, 0x7f010121
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#brandLogo}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#brandLogo}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:brandLogo
+          @attr name com.shiftpayments.link.sdk.ui:brandLogo
         */
         public static int CreditCardView_brandLogo = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardName}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#cardName}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9529,11 +9529,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:cardName
+          @attr name com.shiftpayments.link.sdk.ui:cardName
         */
         public static int CreditCardView_cardName = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardNameTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#cardNameTextColor}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9544,11 +9544,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:cardNameTextColor
+          @attr name com.shiftpayments.link.sdk.ui:cardNameTextColor
         */
         public static int CreditCardView_cardNameTextColor = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardNumber}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#cardNumber}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9558,11 +9558,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:cardNumber
+          @attr name com.shiftpayments.link.sdk.ui:cardNumber
         */
         public static int CreditCardView_cardNumber = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardNumberFormat}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#cardNumberFormat}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9577,11 +9577,11 @@ containing a value of this type.
 <tr><td><code>only_last_four</code></td><td>2</td><td></td></tr>
 <tr><td><code>masked_all</code></td><td>3</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:cardNumberFormat
+          @attr name com.shiftpayments.link.sdk.ui:cardNumberFormat
         */
         public static int CreditCardView_cardNumberFormat = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#cardNumberTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#cardNumberTextColor}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9592,11 +9592,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:cardNumberTextColor
+          @attr name com.shiftpayments.link.sdk.ui:cardNumberTextColor
         */
         public static int CreditCardView_cardNumberTextColor = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expiryDate}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#expiryDate}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9606,11 +9606,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:expiryDate
+          @attr name com.shiftpayments.link.sdk.ui:expiryDate
         */
         public static int CreditCardView_expiryDate = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#expiryDateTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#expiryDateTextColor}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9621,11 +9621,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:expiryDateTextColor
+          @attr name com.shiftpayments.link.sdk.ui:expiryDateTextColor
         */
         public static int CreditCardView_expiryDateTextColor = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#hintTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#hintTextColor}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9636,11 +9636,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:hintTextColor
+          @attr name com.shiftpayments.link.sdk.ui:hintTextColor
         */
         public static int CreditCardView_hintTextColor = 15;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#isCardNameEditable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#isCardNameEditable}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9650,11 +9650,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:isCardNameEditable
+          @attr name com.shiftpayments.link.sdk.ui:isCardNameEditable
         */
         public static int CreditCardView_isCardNameEditable = 12;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#isCardNumberEditable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#isCardNumberEditable}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9664,11 +9664,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:isCardNumberEditable
+          @attr name com.shiftpayments.link.sdk.ui:isCardNumberEditable
         */
         public static int CreditCardView_isCardNumberEditable = 11;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#isEditable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#isEditable}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9678,11 +9678,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:isEditable
+          @attr name com.shiftpayments.link.sdk.ui:isEditable
         */
         public static int CreditCardView_isEditable = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#isExpiryDateEditable}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#isExpiryDateEditable}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9692,11 +9692,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:isExpiryDateEditable
+          @attr name com.shiftpayments.link.sdk.ui:isExpiryDateEditable
         */
         public static int CreditCardView_isExpiryDateEditable = 13;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#putChip}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#putChip}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9706,11 +9706,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:putChip
+          @attr name com.shiftpayments.link.sdk.ui:putChip
         */
         public static int CreditCardView_putChip = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#type}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#type}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9727,11 +9727,11 @@ containing a value of this type.
 <tr><td><code>auto</code></td><td>4</td><td></td></tr>
 <tr><td><code>none</code></td><td>5</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:type
+          @attr name com.shiftpayments.link.sdk.ui:type
         */
         public static int CreditCardView_type = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#validTillTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#validTillTextColor}
           attribute's value can be found in the {@link #CreditCardView} array.
 
 
@@ -9742,7 +9742,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:validTillTextColor
+          @attr name com.shiftpayments.link.sdk.ui:validTillTextColor
         */
         public static int CreditCardView_validTillTextColor = 14;
         /** Attributes that can be used with a DesignTheme.
@@ -9751,9 +9751,9 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #DesignTheme_bottomSheetDialogTheme com.shift.link.sdk.ui:bottomSheetDialogTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #DesignTheme_bottomSheetStyle com.shift.link.sdk.ui:bottomSheetStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #DesignTheme_textColorError com.shift.link.sdk.ui:textColorError}</code></td><td></td></tr>
+           <tr><td><code>{@link #DesignTheme_bottomSheetDialogTheme com.shiftpayments.link.sdk.ui:bottomSheetDialogTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #DesignTheme_bottomSheetStyle com.shiftpayments.link.sdk.ui:bottomSheetStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #DesignTheme_textColorError com.shiftpayments.link.sdk.ui:textColorError}</code></td><td></td></tr>
            </table>
            @see #DesignTheme_bottomSheetDialogTheme
            @see #DesignTheme_bottomSheetStyle
@@ -9763,27 +9763,27 @@ containing a value of this type.
             0x7f010122, 0x7f010123, 0x7f010124
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#bottomSheetDialogTheme}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#bottomSheetDialogTheme}
           attribute's value can be found in the {@link #DesignTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:bottomSheetDialogTheme
+          @attr name com.shiftpayments.link.sdk.ui:bottomSheetDialogTheme
         */
         public static int DesignTheme_bottomSheetDialogTheme = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#bottomSheetStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#bottomSheetStyle}
           attribute's value can be found in the {@link #DesignTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:bottomSheetStyle
+          @attr name com.shiftpayments.link.sdk.ui:bottomSheetStyle
         */
         public static int DesignTheme_bottomSheetStyle = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textColorError}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textColorError}
           attribute's value can be found in the {@link #DesignTheme} array.
 
 
@@ -9794,7 +9794,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:textColorError
+          @attr name com.shiftpayments.link.sdk.ui:textColorError
         */
         public static int DesignTheme_textColorError = 2;
         /** Attributes that can be used with a DiscreteSeekBar.
@@ -9803,23 +9803,23 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_allowTrackClickToDrag com.shift.link.sdk.ui:dsb_allowTrackClickToDrag}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorColor com.shift.link.sdk.ui:dsb_indicatorColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorElevation com.shift.link.sdk.ui:dsb_indicatorElevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorFormatter com.shift.link.sdk.ui:dsb_indicatorFormatter}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorPopupEnabled com.shift.link.sdk.ui:dsb_indicatorPopupEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorSeparation com.shift.link.sdk.ui:dsb_indicatorSeparation}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorTextAppearance com.shift.link.sdk.ui:dsb_indicatorTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_max com.shift.link.sdk.ui:dsb_max}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_min com.shift.link.sdk.ui:dsb_min}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_mirrorForRtl com.shift.link.sdk.ui:dsb_mirrorForRtl}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_progressColor com.shift.link.sdk.ui:dsb_progressColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_rippleColor com.shift.link.sdk.ui:dsb_rippleColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_scrubberHeight com.shift.link.sdk.ui:dsb_scrubberHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_thumbSize com.shift.link.sdk.ui:dsb_thumbSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_trackColor com.shift.link.sdk.ui:dsb_trackColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_trackHeight com.shift.link.sdk.ui:dsb_trackHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #DiscreteSeekBar_dsb_value com.shift.link.sdk.ui:dsb_value}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_allowTrackClickToDrag com.shiftpayments.link.sdk.ui:dsb_allowTrackClickToDrag}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorColor com.shiftpayments.link.sdk.ui:dsb_indicatorColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorElevation com.shiftpayments.link.sdk.ui:dsb_indicatorElevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorFormatter com.shiftpayments.link.sdk.ui:dsb_indicatorFormatter}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorPopupEnabled com.shiftpayments.link.sdk.ui:dsb_indicatorPopupEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorSeparation com.shiftpayments.link.sdk.ui:dsb_indicatorSeparation}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_indicatorTextAppearance com.shiftpayments.link.sdk.ui:dsb_indicatorTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_max com.shiftpayments.link.sdk.ui:dsb_max}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_min com.shiftpayments.link.sdk.ui:dsb_min}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_mirrorForRtl com.shiftpayments.link.sdk.ui:dsb_mirrorForRtl}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_progressColor com.shiftpayments.link.sdk.ui:dsb_progressColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_rippleColor com.shiftpayments.link.sdk.ui:dsb_rippleColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_scrubberHeight com.shiftpayments.link.sdk.ui:dsb_scrubberHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_thumbSize com.shiftpayments.link.sdk.ui:dsb_thumbSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_trackColor com.shiftpayments.link.sdk.ui:dsb_trackColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_trackHeight com.shiftpayments.link.sdk.ui:dsb_trackHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #DiscreteSeekBar_dsb_value com.shiftpayments.link.sdk.ui:dsb_value}</code></td><td></td></tr>
            </table>
            @see #DiscreteSeekBar_dsb_allowTrackClickToDrag
            @see #DiscreteSeekBar_dsb_indicatorColor
@@ -9847,7 +9847,7 @@ containing a value of this type.
             0x7f010135
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_allowTrackClickToDrag}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_allowTrackClickToDrag}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9857,11 +9857,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dsb_allowTrackClickToDrag
+          @attr name com.shiftpayments.link.sdk.ui:dsb_allowTrackClickToDrag
         */
         public static int DiscreteSeekBar_dsb_allowTrackClickToDrag = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_indicatorColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_indicatorColor}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9869,11 +9869,11 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:dsb_indicatorColor
+          @attr name com.shiftpayments.link.sdk.ui:dsb_indicatorColor
         */
         public static int DiscreteSeekBar_dsb_indicatorColor = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_indicatorElevation}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_indicatorElevation}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9885,22 +9885,22 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dsb_indicatorElevation
+          @attr name com.shiftpayments.link.sdk.ui:dsb_indicatorElevation
         */
         public static int DiscreteSeekBar_dsb_indicatorElevation = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_indicatorFormatter}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_indicatorFormatter}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-          @attr name com.shift.link.sdk.ui:dsb_indicatorFormatter
+          @attr name com.shiftpayments.link.sdk.ui:dsb_indicatorFormatter
         */
         public static int DiscreteSeekBar_dsb_indicatorFormatter = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_indicatorPopupEnabled}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_indicatorPopupEnabled}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9910,11 +9910,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dsb_indicatorPopupEnabled
+          @attr name com.shiftpayments.link.sdk.ui:dsb_indicatorPopupEnabled
         */
         public static int DiscreteSeekBar_dsb_indicatorPopupEnabled = 12;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_indicatorSeparation}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_indicatorSeparation}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9927,21 +9927,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dsb_indicatorSeparation
+          @attr name com.shiftpayments.link.sdk.ui:dsb_indicatorSeparation
         */
         public static int DiscreteSeekBar_dsb_indicatorSeparation = 16;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_indicatorTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_indicatorTextAppearance}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:dsb_indicatorTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:dsb_indicatorTextAppearance
         */
         public static int DiscreteSeekBar_dsb_indicatorTextAppearance = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_max}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_max}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9954,11 +9954,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dsb_max
+          @attr name com.shiftpayments.link.sdk.ui:dsb_max
         */
         public static int DiscreteSeekBar_dsb_max = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_min}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_min}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9971,11 +9971,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dsb_min
+          @attr name com.shiftpayments.link.sdk.ui:dsb_min
         */
         public static int DiscreteSeekBar_dsb_min = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_mirrorForRtl}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_mirrorForRtl}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9985,11 +9985,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dsb_mirrorForRtl
+          @attr name com.shiftpayments.link.sdk.ui:dsb_mirrorForRtl
         */
         public static int DiscreteSeekBar_dsb_mirrorForRtl = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_progressColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_progressColor}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -9997,11 +9997,11 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:dsb_progressColor
+          @attr name com.shiftpayments.link.sdk.ui:dsb_progressColor
         */
         public static int DiscreteSeekBar_dsb_progressColor = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_rippleColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_rippleColor}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -10009,11 +10009,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:dsb_rippleColor
+          @attr name com.shiftpayments.link.sdk.ui:dsb_rippleColor
         */
         public static int DiscreteSeekBar_dsb_rippleColor = 11;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_scrubberHeight}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_scrubberHeight}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -10026,11 +10026,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dsb_scrubberHeight
+          @attr name com.shiftpayments.link.sdk.ui:dsb_scrubberHeight
         */
         public static int DiscreteSeekBar_dsb_scrubberHeight = 14;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_thumbSize}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_thumbSize}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -10043,11 +10043,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dsb_thumbSize
+          @attr name com.shiftpayments.link.sdk.ui:dsb_thumbSize
         */
         public static int DiscreteSeekBar_dsb_thumbSize = 15;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_trackColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_trackColor}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -10055,11 +10055,11 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:dsb_trackColor
+          @attr name com.shiftpayments.link.sdk.ui:dsb_trackColor
         */
         public static int DiscreteSeekBar_dsb_trackColor = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_trackHeight}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_trackHeight}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -10072,11 +10072,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dsb_trackHeight
+          @attr name com.shiftpayments.link.sdk.ui:dsb_trackHeight
         */
         public static int DiscreteSeekBar_dsb_trackHeight = 13;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dsb_value}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dsb_value}
           attribute's value can be found in the {@link #DiscreteSeekBar} array.
 
 
@@ -10089,7 +10089,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dsb_value
+          @attr name com.shiftpayments.link.sdk.ui:dsb_value
         */
         public static int DiscreteSeekBar_dsb_value = 2;
         /** Attributes that can be used with a DrawerArrowToggle.
@@ -10098,14 +10098,14 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_arrowHeadLength com.shift.link.sdk.ui:arrowHeadLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_arrowShaftLength com.shift.link.sdk.ui:arrowShaftLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_barLength com.shift.link.sdk.ui:barLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_color com.shift.link.sdk.ui:color}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_drawableSize com.shift.link.sdk.ui:drawableSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_gapBetweenBars com.shift.link.sdk.ui:gapBetweenBars}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_spinBars com.shift.link.sdk.ui:spinBars}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_thickness com.shift.link.sdk.ui:thickness}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_arrowHeadLength com.shiftpayments.link.sdk.ui:arrowHeadLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_arrowShaftLength com.shiftpayments.link.sdk.ui:arrowShaftLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_barLength com.shiftpayments.link.sdk.ui:barLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_color com.shiftpayments.link.sdk.ui:color}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_drawableSize com.shiftpayments.link.sdk.ui:drawableSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_gapBetweenBars com.shiftpayments.link.sdk.ui:gapBetweenBars}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_spinBars com.shiftpayments.link.sdk.ui:spinBars}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_thickness com.shiftpayments.link.sdk.ui:thickness}</code></td><td></td></tr>
            </table>
            @see #DrawerArrowToggle_arrowHeadLength
            @see #DrawerArrowToggle_arrowShaftLength
@@ -10121,7 +10121,7 @@ containing a value of this type.
             0x7f01013a, 0x7f01013b, 0x7f01013c, 0x7f01013d
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#arrowHeadLength}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#arrowHeadLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10133,11 +10133,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:arrowHeadLength
+          @attr name com.shiftpayments.link.sdk.ui:arrowHeadLength
         */
         public static int DrawerArrowToggle_arrowHeadLength = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#arrowShaftLength}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#arrowShaftLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10149,11 +10149,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:arrowShaftLength
+          @attr name com.shiftpayments.link.sdk.ui:arrowShaftLength
         */
         public static int DrawerArrowToggle_arrowShaftLength = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#barLength}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#barLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10165,11 +10165,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:barLength
+          @attr name com.shiftpayments.link.sdk.ui:barLength
         */
         public static int DrawerArrowToggle_barLength = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#color}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#color}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10180,11 +10180,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:color
+          @attr name com.shiftpayments.link.sdk.ui:color
         */
         public static int DrawerArrowToggle_color = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#drawableSize}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#drawableSize}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10196,11 +10196,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:drawableSize
+          @attr name com.shiftpayments.link.sdk.ui:drawableSize
         */
         public static int DrawerArrowToggle_drawableSize = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#gapBetweenBars}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#gapBetweenBars}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10212,11 +10212,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:gapBetweenBars
+          @attr name com.shiftpayments.link.sdk.ui:gapBetweenBars
         */
         public static int DrawerArrowToggle_gapBetweenBars = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#spinBars}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#spinBars}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10226,11 +10226,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:spinBars
+          @attr name com.shiftpayments.link.sdk.ui:spinBars
         */
         public static int DrawerArrowToggle_spinBars = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#thickness}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#thickness}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -10242,7 +10242,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:thickness
+          @attr name com.shiftpayments.link.sdk.ui:thickness
         */
         public static int DrawerArrowToggle_thickness = 7;
         /** Attributes that can be used with a FloatingActionButton.
@@ -10251,14 +10251,14 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #FloatingActionButton_backgroundTint com.shift.link.sdk.ui:backgroundTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_backgroundTintMode com.shift.link.sdk.ui:backgroundTintMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_borderWidth com.shift.link.sdk.ui:borderWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_elevation com.shift.link.sdk.ui:elevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_fabSize com.shift.link.sdk.ui:fabSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_pressedTranslationZ com.shift.link.sdk.ui:pressedTranslationZ}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_rippleColor com.shift.link.sdk.ui:rippleColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #FloatingActionButton_useCompatPadding com.shift.link.sdk.ui:useCompatPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_backgroundTint com.shiftpayments.link.sdk.ui:backgroundTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_backgroundTintMode com.shiftpayments.link.sdk.ui:backgroundTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_borderWidth com.shiftpayments.link.sdk.ui:borderWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_elevation com.shiftpayments.link.sdk.ui:elevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_fabSize com.shiftpayments.link.sdk.ui:fabSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_pressedTranslationZ com.shiftpayments.link.sdk.ui:pressedTranslationZ}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_rippleColor com.shiftpayments.link.sdk.ui:rippleColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #FloatingActionButton_useCompatPadding com.shiftpayments.link.sdk.ui:useCompatPadding}</code></td><td></td></tr>
            </table>
            @see #FloatingActionButton_backgroundTint
            @see #FloatingActionButton_backgroundTintMode
@@ -10274,7 +10274,7 @@ containing a value of this type.
             0x7f010141, 0x7f010142, 0x7f0101c8, 0x7f0101c9
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundTint}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#backgroundTint}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10285,11 +10285,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:backgroundTint
+          @attr name com.shiftpayments.link.sdk.ui:backgroundTint
         */
         public static int FloatingActionButton_backgroundTint = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundTintMode}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#backgroundTintMode}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10305,11 +10305,11 @@ containing a value of this type.
 <tr><td><code>multiply</code></td><td>14</td><td></td></tr>
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:backgroundTintMode
+          @attr name com.shiftpayments.link.sdk.ui:backgroundTintMode
         */
         public static int FloatingActionButton_backgroundTintMode = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#borderWidth}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#borderWidth}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10321,11 +10321,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:borderWidth
+          @attr name com.shiftpayments.link.sdk.ui:borderWidth
         */
         public static int FloatingActionButton_borderWidth = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#elevation}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10337,11 +10337,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:elevation
+          @attr name com.shiftpayments.link.sdk.ui:elevation
         */
         public static int FloatingActionButton_elevation = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#fabSize}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#fabSize}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10355,11 +10355,11 @@ containing a value of this type.
 <tr><td><code>normal</code></td><td>0</td><td></td></tr>
 <tr><td><code>mini</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:fabSize
+          @attr name com.shiftpayments.link.sdk.ui:fabSize
         */
         public static int FloatingActionButton_fabSize = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pressedTranslationZ}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pressedTranslationZ}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10371,11 +10371,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pressedTranslationZ
+          @attr name com.shiftpayments.link.sdk.ui:pressedTranslationZ
         */
         public static int FloatingActionButton_pressedTranslationZ = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#rippleColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#rippleColor}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10386,11 +10386,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:rippleColor
+          @attr name com.shiftpayments.link.sdk.ui:rippleColor
         */
         public static int FloatingActionButton_rippleColor = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#useCompatPadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#useCompatPadding}
           attribute's value can be found in the {@link #FloatingActionButton} array.
 
 
@@ -10400,7 +10400,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:useCompatPadding
+          @attr name com.shiftpayments.link.sdk.ui:useCompatPadding
         */
         public static int FloatingActionButton_useCompatPadding = 5;
         /** Attributes that can be used with a ForegroundLinearLayout.
@@ -10411,7 +10411,7 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #ForegroundLinearLayout_android_foreground android:foreground}</code></td><td></td></tr>
            <tr><td><code>{@link #ForegroundLinearLayout_android_foregroundGravity android:foregroundGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #ForegroundLinearLayout_foregroundInsidePadding com.shift.link.sdk.ui:foregroundInsidePadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #ForegroundLinearLayout_foregroundInsidePadding com.shiftpayments.link.sdk.ui:foregroundInsidePadding}</code></td><td></td></tr>
            </table>
            @see #ForegroundLinearLayout_android_foreground
            @see #ForegroundLinearLayout_android_foregroundGravity
@@ -10433,7 +10433,7 @@ containing a value of this type.
         */
         public static int ForegroundLinearLayout_android_foregroundGravity = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#foregroundInsidePadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#foregroundInsidePadding}
           attribute's value can be found in the {@link #ForegroundLinearLayout} array.
 
 
@@ -10443,7 +10443,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:foregroundInsidePadding
+          @attr name com.shiftpayments.link.sdk.ui:foregroundInsidePadding
         */
         public static int ForegroundLinearLayout_foregroundInsidePadding = 2;
         /** Attributes that can be used with a LinearLayoutCompat.
@@ -10457,10 +10457,10 @@ containing a value of this type.
            <tr><td><code>{@link #LinearLayoutCompat_android_gravity android:gravity}</code></td><td></td></tr>
            <tr><td><code>{@link #LinearLayoutCompat_android_orientation android:orientation}</code></td><td></td></tr>
            <tr><td><code>{@link #LinearLayoutCompat_android_weightSum android:weightSum}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_divider com.shift.link.sdk.ui:divider}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_dividerPadding com.shift.link.sdk.ui:dividerPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_measureWithLargestChild com.shift.link.sdk.ui:measureWithLargestChild}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_showDividers com.shift.link.sdk.ui:showDividers}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_divider com.shiftpayments.link.sdk.ui:divider}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_dividerPadding com.shiftpayments.link.sdk.ui:dividerPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_measureWithLargestChild com.shiftpayments.link.sdk.ui:measureWithLargestChild}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_showDividers com.shiftpayments.link.sdk.ui:showDividers}</code></td><td></td></tr>
            </table>
            @see #LinearLayoutCompat_android_baselineAligned
            @see #LinearLayoutCompat_android_baselineAlignedChildIndex
@@ -10508,17 +10508,17 @@ containing a value of this type.
         */
         public static int LinearLayoutCompat_android_weightSum = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#divider}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#divider}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:divider
+          @attr name com.shiftpayments.link.sdk.ui:divider
         */
         public static int LinearLayoutCompat_divider = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#dividerPadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#dividerPadding}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -10530,11 +10530,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:dividerPadding
+          @attr name com.shiftpayments.link.sdk.ui:dividerPadding
         */
         public static int LinearLayoutCompat_dividerPadding = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#measureWithLargestChild}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#measureWithLargestChild}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -10544,11 +10544,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:measureWithLargestChild
+          @attr name com.shiftpayments.link.sdk.ui:measureWithLargestChild
         */
         public static int LinearLayoutCompat_measureWithLargestChild = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#showDividers}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#showDividers}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -10563,7 +10563,7 @@ containing a value of this type.
 <tr><td><code>middle</code></td><td>2</td><td></td></tr>
 <tr><td><code>end</code></td><td>4</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:showDividers
+          @attr name com.shiftpayments.link.sdk.ui:showDividers
         */
         public static int LinearLayoutCompat_showDividers = 7;
         /** Attributes that can be used with a LinearLayoutCompat_Layout.
@@ -10642,9 +10642,9 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #LoadingImageView_circleCrop com.shift.link.sdk.ui:circleCrop}</code></td><td></td></tr>
-           <tr><td><code>{@link #LoadingImageView_imageAspectRatio com.shift.link.sdk.ui:imageAspectRatio}</code></td><td></td></tr>
-           <tr><td><code>{@link #LoadingImageView_imageAspectRatioAdjust com.shift.link.sdk.ui:imageAspectRatioAdjust}</code></td><td></td></tr>
+           <tr><td><code>{@link #LoadingImageView_circleCrop com.shiftpayments.link.sdk.ui:circleCrop}</code></td><td></td></tr>
+           <tr><td><code>{@link #LoadingImageView_imageAspectRatio com.shiftpayments.link.sdk.ui:imageAspectRatio}</code></td><td></td></tr>
+           <tr><td><code>{@link #LoadingImageView_imageAspectRatioAdjust com.shiftpayments.link.sdk.ui:imageAspectRatioAdjust}</code></td><td></td></tr>
            </table>
            @see #LoadingImageView_circleCrop
            @see #LoadingImageView_imageAspectRatio
@@ -10654,7 +10654,7 @@ containing a value of this type.
             0x7f010147, 0x7f010148, 0x7f010149
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#circleCrop}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#circleCrop}
           attribute's value can be found in the {@link #LoadingImageView} array.
 
 
@@ -10664,11 +10664,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:circleCrop
+          @attr name com.shiftpayments.link.sdk.ui:circleCrop
         */
         public static int LoadingImageView_circleCrop = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#imageAspectRatio}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#imageAspectRatio}
           attribute's value can be found in the {@link #LoadingImageView} array.
 
 
@@ -10678,11 +10678,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:imageAspectRatio
+          @attr name com.shiftpayments.link.sdk.ui:imageAspectRatio
         */
         public static int LoadingImageView_imageAspectRatio = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#imageAspectRatioAdjust}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#imageAspectRatioAdjust}
           attribute's value can be found in the {@link #LoadingImageView} array.
 
 
@@ -10696,7 +10696,7 @@ containing a value of this type.
 <tr><td><code>adjust_width</code></td><td>1</td><td></td></tr>
 <tr><td><code>adjust_height</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:imageAspectRatioAdjust
+          @attr name com.shiftpayments.link.sdk.ui:imageAspectRatioAdjust
         */
         public static int LoadingImageView_imageAspectRatioAdjust = 0;
         /** Attributes that can be used with a MarkdownView.
@@ -10705,7 +10705,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MarkdownView_escapeHtml com.shift.link.sdk.ui:escapeHtml}</code></td><td></td></tr>
+           <tr><td><code>{@link #MarkdownView_escapeHtml com.shiftpayments.link.sdk.ui:escapeHtml}</code></td><td></td></tr>
            </table>
            @see #MarkdownView_escapeHtml
          */
@@ -10713,7 +10713,7 @@ containing a value of this type.
             0x7f01014a
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#escapeHtml}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#escapeHtml}
           attribute's value can be found in the {@link #MarkdownView} array.
 
 
@@ -10723,7 +10723,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:escapeHtml
+          @attr name com.shiftpayments.link.sdk.ui:escapeHtml
         */
         public static int MarkdownView_escapeHtml = 0;
         /** Attributes that can be used with a MenuGroup.
@@ -10792,9 +10792,9 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MenuItem_actionLayout com.shift.link.sdk.ui:actionLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_actionProviderClass com.shift.link.sdk.ui:actionProviderClass}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_actionViewClass com.shift.link.sdk.ui:actionViewClass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_actionLayout com.shiftpayments.link.sdk.ui:actionLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_actionProviderClass com.shiftpayments.link.sdk.ui:actionProviderClass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_actionViewClass com.shiftpayments.link.sdk.ui:actionViewClass}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_alphabeticShortcut android:alphabeticShortcut}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_checkable android:checkable}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_checked android:checked}</code></td><td></td></tr>
@@ -10808,7 +10808,7 @@ containing a value of this type.
            <tr><td><code>{@link #MenuItem_android_title android:title}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_titleCondensed android:titleCondensed}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_visible android:visible}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_showAsAction com.shift.link.sdk.ui:showAsAction}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_showAsAction com.shiftpayments.link.sdk.ui:showAsAction}</code></td><td></td></tr>
            </table>
            @see #MenuItem_actionLayout
            @see #MenuItem_actionProviderClass
@@ -10836,17 +10836,17 @@ containing a value of this type.
             0x7f01014e
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionLayout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionLayout}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:actionLayout
+          @attr name com.shiftpayments.link.sdk.ui:actionLayout
         */
         public static int MenuItem_actionLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionProviderClass}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionProviderClass}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10856,11 +10856,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:actionProviderClass
+          @attr name com.shiftpayments.link.sdk.ui:actionProviderClass
         */
         public static int MenuItem_actionProviderClass = 16;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#actionViewClass}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#actionViewClass}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10870,7 +10870,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:actionViewClass
+          @attr name com.shiftpayments.link.sdk.ui:actionViewClass
         */
         public static int MenuItem_actionViewClass = 15;
         /**
@@ -10952,7 +10952,7 @@ containing a value of this type.
         */
         public static int MenuItem_android_visible = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#showAsAction}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#showAsAction}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -10968,7 +10968,7 @@ containing a value of this type.
 <tr><td><code>withText</code></td><td>4</td><td></td></tr>
 <tr><td><code>collapseActionView</code></td><td>8</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:showAsAction
+          @attr name com.shiftpayments.link.sdk.ui:showAsAction
         */
         public static int MenuItem_showAsAction = 13;
         /** Attributes that can be used with a MenuView.
@@ -10984,8 +10984,8 @@ containing a value of this type.
            <tr><td><code>{@link #MenuView_android_itemTextAppearance android:itemTextAppearance}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuView_android_verticalDivider android:verticalDivider}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuView_android_windowAnimationStyle android:windowAnimationStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuView_preserveIconSpacing com.shift.link.sdk.ui:preserveIconSpacing}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuView_subMenuArrow com.shift.link.sdk.ui:subMenuArrow}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuView_preserveIconSpacing com.shiftpayments.link.sdk.ui:preserveIconSpacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuView_subMenuArrow com.shiftpayments.link.sdk.ui:subMenuArrow}</code></td><td></td></tr>
            </table>
            @see #MenuView_android_headerBackground
            @see #MenuView_android_horizontalDivider
@@ -11045,7 +11045,7 @@ containing a value of this type.
         */
         public static int MenuView_android_windowAnimationStyle = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#preserveIconSpacing}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#preserveIconSpacing}
           attribute's value can be found in the {@link #MenuView} array.
 
 
@@ -11055,17 +11055,17 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:preserveIconSpacing
+          @attr name com.shiftpayments.link.sdk.ui:preserveIconSpacing
         */
         public static int MenuView_preserveIconSpacing = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subMenuArrow}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#subMenuArrow}
           attribute's value can be found in the {@link #MenuView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:subMenuArrow
+          @attr name com.shiftpayments.link.sdk.ui:subMenuArrow
         */
         public static int MenuView_subMenuArrow = 8;
         /** Attributes that can be used with a NavigationView.
@@ -11077,13 +11077,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><td><code>{@link #NavigationView_android_background android:background}</code></td><td></td></tr>
            <tr><td><code>{@link #NavigationView_android_fitsSystemWindows android:fitsSystemWindows}</code></td><td></td></tr>
            <tr><td><code>{@link #NavigationView_android_maxWidth android:maxWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_elevation com.shift.link.sdk.ui:elevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_headerLayout com.shift.link.sdk.ui:headerLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_itemBackground com.shift.link.sdk.ui:itemBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_itemIconTint com.shift.link.sdk.ui:itemIconTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_itemTextAppearance com.shift.link.sdk.ui:itemTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_itemTextColor com.shift.link.sdk.ui:itemTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #NavigationView_menu com.shift.link.sdk.ui:menu}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_elevation com.shiftpayments.link.sdk.ui:elevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_headerLayout com.shiftpayments.link.sdk.ui:headerLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_itemBackground com.shiftpayments.link.sdk.ui:itemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_itemIconTint com.shiftpayments.link.sdk.ui:itemIconTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_itemTextAppearance com.shiftpayments.link.sdk.ui:itemTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_itemTextColor com.shiftpayments.link.sdk.ui:itemTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #NavigationView_menu com.shiftpayments.link.sdk.ui:menu}</code></td><td></td></tr>
            </table>
            @see #NavigationView_android_background
            @see #NavigationView_android_fitsSystemWindows
@@ -11120,7 +11120,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int NavigationView_android_maxWidth = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#elevation}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -11132,31 +11132,31 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:elevation
+          @attr name com.shiftpayments.link.sdk.ui:elevation
         */
         public static int NavigationView_elevation = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#headerLayout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#headerLayout}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:headerLayout
+          @attr name com.shiftpayments.link.sdk.ui:headerLayout
         */
         public static int NavigationView_headerLayout = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#itemBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#itemBackground}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:itemBackground
+          @attr name com.shiftpayments.link.sdk.ui:itemBackground
         */
         public static int NavigationView_itemBackground = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#itemIconTint}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#itemIconTint}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -11167,21 +11167,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:itemIconTint
+          @attr name com.shiftpayments.link.sdk.ui:itemIconTint
         */
         public static int NavigationView_itemIconTint = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#itemTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#itemTextAppearance}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:itemTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:itemTextAppearance
         */
         public static int NavigationView_itemTextAppearance = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#itemTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#itemTextColor}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
@@ -11192,17 +11192,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:itemTextColor
+          @attr name com.shiftpayments.link.sdk.ui:itemTextColor
         */
         public static int NavigationView_itemTextColor = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#menu}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#menu}
           attribute's value can be found in the {@link #NavigationView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:menu
+          @attr name com.shiftpayments.link.sdk.ui:menu
         */
         public static int NavigationView_menu = 4;
         /** Attributes that can be used with a PinKeyboardView.
@@ -11211,12 +11211,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_keyBackground com.shift.link.sdk.ui:pinkeyboardview_keyBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_keyUnderlineColor com.shift.link.sdk.ui:pinkeyboardview_keyUnderlineColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_showUnderline com.shift.link.sdk.ui:pinkeyboardview_showUnderline}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_textColor com.shift.link.sdk.ui:pinkeyboardview_textColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_textSize com.shift.link.sdk.ui:pinkeyboardview_textSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_underlinePadding com.shift.link.sdk.ui:pinkeyboardview_underlinePadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_keyBackground com.shiftpayments.link.sdk.ui:pinkeyboardview_keyBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_keyUnderlineColor com.shiftpayments.link.sdk.ui:pinkeyboardview_keyUnderlineColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_showUnderline com.shiftpayments.link.sdk.ui:pinkeyboardview_showUnderline}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_textColor com.shiftpayments.link.sdk.ui:pinkeyboardview_textColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_textSize com.shiftpayments.link.sdk.ui:pinkeyboardview_textSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinKeyboardView_pinkeyboardview_underlinePadding com.shiftpayments.link.sdk.ui:pinkeyboardview_underlinePadding}</code></td><td></td></tr>
            </table>
            @see #PinKeyboardView_pinkeyboardview_keyBackground
            @see #PinKeyboardView_pinkeyboardview_keyUnderlineColor
@@ -11230,7 +11230,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01015b, 0x7f01015c
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinkeyboardview_keyBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pinkeyboardview_keyBackground}
           attribute's value can be found in the {@link #PinKeyboardView} array.
 
 
@@ -11240,11 +11240,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pinkeyboardview_keyBackground
+          @attr name com.shiftpayments.link.sdk.ui:pinkeyboardview_keyBackground
         */
         public static int PinKeyboardView_pinkeyboardview_keyBackground = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinkeyboardview_keyUnderlineColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pinkeyboardview_keyUnderlineColor}
           attribute's value can be found in the {@link #PinKeyboardView} array.
 
 
@@ -11255,11 +11255,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pinkeyboardview_keyUnderlineColor
+          @attr name com.shiftpayments.link.sdk.ui:pinkeyboardview_keyUnderlineColor
         */
         public static int PinKeyboardView_pinkeyboardview_keyUnderlineColor = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinkeyboardview_showUnderline}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pinkeyboardview_showUnderline}
           attribute's value can be found in the {@link #PinKeyboardView} array.
 
 
@@ -11269,11 +11269,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pinkeyboardview_showUnderline
+          @attr name com.shiftpayments.link.sdk.ui:pinkeyboardview_showUnderline
         */
         public static int PinKeyboardView_pinkeyboardview_showUnderline = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinkeyboardview_textColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pinkeyboardview_textColor}
           attribute's value can be found in the {@link #PinKeyboardView} array.
 
 
@@ -11284,11 +11284,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pinkeyboardview_textColor
+          @attr name com.shiftpayments.link.sdk.ui:pinkeyboardview_textColor
         */
         public static int PinKeyboardView_pinkeyboardview_textColor = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinkeyboardview_textSize}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pinkeyboardview_textSize}
           attribute's value can be found in the {@link #PinKeyboardView} array.
 
 
@@ -11300,11 +11300,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pinkeyboardview_textSize
+          @attr name com.shiftpayments.link.sdk.ui:pinkeyboardview_textSize
         */
         public static int PinKeyboardView_pinkeyboardview_textSize = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinkeyboardview_underlinePadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pinkeyboardview_underlinePadding}
           attribute's value can be found in the {@link #PinKeyboardView} array.
 
 
@@ -11316,7 +11316,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pinkeyboardview_underlinePadding
+          @attr name com.shiftpayments.link.sdk.ui:pinkeyboardview_underlinePadding
         */
         public static int PinKeyboardView_pinkeyboardview_underlinePadding = 4;
         /** Attributes that can be used with a PinView.
@@ -11325,21 +11325,21 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #PinView_colorSplit com.shift.link.sdk.ui:colorSplit}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_colorTextPinBox com.shift.link.sdk.ui:colorTextPinBox}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_colorTextTitles com.shift.link.sdk.ui:colorTextTitles}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_deleteOnClick com.shift.link.sdk.ui:deleteOnClick}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_drawablePinBox com.shift.link.sdk.ui:drawablePinBox}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_keyboardMandatory com.shift.link.sdk.ui:keyboardMandatory}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_nativePinBox com.shift.link.sdk.ui:nativePinBox}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_numberCharacters com.shift.link.sdk.ui:numberCharacters}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_numberPinBoxes com.shift.link.sdk.ui:numberPinBoxes}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_password com.shift.link.sdk.ui:password}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_sizeSplit com.shift.link.sdk.ui:sizeSplit}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_split com.shift.link.sdk.ui:split}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_textSizePinBox com.shift.link.sdk.ui:textSizePinBox}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_textSizeTitles com.shift.link.sdk.ui:textSizeTitles}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinView_titles com.shift.link.sdk.ui:titles}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_colorSplit com.shiftpayments.link.sdk.ui:colorSplit}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_colorTextPinBox com.shiftpayments.link.sdk.ui:colorTextPinBox}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_colorTextTitles com.shiftpayments.link.sdk.ui:colorTextTitles}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_deleteOnClick com.shiftpayments.link.sdk.ui:deleteOnClick}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_drawablePinBox com.shiftpayments.link.sdk.ui:drawablePinBox}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_keyboardMandatory com.shiftpayments.link.sdk.ui:keyboardMandatory}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_nativePinBox com.shiftpayments.link.sdk.ui:nativePinBox}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_numberCharacters com.shiftpayments.link.sdk.ui:numberCharacters}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_numberPinBoxes com.shiftpayments.link.sdk.ui:numberPinBoxes}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_password com.shiftpayments.link.sdk.ui:password}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_sizeSplit com.shiftpayments.link.sdk.ui:sizeSplit}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_split com.shiftpayments.link.sdk.ui:split}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_textSizePinBox com.shiftpayments.link.sdk.ui:textSizePinBox}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_textSizeTitles com.shiftpayments.link.sdk.ui:textSizeTitles}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinView_titles com.shiftpayments.link.sdk.ui:titles}</code></td><td></td></tr>
            </table>
            @see #PinView_colorSplit
            @see #PinView_colorTextPinBox
@@ -11364,7 +11364,7 @@ containing a value of this type.
             0x7f010169, 0x7f01016a, 0x7f01016b
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorSplit}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorSplit}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11375,11 +11375,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:colorSplit
+          @attr name com.shiftpayments.link.sdk.ui:colorSplit
         */
         public static int PinView_colorSplit = 11;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorTextPinBox}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorTextPinBox}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11390,11 +11390,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:colorTextPinBox
+          @attr name com.shiftpayments.link.sdk.ui:colorTextPinBox
         */
         public static int PinView_colorTextPinBox = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorTextTitles}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorTextTitles}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11405,11 +11405,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:colorTextTitles
+          @attr name com.shiftpayments.link.sdk.ui:colorTextTitles
         */
         public static int PinView_colorTextTitles = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#deleteOnClick}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#deleteOnClick}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11419,21 +11419,21 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:deleteOnClick
+          @attr name com.shiftpayments.link.sdk.ui:deleteOnClick
         */
         public static int PinView_deleteOnClick = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#drawablePinBox}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#drawablePinBox}
           attribute's value can be found in the {@link #PinView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:drawablePinBox
+          @attr name com.shiftpayments.link.sdk.ui:drawablePinBox
         */
         public static int PinView_drawablePinBox = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#keyboardMandatory}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#keyboardMandatory}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11443,11 +11443,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:keyboardMandatory
+          @attr name com.shiftpayments.link.sdk.ui:keyboardMandatory
         */
         public static int PinView_keyboardMandatory = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#nativePinBox}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#nativePinBox}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11457,11 +11457,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:nativePinBox
+          @attr name com.shiftpayments.link.sdk.ui:nativePinBox
         */
         public static int PinView_nativePinBox = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#numberCharacters}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#numberCharacters}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11471,11 +11471,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:numberCharacters
+          @attr name com.shiftpayments.link.sdk.ui:numberCharacters
         */
         public static int PinView_numberCharacters = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#numberPinBoxes}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#numberPinBoxes}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11485,11 +11485,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:numberPinBoxes
+          @attr name com.shiftpayments.link.sdk.ui:numberPinBoxes
         */
         public static int PinView_numberPinBoxes = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#password}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#password}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11499,11 +11499,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:password
+          @attr name com.shiftpayments.link.sdk.ui:password
         */
         public static int PinView_password = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#sizeSplit}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#sizeSplit}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11515,11 +11515,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:sizeSplit
+          @attr name com.shiftpayments.link.sdk.ui:sizeSplit
         */
         public static int PinView_sizeSplit = 14;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#split}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#split}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11529,11 +11529,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:split
+          @attr name com.shiftpayments.link.sdk.ui:split
         */
         public static int PinView_split = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textSizePinBox}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textSizePinBox}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11545,11 +11545,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:textSizePinBox
+          @attr name com.shiftpayments.link.sdk.ui:textSizePinBox
         */
         public static int PinView_textSizePinBox = 12;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textSizeTitles}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textSizeTitles}
           attribute's value can be found in the {@link #PinView} array.
 
 
@@ -11561,17 +11561,17 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:textSizeTitles
+          @attr name com.shiftpayments.link.sdk.ui:textSizeTitles
         */
         public static int PinView_textSizeTitles = 13;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titles}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#titles}
           attribute's value can be found in the {@link #PinView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:titles
+          @attr name com.shiftpayments.link.sdk.ui:titles
         */
         public static int PinView_titles = 3;
         /** Attributes that can be used with a PinputView.
@@ -11580,10 +11580,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #PinputView_pinputview_backgroundColor com.shift.link.sdk.ui:pinputview_backgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinputView_pinputview_characterPadding com.shift.link.sdk.ui:pinputview_characterPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinputView_pinputview_foregroundColor com.shift.link.sdk.ui:pinputview_foregroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #PinputView_pinputview_len com.shift.link.sdk.ui:pinputview_len}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinputView_pinputview_backgroundColor com.shiftpayments.link.sdk.ui:pinputview_backgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinputView_pinputview_characterPadding com.shiftpayments.link.sdk.ui:pinputview_characterPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinputView_pinputview_foregroundColor com.shiftpayments.link.sdk.ui:pinputview_foregroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PinputView_pinputview_len com.shiftpayments.link.sdk.ui:pinputview_len}</code></td><td></td></tr>
            </table>
            @see #PinputView_pinputview_backgroundColor
            @see #PinputView_pinputview_characterPadding
@@ -11594,7 +11594,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01016c, 0x7f01016d, 0x7f01016e, 0x7f01016f
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinputview_backgroundColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pinputview_backgroundColor}
           attribute's value can be found in the {@link #PinputView} array.
 
 
@@ -11605,11 +11605,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pinputview_backgroundColor
+          @attr name com.shiftpayments.link.sdk.ui:pinputview_backgroundColor
         */
         public static int PinputView_pinputview_backgroundColor = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinputview_characterPadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pinputview_characterPadding}
           attribute's value can be found in the {@link #PinputView} array.
 
 
@@ -11621,11 +11621,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pinputview_characterPadding
+          @attr name com.shiftpayments.link.sdk.ui:pinputview_characterPadding
         */
         public static int PinputView_pinputview_characterPadding = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinputview_foregroundColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pinputview_foregroundColor}
           attribute's value can be found in the {@link #PinputView} array.
 
 
@@ -11636,11 +11636,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pinputview_foregroundColor
+          @attr name com.shiftpayments.link.sdk.ui:pinputview_foregroundColor
         */
         public static int PinputView_pinputview_foregroundColor = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#pinputview_len}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#pinputview_len}
           attribute's value can be found in the {@link #PinputView} array.
 
 
@@ -11650,7 +11650,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:pinputview_len
+          @attr name com.shiftpayments.link.sdk.ui:pinputview_len
         */
         public static int PinputView_pinputview_len = 0;
         /** Attributes that can be used with a PopupWindow.
@@ -11661,7 +11661,7 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #PopupWindow_android_popupAnimationStyle android:popupAnimationStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #PopupWindow_android_popupBackground android:popupBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #PopupWindow_overlapAnchor com.shift.link.sdk.ui:overlapAnchor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PopupWindow_overlapAnchor com.shiftpayments.link.sdk.ui:overlapAnchor}</code></td><td></td></tr>
            </table>
            @see #PopupWindow_android_popupAnimationStyle
            @see #PopupWindow_android_popupBackground
@@ -11683,7 +11683,7 @@ containing a value of this type.
         */
         public static int PopupWindow_android_popupBackground = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#overlapAnchor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#overlapAnchor}
           attribute's value can be found in the {@link #PopupWindow} array.
 
 
@@ -11693,7 +11693,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:overlapAnchor
+          @attr name com.shiftpayments.link.sdk.ui:overlapAnchor
         */
         public static int PopupWindow_overlapAnchor = 2;
         /** Attributes that can be used with a PopupWindowBackgroundState.
@@ -11702,7 +11702,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #PopupWindowBackgroundState_state_above_anchor com.shift.link.sdk.ui:state_above_anchor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PopupWindowBackgroundState_state_above_anchor com.shiftpayments.link.sdk.ui:state_above_anchor}</code></td><td></td></tr>
            </table>
            @see #PopupWindowBackgroundState_state_above_anchor
          */
@@ -11710,7 +11710,7 @@ containing a value of this type.
             0x7f010171
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#state_above_anchor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#state_above_anchor}
           attribute's value can be found in the {@link #PopupWindowBackgroundState} array.
 
 
@@ -11720,7 +11720,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:state_above_anchor
+          @attr name com.shiftpayments.link.sdk.ui:state_above_anchor
         */
         public static int PopupWindowBackgroundState_state_above_anchor = 0;
         /** Attributes that can be used with a RecycleListView.
@@ -11729,8 +11729,8 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #RecycleListView_paddingBottomNoButtons com.shift.link.sdk.ui:paddingBottomNoButtons}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecycleListView_paddingTopNoTitle com.shift.link.sdk.ui:paddingTopNoTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecycleListView_paddingBottomNoButtons com.shiftpayments.link.sdk.ui:paddingBottomNoButtons}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecycleListView_paddingTopNoTitle com.shiftpayments.link.sdk.ui:paddingTopNoTitle}</code></td><td></td></tr>
            </table>
            @see #RecycleListView_paddingBottomNoButtons
            @see #RecycleListView_paddingTopNoTitle
@@ -11739,7 +11739,7 @@ containing a value of this type.
             0x7f010172, 0x7f010173
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#paddingBottomNoButtons}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#paddingBottomNoButtons}
           attribute's value can be found in the {@link #RecycleListView} array.
 
 
@@ -11751,11 +11751,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:paddingBottomNoButtons
+          @attr name com.shiftpayments.link.sdk.ui:paddingBottomNoButtons
         */
         public static int RecycleListView_paddingBottomNoButtons = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#paddingTopNoTitle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#paddingTopNoTitle}
           attribute's value can be found in the {@link #RecycleListView} array.
 
 
@@ -11767,7 +11767,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:paddingTopNoTitle
+          @attr name com.shiftpayments.link.sdk.ui:paddingTopNoTitle
         */
         public static int RecycleListView_paddingTopNoTitle = 1;
         /** Attributes that can be used with a RecyclerView.
@@ -11778,10 +11778,10 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #RecyclerView_android_descendantFocusability android:descendantFocusability}</code></td><td></td></tr>
            <tr><td><code>{@link #RecyclerView_android_orientation android:orientation}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_layoutManager com.shift.link.sdk.ui:layoutManager}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_reverseLayout com.shift.link.sdk.ui:reverseLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_spanCount com.shift.link.sdk.ui:spanCount}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_stackFromEnd com.shift.link.sdk.ui:stackFromEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_layoutManager com.shiftpayments.link.sdk.ui:layoutManager}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_reverseLayout com.shiftpayments.link.sdk.ui:reverseLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_spanCount com.shiftpayments.link.sdk.ui:spanCount}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_stackFromEnd com.shiftpayments.link.sdk.ui:stackFromEnd}</code></td><td></td></tr>
            </table>
            @see #RecyclerView_android_descendantFocusability
            @see #RecyclerView_android_orientation
@@ -11807,7 +11807,7 @@ containing a value of this type.
         */
         public static int RecyclerView_android_orientation = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layoutManager}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#layoutManager}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11817,11 +11817,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:layoutManager
+          @attr name com.shiftpayments.link.sdk.ui:layoutManager
         */
         public static int RecyclerView_layoutManager = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#reverseLayout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#reverseLayout}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11831,11 +11831,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:reverseLayout
+          @attr name com.shiftpayments.link.sdk.ui:reverseLayout
         */
         public static int RecyclerView_reverseLayout = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#spanCount}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#spanCount}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11845,11 +11845,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:spanCount
+          @attr name com.shiftpayments.link.sdk.ui:spanCount
         */
         public static int RecyclerView_spanCount = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#stackFromEnd}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#stackFromEnd}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -11859,7 +11859,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:stackFromEnd
+          @attr name com.shiftpayments.link.sdk.ui:stackFromEnd
         */
         public static int RecyclerView_stackFromEnd = 5;
         /** Attributes that can be used with a ScrimInsetsFrameLayout.
@@ -11868,7 +11868,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ScrimInsetsFrameLayout_insetForeground com.shift.link.sdk.ui:insetForeground}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrimInsetsFrameLayout_insetForeground com.shiftpayments.link.sdk.ui:insetForeground}</code></td><td></td></tr>
            </table>
            @see #ScrimInsetsFrameLayout_insetForeground
          */
@@ -11876,7 +11876,7 @@ containing a value of this type.
             0x7f010178
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#insetForeground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#insetForeground}
           attribute's value can be found in the {@link #ScrimInsetsFrameLayout} array.
 
 
@@ -11884,7 +11884,7 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:insetForeground
+          @attr name com.shiftpayments.link.sdk.ui:insetForeground
         */
         public static int ScrimInsetsFrameLayout_insetForeground = 0;
         /** Attributes that can be used with a ScrollBar.
@@ -11893,10 +11893,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ScrollBar_sb_handlerColor com.shift.link.sdk.ui:sb_handlerColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #ScrollBar_sb_horizontal com.shift.link.sdk.ui:sb_horizontal}</code></td><td></td></tr>
-           <tr><td><code>{@link #ScrollBar_sb_indicatorColor com.shift.link.sdk.ui:sb_indicatorColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #ScrollBar_sb_indicatorTextColor com.shift.link.sdk.ui:sb_indicatorTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollBar_sb_handlerColor com.shiftpayments.link.sdk.ui:sb_handlerColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollBar_sb_horizontal com.shiftpayments.link.sdk.ui:sb_horizontal}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollBar_sb_indicatorColor com.shiftpayments.link.sdk.ui:sb_indicatorColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollBar_sb_indicatorTextColor com.shiftpayments.link.sdk.ui:sb_indicatorTextColor}</code></td><td></td></tr>
            </table>
            @see #ScrollBar_sb_handlerColor
            @see #ScrollBar_sb_horizontal
@@ -11907,7 +11907,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010179, 0x7f01017a, 0x7f01017b, 0x7f01017c
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#sb_handlerColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#sb_handlerColor}
           attribute's value can be found in the {@link #ScrollBar} array.
 
 
@@ -11915,22 +11915,22 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:sb_handlerColor
+          @attr name com.shiftpayments.link.sdk.ui:sb_handlerColor
         */
         public static int ScrollBar_sb_handlerColor = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#sb_horizontal}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#sb_horizontal}
           attribute's value can be found in the {@link #ScrollBar} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
-          @attr name com.shift.link.sdk.ui:sb_horizontal
+          @attr name com.shiftpayments.link.sdk.ui:sb_horizontal
         */
         public static int ScrollBar_sb_horizontal = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#sb_indicatorColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#sb_indicatorColor}
           attribute's value can be found in the {@link #ScrollBar} array.
 
 
@@ -11938,11 +11938,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:sb_indicatorColor
+          @attr name com.shiftpayments.link.sdk.ui:sb_indicatorColor
         */
         public static int ScrollBar_sb_indicatorColor = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#sb_indicatorTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#sb_indicatorTextColor}
           attribute's value can be found in the {@link #ScrollBar} array.
 
 
@@ -11950,7 +11950,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name com.shift.link.sdk.ui:sb_indicatorTextColor
+          @attr name com.shiftpayments.link.sdk.ui:sb_indicatorTextColor
         */
         public static int ScrollBar_sb_indicatorTextColor = 2;
         /** Attributes that can be used with a ScrollingViewBehavior_Layout.
@@ -11959,7 +11959,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ScrollingViewBehavior_Layout_behavior_overlapTop com.shift.link.sdk.ui:behavior_overlapTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollingViewBehavior_Layout_behavior_overlapTop com.shiftpayments.link.sdk.ui:behavior_overlapTop}</code></td><td></td></tr>
            </table>
            @see #ScrollingViewBehavior_Layout_behavior_overlapTop
          */
@@ -11967,7 +11967,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01017d
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#behavior_overlapTop}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#behavior_overlapTop}
           attribute's value can be found in the {@link #ScrollingViewBehavior_Layout} array.
 
 
@@ -11979,7 +11979,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:behavior_overlapTop
+          @attr name com.shiftpayments.link.sdk.ui:behavior_overlapTop
         */
         public static int ScrollingViewBehavior_Layout_behavior_overlapTop = 0;
         /** Attributes that can be used with a SearchView.
@@ -11992,19 +11992,19 @@ containing a value of this type.
            <tr><td><code>{@link #SearchView_android_imeOptions android:imeOptions}</code></td><td></td></tr>
            <tr><td><code>{@link #SearchView_android_inputType android:inputType}</code></td><td></td></tr>
            <tr><td><code>{@link #SearchView_android_maxWidth android:maxWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_closeIcon com.shift.link.sdk.ui:closeIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_commitIcon com.shift.link.sdk.ui:commitIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_defaultQueryHint com.shift.link.sdk.ui:defaultQueryHint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_goIcon com.shift.link.sdk.ui:goIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_iconifiedByDefault com.shift.link.sdk.ui:iconifiedByDefault}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_layout com.shift.link.sdk.ui:layout}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_queryBackground com.shift.link.sdk.ui:queryBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_queryHint com.shift.link.sdk.ui:queryHint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_searchHintIcon com.shift.link.sdk.ui:searchHintIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_searchIcon com.shift.link.sdk.ui:searchIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_submitBackground com.shift.link.sdk.ui:submitBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_suggestionRowLayout com.shift.link.sdk.ui:suggestionRowLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_voiceIcon com.shift.link.sdk.ui:voiceIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_closeIcon com.shiftpayments.link.sdk.ui:closeIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_commitIcon com.shiftpayments.link.sdk.ui:commitIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_defaultQueryHint com.shiftpayments.link.sdk.ui:defaultQueryHint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_goIcon com.shiftpayments.link.sdk.ui:goIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_iconifiedByDefault com.shiftpayments.link.sdk.ui:iconifiedByDefault}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_layout com.shiftpayments.link.sdk.ui:layout}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_queryBackground com.shiftpayments.link.sdk.ui:queryBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_queryHint com.shiftpayments.link.sdk.ui:queryHint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_searchHintIcon com.shiftpayments.link.sdk.ui:searchHintIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_searchIcon com.shiftpayments.link.sdk.ui:searchIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_submitBackground com.shiftpayments.link.sdk.ui:submitBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_suggestionRowLayout com.shiftpayments.link.sdk.ui:suggestionRowLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_voiceIcon com.shiftpayments.link.sdk.ui:voiceIcon}</code></td><td></td></tr>
            </table>
            @see #SearchView_android_focusable
            @see #SearchView_android_imeOptions
@@ -12056,27 +12056,27 @@ containing a value of this type.
         */
         public static int SearchView_android_maxWidth = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#closeIcon}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#closeIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:closeIcon
+          @attr name com.shiftpayments.link.sdk.ui:closeIcon
         */
         public static int SearchView_closeIcon = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#commitIcon}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#commitIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:commitIcon
+          @attr name com.shiftpayments.link.sdk.ui:commitIcon
         */
         public static int SearchView_commitIcon = 13;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#defaultQueryHint}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#defaultQueryHint}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -12086,21 +12086,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:defaultQueryHint
+          @attr name com.shiftpayments.link.sdk.ui:defaultQueryHint
         */
         public static int SearchView_defaultQueryHint = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#goIcon}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#goIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:goIcon
+          @attr name com.shiftpayments.link.sdk.ui:goIcon
         */
         public static int SearchView_goIcon = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#iconifiedByDefault}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#iconifiedByDefault}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -12110,31 +12110,31 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:iconifiedByDefault
+          @attr name com.shiftpayments.link.sdk.ui:iconifiedByDefault
         */
         public static int SearchView_iconifiedByDefault = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#layout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#layout}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:layout
+          @attr name com.shiftpayments.link.sdk.ui:layout
         */
         public static int SearchView_layout = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#queryBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#queryBackground}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:queryBackground
+          @attr name com.shiftpayments.link.sdk.ui:queryBackground
         */
         public static int SearchView_queryBackground = 15;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#queryHint}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#queryHint}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -12144,57 +12144,57 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:queryHint
+          @attr name com.shiftpayments.link.sdk.ui:queryHint
         */
         public static int SearchView_queryHint = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#searchHintIcon}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#searchHintIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:searchHintIcon
+          @attr name com.shiftpayments.link.sdk.ui:searchHintIcon
         */
         public static int SearchView_searchHintIcon = 11;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#searchIcon}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#searchIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:searchIcon
+          @attr name com.shiftpayments.link.sdk.ui:searchIcon
         */
         public static int SearchView_searchIcon = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#submitBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#submitBackground}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:submitBackground
+          @attr name com.shiftpayments.link.sdk.ui:submitBackground
         */
         public static int SearchView_submitBackground = 16;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#suggestionRowLayout}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#suggestionRowLayout}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:suggestionRowLayout
+          @attr name com.shiftpayments.link.sdk.ui:suggestionRowLayout
         */
         public static int SearchView_suggestionRowLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#voiceIcon}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#voiceIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:voiceIcon
+          @attr name com.shiftpayments.link.sdk.ui:voiceIcon
         */
         public static int SearchView_voiceIcon = 12;
         /** Attributes that can be used with a SignInButton.
@@ -12203,9 +12203,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #SignInButton_buttonSize com.shift.link.sdk.ui:buttonSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #SignInButton_colorScheme com.shift.link.sdk.ui:colorScheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #SignInButton_scopeUris com.shift.link.sdk.ui:scopeUris}</code></td><td></td></tr>
+           <tr><td><code>{@link #SignInButton_buttonSize com.shiftpayments.link.sdk.ui:buttonSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #SignInButton_colorScheme com.shiftpayments.link.sdk.ui:colorScheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #SignInButton_scopeUris com.shiftpayments.link.sdk.ui:scopeUris}</code></td><td></td></tr>
            </table>
            @see #SignInButton_buttonSize
            @see #SignInButton_colorScheme
@@ -12215,7 +12215,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01018b, 0x7f01018c, 0x7f01018d
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonSize}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#buttonSize}
           attribute's value can be found in the {@link #SignInButton} array.
 
 
@@ -12231,11 +12231,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>wide</code></td><td>1</td><td></td></tr>
 <tr><td><code>icon_only</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:buttonSize
+          @attr name com.shiftpayments.link.sdk.ui:buttonSize
         */
         public static int SignInButton_buttonSize = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#colorScheme}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#colorScheme}
           attribute's value can be found in the {@link #SignInButton} array.
 
 
@@ -12251,18 +12251,18 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>light</code></td><td>1</td><td></td></tr>
 <tr><td><code>auto</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:colorScheme
+          @attr name com.shiftpayments.link.sdk.ui:colorScheme
         */
         public static int SignInButton_colorScheme = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#scopeUris}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#scopeUris}
           attribute's value can be found in the {@link #SignInButton} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-          @attr name com.shift.link.sdk.ui:scopeUris
+          @attr name com.shiftpayments.link.sdk.ui:scopeUris
         */
         public static int SignInButton_scopeUris = 2;
         /** Attributes that can be used with a SnackbarLayout.
@@ -12272,8 +12272,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #SnackbarLayout_android_maxWidth android:maxWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #SnackbarLayout_elevation com.shift.link.sdk.ui:elevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #SnackbarLayout_maxActionInlineWidth com.shift.link.sdk.ui:maxActionInlineWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SnackbarLayout_elevation com.shiftpayments.link.sdk.ui:elevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #SnackbarLayout_maxActionInlineWidth com.shiftpayments.link.sdk.ui:maxActionInlineWidth}</code></td><td></td></tr>
            </table>
            @see #SnackbarLayout_android_maxWidth
            @see #SnackbarLayout_elevation
@@ -12289,7 +12289,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SnackbarLayout_android_maxWidth = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#elevation}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#elevation}
           attribute's value can be found in the {@link #SnackbarLayout} array.
 
 
@@ -12301,11 +12301,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:elevation
+          @attr name com.shiftpayments.link.sdk.ui:elevation
         */
         public static int SnackbarLayout_elevation = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#maxActionInlineWidth}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#maxActionInlineWidth}
           attribute's value can be found in the {@link #SnackbarLayout} array.
 
 
@@ -12317,7 +12317,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:maxActionInlineWidth
+          @attr name com.shiftpayments.link.sdk.ui:maxActionInlineWidth
         */
         public static int SnackbarLayout_maxActionInlineWidth = 2;
         /** Attributes that can be used with a Spinner.
@@ -12330,7 +12330,7 @@ containing a value of this type.
            <tr><td><code>{@link #Spinner_android_entries android:entries}</code></td><td></td></tr>
            <tr><td><code>{@link #Spinner_android_popupBackground android:popupBackground}</code></td><td></td></tr>
            <tr><td><code>{@link #Spinner_android_prompt android:prompt}</code></td><td></td></tr>
-           <tr><td><code>{@link #Spinner_popupTheme com.shift.link.sdk.ui:popupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Spinner_popupTheme com.shiftpayments.link.sdk.ui:popupTheme}</code></td><td></td></tr>
            </table>
            @see #Spinner_android_dropDownWidth
            @see #Spinner_android_entries
@@ -12367,13 +12367,13 @@ containing a value of this type.
         */
         public static int Spinner_android_prompt = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#popupTheme}
           attribute's value can be found in the {@link #Spinner} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:popupTheme
+          @attr name com.shiftpayments.link.sdk.ui:popupTheme
         */
         public static int Spinner_popupTheme = 4;
         /** Attributes that can be used with a SwitchCompat.
@@ -12385,17 +12385,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><td><code>{@link #SwitchCompat_android_textOff android:textOff}</code></td><td></td></tr>
            <tr><td><code>{@link #SwitchCompat_android_textOn android:textOn}</code></td><td></td></tr>
            <tr><td><code>{@link #SwitchCompat_android_thumb android:thumb}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_showText com.shift.link.sdk.ui:showText}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_splitTrack com.shift.link.sdk.ui:splitTrack}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_switchMinWidth com.shift.link.sdk.ui:switchMinWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_switchPadding com.shift.link.sdk.ui:switchPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_switchTextAppearance com.shift.link.sdk.ui:switchTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_thumbTextPadding com.shift.link.sdk.ui:thumbTextPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_thumbTint com.shift.link.sdk.ui:thumbTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_thumbTintMode com.shift.link.sdk.ui:thumbTintMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_track com.shift.link.sdk.ui:track}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_trackTint com.shift.link.sdk.ui:trackTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_trackTintMode com.shift.link.sdk.ui:trackTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_showText com.shiftpayments.link.sdk.ui:showText}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_splitTrack com.shiftpayments.link.sdk.ui:splitTrack}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_switchMinWidth com.shiftpayments.link.sdk.ui:switchMinWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_switchPadding com.shiftpayments.link.sdk.ui:switchPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_switchTextAppearance com.shiftpayments.link.sdk.ui:switchTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_thumbTextPadding com.shiftpayments.link.sdk.ui:thumbTextPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_thumbTint com.shiftpayments.link.sdk.ui:thumbTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_thumbTintMode com.shiftpayments.link.sdk.ui:thumbTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_track com.shiftpayments.link.sdk.ui:track}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_trackTint com.shiftpayments.link.sdk.ui:trackTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_trackTintMode com.shiftpayments.link.sdk.ui:trackTintMode}</code></td><td></td></tr>
            </table>
            @see #SwitchCompat_android_textOff
            @see #SwitchCompat_android_textOn
@@ -12437,7 +12437,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int SwitchCompat_android_thumb = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#showText}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#showText}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12447,11 +12447,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:showText
+          @attr name com.shiftpayments.link.sdk.ui:showText
         */
         public static int SwitchCompat_showText = 13;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#splitTrack}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#splitTrack}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12461,11 +12461,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:splitTrack
+          @attr name com.shiftpayments.link.sdk.ui:splitTrack
         */
         public static int SwitchCompat_splitTrack = 12;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#switchMinWidth}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#switchMinWidth}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12477,11 +12477,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:switchMinWidth
+          @attr name com.shiftpayments.link.sdk.ui:switchMinWidth
         */
         public static int SwitchCompat_switchMinWidth = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#switchPadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#switchPadding}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12493,21 +12493,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:switchPadding
+          @attr name com.shiftpayments.link.sdk.ui:switchPadding
         */
         public static int SwitchCompat_switchPadding = 11;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#switchTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#switchTextAppearance}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:switchTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:switchTextAppearance
         */
         public static int SwitchCompat_switchTextAppearance = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#thumbTextPadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#thumbTextPadding}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12519,11 +12519,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:thumbTextPadding
+          @attr name com.shiftpayments.link.sdk.ui:thumbTextPadding
         */
         public static int SwitchCompat_thumbTextPadding = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#thumbTint}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#thumbTint}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12534,11 +12534,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:thumbTint
+          @attr name com.shiftpayments.link.sdk.ui:thumbTint
         */
         public static int SwitchCompat_thumbTint = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#thumbTintMode}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#thumbTintMode}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12555,21 +12555,21 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:thumbTintMode
+          @attr name com.shiftpayments.link.sdk.ui:thumbTintMode
         */
         public static int SwitchCompat_thumbTintMode = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#track}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#track}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:track
+          @attr name com.shiftpayments.link.sdk.ui:track
         */
         public static int SwitchCompat_track = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#trackTint}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#trackTint}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12580,11 +12580,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:trackTint
+          @attr name com.shiftpayments.link.sdk.ui:trackTint
         */
         public static int SwitchCompat_trackTint = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#trackTintMode}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#trackTintMode}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -12601,7 +12601,7 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:trackTintMode
+          @attr name com.shiftpayments.link.sdk.ui:trackTintMode
         */
         public static int SwitchCompat_trackTintMode = 7;
         /** Attributes that can be used with a TabItem.
@@ -12645,22 +12645,22 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #TabLayout_tabBackground com.shift.link.sdk.ui:tabBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabContentStart com.shift.link.sdk.ui:tabContentStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabGravity com.shift.link.sdk.ui:tabGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabIndicatorColor com.shift.link.sdk.ui:tabIndicatorColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabIndicatorHeight com.shift.link.sdk.ui:tabIndicatorHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabMaxWidth com.shift.link.sdk.ui:tabMaxWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabMinWidth com.shift.link.sdk.ui:tabMinWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabMode com.shift.link.sdk.ui:tabMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabPadding com.shift.link.sdk.ui:tabPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabPaddingBottom com.shift.link.sdk.ui:tabPaddingBottom}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabPaddingEnd com.shift.link.sdk.ui:tabPaddingEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabPaddingStart com.shift.link.sdk.ui:tabPaddingStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabPaddingTop com.shift.link.sdk.ui:tabPaddingTop}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabSelectedTextColor com.shift.link.sdk.ui:tabSelectedTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabTextAppearance com.shift.link.sdk.ui:tabTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #TabLayout_tabTextColor com.shift.link.sdk.ui:tabTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabBackground com.shiftpayments.link.sdk.ui:tabBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabContentStart com.shiftpayments.link.sdk.ui:tabContentStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabGravity com.shiftpayments.link.sdk.ui:tabGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabIndicatorColor com.shiftpayments.link.sdk.ui:tabIndicatorColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabIndicatorHeight com.shiftpayments.link.sdk.ui:tabIndicatorHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabMaxWidth com.shiftpayments.link.sdk.ui:tabMaxWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabMinWidth com.shiftpayments.link.sdk.ui:tabMinWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabMode com.shiftpayments.link.sdk.ui:tabMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabPadding com.shiftpayments.link.sdk.ui:tabPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabPaddingBottom com.shiftpayments.link.sdk.ui:tabPaddingBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabPaddingEnd com.shiftpayments.link.sdk.ui:tabPaddingEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabPaddingStart com.shiftpayments.link.sdk.ui:tabPaddingStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabPaddingTop com.shiftpayments.link.sdk.ui:tabPaddingTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabSelectedTextColor com.shiftpayments.link.sdk.ui:tabSelectedTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabTextAppearance com.shiftpayments.link.sdk.ui:tabTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #TabLayout_tabTextColor com.shiftpayments.link.sdk.ui:tabTextColor}</code></td><td></td></tr>
            </table>
            @see #TabLayout_tabBackground
            @see #TabLayout_tabContentStart
@@ -12686,17 +12686,17 @@ containing a value of this type.
             0x7f0101a6, 0x7f0101a7, 0x7f0101a8, 0x7f0101a9
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabBackground}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabBackground}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:tabBackground
+          @attr name com.shiftpayments.link.sdk.ui:tabBackground
         */
         public static int TabLayout_tabBackground = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabContentStart}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabContentStart}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12708,11 +12708,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tabContentStart
+          @attr name com.shiftpayments.link.sdk.ui:tabContentStart
         */
         public static int TabLayout_tabContentStart = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabGravity}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabGravity}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12725,11 +12725,11 @@ containing a value of this type.
 <tr><td><code>fill</code></td><td>0</td><td></td></tr>
 <tr><td><code>center</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:tabGravity
+          @attr name com.shiftpayments.link.sdk.ui:tabGravity
         */
         public static int TabLayout_tabGravity = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabIndicatorColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabIndicatorColor}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12740,11 +12740,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tabIndicatorColor
+          @attr name com.shiftpayments.link.sdk.ui:tabIndicatorColor
         */
         public static int TabLayout_tabIndicatorColor = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabIndicatorHeight}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabIndicatorHeight}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12756,11 +12756,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tabIndicatorHeight
+          @attr name com.shiftpayments.link.sdk.ui:tabIndicatorHeight
         */
         public static int TabLayout_tabIndicatorHeight = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabMaxWidth}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabMaxWidth}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12772,11 +12772,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tabMaxWidth
+          @attr name com.shiftpayments.link.sdk.ui:tabMaxWidth
         */
         public static int TabLayout_tabMaxWidth = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabMinWidth}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabMinWidth}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12788,11 +12788,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tabMinWidth
+          @attr name com.shiftpayments.link.sdk.ui:tabMinWidth
         */
         public static int TabLayout_tabMinWidth = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabMode}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabMode}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12805,11 +12805,11 @@ containing a value of this type.
 <tr><td><code>scrollable</code></td><td>0</td><td></td></tr>
 <tr><td><code>fixed</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:tabMode
+          @attr name com.shiftpayments.link.sdk.ui:tabMode
         */
         public static int TabLayout_tabMode = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabPadding}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabPadding}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12821,11 +12821,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tabPadding
+          @attr name com.shiftpayments.link.sdk.ui:tabPadding
         */
         public static int TabLayout_tabPadding = 15;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabPaddingBottom}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabPaddingBottom}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12837,11 +12837,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tabPaddingBottom
+          @attr name com.shiftpayments.link.sdk.ui:tabPaddingBottom
         */
         public static int TabLayout_tabPaddingBottom = 14;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabPaddingEnd}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabPaddingEnd}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12853,11 +12853,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tabPaddingEnd
+          @attr name com.shiftpayments.link.sdk.ui:tabPaddingEnd
         */
         public static int TabLayout_tabPaddingEnd = 13;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabPaddingStart}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabPaddingStart}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12869,11 +12869,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tabPaddingStart
+          @attr name com.shiftpayments.link.sdk.ui:tabPaddingStart
         */
         public static int TabLayout_tabPaddingStart = 11;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabPaddingTop}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabPaddingTop}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12885,11 +12885,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tabPaddingTop
+          @attr name com.shiftpayments.link.sdk.ui:tabPaddingTop
         */
         public static int TabLayout_tabPaddingTop = 12;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabSelectedTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabSelectedTextColor}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12900,21 +12900,21 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tabSelectedTextColor
+          @attr name com.shiftpayments.link.sdk.ui:tabSelectedTextColor
         */
         public static int TabLayout_tabSelectedTextColor = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabTextAppearance}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:tabTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:tabTextAppearance
         */
         public static int TabLayout_tabTextAppearance = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#tabTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#tabTextColor}
           attribute's value can be found in the {@link #TabLayout} array.
 
 
@@ -12925,7 +12925,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:tabTextColor
+          @attr name com.shiftpayments.link.sdk.ui:tabTextColor
         */
         public static int TabLayout_tabTextColor = 9;
         /** Attributes that can be used with a TextAppearance.
@@ -12943,7 +12943,7 @@ containing a value of this type.
            <tr><td><code>{@link #TextAppearance_android_textSize android:textSize}</code></td><td></td></tr>
            <tr><td><code>{@link #TextAppearance_android_textStyle android:textStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #TextAppearance_android_typeface android:typeface}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextAppearance_textAllCaps com.shift.link.sdk.ui:textAllCaps}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextAppearance_textAllCaps com.shiftpayments.link.sdk.ui:textAllCaps}</code></td><td></td></tr>
            </table>
            @see #TextAppearance_android_shadowColor
            @see #TextAppearance_android_shadowDx
@@ -13016,14 +13016,14 @@ containing a value of this type.
         */
         public static int TextAppearance_android_typeface = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#textAllCaps}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#textAllCaps}
           attribute's value can be found in the {@link #TextAppearance} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
-          @attr name com.shift.link.sdk.ui:textAllCaps
+          @attr name com.shiftpayments.link.sdk.ui:textAllCaps
         */
         public static int TextAppearance_textAllCaps = 9;
         /** Attributes that can be used with a TextInputLayout.
@@ -13034,15 +13034,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #TextInputLayout_android_hint android:hint}</code></td><td></td></tr>
            <tr><td><code>{@link #TextInputLayout_android_textColorHint android:textColorHint}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_counterEnabled com.shift.link.sdk.ui:counterEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_counterMaxLength com.shift.link.sdk.ui:counterMaxLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_counterOverflowTextAppearance com.shift.link.sdk.ui:counterOverflowTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_counterTextAppearance com.shift.link.sdk.ui:counterTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_errorEnabled com.shift.link.sdk.ui:errorEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_errorTextAppearance com.shift.link.sdk.ui:errorTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_hintAnimationEnabled com.shift.link.sdk.ui:hintAnimationEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_hintEnabled com.shift.link.sdk.ui:hintEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextInputLayout_hintTextAppearance com.shift.link.sdk.ui:hintTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_counterEnabled com.shiftpayments.link.sdk.ui:counterEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_counterMaxLength com.shiftpayments.link.sdk.ui:counterMaxLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_counterOverflowTextAppearance com.shiftpayments.link.sdk.ui:counterOverflowTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_counterTextAppearance com.shiftpayments.link.sdk.ui:counterTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_errorEnabled com.shiftpayments.link.sdk.ui:errorEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_errorTextAppearance com.shiftpayments.link.sdk.ui:errorTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_hintAnimationEnabled com.shiftpayments.link.sdk.ui:hintAnimationEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_hintEnabled com.shiftpayments.link.sdk.ui:hintEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextInputLayout_hintTextAppearance com.shiftpayments.link.sdk.ui:hintTextAppearance}</code></td><td></td></tr>
            </table>
            @see #TextInputLayout_android_hint
            @see #TextInputLayout_android_textColorHint
@@ -13074,7 +13074,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int TextInputLayout_android_textColorHint = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#counterEnabled}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#counterEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -13084,11 +13084,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:counterEnabled
+          @attr name com.shiftpayments.link.sdk.ui:counterEnabled
         */
         public static int TextInputLayout_counterEnabled = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#counterMaxLength}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#counterMaxLength}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -13098,31 +13098,31 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:counterMaxLength
+          @attr name com.shiftpayments.link.sdk.ui:counterMaxLength
         */
         public static int TextInputLayout_counterMaxLength = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#counterOverflowTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#counterOverflowTextAppearance}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:counterOverflowTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:counterOverflowTextAppearance
         */
         public static int TextInputLayout_counterOverflowTextAppearance = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#counterTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#counterTextAppearance}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:counterTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:counterTextAppearance
         */
         public static int TextInputLayout_counterTextAppearance = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#errorEnabled}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#errorEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -13132,21 +13132,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:errorEnabled
+          @attr name com.shiftpayments.link.sdk.ui:errorEnabled
         */
         public static int TextInputLayout_errorEnabled = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#errorTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#errorTextAppearance}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:errorTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:errorTextAppearance
         */
         public static int TextInputLayout_errorTextAppearance = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#hintAnimationEnabled}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#hintAnimationEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -13156,11 +13156,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:hintAnimationEnabled
+          @attr name com.shiftpayments.link.sdk.ui:hintAnimationEnabled
         */
         public static int TextInputLayout_hintAnimationEnabled = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#hintEnabled}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#hintEnabled}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
@@ -13170,17 +13170,17 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:hintEnabled
+          @attr name com.shiftpayments.link.sdk.ui:hintEnabled
         */
         public static int TextInputLayout_hintEnabled = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#hintTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#hintTextAppearance}
           attribute's value can be found in the {@link #TextInputLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:hintTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:hintTextAppearance
         */
         public static int TextInputLayout_hintTextAppearance = 2;
         /** Attributes that can be used with a Theme.
@@ -13189,7 +13189,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #Theme_discreteSeekBarStyle com.shift.link.sdk.ui:discreteSeekBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_discreteSeekBarStyle com.shiftpayments.link.sdk.ui:discreteSeekBarStyle}</code></td><td></td></tr>
            </table>
            @see #Theme_discreteSeekBarStyle
          */
@@ -13197,13 +13197,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f0101b3
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#discreteSeekBarStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#discreteSeekBarStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:discreteSeekBarStyle
+          @attr name com.shiftpayments.link.sdk.ui:discreteSeekBarStyle
         */
         public static int Theme_discreteSeekBarStyle = 0;
         /** Attributes that can be used with a Toolbar.
@@ -13214,33 +13214,33 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #Toolbar_android_gravity android:gravity}</code></td><td></td></tr>
            <tr><td><code>{@link #Toolbar_android_minHeight android:minHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_buttonGravity com.shift.link.sdk.ui:buttonGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_collapseContentDescription com.shift.link.sdk.ui:collapseContentDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_collapseIcon com.shift.link.sdk.ui:collapseIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetEnd com.shift.link.sdk.ui:contentInsetEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetEndWithActions com.shift.link.sdk.ui:contentInsetEndWithActions}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetLeft com.shift.link.sdk.ui:contentInsetLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetRight com.shift.link.sdk.ui:contentInsetRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetStart com.shift.link.sdk.ui:contentInsetStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetStartWithNavigation com.shift.link.sdk.ui:contentInsetStartWithNavigation}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_logo com.shift.link.sdk.ui:logo}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_logoDescription com.shift.link.sdk.ui:logoDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_maxButtonHeight com.shift.link.sdk.ui:maxButtonHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_navigationContentDescription com.shift.link.sdk.ui:navigationContentDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_navigationIcon com.shift.link.sdk.ui:navigationIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_popupTheme com.shift.link.sdk.ui:popupTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_subtitle com.shift.link.sdk.ui:subtitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_subtitleTextAppearance com.shift.link.sdk.ui:subtitleTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_subtitleTextColor com.shift.link.sdk.ui:subtitleTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_title com.shift.link.sdk.ui:title}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMargin com.shift.link.sdk.ui:titleMargin}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginBottom com.shift.link.sdk.ui:titleMarginBottom}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginEnd com.shift.link.sdk.ui:titleMarginEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginStart com.shift.link.sdk.ui:titleMarginStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginTop com.shift.link.sdk.ui:titleMarginTop}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMargins com.shift.link.sdk.ui:titleMargins}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleTextAppearance com.shift.link.sdk.ui:titleTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleTextColor com.shift.link.sdk.ui:titleTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_buttonGravity com.shiftpayments.link.sdk.ui:buttonGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_collapseContentDescription com.shiftpayments.link.sdk.ui:collapseContentDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_collapseIcon com.shiftpayments.link.sdk.ui:collapseIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetEnd com.shiftpayments.link.sdk.ui:contentInsetEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetEndWithActions com.shiftpayments.link.sdk.ui:contentInsetEndWithActions}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetLeft com.shiftpayments.link.sdk.ui:contentInsetLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetRight com.shiftpayments.link.sdk.ui:contentInsetRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetStart com.shiftpayments.link.sdk.ui:contentInsetStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetStartWithNavigation com.shiftpayments.link.sdk.ui:contentInsetStartWithNavigation}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_logo com.shiftpayments.link.sdk.ui:logo}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_logoDescription com.shiftpayments.link.sdk.ui:logoDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_maxButtonHeight com.shiftpayments.link.sdk.ui:maxButtonHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_navigationContentDescription com.shiftpayments.link.sdk.ui:navigationContentDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_navigationIcon com.shiftpayments.link.sdk.ui:navigationIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_popupTheme com.shiftpayments.link.sdk.ui:popupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_subtitle com.shiftpayments.link.sdk.ui:subtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_subtitleTextAppearance com.shiftpayments.link.sdk.ui:subtitleTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_subtitleTextColor com.shiftpayments.link.sdk.ui:subtitleTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_title com.shiftpayments.link.sdk.ui:title}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMargin com.shiftpayments.link.sdk.ui:titleMargin}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginBottom com.shiftpayments.link.sdk.ui:titleMarginBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginEnd com.shiftpayments.link.sdk.ui:titleMarginEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginStart com.shiftpayments.link.sdk.ui:titleMarginStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginTop com.shiftpayments.link.sdk.ui:titleMarginTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMargins com.shiftpayments.link.sdk.ui:titleMargins}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleTextAppearance com.shiftpayments.link.sdk.ui:titleTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleTextColor com.shiftpayments.link.sdk.ui:titleTextColor}</code></td><td></td></tr>
            </table>
            @see #Toolbar_android_gravity
            @see #Toolbar_android_minHeight
@@ -13295,7 +13295,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int Toolbar_android_minHeight = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#buttonGravity}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#buttonGravity}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13308,11 +13308,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>top</code></td><td>0x30</td><td></td></tr>
 <tr><td><code>bottom</code></td><td>0x50</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:buttonGravity
+          @attr name com.shiftpayments.link.sdk.ui:buttonGravity
         */
         public static int Toolbar_buttonGravity = 21;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#collapseContentDescription}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#collapseContentDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13322,21 +13322,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:collapseContentDescription
+          @attr name com.shiftpayments.link.sdk.ui:collapseContentDescription
         */
         public static int Toolbar_collapseContentDescription = 23;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#collapseIcon}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#collapseIcon}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:collapseIcon
+          @attr name com.shiftpayments.link.sdk.ui:collapseIcon
         */
         public static int Toolbar_collapseIcon = 22;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetEnd}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentInsetEnd}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13348,11 +13348,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentInsetEnd
+          @attr name com.shiftpayments.link.sdk.ui:contentInsetEnd
         */
         public static int Toolbar_contentInsetEnd = 6;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetEndWithActions}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentInsetEndWithActions}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13364,11 +13364,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentInsetEndWithActions
+          @attr name com.shiftpayments.link.sdk.ui:contentInsetEndWithActions
         */
         public static int Toolbar_contentInsetEndWithActions = 10;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetLeft}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentInsetLeft}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13380,11 +13380,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentInsetLeft
+          @attr name com.shiftpayments.link.sdk.ui:contentInsetLeft
         */
         public static int Toolbar_contentInsetLeft = 7;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetRight}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentInsetRight}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13396,11 +13396,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentInsetRight
+          @attr name com.shiftpayments.link.sdk.ui:contentInsetRight
         */
         public static int Toolbar_contentInsetRight = 8;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetStart}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentInsetStart}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13412,11 +13412,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentInsetStart
+          @attr name com.shiftpayments.link.sdk.ui:contentInsetStart
         */
         public static int Toolbar_contentInsetStart = 5;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#contentInsetStartWithNavigation}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#contentInsetStartWithNavigation}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13428,21 +13428,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:contentInsetStartWithNavigation
+          @attr name com.shiftpayments.link.sdk.ui:contentInsetStartWithNavigation
         */
         public static int Toolbar_contentInsetStartWithNavigation = 9;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#logo}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#logo}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:logo
+          @attr name com.shiftpayments.link.sdk.ui:logo
         */
         public static int Toolbar_logo = 4;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#logoDescription}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#logoDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13452,11 +13452,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:logoDescription
+          @attr name com.shiftpayments.link.sdk.ui:logoDescription
         */
         public static int Toolbar_logoDescription = 26;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#maxButtonHeight}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#maxButtonHeight}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13468,11 +13468,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:maxButtonHeight
+          @attr name com.shiftpayments.link.sdk.ui:maxButtonHeight
         */
         public static int Toolbar_maxButtonHeight = 20;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#navigationContentDescription}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#navigationContentDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13482,31 +13482,31 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:navigationContentDescription
+          @attr name com.shiftpayments.link.sdk.ui:navigationContentDescription
         */
         public static int Toolbar_navigationContentDescription = 25;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#navigationIcon}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#navigationIcon}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:navigationIcon
+          @attr name com.shiftpayments.link.sdk.ui:navigationIcon
         */
         public static int Toolbar_navigationIcon = 24;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#popupTheme}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:popupTheme
+          @attr name com.shiftpayments.link.sdk.ui:popupTheme
         */
         public static int Toolbar_popupTheme = 11;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subtitle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#subtitle}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13516,21 +13516,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:subtitle
+          @attr name com.shiftpayments.link.sdk.ui:subtitle
         */
         public static int Toolbar_subtitle = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subtitleTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#subtitleTextAppearance}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:subtitleTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:subtitleTextAppearance
         */
         public static int Toolbar_subtitleTextAppearance = 13;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#subtitleTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#subtitleTextColor}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13541,11 +13541,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:subtitleTextColor
+          @attr name com.shiftpayments.link.sdk.ui:subtitleTextColor
         */
         public static int Toolbar_subtitleTextColor = 28;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#title}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#title}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13555,11 +13555,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:title
+          @attr name com.shiftpayments.link.sdk.ui:title
         */
         public static int Toolbar_title = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleMargin}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#titleMargin}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13571,11 +13571,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:titleMargin
+          @attr name com.shiftpayments.link.sdk.ui:titleMargin
         */
         public static int Toolbar_titleMargin = 14;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleMarginBottom}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#titleMarginBottom}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13587,11 +13587,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:titleMarginBottom
+          @attr name com.shiftpayments.link.sdk.ui:titleMarginBottom
         */
         public static int Toolbar_titleMarginBottom = 18;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleMarginEnd}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#titleMarginEnd}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13603,11 +13603,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:titleMarginEnd
+          @attr name com.shiftpayments.link.sdk.ui:titleMarginEnd
         */
         public static int Toolbar_titleMarginEnd = 16;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleMarginStart}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#titleMarginStart}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13619,11 +13619,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:titleMarginStart
+          @attr name com.shiftpayments.link.sdk.ui:titleMarginStart
         */
         public static int Toolbar_titleMarginStart = 15;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleMarginTop}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#titleMarginTop}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13635,11 +13635,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:titleMarginTop
+          @attr name com.shiftpayments.link.sdk.ui:titleMarginTop
         */
         public static int Toolbar_titleMarginTop = 17;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleMargins}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#titleMargins}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13651,21 +13651,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:titleMargins
+          @attr name com.shiftpayments.link.sdk.ui:titleMargins
         */
         public static int Toolbar_titleMargins = 19;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleTextAppearance}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#titleTextAppearance}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:titleTextAppearance
+          @attr name com.shiftpayments.link.sdk.ui:titleTextAppearance
         */
         public static int Toolbar_titleTextAppearance = 12;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#titleTextColor}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#titleTextColor}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -13676,7 +13676,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:titleTextColor
+          @attr name com.shiftpayments.link.sdk.ui:titleTextColor
         */
         public static int Toolbar_titleTextColor = 27;
         /** Attributes that can be used with a View.
@@ -13687,9 +13687,9 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #View_android_focusable android:focusable}</code></td><td></td></tr>
            <tr><td><code>{@link #View_android_theme android:theme}</code></td><td></td></tr>
-           <tr><td><code>{@link #View_paddingEnd com.shift.link.sdk.ui:paddingEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #View_paddingStart com.shift.link.sdk.ui:paddingStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #View_theme com.shift.link.sdk.ui:theme}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_paddingEnd com.shiftpayments.link.sdk.ui:paddingEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_paddingStart com.shiftpayments.link.sdk.ui:paddingStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_theme com.shiftpayments.link.sdk.ui:theme}</code></td><td></td></tr>
            </table>
            @see #View_android_focusable
            @see #View_android_theme
@@ -13714,7 +13714,7 @@ containing a value of this type.
         */
         public static int View_android_theme = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#paddingEnd}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#paddingEnd}
           attribute's value can be found in the {@link #View} array.
 
 
@@ -13726,11 +13726,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:paddingEnd
+          @attr name com.shiftpayments.link.sdk.ui:paddingEnd
         */
         public static int View_paddingEnd = 3;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#paddingStart}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#paddingStart}
           attribute's value can be found in the {@link #View} array.
 
 
@@ -13742,17 +13742,17 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:paddingStart
+          @attr name com.shiftpayments.link.sdk.ui:paddingStart
         */
         public static int View_paddingStart = 2;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#theme}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#theme}
           attribute's value can be found in the {@link #View} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:theme
+          @attr name com.shiftpayments.link.sdk.ui:theme
         */
         public static int View_theme = 4;
         /** Attributes that can be used with a ViewBackgroundHelper.
@@ -13762,8 +13762,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #ViewBackgroundHelper_android_background android:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTint com.shift.link.sdk.ui:backgroundTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTintMode com.shift.link.sdk.ui:backgroundTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTint com.shiftpayments.link.sdk.ui:backgroundTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTintMode com.shiftpayments.link.sdk.ui:backgroundTintMode}</code></td><td></td></tr>
            </table>
            @see #ViewBackgroundHelper_android_background
            @see #ViewBackgroundHelper_backgroundTint
@@ -13779,7 +13779,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int ViewBackgroundHelper_android_background = 0;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundTint}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#backgroundTint}
           attribute's value can be found in the {@link #ViewBackgroundHelper} array.
 
 
@@ -13790,11 +13790,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.shift.link.sdk.ui:backgroundTint
+          @attr name com.shiftpayments.link.sdk.ui:backgroundTint
         */
         public static int ViewBackgroundHelper_backgroundTint = 1;
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#backgroundTintMode}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#backgroundTintMode}
           attribute's value can be found in the {@link #ViewBackgroundHelper} array.
 
 
@@ -13810,7 +13810,7 @@ containing a value of this type.
 <tr><td><code>multiply</code></td><td>14</td><td></td></tr>
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 </table>
-          @attr name com.shift.link.sdk.ui:backgroundTintMode
+          @attr name com.shiftpayments.link.sdk.ui:backgroundTintMode
         */
         public static int ViewBackgroundHelper_backgroundTintMode = 2;
         /** Attributes that can be used with a ViewPagerIndicator.
@@ -13819,7 +13819,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ViewPagerIndicator_vpiCirclePageIndicatorStyle com.shift.link.sdk.ui:vpiCirclePageIndicatorStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewPagerIndicator_vpiCirclePageIndicatorStyle com.shiftpayments.link.sdk.ui:vpiCirclePageIndicatorStyle}</code></td><td></td></tr>
            </table>
            @see #ViewPagerIndicator_vpiCirclePageIndicatorStyle
          */
@@ -13827,13 +13827,13 @@ containing a value of this type.
             0x7f0101ca
         };
         /**
-          <p>This symbol is the offset where the {@link com.shift.link.sdk.ui.R.attr#vpiCirclePageIndicatorStyle}
+          <p>This symbol is the offset where the {@link com.shiftpayments.link.sdk.ui.R.attr#vpiCirclePageIndicatorStyle}
           attribute's value can be found in the {@link #ViewPagerIndicator} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.shift.link.sdk.ui:vpiCirclePageIndicatorStyle
+          @attr name com.shiftpayments.link.sdk.ui:vpiCirclePageIndicatorStyle
         */
         public static int ViewPagerIndicator_vpiCirclePageIndicatorStyle = 0;
         /** Attributes that can be used with a ViewStubCompat.
@@ -13871,5 +13871,5 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           @attr name android:layout
         */
         public static int ViewStubCompat_android_layout = 1;
-    };
+    }
 }

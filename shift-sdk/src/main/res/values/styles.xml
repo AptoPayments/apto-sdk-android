@@ -4,12 +4,27 @@
     <!--
         STEPPER
     -->
-
-    <style name="llsdk_stepper">
+    <style name="llsdk_progress_bar">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">56dp</item>
-        <item name="android:background">?attr/llsdk_stepper_backgroundColor</item>
-        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_below">@+id/abl_toolbar_wrapper</item>
+    </style>
+    <style name="Theme.AppCompat.Translucent" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+    <style name="AppTheme.Toolbar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionButtonStyle">@style/AppTheme.Toolbar.ActionButton</item>
+    </style>
+    <style name="Base.AppTheme.Toolbar.ActionButton" parent="@style/Widget.AppCompat.ActionButton">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+    </style>
+    <style name="AppTheme.Toolbar.ActionButton" parent="@style/Base.AppTheme.Toolbar.ActionButton">
+        <item name="android:paddingEnd">20dp</item>
     </style>
     <style name="llsdk_stepper_button_holder">
         <item name="android:layout_width">wrap_content</item>
@@ -19,15 +34,9 @@
         <item name="android:clickable">true</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
-    <style name="llsdk_stepper_button_holder.left" parent="llsdk_stepper_button_holder">
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_alignParentLeft">true</item>
-        <item name="android:layout_alignParentStart">true</item>
-    </style>
     <style name="llsdk_stepper_button_holder.right" parent="llsdk_stepper_button_holder">
-        <item name="android:layout_marginRight">16dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginRight">32dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_alignParentEnd">true</item>
     </style>
@@ -41,12 +50,18 @@
         <item name="android:textColor">?attr/llsdk_stepper_textColor</item>
     </style>
 
+    <style name="toolbar_button_next">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="llsdk_stepper_bar_holder">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:layout_toRightOf">@+id/ll_back_button</item>
-        <item name="android:layout_toEndOf">@+id/ll_back_button</item>
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_marginStart">32dp</item>
         <item name="android:layout_toLeftOf">@+id/ll_next_button</item>
         <item name="android:layout_toStartOf">@+id/ll_next_button</item>
         <item name="android:gravity">center</item>
@@ -60,8 +75,7 @@
     <style name="llsdk_user_data_entry_container">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_below">@+id/abl_toolbar_wrapper</item>
-        <item name="android:layout_above">@+id/pbw_stepper</item>
+        <item name="android:layout_below">@+id/pbw_progress_bar_wrapper</item>
         <item name="android:padding">16dp</item>
     </style>
 
@@ -132,7 +146,17 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/llsdk_body_text_size</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/llsdk_text_color</item>
+    </style>
+
+    <style name="llsdk_id_verification_text_input_hint">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/llsdk_hint_text_size</item>
+        <item name="android:textColor">@color/llsdk_hint_text_color</item>
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="llsdk_id_verification_disclaimer">
@@ -153,6 +177,18 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:padding">0dp</item>
         <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <style name="llsdk_birthdate_slash">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:textSize">@dimen/llsdk_body_text_size</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:inputType">none</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
     </style>
 
     <!-- Loan offers -->
@@ -246,7 +282,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textColor">@color/llsdk_light_text_color</item>
         <item name="android:textSize">@dimen/llsdk_terms_section_header_text_size</item>
     </style>
 
@@ -259,7 +295,47 @@
     <style name="llsdk_loan_agreement_summary_values" parent="llsdk_loan_agreement_summary_text">
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_alignParentEnd">true</item>
-        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textColor">@color/llsdk_light_text_color</item>
+    </style>
+
+    <!-- Transaction details -->
+    <style name="llsdk_transaction_details_card_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_light_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_title_text_size</item>
+    </style>
+    <style name="llsdk_transaction_details_card_description">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/llsdk_light_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_description_text_size</item>
+    </style>
+    <style name="llsdk_transaction_details_detail_header">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:textColor">@color/llsdk_light_text_color</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_description_text_size</item>
+    </style>
+
+    <style name="llsdk_transaction_details_detail_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_description_text_size</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="llsdk_transaction_details_holder">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:background">@android:color/white</item>
     </style>
 
     <!--
@@ -358,5 +434,11 @@
         <item name="android:textStyle">bold</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="llsdk_strutStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
     </style>
 </resources>

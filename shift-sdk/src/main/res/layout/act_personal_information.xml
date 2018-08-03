@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shift.link.sdk.ui.views.userdata.PersonalInformationView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.shiftpayments.link.sdk.ui.views.userdata.PersonalInformationView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include layout="@layout/include_llsdk_toolbar" />
 
-    <!-- Dummy to get focus on start. -->
-    <RelativeLayout
-            android:layout_width="0px"
-            android:layout_height="0px"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
-
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/abl_toolbar_wrapper"
+            android:layout_below="@+id/pbw_progress_bar_wrapper"
             android:layout_above="@+id/tv_next_bttn">
 
         <LinearLayout
@@ -99,4 +92,4 @@
 
     <include layout="@layout/include_progress_bar" />
 
-</com.shift.link.sdk.ui.views.userdata.PersonalInformationView>
+</com.shiftpayments.link.sdk.ui.views.userdata.PersonalInformationView>

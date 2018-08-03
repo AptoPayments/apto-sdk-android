@@ -4,6 +4,10 @@
     <color name="llsdk_link_color">#00f</color>
     <color name="llsdk_hairline_color">#aaa</color>
     <color name="llsdk_error_text_color">#FFDD2C00</color>
+    <color name="llsdk_hint_text_color">#FFBABABA</color>
+    <color name="llsdk_label_text_color">#FF232325</color>
+    <color name="llsdk_text_color">#FF2B2D35</color>
+    <color name="llsdk_snackbar_background">#FFDC4337</color>
 
     <color name="llsdk_application_approved_color">#58c246</color>
     <color name="llsdk_application_pending_borrower_action_color">#ffd52b</color>
@@ -30,6 +34,7 @@
     <!-- Stepper -->
     <color name="llsdk_stepper_background">#e3e3e3</color>
     <color name="llsdk_stepper_text">#6b6b6b</color>
+    <color name="llsdk_actionbar_background">#FFF9F9F9</color>
 
     <!-- Card -->
     <color name="llsdk_card_disabled">#F5F5F5</color>
@@ -37,4 +42,10 @@
     <color name="colorPrimary">#9ADE83</color>
     <color name="colorPrimaryDark">#67AB50</color>
     <color name="colorAccent">#F2F2F2</color>
+
+    <color name="disabled_card_logo">#9E9E9E</color>
+    <color name="enabled_card_logo">#FFFFFF</color>
+
+    <color name="positive_adjustment">#52a03b</color>
+    <color name="negative_adjustment">#962e26</color>
 </resources>

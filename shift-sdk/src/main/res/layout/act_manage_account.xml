@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shift.link.sdk.ui.views.card.ManageAccountView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.shiftpayments.link.sdk.ui.views.card.ManageAccountView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -25,6 +25,23 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_below="@+id/settings_toolbar">
+
+        <TextView
+            android:id="@+id/tv_spendable_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="42sp"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/tv_spendable_amount_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:text="@string/account_management_spendable_amount_label"
+            android:textColor="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/tv_funding_sources"
@@ -67,22 +84,20 @@
                 android:src="@drawable/ic_add_circle_black_24dp"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_sign_out"
+        <TextView
+            android:id="@+id/tv_contact_support"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:text="@string/sign_out"
-                android:layout_marginRight="8dp"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-        </LinearLayout>
+            android:layout_height="0dp"
+            android:textSize="16sp"
+            android:text="@string/account_management_contact_support"
+            android:layout_weight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_sign_out"
+            style="@style/ledge_big_button_style"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/sign_out" />
     </LinearLayout>
-</com.shift.link.sdk.ui.views.card.ManageAccountView>
+</com.shiftpayments.link.sdk.ui.views.card.ManageAccountView>

@@ -12,7 +12,6 @@
     <!-- Stepper -->
     <attr name="llsdk_stepper_backgroundColor" format="reference|color" />
     <attr name="llsdk_stepper_textColor" format="reference|color" />
-    <attr name="llsdk_stepper_leftArrow" format="reference" />
     <attr name="llsdk_stepper_rightArrow" format="reference" />
     <attr name="llsdk_stepper_dotDisabled" format="reference" />
     <attr name="llsdk_stepper_dotEnabled" format="reference" />
@@ -60,4 +59,10 @@
     <attr name="llsdk_loanAgreement_summaryValuesStyle" format="reference" />
     <attr name="llsdk_loanAgreement_buttonColorOne" format="reference|color" />
     <attr name="llsdk_loanAgreement_buttonColorTwo" format="reference|color" />
+
+    <!-- Transaction Details -->
+    <attr name="llsdk_transactionDetails_cardTitleStyle" format="reference" />
+    <attr name="llsdk_transactionDetails_cardDescriptionStyle" format="reference" />
+    <attr name="llsdk_transactionDetails_detailHeaderTextStyle" format="reference" />
+    <attr name="llsdk_transactionDetails_detailValueTextStyle" format="reference" />
 </resources>

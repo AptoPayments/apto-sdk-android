@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shift.link.sdk.ui.views.link.LoanAmountView
+<com.shiftpayments.link.sdk.ui.views.link.LoanAmountView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -9,8 +9,7 @@
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/abl_toolbar_wrapper"
-            android:layout_above="@+id/dsw_stepper">
+            android:layout_below="@+id/pbw_progress_bar_wrapper">
 
         <LinearLayout
                 style="?attr/llsdk_dataContainerStyle"
@@ -78,4 +77,4 @@
 
     <include layout="@layout/include_progress_bar" />
     <include layout="@layout/include_rl_loading" />
-</com.shift.link.sdk.ui.views.link.LoanAmountView>
+</com.shiftpayments.link.sdk.ui.views.link.LoanAmountView>

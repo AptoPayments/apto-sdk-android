@@ -1,8 +1,8 @@
-<com.shift.link.sdk.cardexample.views.MainView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.shiftpayments.link.sdk.cardexample.views.MainView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.shift.link.sdk.cardexample.activities.MainActivity">
+    tools:context="com.shiftpayments.link.sdk.cardexample.activities.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
             android:layout_margin="20dp"
             android:adjustViewBounds="true"
             android:padding="64dp"
-            android:scaleType="center" />
+            android:scaleType="centerInside" />
 
         <ProgressBar
             android:id="@+id/pb_loading"
@@ -60,4 +60,4 @@
             android:layout_centerVertical="true" />
     </RelativeLayout>
 
-</com.shift.link.sdk.cardexample.views.MainView>
+</com.shiftpayments.link.sdk.cardexample.views.MainView>

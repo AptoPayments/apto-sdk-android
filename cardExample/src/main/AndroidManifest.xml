@@ -2,14 +2,14 @@
 <manifest
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        package="com.shift.link.sdk.cardexample"
+        package="com.shiftpayments.link.sdk.cardexample"
         android:versionCode="1"
         android:versionName="1.0">
 
     <uses-sdk
             android:minSdkVersion="15"
             android:targetSdkVersion="24"
-            tools:overrideLibrary="br.tiagohm.markdownview, com.shift.link.sdk.sdk"/>
+            tools:overrideLibrary="br.tiagohm.markdownview, com.shiftpayments.link.sdk.sdk"/>
 
     <uses-feature android:name="android.hardware.fingerprint"
         android:required="false"/>
@@ -23,10 +23,24 @@
         android:label="@string/app_name"
         tools:replace="label"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:name="com.shift.link.sdk.cardexample.CardApplication">
+        android:name="com.shiftpayments.link.sdk.cardexample.CardApplication">
 
-        <activity android:name="com.shift.link.sdk.cardexample.activities.MainActivity"
-            android:launchMode="singleTask"
+        <service
+            android:name=".ShiftFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".ShiftFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <activity android:name="com.shiftpayments.link.sdk.cardexample.activities.MainActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +55,7 @@
         </activity>
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.showgenericmessage.ShowGenericMessageActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.showgenericmessage.ShowGenericMessageActivity"
             android:theme="@style/Theme.LedgeLine.Example">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -49,71 +63,71 @@
         </activity>
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.userdata.PhoneActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.userdata.PhoneActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.userdata.EmailActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.userdata.EmailActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.verification.BirthdateVerificationActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.verification.BirthdateVerificationActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="com.shift.link.sdk.ui.activities.userdata.PersonalInformationActivity"
+                android:name="com.shiftpayments.link.sdk.ui.activities.userdata.PersonalInformationActivity"
                 android:windowSoftInputMode="adjustResize"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.userdata.HomeActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.userdata.HomeActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="com.shift.link.sdk.ui.activities.userdata.AddressActivity"
+                android:name="com.shiftpayments.link.sdk.ui.activities.userdata.AddressActivity"
                 android:windowSoftInputMode="adjustResize"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.userdata.TimeAtAddressActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.userdata.TimeAtAddressActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="com.shift.link.sdk.ui.activities.userdata.AnnualIncomeActivity"
+                android:name="com.shiftpayments.link.sdk.ui.activities.userdata.AnnualIncomeActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="com.shift.link.sdk.ui.activities.userdata.MonthlyIncomeActivity"
+                android:name="com.shiftpayments.link.sdk.ui.activities.userdata.MonthlyIncomeActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="com.shift.link.sdk.ui.activities.userdata.IdentityVerificationActivity"
+                android:name="com.shiftpayments.link.sdk.ui.activities.userdata.IdentityVerificationActivity"
                 android:windowSoftInputMode="adjustResize"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-                android:name="com.shift.link.sdk.ui.activities.userdata.CreditScoreActivity"
+                android:name="com.shiftpayments.link.sdk.ui.activities.userdata.CreditScoreActivity"
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.verification.PhoneVerificationActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.verification.PhoneVerificationActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.verification.EmailVerificationActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.verification.EmailVerificationActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.financialaccountselector.AddFinancialAccountListActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.financialaccountselector.AddCardActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.financialaccountselector.AddCardActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.LedgeLine.Example" />
 
@@ -122,43 +136,43 @@
         <activity android:name="io.card.payment.DataEntryActivity" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.financialaccountselector.SelectFinancialAccountListActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.financialaccountselector.IntermediateFinancialAccountListActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.financialaccountselector.IntermediateFinancialAccountListActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.DisclaimerActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.DisclaimerActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.ActionNotSupportedActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.ActionNotSupportedActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.custodianselector.AddCustodianListActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.custodianselector.AddCustodianListActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.custodianselector.CoinbaseActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.shiftpayments.link.sdk.ui.activities.custodianselector.OAuthActivity"
+            android:theme="@style/Theme.AppCompat.Translucent"
             android:windowSoftInputMode="adjustResize"
             android:launchMode="singleTask"
             android:alwaysRetainTaskState="true" >
@@ -170,12 +184,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.shift.link.sdk.ui.activities.card.IssueVirtualCardActivity"
+        <activity android:name="com.shiftpayments.link.sdk.ui.activities.card.IssueVirtualCardActivity"
             android:theme="@style/Theme.LedgeLine.Example"
             android:noHistory="true" />
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.card.ManageCardActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity"
             android:theme="@style/Theme.LedgeLine.Example"
             android:windowSoftInputMode="stateHidden"
             android:parentActivityName=".activities.MainActivity">
@@ -185,12 +199,32 @@
         </activity>
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.card.ManageAccountActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity"
             android:theme="@style/Theme.LedgeLine.Example">
         </activity>
 
         <activity
-            android:name="com.shift.link.sdk.ui.activities.KycStatusActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.KycStatusActivity"
+            android:theme="@style/Theme.LedgeLine.Example">
+        </activity>
+
+        <activity
+            android:name="com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity"
+            android:theme="@style/Theme.LedgeLine.Example">
+        </activity>
+
+        <activity
+            android:name="com.shiftpayments.link.sdk.ui.activities.NoConnectionActivity"
+            android:theme="@style/Theme.LedgeLine.Example">
+        </activity>
+
+        <activity
+            android:name="com.shiftpayments.link.sdk.ui.activities.SystemMaintenanceActivity"
+            android:theme="@style/Theme.LedgeLine.Example">
+        </activity>
+
+        <activity
+            android:name="com.shiftpayments.link.sdk.ui.activities.IssueCardErrorActivity"
             android:theme="@style/Theme.LedgeLine.Example">
         </activity>
     </application>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shift.link.sdk.ui.views.verification.EmailVerificationView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.shiftpayments.link.sdk.ui.views.verification.EmailVerificationView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -28,19 +28,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_verify_email"
-                android:layout_alignParentTop="true" />
+                android:layout_marginTop="64dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_onboarding_secure_account" />
 
             <TextView
                 android:id="@+id/tv_verification_code_header"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:layout_below="@+id/iv_shield_check"
-                android:textSize="18sp"
+                android:layout_marginTop="32dp"
                 android:gravity="center_horizontal"
-                android:text="@string/email_verification_info" />
+                android:text="@string/email_verification_info"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_verification_code_info"
@@ -71,4 +71,4 @@
         </RelativeLayout>
     </ScrollView>
 
-</com.shift.link.sdk.ui.views.verification.EmailVerificationView>
+</com.shiftpayments.link.sdk.ui.views.verification.EmailVerificationView>

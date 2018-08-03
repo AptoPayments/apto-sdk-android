@@ -1,48 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shift.link.sdk.ui.widgets.steppers.ProgressBarWidget
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/pbw_stepper"
-        style="@style/llsdk_stepper">
+<com.shiftpayments.link.sdk.ui.widgets.steppers.ProgressBarWidget
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pbw_progress_bar_wrapper"
+    style="@style/llsdk_progress_bar">
 
-    <LinearLayout
-            android:id="@+id/ll_back_button"
-            style="@style/llsdk_stepper_button_holder.left">
-
-        <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="?attr/llsdk_stepper_leftArrow" />
-
-        <TextView
-                style="@style/llsdk_stepper_button_text"
-                android:text="@string/stepper_back_button_label" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_progress_bar_holder"
-        style="@style/llsdk_stepper_bar_holder">
-
-        <ProgressBar
-            android:id="@+id/pb_progress_bar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:indeterminate="false" />
-    </LinearLayout>
-
-    <LinearLayout
-            android:id="@+id/ll_next_button"
-            style="@style/llsdk_stepper_button_holder.right">
-
-        <TextView
-                style="@style/llsdk_stepper_button_text"
-                android:text="@string/stepper_next_button_label" />
-
-        <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="?attr/llsdk_stepper_rightArrow" />
-
-    </LinearLayout>
-</com.shift.link.sdk.ui.widgets.steppers.ProgressBarWidget>
+    <ProgressBar
+        android:id="@+id/pb_progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-15dp" />
+</com.shiftpayments.link.sdk.ui.widgets.steppers.ProgressBarWidget>

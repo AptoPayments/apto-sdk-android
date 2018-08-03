@@ -4,37 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/custodian_logo"
-        android:layout_width="150dp"
-        android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:gravity="center_horizontal" />
-
     <TextView
         android:id="@+id/tv_card_balance"
-        android:layout_below="@+id/custodian_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="42sp"
-        android:gravity="center_horizontal" />
+        android:layout_below="@+id/ib_account"
+        android:gravity="center_horizontal"
+        android:textSize="42sp" />
 
     <TextView
         android:id="@+id/tv_card_balance_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_card_balance"
-        android:textColor="@android:color/darker_gray"
         android:layout_centerHorizontal="true"
-        android:text="@string/card_management_card_balance" />
+        android:layout_marginBottom="8dp"
+        android:text="@string/card_management_card_balance"
+        android:textColor="@android:color/darker_gray" />
 
-    <com.shift.link.sdk.ui.views.card.CreditCardView
+    <com.shiftpayments.link.sdk.ui.views.card.CreditCardView
         android:id="@+id/credit_card_view"
-        android:layout_width="wrap_content"
-        android:layout_height="225dp"
+        android:layout_width="333dp"
+        android:layout_height="210dp"
         android:layout_below="@id/tv_card_balance_label"
-        android:layout_margin="16dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp" />
 
     <TextView
         android:id="@+id/tv_display_card_primary_bttn"
@@ -42,10 +36,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/credit_card_view"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:textColor="@android:color/darker_gray"
-        android:text="@string/card_management_primary_button" />
+        android:layout_margin="16dp"
+        android:textSize="12sp"
+        android:gravity="center_horizontal"
+        android:text="@string/card_management_primary_button"
+        android:textColor="@android:color/darker_gray" />
 
     <TextView
         android:id="@+id/tv_display_card_secondary_bttn"
@@ -61,20 +56,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_display_card_secondary_bttn"
         android:paddingStart="16dp"
+        android:paddingLeft="16dp"
         android:layout_marginTop="16dp"
         android:paddingTop="16dp"
-        android:text="@string/card_management_trasactions_title"
+        android:text="@string/card_management_transactions_title"
         android:textSize="16sp"
         android:textColor="@android:color/black"
-        android:background="@android:color/white"/>
+        android:background="@android:color/white" />
 
     <ImageButton
         android:id="@+id/ib_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/credit_card_view"
-        android:layout_alignRight="@+id/credit_card_view"
-        android:layout_marginTop="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/white"
         android:src="@drawable/ic_account_circle_black_36dp" />
 

@@ -10,14 +10,14 @@ apply from: '../javadoc.gradle'
 apply from: '../jacoco.gradle'
 apply plugin: 'me.tatarka.retrolambda'
 
-version = '1.0.0'
+version = '1.1.2'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'shift-sdk-android'
+    bintrayName = 'shift-sdk-android-new'
     bintrayOrg = 'shift'
 
-    publishedGroupId = 'com.shift.android'
+    publishedGroupId = 'com.shiftpayments.android'
     libraryName = 'ShiftSDK'
     artifact = 'shift-sdk'
 
@@ -59,7 +59,7 @@ android {
 
     sourceSets {
         test {
-            java.srcDirs = ['../sdk/src/test/java', 'src/test/java'];
+            java.srcDirs = ['../sdk/src/test/java', 'src/test/java']
         }
     }
 
@@ -69,7 +69,7 @@ android {
 
             all {
                 include "**/*Test.class"
-                exclude '**/com/shift/link/sdk/sdk/*'
+                exclude '**/com.shiftpayments.link.sdk/sdk/*'
             }
         }
     }
@@ -77,6 +77,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    retrolambda {
+        defaultMethods true
     }
 
     buildTypes {
@@ -100,8 +104,8 @@ repositories {
 }
 
 dependencies {
-    // Ledge Libraries
-    compile 'com.shift.android:sdk:1.0.0'
+    // Shift Libraries
+    compile 'com.shiftpayments.android:sdk:1.0.7'
     compile 'me.ledge.common:common:+'
     // 3rd Party Libraries
     compile('com.android.support:support-v13:24.0.0') {
@@ -139,10 +143,10 @@ dependencies {
     compile 'com.synnapps:carouselview:0.0.10'
     compile 'com.github.tiagohm.MarkdownView:library:0.17.0'
     compile 'com.github.barteksc:android-pdf-viewer:2.8.0'
-    compile('com.coinbase.android:coinbase-android-sdk:1.0.1') {
-        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
-    }
     compile 'com.venmo.android.pin:library:1.2.0@aar'
+    compile "io.reactivex.rxjava2:rxjava:2.1.14"
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
 
     // Tests
     testCompile 'junit:junit:4.12'
@@ -163,7 +167,7 @@ afterEvaluate { project ->
 }
 
 task copyAppcompat(type: Copy) {
-    def projectPackage = "com/shift/link/sdk/shift-sdk"
+    def projectPackage = "com.shiftpayments.link.sdk/shift-sdk"
 
     from "build/generated/source/r/debug/${projectPackage}".replace("/", File.separator)
     into 'src/test/java/android/support/v7/appcompat'.replace("/", File.separator)
