@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.shiftpayments.link.sdk.ui.views.card.CardSettingsView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/settings_toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="?attr/homeAsUpIndicator" />
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_below="@+id/settings_toolbar"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_funding_sources_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/llsdk_transaction_details_detail_header"
+            android:layout_marginTop="12dp"
+            android:text="@string/funding_sources_label" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_funding_sources_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="vertical" />
+
+        <LinearLayout
+            android:id="@+id/ll_add_funding_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@string/add_funding_source"
+                android:layout_weight="1"
+                android:layout_marginLeft="16dp"/>
+            <ImageButton
+                android:id="@+id/ib_add_funding_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:background="@android:color/white"
+                android:src="@drawable/ic_add_circle_black_24dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_settings_header"
+            style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+            android:text="@string/settings_label" />
+    </LinearLayout>
+</com.shiftpayments.link.sdk.ui.views.card.CardSettingsView>

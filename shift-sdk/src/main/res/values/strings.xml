@@ -320,12 +320,15 @@
     <string name="card_management_number_copied">Card number copied to clipboard</string>
     <string name="card_management_no_transactions">You have no transactions yet.\nStart now!</string>
 
-    <!-- card management bottom sheet -->
+    <!-- card settings -->
+    <string name="card_settings_title">Card settings</string>
     <string name="switch_enable_card">Enable Card</string>
     <string name="switch_show_card_info">Show Card Info</string>
     <string name="save_to_android_pay_label">Add Card</string>
     <string name="contact_support_label">Contact Support</string>
     <string name="change_pin_label">Change PIN</string>
+    <string name="funding_sources_label">Funding Sources</string>
+    <string name="settings_label">Settings</string>
 
     <!-- card management enable/disable dialog -->
     <string name="enable_card_message">You are activating your card. Are you sure?</string>
@@ -338,7 +341,6 @@
     <string name="card_disabled_label">CARD NOT ENABLED</string>
 
     <!-- Account management screen -->
-    <string name="funding_sources_label">Funding Sources</string>
     <string name="sign_out">SIGN OUT</string>
     <string name="add_funding_source">ADD FUNDING SOURCE</string>
     <string name="account_management_contact_support">CONTACT SUPPORT</string>

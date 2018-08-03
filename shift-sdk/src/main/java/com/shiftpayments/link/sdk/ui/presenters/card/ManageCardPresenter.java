@@ -27,6 +27,7 @@ import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
+import com.shiftpayments.link.sdk.ui.activities.card.CardSettingsActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity;
@@ -132,11 +133,12 @@ public class ManageCardPresenter
 
     @Override
     public void manageCardClickHandler() {
-        mManageCardBottomSheet = new ManageCardBottomSheet();
+        mActivity.startActivity(new Intent(mActivity, CardSettingsActivity.class));
+        /*mManageCardBottomSheet = new ManageCardBottomSheet();
         mManageCardBottomSheet.isCardEnabled = mModel.isCardActivated();
         mManageCardBottomSheet.showCardInfo = mModel.showCardInfo;
         mManageCardBottomSheet.setViewListener(this);
-        mManageCardBottomSheet.show(mFragmentManager, mManageCardBottomSheet.getTag());
+        mManageCardBottomSheet.show(mFragmentManager, mManageCardBottomSheet.getTag());*/
     }
 
     @Override
