@@ -68,7 +68,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
-        android:layout_marginTop="21dp" />
+        android:layout_marginTop="21dp"
+        android:elevation="4dp"/>
 
     <TextView
         android:id="@+id/tv_display_card_primary_bttn"

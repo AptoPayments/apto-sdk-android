@@ -77,7 +77,7 @@ public class ManageCardModel implements Model {
                 return formattedCardNumber.toString();
             }
             else {
-                return "****    ****    ****    " + mCard.lastFourDigits;
+                return "**** **** **** " + mCard.lastFourDigits;
             }
         }
         return "";
