@@ -25,6 +25,7 @@ public class ManageCardModel implements Model {
     public boolean showCardInfo;
     private AmountVo mBalance;
     private AmountVo mSpendableAmount;
+    private AmountVo mNativeBalance;
 
     /**
      * Creates a new {@link ManageCardModel} instance.
@@ -76,7 +77,7 @@ public class ManageCardModel implements Model {
                 return formattedCardNumber.toString();
             }
             else {
-                return "****    ****    ****    " + mCard.lastFourDigits;
+                return "**** **** **** " + mCard.lastFourDigits;
             }
         }
         return "";
@@ -119,6 +120,29 @@ public class ManageCardModel implements Model {
         return "";
     }
 
+    public String getNativeBalance() {
+        if (mNativeBalance != null) {
+            return mNativeBalance.toString();
+        }
+        return "";
+    }
+
+    public String getNativeSpendableAmount() {
+        // TODO: calculate exchange rate until it's returned from the backend
+        if (mNativeBalance != null && mSpendableAmount != null) {
+            double nativeSpendableAmount;
+            if(mNativeBalance.getAmount() > 0) {
+                double exchangeRate = mBalance.getAmount() / mNativeBalance.getAmount();
+                nativeSpendableAmount = mSpendableAmount.getAmount() / exchangeRate;
+            }
+            else {
+                nativeSpendableAmount = 0;
+            }
+            return new AmountVo(nativeSpendableAmount, mNativeBalance.getCurrency()).toString();
+        }
+        return "";
+    }
+
     public String getAccountId() {
         if(mCard != null) {
             return mCard.mAccountId;
@@ -153,5 +177,9 @@ public class ManageCardModel implements Model {
 
     public void setSpendableAmount(AmountVo amount) {
         mSpendableAmount = amount;
+    }
+
+    public void setNativeBalance(AmountVo nativeBalance) {
+        mNativeBalance = nativeBalance;
     }
 }

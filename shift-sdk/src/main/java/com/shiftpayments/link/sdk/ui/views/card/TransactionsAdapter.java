@@ -13,9 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
-import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.DateUtil;
@@ -65,11 +63,12 @@ public class TransactionsAdapter extends
         CreditCardView creditCardView;
         TextView cardBalance;
         TextView cardBalanceLabel;
+        TextView cardNativeBalance;
         TextView spendableAmount;
         TextView spendableAmountLabel;
+        TextView spendableNativeAmount;
         TextView primaryButton;
         TextView secondaryButton;
-        ImageButton accountButton;
         TextView transactionsTitle;
 
         // Transaction
@@ -86,13 +85,14 @@ public class TransactionsAdapter extends
 
             if (viewType == 0) {
                 creditCardView = itemView.findViewById(R.id.credit_card_view);
-                cardBalance = itemView.findViewById(R.id.tv_card_balance);
-                cardBalanceLabel = itemView.findViewById(R.id.tv_card_balance_label);
+                cardBalance = itemView.findViewById(R.id.tv_current_balance);
+                cardBalanceLabel = itemView.findViewById(R.id.tv_current_balance_label);
+                cardNativeBalance = itemView.findViewById(R.id.tv_current_native_balance);
                 spendableAmount = itemView.findViewById(R.id.tv_spendable_balance);
                 spendableAmountLabel = itemView.findViewById(R.id.tv_card_spendable_balance_label);
+                spendableNativeAmount = itemView.findViewById(R.id.tv_spendable_native_balance);
                 primaryButton = itemView.findViewById(R.id.tv_display_card_primary_bttn);
                 secondaryButton = itemView.findViewById(R.id.tv_display_card_secondary_bttn);
-                /*accountButton = itemView.findViewById(R.id.ib_account);*/
                 transactionsTitle = itemView.findViewById(R.id.tv_transactions_title);
             } else if (viewType == 1) {
                 titleTextView = itemView.findViewById(R.id.tv_title);
@@ -211,10 +211,13 @@ public class TransactionsAdapter extends
             viewHolder.cardBalance.setText(mModel.getCardBalance());
             viewHolder.cardBalance.setVisibility(View.VISIBLE);
             viewHolder.cardBalanceLabel.setVisibility(View.VISIBLE);
+            viewHolder.cardNativeBalance.setText(mModel.getNativeBalance());
+            viewHolder.cardNativeBalance.setVisibility(View.VISIBLE);
         }
         else {
             viewHolder.cardBalanceLabel.setVisibility(View.GONE);
             viewHolder.cardBalance.setVisibility(View.GONE);
+            viewHolder.cardNativeBalance.setVisibility(View.GONE);
         }
     }
 
@@ -223,10 +226,13 @@ public class TransactionsAdapter extends
             viewHolder.spendableAmount.setText(mModel.getSpendableAmount());
             viewHolder.spendableAmount.setVisibility(View.VISIBLE);
             viewHolder.spendableAmountLabel.setVisibility(View.VISIBLE);
+            viewHolder.spendableNativeAmount.setText(mModel.getNativeSpendableAmount());
+            viewHolder.spendableNativeAmount.setVisibility(View.VISIBLE);
         }
         else {
             viewHolder.spendableAmountLabel.setVisibility(View.GONE);
             viewHolder.spendableAmount.setVisibility(View.GONE);
+            viewHolder.spendableNativeAmount.setVisibility(View.GONE);
         }
     }
 }

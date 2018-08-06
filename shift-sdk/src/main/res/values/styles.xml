@@ -384,8 +384,28 @@
         <item name="android:layout_marginLeft">8dp</item>
         <item name="android:layout_marginRight">19dp</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textSize">@dimen/llsdk_manage_card_amount_text_size</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_small_amount_text_size</item>
         <item name="android:clickable">false</item>
+    </style>
+    <style name="llsdk_manage_card_section_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_section_title_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+    <style name="llsdk_manage_card_big_amount">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_primary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_big_amount_text_size</item>
+    </style>
+    <style name="llsdk_manage_card_subcurrency">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_tertiary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_subcurrency_text_size</item>
     </style>
 
     <style name="llsdk_action_button_style" parent="Widget.AppCompat.ActionButton">

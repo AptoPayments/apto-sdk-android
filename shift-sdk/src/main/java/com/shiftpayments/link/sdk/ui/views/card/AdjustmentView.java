@@ -59,10 +59,6 @@ public class AdjustmentView extends FrameLayout {
         mAmount.setText(amount);
     }
 
-    public void setAmountColor(int color) {
-        mAmount.setTextColor(color);
-    }
-
     /**
      * Finds all references to child Views.
      */

@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.ui.views.card;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -77,6 +78,7 @@ public class CreditCardView extends RelativeLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        setFonts();
         enableCard();
         setBackgroundResource(mEnabledCardBackground);
     }
@@ -132,6 +134,14 @@ public class CreditCardView extends RelativeLayout {
 
     public EditText getCardNumberView() {
         return mCardNumberView;
+    }
+
+    private void setFonts() {
+        Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/ocraextended.ttf");
+        mCardNumberView.setTypeface(typeface);
+        mCardNameView.setTypeface(typeface);
+        mExpiryDateView.setTypeface(typeface);
+        mCvvView.setTypeface(typeface);
     }
 
     private void enableCard() {

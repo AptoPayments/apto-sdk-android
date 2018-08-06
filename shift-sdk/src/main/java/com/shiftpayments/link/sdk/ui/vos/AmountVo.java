@@ -28,6 +28,14 @@ public class AmountVo {
         return mCurrencySymbol + " " + amount;
     }
 
+    public double getAmount() {
+        return mAmount;
+    }
+
+    public String getCurrency() {
+        return mCurrency;
+    }
+
     private String getCurrencySymbol(String currency) {
         String currencySymbol = "";
         if(currency!=null && !currency.isEmpty()) {
