@@ -44,4 +44,7 @@
     <dimen name="llsdk_manage_card_subcurrency_text_size">12sp</dimen>
     <dimen name="llsdk_manage_card_description_text_size">10sp</dimen>
     <dimen name="llsdk_manage_card_small_amount_text_size">18sp</dimen>
+
+    <dimen name="llsdk_card_settings_medium_amount_text_size">20sp</dimen>
+    <dimen name="llsdk_card_settings_main_item_text_size">20sp</dimen>
 </resources>

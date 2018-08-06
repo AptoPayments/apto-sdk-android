@@ -32,8 +32,8 @@
             android:id="@+id/tv_funding_sources_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/llsdk_transaction_details_detail_header"
-            android:layout_marginTop="12dp"
+            style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
+            android:layout_marginTop="8dp"
             android:text="@string/funding_sources_label" />
 
         <android.support.v7.widget.RecyclerView
@@ -50,12 +50,13 @@
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
             <ImageButton
                 android:id="@+id/ib_add_funding_source"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="14dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginRight="14dp"
                 android:background="@android:color/white"
                 android:src="@drawable/ic_icon_add"/>
@@ -70,7 +71,7 @@
 
         <TextView
             android:id="@+id/tv_settings_header"
-            style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
+            style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
             android:text="@string/settings_label" />
     </LinearLayout>
 </com.shiftpayments.link.sdk.ui.views.card.CardSettingsView>

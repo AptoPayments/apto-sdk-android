@@ -72,4 +72,9 @@
     <attr name="llsdk_manageCard_cardTitleStyle" format="reference" />
     <attr name="llsdk_manageCard_cardDescriptionStyle" format="reference" />
     <attr name="llsdk_manageCard_cardAmountStyle" format="reference" />
+
+    <!-- Card Settings -->
+    <attr name="llsdk_cardSettings_amountMediumStyle" format="reference" />
+    <attr name="llsdk_cardSettings_mainItemStyle" format="reference" />
+    <attr name="llsdk_cardSettings_sectionTitleTextStyle" format="reference" />
 </resources>
