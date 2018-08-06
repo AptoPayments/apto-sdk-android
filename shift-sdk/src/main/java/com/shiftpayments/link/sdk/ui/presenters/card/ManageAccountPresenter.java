@@ -55,7 +55,6 @@ public class ManageAccountPresenter
         mAdapter = new FundingSourcesListRecyclerAdapter();
         mAdapter.setViewListener(this);
         view.setAdapter(mAdapter);
-        mView.showAddFundingSourceButton(UIStorage.getInstance().showAddFundingSourceButton());
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.getUserFundingSources();
     }

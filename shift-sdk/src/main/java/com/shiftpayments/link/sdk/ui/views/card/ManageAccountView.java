@@ -10,8 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -34,8 +32,6 @@ public class ManageAccountView
     private RecyclerView mFundingSourcesListView;
     private TextView mFundingSourceLabel;
     private TextView mSignOutButton;
-    private LinearLayout mAddFundingSourceHolder;
-    private ImageButton mAddFundingSourceButton;
     private TextView mContactSupportButton;
     private TextView mSpendableAmount;
     private TextView mSpendableAmountLabel;
@@ -126,21 +122,10 @@ public class ManageAccountView
         void onBack();
     }
 
-    public void showAddFundingSourceButton(boolean show) {
-        if(show) {
-            mAddFundingSourceHolder.setVisibility(VISIBLE);
-        }
-        else {
-            mAddFundingSourceHolder.setVisibility(GONE);
-        }
-    }
-
     private void findAllViews() {
         mFundingSourcesListView = findViewById(R.id.rv_funding_sources_list);
         mFundingSourceLabel = findViewById(R.id.tv_funding_sources);
         mSignOutButton = findViewById(R.id.tv_sign_out);
-        mAddFundingSourceButton = findViewById(R.id.ib_add_funding_source);
-        mAddFundingSourceHolder = findViewById(R.id.ll_add_funding_source);
         mContactSupportButton = findViewById(R.id.tv_contact_support);
         mToolbar = findViewById(R.id.toolbar);
         mSpendableAmount = findViewById(R.id.tv_spendable_amount);
@@ -149,7 +134,6 @@ public class ManageAccountView
 
     private void setUpListeners() {
         mSignOutButton.setOnClickListener(this);
-        mAddFundingSourceButton.setOnClickListener(this);
         mContactSupportButton.setOnClickListener(this);
         mToolbar.setNavigationOnClickListener(this);
     }
@@ -165,7 +149,6 @@ public class ManageAccountView
     private void setColors() {
         int primaryColor = UIStorage.getInstance().getPrimaryColor();
         mSpendableAmount.setTextColor(primaryColor);
-        mAddFundingSourceButton.setColorFilter(primaryColor);
         mSignOutButton.setBackgroundColor(primaryColor);
         Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
         int actionBarColor = getResources().getColor(R.color.llsdk_actionbar_background);

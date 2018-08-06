@@ -61,29 +61,6 @@
             android:scrollbarStyle="outsideOverlay"
             android:scrollbars="vertical" />
 
-        <LinearLayout
-            android:id="@+id/ll_add_funding_source"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="@string/add_funding_source"
-                android:layout_weight="1"
-                android:layout_marginLeft="16dp"/>
-            <ImageButton
-                android:id="@+id/ib_add_funding_source"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:background="@android:color/white"
-                android:src="@drawable/ic_add_circle_black_24dp"/>
-        </LinearLayout>
-
         <TextView
             android:id="@+id/tv_contact_support"
             android:layout_width="match_parent"

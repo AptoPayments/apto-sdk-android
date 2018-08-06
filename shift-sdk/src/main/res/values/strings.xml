@@ -329,6 +329,7 @@
     <string name="change_pin_label">Change PIN</string>
     <string name="funding_sources_label">Funding Sources</string>
     <string name="settings_label">Settings</string>
+    <string name="add_funding_source">Add funding source</string>
 
     <!-- card management enable/disable dialog -->
     <string name="enable_card_message">You are activating your card. Are you sure?</string>
@@ -342,7 +343,6 @@
 
     <!-- Account management screen -->
     <string name="sign_out">SIGN OUT</string>
-    <string name="add_funding_source">ADD FUNDING SOURCE</string>
     <string name="account_management_contact_support">CONTACT SUPPORT</string>
     <string name="account_management_dialog_title">Sign out</string>
     <string name="account_management_dialog_message">Are you sure you want to sign out?</string>

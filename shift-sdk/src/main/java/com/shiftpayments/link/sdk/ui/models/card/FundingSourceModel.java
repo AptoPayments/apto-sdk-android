@@ -30,9 +30,11 @@ public class FundingSourceModel implements Model {
     }
 
     public String getFundingSourceName() {
-        String capitalizedName = mFundingSource.custodianWallet.custodian.name.substring(0, 1).toUpperCase() + mFundingSource.custodianWallet.custodian.name.substring(1);
-        String amount = new AmountVo(mFundingSource.balance.amount, mFundingSource.balance.currency).toString();
-        return capitalizedName + " " + amount;
+        return mFundingSource.custodianWallet.custodian.name.substring(0, 1).toUpperCase() + mFundingSource.custodianWallet.custodian.name.substring(1);
+    }
+
+    public String getFundingSourceAmount() {
+        return new AmountVo(mFundingSource.balance.amount, mFundingSource.balance.currency).toString();
     }
 
     public String getFundingSourceBalance() {

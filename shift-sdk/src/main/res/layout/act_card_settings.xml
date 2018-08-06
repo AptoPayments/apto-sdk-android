@@ -41,7 +41,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingBottom="8dp"
             android:scrollbarStyle="outsideOverlay"
             android:scrollbars="vertical" />
 
@@ -52,20 +51,21 @@
             android:background="@android:color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="@string/add_funding_source"
-                android:layout_weight="1"
-                android:layout_marginLeft="16dp"/>
             <ImageButton
                 android:id="@+id/ib_add_funding_source"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
                 android:background="@android:color/white"
-                android:src="@drawable/ic_add_circle_black_24dp"/>
+                android:src="@drawable/ic_icon_add"/>
+            <TextView
+                android:id="@+id/tv_add_funding_source_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/add_funding_source"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <TextView
