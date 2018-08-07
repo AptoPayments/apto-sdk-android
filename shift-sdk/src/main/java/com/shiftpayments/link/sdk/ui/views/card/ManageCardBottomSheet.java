@@ -32,7 +32,6 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
     private ViewListener mListener;
     private SwitchCompat mEnableCardSwitch;
     private SwitchCompat mShowCardInfoSwitch;
-    private LinearLayout mChangePin;
     private LinearLayout mContactSupport;
     private BottomSheetBehavior.BottomSheetCallback mBottomSheetBehaviorCallback = new BottomSheetBehavior.BottomSheetCallback() {
         @Override
@@ -101,9 +100,7 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
             return;
         }
 
-        if (view.getId() == R.id.ll_change_pin) {
-            mListener.changePinClickHandler();
-        } else if (view.getId() == R.id.ll_contact_support) {
+        if (view.getId() == R.id.ll_contact_support) {
             mListener.contactSupportClickHandler();
         }
     }
@@ -123,7 +120,6 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
     private void findAllViews(View view) {
         mEnableCardSwitch = view.findViewById(R.id.sw_card_enabled);
         mShowCardInfoSwitch = view.findViewById(R.id.sw_show_card_info);
-        mChangePin = view.findViewById(R.id.ll_change_pin);
         mContactSupport = view.findViewById(R.id.ll_contact_support);
     }
 
@@ -132,7 +128,6 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
         mEnableCardSwitch.setOnTouchListener(this);
         mShowCardInfoSwitch.setOnCheckedChangeListener(this);
         mShowCardInfoSwitch.setOnTouchListener(this);
-        mChangePin.setOnClickListener(this);
         mContactSupport.setOnClickListener(this);
     }
 
@@ -151,7 +146,6 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
     public interface ViewListener {
         void enableCardClickHandler(boolean enable);
         void showCardInfoClickHandler(boolean show);
-        void changePinClickHandler();
         void contactSupportClickHandler();
     }
 }

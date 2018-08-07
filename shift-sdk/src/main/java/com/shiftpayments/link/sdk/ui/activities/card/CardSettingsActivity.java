@@ -9,13 +9,14 @@ import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.CardSettingsDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.CardSettingsPresenter;
 import com.shiftpayments.link.sdk.ui.views.card.CardSettingsView;
+import com.venmo.android.pin.PinListener;
 
 
 /**
  * Created by adrian on 03/08/2018.
  */
 
-public class CardSettingsActivity extends FragmentMvpActivity {
+public class CardSettingsActivity extends FragmentMvpActivity implements PinListener {
 
     /** {@inheritDoc} */
     @Override
@@ -27,7 +28,7 @@ public class CardSettingsActivity extends FragmentMvpActivity {
     @Override
     protected CardSettingsPresenter createPresenter(BaseDelegate delegate) {
         if(delegate instanceof CardSettingsDelegate) {
-            return new CardSettingsPresenter(this, (CardSettingsDelegate) delegate);
+            return new CardSettingsPresenter(this, (CardSettingsDelegate) delegate, getSupportFragmentManager());
         }
         else {
             throw new NullPointerException("Received Module does not implement CardSettingsDelegate!");
@@ -43,4 +44,15 @@ public class CardSettingsActivity extends FragmentMvpActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onValidated() {
+        // Do nothing
+    }
+
+    @Override
+    public void onPinCreated() {
+        // Do nothing
+    }
+
 }

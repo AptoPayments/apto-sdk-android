@@ -326,7 +326,7 @@
     <string name="switch_show_card_info">Show Card Info</string>
     <string name="save_to_android_pay_label">Add Card</string>
     <string name="contact_support_label">Contact Support</string>
-    <string name="change_pin_label">Change PIN</string>
+    <string name="change_pin_label">Modify Card PIN</string>
     <string name="funding_sources_label">Funding Sources</string>
     <string name="settings_label">Settings</string>
     <string name="add_funding_source">Add funding source</string>

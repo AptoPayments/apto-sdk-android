@@ -1,5 +1,6 @@
 package com.shiftpayments.link.sdk.ui.models.card;
 
+import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
@@ -14,10 +15,12 @@ import me.ledge.common.utils.PagedList;
  */
 public class CardSettingsModel implements Model {
 
+    private Card mCard;
     private PagedList<FundingSourceModel> mFundingSources;
     private FundingSourceModel mSelectedFundingSource;
 
-    public CardSettingsModel() {
+    public CardSettingsModel(Card card) {
+        mCard = card;
         mFundingSources = new PagedList<>();
     }
 
@@ -53,5 +56,12 @@ public class CardSettingsModel implements Model {
                 mSelectedFundingSource = fundingSource;
             }
         }
+    }
+
+    public String getAccountId() {
+        if(mCard != null) {
+            return mCard.mAccountId;
+        }
+        return "";
     }
 }

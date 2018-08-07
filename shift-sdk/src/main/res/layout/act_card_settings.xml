@@ -73,5 +73,14 @@
             android:id="@+id/tv_settings_header"
             style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
             android:text="@string/settings_label" />
+
+        <TextView
+            android:id="@+id/tv_change_pin"
+            android:paddingTop="14dp"
+            style="?attr/llsdk_cardSettings_mainItemStyle"
+            android:layout_marginLeft="16dp"
+            android:text="@string/change_pin_label"/>
     </LinearLayout>
+
+    <include layout="@layout/include_pin_fragment" />
 </com.shiftpayments.link.sdk.ui.views.card.CardSettingsView>

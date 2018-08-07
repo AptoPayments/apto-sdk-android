@@ -15,14 +15,13 @@ import com.shiftpayments.link.sdk.ui.presenters.card.ManageCardDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.ManageCardPresenter;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
-import com.venmo.android.pin.PinListener;
 
 
 /**
  * Created by adrian on 27/11/2017.
  */
 
-public class ManageCardActivity extends FragmentMvpActivity implements PinListener {
+public class ManageCardActivity extends FragmentMvpActivity {
 
     private ManageCardDelegate mDelegate;
 
@@ -68,16 +67,6 @@ public class ManageCardActivity extends FragmentMvpActivity implements PinListen
         } else {
             return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    public void onValidated() {
-        // Do nothing
-    }
-
-    @Override
-    public void onPinCreated() {
-        // Do nothing
     }
 
     @Override

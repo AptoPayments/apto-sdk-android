@@ -1,11 +1,15 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.widget.Toast;
 
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
@@ -20,6 +24,8 @@ import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.views.card.CardSettingsView;
 import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
+import com.venmo.android.pin.PinFragmentConfiguration;
+import com.venmo.android.pin.PinSupportFragment;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -36,10 +42,12 @@ public class CardSettingsPresenter
     private CardSettingsActivity mActivity;
     private FundingSourcesListRecyclerAdapter mAdapter;
     private CardSettingsDelegate mDelegate;
+    private FragmentManager mFragmentManager;
 
-    public CardSettingsPresenter(CardSettingsActivity activity, CardSettingsDelegate delegate) {
+    public CardSettingsPresenter(CardSettingsActivity activity, CardSettingsDelegate delegate, FragmentManager fragmentManager) {
         mActivity = activity;
         mDelegate = delegate;
+        mFragmentManager = fragmentManager;
     }
 
     /** {@inheritDoc} */
@@ -59,7 +67,7 @@ public class CardSettingsPresenter
 
     @Override
     public CardSettingsModel createModel() {
-        return new CardSettingsModel();
+        return new CardSettingsModel(CardStorage.getInstance().getCard());
     }
 
     @Override
@@ -77,6 +85,22 @@ public class CardSettingsPresenter
     @Override
     public void addFundingSource() {
         mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());
+    }
+
+    @Override
+    public void changePinClickHandler() {
+        PinFragmentConfiguration config =
+                new PinFragmentConfiguration(mActivity)
+                        .pinSaver(pin -> {
+                            mView.showPinFragment(false);
+                            updateCardPin(pin);
+                        });
+
+        Fragment pinFragment = PinSupportFragment.newInstanceForCreation(config);
+        mFragmentManager.beginTransaction()
+                .replace(R.id.pin_fragment, pinFragment)
+                .commit();
+        mView.showPinFragment(true);
     }
 
     @Override
@@ -101,11 +125,22 @@ public class CardSettingsPresenter
     }
 
     /**
+     * Called when the updatePin response has been received.
+     * @param card API response.
+     */
+    @Subscribe
+    public void handleResponse(UpdateFinancialAccountPinResponseVo card) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        Toast.makeText(mActivity, mActivity.getString(R.string.card_management_pin_changed), Toast.LENGTH_SHORT).show();
+    }
+
+    /**
      * Called when an API error has been received.
      * @param error API error.
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         if(error.statusCode==404) {
             // User has no funding source
             mView.showFundingSourceLabel(false);
@@ -126,4 +161,13 @@ public class CardSettingsPresenter
         mActivity.finish();
         mDelegate.onSessionExpired(error);
     }
+
+    private void updateCardPin(String pin) {
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        UpdateFinancialAccountPinRequestVo request = new UpdateFinancialAccountPinRequestVo();
+        request.pin = pin;
+        request.accountId = mModel.getAccountId();
+        ShiftPlatform.updateFinancialAccountPin(request);
+    }
+
 }

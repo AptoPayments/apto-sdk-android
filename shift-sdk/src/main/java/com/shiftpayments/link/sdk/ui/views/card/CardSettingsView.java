@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,12 +37,15 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     private LinearLayout mAddFundingSourceHolder;
     private ImageButton mAddFundingSourceButton;
     private TextView mAddFundingSourceLabel;
+    private FrameLayout mPinView;
+    private TextView mChangePinButton;
 
     /**
      * Callbacks this {@link View} will invoke.
      */
     public interface ViewListener {
         void addFundingSource();
+        void changePinClickHandler();
         void onClose();
     }
 
@@ -85,6 +89,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
             mListener.addFundingSource();
         } else if (id == R.id.toolbar) {
             mListener.onClose();
+        } else if (view.getId() == R.id.tv_change_pin) {
+            mListener.changePinClickHandler();
         }
     }
 
@@ -122,9 +128,19 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         }
     }
 
+    public void showPinFragment(boolean show) {
+        if(show) {
+            mPinView.setVisibility(VISIBLE);
+        }
+        else {
+            mPinView.setVisibility(GONE);
+        }
+    }
+
     private void setupListeners() {
         mAddFundingSourceButton.setOnClickListener(this);
         mAddFundingSourceLabel.setOnClickListener(this);
+        mChangePinButton.setOnClickListener(this);
     }
 
     /**
@@ -137,6 +153,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mAddFundingSourceButton = findViewById(R.id.ib_add_funding_source);
         mAddFundingSourceHolder = findViewById(R.id.ll_add_funding_source);
         mAddFundingSourceLabel = findViewById(R.id.tv_add_funding_source_label);
+        mPinView = findViewById(R.id.pin_fragment);
+        mChangePinButton = findViewById(R.id.tv_change_pin);
     }
 
     private void setColors() {

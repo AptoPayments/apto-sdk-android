@@ -4,7 +4,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -13,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
@@ -22,7 +20,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFina
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
@@ -46,8 +43,6 @@ import com.shiftpayments.link.sdk.ui.views.card.ManageCardBottomSheet;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
 import com.shiftpayments.link.sdk.ui.views.card.TransactionsAdapter;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
-import com.venmo.android.pin.PinFragmentConfiguration;
-import com.venmo.android.pin.PinSupportFragment;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -211,25 +206,6 @@ public class ManageCardPresenter
     }
 
     @Override
-    public void changePinClickHandler() {
-        PinFragmentConfiguration config =
-                new PinFragmentConfiguration(mActivity)
-                        .pinSaver(pin -> {
-                            mView.showPinFragment(false);
-                            hideBottomSheet();
-                            mView.showLoading(mActivity, true);
-                            updateCardPin(pin);
-                        });
-
-        Fragment pinFragment = PinSupportFragment.newInstanceForCreation(config);
-        hideBottomSheet();
-        mFragmentManager.beginTransaction()
-                .replace(R.id.pin_fragment, pinFragment)
-                .commit();
-        mView.showPinFragment(true);
-    }
-
-    @Override
     public void contactSupportClickHandler() {
         new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
     }
@@ -248,16 +224,6 @@ public class ManageCardPresenter
         mModel.showCardInfo = false;
         ApiErrorUtil.showErrorMessage(error, mActivity);
         mManageCardBottomSheet.setShowCardInfoSwitch(mModel.showCardInfo);
-    }
-
-    /**
-     * Called when the updatePin response has been received.
-     * @param card API response.
-     */
-    @Subscribe
-    public void handleResponse(UpdateFinancialAccountPinResponseVo card) {
-        mView.showLoading(mActivity, false);
-        Toast.makeText(mActivity, mActivity.getString(R.string.card_management_pin_changed), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -424,13 +390,6 @@ public class ManageCardPresenter
         mFragmentManager.beginTransaction()
                 .detach(mManageCardBottomSheet)
                 .commit();
-    }
-
-    private void updateCardPin(String pin) {
-        UpdateFinancialAccountPinRequestVo request = new UpdateFinancialAccountPinRequestVo();
-        request.pin = pin;
-        request.accountId = mModel.getAccountId();
-        ShiftPlatform.updateFinancialAccountPin(request);
     }
 
     private boolean isViewReady() {
