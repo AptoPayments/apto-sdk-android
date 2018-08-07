@@ -10,7 +10,6 @@ import android.view.WindowManager;
 import com.shiftpayments.link.sdk.api.vos.responses.NoConnectionErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SystemMaintenanceVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
-import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.ActivityModel;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
@@ -60,7 +59,7 @@ public abstract class FragmentMvpActivity<M extends ActivityModel, V extends Vie
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            getWindow().setStatusBarColor(UIStorage.getInstance().getStatusBarColor(getResources().getColor(R.color.llsdk_actionbar_background)));
+            getWindow().setStatusBarColor(UIStorage.getInstance().getStatusBarColor(UIStorage.getInstance().getPrimaryColor()));
         }
         mPresenter = createPresenter(ModuleManager.getInstance().getCurrentModule());
         mPresenter.attachView(mView);

@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 
 /**
@@ -114,7 +115,8 @@ public class ManageCardView
     }
 
     private void setColors() {
-        mToolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.llsdk_actionbar_background)));
+        mToolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getPrimaryColor()));
+        mToolbar.setTitleTextColor(UIStorage.getInstance().getTextTopbarColor());
     }
 
     public void showNoTransactionsImage(boolean show) {

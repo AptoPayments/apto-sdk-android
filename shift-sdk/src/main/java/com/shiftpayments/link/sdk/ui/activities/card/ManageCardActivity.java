@@ -51,7 +51,7 @@ public class ManageCardActivity extends FragmentMvpActivity {
         inflater.inflate(R.menu.menu_update_profile, menu);
         Drawable accountIcon = getResources().getDrawable(R.drawable.ic_icon_account);
         final PorterDuffColorFilter colorFilter
-                = new PorterDuffColorFilter(UIStorage.getInstance().getPrimaryColor(), PorterDuff.Mode.SRC_ATOP);
+                = new PorterDuffColorFilter(UIStorage.getInstance().getIconPrimaryColor(), PorterDuff.Mode.SRC_ATOP);
         accountIcon.setColorFilter(colorFilter);
         menu.getItem(0).setIcon(accountIcon);
 
