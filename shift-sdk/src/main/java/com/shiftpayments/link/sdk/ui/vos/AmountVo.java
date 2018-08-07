@@ -25,7 +25,15 @@ public class AmountVo {
         int intAmount = (int) mAmount;
         String amount = mAmount == intAmount ? String.valueOf(intAmount)
                 : String.format("%.2f", mAmount);
-        return mCurrencySymbol + amount;
+        return mCurrencySymbol + " " + amount;
+    }
+
+    public double getAmount() {
+        return mAmount;
+    }
+
+    public String getCurrency() {
+        return mCurrency;
     }
 
     private String getCurrencySymbol(String currency) {

@@ -3,14 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/credit_card_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:drawable/dialog_holo_light_frame">
+
     <EditText
         android:id="@+id/et_card_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/et_card_name"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/llsdk_card_number_margin"
         android:layout_marginBottom="@dimen/llsdk_card_number_margin"
         android:layout_marginLeft="@dimen/llsdk_card_common_margin"
         android:layout_marginRight="@dimen/llsdk_card_common_margin"
@@ -32,7 +33,7 @@
         android:layout_marginLeft="@dimen/llsdk_card_common_margin"
         android:layout_marginBottom="@dimen/llsdk_card_common_margin"
         android:text="@string/card_expiration_date_label"
-        android:textSize="@dimen/llsdk_expiry_date_text_size"
+        android:textSize="@dimen/llsdk_expiry_date_label_text_size"
         tools:ignore="SmallSp" />
 
     <EditText
@@ -114,7 +115,7 @@
         android:layout_toEndOf="@+id/et_expiry_date"
         android:layout_toRightOf="@+id/et_expiry_date"
         android:text="@string/card_cvv_label"
-        android:textSize="@dimen/llsdk_cvv_text_size"
+        android:textSize="@dimen/llsdk_cvv_text_label_size"
         tools:ignore="SmallSp" />
 
     <EditText

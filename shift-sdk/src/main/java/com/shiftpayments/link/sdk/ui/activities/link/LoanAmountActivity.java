@@ -43,7 +43,7 @@ public class LoanAmountActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         if(UserStorage.getInstance().hasBearerToken()) {
             MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.menu_loan_amount, menu);
+            inflater.inflate(R.menu.menu_update_profile, menu);
             return true;
         }
 

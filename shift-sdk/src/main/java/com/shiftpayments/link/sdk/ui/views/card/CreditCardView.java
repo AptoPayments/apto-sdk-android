@@ -3,6 +3,9 @@ package com.shiftpayments.link.sdk.ui.views.card;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 
 
 /**
@@ -22,6 +26,7 @@ import com.shiftpayments.link.sdk.ui.R;
 public class CreditCardView extends RelativeLayout {
 
     private final Context mContext;
+    private final static double CARD_ASPECT_RATIO = 1.586;
 
     private final static int mCardNumberTextColor = Color.WHITE;
     private final static int mCardNameTextColor = Color.WHITE;
@@ -76,9 +81,19 @@ public class CreditCardView extends RelativeLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-
+        setFonts();
         enableCard();
-        setBackgroundResource(mEnabledCardBackground);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setElevation(50);
+        }
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = (int) (width / CARD_ASPECT_RATIO);
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     public void setExpiryDate(String expiryDate) {
@@ -126,6 +141,14 @@ public class CreditCardView extends RelativeLayout {
         return mCardNumberView;
     }
 
+    private void setFonts() {
+        Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/ocraextended.ttf");
+        mCardNumberView.setTypeface(typeface);
+        mCardNameView.setTypeface(typeface);
+        mExpiryDateView.setTypeface(typeface);
+        mCvvView.setTypeface(typeface);
+    }
+
     private void enableCard() {
         mCardNumberView.setTextColor(mCardNumberTextColor);
         mCardNameView.setTextColor(mCardNameTextColor);
@@ -142,7 +165,14 @@ public class CreditCardView extends RelativeLayout {
         mCvvView.setVisibility(VISIBLE);
         mCvvLabel.setVisibility(VISIBLE);
         mCardNotEnabledLabel.setVisibility(GONE);
-        setBackgroundResource(mEnabledCardBackground);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Drawable background = mContext.getDrawable(mEnabledCardBackground);
+            background.setColorFilter(UIStorage.getInstance().getPrimaryColor(), PorterDuff.Mode.SRC_ATOP);
+            setBackground(background);
+        }
+        else {
+            setBackgroundResource(mEnabledCardBackground);
+        }
     }
 
     private void disableCard() {

@@ -307,10 +307,12 @@
     <string name="fingerprint_title">Use fingerprint?</string>
 
     <!-- card management screen -->
-    <string name="card_management_card_balance">CURRENT BALANCE</string>
-    <string name="card_management_primary_button">TAP TO MANAGE CARD OR TAP ON THE NUMBER TO COPY TO CLIPBOARD</string>
+    <string name="card_management_title">Card</string>
+    <string name="card_management_card_balance">Current balance</string>
+    <string name="card_management_card_spendable_balance">Spendable today</string>
+    <string name="card_management_primary_button">Tap to manage card or tap on the number to copy to clipboard</string>
     <string name="card_management_secondary_button">ACTIVATE VIRTUAL CARD</string>
-    <string name="card_management_transactions_title">Recent Transactions</string>
+    <string name="card_management_transactions_title">Most recent</string>
     <string name="card_activated">Card activated</string>
     <string name="card_enabled">Card enabled</string>
     <string name="card_disabled">Card disabled</string>
@@ -351,24 +353,26 @@
     <string name="account_management_funding_source_added">Funding source added</string>
 
     <!-- Transaction details screen -->
-    <string name="transaction_details_title">Transaction Details</string>
+    <string name="transaction_details_direction">Direction</string>
+    <string name="transaction_details_title">Details</string>
     <string name="transaction_details_amount">Amount</string>
     <string name="transaction_details_currency">Currency</string>
-    <string name="transaction_details_type">Type</string>
+    <string name="transaction_details_type">Type of transaction</string>
     <string name="transaction_details_location">Location</string>
     <string name="transaction_details_category">Category</string>
-    <string name="transaction_details_date">Transaction Date</string>
-    <string name="transaction_details_settlement_date">Settlement Date</string>
+    <string name="transaction_details_date">Transaction date</string>
+    <string name="transaction_details_settlement_date">Settlement date</string>
     <string name="transaction_details_id">ID</string>
     <string name="transaction_details_shift_id">Shift ID</string>
-    <string name="transaction_details_transfers">Transfers</string>
-    <string name="transaction_details_adjustment_from">From your %s account</string>
-    <string name="transaction_details_adjustment_to">To your %s account</string>
-    <string name="transaction_details_decline_reason">Decline Reason</string>
-    <string name="transaction_details_fee_amount">Merchant Fee</string>
-    <string name="transaction_details_cashback_amount">Cash Back</string>
-    <string name="transaction_details_declined_amount">Declined Amount</string>
-    <string name="transaction_details_hold_amount">Hold Amount</string>
+    <string name="transaction_details_transaction_info">Transaction info</string>
+    <string name="transaction_details_transfers">Other activity</string>
+    <string name="transaction_details_adjustment_from">Transfer from %s</string>
+    <string name="transaction_details_adjustment_to">Transfer to %s</string>
+    <string name="transaction_details_decline_reason">Decline reason</string>
+    <string name="transaction_details_fee_amount">Merchant fee</string>
+    <string name="transaction_details_cashback_amount">Cash back</string>
+    <string name="transaction_details_declined_amount">Declined amount</string>
+    <string name="transaction_details_hold_amount">Hold amount</string>
 
     <!-- No internet connection screen -->
     <string name="no_connection_header">Hey!</string>

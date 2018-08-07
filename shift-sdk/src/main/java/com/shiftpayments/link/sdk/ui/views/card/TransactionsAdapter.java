@@ -13,11 +13,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
-import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.utils.DateUtil;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 import java.util.List;
@@ -64,15 +63,19 @@ public class TransactionsAdapter extends
         CreditCardView creditCardView;
         TextView cardBalance;
         TextView cardBalanceLabel;
+        TextView cardNativeBalance;
+        TextView spendableAmount;
+        TextView spendableAmountLabel;
+        TextView spendableNativeAmount;
         TextView primaryButton;
         TextView secondaryButton;
-        ImageButton accountButton;
         TextView transactionsTitle;
 
         // Transaction
         TextView titleTextView;
         TextView descriptionTextView;
         ImageView iconImageView;
+        TextView amountTextView;
         RelativeLayout transactionHolder;
 
         public ViewHolder(View itemView, int viewType) {
@@ -82,17 +85,21 @@ public class TransactionsAdapter extends
 
             if (viewType == 0) {
                 creditCardView = itemView.findViewById(R.id.credit_card_view);
-                cardBalance = itemView.findViewById(R.id.tv_card_balance);
-                cardBalanceLabel = itemView.findViewById(R.id.tv_card_balance_label);
+                cardBalance = itemView.findViewById(R.id.tv_current_balance);
+                cardBalanceLabel = itemView.findViewById(R.id.tv_current_balance_label);
+                cardNativeBalance = itemView.findViewById(R.id.tv_current_native_balance);
+                spendableAmount = itemView.findViewById(R.id.tv_spendable_balance);
+                spendableAmountLabel = itemView.findViewById(R.id.tv_card_spendable_balance_label);
+                spendableNativeAmount = itemView.findViewById(R.id.tv_spendable_native_balance);
                 primaryButton = itemView.findViewById(R.id.tv_display_card_primary_bttn);
                 secondaryButton = itemView.findViewById(R.id.tv_display_card_secondary_bttn);
-                accountButton = itemView.findViewById(R.id.ib_account);
                 transactionsTitle = itemView.findViewById(R.id.tv_transactions_title);
             } else if (viewType == 1) {
                 titleTextView = itemView.findViewById(R.id.tv_title);
                 descriptionTextView = itemView.findViewById(R.id.tv_description);
                 iconImageView = itemView.findViewById(R.id.iv_icon);
                 transactionHolder = itemView.findViewById(R.id.rl_transaction_holder);
+                amountTextView = itemView.findViewById(R.id.tv_transaction_amount);
             }
         }
     }
@@ -131,6 +138,7 @@ public class TransactionsAdapter extends
             viewHolder.creditCardView.setCVV(mModel.getCVV());
             viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
             showCardBalance(!mModel.getCardBalance().isEmpty(), viewHolder);
+            showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
             viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
             showActivateCardButton(UIStorage.getInstance().showActivateCardButton()
                     && mModel.isCardCreated(), viewHolder);
@@ -138,16 +146,20 @@ public class TransactionsAdapter extends
             TransactionVo transaction = mTransactions.get(position-1);
 
             TextView titleTextView = viewHolder.titleTextView;
-            titleTextView.setText(new AmountVo(transaction.localAmount.amount,
-                    transaction.localAmount.currency).toString());
+            titleTextView.setText(transaction.description);
 
             TextView descriptionTextView = viewHolder.descriptionTextView;
-            descriptionTextView.setText(transaction.description);
+            String date = DateUtil.getFormattedTransactionDate(transaction.creationTime);
+            descriptionTextView.setText(date);
 
             ImageView iconImageView = viewHolder.iconImageView;
             iconImageView.setImageDrawable(mContext.getDrawable(UIStorage.getInstance().getIcon(
                     transaction.merchant.mcc.merchantCategoryIcon)));
             iconImageView.setColorFilter(Color.BLACK);
+
+            TextView amountTextView = viewHolder.amountTextView;
+            amountTextView.setText(new AmountVo(transaction.localAmount.amount,
+                    transaction.localAmount.currency).toString());
         }
     }
 
@@ -173,7 +185,7 @@ public class TransactionsAdapter extends
                     v -> mListener.cardNumberClickHandler(((EditText)v).getText().toString()));
             viewHolder.secondaryButton.setOnClickListener(
                     v -> mListener.activateCardBySecondaryBtnClickHandler());
-            viewHolder.accountButton.setOnClickListener(v -> mListener.accountClickHandler());
+/*            viewHolder.accountButton.setOnClickListener(v -> mListener.accountClickHandler());*/
         }
         else if (position > 0) {
             viewHolder.transactionHolder.setOnClickListener(
@@ -197,13 +209,30 @@ public class TransactionsAdapter extends
     private void showCardBalance(boolean show, ViewHolder viewHolder) {
         if(show) {
             viewHolder.cardBalance.setText(mModel.getCardBalance());
-            viewHolder.cardBalance.setTextColor(UIStorage.getInstance().getPrimaryColor());
             viewHolder.cardBalance.setVisibility(View.VISIBLE);
             viewHolder.cardBalanceLabel.setVisibility(View.VISIBLE);
+            viewHolder.cardNativeBalance.setText(mModel.getNativeBalance());
+            viewHolder.cardNativeBalance.setVisibility(View.VISIBLE);
         }
         else {
             viewHolder.cardBalanceLabel.setVisibility(View.GONE);
             viewHolder.cardBalance.setVisibility(View.GONE);
+            viewHolder.cardNativeBalance.setVisibility(View.GONE);
+        }
+    }
+
+    private void showSpendableAmount(boolean show, ViewHolder viewHolder) {
+        if(show) {
+            viewHolder.spendableAmount.setText(mModel.getSpendableAmount());
+            viewHolder.spendableAmount.setVisibility(View.VISIBLE);
+            viewHolder.spendableAmountLabel.setVisibility(View.VISIBLE);
+            viewHolder.spendableNativeAmount.setText(mModel.getNativeSpendableAmount());
+            viewHolder.spendableNativeAmount.setVisibility(View.VISIBLE);
+        }
+        else {
+            viewHolder.spendableAmountLabel.setVisibility(View.GONE);
+            viewHolder.spendableAmount.setVisibility(View.GONE);
+            viewHolder.spendableNativeAmount.setVisibility(View.GONE);
         }
     }
 }

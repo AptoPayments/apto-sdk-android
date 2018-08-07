@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -67,6 +68,7 @@ public class ManageCardPresenter
     private static final String DIALOG_FRAGMENT_TAG = "fingerprintFragment";
     private static final int ROWS = 20;
 
+    private ActionBar mActionBar;
     private FragmentManager mFragmentManager;
     private ManageCardBottomSheet mManageCardBottomSheet;
     private FingerprintHandler mFingerprintHandler;
@@ -94,6 +96,7 @@ public class ManageCardPresenter
     @Override
     public void attachView(ManageCardView view) {
         super.attachView(view);
+        setupToolbar();
         view.setViewListener(this);
         view.showLoading(mActivity, false);
 
@@ -310,6 +313,7 @@ public class ManageCardPresenter
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
         mView.showLoading(mActivity, false);
+        mView.setRefreshing(false);
         mActivity.finish();
         mDelegate.onSessionExpired(error);
     }
@@ -338,11 +342,23 @@ public class ManageCardPresenter
         if(response.balance.hasAmount()) {
             mModel.setBalance(new AmountVo(response.balance.amount, response.balance.currency));
         }
+        if(response.amountSpendable.hasAmount()) {
+            mModel.setSpendableAmount(new AmountVo(response.amountSpendable.amount, response.amountSpendable.currency));
+        }
+        if(response.custodianWallet != null && response.custodianWallet.balance.hasAmount()) {
+            mModel.setNativeBalance(new AmountVo(response.custodianWallet.balance.amount, response.custodianWallet.balance.currency));
+        }
         CardStorage.getInstance().setFundingSourceId(response.id);
         mTransactionsAdapter.notifyItemChanged(0);
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
+    }
+
+    protected void setupToolbar() {
+        mActivity.setSupportActionBar(mView.getToolbar());
+        mActionBar = mActivity.getSupportActionBar();
+        mActionBar.setTitle(mActivity.getString(R.string.card_management_title));
     }
 
     public static Intent getTransactionDetailsIntent(Context context, TransactionVo transactionVo) {

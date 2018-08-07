@@ -60,7 +60,13 @@
         <item name="llsdk_transactionDetails_cardTitleStyle">@style/llsdk_transaction_details_card_title</item>
         <item name="llsdk_transactionDetails_cardDescriptionStyle">@style/llsdk_transaction_details_card_description</item>
         <item name="llsdk_transactionDetails_detailHeaderTextStyle">@style/llsdk_transaction_details_detail_header</item>
+        <item name="llsdk_transactionDetails_detailLabelTextStyle">@style/llsdk_transaction_details_label</item>
         <item name="llsdk_transactionDetails_detailValueTextStyle">@style/llsdk_transaction_details_detail_text</item>
+        <item name="llsdk_transactionDetails_detailValueLongTextStyle">@style/llsdk_transaction_details_long_text</item>
+
+        <item name="llsdk_manageCard_cardTitleStyle">@style/llsdk_manage_card_card_title</item>
+        <item name="llsdk_manageCard_cardDescriptionStyle">@style/llsdk_manage_card_card_description</item>
+        <item name="llsdk_manageCard_cardAmountStyle">@style/llsdk_manage_card_card_amount</item>
     </style>
 
     <style

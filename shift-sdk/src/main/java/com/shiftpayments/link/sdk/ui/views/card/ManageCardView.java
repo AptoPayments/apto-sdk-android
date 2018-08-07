@@ -2,10 +2,12 @@ package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
@@ -15,6 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 
 /**
  * Displays the manage card screen.
@@ -22,8 +26,9 @@ import com.shiftpayments.link.sdk.ui.R;
  */
 public class ManageCardView
         extends CoordinatorLayout
-        implements SwipeRefreshLayout.OnRefreshListener {
+        implements SwipeRefreshLayout.OnRefreshListener, ViewWithToolbar {
 
+    private Toolbar mToolbar;
     private ViewListener mListener;
     private FrameLayout mPinView;
     private ProgressBar mSpinner;
@@ -49,6 +54,11 @@ public class ManageCardView
         }
     }
 
+    @Override
+    public Toolbar getToolbar() {
+        return mToolbar;
+    }
+
     /**
      * Callbacks this {@link View} will invoke.
      */
@@ -65,6 +75,7 @@ public class ManageCardView
         super.onFinishInflate();
         findAllViews();
         setUpListeners();
+        setColors();
     }
 
     @Override
@@ -97,6 +108,7 @@ public class ManageCardView
     }
 
     private void findAllViews() {
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
         mPinView = findViewById(R.id.pin_fragment);
         mSpinner = findViewById(R.id.pb_spinner);
         mTransactionsRecyclerView = findViewById(R.id.transactions_recycler_view);
@@ -112,6 +124,11 @@ public class ManageCardView
         if(mSwipeRefreshLayout != null) {
             mSwipeRefreshLayout.setOnRefreshListener(this);
         }
+    }
+
+    private void setColors() {
+        mToolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getPrimaryColor()));
+        mToolbar.setTitleTextColor(UIStorage.getInstance().getTextTopbarColor());
     }
 
     public void showNoTransactionsImage(boolean show) {

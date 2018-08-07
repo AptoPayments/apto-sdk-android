@@ -1,11 +1,10 @@
 package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -29,13 +28,12 @@ import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 public class TransactionDetailsView extends CoordinatorLayout implements ViewWithToolbar {
 
     private Toolbar mToolbar;
-    private ImageView mLogoView;
+    private CollapsingToolbarLayout mCollapsingToolbar;
+    private AppBarLayout mAppBarLayout;
+    private ImageView mHeader;
     private TransactionView mTransactionView;
-    private TextView mAmountLabel;
     private TextView mDetailAmount;
-    private TextView mCurrency;
     private TextView mType;
-    private TextView mLocation;
     private TextView mCategory;
     private TextView mTransactionDate;
     private RelativeLayout mSettlementDateHolder;
@@ -44,7 +42,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private RelativeLayout mTransactionIdHolder;
     private TextView mShiftId;
     private RecyclerView mAdjustmentsRecyclerView;
-    private ImageView mShiftLogo;
     private TextView mDeclineReason;
     private RelativeLayout mDeclineReasonHolder;
     private TextView mFee;
@@ -53,6 +50,8 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private RelativeLayout mCashbackAmountHolder;
     private TextView mHoldAmount;
     private RelativeLayout mHoldAmountHolder;
+    private ImageView mAddressImageView;
+    private TextView mTransfersHeader;
 
     /**
      * @see CardView#CardView
@@ -77,6 +76,7 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         super.onFinishInflate();
         findAllViews();
         setColors();
+        setHeader();
     }
 
     @Override
@@ -84,32 +84,16 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         return mToolbar;
     }
 
-    public void setTransactionIcon(Drawable icon) {
-        mTransactionView.setTransactionIcon(icon);
-    }
-
-    public void setTransactionAmount(String amount) {
-        mTransactionView.setTitle(amount);
-    }
-
-    public void setTransactionDescription(String description) {
-        mTransactionView.setDescription(description);
+    public void setTransactionAddress(String address) {
+        mTransactionView.setAddress(address);
     }
 
     public void setDetailAmount(String amount) {
         mDetailAmount.setText(amount);
     }
 
-    public void setCurrency(String currency) {
-        mCurrency.setText(currency);
-    }
-
     public void setType(String type) {
         mType.setText(type);
-    }
-
-    public void setLocation(String location) {
-        mLocation.setText(location);
     }
 
     public void setCategory(String category) {
@@ -123,13 +107,11 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     public void setSettlementDate(String date) {
         mSettlementDate.setText(date);
         mSettlementDateHolder.setVisibility(VISIBLE);
-        findViewById(R.id.settlement_date_separator).setVisibility(VISIBLE);
     }
 
     public void setTransactionId(String id) {
         mTransactionId.setText(id);
         mTransactionIdHolder.setVisibility(VISIBLE);
-        findViewById(R.id.settlement_date_separator).setVisibility(VISIBLE);
     }
 
     public void setShiftId(String id) {
@@ -141,46 +123,55 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mAdjustmentsRecyclerView.setAdapter(adapter);
     }
 
+    public void showTransfersHeader(boolean show) {
+        if(show) {
+            mTransfersHeader.setVisibility(VISIBLE);
+        }
+        else {
+            mTransfersHeader.setVisibility(GONE);
+        }
+    }
+
     public void setDeclineReason(String reason) {
         mDeclineReason.setText(reason);
         mDeclineReasonHolder.setVisibility(VISIBLE);
-        findViewById(R.id.decline_reason_separator).setVisibility(VISIBLE);
     }
 
     public void setFeeAmount(String fee) {
         mFee.setText(fee);
         mFeeHolder.setVisibility(VISIBLE);
-        findViewById(R.id.fee_amount_separator).setVisibility(VISIBLE);
     }
 
     public void setHoldAmount(String amount) {
         mHoldAmount.setText(amount);
         mHoldAmountHolder.setVisibility(VISIBLE);
-        findViewById(R.id.hold_amount_separator).setVisibility(VISIBLE);
     }
 
     public void setCashbackAmount(String cashback) {
         mCashbackAmount.setText(cashback);
         mCashbackAmountHolder.setVisibility(VISIBLE);
-        findViewById(R.id.cashback_amount_separator).setVisibility(VISIBLE);
     }
 
-    public void setAmountLabel(String label) {
-        mAmountLabel.setText(label);
+    public void setTitle(String title) {
+        mCollapsingToolbar.setTitle(title);
+    }
+
+    public void setHeader() {
+        // TODO
+        mHeader.setImageResource(R.drawable.google_map);
     }
 
     /**
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mLogoView = findViewById(R.id.iv_custodian_logo);
         mToolbar = findViewById(R.id.toolbar);
+        mCollapsingToolbar = findViewById(R.id.collapsing_toolbar);
+        mAppBarLayout = findViewById(R.id.settings_toolbar);
+        mHeader = findViewById(R.id.iv_header);
         mTransactionView = findViewById(R.id.cv_transaction_view);
-        mAmountLabel = findViewById(R.id.tv_amount_label);
         mDetailAmount = findViewById(R.id.tv_transaction_amount);
-        mCurrency = findViewById(R.id.tv_transaction_currency);
         mType = findViewById(R.id.tv_transaction_type);
-        mLocation = findViewById(R.id.tv_transaction_location);
         mCategory = findViewById(R.id.tv_transaction_category);
         mTransactionDate = findViewById(R.id.tv_transaction_date);
         mSettlementDate = findViewById(R.id.tv_transaction_settlement_date);
@@ -189,7 +180,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mTransactionIdHolder = findViewById(R.id.rl_transaction_id);
         mShiftId = findViewById(R.id.tv_shift_transaction_id);
         mAdjustmentsRecyclerView = findViewById(R.id.adjustments_recycler_view);
-        mShiftLogo = findViewById(R.id.iv_shift_logo);
         mDeclineReason = findViewById(R.id.tv_transaction_decline_reason);
         mDeclineReasonHolder = findViewById(R.id.rl_decline_reason);
         mFee = findViewById(R.id.tv_fee_amount);
@@ -198,18 +188,27 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mCashbackAmountHolder = findViewById(R.id.rl_cashback_amount);
         mHoldAmount = findViewById(R.id.tv_hold_amount);
         mHoldAmountHolder = findViewById(R.id.rl_hold_amount);
+        mAddressImageView = findViewById(R.id.iv_address_icon);
+        mTransfersHeader = findViewById(R.id.tv_transfers_header);
     }
 
     private void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
+        int primaryColor = UIStorage.getInstance().getPrimaryColor();
         int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        mToolbar.setBackgroundDrawable(new ColorDrawable(color));
-        mToolbar.setTitleTextColor(contrastColor);
         Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
-        backArrow.setColorFilter(contrastColor, PorterDuff.Mode.SRC_ATOP);
         mToolbar.setNavigationIcon(backArrow);
-        ColorMatrix matrix = new ColorMatrix();
-        matrix.setSaturation(0);
-        mShiftLogo.setColorFilter(new ColorMatrixColorFilter(matrix));
+        mAppBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
+            if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
+                //Collapsed
+                mToolbar.setBackgroundColor(primaryColor);
+            } else {
+                //Expanded
+                mToolbar.setBackgroundColor(Color.TRANSPARENT);
+            }
+        });
+        mCollapsingToolbar.setCollapsedTitleTextColor(contrastColor);
+        mCollapsingToolbar.setExpandedTitleColor(contrastColor);
+        mCollapsingToolbar.setBackgroundColor(primaryColor);
+        mAddressImageView.setColorFilter(primaryColor);
     }
 }
