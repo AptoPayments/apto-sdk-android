@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 
 
 /**
@@ -80,7 +83,9 @@ public class CreditCardView extends RelativeLayout {
         super.onFinishInflate();
         setFonts();
         enableCard();
-        setBackgroundResource(mEnabledCardBackground);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setElevation(50);
+        }
     }
 
     @Override
@@ -160,7 +165,14 @@ public class CreditCardView extends RelativeLayout {
         mCvvView.setVisibility(VISIBLE);
         mCvvLabel.setVisibility(VISIBLE);
         mCardNotEnabledLabel.setVisibility(GONE);
-        setBackgroundResource(mEnabledCardBackground);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Drawable background = mContext.getDrawable(mEnabledCardBackground);
+            background.setColorFilter(UIStorage.getInstance().getPrimaryColor(), PorterDuff.Mode.SRC_ATOP);
+            setBackground(background);
+        }
+        else {
+            setBackgroundResource(mEnabledCardBackground);
+        }
     }
 
     private void disableCard() {

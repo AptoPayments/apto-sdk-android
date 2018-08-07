@@ -34,6 +34,9 @@ public class UIStorage {
     private Integer mTextSecondaryColor;
     private Integer mTextTertiaryColor;
     private Integer mTextTopbarColor;
+    private Integer mIconPrimaryColor;
+    private Integer mIconSecondaryColor;
+    private Integer mIconTertiaryColor;
     private ContextConfigResponseVo mConfig;
     private ShiftSdkOptions mSdkOptions;
 
@@ -47,6 +50,9 @@ public class UIStorage {
     private final static String DEFAULT_SECONDARY_TEXT_COLOR = "FF54565F";
     private final static String DEFAULT_TERTIARY_TEXT_COLOR = "FFBBBDBD";
     private final static String DEFAULT_TOPBAR_TEXT_COLOR = "FFFFFF";
+    private final static String DEFAULT_ICON_PRIMARY_COLOR = "000000";
+    private final static String DEFAULT_ICON_SECONDARY_COLOR = "000000";
+    private final static String DEFAULT_ICON_TERTIARY_COLOR = "FFFFFF";
     private static final Map<String, Integer> mIconMap = createIconMap();
 
     private static UIStorage mInstance;
@@ -264,6 +270,71 @@ public class UIStorage {
         }
     }
 
+    public synchronized Integer getIconPrimaryColor() {
+        if(mIconPrimaryColor != null) {
+            return mIconPrimaryColor;
+        }
+        else {
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+
+                try {
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
+                    return mIconPrimaryColor;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+
+            });
+            if (getResultFromFuture(future) == null) {
+                return convertHexToInt(DEFAULT_ICON_PRIMARY_COLOR);
+            } else {
+                return (Integer) getResultFromFuture(future);
+            }
+        }
+    }
+
+    public synchronized Integer getIconSecondaryColor() {
+        if(mIconSecondaryColor != null) {
+            return mIconSecondaryColor;
+        }
+        else {
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
+                    return mIconSecondaryColor;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            });
+            if (getResultFromFuture(future) == null) {
+                return convertHexToInt(DEFAULT_ICON_SECONDARY_COLOR);
+            } else {
+                return (Integer) getResultFromFuture(future);
+            }
+        }
+    }
+
+    public synchronized Integer getIconTertiaryColor() {
+        if(mIconTertiaryColor != null) {
+            return mIconTertiaryColor;
+        }
+        else {
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
+                    return mIconTertiaryColor;
+                } catch (ApiException e) {
+                    throw new CompletionException(e);
+                }
+            });
+            if (getResultFromFuture(future) == null) {
+                return convertHexToInt(DEFAULT_ICON_TERTIARY_COLOR);
+            } else {
+                return (Integer) getResultFromFuture(future);
+            }
+        }
+    }
+
     public int getStatusBarColor(int actionBarColor) {
         float[] hsv = new float[3];
         Color.colorToHSV(actionBarColor, hsv);
@@ -332,6 +403,15 @@ public class UIStorage {
         }
         if(mConfig.projectConfiguration.textTopbarColor != null) {
             mTextTopbarColor = convertHexToInt(mConfig.projectConfiguration.textTopbarColor);
+        }
+        if(mConfig.projectConfiguration.iconPrimaryColor != null) {
+            mIconPrimaryColor = convertHexToInt(mConfig.projectConfiguration.iconPrimaryColor);
+        }
+        if(mConfig.projectConfiguration.iconSecondaryColor != null) {
+            mIconSecondaryColor = convertHexToInt(mConfig.projectConfiguration.iconSecondaryColor);
+        }
+        if(mConfig.projectConfiguration.iconTertiaryColor != null) {
+            mIconTertiaryColor = convertHexToInt(mConfig.projectConfiguration.iconTertiaryColor);
         }
     }
 

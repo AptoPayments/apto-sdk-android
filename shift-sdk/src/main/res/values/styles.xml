@@ -385,6 +385,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">@dimen/llsdk_manage_card_small_amount_text_size</item>
         <item name="android:clickable">false</item>
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
     <style name="llsdk_manage_card_section_title">
         <item name="android:layout_width">wrap_content</item>
@@ -399,6 +400,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/llsdk_primary_text_color</item>
         <item name="android:textSize">@dimen/llsdk_manage_card_big_amount_text_size</item>
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
     <style name="llsdk_manage_card_subcurrency">
         <item name="android:layout_width">wrap_content</item>

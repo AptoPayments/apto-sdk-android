@@ -39,6 +39,15 @@ public class ConfigResponseVo {
     @SerializedName("text_topbar_color")
     public String textTopbarColor;
 
+    @SerializedName("icon_primary_color")
+    public String iconPrimaryColor;
+
+    @SerializedName("icon_secondary_color")
+    public String iconSecondaryColor;
+
+    @SerializedName("icon_tertiary_color")
+    public String iconTertiaryColor;
+
     @SerializedName("logo_url")
     public String logoURL;
 
