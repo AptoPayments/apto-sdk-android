@@ -124,6 +124,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
 
     private void setupListeners() {
         mAddFundingSourceButton.setOnClickListener(this);
+        mAddFundingSourceLabel.setOnClickListener(this);
     }
 
     /**

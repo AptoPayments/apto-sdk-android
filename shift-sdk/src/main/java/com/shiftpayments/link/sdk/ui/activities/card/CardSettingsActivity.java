@@ -6,6 +6,7 @@ import android.view.View;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.FragmentMvpActivity;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
+import com.shiftpayments.link.sdk.ui.presenters.card.CardSettingsDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.CardSettingsPresenter;
 import com.shiftpayments.link.sdk.ui.views.card.CardSettingsView;
 
@@ -25,7 +26,12 @@ public class CardSettingsActivity extends FragmentMvpActivity {
     /** {@inheritDoc} */
     @Override
     protected CardSettingsPresenter createPresenter(BaseDelegate delegate) {
-        return new CardSettingsPresenter(this);
+        if(delegate instanceof CardSettingsDelegate) {
+            return new CardSettingsPresenter(this, (CardSettingsDelegate) delegate);
+        }
+        else {
+            throw new NullPointerException("Received Module does not implement CardSettingsDelegate!");
+        }
     }
 
     @Override

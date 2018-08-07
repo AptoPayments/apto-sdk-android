@@ -80,8 +80,12 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(accessToken, refreshToken);
         SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
-        ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
-
+        if(CardStorage.getInstance().getApplication() != null) {
+            ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
+        }
+        else {
+            super.onFinish.execute();
+        }
     }
 
     @Override
@@ -92,6 +96,15 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
     @Subscribe
     public void handleResponse(ApiEmptyResponseVo response) {
         super.onFinish.execute();
+    }
+
+    /**
+     * Called when an API error has been received.
+     * @param error API error.
+     */
+    @Subscribe
+    public void handleApiError(ApiErrorVo error) {
+        super.showError(error);
     }
 
     private void startOAuthActivity() {

@@ -35,9 +35,11 @@ public class CardSettingsPresenter
 
     private CardSettingsActivity mActivity;
     private FundingSourcesListRecyclerAdapter mAdapter;
+    private CardSettingsDelegate mDelegate;
 
-    public CardSettingsPresenter(CardSettingsActivity activity) {
+    public CardSettingsPresenter(CardSettingsActivity activity, CardSettingsDelegate delegate) {
         mActivity = activity;
+        mDelegate = delegate;
     }
 
     /** {@inheritDoc} */
@@ -74,7 +76,7 @@ public class CardSettingsPresenter
 
     @Override
     public void addFundingSource() {
-        /*mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());*/
+        mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());
     }
 
     @Override
@@ -122,6 +124,6 @@ public class CardSettingsPresenter
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         mActivity.finish();
-        /*mDelegate.onSessionExpired(error);*/
+        mDelegate.onSessionExpired(error);
     }
 }

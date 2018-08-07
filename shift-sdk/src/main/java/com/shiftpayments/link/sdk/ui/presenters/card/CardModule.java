@@ -48,7 +48,8 @@ import static com.shiftpayments.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
  * Created by adrian on 23/02/2018.
  */
 
-public class CardModule extends ShiftBaseModule implements ManageAccountDelegate, ManageCardDelegate {
+public class CardModule extends ShiftBaseModule implements ManageAccountDelegate, ManageCardDelegate,
+        CardSettingsDelegate {
 
     private NewCardModule mNewCardModule;
 
@@ -197,8 +198,13 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void startCustodianModule(Command onFinish, Command onBack) {
-        setCurrentModule();
-        CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity(), onFinish, onBack);
+        CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(
+                this.getActivity(),
+                ()->{
+                    setCurrentModule();
+                    onFinish.execute();
+                    },
+                onBack);
         startModule(custodianSelectorModule);
     }
 
