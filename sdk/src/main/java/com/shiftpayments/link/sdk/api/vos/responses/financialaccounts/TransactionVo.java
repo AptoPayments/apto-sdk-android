@@ -152,62 +152,43 @@ public class TransactionVo implements Parcelable {
     }
 
     public enum TransactionType {
-        @SerializedName("sent")
-        SENT,
-        @SerializedName("deposit")
-        DEPOSIT,
-        @SerializedName("atm_withdrawal")
-        ATM_WITHDRAWAL,
-        @SerializedName("withdrawal")
-        WITHDRAWAL,
-        @SerializedName("settlement")
-        SETTLEMENT,
-        @SerializedName("pin_purchase")
-        PIN_PURCHASE,
-        @SerializedName("fee")
-        FEE,
-        @SerializedName("refund")
-        REFUND,
         @SerializedName("pending")
         PENDING,
-        @SerializedName("decline")
-        DECLINE,
-        @SerializedName("received")
-        RECEIVED,
         @SerializedName("reversal")
         REVERSAL,
-        @SerializedName("unsupported")
-        UNSUPPORTED,
+        @SerializedName("purchase")
+        PURCHASE,
+        @SerializedName("pin_purchase")
+        PIN_PURCHASE,
+        @SerializedName("refund")
+        REFUND,
+        @SerializedName("decline")
+        DECLINE,
+        @SerializedName("balance_inquiry")
+        BALANCE_INQUIRY,
+        @SerializedName("withdrawal")
+        WITHDRAWAL,
         @SerializedName("other")
         OTHER;
 
         @Override
         public String toString() {
             switch (this) {
-                case SENT:
-                    return "Sent";
-                case DEPOSIT:
-                    return "Deposited";
-                case ATM_WITHDRAWAL:
-                    return "ATM withdrawal";
                 case WITHDRAWAL:
                     return "Withdrawal";
-                case SETTLEMENT:
+                case PURCHASE:
                     return "Purchase";
                 case PIN_PURCHASE:
                     return "PIN purchase";
-                case FEE:
-                    return "Fee";
                 case REFUND:
                     return "Refund";
                 case PENDING:
                 case DECLINE:
-                case UNSUPPORTED:
                     return "Merchant";
-                case RECEIVED:
-                    return "Received";
                 case REVERSAL:
                     return "Reversal";
+                case BALANCE_INQUIRY:
+                    return "Balance inquiry";
                 case OTHER:
                     return "Other";
                 default:
