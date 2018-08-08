@@ -47,4 +47,5 @@
 
     <dimen name="llsdk_card_settings_medium_amount_text_size">20sp</dimen>
     <dimen name="llsdk_card_settings_main_item_text_size">20sp</dimen>
+    <dimen name="llsdk_item_description_text_size">12sp</dimen>
 </resources>

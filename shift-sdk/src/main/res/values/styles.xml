@@ -408,6 +408,12 @@
         <item name="android:textColor">@color/llsdk_tertiary_text_color</item>
         <item name="android:textSize">@dimen/llsdk_manage_card_subcurrency_text_size</item>
     </style>
+    <style name="llsdk_item_description">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_tertiary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_item_description_text_size</item>
+    </style>
 
     <style name="llsdk_action_button_style" parent="Widget.AppCompat.ActionButton">
         <item name="android:minWidth">40dp</item>

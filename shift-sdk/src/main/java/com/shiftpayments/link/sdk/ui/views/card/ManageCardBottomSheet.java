@@ -12,7 +12,6 @@ import android.support.v7.widget.SwitchCompat;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
@@ -23,7 +22,7 @@ import com.shiftpayments.link.sdk.ui.storages.UIStorage;
  */
 
 public class ManageCardBottomSheet extends BottomSheetDialogFragment
-        implements CompoundButton.OnCheckedChangeListener, CompoundButton.OnTouchListener, View.OnClickListener {
+        implements CompoundButton.OnCheckedChangeListener, CompoundButton.OnTouchListener {
 
     private static boolean mIsEnableCardSwitchTouched;
     private static boolean mIsShowCardInfoSwitchTouched;
@@ -32,7 +31,7 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
     private ViewListener mListener;
     private SwitchCompat mEnableCardSwitch;
     private SwitchCompat mShowCardInfoSwitch;
-    private LinearLayout mContactSupport;
+
     private BottomSheetBehavior.BottomSheetCallback mBottomSheetBehaviorCallback = new BottomSheetBehavior.BottomSheetCallback() {
         @Override
         public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -94,17 +93,6 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
         return false;
     }
 
-    @Override
-    public void onClick(View view) {
-        if (mListener == null) {
-            return;
-        }
-
-        if (view.getId() == R.id.ll_contact_support) {
-            mListener.contactSupportClickHandler();
-        }
-    }
-
     public void setViewListener(ViewListener viewListener) {
         mListener = viewListener;
     }
@@ -120,7 +108,6 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
     private void findAllViews(View view) {
         mEnableCardSwitch = view.findViewById(R.id.sw_card_enabled);
         mShowCardInfoSwitch = view.findViewById(R.id.sw_show_card_info);
-        mContactSupport = view.findViewById(R.id.ll_contact_support);
     }
 
     private void setUpListeners() {
@@ -128,7 +115,6 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
         mEnableCardSwitch.setOnTouchListener(this);
         mShowCardInfoSwitch.setOnCheckedChangeListener(this);
         mShowCardInfoSwitch.setOnTouchListener(this);
-        mContactSupport.setOnClickListener(this);
     }
 
     private void setColors() {
@@ -146,6 +132,5 @@ public class ManageCardBottomSheet extends BottomSheetDialogFragment
     public interface ViewListener {
         void enableCardClickHandler(boolean enable);
         void showCardInfoClickHandler(boolean show);
-        void contactSupportClickHandler();
     }
 }

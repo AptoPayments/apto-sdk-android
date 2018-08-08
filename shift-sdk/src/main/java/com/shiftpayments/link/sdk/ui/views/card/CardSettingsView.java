@@ -39,6 +39,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     private TextView mAddFundingSourceLabel;
     private FrameLayout mPinView;
     private TextView mChangePinButton;
+    private TextView mContactSupportButton;
 
     /**
      * Callbacks this {@link View} will invoke.
@@ -46,6 +47,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     public interface ViewListener {
         void addFundingSource();
         void changePinClickHandler();
+        void contactSupportClickHandler();
         void onClose();
     }
 
@@ -91,6 +93,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
             mListener.onClose();
         } else if (view.getId() == R.id.tv_change_pin) {
             mListener.changePinClickHandler();
+        } else if (view.getId() == R.id.tv_report_stolen_card) {
+            mListener.contactSupportClickHandler();
         }
     }
 
@@ -141,6 +145,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mAddFundingSourceButton.setOnClickListener(this);
         mAddFundingSourceLabel.setOnClickListener(this);
         mChangePinButton.setOnClickListener(this);
+        mContactSupportButton.setOnClickListener(this);
     }
 
     /**
@@ -155,6 +160,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mAddFundingSourceLabel = findViewById(R.id.tv_add_funding_source_label);
         mPinView = findViewById(R.id.pin_fragment);
         mChangePinButton = findViewById(R.id.tv_change_pin);
+        mContactSupportButton = findViewById(R.id.tv_report_stolen_card);
     }
 
     private void setColors() {

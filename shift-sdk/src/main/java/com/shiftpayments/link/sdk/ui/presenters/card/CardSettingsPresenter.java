@@ -22,6 +22,7 @@ import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
+import com.shiftpayments.link.sdk.ui.utils.SendEmailUtil;
 import com.shiftpayments.link.sdk.ui.views.card.CardSettingsView;
 import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
 import com.venmo.android.pin.PinFragmentConfiguration;
@@ -101,6 +102,11 @@ public class CardSettingsPresenter
                 .replace(R.id.pin_fragment, pinFragment)
                 .commit();
         mView.showPinFragment(true);
+    }
+
+    @Override
+    public void contactSupportClickHandler() {
+        new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
     }
 
     @Override

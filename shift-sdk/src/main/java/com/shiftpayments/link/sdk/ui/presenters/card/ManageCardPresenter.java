@@ -206,11 +206,6 @@ public class ManageCardPresenter
     }
 
     @Override
-    public void contactSupportClickHandler() {
-        new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
-    }
-
-    @Override
     public void onUserAuthenticated() {
         mIsUserAuthenticated = true;
         mModel.showCardInfo = true;
