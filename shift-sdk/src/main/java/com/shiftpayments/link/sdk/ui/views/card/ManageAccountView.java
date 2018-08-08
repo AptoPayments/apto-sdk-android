@@ -151,8 +151,6 @@ public class ManageAccountView
         mSpendableAmount.setTextColor(primaryColor);
         mSignOutButton.setBackgroundColor(primaryColor);
         Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
-        int actionBarColor = getResources().getColor(R.color.llsdk_actionbar_background);
-        mToolbar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
         mToolbar.setNavigationIcon(backArrow);
     }
 }

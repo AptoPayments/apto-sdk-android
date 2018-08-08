@@ -1,7 +1,9 @@
 package com.shiftpayments.link.sdk.ui.activities;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -62,9 +64,11 @@ public abstract class MvpActivity<M extends ActivityModel, V extends View & View
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().setStatusBarColor(UIStorage.getInstance().getStatusBarColor(UIStorage.getInstance().getPrimaryColor()));
         }
-
         mPresenter = createPresenter(currentModule);
         mPresenter.attachView(mView);
+        Toolbar toolbar = mView.getToolbar();
+        toolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getPrimaryColor()));
+        toolbar.setTitleTextColor(UIStorage.getInstance().getTextTopbarColor());
     }
 
     /**

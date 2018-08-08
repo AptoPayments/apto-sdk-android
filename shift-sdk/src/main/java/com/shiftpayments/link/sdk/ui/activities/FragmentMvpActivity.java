@@ -1,9 +1,11 @@
 package com.shiftpayments.link.sdk.ui.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -15,6 +17,7 @@ import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -63,6 +66,11 @@ public abstract class FragmentMvpActivity<M extends ActivityModel, V extends Vie
         }
         mPresenter = createPresenter(ModuleManager.getInstance().getCurrentModule());
         mPresenter.attachView(mView);
+        if(mView instanceof ViewWithToolbar) {
+            Toolbar toolbar = ((ViewWithToolbar) mView).getToolbar();
+            toolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getPrimaryColor()));
+            toolbar.setTitleTextColor(UIStorage.getInstance().getTextTopbarColor());
+        }
     }
 
     /**

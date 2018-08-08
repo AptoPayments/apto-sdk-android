@@ -64,7 +64,6 @@ public class ManageCardView
         super.onFinishInflate();
         findAllViews();
         setUpListeners();
-        setColors();
     }
 
     @Override
@@ -112,11 +111,6 @@ public class ManageCardView
         if(mSwipeRefreshLayout != null) {
             mSwipeRefreshLayout.setOnRefreshListener(this);
         }
-    }
-
-    private void setColors() {
-        mToolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getPrimaryColor()));
-        mToolbar.setTitleTextColor(UIStorage.getInstance().getTextTopbarColor());
     }
 
     public void showNoTransactionsImage(boolean show) {

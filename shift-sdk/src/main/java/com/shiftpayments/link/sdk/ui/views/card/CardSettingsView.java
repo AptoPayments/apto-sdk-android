@@ -167,8 +167,6 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         int primaryColor = UIStorage.getInstance().getPrimaryColor();
         int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
         Drawable closeIcon = ContextCompat.getDrawable(getContext(), R.drawable.ic_close);
-        int actionBarColor = getResources().getColor(R.color.llsdk_actionbar_background);
-        mToolbar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
         mToolbar.setNavigationIcon(closeIcon);
         mAddFundingSourceButton.setColorFilter(primaryColor);
         mAddFundingSourceLabel.setTextColor(primaryColor);

@@ -73,7 +73,6 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
 
     protected void setColors() {
         int color = UIStorage.getInstance().getPrimaryColor();
-        mToolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.llsdk_actionbar_background)));
         if(mProgressBar != null) {
             mProgressBar.setProgressBarColor(color);
         }
