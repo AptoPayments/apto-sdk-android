@@ -429,28 +429,41 @@ public class UIStorage {
     }
 
     public ColorStateList getRadioButtonColors() {
+        int grayBackground = Color.parseColor("#40221F1F");
         return new ColorStateList(
                 new int[][]{
                         new int[]{-android.R.attr.state_checked},
                         new int[]{android.R.attr.state_checked}
                 },
                 new int[] {
-                        Color.GRAY, mPrimaryColor
+                        grayBackground, mPrimaryColor
+                }
+        );
+    }
+
+    public ColorStateList getSwitchForegroundColors() {
+        int grayBackground = Color.parseColor("#FFF1F1F1");
+        return new ColorStateList(
+                new int[][]{
+                        new int[]{-android.R.attr.state_checked},
+                        new int[]{android.R.attr.state_checked}
+                },
+                new int[] {
+                        grayBackground, mPrimaryColor
                 }
         );
     }
 
     public ColorStateList getSwitchBackgroundColors() {
-        int materialGrayColor = Color.parseColor("#bdbdbd");
-        int statusBarColor = Color.parseColor("#FFF9F9F9");
-        statusBarColor = statusBarColor==mPrimaryColor ? materialGrayColor : statusBarColor;
+        int grayBackground = Color.parseColor("#40221F1F");
+        int statusBarColor = getStatusBarColor(mPrimaryColor);
         return new ColorStateList(
                 new int[][]{
                         new int[]{-android.R.attr.state_checked},
                         new int[]{android.R.attr.state_checked}
                 },
                 new int[] {
-                        materialGrayColor, statusBarColor
+                        grayBackground, statusBarColor
                 }
         );
     }

@@ -1,16 +1,20 @@
 package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -28,8 +32,10 @@ import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
  * Displays the card settings
  * @author Adrian
  */
-public class CardSettingsView extends CoordinatorLayout implements ViewWithToolbar, View.OnClickListener {
+public class CardSettingsView extends CoordinatorLayout implements ViewWithToolbar,
+        View.OnClickListener, CompoundButton.OnCheckedChangeListener, View.OnTouchListener {
 
+    private static boolean mIsShowCardInfoSwitchTouched;
     private ViewListener mListener;
     private Toolbar mToolbar;
     private RecyclerView mFundingSourcesListView;
@@ -40,6 +46,30 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     private FrameLayout mPinView;
     private TextView mChangePinButton;
     private TextView mContactSupportButton;
+    private SwitchCompat mShowCardInfoSwitch;
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+        if (mListener == null) {
+            return;
+        }
+        int id = compoundButton.getId();
+
+        if (id == R.id.sw_show_card_info) {
+            if (mIsShowCardInfoSwitchTouched) {
+                mIsShowCardInfoSwitchTouched = false;
+                mListener.showCardInfoClickHandler(isChecked);
+            }
+        }
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (view.getId() == R.id.sw_show_card_info) {
+            mIsShowCardInfoSwitchTouched = true;
+        }
+        return false;
+    }
 
     /**
      * Callbacks this {@link View} will invoke.
@@ -48,6 +78,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         void addFundingSource();
         void changePinClickHandler();
         void contactSupportClickHandler();
+        void showCardInfoClickHandler(boolean show);
         void onClose();
     }
 
@@ -78,7 +109,6 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         setupRecyclerView();
         setColors();
     }
-
 
     @Override
     public void onClick(View view) {
@@ -141,11 +171,17 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         }
     }
 
+    public void setShowCardInfoSwitch(boolean enable) {
+        mShowCardInfoSwitch.setChecked(enable);
+    }
+
     private void setupListeners() {
         mAddFundingSourceButton.setOnClickListener(this);
         mAddFundingSourceLabel.setOnClickListener(this);
         mChangePinButton.setOnClickListener(this);
         mContactSupportButton.setOnClickListener(this);
+        mShowCardInfoSwitch.setOnCheckedChangeListener(this);
+        mShowCardInfoSwitch.setOnTouchListener(this);
     }
 
     /**
@@ -161,6 +197,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mPinView = findViewById(R.id.pin_fragment);
         mChangePinButton = findViewById(R.id.tv_change_pin);
         mContactSupportButton = findViewById(R.id.tv_report_stolen_card);
+        mShowCardInfoSwitch = findViewById(R.id.sw_show_card_info);
     }
 
     private void setColors() {
@@ -170,6 +207,10 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mToolbar.setNavigationIcon(closeIcon);
         mAddFundingSourceButton.setColorFilter(primaryColor);
         mAddFundingSourceLabel.setTextColor(primaryColor);
+        ColorStateList foregroundColors = UIStorage.getInstance().getSwitchForegroundColors();
+        ColorStateList backgroundColors = UIStorage.getInstance().getSwitchBackgroundColors();
+        DrawableCompat.setTintList(DrawableCompat.wrap(mShowCardInfoSwitch.getThumbDrawable()), foregroundColors);
+        DrawableCompat.setTintList(DrawableCompat.wrap(mShowCardInfoSwitch.getTrackDrawable()), backgroundColors);
     }
 
     /**

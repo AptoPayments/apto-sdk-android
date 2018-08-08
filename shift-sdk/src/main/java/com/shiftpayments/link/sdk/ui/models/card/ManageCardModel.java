@@ -4,6 +4,7 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
 import com.shiftpayments.link.sdk.ui.models.Model;
+import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
@@ -22,7 +23,6 @@ import static com.shiftpayments.link.sdk.api.vos.Card.FinancialAccountState.CREA
 public class ManageCardModel implements Model {
 
     private Card mCard;
-    public boolean showCardInfo;
     private AmountVo mBalance;
     private AmountVo mSpendableAmount;
     private AmountVo mNativeBalance;
@@ -32,7 +32,6 @@ public class ManageCardModel implements Model {
      */
     public ManageCardModel(Card card) {
         mCard = card;
-        showCardInfo = false;
     }
 
     public String getCardHolderName() {
@@ -45,11 +44,10 @@ public class ManageCardModel implements Model {
 
     public String getCVV() {
         if(mCard != null) {
-            if(showCardInfo) {
+            if(CardStorage.getInstance().showCardInfo) {
                 return mCard.CVVToken;
             }
             else {
-
                 return "***";
             }
         }
@@ -65,7 +63,7 @@ public class ManageCardModel implements Model {
 
     public String getCardNumber() {
         if(mCard != null) {
-            if(showCardInfo) {
+            if(CardStorage.getInstance().showCardInfo) {
                 StringBuilder formattedCardNumber = new StringBuilder();
                 for (int i = 0; i < mCard.PANToken.length(); i++) {
                     if (i % 4 == 0 && i != 0) {
@@ -85,7 +83,7 @@ public class ManageCardModel implements Model {
 
     public String getExpirationDate() {
         if(mCard != null) {
-            if(showCardInfo) {
+            if(CardStorage.getInstance().showCardInfo) {
                 return getFormattedExpirationDate();
             }
             else {

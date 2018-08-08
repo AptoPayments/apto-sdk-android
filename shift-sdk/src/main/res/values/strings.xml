@@ -323,11 +323,13 @@
     <!-- card settings -->
     <string name="card_settings_title">Card settings</string>
     <string name="switch_enable_card">Enable Card</string>
-    <string name="switch_show_card_info">Show Card Info</string>
+    <string name="switch_show_card_info">Card Info</string>
+    <string name="show_card_info_description">Show card number and CVV</string>
     <string name="save_to_android_pay_label">Add Card</string>
     <string name="contact_support_label">My card was stolen or lost</string>
     <string name="contact_support_description">Report missing or stolen card</string>
     <string name="change_pin_label">Modify Card PIN</string>
+    <string name="change_pin_description">Set a new PIN code for your card</string>
     <string name="funding_sources_label">Funding Sources</string>
     <string name="settings_label">Settings</string>
     <string name="support_label">Support</string>

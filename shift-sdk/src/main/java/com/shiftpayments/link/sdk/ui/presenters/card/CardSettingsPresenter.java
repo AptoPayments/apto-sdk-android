@@ -22,6 +22,9 @@ import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
+import com.shiftpayments.link.sdk.ui.utils.FingerprintAuthenticationDialogFragment;
+import com.shiftpayments.link.sdk.ui.utils.FingerprintDelegate;
+import com.shiftpayments.link.sdk.ui.utils.FingerprintHandler;
 import com.shiftpayments.link.sdk.ui.utils.SendEmailUtil;
 import com.shiftpayments.link.sdk.ui.views.card.CardSettingsView;
 import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
@@ -38,17 +41,24 @@ import java.util.List;
  */
 public class CardSettingsPresenter
         extends BasePresenter<CardSettingsModel, CardSettingsView>
-        implements Presenter<CardSettingsModel, CardSettingsView>,FundingSourceView.ViewListener, CardSettingsView.ViewListener {
+        implements Presenter<CardSettingsModel, CardSettingsView>,FundingSourceView.ViewListener,
+        CardSettingsView.ViewListener, FingerprintDelegate {
+
+    private static final String DIALOG_FRAGMENT_TAG = "fingerprintFragment";
 
     private CardSettingsActivity mActivity;
     private FundingSourcesListRecyclerAdapter mAdapter;
     private CardSettingsDelegate mDelegate;
     private FragmentManager mFragmentManager;
+    private FingerprintHandler mFingerprintHandler;
+    private boolean mIsUserAuthenticated;
 
     public CardSettingsPresenter(CardSettingsActivity activity, CardSettingsDelegate delegate, FragmentManager fragmentManager) {
         mActivity = activity;
         mDelegate = delegate;
         mFragmentManager = fragmentManager;
+        mIsUserAuthenticated = false;
+        mFingerprintHandler = new FingerprintHandler(mActivity);
     }
 
     /** {@inheritDoc} */
@@ -62,6 +72,7 @@ public class CardSettingsPresenter
         mAdapter.setViewListener(this);
         view.setAdapter(mAdapter);
         mView.showAddFundingSourceButton(UIStorage.getInstance().showAddFundingSourceButton());
+        mView.setShowCardInfoSwitch(CardStorage.getInstance().showCardInfo);
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.getUserFundingSources();
     }
@@ -107,6 +118,44 @@ public class CardSettingsPresenter
     @Override
     public void contactSupportClickHandler() {
         new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
+    }
+
+    @Override
+    public void showCardInfoClickHandler(boolean show) {
+        if(!show) {
+            CardStorage.getInstance().showCardInfo = false;
+        }
+        else {
+            if(mIsUserAuthenticated) {
+                onUserAuthenticated();
+            }
+            else if(mFingerprintHandler.isFingerprintAuthPossible()) {
+                FingerprintAuthenticationDialogFragment fragment
+                        = new FingerprintAuthenticationDialogFragment();
+                fragment.setFingerprintDelegate(this);
+                fragment.setFingerprintHandler(mFingerprintHandler);
+                fragment.show(mFragmentManager, DIALOG_FRAGMENT_TAG);
+            }
+            else {
+                // TODO: show card info without any authentication
+                CardStorage.getInstance().showCardInfo = true;
+            }
+        }
+    }
+
+    @Override
+    public void onUserAuthenticated() {
+        mIsUserAuthenticated = true;
+        CardStorage.getInstance().showCardInfo = true;
+        mView.setShowCardInfoSwitch(true);
+    }
+
+    @Override
+    public void onAuthenticationFailed(String error) {
+        mIsUserAuthenticated = false;
+        CardStorage.getInstance().showCardInfo = false;
+        ApiErrorUtil.showErrorMessage(error, mActivity);
+        mView.setShowCardInfoSwitch(false);
     }
 
     @Override

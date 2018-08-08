@@ -413,6 +413,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/llsdk_tertiary_text_color</item>
         <item name="android:textSize">@dimen/llsdk_item_description_text_size</item>
+        <item name="android:layout_marginLeft">16dp</item>
     </style>
 
     <style name="llsdk_action_button_style" parent="Widget.AppCompat.ActionButton">
@@ -428,11 +429,18 @@
         <item name="android:textColor">@color/llsdk_secondary_text_color</item>
         <item name="android:textSize">@dimen/llsdk_card_settings_medium_amount_text_size</item>
     </style>
-    <style name="llsdk_card_settings_main_item">
+    <style name="llsdk_main_item_light">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
         <item name="android:textColor">@color/llsdk_primary_text_color</item>
-        <item name="android:textSize">@dimen/llsdk_card_settings_main_item_text_size</item>
+        <item name="android:textSize">@dimen/llsdk_main_item_light_text_size</item>
+    </style>
+    <style name="llsdk_main_item_light_switch" parent="llsdk_main_item_light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginRight">12dp</item>
     </style>
     <style name="llsdk_card_settings_section_title">
         <item name="android:layout_width">wrap_content</item>

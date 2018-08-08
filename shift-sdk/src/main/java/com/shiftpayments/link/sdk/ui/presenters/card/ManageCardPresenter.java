@@ -32,12 +32,7 @@ import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
-import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
-import com.shiftpayments.link.sdk.ui.utils.FingerprintAuthenticationDialogFragment;
-import com.shiftpayments.link.sdk.ui.utils.FingerprintDelegate;
-import com.shiftpayments.link.sdk.ui.utils.FingerprintHandler;
-import com.shiftpayments.link.sdk.ui.utils.SendEmailUtil;
 import com.shiftpayments.link.sdk.ui.views.card.EndlessRecyclerViewScrollListener;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardBottomSheet;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
@@ -59,21 +54,18 @@ import static com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsAc
 public class ManageCardPresenter
         extends BasePresenter<ManageCardModel, ManageCardView>
         implements Presenter<ManageCardModel, ManageCardView>, ManageCardView.ViewListener,
-        ManageCardBottomSheet.ViewListener, FingerprintDelegate, TransactionsAdapter.ViewListener {
+        ManageCardBottomSheet.ViewListener, TransactionsAdapter.ViewListener {
 
-    private static final String DIALOG_FRAGMENT_TAG = "fingerprintFragment";
     private static final int ROWS = 20;
 
     private ActionBar mActionBar;
     private FragmentManager mFragmentManager;
     private ManageCardBottomSheet mManageCardBottomSheet;
-    private FingerprintHandler mFingerprintHandler;
     private ManageCardActivity mActivity;
     private EndlessRecyclerViewScrollListener mScrollListener;
     private TransactionsAdapter mTransactionsAdapter;
     private ArrayList mTransactionsList;
     private String mLastTransactionId;
-    private boolean mIsUserAuthenticated;
     private ManageCardDelegate mDelegate;
     private Semaphore mSemaphore;
     private static final int NUMBER_OF_CONCURRENT_CALLS = 2;
@@ -81,9 +73,7 @@ public class ManageCardPresenter
     public ManageCardPresenter(FragmentManager fragmentManager, ManageCardActivity activity, ManageCardDelegate delegate) {
         mFragmentManager = fragmentManager;
         mActivity = activity;
-        mFingerprintHandler = new FingerprintHandler(mActivity);
         mDelegate = delegate;
-        mIsUserAuthenticated = false;
         mLastTransactionId = null;
         mSemaphore = new Semaphore(NUMBER_OF_CONCURRENT_CALLS);
     }
@@ -181,7 +171,7 @@ public class ManageCardPresenter
 
     @Override
     public void showCardInfoClickHandler(boolean show) {
-        hideBottomSheet();
+        /*hideBottomSheet();
         if(!show) {
             mModel.showCardInfo = false;
             mTransactionsAdapter.notifyItemChanged(0);
@@ -202,23 +192,7 @@ public class ManageCardPresenter
                 mModel.showCardInfo = true;
                 mTransactionsAdapter.notifyItemChanged(0);
             }
-        }
-    }
-
-    @Override
-    public void onUserAuthenticated() {
-        mIsUserAuthenticated = true;
-        mModel.showCardInfo = true;
-        mTransactionsAdapter.notifyItemChanged(0);
-        mManageCardBottomSheet.setShowCardInfoSwitch(mModel.showCardInfo);
-    }
-
-    @Override
-    public void onAuthenticationFailed(String error) {
-        mIsUserAuthenticated = false;
-        mModel.showCardInfo = false;
-        ApiErrorUtil.showErrorMessage(error, mActivity);
-        mManageCardBottomSheet.setShowCardInfoSwitch(mModel.showCardInfo);
+        }*/
     }
 
     /**
@@ -262,7 +236,7 @@ public class ManageCardPresenter
         if(error.statusCode==404) {
             // Card has no funding source
             mModel.setBalance(null);
-            mTransactionsAdapter.notifyItemChanged(0);
+            updateCard();
         }
         else {
             ApiErrorUtil.showErrorMessage(error, mActivity);
@@ -312,10 +286,14 @@ public class ManageCardPresenter
             mModel.setNativeBalance(new AmountVo(response.custodianWallet.balance.amount, response.custodianWallet.balance.currency));
         }
         CardStorage.getInstance().setFundingSourceId(response.id);
-        mTransactionsAdapter.notifyItemChanged(0);
+        updateCard();
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
+    }
+
+    public void updateCard() {
+        mTransactionsAdapter.notifyItemChanged(0);
     }
 
     protected void setupToolbar() {
@@ -397,7 +375,7 @@ public class ManageCardPresenter
         }
         Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
         mModel.setCard(card);
-        mTransactionsAdapter.notifyItemChanged(0);
+        updateCard();
     }
 
     private void getFundingSource() {

@@ -62,7 +62,6 @@
         <item name="llsdk_addDocuments_bottomsheetIconColor">@color/llsdk_dark_text_color_hint</item>
 
         <item name="llsdk_cardSettings_amountMediumStyle">@style/llsdk_card_settings_medium_amount</item>
-        <item name="llsdk_cardSettings_mainItemStyle">@style/llsdk_card_settings_main_item</item>
         <item name="llsdk_cardSettings_sectionTitleTextStyle">@style/llsdk_card_settings_section_title</item>
 
         <item name="llsdk_loanAgreement_sectionStyle">@style/llsdk_loan_agreement_section</item>

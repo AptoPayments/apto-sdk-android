@@ -20,86 +20,102 @@
             app:navigationIcon="?attr/homeAsUpIndicator" />
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusableInTouchMode="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_below="@+id/settings_toolbar"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_funding_sources_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
-            android:layout_marginTop="8dp"
-            android:text="@string/funding_sources_label" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_funding_sources_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:scrollbarStyle="outsideOverlay"
-            android:scrollbars="vertical" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
-            android:id="@+id/ll_add_funding_source"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp">
-            <ImageButton
-                android:id="@+id/ib_add_funding_source"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="14dp"
-                android:background="@android:color/white"
-                android:src="@drawable/ic_icon_add"/>
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
             <TextView
-                android:id="@+id/tv_add_funding_source_label"
-                android:layout_width="0dp"
+                android:id="@+id/tv_funding_sources_header"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:text="@string/add_funding_source"
-                android:layout_weight="1" />
+                style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
+                android:layout_marginTop="8dp"
+                android:text="@string/funding_sources_label" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_funding_sources_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="vertical" />
+
+            <LinearLayout
+                android:id="@+id/ll_add_funding_source"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp">
+                <ImageButton
+                    android:id="@+id/ib_add_funding_source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="14dp"
+                    android:background="@android:color/white"
+                    android:src="@drawable/ic_icon_add"/>
+                <TextView
+                    android:id="@+id/tv_add_funding_source_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="@string/add_funding_source"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_settings_header"
+                style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
+                android:text="@string/settings_label" />
+
+            <TextView
+                android:id="@+id/tv_change_pin"
+                style="@style/llsdk_main_item_light"
+                android:text="@string/change_pin_label"/>
+
+            <TextView
+                android:id="@+id/tv_change_pin_description"
+                style="@style/llsdk_item_description"
+                android:text="@string/change_pin_description"/>
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/sw_show_card_info"
+                style="@style/llsdk_main_item_light_switch"
+                android:text="@string/switch_show_card_info" />
+
+            <TextView
+                android:id="@+id/tv_show_card_info_description"
+                style="@style/llsdk_item_description"
+                android:text="@string/show_card_info_description"/>
+
+            <TextView
+                android:id="@+id/tv_support_header"
+                style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
+                android:text="@string/support_label" />
+
+            <TextView
+                android:id="@+id/tv_report_stolen_card"
+                style="@style/llsdk_main_item_light"
+                android:text="@string/contact_support_label"/>
+
+            <TextView
+                android:id="@+id/tv_report_stolen_card_description"
+                style="@style/llsdk_item_description"
+                android:text="@string/contact_support_description"
+                android:layout_marginBottom="30dp"/>
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_settings_header"
-            style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
-            android:text="@string/settings_label" />
-
-        <TextView
-            android:id="@+id/tv_change_pin"
-            android:paddingTop="14dp"
-            style="?attr/llsdk_cardSettings_mainItemStyle"
-            android:layout_marginLeft="16dp"
-            android:text="@string/change_pin_label"/>
-
-        <TextView
-            android:id="@+id/tv_support_header"
-            style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
-            android:text="@string/support_label" />
-
-        <TextView
-            android:id="@+id/tv_report_stolen_card"
-            android:paddingTop="14dp"
-            style="@style/llsdk_card_settings_main_item"
-            android:layout_marginLeft="16dp"
-            android:text="@string/contact_support_label"/>
-
-        <TextView
-            android:id="@+id/tv_report_stolen_card_description"
-            style="@style/llsdk_item_description"
-            android:layout_marginLeft="16dp"
-            android:text="@string/contact_support_description"/>
-    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <include layout="@layout/include_pin_fragment" />
 </com.shiftpayments.link.sdk.ui.views.card.CardSettingsView>

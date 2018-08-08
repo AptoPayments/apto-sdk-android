@@ -13,6 +13,7 @@ public class CardStorage {
     private static CardStorage mInstance;
     private String mFundingSourceId;
     private ApplicationVo mApplication;
+    public boolean showCardInfo;
 
     /**
      * Creates a new {@link CardStorage} instance.

@@ -25,6 +25,12 @@ public class ManageCardActivity extends FragmentMvpActivity {
 
     private ManageCardDelegate mDelegate;
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        ((ManageCardPresenter)mPresenter).updateCard();
+    }
+
     /** {@inheritDoc} */
     @Override
     protected ManageCardView createView() {
