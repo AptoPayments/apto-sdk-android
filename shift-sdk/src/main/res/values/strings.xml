@@ -347,8 +347,10 @@
     <string name="card_disabled_label">CARD NOT ENABLED</string>
 
     <!-- Account management screen -->
-    <string name="sign_out">SIGN OUT</string>
-    <string name="account_management_contact_support">CONTACT SUPPORT</string>
+    <string name="account_management_title">Account settings</string>
+    <string name="sign_out">Log out</string>
+    <string name="account_management_contact_support">Help center</string>
+    <string name="account_management_contact_support_description">Contact directly with customer service</string>
     <string name="account_management_dialog_title">Sign out</string>
     <string name="account_management_dialog_message">Are you sure you want to sign out?</string>
     <string name="account_management_funding_source_changed">Funding source changed</string>

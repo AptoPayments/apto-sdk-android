@@ -1,7 +1,6 @@
 package com.shiftpayments.link.sdk.ui.views.userdata;
 
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -139,10 +138,10 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
             MenuItem item = mToolbar.getMenu().findItem(R.id.action_next);
             int color;
             if(enable) {
-                color = UIStorage.getInstance().getPrimaryColor();
+                color = UIStorage.getInstance().getTextTopbarColor();
             }
             else {
-                color = getResources().getColor(R.color.llsdk_hairline_color);
+                color = UIStorage.getInstance().getPrimaryColor();
             }
             View view = findViewById(R.id.action_next);
             // Cast to a TextView instance if the menu item was found
