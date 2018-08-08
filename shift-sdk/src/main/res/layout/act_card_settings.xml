@@ -56,7 +56,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingTop="16dp"
-                android:paddingBottom="16dp">
+                android:paddingBottom="12dp">
                 <ImageButton
                     android:id="@+id/ib_add_funding_source"
                     android:layout_width="wrap_content"
@@ -98,6 +98,16 @@
                 android:id="@+id/tv_show_card_info_description"
                 style="@style/llsdk_item_description"
                 android:text="@string/show_card_info_description"/>
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/sw_enable_card"
+                style="@style/llsdk_main_item_light_switch"
+                android:text="@string/switch_enable_card" />
+
+            <TextView
+                android:id="@+id/tv_enable_card_description"
+                style="@style/llsdk_item_description"
+                android:text="@string/enable_card_description"/>
 
             <TextView
                 android:id="@+id/tv_support_header"

@@ -42,7 +42,7 @@ public class ManageCardActivity extends FragmentMvpActivity {
     protected ManageCardPresenter createPresenter(BaseDelegate delegate) {
         if(delegate instanceof ManageCardDelegate) {
             mDelegate = (ManageCardDelegate) delegate;
-            return new ManageCardPresenter(getSupportFragmentManager(), this, mDelegate);
+            return new ManageCardPresenter(this, mDelegate);
         }
         else {
             throw new NullPointerException("Received Module does not implement ManageCardDelegate!");

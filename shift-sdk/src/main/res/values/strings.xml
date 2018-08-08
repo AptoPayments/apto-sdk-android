@@ -322,7 +322,8 @@
 
     <!-- card settings -->
     <string name="card_settings_title">Card settings</string>
-    <string name="switch_enable_card">Enable Card</string>
+    <string name="switch_enable_card">Lock Card</string>
+    <string name="enable_card_description">Freeze the card</string>
     <string name="switch_show_card_info">Card Info</string>
     <string name="show_card_info_description">Show card number and CVV</string>
     <string name="save_to_android_pay_label">Add Card</string>
@@ -338,7 +339,7 @@
     <!-- card management enable/disable dialog -->
     <string name="enable_card_message">You are activating your card. Are you sure?</string>
     <string name="disable_card_message">You are deactivating your card. Are you sure?</string>
-    <string name="card_management_dialog_title">Card state</string>
+    <string name="card_settings_dialog_title">Card state</string>
 
     <!-- Card view -->
     <string name="card_cvv_label">CVV</string>

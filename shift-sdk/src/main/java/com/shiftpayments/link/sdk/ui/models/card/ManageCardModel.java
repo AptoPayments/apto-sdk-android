@@ -13,9 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import static com.shiftpayments.link.sdk.api.vos.Card.FinancialAccountState.ACTIVE;
-import static com.shiftpayments.link.sdk.api.vos.Card.FinancialAccountState.CREATED;
-
 /**
  * Concrete {@link Model} for managing a card.
  * @author Adrian
@@ -156,13 +153,11 @@ public class ManageCardModel implements Model {
     }
 
     public boolean isCardActivated() {
-        Card.FinancialAccountState state = this.getState();
-        return ((state != null) && (state == ACTIVE));
+        return mCard.isCardActivated();
     }
 
     public boolean isCardCreated() {
-        Card.FinancialAccountState state = this.getState();
-        return ((state != null) && (state == CREATED));
+        return mCard.isCardCreated();
     }
 
     public void setCard(Card card) {

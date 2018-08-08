@@ -4,7 +4,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,8 +14,6 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
@@ -34,7 +31,6 @@ import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.views.card.EndlessRecyclerViewScrollListener;
-import com.shiftpayments.link.sdk.ui.views.card.ManageCardBottomSheet;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
 import com.shiftpayments.link.sdk.ui.views.card.TransactionsAdapter;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
@@ -54,13 +50,11 @@ import static com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsAc
 public class ManageCardPresenter
         extends BasePresenter<ManageCardModel, ManageCardView>
         implements Presenter<ManageCardModel, ManageCardView>, ManageCardView.ViewListener,
-        ManageCardBottomSheet.ViewListener, TransactionsAdapter.ViewListener {
+        TransactionsAdapter.ViewListener {
 
     private static final int ROWS = 20;
 
     private ActionBar mActionBar;
-    private FragmentManager mFragmentManager;
-    private ManageCardBottomSheet mManageCardBottomSheet;
     private ManageCardActivity mActivity;
     private EndlessRecyclerViewScrollListener mScrollListener;
     private TransactionsAdapter mTransactionsAdapter;
@@ -70,8 +64,7 @@ public class ManageCardPresenter
     private Semaphore mSemaphore;
     private static final int NUMBER_OF_CONCURRENT_CALLS = 2;
 
-    public ManageCardPresenter(FragmentManager fragmentManager, ManageCardActivity activity, ManageCardDelegate delegate) {
-        mFragmentManager = fragmentManager;
+    public ManageCardPresenter(ManageCardActivity activity, ManageCardDelegate delegate) {
         mActivity = activity;
         mDelegate = delegate;
         mLastTransactionId = null;
@@ -119,11 +112,6 @@ public class ManageCardPresenter
     @Override
     public void manageCardClickHandler() {
         mActivity.startActivity(new Intent(mActivity, CardSettingsActivity.class));
-        /*mManageCardBottomSheet = new ManageCardBottomSheet();
-        mManageCardBottomSheet.isCardEnabled = mModel.isCardActivated();
-        mManageCardBottomSheet.showCardInfo = mModel.showCardInfo;
-        mManageCardBottomSheet.setViewListener(this);
-        mManageCardBottomSheet.show(mFragmentManager, mManageCardBottomSheet.getTag());*/
     }
 
     @Override
@@ -161,56 +149,6 @@ public class ManageCardPresenter
         getTransactions();
         mTransactionsAdapter.clear();
         mScrollListener.resetState();
-    }
-
-    @Override
-    public void enableCardClickHandler(boolean enable) {
-        hideBottomSheet();
-        showCardStateChangeConfirmationDialog(enable);
-    }
-
-    @Override
-    public void showCardInfoClickHandler(boolean show) {
-        /*hideBottomSheet();
-        if(!show) {
-            mModel.showCardInfo = false;
-            mTransactionsAdapter.notifyItemChanged(0);
-        }
-        else {
-            if(mIsUserAuthenticated) {
-                onUserAuthenticated();
-            }
-            else if(mFingerprintHandler.isFingerprintAuthPossible()) {
-                FingerprintAuthenticationDialogFragment fragment
-                        = new FingerprintAuthenticationDialogFragment();
-                fragment.setFingerprintDelegate(this);
-                fragment.setFingerprintHandler(mFingerprintHandler);
-                fragment.show(mFragmentManager, DIALOG_FRAGMENT_TAG);
-            }
-            else {
-                // TODO: show card info without any authentication
-                mModel.showCardInfo = true;
-                mTransactionsAdapter.notifyItemChanged(0);
-            }
-        }*/
-    }
-
-    /**
-     * Called when the enable card response has been received.
-     * @param card API response.
-     */
-    @Subscribe
-    public void handleResponse(EnableFinancialAccountResponseVo card) {
-        showToastAndUpdateCard(card, mActivity.getString(R.string.card_enabled));
-    }
-
-    /**
-     * Called when the disable card response has been received.
-     * @param card API response.
-     */
-    @Subscribe
-    public void handleResponse(DisableFinancialAccountResponseVo card) {
-        showToastAndUpdateCard(card, mActivity.getString(R.string.card_disabled));
     }
 
     /**
@@ -293,6 +231,7 @@ public class ManageCardPresenter
     }
 
     public void updateCard() {
+        mModel.setCard(CardStorage.getInstance().getCard());
         mTransactionsAdapter.notifyItemChanged(0);
     }
 
@@ -308,61 +247,21 @@ public class ManageCardPresenter
         return intent;
     }
 
-    private void changeCardState(boolean enable) {
-        if(enable) {
-            ShiftPlatform.enableFinancialAccount(mModel.getAccountId());
-        }
-        else {
-            ShiftPlatform.disableFinancialAccount(mModel.getAccountId());
-        }
-        mView.showLoading(mActivity, true);
-    }
-
     private void activateCard() {
         ShiftPlatform.activateFinancialAccount(mModel.getAccountId());
         mView.showLoading(mActivity, true);
     }
 
-    private void showCardStateChangeConfirmationDialog(boolean enable) {
-        String text = enable ? mActivity.getString(R.string.enable_card_message) : mActivity.getString(R.string.disable_card_message);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-        builder.setMessage(text)
-                .setTitle(mActivity.getString(R.string.card_management_dialog_title));
-        builder.setPositiveButton("YES", (dialog, id) -> changeCardState(enable));
-        builder.setNegativeButton("NO", (dialog, id) -> {
-            if (mManageCardBottomSheet != null) {
-                mManageCardBottomSheet.setEnableCardSwitch(!enable);
-            }
-            dialog.dismiss();
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-    }
-
     private void showActivateCardConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setMessage(mActivity.getString(R.string.enable_card_message))
-                .setTitle(mActivity.getString(R.string.card_management_dialog_title));
+                .setTitle(mActivity.getString(R.string.card_settings_dialog_title));
         builder.setPositiveButton("YES", (dialog, id) -> activateCard());
-        builder.setNegativeButton("NO", (dialog, id) -> {
-            if (mManageCardBottomSheet != null) {
-                mManageCardBottomSheet.setEnableCardSwitch(false);
-            }
-            dialog.dismiss();
-        });
+        builder.setNegativeButton("NO", (dialog, id) -> dialog.dismiss());
 
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
-    }
-
-    private void hideBottomSheet() {
-        mFragmentManager.beginTransaction()
-                .detach(mManageCardBottomSheet)
-                .commit();
     }
 
     private boolean isViewReady() {

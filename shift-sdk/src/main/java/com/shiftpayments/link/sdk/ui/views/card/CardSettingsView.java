@@ -36,6 +36,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         View.OnClickListener, CompoundButton.OnCheckedChangeListener, View.OnTouchListener {
 
     private static boolean mIsShowCardInfoSwitchTouched;
+    private static boolean mIsEnableCardSwitchTouched;
     private ViewListener mListener;
     private Toolbar mToolbar;
     private RecyclerView mFundingSourcesListView;
@@ -47,6 +48,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     private TextView mChangePinButton;
     private TextView mContactSupportButton;
     private SwitchCompat mShowCardInfoSwitch;
+    private SwitchCompat mEnableCardSwitch;
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -60,6 +62,11 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
                 mIsShowCardInfoSwitchTouched = false;
                 mListener.showCardInfoClickHandler(isChecked);
             }
+        } else if (id == R.id.sw_enable_card) {
+            if (mIsEnableCardSwitchTouched) {
+                mIsEnableCardSwitchTouched = false;
+                mListener.disableCardClickHandler(isChecked);
+            }
         }
     }
 
@@ -67,6 +74,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (view.getId() == R.id.sw_show_card_info) {
             mIsShowCardInfoSwitchTouched = true;
+        } else if (view.getId() == R.id.sw_enable_card) {
+            mIsEnableCardSwitchTouched = true;
         }
         return false;
     }
@@ -79,9 +88,9 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         void changePinClickHandler();
         void contactSupportClickHandler();
         void showCardInfoClickHandler(boolean show);
+        void disableCardClickHandler(boolean disable);
         void onClose();
     }
-
 
     /**
      * @see CardView#CardView
@@ -175,6 +184,10 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mShowCardInfoSwitch.setChecked(enable);
     }
 
+    public void setEnableCardSwitch(boolean enable) {
+        mEnableCardSwitch.setChecked(enable);
+    }
+
     private void setupListeners() {
         mAddFundingSourceButton.setOnClickListener(this);
         mAddFundingSourceLabel.setOnClickListener(this);
@@ -182,6 +195,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mContactSupportButton.setOnClickListener(this);
         mShowCardInfoSwitch.setOnCheckedChangeListener(this);
         mShowCardInfoSwitch.setOnTouchListener(this);
+        mEnableCardSwitch.setOnCheckedChangeListener(this);
+        mEnableCardSwitch.setOnTouchListener(this);
     }
 
     /**
@@ -198,6 +213,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mChangePinButton = findViewById(R.id.tv_change_pin);
         mContactSupportButton = findViewById(R.id.tv_report_stolen_card);
         mShowCardInfoSwitch = findViewById(R.id.sw_show_card_info);
+        mEnableCardSwitch = findViewById(R.id.sw_enable_card);
     }
 
     private void setColors() {
@@ -211,6 +227,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         ColorStateList backgroundColors = UIStorage.getInstance().getSwitchBackgroundColors();
         DrawableCompat.setTintList(DrawableCompat.wrap(mShowCardInfoSwitch.getThumbDrawable()), foregroundColors);
         DrawableCompat.setTintList(DrawableCompat.wrap(mShowCardInfoSwitch.getTrackDrawable()), backgroundColors);
+        DrawableCompat.setTintList(DrawableCompat.wrap(mEnableCardSwitch.getThumbDrawable()), foregroundColors);
+        DrawableCompat.setTintList(DrawableCompat.wrap(mEnableCardSwitch.getTrackDrawable()), backgroundColors);
     }
 
     /**
