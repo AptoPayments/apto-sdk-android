@@ -4,7 +4,7 @@ apply from: '../jacoco.gradle'
 apply from: '../javadoc.gradle'
 apply plugin: 'me.tatarka.retrolambda'
 
-version = '1.0.8'
+version = '1.0.9'
 
 ext {
     bintrayRepo = 'maven'
