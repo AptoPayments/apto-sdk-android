@@ -50,16 +50,20 @@ public class ManageAccountPresenter
     public void signOut() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setMessage(mActivity.getString(R.string.account_management_dialog_message))
-                .setTitle(mActivity.getString(R.string.account_management_dialog_title));
-        builder.setPositiveButton("YES", (dialog, id) -> {
-            ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-            mActivity.finish();
-            mDelegate.onSignOut();
-        });
-        builder.setNegativeButton("NO", (dialog, id) -> dialog.dismiss());
+                .setTitle(mActivity.getString(R.string.sign_out))
+                .setNegativeButton("NO", (dialog, id) -> dialog.dismiss())
+                .setPositiveButton("YES", (dialog, id) -> {
+                    ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+                    mActivity.finish();
+                    mDelegate.onSignOut();
+                });
 
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
+        dialog.setOnShowListener(dialogInterface -> {
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(UIStorage.getInstance().getTextPrimaryColor());
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(UIStorage.getInstance().getPrimaryColor());
+        });
         dialog.show();
     }
 

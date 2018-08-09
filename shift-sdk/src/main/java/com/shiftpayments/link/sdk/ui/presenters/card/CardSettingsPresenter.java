@@ -150,7 +150,12 @@ public class CardSettingsPresenter
 
     @Override
     public void disableCardClickHandler(boolean disable) {
-        showCardStateChangeConfirmationDialog(!disable);
+        if(!disable) {
+            changeCardState(true);
+        }
+        else {
+            showCardStateChangeConfirmationDialog();
+        }
     }
 
     @Override
@@ -255,20 +260,24 @@ public class CardSettingsPresenter
         ShiftPlatform.updateFinancialAccountPin(request);
     }
 
-    private void showCardStateChangeConfirmationDialog(boolean enable) {
-        String text = enable ? mActivity.getString(R.string.enable_card_message) : mActivity.getString(R.string.disable_card_message);
+    private void showCardStateChangeConfirmationDialog() {
+        String text = mActivity.getString(R.string.disable_card_message);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setMessage(text)
-                .setTitle(mActivity.getString(R.string.card_settings_dialog_title));
-        builder.setPositiveButton("YES", (dialog, id) -> changeCardState(enable));
-        builder.setNegativeButton("NO", (dialog, id) -> {
-            mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
-            dialog.dismiss();
-        });
+                .setTitle(mActivity.getString(R.string.card_settings_dialog_title))
+                .setPositiveButton("YES", (dialog, id) -> changeCardState(false))
+                .setNegativeButton("NO", (dialog, id) -> {
+                    mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
+                    dialog.dismiss();
+                });
 
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
+        dialog.setOnShowListener(dialogInterface -> {
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(UIStorage.getInstance().getTextPrimaryColor());
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(UIStorage.getInstance().getPrimaryColor());
+        });
         dialog.show();
     }
 

@@ -338,8 +338,8 @@
 
     <!-- card management enable/disable dialog -->
     <string name="enable_card_message">You are activating your card. Are you sure?</string>
-    <string name="disable_card_message">You are deactivating your card. Are you sure?</string>
-    <string name="card_settings_dialog_title">Card state</string>
+    <string name="disable_card_message">You are locking your card. Are you sure?</string>
+    <string name="card_settings_dialog_title">Lock card</string>
 
     <!-- Card view -->
     <string name="card_cvv_label">CVV</string>
@@ -353,8 +353,7 @@
     <string name="account_management_contact_support_description">Contact directly with customer service</string>
     <string name="account_management_faq">FAQs</string>
     <string name="account_management_faq_description">Some answers to your questions</string>
-    <string name="account_management_dialog_title">Sign out</string>
-    <string name="account_management_dialog_message">Are you sure you want to sign out?</string>
+    <string name="account_management_dialog_message">Are you sure you want to log out?</string>
     <string name="account_management_funding_source_changed">Funding source changed</string>
     <string name="account_management_spendable_amount_label">SPENDABLE AMOUNT</string>
 
