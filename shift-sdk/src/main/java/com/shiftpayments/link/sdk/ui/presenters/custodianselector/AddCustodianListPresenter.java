@@ -108,6 +108,7 @@ public class AddCustodianListPresenter
     public void accountClickHandler(AddCustodianModel model) {
         if(model instanceof AddCoinbaseModel) {
             mDelegate.addCoinbase();
+            mActivity.finish();
         }
     }
 

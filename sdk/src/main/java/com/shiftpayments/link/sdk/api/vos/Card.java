@@ -9,6 +9,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static com.shiftpayments.link.sdk.api.vos.Card.FinancialAccountState.ACTIVE;
+import static com.shiftpayments.link.sdk.api.vos.Card.FinancialAccountState.CREATED;
+
 /**
  * Created by adrian on 18/01/2017.
  */
@@ -138,6 +141,14 @@ public class Card extends FinancialAccountVo {
         gsonObject.addProperty("last_four", lastFourDigits);
         gsonObject.addProperty("expiration", getAPIFormatExpirationDate(expirationDate));
         return gsonObject;
+    }
+
+    public boolean isCardActivated() {
+        return ((state != null) && (state == ACTIVE));
+    }
+
+    public boolean isCardCreated() {
+        return ((state != null) && (state == CREATED));
     }
 
     private String getAPIFormatExpirationDate(String expirationDate) {

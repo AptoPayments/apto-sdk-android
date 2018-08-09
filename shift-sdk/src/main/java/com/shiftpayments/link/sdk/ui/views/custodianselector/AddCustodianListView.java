@@ -76,12 +76,6 @@ public class AddCustodianListView extends CoordinatorLayout
     protected void onFinishInflate() {
         super.onFinishInflate();
         findAllViews();
-        setColors();
-    }
-
-    private void setColors() {
-        int actionBarColor = getResources().getColor(R.color.llsdk_actionbar_background);
-        mToolbar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
     }
 
     @Override

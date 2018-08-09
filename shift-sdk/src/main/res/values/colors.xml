@@ -5,6 +5,8 @@
     <color name="llsdk_secondary_text_color">#FF54565F</color>
     <color name="llsdk_tertiary_text_color">#FFBBBDBD</color>
 
+    <color name="llsdk_primary_title_text_color">#592B2D35</color>
+
     <color name="llsdk_link_color">#00f</color>
     <color name="llsdk_hairline_color">#aaa</color>
     <color name="llsdk_error_text_color">#FFDD2C00</color>
@@ -37,7 +39,6 @@
     <!-- Stepper -->
     <color name="llsdk_stepper_background">#e3e3e3</color>
     <color name="llsdk_stepper_text">#6b6b6b</color>
-    <color name="llsdk_actionbar_background">#FFF9F9F9</color>
 
     <!-- Card -->
     <color name="llsdk_card_disabled">#F5F5F5</color>

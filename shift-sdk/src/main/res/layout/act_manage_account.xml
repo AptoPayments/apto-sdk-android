@@ -27,77 +27,90 @@
         android:layout_below="@+id/settings_toolbar">
 
         <TextView
-            android:id="@+id/tv_spendable_amount"
+            android:id="@+id/tv_support_header"
+            style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
+            android:text="@string/support_label" />
+
+        <RelativeLayout
+            android:id="@+id/ll_help_center_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="42sp"
-            android:gravity="center_horizontal" />
-
-        <TextView
-            android:id="@+id/tv_spendable_amount_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="8dp"
-            android:text="@string/account_management_spendable_amount_label"
-            android:textColor="@android:color/darker_gray" />
-
-        <TextView
-            android:id="@+id/tv_funding_sources"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            android:text="@string/funding_sources_label" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_funding_sources_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingBottom="8dp"
-            android:scrollbarStyle="outsideOverlay"
-            android:scrollbars="vertical" />
-
-        <LinearLayout
-            android:id="@+id/ll_add_funding_source"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:gravity="center_vertical"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="@string/add_funding_source"
-                android:layout_weight="1"
-                android:layout_marginLeft="16dp"/>
-            <ImageButton
-                android:id="@+id/ib_add_funding_source"
+
+            <ImageView
+                android:id="@+id/iv_help_center_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:background="@android:color/white"
-                android:src="@drawable/ic_add_circle_black_24dp"/>
+                android:paddingTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_settings_help"/>
+
+            <TextView
+                android:id="@+id/tv_contact_support"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_help_center_icon"
+                android:text="@string/account_management_contact_support"
+                style="@style/llsdk_main_item_light"/>
+
+            <TextView
+                android:id="@+id/tv_contact_support_description"
+                style="@style/llsdk_item_description"
+                android:layout_below="@+id/tv_contact_support"
+                android:layout_toRightOf="@+id/iv_help_center_icon"
+                android:text="@string/account_management_contact_support_description"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/ll_faq_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_faq_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_settings_faqs"/>
+
+            <TextView
+                android:id="@+id/tv_faq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_faq_icon"
+                android:text="@string/account_management_faq"
+                style="@style/llsdk_main_item_light"/>
+
+            <TextView
+                android:id="@+id/tv_faq_description"
+                style="@style/llsdk_item_description"
+                android:layout_below="@+id/tv_faq"
+                android:layout_toRightOf="@+id/iv_faq_icon"
+                android:text="@string/account_management_faq_description"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_sign_out_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_sign_out_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_settings_logout"/>
+
+            <TextView
+                android:id="@+id/tv_sign_out"
+                style="@style/llsdk_title"
+                android:text="@string/sign_out" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_contact_support"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textSize="16sp"
-            android:text="@string/account_management_contact_support"
-            android:layout_weight="1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="16dp"/>
-
-        <TextView
-            android:id="@+id/tv_sign_out"
-            style="@style/ledge_big_button_style"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/sign_out" />
     </LinearLayout>
 </com.shiftpayments.link.sdk.ui.views.card.ManageAccountView>

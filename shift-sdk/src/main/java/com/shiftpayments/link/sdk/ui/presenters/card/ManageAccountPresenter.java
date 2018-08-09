@@ -1,31 +1,19 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
-import android.widget.Toast;
 
-import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
-import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
 import com.shiftpayments.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
-import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
 import com.shiftpayments.link.sdk.ui.models.card.ManageAccountModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
-import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
-import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.SendEmailUtil;
-import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
 import com.shiftpayments.link.sdk.ui.views.card.ManageAccountView;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.List;
 
 /**
  * Concrete {@link Presenter} for the manage account screen.
@@ -33,8 +21,7 @@ import java.util.List;
  */
 public class ManageAccountPresenter
         extends BasePresenter<ManageAccountModel, ManageAccountView>
-        implements Presenter<ManageAccountModel, ManageAccountView>, ManageAccountView.ViewListener,
-        FundingSourceView.ViewListener {
+        implements Presenter<ManageAccountModel, ManageAccountView>, ManageAccountView.ViewListener {
 
     private FundingSourcesListRecyclerAdapter mAdapter;
     private ManageAccountActivity mActivity;
@@ -51,13 +38,7 @@ public class ManageAccountPresenter
         super.attachView(view);
         view.setViewListener(this);
         mActivity.setSupportActionBar(mView.getToolbar());
-        mActivity.getSupportActionBar().setDisplayShowTitleEnabled(false);
-        mAdapter = new FundingSourcesListRecyclerAdapter();
-        mAdapter.setViewListener(this);
-        view.setAdapter(mAdapter);
-        mView.showAddFundingSourceButton(UIStorage.getInstance().showAddFundingSourceButton());
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
-        ShiftPlatform.getUserFundingSources();
+        mActivity.getSupportActionBar().setTitle(mActivity.getResources().getString(R.string.account_management_title));
     }
 
     @Override
@@ -66,36 +47,24 @@ public class ManageAccountPresenter
     }
 
     @Override
-    public void fundingSourceClickHandler(FundingSourceModel selectedFundingSource) {
-        List<FundingSourceModel> fundingSources = mModel.getFundingSources().getList();
-        for(FundingSourceModel fundingSource : fundingSources) {
-            fundingSource.setIsSelected(fundingSource.equals(selectedFundingSource));
-        }
-        mAdapter.updateList(mModel.getFundingSources());
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
-        ShiftPlatform.setAccountFundingSource(CardStorage.getInstance().getCard().mAccountId, selectedFundingSource.getFundingSourceId());
-    }
-
-    @Override
     public void signOut() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setMessage(mActivity.getString(R.string.account_management_dialog_message))
-                .setTitle(mActivity.getString(R.string.account_management_dialog_title));
-        builder.setPositiveButton("YES", (dialog, id) -> {
-            ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-            mActivity.finish();
-            mDelegate.onSignOut();
-        });
-        builder.setNegativeButton("NO", (dialog, id) -> dialog.dismiss());
+                .setTitle(mActivity.getString(R.string.sign_out))
+                .setNegativeButton("NO", (dialog, id) -> dialog.dismiss())
+                .setPositiveButton("YES", (dialog, id) -> {
+                    ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+                    mActivity.finish();
+                    mDelegate.onSignOut();
+                });
 
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
+        dialog.setOnShowListener(dialogInterface -> {
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(UIStorage.getInstance().getTextPrimaryColor());
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(UIStorage.getInstance().getPrimaryColor());
+        });
         dialog.show();
-    }
-
-    @Override
-    public void addFundingSource() {
-        mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());
     }
 
     @Override
@@ -104,56 +73,14 @@ public class ManageAccountPresenter
     }
 
     @Override
+    public void faqClickHandler() {
+        // TODO: URL should be read from config
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.shiftpayments.com/faq"));
+        mActivity.startActivity(browserIntent);
+    }
+
+    @Override
     public void onBack() {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         mActivity.onBackPressed();
-    }
-
-    @Subscribe
-    public void handleResponse(FundingSourceListVo response) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        mModel.addFundingSources(response.data);
-        mView.setSpendableAmount(mModel.getSpendableAmount());
-        mView.showFundingSourceLabel(true);
-        mView.showSpendableAmountLabel(true);
-        mAdapter.updateList(mModel.getFundingSources());
-    }
-
-    @Subscribe
-    public void handleResponse(FundingSourceVo response) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        mModel.setSelectedFundingSource(response.id);
-        mAdapter.updateList(mModel.getFundingSources());
-        mView.setSpendableAmount(mModel.getSpendableAmount());
-        mView.showSpendableAmountLabel(true);
-        Toast.makeText(mActivity, R.string.account_management_funding_source_changed, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * Called when an API error has been received.
-     * @param error API error.
-     */
-    @Subscribe
-    public void handleApiError(ApiErrorVo error) {
-        if(error.statusCode==404) {
-            // User has no funding source
-            mView.showFundingSourceLabel(false);
-            mView.showSpendableAmountLabel(false);
-            mAdapter.updateList(mModel.getFundingSources());
-        }
-        else {
-            ApiErrorUtil.showErrorMessage(error, mActivity);
-        }
-    }
-
-    /**
-     * Called when a session expired error has been received.
-     * @param error API error.
-     */
-    @Subscribe
-    public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        mActivity.finish();
-        mDelegate.onSessionExpired(error);
     }
 }

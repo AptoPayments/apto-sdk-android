@@ -1,25 +1,19 @@
 package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
-
-import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 
 /**
  * Displays the manage account screen.
@@ -31,14 +25,12 @@ public class ManageAccountView
 
     private Toolbar mToolbar;
     private ViewListener mListener;
-    private RecyclerView mFundingSourcesListView;
-    private TextView mFundingSourceLabel;
     private TextView mSignOutButton;
-    private LinearLayout mAddFundingSourceHolder;
-    private ImageButton mAddFundingSourceButton;
+    private ImageView mSignOutIcon;
     private TextView mContactSupportButton;
-    private TextView mSpendableAmount;
-    private TextView mSpendableAmountLabel;
+    private ImageView mContactSupportIcon;
+    private TextView mFaqButton;
+    private ImageView mFaqIcon;
 
     public ManageAccountView(Context context) {
         this(context, null);
@@ -55,13 +47,13 @@ public class ManageAccountView
         }
         int id = view.getId();
 
-        if (id == R.id.tv_sign_out) {
+        if (id == R.id.tv_sign_out || id == R.id.iv_sign_out_icon) {
             mListener.signOut();
-        } else if (id == R.id.ib_add_funding_source) {
-            mListener.addFundingSource();
-        } else if (id == R.id.tv_contact_support) {
+        } else if (id == R.id.tv_contact_support || id == R.id.iv_help_center_icon) {
             mListener.contactSupport();
-        } else if (id == R.id.toolbar) {
+        } else if (id == R.id.tv_faq || id == R.id.iv_faq_icon) {
+            mListener.faqClickHandler();
+        }else if (id == R.id.toolbar) {
             mListener.onBack();
         }
     }
@@ -79,7 +71,6 @@ public class ManageAccountView
         super.onFinishInflate();
         findAllViews();
         setUpListeners();
-        setupRecyclerView();
         setColors();
     }
 
@@ -87,89 +78,41 @@ public class ManageAccountView
         mListener = viewListener;
     }
 
-    public void showFundingSourceLabel(boolean show) {
-        if (show) {
-            mFundingSourceLabel.setVisibility(VISIBLE);
-        } else {
-            mFundingSourceLabel.setVisibility(GONE);
-        }
-    }
-
-    public void showSpendableAmountLabel(boolean show) {
-        if (show) {
-            mSpendableAmountLabel.setVisibility(VISIBLE);
-        } else {
-            mSpendableAmountLabel.setVisibility(GONE);
-        }
-    }
-
-    public void setSpendableAmount(String amount) {
-        mSpendableAmount.setText(amount);
-    }
-
-    /**
-     * Stores a new {@link PagedListRecyclerAdapter} for the {@link RecyclerView} to use.
-     * @param adapter The adapter to use.
-     */
-    public void setAdapter(PagedListRecyclerAdapter<FundingSourceModel, FundingSourceView> adapter) {
-        mFundingSourcesListView.setAdapter(adapter);
-    }
-
     /**
      * Callbacks this {@link View} will invoke.
      */
     public interface ViewListener {
-
         void signOut();
-        void addFundingSource();
         void contactSupport();
+        void faqClickHandler();
         void onBack();
     }
 
-    public void showAddFundingSourceButton(boolean show) {
-        if(show) {
-            mAddFundingSourceHolder.setVisibility(VISIBLE);
-        }
-        else {
-            mAddFundingSourceHolder.setVisibility(GONE);
-        }
-    }
-
     private void findAllViews() {
-        mFundingSourcesListView = findViewById(R.id.rv_funding_sources_list);
-        mFundingSourceLabel = findViewById(R.id.tv_funding_sources);
-        mSignOutButton = findViewById(R.id.tv_sign_out);
-        mAddFundingSourceButton = findViewById(R.id.ib_add_funding_source);
-        mAddFundingSourceHolder = findViewById(R.id.ll_add_funding_source);
-        mContactSupportButton = findViewById(R.id.tv_contact_support);
         mToolbar = findViewById(R.id.toolbar);
-        mSpendableAmount = findViewById(R.id.tv_spendable_amount);
-        mSpendableAmountLabel = findViewById(R.id.tv_spendable_amount_label);
+        mSignOutButton = findViewById(R.id.tv_sign_out);
+        mSignOutIcon = findViewById(R.id.iv_sign_out_icon);
+        mContactSupportButton = findViewById(R.id.tv_contact_support);
+        mContactSupportIcon = findViewById(R.id.iv_help_center_icon);
+        mFaqButton = findViewById(R.id.tv_faq);
+        mFaqIcon = findViewById(R.id.iv_faq_icon);
     }
 
     private void setUpListeners() {
-        mSignOutButton.setOnClickListener(this);
-        mAddFundingSourceButton.setOnClickListener(this);
-        mContactSupportButton.setOnClickListener(this);
         mToolbar.setNavigationOnClickListener(this);
-    }
-
-    /**
-     * Sets up the {@link RecyclerView}.
-     */
-    private void setupRecyclerView() {
-        mFundingSourcesListView.setHasFixedSize(true);
-        mFundingSourcesListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mSignOutButton.setOnClickListener(this);
+        mSignOutIcon.setOnClickListener(this);
+        mContactSupportButton.setOnClickListener(this);
+        mContactSupportIcon.setOnClickListener(this);
+        mFaqButton.setOnClickListener(this);
+        mFaqIcon.setOnClickListener(this);
     }
 
     private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
-        mSpendableAmount.setTextColor(primaryColor);
-        mAddFundingSourceButton.setColorFilter(primaryColor);
-        mSignOutButton.setBackgroundColor(primaryColor);
         Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
-        int actionBarColor = getResources().getColor(R.color.llsdk_actionbar_background);
-        mToolbar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+        backArrow.setColorFilter(UIStorage.getInstance().getIconPrimaryColor(), PorterDuff.Mode.SRC_ATOP);
         mToolbar.setNavigationIcon(backArrow);
+        mContactSupportIcon.setColorFilter(UIStorage.getInstance().getPrimaryColor());
+        mFaqIcon.setColorFilter(UIStorage.getInstance().getPrimaryColor());
     }
 }

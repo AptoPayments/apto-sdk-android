@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
             }
             HashMap<ShiftSdkOptions.OptionKeys, Boolean> features = new HashMap<>();
             features.put(ShiftSdkOptions.OptionKeys.showActivateCardButton, false);
-            features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, false);
+            features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, true);
             ShiftSdkOptions options = new ShiftSdkOptions(features);
 
             ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),

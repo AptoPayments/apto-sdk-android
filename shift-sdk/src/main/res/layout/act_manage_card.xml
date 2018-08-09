@@ -57,6 +57,4 @@
             android:textColor="@android:color/darker_gray"
             android:visibility="gone"/>
     </RelativeLayout>
-
-    <include layout="@layout/include_pin_fragment" />
 </com.shiftpayments.link.sdk.ui.views.card.ManageCardView>

@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -30,7 +29,6 @@ public class ManageCardView
 
     private Toolbar mToolbar;
     private ViewListener mListener;
-    private FrameLayout mPinView;
     private ProgressBar mSpinner;
     private RecyclerView mTransactionsRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -43,15 +41,6 @@ public class ManageCardView
 
     public ManageCardView(Context context, AttributeSet attrs) {
         super(context, attrs);
-    }
-
-    public void showPinFragment(boolean show) {
-        if(show) {
-            mPinView.setVisibility(VISIBLE);
-        }
-        else {
-            mPinView.setVisibility(GONE);
-        }
     }
 
     @Override
@@ -75,7 +64,6 @@ public class ManageCardView
         super.onFinishInflate();
         findAllViews();
         setUpListeners();
-        setColors();
     }
 
     @Override
@@ -109,7 +97,6 @@ public class ManageCardView
 
     private void findAllViews() {
         mToolbar = findViewById(R.id.tb_llsdk_toolbar);
-        mPinView = findViewById(R.id.pin_fragment);
         mSpinner = findViewById(R.id.pb_spinner);
         mTransactionsRecyclerView = findViewById(R.id.transactions_recycler_view);
         mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_container);
@@ -124,11 +111,6 @@ public class ManageCardView
         if(mSwipeRefreshLayout != null) {
             mSwipeRefreshLayout.setOnRefreshListener(this);
         }
-    }
-
-    private void setColors() {
-        mToolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getPrimaryColor()));
-        mToolbar.setTitleTextColor(UIStorage.getInstance().getTextTopbarColor());
     }
 
     public void showNoTransactionsImage(boolean show) {

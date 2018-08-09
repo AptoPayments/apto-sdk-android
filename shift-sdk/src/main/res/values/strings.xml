@@ -320,17 +320,26 @@
     <string name="card_management_number_copied">Card number copied to clipboard</string>
     <string name="card_management_no_transactions">You have no transactions yet.\nStart now!</string>
 
-    <!-- card management bottom sheet -->
-    <string name="switch_enable_card">Enable Card</string>
-    <string name="switch_show_card_info">Show Card Info</string>
+    <!-- card settings -->
+    <string name="card_settings_title">Card settings</string>
+    <string name="switch_enable_card">Lock Card</string>
+    <string name="enable_card_description">Freeze the card</string>
+    <string name="switch_show_card_info">Card Info</string>
+    <string name="show_card_info_description">Show card number and CVV</string>
     <string name="save_to_android_pay_label">Add Card</string>
-    <string name="contact_support_label">Contact Support</string>
-    <string name="change_pin_label">Change PIN</string>
+    <string name="contact_support_label">My card was stolen or lost</string>
+    <string name="contact_support_description">Report missing or stolen card</string>
+    <string name="change_pin_label">Modify Card PIN</string>
+    <string name="change_pin_description">Set a new PIN code for your card</string>
+    <string name="funding_sources_label">Funding Sources</string>
+    <string name="settings_label">Settings</string>
+    <string name="support_label">Support</string>
+    <string name="add_funding_source">Add funding source</string>
 
     <!-- card management enable/disable dialog -->
     <string name="enable_card_message">You are activating your card. Are you sure?</string>
-    <string name="disable_card_message">You are deactivating your card. Are you sure?</string>
-    <string name="card_management_dialog_title">Card state</string>
+    <string name="disable_card_message">You are locking your card. Are you sure?</string>
+    <string name="card_settings_dialog_title">Lock card</string>
 
     <!-- Card view -->
     <string name="card_cvv_label">CVV</string>
@@ -338,12 +347,13 @@
     <string name="card_disabled_label">CARD NOT ENABLED</string>
 
     <!-- Account management screen -->
-    <string name="funding_sources_label">Funding Sources</string>
-    <string name="sign_out">SIGN OUT</string>
-    <string name="add_funding_source">ADD FUNDING SOURCE</string>
-    <string name="account_management_contact_support">CONTACT SUPPORT</string>
-    <string name="account_management_dialog_title">Sign out</string>
-    <string name="account_management_dialog_message">Are you sure you want to sign out?</string>
+    <string name="account_management_title">Account settings</string>
+    <string name="sign_out">Log out</string>
+    <string name="account_management_contact_support">Help center</string>
+    <string name="account_management_contact_support_description">Contact directly with customer service</string>
+    <string name="account_management_faq">FAQs</string>
+    <string name="account_management_faq_description">Some answers to your questions</string>
+    <string name="account_management_dialog_message">Are you sure you want to log out?</string>
     <string name="account_management_funding_source_changed">Funding source changed</string>
     <string name="account_management_spendable_amount_label">SPENDABLE AMOUNT</string>
 

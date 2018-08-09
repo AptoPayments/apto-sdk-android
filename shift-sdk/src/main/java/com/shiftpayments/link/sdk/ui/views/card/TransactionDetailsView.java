@@ -7,6 +7,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,6 +32,8 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private CollapsingToolbarLayout mCollapsingToolbar;
     private AppBarLayout mAppBarLayout;
     private ImageView mHeader;
+    private RecyclerView mRecyclerView;
+    private NestedScrollView mNestedScrollView;
     private TransactionView mTransactionView;
     private TextView mDetailAmount;
     private TextView mType;
@@ -157,8 +160,9 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     }
 
     public void setHeader() {
-        // TODO
-        mHeader.setImageResource(R.drawable.google_map);
+        // TODO: check if location coordinates are present and show map
+        disableExpandingToolbar();
+        //mHeader.setImageResource(R.drawable.google_map);
     }
 
     /**
@@ -169,6 +173,8 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mCollapsingToolbar = findViewById(R.id.collapsing_toolbar);
         mAppBarLayout = findViewById(R.id.settings_toolbar);
         mHeader = findViewById(R.id.iv_header);
+        mRecyclerView = findViewById(R.id.recycler);
+        mNestedScrollView = findViewById(R.id.nested_scroll_view);
         mTransactionView = findViewById(R.id.cv_transaction_view);
         mDetailAmount = findViewById(R.id.tv_transaction_amount);
         mType = findViewById(R.id.tv_transaction_type);
@@ -210,5 +216,11 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mCollapsingToolbar.setExpandedTitleColor(contrastColor);
         mCollapsingToolbar.setBackgroundColor(primaryColor);
         mAddressImageView.setColorFilter(primaryColor);
+    }
+
+    private void disableExpandingToolbar() {
+        mAppBarLayout.setExpanded(false);
+        mRecyclerView.setNestedScrollingEnabled(false);
+        mNestedScrollView.setNestedScrollingEnabled(false);
     }
 }
