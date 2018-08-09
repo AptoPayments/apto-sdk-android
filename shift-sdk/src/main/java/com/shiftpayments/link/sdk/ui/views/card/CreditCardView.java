@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,9 +35,7 @@ public class CreditCardView extends RelativeLayout {
     private final static int mExpiryDateLabelTextColor = Color.WHITE;
     private final static int mCvvTextColor = Color.WHITE;
     private final static int mCvvLabelColor = Color.WHITE;
-    private final static int mCardNotEnabledLabelColor = Color.DKGRAY;
     private int mEnabledCardBackground = R.drawable.card_enabled_background;
-    private int mDisabledCardBackground = R.drawable.card_disabled_background;
 
     private EditText mCardNumberView;
     private EditText mCardNameView;
@@ -45,9 +44,9 @@ public class CreditCardView extends RelativeLayout {
 
     private TextView mExpiryDateLabel;
     private TextView mCvvLabel;
-    private TextView mCardNotEnabledLabel;
 
     private ImageView mCardLogoView;
+    private LinearLayout mCardOverlay;
 
     public CreditCardView(Context context) {
         this(context, null);
@@ -75,7 +74,7 @@ public class CreditCardView extends RelativeLayout {
         mCvvLabel = findViewById(R.id.tv_cvv_label);
         mCvvView = findViewById(R.id.et_cvv);
         mCardLogoView = findViewById(R.id.iv_card_logo);
-        mCardNotEnabledLabel = findViewById(R.id.tv_card_disabled_label);
+        mCardOverlay = findViewById(R.id.card_overlay);
     }
 
     @Override
@@ -164,7 +163,7 @@ public class CreditCardView extends RelativeLayout {
         mExpiryDateLabel.setVisibility(VISIBLE);
         mCvvView.setVisibility(VISIBLE);
         mCvvLabel.setVisibility(VISIBLE);
-        mCardNotEnabledLabel.setVisibility(GONE);
+        mCardOverlay.setVisibility(GONE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Drawable background = mContext.getDrawable(mEnabledCardBackground);
             background.setColorFilter(UIStorage.getInstance().getPrimaryColor(), PorterDuff.Mode.SRC_ATOP);
@@ -176,18 +175,6 @@ public class CreditCardView extends RelativeLayout {
     }
 
     private void disableCard() {
-        mCardNumberView.setTextColor(mCardNotEnabledLabelColor);
-        mCardNameView.setTextColor(mCardNotEnabledLabelColor);
-        mCardNotEnabledLabel.setTextColor(mCardNotEnabledLabelColor);
-        if(mCardLogoView.getBackground() != null) {
-            mCardLogoView.getBackground().setColorFilter(getResources().getColor(R.color.disabled_card_logo), PorterDuff.Mode.SRC_ATOP);
-        }
-
-        mExpiryDateView.setVisibility(INVISIBLE);
-        mExpiryDateLabel.setVisibility(INVISIBLE);
-        mCvvView.setVisibility(INVISIBLE);
-        mCvvLabel.setVisibility(INVISIBLE);
-        mCardNotEnabledLabel.setVisibility(VISIBLE);
-        setBackgroundResource(mDisabledCardBackground);
+        mCardOverlay.setVisibility(VISIBLE);
     }
 }

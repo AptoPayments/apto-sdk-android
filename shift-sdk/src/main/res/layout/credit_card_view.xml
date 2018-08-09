@@ -68,23 +68,6 @@
         android:layout_weight="1"
         android:contentDescription="@string/card_logo" />
 
-
-    <TextView
-        android:id="@+id/tv_card_disabled_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="@dimen/llsdk_card_common_margin"
-        android:layout_marginLeft="@dimen/llsdk_card_common_margin"
-        android:layout_marginBottom="@dimen/llsdk_card_common_margin"
-        android:text="@string/card_disabled_label"
-        android:textSize="@dimen/llsdk_card_disabled_label_size"
-        android:visibility="gone"
-        android:focusable="false"
-        tools:ignore="SmallSp" />
-
     <EditText
         android:id="@+id/et_expiry_date"
         android:layout_width="wrap_content"
@@ -141,4 +124,8 @@
         android:layout_height="@dimen/llsdk_dummy_view_params"
         android:focusable="true"
         android:focusableInTouchMode="true" />
+
+    <include
+        layout="@layout/credit_card_disabled_overlay"
+        android:visibility="gone" />
 </merge>
