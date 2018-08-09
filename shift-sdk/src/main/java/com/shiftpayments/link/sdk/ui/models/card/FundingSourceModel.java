@@ -30,7 +30,10 @@ public class FundingSourceModel implements Model {
     }
 
     public String getFundingSourceName() {
-        return mFundingSource.custodianWallet.custodian.name.substring(0, 1).toUpperCase() + mFundingSource.custodianWallet.custodian.name.substring(1);
+        if(mFundingSource.custodianWallet.custodian.name != null && !mFundingSource.custodianWallet.custodian.name.isEmpty()) {
+            return mFundingSource.custodianWallet.custodian.name.substring(0, 1).toUpperCase() + mFundingSource.custodianWallet.custodian.name.substring(1);
+        }
+        return "";
     }
 
     public String getFundingSourceAmount() {
