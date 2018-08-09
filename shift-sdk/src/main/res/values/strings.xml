@@ -351,6 +351,8 @@
     <string name="sign_out">Log out</string>
     <string name="account_management_contact_support">Help center</string>
     <string name="account_management_contact_support_description">Contact directly with customer service</string>
+    <string name="account_management_faq">FAQs</string>
+    <string name="account_management_faq_description">Some answers to your questions</string>
     <string name="account_management_dialog_title">Sign out</string>
     <string name="account_management_dialog_message">Are you sure you want to sign out?</string>
     <string name="account_management_funding_source_changed">Funding source changed</string>

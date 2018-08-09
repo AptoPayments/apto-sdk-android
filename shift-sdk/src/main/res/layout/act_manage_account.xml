@@ -61,6 +61,36 @@
                 android:text="@string/account_management_contact_support_description"/>
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/ll_faq_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_faq_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_settings_faqs"/>
+
+            <TextView
+                android:id="@+id/tv_faq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_faq_icon"
+                android:text="@string/account_management_faq"
+                style="@style/llsdk_main_item_light"/>
+
+            <TextView
+                android:id="@+id/tv_faq_description"
+                style="@style/llsdk_item_description"
+                android:layout_below="@+id/tv_faq"
+                android:layout_toRightOf="@+id/iv_faq_icon"
+                android:text="@string/account_management_faq_description"/>
+        </RelativeLayout>
+
         <LinearLayout
             android:id="@+id/ll_sign_out_holder"
             android:layout_width="match_parent"
