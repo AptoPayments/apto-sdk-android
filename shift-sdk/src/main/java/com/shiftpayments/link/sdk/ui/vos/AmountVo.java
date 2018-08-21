@@ -37,8 +37,8 @@ public class AmountVo {
     }
 
     private String getCurrencySymbol(String currency) {
-        String currencySymbol = "";
-        if(currency!=null && !currency.isEmpty()) {
+        String currencySymbol = currency;
+        if(currency!=null && !currency.isEmpty() && mCurrencySymbols.get(currency)!=null) {
             currencySymbol = mCurrencySymbols.get(currency);
         }
         return currencySymbol;
@@ -51,9 +51,7 @@ public class AmountVo {
         currencyMap.put("EUR", "€");
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             currencyMap.put("BTC", "\u20BF");
-        }
-        else {
-            currencyMap.put("BTC", "BTC ");
+            currencyMap.put("ETH", "\u039E");
         }
         return currencyMap;
     }

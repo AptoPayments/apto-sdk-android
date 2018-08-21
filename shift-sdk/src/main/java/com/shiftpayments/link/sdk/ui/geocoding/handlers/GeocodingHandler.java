@@ -24,7 +24,7 @@ public class GeocodingHandler {
         if(mIsCancelled) {
             return;
         }
-        String url = context.getString(R.string.google_maps_api_url);
+        String url = context.getString(R.string.geocoding_google_maps_api_url);
         url+="?address="+address;
 
         if(country != null) {
@@ -32,7 +32,7 @@ public class GeocodingHandler {
         } else {
             url+="&components=country:US";
         }
-        url+="&key="+context.getString(R.string.google_maps_api_key);
+        url+="&key="+context.getString(R.string.geocoding_google_maps_api_key);
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, response -> {

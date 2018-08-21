@@ -79,8 +79,8 @@
     <string name="address_housing_type_header">Residence</string>
     <string name="address_housing_type_hint">Select a housing type&#8230;</string>
     <string name="address_housing_type_error">Please select a valid housing type.</string>
-    <string name="google_maps_api_key">AIzaSyBQuKFxmTO8gmxBwnXZlgG3TJY50KpbS-0</string>
-    <string name="google_maps_api_url">https://maps.googleapis.com/maps/api/geocode/json</string>
+    <string name="geocoding_google_maps_api_key">AIzaSyBQuKFxmTO8gmxBwnXZlgG3TJY50KpbS-0</string>
+    <string name="geocoding_google_maps_api_url">https://maps.googleapis.com/maps/api/geocode/json</string>
 
     <!-- Home -->
     <string name="home_title">Where do you live?</string>
