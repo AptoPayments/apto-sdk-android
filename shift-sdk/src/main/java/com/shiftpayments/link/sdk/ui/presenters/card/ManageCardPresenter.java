@@ -86,7 +86,7 @@ public class ManageCardPresenter
         mScrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
+                getTransactions();
             }
         };
         mTransactionsList = new ArrayList<TransactionVo>();
@@ -202,7 +202,9 @@ public class ManageCardPresenter
             mView.showNoTransactionsImage(true);
         }
         else {
-            mLastTransactionId = response.data[response.data.length-1].id;
+            if(response.data.length>0) {
+                mLastTransactionId = response.data[response.data.length-1].id;
+            }
             mView.showNoTransactionsImage(false);
         }
         mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count -1);
