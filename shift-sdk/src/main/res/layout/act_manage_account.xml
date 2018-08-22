@@ -19,7 +19,7 @@
             app:navigationIcon="?attr/homeAsUpIndicator" />
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -31,86 +31,69 @@
             style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
             android:text="@string/support_label" />
 
-        <RelativeLayout
-            android:id="@+id/ll_help_center_holder"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/iv_help_center_icon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_below="@+id/tv_support_header"
+            android:paddingTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/ic_settings_help"/>
 
-            <ImageView
-                android:id="@+id/iv_help_center_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/ic_settings_help"/>
+        <TextView
+            android:id="@+id/tv_contact_support"
+            android:layout_below="@+id/tv_support_header"
+            android:layout_toRightOf="@+id/iv_help_center_icon"
+            android:text="@string/account_management_contact_support"
+            style="@style/llsdk_main_item_light"/>
 
-            <TextView
-                android:id="@+id/tv_contact_support"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/iv_help_center_icon"
-                android:text="@string/account_management_contact_support"
-                style="@style/llsdk_main_item_light"/>
+        <TextView
+            android:id="@+id/tv_contact_support_description"
+            style="@style/llsdk_item_description"
+            android:layout_below="@+id/tv_contact_support"
+            android:layout_toRightOf="@+id/iv_help_center_icon"
+            android:text="@string/account_management_contact_support_description"/>
 
-            <TextView
-                android:id="@+id/tv_contact_support_description"
-                style="@style/llsdk_item_description"
-                android:layout_below="@+id/tv_contact_support"
-                android:layout_toRightOf="@+id/iv_help_center_icon"
-                android:text="@string/account_management_contact_support_description"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/ll_faq_holder"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/iv_faq_icon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:paddingTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_below="@+id/tv_contact_support_description"
+            android:src="@drawable/ic_settings_faqs"/>
 
-            <ImageView
-                android:id="@+id/iv_faq_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/ic_settings_faqs"/>
+        <TextView
+            android:id="@+id/tv_faq"
+            android:layout_below="@+id/tv_contact_support_description"
+            android:layout_toRightOf="@+id/iv_faq_icon"
+            android:text="@string/account_management_faq"
+            style="@style/llsdk_main_item_light"/>
 
-            <TextView
-                android:id="@+id/tv_faq"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/iv_faq_icon"
-                android:text="@string/account_management_faq"
-                style="@style/llsdk_main_item_light"/>
+        <TextView
+            android:id="@+id/tv_faq_description"
+            style="@style/llsdk_item_description"
+            android:layout_below="@+id/tv_faq"
+            android:layout_toRightOf="@+id/iv_faq_icon"
+            android:text="@string/account_management_faq_description"/>
 
-            <TextView
-                android:id="@+id/tv_faq_description"
-                style="@style/llsdk_item_description"
-                android:layout_below="@+id/tv_faq"
-                android:layout_toRightOf="@+id/iv_faq_icon"
-                android:text="@string/account_management_faq_description"/>
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_sign_out_holder"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/iv_sign_out_icon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:orientation="horizontal">
+            android:layout_marginLeft="16dp"
+            android:layout_gravity="center_vertical"
+            android:layout_below="@+id/tv_faq_description"
+            android:src="@drawable/ic_settings_logout"/>
 
-            <ImageView
-                android:id="@+id/iv_sign_out_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_settings_logout"/>
+        <TextView
+            android:id="@+id/tv_sign_out"
+            android:layout_marginTop="36dp"
+            style="@style/llsdk_title"
+            android:layout_below="@+id/tv_faq_description"
+            android:layout_toRightOf="@+id/iv_sign_out_icon"
+            android:text="@string/sign_out" />
 
-            <TextView
-                android:id="@+id/tv_sign_out"
-                style="@style/llsdk_title"
-                android:text="@string/sign_out" />
-        </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 </com.shiftpayments.link.sdk.ui.views.card.ManageAccountView>
