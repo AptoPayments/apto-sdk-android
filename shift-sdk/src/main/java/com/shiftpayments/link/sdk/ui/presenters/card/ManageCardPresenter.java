@@ -18,7 +18,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSou
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.card.CardSettingsActivity;
@@ -93,14 +92,14 @@ public class ManageCardPresenter
         mTransactionsAdapter = new TransactionsAdapter(mActivity, mTransactionsList, mModel);
         mTransactionsAdapter.setViewListener(this);
         view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter);
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        mResponseHandler.subscribe(this);
         getFundingSource();
         getTransactions();
     }
 
     @Override
     public void detachView() {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -143,7 +142,7 @@ public class ManageCardPresenter
 
     @Override
     public void pullToRefreshHandler() {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        mResponseHandler.subscribe(this);
         mLastTransactionId = null;
         getFundingSource();
         getTransactions();

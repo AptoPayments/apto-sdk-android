@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.models.fundingaccountselector.DisplayCardModel;
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
@@ -40,7 +39,7 @@ public class DisplayCardPresenter
     public void attachView(DisplayCardView view) {
         super.attachView(view);
         view.setViewListener(this);
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        mResponseHandler.subscribe(this);
         ShiftPlatform.getFinancialAccount(mDelegate.getFinancialAccountId());
     }
 
