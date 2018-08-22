@@ -64,7 +64,7 @@ public class ManageCardModel implements Model {
                 StringBuilder formattedCardNumber = new StringBuilder();
                 for (int i = 0; i < mCard.PANToken.length(); i++) {
                     if (i % 4 == 0 && i != 0) {
-                        formattedCardNumber.append("   ");
+                        formattedCardNumber.append(" ");
                     }
 
                     formattedCardNumber.append(mCard.PANToken.charAt(i));
