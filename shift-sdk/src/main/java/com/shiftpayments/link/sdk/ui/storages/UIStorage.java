@@ -225,41 +225,41 @@ public class UIStorage {
     }
 
     private void setColors() {
-        if(mConfig.projectConfiguration.primaryColor != null) {
-            mPrimaryColor = convertHexToInt(mConfig.projectConfiguration.primaryColor);
+        if(mConfig.projectConfiguration.projectBranding.primaryColor != null) {
+            mPrimaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.primaryColor);
         }
-        if(mConfig.projectConfiguration.secondaryColor != null) {
-            mSecondaryColor = convertHexToInt(mConfig.projectConfiguration.secondaryColor);
+        if(mConfig.projectConfiguration.projectBranding.secondaryColor != null) {
+            mSecondaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.secondaryColor);
         }
-        if(mConfig.projectConfiguration.tertiaryColor != null) {
-            mTertiaryColor = convertHexToInt(mConfig.projectConfiguration.tertiaryColor);
+        if(mConfig.projectConfiguration.projectBranding.tertiaryColor != null) {
+            mTertiaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.tertiaryColor);
         }
-        if(mConfig.projectConfiguration.errorColor != null) {
-            mErrorColor = convertHexToInt(mConfig.projectConfiguration.errorColor);
+        if(mConfig.projectConfiguration.projectBranding.errorColor != null) {
+            mErrorColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.errorColor);
         }
-        if(mConfig.projectConfiguration.successColor != null) {
-            mSuccessColor = convertHexToInt(mConfig.projectConfiguration.successColor);
+        if(mConfig.projectConfiguration.projectBranding.successColor != null) {
+            mSuccessColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.successColor);
         }
-        if(mConfig.projectConfiguration.textPrimaryColor != null) {
-            mTextPrimaryColor = convertHexToInt(mConfig.projectConfiguration.textPrimaryColor);
+        if(mConfig.projectConfiguration.projectBranding.textPrimaryColor != null) {
+            mTextPrimaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.textPrimaryColor);
         }
-        if(mConfig.projectConfiguration.textSecondaryColor != null) {
-            mTextSecondaryColor = convertHexToInt(mConfig.projectConfiguration.textSecondaryColor);
+        if(mConfig.projectConfiguration.projectBranding.textSecondaryColor != null) {
+            mTextSecondaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.textSecondaryColor);
         }
-        if(mConfig.projectConfiguration.textTertiaryColor != null) {
-            mTextTertiaryColor = convertHexToInt(mConfig.projectConfiguration.textTertiaryColor);
+        if(mConfig.projectConfiguration.projectBranding.textTertiaryColor != null) {
+            mTextTertiaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.textTertiaryColor);
         }
-        if(mConfig.projectConfiguration.textTopbarColor != null) {
-            mTextTopbarColor = convertHexToInt(mConfig.projectConfiguration.textTopbarColor);
+        if(mConfig.projectConfiguration.projectBranding.textTopbarColor != null) {
+            mTextTopbarColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.textTopbarColor);
         }
-        if(mConfig.projectConfiguration.iconPrimaryColor != null) {
-            mIconPrimaryColor = convertHexToInt(mConfig.projectConfiguration.iconPrimaryColor);
+        if(mConfig.projectConfiguration.projectBranding.iconPrimaryColor != null) {
+            mIconPrimaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.iconPrimaryColor);
         }
-        if(mConfig.projectConfiguration.iconSecondaryColor != null) {
-            mIconSecondaryColor = convertHexToInt(mConfig.projectConfiguration.iconSecondaryColor);
+        if(mConfig.projectConfiguration.projectBranding.iconSecondaryColor != null) {
+            mIconSecondaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.iconSecondaryColor);
         }
-        if(mConfig.projectConfiguration.iconTertiaryColor != null) {
-            mIconTertiaryColor = convertHexToInt(mConfig.projectConfiguration.iconTertiaryColor);
+        if(mConfig.projectConfiguration.projectBranding.iconTertiaryColor != null) {
+            mIconTertiaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.iconTertiaryColor);
         }
     }
 

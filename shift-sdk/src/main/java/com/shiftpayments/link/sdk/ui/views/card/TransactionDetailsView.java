@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -199,6 +200,7 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         int primaryColor = UIStorage.getInstance().getPrimaryColor();
         int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
         Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
+        backArrow.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
         mToolbar.setNavigationIcon(backArrow);
         mAppBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {

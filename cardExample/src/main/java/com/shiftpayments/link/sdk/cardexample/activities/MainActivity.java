@@ -94,9 +94,10 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     }
 
     private void configRetrieved(ConfigResponseVo configResponseVo) {
+        String logoUrl = configResponseVo.projectBranding.logoURL;
         runOnUiThread(()->{
-            if(configResponseVo.logoURL != null && !configResponseVo.logoURL.isEmpty()) {
-                mView.setLogo(configResponseVo.logoURL);
+            if(logoUrl != null && !logoUrl.isEmpty()) {
+                mView.setLogo(logoUrl);
             }
             else {
                 mView.setLogo();
