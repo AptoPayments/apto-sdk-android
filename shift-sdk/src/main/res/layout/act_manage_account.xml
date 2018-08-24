@@ -94,6 +94,5 @@
             android:layout_below="@+id/tv_faq_description"
             android:layout_toRightOf="@+id/iv_sign_out_icon"
             android:text="@string/sign_out" />
-
     </RelativeLayout>
 </com.shiftpayments.link.sdk.ui.views.card.ManageAccountView>

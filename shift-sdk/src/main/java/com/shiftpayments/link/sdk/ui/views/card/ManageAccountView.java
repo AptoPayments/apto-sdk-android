@@ -112,7 +112,8 @@ public class ManageAccountView
         Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
         backArrow.setColorFilter(UIStorage.getInstance().getIconPrimaryColor(), PorterDuff.Mode.SRC_ATOP);
         mToolbar.setNavigationIcon(backArrow);
-        mContactSupportIcon.setColorFilter(UIStorage.getInstance().getPrimaryColor());
-        mFaqIcon.setColorFilter(UIStorage.getInstance().getPrimaryColor());
+        Integer primaryColor = UIStorage.getInstance().getPrimaryColor();
+        mContactSupportIcon.setColorFilter(primaryColor);
+        mFaqIcon.setColorFilter(primaryColor);
     }
 }
