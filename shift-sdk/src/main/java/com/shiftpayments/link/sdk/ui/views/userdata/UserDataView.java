@@ -1,7 +1,10 @@
 package com.shiftpayments.link.sdk.ui.views.userdata;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.MenuItem;
@@ -74,6 +77,11 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
         int color = UIStorage.getInstance().getPrimaryColor();
         if(mProgressBar != null) {
             mProgressBar.setProgressBarColor(color);
+        }
+        if(mToolbar != null) {
+            Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
+            backArrow.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
+            mToolbar.setNavigationIcon(backArrow);
         }
     }
 

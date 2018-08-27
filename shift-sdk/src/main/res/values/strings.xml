@@ -48,11 +48,9 @@
     <string name="birthdate_verification_error">Error: the birthdate is incorrect!</string>
 
     <!-- Phone Verification -->
-    <string name="phone_verification_label">Phone verification</string>
-    <string name="phone_verification_code_hint">Enter your verification code</string>
-    <string name="phone_verification_info">We just sent a verification code to the number shown above.</string>
-    <string name="phone_verification_button_submit">SUBMIT</string>
-    <string name="phone_verification_button_resend">Re-send Code</string>
+    <string name="phone_verification_label">Verify phone number</string>
+    <string name="phone_verification_code_hint">Enter the code that was sent to</string>
+    <string name="phone_verification_button_resend"><u>Re-send code</u></string>
     <string name="phone_verification_resent">A new code has been sent to your phone</string>
     <string name="phone_verification_error">Error: the pin is incorrect!</string>
 

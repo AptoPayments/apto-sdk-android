@@ -13,6 +13,7 @@ import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.models.userdata.AbstractUserDataModel;
 import com.shiftpayments.link.sdk.ui.models.userdata.UserDataModel;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
+import com.shiftpayments.link.sdk.ui.utils.PhoneHelperUtil;
 
 /**
  * Concrete {@link Model} for the phone information screen.
@@ -120,5 +121,10 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
         request.datapoint_type = DataPointVo.DataPointType.Phone;
         request.show_verification_secret = true;
         return request;
+    }
+
+    public String getFormattedPhoneNumber() {
+        PhoneNumberVo phoneNumber = getPhoneFromBaseData();
+        return PhoneHelperUtil.formatPhone(phoneNumber.phoneNumber);
     }
 }

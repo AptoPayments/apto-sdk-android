@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.ui.presenters.verification;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PhoneNumberVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.VerificationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
@@ -15,7 +14,6 @@ import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataPresenter;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shiftpayments.link.sdk.ui.utils.PhoneHelperUtil;
 import com.shiftpayments.link.sdk.ui.views.verification.PhoneVerificationView;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -50,8 +48,8 @@ public class PhoneVerificationPresenter
     @Override
     public void attachView(PhoneVerificationView view) {
         super.attachView(view);
-        mActivity.setTitle(this.getTitle());
         mView.setListener(this);
+        mView.setPhoneNumber(mModel.getFormattedPhoneNumber());
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(false);
         mResponseHandler.subscribe(this);
@@ -80,12 +78,6 @@ public class PhoneVerificationPresenter
         if (mModel.hasValidData()) {
             ShiftPlatform.completeVerification(mModel.getVerificationRequest());
         }
-    }
-
-    private String getTitle() {
-        PhoneNumberVo phoneNumber = (PhoneNumberVo) mModel.getBaseData().
-                getUniqueDataPoint(DataPointVo.DataPointType.Phone, new PhoneNumberVo());
-        return PhoneHelperUtil.formatPhone(phoneNumber.phoneNumber);
     }
 
     /**
