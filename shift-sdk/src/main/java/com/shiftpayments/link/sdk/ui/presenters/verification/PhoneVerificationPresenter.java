@@ -2,8 +2,6 @@ package com.shiftpayments.link.sdk.ui.presenters.verification;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shiftpayments.link.sdk.api.vos.datapoints.PhoneNumberVo;
-import com.shiftpayments.link.sdk.api.vos.datapoints.VerificationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
@@ -51,7 +49,7 @@ public class PhoneVerificationPresenter
         mView.setListener(this);
         mView.setPhoneNumber(mModel.getFormattedPhoneNumber());
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
-        mLoadingSpinnerManager.showLoading(false);
+        mLoadingSpinnerManager.showLoading(true);
         mResponseHandler.subscribe(this);
     }
 
@@ -75,8 +73,11 @@ public class PhoneVerificationPresenter
         // Store data.
         mModel.setVerificationCode(mView.getVerificationCode());
 
-        if (mModel.hasValidData()) {
+        if (mModel.hasVerificationCode()) {
             ShiftPlatform.completeVerification(mModel.getVerificationRequest());
+        }
+        else {
+            displayWrongCodeMessage();
         }
     }
 
@@ -86,15 +87,9 @@ public class PhoneVerificationPresenter
      */
     @Subscribe
     public void handleResponse(VerificationResponseVo response) {
+        mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
-            PhoneNumberVo phone = mModel.getPhoneFromBaseData();
-            if(phone.hasVerification()) {
-                phone.getVerification().setVerificationId(response.verification_id);
-                phone.getVerification().setVerificationType(response.verification_type);
-            }
-            else{
-                phone.setVerification(new VerificationVo(response.verification_id, response.verification_type));
-            }
+            mModel.setVerification(response.verification_id, response.verification_type);
         }
     }
 
@@ -106,13 +101,12 @@ public class PhoneVerificationPresenter
     public void handleResponse(FinishVerificationResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
-            PhoneNumberVo phone = mModel.getPhoneFromBaseData();
-            phone.getVerification().setVerificationStatus(response.status);
-            if(!phone.getVerification().isVerified()) {
-                displayWrongCodeMessage();
+            mModel.setVerificationStatus(response.status);
+            if(mModel.hasValidData()) {
+                mDelegate.phoneVerificationSucceeded(response);
             }
             else {
-                mDelegate.phoneVerificationSucceeded(response);
+                displayWrongCodeMessage();
             }
         }
     }
@@ -123,6 +117,7 @@ public class PhoneVerificationPresenter
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
+        mLoadingSpinnerManager.showLoading(false);
         super.setApiError(error);
     }
 

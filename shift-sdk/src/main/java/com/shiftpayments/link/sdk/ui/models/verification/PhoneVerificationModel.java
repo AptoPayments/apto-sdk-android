@@ -46,7 +46,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
     /** {@inheritDoc} */
     @Override
     public boolean hasValidData() {
-        return hasVerificationCode();
+        return getPhoneFromBaseData().isVerified();
     }
 
     /** {@inheritDoc} */
@@ -62,8 +62,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
     @Override
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
-        PhoneNumberVo phoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Phone, new PhoneNumberVo());
+        PhoneNumberVo phoneNumber = getPhoneFromBaseData();
         if(phoneNumber.hasVerification()) {
             mVerification = phoneNumber.getVerification();
         }
@@ -96,12 +95,21 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
             mVerification.setSecret(verificationCode);
         }
     }
-    
     /**
      * @return Whether a verification code has been set.
      */
     public boolean hasVerificationCode() {
         return mVerification.getSecret() != null;
+    }
+
+    public void setVerification(String id, String type) {
+        mVerification = new VerificationVo(id, type);
+        storeVerification();
+    }
+
+    public void setVerificationStatus(String status) {
+        mVerification.setVerificationStatus(status);
+        storeVerification();
     }
 
     public VerificationRequestVo getVerificationRequest() {
@@ -126,5 +134,10 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
     public String getFormattedPhoneNumber() {
         PhoneNumberVo phoneNumber = getPhoneFromBaseData();
         return PhoneHelperUtil.formatPhone(phoneNumber.phoneNumber);
+    }
+
+    private void storeVerification() {
+        PhoneNumberVo phone = getPhoneFromBaseData();
+        phone.setVerification(mVerification);
     }
 }
