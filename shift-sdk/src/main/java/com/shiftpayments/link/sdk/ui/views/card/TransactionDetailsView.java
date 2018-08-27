@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -55,6 +56,7 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private RelativeLayout mHoldAmountHolder;
     private ImageView mAddressImageView;
     private TextView mTransfersHeader;
+    private View mTitleBackground;
 
     /**
      * @see CardView#CardView
@@ -194,26 +196,34 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mHoldAmountHolder = findViewById(R.id.rl_hold_amount);
         mAddressImageView = findViewById(R.id.iv_address_icon);
         mTransfersHeader = findViewById(R.id.tv_transfers_header);
+        mTitleBackground = findViewById(R.id.collapsing_toolbar_title_background_view);
     }
 
     private void setColors() {
         int primaryColor = UIStorage.getInstance().getPrimaryColor();
         int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
-        Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
-        backArrow.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
-        mToolbar.setNavigationIcon(backArrow);
         mAppBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
                 //Collapsed
                 mToolbar.setBackgroundColor(primaryColor);
+                mCollapsingToolbar.setStatusBarScrimColor(primaryColor);
+                mTitleBackground.setVisibility(GONE);
+
             } else {
                 //Expanded
                 mToolbar.setBackgroundColor(Color.TRANSPARENT);
+                mCollapsingToolbar.setStatusBarScrimColor(Color.TRANSPARENT);
+                mTitleBackground.setVisibility(VISIBLE);
+                mTitleBackground.setBackgroundColor(primaryColor);
             }
         });
         mCollapsingToolbar.setCollapsedTitleTextColor(contrastColor);
         mCollapsingToolbar.setExpandedTitleColor(contrastColor);
         mCollapsingToolbar.setBackgroundColor(primaryColor);
         mAddressImageView.setColorFilter(primaryColor);
+        Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
+        backArrow.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
+        mToolbar.setNavigationIcon(backArrow);
+        mToolbar.bringToFront();
     }
 }
