@@ -61,6 +61,7 @@ public class UIStorage {
      * Creates a new {@link UIStorage} instance.
      */
     private UIStorage() {
+        getResultFromFuture(getConfigFuture());
     }
 
     /**
@@ -79,260 +80,107 @@ public class UIStorage {
         setColors();
     }
 
-    public synchronized Integer getPrimaryColor() {
-        if(mPrimaryColor != null) {
-            return mPrimaryColor;
-        }
-        else {
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mPrimaryColor;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-
-            });
-            if (getResultFromFuture(future) == null) {
-                return convertHexToInt(DEFAULT_PRIMARY_COLOR);
-            } else {
-                return (Integer) getResultFromFuture(future);
+    private CompletableFuture<ContextConfigResponseVo> getConfigFuture() {
+        CompletableFuture<ContextConfigResponseVo> future = CompletableFuture.supplyAsync(() -> {
+            try {
+                return getApiWrapper().getUserConfig(new GetProjectConfigRequestVo());
+            } catch (ApiException e) {
+                throw new CompletionException(e);
             }
+        });
+        future.thenApply(config -> {
+            setConfig(config);
+            return config;
+        });
+        return future;
+    }
+
+    public synchronized Integer getPrimaryColor() {
+        if(mPrimaryColor == null) {
+            mPrimaryColor = convertHexToInt(DEFAULT_PRIMARY_COLOR);
         }
+        return mPrimaryColor;
     }
 
     public synchronized Integer getSecondaryColor() {
-        if(mSecondaryColor != null) {
-            return mSecondaryColor;
+        if(mSecondaryColor == null) {
+            mSecondaryColor = convertHexToInt(DEFAULT_SECONDARY_COLOR);
         }
-        else {
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mSecondaryColor;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            });
-            if (getResultFromFuture(future) == null) {
-                return convertHexToInt(DEFAULT_SECONDARY_COLOR);
-            } else {
-                return (Integer) getResultFromFuture(future);
-            }
-        }
+        return mSecondaryColor;
     }
 
     public synchronized Integer getTertiaryColor() {
-        if(mTertiaryColor != null) {
-            return mTertiaryColor;
+        if(mTertiaryColor == null) {
+            mTertiaryColor = convertHexToInt(DEFAULT_TERTIARY_COLOR);
         }
-        else {
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mTertiaryColor;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            });
-            if (getResultFromFuture(future) == null) {
-                return convertHexToInt(DEFAULT_TERTIARY_COLOR);
-            } else {
-                return (Integer) getResultFromFuture(future);
-            }
-        }
+        return mTertiaryColor;
     }
 
     public synchronized Integer getSuccessColor() {
-        if(mSuccessColor != null) {
-            return mSuccessColor;
+        if(mSuccessColor == null) {
+            mSuccessColor = convertHexToInt(DEFAULT_SUCCESS_COLOR);
         }
-        else {
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mSuccessColor;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            });
-            if (getResultFromFuture(future) == null) {
-                return convertHexToInt(DEFAULT_SUCCESS_COLOR);
-            } else {
-                return (Integer) getResultFromFuture(future);
-            }
-        }
+        return mSuccessColor;
     }
 
     public synchronized Integer getErrorColor() {
-        if(mErrorColor != null) {
-            return mErrorColor;
+        if(mErrorColor == null) {
+            mErrorColor = convertHexToInt(DEFAULT_ERROR_COLOR);
         }
-        else {
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mErrorColor;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            });
-            if (getResultFromFuture(future) == null) {
-                return convertHexToInt(DEFAULT_ERROR_COLOR);
-            } else {
-                return (Integer) getResultFromFuture(future);
-            }
-        }
+        return mErrorColor;
     }
 
     public synchronized Integer getTextPrimaryColor() {
-        if(mTextPrimaryColor != null) {
-            return mTextPrimaryColor;
+        if(mTextPrimaryColor == null) {
+            mTextPrimaryColor = convertHexToInt(DEFAULT_PRIMARY_TEXT_COLOR);
         }
-        else {
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mTextPrimaryColor;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            });
-            if (getResultFromFuture(future) == null) {
-                return convertHexToInt(DEFAULT_PRIMARY_TEXT_COLOR);
-            } else {
-                return (Integer) getResultFromFuture(future);
-            }
-        }
+        return mTextPrimaryColor;
     }
 
     public synchronized Integer getTextSecondaryColor() {
-        if(mTextSecondaryColor != null) {
-            return mTextSecondaryColor;
+        if(mTextSecondaryColor == null) {
+            mTextSecondaryColor = convertHexToInt(DEFAULT_SECONDARY_TEXT_COLOR);
         }
-        else {
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mTextSecondaryColor;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            });
-            if (getResultFromFuture(future) == null) {
-                return convertHexToInt(DEFAULT_SECONDARY_TEXT_COLOR);
-            } else {
-                return (Integer) getResultFromFuture(future);
-            }
-        }
+        return mTextSecondaryColor;
     }
 
     public synchronized Integer getTextTertiaryColor() {
-        if(mTextTertiaryColor != null) {
-            return mTextTertiaryColor;
+        if(mTextTertiaryColor == null) {
+            mTextTertiaryColor = convertHexToInt(DEFAULT_TERTIARY_TEXT_COLOR);
         }
-        else {
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mTextTertiaryColor;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            });
-            if (getResultFromFuture(future) == null) {
-                return convertHexToInt(DEFAULT_TERTIARY_TEXT_COLOR);
-            } else {
-                return (Integer) getResultFromFuture(future);
-            }
-        }
+        return mTextTertiaryColor;
     }
 
     public synchronized Integer getTextTopbarColor() {
-        if(mTextTopbarColor != null) {
-            return mTextTopbarColor;
+        if(mTextTopbarColor == null) {
+            mTextTopbarColor = convertHexToInt(DEFAULT_TOPBAR_TEXT_COLOR);
         }
-        else {
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mTextTopbarColor;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            });
-            if (getResultFromFuture(future) == null) {
-                return convertHexToInt(DEFAULT_TOPBAR_TEXT_COLOR);
-            } else {
-                return (Integer) getResultFromFuture(future);
-            }
-        }
+        return mTextTopbarColor;
     }
 
     public synchronized Integer getIconPrimaryColor() {
-        if(mIconPrimaryColor != null) {
-            return mIconPrimaryColor;
+        if(mIconPrimaryColor == null) {
+            mIconPrimaryColor = convertHexToInt(DEFAULT_ICON_PRIMARY_COLOR);
         }
-        else {
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mIconPrimaryColor;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-
-            });
-            if (getResultFromFuture(future) == null) {
-                return convertHexToInt(DEFAULT_ICON_PRIMARY_COLOR);
-            } else {
-                return (Integer) getResultFromFuture(future);
-            }
-        }
+        return mIconPrimaryColor;
     }
 
     public synchronized Integer getIconSecondaryColor() {
-        if(mIconSecondaryColor != null) {
-            return mIconSecondaryColor;
+        if(mIconSecondaryColor == null) {
+            mIconSecondaryColor = convertHexToInt(DEFAULT_ICON_SECONDARY_COLOR);
         }
-        else {
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mIconSecondaryColor;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            });
-            if (getResultFromFuture(future) == null) {
-                return convertHexToInt(DEFAULT_ICON_SECONDARY_COLOR);
-            } else {
-                return (Integer) getResultFromFuture(future);
-            }
-        }
+        return mIconSecondaryColor;
     }
 
     public synchronized Integer getIconTertiaryColor() {
-        if(mIconTertiaryColor != null) {
-            return mIconTertiaryColor;
+        if(mIconTertiaryColor == null) {
+            mIconTertiaryColor = convertHexToInt(DEFAULT_ICON_TERTIARY_COLOR);
         }
-        else {
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-                try {
-                    setConfig(getApiWrapper().getUserConfig(new GetProjectConfigRequestVo()));
-                    return mIconTertiaryColor;
-                } catch (ApiException e) {
-                    throw new CompletionException(e);
-                }
-            });
-            if (getResultFromFuture(future) == null) {
-                return convertHexToInt(DEFAULT_ICON_TERTIARY_COLOR);
-            } else {
-                return (Integer) getResultFromFuture(future);
-            }
-        }
+        return mIconTertiaryColor;
+    }
+
+    public int getStatusBarColor() {
+        return getStatusBarColor(getPrimaryColor());
     }
 
     public int getStatusBarColor(int actionBarColor) {

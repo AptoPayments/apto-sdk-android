@@ -31,7 +31,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private Toolbar mToolbar;
     private CollapsingToolbarLayout mCollapsingToolbar;
     private AppBarLayout mAppBarLayout;
-    private ImageView mHeader;
     private RecyclerView mRecyclerView;
     private NestedScrollView mNestedScrollView;
     private TransactionView mTransactionView;
@@ -79,7 +78,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         super.onFinishInflate();
         findAllViews();
         setColors();
-        setHeader();
     }
 
     @Override
@@ -159,10 +157,10 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mCollapsingToolbar.setTitle(title);
     }
 
-    public void setHeader() {
-        // TODO: check if location coordinates are present and show map
-        disableExpandingToolbar();
-        //mHeader.setImageResource(R.drawable.google_map);
+    public void disableExpandingToolbar() {
+        mAppBarLayout.setExpanded(false);
+        mRecyclerView.setNestedScrollingEnabled(false);
+        mNestedScrollView.setNestedScrollingEnabled(false);
     }
 
     /**
@@ -172,7 +170,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mToolbar = findViewById(R.id.toolbar);
         mCollapsingToolbar = findViewById(R.id.collapsing_toolbar);
         mAppBarLayout = findViewById(R.id.settings_toolbar);
-        mHeader = findViewById(R.id.iv_header);
         mRecyclerView = findViewById(R.id.recycler);
         mNestedScrollView = findViewById(R.id.nested_scroll_view);
         mTransactionView = findViewById(R.id.cv_transaction_view);
@@ -216,11 +213,5 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mCollapsingToolbar.setExpandedTitleColor(contrastColor);
         mCollapsingToolbar.setBackgroundColor(primaryColor);
         mAddressImageView.setColorFilter(primaryColor);
-    }
-
-    private void disableExpandingToolbar() {
-        mAppBarLayout.setExpanded(false);
-        mRecyclerView.setNestedScrollingEnabled(false);
-        mNestedScrollView.setNestedScrollingEnabled(false);
     }
 }

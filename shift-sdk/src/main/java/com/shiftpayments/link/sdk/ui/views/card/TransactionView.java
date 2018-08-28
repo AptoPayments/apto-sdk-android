@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -15,7 +14,6 @@ import com.shiftpayments.link.sdk.ui.R;
  */
 public class TransactionView extends FrameLayout {
 
-    private ImageView mIconView;
     private TextView mAddress;
 
     /**
@@ -46,7 +44,6 @@ public class TransactionView extends FrameLayout {
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mIconView = findViewById(R.id.iv_icon);
         mAddress = findViewById(R.id.tv_address);
     }
 

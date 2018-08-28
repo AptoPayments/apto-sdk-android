@@ -14,7 +14,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFina
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.card.CardSettingsActivity;
@@ -78,7 +77,7 @@ public class CardSettingsPresenter
         mView.showAddFundingSourceButton(UIStorage.getInstance().showAddFundingSourceButton());
         mView.setShowCardInfoSwitch(CardStorage.getInstance().showCardInfo);
         mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        mResponseHandler.subscribe(this);
         ShiftPlatform.getUserFundingSources();
     }
 
@@ -94,7 +93,7 @@ public class CardSettingsPresenter
             fundingSource.setIsSelected(fundingSource.equals(selectedFundingSource));
         }
         mAdapter.updateList(mModel.getFundingSources());
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        mResponseHandler.subscribe(this);
         ShiftPlatform.setAccountFundingSource(CardStorage.getInstance().getCard().mAccountId, selectedFundingSource.getFundingSourceId());
     }
 
@@ -180,7 +179,7 @@ public class CardSettingsPresenter
 
     @Subscribe
     public void handleResponse(FundingSourceListVo response) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mResponseHandler.unsubscribe(this);
         mModel.addFundingSources(response.data);
         mView.showFundingSourceLabel(true);
         mAdapter.updateList(mModel.getFundingSources());
@@ -188,7 +187,7 @@ public class CardSettingsPresenter
 
     @Subscribe
     public void handleResponse(FundingSourceVo response) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mResponseHandler.unsubscribe(this);
         mModel.setSelectedFundingSource(response.id);
         mAdapter.updateList(mModel.getFundingSources());
         Toast.makeText(mActivity, R.string.account_management_funding_source_changed, Toast.LENGTH_SHORT).show();
@@ -200,7 +199,7 @@ public class CardSettingsPresenter
      */
     @Subscribe
     public void handleResponse(UpdateFinancialAccountPinResponseVo card) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mResponseHandler.unsubscribe(this);
         Toast.makeText(mActivity, mActivity.getString(R.string.card_management_pin_changed), Toast.LENGTH_SHORT).show();
     }
 
@@ -210,7 +209,7 @@ public class CardSettingsPresenter
      */
     @Subscribe
     public void handleResponse(EnableFinancialAccountResponseVo card) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mResponseHandler.unsubscribe(this);
         showToastAndUpdateCard(card, mActivity.getString(R.string.card_enabled));
     }
 
@@ -220,7 +219,7 @@ public class CardSettingsPresenter
      */
     @Subscribe
     public void handleResponse(DisableFinancialAccountResponseVo card) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mResponseHandler.unsubscribe(this);
         showToastAndUpdateCard(card, mActivity.getString(R.string.card_disabled));
     }
 
@@ -230,7 +229,7 @@ public class CardSettingsPresenter
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mResponseHandler.unsubscribe(this);
         if(error.statusCode==404) {
             // User has no funding source
             mView.showFundingSourceLabel(false);
@@ -247,13 +246,13 @@ public class CardSettingsPresenter
      */
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mResponseHandler.unsubscribe(this);
         mActivity.finish();
         mDelegate.onSessionExpired(error);
     }
 
     private void updateCardPin(String pin) {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        mResponseHandler.subscribe(this);
         UpdateFinancialAccountPinRequestVo request = new UpdateFinancialAccountPinRequestVo();
         request.pin = pin;
         request.accountId = mModel.getAccountId();
@@ -282,7 +281,7 @@ public class CardSettingsPresenter
     }
 
     private void changeCardState(boolean enable) {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        mResponseHandler.subscribe(this);
         if(enable) {
             ShiftPlatform.enableFinancialAccount(mModel.getAccountId());
         }

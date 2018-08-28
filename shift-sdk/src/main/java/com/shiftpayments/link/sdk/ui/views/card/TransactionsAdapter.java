@@ -104,7 +104,7 @@ public class TransactionsAdapter extends
         }
     }
 
-    // Overriden to display custom rows in the recyclerview
+    // Overridden to display custom rows in the RecyclerView
     @Override
     public int getItemViewType(int position) {
         int viewType = 1;
@@ -185,7 +185,6 @@ public class TransactionsAdapter extends
                     v -> mListener.cardNumberClickHandler(((EditText)v).getText().toString()));
             viewHolder.secondaryButton.setOnClickListener(
                     v -> mListener.activateCardBySecondaryBtnClickHandler());
-/*            viewHolder.accountButton.setOnClickListener(v -> mListener.accountClickHandler());*/
         }
         else if (position > 0) {
             viewHolder.transactionHolder.setOnClickListener(

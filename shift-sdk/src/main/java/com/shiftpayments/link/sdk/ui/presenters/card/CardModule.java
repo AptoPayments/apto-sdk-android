@@ -61,10 +61,12 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     @Override
     public void initialModuleSetup() {
+        showLoading(true);
         setCurrentModule();
         CompletableFuture
                 .supplyAsync(()-> ConfigStorage.getInstance().getCardConfig())
                 .exceptionally(ex -> {
+                    showLoading(false);
                     ApiErrorUtil.showErrorMessage(ex, getActivity());
                     return null;
                 })
@@ -184,6 +186,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void startAuthModule() {
+        showLoading(false);
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
         AuthModuleConfig authModuleConfig = new AuthModuleConfig(config.primaryAuthCredential, config.secondaryAuthCredential);
@@ -193,11 +196,13 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void startNewCardModule() {
+        showLoading(false);
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         mNewCardModule.initialModuleSetup();
     }
 
     private void startCustodianModule(Command onFinish, Command onBack) {
+        showLoading(false);
         CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(
                 this.getActivity(),
                 ()->{

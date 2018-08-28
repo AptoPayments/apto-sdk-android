@@ -62,7 +62,7 @@ public abstract class FragmentMvpActivity<M extends ActivityModel, V extends Vie
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            getWindow().setStatusBarColor(UIStorage.getInstance().getStatusBarColor(UIStorage.getInstance().getPrimaryColor()));
+            getWindow().setStatusBarColor(UIStorage.getInstance().getStatusBarColor());
         }
         mPresenter = createPresenter(ModuleManager.getInstance().getCurrentModule());
         mPresenter.attachView(mView);

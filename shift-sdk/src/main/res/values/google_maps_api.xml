@@ -1,0 +1,4 @@
+<resources>
+    <!--Used to show the map in the transaction details screen-->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAotrCbHOnTHEgB04_R47mBROB0Bjte25k</string>
+</resources>

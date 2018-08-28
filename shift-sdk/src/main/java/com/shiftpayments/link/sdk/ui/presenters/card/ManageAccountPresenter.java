@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
 import com.shiftpayments.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
@@ -53,7 +52,7 @@ public class ManageAccountPresenter
                 .setTitle(mActivity.getString(R.string.sign_out))
                 .setNegativeButton("NO", (dialog, id) -> dialog.dismiss())
                 .setPositiveButton("YES", (dialog, id) -> {
-                    ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+                    mResponseHandler.unsubscribe(this);
                     mActivity.finish();
                     mDelegate.onSignOut();
                 });
