@@ -1,13 +1,11 @@
 package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -195,7 +193,7 @@ public class TransactionsAdapter extends
     private void showActivateCardButton(boolean show, ViewHolder viewHolder) {
         if(show) {
             viewHolder.secondaryButton.setBackgroundColor(
-                    UIStorage.getInstance().getPrimaryColor());
+                    UIStorage.getInstance().getUiPrimaryColor());
             viewHolder.secondaryButton.setTextColor(
                     UIStorage.getInstance().getPrimaryContrastColor());
             viewHolder.secondaryButton.setVisibility(View.VISIBLE);

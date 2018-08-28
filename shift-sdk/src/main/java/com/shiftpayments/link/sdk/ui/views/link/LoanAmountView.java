@@ -105,7 +105,7 @@ public class LoanAmountView
 
     @Override
     protected void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
+        int color = UIStorage.getInstance().getUiPrimaryColor();
         mAmountText.setTextColor(color);
         mAmountSlider.setRippleColor(color);
         mAmountSlider.setScrubberColor(color);

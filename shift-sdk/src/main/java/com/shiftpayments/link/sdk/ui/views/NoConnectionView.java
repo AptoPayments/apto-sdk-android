@@ -35,7 +35,7 @@ public class NoConnectionView extends RelativeLayout {
     }
 
     private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int primaryColor = UIStorage.getInstance().getUiPrimaryColor();
         this.setBackgroundColor(primaryColor);
         int textColor = UIStorage.getInstance().getPrimaryContrastColor();
         mHeader.setTextColor(textColor);

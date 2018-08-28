@@ -166,7 +166,7 @@ public class CreditCardView extends RelativeLayout {
         mCardOverlay.setVisibility(GONE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Drawable background = mContext.getDrawable(mEnabledCardBackground);
-            background.setColorFilter(UIStorage.getInstance().getPrimaryColor(), PorterDuff.Mode.SRC_ATOP);
+            background.setColorFilter(UIStorage.getInstance().getUiPrimaryColor(), PorterDuff.Mode.SRC_ATOP);
             setBackground(background);
         }
         else {

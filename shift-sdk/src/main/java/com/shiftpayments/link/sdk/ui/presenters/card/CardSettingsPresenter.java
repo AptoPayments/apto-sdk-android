@@ -275,7 +275,7 @@ public class CardSettingsPresenter
         dialog.setCanceledOnTouchOutside(false);
         dialog.setOnShowListener(dialogInterface -> {
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(UIStorage.getInstance().getTextPrimaryColor());
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(UIStorage.getInstance().getPrimaryColor());
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(UIStorage.getInstance().getUiPrimaryColor());
         });
         dialog.show();
     }

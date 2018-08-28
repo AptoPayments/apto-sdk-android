@@ -55,7 +55,7 @@ public class IntermediateLoanApplicationView extends RelativeLayout implements V
     }
 
     private void setColors() {
-        mToolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getPrimaryColor()));
+        mToolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getUiPrimaryColor()));
         mToolbar.setTitleTextColor(UIStorage.getInstance().getPrimaryContrastColor());
     }
 

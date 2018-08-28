@@ -200,7 +200,7 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     }
 
     private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int primaryColor = UIStorage.getInstance().getUiPrimaryColor();
         int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
         mAppBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {

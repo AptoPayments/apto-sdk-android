@@ -4,19 +4,19 @@ import com.google.gson.annotations.SerializedName;
 
 public class ProjectBrandingVo {
     @SerializedName("ui_primary_color")
-    public String primaryColor;
+    public String uiPrimaryColor;
 
     @SerializedName("ui_secondary_color")
-    public String secondaryColor;
+    public String uiSecondaryColor;
 
     @SerializedName("ui_tertiary_color")
-    public String tertiaryColor;
+    public String uiTertiaryColor;
 
     @SerializedName("ui_error_color")
-    public String errorColor;
+    public String uiErrorColor;
 
     @SerializedName("ui_success_color")
-    public String successColor;
+    public String uiSuccessColor;
 
     @SerializedName("text_primary_color")
     public String textPrimaryColor;
