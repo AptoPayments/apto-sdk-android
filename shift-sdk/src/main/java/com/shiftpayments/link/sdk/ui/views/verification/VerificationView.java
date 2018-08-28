@@ -18,11 +18,11 @@ import com.shiftpayments.link.sdk.ui.views.userdata.UserDataView;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
- * Displays the phone verification screen.
+ * Displays the verification screen.
  * @author Adrian
  */
-public class PhoneVerificationView
-        extends UserDataView<PhoneVerificationView.ViewListener>
+public class VerificationView
+        extends UserDataView<VerificationView.ViewListener>
         implements ViewWithToolbar, View.OnClickListener, ViewWithIndeterminateLoading {
 
     /**
@@ -36,7 +36,7 @@ public class PhoneVerificationView
     }
 
     private PinView mPinView;
-    private TextView mPhoneNumberLabel;
+    private TextView mDataPointLabel;
     private TextView mResendButton;
     private LoadingView mLoadingView;
 
@@ -44,7 +44,7 @@ public class PhoneVerificationView
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
      */
-    public PhoneVerificationView(Context context) {
+    public VerificationView(Context context) {
         super(context);
     }
 
@@ -53,7 +53,7 @@ public class PhoneVerificationView
      * @param context See {@link UserDataView#UserDataView}.
      * @param attrs See {@link UserDataView#UserDataView}.
      */
-    public PhoneVerificationView(Context context, AttributeSet attrs) {
+    public VerificationView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -62,7 +62,7 @@ public class PhoneVerificationView
     protected void findAllViews() {
         super.findAllViews();
         mPinView = findViewById(R.id.pinView);
-        mPhoneNumberLabel = findViewById(R.id.tv_verification_phone_label);
+        mDataPointLabel = findViewById(R.id.tv_verification_datapoint_label);
         mResendButton = findViewById(R.id.tv_resend_bttn);
         mLoadingView = findViewById(R.id.rl_loading_overlay);
     }
@@ -72,7 +72,7 @@ public class PhoneVerificationView
         super.setColors();
 
         int textSecondaryColor = UIStorage.getInstance().getTextSecondaryColor();
-        mPhoneNumberLabel.setTextColor(textSecondaryColor);
+        mDataPointLabel.setTextColor(textSecondaryColor);
         mResendButton.setTextColor(textSecondaryColor);
         mPinView.setColorTextPinBoxes(textSecondaryColor);
     }
@@ -91,7 +91,7 @@ public class PhoneVerificationView
         super.setupListeners();
         mPinView.setOnCompleteListener((completed, pinResults) -> {
             if (completed) {
-                KeyboardUtil.hideKeyboard(PhoneVerificationView.super.getContext());
+                KeyboardUtil.hideKeyboard(VerificationView.super.getContext());
                 mListener.nextClickHandler();
             }
         });
@@ -134,7 +134,7 @@ public class PhoneVerificationView
         mPinView.clear();
     }
 
-    public void setPhoneNumber(String number) {
-        mPhoneNumberLabel.setText(number);
+    public void setDataPoint(String dataPoint) {
+        mDataPointLabel.setText(dataPoint);
     }
 }

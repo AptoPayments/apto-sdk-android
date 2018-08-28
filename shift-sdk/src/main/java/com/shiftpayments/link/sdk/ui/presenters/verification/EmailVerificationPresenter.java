@@ -14,7 +14,8 @@ import com.shiftpayments.link.sdk.ui.models.verification.EmailVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataPresenter;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
-import com.shiftpayments.link.sdk.ui.views.verification.EmailVerificationView;
+import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
+import com.shiftpayments.link.sdk.ui.views.verification.VerificationView;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -23,10 +24,11 @@ import org.greenrobot.eventbus.Subscribe;
  * @author Adrian
  */
 public class EmailVerificationPresenter
-        extends UserDataPresenter<EmailVerificationModel, EmailVerificationView>
-        implements EmailVerificationView.ViewListener {
+        extends UserDataPresenter<EmailVerificationModel, VerificationView>
+        implements VerificationView.ViewListener {
 
     private EmailVerificationDelegate mDelegate;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     /**
      * Creates a new {@link EmailVerificationPresenter} instance.
@@ -48,11 +50,13 @@ public class EmailVerificationPresenter
 
     /** {@inheritDoc} */
     @Override
-    public void attachView(EmailVerificationView view) {
+    public void attachView(VerificationView view) {
         super.attachView(view);
-        String description = this.getEmail()==null ? "your email." : this.getEmail();
-        mView.setDescription(mActivity.getResources().getString(R.string.email_verification_info, description));
+        String email = this.getEmail()==null ? "your email." : this.getEmail();
+        mView.setDataPoint(email);
         mView.setListener(this);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
+        mLoadingSpinnerManager.showLoading(false);
         mResponseHandler.subscribe(this);
     }
 
@@ -72,6 +76,7 @@ public class EmailVerificationPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
+        mLoadingSpinnerManager.showLoading(true);
         ShiftPlatform.getVerificationStatus(mModel.getVerificationId());
     }
 
@@ -81,6 +86,7 @@ public class EmailVerificationPresenter
      */
     @Subscribe
     public void handleResponse(VerificationStatusResponseVo response) {
+        mLoadingSpinnerManager.showLoading(false);
         setVerificationResponse(response);
     }
 
@@ -90,6 +96,7 @@ public class EmailVerificationPresenter
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
+        mLoadingSpinnerManager.showLoading(false);
         super.setApiError(error);
     }
 
@@ -105,6 +112,7 @@ public class EmailVerificationPresenter
      */
     @Subscribe
     public void setVerificationResponse(VerificationResponseVo response) {
+        mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
             Email email = mModel.getEmailFromBaseData();
             if(email.hasVerification()) {
@@ -122,11 +130,13 @@ public class EmailVerificationPresenter
      * @param response API response.
      */
     public void setVerificationResponse(VerificationStatusResponseVo response) {
+        mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
             Email email = mModel.getEmailFromBaseData();
             email.getVerification().setVerificationStatus(response.status);
             if(!email.getVerification().isVerified()) {
-                ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.email_verification_error), mActivity);
+                ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.verification_error), mActivity);
+                mView.clearPinView();
             }
             else {
                 mResponseHandler.unsubscribe(this);
@@ -137,6 +147,7 @@ public class EmailVerificationPresenter
 
     @Override
     public void resendClickHandler() {
+        mLoadingSpinnerManager.showLoading(true);
         ShiftPlatform.restartVerification(mModel.getVerificationId());
         mView.displaySentMessage(mActivity.getString(R.string.email_verification_resent));
     }

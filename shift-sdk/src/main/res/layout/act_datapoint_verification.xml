@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shiftpayments.link.sdk.ui.views.verification.PhoneVerificationView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.shiftpayments.link.sdk.ui.views.verification.VerificationView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:pinview="http://schemas.android.com/apk/res-auto">
@@ -31,10 +31,10 @@
                 android:layout_marginTop="32dp"
                 android:paddingTop="12dp"
                 android:paddingBottom="4dp"
-                android:text="@string/phone_verification_code_hint" />
+                android:text="@string/verification_code_hint" />
 
             <TextView
-                android:id="@+id/tv_verification_phone_label"
+                android:id="@+id/tv_verification_datapoint_label"
                 style="@style/llsdk_form_field"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
@@ -52,7 +52,7 @@
                 pinview:numberPinBoxes="6"
                 pinview:keyboardMandatory="false"
                 pinview:password="false"
-                android:layout_below="@+id/tv_verification_phone_label"
+                android:layout_below="@+id/tv_verification_datapoint_label"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -65,11 +65,11 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:layout_centerHorizontal="true"
-                android:text="@string/phone_verification_button_resend" />
+                android:text="@string/verification_button_resend" />
 
         </RelativeLayout>
     </ScrollView>
 
     <include layout="@layout/include_rl_loading" />
 
-</com.shiftpayments.link.sdk.ui.views.verification.PhoneVerificationView>
+</com.shiftpayments.link.sdk.ui.views.verification.VerificationView>

@@ -12,7 +12,7 @@ import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataPresenter;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shiftpayments.link.sdk.ui.views.verification.PhoneVerificationView;
+import com.shiftpayments.link.sdk.ui.views.verification.VerificationView;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -21,8 +21,8 @@ import org.greenrobot.eventbus.Subscribe;
  * @author Adrian
  */
 public class PhoneVerificationPresenter
-        extends UserDataPresenter<PhoneVerificationModel, PhoneVerificationView>
-        implements PhoneVerificationView.ViewListener {
+        extends UserDataPresenter<PhoneVerificationModel, VerificationView>
+        implements VerificationView.ViewListener {
 
     private PhoneVerificationDelegate mDelegate;
     private LoadingSpinnerManager mLoadingSpinnerManager;
@@ -44,10 +44,10 @@ public class PhoneVerificationPresenter
 
     /** {@inheritDoc} */
     @Override
-    public void attachView(PhoneVerificationView view) {
+    public void attachView(VerificationView view) {
         super.attachView(view);
         mView.setListener(this);
-        mView.setPhoneNumber(mModel.getFormattedPhoneNumber());
+        mView.setDataPoint(mModel.getFormattedPhoneNumber());
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(true);
         mResponseHandler.subscribe(this);
@@ -128,7 +128,7 @@ public class PhoneVerificationPresenter
     }
 
     private void displayWrongCodeMessage() {
-        ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.phone_verification_error), mActivity);
+        ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.verification_error), mActivity);
         mView.clearPinView();
     }
 }
