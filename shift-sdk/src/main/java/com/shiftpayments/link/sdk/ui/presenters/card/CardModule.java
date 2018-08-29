@@ -9,6 +9,9 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
@@ -19,6 +22,7 @@ import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
+import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
 import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModule;
 import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModuleConfig;
@@ -49,7 +53,7 @@ import static com.shiftpayments.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
  */
 
 public class CardModule extends ShiftBaseModule implements ManageAccountDelegate, ManageCardDelegate,
-        CardSettingsDelegate {
+        CardSettingsDelegate, CustodianSelectorDelegate {
 
     private NewCardModule mNewCardModule;
 
@@ -146,6 +150,20 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         }
     }
 
+    @Override
+    public void onTokensRetrieved(String accessToken, String refreshToken) {
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(accessToken, refreshToken);
+        SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
+        ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
+    }
+
+    @Subscribe
+    public void handleResponse(ApiEmptyResponseVo response) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        super.onFinish.execute();
+    }
+
     /**
      * Called when an API error has been received.
      * @param error API error.
@@ -204,7 +222,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     private void startCustodianModule(Command onFinish, Command onBack) {
         showLoading(false);
         CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(
-                this.getActivity(),
+                this.getActivity(), this,
                 ()->{
                     setCurrentModule();
                     onFinish.execute();
