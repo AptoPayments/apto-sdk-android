@@ -4,35 +4,40 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
+import com.shiftpayments.link.sdk.cardexample.InitSdkTask;
 import com.shiftpayments.link.sdk.cardexample.KeysStorage;
+import com.shiftpayments.link.sdk.cardexample.InitSdkTaskListener;
 import com.shiftpayments.link.sdk.cardexample.R;
 import com.shiftpayments.link.sdk.cardexample.views.MainView;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
-import com.shiftpayments.link.sdk.ui.storages.UIStorage;
-import com.shiftpayments.link.sdk.ui.vos.ShiftSdkOptions;
 
 import org.json.JSONException;
 
-import java.util.HashMap;
-
 import io.branch.referral.Branch;
-import java8.util.concurrent.CompletableFuture;
 
-public class MainActivity extends AppCompatActivity implements MainView.ViewListener {
+public class MainActivity extends AppCompatActivity implements MainView.ViewListener, InitSdkTaskListener {
 
     MainView mView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mView = (MainView) View.inflate(this, R.layout.act_main, null);
-        mView.setViewListener(this);
-        setContentView(mView);
-        mView.showLoading(true);
+        if(ShiftPlatform.hasUserToken(this)) {
+            showLoadingSpinner();
+            new InitSdkTask(this, this).execute();
+        }
+        else {
+            mView = (MainView) View.inflate(this, R.layout.act_main, null);
+            mView.setViewListener(this);
+            setContentView(mView);
+            mView.showLoading(true);
+        }
     }
 
     @Override
@@ -43,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     public void onStart() {
         super.onStart();
+        if(ShiftPlatform.hasUserToken(this)) {
+            return;
+        }
         Branch.getInstance(this, getBranchKey());
         Branch branch = Branch.getAutoInstance(getApplicationContext());
         branch.initSession((referringParams, error) -> {
@@ -68,23 +76,7 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
                 mView.showLoading(false);
                 Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-            HashMap<ShiftSdkOptions.OptionKeys, Boolean> features = new HashMap<>();
-            features.put(ShiftSdkOptions.OptionKeys.showActivateCardButton, false);
-            features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, true);
-            ShiftSdkOptions options = new ShiftSdkOptions(features);
-
-            ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),
-                    getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment(), null, options);
-            CompletableFuture
-                    .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
-                    .thenAccept(this::configRetrieved)
-                    .exceptionally((e) -> {
-                        this.runOnUiThread(() -> {
-                            mView.showLoading(false);
-                            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
-                        return null;
-                    });
+            new InitSdkTask(this, this).execute();
         }, this.getIntent().getData(), this);
     }
 
@@ -122,43 +114,40 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         return getString(R.string.shift_environment);
     }
 
-    /**
-     * @return Link API dev key.
-     */
-    protected String getDeveloperKey() {
-        return KeysStorage.getDeveloperKey(this, getDefaultDeveloperKey());
-    }
-
     protected String getDefaultDeveloperKey() {
         return getString(R.string.shift_developer_key);
-    }
-
-    /**
-     * @return Link project token.
-     */
-    protected String getProjectToken() {
-        return KeysStorage.getProjectToken(this, getDefaultProjectToken());
     }
 
     protected String getDefaultProjectToken() {
         return getString(R.string.shift_project_token);
     }
 
-    /**
-     * @return If certificate pinning should be enabled
-     */
-    protected boolean getCertificatePinning() {
-        return this.getResources().getBoolean(R.bool.enable_certificate_pinning);
-    }
-
-    /**
-     * @return If self signed certificates should be trusted
-     */
-    protected boolean getTrustSelfSignedCertificates() {
-        return this.getResources().getBoolean(R.bool.trust_self_signed_certificates);
-    }
-
     private String getBranchKey() {
         return getString(R.string.shift_branch_key);
+    }
+
+    private void showLoadingSpinner() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        ProgressBar progressBar = new ProgressBar(MainActivity.this,null,android.R.attr.progressBarStyleLarge);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(150,150);
+        params.addRule(RelativeLayout.CENTER_IN_PARENT);
+
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
+
+        RelativeLayout layout = new RelativeLayout(this);
+        layout.addView(progressBar,params);
+        setContentView(layout);
+    }
+
+    @Override
+    public void onConfigRetrieved(ConfigResponseVo config) {
+        if(ShiftPlatform.hasUserToken(this)) {
+            ShiftPlatform.startCardFlow(this);
+        }
+        else {
+            configRetrieved(config);
+        }
     }
 }
