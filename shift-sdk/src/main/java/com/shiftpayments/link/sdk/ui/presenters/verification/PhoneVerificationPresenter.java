@@ -47,7 +47,13 @@ public class PhoneVerificationPresenter
     public void attachView(VerificationView view) {
         super.attachView(view);
         mView.setListener(this);
-        mView.setDataPoint(mModel.getFormattedPhoneNumber());
+        if(mModel.hasPhoneNumber()) {
+            mView.setDataPoint(mModel.getFormattedPhoneNumber());
+        }
+        else {
+            mView.setDescription(mActivity.getString(R.string.phone_verification_code_hint));
+            mView.showDataPoint(false);
+        }
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(true);
         mResponseHandler.subscribe(this);

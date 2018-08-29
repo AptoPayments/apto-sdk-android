@@ -95,6 +95,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
             mVerification.setSecret(verificationCode);
         }
     }
+
     /**
      * @return Whether a verification code has been set.
      */
@@ -139,5 +140,10 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
     private void storeVerification() {
         PhoneNumberVo phone = getPhoneFromBaseData();
         phone.setVerification(mVerification);
+    }
+
+    public boolean hasPhoneNumber() {
+        String phone = getPhoneFromBaseData().getPhoneAsString();
+        return phone != null && !phone.isEmpty();
     }
 }

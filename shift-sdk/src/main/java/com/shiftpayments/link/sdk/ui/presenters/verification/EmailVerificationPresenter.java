@@ -2,10 +2,10 @@ package com.shiftpayments.link.sdk.ui.presenters.verification;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Email;
 import com.shiftpayments.link.sdk.api.vos.datapoints.VerificationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
+import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shiftpayments.link.sdk.ui.R;
@@ -52,8 +52,13 @@ public class EmailVerificationPresenter
     @Override
     public void attachView(VerificationView view) {
         super.attachView(view);
-        String email = this.getEmail()==null ? "your email." : this.getEmail();
-        mView.setDataPoint(email);
+        if(mModel.hasEmail()) {
+            mView.setDataPoint(mModel.getEmail());
+        }
+        else {
+            mView.setDescription(mActivity.getString(R.string.email_verification_code_hint));
+            mView.showDataPoint(false);
+        }
         mView.setListener(this);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(false);
@@ -77,17 +82,44 @@ public class EmailVerificationPresenter
     @Override
     public void nextClickHandler() {
         mLoadingSpinnerManager.showLoading(true);
-        ShiftPlatform.getVerificationStatus(mModel.getVerificationId());
+        // Store data.
+        mModel.setVerificationCode(mView.getVerificationCode());
+
+        if (mModel.hasVerificationCode()) {
+            ShiftPlatform.completeVerification(mModel.getVerificationRequest());
+        }
     }
 
     /**
-     * Called when the get verification status API response has been received.
+     * Called when the restart verification API response has been received.
      * @param response API response.
      */
     @Subscribe
-    public void handleResponse(VerificationStatusResponseVo response) {
+    public void handleResponse(VerificationResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
-        setVerificationResponse(response);
+        if (response != null) {
+            mModel.setVerification(response.verification_id, response.verification_type);
+        }
+    }
+
+    /**
+     * Called when the finish phone verification API response has been received.
+     * @param response API response.
+     */
+    @Subscribe
+    public void handleResponse(FinishVerificationResponseVo response) {
+        mLoadingSpinnerManager.showLoading(false);
+        if (response != null) {
+            setVerificationResponse(response);
+            mModel.setVerificationStatus(response.status);
+            if(mModel.hasValidData()) {
+                mDelegate.emailVerificationSucceeded(response);
+            }
+            else {
+                ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.verification_error), mActivity);
+                mView.clearPinView();
+            }
+        }
     }
 
     /**
@@ -98,12 +130,6 @@ public class EmailVerificationPresenter
     public void handleApiError(ApiErrorVo error) {
         mLoadingSpinnerManager.showLoading(false);
         super.setApiError(error);
-    }
-
-    private String getEmail() {
-        Email email = (Email) mModel.getBaseData().
-                getUniqueDataPoint(DataPointVo.DataPointType.Email, new Email());
-        return email.email;
     }
 
     /**

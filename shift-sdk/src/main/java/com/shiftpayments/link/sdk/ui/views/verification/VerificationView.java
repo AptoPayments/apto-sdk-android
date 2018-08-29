@@ -36,6 +36,7 @@ public class VerificationView
     }
 
     private PinView mPinView;
+    private TextView mDescription;
     private TextView mDataPointLabel;
     private TextView mResendButton;
     private LoadingView mLoadingView;
@@ -62,6 +63,7 @@ public class VerificationView
     protected void findAllViews() {
         super.findAllViews();
         mPinView = findViewById(R.id.pinView);
+        mDescription = findViewById(R.id.tv_verification_code_header);
         mDataPointLabel = findViewById(R.id.tv_verification_datapoint_label);
         mResendButton = findViewById(R.id.tv_resend_bttn);
         mLoadingView = findViewById(R.id.rl_loading_overlay);
@@ -134,7 +136,21 @@ public class VerificationView
         mPinView.clear();
     }
 
+    public void setDescription(String description) {
+        mDescription.setText(description);
+    }
+
     public void setDataPoint(String dataPoint) {
+        showDataPoint(true);
         mDataPointLabel.setText(dataPoint);
+    }
+
+    public void showDataPoint(boolean show) {
+        if(show) {
+            mDataPointLabel.setVisibility(VISIBLE);
+        }
+        else {
+            mDataPointLabel.setVisibility(INVISIBLE);
+        }
     }
 }
