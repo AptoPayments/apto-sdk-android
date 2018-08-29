@@ -73,7 +73,7 @@ public class IssueCardErrorView extends RelativeLayout implements View.OnClickLi
     }
 
     private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int primaryColor = UIStorage.getInstance().getUiPrimaryColor();
         this.setBackgroundColor(primaryColor);
         int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
         mHeader.setTextColor(contrastColor);

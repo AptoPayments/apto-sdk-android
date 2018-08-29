@@ -218,7 +218,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     }
 
     private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int primaryColor = UIStorage.getInstance().getUiPrimaryColor();
         Drawable closeIcon = ContextCompat.getDrawable(getContext(), R.drawable.ic_close);
         closeIcon.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
         mToolbar.setNavigationIcon(closeIcon);

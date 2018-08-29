@@ -42,8 +42,8 @@ public class UIStorageTest {
         contextConfig.projectConfiguration.secondaryColor = TEST_COLOR;
         mStorage.setConfig(contextConfig);
 
-        Assert.assertThat("Primary color is not correct.", mStorage.getPrimaryColor(), equalTo(EXPECTED_COLOR));
-        Assert.assertThat("Secondary color is not correct.", mStorage.getSecondaryColor(), equalTo(EXPECTED_COLOR));
+        Assert.assertThat("Primary color is not correct.", mStorage.getUiPrimaryColor(), equalTo(EXPECTED_COLOR));
+        Assert.assertThat("Secondary color is not correct.", mStorage.getUiSecondaryColor(), equalTo(EXPECTED_COLOR));
         Assert.assertThat("Primary contrast color is not correct.", mStorage.getPrimaryContrastColor(), equalTo(Color.WHITE));
     }
 }

@@ -175,7 +175,7 @@ public class OffersCarouselView extends OffersBaseView {
     }
 
     private void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
+        int color = UIStorage.getInstance().getUiPrimaryColor();
         int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
         if (mUpdateButton != null) {
             mUpdateButton.setBackgroundColor(color);

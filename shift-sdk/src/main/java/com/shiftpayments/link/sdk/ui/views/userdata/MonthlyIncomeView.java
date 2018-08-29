@@ -59,7 +59,7 @@ public class MonthlyIncomeView
     public void setColors() {
         super.setColors();
 
-        int color = UIStorage.getInstance().getPrimaryColor();
+        int color = UIStorage.getInstance().getUiPrimaryColor();
         mIncomeText.setTextColor(color);
         mIncomeSlider.setRippleColor(color);
         mIncomeSlider.setScrubberColor(color);
