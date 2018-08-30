@@ -91,6 +91,17 @@
                 android:layout_marginTop="12dp"
                 android:text="@string/transaction_details_title" />
 
+            <RelativeLayout style="@style/llsdk_transaction_details_holder">
+                <TextView
+                    android:id="@+id/tv_category_label"
+                    style="?attr/llsdk_transactionDetails_detailLabelTextStyle"
+                    android:text="@string/transaction_details_category" />
+                <TextView
+                    android:id="@+id/tv_transaction_category"
+                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
+                    android:layout_toRightOf="@+id/tv_category_label" />
+            </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_hold_amount"
                 style="@style/llsdk_transaction_details_holder"
@@ -138,17 +149,6 @@
                     android:id="@+id/tv_transaction_decline_reason"
                     style="?attr/llsdk_transactionDetails_detailValueTextStyle"
                     android:layout_toRightOf="@+id/strut_decline_reason" />
-            </RelativeLayout>
-
-            <RelativeLayout style="@style/llsdk_transaction_details_holder">
-                <TextView
-                    android:id="@+id/tv_category_label"
-                    style="?attr/llsdk_transactionDetails_detailLabelTextStyle"
-                    android:text="@string/transaction_details_category" />
-                <TextView
-                    android:id="@+id/tv_transaction_category"
-                    android:layout_below="@+id/tv_category_label"
-                    style="?attr/llsdk_transactionDetails_detailValueLongTextStyle" />
             </RelativeLayout>
 
             <RelativeLayout
