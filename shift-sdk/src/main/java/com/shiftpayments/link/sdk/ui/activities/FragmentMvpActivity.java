@@ -68,7 +68,7 @@ public abstract class FragmentMvpActivity<M extends ActivityModel, V extends Vie
         mPresenter.attachView(mView);
         if(mView instanceof ViewWithToolbar) {
             Toolbar toolbar = ((ViewWithToolbar) mView).getToolbar();
-            toolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getPrimaryColor()));
+            toolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getUiPrimaryColor()));
             toolbar.setTitleTextColor(UIStorage.getInstance().getTextTopbarColor());
         }
     }

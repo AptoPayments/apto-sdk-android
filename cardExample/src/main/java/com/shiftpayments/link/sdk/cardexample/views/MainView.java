@@ -127,7 +127,7 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     }
 
     public void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
+        int color = UIStorage.getInstance().getUiPrimaryColor();
         mGetStartedButton.setBackgroundColor(color);
         mGetStartedButton.setVisibility(VISIBLE);
     }

@@ -51,7 +51,7 @@ public class AddBankAccountView
     }
 
     private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int primaryColor = UIStorage.getInstance().getUiPrimaryColor();
         int contrastColor = UIStorage.getInstance().getPrimaryContrastColor();
         mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
         mToolbar.setTitleTextColor(contrastColor);

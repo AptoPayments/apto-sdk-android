@@ -113,7 +113,7 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
     }
 
     private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int primaryColor = UIStorage.getInstance().getUiPrimaryColor();
         mAcceptButton.setTextColor(primaryColor);
     }
 }

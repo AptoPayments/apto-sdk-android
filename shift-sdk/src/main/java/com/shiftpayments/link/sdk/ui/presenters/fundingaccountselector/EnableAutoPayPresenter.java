@@ -46,7 +46,7 @@ public class EnableAutoPayPresenter
     public void attachView(EnableAutoPayView view) {
         super.attachView(view);
         mView.setListener(this);
-        mView.setImage(UIStorage.getInstance().getContextConfig().logoURL);
+        mView.setImage(UIStorage.getInstance().getContextConfig().projectBranding.logoURL);
 
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(false);

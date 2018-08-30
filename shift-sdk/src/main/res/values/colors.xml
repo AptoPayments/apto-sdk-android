@@ -49,4 +49,8 @@
 
     <color name="disabled_card_logo">#9E9E9E</color>
     <color name="enabled_card_logo">#FFFFFF</color>
+
+    <!-- Collapsing toolbar scrim -->
+    <color name="translucent_scrim_top">#80232325</color>
+    <color name="translucent_scrim_center">#00232325</color>
 </resources>

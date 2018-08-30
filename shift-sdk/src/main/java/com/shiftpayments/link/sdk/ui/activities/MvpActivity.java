@@ -67,7 +67,7 @@ public abstract class MvpActivity<M extends ActivityModel, V extends View & View
         mPresenter = createPresenter(currentModule);
         mPresenter.attachView(mView);
         Toolbar toolbar = mView.getToolbar();
-        toolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getPrimaryColor()));
+        toolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getUiPrimaryColor()));
         toolbar.setTitleTextColor(UIStorage.getInstance().getTextTopbarColor());
     }
 

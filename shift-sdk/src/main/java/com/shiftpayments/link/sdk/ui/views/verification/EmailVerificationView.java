@@ -72,7 +72,7 @@ public class EmailVerificationView
     public void setColors() {
         super.setColors();
 
-        int color = UIStorage.getInstance().getPrimaryColor();
+        int color = UIStorage.getInstance().getUiPrimaryColor();
         mSubmitButton.setBackgroundColor(color);
         mResendButton.setTextColor(color);
     }
