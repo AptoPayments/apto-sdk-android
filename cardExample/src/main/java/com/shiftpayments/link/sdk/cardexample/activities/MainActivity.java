@@ -4,15 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.cardexample.InitSdkTask;
-import com.shiftpayments.link.sdk.cardexample.KeysStorage;
 import com.shiftpayments.link.sdk.cardexample.InitSdkTaskListener;
+import com.shiftpayments.link.sdk.cardexample.KeysStorage;
 import com.shiftpayments.link.sdk.cardexample.R;
 import com.shiftpayments.link.sdk.cardexample.views.MainView;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
@@ -28,16 +25,10 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(ShiftPlatform.hasUserToken(this)) {
-            showLoadingSpinner();
-            new InitSdkTask(this, this).execute();
-        }
-        else {
-            mView = (MainView) View.inflate(this, R.layout.act_main, null);
-            mView.setViewListener(this);
-            setContentView(mView);
-            mView.showLoading(true);
-        }
+        mView = (MainView) View.inflate(this, R.layout.act_main, null);
+        mView.setViewListener(this);
+        setContentView(mView);
+        mView.showLoading(true);
     }
 
     @Override
@@ -48,9 +39,6 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     @Override
     public void onStart() {
         super.onStart();
-        if(ShiftPlatform.hasUserToken(this)) {
-            return;
-        }
         Branch.getInstance(this, getBranchKey());
         Branch branch = Branch.getAutoInstance(getApplicationContext());
         branch.initSession((referringParams, error) -> {
@@ -126,28 +114,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         return getString(R.string.shift_branch_key);
     }
 
-    private void showLoadingSpinner() {
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        ProgressBar progressBar = new ProgressBar(MainActivity.this,null,android.R.attr.progressBarStyleLarge);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(150,150);
-        params.addRule(RelativeLayout.CENTER_IN_PARENT);
-
-        progressBar.setIndeterminate(true);
-        progressBar.setVisibility(View.VISIBLE);
-
-        RelativeLayout layout = new RelativeLayout(this);
-        layout.addView(progressBar,params);
-        setContentView(layout);
-    }
-
     @Override
     public void onConfigRetrieved(ConfigResponseVo config) {
-        if(ShiftPlatform.hasUserToken(this)) {
-            ShiftPlatform.startCardFlow(this);
-        }
-        else {
-            configRetrieved(config);
-        }
+        configRetrieved(config);
     }
 }
