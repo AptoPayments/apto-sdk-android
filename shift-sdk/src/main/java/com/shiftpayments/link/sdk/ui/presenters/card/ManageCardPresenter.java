@@ -8,6 +8,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -28,6 +31,7 @@ import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.views.card.EndlessRecyclerViewScrollListener;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
@@ -255,8 +259,29 @@ public class ManageCardPresenter
 
     private void showActivateCardConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-        builder.setMessage(mActivity.getString(R.string.enable_card_message))
-                .setTitle(mActivity.getString(R.string.card_settings_dialog_title));
+
+        String alertTitle = mActivity.getString(R.string.card_settings_dialog_title);
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextPrimaryColor());
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(alertTitle);
+        spannableStringBuilder.setSpan(
+                foregroundColorSpan,
+                0,
+                alertTitle.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        builder.setTitle(spannableStringBuilder);
+
+        String alertMessage = mActivity.getString(R.string.enable_card_message);
+        foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextSecondaryColor());
+        spannableStringBuilder = new SpannableStringBuilder(alertMessage);
+        spannableStringBuilder.setSpan(
+                foregroundColorSpan,
+                0,
+                alertMessage.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        builder.setMessage(spannableStringBuilder);
+
         builder.setPositiveButton("YES", (dialog, id) -> activateCard());
         builder.setNegativeButton("NO", (dialog, id) -> dialog.dismiss());
 

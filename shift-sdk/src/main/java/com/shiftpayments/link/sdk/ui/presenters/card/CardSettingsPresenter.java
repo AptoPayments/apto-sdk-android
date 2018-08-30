@@ -3,6 +3,9 @@ package com.shiftpayments.link.sdk.ui.presenters.card;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -275,13 +278,34 @@ public class CardSettingsPresenter
         String text = mActivity.getString(R.string.disable_card_message);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-        builder.setMessage(text)
-                .setTitle(mActivity.getString(R.string.card_settings_dialog_title))
-                .setPositiveButton("YES", (dialog, id) -> changeCardState(false))
-                .setNegativeButton("NO", (dialog, id) -> {
-                    mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
-                    dialog.dismiss();
-                });
+
+        String alertTitle = mActivity.getString(R.string.card_settings_dialog_title);
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextPrimaryColor());
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(alertTitle);
+        spannableStringBuilder.setSpan(
+                foregroundColorSpan,
+                0,
+                alertTitle.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        builder.setTitle(spannableStringBuilder);
+
+        String alertMessage = mActivity.getString(R.string.disable_card_message);
+        foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextSecondaryColor());
+        spannableStringBuilder = new SpannableStringBuilder(alertMessage);
+        spannableStringBuilder.setSpan(
+                foregroundColorSpan,
+                0,
+                alertMessage.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        builder.setMessage(spannableStringBuilder);
+
+        builder.setPositiveButton("YES", (dialog, id) -> changeCardState(false));
+        builder.setNegativeButton("NO", (dialog, id) -> {
+            mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
+            dialog.dismiss();
+        });
 
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
