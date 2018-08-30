@@ -132,4 +132,16 @@ public class TransactionDetailsModel implements Model {
     private boolean isStringFilled(String string) {
         return string != null && !string.isEmpty();
     }
+
+    public boolean hasTransactionCoordinates() {
+        return mTransaction.store.location != null;
+    }
+
+    public double getLatitude() {
+        return mTransaction.store.location.latitude;
+    }
+
+    public double getLongitude() {
+        return mTransaction.store.location.longitude;
+    }
 }

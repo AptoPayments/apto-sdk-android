@@ -67,18 +67,16 @@ public class TransactionDetailsPresenter
     }
 
     public void setMap(GoogleMap map) {
-        // TODO: hardcoded coordinates
-        map.getUiSettings().setMapToolbarEnabled(false);
-        LatLng latLng = new LatLng(34.105319, -118.342122);
-        map.addMarker(new MarkerOptions().position(latLng));
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16.0f));
-
-        // TODO: check if location coordinates are present and show map
-        /*if(mModel.hasTransactionCoordinates()) {
-
+        if(mModel.hasTransactionCoordinates()) {
+            Double latitude = mModel.getLatitude();
+            Double longitude = mModel.getLongitude();
+            map.getUiSettings().setMapToolbarEnabled(false);
+            LatLng latLng = new LatLng(latitude, longitude);
+            map.addMarker(new MarkerOptions().position(latLng));
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16.0f));
         }
         else {
             mView.disableExpandingToolbar();
-        }*/
+        }
     }
 }
