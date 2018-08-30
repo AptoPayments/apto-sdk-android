@@ -443,6 +443,12 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_marginRight">12dp</item>
     </style>
+    <style name="llsdk_main_item_small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_main_item_small_text_size</item>
+    </style>
     <style name="llsdk_card_settings_section_title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

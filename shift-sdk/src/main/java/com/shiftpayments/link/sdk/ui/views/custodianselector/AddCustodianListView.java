@@ -1,17 +1,15 @@
 package com.shiftpayments.link.sdk.ui.views.custodianselector;
 
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.models.custodianselector.AddCustodianModel;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
@@ -25,8 +23,7 @@ public class AddCustodianListView extends CoordinatorLayout
         implements ViewWithToolbar, View.OnClickListener, ViewWithIndeterminateLoading {
 
     private Toolbar mToolbar;
-    private LinearLayout mAccountsList;
-
+    private TextView mSubmitButton;
     private AddCustodianListView.ViewListener mListener;
     private LoadingView mLoadingView;
 
@@ -52,13 +49,19 @@ public class AddCustodianListView extends CoordinatorLayout
      */
     private void findAllViews() {
         mToolbar = findViewById(R.id.tb_llsdk_toolbar);
-        mAccountsList = findViewById(R.id.ll_accounts_list);
         mLoadingView = findViewById(R.id.rl_loading_overlay);
+        mSubmitButton = findViewById(R.id.tv_submit_bttn);
     }
 
     @Override
     public Toolbar getToolbar() {
         return mToolbar;
+    }
+
+    protected void setupListeners() {
+        if (mSubmitButton != null) {
+            mSubmitButton.setOnClickListener(this);
+        }
     }
 
     @Override
@@ -67,8 +70,10 @@ public class AddCustodianListView extends CoordinatorLayout
             return;
         }
 
-        AddCustodianModel model = ((AddCustodianCardView) view).getData();
-        mListener.accountClickHandler(model);
+        int id = view.getId();
+        if (id == R.id.tv_submit_bttn) {
+            mListener.submitClickHandler();
+        }
     }
 
     /** {@inheritDoc} */
@@ -76,6 +81,8 @@ public class AddCustodianListView extends CoordinatorLayout
     protected void onFinishInflate() {
         super.onFinishInflate();
         findAllViews();
+        setupListeners();
+        setColors();
     }
 
     @Override
@@ -84,11 +91,7 @@ public class AddCustodianListView extends CoordinatorLayout
     }
 
     public interface ViewListener {
-        /**
-         * Called when one of the document cards has been clicked.
-         * @param model Card data.
-         */
-        void accountClickHandler(AddCustodianModel model);
+        void submitClickHandler();
     }
 
     /**
@@ -99,25 +102,7 @@ public class AddCustodianListView extends CoordinatorLayout
         mListener = listener;
     }
 
-    /**
-     * Updates this View with the latest data.
-     * @param data Latest data.
-     */
-    public void setData(AddCustodianModel[] data) {
-        if(data == null) {
-            return;
-        }
-
-        mAccountsList.removeAllViews();
-
-        AddCustodianCardView view;
-        for (AddCustodianModel model : data) {
-            view = (AddCustodianCardView) LayoutInflater.from(getContext())
-                    .inflate(R.layout.cv_add_custodian, mAccountsList, false);
-
-            view.setData(model);
-            view.setOnClickListener(this);
-            mAccountsList.addView(view);
-        }
+    public void setColors() {
+        mSubmitButton.setBackgroundColor(UIStorage.getInstance().getUiPrimaryColor());
     }
 }
