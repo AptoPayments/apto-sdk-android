@@ -76,17 +76,6 @@ public class TransactionDetailsModel implements Model {
         return UNAVAILABLE;
     }
 
-    public boolean hasSettlementDate() {
-        return mTransaction.settlement != null && mTransaction.settlement.date != null;
-    }
-
-    public String getSettlementDate() {
-        if(isStringFilled(mTransaction.settlement.date)) {
-            return DateUtil.getFormattedTransactionDate(mTransaction.settlement.date);
-        }
-        return UNAVAILABLE;
-    }
-
     public boolean hasTransactionId() {
         return isStringFilled(mTransaction.externalId);
     }

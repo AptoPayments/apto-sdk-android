@@ -111,21 +111,6 @@
                     android:layout_toRightOf="@+id/strut_hold_amount" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/rl_settlement_date"
-                android:visibility="gone"
-                style="@style/llsdk_transaction_details_holder">
-                <TextView
-                    android:id="@+id/tv_transaction_settlement_date_label"
-                    style="?attr/llsdk_transactionDetails_detailLabelTextStyle"
-                    android:text="@string/transaction_details_settlement_date" />
-
-                <TextView
-                    android:id="@+id/tv_transaction_settlement_date"
-                    style="?attr/llsdk_transactionDetails_detailValueTextStyle"
-                    android:layout_toRightOf="@+id/tv_transaction_settlement_date_label" />
-            </RelativeLayout>
-
             <RelativeLayout style="@style/llsdk_transaction_details_holder">
                 <TextView
                     android:id="@+id/tv_transaction_date_label"

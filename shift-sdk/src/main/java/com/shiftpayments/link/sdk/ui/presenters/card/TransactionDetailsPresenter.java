@@ -59,9 +59,6 @@ public class TransactionDetailsPresenter
         /*mView.setDetailAmount(mModel.getLocalAmount());*/
         mView.setTransactionAddress(mModel.getLocation());
         mView.setCategory(mModel.getCategory());
-        if(mModel.hasSettlementDate()) {
-            mView.setSettlementDate(mModel.getSettlementDate());
-        }
         if(mModel.hasHoldAmount()) {
             mView.setHoldAmount(mModel.getHoldAmount());
         }

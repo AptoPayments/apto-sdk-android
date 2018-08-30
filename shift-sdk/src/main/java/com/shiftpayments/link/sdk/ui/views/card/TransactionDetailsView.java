@@ -40,8 +40,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private TextView mType;
     private TextView mCategory;
     private TextView mTransactionDate;
-    private RelativeLayout mSettlementDateHolder;
-    private TextView mSettlementDate;
     private TextView mTransactionId;
     private RelativeLayout mTransactionIdHolder;
     private TextView mShiftId;
@@ -106,11 +104,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
 
     public void setTransactionDate(String date) {
         mTransactionDate.setText(date);
-    }
-
-    public void setSettlementDate(String date) {
-        mSettlementDate.setText(date);
-        mSettlementDateHolder.setVisibility(VISIBLE);
     }
 
     public void setTransactionId(String id) {
@@ -180,8 +173,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mType = findViewById(R.id.tv_transaction_type);
         mCategory = findViewById(R.id.tv_transaction_category);
         mTransactionDate = findViewById(R.id.tv_transaction_date);
-        mSettlementDate = findViewById(R.id.tv_transaction_settlement_date);
-        mSettlementDateHolder = findViewById(R.id.rl_settlement_date);
         mTransactionId = findViewById(R.id.tv_transaction_id);
         mTransactionIdHolder = findViewById(R.id.rl_transaction_id);
         mShiftId = findViewById(R.id.tv_shift_transaction_id);
