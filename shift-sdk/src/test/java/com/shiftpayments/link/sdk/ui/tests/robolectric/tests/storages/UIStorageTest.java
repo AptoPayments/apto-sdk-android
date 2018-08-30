@@ -38,8 +38,8 @@ public class UIStorageTest {
     @Test
     public void colorsAreStored() {
         ContextConfigResponseVo contextConfig = new MockApiWrapper().getUserConfig(null);
-        contextConfig.projectConfiguration.primaryColor = TEST_COLOR;
-        contextConfig.projectConfiguration.secondaryColor = TEST_COLOR;
+        contextConfig.projectConfiguration.projectBranding.uiPrimaryColor= TEST_COLOR;
+        contextConfig.projectConfiguration.projectBranding.uiSecondaryColor = TEST_COLOR;
         mStorage.setConfig(contextConfig);
 
         Assert.assertThat("Primary color is not correct.", mStorage.getUiPrimaryColor(), equalTo(EXPECTED_COLOR));
