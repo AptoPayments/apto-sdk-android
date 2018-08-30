@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -53,8 +54,10 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private TextView mHoldAmount;
     private RelativeLayout mHoldAmountHolder;
     private ImageView mAddressImageView;
-    private TextView mTransfersHeader;
     private View mTitleBackground;
+    private LinearLayout mTitleHolder;
+    private TextView mTitle;
+    private TextView mSubtitle;
 
     /**
      * @see CardView#CardView
@@ -120,15 +123,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mAdjustmentsRecyclerView.setAdapter(adapter);
     }
 
-    public void showTransfersHeader(boolean show) {
-        if(show) {
-            mTransfersHeader.setVisibility(VISIBLE);
-        }
-        else {
-            mTransfersHeader.setVisibility(GONE);
-        }
-    }
-
     public void setDeclineReason(String reason) {
         mDeclineReason.setText(reason);
         mDeclineReasonHolder.setVisibility(VISIBLE);
@@ -151,6 +145,11 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
 
     public void setTitle(String title) {
         mCollapsingToolbar.setTitle(title);
+        mTitle.setText(title);
+    }
+
+    public void setSubtitle(String subtitle) {
+        mSubtitle.setText(subtitle);
     }
 
     public void disableExpandingToolbar() {
@@ -186,8 +185,10 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mHoldAmount = findViewById(R.id.tv_hold_amount);
         mHoldAmountHolder = findViewById(R.id.rl_hold_amount);
         mAddressImageView = findViewById(R.id.iv_address_icon);
-        mTransfersHeader = findViewById(R.id.tv_transfers_header);
         mTitleBackground = findViewById(R.id.collapsing_toolbar_title_background_view);
+        mTitleHolder = findViewById(R.id.header_text_layout);
+        mTitle = findViewById(R.id.tv_title);
+        mSubtitle = findViewById(R.id.tv_subtitle);
     }
 
     private void setColors() {
@@ -199,6 +200,7 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
                 mToolbar.setBackgroundColor(primaryColor);
                 mCollapsingToolbar.setStatusBarScrimColor(primaryColor);
                 mTitleBackground.setVisibility(GONE);
+                mTitleHolder.setVisibility(GONE);
 
             } else {
                 //Expanded
@@ -206,15 +208,18 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
                 mCollapsingToolbar.setStatusBarScrimColor(Color.TRANSPARENT);
                 mTitleBackground.setVisibility(VISIBLE);
                 mTitleBackground.setBackgroundColor(primaryColor);
+                mTitleHolder.setVisibility(VISIBLE);
             }
         });
         mCollapsingToolbar.setCollapsedTitleTextColor(contrastColor);
-        mCollapsingToolbar.setExpandedTitleColor(contrastColor);
         mCollapsingToolbar.setBackgroundColor(primaryColor);
         mAddressImageView.setColorFilter(primaryColor);
         Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
         backArrow.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
         mToolbar.setNavigationIcon(backArrow);
         mToolbar.bringToFront();
+        mTitle.setTextColor(contrastColor);
+        mSubtitle.setTextColor(contrastColor);
+        mTitleHolder.bringToFront();
     }
 }

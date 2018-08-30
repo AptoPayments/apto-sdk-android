@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title">
+            app:expandedTitleTextAppearance="@style/TransparentText">
 
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mv_header"
@@ -52,6 +52,35 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/scrim_top"
                 app:layout_collapseMode="pin"/>
+
+            <LinearLayout
+                android:id="@+id/header_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp">
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"/>
+                <TextView
+                    android:id="@+id/tv_subtitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="end" />
+            </LinearLayout>
 
             <View
                 android:id="@+id/collapsing_toolbar_title_background_view"
@@ -244,12 +273,6 @@
                     style="?attr/llsdk_transactionDetails_detailValueTextStyle"
                     android:layout_toRightOf="@+id/strut_transaction_id" />
             </RelativeLayout>
-
-            <TextView
-                android:id="@+id/tv_transfers_header"
-                style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
-                android:text="@string/transaction_details_transfers"
-                android:visibility="gone"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/adjustments_recycler_view"
