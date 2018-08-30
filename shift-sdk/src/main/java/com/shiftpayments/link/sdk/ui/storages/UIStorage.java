@@ -25,11 +25,11 @@ import static com.shiftpayments.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
  */
 public class UIStorage {
 
-    private Integer mPrimaryColor;
-    private Integer mSecondaryColor;
-    private Integer mTertiaryColor;
-    private Integer mErrorColor;
-    private Integer mSuccessColor;
+    private Integer mUiPrimaryColor;
+    private Integer mUiSecondaryColor;
+    private Integer mUiTertiaryColor;
+    private Integer mUiErrorColor;
+    private Integer mUiSuccessColor;
     private Integer mTextPrimaryColor;
     private Integer mTextSecondaryColor;
     private Integer mTextTertiaryColor;
@@ -41,11 +41,11 @@ public class UIStorage {
     private ShiftSdkOptions mSdkOptions;
 
     // Define default colors here instead of in colors.xml to avoid having to pass in context
-    private final static String DEFAULT_PRIMARY_COLOR = "F90D00";
-    private final static String DEFAULT_SECONDARY_COLOR = "FF9500";
-    private final static String DEFAULT_TERTIARY_COLOR = "FFCC00";
-    private final static String DEFAULT_SUCCESS_COLOR = "DB1D0E";
-    private final static String DEFAULT_ERROR_COLOR = "FFDC4337";
+    private final static String DEFAULT_UI_PRIMARY_COLOR = "F90D00";
+    private final static String DEFAULT_UI_SECONDARY_COLOR = "FF9500";
+    private final static String DEFAULT_UI_TERTIARY_COLOR = "FFCC00";
+    private final static String DEFAULT_UI_SUCCESS_COLOR = "DB1D0E";
+    private final static String DEFAULT_UI_ERROR_COLOR = "FFDC4337";
     private final static String DEFAULT_PRIMARY_TEXT_COLOR = "FF2B2D35";
     private final static String DEFAULT_SECONDARY_TEXT_COLOR = "FF54565F";
     private final static String DEFAULT_TERTIARY_TEXT_COLOR = "FFBBBDBD";
@@ -95,39 +95,39 @@ public class UIStorage {
         return future;
     }
 
-    public synchronized Integer getPrimaryColor() {
-        if(mPrimaryColor == null) {
-            mPrimaryColor = convertHexToInt(DEFAULT_PRIMARY_COLOR);
+    public synchronized Integer getUiPrimaryColor() {
+        if(mUiPrimaryColor == null) {
+            mUiPrimaryColor = convertHexToInt(DEFAULT_UI_PRIMARY_COLOR);
         }
-        return mPrimaryColor;
+        return mUiPrimaryColor;
     }
 
-    public synchronized Integer getSecondaryColor() {
-        if(mSecondaryColor == null) {
-            mSecondaryColor = convertHexToInt(DEFAULT_SECONDARY_COLOR);
+    public synchronized Integer getUiSecondaryColor() {
+        if(mUiSecondaryColor == null) {
+            mUiSecondaryColor = convertHexToInt(DEFAULT_UI_SECONDARY_COLOR);
         }
-        return mSecondaryColor;
+        return mUiSecondaryColor;
     }
 
-    public synchronized Integer getTertiaryColor() {
-        if(mTertiaryColor == null) {
-            mTertiaryColor = convertHexToInt(DEFAULT_TERTIARY_COLOR);
+    public synchronized Integer getUiTertiaryColor() {
+        if(mUiTertiaryColor == null) {
+            mUiTertiaryColor = convertHexToInt(DEFAULT_UI_TERTIARY_COLOR);
         }
-        return mTertiaryColor;
+        return mUiTertiaryColor;
     }
 
-    public synchronized Integer getSuccessColor() {
-        if(mSuccessColor == null) {
-            mSuccessColor = convertHexToInt(DEFAULT_SUCCESS_COLOR);
+    public synchronized Integer getUiSuccessColor() {
+        if(mUiSuccessColor == null) {
+            mUiSuccessColor = convertHexToInt(DEFAULT_UI_SUCCESS_COLOR);
         }
-        return mSuccessColor;
+        return mUiSuccessColor;
     }
 
-    public synchronized Integer getErrorColor() {
-        if(mErrorColor == null) {
-            mErrorColor = convertHexToInt(DEFAULT_ERROR_COLOR);
+    public synchronized Integer getUiErrorColor() {
+        if(mUiErrorColor == null) {
+            mUiErrorColor = convertHexToInt(DEFAULT_UI_ERROR_COLOR);
         }
-        return mErrorColor;
+        return mUiErrorColor;
     }
 
     public synchronized Integer getTextPrimaryColor() {
@@ -180,7 +180,7 @@ public class UIStorage {
     }
 
     public int getStatusBarColor() {
-        return getStatusBarColor(getPrimaryColor());
+        return getStatusBarColor(getUiPrimaryColor());
     }
 
     public int getStatusBarColor(int actionBarColor) {
@@ -208,12 +208,12 @@ public class UIStorage {
     }
 
     public synchronized int getPrimaryContrastColor() {
-        if(mPrimaryColor==null) {
+        if(mUiPrimaryColor ==null) {
             return 0;
         }
-        int red = Color.red(mPrimaryColor);
-        int green = Color.green(mPrimaryColor);
-        int blue = Color.blue(mPrimaryColor);
+        int red = Color.red(mUiPrimaryColor);
+        int green = Color.green(mUiPrimaryColor);
+        int blue = Color.blue(mUiPrimaryColor);
         return getBrightness(red, green, blue) > 200 ? Color.BLACK : Color.WHITE;
     }
 
@@ -225,41 +225,41 @@ public class UIStorage {
     }
 
     private void setColors() {
-        if(mConfig.projectConfiguration.primaryColor != null) {
-            mPrimaryColor = convertHexToInt(mConfig.projectConfiguration.primaryColor);
+        if(mConfig.projectConfiguration.projectBranding.uiPrimaryColor != null) {
+            mUiPrimaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.uiPrimaryColor);
         }
-        if(mConfig.projectConfiguration.secondaryColor != null) {
-            mSecondaryColor = convertHexToInt(mConfig.projectConfiguration.secondaryColor);
+        if(mConfig.projectConfiguration.projectBranding.uiSecondaryColor != null) {
+            mUiSecondaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.uiSecondaryColor);
         }
-        if(mConfig.projectConfiguration.tertiaryColor != null) {
-            mTertiaryColor = convertHexToInt(mConfig.projectConfiguration.tertiaryColor);
+        if(mConfig.projectConfiguration.projectBranding.uiTertiaryColor != null) {
+            mUiTertiaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.uiTertiaryColor);
         }
-        if(mConfig.projectConfiguration.errorColor != null) {
-            mErrorColor = convertHexToInt(mConfig.projectConfiguration.errorColor);
+        if(mConfig.projectConfiguration.projectBranding.uiErrorColor != null) {
+            mUiErrorColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.uiErrorColor);
         }
-        if(mConfig.projectConfiguration.successColor != null) {
-            mSuccessColor = convertHexToInt(mConfig.projectConfiguration.successColor);
+        if(mConfig.projectConfiguration.projectBranding.uiSuccessColor != null) {
+            mUiSuccessColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.uiSuccessColor);
         }
-        if(mConfig.projectConfiguration.textPrimaryColor != null) {
-            mTextPrimaryColor = convertHexToInt(mConfig.projectConfiguration.textPrimaryColor);
+        if(mConfig.projectConfiguration.projectBranding.textPrimaryColor != null) {
+            mTextPrimaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.textPrimaryColor);
         }
-        if(mConfig.projectConfiguration.textSecondaryColor != null) {
-            mTextSecondaryColor = convertHexToInt(mConfig.projectConfiguration.textSecondaryColor);
+        if(mConfig.projectConfiguration.projectBranding.textSecondaryColor != null) {
+            mTextSecondaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.textSecondaryColor);
         }
-        if(mConfig.projectConfiguration.textTertiaryColor != null) {
-            mTextTertiaryColor = convertHexToInt(mConfig.projectConfiguration.textTertiaryColor);
+        if(mConfig.projectConfiguration.projectBranding.textTertiaryColor != null) {
+            mTextTertiaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.textTertiaryColor);
         }
-        if(mConfig.projectConfiguration.textTopbarColor != null) {
-            mTextTopbarColor = convertHexToInt(mConfig.projectConfiguration.textTopbarColor);
+        if(mConfig.projectConfiguration.projectBranding.textTopbarColor != null) {
+            mTextTopbarColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.textTopbarColor);
         }
-        if(mConfig.projectConfiguration.iconPrimaryColor != null) {
-            mIconPrimaryColor = convertHexToInt(mConfig.projectConfiguration.iconPrimaryColor);
+        if(mConfig.projectConfiguration.projectBranding.iconPrimaryColor != null) {
+            mIconPrimaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.iconPrimaryColor);
         }
-        if(mConfig.projectConfiguration.iconSecondaryColor != null) {
-            mIconSecondaryColor = convertHexToInt(mConfig.projectConfiguration.iconSecondaryColor);
+        if(mConfig.projectConfiguration.projectBranding.iconSecondaryColor != null) {
+            mIconSecondaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.iconSecondaryColor);
         }
-        if(mConfig.projectConfiguration.iconTertiaryColor != null) {
-            mIconTertiaryColor = convertHexToInt(mConfig.projectConfiguration.iconTertiaryColor);
+        if(mConfig.projectConfiguration.projectBranding.iconTertiaryColor != null) {
+            mIconTertiaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.iconTertiaryColor);
         }
     }
 
@@ -284,7 +284,7 @@ public class UIStorage {
                         new int[]{android.R.attr.state_checked}
                 },
                 new int[] {
-                        grayBackground, mPrimaryColor
+                        grayBackground, mUiPrimaryColor
                 }
         );
     }
@@ -297,14 +297,14 @@ public class UIStorage {
                         new int[]{android.R.attr.state_checked}
                 },
                 new int[] {
-                        grayBackground, mPrimaryColor
+                        grayBackground, mUiPrimaryColor
                 }
         );
     }
 
     public ColorStateList getSwitchBackgroundColors() {
         int grayBackground = Color.parseColor("#40221F1F");
-        int statusBarColor = getStatusBarColor(mPrimaryColor);
+        int statusBarColor = getStatusBarColor(mUiPrimaryColor);
         return new ColorStateList(
                 new int[][]{
                         new int[]{-android.R.attr.state_checked},

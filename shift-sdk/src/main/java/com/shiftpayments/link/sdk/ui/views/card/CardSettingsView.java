@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
@@ -217,8 +218,9 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     }
 
     private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int primaryColor = UIStorage.getInstance().getUiPrimaryColor();
         Drawable closeIcon = ContextCompat.getDrawable(getContext(), R.drawable.ic_close);
+        closeIcon.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
         mToolbar.setNavigationIcon(closeIcon);
         mAddFundingSourceButton.setColorFilter(primaryColor);
         mAddFundingSourceLabel.setTextColor(primaryColor);

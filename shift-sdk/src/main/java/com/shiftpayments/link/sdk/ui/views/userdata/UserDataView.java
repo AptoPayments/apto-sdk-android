@@ -71,7 +71,7 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     }
 
     protected void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
+        int color = UIStorage.getInstance().getUiPrimaryColor();
         if(mProgressBar != null) {
             mProgressBar.setProgressBarColor(color);
         }
@@ -141,7 +141,7 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
                 color = UIStorage.getInstance().getTextTopbarColor();
             }
             else {
-                color = UIStorage.getInstance().getPrimaryColor();
+                color = UIStorage.getInstance().getUiPrimaryColor();
             }
             View view = findViewById(R.id.action_next);
             // Cast to a TextView instance if the menu item was found

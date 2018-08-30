@@ -110,7 +110,7 @@ public class PersonalInformationView
     protected void onFinishInflate() {
         super.onFinishInflate();
         ((AppCompatCheckBox) mEmailAvailableCheck).setSupportButtonTintList(
-                ColorStateList.valueOf(UIStorage.getInstance().getPrimaryColor()));
+                ColorStateList.valueOf(UIStorage.getInstance().getUiPrimaryColor()));
         mFirstNameField.requestFocus();
     }
 

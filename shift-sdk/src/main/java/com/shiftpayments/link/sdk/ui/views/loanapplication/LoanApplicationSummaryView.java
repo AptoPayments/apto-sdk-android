@@ -105,7 +105,7 @@ public class LoanApplicationSummaryView
         mMaxScroll = -1;
 
         mForegroundColor = UIStorage.getInstance().getPrimaryContrastColor();
-        mBackgroundColor = UIStorage.getInstance().getPrimaryColor();
+        mBackgroundColor = UIStorage.getInstance().getUiPrimaryColor();
 
         mScrollMoreCopy = getResources().getString(R.string.loan_agreement_button_scroll_down);
         mAgreeCopy = getResources().getString(R.string.loan_confirmation_button_agree);
