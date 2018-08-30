@@ -2,7 +2,7 @@ package com.shiftpayments.link.sdk.sdk.tasks.financialaccounts;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
-import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -11,7 +11,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * A concrete {@link ShiftApiTask} to set the balance store
  * @author Adrian
  */
-public class SetBalanceStoreTask extends ShiftApiTask<Void,Void,ApiEmptyResponseVo,SetBalanceStoreRequestVo> {
+public class SetBalanceStoreTask extends ShiftApiTask<Void,Void,SetBalanceStoreResponseVo,SetBalanceStoreRequestVo> {
     private String mApplicationId;
     /**
      * @see ShiftApiTask#ShiftApiTask
@@ -28,7 +28,7 @@ public class SetBalanceStoreTask extends ShiftApiTask<Void,Void,ApiEmptyResponse
 
     /** {@inheritDoc} */
     @Override
-    protected ApiEmptyResponseVo callApi() throws ApiException {
+    protected SetBalanceStoreResponseVo callApi() throws ApiException {
         return getApiWrapper().setBalanceStore(mApplicationId, getRequestData());
     }
 }

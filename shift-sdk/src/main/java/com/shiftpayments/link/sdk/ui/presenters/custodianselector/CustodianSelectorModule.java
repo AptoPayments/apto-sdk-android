@@ -72,7 +72,7 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
     @Override
     public void oAuthTokensRetrieved(String accessToken, String refreshToken) {
         mDelegate.onTokensRetrieved(accessToken, refreshToken);
-        super.onFinish.execute();
+        /*super.onFinish.execute();*/
     }
 
     @Override

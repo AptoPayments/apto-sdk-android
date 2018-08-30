@@ -20,9 +20,19 @@ public class SetBalanceStoreRequestVo extends UnauthorizedRequestVo {
 
     public CredentialVo credential;
 
+    // TODO: remove after testing
+    public Integer simulated_error_code;
+
     public SetBalanceStoreRequestVo(String type, CredentialVo credential) {
         this.type = type;
         this.credential = credential;
+        simulated_error_code = null;
+    }
+
+    public SetBalanceStoreRequestVo(String type, CredentialVo credential, int errorCode) {
+        this.type = type;
+        this.credential = credential;
+        simulated_error_code = errorCode;
     }
 
     @Override

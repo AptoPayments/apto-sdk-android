@@ -19,7 +19,7 @@ public class ApiErrorUtil {
 
     public static void showErrorMessage(ApiErrorVo error, Context context) {
         if(!error.toString().isEmpty()) {
-            String message = mErrorMapping.get(error.serverCode);
+            String message = getErrorMessageGivenErrorCode(error.serverCode);
             if(message == null) {
                 if(error.statusCode >= 400 && error.statusCode < 600) {
                     message = "Something went wrong.";
@@ -53,6 +53,10 @@ public class ApiErrorUtil {
         if(!message.isEmpty()) {
             showSnackBar(message, context);
         }
+    }
+
+    public static String getErrorMessageGivenErrorCode(int errorCode) {
+        return mErrorMapping.get(errorCode);
     }
 
     private static View getRootView(Activity activity) {
@@ -96,6 +100,12 @@ public class ApiErrorUtil {
         errorsSparseArray.append(90173, "Oops!\nSomething went wrong. Please try again.");
         errorsSparseArray.append(90174, "Oops!\nSomething went wrong. Please try again.");
         errorsSparseArray.append(90175, "Oops!\nSomething went wrong. Please try again.");
+        errorsSparseArray.append(90191, "Oops!\nAddress country unsupported. Please try again.");
+        errorsSparseArray.append(90192, "Oops!\nAddress region unsupported. Please try again.");
+        errorsSparseArray.append(90193, "Oops!\nAddress unverified. Please try again.");
+        errorsSparseArray.append(90194, "Oops!\nCurrency not supported. Please try again.");
+        errorsSparseArray.append(90195, "Oops!\nCannot capture funds. Please try again.");
+        errorsSparseArray.append(90196, "Oops!\nInsufficient funds. Please try again.");
 
         return errorsSparseArray;
     }
