@@ -28,6 +28,7 @@ import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintAuthenticationDialogFragment;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintDelegate;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintHandler;
+import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.utils.SendEmailUtil;
 import com.shiftpayments.link.sdk.ui.views.card.CardSettingsView;
 import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
@@ -55,6 +56,7 @@ public class CardSettingsPresenter
     private FragmentManager mFragmentManager;
     private FingerprintHandler mFingerprintHandler;
     private boolean mIsUserAuthenticated;
+    private LoadingSpinnerManager mLoadingSpinnerManager;
 
     public CardSettingsPresenter(CardSettingsActivity activity, CardSettingsDelegate delegate, FragmentManager fragmentManager) {
         mActivity = activity;
@@ -78,6 +80,8 @@ public class CardSettingsPresenter
         mView.setShowCardInfoSwitch(CardStorage.getInstance().showCardInfo);
         mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
         mResponseHandler.subscribe(this);
+        mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
+        mLoadingSpinnerManager.showLoading(true);
         ShiftPlatform.getUserFundingSources();
     }
 
@@ -88,6 +92,7 @@ public class CardSettingsPresenter
 
     @Override
     public void fundingSourceClickHandler(FundingSourceModel selectedFundingSource) {
+        mLoadingSpinnerManager.showLoading(true);
         List<FundingSourceModel> fundingSources = mModel.getFundingSources().getList();
         for(FundingSourceModel fundingSource : fundingSources) {
             fundingSource.setIsSelected(fundingSource.equals(selectedFundingSource));
@@ -183,6 +188,7 @@ public class CardSettingsPresenter
         mModel.addFundingSources(response.data);
         mView.showFundingSourceLabel(true);
         mAdapter.updateList(mModel.getFundingSources());
+        mLoadingSpinnerManager.showLoading(false);
     }
 
     @Subscribe
@@ -190,6 +196,7 @@ public class CardSettingsPresenter
         mResponseHandler.unsubscribe(this);
         mModel.setSelectedFundingSource(response.id);
         mAdapter.updateList(mModel.getFundingSources());
+        mLoadingSpinnerManager.showLoading(false);
         Toast.makeText(mActivity, R.string.account_management_funding_source_changed, Toast.LENGTH_SHORT).show();
     }
 
@@ -200,6 +207,7 @@ public class CardSettingsPresenter
     @Subscribe
     public void handleResponse(UpdateFinancialAccountPinResponseVo card) {
         mResponseHandler.unsubscribe(this);
+        mLoadingSpinnerManager.showLoading(false);
         Toast.makeText(mActivity, mActivity.getString(R.string.card_management_pin_changed), Toast.LENGTH_SHORT).show();
     }
 
@@ -210,6 +218,7 @@ public class CardSettingsPresenter
     @Subscribe
     public void handleResponse(EnableFinancialAccountResponseVo card) {
         mResponseHandler.unsubscribe(this);
+        mLoadingSpinnerManager.showLoading(false);
         showToastAndUpdateCard(card, mActivity.getString(R.string.card_enabled));
     }
 
@@ -220,6 +229,7 @@ public class CardSettingsPresenter
     @Subscribe
     public void handleResponse(DisableFinancialAccountResponseVo card) {
         mResponseHandler.unsubscribe(this);
+        mLoadingSpinnerManager.showLoading(false);
         showToastAndUpdateCard(card, mActivity.getString(R.string.card_disabled));
     }
 
@@ -230,6 +240,7 @@ public class CardSettingsPresenter
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         mResponseHandler.unsubscribe(this);
+        mLoadingSpinnerManager.showLoading(false);
         if(error.statusCode==404) {
             // User has no funding source
             mView.showFundingSourceLabel(false);
@@ -252,6 +263,7 @@ public class CardSettingsPresenter
     }
 
     private void updateCardPin(String pin) {
+        mLoadingSpinnerManager.showLoading(true);
         mResponseHandler.subscribe(this);
         UpdateFinancialAccountPinRequestVo request = new UpdateFinancialAccountPinRequestVo();
         request.pin = pin;
@@ -281,6 +293,7 @@ public class CardSettingsPresenter
     }
 
     private void changeCardState(boolean enable) {
+        mLoadingSpinnerManager.showLoading(true);
         mResponseHandler.subscribe(this);
         if(enable) {
             ShiftPlatform.enableFinancialAccount(mModel.getAccountId());

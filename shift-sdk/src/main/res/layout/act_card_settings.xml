@@ -44,6 +44,7 @@
                 android:id="@+id/rv_funding_sources_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:minHeight="50dp"
                 android:clipToPadding="false"
                 android:scrollbarStyle="outsideOverlay"
                 android:scrollbars="vertical" />
@@ -128,4 +129,5 @@
     </android.support.v4.widget.NestedScrollView>
 
     <include layout="@layout/include_pin_fragment" />
+    <include layout="@layout/include_rl_loading" />
 </com.shiftpayments.link.sdk.ui.views.card.CardSettingsView>

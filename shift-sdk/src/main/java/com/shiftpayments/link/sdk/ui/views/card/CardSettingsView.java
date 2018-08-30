@@ -24,6 +24,8 @@ import android.widget.TextView;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.views.LoadingView;
+import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
@@ -34,7 +36,8 @@ import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
  * @author Adrian
  */
 public class CardSettingsView extends CoordinatorLayout implements ViewWithToolbar,
-        View.OnClickListener, CompoundButton.OnCheckedChangeListener, View.OnTouchListener {
+        View.OnClickListener, CompoundButton.OnCheckedChangeListener, View.OnTouchListener,
+        ViewWithIndeterminateLoading {
 
     private static boolean mIsShowCardInfoSwitchTouched;
     private static boolean mIsEnableCardSwitchTouched;
@@ -50,6 +53,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     private TextView mContactSupportButton;
     private SwitchCompat mShowCardInfoSwitch;
     private SwitchCompat mEnableCardSwitch;
+    private LoadingView mLoadingView;
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -79,6 +83,11 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
             mIsEnableCardSwitchTouched = true;
         }
         return false;
+    }
+
+    @Override
+    public LoadingView getLoadingView() {
+        return mLoadingView;
     }
 
     /**
@@ -215,6 +224,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mContactSupportButton = findViewById(R.id.tv_report_stolen_card);
         mShowCardInfoSwitch = findViewById(R.id.sw_show_card_info);
         mEnableCardSwitch = findViewById(R.id.sw_enable_card);
+        mLoadingView = findViewById(R.id.rl_loading_overlay);
     }
 
     private void setColors() {
