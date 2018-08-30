@@ -23,8 +23,12 @@ public class AmountVo {
     @Override
     public String toString() {
         int intAmount = (int) mAmount;
+        String format = String.format("%.2f", mAmount);
+        if(!mCurrency.equals("USD") && !mCurrency.equals("EUR")) {
+            format = String.format("%.6f", mAmount);
+        }
         String amount = mAmount == intAmount ? String.valueOf(intAmount)
-                : String.format("%.2f", mAmount);
+                : format;
         return mCurrencySymbol + " " + amount;
     }
 
