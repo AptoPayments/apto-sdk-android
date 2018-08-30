@@ -369,7 +369,7 @@
     <string name="transaction_details_date">Transaction date</string>
     <string name="transaction_details_settlement_date">Settlement date</string>
     <string name="transaction_details_id">ID</string>
-    <string name="transaction_details_shift_id">Shift ID</string>
+    <string name="transaction_details_shift_id">Transaction ID</string>
     <string name="transaction_details_transaction_info">Transaction info</string>
     <string name="transaction_details_adjustment_from">Transfer from %s</string>
     <string name="transaction_details_adjustment_to">Transfer to %s</string>

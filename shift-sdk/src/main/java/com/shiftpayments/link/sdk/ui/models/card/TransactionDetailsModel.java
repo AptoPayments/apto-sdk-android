@@ -3,7 +3,6 @@ package com.shiftpayments.link.sdk.ui.models.card;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.AdjustmentVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.ui.models.Model;
-import com.shiftpayments.link.sdk.ui.utils.DateUtil;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 import java.util.Arrays;
@@ -71,9 +70,9 @@ public class TransactionDetailsModel implements Model {
 
     public String getTransactionDate() {
         if(isStringFilled(mTransaction.creationTime)) {
-            return DateUtil.getFormattedTransactionDate(mTransaction.creationTime);
+            return mTransaction.creationTime;
         }
-        return UNAVAILABLE;
+        return null;
     }
 
     public boolean hasTransactionId() {

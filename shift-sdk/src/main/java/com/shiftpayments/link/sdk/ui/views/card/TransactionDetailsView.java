@@ -14,7 +14,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -54,7 +53,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
     private TextView mHoldAmount;
     private RelativeLayout mHoldAmountHolder;
     private ImageView mAddressImageView;
-    private View mTitleBackground;
     private LinearLayout mTitleHolder;
     private TextView mTitle;
     private TextView mSubtitle;
@@ -185,7 +183,6 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
         mHoldAmount = findViewById(R.id.tv_hold_amount);
         mHoldAmountHolder = findViewById(R.id.rl_hold_amount);
         mAddressImageView = findViewById(R.id.iv_address_icon);
-        mTitleBackground = findViewById(R.id.collapsing_toolbar_title_background_view);
         mTitleHolder = findViewById(R.id.header_text_layout);
         mTitle = findViewById(R.id.tv_title);
         mSubtitle = findViewById(R.id.tv_subtitle);
@@ -199,15 +196,13 @@ public class TransactionDetailsView extends CoordinatorLayout implements ViewWit
                 //Collapsed
                 mToolbar.setBackgroundColor(primaryColor);
                 mCollapsingToolbar.setStatusBarScrimColor(primaryColor);
-                mTitleBackground.setVisibility(GONE);
                 mTitleHolder.setVisibility(GONE);
 
             } else {
                 //Expanded
                 mToolbar.setBackgroundColor(Color.TRANSPARENT);
                 mCollapsingToolbar.setStatusBarScrimColor(Color.TRANSPARENT);
-                mTitleBackground.setVisibility(VISIBLE);
-                mTitleBackground.setBackgroundColor(primaryColor);
+                mTitleHolder.setBackgroundColor(primaryColor);
                 mTitleHolder.setVisibility(VISIBLE);
             }
         });

@@ -12,6 +12,7 @@ import com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity;
 import com.shiftpayments.link.sdk.ui.models.card.TransactionDetailsModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.utils.DateUtil;
 import com.shiftpayments.link.sdk.ui.views.card.AdjustmentsAdapter;
 import com.shiftpayments.link.sdk.ui.views.card.TransactionDetailsView;
 
@@ -39,7 +40,10 @@ public class TransactionDetailsPresenter
         mActivity.setSupportActionBar(mView.getToolbar());
         mView.setTitle(mModel.getDescription());
         mView.setSubtitle(mModel.getLocalAmount());
-        mView.setTransactionDate(mModel.getTransactionDate());
+        String transactionDate = mModel.getTransactionDate();
+        if(transactionDate != null) {
+            mView.setTransactionDate(DateUtil.getLocaleFormattedDate(transactionDate, mActivity));
+        }
         mView.setShiftId(mModel.getShiftId());
         mView.setType(mModel.getTransactionType().toString());
         mView.setTransactionAddress(mModel.getLocation());
