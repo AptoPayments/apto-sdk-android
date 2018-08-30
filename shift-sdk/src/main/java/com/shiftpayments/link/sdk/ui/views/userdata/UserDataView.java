@@ -141,7 +141,7 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
                 color = UIStorage.getInstance().getTextTopbarColor();
             }
             else {
-                color = UIStorage.getInstance().getUiPrimaryColor();
+                color = UIStorage.getInstance().getDisabledTextTopbarColor();
             }
             View view = findViewById(R.id.action_next);
             // Cast to a TextView instance if the menu item was found

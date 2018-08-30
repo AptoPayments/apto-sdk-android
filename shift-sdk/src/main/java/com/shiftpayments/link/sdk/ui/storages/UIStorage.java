@@ -184,8 +184,16 @@ public class UIStorage {
     }
 
     public int getStatusBarColor(int actionBarColor) {
+        return addAlphaToColor(actionBarColor);
+    }
+
+    public int getDisabledTextTopbarColor() {
+        return addAlphaToColor(getTextTopbarColor());
+    }
+
+    private int addAlphaToColor(int color) {
         float[] hsv = new float[3];
-        Color.colorToHSV(actionBarColor, hsv);
+        Color.colorToHSV(color, hsv);
         hsv[2] *= 0.8f;
         return Color.HSVToColor(hsv);
     }
