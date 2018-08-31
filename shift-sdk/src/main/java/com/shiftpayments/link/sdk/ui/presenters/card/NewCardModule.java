@@ -209,7 +209,7 @@ public class NewCardModule extends WorkflowModule implements CustodianSelectorDe
             AlertDialog dialog = builder.create();
             dialog.setOnShowListener(dialogInterface ->
                     dialog.getButton(android.support.v7.app.AlertDialog.BUTTON_POSITIVE).setTextColor(
-                            UIStorage.getInstance().getPrimaryColor()));
+                            UIStorage.getInstance().getUiPrimaryColor()));
             if(!currentActivity.isFinishing()) {
                 dialog.show();
             }
