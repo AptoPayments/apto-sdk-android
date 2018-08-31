@@ -86,8 +86,7 @@ public class NewCardModule extends WorkflowModule implements CustodianSelectorDe
     public void onTokensRetrieved(String accessToken, String refreshToken) {
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(accessToken, refreshToken);
-        //TODO: remove simulatedErrorCode after testing
-        SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials, 90191);
+        SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
         ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
     }
 
