@@ -77,7 +77,6 @@ public class ManageCardActivity extends FragmentMvpActivity {
 
     @Override
     public void onBackPressed() {
-        mDelegate.onManageCardBackPressed();
-        super.onBackPressed();
+        // Disabled
     }
 }

@@ -470,6 +470,30 @@
         <item name="android:layout_marginLeft">16dp</item>
     </style>
 
+    <style name="llsdk_form_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_primary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_form_label</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="llsdk_form_field">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_form_field</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="llsdk_form_text_link">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_form_text_link</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
     <!--
         LIGHT
     -->

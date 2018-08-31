@@ -48,22 +48,17 @@
     <string name="birthdate_verification_error">Error: the birthdate is incorrect!</string>
 
     <!-- Phone Verification -->
-    <string name="phone_verification_label">Phone verification</string>
-    <string name="phone_verification_code_hint">Enter your verification code</string>
-    <string name="phone_verification_info">We just sent a verification code to the number shown above.</string>
-    <string name="phone_verification_button_submit">SUBMIT</string>
-    <string name="phone_verification_button_resend">Re-send Code</string>
+    <string name="phone_verification_label">Verify phone number</string>
     <string name="phone_verification_resent">A new code has been sent to your phone</string>
-    <string name="phone_verification_error">Error: the pin is incorrect!</string>
+    <string name="phone_verification_code_hint">Enter the code that was sent to your phone</string>
+    <string name="verification_code_hint">Enter the code that was sent to</string>
+    <string name="verification_button_resend"><u>Re-send code</u></string>
+    <string name="verification_error">Error: the code is incorrect!</string>
 
     <!-- Email Verification -->
-    <string name="email_verification_title">Secure your account</string>
-    <string name="email_verification_code_hint">Click on the link to verify your account.</string>
-    <string name="email_verification_info">We just sent a verification link to\n%s</string>
-    <string name="email_verification_button_submit">I Clicked on the Link</string>
-    <string name="email_verification_button_resend">Re-send Link</string>
-    <string name="email_verification_resent">A new link has been sent to your email</string>
-    <string name="email_verification_error">Error: the email has not been verified!</string>
+    <string name="email_verification_title">Security check</string>
+    <string name="email_verification_code_hint">Enter the code that was sent to your email</string>
+    <string name="email_verification_resent">A new code has been sent to your email</string>
 
     <!-- Address -->
     <string name="address_label">What\'s your address?</string>
