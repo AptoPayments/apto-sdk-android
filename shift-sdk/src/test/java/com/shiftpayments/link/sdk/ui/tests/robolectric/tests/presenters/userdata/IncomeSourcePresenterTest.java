@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.IncomeTypeListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.IncomeTypeVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.ProjectBrandingVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequenciesListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
@@ -75,6 +76,7 @@ public class IncomeSourcePresenterTest {
         IncomeTypeVo incomeTypeVo = new IncomeTypeVo();
         incomeTypeVo.income_type_id = EXPECTED_INCOME_TYPE;
         configResponseVo.incomeTypeOpts.data[0] = incomeTypeVo;
+        configResponseVo.projectBranding = new ProjectBrandingVo();
 
         ContextConfigResponseVo contextConfigResponseVo = new ContextConfigResponseVo();
         contextConfigResponseVo.projectConfiguration = configResponseVo;

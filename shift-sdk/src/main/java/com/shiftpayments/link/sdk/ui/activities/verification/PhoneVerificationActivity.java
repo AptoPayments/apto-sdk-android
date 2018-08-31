@@ -9,19 +9,19 @@ import com.shiftpayments.link.sdk.ui.models.verification.PhoneVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.verification.PhoneVerificationDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.verification.PhoneVerificationPresenter;
-import com.shiftpayments.link.sdk.ui.views.verification.PhoneVerificationView;
+import com.shiftpayments.link.sdk.ui.views.verification.VerificationView;
 
 /**
  * Wires up the MVP pattern for the phone verification screen.
  * @author Adrian
  */
 public class PhoneVerificationActivity
-        extends MvpActivity<PhoneVerificationModel, PhoneVerificationView, PhoneVerificationPresenter> {
+        extends MvpActivity<PhoneVerificationModel, VerificationView, PhoneVerificationPresenter> {
 
     /** {@inheritDoc} */
     @Override
-    protected PhoneVerificationView createView() {
-        return (PhoneVerificationView) View.inflate(this, R.layout.act_phone_verification, null);
+    protected VerificationView createView() {
+        return (VerificationView) View.inflate(this, R.layout.act_datapoint_verification, null);
     }
 
     /** {@inheritDoc} */

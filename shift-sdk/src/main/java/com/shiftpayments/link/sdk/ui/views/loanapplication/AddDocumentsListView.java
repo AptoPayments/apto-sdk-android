@@ -135,7 +135,7 @@ public class AddDocumentsListView extends CoordinatorLayout implements ViewWithT
     }
 
     private void setToolbarColor() {
-        mToolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getPrimaryColor()));
+        mToolbar.setBackgroundDrawable(new ColorDrawable(UIStorage.getInstance().getUiPrimaryColor()));
         mToolbar.setTitleTextColor(UIStorage.getInstance().getPrimaryContrastColor());
     }
 

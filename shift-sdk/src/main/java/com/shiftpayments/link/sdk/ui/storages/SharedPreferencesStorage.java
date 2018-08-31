@@ -48,6 +48,11 @@ public class SharedPreferencesStorage {
         }
     }
 
+    public static boolean hasUserToken(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_USER_TOKEN_FILE, MODE_PRIVATE);
+        return sharedPreferences.getString(PREF_USER_TOKEN, null) != null;
+    }
+
     public static void storeCredentials(Context context, String primaryCredential, String secondaryCredential){
         SharedPreferences settings = context.getSharedPreferences(PREF_USER_TOKEN_FILE, MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();

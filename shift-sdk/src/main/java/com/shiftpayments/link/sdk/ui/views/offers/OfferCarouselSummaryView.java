@@ -25,7 +25,7 @@ public class OfferCarouselSummaryView extends OfferBaseSummaryView {
 
     @Override
     protected void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
+        int color = UIStorage.getInstance().getUiPrimaryColor();
         mApplyButton.setBackgroundColor(color);
     }
 

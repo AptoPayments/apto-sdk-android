@@ -78,7 +78,7 @@ public class ApiErrorUtil {
         final View rootView = getRootView((Activity) context);
         if(rootView != null) {
             Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
-            snackbar.getView().setBackgroundColor(UIStorage.getInstance().getErrorColor());
+            snackbar.getView().setBackgroundColor(UIStorage.getInstance().getUiErrorColor());
             TextView snackbarTextView = snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
             snackbarTextView.setTextSize(18);
             snackbarTextView.setMaxLines(3);

@@ -100,6 +100,10 @@ public class ShiftPlatform extends ShiftLinkSdk {
         UserStorage.getInstance().setBearerToken(null);
     }
 
+    public static boolean hasUserToken(Context context) {
+        return SharedPreferencesStorage.hasUserToken(context);
+    }
+
     private static String getApiEndPoint() {
         switch(mEnvironment) {
             case local_emulator:

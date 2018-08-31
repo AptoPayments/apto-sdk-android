@@ -89,6 +89,7 @@ public class TransactionDetailsPresenter
 
     public void setMap(GoogleMap map) {
         // TODO: hardcoded coordinates
+        map.getUiSettings().setMapToolbarEnabled(false);
         LatLng latLng = new LatLng(34.105319, -118.342122);
         map.addMarker(new MarkerOptions().position(latLng));
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16.0f));

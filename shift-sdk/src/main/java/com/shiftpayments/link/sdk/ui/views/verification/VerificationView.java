@@ -18,11 +18,11 @@ import com.shiftpayments.link.sdk.ui.views.userdata.UserDataView;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
- * Displays the phone verification screen.
+ * Displays the verification screen.
  * @author Adrian
  */
-public class PhoneVerificationView
-        extends UserDataView<PhoneVerificationView.ViewListener>
+public class VerificationView
+        extends UserDataView<VerificationView.ViewListener>
         implements ViewWithToolbar, View.OnClickListener, ViewWithIndeterminateLoading {
 
     /**
@@ -35,9 +35,9 @@ public class PhoneVerificationView
         void resendClickHandler();
     }
 
-    private static final int CODE_LENGTH = 6;
     private PinView mPinView;
-    private TextView mSubmitButton;
+    private TextView mDescription;
+    private TextView mDataPointLabel;
     private TextView mResendButton;
     private LoadingView mLoadingView;
 
@@ -45,7 +45,7 @@ public class PhoneVerificationView
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
      */
-    public PhoneVerificationView(Context context) {
+    public VerificationView(Context context) {
         super(context);
     }
 
@@ -54,7 +54,7 @@ public class PhoneVerificationView
      * @param context See {@link UserDataView#UserDataView}.
      * @param attrs See {@link UserDataView#UserDataView}.
      */
-    public PhoneVerificationView(Context context, AttributeSet attrs) {
+    public VerificationView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -63,26 +63,28 @@ public class PhoneVerificationView
     protected void findAllViews() {
         super.findAllViews();
         mPinView = findViewById(R.id.pinView);
-        mSubmitButton = findViewById(R.id.tv_submit_bttn);
+        mDescription = findViewById(R.id.tv_verification_code_header);
+        mDataPointLabel = findViewById(R.id.tv_verification_datapoint_label);
         mResendButton = findViewById(R.id.tv_resend_bttn);
         mLoadingView = findViewById(R.id.rl_loading_overlay);
-        configurePinView();
-        setColors();
     }
 
     @Override
     protected void setColors() {
         super.setColors();
 
-        int color = UIStorage.getInstance().getPrimaryColor();
-        mSubmitButton.setBackgroundColor(color);
-        mResendButton.setTextColor(color);
+        int textSecondaryColor = UIStorage.getInstance().getTextSecondaryColor();
+        mDataPointLabel.setTextColor(textSecondaryColor);
+        mResendButton.setTextColor(textSecondaryColor);
+        mPinView.setColorTextPinBoxes(textSecondaryColor);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        setColors();
+        mPinView.requestFocus();
     }
 
     /** {@inheritDoc} */
@@ -91,14 +93,11 @@ public class PhoneVerificationView
         super.setupListeners();
         mPinView.setOnCompleteListener((completed, pinResults) -> {
             if (completed) {
-                KeyboardUtil.hideKeyboard(PhoneVerificationView.super.getContext());
+                KeyboardUtil.hideKeyboard(VerificationView.super.getContext());
                 mListener.nextClickHandler();
             }
         });
 
-        if (mSubmitButton != null) {
-            mSubmitButton.setOnClickListener(this);
-        }
         if (mResendButton != null) {
             mResendButton.setOnClickListener(this);
         }
@@ -112,10 +111,7 @@ public class PhoneVerificationView
         }
 
         int id = view.getId();
-        if (id == R.id.tv_submit_bttn) {
-            mListener.nextClickHandler();
-        }
-        else if (id == R.id.tv_resend_bttn) {
+        if (id == R.id.tv_resend_bttn) {
             mListener.resendClickHandler();
         }
     }
@@ -140,10 +136,21 @@ public class PhoneVerificationView
         mPinView.clear();
     }
 
-    private void configurePinView() {
-        mPinView.setPin(CODE_LENGTH);
-        mPinView.setKeyboardMandatory(false);
-        mPinView.setMaskPassword(false);
-        mPinView.requestFocus();
+    public void setDescription(String description) {
+        mDescription.setText(description);
+    }
+
+    public void setDataPoint(String dataPoint) {
+        showDataPoint(true);
+        mDataPointLabel.setText(dataPoint);
+    }
+
+    public void showDataPoint(boolean show) {
+        if(show) {
+            mDataPointLabel.setVisibility(VISIBLE);
+        }
+        else {
+            mDataPointLabel.setVisibility(INVISIBLE);
+        }
     }
 }

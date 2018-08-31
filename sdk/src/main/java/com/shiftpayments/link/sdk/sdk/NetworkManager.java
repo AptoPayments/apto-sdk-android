@@ -14,7 +14,7 @@ public class NetworkManager implements NetworkDelegate {
     @Override
     public void onNetworkStatusChanged(boolean isConnected) {
         isConnectedToInternet = isConnected;
-        if(isConnectedToInternet) {
+        if(isConnectedToInternet && mHandler!=null) {
             mHandler.publishResult(new ConnectionEstablishedVo());
             mApiWrapper.executePendingApiCalls();
         }

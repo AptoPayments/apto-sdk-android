@@ -42,6 +42,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.IncomeTypeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanPurposeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanPurposesResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.ProjectBrandingVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequenciesListResponseVo;
@@ -229,6 +230,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
         response.incomeTypeOpts.data[0] = incomeTypeVo;
         response.creditScoreOpts = new CreditScoreListResponseVo();
         response.creditScoreOpts.data = new CreditScoreVo[0];
+        response.projectBranding = new ProjectBrandingVo();
         ContextConfigResponseVo configResponseVo = new ContextConfigResponseVo();
         configResponseVo.projectConfiguration = response;
         return configResponseVo;
