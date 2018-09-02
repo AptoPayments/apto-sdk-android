@@ -24,7 +24,7 @@ public class AmountVo {
     public String toString() {
         int intAmount = (int) mAmount;
         String format = String.format("%.2f", mAmount);
-        if(!mCurrency.equals("USD") && !mCurrency.equals("EUR")) {
+        if(mCurrency!=null && !mCurrency.equals("USD") && !mCurrency.equals("EUR")) {
             format = String.format("%.6f", mAmount);
         }
         String amount = mAmount == intAmount ? String.valueOf(intAmount)
