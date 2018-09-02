@@ -1,11 +1,6 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.os.Handler;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
@@ -27,7 +22,6 @@ import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelec
 import com.shiftpayments.link.sdk.ui.presenters.showdisclaimer.showgenericmessage.ShowDisclaimerModule;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
-import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.vos.ApplicationVo;
 import com.shiftpayments.link.sdk.ui.workflow.ActionNotSupportedModule;
@@ -98,7 +92,7 @@ public class NewCardModule extends WorkflowModule implements CustodianSelectorDe
         }
         else {
             startCustodianModule();
-            showSetBalanceStoreError(response.errorCode);
+            ApiErrorUtil.showAlertDialog(response.errorCode);
         }
     }
 
@@ -174,46 +168,5 @@ public class NewCardModule extends WorkflowModule implements CustodianSelectorDe
                 onFinishCallback, onBack, (DisclaimerConfiguration) mWorkFlowObject.nextAction.configuration,
                 mWorkFlowObject.workflowObjectId, mWorkFlowObject.nextAction.actionId);
         disclaimerModule.initialModuleSetup();
-    }
-
-    private void showSetBalanceStoreError(int errorCode) {
-        Runnable showAlert = () -> {
-            Activity currentActivity = ModuleManager.getInstance().getCurrentModule().getActivity();
-            AlertDialog.Builder builder = new AlertDialog.Builder(currentActivity);
-
-            String alertTitle = "Error";
-            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextPrimaryColor());
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(alertTitle);
-            spannableStringBuilder.setSpan(
-                    foregroundColorSpan,
-                    0,
-                    alertTitle.length(),
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            );
-            builder.setTitle(spannableStringBuilder);
-
-            String alertMessage = ApiErrorUtil.getErrorMessageGivenErrorCode(errorCode);
-            foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextSecondaryColor());
-            spannableStringBuilder = new SpannableStringBuilder(alertMessage);
-            spannableStringBuilder.setSpan(
-                    foregroundColorSpan,
-                    0,
-                    alertMessage.length(),
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            );
-            builder.setMessage(spannableStringBuilder);
-
-            builder.setPositiveButton("OK", (dialog, id) -> dialog.dismiss());
-
-            AlertDialog dialog = builder.create();
-            dialog.setOnShowListener(dialogInterface ->
-                    dialog.getButton(android.support.v7.app.AlertDialog.BUTTON_POSITIVE).setTextColor(
-                            UIStorage.getInstance().getUiPrimaryColor()));
-            if(!currentActivity.isFinishing()) {
-                dialog.show();
-            }
-        };
-        Handler handler = new Handler();
-        handler.postDelayed(showAlert, 1000);
     }
 }

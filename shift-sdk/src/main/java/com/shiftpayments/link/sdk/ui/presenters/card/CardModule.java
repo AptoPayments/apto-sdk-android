@@ -11,10 +11,10 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
-import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
@@ -155,13 +155,20 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(accessToken, refreshToken);
         SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
+        // TODO: Application ID not avaialble when doing login
         ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
     }
 
     @Subscribe
-    public void handleResponse(ApiEmptyResponseVo response) {
+    public void handleResponse(SetBalanceStoreResponseVo response) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        super.onFinish.execute();
+        if(response.result.equals("valid")) {
+            startManageCardScreen();
+        }
+        else {
+            startCustodianModule(this::startManageCardScreen,this::startManageCardScreen);
+            ApiErrorUtil.showAlertDialog(response.errorCode);
+        }
     }
 
     /**
