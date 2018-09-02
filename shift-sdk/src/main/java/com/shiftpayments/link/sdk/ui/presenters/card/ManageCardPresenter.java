@@ -14,6 +14,7 @@ import android.text.style.ForegroundColorSpan;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
+import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
@@ -65,7 +66,7 @@ public class ManageCardPresenter
     private String mLastTransactionId;
     private ManageCardDelegate mDelegate;
     private Semaphore mSemaphore;
-    private static final int NUMBER_OF_CONCURRENT_CALLS = 2;
+    private static final int NUMBER_OF_CONCURRENT_CALLS = 3;
 
     public ManageCardPresenter(ManageCardActivity activity, ManageCardDelegate delegate) {
         mActivity = activity;
@@ -97,6 +98,7 @@ public class ManageCardPresenter
         mTransactionsAdapter.setViewListener(this);
         view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter);
         mResponseHandler.subscribe(this);
+        refreshCard();
         getFundingSource();
         getTransactions();
     }
@@ -150,6 +152,7 @@ public class ManageCardPresenter
         mLastTransactionId = null;
         getFundingSource();
         getTransactions();
+        refreshCard();
         mTransactionsAdapter.clear();
         mScrollListener.resetState();
     }
@@ -229,6 +232,16 @@ public class ManageCardPresenter
             mModel.setNativeBalance(new AmountVo(response.custodianWallet.balance.amount, response.custodianWallet.balance.currency));
         }
         CardStorage.getInstance().setFundingSourceId(response.id);
+        updateCard();
+        if(isViewReady()) {
+            mView.setRefreshing(false);
+        }
+    }
+
+    @Subscribe
+    public void handleResponse(FinancialAccountVo response) {
+        mSemaphore.release();
+        CardStorage.getInstance().setCard((Card) response);
         updateCard();
         if(isViewReady()) {
             mView.setRefreshing(false);
@@ -316,6 +329,15 @@ public class ManageCardPresenter
         try {
             mSemaphore.acquire();
             ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
+        } catch (InterruptedException e) {
+            ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
+        }
+    }
+
+    private void refreshCard() {
+        try {
+            mSemaphore.acquire();
+            ShiftPlatform.getFinancialAccount(mModel.getAccountId());
         } catch (InterruptedException e) {
             ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
         }

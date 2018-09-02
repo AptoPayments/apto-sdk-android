@@ -49,7 +49,7 @@ import static com.shiftpayments.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
  */
 
 public class CardModule extends ShiftBaseModule implements ManageAccountDelegate, ManageCardDelegate,
-        CardSettingsDelegate {
+        CardSettingsDelegate, KycStatusDelegate {
 
     private NewCardModule mNewCardModule;
 
@@ -122,6 +122,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
             startManageCardScreen();
         }
         else {
+            setCurrentModule();
             Intent intent = new Intent(getActivity(), KycStatusActivity.class);
             intent.putExtra("KYC_STATUS", card.kycStatus.toString());
             if(card.kycReason != null) {
@@ -289,6 +290,11 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
             }
         }
         return null;
+    }
+
+    @Override
+    public void onKycPassed() {
+        startManageCardScreen();
     }
 }
 
