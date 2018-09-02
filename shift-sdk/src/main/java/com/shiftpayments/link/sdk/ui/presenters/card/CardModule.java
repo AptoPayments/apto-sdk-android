@@ -155,7 +155,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(accessToken, refreshToken);
         SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
-        // TODO: Application ID not avaialble when doing login
+        // TODO: Application ID not available when doing login
         ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
     }
 

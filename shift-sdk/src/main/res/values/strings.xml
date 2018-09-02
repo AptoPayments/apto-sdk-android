@@ -285,9 +285,10 @@
     <string name="new_application_button">NEW APPLICATION</string>
 
     <!-- Custodian Selector -->
-    <string name="add_custodian_list_title">Link Account</string>
-    <string name="add_custodian_coinbase_account">Coinbase</string>
-    <string name="add_custodian_coinbase_account_description">Link your Coinbase account.</string>
+    <string name="add_custodian_list_title">Link your account</string>
+    <string name="add_custodian_coinbase_account">Coinbase Connect</string>
+    <string name="add_custodian_coinbase_account_description">Connect with your Coinbase account to authorize Shift Card.</string>
+    <string name="add_custodian_coinbase_account_button_submit">CONNECT TO COINBASE</string>
 
     <!-- Errors -->
     <string name="session_expired_error">User session has expired. Please sign in with your credentials.</string>

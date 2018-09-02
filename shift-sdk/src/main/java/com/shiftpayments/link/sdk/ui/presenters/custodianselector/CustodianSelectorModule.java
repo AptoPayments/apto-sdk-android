@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
-import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectCustodianConfigurationVo;
 import com.shiftpayments.link.sdk.ui.activities.custodianselector.AddCustodianListActivity;
 import com.shiftpayments.link.sdk.ui.activities.custodianselector.OAuthActivity;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
@@ -40,11 +39,6 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
 
     private void showCustodianSelectorScreen() {
         startActivity(AddCustodianListActivity.class);
-    }
-
-    public SelectCustodianConfigurationVo getConfiguration() {
-        //TODO: hardcoding configuration until backend is ready
-        return new SelectCustodianConfigurationVo(true, false);
     }
 
     @Override
