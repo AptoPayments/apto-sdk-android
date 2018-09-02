@@ -1,7 +1,10 @@
 package com.shiftpayments.link.sdk.ui.views.custodianselector;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
@@ -104,5 +107,8 @@ public class AddCustodianListView extends CoordinatorLayout
 
     public void setColors() {
         mSubmitButton.setBackgroundColor(UIStorage.getInstance().getUiPrimaryColor());
+        Drawable closeIcon = ContextCompat.getDrawable(getContext(), R.drawable.ic_close);
+        closeIcon.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
+        mToolbar.setNavigationIcon(closeIcon);
     }
 }

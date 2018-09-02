@@ -3,11 +3,12 @@ package com.shiftpayments.link.sdk.wrappers.retrofit.services;
 import com.google.gson.JsonObject;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
@@ -19,7 +20,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -132,5 +132,5 @@ public interface FinancialAccountService {
      * @return API call to execute.
      */
     @POST(ShiftApiWrapper.SET_BALANCE_STORE_PATH)
-    Call<ResponseBody> setBalanceStore(@Path("application_id") String applicationId, @Body SetBalanceStoreRequestVo request);
+    Call<SetBalanceStoreResponseVo> setBalanceStore(@Path("application_id") String applicationId, @Body SetBalanceStoreRequestVo request);
 }

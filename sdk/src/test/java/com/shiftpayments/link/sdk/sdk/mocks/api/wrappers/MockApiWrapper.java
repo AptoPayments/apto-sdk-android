@@ -30,6 +30,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificati
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
@@ -497,7 +498,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public ApiEmptyResponseVo setBalanceStore(String s, SetBalanceStoreRequestVo setBalanceStoreRequestVo) throws ApiException {
+    public SetBalanceStoreResponseVo setBalanceStore(String s, SetBalanceStoreRequestVo setBalanceStoreRequestVo) throws ApiException {
         return null;
     }
 
