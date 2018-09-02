@@ -25,6 +25,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificati
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
@@ -515,7 +516,7 @@ public interface ShiftApiWrapper {
      * @param requestData Balance store data.
      * @throws ApiException When there is an error making the request.
      */
-    ApiEmptyResponseVo setBalanceStore(String applicationId, SetBalanceStoreRequestVo requestData) throws ApiException;
+    SetBalanceStoreResponseVo setBalanceStore(String applicationId, SetBalanceStoreRequestVo requestData) throws ApiException;
 
     /**
      * Accepts the disclaimer

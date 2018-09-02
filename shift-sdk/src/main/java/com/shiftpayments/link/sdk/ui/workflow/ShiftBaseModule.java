@@ -90,11 +90,11 @@ public abstract class ShiftBaseModule implements NavigationCommand, BaseDelegate
     }
 
     protected void showError(ApiErrorVo error) {
-        ApiErrorUtil.showErrorMessage(error, getActivity());
+        ApiErrorUtil.showErrorMessage(error, ModuleManager.getInstance().getCurrentModule().getActivity());
     }
 
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        ApiErrorUtil.showErrorMessage(error, mActivity);
+        ApiErrorUtil.showErrorMessage(error, ModuleManager.getInstance().getCurrentModule().getActivity());
         ShiftPlatform.clearUserToken(mActivity);
     }
 }
