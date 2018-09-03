@@ -29,20 +29,12 @@ jobs:
             echo "HOME=$HOME" > /home/circleci/repo/shift-sdk/gradle.properties
             sudo chmod +x gradlew
 
-      # Download and cache dependencies
-      - restore_cache:
-          key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}-{{ checksum "shift-sdk/build.gradle" }}
-
+      # Download dependencies and install
       - run:
           name: Download Dependencies
           command: |
             ./gradlew --configure-on-demand -p sdk install
             ./gradlew --configure-on-demand -p shift-sdk install
-
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-{{ checksum "build.gradle" }}-{{ checksum "sdk/build.gradle" }}-{{ checksum "shift-sdk/build.gradle" }}
 
       # Run tests
       - run:
