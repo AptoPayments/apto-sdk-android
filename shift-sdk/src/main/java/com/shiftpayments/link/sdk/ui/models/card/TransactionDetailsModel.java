@@ -134,7 +134,7 @@ public class TransactionDetailsModel implements Model {
     }
 
     public boolean hasTransactionCoordinates() {
-        return mTransaction.store.location != null;
+        return mTransaction.store.location != null && getLatitude()!=0 && getLongitude()!=0;
     }
 
     public double getLatitude() {
