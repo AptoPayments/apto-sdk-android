@@ -107,7 +107,7 @@ public class LoanApplicationDetailsView extends ScrollView implements View.OnCli
             mActionButton.setVisibility(VISIBLE);
             mActionButton.setText(data.getBigButtonModel().getLabelResource());
             mActionButton.setTextColor(UIStorage.getInstance().getPrimaryContrastColor());
-            mActionButton.setBackgroundColor(UIStorage.getInstance().getPrimaryColor());
+            mActionButton.setBackgroundColor(UIStorage.getInstance().getUiPrimaryColor());
         }
     }
 

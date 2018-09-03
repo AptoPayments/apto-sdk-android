@@ -13,7 +13,4 @@ public class ContextConfigResponseVo {
 
     @SerializedName("project")
     public ConfigResponseVo projectConfiguration;
-
-    @SerializedName("team")
-    public TeamConfigResponseVo teamConfiguration;
 }

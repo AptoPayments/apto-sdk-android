@@ -42,6 +42,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationReq
 import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
@@ -1018,11 +1019,11 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     }
 
     @Override
-    public ApiEmptyResponseVo setBalanceStore(String applicationId, SetBalanceStoreRequestVo requestData) throws ApiException {
-        ApiEmptyResponseVo result;
+    public SetBalanceStoreResponseVo setBalanceStore(String applicationId, SetBalanceStoreRequestVo requestData) throws ApiException {
+        SetBalanceStoreResponseVo result;
         try {
-            Response<ResponseBody> response = mFinancialAccountService.setBalanceStore(applicationId, requestData).execute();
-            result = handleEmptyResponse(response, ShiftApiWrapper.SET_BALANCE_STORE_PATH);
+            Response<SetBalanceStoreResponseVo> response = mFinancialAccountService.setBalanceStore(applicationId, requestData).execute();
+            result = handleResponse(response, ShiftApiWrapper.SET_BALANCE_STORE_PATH);
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), ShiftApiWrapper.SET_BALANCE_STORE_PATH, ioe);

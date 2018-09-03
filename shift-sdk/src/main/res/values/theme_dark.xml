@@ -50,6 +50,9 @@
         <item name="llsdk_addDocuments_bottomsheetItemStyle">@style/llsdk_add_documents_bottomsheet_item</item>
         <item name="llsdk_addDocuments_bottomsheetIconColor">@color/llsdk_dark_text_color_hint</item>
 
+        <item name="llsdk_cardSettings_amountMediumStyle">@style/llsdk_card_settings_medium_amount</item>
+        <item name="llsdk_cardSettings_sectionTitleTextStyle">@style/llsdk_card_settings_section_title</item>
+
         <item name="llsdk_loanAgreement_sectionStyle">@style/llsdk_loan_agreement_section</item>
         <item name="llsdk_loanAgreement_sectionHeaderStyle">@style/llsdk_loan_agreement_section_header</item>
         <item name="llsdk_loanAgreement_summaryTextStyle">@style/llsdk_loan_agreement_summary_text</item>
@@ -60,7 +63,13 @@
         <item name="llsdk_transactionDetails_cardTitleStyle">@style/llsdk_transaction_details_card_title</item>
         <item name="llsdk_transactionDetails_cardDescriptionStyle">@style/llsdk_transaction_details_card_description</item>
         <item name="llsdk_transactionDetails_detailHeaderTextStyle">@style/llsdk_transaction_details_detail_header</item>
+        <item name="llsdk_transactionDetails_detailLabelTextStyle">@style/llsdk_transaction_details_label</item>
         <item name="llsdk_transactionDetails_detailValueTextStyle">@style/llsdk_transaction_details_detail_text</item>
+        <item name="llsdk_transactionDetails_detailValueLongTextStyle">@style/llsdk_transaction_details_long_text</item>
+
+        <item name="llsdk_manageCard_cardTitleStyle">@style/llsdk_manage_card_card_title</item>
+        <item name="llsdk_manageCard_cardDescriptionStyle">@style/llsdk_manage_card_card_description</item>
+        <item name="llsdk_manageCard_cardAmountStyle">@style/llsdk_manage_card_card_amount</item>
     </style>
 
     <style

@@ -25,9 +25,9 @@ import static org.hamcrest.core.IsNot.not;
 @RunWith(LibraryProjectTestRunner.class)
 public class OfferSummaryModelTest {
 
-    private static final String EXPECTED_AMOUNT_TEXT = "Amount financed: $5555";
+    private static final String EXPECTED_AMOUNT_TEXT = "Amount financed: $ 5555";
     private static final String EXPECTED_INTEREST_TEXT = "Interest rate: 19.90%";
-    private static final String EXPECTED_PAYMENT_TEXT = "Monthly payment: $123.45";
+    private static final String EXPECTED_PAYMENT_TEXT = "Monthly payment: $ 123.45";
 
     private OfferSummaryModel mModel;
 

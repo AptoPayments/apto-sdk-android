@@ -4,28 +4,27 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
+import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
+import com.shiftpayments.link.sdk.ui.activities.card.CardSettingsActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity;
@@ -35,17 +34,10 @@ import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
-import com.shiftpayments.link.sdk.ui.utils.FingerprintAuthenticationDialogFragment;
-import com.shiftpayments.link.sdk.ui.utils.FingerprintDelegate;
-import com.shiftpayments.link.sdk.ui.utils.FingerprintHandler;
-import com.shiftpayments.link.sdk.ui.utils.SendEmailUtil;
 import com.shiftpayments.link.sdk.ui.views.card.EndlessRecyclerViewScrollListener;
-import com.shiftpayments.link.sdk.ui.views.card.ManageCardBottomSheet;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
 import com.shiftpayments.link.sdk.ui.views.card.TransactionsAdapter;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
-import com.venmo.android.pin.PinFragmentConfiguration;
-import com.venmo.android.pin.PinSupportFragment;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -62,30 +54,23 @@ import static com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsAc
 public class ManageCardPresenter
         extends BasePresenter<ManageCardModel, ManageCardView>
         implements Presenter<ManageCardModel, ManageCardView>, ManageCardView.ViewListener,
-        ManageCardBottomSheet.ViewListener, FingerprintDelegate, TransactionsAdapter.ViewListener {
+        TransactionsAdapter.ViewListener {
 
-    private static final String DIALOG_FRAGMENT_TAG = "fingerprintFragment";
     private static final int ROWS = 20;
 
-    private FragmentManager mFragmentManager;
-    private ManageCardBottomSheet mManageCardBottomSheet;
-    private FingerprintHandler mFingerprintHandler;
+    private ActionBar mActionBar;
     private ManageCardActivity mActivity;
     private EndlessRecyclerViewScrollListener mScrollListener;
     private TransactionsAdapter mTransactionsAdapter;
     private ArrayList mTransactionsList;
     private String mLastTransactionId;
-    private boolean mIsUserAuthenticated;
     private ManageCardDelegate mDelegate;
     private Semaphore mSemaphore;
-    private static final int NUMBER_OF_CONCURRENT_CALLS = 2;
+    private static final int NUMBER_OF_CONCURRENT_CALLS = 3;
 
-    public ManageCardPresenter(FragmentManager fragmentManager, ManageCardActivity activity, ManageCardDelegate delegate) {
-        mFragmentManager = fragmentManager;
+    public ManageCardPresenter(ManageCardActivity activity, ManageCardDelegate delegate) {
         mActivity = activity;
-        mFingerprintHandler = new FingerprintHandler(mActivity);
         mDelegate = delegate;
-        mIsUserAuthenticated = false;
         mLastTransactionId = null;
         mSemaphore = new Semaphore(NUMBER_OF_CONCURRENT_CALLS);
     }
@@ -94,6 +79,7 @@ public class ManageCardPresenter
     @Override
     public void attachView(ManageCardView view) {
         super.attachView(view);
+        setupToolbar();
         view.setViewListener(this);
         view.showLoading(mActivity, false);
 
@@ -104,21 +90,22 @@ public class ManageCardPresenter
         mScrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
+                getTransactions();
             }
         };
         mTransactionsList = new ArrayList<TransactionVo>();
         mTransactionsAdapter = new TransactionsAdapter(mActivity, mTransactionsList, mModel);
         mTransactionsAdapter.setViewListener(this);
         view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter);
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        mResponseHandler.subscribe(this);
+        refreshCard();
         getFundingSource();
         getTransactions();
     }
 
     @Override
     public void detachView() {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        mResponseHandler.unsubscribe(this);
         super.detachView();
     }
 
@@ -129,11 +116,7 @@ public class ManageCardPresenter
 
     @Override
     public void manageCardClickHandler() {
-        mManageCardBottomSheet = new ManageCardBottomSheet();
-        mManageCardBottomSheet.isCardEnabled = mModel.isCardActivated();
-        mManageCardBottomSheet.showCardInfo = mModel.showCardInfo;
-        mManageCardBottomSheet.setViewListener(this);
-        mManageCardBottomSheet.show(mFragmentManager, mManageCardBottomSheet.getTag());
+        mActivity.startActivity(new Intent(mActivity, CardSettingsActivity.class));
     }
 
     @Override
@@ -165,112 +148,13 @@ public class ManageCardPresenter
 
     @Override
     public void pullToRefreshHandler() {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        mResponseHandler.subscribe(this);
         mLastTransactionId = null;
         getFundingSource();
         getTransactions();
+        refreshCard();
         mTransactionsAdapter.clear();
         mScrollListener.resetState();
-    }
-
-    @Override
-    public void enableCardClickHandler(boolean enable) {
-        hideBottomSheet();
-        showCardStateChangeConfirmationDialog(enable);
-    }
-
-    @Override
-    public void showCardInfoClickHandler(boolean show) {
-        hideBottomSheet();
-        if(!show) {
-            mModel.showCardInfo = false;
-            mTransactionsAdapter.notifyItemChanged(0);
-        }
-        else {
-            if(mIsUserAuthenticated) {
-                onUserAuthenticated();
-            }
-            else if(mFingerprintHandler.isFingerprintAuthPossible()) {
-                FingerprintAuthenticationDialogFragment fragment
-                        = new FingerprintAuthenticationDialogFragment();
-                fragment.setFingerprintDelegate(this);
-                fragment.setFingerprintHandler(mFingerprintHandler);
-                fragment.show(mFragmentManager, DIALOG_FRAGMENT_TAG);
-            }
-            else {
-                // TODO: show card info without any authentication
-                mModel.showCardInfo = true;
-                mTransactionsAdapter.notifyItemChanged(0);
-            }
-        }
-    }
-
-    @Override
-    public void changePinClickHandler() {
-        PinFragmentConfiguration config =
-                new PinFragmentConfiguration(mActivity)
-                        .pinSaver(pin -> {
-                            mView.showPinFragment(false);
-                            hideBottomSheet();
-                            mView.showLoading(mActivity, true);
-                            updateCardPin(pin);
-                        });
-
-        Fragment pinFragment = PinSupportFragment.newInstanceForCreation(config);
-        hideBottomSheet();
-        mFragmentManager.beginTransaction()
-                .replace(R.id.pin_fragment, pinFragment)
-                .commit();
-        mView.showPinFragment(true);
-    }
-
-    @Override
-    public void contactSupportClickHandler() {
-        new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
-    }
-
-    @Override
-    public void onUserAuthenticated() {
-        mIsUserAuthenticated = true;
-        mModel.showCardInfo = true;
-        mTransactionsAdapter.notifyItemChanged(0);
-        mManageCardBottomSheet.setShowCardInfoSwitch(mModel.showCardInfo);
-    }
-
-    @Override
-    public void onAuthenticationFailed(String error) {
-        mIsUserAuthenticated = false;
-        mModel.showCardInfo = false;
-        ApiErrorUtil.showErrorMessage(error, mActivity);
-        mManageCardBottomSheet.setShowCardInfoSwitch(mModel.showCardInfo);
-    }
-
-    /**
-     * Called when the updatePin response has been received.
-     * @param card API response.
-     */
-    @Subscribe
-    public void handleResponse(UpdateFinancialAccountPinResponseVo card) {
-        mView.showLoading(mActivity, false);
-        Toast.makeText(mActivity, mActivity.getString(R.string.card_management_pin_changed), Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * Called when the enable card response has been received.
-     * @param card API response.
-     */
-    @Subscribe
-    public void handleResponse(EnableFinancialAccountResponseVo card) {
-        showToastAndUpdateCard(card, mActivity.getString(R.string.card_enabled));
-    }
-
-    /**
-     * Called when the disable card response has been received.
-     * @param card API response.
-     */
-    @Subscribe
-    public void handleResponse(DisableFinancialAccountResponseVo card) {
-        showToastAndUpdateCard(card, mActivity.getString(R.string.card_disabled));
     }
 
     /**
@@ -296,7 +180,7 @@ public class ManageCardPresenter
         if(error.statusCode==404) {
             // Card has no funding source
             mModel.setBalance(null);
-            mTransactionsAdapter.notifyItemChanged(0);
+            updateCard();
         }
         else {
             ApiErrorUtil.showErrorMessage(error, mActivity);
@@ -310,6 +194,7 @@ public class ManageCardPresenter
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
         mView.showLoading(mActivity, false);
+        mView.setRefreshing(false);
         mActivity.finish();
         mDelegate.onSessionExpired(error);
     }
@@ -323,7 +208,9 @@ public class ManageCardPresenter
             mView.showNoTransactionsImage(true);
         }
         else {
-            mLastTransactionId = response.data[response.data.length-1].id;
+            if(response.data.length>0) {
+                mLastTransactionId = response.data[response.data.length-1].id;
+            }
             mView.showNoTransactionsImage(false);
         }
         mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count -1);
@@ -338,11 +225,38 @@ public class ManageCardPresenter
         if(response.balance.hasAmount()) {
             mModel.setBalance(new AmountVo(response.balance.amount, response.balance.currency));
         }
+        if(response.amountSpendable.hasAmount()) {
+            mModel.setSpendableAmount(new AmountVo(response.amountSpendable.amount, response.amountSpendable.currency));
+        }
+        if(response.custodianWallet != null && response.custodianWallet.balance.hasAmount()) {
+            mModel.setNativeBalance(new AmountVo(response.custodianWallet.balance.amount, response.custodianWallet.balance.currency));
+        }
         CardStorage.getInstance().setFundingSourceId(response.id);
-        mTransactionsAdapter.notifyItemChanged(0);
+        updateCard();
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
+    }
+
+    @Subscribe
+    public void handleResponse(FinancialAccountVo response) {
+        mSemaphore.release();
+        CardStorage.getInstance().setCard((Card) response);
+        updateCard();
+        if(isViewReady()) {
+            mView.setRefreshing(false);
+        }
+    }
+
+    public void updateCard() {
+        mModel.setCard(CardStorage.getInstance().getCard());
+        mTransactionsAdapter.notifyItemChanged(0);
+    }
+
+    protected void setupToolbar() {
+        mActivity.setSupportActionBar(mView.getToolbar());
+        mActionBar = mActivity.getSupportActionBar();
+        mActionBar.setTitle(mActivity.getString(R.string.card_management_title));
     }
 
     public static Intent getTransactionDetailsIntent(Context context, TransactionVo transactionVo) {
@@ -351,68 +265,42 @@ public class ManageCardPresenter
         return intent;
     }
 
-    private void changeCardState(boolean enable) {
-        if(enable) {
-            ShiftPlatform.enableFinancialAccount(mModel.getAccountId());
-        }
-        else {
-            ShiftPlatform.disableFinancialAccount(mModel.getAccountId());
-        }
-        mView.showLoading(mActivity, true);
-    }
-
     private void activateCard() {
         ShiftPlatform.activateFinancialAccount(mModel.getAccountId());
         mView.showLoading(mActivity, true);
     }
 
-    private void showCardStateChangeConfirmationDialog(boolean enable) {
-        String text = enable ? mActivity.getString(R.string.enable_card_message) : mActivity.getString(R.string.disable_card_message);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-        builder.setMessage(text)
-                .setTitle(mActivity.getString(R.string.card_management_dialog_title));
-        builder.setPositiveButton("YES", (dialog, id) -> changeCardState(enable));
-        builder.setNegativeButton("NO", (dialog, id) -> {
-            if (mManageCardBottomSheet != null) {
-                mManageCardBottomSheet.setEnableCardSwitch(!enable);
-            }
-            dialog.dismiss();
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-    }
-
     private void showActivateCardConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-        builder.setMessage(mActivity.getString(R.string.enable_card_message))
-                .setTitle(mActivity.getString(R.string.card_management_dialog_title));
+
+        String alertTitle = mActivity.getString(R.string.card_settings_dialog_title);
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextPrimaryColor());
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(alertTitle);
+        spannableStringBuilder.setSpan(
+                foregroundColorSpan,
+                0,
+                alertTitle.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        builder.setTitle(spannableStringBuilder);
+
+        String alertMessage = mActivity.getString(R.string.enable_card_message);
+        foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextSecondaryColor());
+        spannableStringBuilder = new SpannableStringBuilder(alertMessage);
+        spannableStringBuilder.setSpan(
+                foregroundColorSpan,
+                0,
+                alertMessage.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        builder.setMessage(spannableStringBuilder);
+
         builder.setPositiveButton("YES", (dialog, id) -> activateCard());
-        builder.setNegativeButton("NO", (dialog, id) -> {
-            if (mManageCardBottomSheet != null) {
-                mManageCardBottomSheet.setEnableCardSwitch(false);
-            }
-            dialog.dismiss();
-        });
+        builder.setNegativeButton("NO", (dialog, id) -> dialog.dismiss());
 
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
-    }
-
-    private void hideBottomSheet() {
-        mFragmentManager.beginTransaction()
-                .detach(mManageCardBottomSheet)
-                .commit();
-    }
-
-    private void updateCardPin(String pin) {
-        UpdateFinancialAccountPinRequestVo request = new UpdateFinancialAccountPinRequestVo();
-        request.pin = pin;
-        request.accountId = mModel.getAccountId();
-        ShiftPlatform.updateFinancialAccountPin(request);
     }
 
     private boolean isViewReady() {
@@ -425,7 +313,7 @@ public class ManageCardPresenter
         }
         Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
         mModel.setCard(card);
-        mTransactionsAdapter.notifyItemChanged(0);
+        updateCard();
     }
 
     private void getFundingSource() {
@@ -441,6 +329,15 @@ public class ManageCardPresenter
         try {
             mSemaphore.acquire();
             ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
+        } catch (InterruptedException e) {
+            ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
+        }
+    }
+
+    private void refreshCard() {
+        try {
+            mSemaphore.acquire();
+            ShiftPlatform.getFinancialAccount(mModel.getAccountId());
         } catch (InterruptedException e) {
             ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
         }

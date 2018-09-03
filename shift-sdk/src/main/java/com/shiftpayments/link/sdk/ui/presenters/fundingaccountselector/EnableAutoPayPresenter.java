@@ -3,7 +3,6 @@ package com.shiftpayments.link.sdk.ui.presenters.fundingaccountselector;
 import android.support.v7.app.AppCompatActivity;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.models.fundingaccountselector.EnableAutoPayModel;
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
@@ -32,7 +31,7 @@ public class EnableAutoPayPresenter
     public EnableAutoPayPresenter(AppCompatActivity activity, EnableAutoPayDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        mResponseHandler.subscribe(this);
         ShiftPlatform.getFinancialAccount(mDelegate.getFinancialAccountId());
     }
 
@@ -47,7 +46,7 @@ public class EnableAutoPayPresenter
     public void attachView(EnableAutoPayView view) {
         super.attachView(view);
         mView.setListener(this);
-        mView.setImage(UIStorage.getInstance().getContextConfig().logoURL);
+        mView.setImage(UIStorage.getInstance().getContextConfig().projectBranding.logoURL);
 
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(false);
@@ -82,6 +81,7 @@ public class EnableAutoPayPresenter
      */
     @Subscribe
     public void handleResponse(FinancialAccountVo account) {
+        mResponseHandler.unsubscribe(this);
         mModel.setFinancialAccount(account);
         mActivity.runOnUiThread(() -> {
             AutoPayViewModel enableAutoPayViewModel = mModel.getEnableAutoPayViewModel(mActivity.getResources());

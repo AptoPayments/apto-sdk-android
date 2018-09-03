@@ -73,7 +73,7 @@ public class IdentityVerificationView
     public void setColors() {
         super.setColors();
 
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int primaryColor = UIStorage.getInstance().getUiPrimaryColor();
         ((AppCompatCheckBox) mSocialSecurityAvailableCheck).setSupportButtonTintList(
                 ColorStateList.valueOf(primaryColor));
         mNextButton.setBackgroundColor(primaryColor);

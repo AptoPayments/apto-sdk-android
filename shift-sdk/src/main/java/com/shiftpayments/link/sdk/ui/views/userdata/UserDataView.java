@@ -1,8 +1,10 @@
 package com.shiftpayments.link.sdk.ui.views.userdata;
 
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.MenuItem;
@@ -72,10 +74,14 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     }
 
     protected void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
-        mToolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.llsdk_actionbar_background)));
+        int color = UIStorage.getInstance().getUiPrimaryColor();
         if(mProgressBar != null) {
             mProgressBar.setProgressBarColor(color);
+        }
+        if(mToolbar != null) {
+            Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
+            backArrow.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
+            mToolbar.setNavigationIcon(backArrow);
         }
     }
 
@@ -140,10 +146,10 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
             MenuItem item = mToolbar.getMenu().findItem(R.id.action_next);
             int color;
             if(enable) {
-                color = UIStorage.getInstance().getPrimaryColor();
+                color = UIStorage.getInstance().getTextTopbarColor();
             }
             else {
-                color = getResources().getColor(R.color.llsdk_hairline_color);
+                color = UIStorage.getInstance().getDisabledTextTopbarColor();
             }
             View view = findViewById(R.id.action_next);
             // Cast to a TextView instance if the menu item was found

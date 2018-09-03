@@ -30,14 +30,23 @@ public class FundingSourceModel implements Model {
     }
 
     public String getFundingSourceName() {
-        String capitalizedName = mFundingSource.custodianWallet.custodian.name.substring(0, 1).toUpperCase() + mFundingSource.custodianWallet.custodian.name.substring(1);
-        String amount = new AmountVo(mFundingSource.balance.amount, mFundingSource.balance.currency).toString();
-        return capitalizedName + " " + amount;
+        if(mFundingSource.custodianWallet.custodian.name != null && !mFundingSource.custodianWallet.custodian.name.isEmpty()) {
+            return mFundingSource.custodianWallet.custodian.name.substring(0, 1).toUpperCase() + mFundingSource.custodianWallet.custodian.name.substring(1);
+        }
+        return "";
+    }
+
+    public String getFundingSourceAmount() {
+        if(mFundingSource.balance.amount != null && mFundingSource.balance.currency!=null) {
+            return new AmountVo(mFundingSource.balance.amount, mFundingSource.balance.currency).toString();
+        }
+        return "";
     }
 
     public String getFundingSourceBalance() {
+        Double amount = mFundingSource.custodianWallet.balance.amount == null ? 0 : mFundingSource.custodianWallet.balance.amount;
         String currency = mFundingSource.custodianWallet.balance.currency == null ? "" : mFundingSource.custodianWallet.balance.currency;
-        return mFundingSource.custodianWallet.balance.amount + " " + currency;
+        return amount + " " + currency;
     }
 
     /**

@@ -10,5 +10,4 @@ public interface ManageCardDelegate {
 
     void onSessionExpired(SessionExpiredErrorVo error);
     void onManageCardBackPressed();
-
 }

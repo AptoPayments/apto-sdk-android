@@ -1,6 +1,5 @@
 package com.shiftpayments.link.sdk.ui.activities.card;
 
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -33,11 +32,6 @@ public class ManageAccountActivity extends FragmentMvpActivity {
         else {
             throw new NullPointerException("Received Module does not implement ManageAccountDelegate!");
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override

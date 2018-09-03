@@ -39,13 +39,18 @@
             </intent-filter>
         </service>
 
+        <activity
+            android:name="com.shiftpayments.link.sdk.cardexample.activities.SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
         <activity android:name="com.shiftpayments.link.sdk.cardexample.activities.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             <intent-filter>
                 <data android:scheme="ledgesdkdemolocal" android:host="open" />
                 <action android:name="android.intent.action.VIEW" />
@@ -225,6 +230,11 @@
 
         <activity
             android:name="com.shiftpayments.link.sdk.ui.activities.IssueCardErrorActivity"
+            android:theme="@style/Theme.LedgeLine.Example">
+        </activity>
+
+        <activity
+            android:name="com.shiftpayments.link.sdk.ui.activities.card.CardSettingsActivity"
             android:theme="@style/Theme.LedgeLine.Example">
         </activity>
     </application>

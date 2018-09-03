@@ -1,5 +1,8 @@
 package com.shiftpayments.link.sdk.ui.utils;
 
+import android.content.Context;
+
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -53,6 +56,18 @@ public class DateUtil {
             }
         }
         return null;
+    }
+
+    public static String getFormattedTransactionDate(String timestamp) {
+        Date date = new Date(Long.parseLong(timestamp));
+        SimpleDateFormat expectedFormat = new SimpleDateFormat("EEE, MMM dd 'at' hh:mm a", Locale.US);
+        return expectedFormat.format(date);
+    }
+
+    public static String getLocaleFormattedDate(String timestamp, Context context) {
+        Date date = new Date(Long.parseLong(timestamp));
+        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, Locale.US);
+        return dateFormat.format(date);
     }
 
     public SimpleDateFormat getBirthdayFormat() {

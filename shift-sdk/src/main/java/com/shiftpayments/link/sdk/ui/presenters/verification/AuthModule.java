@@ -91,7 +91,6 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
      */
     @Subscribe
     public void handleToken(LoginUserResponseVo response) {
-        showLoading(false);
         if (response != null) {
             storeToken(response.user_token);
             getCurrentUserOrContinue(ConfigStorage.getInstance().getPOSMode());

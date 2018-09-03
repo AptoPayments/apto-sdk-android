@@ -23,6 +23,7 @@ import me.ledge.common.views.RowView;
 public class FundingSourceView extends CardView implements RowView<FundingSourceModel>,View.OnClickListener {
 
     private TextView mTitleField;
+    private TextView mSubtitleField;
     private TextView mDescriptionField;
     private RadioButton mButton;
     private ViewListener mListener;
@@ -61,6 +62,7 @@ public class FundingSourceView extends CardView implements RowView<FundingSource
      */
     private void findAllViews() {
         mTitleField = findViewById(R.id.tv_title);
+        mSubtitleField = findViewById(R.id.tv_subtitle);
         mDescriptionField = findViewById(R.id.tv_description);
         mButton = findViewById(R.id.rb_funding_source);
     }
@@ -80,6 +82,7 @@ public class FundingSourceView extends CardView implements RowView<FundingSource
     private void setUpListeners() {
         mButton.setOnClickListener(this);
         mTitleField.setOnClickListener(this);
+        mSubtitleField.setOnClickListener(this);
         mDescriptionField.setOnClickListener(this);
     }
 
@@ -97,7 +100,8 @@ public class FundingSourceView extends CardView implements RowView<FundingSource
         }
 
         int id = view.getId();
-        if (id == R.id.rb_funding_source || id == R.id.tv_title || id == R.id.tv_description ) {
+        if (id == R.id.rb_funding_source || id == R.id.tv_title || id == R.id.tv_description ||
+                id == R.id.tv_subtitle) {
             mListener.fundingSourceClickHandler(mData);
         }
     }
@@ -106,6 +110,7 @@ public class FundingSourceView extends CardView implements RowView<FundingSource
     public void setData(FundingSourceModel data) {
         mData = data;
         mTitleField.setText(data.getFundingSourceName());
+        mSubtitleField.setText(data.getFundingSourceAmount());
         mDescriptionField.setText(data.getFundingSourceBalance());
         mButton.setChecked(data.isSelected());
     }

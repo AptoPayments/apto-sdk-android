@@ -83,7 +83,7 @@ public class LoanOfferErrorView extends LinearLayout implements View.OnClickList
     }
 
     private void setColors() {
-        int primaryColor = UIStorage.getInstance().getPrimaryColor();
+        int primaryColor = UIStorage.getInstance().getUiPrimaryColor();
         mOffersButton.setTextColor(primaryColor);
         mBigButton.setTextColor(primaryColor);
     }

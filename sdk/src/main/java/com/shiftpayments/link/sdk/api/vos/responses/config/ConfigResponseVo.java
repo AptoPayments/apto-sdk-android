@@ -12,14 +12,8 @@ public class ConfigResponseVo {
 
     public String name;
 
-    @SerializedName("primary_color")
-    public String primaryColor;
-
-    @SerializedName("secondary_color")
-    public String secondaryColor;
-
-    @SerializedName("logo_url")
-    public String logoURL;
+    @SerializedName("project_branding")
+    public ProjectBrandingVo projectBranding;
 
     @SerializedName("gross_income_min")
     public double grossIncomeMin;

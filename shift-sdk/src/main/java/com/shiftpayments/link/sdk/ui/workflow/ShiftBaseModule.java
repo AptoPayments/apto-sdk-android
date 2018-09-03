@@ -1,13 +1,13 @@
 package com.shiftpayments.link.sdk.ui.workflow;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
-import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
@@ -23,7 +23,7 @@ public abstract class ShiftBaseModule implements NavigationCommand, BaseDelegate
     private Activity mActivity;
     public Command onBack;
     public Command onFinish;
-    private ProgressDialog mProgressDialog;
+    private ProgressBar mProgressBar;
 
     public ShiftBaseModule(Activity activity, Command onFinish, Command onBack) {
         mActivity = activity;
@@ -68,29 +68,33 @@ public abstract class ShiftBaseModule implements NavigationCommand, BaseDelegate
     }
 
     protected void showLoading(boolean show) {
-        if(mActivity.isFinishing())
-        {
+        if(mActivity.isFinishing()) {
             return;
         }
         mActivity.runOnUiThread(() -> {
             if (show) {
-                mProgressDialog = ProgressDialog.show(mActivity,null,null);
-                mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                mProgressDialog.setContentView(R.layout.include_rl_loading_transparent);
+                RelativeLayout layout = new RelativeLayout(mActivity);
+                mProgressBar = new ProgressBar(mActivity, null, android.R.attr.progressBarStyleLarge);
+                mProgressBar.setIndeterminate(true);
+                mProgressBar.setVisibility(View.VISIBLE);
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(150,150);
+                params.addRule(RelativeLayout.CENTER_IN_PARENT);
+                layout.addView(mProgressBar,params);
+                mActivity.setContentView(layout);
             } else {
-                if(mProgressDialog != null) {
-                    mProgressDialog.dismiss();
+                if(mProgressBar != null) {
+                    mProgressBar.setVisibility(View.GONE);
                 }
             }
         });
     }
 
     protected void showError(ApiErrorVo error) {
-        ApiErrorUtil.showErrorMessage(error, getActivity());
+        ApiErrorUtil.showErrorMessage(error, ModuleManager.getInstance().getCurrentModule().getActivity());
     }
 
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        ApiErrorUtil.showErrorMessage(error, mActivity);
+        ApiErrorUtil.showErrorMessage(error, ModuleManager.getInstance().getCurrentModule().getActivity());
         ShiftPlatform.clearUserToken(mActivity);
     }
 }

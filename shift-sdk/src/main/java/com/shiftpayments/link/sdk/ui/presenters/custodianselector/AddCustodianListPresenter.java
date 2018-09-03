@@ -2,20 +2,11 @@ package com.shiftpayments.link.sdk.ui.presenters.custodianselector;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
-import com.shiftpayments.link.sdk.ui.models.custodianselector.AddCoinbaseModel;
 import com.shiftpayments.link.sdk.ui.models.custodianselector.AddCustodianListModel;
-import com.shiftpayments.link.sdk.ui.models.custodianselector.AddCustodianModel;
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
-import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.custodianselector.AddCustodianListView;
-import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.ArrayList;
 
 /**
  * Concrete {@link Presenter} for the add custodian screen.
@@ -39,15 +30,8 @@ public class AddCustodianListPresenter
 
     /** {@inheritDoc} */
     @Override
-    protected void init() {
-        super.init();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public AddCustodianListModel createModel() {
-        CustodianSelectorModule accountSelectorModule = (CustodianSelectorModule) ModuleManager.getInstance().getCurrentModule();
-        return new AddCustodianListModel(accountSelectorModule.getConfiguration());
+        return new AddCustodianListModel();
     }
 
     /** {@inheritDoc} */
@@ -62,9 +46,6 @@ public class AddCustodianListPresenter
         super.attachView(view);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(false);
-        mResponseHandler.subscribe(this);
-        AddCustodianModel[] viewData = createViewData(mModel.getCustodianTypes());
-        mView.setData(viewData);
         mView.setViewListener(this);
     }
 
@@ -81,45 +62,10 @@ public class AddCustodianListPresenter
         super.detachView();
     }
 
-    private AddCustodianModel[] createViewData(ArrayList<AddCustodianListModel.CustodianType> custodianTypes) {
-        if (custodianTypes == null || custodianTypes.size() <= 0) {
-            return null;
-        }
-
-        AddCustodianModel[] data = new AddCustodianModel[custodianTypes.size()];
-        int i = 0;
-        for (AddCustodianListModel.CustodianType type: custodianTypes) {
-            switch (type) {
-                case Coinbase:
-                    data[i] = new AddCoinbaseModel();
-                    i++;
-                    break;
-                case Dwolla:
-                    //TODO
-                    i++;
-                    break;
-            }
-        }
-
-        return data;
-    }
-
     @Override
-    public void accountClickHandler(AddCustodianModel model) {
-        if(model instanceof AddCoinbaseModel) {
-            mDelegate.addCoinbase();
-        }
-    }
-
-    /**
-     * Called when an API error has been received.
-     * @param error API error.
-     */
-    @Subscribe
-    public void handleApiError(ApiErrorVo error) {
-        if (mView != null) {
-            mLoadingSpinnerManager.showLoading(false);
-            ApiErrorUtil.showErrorMessage(error, mActivity);
-        }
+    public void submitClickHandler() {
+        mLoadingSpinnerManager.showLoading(true);
+        mDelegate.addCoinbase();
+        mActivity.finish();
     }
 }

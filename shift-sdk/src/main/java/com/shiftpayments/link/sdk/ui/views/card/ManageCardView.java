@@ -2,19 +2,22 @@ package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 
 /**
  * Displays the manage card screen.
@@ -22,10 +25,10 @@ import com.shiftpayments.link.sdk.ui.R;
  */
 public class ManageCardView
         extends CoordinatorLayout
-        implements SwipeRefreshLayout.OnRefreshListener {
+        implements SwipeRefreshLayout.OnRefreshListener, ViewWithToolbar {
 
+    private Toolbar mToolbar;
     private ViewListener mListener;
-    private FrameLayout mPinView;
     private ProgressBar mSpinner;
     private RecyclerView mTransactionsRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -40,13 +43,9 @@ public class ManageCardView
         super(context, attrs);
     }
 
-    public void showPinFragment(boolean show) {
-        if(show) {
-            mPinView.setVisibility(VISIBLE);
-        }
-        else {
-            mPinView.setVisibility(GONE);
-        }
+    @Override
+    public Toolbar getToolbar() {
+        return mToolbar;
     }
 
     /**
@@ -97,7 +96,7 @@ public class ManageCardView
     }
 
     private void findAllViews() {
-        mPinView = findViewById(R.id.pin_fragment);
+        mToolbar = findViewById(R.id.tb_llsdk_toolbar);
         mSpinner = findViewById(R.id.pb_spinner);
         mTransactionsRecyclerView = findViewById(R.id.transactions_recycler_view);
         mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_container);

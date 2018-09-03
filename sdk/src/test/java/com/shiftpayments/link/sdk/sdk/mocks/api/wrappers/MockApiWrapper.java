@@ -30,6 +30,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.verifications.StartVerificati
 import com.shiftpayments.link.sdk.api.vos.requests.verifications.VerificationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponseVo;
@@ -42,6 +43,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.IncomeTypeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanPurposeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanPurposesResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.ProjectBrandingVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointsListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequenciesListResponseVo;
@@ -229,6 +231,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
         response.incomeTypeOpts.data[0] = incomeTypeVo;
         response.creditScoreOpts = new CreditScoreListResponseVo();
         response.creditScoreOpts.data = new CreditScoreVo[0];
+        response.projectBranding = new ProjectBrandingVo();
         ContextConfigResponseVo configResponseVo = new ContextConfigResponseVo();
         configResponseVo.projectConfiguration = response;
         return configResponseVo;
@@ -495,7 +498,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public ApiEmptyResponseVo setBalanceStore(String s, SetBalanceStoreRequestVo setBalanceStoreRequestVo) throws ApiException {
+    public SetBalanceStoreResponseVo setBalanceStore(String s, SetBalanceStoreRequestVo setBalanceStoreRequestVo) throws ApiException {
         return null;
     }
 

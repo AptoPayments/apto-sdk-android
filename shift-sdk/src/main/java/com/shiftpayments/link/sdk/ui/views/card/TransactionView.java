@@ -1,12 +1,9 @@
 package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -17,9 +14,7 @@ import com.shiftpayments.link.sdk.ui.R;
  */
 public class TransactionView extends FrameLayout {
 
-    private ImageView mIconView;
-    private TextView mTitleField;
-    private TextView mDescriptionField;
+    private TextView mAddress;
 
     /**
      * @see CardView#CardView
@@ -49,21 +44,10 @@ public class TransactionView extends FrameLayout {
      * Finds all references to child Views.
      */
     private void findAllViews() {
-        mIconView = findViewById(R.id.iv_icon);
-        mTitleField = findViewById(R.id.tv_title);
-        mDescriptionField = findViewById(R.id.tv_description);
+        mAddress = findViewById(R.id.tv_address);
     }
 
-    public void setTransactionIcon(Drawable icon) {
-        mIconView.setImageDrawable(icon);
-        mIconView.setColorFilter(Color.BLACK);
-    }
-
-    public void setTitle(String title) {
-        mTitleField.setText(title);
-    }
-
-    public void setDescription(String description) {
-        mDescriptionField.setText(description);
+    public void setAddress(String address) {
+        mAddress.setText(address);
     }
 }

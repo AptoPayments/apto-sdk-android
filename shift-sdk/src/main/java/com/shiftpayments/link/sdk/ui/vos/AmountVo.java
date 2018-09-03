@@ -23,14 +23,26 @@ public class AmountVo {
     @Override
     public String toString() {
         int intAmount = (int) mAmount;
+        String format = String.format("%.2f", mAmount);
+        if(mCurrency!=null && !mCurrency.equals("USD") && !mCurrency.equals("EUR")) {
+            format = String.format("%.6f", mAmount);
+        }
         String amount = mAmount == intAmount ? String.valueOf(intAmount)
-                : String.format("%.2f", mAmount);
-        return mCurrencySymbol + amount;
+                : format;
+        return mCurrencySymbol + " " + amount;
+    }
+
+    public double getAmount() {
+        return mAmount;
+    }
+
+    public String getCurrency() {
+        return mCurrency;
     }
 
     private String getCurrencySymbol(String currency) {
-        String currencySymbol = "";
-        if(currency!=null && !currency.isEmpty()) {
+        String currencySymbol = currency;
+        if(currency!=null && !currency.isEmpty() && mCurrencySymbols.get(currency)!=null) {
             currencySymbol = mCurrencySymbols.get(currency);
         }
         return currencySymbol;
@@ -43,9 +55,7 @@ public class AmountVo {
         currencyMap.put("EUR", "€");
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             currencyMap.put("BTC", "\u20BF");
-        }
-        else {
-            currencyMap.put("BTC", "BTC ");
+            currencyMap.put("ETH", "\u039E");
         }
         return currencyMap;
     }

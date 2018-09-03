@@ -13,23 +13,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_transfer_description"
-            style="?attr/llsdk_transactionDetails_detailHeaderTextStyle" />
+            style="?attr/llsdk_transactionDetails_detailLabelTextStyle" />
         <TextView
             android:id="@+id/tv_transfer_id"
-            style="?attr/llsdk_transactionDetails_detailValueTextStyle"
-            android:layout_below="@+id/tv_transfer_description"
-            android:layout_alignLeft="@+id/tv_transfer_description" />
+            style="?attr/llsdk_transactionDetails_detailValueLongTextStyle"
+            android:layout_below="@+id/tv_transfer_description" />
         <TextView
             android:id="@+id/tv_transfer_exchange_rate"
-            style="?attr/llsdk_transactionDetails_detailValueTextStyle"
-            android:layout_below="@+id/tv_transfer_id"
-            android:layout_alignLeft="@+id/tv_transfer_description" />
+            style="?attr/llsdk_transactionDetails_detailValueLongTextStyle"
+            android:layout_below="@+id/tv_transfer_id" />
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:id="@+id/tv_transfer_amount"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"
-            android:textSize="@dimen/llsdk_transaction_details_title_text_size" />
+            style="?attr/llsdk_transactionDetails_detailValueTextStyle" />
     </RelativeLayout>
 </com.shiftpayments.link.sdk.ui.views.card.AdjustmentView>

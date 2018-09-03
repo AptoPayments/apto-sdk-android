@@ -20,7 +20,7 @@
         <item name="actionButtonStyle">@style/AppTheme.Toolbar.ActionButton</item>
     </style>
     <style name="Base.AppTheme.Toolbar.ActionButton" parent="@style/Widget.AppCompat.ActionButton">
-        <item name="android:minWidth">0dp</item>
+        <item name="android:minWidth">50dp</item>
         <item name="android:minHeight">0dp</item>
     </style>
     <style name="AppTheme.Toolbar.ActionButton" parent="@style/Base.AppTheme.Toolbar.ActionButton">
@@ -54,6 +54,7 @@
         <item name="android:fontFamily">Roboto</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/llsdk_stepper_textColor</item>
     </style>
 
     <style name="llsdk_stepper_bar_holder">
@@ -243,7 +244,7 @@
     <style name="llsdk_add_documents_card_title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/llsdk_dark_text_color_hint</item>
+        <item name="android:textColor">@color/llsdk_primary_text_color</item>
         <item name="android:textSize">@dimen/llsdk_terms_title_text_size</item>
     </style>
     <style name="llsdk_add_documents_card_description">
@@ -251,6 +252,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:drawablePadding">4dp</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/llsdk_tertiary_text_color</item>
         <item name="android:textSize">@dimen/llsdk_offer_summary_body_text_size</item>
     </style>
 
@@ -303,7 +305,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/llsdk_light_text_color</item>
-        <item name="android:textSize">@dimen/llsdk_transaction_details_title_text_size</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_label_text_size</item>
     </style>
     <style name="llsdk_transaction_details_card_description">
         <item name="android:layout_width">wrap_content</item>
@@ -311,31 +313,185 @@
         <item name="android:drawablePadding">4dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textColor">@color/llsdk_light_text_color</item>
-        <item name="android:textSize">@dimen/llsdk_transaction_details_description_text_size</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_label_text_size</item>
     </style>
     <style name="llsdk_transaction_details_detail_header">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_alignParentLeft">true</item>
-        <item name="android:textColor">@color/llsdk_light_text_color</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
         <item name="android:background">@android:color/white</item>
-        <item name="android:textSize">@dimen/llsdk_transaction_details_description_text_size</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_header_text_size</item>
     </style>
-
-    <style name="llsdk_transaction_details_detail_text">
+    <style name="llsdk_transaction_details_label">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/llsdk_transaction_details_description_text_size</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:textColor">@color/llsdk_primary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_label_text_size</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:paddingBottom">12dp</item>
         <item name="android:background">@android:color/white</item>
     </style>
-
+    <style name="llsdk_transaction_details_detail_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_description_text_size</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">11dp</item>
+        <item name="android:gravity">right</item>
+        <item name="android:paddingRight">18dp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+    <style name="llsdk_transaction_details_long_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_tertiary_text_color</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginTop">-8dp</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_long_text_size</item>
+    </style>
     <style name="llsdk_transaction_details_holder">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:paddingTop">8dp</item>
         <item name="android:background">@android:color/white</item>
+    </style>
+
+    <!-- Manage card -->
+    <style name="llsdk_manage_card_card_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_primary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_title_text_size</item>
+    </style>
+    <style name="llsdk_manage_card_card_description">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_tertiary_text_color</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_description_text_size</item>
+    </style>
+    <style name="llsdk_manage_card_card_amount">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_primary_text_color</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">19dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_small_amount_text_size</item>
+        <item name="android:clickable">false</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+    <style name="llsdk_manage_card_section_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_section_title_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+    <style name="llsdk_manage_card_big_amount">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_primary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_big_amount_text_size</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+    <style name="llsdk_manage_card_subcurrency">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_tertiary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_manage_card_subcurrency_text_size</item>
+    </style>
+    <style name="llsdk_item_description">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_tertiary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_item_description_text_size</item>
+        <item name="android:layout_marginLeft">16dp</item>
+    </style>
+
+    <style name="llsdk_action_button_style" parent="Widget.AppCompat.ActionButton">
+        <item name="android:minWidth">40dp</item>
+        <item name="android:maxWidth">50dp</item>
+        <item name="android:width">50dp</item>
+    </style>
+
+    <!-- Card Settings -->
+    <style name="llsdk_card_settings_medium_amount">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_card_settings_medium_amount_text_size</item>
+    </style>
+    <style name="llsdk_main_item_light">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:textColor">@color/llsdk_primary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_main_item_light_text_size</item>
+    </style>
+    <style name="llsdk_main_item_light_switch" parent="llsdk_main_item_light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginRight">12dp</item>
+    </style>
+    <style name="llsdk_main_item_small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_main_item_small_text_size</item>
+    </style>
+    <style name="llsdk_card_settings_section_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_transaction_details_header_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="llsdk_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_primary_title_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_title</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:layout_marginLeft">16dp</item>
+    </style>
+
+    <style name="llsdk_form_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_primary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_form_label</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="llsdk_form_field">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_form_field</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="llsdk_form_text_link">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_secondary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_form_text_link</item>
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
     <!--
@@ -440,5 +596,9 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="TransparentText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/transparent</item>
     </style>
 </resources>

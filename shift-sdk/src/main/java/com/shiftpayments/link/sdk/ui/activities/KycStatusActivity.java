@@ -1,16 +1,19 @@
 package com.shiftpayments.link.sdk.ui.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
+import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
+import com.shiftpayments.link.sdk.ui.presenters.card.KycStatusDelegate;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.views.KycStatusView;
+import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -22,6 +25,7 @@ import org.greenrobot.eventbus.Subscribe;
 public class KycStatusActivity extends BaseActivity implements KycStatusView.ViewListener {
 
     private KycStatusView mView;
+    private KycStatusDelegate mDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,11 @@ public class KycStatusActivity extends BaseActivity implements KycStatusView.Vie
                     : extras.getString("KYC_REASON");
             // TODO: set different texts depending on KYC status
             mView.setStatusText(getString(R.string.kyc_status_application_under_review));
+        }
+        if (ModuleManager.getInstance().getCurrentModule() instanceof KycStatusDelegate) {
+            mDelegate = (KycStatusDelegate) ModuleManager.getInstance().getCurrentModule();
+        } else {
+            throw new NullPointerException("Received Module does not implement KycStatusDelegate!");
         }
     }
 
@@ -52,9 +61,18 @@ public class KycStatusActivity extends BaseActivity implements KycStatusView.Vie
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         CardStorage.getInstance().setCard(card);
         if(card.kycStatus.equals(KycStatus.passed)) {
-            setResult(RESULT_OK, new Intent());
+            mDelegate.onKycPassed();
             finish();
         }
+        else {
+            ApiErrorUtil.showErrorMessage("KYC Status: " + card.kycStatus.name(), this);
+        }
+    }
+
+    @Subscribe
+    public void handleResponse(ApiErrorVo error) {
+        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ApiErrorUtil.showErrorMessage(error, this);
     }
 
     private void setView() {
