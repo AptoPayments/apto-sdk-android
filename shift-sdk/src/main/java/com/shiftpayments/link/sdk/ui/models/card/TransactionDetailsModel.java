@@ -68,6 +68,10 @@ public class TransactionDetailsModel implements Model {
         return UNAVAILABLE;
     }
 
+    public String getMerchantCagetoryIcon() {
+        return mTransaction.merchant.mcc.merchantCategoryIcon;
+    }
+
     public String getTransactionDate() {
         if(isStringFilled(mTransaction.creationTime)) {
             return mTransaction.creationTime;
