@@ -160,6 +160,10 @@ public class ManageCardModel implements Model {
         return mCard.isCardCreated();
     }
 
+    public boolean cardNumberShown() {
+        return CardStorage.getInstance().showCardInfo;
+    }
+
     public void setCard(Card card) {
         mCard = card;
     }

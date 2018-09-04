@@ -138,6 +138,7 @@ public class TransactionsAdapter extends
             showCardBalance(!mModel.getCardBalance().isEmpty(), viewHolder);
             showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
             viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
+            showCopyCardNumberLabel(mModel.cardNumberShown(), viewHolder);
             showActivateCardButton(UIStorage.getInstance().showActivateCardButton()
                     && mModel.isCardCreated(), viewHolder);
         } else if (position > 0) {
@@ -230,6 +231,15 @@ public class TransactionsAdapter extends
             viewHolder.spendableAmountLabel.setVisibility(View.GONE);
             viewHolder.spendableAmount.setVisibility(View.GONE);
             viewHolder.spendableNativeAmount.setVisibility(View.GONE);
+        }
+    }
+
+    private void showCopyCardNumberLabel(boolean show, ViewHolder viewHolder) {
+        if(show) {
+            viewHolder.primaryButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            viewHolder.primaryButton.setVisibility(View.GONE);
         }
     }
 }

@@ -132,6 +132,9 @@ public class ManageCardPresenter
 
     @Override
     public void cardNumberClickHandler(String cardNumber) {
+        if(!mModel.cardNumberShown()) {
+            return;
+        }
         ClipboardManager clipboard = (ClipboardManager) mActivity.getSystemService(Context.CLIPBOARD_SERVICE);
         if (clipboard != null) {
             ClipData clip = ClipData.newPlainText("card number", cardNumber.replaceAll("\\s+",""));
