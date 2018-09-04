@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -28,12 +29,17 @@ import com.shiftpayments.link.sdk.ui.activities.card.CardSettingsActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity;
+import com.shiftpayments.link.sdk.ui.models.card.DateItem;
+import com.shiftpayments.link.sdk.ui.models.card.HeaderItem;
 import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
+import com.shiftpayments.link.sdk.ui.models.card.TransactionItem;
+import com.shiftpayments.link.sdk.ui.models.card.TransactionListItem;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
+import com.shiftpayments.link.sdk.ui.utils.DateUtil;
 import com.shiftpayments.link.sdk.ui.views.card.EndlessRecyclerViewScrollListener;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
 import com.shiftpayments.link.sdk.ui.views.card.TransactionsAdapter;
@@ -43,6 +49,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Semaphore;
 
 import static com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity.EXTRA_TRANSACTION;
@@ -62,11 +69,14 @@ public class ManageCardPresenter
     private ManageCardActivity mActivity;
     private EndlessRecyclerViewScrollListener mScrollListener;
     private TransactionsAdapter mTransactionsAdapter;
-    private ArrayList mTransactionsList;
+    private ArrayList<TransactionListItem> mTransactionsList;
     private String mLastTransactionId;
     private ManageCardDelegate mDelegate;
     private Semaphore mSemaphore;
     private static final int NUMBER_OF_CONCURRENT_CALLS = 3;
+    private String mTransactionCurrentMonth = "";
+    private String mTransactionCurrentYear = "";
+    private int mMostRecentCounter = 0;
 
     public ManageCardPresenter(ManageCardActivity activity, ManageCardDelegate delegate) {
         mActivity = activity;
@@ -79,6 +89,7 @@ public class ManageCardPresenter
     @Override
     public void attachView(ManageCardView view) {
         super.attachView(view);
+        Log.d("ADRIAN", "attachView: ");
         setupToolbar();
         view.setViewListener(this);
         view.showLoading(mActivity, false);
@@ -90,17 +101,25 @@ public class ManageCardPresenter
         mScrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                Log.d("ADRIAN", "onLoadMore: ");
                 getTransactions();
             }
         };
-        mTransactionsList = new ArrayList<TransactionVo>();
+        mTransactionsList = new ArrayList<>();
+        Log.d("ADRIAN", "attachView: 1");
+        initTransactionList();
+        Log.d("ADRIAN", "attachView: 2");
         mTransactionsAdapter = new TransactionsAdapter(mActivity, mTransactionsList, mModel);
+        Log.d("ADRIAN", "attachView: 3");
         mTransactionsAdapter.setViewListener(this);
+        Log.d("ADRIAN", "attachView: 4");
         view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter);
+        Log.d("ADRIAN", "attachView: 5");
         mResponseHandler.subscribe(this);
         refreshCard();
         getFundingSource();
         getTransactions();
+        Log.d("ADRIAN", "attachView: 6");
     }
 
     @Override
@@ -145,7 +164,8 @@ public class ManageCardPresenter
 
     @Override
     public void transactionClickHandler(int transactionId) {
-        TransactionVo transaction = (TransactionVo) mTransactionsList.get(transactionId);
+        TransactionItem transactionItem = (TransactionItem) mTransactionsList.get(transactionId);
+        TransactionVo transaction = transactionItem.transaction;
         mActivity.startActivity(getTransactionDetailsIntent(mActivity, transaction));
     }
 
@@ -157,6 +177,7 @@ public class ManageCardPresenter
         getTransactions();
         refreshCard();
         mTransactionsAdapter.clear();
+        initTransactionList();
         mScrollListener.resetState();
     }
 
@@ -204,9 +225,31 @@ public class ManageCardPresenter
 
     @Subscribe
     public void handleResponse(TransactionListResponseVo response) {
+        Log.d("ADRIAN", "handleResponse: TransactionListResponseVo");
         mSemaphore.release();
-        mTransactionsList.addAll(Arrays.asList(response.data));
         int currentSize = mTransactionsAdapter.getItemCount();
+        Log.d("ADRIAN", "getItemCount: " + currentSize);
+        List<TransactionVo> transactionVoList = Arrays.asList(response.data);
+        for(TransactionVo transactionVo : transactionVoList) {
+            if(mMostRecentCounter < 3) {
+                mMostRecentCounter++;
+            }
+            else {
+                String transactionMonth = DateUtil.getMonthFromTimeStamp(transactionVo.creationTime);
+                String transactionYear = DateUtil.getYearFromTimeStamp(transactionVo.creationTime);
+                if(!mTransactionCurrentYear.equals(transactionYear)) {
+                    mTransactionsList.add(new DateItem(DateUtil.getSimpleTransactionDate(transactionVo.creationTime)));
+                    mTransactionCurrentMonth = transactionMonth;
+                    mTransactionCurrentYear = transactionYear;
+                }
+                else if(!mTransactionCurrentMonth.equals(transactionMonth)) {
+                    mTransactionsList.add(new DateItem(transactionMonth));
+                    mTransactionCurrentMonth = transactionMonth;
+                }
+            }
+            mTransactionsList.add(new TransactionItem(transactionVo));
+        }
+
         if(response.total_count <= 0) {
             mView.showNoTransactionsImage(true);
         }
@@ -216,14 +259,17 @@ public class ManageCardPresenter
             }
             mView.showNoTransactionsImage(false);
         }
-        mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count -1);
+        Log.d("ADRIAN", "response.total_count: " + response.total_count);
+        mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count);
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
+
     }
 
     @Subscribe
     public void handleResponse(FundingSourceVo response) {
+        Log.d("ADRIAN", "handleResponse: FundingSourceVo");
         mSemaphore.release();
         if(response.balance.hasAmount()) {
             mModel.setBalance(new AmountVo(response.balance.amount, response.balance.currency));
@@ -329,10 +375,15 @@ public class ManageCardPresenter
     }
 
     private void getTransactions() {
+        Log.d("ADRIAN", "getTransactions: ");
+        Log.d("ADRIAN", "getTransactions: availablePermits " + mSemaphore.availablePermits());
         try {
             mSemaphore.acquire();
+            Log.d("ADRIAN", "getTransactions: 1");
             ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
+            Log.d("ADRIAN", "getTransactions: 2");
         } catch (InterruptedException e) {
+            Log.d("ADRIAN", "getTransactions: 3");
             ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
         }
     }
@@ -344,5 +395,10 @@ public class ManageCardPresenter
         } catch (InterruptedException e) {
             ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
         }
+    }
+
+    private void initTransactionList() {
+        mTransactionsList.add(new HeaderItem());
+        mTransactionsList.add(new DateItem(mActivity.getString(R.string.card_management_transactions_most_recent)));
     }
 }

@@ -90,16 +90,4 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/card_management_secondary_button" />
-
-    <TextView
-        android:id="@+id/tv_transactions_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_display_card_secondary_bttn"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="21dp"
-        android:text="@string/card_management_transactions_title"
-        android:textColor="@color/llsdk_secondary_text_color"
-        android:textSize="14sp"
-        android:textStyle="bold" />
 </RelativeLayout>
