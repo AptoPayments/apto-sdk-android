@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
@@ -155,6 +156,21 @@ public class AddressView
      */
     public String getCity() {
         return mCityField.getText().toString();
+    }
+
+    @Override
+    protected void setColors() {
+        super.setColors();
+        Integer textSecondaryColor = UIStorage.getInstance().getTextSecondaryColor();
+        Integer textTertiaryColor = UIStorage.getInstance().getTextTertiaryColor();
+        mAddressField.setTextColor(textSecondaryColor);
+        mAddressField.setHintTextColor(textTertiaryColor);
+        mApartmentField.setTextColor(textSecondaryColor);
+        mApartmentField.setHintTextColor(textTertiaryColor);
+        mCityField.setTextColor(textSecondaryColor);
+        mCityField.setHintTextColor(textTertiaryColor);
+        mZipField.setTextColor(textSecondaryColor);
+        mZipField.setHintTextColor(textTertiaryColor);
     }
 
     /**

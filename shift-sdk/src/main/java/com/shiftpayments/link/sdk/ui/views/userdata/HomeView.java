@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.KeyboardUtil;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
@@ -180,6 +181,13 @@ public class HomeView
         mHousingTypeSpinner.setSelection(position);
     }
 
+    @Override
+    protected void setColors() {
+        super.setColors();
+        mZipField.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
+        mZipField.setHintTextColor(UIStorage.getInstance().getTextTertiaryColor());
+    }
+
     public void showHousingTypeHint(boolean show) {
         if(show) {
             mHousingTypeHint.setVisibility(VISIBLE);
@@ -190,6 +198,5 @@ public class HomeView
             mHousingTypeSpinner.setVisibility(GONE);
             updateHousingTypeError(false);
         }
-
     }
 }

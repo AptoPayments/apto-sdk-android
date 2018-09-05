@@ -105,6 +105,19 @@ public class PersonalInformationView
         mEmailAvailableField = findViewById(R.id.tv_email_not_available);
     }
 
+    @Override
+    protected void setColors() {
+        super.setColors();
+        Integer textSecondaryColor = UIStorage.getInstance().getTextSecondaryColor();
+        Integer textTertiaryColor = UIStorage.getInstance().getTextTertiaryColor();
+        mFirstNameField.setTextColor(textSecondaryColor);
+        mFirstNameField.setHintTextColor(textTertiaryColor);
+        mLastNameField.setTextColor(textSecondaryColor);
+        mLastNameField.setHintTextColor(textTertiaryColor);
+        mEmailField.setTextColor(textSecondaryColor);
+        mEmailField.setHintTextColor(textTertiaryColor);
+    }
+
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
