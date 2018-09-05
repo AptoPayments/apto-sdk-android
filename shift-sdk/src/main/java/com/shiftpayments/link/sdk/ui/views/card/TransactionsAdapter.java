@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,7 +121,6 @@ public class TransactionsAdapter extends
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d("ADRIAN", "onCreateViewHolder: " + viewType);
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         TransactionsAdapter.ViewHolder viewHolder = null;
         switch (viewType) {
@@ -147,7 +145,6 @@ public class TransactionsAdapter extends
         setListeners(viewHolder, position);
         switch (viewHolder.getItemViewType()) {
             case TransactionListItem.TYPE_HEADER:
-                Log.d("ADRIAN", "onBindViewHolder: header - " + position);
                 viewHolder.creditCardView.setExpiryDate(mModel.getExpirationDate());
                 viewHolder.creditCardView.setCardNumber(mModel.getCardNumber());
                 viewHolder.creditCardView.setCardName(mModel.getCardHolderName());
@@ -161,12 +158,10 @@ public class TransactionsAdapter extends
                         && mModel.isCardCreated(), viewHolder);
                 break;
             case TransactionListItem.TYPE_DATE:
-                Log.d("ADRIAN", "onBindViewHolder: dateItem - " + position);
                 DateItem dateItem = (DateItem) mTransactionListItems.get(position);
                 viewHolder.dateTextView.setText(dateItem.date);
                 break;
             case TYPE_TRANSACTION:
-                Log.d("ADRIAN", "onBindViewHolder: transaction - " + position);
                 TransactionItem transactionItem = (TransactionItem) mTransactionListItems.get(position);
                 TransactionVo transaction = transactionItem.transaction;
 
@@ -204,7 +199,6 @@ public class TransactionsAdapter extends
     }
 
     private void setListeners(ViewHolder viewHolder, int position) {
-        Log.d("ADRIAN", "setListeners " + position);
         switch (viewHolder.getItemViewType()) {
             case TransactionListItem.TYPE_HEADER:
                 viewHolder.primaryButton.setOnClickListener(v -> mListener.manageCardClickHandler());

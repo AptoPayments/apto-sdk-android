@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -89,7 +88,6 @@ public class ManageCardPresenter
     @Override
     public void attachView(ManageCardView view) {
         super.attachView(view);
-        Log.d("ADRIAN", "attachView: ");
         setupToolbar();
         view.setViewListener(this);
         view.showLoading(mActivity, false);
@@ -101,25 +99,18 @@ public class ManageCardPresenter
         mScrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                Log.d("ADRIAN", "onLoadMore: ");
                 getTransactions();
             }
         };
         mTransactionsList = new ArrayList<>();
-        Log.d("ADRIAN", "attachView: 1");
         initTransactionList();
-        Log.d("ADRIAN", "attachView: 2");
         mTransactionsAdapter = new TransactionsAdapter(mActivity, mTransactionsList, mModel);
-        Log.d("ADRIAN", "attachView: 3");
         mTransactionsAdapter.setViewListener(this);
-        Log.d("ADRIAN", "attachView: 4");
         view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter);
-        Log.d("ADRIAN", "attachView: 5");
         mResponseHandler.subscribe(this);
         refreshCard();
         getFundingSource();
         getTransactions();
-        Log.d("ADRIAN", "attachView: 6");
     }
 
     @Override
@@ -225,10 +216,8 @@ public class ManageCardPresenter
 
     @Subscribe
     public void handleResponse(TransactionListResponseVo response) {
-        Log.d("ADRIAN", "handleResponse: TransactionListResponseVo");
         mSemaphore.release();
         int currentSize = mTransactionsAdapter.getItemCount();
-        Log.d("ADRIAN", "getItemCount: " + currentSize);
         List<TransactionVo> transactionVoList = Arrays.asList(response.data);
         for(TransactionVo transactionVo : transactionVoList) {
             if(mMostRecentCounter < 3) {
@@ -259,7 +248,6 @@ public class ManageCardPresenter
             }
             mView.showNoTransactionsImage(false);
         }
-        Log.d("ADRIAN", "response.total_count: " + response.total_count);
         mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count);
         if(isViewReady()) {
             mView.setRefreshing(false);
@@ -269,7 +257,6 @@ public class ManageCardPresenter
 
     @Subscribe
     public void handleResponse(FundingSourceVo response) {
-        Log.d("ADRIAN", "handleResponse: FundingSourceVo");
         mSemaphore.release();
         if(response.balance.hasAmount()) {
             mModel.setBalance(new AmountVo(response.balance.amount, response.balance.currency));
@@ -375,15 +362,10 @@ public class ManageCardPresenter
     }
 
     private void getTransactions() {
-        Log.d("ADRIAN", "getTransactions: ");
-        Log.d("ADRIAN", "getTransactions: availablePermits " + mSemaphore.availablePermits());
         try {
             mSemaphore.acquire();
-            Log.d("ADRIAN", "getTransactions: 1");
             ShiftPlatform.getFinancialAccountTransactions(mModel.getAccountId(), ROWS, mLastTransactionId);
-            Log.d("ADRIAN", "getTransactions: 2");
         } catch (InterruptedException e) {
-            Log.d("ADRIAN", "getTransactions: 3");
             ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
         }
     }
