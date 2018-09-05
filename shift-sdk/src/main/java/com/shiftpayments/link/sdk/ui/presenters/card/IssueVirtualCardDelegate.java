@@ -8,4 +8,5 @@ public interface IssueVirtualCardDelegate {
 
     void onBack();
     void onCardIssued();
+    void onKycNotPassed();
 }

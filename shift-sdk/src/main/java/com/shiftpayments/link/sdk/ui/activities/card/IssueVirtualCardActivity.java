@@ -75,7 +75,7 @@ public class IssueVirtualCardActivity extends BaseActivity {
                 mDelegate.onCardIssued();
             }
             else {
-                startKycStatusActivity(card.kycStatus.toString(), card.kycReason != null ? card.kycReason[0] : null);
+                mDelegate.onKycNotPassed();
             }
         }
     }

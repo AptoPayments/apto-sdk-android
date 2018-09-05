@@ -9,8 +9,8 @@ import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 
 public class IssueVirtualCardModule extends ShiftBaseModule implements IssueVirtualCardDelegate {
 
-    public IssueVirtualCardModule(Activity activity, Command onFinish, Command onBack) {
-        super(activity, onFinish, onBack);
+    public IssueVirtualCardModule(Activity activity, Command onFinish, Command onBack, Command onError) {
+        super(activity, onFinish, onBack, onError);
     }
 
     @Override
@@ -21,6 +21,11 @@ public class IssueVirtualCardModule extends ShiftBaseModule implements IssueVirt
     @Override
     public void onCardIssued() {
         onFinish.execute();
+    }
+
+    @Override
+    public void onKycNotPassed() {
+        onError.execute();
     }
 
     @Override
