@@ -33,6 +33,7 @@ import com.shiftpayments.link.sdk.ui.utils.FingerprintDelegate;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintHandler;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.utils.SendEmailUtil;
+import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.card.CardSettingsView;
 import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
 import com.venmo.android.pin.PinFragmentConfiguration;
@@ -84,7 +85,7 @@ public class CardSettingsPresenter
         mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
         mResponseHandler.subscribe(this);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
-        mLoadingSpinnerManager.showLoading(true);
+        mLoadingSpinnerManager.showLoading(true, LoadingView.Position.TOP, false);
         ShiftPlatform.getUserFundingSources();
     }
 
@@ -95,7 +96,7 @@ public class CardSettingsPresenter
 
     @Override
     public void fundingSourceClickHandler(FundingSourceModel selectedFundingSource) {
-        mLoadingSpinnerManager.showLoading(true);
+        mLoadingSpinnerManager.showLoading(true, LoadingView.Position.TOP, false);
         List<FundingSourceModel> fundingSources = mModel.getFundingSources().getList();
         for(FundingSourceModel fundingSource : fundingSources) {
             fundingSource.setIsSelected(fundingSource.equals(selectedFundingSource));

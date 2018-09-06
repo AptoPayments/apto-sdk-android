@@ -78,7 +78,6 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
      */
     @Subscribe
     public void handleResponse(DataPointList userInfo) {
-        showLoading(false);
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
         UserStorage.getInstance().setUserData(userInfo);
         onExistingUser.execute();
@@ -104,7 +103,6 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
     @Subscribe
     public void handleToken(CreateUserResponseVo response) {
         ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        showLoading(false);
         if (response != null) {
             storeToken(response.user_token);
         }

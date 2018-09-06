@@ -107,16 +107,9 @@ public class ManageCardPresenter
         mTransactionsAdapter = new TransactionsAdapter(mActivity, mTransactionsList, mModel);
         mTransactionsAdapter.setViewListener(this);
         view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter);
-        mResponseHandler.subscribe(this);
         getCard();
         getFundingSource();
         getTransactions();
-    }
-
-    @Override
-    public void detachView() {
-        mResponseHandler.unsubscribe(this);
-        super.detachView();
     }
 
     @Override
@@ -383,5 +376,14 @@ public class ManageCardPresenter
     private void initTransactionList() {
         mTransactionsList.add(new HeaderItem());
         mTransactionsList.add(new DateItem(mActivity.getString(R.string.card_management_transactions_most_recent)));
+    }
+
+    public void subscribeToEvents(boolean subscribe) {
+        if(subscribe) {
+            mResponseHandler.subscribe(this);
+        }
+        else {
+            mResponseHandler.unsubscribe(this);
+        }
     }
 }

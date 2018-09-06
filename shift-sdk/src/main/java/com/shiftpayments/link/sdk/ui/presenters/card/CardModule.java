@@ -206,7 +206,6 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void startAuthModule() {
-        showLoading(false);
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
         AuthModuleConfig authModuleConfig = new AuthModuleConfig(config.primaryAuthCredential, config.secondaryAuthCredential);
@@ -267,6 +266,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void checkIfUserHasAnExistingCardOrIssueNewOne() {
+        showLoading(true);
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.getFinancialAccounts();
     }
