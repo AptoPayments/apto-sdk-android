@@ -108,7 +108,7 @@ public class ManageCardPresenter
         mTransactionsAdapter.setViewListener(this);
         view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter);
         mResponseHandler.subscribe(this);
-        refreshCard();
+        getCard();
         getFundingSource();
         getTransactions();
     }
@@ -162,11 +162,13 @@ public class ManageCardPresenter
 
     @Override
     public void pullToRefreshHandler() {
-        mResponseHandler.subscribe(this);
         mLastTransactionId = null;
+        mMostRecentCounter=0;
+        mTransactionCurrentMonth="";
+        mTransactionCurrentYear="";
         getFundingSource();
         getTransactions();
-        refreshCard();
+        getCard();
         mTransactionsAdapter.clear();
         initTransactionList();
         mScrollListener.resetState();
@@ -195,7 +197,7 @@ public class ManageCardPresenter
         if(error.statusCode==404) {
             // Card has no funding source
             mModel.setBalance(null);
-            updateCard();
+            refreshCard();
         }
         else {
             ApiErrorUtil.showErrorMessage(error, mActivity);
@@ -268,7 +270,6 @@ public class ManageCardPresenter
             mModel.setNativeBalance(new AmountVo(response.custodianWallet.balance.amount, response.custodianWallet.balance.currency));
         }
         CardStorage.getInstance().setFundingSourceId(response.id);
-        updateCard();
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
@@ -278,13 +279,13 @@ public class ManageCardPresenter
     public void handleResponse(FinancialAccountVo response) {
         mSemaphore.release();
         CardStorage.getInstance().setCard((Card) response);
-        updateCard();
+        refreshCard();
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
     }
 
-    public void updateCard() {
+    public void refreshCard() {
         mModel.setCard(CardStorage.getInstance().getCard());
         mTransactionsAdapter.notifyItemChanged(0);
     }
@@ -349,7 +350,7 @@ public class ManageCardPresenter
         }
         Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
         mModel.setCard(card);
-        updateCard();
+        refreshCard();
     }
 
     private void getFundingSource() {
@@ -370,7 +371,7 @@ public class ManageCardPresenter
         }
     }
 
-    private void refreshCard() {
+    private void getCard() {
         try {
             mSemaphore.acquire();
             ShiftPlatform.getFinancialAccount(mModel.getAccountId());
