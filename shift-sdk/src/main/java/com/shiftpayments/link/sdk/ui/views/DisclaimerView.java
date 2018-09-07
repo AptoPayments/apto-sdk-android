@@ -28,6 +28,7 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
     private ViewListener mListener;
     private PDFView mPdfView;
     private LoadingView mLoadingView;
+    private RelativeLayout mButtonsHolder;
 
     public DisclaimerView(Context context) {
         this(context, null);
@@ -94,6 +95,15 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
         mPdfView.fromFile(pdfFile).load();
     }
 
+    public void showButtons(boolean show) {
+        if(show) {
+            mButtonsHolder.setVisibility(VISIBLE);
+        }
+        else {
+            mButtonsHolder.setVisibility(INVISIBLE);
+        }
+    }
+
     private void findAllViews() {
         mAcceptButton = findViewById(R.id.tv_accept_pdf);
         mCancelButton = findViewById(R.id.tv_cancel_pdf);
@@ -101,6 +111,7 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
         mTextView = findViewById(R.id.tv_disclaimer_text);
         mPdfView = findViewById(R.id.pdfView);
         mLoadingView = findViewById(R.id.rl_loading_overlay);
+        mButtonsHolder = findViewById(R.id.ll_buttons_holder);
     }
 
     private void setupListeners() {

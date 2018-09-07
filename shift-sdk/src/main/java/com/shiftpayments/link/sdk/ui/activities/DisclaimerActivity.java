@@ -47,7 +47,6 @@ import java.net.URL;
 public class DisclaimerActivity extends BaseActivity implements DisclaimerView.ViewListener {
 
     private DisclaimerView mView;
-    private boolean mDisclosureLoaded = false;
     private LoadingSpinnerManager mLoadingSpinnerManager;
     private WebView mWebView;
 
@@ -60,11 +59,10 @@ public class DisclaimerActivity extends BaseActivity implements DisclaimerView.V
         switch(ContentVo.formatValues.valueOf(DisclaimerUtil.disclaimer.format)) {
             case plain_text:
                 showTextDisclaimer(disclaimer);
-                mDisclosureLoaded = true;
                 break;
             case markdown:
                 mView.loadMarkdown(disclaimer);
-                mDisclosureLoaded = true;
+                mView.showButtons(true);
                 break;
             case external_url:
                 disclaimer = parseUrl(disclaimer);
@@ -105,7 +103,7 @@ public class DisclaimerActivity extends BaseActivity implements DisclaimerView.V
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-                mDisclosureLoaded = true;
+                mView.showButtons(true);
             }
         });
         mWebView.setWebViewClient(new WebViewClient(){
@@ -147,10 +145,8 @@ public class DisclaimerActivity extends BaseActivity implements DisclaimerView.V
 
     @Override
     public void acceptClickHandler() {
-        if(mDisclosureLoaded) {
-            AcceptDisclaimerRequestVo request = new AcceptDisclaimerRequestVo(DisclaimerUtil.workflowId, DisclaimerUtil.actionId);
-            ShiftLinkSdk.acceptDisclaimer(request);
-        }
+        AcceptDisclaimerRequestVo request = new AcceptDisclaimerRequestVo(DisclaimerUtil.workflowId, DisclaimerUtil.actionId);
+        ShiftLinkSdk.acceptDisclaimer(request);
     }
 
     @Override
@@ -276,8 +272,8 @@ public class DisclaimerActivity extends BaseActivity implements DisclaimerView.V
                 ApiErrorUtil.showErrorMessage(getString(R.string.disclaimer_error),
                         DisclaimerActivity.this);
             else {
-                mDisclosureLoaded = true;
                 mView.loadPdf(new File(getFilesDir(), mFileName));
+                mView.showButtons(true);
             }
         }
     }
@@ -293,5 +289,6 @@ public class DisclaimerActivity extends BaseActivity implements DisclaimerView.V
         }
         disclaimer += result.substring(0, result.length() - partnerDivider.length());
         mView.loadPlainText(disclaimer);
+        mView.showButtons(true);
     }
 }
