@@ -89,6 +89,9 @@ public class IdentityVerificationView
         mBirthdayYear.setHintTextColor(textTertiaryColor);
         mSocialSecurityField.setTextColor(textSecondaryColor);
         mSocialSecurityField.setHintTextColor(textTertiaryColor);
+        UIStorage.getInstance().setCursorColor(mBirthdayDay);
+        UIStorage.getInstance().setCursorColor(mBirthdayYear);
+        UIStorage.getInstance().setCursorColor(mSocialSecurityField);
     }
 
     /** {@inheritDoc} */

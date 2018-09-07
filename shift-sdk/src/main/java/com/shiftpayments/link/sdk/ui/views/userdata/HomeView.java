@@ -186,6 +186,7 @@ public class HomeView
         super.setColors();
         mZipField.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
         mZipField.setHintTextColor(UIStorage.getInstance().getTextTertiaryColor());
+        UIStorage.getInstance().setCursorColor(mZipField);
     }
 
     public void showHousingTypeHint(boolean show) {

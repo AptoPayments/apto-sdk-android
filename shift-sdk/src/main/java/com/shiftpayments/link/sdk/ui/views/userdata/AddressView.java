@@ -171,6 +171,10 @@ public class AddressView
         mCityField.setHintTextColor(textTertiaryColor);
         mZipField.setTextColor(textSecondaryColor);
         mZipField.setHintTextColor(textTertiaryColor);
+        UIStorage.getInstance().setCursorColor(mAddressField);
+        UIStorage.getInstance().setCursorColor(mApartmentField);
+        UIStorage.getInstance().setCursorColor(mCityField);
+        UIStorage.getInstance().setCursorColor(mZipField);
     }
 
     /**

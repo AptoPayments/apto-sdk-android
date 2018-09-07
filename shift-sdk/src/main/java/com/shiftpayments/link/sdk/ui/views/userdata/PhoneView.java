@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
@@ -84,6 +85,12 @@ public class PhoneView
      */
     public String getPhone() {
         return mPhoneField.getText().toString();
+    }
+
+    @Override
+    protected void setColors() {
+        super.setColors();
+        UIStorage.getInstance().setCursorColor(mPhoneField);
     }
 
     /**

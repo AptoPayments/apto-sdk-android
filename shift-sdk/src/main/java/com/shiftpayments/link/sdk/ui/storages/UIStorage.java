@@ -2,6 +2,11 @@ package com.shiftpayments.link.sdk.ui.storages;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.requests.config.GetProjectConfigRequestVo;
@@ -10,6 +15,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.ContextConfigResponse
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.vos.ShiftSdkOptions;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -356,5 +362,30 @@ public class UIStorage {
 
     public boolean showActivateCardButton() {
         return mSdkOptions.features.get(ShiftSdkOptions.OptionKeys.showActivateCardButton);
+    }
+
+    public void setCursorColor(EditText view) {
+        try {
+            // Get the cursor resource id
+            Field field = TextView.class.getDeclaredField("mCursorDrawableRes");
+            field.setAccessible(true);
+            int drawableResId = field.getInt(view);
+
+            // Get the editor
+            field = TextView.class.getDeclaredField("mEditor");
+            field.setAccessible(true);
+            Object editor = field.get(view);
+
+            // Get the drawable and set a color filter
+            Drawable drawable = ContextCompat.getDrawable(view.getContext(), drawableResId);
+            drawable.setColorFilter(this.getUiPrimaryColor(), PorterDuff.Mode.SRC_IN);
+            Drawable[] drawables = {drawable, drawable};
+
+            // Set the drawables
+            field = editor.getClass().getDeclaredField("mCursorDrawable");
+            field.setAccessible(true);
+            field.set(editor, drawables);
+        } catch (Exception ignored) {
+        }
     }
 }

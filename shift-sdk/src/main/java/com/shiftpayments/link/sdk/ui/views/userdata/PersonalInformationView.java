@@ -116,6 +116,9 @@ public class PersonalInformationView
         mLastNameField.setHintTextColor(textTertiaryColor);
         mEmailField.setTextColor(textSecondaryColor);
         mEmailField.setHintTextColor(textTertiaryColor);
+        UIStorage.getInstance().setCursorColor(mFirstNameField);
+        UIStorage.getInstance().setCursorColor(mLastNameField);
+        UIStorage.getInstance().setCursorColor(mEmailField);
     }
 
     /** {@inheritDoc} */
