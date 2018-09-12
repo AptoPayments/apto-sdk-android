@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
@@ -92,8 +93,10 @@ public class EmailView
         updateErrorDisplay(mEmailWrapper, show, errorMessageId);
     }
 
-    public boolean hasAllData() {
-        // TODO: move to interface
-        return !getEmail().isEmpty();
+    @Override
+    protected void setColors() {
+        super.setColors();
+        UIStorage.getInstance().setCursorColor(mEmailField);
+        mEmailField.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
     }
 }

@@ -91,6 +91,7 @@ public class PhoneView
     protected void setColors() {
         super.setColors();
         UIStorage.getInstance().setCursorColor(mPhoneField);
+        mPhoneField.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
     }
 
     /**
