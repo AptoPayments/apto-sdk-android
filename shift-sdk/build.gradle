@@ -178,4 +178,3 @@ task copyAppcompat(type: Copy) {
         line.contains("package ${projectPackage.replace("/", ".")};") ? 'package android.support.v7.appcompat;' : line
     }
 }
-apply from: 'deploy.gradle'
