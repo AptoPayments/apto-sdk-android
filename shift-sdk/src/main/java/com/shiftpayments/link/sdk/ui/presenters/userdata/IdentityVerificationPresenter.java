@@ -205,22 +205,6 @@ public class IdentityVerificationPresenter
         String[] monthsOfYear = mActivity.getResources().getStringArray(R.array.months_of_year);
         arrayAdapter.addAll(monthsOfYear);
 
-        /*ListAdapter adapter = new ArrayAdapter<String>(
-                mActivity,
-                android.R.layout.select_dialog_singlechoice,
-                android.R.id.text1,
-                monthsOfYear){
-            public View getView(int position, View convertView, ViewGroup parent) {
-                //Use super class to create the View
-                View view = super.getView(position, convertView, parent);
-                CheckedTextView checkedTextView = (CheckedTextView) view;
-                Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(mActivity, R.drawable.abc_btn_radio_material));
-                DrawableCompat.setTintList(drawable, UIStorage.getInstance().getRadioButtonColors());
-                checkedTextView.setCheckMarkDrawable(drawable);
-                return view;
-            }
-        };*/
-
         new AlertDialog.Builder(mActivity)
             .setTitle(R.string.birthdate_label_month)
             .setPositiveButton(android.R.string.ok, null)
