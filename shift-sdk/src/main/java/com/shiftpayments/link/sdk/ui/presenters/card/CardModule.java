@@ -60,7 +60,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     public CardModule(Activity activity, Command onFinish, Command onBack) {
         super(activity, onFinish, onBack);
         mNewCardModule = new NewCardModule(getActivity(), this::getApplicationStatus, this::startManageCardScreen,
-                this::showHomeActivity);
+                this::showHomeActivity, this::onIssueCardError);
     }
 
     @Override
@@ -126,13 +126,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
             startManageCardScreen();
         }
         else {
-            setCurrentModule();
-            Intent intent = new Intent(getActivity(), KycStatusActivity.class);
-            intent.putExtra("KYC_STATUS", card.kycStatus.toString());
-            if(card.kycReason != null) {
-                intent.putExtra("KYC_REASON", card.kycReason[0]);
-            }
-            getActivity().startActivity(intent);
+            startKycStatusScreen(card);
         }
     }
 
@@ -212,7 +206,6 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void startAuthModule() {
-        showLoading(false);
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
         AuthModuleConfig authModuleConfig = new AuthModuleConfig(config.primaryAuthCredential, config.secondaryAuthCredential);
@@ -273,6 +266,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void checkIfUserHasAnExistingCardOrIssueNewOne() {
+        showLoading(true);
         ShiftLinkSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.getFinancialAccounts();
     }
@@ -320,6 +314,20 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Override
     public void onKycPassed() {
         startManageCardScreen();
+    }
+
+    private void startKycStatusScreen(Card card) {
+        setCurrentModule();
+        Intent intent = new Intent(getActivity(), KycStatusActivity.class);
+        intent.putExtra("KYC_STATUS", card.kycStatus.toString());
+        if(card.kycReason != null) {
+            intent.putExtra("KYC_REASON", card.kycReason[0]);
+        }
+        getActivity().startActivity(intent);
+    }
+
+    private void onIssueCardError() {
+        startKycStatusScreen(CardStorage.getInstance().getCard());
     }
 }
 

@@ -47,8 +47,8 @@ public class NewCardModule extends WorkflowModule implements CustodianSelectorDe
 
     public NewCardModule(Activity activity,
                          WorkflowObjectStatusInterface getWorkflowObjectStatus, Command onFinish,
-                         Command onBack) {
-        super(activity, getWorkflowObjectStatus, onFinish, onBack);
+                         Command onBack, Command onError) {
+        super(activity, getWorkflowObjectStatus, onFinish, onBack, onError);
     }
 
     @Override
@@ -145,7 +145,7 @@ public class NewCardModule extends WorkflowModule implements CustodianSelectorDe
 
     private void issueVirtualCard() {
         setCurrentModule();
-        IssueVirtualCardModule issueVirtualCardModule = new IssueVirtualCardModule(getActivity(), this.onFinish, this::onIssueVirtualCardBackPressed);
+        IssueVirtualCardModule issueVirtualCardModule = new IssueVirtualCardModule(getActivity(), this.onFinish, this::onIssueVirtualCardBackPressed, this.onError);
         startModule(issueVirtualCardModule);
     }
 

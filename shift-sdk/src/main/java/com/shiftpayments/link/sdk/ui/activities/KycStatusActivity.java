@@ -81,4 +81,9 @@ public class KycStatusActivity extends BaseActivity implements KycStatusView.Vie
         mView.getToolbar().setTitle(getString(R.string.kyc_status_title));
         mView.setViewListener(this);
     }
+
+    @Override
+    public void onBackPressed() {
+        // Disabled
+    }
 }

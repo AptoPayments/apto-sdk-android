@@ -129,6 +129,7 @@ public class PhoneVerificationPresenter
 
     @Override
     public void resendClickHandler() {
+        mLoadingSpinnerManager.showLoading(true);
         ShiftPlatform.restartVerification(mModel.getVerificationId());
         mView.displaySentMessage(mActivity.getString(R.string.phone_verification_resent));
     }

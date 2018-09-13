@@ -2,13 +2,8 @@ package com.shiftpayments.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckedTextView;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
@@ -16,7 +11,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorCo
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
-import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ResourceUtil;
 import com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
@@ -211,31 +205,10 @@ public class IdentityVerificationPresenter
         String[] monthsOfYear = mActivity.getResources().getStringArray(R.array.months_of_year);
         arrayAdapter.addAll(monthsOfYear);
 
-        AlertDialog dialog = new AlertDialog.Builder(mActivity)
+        new AlertDialog.Builder(mActivity)
             .setTitle(R.string.birthdate_label_month)
             .setPositiveButton(android.R.string.ok, null)
-            .setAdapter(arrayAdapter, null)
-            .create();
-
-        dialog.setOnShowListener(dialogInterface -> {
-            Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-            button.setOnClickListener(view -> dialog.dismiss());
-        });
-        dialog.getListView().setOnItemClickListener(
-                (parent, view, position, id) -> {
-                    for(int i=0; i<parent.getChildCount(); i++) {
-                        CheckedTextView child = (CheckedTextView) parent.getChildAt(i);
-                        if(child.isChecked()) {
-                            child.toggle();
-                        }
-                    }
-                    CheckedTextView checkedTextView = (CheckedTextView) view;
-                    Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(mActivity, R.drawable.abc_btn_radio_material));
-                    DrawableCompat.setTintList(drawable, UIStorage.getInstance().getRadioButtonColors());
-                    checkedTextView.setCheckMarkDrawable(drawable);
-                    checkedTextView.toggle();
-                    mView.setBirthdayMonth(arrayAdapter.getItem(position));
-                });
-        dialog.show();
+            .setAdapter(arrayAdapter, (dialog1, item) -> mView.setBirthdayMonth(arrayAdapter.getItem(item)))
+            .show();
     }
 }

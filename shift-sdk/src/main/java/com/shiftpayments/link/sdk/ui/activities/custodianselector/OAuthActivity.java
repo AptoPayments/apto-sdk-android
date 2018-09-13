@@ -92,7 +92,7 @@ public class OAuthActivity extends BaseActivity {
         mGetStatusThread = new Thread(() -> {
             try {
                 while(true) {
-                    Thread.sleep(5000);
+                    Thread.sleep(3000);
                     getStatus.run();
                 }
             } catch (InterruptedException e) {

@@ -115,7 +115,9 @@ public abstract class ShiftApiTask<Params, Progress, Result, Request>
                 mResponseHandler.publishResult(new SessionExpiredErrorVo(mError));
             }
             else if(mError!=null && (mError.statusCode==503 || mError.serverCode==9003)) {
-                mApiWrapper.enqueueApiCall((UnauthorizedRequestVo) mRequestData);
+                if(mRequestData instanceof  UnauthorizedRequestVo) {
+                    mApiWrapper.enqueueApiCall((UnauthorizedRequestVo) mRequestData);
+                }
                 mResponseHandler.publishResult(new SystemMaintenanceVo());
             }
             else {

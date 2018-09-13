@@ -23,12 +23,18 @@ public abstract class ShiftBaseModule implements NavigationCommand, BaseDelegate
     private Activity mActivity;
     public Command onBack;
     public Command onFinish;
+    public Command onError;
     private ProgressBar mProgressBar;
 
     public ShiftBaseModule(Activity activity, Command onFinish, Command onBack) {
         mActivity = activity;
         this.onFinish = onFinish;
         this.onBack = onBack;
+    }
+
+    public ShiftBaseModule(Activity activity, Command onFinish, Command onBack, Command onError) {
+        this(activity, onFinish, onBack);
+        this.onError = onError;
     }
 
     public abstract void initialModuleSetup();
