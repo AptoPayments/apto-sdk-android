@@ -9,7 +9,6 @@ import android.text.style.ForegroundColorSpan;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
-import com.shiftpayments.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
 import com.shiftpayments.link.sdk.ui.models.card.ManageAccountModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
@@ -25,7 +24,6 @@ public class ManageAccountPresenter
         extends BasePresenter<ManageAccountModel, ManageAccountView>
         implements Presenter<ManageAccountModel, ManageAccountView>, ManageAccountView.ViewListener {
 
-    private FundingSourcesListRecyclerAdapter mAdapter;
     private ManageAccountActivity mActivity;
     private ManageAccountDelegate mDelegate;
 

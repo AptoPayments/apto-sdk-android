@@ -2,6 +2,11 @@ package com.shiftpayments.link.sdk.ui.views;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -19,21 +24,24 @@ import br.tiagohm.markdownview.MarkdownView;
  * Displays the disclaimer webview.
  * @author Adrian
  */
-public class DisclaimerView extends RelativeLayout implements View.OnClickListener, ViewWithIndeterminateLoading {
+public class DisplayContentView extends RelativeLayout implements View.OnClickListener,
+        ViewWithIndeterminateLoading, ViewWithToolbar {
 
+    private ViewListener mListener;
     private TextView mAcceptButton;
     private TextView mCancelButton;
-    private MarkdownView mMarkdownView;
-    private TextView mTextView;
-    private ViewListener mListener;
-    private PDFView mPdfView;
-    private LoadingView mLoadingView;
     private RelativeLayout mButtonsHolder;
+    private MarkdownView mMarkdownContent;
+    private TextView mTextContent;
+    private PDFView mPdfContent;
+    private LoadingView mLoadingView;
+    private Toolbar mToolbar;
+    private android.support.design.widget.AppBarLayout mToolbarHolder;
 
-    public DisclaimerView(Context context) {
+    public DisplayContentView(Context context) {
         this(context, null);
     }
-    public DisclaimerView(Context context, AttributeSet attrs) {
+    public DisplayContentView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -47,6 +55,12 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
     public interface ViewListener {
         void acceptClickHandler();
         void cancelClickHandler();
+        void onClose();
+    }
+
+    @Override
+    public Toolbar getToolbar() {
+        return mToolbar;
     }
 
     /** {@inheritDoc} */
@@ -71,7 +85,10 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
         }
         else if(id == R.id.tv_cancel_pdf) {
             mListener.cancelClickHandler();
+        } else if (id == R.id.toolbar) {
+            mListener.onClose();
         }
+
     }
 
     @Override
@@ -80,38 +97,53 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
     }
 
     public void loadMarkdown(String markDown) {
-        mMarkdownView.setVisibility(VISIBLE);
-        mMarkdownView.setBackgroundColor(Color.TRANSPARENT);
-        mMarkdownView.loadMarkdown(markDown);
+        mMarkdownContent.setVisibility(VISIBLE);
+        mMarkdownContent.setBackgroundColor(Color.TRANSPARENT);
+        mMarkdownContent.loadMarkdown(markDown);
     }
 
     public void loadPlainText(String text) {
-        mTextView.setVisibility(VISIBLE);
-        mTextView.setText(text);
+        mTextContent.setVisibility(VISIBLE);
+        mTextContent.setText(text);
     }
 
     public void loadPdf(File pdfFile) {
-        mPdfView.setVisibility(VISIBLE);
-        mPdfView.fromFile(pdfFile).load();
+        mPdfContent.setVisibility(VISIBLE);
+        mPdfContent.fromFile(pdfFile).load();
     }
 
     public void showButtons(boolean show) {
         if(show) {
             mButtonsHolder.setVisibility(VISIBLE);
+            mAcceptButton.setVisibility(VISIBLE);
+            mCancelButton.setVisibility(VISIBLE);
         }
         else {
-            mButtonsHolder.setVisibility(INVISIBLE);
+            mButtonsHolder.setVisibility(GONE);
+        }
+    }
+
+    public void showToolbar(boolean show) {
+        if(show) {
+            mToolbar.setVisibility(VISIBLE);
+            mToolbarHolder.setExpanded(true);
+        }
+        else {
+            mToolbar.setVisibility(GONE);
+            mToolbarHolder.setExpanded(false);
         }
     }
 
     private void findAllViews() {
         mAcceptButton = findViewById(R.id.tv_accept_pdf);
         mCancelButton = findViewById(R.id.tv_cancel_pdf);
-        mMarkdownView = findViewById(R.id.md_disclaimer_markdown);
-        mTextView = findViewById(R.id.tv_disclaimer_text);
-        mPdfView = findViewById(R.id.pdfView);
+        mMarkdownContent = findViewById(R.id.md_content_markdown);
+        mTextContent = findViewById(R.id.tv_content_text);
+        mPdfContent = findViewById(R.id.pdf_content);
         mLoadingView = findViewById(R.id.rl_loading_overlay);
         mButtonsHolder = findViewById(R.id.ll_buttons_holder);
+        mToolbar = findViewById(R.id.toolbar);
+        mToolbarHolder = findViewById(R.id.display_content_toolbar);
     }
 
     private void setupListeners() {
@@ -121,10 +153,17 @@ public class DisclaimerView extends RelativeLayout implements View.OnClickListen
         if (mCancelButton != null) {
             mCancelButton.setOnClickListener(this);
         }
+        if (mToolbar != null) {
+            mToolbar.setOnClickListener(this);
+        }
     }
 
     private void setColors() {
         int primaryColor = UIStorage.getInstance().getUiPrimaryColor();
         mAcceptButton.setTextColor(primaryColor);
+        Drawable closeIcon = ContextCompat.getDrawable(getContext(), R.drawable.ic_close);
+        closeIcon.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
+        mToolbar.setNavigationIcon(closeIcon);
+        mToolbar.setBackgroundDrawable(new ColorDrawable(primaryColor));
     }
 }

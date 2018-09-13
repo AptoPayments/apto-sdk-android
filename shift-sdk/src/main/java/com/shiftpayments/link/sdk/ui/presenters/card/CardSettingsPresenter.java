@@ -12,6 +12,7 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
@@ -42,6 +43,8 @@ import com.venmo.android.pin.PinSupportFragment;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
+
+import static com.shiftpayments.link.sdk.ui.activities.DisplayContentActivity.getDisplayContentIntent;
 
 /**
  * Concrete {@link Presenter} for the card settings screen.
@@ -164,6 +167,13 @@ public class CardSettingsPresenter
         else {
             showCardStateChangeConfirmationDialog();
         }
+    }
+
+    @Override
+    public void cardholderAgreementClickHandler() {
+        // TODO: read from config
+        ContentVo content = new ContentVo("type", "external_url", "https://www.google.com");
+        mActivity.startActivity(getDisplayContentIntent(mActivity, content));
     }
 
     @Override

@@ -123,7 +123,22 @@
             <TextView
                 android:id="@+id/tv_report_stolen_card_description"
                 style="@style/llsdk_item_description"
-                android:text="@string/contact_support_description"
+                android:text="@string/contact_support_description" />
+
+            <TextView
+                android:id="@+id/tv_legal_header"
+                style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
+                android:text="@string/legal_label" />
+
+            <TextView
+                android:id="@+id/tv_cardholder_agreement"
+                style="@style/llsdk_main_item_light"
+                android:text="@string/cardholder_agreement_label"/>
+
+            <TextView
+                android:id="@+id/tv_cardholder_agreement_description"
+                style="@style/llsdk_item_description"
+                android:text="@string/cardholder_agreement_description"
                 android:layout_marginBottom="30dp"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

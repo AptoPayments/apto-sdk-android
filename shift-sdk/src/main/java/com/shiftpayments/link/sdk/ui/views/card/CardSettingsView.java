@@ -53,6 +53,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     private TextView mContactSupportButton;
     private SwitchCompat mShowCardInfoSwitch;
     private SwitchCompat mEnableCardSwitch;
+    private TextView mCardholderAgreementLabel;
+    private TextView mCardholderAgreementButton;
     private LoadingView mLoadingView;
 
     @Override
@@ -99,6 +101,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         void contactSupportClickHandler();
         void showCardInfoClickHandler(boolean show);
         void disableCardClickHandler(boolean disable);
+        void cardholderAgreementClickHandler();
         void onClose();
     }
 
@@ -140,10 +143,12 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
             mListener.addFundingSource();
         } else if (id == R.id.toolbar) {
             mListener.onClose();
-        } else if (view.getId() == R.id.tv_change_pin) {
+        } else if (id == R.id.tv_change_pin) {
             mListener.changePinClickHandler();
-        } else if (view.getId() == R.id.tv_report_stolen_card) {
+        } else if (id == R.id.tv_report_stolen_card) {
             mListener.contactSupportClickHandler();
+        } else if (id == R.id.tv_cardholder_agreement || id == R.id.tv_cardholder_agreement_description) {
+            mListener.cardholderAgreementClickHandler();
         }
     }
 
@@ -207,6 +212,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mShowCardInfoSwitch.setOnTouchListener(this);
         mEnableCardSwitch.setOnCheckedChangeListener(this);
         mEnableCardSwitch.setOnTouchListener(this);
+        mCardholderAgreementLabel.setOnClickListener(this);
+        mCardholderAgreementButton.setOnClickListener(this);
     }
 
     /**
@@ -224,6 +231,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mContactSupportButton = findViewById(R.id.tv_report_stolen_card);
         mShowCardInfoSwitch = findViewById(R.id.sw_show_card_info);
         mEnableCardSwitch = findViewById(R.id.sw_enable_card);
+        mCardholderAgreementLabel = findViewById(R.id.tv_cardholder_agreement);
+        mCardholderAgreementButton = findViewById(R.id.tv_cardholder_agreement_description);
         mLoadingView = findViewById(R.id.rl_loading_overlay);
     }
 
