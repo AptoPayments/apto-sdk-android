@@ -13,13 +13,9 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.shiftpayments.link.sdk.api.vos.datapoints.Address;
-import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
-import com.shiftpayments.link.sdk.ui.utils.LanguageUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.DisplayContentView;
 
@@ -60,8 +56,6 @@ public class DisplayContentActivity extends BaseActivity implements DisplayConte
                 mView.loadMarkdown(content);
                 break;
             case external_url:
-                // TODO: move to caller activity
-                content = parseUrl(content);
                 String ext = content.substring(content.length() - 3);
                 if(ext.equalsIgnoreCase("PDF")) {
                     // Only download content in case of PDF
@@ -72,15 +66,6 @@ public class DisplayContentActivity extends BaseActivity implements DisplayConte
                 }
                 break;
         }
-    }
-
-    private String parseUrl(String url) {
-        Address userAddress = (Address) UserStorage.getInstance().getUserData().getUniqueDataPoint(
-                DataPointVo.DataPointType.Address, null);
-        if(userAddress != null) {
-            url = url.replace("[language]", LanguageUtil.getLanguage()).replace("[state]", userAddress.stateCode.toUpperCase());
-        }
-        return url;
     }
 
     private void loadUrl(String url) {
