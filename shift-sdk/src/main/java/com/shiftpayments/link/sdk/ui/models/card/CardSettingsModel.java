@@ -1,7 +1,7 @@
 package com.shiftpayments.link.sdk.ui.models.card;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 
@@ -16,44 +16,44 @@ import me.ledge.common.utils.PagedList;
 public class CardSettingsModel implements Model {
 
     private Card mCard;
-    private PagedList<FundingSourceModel> mFundingSources;
-    private FundingSourceModel mSelectedFundingSource;
+    private PagedList<BalanceModel> mBalancesList;
+    private BalanceModel mSelectedBalance;
 
     public CardSettingsModel(Card card) {
         mCard = card;
-        mFundingSources = new PagedList<>();
+        mBalancesList = new PagedList<>();
     }
 
     /**
-     * Adds a list of funding sources.
-     * @param fundingSources List of funding sources.
+     * Adds a list of balances.
+     * @param balances List of balances.
      */
-    public void addFundingSources(FundingSourceVo[] fundingSources) {
-        ArrayList<FundingSourceModel> newFundingSources = new ArrayList<>(fundingSources.length);
-        for(FundingSourceVo fundingSource : fundingSources) {
+    public void addBalances(BalanceVo[] balances) {
+        ArrayList<BalanceModel> newBalances = new ArrayList<>(balances.length);
+        for(BalanceVo balance : balances) {
             boolean isSelected = false;
-            if(CardStorage.getInstance().hasFundingSourceId() && fundingSource.id != null) {
-                isSelected = CardStorage.getInstance().getFundingSourceId().equals(fundingSource.id);
+            if(CardStorage.getInstance().hasBalanceId() && balance.id != null) {
+                isSelected = CardStorage.getInstance().getBalanceId().equals(balance.id);
             }
-            FundingSourceModel fundingSourceModel = new FundingSourceModel(fundingSource, isSelected);
-            newFundingSources.add(fundingSourceModel);
+            BalanceModel balanceModel = new BalanceModel(balance, isSelected);
+            newBalances.add(balanceModel);
             if(isSelected) {
-                mSelectedFundingSource = fundingSourceModel;
+                mSelectedBalance = balanceModel;
             }
         }
 
-        mFundingSources.addAll(newFundingSources);
+        mBalancesList.addAll(newBalances);
     }
 
-    public PagedList<FundingSourceModel> getFundingSources() {
-        return mFundingSources;
+    public PagedList<BalanceModel> getBalances() {
+        return mBalancesList;
     }
 
-    public void setSelectedFundingSource(String id) {
-        ArrayList<FundingSourceModel> fundingSources = new ArrayList<>(mFundingSources.getList());
-        for(FundingSourceModel fundingSource : fundingSources) {
-            if(fundingSource.getFundingSourceId().equals(id)) {
-                mSelectedFundingSource = fundingSource;
+    public void setSelectedBalance(String id) {
+        ArrayList<BalanceModel> fundingSources = new ArrayList<>(mBalancesList.getList());
+        for(BalanceModel fundingSource : fundingSources) {
+            if(fundingSource.getBalanceId().equals(id)) {
+                mSelectedBalance = fundingSource;
             }
         }
     }

@@ -15,14 +15,14 @@ import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.card.CardSettingsActivity;
 import com.shiftpayments.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
 import com.shiftpayments.link.sdk.ui.models.card.CardSettingsModel;
-import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
+import com.shiftpayments.link.sdk.ui.models.card.BalanceModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
@@ -95,15 +95,15 @@ public class CardSettingsPresenter
     }
 
     @Override
-    public void fundingSourceClickHandler(FundingSourceModel selectedFundingSource) {
+    public void balanceClickHandler(BalanceModel selectedBalance) {
         mLoadingSpinnerManager.showLoading(true, LoadingView.Position.TOP, false);
-        List<FundingSourceModel> fundingSources = mModel.getFundingSources().getList();
-        for(FundingSourceModel fundingSource : fundingSources) {
-            fundingSource.setIsSelected(fundingSource.equals(selectedFundingSource));
+        List<BalanceModel> balances = mModel.getBalances().getList();
+        for(BalanceModel balance : balances) {
+            balance.setIsSelected(balance.equals(selectedBalance));
         }
-        mAdapter.updateList(mModel.getFundingSources());
+        mAdapter.updateList(mModel.getBalances());
         mResponseHandler.subscribe(this);
-        ShiftPlatform.setAccountFundingSource(CardStorage.getInstance().getCard().mAccountId, selectedFundingSource.getFundingSourceId());
+        ShiftPlatform.setAccountFundingSource(CardStorage.getInstance().getCard().mAccountId, selectedBalance.getBalanceId());
     }
 
 
@@ -189,17 +189,17 @@ public class CardSettingsPresenter
     @Subscribe
     public void handleResponse(FundingSourceListVo response) {
         mResponseHandler.unsubscribe(this);
-        mModel.addFundingSources(response.data);
+        mModel.addBalances(response.data);
         mView.showFundingSourceLabel(true);
-        mAdapter.updateList(mModel.getFundingSources());
+        mAdapter.updateList(mModel.getBalances());
         mLoadingSpinnerManager.showLoading(false);
     }
 
     @Subscribe
-    public void handleResponse(FundingSourceVo response) {
+    public void handleResponse(BalanceVo response) {
         mResponseHandler.unsubscribe(this);
-        mModel.setSelectedFundingSource(response.id);
-        mAdapter.updateList(mModel.getFundingSources());
+        mModel.setSelectedBalance(response.id);
+        mAdapter.updateList(mModel.getBalances());
         mLoadingSpinnerManager.showLoading(false);
         Toast.makeText(mActivity, R.string.account_management_funding_source_changed, Toast.LENGTH_SHORT).show();
     }
@@ -248,7 +248,7 @@ public class CardSettingsPresenter
         if(error.statusCode==404) {
             // User has no funding source
             mView.showFundingSourceLabel(false);
-            mAdapter.updateList(mModel.getFundingSources());
+            mAdapter.updateList(mModel.getBalances());
         }
         else {
             ApiErrorUtil.showErrorMessage(error, mActivity);

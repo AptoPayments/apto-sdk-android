@@ -18,7 +18,7 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
@@ -184,7 +184,7 @@ public class ManageCardPresenter
     public void handleApiError(ApiErrorVo error) {
         mView.showLoading(mActivity, false);
         mView.setRefreshing(false);
-        if(error.request_path.equals(ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH) || error.request_path.equals(ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH)) {
+        if(error.request_path.equals(ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH) || error.request_path.equals(ShiftApiWrapper.FINANCIAL_ACCOUNT_BALANCE_PATH)) {
             mSemaphore.release();
         }
         if(error.statusCode==404) {
@@ -251,7 +251,7 @@ public class ManageCardPresenter
     }
 
     @Subscribe
-    public void handleResponse(FundingSourceVo response) {
+    public void handleResponse(BalanceVo response) {
         mSemaphore.release();
         if(response.balance.hasAmount()) {
             mModel.setBalance(new AmountVo(response.balance.amount, response.balance.currency));
@@ -262,7 +262,7 @@ public class ManageCardPresenter
         if(response.custodianWallet != null && response.custodianWallet.balance.hasAmount()) {
             mModel.setNativeBalance(new AmountVo(response.custodianWallet.balance.amount, response.custodianWallet.balance.currency));
         }
-        CardStorage.getInstance().setFundingSourceId(response.id);
+        CardStorage.getInstance().setBalanceId(response.id);
         if(isViewReady()) {
             mView.setRefreshing(false);
         }

@@ -54,7 +54,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFi
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
@@ -927,27 +927,27 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     }
 
     @Override
-    public FundingSourceVo getFinancialAccountFundingSource(String accountId) throws ApiException {
-        FundingSourceVo result;
+    public BalanceVo getFinancialAccountFundingSource(String accountId) throws ApiException {
+        BalanceVo result;
         try {
-            Response<FundingSourceVo> response = mFinancialAccountService.getFundingSource(accountId).execute();
-            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH);
+            Response<BalanceVo> response = mFinancialAccountService.getFundingSource(accountId).execute();
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_BALANCE_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_BALANCE_PATH, ioe);
         }
         return result;
     }
 
     @Override
-    public FundingSourceVo setAccountFundingSource(String accountId, SetFundingSourceRequestVo setFundingSourceRequest) throws ApiException {
-        FundingSourceVo result;
+    public BalanceVo setAccountFundingSource(String accountId, SetFundingSourceRequestVo setFundingSourceRequest) throws ApiException {
+        BalanceVo result;
         try {
-            Response<FundingSourceVo> response = mFinancialAccountService.setFundingSource(accountId, setFundingSourceRequest).execute();
-            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH);
+            Response<BalanceVo> response = mFinancialAccountService.setFundingSource(accountId, setFundingSourceRequest).execute();
+            result = handleResponse(response, ShiftApiWrapper.FINANCIAL_ACCOUNT_BALANCE_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_BALANCE_PATH, ioe);
         }
         return result;
     }
@@ -1049,10 +1049,10 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         FundingSourceListVo result;
         try {
             Response<FundingSourceListVo> response = mFinancialAccountService.getUserFundingSources().execute();
-            result = handleResponse(response, ShiftApiWrapper.USER_FUNDING_SOURCES_PATH);
+            result = handleResponse(response, ShiftApiWrapper.USER_BALANCES_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), ShiftApiWrapper.USER_FUNDING_SOURCES_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.USER_BALANCES_PATH, ioe);
         }
         return result;
     }

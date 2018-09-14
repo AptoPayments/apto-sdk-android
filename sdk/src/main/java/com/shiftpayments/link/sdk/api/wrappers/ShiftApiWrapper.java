@@ -35,7 +35,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFi
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
@@ -108,8 +108,8 @@ public interface ShiftApiWrapper {
     String FINANCIAL_ACCOUNT_ENABLE_PATH = "v1/user/accounts/{account_id}/enable";
     String FINANCIAL_ACCOUNT_DISABLE_PATH = "v1/user/accounts/{account_id}/disable";
     String FINANCIAL_ACCOUNT_TRANSACTIONS_PATH = "v1/user/accounts/{account_id}/transactions";
-    String FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH = "v1/user/accounts/{account_id}/fundingsource";
-    String USER_FUNDING_SOURCES_PATH = "v1/user/accounts/fundingsources";
+    String FINANCIAL_ACCOUNT_BALANCE_PATH = "v1/user/accounts/{account_id}/balance";
+    String USER_BALANCES_PATH = "v1/user/accounts/balances";
     String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
     String CARD_APPLICATION_STATUS_PATH = "v1/user/accounts/applications/{application_id}/status";
     String SET_BALANCE_STORE_PATH = "v1/user/accounts/applications/{application_id}/select_balance_store";
@@ -454,7 +454,7 @@ public interface ShiftApiWrapper {
      * @return The funding source of the requested financial account
      * @throws ApiException When there is an error making the request.
      */
-    FundingSourceVo getFinancialAccountFundingSource(String accountId) throws ApiException;
+    BalanceVo getFinancialAccountFundingSource(String accountId) throws ApiException;
 
     /**
      * @param requestData Mandatory request data.
@@ -469,7 +469,7 @@ public interface ShiftApiWrapper {
      * @return The funding source that was set
      * @throws ApiException When there is an error making the request.
      */
-    FundingSourceVo setAccountFundingSource(String accountId, SetFundingSourceRequestVo fundingSourceRequest) throws ApiException;
+    BalanceVo setAccountFundingSource(String accountId, SetFundingSourceRequestVo fundingSourceRequest) throws ApiException;
 
     /**
      * Register a Firebase Token to receive push notifications
