@@ -53,7 +53,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateTeamResponse
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
@@ -463,7 +463,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public FundingSourceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
+    public BalanceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
         return null;
     }
 

@@ -53,7 +53,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.errors.ErrorResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
@@ -1045,10 +1045,10 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     }
 
     @Override
-    public FundingSourceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
-        FundingSourceListVo result;
+    public BalanceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
+        BalanceListVo result;
         try {
-            Response<FundingSourceListVo> response = mFinancialAccountService.getUserFundingSources().execute();
+            Response<BalanceListVo> response = mFinancialAccountService.getUserFundingSources().execute();
             result = handleResponse(response, ShiftApiWrapper.USER_BALANCES_PATH);
         } catch (IOException ioe) {
             result = null;

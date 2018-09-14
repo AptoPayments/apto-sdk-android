@@ -10,9 +10,9 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingS
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
@@ -117,7 +117,7 @@ public interface FinancialAccountService {
      * @return API call to execute.
      */
     @GET(ShiftApiWrapper.USER_BALANCES_PATH)
-    Call<FundingSourceListVo> getUserFundingSources();
+    Call<BalanceListVo> getUserFundingSources();
 
     /** Creates a {@link Call} to set the user's funding source
      * @param accountId Mandatory request data.

@@ -14,7 +14,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.ui.R;
@@ -187,7 +187,7 @@ public class CardSettingsPresenter
     }
 
     @Subscribe
-    public void handleResponse(FundingSourceListVo response) {
+    public void handleResponse(BalanceListVo response) {
         mResponseHandler.unsubscribe(this);
         mModel.addBalances(response.data);
         mView.showFundingSourceLabel(true);
