@@ -74,9 +74,8 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
     }
 
     protected void setColors() {
-        int color = UIStorage.getInstance().getUiPrimaryColor();
         if(mProgressBar != null) {
-            mProgressBar.setProgressBarColor(color);
+            mProgressBar.setProgressBarColor(UIStorage.getInstance().getUiSecondaryColor());
         }
         if(mToolbar != null) {
             Drawable backArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
