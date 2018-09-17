@@ -10,7 +10,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
+import com.shiftpayments.link.sdk.ui.models.card.BalanceModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 
 import me.ledge.common.views.RowView;
@@ -20,24 +20,24 @@ import me.ledge.common.views.RowView;
  * Displays a single transaction
  * @author Adrian
  */
-public class FundingSourceView extends CardView implements RowView<FundingSourceModel>,View.OnClickListener {
+public class FundingSourceView extends CardView implements RowView<BalanceModel>,View.OnClickListener {
 
     private TextView mTitleField;
     private TextView mSubtitleField;
     private TextView mDescriptionField;
     private RadioButton mButton;
     private ViewListener mListener;
-    private FundingSourceModel mData;
+    private BalanceModel mData;
 
     /**
      * Callbacks that this View will invoke.
      */
     public interface ViewListener {
         /**
-         * Called when the "funding source" has been clicked.
-         * @param fundingSource The selected funding source.
+         * Called when the balance has been clicked.
+         * @param selectedBalance The selected balance
          */
-        void fundingSourceClickHandler(FundingSourceModel fundingSource);
+        void balanceClickHandler(BalanceModel selectedBalance);
     }
 
     /**
@@ -102,16 +102,16 @@ public class FundingSourceView extends CardView implements RowView<FundingSource
         int id = view.getId();
         if (id == R.id.rb_funding_source || id == R.id.tv_title || id == R.id.tv_description ||
                 id == R.id.tv_subtitle) {
-            mListener.fundingSourceClickHandler(mData);
+            mListener.balanceClickHandler(mData);
         }
     }
 
     @Override
-    public void setData(FundingSourceModel data) {
+    public void setData(BalanceModel data) {
         mData = data;
-        mTitleField.setText(data.getFundingSourceName());
-        mSubtitleField.setText(data.getFundingSourceAmount());
-        mDescriptionField.setText(data.getFundingSourceBalance());
+        mTitleField.setText(data.getBalanceName());
+        mSubtitleField.setText(data.getBalanceAmount());
+        mDescriptionField.setText(data.toString());
         mButton.setChecked(data.isSelected());
     }
 

@@ -10,10 +10,10 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingS
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
@@ -109,22 +109,22 @@ public interface FinancialAccountService {
      * Creates a {@link Call} to get a the funding source of a specific financial account.
      * @return API call to execute.
      */
-    @GET(ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH)
-    Call<FundingSourceVo> getFundingSource(@Path("account_id") String accountId);
+    @GET(ShiftApiWrapper.FINANCIAL_ACCOUNT_BALANCE_PATH)
+    Call<BalanceVo> getFundingSource(@Path("account_id") String accountId);
 
     /**
      * Creates a {@link Call} to get the user's funding sources.
      * @return API call to execute.
      */
-    @GET(ShiftApiWrapper.USER_FUNDING_SOURCES_PATH)
-    Call<FundingSourceListVo> getUserFundingSources();
+    @GET(ShiftApiWrapper.USER_BALANCES_PATH)
+    Call<BalanceListVo> getUserFundingSources();
 
     /** Creates a {@link Call} to set the user's funding source
      * @param accountId Mandatory request data.
      * @return API call to execute.
      */
-    @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH)
-    Call<FundingSourceVo> setFundingSource(@Path("account_id") String accountId, @Body SetFundingSourceRequestVo request);
+    @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_BALANCE_PATH)
+    Call<BalanceVo> setFundingSource(@Path("account_id") String accountId, @Body SetFundingSourceRequestVo request);
 
 
     /** Creates a {@link Call} to set the balance store
