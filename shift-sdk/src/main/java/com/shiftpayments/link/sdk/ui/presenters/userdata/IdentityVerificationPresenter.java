@@ -207,7 +207,7 @@ public class IdentityVerificationPresenter
 
         new AlertDialog.Builder(mActivity)
             .setTitle(R.string.birthdate_label_month)
-            .setPositiveButton(android.R.string.ok, null)
+            .setNegativeButton(android.R.string.cancel, null)
             .setAdapter(arrayAdapter, (dialog1, item) -> mView.setBirthdayMonth(arrayAdapter.getItem(item)))
             .show();
     }
