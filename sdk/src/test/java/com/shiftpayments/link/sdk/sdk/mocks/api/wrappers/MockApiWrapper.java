@@ -53,8 +53,8 @@ import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateTeamResponse
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
@@ -458,17 +458,17 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public FundingSourceVo getFinancialAccountFundingSource(String accountId) throws ApiException {
+    public BalanceVo getFinancialAccountFundingSource(String accountId) throws ApiException {
         return null;
     }
 
     @Override
-    public FundingSourceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
+    public BalanceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
         return null;
     }
 
     @Override
-    public FundingSourceVo setAccountFundingSource(String s, SetFundingSourceRequestVo setFundingSourceRequestVo) throws ApiException {
+    public BalanceVo setAccountFundingSource(String s, SetFundingSourceRequestVo setFundingSourceRequestVo) throws ApiException {
         return null;
     }
 

@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
+import com.shiftpayments.link.sdk.ui.models.card.BalanceModel;
 import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
 
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
@@ -14,7 +14,7 @@ import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
  * A concrete {@link RecyclerView.Adapter} for the funding source list.
  * @author Adrian
  */
-public class FundingSourcesListRecyclerAdapter extends PagedListRecyclerAdapter<FundingSourceModel, FundingSourceView> {
+public class FundingSourcesListRecyclerAdapter extends PagedListRecyclerAdapter<BalanceModel, FundingSourceView> {
 
     private FundingSourceView.ViewListener mListener;
 
