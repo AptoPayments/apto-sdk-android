@@ -11,7 +11,7 @@ public class CardStorage {
 
     private Card mCard;
     private static CardStorage mInstance;
-    private String mFundingSourceId;
+    private String mBalanceId;
     private ApplicationVo mApplication;
     public boolean showCardInfo;
 
@@ -48,16 +48,16 @@ public class CardStorage {
         mCard = card;
     }
 
-    public void setFundingSourceId(String fundingSourceId) {
-        mFundingSourceId = fundingSourceId;
+    public void setBalanceId(String balanceId) {
+        mBalanceId = balanceId;
     }
 
-    public String getFundingSourceId() {
-        return mFundingSourceId;
+    public String getBalanceId() {
+        return mBalanceId;
     }
 
-    public boolean hasFundingSourceId() {
-        return mFundingSourceId != null && !mFundingSourceId.isEmpty();
+    public boolean hasBalanceId() {
+        return mBalanceId != null && !mBalanceId.isEmpty();
     }
 
     public ApplicationVo getApplication() {

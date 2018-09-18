@@ -7,7 +7,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.CustodianWa
  * Created by adrian on 04/04/2018.
  */
 
-public class FundingSourceVo {
+public class BalanceVo {
 
     public String type;
 

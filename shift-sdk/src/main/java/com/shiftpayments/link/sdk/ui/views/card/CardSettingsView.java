@@ -22,7 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
+import com.shiftpayments.link.sdk.ui.models.card.BalanceModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
@@ -165,7 +165,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
      * Stores a new {@link PagedListRecyclerAdapter} for the {@link RecyclerView} to use.
      * @param adapter The adapter to use.
      */
-    public void setAdapter(PagedListRecyclerAdapter<FundingSourceModel, FundingSourceView> adapter) {
+    public void setAdapter(PagedListRecyclerAdapter<BalanceModel, FundingSourceView> adapter) {
         mFundingSourcesListView.setAdapter(adapter);
     }
 
