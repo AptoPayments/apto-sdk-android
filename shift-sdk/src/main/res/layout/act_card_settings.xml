@@ -126,6 +126,16 @@
                 android:text="@string/contact_support_description" />
 
             <TextView
+                android:id="@+id/tv_faq"
+                android:text="@string/account_management_faq"
+                style="@style/llsdk_main_item_light"/>
+
+            <TextView
+                android:id="@+id/tv_faq_description"
+                style="@style/llsdk_item_description"
+                android:text="@string/account_management_faq_description"/>
+
+            <TextView
                 android:id="@+id/tv_legal_header"
                 style="?attr/llsdk_cardSettings_sectionTitleTextStyle"
                 android:text="@string/legal_label" />

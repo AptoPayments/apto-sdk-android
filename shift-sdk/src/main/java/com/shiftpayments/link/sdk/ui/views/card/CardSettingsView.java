@@ -53,6 +53,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     private TextView mContactSupportButton;
     private SwitchCompat mShowCardInfoSwitch;
     private SwitchCompat mEnableCardSwitch;
+    private TextView mFaqLabel;
+    private TextView mFaqButton;
     private TextView mCardholderAgreementLabel;
     private TextView mCardholderAgreementButton;
     private TextView mTermsAndConditionsLabel;
@@ -105,6 +107,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         void contactSupportClickHandler();
         void showCardInfoClickHandler(boolean show);
         void disableCardClickHandler(boolean disable);
+        void faqClickHandler();
         void cardholderAgreementClickHandler();
         void termsAndConditionsClickHandler();
         void privacyPolicyClickHandler();
@@ -159,6 +162,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
             mListener.termsAndConditionsClickHandler();
         } else if (id == R.id.tv_privacy_policy || id == R.id.tv_privacy_policy_description) {
             mListener.privacyPolicyClickHandler();
+        } else if (id == R.id.tv_faq || id == R.id.tv_faq_description) {
+            mListener.faqClickHandler();
         }
     }
 
@@ -213,6 +218,17 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mEnableCardSwitch.setChecked(enable);
     }
 
+    public void showFaq(boolean show) {
+        if(show) {
+            mFaqButton.setVisibility(VISIBLE);
+            mFaqLabel.setVisibility(VISIBLE);
+        }
+        else {
+            mFaqButton.setVisibility(GONE);
+            mFaqLabel.setVisibility(GONE);
+        }
+    }
+
     public void showCardholderAgreement(boolean show) {
         if(show) {
             mCardholderAgreementLabel.setVisibility(VISIBLE);
@@ -261,6 +277,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mTermsAndConditionsButton.setOnClickListener(this);
         mPrivacyPolicyLabel.setOnClickListener(this);
         mPrivacyPolicyButton.setOnClickListener(this);
+        mFaqLabel.setOnClickListener(this);
+        mFaqButton.setOnClickListener(this);
     }
 
     /**
@@ -278,6 +296,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mContactSupportButton = findViewById(R.id.tv_report_stolen_card);
         mShowCardInfoSwitch = findViewById(R.id.sw_show_card_info);
         mEnableCardSwitch = findViewById(R.id.sw_enable_card);
+        mFaqLabel = findViewById(R.id.tv_faq);
+        mFaqButton = findViewById(R.id.tv_faq_description);
         mCardholderAgreementLabel = findViewById(R.id.tv_cardholder_agreement);
         mCardholderAgreementButton = findViewById(R.id.tv_cardholder_agreement_description);
         mTermsAndConditionsLabel = findViewById(R.id.tv_terms_and_conditions);

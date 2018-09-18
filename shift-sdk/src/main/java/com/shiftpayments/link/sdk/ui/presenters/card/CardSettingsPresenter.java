@@ -87,9 +87,10 @@ public class CardSettingsPresenter
         mView.showAddFundingSourceButton(UIStorage.getInstance().showAddFundingSourceButton());
         mView.setShowCardInfoSwitch(CardStorage.getInstance().showCardInfo);
         mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
+        mView.showFaq(ConfigStorage.getInstance().getCardConfig().cardProduct.faq != null);
         mView.showCardholderAgreement(ConfigStorage.getInstance().getCardConfig().cardProduct.cardholderAgreement != null);
         mView.showTermsAndConditions(ConfigStorage.getInstance().getCardConfig().cardProduct.termsOfService != null);
-        mView.showTermsAndConditions(ConfigStorage.getInstance().getCardConfig().cardProduct.privacyPolicy != null);
+        mView.showPrivacyPolicy(ConfigStorage.getInstance().getCardConfig().cardProduct.privacyPolicy != null);
         mResponseHandler.subscribe(this);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(true, LoadingView.Position.TOP, false);
@@ -171,6 +172,12 @@ public class CardSettingsPresenter
         else {
             showCardStateChangeConfirmationDialog();
         }
+    }
+
+    @Override
+    public void faqClickHandler() {
+        ContentVo content = ConfigStorage.getInstance().getCardConfig().cardProduct.faq;
+        mActivity.startActivity(getDisplayContentIntent(mActivity, content));
     }
 
     @Override
