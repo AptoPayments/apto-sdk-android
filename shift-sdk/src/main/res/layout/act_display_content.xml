@@ -84,7 +84,7 @@
             android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="64dp"
             android:layout_above="@id/ll_buttons_holder" />
 
         <br.tiagohm.markdownview.MarkdownView
@@ -92,7 +92,7 @@
             android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="64dp"
             android:layout_above="@id/ll_buttons_holder" />
     </RelativeLayout>
 

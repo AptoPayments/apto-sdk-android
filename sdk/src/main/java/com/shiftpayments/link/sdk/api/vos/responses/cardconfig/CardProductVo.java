@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.api.vos.responses.cardconfig;
 
 import com.google.gson.annotations.SerializedName;
+import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
 
 public class CardProductVo {
 
@@ -28,4 +29,12 @@ public class CardProductVo {
     public String externalUsername;
     @SerializedName("external_password")
     public String externalPassword;
+    @SerializedName("cardholder_agreement")
+    public ContentVo cardholderAgreement;
+    @SerializedName("privacy_policy")
+    public ContentVo privacyPolicy;
+    @SerializedName("terms_of_service")
+    public ContentVo termsOfService;
+    @SerializedName("faq")
+    public ContentVo faq;
 }

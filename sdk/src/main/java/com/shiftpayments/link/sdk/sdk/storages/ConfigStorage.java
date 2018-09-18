@@ -314,7 +314,7 @@ public class ConfigStorage {
     }
 
     public synchronized CardConfigResponseVo getCardConfig() {
-        if(isCardConfigCached()) {
+        if (isCardConfigCached()) {
             return mCardConfig;
         }
         else {
@@ -326,7 +326,7 @@ public class ConfigStorage {
                     throw new CompletionException(e);
                 }
             });
-            return (CardConfigResponseVo) getResultFromFuture(future);
+            return future.join();
         }
     }
 

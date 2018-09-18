@@ -328,6 +328,10 @@
     <string name="legal_label">Legal</string>
     <string name="cardholder_agreement_label">Cardholder Agreement</string>
     <string name="cardholder_agreement_description">Terms and Conditions of the Card</string>
+    <string name="terms_and_conditions_label">Terms and conditions</string>
+    <string name="terms_and_conditions_description">User agreement</string>
+    <string name="privacy_policy_label">Privacy policy</string>
+    <string name="privacy_policy_description">Information we collect</string>
     <string name="change_pin_label">Reset PIN</string>
     <string name="change_pin_description">Set a new PIN code for your card</string>
     <string name="funding_sources_label">Funding Sources</string>

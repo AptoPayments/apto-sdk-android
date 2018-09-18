@@ -138,7 +138,27 @@
             <TextView
                 android:id="@+id/tv_cardholder_agreement_description"
                 style="@style/llsdk_item_description"
-                android:text="@string/cardholder_agreement_description"
+                android:text="@string/cardholder_agreement_description" />
+
+            <TextView
+                android:id="@+id/tv_terms_and_conditions"
+                style="@style/llsdk_main_item_light"
+                android:text="@string/terms_and_conditions_label"/>
+
+            <TextView
+                android:id="@+id/tv_terms_and_conditions_description"
+                style="@style/llsdk_item_description"
+                android:text="@string/terms_and_conditions_description" />
+
+            <TextView
+                android:id="@+id/tv_privacy_policy"
+                style="@style/llsdk_main_item_light"
+                android:text="@string/privacy_policy_label"/>
+
+            <TextView
+                android:id="@+id/tv_privacy_policy_description"
+                style="@style/llsdk_item_description"
+                android:text="@string/privacy_policy_description"
                 android:layout_marginBottom="30dp"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

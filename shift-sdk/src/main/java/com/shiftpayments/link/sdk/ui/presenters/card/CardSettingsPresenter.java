@@ -13,17 +13,18 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinan
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
+import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.card.CardSettingsActivity;
 import com.shiftpayments.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
-import com.shiftpayments.link.sdk.ui.models.card.CardSettingsModel;
 import com.shiftpayments.link.sdk.ui.models.card.BalanceModel;
+import com.shiftpayments.link.sdk.ui.models.card.CardSettingsModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
@@ -86,6 +87,9 @@ public class CardSettingsPresenter
         mView.showAddFundingSourceButton(UIStorage.getInstance().showAddFundingSourceButton());
         mView.setShowCardInfoSwitch(CardStorage.getInstance().showCardInfo);
         mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
+        mView.showCardholderAgreement(ConfigStorage.getInstance().getCardConfig().cardProduct.cardholderAgreement != null);
+        mView.showTermsAndConditions(ConfigStorage.getInstance().getCardConfig().cardProduct.termsOfService != null);
+        mView.showTermsAndConditions(ConfigStorage.getInstance().getCardConfig().cardProduct.privacyPolicy != null);
         mResponseHandler.subscribe(this);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(true, LoadingView.Position.TOP, false);
@@ -171,8 +175,19 @@ public class CardSettingsPresenter
 
     @Override
     public void cardholderAgreementClickHandler() {
-        // TODO: read from config
-        ContentVo content = new ContentVo("type", "external_url", "https://www.google.com");
+        ContentVo content = ConfigStorage.getInstance().getCardConfig().cardProduct.cardholderAgreement;
+        mActivity.startActivity(getDisplayContentIntent(mActivity, content));
+    }
+
+    @Override
+    public void termsAndConditionsClickHandler() {
+        ContentVo content = ConfigStorage.getInstance().getCardConfig().cardProduct.termsOfService;
+        mActivity.startActivity(getDisplayContentIntent(mActivity, content));
+    }
+
+    @Override
+    public void privacyPolicyClickHandler() {
+        ContentVo content = ConfigStorage.getInstance().getCardConfig().cardProduct.privacyPolicy;
         mActivity.startActivity(getDisplayContentIntent(mActivity, content));
     }
 

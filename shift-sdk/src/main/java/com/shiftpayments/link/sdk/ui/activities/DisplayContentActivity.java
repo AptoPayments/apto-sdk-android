@@ -113,7 +113,7 @@ public class DisplayContentActivity extends BaseActivity implements DisplayConte
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             switch (keyCode) {
                 case KeyEvent.KEYCODE_BACK:
-                    if (mWebView.canGoBack()) {
+                    if (mWebView != null && mWebView.canGoBack()) {
                         mWebView.goBack();
                     }
                     return true;

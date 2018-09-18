@@ -119,7 +119,7 @@ public class DisplayContentView extends RelativeLayout implements View.OnClickLi
             mCancelButton.setVisibility(VISIBLE);
         }
         else {
-            mButtonsHolder.setVisibility(GONE);
+            mButtonsHolder.setVisibility(INVISIBLE);
         }
     }
 
