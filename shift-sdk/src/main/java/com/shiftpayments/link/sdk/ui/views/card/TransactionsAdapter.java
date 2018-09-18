@@ -153,7 +153,12 @@ public class TransactionsAdapter extends
                 showCardBalance(!mModel.getCardBalance().isEmpty(), viewHolder);
                 showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
                 viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
-                showCopyCardNumberLabel(mModel.cardNumberShown(), viewHolder);
+                if(mModel.cardNumberShown()) {
+                    setCopyCardNumberLabelText(viewHolder, mContext.getString(R.string.card_management_primary_button_full));
+                }
+                else {
+                    setCopyCardNumberLabelText(viewHolder, mContext.getString(R.string.card_management_primary_button));
+                }
                 showActivateCardButton(UIStorage.getInstance().showActivateCardButton()
                         && mModel.isCardCreated(), viewHolder);
                 break;
@@ -258,12 +263,7 @@ public class TransactionsAdapter extends
         }
     }
 
-    private void showCopyCardNumberLabel(boolean show, ViewHolder viewHolder) {
-        if(show) {
-            viewHolder.primaryButton.setVisibility(View.VISIBLE);
-        }
-        else {
-            viewHolder.primaryButton.setVisibility(View.INVISIBLE);
-        }
+    private void setCopyCardNumberLabelText(ViewHolder viewHolder, String text) {
+        viewHolder.primaryButton.setText(text);
     }
 }
