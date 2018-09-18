@@ -37,7 +37,10 @@ public class CreditCardView extends RelativeLayout {
     private final static int mCvvLabelColor = Color.WHITE;
     private int mEnabledCardBackground = R.drawable.card_enabled_background;
 
-    private EditText mCardNumberView;
+    private EditText mCardNumberView1;
+    private EditText mCardNumberView2;
+    private EditText mCardNumberView3;
+    private EditText mCardNumberView4;
     private EditText mCardNameView;
     private EditText mExpiryDateView;
     private EditText mCvvView;
@@ -67,7 +70,10 @@ public class CreditCardView extends RelativeLayout {
         final LayoutInflater inflater = LayoutInflater.from(mContext);
         inflater.inflate(R.layout.credit_card_view, this, true);
 
-        mCardNumberView = findViewById(R.id.et_card_number);
+        mCardNumberView1 = findViewById(R.id.et_card_number_1);
+        mCardNumberView2 = findViewById(R.id.et_card_number_2);
+        mCardNumberView3 = findViewById(R.id.et_card_number_3);
+        mCardNumberView4 = findViewById(R.id.et_card_number_4);
         mCardNameView = findViewById(R.id.et_card_name);
         mExpiryDateLabel = findViewById(R.id.tv_expiration_label);
         mExpiryDateView = findViewById(R.id.et_expiry_date);
@@ -100,7 +106,12 @@ public class CreditCardView extends RelativeLayout {
     }
 
     public void setCardNumber(String cardNumber) {
-        mCardNumberView.setText(cardNumber);
+        if (cardNumber!=null && cardNumber.length() > 12) {
+            mCardNumberView1.setText(cardNumber.substring(0,4));
+            mCardNumberView2.setText(cardNumber.substring(4,8));
+            mCardNumberView3.setText(cardNumber.substring(8,12));
+            mCardNumberView4.setText(cardNumber.substring(12,cardNumber.length()));
+        }
     }
 
     public void setCardName(String cardName) {
@@ -137,19 +148,25 @@ public class CreditCardView extends RelativeLayout {
     }
 
     public EditText getCardNumberView() {
-        return mCardNumberView;
+        return mCardNumberView1;
     }
 
     private void setFonts() {
         Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/ocraextended.ttf");
-        mCardNumberView.setTypeface(typeface);
+        mCardNumberView1.setTypeface(typeface);
+        mCardNumberView2.setTypeface(typeface);
+        mCardNumberView3.setTypeface(typeface);
+        mCardNumberView4.setTypeface(typeface);
         mCardNameView.setTypeface(typeface);
         mExpiryDateView.setTypeface(typeface);
         mCvvView.setTypeface(typeface);
     }
 
     private void enableCard() {
-        mCardNumberView.setTextColor(mCardNumberTextColor);
+        mCardNumberView1.setTextColor(mCardNumberTextColor);
+        mCardNumberView2.setTextColor(mCardNumberTextColor);
+        mCardNumberView3.setTextColor(mCardNumberTextColor);
+        mCardNumberView4.setTextColor(mCardNumberTextColor);
         mCardNameView.setTextColor(mCardNameTextColor);
         mExpiryDateView.setTextColor(mExpiryDateTextColor);
         mExpiryDateLabel.setTextColor(mExpiryDateLabelTextColor);
