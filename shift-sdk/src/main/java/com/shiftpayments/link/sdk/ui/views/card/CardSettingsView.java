@@ -53,6 +53,14 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     private TextView mContactSupportButton;
     private SwitchCompat mShowCardInfoSwitch;
     private SwitchCompat mEnableCardSwitch;
+    private TextView mFaqLabel;
+    private TextView mFaqButton;
+    private TextView mCardholderAgreementLabel;
+    private TextView mCardholderAgreementButton;
+    private TextView mTermsAndConditionsLabel;
+    private TextView mTermsAndConditionsButton;
+    private TextView mPrivacyPolicyLabel;
+    private TextView mPrivacyPolicyButton;
     private LoadingView mLoadingView;
 
     @Override
@@ -99,6 +107,10 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         void contactSupportClickHandler();
         void showCardInfoClickHandler(boolean show);
         void disableCardClickHandler(boolean disable);
+        void faqClickHandler();
+        void cardholderAgreementClickHandler();
+        void termsAndConditionsClickHandler();
+        void privacyPolicyClickHandler();
         void onClose();
     }
 
@@ -140,10 +152,18 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
             mListener.addFundingSource();
         } else if (id == R.id.toolbar) {
             mListener.onClose();
-        } else if (view.getId() == R.id.tv_change_pin) {
+        } else if (id == R.id.tv_change_pin) {
             mListener.changePinClickHandler();
-        } else if (view.getId() == R.id.tv_report_stolen_card) {
+        } else if (id == R.id.tv_report_stolen_card) {
             mListener.contactSupportClickHandler();
+        } else if (id == R.id.tv_cardholder_agreement || id == R.id.tv_cardholder_agreement_description) {
+            mListener.cardholderAgreementClickHandler();
+        } else if (id == R.id.tv_terms_and_conditions || id == R.id.tv_terms_and_conditions_description) {
+            mListener.termsAndConditionsClickHandler();
+        } else if (id == R.id.tv_privacy_policy || id == R.id.tv_privacy_policy_description) {
+            mListener.privacyPolicyClickHandler();
+        } else if (id == R.id.tv_faq || id == R.id.tv_faq_description) {
+            mListener.faqClickHandler();
         }
     }
 
@@ -198,6 +218,50 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mEnableCardSwitch.setChecked(enable);
     }
 
+    public void showFaq(boolean show) {
+        if(show) {
+            mFaqButton.setVisibility(VISIBLE);
+            mFaqLabel.setVisibility(VISIBLE);
+        }
+        else {
+            mFaqButton.setVisibility(GONE);
+            mFaqLabel.setVisibility(GONE);
+        }
+    }
+
+    public void showCardholderAgreement(boolean show) {
+        if(show) {
+            mCardholderAgreementLabel.setVisibility(VISIBLE);
+            mCardholderAgreementButton.setVisibility(VISIBLE);
+        }
+        else {
+            mCardholderAgreementLabel.setVisibility(GONE);
+            mCardholderAgreementButton.setVisibility(GONE);
+        }
+    }
+
+    public void showTermsAndConditions(boolean show) {
+        if(show) {
+            mTermsAndConditionsLabel.setVisibility(VISIBLE);
+            mTermsAndConditionsButton.setVisibility(VISIBLE);
+        }
+        else {
+            mTermsAndConditionsLabel.setVisibility(GONE);
+            mTermsAndConditionsButton.setVisibility(GONE);
+        }
+    }
+
+    public void showPrivacyPolicy(boolean show) {
+        if(show) {
+            mPrivacyPolicyLabel.setVisibility(VISIBLE);
+            mPrivacyPolicyButton.setVisibility(VISIBLE);
+        }
+        else {
+            mPrivacyPolicyLabel.setVisibility(GONE);
+            mPrivacyPolicyButton.setVisibility(GONE);
+        }
+    }
+
     private void setupListeners() {
         mAddFundingSourceButton.setOnClickListener(this);
         mAddFundingSourceLabel.setOnClickListener(this);
@@ -207,6 +271,14 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mShowCardInfoSwitch.setOnTouchListener(this);
         mEnableCardSwitch.setOnCheckedChangeListener(this);
         mEnableCardSwitch.setOnTouchListener(this);
+        mCardholderAgreementLabel.setOnClickListener(this);
+        mCardholderAgreementButton.setOnClickListener(this);
+        mTermsAndConditionsLabel.setOnClickListener(this);
+        mTermsAndConditionsButton.setOnClickListener(this);
+        mPrivacyPolicyLabel.setOnClickListener(this);
+        mPrivacyPolicyButton.setOnClickListener(this);
+        mFaqLabel.setOnClickListener(this);
+        mFaqButton.setOnClickListener(this);
     }
 
     /**
@@ -224,6 +296,14 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mContactSupportButton = findViewById(R.id.tv_report_stolen_card);
         mShowCardInfoSwitch = findViewById(R.id.sw_show_card_info);
         mEnableCardSwitch = findViewById(R.id.sw_enable_card);
+        mFaqLabel = findViewById(R.id.tv_faq);
+        mFaqButton = findViewById(R.id.tv_faq_description);
+        mCardholderAgreementLabel = findViewById(R.id.tv_cardholder_agreement);
+        mCardholderAgreementButton = findViewById(R.id.tv_cardholder_agreement_description);
+        mTermsAndConditionsLabel = findViewById(R.id.tv_terms_and_conditions);
+        mTermsAndConditionsButton = findViewById(R.id.tv_terms_and_conditions_description);
+        mPrivacyPolicyLabel = findViewById(R.id.tv_privacy_policy);
+        mPrivacyPolicyButton = findViewById(R.id.tv_privacy_policy_description);
         mLoadingView = findViewById(R.id.rl_loading_overlay);
     }
 

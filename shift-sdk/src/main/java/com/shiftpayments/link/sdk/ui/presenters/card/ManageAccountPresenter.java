@@ -1,7 +1,5 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -9,7 +7,6 @@ import android.text.style.ForegroundColorSpan;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
-import com.shiftpayments.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
 import com.shiftpayments.link.sdk.ui.models.card.ManageAccountModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
@@ -25,7 +22,6 @@ public class ManageAccountPresenter
         extends BasePresenter<ManageAccountModel, ManageAccountView>
         implements Presenter<ManageAccountModel, ManageAccountView>, ManageAccountView.ViewListener {
 
-    private FundingSourcesListRecyclerAdapter mAdapter;
     private ManageAccountActivity mActivity;
     private ManageAccountDelegate mDelegate;
 
@@ -93,13 +89,6 @@ public class ManageAccountPresenter
     @Override
     public void contactSupport() {
         new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
-    }
-
-    @Override
-    public void faqClickHandler() {
-        // TODO: URL should be read from config
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.shiftpayments.com/faq"));
-        mActivity.startActivity(browserIntent);
     }
 
     @Override

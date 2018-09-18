@@ -29,8 +29,6 @@ public class ManageAccountView
     private ImageView mSignOutIcon;
     private TextView mContactSupportButton;
     private ImageView mContactSupportIcon;
-    private TextView mFaqButton;
-    private ImageView mFaqIcon;
 
     public ManageAccountView(Context context) {
         this(context, null);
@@ -51,8 +49,6 @@ public class ManageAccountView
             mListener.signOut();
         } else if (id == R.id.tv_contact_support || id == R.id.iv_help_center_icon) {
             mListener.contactSupport();
-        } else if (id == R.id.tv_faq || id == R.id.iv_faq_icon) {
-            mListener.faqClickHandler();
         }else if (id == R.id.toolbar) {
             mListener.onBack();
         }
@@ -84,7 +80,6 @@ public class ManageAccountView
     public interface ViewListener {
         void signOut();
         void contactSupport();
-        void faqClickHandler();
         void onBack();
     }
 
@@ -94,8 +89,6 @@ public class ManageAccountView
         mSignOutIcon = findViewById(R.id.iv_sign_out_icon);
         mContactSupportButton = findViewById(R.id.tv_contact_support);
         mContactSupportIcon = findViewById(R.id.iv_help_center_icon);
-        mFaqButton = findViewById(R.id.tv_faq);
-        mFaqIcon = findViewById(R.id.iv_faq_icon);
     }
 
     private void setUpListeners() {
@@ -104,8 +97,6 @@ public class ManageAccountView
         mSignOutIcon.setOnClickListener(this);
         mContactSupportButton.setOnClickListener(this);
         mContactSupportIcon.setOnClickListener(this);
-        mFaqButton.setOnClickListener(this);
-        mFaqIcon.setOnClickListener(this);
     }
 
     private void setColors() {
@@ -114,6 +105,5 @@ public class ManageAccountView
         mToolbar.setNavigationIcon(backArrow);
         Integer primaryColor = UIStorage.getInstance().getUiPrimaryColor();
         mContactSupportIcon.setColorFilter(primaryColor);
-        mFaqIcon.setColorFilter(primaryColor);
     }
 }
