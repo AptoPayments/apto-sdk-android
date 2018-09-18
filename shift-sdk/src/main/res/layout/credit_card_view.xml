@@ -6,21 +6,101 @@
     android:layout_height="match_parent"
     android:background="@android:drawable/dialog_holo_light_frame">
 
-    <EditText
-        android:id="@+id/et_card_number"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_card_number"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/et_card_name"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/llsdk_card_number_margin"
         android:layout_marginLeft="@dimen/llsdk_card_common_margin"
         android:layout_marginRight="@dimen/llsdk_card_common_margin"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:inputType="none"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:textSize="@dimen/llsdk_card_number_text_size" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_card_number_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:background="@android:color/transparent"
+            android:inputType="textNoSuggestions"
+            android:maxLines="1"
+            android:textSize="@dimen/llsdk_card_number_text_size" />
+
+        <EditText
+            android:id="@+id/et_card_number_space_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:background="@android:color/transparent"
+            android:inputType="textNoSuggestions"
+            android:textSize="@dimen/llsdk_card_number_text_size" />
+
+        <EditText
+            android:id="@+id/et_card_number_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:background="@android:color/transparent"
+            android:inputType="textNoSuggestions"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textSize="@dimen/llsdk_card_number_text_size" />
+
+        <EditText
+            android:id="@+id/et_card_number_space_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:background="@android:color/transparent"
+            android:inputType="textNoSuggestions"
+            android:textSize="@dimen/llsdk_card_number_text_size" />
+
+        <EditText
+            android:id="@+id/et_card_number_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:inputType="textNoSuggestions"
+            android:maxLines="1"
+            android:textSize="@dimen/llsdk_card_number_text_size" />
+
+        <EditText
+            android:id="@+id/et_card_number_space_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:background="@android:color/transparent"
+            android:inputType="textNoSuggestions"
+            android:textSize="@dimen/llsdk_card_number_text_size" />
+
+        <EditText
+            android:id="@+id/et_card_number_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:gravity="right"
+            android:background="@android:color/transparent"
+            android:inputType="textNoSuggestions"
+            android:maxLines="1"
+            android:textSize="@dimen/llsdk_card_number_text_size" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_expiration_label"
