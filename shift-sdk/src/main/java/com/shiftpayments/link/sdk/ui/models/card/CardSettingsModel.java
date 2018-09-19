@@ -54,6 +54,7 @@ public class CardSettingsModel implements Model {
         for(BalanceModel fundingSource : fundingSources) {
             if(fundingSource.getBalanceId().equals(id)) {
                 mSelectedBalance = fundingSource;
+                CardStorage.getInstance().setBalanceId(id);
             }
         }
     }

@@ -8,13 +8,11 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.BalanceDataVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
@@ -84,6 +82,13 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     @Override
+    public void onTokensRetrieved(String accessToken, String refreshToken) {
+        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.addUserBalance(new BalanceDataVo("coinbase", accessToken, refreshToken));
+        startManageCardScreen();
+    }
+
+    @Override
     public void onSignOut() {
         ShiftPlatform.clearUserToken(getActivity());
         showHomeActivity();
@@ -142,27 +147,6 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         }
         else {
             handleUserData(dataPointList);
-        }
-    }
-
-    @Override
-    public void onTokensRetrieved(String accessToken, String refreshToken) {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
-        OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(accessToken, refreshToken);
-        SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
-        // TODO: Application ID not available when doing login
-        ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
-    }
-
-    @Subscribe
-    public void handleResponse(SetBalanceStoreResponseVo response) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        if(response.result.equals("valid")) {
-            startManageCardScreen();
-        }
-        else {
-            startCustodianModule(this::startManageCardScreen,this::startManageCardScreen);
-            ApiErrorUtil.showAlertDialog(response.errorCode);
         }
     }
 

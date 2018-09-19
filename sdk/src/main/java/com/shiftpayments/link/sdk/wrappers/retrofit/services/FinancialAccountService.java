@@ -140,5 +140,5 @@ public interface FinancialAccountService {
      * @return API call to execute.
      */
     @POST(ShiftApiWrapper.USER_BALANCES_PATH)
-    Call<BalanceVo> addBalanceStore(AddBalanceRequestVo request);
+    Call<BalanceVo> addBalanceStore(@Body AddBalanceRequestVo request);
 }

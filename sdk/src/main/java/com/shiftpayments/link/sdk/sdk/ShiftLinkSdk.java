@@ -14,9 +14,11 @@ import com.shiftpayments.link.sdk.api.vos.requests.config.GetCardConfigRequestVo
 import com.shiftpayments.link.sdk.api.vos.requests.config.GetLinkConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.config.GetProjectConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivateFinancialAccountRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBalanceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.BalanceDataVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.DisableFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.EnableFinancialAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.GetFinancialAccountFundingSourceRequestVo;
@@ -487,6 +489,16 @@ public class ShiftLinkSdk {
         GetCardApplicationStatusRequestVo request = new GetCardApplicationStatusRequestVo(applicationId);
         executeOrEnqueueRequest(request);
     }
+
+    /**
+     * Adds a new balance
+     * @param request The oAuth tokens
+     */
+    public static void addUserBalance(BalanceDataVo data) {
+        checkComponents();
+        executeOrEnqueueRequest(new AddBalanceRequestVo(data));
+    }
+
 
     /**
      * Sets the balance store data
