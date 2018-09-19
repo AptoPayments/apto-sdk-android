@@ -25,6 +25,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.CreateCardApplicationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBalanceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
@@ -1049,6 +1050,19 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         BalanceListVo result;
         try {
             Response<BalanceListVo> response = mFinancialAccountService.getUserFundingSources().execute();
+            result = handleResponse(response, ShiftApiWrapper.USER_BALANCES_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.USER_BALANCES_PATH, ioe);
+        }
+        return result;
+    }
+
+    @Override
+    public BalanceVo addUserBalance(AddBalanceRequestVo requestData) throws ApiException {
+        BalanceVo result;
+        try {
+            Response<BalanceVo> response = mFinancialAccountService.addBalanceStore(requestData).execute();
             result = handleResponse(response, ShiftApiWrapper.USER_BALANCES_PATH);
         } catch (IOException ioe) {
             result = null;

@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBalanceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
@@ -462,6 +463,13 @@ public interface ShiftApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     BalanceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException;
+
+    /**
+     * @param requestData Mandatory request data.
+     * @return The newly added balance
+     * @throws ApiException When there is an error making the request.
+     */
+    BalanceVo addUserBalance(AddBalanceRequestVo requestData) throws ApiException;
 
     /**
      * @param accountId The financial account ID.

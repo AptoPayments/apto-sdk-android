@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.wrappers.retrofit.services;
 import com.google.gson.JsonObject;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBalanceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
@@ -133,4 +134,11 @@ public interface FinancialAccountService {
      */
     @POST(ShiftApiWrapper.SET_BALANCE_STORE_PATH)
     Call<SetBalanceStoreResponseVo> setBalanceStore(@Path("application_id") String applicationId, @Body SetBalanceStoreRequestVo request);
+
+    /** Creates a {@link Call} to add a new balance
+     * @param request Mandatory request data.
+     * @return API call to execute.
+     */
+    @POST(ShiftApiWrapper.USER_BALANCES_PATH)
+    Call<BalanceVo> addBalanceStore(AddBalanceRequestVo request);
 }
