@@ -29,7 +29,7 @@ public class ManageCardActivity extends FragmentMvpActivity {
     protected void onPostResume() {
         super.onPostResume();
         ((ManageCardPresenter)mPresenter).subscribeToEvents(true);
-        ((ManageCardPresenter)mPresenter).refreshCard();
+        ((ManageCardPresenter)mPresenter).refreshView();
     }
 
     @Override

@@ -228,9 +228,10 @@ public class CardSettingsPresenter
     }
 
     @Subscribe
-    public void handleResponse(BalanceVo response) {
+    public void handleResponse(BalanceVo balance) {
         mResponseHandler.unsubscribe(this);
-        mModel.setSelectedBalance(response.id);
+        CardStorage.getInstance().setBalance(balance);
+        mModel.setSelectedBalance(balance.id);
         mAdapter.updateList(mModel.getBalances());
         mLoadingSpinnerManager.showLoading(false);
         Toast.makeText(mActivity, R.string.account_management_funding_source_changed, Toast.LENGTH_SHORT).show();
