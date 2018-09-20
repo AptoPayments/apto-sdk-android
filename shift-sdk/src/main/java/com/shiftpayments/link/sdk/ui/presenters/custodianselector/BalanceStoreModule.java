@@ -5,7 +5,7 @@ import android.app.Activity;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
@@ -41,7 +41,7 @@ public class BalanceStoreModule extends ShiftBaseModule implements CustodianSele
 
     @Override
     public void onTokensRetrieved(String accessToken, String refreshToken) {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(accessToken, refreshToken);
         SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
         ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
@@ -49,7 +49,7 @@ public class BalanceStoreModule extends ShiftBaseModule implements CustodianSele
 
     @Subscribe
     public void handleResponse(SetBalanceStoreResponseVo response) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         if(response.result.equals("valid")) {
             onFinish.execute();
         }

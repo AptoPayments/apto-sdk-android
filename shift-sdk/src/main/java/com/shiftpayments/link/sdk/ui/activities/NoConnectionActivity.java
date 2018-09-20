@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.api.vos.responses.ConnectionEstablishedVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.views.NoConnectionView;
 
@@ -27,13 +27,13 @@ public class NoConnectionActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
     }
     /**
      * Called when the connection has been reestablished

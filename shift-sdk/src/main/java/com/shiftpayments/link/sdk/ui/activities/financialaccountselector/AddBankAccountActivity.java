@@ -22,7 +22,7 @@ import com.shiftpayments.link.sdk.ui.views.financialaccountselector.AddBankAccou
 
 import java.util.HashMap;
 
-import static com.shiftpayments.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
+import static com.shiftpayments.link.sdk.sdk.ShiftSdk.getApiWrapper;
 
 /**
  * Wires up the MVP pattern for the plaid webview.

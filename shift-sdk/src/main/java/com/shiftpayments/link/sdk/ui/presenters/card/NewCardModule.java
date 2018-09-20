@@ -10,7 +10,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CollectUserDataActionConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
@@ -48,7 +48,7 @@ public class NewCardModule extends WorkflowModule {
 
     @Override
     public void initialModuleSetup() {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.createCardApplication(ConfigStorage.getInstance().getCardConfig().cardProduct.id);
     }
 
@@ -64,7 +64,7 @@ public class NewCardModule extends WorkflowModule {
      */
     @Subscribe
     public void handleApplication(CardApplicationResponseVo application) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         ApplicationVo cardApplication = new ApplicationVo(application.id, application.nextAction, application.workflowObjectId);
         CardStorage.getInstance().setApplication(cardApplication);
         mWorkFlowObject = cardApplication;
@@ -77,7 +77,7 @@ public class NewCardModule extends WorkflowModule {
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         super.showError(error);
     }
 

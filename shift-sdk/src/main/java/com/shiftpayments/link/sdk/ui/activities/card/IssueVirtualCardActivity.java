@@ -8,7 +8,7 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.BaseActivity;
@@ -52,7 +52,7 @@ public class IssueVirtualCardActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         IssueVirtualCardRequestVo virtualCardRequestVo = new IssueVirtualCardRequestVo();
         virtualCardRequestVo.applicationId = CardStorage.getInstance().getApplication().applicationId;
         ShiftPlatform.issueVirtualCard(virtualCardRequestVo);
@@ -60,7 +60,7 @@ public class IssueVirtualCardActivity extends BaseActivity {
 
     @Subscribe
     public void handleVirtualCard(Card card) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         mView.showLoading(false);
 
         if (card != null) {
@@ -80,7 +80,7 @@ public class IssueVirtualCardActivity extends BaseActivity {
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         mView.showLoading(false);
         if(error.statusCode==500) {
             this.startActivity(new Intent(this, IssueCardErrorActivity.class));

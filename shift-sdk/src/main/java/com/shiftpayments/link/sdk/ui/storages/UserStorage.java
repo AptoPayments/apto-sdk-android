@@ -11,7 +11,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.CreditScoreVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.HousingTypeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.IncomeTypeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 
 /**
  * Stores user related data.
@@ -154,7 +154,7 @@ public class UserStorage {
 
     private void registerFirebaseToken() {
         if(isValid(mBearerToken) && isValid(mFirebaseToken)) {
-            ShiftLinkSdk.registerPushNotificationToken(mFirebaseToken);
+            ShiftSdk.registerPushNotificationToken(mFirebaseToken);
         }
     }
 

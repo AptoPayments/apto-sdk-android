@@ -7,7 +7,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.Application
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.fundingaccountselector.DisplayCardActivity;
 import com.shiftpayments.link.sdk.ui.activities.fundingaccountselector.EnableAutoPayActivity;
@@ -109,7 +109,7 @@ public class FundingAccountSelectorModule extends ShiftBaseModule
         request.accountType = LoanApplicationAccountType.FUNDING;
         request.applicationId = LoanStorage.getInstance().getCurrentLoanApplication().id;
 
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.setApplicationAccount(request);
         showLoading(true);
     }
@@ -120,7 +120,7 @@ public class FundingAccountSelectorModule extends ShiftBaseModule
      */
     @Subscribe
     public void handleResponse(LoanApplicationDetailsResponseVo response) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
         showEnableAutoPayScreen();
     }
@@ -131,7 +131,7 @@ public class FundingAccountSelectorModule extends ShiftBaseModule
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
         ApiErrorUtil.showErrorMessage(error, getActivity());
     }

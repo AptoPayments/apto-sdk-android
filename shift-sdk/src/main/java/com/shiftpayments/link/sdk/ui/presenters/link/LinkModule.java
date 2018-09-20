@@ -14,7 +14,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
@@ -64,7 +64,7 @@ public class LinkModule extends ShiftBaseModule {
      */
     @Subscribe
     public void handleResponse(LoanApplicationsSummaryListResponseVo applicationsList) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         if(applicationsList.total_count == 0) {
             showLoanInfo();
         }
@@ -76,7 +76,7 @@ public class LinkModule extends ShiftBaseModule {
 
     @Subscribe
     public void handleUserData(DataPointList userData) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         UserStorage.getInstance().setUserData(userData);
         getOpenApplications();
     }
@@ -142,7 +142,7 @@ public class LinkModule extends ShiftBaseModule {
     }
 
     private void startUserDataCollectorModule() {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity(), this::showOffersList, this::showWelcomeScreenOrBack);
         ConfigStorage.getInstance().setUserDataCollectorConfig(getConfigForLink());
         startModule(userDataCollectorModule);
@@ -211,12 +211,12 @@ public class LinkModule extends ShiftBaseModule {
     }
 
     private void getUserInfo() {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.getCurrentUser(true);
     }
 
     private void getOpenApplications() {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.getPendingLoanApplicationsList(new ListRequestVo());
     }
 }

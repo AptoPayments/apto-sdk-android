@@ -9,7 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAcco
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationStatusResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.financialaccountselector.AddBankAccountActivity;
 import com.shiftpayments.link.sdk.ui.activities.financialaccountselector.AddCardActivity;
@@ -77,7 +77,7 @@ public class FinancialAccountSelectorModule extends ShiftBaseModule
 
     @Override
     public void cardAdded(Card card) {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.addCard(card);
         showLoading(true);
     }
@@ -94,7 +94,7 @@ public class FinancialAccountSelectorModule extends ShiftBaseModule
 
     @Override
     public void bankAccountLinked(String token) {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         AddBankAccountRequestVo request = new AddBankAccountRequestVo();
         request.publicToken = token;
         ShiftPlatform.addBankAccount(request);
@@ -145,7 +145,7 @@ public class FinancialAccountSelectorModule extends ShiftBaseModule
      */
     @Subscribe
     public void handleResponse(Card card) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
         onFinancialAccountSelected(card.mAccountId);
     }
@@ -156,7 +156,7 @@ public class FinancialAccountSelectorModule extends ShiftBaseModule
      */
     @Subscribe
     public void handleResponse(VerificationStatusResponseVo verification) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
         startActivity(IntermediateFinancialAccountListActivity.class);
     }
@@ -167,7 +167,7 @@ public class FinancialAccountSelectorModule extends ShiftBaseModule
      */
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         showLoading(false);
         super.handleSessionExpiredError(error);
     }

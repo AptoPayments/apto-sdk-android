@@ -54,14 +54,14 @@ import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import java.util.concurrent.Executor;
 
 /**
- * Shift Link SDK.<br />
+ * Shift SDK.<br />
  * <br />
  * Make sure to call {@link #setApiWrapper(ShiftApiWrapper)} and {@link #setResponseHandler(ApiResponseHandler)} before
  * making any API requests.
  *
  * @author Wijnand
  */
-public class ShiftLinkSdk {
+public class ShiftSdk {
 
     private static ShiftApiWrapper mApiWrapper;
     private static Executor mExecutor;

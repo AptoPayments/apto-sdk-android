@@ -7,7 +7,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.users.AcceptDisclaimerRequest
 import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.DisclaimerUtil;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
@@ -36,7 +36,7 @@ public class DisclaimerActivity extends DisplayContentActivity {
     @Override
     public void acceptClickHandler() {
         AcceptDisclaimerRequestVo request = new AcceptDisclaimerRequestVo(DisclaimerUtil.workflowId, DisclaimerUtil.actionId);
-        ShiftLinkSdk.acceptDisclaimer(request);
+        ShiftSdk.acceptDisclaimer(request);
     }
 
     @Override
