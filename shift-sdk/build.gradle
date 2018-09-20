@@ -135,7 +135,6 @@ dependencies {
         exclude module: 'appcompat-v7'
     }
     compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'com.github.dbachelder:CreditCardEntry:1.4.7'
     compile 'com.github.vinaygaba:creditcardview:v1.0.3'
     compile 'io.card:android-sdk:5.4.1'
     compile 'com.github.verygoodsecurity:vgs-android-sdk:e6372c5002'

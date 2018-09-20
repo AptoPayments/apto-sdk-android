@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.devmarvel.creditcardentry.library.CreditCard;
-import com.devmarvel.creditcardentry.library.CreditCardForm;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.KeyboardUtil;
@@ -41,7 +39,6 @@ public class AddCardView
 
     private TextView mAddCardButton;
     private TextView mScanCardButton;
-    private CreditCardForm mCreditCardForm;
     private CreditCardView mCreditCardView;
     private Toolbar mToolbar;
     private AddCardView.ViewListener mListener;
@@ -98,35 +95,41 @@ public class AddCardView
     }
 
     public boolean isCreditCardInputValid() {
-        return mCreditCardForm.isCreditCardValid();
+        // TODO
+        return true;
     }
 
     public String getCardNumber() {
-        return mCreditCardForm.getCreditCard().getCardNumber();
+        // TODO
+        return "";
     }
 
     public String getSecurityCode() {
-        return mCreditCardForm.getCreditCard().getSecurityCode();
+        // TODO
+        return "";
     }
 
     public String getCardNetwork() {
-        return mCreditCardForm.getCreditCard().getCardType().name();
+        // TODO
+        return "";
     }
 
     public String getLastFourDigits() {
-        String cardNumber = mCreditCardForm.getCreditCard().getCardNumber();
-        return cardNumber.substring(cardNumber.length() - 4);
+        // TODO
+        /*String cardNumber = mCreditCardForm.getCreditCard().getCardNumber();
+        return cardNumber.substring(cardNumber.length() - 4);*/
+        return "";
     }
 
     public String getExpirationDate() {
-        return mCreditCardForm.getCreditCard().getExpDate();
+        // TODO
+        return "";
     }
 
     private void findAllViews() {
         mAddCardButton = findViewById(R.id.tv_add_bttn);
         mScanCardButton = findViewById(R.id.tv_scan_bttn);
         mToolbar = findViewById(R.id.tb_llsdk_toolbar);
-        mCreditCardForm = findViewById(R.id.credit_card_form);
         mCreditCardView = findViewById(R.id.credit_card_view);
     }
 
@@ -137,17 +140,6 @@ public class AddCardView
         if (mScanCardButton != null) {
             mScanCardButton.setOnClickListener(this);
         }
-
-        mCreditCardForm.setOnCardValidCallback(creditCard -> {
-            updateCreditCardView(creditCard);
-            KeyboardUtil.hideKeyboard(AddCardView.super.getContext());
-        });
-    }
-
-    private void updateCreditCardView(CreditCard creditCard) {
-        mCreditCardView.setCardNumber(creditCard.getCardNumber());
-        mCreditCardView.setExpiryDate(creditCard.getExpDate());
-        mCreditCardView.setType(creditCard.getCardType().ordinal());
     }
 
     private void setColors() {

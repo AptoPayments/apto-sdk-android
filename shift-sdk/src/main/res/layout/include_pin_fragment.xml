@@ -3,6 +3,6 @@
     android:id="@+id/pin_fragment"
     android:visibility="gone"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:background="@drawable/background_white"
+    android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
