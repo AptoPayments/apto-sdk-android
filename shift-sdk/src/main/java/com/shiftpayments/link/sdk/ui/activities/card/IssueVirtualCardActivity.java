@@ -8,12 +8,11 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.BaseActivity;
 import com.shiftpayments.link.sdk.ui.activities.IssueCardErrorActivity;
-import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
 import com.shiftpayments.link.sdk.ui.presenters.card.IssueVirtualCardDelegate;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
@@ -53,20 +52,15 @@ public class IssueVirtualCardActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         IssueVirtualCardRequestVo virtualCardRequestVo = new IssueVirtualCardRequestVo();
         virtualCardRequestVo.applicationId = CardStorage.getInstance().getApplication().applicationId;
         ShiftPlatform.issueVirtualCard(virtualCardRequestVo);
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-    }
-
     @Subscribe
     public void handleVirtualCard(Card card) {
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         mView.showLoading(false);
 
         if (card != null) {
@@ -75,7 +69,7 @@ public class IssueVirtualCardActivity extends BaseActivity {
                 mDelegate.onCardIssued();
             }
             else {
-                startKycStatusActivity(card.kycStatus.toString(), card.kycReason != null ? card.kycReason[0] : null);
+                mDelegate.onKycNotPassed();
             }
         }
     }
@@ -86,6 +80,7 @@ public class IssueVirtualCardActivity extends BaseActivity {
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         mView.showLoading(false);
         if(error.statusCode==500) {
             this.startActivity(new Intent(this, IssueCardErrorActivity.class));
@@ -102,14 +97,5 @@ public class IssueVirtualCardActivity extends BaseActivity {
                 mDelegate.onCardIssued();
             }
         }
-    }
-
-    private void startKycStatusActivity(String kycStatus, String kycReason) {
-        Intent intent = new Intent(this, KycStatusActivity.class);
-        intent.putExtra(EXTRA_KYC_STATUS, kycStatus);
-        if(kycReason != null) {
-            intent.putExtra(EXTRA_KYC_REASON, kycReason);
-        }
-        this.startActivityForResult(intent, KYC_STATUS_INTENT);
     }
 }

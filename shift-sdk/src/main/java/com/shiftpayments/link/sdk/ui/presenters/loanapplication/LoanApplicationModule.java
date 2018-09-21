@@ -7,7 +7,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicat
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationsSummaryListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
@@ -37,7 +37,7 @@ import java.util.concurrent.ExecutionException;
 import java8.util.concurrent.CompletableFuture;
 import java8.util.concurrent.CompletionException;
 
-import static com.shiftpayments.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
+import static com.shiftpayments.link.sdk.sdk.ShiftSdk.getApiWrapper;
 
 /**
  * Created by adrian on 29/12/2016.
@@ -104,7 +104,7 @@ public class LoanApplicationModule extends ShiftBaseModule
     }
 
     public void onUpdateUserProfile() {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         UserDataCollectorModule userDataCollectorModule = UserDataCollectorModule.getInstance(this.getActivity(), this.onBack, this.onBack);
         UserDataCollectorConfigurationVo config = new UserDataCollectorConfigurationVo(getActivity().getString(R.string.id_verification_update_profile_title), new CallToActionVo(getActivity().getString(R.string.id_verification_update_profile_button)));
         ConfigStorage.getInstance().setUserDataCollectorConfig(config);

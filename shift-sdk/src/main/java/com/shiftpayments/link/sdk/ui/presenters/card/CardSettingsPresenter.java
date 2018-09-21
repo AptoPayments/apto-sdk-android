@@ -12,17 +12,19 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceListVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
+import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.card.CardSettingsActivity;
 import com.shiftpayments.link.sdk.ui.adapters.fundingsources.FundingSourcesListRecyclerAdapter;
+import com.shiftpayments.link.sdk.ui.models.card.BalanceModel;
 import com.shiftpayments.link.sdk.ui.models.card.CardSettingsModel;
-import com.shiftpayments.link.sdk.ui.models.card.FundingSourceModel;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
@@ -33,6 +35,7 @@ import com.shiftpayments.link.sdk.ui.utils.FingerprintDelegate;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintHandler;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.utils.SendEmailUtil;
+import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.card.CardSettingsView;
 import com.shiftpayments.link.sdk.ui.views.card.FundingSourceView;
 import com.venmo.android.pin.PinFragmentConfiguration;
@@ -41,6 +44,8 @@ import com.venmo.android.pin.PinSupportFragment;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
+
+import static com.shiftpayments.link.sdk.ui.activities.DisplayContentActivity.getDisplayContentIntent;
 
 /**
  * Concrete {@link Presenter} for the card settings screen.
@@ -82,9 +87,13 @@ public class CardSettingsPresenter
         mView.showAddFundingSourceButton(UIStorage.getInstance().showAddFundingSourceButton());
         mView.setShowCardInfoSwitch(CardStorage.getInstance().showCardInfo);
         mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
+        mView.showFaq(ConfigStorage.getInstance().getCardConfig().cardProduct.faq != null);
+        mView.showCardholderAgreement(ConfigStorage.getInstance().getCardConfig().cardProduct.cardholderAgreement != null);
+        mView.showTermsAndConditions(ConfigStorage.getInstance().getCardConfig().cardProduct.termsOfService != null);
+        mView.showPrivacyPolicy(ConfigStorage.getInstance().getCardConfig().cardProduct.privacyPolicy != null);
         mResponseHandler.subscribe(this);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
-        mLoadingSpinnerManager.showLoading(true);
+        mLoadingSpinnerManager.showLoading(true, LoadingView.Position.TOP, false);
         ShiftPlatform.getUserFundingSources();
     }
 
@@ -94,15 +103,15 @@ public class CardSettingsPresenter
     }
 
     @Override
-    public void fundingSourceClickHandler(FundingSourceModel selectedFundingSource) {
-        mLoadingSpinnerManager.showLoading(true);
-        List<FundingSourceModel> fundingSources = mModel.getFundingSources().getList();
-        for(FundingSourceModel fundingSource : fundingSources) {
-            fundingSource.setIsSelected(fundingSource.equals(selectedFundingSource));
+    public void balanceClickHandler(BalanceModel selectedBalance) {
+        mLoadingSpinnerManager.showLoading(true, LoadingView.Position.TOP, false);
+        List<BalanceModel> balances = mModel.getBalances().getList();
+        for(BalanceModel balance : balances) {
+            balance.setIsSelected(balance.equals(selectedBalance));
         }
-        mAdapter.updateList(mModel.getFundingSources());
+        mAdapter.updateList(mModel.getBalances());
         mResponseHandler.subscribe(this);
-        ShiftPlatform.setAccountFundingSource(CardStorage.getInstance().getCard().mAccountId, selectedFundingSource.getFundingSourceId());
+        ShiftPlatform.setAccountFundingSource(CardStorage.getInstance().getCard().mAccountId, selectedBalance.getBalanceId());
     }
 
 
@@ -166,6 +175,30 @@ public class CardSettingsPresenter
     }
 
     @Override
+    public void faqClickHandler() {
+        ContentVo content = ConfigStorage.getInstance().getCardConfig().cardProduct.faq;
+        mActivity.startActivity(getDisplayContentIntent(mActivity, content));
+    }
+
+    @Override
+    public void cardholderAgreementClickHandler() {
+        ContentVo content = ConfigStorage.getInstance().getCardConfig().cardProduct.cardholderAgreement;
+        mActivity.startActivity(getDisplayContentIntent(mActivity, content));
+    }
+
+    @Override
+    public void termsAndConditionsClickHandler() {
+        ContentVo content = ConfigStorage.getInstance().getCardConfig().cardProduct.termsOfService;
+        mActivity.startActivity(getDisplayContentIntent(mActivity, content));
+    }
+
+    @Override
+    public void privacyPolicyClickHandler() {
+        ContentVo content = ConfigStorage.getInstance().getCardConfig().cardProduct.privacyPolicy;
+        mActivity.startActivity(getDisplayContentIntent(mActivity, content));
+    }
+
+    @Override
     public void onUserAuthenticated() {
         mIsUserAuthenticated = true;
         CardStorage.getInstance().showCardInfo = true;
@@ -186,19 +219,20 @@ public class CardSettingsPresenter
     }
 
     @Subscribe
-    public void handleResponse(FundingSourceListVo response) {
+    public void handleResponse(BalanceListVo response) {
         mResponseHandler.unsubscribe(this);
-        mModel.addFundingSources(response.data);
+        mModel.addBalances(response.data);
         mView.showFundingSourceLabel(true);
-        mAdapter.updateList(mModel.getFundingSources());
+        mAdapter.updateList(mModel.getBalances());
         mLoadingSpinnerManager.showLoading(false);
     }
 
     @Subscribe
-    public void handleResponse(FundingSourceVo response) {
+    public void handleResponse(BalanceVo balance) {
         mResponseHandler.unsubscribe(this);
-        mModel.setSelectedFundingSource(response.id);
-        mAdapter.updateList(mModel.getFundingSources());
+        CardStorage.getInstance().setBalance(balance);
+        mModel.setSelectedBalance(balance.id);
+        mAdapter.updateList(mModel.getBalances());
         mLoadingSpinnerManager.showLoading(false);
         Toast.makeText(mActivity, R.string.account_management_funding_source_changed, Toast.LENGTH_SHORT).show();
     }
@@ -247,7 +281,7 @@ public class CardSettingsPresenter
         if(error.statusCode==404) {
             // User has no funding source
             mView.showFundingSourceLabel(false);
-            mAdapter.updateList(mModel.getFundingSources());
+            mAdapter.updateList(mModel.getBalances());
         }
         else {
             ApiErrorUtil.showErrorMessage(error, mActivity);

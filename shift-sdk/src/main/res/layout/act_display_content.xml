@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shiftpayments.link.sdk.ui.views.DisclaimerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.shiftpayments.link.sdk.ui.views.DisplayContentView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Dummy to get focus on start. -->
     <RelativeLayout
@@ -10,6 +11,20 @@
         android:layout_height="0px"
         android:focusable="true"
         android:focusableInTouchMode="true" />
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/display_content_toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="?attr/homeAsUpIndicator" />
+    </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
         android:orientation="vertical"
@@ -21,7 +36,8 @@
             android:orientation="horizontal"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="invisible">
 
             <TextView
                 android:id="@+id/tv_cancel_pdf"
@@ -57,28 +73,28 @@
             android:layout_alignParentTop="true"/>
 
         <com.github.barteksc.pdfviewer.PDFView
-            android:id="@+id/pdfView"
+            android:id="@+id/pdf_content"
             android:visibility="gone"
             android:layout_above="@id/ll_buttons_holder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
         <TextView
-            android:id="@+id/tv_disclaimer_text"
+            android:id="@+id/tv_content_text"
             android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="64dp"
             android:layout_above="@id/ll_buttons_holder" />
 
         <br.tiagohm.markdownview.MarkdownView
-            android:id="@+id/md_disclaimer_markdown"
+            android:id="@+id/md_content_markdown"
             android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="64dp"
             android:layout_above="@id/ll_buttons_holder" />
     </RelativeLayout>
 
     <include layout="@layout/include_rl_loading" />
-</com.shiftpayments.link.sdk.ui.views.DisclaimerView>
+</com.shiftpayments.link.sdk.ui.views.DisplayContentView>

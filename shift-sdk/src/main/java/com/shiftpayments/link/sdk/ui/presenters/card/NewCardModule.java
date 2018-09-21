@@ -2,27 +2,22 @@ package com.shiftpayments.link.sdk.ui.presenters.card;
 
 import android.app.Activity;
 
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.DisclaimerConfiguration;
 import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointGroupVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CollectUserDataActionConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
-import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorDelegate;
-import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
+import com.shiftpayments.link.sdk.ui.presenters.custodianselector.BalanceStoreModule;
 import com.shiftpayments.link.sdk.ui.presenters.showdisclaimer.showgenericmessage.ShowDisclaimerModule;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
-import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.vos.ApplicationVo;
 import com.shiftpayments.link.sdk.ui.workflow.ActionNotSupportedModule;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
@@ -43,17 +38,17 @@ import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.I
 import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.SELECT_BALANCE_STORE;
 import static com.shiftpayments.link.sdk.api.utils.workflow.WorkflowActionType.SHOW_DISCLAIMER;
 
-public class NewCardModule extends WorkflowModule implements CustodianSelectorDelegate {
+public class NewCardModule extends WorkflowModule {
 
     public NewCardModule(Activity activity,
                          WorkflowObjectStatusInterface getWorkflowObjectStatus, Command onFinish,
-                         Command onBack) {
-        super(activity, getWorkflowObjectStatus, onFinish, onBack);
+                         Command onBack, Command onError) {
+        super(activity, getWorkflowObjectStatus, onFinish, onBack, onError);
     }
 
     @Override
     public void initialModuleSetup() {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.createCardApplication(ConfigStorage.getInstance().getCardConfig().cardProduct.id);
     }
 
@@ -69,31 +64,11 @@ public class NewCardModule extends WorkflowModule implements CustodianSelectorDe
      */
     @Subscribe
     public void handleApplication(CardApplicationResponseVo application) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         ApplicationVo cardApplication = new ApplicationVo(application.id, application.nextAction, application.workflowObjectId);
         CardStorage.getInstance().setApplication(cardApplication);
         mWorkFlowObject = cardApplication;
         startAppropriateModule();
-    }
-
-    @Override
-    public void onTokensRetrieved(String accessToken, String refreshToken) {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
-        OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(accessToken, refreshToken);
-        SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
-        ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
-    }
-
-    @Subscribe
-    public void handleResponse(SetBalanceStoreResponseVo response) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        if(response.result.equals("valid")) {
-            startNextModule();
-        }
-        else {
-            startCustodianModule();
-            ApiErrorUtil.showAlertDialog(response.errorCode);
-        }
     }
 
     /**
@@ -102,7 +77,7 @@ public class NewCardModule extends WorkflowModule implements CustodianSelectorDe
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         super.showError(error);
     }
 
@@ -112,7 +87,7 @@ public class NewCardModule extends WorkflowModule implements CustodianSelectorDe
                 startUserDataCollector();
                 break;
             case SELECT_BALANCE_STORE:
-                startCustodianModule();
+                startBalanceStoreModule();
                 break;
             case ISSUE_CARD:
                 issueVirtualCard();
@@ -138,14 +113,14 @@ public class NewCardModule extends WorkflowModule implements CustodianSelectorDe
         startModule(userDataCollectorModule);
     }
 
-    private void startCustodianModule() {
-        CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(this.getActivity(), this, this::setCurrentModule, super.onBack);
-        startModule(custodianSelectorModule);
+    private void startBalanceStoreModule() {
+        BalanceStoreModule balanceStoreModule = BalanceStoreModule.getInstance(this.getActivity(), this::startNextModule, super.onBack);
+        startModule(balanceStoreModule);
     }
 
     private void issueVirtualCard() {
         setCurrentModule();
-        IssueVirtualCardModule issueVirtualCardModule = new IssueVirtualCardModule(getActivity(), this.onFinish, this::onIssueVirtualCardBackPressed);
+        IssueVirtualCardModule issueVirtualCardModule = new IssueVirtualCardModule(getActivity(), this.onFinish, this::onIssueVirtualCardBackPressed, this.onError);
         startModule(issueVirtualCardModule);
     }
 

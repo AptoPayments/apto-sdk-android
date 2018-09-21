@@ -12,30 +12,37 @@ import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.models.card.DateItem;
 import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
+import com.shiftpayments.link.sdk.ui.models.card.TransactionItem;
+import com.shiftpayments.link.sdk.ui.models.card.TransactionListItem;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.DateUtil;
 import com.shiftpayments.link.sdk.ui.vos.AmountVo;
 
 import java.util.List;
 
+import static com.shiftpayments.link.sdk.ui.models.card.TransactionListItem.TYPE_DATE;
+import static com.shiftpayments.link.sdk.ui.models.card.TransactionListItem.TYPE_HEADER;
+import static com.shiftpayments.link.sdk.ui.models.card.TransactionListItem.TYPE_TRANSACTION;
+
 public class TransactionsAdapter extends
         RecyclerView.Adapter<TransactionsAdapter.ViewHolder> {
 
     private Context mContext;
-    private List<TransactionVo> mTransactions;
+    private List<TransactionListItem> mTransactionListItems;
     private ViewListener mListener;
     private ManageCardModel mModel;
 
     TransactionsAdapter() {
         mContext = null;
-        mTransactions = null;
+        mTransactionListItems = null;
         mModel = null;
     }
 
-    public TransactionsAdapter(Context context, List<TransactionVo> transactions, ManageCardModel model) {
+    public TransactionsAdapter(Context context, List<TransactionListItem> transactions, ManageCardModel model) {
         mContext = context;
-        mTransactions = transactions;
+        mTransactionListItems = transactions;
         mModel = model;
     }
 
@@ -67,7 +74,6 @@ public class TransactionsAdapter extends
         TextView spendableNativeAmount;
         TextView primaryButton;
         TextView secondaryButton;
-        TextView transactionsTitle;
 
         // Transaction
         TextView titleTextView;
@@ -76,12 +82,15 @@ public class TransactionsAdapter extends
         TextView amountTextView;
         RelativeLayout transactionHolder;
 
+        // Date
+        TextView dateTextView;
+
         public ViewHolder(View itemView, int viewType) {
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            if (viewType == 0) {
+            if (viewType == TYPE_HEADER) {
                 creditCardView = itemView.findViewById(R.id.credit_card_view);
                 cardBalance = itemView.findViewById(R.id.tv_current_balance);
                 cardBalanceLabel = itemView.findViewById(R.id.tv_current_balance_label);
@@ -91,13 +100,15 @@ public class TransactionsAdapter extends
                 spendableNativeAmount = itemView.findViewById(R.id.tv_spendable_native_balance);
                 primaryButton = itemView.findViewById(R.id.tv_display_card_primary_bttn);
                 secondaryButton = itemView.findViewById(R.id.tv_display_card_secondary_bttn);
-                transactionsTitle = itemView.findViewById(R.id.tv_transactions_title);
-            } else if (viewType == 1) {
+            } else if (viewType == TYPE_TRANSACTION) {
                 titleTextView = itemView.findViewById(R.id.tv_title);
                 descriptionTextView = itemView.findViewById(R.id.tv_description);
                 iconImageView = itemView.findViewById(R.id.iv_icon);
                 transactionHolder = itemView.findViewById(R.id.rl_transaction_holder);
                 amountTextView = itemView.findViewById(R.id.tv_transaction_amount);
+            }
+            else if (viewType == TYPE_DATE) {
+                dateTextView = itemView.findViewById(R.id.tv_date_header_title);
             }
         }
     }
@@ -105,88 +116,107 @@ public class TransactionsAdapter extends
     // Overridden to display custom rows in the RecyclerView
     @Override
     public int getItemViewType(int position) {
-        int viewType = 1;
-        if (position == 0) {
-            // Header view
-            viewType = 0;
-        }
-        return viewType;
+        return mTransactionListItems.get(position).getType();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        TransactionsAdapter.ViewHolder viewHolder = null;
         switch (viewType) {
-            case 0: // Header view
+            case TransactionListItem.TYPE_HEADER:
                 View headerView = inflater.inflate(R.layout.include_card_management, parent, false);
-                return new ViewHolder(headerView, viewType);
-            default: // Transaction list
+                viewHolder = new ViewHolder(headerView, viewType);
+                break;
+            case TransactionListItem.TYPE_DATE:
+                View dateHeaderView = inflater.inflate(R.layout.cv_date_header, parent, false);
+                viewHolder = new ViewHolder(dateHeaderView, viewType);
+                break;
+            case TYPE_TRANSACTION:
                 View transactionView = inflater.inflate(R.layout.cv_transaction, parent, false);
-                return new ViewHolder(transactionView, viewType);
+                viewHolder = new ViewHolder(transactionView, viewType);
+                break;
         }
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         setListeners(viewHolder, position);
-        if (position == 0) {
-            viewHolder.creditCardView.setExpiryDate(mModel.getExpirationDate());
-            viewHolder.creditCardView.setCardNumber(mModel.getCardNumber());
-            viewHolder.creditCardView.setCardName(mModel.getCardHolderName());
-            viewHolder.creditCardView.setCVV(mModel.getCVV());
-            viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
-            showCardBalance(!mModel.getCardBalance().isEmpty(), viewHolder);
-            showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
-            viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
-            showActivateCardButton(UIStorage.getInstance().showActivateCardButton()
-                    && mModel.isCardCreated(), viewHolder);
-        } else if (position > 0) {
-            TransactionVo transaction = mTransactions.get(position-1);
+        switch (viewHolder.getItemViewType()) {
+            case TransactionListItem.TYPE_HEADER:
+                viewHolder.creditCardView.setExpiryDate(mModel.getExpirationDate());
+                viewHolder.creditCardView.setCardNumber(mModel.getCardNumber());
+                viewHolder.creditCardView.setCardName(mModel.getCardHolderName());
+                viewHolder.creditCardView.setCVV(mModel.getCVV());
+                viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
+                showCardBalance(!mModel.getCardBalance().isEmpty(), viewHolder);
+                showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
+                viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
+                if(mModel.cardNumberShown()) {
+                    setCopyCardNumberLabelText(viewHolder, mContext.getString(R.string.card_management_primary_button_full));
+                }
+                else {
+                    setCopyCardNumberLabelText(viewHolder, mContext.getString(R.string.card_management_primary_button));
+                }
+                showActivateCardButton(UIStorage.getInstance().showActivateCardButton()
+                        && mModel.isCardCreated(), viewHolder);
+                break;
+            case TransactionListItem.TYPE_DATE:
+                DateItem dateItem = (DateItem) mTransactionListItems.get(position);
+                viewHolder.dateTextView.setText(dateItem.date);
+                break;
+            case TYPE_TRANSACTION:
+                TransactionItem transactionItem = (TransactionItem) mTransactionListItems.get(position);
+                TransactionVo transaction = transactionItem.transaction;
 
-            TextView titleTextView = viewHolder.titleTextView;
-            titleTextView.setText(transaction.description);
+                TextView titleTextView = viewHolder.titleTextView;
+                titleTextView.setText(transaction.description);
 
-            TextView descriptionTextView = viewHolder.descriptionTextView;
-            String date = DateUtil.getFormattedTransactionDate(transaction.creationTime);
-            descriptionTextView.setText(date);
+                TextView descriptionTextView = viewHolder.descriptionTextView;
+                String date = DateUtil.getFormattedTransactionDate(transaction.creationTime);
+                descriptionTextView.setText(date);
 
-            ImageView iconImageView = viewHolder.iconImageView;
-            iconImageView.setImageDrawable(mContext.getDrawable(UIStorage.getInstance().getIcon(
-                    transaction.merchant.mcc.merchantCategoryIcon)));
-            iconImageView.setColorFilter(UIStorage.getInstance().getIconSecondaryColor());
+                ImageView iconImageView = viewHolder.iconImageView;
+                iconImageView.setImageDrawable(mContext.getDrawable(UIStorage.getInstance().getIcon(
+                        transaction.merchant.mcc.merchantCategoryIcon)));
+                iconImageView.setColorFilter(UIStorage.getInstance().getIconSecondaryColor());
 
-            TextView amountTextView = viewHolder.amountTextView;
-            amountTextView.setText(new AmountVo(transaction.localAmount.amount,
-                    transaction.localAmount.currency).toString());
+                TextView amountTextView = viewHolder.amountTextView;
+                amountTextView.setText(new AmountVo(transaction.localAmount.amount,
+                        transaction.localAmount.currency).toString());
+                break;
         }
     }
 
     @Override
     public int getItemCount() {
-        if(mTransactions == null) {
+        if(mTransactionListItems == null) {
             return 0;
         }
-        return mTransactions.size()+1;
+        return mTransactionListItems.size();
     }
 
     // Clean all elements of the recycler
     public void clear() {
-        mTransactions.clear();
+        mTransactionListItems.clear();
         notifyDataSetChanged();
     }
 
     private void setListeners(ViewHolder viewHolder, int position) {
-        if (position == 0) {
-            viewHolder.primaryButton.setOnClickListener(v -> mListener.manageCardClickHandler());
-            viewHolder.creditCardView.setOnClickListener(v -> mListener.manageCardClickHandler());
-            viewHolder.creditCardView.getCardNumberView().setOnClickListener(
-                    v -> mListener.cardNumberClickHandler(((EditText)v).getText().toString()));
-            viewHolder.secondaryButton.setOnClickListener(
-                    v -> mListener.activateCardBySecondaryBtnClickHandler());
-        }
-        else if (position > 0) {
-            viewHolder.transactionHolder.setOnClickListener(
-                    v -> mListener.transactionClickHandler(position-1));
+        switch (viewHolder.getItemViewType()) {
+            case TransactionListItem.TYPE_HEADER:
+                viewHolder.primaryButton.setOnClickListener(v -> mListener.manageCardClickHandler());
+                viewHolder.creditCardView.setOnClickListener(v -> mListener.manageCardClickHandler());
+                viewHolder.creditCardView.getCardNumberView().setOnClickListener(
+                        v -> mListener.cardNumberClickHandler(((EditText) v).getText().toString()));
+                viewHolder.secondaryButton.setOnClickListener(
+                        v -> mListener.activateCardBySecondaryBtnClickHandler());
+                break;
+            case TYPE_TRANSACTION:
+                viewHolder.transactionHolder.setOnClickListener(
+                        v -> mListener.transactionClickHandler(position));
+                break;
         }
     }
 
@@ -231,5 +261,9 @@ public class TransactionsAdapter extends
             viewHolder.spendableAmount.setVisibility(View.GONE);
             viewHolder.spendableNativeAmount.setVisibility(View.GONE);
         }
+    }
+
+    private void setCopyCardNumberLabelText(ViewHolder viewHolder, String text) {
+        viewHolder.primaryButton.setText(text);
     }
 }

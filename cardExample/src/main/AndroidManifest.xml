@@ -167,6 +167,10 @@
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
+            android:name="com.shiftpayments.link.sdk.ui.activities.DisplayContentActivity"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
             android:name="com.shiftpayments.link.sdk.ui.activities.ActionNotSupportedActivity"
             android:theme="@style/Theme.LedgeLine.Example" />
 

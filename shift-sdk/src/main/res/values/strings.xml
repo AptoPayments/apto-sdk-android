@@ -306,9 +306,10 @@
     <string name="card_management_title">Card</string>
     <string name="card_management_card_balance">Current balance</string>
     <string name="card_management_card_spendable_balance">Spendable today</string>
-    <string name="card_management_primary_button">Tap to manage card or tap on the number to copy to clipboard</string>
+    <string name="card_management_primary_button">Tap to manage card</string>
+    <string name="card_management_primary_button_full">Tap to manage card or tap on the number to copy to clipboard</string>
     <string name="card_management_secondary_button">ACTIVATE VIRTUAL CARD</string>
-    <string name="card_management_transactions_title">Most recent</string>
+    <string name="card_management_transactions_most_recent">Most recent</string>
     <string name="card_activated">Card activated</string>
     <string name="card_enabled">Card enabled</string>
     <string name="card_disabled">Card disabled</string>
@@ -325,6 +326,13 @@
     <string name="save_to_android_pay_label">Add Card</string>
     <string name="contact_support_label">Contact support</string>
     <string name="contact_support_description">Report missing or stolen card</string>
+    <string name="legal_label">Legal</string>
+    <string name="cardholder_agreement_label">Cardholder Agreement</string>
+    <string name="cardholder_agreement_description">Terms and Conditions of the Card</string>
+    <string name="terms_and_conditions_label">Terms and conditions</string>
+    <string name="terms_and_conditions_description">User agreement</string>
+    <string name="privacy_policy_label">Privacy policy</string>
+    <string name="privacy_policy_description">Information we collect</string>
     <string name="change_pin_label">Reset PIN</string>
     <string name="change_pin_description">Set a new PIN code for your card</string>
     <string name="funding_sources_label">Funding Sources</string>

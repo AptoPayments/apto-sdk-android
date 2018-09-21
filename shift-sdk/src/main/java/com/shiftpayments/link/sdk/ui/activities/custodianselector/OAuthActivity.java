@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.StartOAuthResponseVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.BaseActivity;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.OAuthDelegate;
@@ -32,7 +32,7 @@ public class OAuthActivity extends BaseActivity {
         } else {
             throw new NullPointerException("Received Module does not implement OAuthDelegate!");
         }
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.startOAuth(mCurrentModule.getProvider());
     }
 
@@ -40,14 +40,14 @@ public class OAuthActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         mGetStatusThread.interrupt();
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         // This activity will listen for the OAuth status response in background
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
     }
 
 
@@ -92,7 +92,7 @@ public class OAuthActivity extends BaseActivity {
         mGetStatusThread = new Thread(() -> {
             try {
                 while(true) {
-                    Thread.sleep(5000);
+                    Thread.sleep(3000);
                     getStatus.run();
                 }
             } catch (InterruptedException e) {

@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.ui.storages;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.ui.vos.ApplicationVo;
 
 /**
@@ -11,7 +12,8 @@ public class CardStorage {
 
     private Card mCard;
     private static CardStorage mInstance;
-    private String mFundingSourceId;
+    private BalanceVo mSelectedBalance;
+    private String mBalanceId;
     private ApplicationVo mApplication;
     public boolean showCardInfo;
 
@@ -48,16 +50,20 @@ public class CardStorage {
         mCard = card;
     }
 
-    public void setFundingSourceId(String fundingSourceId) {
-        mFundingSourceId = fundingSourceId;
+    public void setBalance(BalanceVo balance) {
+        mSelectedBalance = balance;
     }
 
-    public String getFundingSourceId() {
-        return mFundingSourceId;
+    public BalanceVo getBalance() {
+        return mSelectedBalance;
     }
 
-    public boolean hasFundingSourceId() {
-        return mFundingSourceId != null && !mFundingSourceId.isEmpty();
+    public String getBalanceId() {
+        return mSelectedBalance.id;
+    }
+
+    public boolean hasBalanceId() {
+        return mSelectedBalance.id != null && !mSelectedBalance.id.isEmpty();
     }
 
     public ApplicationVo getApplication() {

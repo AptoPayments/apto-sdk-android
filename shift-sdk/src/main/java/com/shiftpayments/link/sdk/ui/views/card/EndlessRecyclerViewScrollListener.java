@@ -10,11 +10,11 @@ import android.support.v7.widget.RecyclerView;
 public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnScrollListener {
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private static final int VISIBLE_THRESHOLD = 5;
+    private static final int VISIBLE_THRESHOLD = 3;
     // The current offset index of data you have loaded
     private int currentPage = 0;
     // The total number of items in the dataset after the last load
-    private int previousTotalItemCount = 0;
+    private int previousTotalItemCount = 1;
     // True if we are still waiting for the last set of data to load.
     private boolean loading = true;
     // Sets the starting page index
@@ -45,8 +45,7 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
     @Override
     public void onScrolled(RecyclerView view, int dx, int dy) {
         int lastVisibleItemPosition = ((LinearLayoutManager) mLayoutManager).findLastVisibleItemPosition();
-        int totalItemCount = mLayoutManager.getItemCount()-1;
-
+        int totalItemCount = mLayoutManager.getItemCount()-2;
         // If the total item count is zero and the previous isn't, assume the
         // list is invalidated and should be reset back to initial state
         if (totalItemCount < previousTotalItemCount) {

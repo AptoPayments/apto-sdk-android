@@ -4,13 +4,22 @@
         android:id="@+id/rl_loading_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:clickable="true"
         android:background="#6000">
 
-    <ProgressBar
+    <LinearLayout
+        android:id="@+id/ll_progress_bar_container"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="100dp"
+        android:paddingBottom="100dp"
+        android:layout_centerHorizontal="true">
+
+        <ProgressBar
             android:id="@+id/pb_progress"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
-
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </com.shiftpayments.link.sdk.ui.views.LoadingView>

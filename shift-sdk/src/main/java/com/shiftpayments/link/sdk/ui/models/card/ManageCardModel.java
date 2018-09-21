@@ -61,18 +61,10 @@ public class ManageCardModel implements Model {
     public String getCardNumber() {
         if(mCard != null) {
             if(CardStorage.getInstance().showCardInfo) {
-                StringBuilder formattedCardNumber = new StringBuilder();
-                for (int i = 0; i < mCard.PANToken.length(); i++) {
-                    if (i % 4 == 0 && i != 0) {
-                        formattedCardNumber.append(" ");
-                    }
-
-                    formattedCardNumber.append(mCard.PANToken.charAt(i));
-                }
-                return formattedCardNumber.toString();
+                return mCard.PANToken;
             }
             else {
-                return "**** **** **** " + mCard.lastFourDigits;
+                return "************" + mCard.lastFourDigits;
             }
         }
         return "";
@@ -158,6 +150,10 @@ public class ManageCardModel implements Model {
 
     public boolean isCardCreated() {
         return mCard.isCardCreated();
+    }
+
+    public boolean cardNumberShown() {
+        return CardStorage.getInstance().showCardInfo;
     }
 
     public void setCard(Card card) {

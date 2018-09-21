@@ -1,7 +1,7 @@
 package com.shiftpayments.link.sdk.sdk.tasks.financialaccounts;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
@@ -10,7 +10,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * A concrete {@link ShiftApiTask} to retrieve the financial account's funding source
  * @author Adrian
  */
-public class GetFinancialAccountFundingSourceTask extends ShiftApiTask<Void, Void, FundingSourceVo, String> {
+public class GetFinancialAccountFundingSourceTask extends ShiftApiTask<Void, Void, BalanceVo, String> {
 
     /**
      * @see ShiftApiTask#ShiftApiTask
@@ -26,7 +26,7 @@ public class GetFinancialAccountFundingSourceTask extends ShiftApiTask<Void, Voi
 
     /** {@inheritDoc} */
     @Override
-    protected FundingSourceVo callApi() throws ApiException {
+    protected BalanceVo callApi() throws ApiException {
         return getApiWrapper().getFinancialAccountFundingSource(getRequestData());
     }
 }

@@ -12,7 +12,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
@@ -80,8 +80,8 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     public void initialModuleSetup() {
         mRequiredActivities.clear();
         mCurrentUserDataCopy = new DataPointList(UserStorage.getInstance().getUserData());
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         CompletableFuture
                 .supplyAsync(() -> ConfigStorage.getInstance().getRequiredUserData())
                 .exceptionally(ex -> {
@@ -97,7 +97,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
      */
     @Subscribe
     public void handleResponse(DataPointList userInfo) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         UserStorage.getInstance().setUserData(userInfo);
         mCurrentUserDataCopy = new DataPointList(UserStorage.getInstance().getUserData());
         compareRequiredDataPointsWithCurrent(userInfo);
@@ -110,7 +110,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     @Subscribe
     public void handleUserDetails(UserResponseVo response) {
         showLoading(false);
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         onFinish.execute();
     }
 
@@ -263,7 +263,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     }
 
     private void startModule() {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
 
         if(mRequiredActivities.isEmpty()) {
             stopModule();
@@ -305,7 +305,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
         }
 
         if(!request.getDataPoints().isEmpty()) {
-            ShiftLinkSdk.getResponseHandler().subscribe(this);
+            ShiftSdk.getResponseHandler().subscribe(this);
             ShiftPlatform.updateUser(request);
         }
         else {

@@ -18,7 +18,7 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.FundingSourceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
@@ -28,12 +28,17 @@ import com.shiftpayments.link.sdk.ui.activities.card.CardSettingsActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageAccountActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity;
+import com.shiftpayments.link.sdk.ui.models.card.DateItem;
+import com.shiftpayments.link.sdk.ui.models.card.HeaderItem;
 import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
+import com.shiftpayments.link.sdk.ui.models.card.TransactionItem;
+import com.shiftpayments.link.sdk.ui.models.card.TransactionListItem;
 import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
+import com.shiftpayments.link.sdk.ui.utils.DateUtil;
 import com.shiftpayments.link.sdk.ui.views.card.EndlessRecyclerViewScrollListener;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
 import com.shiftpayments.link.sdk.ui.views.card.TransactionsAdapter;
@@ -43,6 +48,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Semaphore;
 
 import static com.shiftpayments.link.sdk.ui.activities.card.TransactionDetailsActivity.EXTRA_TRANSACTION;
@@ -62,11 +68,14 @@ public class ManageCardPresenter
     private ManageCardActivity mActivity;
     private EndlessRecyclerViewScrollListener mScrollListener;
     private TransactionsAdapter mTransactionsAdapter;
-    private ArrayList mTransactionsList;
+    private ArrayList<TransactionListItem> mTransactionsList;
     private String mLastTransactionId;
     private ManageCardDelegate mDelegate;
     private Semaphore mSemaphore;
     private static final int NUMBER_OF_CONCURRENT_CALLS = 3;
+    private String mTransactionCurrentMonth = "";
+    private String mTransactionCurrentYear = "";
+    private int mMostRecentCounter = 0;
 
     public ManageCardPresenter(ManageCardActivity activity, ManageCardDelegate delegate) {
         mActivity = activity;
@@ -93,20 +102,14 @@ public class ManageCardPresenter
                 getTransactions();
             }
         };
-        mTransactionsList = new ArrayList<TransactionVo>();
+        mTransactionsList = new ArrayList<>();
+        initTransactionList();
         mTransactionsAdapter = new TransactionsAdapter(mActivity, mTransactionsList, mModel);
         mTransactionsAdapter.setViewListener(this);
         view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter);
-        mResponseHandler.subscribe(this);
-        refreshCard();
+        getCard();
         getFundingSource();
         getTransactions();
-    }
-
-    @Override
-    public void detachView() {
-        mResponseHandler.unsubscribe(this);
-        super.detachView();
     }
 
     @Override
@@ -132,6 +135,9 @@ public class ManageCardPresenter
 
     @Override
     public void cardNumberClickHandler(String cardNumber) {
+        if(!mModel.cardNumberShown()) {
+            return;
+        }
         ClipboardManager clipboard = (ClipboardManager) mActivity.getSystemService(Context.CLIPBOARD_SERVICE);
         if (clipboard != null) {
             ClipData clip = ClipData.newPlainText("card number", cardNumber.replaceAll("\\s+",""));
@@ -142,18 +148,22 @@ public class ManageCardPresenter
 
     @Override
     public void transactionClickHandler(int transactionId) {
-        TransactionVo transaction = (TransactionVo) mTransactionsList.get(transactionId);
+        TransactionItem transactionItem = (TransactionItem) mTransactionsList.get(transactionId);
+        TransactionVo transaction = transactionItem.transaction;
         mActivity.startActivity(getTransactionDetailsIntent(mActivity, transaction));
     }
 
     @Override
     public void pullToRefreshHandler() {
-        mResponseHandler.subscribe(this);
         mLastTransactionId = null;
+        mMostRecentCounter=0;
+        mTransactionCurrentMonth="";
+        mTransactionCurrentYear="";
         getFundingSource();
         getTransactions();
-        refreshCard();
+        getCard();
         mTransactionsAdapter.clear();
+        initTransactionList();
         mScrollListener.resetState();
     }
 
@@ -174,13 +184,13 @@ public class ManageCardPresenter
     public void handleApiError(ApiErrorVo error) {
         mView.showLoading(mActivity, false);
         mView.setRefreshing(false);
-        if(error.request_path.equals(ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH) || error.request_path.equals(ShiftApiWrapper.FINANCIAL_ACCOUNT_FUNDING_SOURCE_PATH)) {
+        if(error.request_path.equals(ShiftApiWrapper.FINANCIAL_ACCOUNTS_PATH) || error.request_path.equals(ShiftApiWrapper.FINANCIAL_ACCOUNT_BALANCE_PATH)) {
             mSemaphore.release();
         }
         if(error.statusCode==404) {
             // Card has no funding source
             mModel.setBalance(null);
-            updateCard();
+            refreshCard();
         }
         else {
             ApiErrorUtil.showErrorMessage(error, mActivity);
@@ -202,8 +212,28 @@ public class ManageCardPresenter
     @Subscribe
     public void handleResponse(TransactionListResponseVo response) {
         mSemaphore.release();
-        mTransactionsList.addAll(Arrays.asList(response.data));
         int currentSize = mTransactionsAdapter.getItemCount();
+        List<TransactionVo> transactionVoList = Arrays.asList(response.data);
+        for(TransactionVo transactionVo : transactionVoList) {
+            if(mMostRecentCounter < 3) {
+                mMostRecentCounter++;
+            }
+            else {
+                String transactionMonth = DateUtil.getMonthFromTimeStamp(transactionVo.creationTime);
+                String transactionYear = DateUtil.getYearFromTimeStamp(transactionVo.creationTime);
+                if(!mTransactionCurrentYear.equals(transactionYear)) {
+                    mTransactionsList.add(new DateItem(DateUtil.getSimpleTransactionDate(transactionVo.creationTime)));
+                    mTransactionCurrentMonth = transactionMonth;
+                    mTransactionCurrentYear = transactionYear;
+                }
+                else if(!mTransactionCurrentMonth.equals(transactionMonth)) {
+                    mTransactionsList.add(new DateItem(transactionMonth));
+                    mTransactionCurrentMonth = transactionMonth;
+                }
+            }
+            mTransactionsList.add(new TransactionItem(transactionVo));
+        }
+
         if(response.total_count <= 0) {
             mView.showNoTransactionsImage(true);
         }
@@ -213,26 +243,18 @@ public class ManageCardPresenter
             }
             mView.showNoTransactionsImage(false);
         }
-        mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count -1);
+        mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count);
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
+
     }
 
     @Subscribe
-    public void handleResponse(FundingSourceVo response) {
+    public void handleResponse(BalanceVo response) {
         mSemaphore.release();
-        if(response.balance.hasAmount()) {
-            mModel.setBalance(new AmountVo(response.balance.amount, response.balance.currency));
-        }
-        if(response.amountSpendable.hasAmount()) {
-            mModel.setSpendableAmount(new AmountVo(response.amountSpendable.amount, response.amountSpendable.currency));
-        }
-        if(response.custodianWallet != null && response.custodianWallet.balance.hasAmount()) {
-            mModel.setNativeBalance(new AmountVo(response.custodianWallet.balance.amount, response.custodianWallet.balance.currency));
-        }
-        CardStorage.getInstance().setFundingSourceId(response.id);
-        updateCard();
+        CardStorage.getInstance().setBalance(response);
+        setBalanceInModel(response);
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
@@ -242,15 +264,23 @@ public class ManageCardPresenter
     public void handleResponse(FinancialAccountVo response) {
         mSemaphore.release();
         CardStorage.getInstance().setCard((Card) response);
-        updateCard();
+        refreshCard();
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
     }
 
-    public void updateCard() {
+    public void refreshCard() {
         mModel.setCard(CardStorage.getInstance().getCard());
         mTransactionsAdapter.notifyItemChanged(0);
+    }
+
+    public void refreshView() {
+        BalanceVo balance = CardStorage.getInstance().getBalance();
+        if(balance != null) {
+            setBalanceInModel(balance);
+            mTransactionsAdapter.notifyDataSetChanged();
+        }
     }
 
     protected void setupToolbar() {
@@ -313,7 +343,7 @@ public class ManageCardPresenter
         }
         Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
         mModel.setCard(card);
-        updateCard();
+        refreshCard();
     }
 
     private void getFundingSource() {
@@ -334,12 +364,38 @@ public class ManageCardPresenter
         }
     }
 
-    private void refreshCard() {
+    private void getCard() {
         try {
             mSemaphore.acquire();
             ShiftPlatform.getFinancialAccount(mModel.getAccountId());
         } catch (InterruptedException e) {
             ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
+        }
+    }
+
+    private void initTransactionList() {
+        mTransactionsList.add(new HeaderItem());
+        mTransactionsList.add(new DateItem(mActivity.getString(R.string.card_management_transactions_most_recent)));
+    }
+
+    public void subscribeToEvents(boolean subscribe) {
+        if(subscribe) {
+            mResponseHandler.subscribe(this);
+        }
+        else {
+            mResponseHandler.unsubscribe(this);
+        }
+    }
+
+    private void setBalanceInModel(BalanceVo balanceVo) {
+        if(balanceVo.balance!=null && balanceVo.balance.hasAmount()) {
+            mModel.setBalance(new AmountVo(balanceVo.balance.amount, balanceVo.balance.currency));
+        }
+        if(balanceVo.amountSpendable!=null && balanceVo.amountSpendable.hasAmount()) {
+            mModel.setSpendableAmount(new AmountVo(balanceVo.amountSpendable.amount, balanceVo.amountSpendable.currency));
+        }
+        if(balanceVo.custodianWallet!=null && balanceVo.custodianWallet != null && balanceVo.custodianWallet.balance.hasAmount()) {
+            mModel.setNativeBalance(new AmountVo(balanceVo.custodianWallet.balance.amount, balanceVo.custodianWallet.balance.currency));
         }
     }
 }

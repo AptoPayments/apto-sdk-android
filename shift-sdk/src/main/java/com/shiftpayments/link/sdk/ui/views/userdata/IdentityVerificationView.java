@@ -41,12 +41,12 @@ public class IdentityVerificationView
     private EditText mBirthdayDay;
     private EditText mBirthdayYear;
     private TextView mBirthdateErrorView;
+    private TextView mBirthdateHint;
     private TextInputLayout mSocialSecurityWrapper;
 
     private SsnEditText mSocialSecurityField;
     private CheckBox mSocialSecurityAvailableCheck;
     private TextView mSocialSecurityAvailableField;
-    private TextView mDisclaimer;
 
     private LoadingView mLoadingView;
 
@@ -77,6 +77,21 @@ public class IdentityVerificationView
         ((AppCompatCheckBox) mSocialSecurityAvailableCheck).setSupportButtonTintList(
                 ColorStateList.valueOf(primaryColor));
         mNextButton.setBackgroundColor(primaryColor);
+
+        mBirthdateHint.setTextColor(UIStorage.getInstance().getTextPrimaryColor());
+        Integer textSecondaryColor = UIStorage.getInstance().getTextSecondaryColor();
+        Integer textTertiaryColor = UIStorage.getInstance().getTextTertiaryColor();
+        mBirthdayMonth.setTextColor(textSecondaryColor);
+        mBirthdayMonth.setHintTextColor(textTertiaryColor);
+        mBirthdayDay.setTextColor(textSecondaryColor);
+        mBirthdayDay.setHintTextColor(textTertiaryColor);
+        mBirthdayYear.setTextColor(textSecondaryColor);
+        mBirthdayYear.setHintTextColor(textTertiaryColor);
+        mSocialSecurityField.setTextColor(textSecondaryColor);
+        mSocialSecurityField.setHintTextColor(textTertiaryColor);
+        UIStorage.getInstance().setCursorColor(mBirthdayDay);
+        UIStorage.getInstance().setCursorColor(mBirthdayYear);
+        UIStorage.getInstance().setCursorColor(mSocialSecurityField);
     }
 
     /** {@inheritDoc} */
@@ -87,13 +102,12 @@ public class IdentityVerificationView
         mBirthdayDay = findViewById(R.id.et_birthday_day);
         mBirthdayYear = findViewById(R.id.et_birthday_year);
         mBirthdateErrorView = findViewById(R.id.tv_birthdate_error);
+        mBirthdateHint = findViewById(R.id.tv_birthdate_hint);
 
         mSocialSecurityWrapper = findViewById(R.id.til_social_security);
         mSocialSecurityField = findViewById(R.id.et_social_security);
         mSocialSecurityAvailableCheck = findViewById(R.id.cb_ssn_itin_not_available);
         mSocialSecurityAvailableField = findViewById(R.id.tv_ssn_itin_not_available);
-
-        mDisclaimer = findViewById(R.id.tv_security);
 
         mNextButton = findViewById(R.id.tv_next_bttn);
 

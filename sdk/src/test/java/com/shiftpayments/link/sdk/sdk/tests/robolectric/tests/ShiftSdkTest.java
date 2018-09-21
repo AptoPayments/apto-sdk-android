@@ -2,7 +2,7 @@ package com.shiftpayments.link.sdk.sdk.tests.robolectric.tests;
 
 import android.os.AsyncTask;
 
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shiftpayments.link.sdk.sdk.mocks.sdk.tasks.handlers.MockResponseHandler;
 import com.shiftpayments.link.sdk.sdk.mocks.util.concurrent.MockExecutor;
@@ -17,16 +17,16 @@ import java.util.concurrent.Executor;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 /**
- * Tests the {@link ShiftLinkSdk} class.
+ * Tests the {@link ShiftSdk} class.
  * @author Wijnand
  */
-public class ShiftLinkSdkTest {
+public class ShiftSdkTest {
 
     @Before
     public void setUp() {
-        ShiftLinkSdk.setApiWrapper(new MockApiWrapper());
-        ShiftLinkSdk.setExecutor(new MockExecutor());
-        ShiftLinkSdk.setResponseHandler(new MockResponseHandler());
+        ShiftSdk.setApiWrapper(new MockApiWrapper());
+        ShiftSdk.setExecutor(new MockExecutor());
+        ShiftSdk.setResponseHandler(new MockResponseHandler());
     }
 
     /**
@@ -38,9 +38,9 @@ public class ShiftLinkSdkTest {
     }
 
     private void clearMocks() {
-        ShiftLinkSdk.setApiWrapper(null);
-        ShiftLinkSdk.setExecutor(null);
-        ShiftLinkSdk.setResponseHandler(null);
+        ShiftSdk.setApiWrapper(null);
+        ShiftSdk.setExecutor(null);
+        ShiftSdk.setResponseHandler(null);
     }
 
     /**
@@ -51,8 +51,8 @@ public class ShiftLinkSdkTest {
     @Test
     public void defaultExecutorIsUsed() {
         clearMocks();
-        ShiftLinkSdk.setApiWrapper(new MockApiWrapper());
-        Assert.assertThat("Incorrect Executor.", ShiftLinkSdk.getExecutor(), equalTo(AsyncTask.THREAD_POOL_EXECUTOR));
+        ShiftSdk.setApiWrapper(new MockApiWrapper());
+        Assert.assertThat("Incorrect Executor.", ShiftSdk.getExecutor(), equalTo(AsyncTask.THREAD_POOL_EXECUTOR));
     }
 
     /**
@@ -65,9 +65,9 @@ public class ShiftLinkSdkTest {
         clearMocks();
 
         MockExecutor executor = new MockExecutor();
-        ShiftLinkSdk.setExecutor(executor);
+        ShiftSdk.setExecutor(executor);
 
-        Assert.assertThat("Incorrect Executor.", ShiftLinkSdk.getExecutor(), equalTo(executor));
+        Assert.assertThat("Incorrect Executor.", ShiftSdk.getExecutor(), equalTo(executor));
     }
 
     /**
@@ -78,7 +78,7 @@ public class ShiftLinkSdkTest {
     @Test(expected = NullPointerException.class)
     public void noApiWrapperThrowsError() {
         clearMocks();
-        ShiftLinkSdk.createUser(null);
+        ShiftSdk.createUser(null);
     }
 
     /**
@@ -89,7 +89,7 @@ public class ShiftLinkSdkTest {
     @Test(expected = NullPointerException.class)
     public void noResponseHandlerThrowsError() {
         clearMocks();
-        ShiftLinkSdk.setApiWrapper(new MockApiWrapper());
-        ShiftLinkSdk.createUser(null);
+        ShiftSdk.setApiWrapper(new MockApiWrapper());
+        ShiftSdk.createUser(null);
     }
 }
