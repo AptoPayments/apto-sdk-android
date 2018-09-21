@@ -253,16 +253,8 @@ public class ManageCardPresenter
     @Subscribe
     public void handleResponse(BalanceVo response) {
         mSemaphore.release();
-        if(response.balance.hasAmount()) {
-            mModel.setBalance(new AmountVo(response.balance.amount, response.balance.currency));
-        }
-        if(response.amountSpendable.hasAmount()) {
-            mModel.setSpendableAmount(new AmountVo(response.amountSpendable.amount, response.amountSpendable.currency));
-        }
-        if(response.custodianWallet != null && response.custodianWallet.balance.hasAmount()) {
-            mModel.setNativeBalance(new AmountVo(response.custodianWallet.balance.amount, response.custodianWallet.balance.currency));
-        }
-        CardStorage.getInstance().setBalanceId(response.id);
+        CardStorage.getInstance().setBalance(response);
+        setBalanceInModel(response);
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
@@ -281,6 +273,14 @@ public class ManageCardPresenter
     public void refreshCard() {
         mModel.setCard(CardStorage.getInstance().getCard());
         mTransactionsAdapter.notifyItemChanged(0);
+    }
+
+    public void refreshView() {
+        BalanceVo balance = CardStorage.getInstance().getBalance();
+        if(balance != null) {
+            setBalanceInModel(balance);
+            mTransactionsAdapter.notifyDataSetChanged();
+        }
     }
 
     protected void setupToolbar() {
@@ -384,6 +384,18 @@ public class ManageCardPresenter
         }
         else {
             mResponseHandler.unsubscribe(this);
+        }
+    }
+
+    private void setBalanceInModel(BalanceVo balanceVo) {
+        if(balanceVo.balance!=null && balanceVo.balance.hasAmount()) {
+            mModel.setBalance(new AmountVo(balanceVo.balance.amount, balanceVo.balance.currency));
+        }
+        if(balanceVo.amountSpendable!=null && balanceVo.amountSpendable.hasAmount()) {
+            mModel.setSpendableAmount(new AmountVo(balanceVo.amountSpendable.amount, balanceVo.amountSpendable.currency));
+        }
+        if(balanceVo.custodianWallet!=null && balanceVo.custodianWallet != null && balanceVo.custodianWallet.balance.hasAmount()) {
+            mModel.setNativeBalance(new AmountVo(balanceVo.custodianWallet.balance.amount, balanceVo.custodianWallet.balance.currency));
         }
     }
 }

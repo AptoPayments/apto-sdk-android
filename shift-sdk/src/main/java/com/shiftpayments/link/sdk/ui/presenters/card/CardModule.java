@@ -8,16 +8,14 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.BalanceDataVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
-import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
@@ -46,7 +44,7 @@ import java.util.concurrent.ExecutionException;
 import java8.util.concurrent.CompletableFuture;
 import java8.util.concurrent.CompletionException;
 
-import static com.shiftpayments.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
+import static com.shiftpayments.link.sdk.sdk.ShiftSdk.getApiWrapper;
 
 /**
  * Created by adrian on 23/02/2018.
@@ -79,8 +77,15 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     @Override
     public void addFundingSource(Command onFinishCallback) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         startCustodianModule(onFinishCallback, this::startManageCardScreen);
+    }
+
+    @Override
+    public void onTokensRetrieved(String accessToken, String refreshToken) {
+        ShiftSdk.getResponseHandler().subscribe(this);
+        ShiftPlatform.addUserBalance(new BalanceDataVo("coinbase", accessToken, refreshToken));
+        startManageCardScreen();
     }
 
     @Override
@@ -119,7 +124,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
      */
     @Subscribe
     public void handleResponse(Card card) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         CardStorage.getInstance().setCard(card);
 
         if(card.kycStatus.equals(KycStatus.passed)) {
@@ -136,33 +141,12 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
      */
     @Subscribe
     public void handleDataPointList(DataPointList dataPointList) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         if(dataPointList.getType().equals(DataPointList.ListType.financialAccounts)) {
             handleFinancialAccounts(dataPointList);
         }
         else {
             handleUserData(dataPointList);
-        }
-    }
-
-    @Override
-    public void onTokensRetrieved(String accessToken, String refreshToken) {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
-        OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(accessToken, refreshToken);
-        SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
-        // TODO: Application ID not available when doing login
-        ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
-    }
-
-    @Subscribe
-    public void handleResponse(SetBalanceStoreResponseVo response) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        if(response.result.equals("valid")) {
-            startManageCardScreen();
-        }
-        else {
-            startCustodianModule(this::startManageCardScreen,this::startManageCardScreen);
-            ApiErrorUtil.showAlertDialog(response.errorCode);
         }
     }
 
@@ -182,7 +166,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
         super.handleSessionExpiredError(error);
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         showHomeActivity();
     }
 
@@ -197,7 +181,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void showHomeActivity() {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         Activity currentActivity = this.getActivity();
         currentActivity.finish();
         Intent intent = currentActivity.getIntent();
@@ -206,7 +190,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private void startAuthModule() {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ConfigResponseVo config = UIStorage.getInstance().getContextConfig();
         AuthModuleConfig authModuleConfig = new AuthModuleConfig(config.primaryAuthCredential, config.secondaryAuthCredential);
         AuthModule authModule = AuthModule.getInstance(getActivity(), null, authModuleConfig, this::startNewCardModule, this::showHomeActivity);
@@ -216,7 +200,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     private void startNewCardModule() {
         showLoading(false);
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         mNewCardModule.initialModuleSetup();
     }
 
@@ -256,23 +240,23 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     private void startManageCardScreen() {
         setCurrentModule();
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
     }
 
     private void getUserInfo() {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.getCurrentUser(true);
     }
 
     private void checkIfUserHasAnExistingCardOrIssueNewOne() {
         showLoading(true);
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.getFinancialAccounts();
     }
 
     private void getCardData(String accountId) {
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.getFinancialAccount(accountId);
     }
 

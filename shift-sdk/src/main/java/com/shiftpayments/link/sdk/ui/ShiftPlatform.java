@@ -14,7 +14,7 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.eventbus.utils.EventBusHandlerConfigurator;
 import com.shiftpayments.link.sdk.ui.images.GenericImageLoader;
@@ -36,12 +36,12 @@ import java.util.ArrayList;
 import me.ledge.common.utils.android.AndroidUtils;
 
 /**
- * ShiftPlatform is an extension of {@link ShiftLinkSdk} to help set up the SDK.<br />
+ * ShiftPlatform is an extension of {@link ShiftSdk} to help set up the SDK.<br />
  * <br />
  * Make sure to call {@link #initialize} before calling {@link #startLinkFlow} or {@link #startCardFlow}!
  * @author Wijnand
  */
-public class ShiftPlatform extends ShiftLinkSdk {
+public class ShiftPlatform extends ShiftSdk {
 
     private static GenericImageLoader mImageLoader;
     private static HandlerConfigurator mHandlerConfiguration;

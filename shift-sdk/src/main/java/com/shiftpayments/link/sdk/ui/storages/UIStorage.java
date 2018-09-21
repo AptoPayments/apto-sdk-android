@@ -23,7 +23,7 @@ import java.util.concurrent.ExecutionException;
 import java8.util.concurrent.CompletableFuture;
 import java8.util.concurrent.CompletionException;
 
-import static com.shiftpayments.link.sdk.sdk.ShiftLinkSdk.getApiWrapper;
+import static com.shiftpayments.link.sdk.sdk.ShiftSdk.getApiWrapper;
 
 /**
  * Stores UI related data.

@@ -3,7 +3,7 @@ package com.shiftpayments.link.sdk.ui.activities;
 import android.os.Bundle;
 import android.view.View;
 
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.views.SystemMaintenanceView;
 
@@ -25,7 +25,7 @@ public class SystemMaintenanceActivity extends BaseActivity
 
     @Override
     public void tryAgainClickHandler() {
-        ShiftLinkSdk.getApiWrapper().executePendingApiCalls();
+        ShiftSdk.getApiWrapper().executePendingApiCalls();
         this.finish();
     }
 }

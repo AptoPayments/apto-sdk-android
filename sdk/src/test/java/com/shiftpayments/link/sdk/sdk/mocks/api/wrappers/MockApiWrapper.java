@@ -14,6 +14,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBalanceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
@@ -464,6 +465,11 @@ public class MockApiWrapper implements ShiftApiWrapper {
 
     @Override
     public BalanceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public BalanceVo addUserBalance(AddBalanceRequestVo addBalanceRequestVo) throws ApiException {
         return null;
     }
 

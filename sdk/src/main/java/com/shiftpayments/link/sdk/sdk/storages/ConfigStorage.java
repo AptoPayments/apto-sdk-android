@@ -10,7 +10,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.LoanProductListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.LoanPurposesResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 
 import java.util.concurrent.ExecutionException;
 
@@ -59,7 +59,7 @@ public class ConfigStorage {
             CompletableFuture<LoanPurposesResponseVo> future = CompletableFuture.supplyAsync(() -> {
 
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.loanPurposesList;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -76,7 +76,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<ContentVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.linkDisclaimer;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -93,7 +93,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<LoanProductListVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.loanProductList;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -110,7 +110,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<RequiredDataPointVo[]> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.userRequiredData.data;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -132,7 +132,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.posMode;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -149,7 +149,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.loanAmountMin;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -166,7 +166,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.loanAmountMax;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -183,7 +183,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.loanAmountIncrements;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -200,7 +200,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.loanAmountDefault;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -218,7 +218,7 @@ public class ConfigStorage {
             CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
 
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.skipLinkDisclaimer;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -235,7 +235,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.isStrictAddressValidationEnabled;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -252,7 +252,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<OffersListStyle> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return OffersListStyle.valueOf(mLinkConfig.offerListStyle);
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -269,7 +269,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.skipLoanAmount;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -286,7 +286,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<Boolean> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mLinkConfig = ShiftLinkSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
+                    mLinkConfig = ShiftSdk.getApiWrapper().getLinkConfig(new GetLinkConfigRequestVo());
                     return mLinkConfig.skipLoanPurpose;
                 } catch (ApiException e) {
                     throw new CompletionException(e);
@@ -320,7 +320,7 @@ public class ConfigStorage {
         else {
             CompletableFuture<CardConfigResponseVo> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    mCardConfig = ShiftLinkSdk.getApiWrapper().getCardConfig(new GetCardConfigRequestVo());
+                    mCardConfig = ShiftSdk.getApiWrapper().getCardConfig(new GetCardConfigRequestVo());
                     return mCardConfig;
                 } catch (ApiException e) {
                     throw new CompletionException(e);

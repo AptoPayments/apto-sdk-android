@@ -16,7 +16,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.users.CreateUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.LoginUserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.BaseVerificationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.userdata.EmailActivity;
@@ -78,7 +78,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
      */
     @Subscribe
     public void handleResponse(DataPointList userInfo) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         UserStorage.getInstance().setUserData(userInfo);
         onExistingUser.execute();
     }
@@ -102,7 +102,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
      */
     @Subscribe
     public void handleToken(CreateUserResponseVo response) {
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         if (response != null) {
             storeToken(response.user_token);
         }
@@ -126,7 +126,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         showLoading(false);
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         ApiErrorUtil.showErrorMessage(error, getActivity());
         stopModule();
     }
@@ -139,7 +139,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
     @Subscribe
     public void handleSessionExpiredError(SessionExpiredErrorVo error) {
         showLoading(false);
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
         ShiftPlatform.clearUserToken(getActivity());
         ApiErrorUtil.showErrorMessage(error, getActivity());
         stopModule();
@@ -268,15 +268,15 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
 
     private void loginUser() {
         showLoading(true);
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.loginUser(getLoginData());
     }
 
     private void createUser() {
         showLoading(true);
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
         ShiftPlatform.createUser(UserStorage.getInstance().getUserData());
     }
 

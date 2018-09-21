@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.shiftpayments.link.sdk.api.vos.responses.NoConnectionErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SystemMaintenanceVo;
-import com.shiftpayments.link.sdk.sdk.ShiftLinkSdk;
+import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -18,13 +18,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        ShiftLinkSdk.getResponseHandler().subscribe(this);
+        ShiftSdk.getResponseHandler().subscribe(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        ShiftLinkSdk.getResponseHandler().unsubscribe(this);
+        ShiftSdk.getResponseHandler().unsubscribe(this);
     }
 
     /**
