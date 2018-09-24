@@ -102,7 +102,7 @@ public class IdentityVerificationView
         mBirthdayDay = findViewById(R.id.et_birthday_day);
         mBirthdayYear = findViewById(R.id.et_birthday_year);
         mBirthdateErrorView = findViewById(R.id.tv_birthdate_error);
-        mBirthdateHint = findViewById(R.id.tv_birthdate_hint);
+        mBirthdateHint = findViewById(R.id.tv_birthdate_label);
 
         mSocialSecurityWrapper = findViewById(R.id.til_social_security);
         mSocialSecurityField = findViewById(R.id.et_social_security);
