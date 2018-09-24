@@ -276,6 +276,7 @@ public class ManageCardPresenter
     }
 
     public void refreshView() {
+        mModel.setCard(CardStorage.getInstance().getCard());
         BalanceVo balance = CardStorage.getInstance().getBalance();
         if(balance != null) {
             setBalanceInModel(balance);
