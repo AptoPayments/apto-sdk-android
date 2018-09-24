@@ -103,7 +103,6 @@ public class ManageCardPresenter
             }
         };
         mTransactionsList = new ArrayList<>();
-        initTransactionList();
         mTransactionsAdapter = new TransactionsAdapter(mActivity, mTransactionsList, mModel);
         mTransactionsAdapter.setViewListener(this);
         view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter);
@@ -163,7 +162,7 @@ public class ManageCardPresenter
         getTransactions();
         getCard();
         mTransactionsAdapter.clear();
-        initTransactionList();
+        mMostRecentCounter = 0;
         mScrollListener.resetState();
     }
 
@@ -213,41 +212,47 @@ public class ManageCardPresenter
     public void handleResponse(TransactionListResponseVo response) {
         mSemaphore.release();
         int currentSize = mTransactionsAdapter.getItemCount();
-        List<TransactionVo> transactionVoList = Arrays.asList(response.data);
-        for(TransactionVo transactionVo : transactionVoList) {
-            if(mMostRecentCounter < 3) {
-                mMostRecentCounter++;
-            }
-            else {
-                String transactionMonth = DateUtil.getMonthFromTimeStamp(transactionVo.creationTime);
-                String transactionYear = DateUtil.getYearFromTimeStamp(transactionVo.creationTime);
-                if(!mTransactionCurrentYear.equals(transactionYear)) {
-                    mTransactionsList.add(new DateItem(DateUtil.getSimpleTransactionDate(transactionVo.creationTime)));
-                    mTransactionCurrentMonth = transactionMonth;
-                    mTransactionCurrentYear = transactionYear;
-                }
-                else if(!mTransactionCurrentMonth.equals(transactionMonth)) {
-                    mTransactionsList.add(new DateItem(transactionMonth));
-                    mTransactionCurrentMonth = transactionMonth;
-                }
-            }
-            mTransactionsList.add(new TransactionItem(transactionVo));
+        if(currentSize==0) {
+            mTransactionsList.add(new HeaderItem());
         }
 
         if(response.total_count <= 0) {
             mView.showNoTransactionsImage(true);
+            mTransactionsAdapter.notifyItemChanged(0);
         }
         else {
             if(response.data.length>0) {
                 mLastTransactionId = response.data[response.data.length-1].id;
+                List<TransactionVo> transactionVoList = Arrays.asList(response.data);
+                for(TransactionVo transactionVo : transactionVoList) {
+                    if(mMostRecentCounter < 3) {
+                        if(mMostRecentCounter==0) {
+                            mTransactionsList.add(new DateItem(mActivity.getString(R.string.card_management_transactions_most_recent)));
+                        }
+                        mMostRecentCounter++;
+                    }
+                    else {
+                        String transactionMonth = DateUtil.getMonthFromTimeStamp(transactionVo.creationTime);
+                        String transactionYear = DateUtil.getYearFromTimeStamp(transactionVo.creationTime);
+                        if(!mTransactionCurrentYear.equals(transactionYear)) {
+                            mTransactionsList.add(new DateItem(DateUtil.getSimpleTransactionDate(transactionVo.creationTime)));
+                            mTransactionCurrentMonth = transactionMonth;
+                            mTransactionCurrentYear = transactionYear;
+                        }
+                        else if(!mTransactionCurrentMonth.equals(transactionMonth)) {
+                            mTransactionsList.add(new DateItem(transactionMonth));
+                            mTransactionCurrentMonth = transactionMonth;
+                        }
+                    }
+                    mTransactionsList.add(new TransactionItem(transactionVo));
+                }
             }
             mView.showNoTransactionsImage(false);
+            mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count);
         }
-        mTransactionsAdapter.notifyItemRangeInserted(currentSize, response.total_count);
         if(isViewReady()) {
             mView.setRefreshing(false);
         }
-
     }
 
     @Subscribe
@@ -372,11 +377,6 @@ public class ManageCardPresenter
         } catch (InterruptedException e) {
             ApiErrorUtil.showErrorMessage(e.getMessage(), mActivity);
         }
-    }
-
-    private void initTransactionList() {
-        mTransactionsList.add(new HeaderItem());
-        mTransactionsList.add(new DateItem(mActivity.getString(R.string.card_management_transactions_most_recent)));
     }
 
     public void subscribeToEvents(boolean subscribe) {
