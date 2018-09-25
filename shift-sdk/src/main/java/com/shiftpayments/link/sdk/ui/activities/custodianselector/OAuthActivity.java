@@ -70,9 +70,7 @@ public class OAuthActivity extends BaseActivity {
     public void handleResponse(OAuthStatusResponseVo response) {
         if(response.status.equals("passed")) {
             mGetStatusThread.interrupt();
-            mCurrentModule.oAuthTokensRetrieved(
-                    response.tokens.access,
-                    response.tokens.refresh);
+            mCurrentModule.onOauthPassed(response);
             this.finish();
         }
     }

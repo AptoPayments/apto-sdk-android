@@ -63,7 +63,8 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                 return new SSN();
             case "address":
                 return new Address(jObject.get("address").getAsString(),
-                        jObject.get("apt").getAsString(), "US", jObject.get("city").getAsString(),
+                        ParsingUtils.getStringFromJson(jObject.get("apt")),
+                        "US", jObject.get("city").getAsString(),
                         jObject.get("state").getAsString(), jObject.get("zip").getAsString(),
                         verified, notSpecified);
             case "housing":
