@@ -129,7 +129,6 @@ public class ManageCardPresenter
     @Override
     public void accountClickHandler() {
         mActivity.startActivity(new Intent(mActivity, ManageAccountActivity.class));
-        mActivity.overridePendingTransition(R.anim.enter, R.anim.exit);
     }
 
     @Override
