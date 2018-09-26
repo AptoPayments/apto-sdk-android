@@ -61,7 +61,7 @@
     <string name="email_verification_resent">A new code has been sent to your email</string>
 
     <!-- Address -->
-    <string name="address_label">What\'s your address?</string>
+    <string name="address_label">Where do you live?</string>
     <string name="address_address_hint">Address</string>
     <string name="address_address_error">Please enter a valid address.</string>
     <string name="address_apartment_number_hint">Unit/Apt #</string>

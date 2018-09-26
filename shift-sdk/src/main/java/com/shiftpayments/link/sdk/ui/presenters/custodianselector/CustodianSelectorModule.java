@@ -66,12 +66,7 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
 
     @Override
     public void onOauthPassed(OAuthStatusResponseVo oAuthResponse) {
-        if(oAuthResponse.userDataListVo != null) {
-            startPersonalInformationConfirmationScreen();
-        }
-        else {
-            mDelegate.onTokensRetrieved(oAuthResponse.tokens.access, oAuthResponse.tokens.refresh);
-        }
+        mDelegate.onTokensRetrieved(oAuthResponse);
     }
 
     @Override
@@ -81,10 +76,5 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
 
     private void startOAuthActivity() {
         getActivity().startActivity(new Intent(getActivity(), OAuthActivity.class));
-    }
-
-    private void startPersonalInformationConfirmationScreen() {
-        // TODO
-        //getActivity().startActivity(new Intent(getActivity(), PersonalInformationConfirmationActivity.class));
     }
 }
