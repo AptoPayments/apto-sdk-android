@@ -8,7 +8,7 @@ import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.PersonalInformationConfirmationView;
 
 /**
- * Concrete {@link Presenter} for the personal information screen.
+ * Concrete {@link Presenter} for the personal information confirmation screen.
  * @author Adrian
  */
 public class PersonalInformationConfirmationPresenter
