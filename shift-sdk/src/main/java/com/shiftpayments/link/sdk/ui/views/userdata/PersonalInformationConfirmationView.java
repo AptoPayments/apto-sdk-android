@@ -1,21 +1,14 @@
 package com.shiftpayments.link.sdk.ui.views.userdata;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
-
-import java.util.ArrayList;
 
 /**
  * Displays the personal information confirmation screen.

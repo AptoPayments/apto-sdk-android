@@ -6,6 +6,7 @@
 
     <!-- Toolbar -->
     <string name="toolbar_next_button_label">Next</string>
+    <string name="toolbar_confirm_button_label">Confirm</string>
 
     <!-- Loan Amount -->
     <string name="loan_amount_label">How much do you need?</string>

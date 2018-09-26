@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.PersonalInformationConfirmationModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.PersonalInformationConfirmationView;
@@ -37,11 +38,20 @@ public class PersonalInformationConfirmationPresenter
     public void attachView(PersonalInformationConfirmationView view) {
         super.attachView(view);
         mView.setListener(this);
-        mView.setFirstName("Adrian");
-        mView.setLastName("Tung");
-        mView.setEmail("adrian@shiftpayments.com");
-        mView.setAddress("41 Highbury Pl, Highbury East, London N5 1QL, UK");
-        mView.setPhone("+44 77 1234 5678");
+        if(mModel.hasPersonalName()) {
+            mView.setFirstName(mModel.getFirstName());
+            mView.setLastName(mModel.getLastName());
+        }
+        if(mModel.hasEmail()) {
+            mView.setEmail(mModel.getEmail());
+        }
+        if(mModel.hasAddress()) {
+            mView.setAddress(mModel.getAddress());
+        }
+        if(mModel.hasPhoneNumber()) {
+            mView.setPhone(mModel.getPhoneNumber());
+        }
+        mView.setNextButtonText(mActivity.getResources().getString(R.string.toolbar_confirm_button_label));
         mView.enableNextButton(true);
     }
 
@@ -60,7 +70,6 @@ public class PersonalInformationConfirmationPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        saveData();
         mDelegate.personalInformationConfirmed();
     }
 }

@@ -34,10 +34,6 @@ public class PhoneNumberVo extends DataPointVo {
         return phoneNumber;
     }
 
-    public String getPhoneAsString() {
-        return "+" + String.valueOf(phoneNumber.getCountryCode()) + String.valueOf(phoneNumber.getNationalNumber());
-    }
-
     /**
      * Parses and stores a valid phone number.
      * @param phone Raw phone number.
@@ -74,8 +70,7 @@ public class PhoneNumberVo extends DataPointVo {
 
     @Override
     public String toString() {
-        // TODO: refactor
-        return getPhoneAsString();
+        return "+" + String.valueOf(phoneNumber.getCountryCode()) + String.valueOf(phoneNumber.getNationalNumber());
     }
 
     @Override

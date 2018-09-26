@@ -1,16 +1,13 @@
 package com.shiftpayments.link.sdk.ui.models.userdata;
 
-import android.text.TextUtils;
-
+import com.shiftpayments.link.sdk.api.vos.datapoints.Address;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Email;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
+import com.shiftpayments.link.sdk.api.vos.datapoints.PhoneNumberVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.Model;
-import com.shiftpayments.link.sdk.ui.utils.EmailUtil;
-
-import java.util.LinkedList;
 
 
 /**
@@ -22,24 +19,14 @@ public class PersonalInformationConfirmationModel extends AbstractUserDataModel 
 
     private PersonalName mPersonalName;
     private Email mEmail;
-    private boolean mEmailNotSpecified;
+    private Address mAddress;
+    private PhoneNumberVo mPhoneNumber;
 
     /**
      * Creates a new {@link PersonalInformationConfirmationModel} instance.
      */
 
-    public PersonalInformationConfirmationModel() {
-        init();
-    }
-
-    /**
-     * Initializes this class.
-     */
-    private void init() {
-        mPersonalName = new PersonalName();
-        mEmail = new Email();
-        mEmailNotSpecified = false;
-    }
+    public PersonalInformationConfirmationModel() { }
 
     /** {@inheritDoc} */
     @Override
@@ -47,170 +34,55 @@ public class PersonalInformationConfirmationModel extends AbstractUserDataModel 
         return R.string.personal_info_label;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasValidData() {
-        return hasName() && hasEmail();
-    }
-
-    public boolean hasName() {
-        return hasFirstName() && hasLastName();
-    }
-
-    public boolean isEmailNotSpecified() {
-        return mEmailNotSpecified;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DataPointList getBaseData() {
-        DataPointList base = super.getBaseData();
-
-        if(hasName()) {
-            PersonalName personalName = (PersonalName) base.getUniqueDataPoint(
-                    DataPointVo.DataPointType.PersonalName, new PersonalName());
-            personalName.firstName = mPersonalName.firstName;
-            personalName.lastName = mPersonalName.lastName;
-        }
-        if(hasEmail() || mEmailNotSpecified) {
-            Email emailAddress = (Email) base.getUniqueDataPoint(
-                    DataPointVo.DataPointType.Email, new Email());
-            emailAddress.email = mEmail.email;
-            emailAddress.setNotSpecified(mEmailNotSpecified);
-        }
-
-        return base;
+        return true;
     }
 
     /** {@inheritDoc} */
     @Override
     public void setBaseData(DataPointList base) {
         super.setBaseData(base);
-        PersonalName personalName = (PersonalName) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.PersonalName, null);
-        if(personalName!=null) {
-            setPersonalName(personalName);
-        }
-
-        Email emailAddress = (Email) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Email, null);
-        if(emailAddress!=null) {
-            setEmail(emailAddress);
-            mEmailNotSpecified = emailAddress.isNotSpecified();
-        }
+        mPersonalName = (PersonalName) base.getUniqueDataPoint(DataPointVo.DataPointType.PersonalName, null);
+        mEmail = (Email) base.getUniqueDataPoint(DataPointVo.DataPointType.Email, null);
+        mAddress = (Address) base.getUniqueDataPoint(DataPointVo.DataPointType.Address, null);
+        mPhoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(DataPointVo.DataPointType.Phone, null);
     }
 
-    public void setPersonalName(PersonalName personalName) {
-        if(personalName != null) {
-            setFirstName(personalName.firstName);
-            setLastName(personalName.lastName);
-        }
-    }
-
-    /**
-     * @return First name.
-     */
     public String getFirstName() {
         return mPersonalName.firstName;
     }
 
-    /**
-     * Stores a valid first name.
-     * @param firstName First name.
-     */
-    public void setFirstName(String firstName) {
-        if (TextUtils.isEmpty(firstName)) {
-            mPersonalName.firstName = null;
-        } else {
-            mPersonalName.firstName = firstName;
-        }
-    }
-
-    /**
-     * @return Last name.
-     */
     public String getLastName() {
         return mPersonalName.lastName;
     }
 
-    /**
-     * Stores a valid last name.
-     * @param lastName Last name.
-     */
-    public void setLastName(String lastName) {
-        if (TextUtils.isEmpty(lastName)) {
-            mPersonalName.lastName = null;
-        } else {
-            mPersonalName.lastName = lastName;
-        }
+    public boolean hasPersonalName() {
+        return mPersonalName != null;
     }
 
-    /**
-     * @return Email address.
-     */
     public String getEmail() {
-        return mEmail.email;
+        return mEmail.toString();
     }
 
-    public void setEmail(Email emailAddress) {
-        if(emailAddress != null) {
-            setEmail(emailAddress.email);
-        }
-    }
-
-    /**
-     * Stores a valid email address.
-     * @param email Email address.
-     */
-    public void setEmail(String email) {
-
-        if (EmailUtil.isValidEmail(email)) {
-            mEmail.email = email;
-        } else {
-            mEmail.email = null;
-        }
-    }
-
-    /**
-     * @return Whether a first name has been set.
-     */
-    public boolean hasFirstName() {
-        return !TextUtils.isEmpty(mPersonalName.firstName);
-    }
-
-    /**
-     * @return Whether a last name has been set.
-     */
-    public boolean hasLastName() {
-        return !TextUtils.isEmpty(mPersonalName.lastName);
-    }
-
-    /**
-     * @return Whether an email address has been set.
-     */
     public boolean hasEmail() {
-        return !TextUtils.isEmpty(mEmail.email);
+        return mEmail != null;
     }
 
-    public boolean hasAllRequiredData(boolean isNameRequired, boolean isEmailRequired) {
-        boolean hasAllData = true;
-
-        LinkedList<Boolean> requiredDataList = new LinkedList<>();
-        if(isNameRequired) {
-            requiredDataList.add(hasName());
-        }
-        if(isEmailRequired) {
-            requiredDataList.add(hasEmail());
-        }
-
-        for (boolean hasData:requiredDataList) {
-            hasAllData = hasAllData && hasData;
-        }
-        return hasAllData;
+    public String getAddress() {
+        return mAddress.toString();
     }
 
-    public void setEmailNotAvailable(boolean notAvailable) {
-        mEmailNotSpecified = notAvailable;
+    public boolean hasAddress() {
+        return mAddress != null;
+    }
+
+    public String getPhoneNumber() {
+        return mPhoneNumber.toString();
+    }
+
+    public boolean hasPhoneNumber() {
+        return mPhoneNumber != null;
     }
 }
 
