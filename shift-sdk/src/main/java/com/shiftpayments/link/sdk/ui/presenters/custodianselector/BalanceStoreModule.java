@@ -4,15 +4,21 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
+import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
+import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.userdata.PersonalInformationConfirmationActivity;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.PersonalInformationConfirmationDelegate;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
@@ -30,6 +36,8 @@ public class BalanceStoreModule extends ShiftBaseModule implements CustodianSele
         PersonalInformationConfirmationDelegate {
 
     private static BalanceStoreModule instance;
+    private boolean updateUserRequired = false;
+    private SetBalanceStoreRequestVo setBalanceStoreRequest;
 
     public static synchronized BalanceStoreModule getInstance(Activity activity, Command onFinish, Command onBack) {
         if (instance == null) {
@@ -50,39 +58,55 @@ public class BalanceStoreModule extends ShiftBaseModule implements CustodianSele
 
     @Override
     public void onTokensRetrieved(OAuthStatusResponseVo oAuthResponse) {
+        OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(oAuthResponse.tokens.access, oAuthResponse.tokens.refresh);
+        setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
         if(oAuthResponse.userDataListVo != null) {
-            startPersonalInformationConfirmationScreen();
+            startPersonalInformationConfirmationScreen(oAuthResponse.userDataListVo);
         }
         else {
-            ShiftSdk.getResponseHandler().subscribe(this);
-            OAuthCredentialVo coinbaseCredentials = new OAuthCredentialVo(oAuthResponse.tokens.access, oAuthResponse.tokens.refresh);
-            SetBalanceStoreRequestVo setBalanceStoreRequest = new SetBalanceStoreRequestVo("coinbase", coinbaseCredentials);
-            ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
+            setBalanceStore();
         }
     }
 
     @Override
     public void personalInformationConfirmed() {
-        // TODO: setBalanceStore and call PUT /user
-        Log.d("ADRIAN", "personalInformationConfirmed: ");
+        updateUserRequired = true;
+        setBalanceStore();
     }
 
     @Override
     public void personalInformationOnBackPressed() {
-        // TODO: show oAuth again
-        Log.d("ADRIAN", "personalInformationOnBackPressed: ");
+        startCustodianModule(onFinish, onBack);
     }
 
     @Subscribe
-    public void handleResponse(SetBalanceStoreResponseVo response) {
+    public void handleSetBlanceStoreResponse(SetBalanceStoreResponseVo response) {
         ShiftSdk.getResponseHandler().unsubscribe(this);
         if(response.result.equals("valid")) {
-            onFinish.execute();
+            if(updateUserRequired) {
+                ShiftSdk.getResponseHandler().subscribe(this);
+                ShiftPlatform.updateUser(getUpdateUserRequest());
+            }
+            else {
+                onFinish.execute();
+            }
         }
         else {
             startCustodianModule(onFinish, onBack);
             ApiErrorUtil.showAlertDialog(response.errorCode);
         }
+    }
+
+    @Subscribe
+    public void handleUpdateUserResponse(UserResponseVo response) {
+        ShiftSdk.getResponseHandler().unsubscribe(this);
+        onFinish.execute();
+    }
+
+    private void setBalanceStore() {
+        ShiftSdk.getResponseHandler().subscribe(this);
+        showLoading(true);
+        ShiftPlatform.setBalanceStore(CardStorage.getInstance().getApplication().applicationId, setBalanceStoreRequest);
     }
 
     private void startCustodianModule(Command onFinish, Command onBack) {
@@ -91,9 +115,24 @@ public class BalanceStoreModule extends ShiftBaseModule implements CustodianSele
         startModule(custodianSelectorModule);
     }
 
-    private void startPersonalInformationConfirmationScreen() {
+    private void startPersonalInformationConfirmationScreen(UserDataListResponseVo userDataList) {
         SoftReference<ShiftBaseModule> moduleSoftReference = new SoftReference<>(this);
         ModuleManager.getInstance().setModule(moduleSoftReference);
+        DataPointList dataPointList = new DataPointList(DataPointList.ListType.userData);
+        for(DataPointVo d : userDataList.data) {
+            if(d != null) {
+                dataPointList.add(d);
+            }
+        }
+        UserStorage.getInstance().setUserData(dataPointList);
         getActivity().startActivity(new Intent(getActivity(), PersonalInformationConfirmationActivity.class));
+    }
+
+    private DataPointList getUpdateUserRequest() {
+        DataPointList request = UserStorage.getInstance().getUserData();
+        String primaryCredential = UIStorage.getInstance().getContextConfig().primaryAuthCredential;
+        DataPointVo.DataPointType credentialType = DataPointVo.DataPointType.fromString(primaryCredential);
+        request.removeDataPointsOf(credentialType);
+        return request;
     }
 }
