@@ -1,24 +1,23 @@
 package com.shiftpayments.link.sdk.ui.presenters.verification;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.DatePicker;
+import android.widget.ArrayAdapter;
 
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
-import com.shiftpayments.link.sdk.ui.fragments.DatePickerFragment;
 import com.shiftpayments.link.sdk.ui.models.verification.BirthdateVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataPresenter;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shiftpayments.link.sdk.ui.utils.ResourceUtil;
 import com.shiftpayments.link.sdk.ui.views.verification.BirthdateVerificationView;
 
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.Arrays;
 
 /**
  * Concrete {@link Presenter} for the birthdate screen.
@@ -27,7 +26,7 @@ import org.greenrobot.eventbus.Subscribe;
 public class BirthdateVerificationPresenter
         extends UserDataPresenter<BirthdateVerificationModel, BirthdateVerificationView>
         implements Presenter<BirthdateVerificationModel, BirthdateVerificationView>,
-        BirthdateVerificationView.ViewListener, DatePickerDialog.OnDateSetListener {
+        BirthdateVerificationView.ViewListener {
 
     private BirthdateVerificationDelegate mDelegate;
     private LoadingSpinnerManager mLoadingSpinnerManager;
@@ -38,14 +37,6 @@ public class BirthdateVerificationPresenter
     public BirthdateVerificationPresenter(AppCompatActivity activity, BirthdateVerificationDelegate delegate) {
         super(activity);
         mDelegate = delegate;
-    }
-
-    /**
-     * @param activity The {@link Activity} that will be hosting the date picker.
-     * @return Resource ID of the theme to use with for the birthday date picker.
-     */
-    private int getBirthdateDialogThemeId(Activity activity) {
-        return new ResourceUtil().getResourceIdForAttribute(activity, R.attr.llsdk_userData_datePickerTheme);
     }
 
     /** {@inheritDoc} */
@@ -86,17 +77,13 @@ public class BirthdateVerificationPresenter
 
     /** {@inheritDoc} */
     @Override
-    public void birthdayClickHandler() {
-        DatePickerFragment fragment = new DatePickerFragment();
-        fragment.setListener(this);
-        fragment.show(mActivity.getFragmentManager(), DatePickerFragment.TAG);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void nextClickHandler() {
         // Validate input.
-        mModel.setBirthdate(mView.getBirthdate(), "MM-dd-yyyy");
+        int day = mView.getBirthdayDay().isEmpty() ? 0 : Integer.valueOf(mView.getBirthdayDay());
+        int year = mView.getBirthdayYear().isEmpty() ? 0 : Integer.valueOf(mView.getBirthdayYear());
+        String[] months = mActivity.getResources().getStringArray(R.array.months_of_year);
+        int month = Arrays.asList(months).indexOf(mView.getBirthdayMonth());
+        mModel.setBirthdate(year, month, day);
         mView.updateBirthdateError(!mModel.hasValidBirthdate(), mModel.getBirthdateErrorString());
 
         if (mModel.hasValidBirthdate()) {
@@ -104,14 +91,6 @@ public class BirthdateVerificationPresenter
             super.saveData();
             ShiftPlatform.completeVerification(mModel.getVerificationRequest());
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        mModel.setBirthdate(year, monthOfYear, dayOfMonth);
-        mView.setBirthdate(String.format("%02d-%02d-%02d", monthOfYear + 1, dayOfMonth, year));
-        mView.updateBirthdateError(!mModel.hasValidBirthdate(), mModel.getBirthdateErrorString());
     }
 
     /**
@@ -139,5 +118,22 @@ public class BirthdateVerificationPresenter
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         super.setApiError(error);
+    }
+
+    @Override
+    public void monthClickHandler() {
+        showMonthPicker();
+    }
+
+    private void showMonthPicker() {
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(mActivity, android.R.layout.select_dialog_singlechoice);
+        String[] monthsOfYear = mActivity.getResources().getStringArray(R.array.months_of_year);
+        arrayAdapter.addAll(monthsOfYear);
+
+        new AlertDialog.Builder(mActivity)
+                .setTitle(R.string.birthdate_label_month)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setAdapter(arrayAdapter, (dialog1, item) -> mView.setBirthdayMonth(arrayAdapter.getItem(item)))
+                .show();
     }
 }
