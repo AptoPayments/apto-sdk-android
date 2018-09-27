@@ -34,6 +34,10 @@ public class PersonalInformationConfirmationView
     private TextView mAddressLabel;
     private TextView mPhoneField;
     private TextView mPhoneLabel;
+    private TextView mDateOfBirthField;
+    private TextView mDateOfBirthLabel;
+    private TextView mIdDocumentField;
+    private TextView mIdDocumentLabel;
 
     /**
      * @see UserDataView#UserDataView
@@ -67,6 +71,10 @@ public class PersonalInformationConfirmationView
         mAddressLabel = findViewById(R.id.tv_address_label);
         mPhoneField = findViewById(R.id.tv_phone);
         mPhoneLabel = findViewById(R.id.tv_phone_label);
+        mDateOfBirthField = findViewById(R.id.tv_date_of_birth);
+        mDateOfBirthLabel = findViewById(R.id.tv_date_of_birth_label);
+        mIdDocumentField = findViewById(R.id.tv_id_document);
+        mIdDocumentLabel = findViewById(R.id.tv_id_document_label);
     }
 
     @Override
@@ -78,7 +86,8 @@ public class PersonalInformationConfirmationView
         mEmailField.setTextColor(textSecondaryColor);
         mAddressField.setTextColor(textSecondaryColor);
         mPhoneField.setTextColor(textSecondaryColor);
-
+        mDateOfBirthField.setTextColor(textSecondaryColor);
+        mIdDocumentField.setTextColor(textSecondaryColor);
     }
 
     public void setFirstName(String firstName) {
@@ -104,6 +113,16 @@ public class PersonalInformationConfirmationView
     public void setPhone(String phone) {
         mPhoneField.setText(phone);
         showPhone(true);
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        mDateOfBirthField.setText(dateOfBirth);
+        showDateOfBirth(true);
+    }
+
+    public void setIdDocument(String id) {
+        mIdDocumentField.setText(id);
+        showIdDocument(true);
     }
 
     public void showName(boolean show) {
@@ -151,6 +170,28 @@ public class PersonalInformationConfirmationView
         else {
             mPhoneField.setVisibility(GONE);
             mPhoneLabel.setVisibility(GONE);
+        }
+    }
+
+    public void showDateOfBirth(boolean show) {
+        if(show) {
+            mDateOfBirthField.setVisibility(VISIBLE);
+            mDateOfBirthLabel.setVisibility(VISIBLE);
+        }
+        else {
+            mDateOfBirthField.setVisibility(GONE);
+            mDateOfBirthLabel.setVisibility(GONE);
+        }
+    }
+
+    public void showIdDocument(boolean show) {
+        if(show) {
+            mIdDocumentField.setVisibility(VISIBLE);
+            mIdDocumentLabel.setVisibility(VISIBLE);
+        }
+        else {
+            mIdDocumentField.setVisibility(GONE);
+            mIdDocumentLabel.setVisibility(GONE);
         }
     }
 }

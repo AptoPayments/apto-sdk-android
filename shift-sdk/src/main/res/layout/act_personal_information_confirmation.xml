@@ -95,6 +95,36 @@
                 style="@style/llsdk_form_field"
                 android:visibility="gone"
                 android:layout_marginBottom="32dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_date_of_birth_label"
+                style="@style/llsdk_form_label"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp"
+                android:text="@string/date_of_birth_label"/>
+
+            <TextView
+                android:id="@+id/tv_date_of_birth"
+                style="@style/llsdk_form_field"
+                android:visibility="gone"
+                android:layout_marginBottom="32dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_id_document_label"
+                style="@style/llsdk_form_label"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp"
+                android:text="@string/id_document_label"/>
+
+            <TextView
+                android:id="@+id/tv_id_document"
+                style="@style/llsdk_form_field"
+                android:visibility="gone"
+                android:layout_marginBottom="32dp"/>
         </LinearLayout>
     </ScrollView>
 </com.shiftpayments.link.sdk.ui.views.userdata.PersonalInformationConfirmationView>

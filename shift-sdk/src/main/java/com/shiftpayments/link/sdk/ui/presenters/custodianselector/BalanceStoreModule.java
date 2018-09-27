@@ -2,10 +2,11 @@ package com.shiftpayments.link.sdk.ui.presenters.custodianselector;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 
+import com.shiftpayments.link.sdk.api.vos.datapoints.Birthdate;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shiftpayments.link.sdk.api.vos.datapoints.SSN;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
@@ -27,6 +28,13 @@ import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.lang.ref.SoftReference;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
+import static com.shiftpayments.link.sdk.ui.utils.DateUtil.BIRTHDATE_DATE_FORMAT;
 
 /**
  * Created by adrian on 19/09/2018.
@@ -124,6 +132,13 @@ public class BalanceStoreModule extends ShiftBaseModule implements CustodianSele
                 dataPointList.add(d);
             }
         }
+        // TODO: remove after testing
+        Calendar birth = new GregorianCalendar(1991, 3, 12);
+        birth.setLenient(false);
+        Date mBirthdate = birth.getTime();
+        SimpleDateFormat birthdayFormat = new SimpleDateFormat(BIRTHDATE_DATE_FORMAT, Locale.US);
+        dataPointList.add(new Birthdate(birthdayFormat.format(mBirthdate), false, false));
+        dataPointList.add(new SSN("000000000", false, false));
         UserStorage.getInstance().setUserData(dataPointList);
         getActivity().startActivity(new Intent(getActivity(), PersonalInformationConfirmationActivity.class));
     }

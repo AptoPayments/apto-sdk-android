@@ -51,6 +51,12 @@ public class PersonalInformationConfirmationPresenter
         if(mModel.hasPhoneNumber()) {
             mView.setPhone(mModel.getPhoneNumber());
         }
+        if(mModel.hasDateOfBirth()) {
+            mView.setDateOfBirth(mModel.getDateOfBirth());
+        }
+        if(mModel.hasIdDocument()) {
+            mView.setIdDocument(mModel.getIdDocument());
+        }
         mView.setNextButtonText(mActivity.getResources().getString(R.string.toolbar_confirm_button_label));
         mView.enableNextButton(true);
     }

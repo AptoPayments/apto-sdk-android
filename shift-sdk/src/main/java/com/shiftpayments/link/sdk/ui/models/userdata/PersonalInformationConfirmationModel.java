@@ -1,13 +1,21 @@
 package com.shiftpayments.link.sdk.ui.models.userdata;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.Address;
+import com.shiftpayments.link.sdk.api.vos.datapoints.Birthdate;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Email;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PhoneNumberVo;
+import com.shiftpayments.link.sdk.api.vos.datapoints.SSN;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.Model;
+import com.shiftpayments.link.sdk.ui.utils.DateUtil;
+
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
+import static com.shiftpayments.link.sdk.ui.utils.DateUtil.BIRTHDATE_DATE_FORMAT;
 
 
 /**
@@ -21,6 +29,8 @@ public class PersonalInformationConfirmationModel extends AbstractUserDataModel 
     private Email mEmail;
     private Address mAddress;
     private PhoneNumberVo mPhoneNumber;
+    private Birthdate mBirthdate;
+    private SSN mIdDocument;
 
     /**
      * Creates a new {@link PersonalInformationConfirmationModel} instance.
@@ -47,6 +57,8 @@ public class PersonalInformationConfirmationModel extends AbstractUserDataModel 
         mEmail = (Email) base.getUniqueDataPoint(DataPointVo.DataPointType.Email, null);
         mAddress = (Address) base.getUniqueDataPoint(DataPointVo.DataPointType.Address, null);
         mPhoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(DataPointVo.DataPointType.Phone, null);
+        mBirthdate = (Birthdate) base.getUniqueDataPoint(DataPointVo.DataPointType.BirthDate, null);
+        mIdDocument = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, null);
     }
 
     public String getFirstName() {
@@ -83,6 +95,22 @@ public class PersonalInformationConfirmationModel extends AbstractUserDataModel 
 
     public boolean hasPhoneNumber() {
         return mPhoneNumber != null;
+    }
+
+    public String getDateOfBirth() {
+        return mBirthdate.toString();
+    }
+
+    public boolean hasDateOfBirth() {
+        return mBirthdate != null;
+    }
+
+    public String getIdDocument() {
+        return mIdDocument.toString();
+    }
+
+    public boolean hasIdDocument() {
+        return mIdDocument != null;
     }
 }
 

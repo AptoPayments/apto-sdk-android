@@ -129,6 +129,10 @@
     <string name="id_verification_disclaimer">Your information is private and secure.</string>
     <string name="id_verification_ssn_itin_not_available">I don\'t have an SSN/ITIN</string>
 
+    <!-- PII Confirmation Screen -->
+    <string name="date_of_birth_label">Date of birth</string>
+    <string name="id_document_label">ID document</string>
+
     <!-- Offers List -->
     <string name="offers_list_label">Loan offers</string>
     <string name="offers_list_empty_text">No offers found.</string>
