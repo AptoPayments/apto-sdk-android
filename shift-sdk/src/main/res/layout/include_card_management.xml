@@ -4,11 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <include layout="@layout/include_invalid_funding_source_banner"
+        android:visibility="gone"/>
+
     <TextView
         android:id="@+id/tv_current_balance_label"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/rl_invalid_funding_source_banner"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         style="@style/llsdk_manage_card_section_title"
@@ -36,7 +39,7 @@
         android:id="@+id/tv_card_spendable_balance_label"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/rl_invalid_funding_source_banner"
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
         style="@style/llsdk_manage_card_section_title"

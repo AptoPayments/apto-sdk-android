@@ -154,6 +154,11 @@ public class ManageCardPresenter
     }
 
     @Override
+    public void addNewFundingSourceClickHandler() {
+        mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());
+    }
+
+    @Override
     public void pullToRefreshHandler() {
         mLastTransactionId = null;
         mMostRecentCounter=0;
@@ -390,6 +395,7 @@ public class ManageCardPresenter
     private void setBalanceInModel(BalanceVo balanceVo) {
         if(balanceVo.balance!=null && balanceVo.balance.hasAmount()) {
             mModel.setBalance(new AmountVo(balanceVo.balance.amount, balanceVo.balance.currency));
+            mModel.setBalanceState(balanceVo.state);
         }
         if(balanceVo.amountSpendable!=null && balanceVo.amountSpendable.hasAmount()) {
             mModel.setSpendableAmount(new AmountVo(balanceVo.amountSpendable.amount, balanceVo.amountSpendable.currency));

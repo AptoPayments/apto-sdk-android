@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,7 @@ public class TransactionsAdapter extends
         void accountClickHandler();
         void cardNumberClickHandler(String cardNumber);
         void transactionClickHandler(int transactionId);
+        void addNewFundingSourceClickHandler();
     }
     public void setViewListener(ViewListener viewListener) {
         mListener = viewListener;
@@ -74,6 +76,13 @@ public class TransactionsAdapter extends
         TextView spendableNativeAmount;
         TextView primaryButton;
         TextView secondaryButton;
+
+        // Invalid Funding Source Banner
+        RelativeLayout invalidFundingSourceBanner;
+        TextView bannerAcceptButton;
+        TextView bannerCancelButton;
+        TextView bannerTitle;
+        TextView bannerBody;
 
         // Transaction
         TextView titleTextView;
@@ -100,6 +109,11 @@ public class TransactionsAdapter extends
                 spendableNativeAmount = itemView.findViewById(R.id.tv_spendable_native_balance);
                 primaryButton = itemView.findViewById(R.id.tv_display_card_primary_bttn);
                 secondaryButton = itemView.findViewById(R.id.tv_display_card_secondary_bttn);
+                invalidFundingSourceBanner = itemView.findViewById(R.id.rl_invalid_funding_source_banner);
+                bannerAcceptButton = itemView.findViewById(R.id.tv_banner_accept);
+                bannerCancelButton = itemView.findViewById(R.id.tv_banner_cancel);
+                bannerTitle = itemView.findViewById(R.id.tv_banner_title);
+                bannerBody = itemView.findViewById(R.id.tv_banner_body);
             } else if (viewType == TYPE_TRANSACTION) {
                 titleTextView = itemView.findViewById(R.id.tv_title);
                 descriptionTextView = itemView.findViewById(R.id.tv_description);
@@ -150,8 +164,15 @@ public class TransactionsAdapter extends
                 viewHolder.creditCardView.setCardName(mModel.getCardHolderName());
                 viewHolder.creditCardView.setCVV(mModel.getCVV());
                 viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
-                showCardBalance(!mModel.getCardBalance().isEmpty(), viewHolder);
-                showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
+                if (mModel.isBalanceValid()) {
+                    showInvalidBalanceBanner(false, viewHolder);
+                    showCardBalance(!mModel.getCardBalance().isEmpty(), viewHolder);
+                    showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
+                } else {
+                    showInvalidBalanceBanner(true, viewHolder);
+                    showCardBalance(false, viewHolder);
+                    showSpendableAmount(false, viewHolder);
+                }
                 viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
                 if(mModel.cardNumberShown()) {
                     setCopyCardNumberLabelText(viewHolder, mContext.getString(R.string.card_management_primary_button_full));
@@ -212,6 +233,10 @@ public class TransactionsAdapter extends
                         v -> mListener.cardNumberClickHandler(((EditText) v).getText().toString()));
                 viewHolder.secondaryButton.setOnClickListener(
                         v -> mListener.activateCardBySecondaryBtnClickHandler());
+                viewHolder.bannerAcceptButton.setOnClickListener(
+                        v -> mListener.addNewFundingSourceClickHandler());
+                viewHolder.bannerCancelButton.setOnClickListener(
+                        v -> showInvalidBalanceBanner(false, viewHolder));
                 break;
             case TYPE_TRANSACTION:
                 viewHolder.transactionHolder.setOnClickListener(
@@ -265,5 +290,19 @@ public class TransactionsAdapter extends
 
     private void setCopyCardNumberLabelText(ViewHolder viewHolder, String text) {
         viewHolder.primaryButton.setText(text);
+    }
+
+    private void showInvalidBalanceBanner(boolean show, ViewHolder viewHolder) {
+        if(show) {
+            viewHolder.bannerCancelButton.setTextColor(UIStorage.getInstance().getTextPrimaryColor());
+            viewHolder.bannerAcceptButton.setTextColor(UIStorage.getInstance().getUiPrimaryColor());
+            viewHolder.bannerTitle.setTextColor(UIStorage.getInstance().getTextPrimaryColor());
+            viewHolder.bannerBody.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
+            viewHolder.invalidFundingSourceBanner.setBackgroundColor(UIStorage.getInstance().getColorWithAlpha(UIStorage.getInstance().getUiPrimaryColor(), 0.9f));
+            viewHolder.invalidFundingSourceBanner.setVisibility(View.VISIBLE);
+        }
+        else {
+            viewHolder.invalidFundingSourceBanner.setVisibility(View.GONE);
+        }
     }
 }

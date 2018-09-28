@@ -190,17 +190,17 @@ public class UIStorage {
     }
 
     public int getStatusBarColor(int actionBarColor) {
-        return addAlphaToColor(actionBarColor);
+        return getColorWithAlpha(actionBarColor, 0.8f);
     }
 
     public int getDisabledTextTopbarColor() {
-        return addAlphaToColor(getTextTopbarColor());
+        return getColorWithAlpha(getTextTopbarColor(), 0.8f);
     }
 
-    private int addAlphaToColor(int color) {
+    public int getColorWithAlpha(int color, float alpha) {
         float[] hsv = new float[3];
         Color.colorToHSV(color, hsv);
-        hsv[2] *= 0.8f;
+        hsv[2] *= alpha;
         return Color.HSVToColor(hsv);
     }
 

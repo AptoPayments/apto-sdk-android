@@ -99,11 +99,6 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         this.handleSessionExpiredError(error);
     }
 
-    @Override
-    public void onManageCardBackPressed() {
-        showHomeActivity();
-    }
-
     /**
      * Called when the card config has been received.
      * @param config API response.
