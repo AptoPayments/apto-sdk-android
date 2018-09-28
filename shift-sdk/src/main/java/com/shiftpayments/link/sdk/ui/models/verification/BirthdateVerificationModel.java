@@ -9,7 +9,6 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.models.userdata.AbstractUserDataModel;
 import com.shiftpayments.link.sdk.ui.models.userdata.UserDataModel;
-import com.shiftpayments.link.sdk.ui.utils.DateUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -132,14 +131,11 @@ public class BirthdateVerificationModel extends AbstractUserDataModel implements
     public void setBirthdate(int year, int monthOfYear, int dayOfMonth) {
         try {
             Calendar birth = new GregorianCalendar(year, monthOfYear, dayOfMonth);
+            birth.setLenient(false);
             mBirthdate = birth.getTime();
         } catch (IllegalArgumentException iae) {
             mBirthdate = null;
         }
-    }
-
-    public void setBirthdate(String birthdate, String format) {
-        mBirthdate = new DateUtil().getDateFromString(birthdate, format);
     }
 
     /**

@@ -43,6 +43,7 @@ public class UIStorage {
     private Integer mIconPrimaryColor;
     private Integer mIconSecondaryColor;
     private Integer mIconTertiaryColor;
+    private Integer mCardBackgroundColor;
     private ContextConfigResponseVo mConfig;
     private ShiftSdkOptions mSdkOptions;
 
@@ -59,6 +60,7 @@ public class UIStorage {
     private final static String DEFAULT_ICON_PRIMARY_COLOR = "000000";
     private final static String DEFAULT_ICON_SECONDARY_COLOR = "000000";
     private final static String DEFAULT_ICON_TERTIARY_COLOR = "FFFFFF";
+    private final static String DEFAULT_CARD_BACKGROUND_COLOR = "F90D00";
     private static final Map<String, Integer> mIconMap = createIconMap();
 
     private static UIStorage mInstance;
@@ -185,6 +187,13 @@ public class UIStorage {
         return mIconTertiaryColor;
     }
 
+    public synchronized Integer getCardBackgroundColor() {
+        if(mCardBackgroundColor == null) {
+            mCardBackgroundColor = convertHexToInt(DEFAULT_CARD_BACKGROUND_COLOR);
+        }
+        return mCardBackgroundColor;
+    }
+
     public int getStatusBarColor() {
         return getStatusBarColor(getUiPrimaryColor());
     }
@@ -274,6 +283,9 @@ public class UIStorage {
         }
         if(mConfig.projectConfiguration.projectBranding.iconTertiaryColor != null) {
             mIconTertiaryColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.iconTertiaryColor);
+        }
+        if(mConfig.projectConfiguration.projectBranding.cardBackgroundColor != null) {
+            mCardBackgroundColor = convertHexToInt(mConfig.projectConfiguration.projectBranding.cardBackgroundColor);
         }
     }
 
