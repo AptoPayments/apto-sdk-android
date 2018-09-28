@@ -157,6 +157,10 @@ public class ManageCardModel implements Model {
         return CardStorage.getInstance().showCardInfo;
     }
 
+    public boolean hasBalance() {
+        return mBalance != null;
+    }
+
     public boolean isBalanceValid() {
         return mIsBalanceValid;
     }

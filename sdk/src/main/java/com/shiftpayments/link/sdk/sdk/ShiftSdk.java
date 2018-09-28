@@ -427,9 +427,9 @@ public class ShiftSdk {
     /**
      * Gets the financial account's funding source.
      */
-    public static void getUserFundingSources() {
+    public static void getUserFundingSources(String accountId) {
         checkComponents();
-        GetUserFundingSourceRequestVo request = new GetUserFundingSourceRequestVo();
+        GetUserFundingSourceRequestVo request = new GetUserFundingSourceRequestVo(accountId);
         executeOrEnqueueRequest(request);
     }
 

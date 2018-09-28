@@ -154,8 +154,13 @@ public class ManageCardPresenter
     }
 
     @Override
-    public void addNewFundingSourceClickHandler() {
-        mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());
+    public void bannerAcceptButtonClickHandler() {
+        if(CardStorage.getInstance().hasBalance()) {
+            manageCardClickHandler();
+        }
+        else {
+            mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());
+        }
     }
 
     @Override

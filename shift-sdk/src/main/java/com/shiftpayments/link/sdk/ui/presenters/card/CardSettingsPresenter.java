@@ -94,7 +94,7 @@ public class CardSettingsPresenter
         mResponseHandler.subscribe(this);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(true, LoadingView.Position.TOP, false);
-        ShiftPlatform.getUserFundingSources();
+        ShiftPlatform.getUserFundingSources(CardStorage.getInstance().getCard().mAccountId);
     }
 
     @Override

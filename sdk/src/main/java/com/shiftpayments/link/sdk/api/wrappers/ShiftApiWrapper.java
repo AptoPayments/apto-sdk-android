@@ -110,6 +110,7 @@ public interface ShiftApiWrapper {
     String FINANCIAL_ACCOUNT_DISABLE_PATH = "v1/user/accounts/{account_id}/disable";
     String FINANCIAL_ACCOUNT_TRANSACTIONS_PATH = "v1/user/accounts/{account_id}/transactions";
     String FINANCIAL_ACCOUNT_BALANCE_PATH = "v1/user/accounts/{account_id}/balance";
+    String GET_USER_BALANCES_PATH = "v1/user/accounts/{account_id}/balances";
     String USER_BALANCES_PATH = "v1/user/accounts/balances";
     String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
     String CARD_APPLICATION_STATUS_PATH = "v1/user/accounts/applications/{application_id}/status";
@@ -458,11 +459,11 @@ public interface ShiftApiWrapper {
     BalanceVo getFinancialAccountFundingSource(String accountId) throws ApiException;
 
     /**
-     * @param requestData Mandatory request data.
+     * @param @param accountId The financial account ID
      * @return The funding source of the requested financial account
      * @throws ApiException When there is an error making the request.
      */
-    BalanceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException;
+    BalanceListVo getUserFundingSources(String accountId) throws ApiException;
 
     /**
      * @param requestData Mandatory request data.

@@ -464,7 +464,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public BalanceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
+    public BalanceListVo getUserFundingSources(String accountId) throws ApiException {
         return null;
     }
 

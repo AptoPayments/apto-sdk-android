@@ -54,6 +54,10 @@ public class CardStorage {
         mSelectedBalance = balance;
     }
 
+    public boolean hasBalance() {
+        return mSelectedBalance != null;
+    }
+
     public BalanceVo getBalance() {
         return mSelectedBalance;
     }

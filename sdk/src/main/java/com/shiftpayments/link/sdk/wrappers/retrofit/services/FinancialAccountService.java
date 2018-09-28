@@ -117,8 +117,8 @@ public interface FinancialAccountService {
      * Creates a {@link Call} to get the user's funding sources.
      * @return API call to execute.
      */
-    @GET(ShiftApiWrapper.USER_BALANCES_PATH)
-    Call<BalanceListVo> getUserFundingSources();
+    @GET(ShiftApiWrapper.GET_USER_BALANCES_PATH)
+    Call<BalanceListVo> getUserFundingSources(@Path("account_id") String accountId);
 
     /** Creates a {@link Call} to set the user's funding source
      * @param accountId Mandatory request data.

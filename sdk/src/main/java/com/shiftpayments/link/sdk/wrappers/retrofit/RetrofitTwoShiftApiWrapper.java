@@ -1046,14 +1046,14 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     }
 
     @Override
-    public BalanceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
+    public BalanceListVo getUserFundingSources(String accountId) throws ApiException {
         BalanceListVo result;
         try {
-            Response<BalanceListVo> response = mFinancialAccountService.getUserFundingSources().execute();
-            result = handleResponse(response, ShiftApiWrapper.USER_BALANCES_PATH);
+            Response<BalanceListVo> response = mFinancialAccountService.getUserFundingSources(accountId).execute();
+            result = handleResponse(response, ShiftApiWrapper.GET_USER_BALANCES_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), ShiftApiWrapper.USER_BALANCES_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.GET_USER_BALANCES_PATH, ioe);
         }
         return result;
     }

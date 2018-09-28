@@ -1,7 +1,6 @@
 package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +55,7 @@ public class TransactionsAdapter extends
         void accountClickHandler();
         void cardNumberClickHandler(String cardNumber);
         void transactionClickHandler(int transactionId);
-        void addNewFundingSourceClickHandler();
+        void bannerAcceptButtonClickHandler();
     }
     public void setViewListener(ViewListener viewListener) {
         mListener = viewListener;
@@ -164,15 +163,24 @@ public class TransactionsAdapter extends
                 viewHolder.creditCardView.setCardName(mModel.getCardHolderName());
                 viewHolder.creditCardView.setCVV(mModel.getCVV());
                 viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
-                if (mModel.isBalanceValid()) {
-                    showInvalidBalanceBanner(false, viewHolder);
-                    showCardBalance(!mModel.getCardBalance().isEmpty(), viewHolder);
+
+                if (mModel.hasBalance() && mModel.isBalanceValid()) {
+                    showBalanceErrorBanner(false, viewHolder);
+                    showCardBalance(mModel.hasBalance(), viewHolder);
                     showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
+                }
+                else if (!mModel.isBalanceValid()) {
+                    showBalanceErrorBanner(true, viewHolder);
+                    setBalanceBannerTextToInvalidBalance(viewHolder);
+                    showCardBalance(false, viewHolder);
+                    showSpendableAmount(false, viewHolder);
                 } else {
-                    showInvalidBalanceBanner(true, viewHolder);
+                    showBalanceErrorBanner(true, viewHolder);
+                    setBalanceBannerTextToNoBalance(viewHolder);
                     showCardBalance(false, viewHolder);
                     showSpendableAmount(false, viewHolder);
                 }
+
                 viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
                 if(mModel.cardNumberShown()) {
                     setCopyCardNumberLabelText(viewHolder, mContext.getString(R.string.card_management_primary_button_full));
@@ -234,9 +242,9 @@ public class TransactionsAdapter extends
                 viewHolder.secondaryButton.setOnClickListener(
                         v -> mListener.activateCardBySecondaryBtnClickHandler());
                 viewHolder.bannerAcceptButton.setOnClickListener(
-                        v -> mListener.addNewFundingSourceClickHandler());
+                        v -> mListener.bannerAcceptButtonClickHandler());
                 viewHolder.bannerCancelButton.setOnClickListener(
-                        v -> showInvalidBalanceBanner(false, viewHolder));
+                        v -> showBalanceErrorBanner(false, viewHolder));
                 break;
             case TYPE_TRANSACTION:
                 viewHolder.transactionHolder.setOnClickListener(
@@ -292,7 +300,19 @@ public class TransactionsAdapter extends
         viewHolder.primaryButton.setText(text);
     }
 
-    private void showInvalidBalanceBanner(boolean show, ViewHolder viewHolder) {
+    private void setBalanceBannerTextToInvalidBalance(ViewHolder viewHolder) {
+        viewHolder.bannerTitle.setText(mContext.getString(R.string.invalid_funding_source_title));
+        viewHolder.bannerBody.setText(mContext.getString(R.string.invalid_funding_source_body));
+        viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.invalid_funding_source_accept));
+    }
+
+    private void setBalanceBannerTextToNoBalance(ViewHolder viewHolder) {
+        viewHolder.bannerTitle.setText(mContext.getString(R.string.no_funding_source_title));
+        viewHolder.bannerBody.setText(mContext.getString(R.string.no_funding_source_body));
+        viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.no_funding_source_accept));
+    }
+
+    private void showBalanceErrorBanner(boolean show, ViewHolder viewHolder) {
         if(show) {
             viewHolder.bannerCancelButton.setTextColor(UIStorage.getInstance().getTextPrimaryColor());
             viewHolder.bannerAcceptButton.setTextColor(UIStorage.getInstance().getUiPrimaryColor());
