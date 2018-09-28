@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.ui.presenters.custodianselector;
 
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
 
 /**
  * Delegation interface with the Coinbase activity.
@@ -9,6 +10,6 @@ import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
  */
 public interface OAuthDelegate {
     String getProvider();
-    void oAuthTokensRetrieved(String accessToken, String refreshToken);
+    void onOauthPassed(OAuthStatusResponseVo oAuthResponse);
     void onOAuthError(ApiErrorVo error);
 }

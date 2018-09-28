@@ -17,13 +17,14 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import static com.shiftpayments.link.sdk.ui.utils.DateUtil.BIRTHDATE_DATE_FORMAT;
+
 /**
  * Concrete {@link Model} for the birthdate screen.
  * @author Adrian
  */
 public class BirthdateVerificationModel extends AbstractUserDataModel implements UserDataModel {
 
-    private static final String DATE_FORMAT = "MM-dd-yyyy";
     private int mMinimumAge;
     private Date mBirthdate;
     private VerificationVo mVerification;
@@ -48,13 +49,13 @@ public class BirthdateVerificationModel extends AbstractUserDataModel implements
      * @return Formatted birthday.
      */
     public String getFormattedBirthdate() {
-        SimpleDateFormat birthdayFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
+        SimpleDateFormat birthdayFormat = new SimpleDateFormat(BIRTHDATE_DATE_FORMAT, Locale.US);
         return birthdayFormat.format(mBirthdate);
     }
 
     public Date getDateFromString(String dateString) {
         if(dateString != null) {
-            SimpleDateFormat birthdayFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
+            SimpleDateFormat birthdayFormat = new SimpleDateFormat(BIRTHDATE_DATE_FORMAT, Locale.US);
             try {
                 return birthdayFormat.parse(dateString);
             } catch (ParseException e) {

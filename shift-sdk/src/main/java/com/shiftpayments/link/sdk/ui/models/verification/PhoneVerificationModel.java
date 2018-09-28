@@ -143,7 +143,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
     }
 
     public boolean hasPhoneNumber() {
-        String phone = getPhoneFromBaseData().getPhoneAsString();
+        String phone = getPhoneFromBaseData().toString();
         return phone != null && !phone.isEmpty();
     }
 }

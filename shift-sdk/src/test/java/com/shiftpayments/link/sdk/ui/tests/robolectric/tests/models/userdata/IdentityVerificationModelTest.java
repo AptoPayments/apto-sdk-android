@@ -159,7 +159,7 @@ public class IdentityVerificationModelTest {
                 DataPointVo.DataPointType.Phone, new PhoneNumberVo());
         Birthdate apiBirthDate = (Birthdate) apiData.getUniqueDataPoint(
                 DataPointVo.DataPointType.BirthDate, new Birthdate());
-        Assert.assertThat("Incorrect phone number.", apiPhone.getPhoneAsString(), equalTo(EXPECTED_FORMATTED_PHONE));
+        Assert.assertThat("Incorrect phone number.", apiPhone.toString(), equalTo(EXPECTED_FORMATTED_PHONE));
         Assert.assertThat("Incorrect birthday.", apiBirthDate.getDate(), equalTo(EXPECTED_FORMATTED_BIRTHDAY));
     }
 
