@@ -168,20 +168,25 @@ public class TransactionsAdapter extends
                     showBalanceErrorBanner(false, viewHolder);
                     showCardBalance(mModel.hasBalance(), viewHolder);
                     showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
+                    viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
+                    viewHolder.creditCardView.setCardError(false);
                 }
                 else if (!mModel.isBalanceValid()) {
                     showBalanceErrorBanner(true, viewHolder);
                     setBalanceBannerTextToInvalidBalance(viewHolder);
                     showCardBalance(false, viewHolder);
                     showSpendableAmount(false, viewHolder);
+                    viewHolder.creditCardView.setCardEnabled(false);
+                    viewHolder.creditCardView.setCardError(true);
                 } else {
                     showBalanceErrorBanner(true, viewHolder);
                     setBalanceBannerTextToNoBalance(viewHolder);
                     showCardBalance(false, viewHolder);
                     showSpendableAmount(false, viewHolder);
+                    viewHolder.creditCardView.setCardEnabled(false);
+                    viewHolder.creditCardView.setCardError(true);
                 }
 
-                viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
                 if(mModel.cardNumberShown()) {
                     setCopyCardNumberLabelText(viewHolder, mContext.getString(R.string.card_management_primary_button_full));
                 }
