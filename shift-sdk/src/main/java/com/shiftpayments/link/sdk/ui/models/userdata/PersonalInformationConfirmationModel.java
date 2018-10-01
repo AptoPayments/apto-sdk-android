@@ -5,17 +5,11 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.Birthdate;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Email;
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PhoneNumberVo;
-import com.shiftpayments.link.sdk.api.vos.datapoints.SSN;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.Model;
-import com.shiftpayments.link.sdk.ui.utils.DateUtil;
-
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
-import static com.shiftpayments.link.sdk.ui.utils.DateUtil.BIRTHDATE_DATE_FORMAT;
 
 
 /**
@@ -30,7 +24,7 @@ public class PersonalInformationConfirmationModel extends AbstractUserDataModel 
     private Address mAddress;
     private PhoneNumberVo mPhoneNumber;
     private Birthdate mBirthdate;
-    private SSN mIdDocument;
+    private IdDocument mIdDocument;
 
     /**
      * Creates a new {@link PersonalInformationConfirmationModel} instance.
@@ -58,7 +52,7 @@ public class PersonalInformationConfirmationModel extends AbstractUserDataModel 
         mAddress = (Address) base.getUniqueDataPoint(DataPointVo.DataPointType.Address, null);
         mPhoneNumber = (PhoneNumberVo) base.getUniqueDataPoint(DataPointVo.DataPointType.Phone, null);
         mBirthdate = (Birthdate) base.getUniqueDataPoint(DataPointVo.DataPointType.BirthDate, null);
-        mIdDocument = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, null);
+        mIdDocument = (IdDocument) base.getUniqueDataPoint(DataPointVo.DataPointType.IdDocument, null);
     }
 
     public String getFirstName() {

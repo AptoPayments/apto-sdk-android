@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.SSN;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.OAuthCredentialVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
@@ -111,6 +112,12 @@ public class BalanceStoreModule extends ShiftBaseModule implements CustodianSele
         onFinish.execute();
     }
 
+    @Subscribe
+    public void handleApiError(ApiErrorVo response) {
+        startCustodianModule(onFinish, onBack);
+        ApiErrorUtil.showErrorMessage(response, getActivity());
+    }
+
     private void setBalanceStore() {
         ShiftSdk.getResponseHandler().subscribe(this);
         showLoading(true);
@@ -132,13 +139,6 @@ public class BalanceStoreModule extends ShiftBaseModule implements CustodianSele
                 dataPointList.add(d);
             }
         }
-        // TODO: remove after testing
-        Calendar birth = new GregorianCalendar(1991, 3, 12);
-        birth.setLenient(false);
-        Date mBirthdate = birth.getTime();
-        SimpleDateFormat birthdayFormat = new SimpleDateFormat(BIRTHDATE_DATE_FORMAT, Locale.US);
-        dataPointList.add(new Birthdate(birthdayFormat.format(mBirthdate), false, false));
-        dataPointList.add(new SSN("000000000", false, false));
         UserStorage.getInstance().setUserData(dataPointList);
         getActivity().startActivity(new Intent(getActivity(), PersonalInformationConfirmationActivity.class));
     }

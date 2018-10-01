@@ -16,12 +16,12 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.CreditScore;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Email;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Housing;
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Income;
 import com.shiftpayments.link.sdk.api.vos.datapoints.IncomeSource;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PaydayLoan;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PhoneNumberVo;
-import com.shiftpayments.link.sdk.api.vos.datapoints.SSN;
 import com.shiftpayments.link.sdk.api.vos.datapoints.TimeAtAddress;
 
 import java.lang.reflect.Type;
@@ -58,9 +58,11 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                 return new Email(jObject.get("email").getAsString(), verified, false);
             case "birthdate":
                 return new Birthdate(jObject.get("date").getAsString(), verified, notSpecified);
-            case "ssn":
-                // Temporary patch until the server doesn't return the SSN datapoint
-                return new SSN();
+            case "id_document":
+                String documentType = ParsingUtils.getStringFromJson(jObject.get("doc_type")) == null ? ""
+                        : ParsingUtils.getStringFromJson(jObject.get("doc_type")).toUpperCase();
+                return new IdDocument(IdDocument.IdDocumentType.valueOf(documentType),
+                        jObject.get("doc_value").getAsString(), verified, notSpecified);
             case "address":
                 return new Address(jObject.get("address").getAsString(),
                         ParsingUtils.getStringFromJson(jObject.get("apt")),

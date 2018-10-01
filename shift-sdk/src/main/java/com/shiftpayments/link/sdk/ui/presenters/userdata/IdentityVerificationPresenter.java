@@ -43,7 +43,7 @@ public class IdentityVerificationPresenter
         mIsSSNRequired = false;
         mIsSSNNotAvailableAllowed = false;
         for (RequiredDataPointVo requiredDataPointVo : module.mRequiredDataPointList) {
-            if(requiredDataPointVo.type.equals(DataPointVo.DataPointType.SSN)) {
+            if(requiredDataPointVo.type.equals(DataPointVo.DataPointType.IdDocument)) {
                 mIsSSNRequired = true;
                 mIsSSNNotAvailableAllowed = requiredDataPointVo.notSpecifiedAllowed;
             }
@@ -100,7 +100,7 @@ public class IdentityVerificationPresenter
         mView.showSSN(mIsSSNRequired);
         mView.showSSNNotAvailableCheckbox(mIsSSNNotAvailableAllowed);
         if(mIsSSNRequired && mModel.hasValidSsn()) {
-            mView.setSSN(mModel.getSocialSecurityNumber());
+            mView.setSSN(mModel.getIdDocument());
         }
 
         int progressColor = getProgressBarColor(mActivity);
@@ -189,7 +189,7 @@ public class IdentityVerificationPresenter
     }
 
     private boolean userHasUpdatedSSN() {
-        return (!mView.getSocialSecurityNumber().equals(mModel.getSocialSecurityNumber()) &&
+        return (!mView.getSocialSecurityNumber().equals(mModel.getIdDocument()) &&
                 !mView.isSSNMasked()) ||
                 (!((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
                 && mView.getSocialSecurityNumber()!=null);
