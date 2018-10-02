@@ -1,12 +1,16 @@
 package com.shiftpayments.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.PhoneModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.userdata.PhoneView;
+
+import java.util.List;
 
 /**
  * Concrete {@link Presenter} for the phone screen.
@@ -49,8 +53,8 @@ public class PhonePresenter
         }
 
         mView.setListener(this);
-        // TODO: read allowed countries
-        mView.setPickerCountryList("us,gb");
+        List<String> allowedCountries = UIStorage.getInstance().getContextConfig().allowedCountries;
+        mView.setPickerCountryList(TextUtils.join(",", allowedCountries));
     }
 
     private boolean isVerificationRequired() {
