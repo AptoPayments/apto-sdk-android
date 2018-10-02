@@ -59,9 +59,9 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
             case "birthdate":
                 return new Birthdate(jObject.get("date").getAsString(), verified, notSpecified);
             case "id_document":
-                String documentType = ParsingUtils.getStringFromJson(jObject.get("doc_type")) == null ? ""
-                        : ParsingUtils.getStringFromJson(jObject.get("doc_type")).toUpperCase();
-                return new IdDocument(IdDocument.IdDocumentType.valueOf(documentType),
+                String docType = ParsingUtils.getStringFromJson(jObject.get("doc_type"));
+                docType = docType == null ? "" : docType.toUpperCase();
+                return new IdDocument(IdDocument.IdDocumentType.valueOf(docType),
                         jObject.get("doc_value").getAsString(), verified, notSpecified);
             case "address":
                 return new Address(jObject.get("address").getAsString(),
@@ -82,8 +82,8 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                 return new CreditScore(jObject.get("credit_range").getAsInt(), verified,
                         notSpecified);
             case "card":
-                String cardState = ParsingUtils.getStringFromJson(jObject.get("state")) == null ? ""
-                        : ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase();
+                String cardState = ParsingUtils.getStringFromJson(jObject.get("state"));
+                cardState = cardState == null ? "" : cardState.toUpperCase();
                 return new Card(jObject.get("account_id").getAsString(),
                         ParsingUtils.getStringFromJson(jObject.get("last_four")),
                         Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),
