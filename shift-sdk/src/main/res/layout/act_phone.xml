@@ -47,6 +47,31 @@
                 android:maxLength="@integer/phone_number_length"
                 android:maxLines="1" />
         </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/ccp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ccp_countryPreference="us"
+                app:ccp_autoDetectCountry="true"
+                app:ccp_showNameCode="false"
+                />
+
+            <EditText
+                android:id="@+id/editText_carrierNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?attr/llsdk_idVerification_editTextStyle"
+                android:background="@android:color/transparent"
+                android:hint="@string/phone_hint"
+                android:inputType="phone"
+                android:singleLine="true" />
+        </LinearLayout>
     </LinearLayout>
 
     <include layout="@layout/include_progress_bar" />

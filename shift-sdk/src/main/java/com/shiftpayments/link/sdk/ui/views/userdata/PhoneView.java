@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.hbb20.CountryCodePicker;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
@@ -30,6 +31,8 @@ public class PhoneView
     private TextInputLayout mPhoneWrapper;
     private EditText mPhoneField;
     private TextView mPhoneLabel;
+    private CountryCodePicker mCountryCodePicker;
+    private EditText mCarrierNumber;
 
     /**
      * @see UserDataView#UserDataView
@@ -56,6 +59,9 @@ public class PhoneView
         mPhoneWrapper = findViewById(R.id.til_phone);
         mPhoneField = findViewById(R.id.et_phone);
         mPhoneLabel = findViewById(R.id.tv_phone_header);
+        mCountryCodePicker = findViewById(R.id.ccp);
+        mCarrierNumber = findViewById(R.id.editText_carrierNumber);
+        mCountryCodePicker.registerCarrierNumberEditText(mCarrierNumber);
     }
 
     /** {@inheritDoc} */
@@ -91,7 +97,9 @@ public class PhoneView
     protected void setColors() {
         super.setColors();
         UIStorage.getInstance().setCursorColor(mPhoneField);
+        UIStorage.getInstance().setCursorColor(mCarrierNumber);
         mPhoneField.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
+        mCarrierNumber.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
     }
 
     /**
