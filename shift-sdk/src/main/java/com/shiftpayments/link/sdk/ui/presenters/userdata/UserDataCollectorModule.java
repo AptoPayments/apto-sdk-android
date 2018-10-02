@@ -421,7 +421,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
                     case MemberOfArmedForces:
                         addRequiredActivity(ArmedForcesActivity.class);
                         break;
-                    case SSN:
+                    case IdDocument:
                     case BirthDate:
                         addRequiredActivity(IdentityVerificationActivity.class);
                         break;

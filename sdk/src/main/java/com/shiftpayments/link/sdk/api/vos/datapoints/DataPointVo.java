@@ -13,8 +13,8 @@ public class DataPointVo {
         Email("EMAIL"),
         @SerializedName("birthdate")
         BirthDate("BIRTHDATE"),
-        @SerializedName("ssn")
-        SSN("SSN"),
+        @SerializedName("id_document")
+        IdDocument("ID_DOCUMENT"),
         @SerializedName("address")
         Address("ADDRESS"),
         @SerializedName("housing")
