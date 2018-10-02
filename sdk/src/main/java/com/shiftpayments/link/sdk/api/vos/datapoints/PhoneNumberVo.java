@@ -35,12 +35,25 @@ public class PhoneNumberVo extends DataPointVo {
     }
 
     /**
-     * Parses and stores a valid phone number.
+     * Parses and stores a valid US phone number.
      * @param phone Raw phone number.
      */
     public void setPhone(String phone) {
         try {
             Phonenumber.PhoneNumber number = PhoneNumberUtil.getInstance().parse(phone, "US");
+            setPhone(number);
+        } catch (NumberParseException npe) {
+            this.phoneNumber = null;
+        }
+    }
+
+    /**
+     * Parses and stores a valid phone number.
+     * @param phone Raw phone number.
+     */
+    public void setPhone(String phone, String countryCode) {
+        try {
+            Phonenumber.PhoneNumber number = PhoneNumberUtil.getInstance().parse(phone, countryCode);
             setPhone(number);
         } catch (NumberParseException npe) {
             this.phoneNumber = null;

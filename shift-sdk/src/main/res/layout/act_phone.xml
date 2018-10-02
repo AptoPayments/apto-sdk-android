@@ -38,10 +38,12 @@
 
             <com.hbb20.CountryCodePicker
                 android:id="@+id/ccp"
-                android:paddingTop="14dp"
+                android:paddingTop="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:ccp_defaultNameCode="US"
                 app:ccp_autoDetectCountry="true"
+                app:ccp_countryAutoDetectionPref="LOCALE_SIM_NETWORK"
                 app:ccp_showNameCode="false" />
 
             <android.support.design.widget.TextInputLayout

@@ -26,7 +26,7 @@ public class PhoneView
     /**
      * Callbacks this {@link View} will invoke.
      */
-    public interface ViewListener extends StepperListener, NextButtonListener {}
+    public interface ViewListener extends StepperListener, NextButtonListener { }
 
     private TextInputLayout mPhoneWrapper;
     private EditText mPhoneField;
@@ -95,6 +95,10 @@ public class PhoneView
         return mPhoneField.getText().toString();
     }
 
+    public String getCountryCode() {
+        return mCountryCodePicker.getSelectedCountryNameCode();
+    }
+
     @Override
     protected void setColors() {
         super.setColors();
@@ -126,5 +130,9 @@ public class PhoneView
      */
     public void setDescription(String description) {
         mPhoneLabel.setText(description);
+    }
+
+    public void setPickerCountryList(String countryList) {
+        mCountryCodePicker.setCustomMasterCountries(countryList);
     }
 }

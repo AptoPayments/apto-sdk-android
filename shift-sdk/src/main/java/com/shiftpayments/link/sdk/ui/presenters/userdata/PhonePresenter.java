@@ -49,6 +49,8 @@ public class PhonePresenter
         }
 
         mView.setListener(this);
+        // TODO: read allowed countries
+        mView.setPickerCountryList("us,gb");
     }
 
     private boolean isVerificationRequired() {
@@ -72,7 +74,7 @@ public class PhonePresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        mModel.setPhone(mView.getPhone());
+        mModel.setPhone(mView.getCountryCode(), mView.getPhone());
         mView.updatePhoneError(!mModel.hasPhone(), R.string.phone_error);
 
         if(mModel.hasValidData()) {
