@@ -19,7 +19,6 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
     private LinkedHashSet<UnauthorizedRequestVo> pendingApiCalls;
     private NetworkCallback mOnNoInternetConnection;
 
-    private String mDeveloperKey;
     private String mDevice;
     private String mBearerToken;
     private String mProjectToken;
@@ -38,27 +37,10 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
      * Initializes this class.
      */
     protected void init() {
-        mDeveloperKey = null;
         mDevice = null;
         mProjectToken = null;
         mApiEndPoint = null;
         pendingApiCalls = new LinkedHashSet<>();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getDeveloperKey() {
-        return mDeveloperKey;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setDeveloperKey(String developerKey) {
-        mDeveloperKey = developerKey;
     }
 
     /**
@@ -72,8 +54,7 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
      * {@inheritDoc}
      */
     @Override
-    public void setBaseRequestData(String developerKey, String device, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
-        mDeveloperKey = developerKey;
+    public void setBaseRequestData(String device, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         mDevice = device;
     }
 

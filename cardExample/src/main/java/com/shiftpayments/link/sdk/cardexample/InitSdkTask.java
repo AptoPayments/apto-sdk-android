@@ -27,7 +27,7 @@ public class InitSdkTask extends AsyncTask<Void, Void, ConfigResponseVo> {
         features.put(ShiftSdkOptions.OptionKeys.showActivateCardButton, false);
         features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, true);
         ShiftSdkOptions options = new ShiftSdkOptions(features);
-        ShiftPlatform.initialize(mContext.get(), getDeveloperKey(), getProjectToken(),
+        ShiftPlatform.initialize(mContext.get(), getProjectToken(),
                 getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment(),
                 null, options);
         return UIStorage.getInstance().getContextConfig();
@@ -48,17 +48,6 @@ public class InitSdkTask extends AsyncTask<Void, Void, ConfigResponseVo> {
 
     private String getDefaultEnvironment() {
         return mContext.get().getResources().getString(R.string.shift_environment);
-    }
-
-    /**
-     * @return Link API dev key.
-     */
-    private String getDeveloperKey() {
-        return KeysStorage.getDeveloperKey(mContext.get(), getDefaultDeveloperKey());
-    }
-
-    private String getDefaultDeveloperKey() {
-        return mContext.get().getResources().getString(R.string.shift_developer_key);
     }
 
     /**
