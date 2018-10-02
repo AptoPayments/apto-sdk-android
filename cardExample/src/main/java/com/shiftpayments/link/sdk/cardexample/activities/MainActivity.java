@@ -43,17 +43,14 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         Branch branch = Branch.getAutoInstance(getApplicationContext());
         branch.initSession((referringParams, error) -> {
             if (error == null && referringParams.has(KeysStorage.PREFS_ENVIRONMENT)
-                    && referringParams.has(KeysStorage.PREFS_PROJECT_KEY)
-                    && referringParams.has(KeysStorage.PREFS_TEAM_KEY)) {
+                    && referringParams.has(KeysStorage.PREFS_API_KEY)) {
                 boolean hasProjectChanged;
                 try {
-                    hasProjectChanged = KeysStorage.storeKeys(this, referringParams.getString(KeysStorage.PREFS_ENVIRONMENT),
-                            referringParams.getString(KeysStorage.PREFS_PROJECT_KEY),
-                            referringParams.getString(KeysStorage.PREFS_TEAM_KEY));
+                    hasProjectChanged = KeysStorage.storeKey(this, referringParams.getString(KeysStorage.PREFS_ENVIRONMENT),
+                            referringParams.getString(KeysStorage.PREFS_API_KEY));
                 } catch (JSONException e) {
-                    hasProjectChanged = KeysStorage.storeKeys(this, getDefaultEnvironment(),
-                            getDefaultProjectToken(),
-                            getDefaultDeveloperKey());
+                    hasProjectChanged = KeysStorage.storeKey(this, getDefaultEnvironment(),
+                            getDefaultApiKey());
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 if(hasProjectChanged) {
@@ -103,12 +100,8 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         return getString(R.string.shift_environment);
     }
 
-    protected String getDefaultDeveloperKey() {
-        return getString(R.string.shift_developer_key);
-    }
-
-    protected String getDefaultProjectToken() {
-        return getString(R.string.shift_project_token);
+    protected String getDefaultApiKey() {
+        return getString(R.string.shift_api_key);
     }
 
     private String getBranchKey() {

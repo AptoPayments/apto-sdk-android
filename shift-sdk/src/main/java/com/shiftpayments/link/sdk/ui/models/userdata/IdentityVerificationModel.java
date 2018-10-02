@@ -3,7 +3,7 @@ package com.shiftpayments.link.sdk.ui.models.userdata;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Birthdate;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shiftpayments.link.sdk.api.vos.datapoints.SSN;
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.utils.DateUtil;
@@ -25,7 +25,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     private int mExpectedSSNLength;
     private int mMinimumAge;
     private Date mBirthday;
-    private String mSocialSecurityNumber;
+    private String mIdDocument;
     private boolean mSocialSecurityNumberNotSpecified;
 
     /**
@@ -56,9 +56,9 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         if(baseBirthdate!=null) {
             mBirthday = new DateUtil().getDateFromString(baseBirthdate.getDate(), BIRTHDATE_DATE_FORMAT);
         }
-        SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, null);
-        if(baseSSN!=null && baseSSN.getSocialSecurityNumber()!=null) {
-            setSocialSecurityNumber(baseSSN.getSocialSecurityNumber());
+        IdDocument idDocument = (IdDocument) base.getUniqueDataPoint(DataPointVo.DataPointType.IdDocument, null);
+        if(idDocument!=null && idDocument.getIdValue()!=null) {
+            setSocialSecurityNumber(idDocument.getIdValue());
         }
     }
 
@@ -72,8 +72,10 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
             baseBirthdate.setDate(getFormattedBirthday());
         }
         if(hasValidSsn() || mSocialSecurityNumberNotSpecified) {
-            SSN baseSSN = (SSN) base.getUniqueDataPoint(DataPointVo.DataPointType.SSN, new SSN());
-            baseSSN.setSocialSecurityNumber(getSocialSecurityNumber());
+            IdDocument baseSSN = (IdDocument) base.getUniqueDataPoint(DataPointVo.DataPointType.IdDocument, new IdDocument());
+            baseSSN.setIdValue(getIdDocument());
+            // TODO: hardcoded to SSN for now
+            baseSSN.setIdType(IdDocument.IdDocumentType.SSN);
             baseSSN.setNotSpecified(mSocialSecurityNumberNotSpecified);
         }
         return base;
@@ -86,7 +88,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         mMinimumAge = 0;
         mExpectedSSNLength = 0;
         mBirthday = null;
-        mSocialSecurityNumber = null;
+        mIdDocument = null;
         mSocialSecurityNumberNotSpecified = false;
     }
 
@@ -142,16 +144,17 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
     }
 
     /**
-     * @return social security Number.
+     * @return the ID document
      */
-    public String getSocialSecurityNumber() {
-        return mSocialSecurityNumber;
+    public String getIdDocument() {
+        return mIdDocument;
     }
 
     /**
      * Tries to store the SSN based on a raw String.
      * @param ssn Raw social security number.
      */
+    // TODO: refactor method to setIdDocument
     public void setSocialSecurityNumber(String ssn) {
         VerbalExpression ssnRegex = VerbalExpression.regex()
                 .startOfLine()
@@ -160,9 +163,9 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
                 .build();
 
         if(ssnRegex.testExact(ssn)) {
-            mSocialSecurityNumber = ssn;
+            mIdDocument = ssn;
         } else {
-            mSocialSecurityNumber = null;
+            mIdDocument = null;
         }
     }
 
@@ -201,7 +204,7 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      * @return Whether a valid SSN has been stored.
      */
     public boolean hasValidSsn() {
-        return getSocialSecurityNumber() != null;
+        return getIdDocument() != null;
     }
 
     /**
@@ -213,10 +216,12 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
         DataPointList base = getBaseData();
         data.setDataPoints(base.getDataPoints());
 
-        SSN baseSSN = (SSN) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.SSN,
-                new SSN());
-        baseSSN.setSocialSecurityNumber(this.getSocialSecurityNumber());
+        IdDocument baseSSN = (IdDocument) base.getUniqueDataPoint(
+                DataPointVo.DataPointType.IdDocument,
+                new IdDocument());
+        baseSSN.setIdValue(this.getIdDocument());
+        // TODO: hardcoded to SSN for now
+        baseSSN.setIdType(IdDocument.IdDocumentType.SSN);
         baseSSN.setNotSpecified(mSocialSecurityNumberNotSpecified);
         Birthdate baseBirthDate = (Birthdate) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.BirthDate,

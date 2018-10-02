@@ -16,12 +16,12 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.CreditScore;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Email;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Housing;
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Income;
 import com.shiftpayments.link.sdk.api.vos.datapoints.IncomeSource;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PaydayLoan;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PhoneNumberVo;
-import com.shiftpayments.link.sdk.api.vos.datapoints.SSN;
 import com.shiftpayments.link.sdk.api.vos.datapoints.TimeAtAddress;
 
 import java.lang.reflect.Type;
@@ -58,9 +58,11 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                 return new Email(jObject.get("email").getAsString(), verified, false);
             case "birthdate":
                 return new Birthdate(jObject.get("date").getAsString(), verified, notSpecified);
-            case "ssn":
-                // Temporary patch until the server doesn't return the SSN datapoint
-                return new SSN();
+            case "id_document":
+                String docType = ParsingUtils.getStringFromJson(jObject.get("doc_type"));
+                docType = docType == null ? "" : docType.toUpperCase();
+                return new IdDocument(IdDocument.IdDocumentType.valueOf(docType),
+                        jObject.get("doc_value").getAsString(), verified, notSpecified);
             case "address":
                 return new Address(jObject.get("address").getAsString(),
                         ParsingUtils.getStringFromJson(jObject.get("apt")),
@@ -80,8 +82,8 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                 return new CreditScore(jObject.get("credit_range").getAsInt(), verified,
                         notSpecified);
             case "card":
-                String cardState = ParsingUtils.getStringFromJson(jObject.get("state")) == null ? ""
-                        : ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase();
+                String cardState = ParsingUtils.getStringFromJson(jObject.get("state"));
+                cardState = cardState == null ? "" : cardState.toUpperCase();
                 return new Card(jObject.get("account_id").getAsString(),
                         ParsingUtils.getStringFromJson(jObject.get("last_four")),
                         Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),

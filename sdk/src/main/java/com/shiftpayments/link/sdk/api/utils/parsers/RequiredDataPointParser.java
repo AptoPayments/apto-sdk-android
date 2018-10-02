@@ -35,8 +35,8 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
             case "birthdate":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.BirthDate,
                         isVerificationRequired, isNotSpecifiedAllowed);
-            case "ssn":
-                return new RequiredDataPointVo(DataPointVo.DataPointType.SSN,
+            case "id_document":
+                return new RequiredDataPointVo(DataPointVo.DataPointType.IdDocument,
                         isVerificationRequired, isNotSpecifiedAllowed);
             case "address":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Address,

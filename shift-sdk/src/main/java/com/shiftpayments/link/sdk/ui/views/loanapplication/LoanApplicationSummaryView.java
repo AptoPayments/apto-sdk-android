@@ -239,7 +239,7 @@ public class LoanApplicationSummaryView
             case BirthDate:
                 addKeyValueTextView(data.getBirthdayLabel(getResources()), dataPoint.toString());
                 break;
-            case SSN:
+            case IdDocument:
                 addKeyValueTextView(data.getSsnLabel(getResources()), dataPoint.toString());
                 break;
             case Address:

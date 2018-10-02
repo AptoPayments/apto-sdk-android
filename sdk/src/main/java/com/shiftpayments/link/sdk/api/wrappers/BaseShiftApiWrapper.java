@@ -19,10 +19,9 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
     private LinkedHashSet<UnauthorizedRequestVo> pendingApiCalls;
     private NetworkCallback mOnNoInternetConnection;
 
-    private String mDeveloperKey;
     private String mDevice;
     private String mBearerToken;
-    private String mProjectToken;
+    private String mApiKey;
 
     private String mApiEndPoint;
     private String mVgsEndPoint;
@@ -38,27 +37,10 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
      * Initializes this class.
      */
     protected void init() {
-        mDeveloperKey = null;
         mDevice = null;
-        mProjectToken = null;
+        mApiKey = null;
         mApiEndPoint = null;
         pendingApiCalls = new LinkedHashSet<>();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getDeveloperKey() {
-        return mDeveloperKey;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setDeveloperKey(String developerKey) {
-        mDeveloperKey = developerKey;
     }
 
     /**
@@ -72,8 +54,7 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
      * {@inheritDoc}
      */
     @Override
-    public void setBaseRequestData(String developerKey, String device, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
-        mDeveloperKey = developerKey;
+    public void setBaseRequestData(String device, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         mDevice = device;
     }
 
@@ -97,16 +78,16 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
      * {@inheritDoc}
      */
     @Override
-    public String getProjectToken() {
-        return mProjectToken;
+    public String getApiKey() {
+        return mApiKey;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setProjectToken(String token) {
-        mProjectToken = token;
+    public void setApiKey(String apiKey) {
+        mApiKey = apiKey;
     }
 
     /**
