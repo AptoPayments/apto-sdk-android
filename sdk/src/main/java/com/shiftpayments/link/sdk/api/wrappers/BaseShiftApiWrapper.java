@@ -21,7 +21,7 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
 
     private String mDevice;
     private String mBearerToken;
-    private String mProjectToken;
+    private String mApiKey;
 
     private String mApiEndPoint;
     private String mVgsEndPoint;
@@ -38,7 +38,7 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
      */
     protected void init() {
         mDevice = null;
-        mProjectToken = null;
+        mApiKey = null;
         mApiEndPoint = null;
         pendingApiCalls = new LinkedHashSet<>();
     }
@@ -78,16 +78,16 @@ public abstract class BaseShiftApiWrapper implements ShiftApiWrapper {
      * {@inheritDoc}
      */
     @Override
-    public String getProjectToken() {
-        return mProjectToken;
+    public String getApiKey() {
+        return mApiKey;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setProjectToken(String token) {
-        mProjectToken = token;
+    public void setApiKey(String apiKey) {
+        mApiKey = apiKey;
     }
 
     /**

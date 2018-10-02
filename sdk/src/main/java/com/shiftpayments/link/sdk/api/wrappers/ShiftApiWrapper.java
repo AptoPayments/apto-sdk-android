@@ -145,15 +145,15 @@ public interface ShiftApiWrapper {
     String getBearerToken();
 
     /**
-     * Stores a new project token.
-     * @param token Project token.
+     * Stores a API key.
+     * @param apiKey API key.
      */
-    void setProjectToken(String token);
+    void setApiKey(String apiKey);
 
     /**
-     * @return Project token.
+     * @return API key.
      */
-    String getProjectToken();
+    String getApiKey();
 
     /**
      * @return API endpoint.

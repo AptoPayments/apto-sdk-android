@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     /**
      * @return Link project token.
      */
-    protected String getProjectToken() {
-        return KeysStorage.getProjectToken(this, getDefaultProjectToken());
+    protected String getApiKey() {
+        return KeysStorage.getApiKey(this, getDefaultApiKey());
     }
 
-    protected String getDefaultProjectToken() {
-        return getString(R.string.shift_project_token);
+    protected String getDefaultApiKey() {
+        return getString(R.string.shift_api_key);
     }
 
     /**
@@ -117,21 +117,21 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         Branch branch = Branch.getAutoInstance(getApplicationContext());
         branch.initSession((referringParams, error) -> {
             if (error == null && referringParams.has(KeysStorage.PREF_ENVIRONMENT)
-                    && referringParams.has(KeysStorage.PREF_PROJECT_KEY)) {
+                    && referringParams.has(KeysStorage.PREF_API_KEY)) {
                 boolean hasProjectChanged;
                 try {
-                    hasProjectChanged = KeysStorage.storeKeys(this, referringParams.getString(KeysStorage.PREF_ENVIRONMENT),
-                            referringParams.getString(KeysStorage.PREF_PROJECT_KEY));
+                    hasProjectChanged = KeysStorage.storeKey(this, referringParams.getString(KeysStorage.PREF_ENVIRONMENT),
+                            referringParams.getString(KeysStorage.PREF_API_KEY));
                 } catch (JSONException e) {
-                    hasProjectChanged = KeysStorage.storeKeys(this, getDefaultEnvironment(),
-                            getDefaultProjectToken());
+                    hasProjectChanged = KeysStorage.storeKey(this, getDefaultEnvironment(),
+                            getDefaultApiKey());
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 if(hasProjectChanged) {
                     ShiftPlatform.clearUserToken(this);
                 }
             }
-            ShiftPlatform.initialize(this, getProjectToken(), getCertificatePinning(),
+            ShiftPlatform.initialize(this, getApiKey(), getCertificatePinning(),
                     getTrustSelfSignedCertificates(), getEnvironment(), null, new ShiftSdkOptions());
             CompletableFuture
                     .supplyAsync(()-> UIStorage.getInstance().getContextConfig())

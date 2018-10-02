@@ -102,7 +102,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
 
     private String mDevice;
     private String mBearerToken;
-    private String mProjectToken;
+    private String mApiKey;
     private String mEndPoint;
     private String mVgsEndPoint;
     private NetworkCallback mNetworkCallback;
@@ -125,11 +125,11 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public void setProjectToken(String projectToken) { mProjectToken = projectToken; }
+    public void setApiKey(String apiKey) { mApiKey = apiKey; }
 
     @Override
-    public String getProjectToken() {
-        return mProjectToken;
+    public String getApiKey() {
+        return mApiKey;
     }
 
     /** {@inheritDoc} */

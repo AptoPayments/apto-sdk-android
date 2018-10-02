@@ -17,15 +17,15 @@ public class ShiftOkThreeInterceptor implements Interceptor {
 
     private String mDevice;
     private String mBearerToken;
-    private String mProjectToken;
+    private String mApiKey;
 
     /**
      * Creates a new {@link ShiftOkThreeInterceptor} instance.
      * @param device Device information.
      */
-    public ShiftOkThreeInterceptor(String device, String projectToken) {
+    public ShiftOkThreeInterceptor(String device, String apiKey) {
         mDevice = device;
-        mProjectToken = projectToken;
+        mApiKey = apiKey;
         init();
     }
 
@@ -58,8 +58,8 @@ public class ShiftOkThreeInterceptor implements Interceptor {
         if (hasHeaderValue(mBearerToken)) {
             builder.header(ShiftApiHeaders.BEARER_TOKEN_HEADER_NAME, mBearerToken);
         }
-        if (hasHeaderValue(mProjectToken)) {
-            builder.header(ShiftApiHeaders.PROJECT_TOKEN_HEADER_NAME, mProjectToken);
+        if (hasHeaderValue(mApiKey)) {
+            builder.header(ShiftApiHeaders.API_KEY_HEADER_NAME, mApiKey);
         }
 
         return chain.proceed(builder.build());
@@ -73,7 +73,7 @@ public class ShiftOkThreeInterceptor implements Interceptor {
         mBearerToken = token;
     }
 
-    public void setProjectToken(String projectToken) {
-        mProjectToken = projectToken;
+    public void setApiKey(String apiKey) {
+        mApiKey = apiKey;
     }
 }

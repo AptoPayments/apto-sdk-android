@@ -70,7 +70,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
             mView.setUserToken(UserStorage.getInstance().getBearerToken());
         }
 
-        mView.setProjectKey(KeysStorage.getProjectToken(this, ""));
+        mView.setProjectKey(KeysStorage.getApiKey(this, ""));
 
         setUpToolbar();
         new LoadConfigTask().execute();
@@ -219,7 +219,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         MainActivity.SHARED_USER_DATA.put(MainActivity.USER_DATA_KEY, new WeakReference<>(createStartData()));
         MainActivity.SHARED_LOAN_DATA.put(MainActivity.LOAN_DATA_KEY, new WeakReference<>(createLoanData()));
         if(!mView.getProjectKey().isEmpty()) {
-            KeysStorage.storeProjectKey(this, mView.getProjectKey());
+            KeysStorage.storeApiKey(this, mView.getProjectKey());
         }
 
         super.onBackPressed();
@@ -292,7 +292,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
     @Override
     public void clearProjectKeyClickedHandler() {
         mView.setProjectKey("");
-        KeysStorage.storeProjectKey(this, "");
+        KeysStorage.storeApiKey(this, "");
     }
 
     public void loanPurposesListRetrieved(LoanPurposesResponseVo loanPurposesList) {

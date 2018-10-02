@@ -206,7 +206,7 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     private OkHttpClient.Builder createDefaultClientBuilder(boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         // Send correct data in the headers.
         if (mInterceptor == null) {
-            mInterceptor = new ShiftOkThreeInterceptor(getDeviceInfo(), getProjectToken());
+            mInterceptor = new ShiftOkThreeInterceptor(getDeviceInfo(), getApiKey());
         }
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
@@ -378,16 +378,16 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
 
     /** {@inheritDoc} */
     @Override
-    public void setProjectToken(String projectToken) {
-        super.setProjectToken(projectToken);
-        mInterceptor.setProjectToken(projectToken);
+    public void setApiKey(String apiKey) {
+        super.setApiKey(apiKey);
+        mInterceptor.setApiKey(apiKey);
     }
 
     @Override
     public HashMap<String, String> getHTTPHeaders() {
 
         HashMap<String, String> additionalHttpHeaders = new HashMap<>();
-        additionalHttpHeaders.put("Project", "Bearer=" + getProjectToken());
+        additionalHttpHeaders.put("Api-Key", "Bearer=" + getApiKey());
         additionalHttpHeaders.put("Authorization", "Bearer=" + getBearerToken());
 
         return additionalHttpHeaders;

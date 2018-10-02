@@ -29,5 +29,5 @@ public class ShiftApiHeaders {
      */
     public static final String BEARER_TOKEN_HEADER_NAME = "Authorization:Bearer";
 
-    public static final String PROJECT_TOKEN_HEADER_NAME = "Project:Bearer";
+    public static final String API_KEY_HEADER_NAME = "Api-Key:Bearer";
 }

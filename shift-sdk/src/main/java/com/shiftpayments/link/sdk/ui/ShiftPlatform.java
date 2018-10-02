@@ -145,15 +145,15 @@ public class ShiftPlatform extends ShiftSdk {
         UserStorage.getInstance().setFirebaseToken(firebaseToken);
     }
 
-    public static void initialize(Context context, String projectToken) {
+    public static void initialize(Context context, String apiKey) {
         ShiftSdkOptions options = new ShiftSdkOptions();
-        initialize(context, projectToken, true, true, "sbx", null, options);
+        initialize(context, apiKey, true, true, "sbx", null, options);
     }
 
     /**
      * Sets up the Shift Link SDK.
      */
-    public static void initialize(Context context, String projectToken, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment, NetworkCallback onNoInternetConnection, ShiftSdkOptions options) {
+    public static void initialize(Context context, String apiKey, boolean certificatePinning, boolean trustSelfSignedCertificates, String environment, NetworkCallback onNoInternetConnection, ShiftSdkOptions options) {
         mEnvironment = Environment.valueOf(environment.toLowerCase());
         AndroidUtils utils = new AndroidUtils();
         HandlerConfigurator configurator = new EventBusHandlerConfigurator();
@@ -162,7 +162,7 @@ public class ShiftPlatform extends ShiftSdk {
         apiWrapper.setVgsEndPoint(getVGSEndPoint());
         apiWrapper.setApiEndPoint(getApiEndPoint(), certificatePinning, trustSelfSignedCertificates);
         apiWrapper.setBaseRequestData(utils.getDeviceSummary(), certificatePinning, trustSelfSignedCertificates);
-        apiWrapper.setProjectToken(projectToken);
+        apiWrapper.setApiKey(apiKey);
         apiWrapper.setOnNoInternetConnectionCallback(onNoInternetConnection);
 
         Context applicationContext = context.getApplicationContext();
