@@ -49,17 +49,6 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     }
 
     /**
-     * @return Link API dev key.
-     */
-    protected String getDeveloperKey() {
-        return KeysStorage.getDeveloperKey(this, getDefaultDeveloperKey());
-    }
-
-    protected String getDefaultDeveloperKey() {
-        return getString(R.string.shift_developer_key);
-    }
-
-    /**
      * @return Link project token.
      */
     protected String getProjectToken() {
@@ -98,9 +87,10 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
     }
 
     private void configRetrieved(ConfigResponseVo configResponseVo) {
+        String logoUrl = configResponseVo.projectBranding.logoURL;
         runOnUiThread(()->{
-            if(configResponseVo.logoURL != null && !configResponseVo.logoURL.isEmpty()) {
-                mView.setLogo(configResponseVo.logoURL);
+            if(logoUrl != null && !logoUrl.isEmpty()) {
+                mView.setLogo(logoUrl);
             }
             else {
                 mView.setLogo();
@@ -127,25 +117,22 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         Branch branch = Branch.getAutoInstance(getApplicationContext());
         branch.initSession((referringParams, error) -> {
             if (error == null && referringParams.has(KeysStorage.PREF_ENVIRONMENT)
-                    && referringParams.has(KeysStorage.PREF_PROJECT_KEY)
-                    && referringParams.has(KeysStorage.PREF_TEAM_KEY)) {
+                    && referringParams.has(KeysStorage.PREF_PROJECT_KEY)) {
                 boolean hasProjectChanged;
                 try {
                     hasProjectChanged = KeysStorage.storeKeys(this, referringParams.getString(KeysStorage.PREF_ENVIRONMENT),
-                            referringParams.getString(KeysStorage.PREF_PROJECT_KEY),
-                            referringParams.getString(KeysStorage.PREF_TEAM_KEY));
+                            referringParams.getString(KeysStorage.PREF_PROJECT_KEY));
                 } catch (JSONException e) {
                     hasProjectChanged = KeysStorage.storeKeys(this, getDefaultEnvironment(),
-                            getDefaultProjectToken(),
-                            getDefaultDeveloperKey());
+                            getDefaultProjectToken());
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 if(hasProjectChanged) {
                     ShiftPlatform.clearUserToken(this);
                 }
             }
-            ShiftPlatform.initialize(this, getDeveloperKey(), getProjectToken(),
-                    getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment(), null, new ShiftSdkOptions());
+            ShiftPlatform.initialize(this, getProjectToken(), getCertificatePinning(),
+                    getTrustSelfSignedCertificates(), getEnvironment(), null, new ShiftSdkOptions());
             CompletableFuture
                     .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
                     .thenAccept(this::configRetrieved)

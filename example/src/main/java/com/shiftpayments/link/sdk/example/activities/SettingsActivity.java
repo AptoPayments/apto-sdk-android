@@ -18,12 +18,12 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.CreditScore;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Email;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Housing;
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Income;
 import com.shiftpayments.link.sdk.api.vos.datapoints.IncomeSource;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PaydayLoan;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PhoneNumberVo;
-import com.shiftpayments.link.sdk.api.vos.datapoints.SSN;
 import com.shiftpayments.link.sdk.api.vos.datapoints.TimeAtAddress;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.CreditScoreVo;
@@ -71,7 +71,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         }
 
         mView.setProjectKey(KeysStorage.getProjectToken(this, ""));
-        mView.setTeamKey(KeysStorage.getDeveloperKey(this, ""));
 
         setUpToolbar();
         new LoadConfigTask().execute();
@@ -177,7 +176,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
             dataSet = true;
         }
         if (hasValue(mView.getSSN())) {
-            data.add(new SSN(mView.getSSN(), false, false));
+            data.add(new IdDocument(IdDocument.IdDocumentType.SSN, mView.getSSN(), false, false));
             dataSet = true;
         }
         if(mView.isArmedForcesVisible()) {
@@ -221,9 +220,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         MainActivity.SHARED_LOAN_DATA.put(MainActivity.LOAN_DATA_KEY, new WeakReference<>(createLoanData()));
         if(!mView.getProjectKey().isEmpty()) {
             KeysStorage.storeProjectKey(this, mView.getProjectKey());
-        }
-        if(!mView.getTeamKey().isEmpty()) {
-            KeysStorage.storeTeamKey(this, mView.getTeamKey());
         }
 
         super.onBackPressed();
@@ -292,11 +288,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
         MainActivity.SHARED_USER_DATA.put(MainActivity.USER_DATA_KEY, new WeakReference<>(null));
     }
 
-    @Override
-    public void clearTeamKeyClickedHandler() {
-        mView.setTeamKey("");
-        KeysStorage.storeTeamKey(this, "");
-    }
 
     @Override
     public void clearProjectKeyClickedHandler() {
@@ -443,7 +434,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView.
                 case BirthDate:
                     mView.showBirthday();
                     break;
-                case SSN:
+                case IdDocument:
                     mView.showSSN();
                     break;
                 case Address:
