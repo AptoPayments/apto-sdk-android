@@ -32,7 +32,6 @@ public class PhoneView
     private EditText mPhoneField;
     private TextView mPhoneLabel;
     private CountryCodePicker mCountryCodePicker;
-    private EditText mCarrierNumber;
 
     /**
      * @see UserDataView#UserDataView
@@ -58,10 +57,13 @@ public class PhoneView
 
         mPhoneWrapper = findViewById(R.id.til_phone);
         mPhoneField = findViewById(R.id.et_phone);
+        // remove hint from `TextInputLayout`
+        mPhoneWrapper.setHint(null);
+        // set the hint back on the `EditText`
+        mPhoneField.setHint(R.string.phone_hint);
         mPhoneLabel = findViewById(R.id.tv_phone_header);
         mCountryCodePicker = findViewById(R.id.ccp);
-        mCarrierNumber = findViewById(R.id.editText_carrierNumber);
-        mCountryCodePicker.registerCarrierNumberEditText(mCarrierNumber);
+        mCountryCodePicker.registerCarrierNumberEditText(mPhoneField);
     }
 
     /** {@inheritDoc} */
@@ -97,9 +99,8 @@ public class PhoneView
     protected void setColors() {
         super.setColors();
         UIStorage.getInstance().setCursorColor(mPhoneField);
-        UIStorage.getInstance().setCursorColor(mCarrierNumber);
         mPhoneField.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
-        mCarrierNumber.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
+        mPhoneLabel.setTextColor(UIStorage.getInstance().getTextPrimaryColor());
     }
 
     /**
