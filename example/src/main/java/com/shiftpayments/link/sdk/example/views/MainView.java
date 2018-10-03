@@ -89,7 +89,7 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     }
 
     public void setColors() {
-        int color = UIStorage.getInstance().getPrimaryColor();
+        int color = UIStorage.getInstance().getUiPrimaryColor();
         mOffersButton.setBackgroundColor(color);
         mOffersButton.setVisibility(VISIBLE);
     }
@@ -136,6 +136,6 @@ public class MainView extends RelativeLayout implements View.OnClickListener {
     }
 
     public void showLoading(boolean show) {
-        mLoadingView.showLoading(show);
+        mLoadingView.showLoading(show, LoadingView.Position.CENTER, true);
     }
 }

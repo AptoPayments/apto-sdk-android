@@ -127,12 +127,11 @@ public interface ShiftApiWrapper {
 
     /**
      * Stores the basic request data.
-     * @param developerKey Public developer key.
      * @param device Device information, preferably including: manufacturer, model name and Android SDK version.
      * @param isCertificatePinningEnabled should certificate pinning be enabled
      * @param trustSelfSignedCerts should self signed certificates be trusted
      */
-    void setBaseRequestData(String developerKey, String device, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts);
+    void setBaseRequestData(String device, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts);
 
     /**
      * Stores a new bearer token.
@@ -146,26 +145,15 @@ public interface ShiftApiWrapper {
     String getBearerToken();
 
     /**
-     * @return Developer key.
+     * Stores a API key.
+     * @param apiKey API key.
      */
-    String getDeveloperKey();
+    void setApiKey(String apiKey);
 
     /**
-     * Stores a new developer key.
-     * @param key Developer key.
+     * @return API key.
      */
-    void setDeveloperKey(String key);
-
-    /**
-     * Stores a new project token.
-     * @param token Project token.
-     */
-    void setProjectToken(String token);
-
-    /**
-     * @return Project token.
-     */
-    String getProjectToken();
+    String getApiKey();
 
     /**
      * @return API endpoint.
