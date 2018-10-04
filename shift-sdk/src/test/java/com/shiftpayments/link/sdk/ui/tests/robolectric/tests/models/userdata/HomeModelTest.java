@@ -87,7 +87,7 @@ public class HomeModelTest {
     @Test
     public void baseDataIsUpdated() {
         mModel.setBaseData(new DataPointList());
-        mModel.setZip(EXPECTED_ZIP);
+        mModel.setAddress(EXPECTED_ZIP);
         mModel.setHousingType(new IdDescriptionPairDisplayVo(EXPECTED_HOUSING_TYPE_ID, null));
 
         DataPointList base = mModel.getBaseData();
@@ -108,8 +108,8 @@ public class HomeModelTest {
      */
     @Test
     public void validZipIsStored() {
-        mModel.setZip(EXPECTED_ZIP);
-        Assert.assertTrue("ZIP code should be stored.", mModel.hasValidZip());
+        mModel.setAddress(EXPECTED_ZIP);
+        Assert.assertTrue("ZIP code should be stored.", mModel.hasValidAddress());
         Assert.assertThat("Incorrect ZIP code.", mModel.getZip(), equalTo(EXPECTED_ZIP));
     }
     /**
@@ -119,7 +119,7 @@ public class HomeModelTest {
      */
     @Test
     public void invalidZipIsNotStored() {
-        mModel.setZip("abc");
-        Assert.assertFalse("ZIP code should NOT be stored.", mModel.hasValidZip());
+        mModel.setAddress("abc");
+        Assert.assertFalse("ZIP code should NOT be stored.", mModel.hasValidAddress());
     }
 }

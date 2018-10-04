@@ -143,7 +143,7 @@ public class AddressPresenter
         mView.updateAddressError(!mModel.hasValidAddress(), R.string.address_address_error);
         mView.updateCityError(!mModel.hasValidCity(), R.string.address_city_error);
         mView.updateStateError(!mModel.hasValidState(), R.string.address_state_error);
-        mView.updateZipError(!mModel.hasValidZip(), R.string.address_zip_code_error);
+        mView.updateZipError(!mModel.hasValidZip(), R.string.address_zip_error);
     }
 
     /** {@inheritDoc} */

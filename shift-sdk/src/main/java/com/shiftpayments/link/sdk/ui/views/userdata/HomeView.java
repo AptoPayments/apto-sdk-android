@@ -2,17 +2,16 @@ package com.shiftpayments.link.sdk.ui.views.userdata;
 
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.geocoding.handlers.GooglePlacesArrayAdapter;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.KeyboardUtil;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
@@ -32,14 +31,12 @@ public class HomeView
     /**
      * Callbacks this {@link View} will invoke.
      */
-    public interface ViewListener extends StepperListener, NextButtonListener {
-        void onZipFieldFilled();
-    }
+    public interface ViewListener extends StepperListener, NextButtonListener { }
 
     private LoadingView mLoadingView;
 
-    private TextInputLayout mZipWrapper;
-    private EditText mZipField;
+    private TextInputLayout mAddressWrapper;
+    private AutoCompleteTextView mAutoCompleteTextView;
 
     private Spinner mHousingTypeSpinner;
     private TextView mHousingTypeError;
@@ -69,8 +66,12 @@ public class HomeView
 
         mLoadingView = findViewById(R.id.rl_loading_overlay);
 
-        mZipWrapper = findViewById(R.id.til_zip_code);
-        mZipField = findViewById(R.id.et_zip_code);
+        mAddressWrapper = findViewById(R.id.til_address);
+        mAutoCompleteTextView = findViewById(R.id.actv_address);
+        // remove hint from `TextInputLayout`
+        mAddressWrapper.setHint(null);
+        // set the hint back on the `EditText`
+        mAutoCompleteTextView.setHint(R.string.address_autocomplete_hint);
 
         mHousingTypeSpinner = findViewById(R.id.sp_housing_type);
         mHousingTypeError = findViewById(R.id.tv_housing_type_error);
@@ -81,28 +82,13 @@ public class HomeView
     @Override
     protected void setupListeners() {
         super.setupListeners();
-        if (mZipField != null) {
-            super.setUiFieldsObservable(mZipField);
-            mZipField.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    if(mZipField.getText().toString().length()==getResources().getInteger(R.integer.zip_code_length_validation) && mListener!=null)
-                    {
-                        mListener.onZipFieldFilled();
-                    }
-                }
-
-                @Override
-                public void afterTextChanged(Editable editable) {}
-            });
+        if (mAutoCompleteTextView != null) {
+            super.setUiFieldsObservable(mAutoCompleteTextView);
         }
         if(mHousingTypeSpinner != null) {
             mHousingTypeSpinner.setOnTouchListener((v, event) -> {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    mZipField.clearFocus();
+                    mAutoCompleteTextView.clearFocus();
                     KeyboardUtil.hideKeyboard(v.getContext());
                 }
                 return false;
@@ -114,31 +100,31 @@ public class HomeView
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mZipField.requestFocus();
+        mAutoCompleteTextView.requestFocus();
     }
 
     /**
      * @return Zip or postal code.
      */
-    public String getZipCode() {
-        return mZipField.getText().toString();
+    public String getAddress() {
+        return mAutoCompleteTextView.getText().toString();
     }
 
     /**
-     * Shows the zip or postal code.
-     * @param zip New zip or postal code.
+     * Shows the address.
+     * @param address New address.
      */
-    public void setZipCode(String zip) {
-        mZipField.setText(zip);
+    public void setAddress(String address) {
+        mAutoCompleteTextView.setText(address);
     }
 
     /**
-     * Updates the ZIP field error display.
+     * Updates the address field error display.
      * @param show Whether the error should be shown.
      * @param errorMessageId Error message resource ID.
      */
-    public void updateZipError(boolean show, int errorMessageId) {
-        updateErrorDisplay(mZipWrapper, show, errorMessageId);
+    public void updateAddressError(boolean show, int errorMessageId) {
+        updateErrorDisplay(mAddressWrapper, show, errorMessageId);
     }
 
     /**
@@ -184,9 +170,9 @@ public class HomeView
     @Override
     protected void setColors() {
         super.setColors();
-        mZipField.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
-        mZipField.setHintTextColor(UIStorage.getInstance().getTextTertiaryColor());
-        UIStorage.getInstance().setCursorColor(mZipField);
+        mAutoCompleteTextView.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
+        mAutoCompleteTextView.setHintTextColor(UIStorage.getInstance().getTextTertiaryColor());
+        UIStorage.getInstance().setCursorColor(mAutoCompleteTextView);
     }
 
     public void showHousingTypeHint(boolean show) {
@@ -199,5 +185,9 @@ public class HomeView
             mHousingTypeSpinner.setVisibility(GONE);
             updateHousingTypeError(false);
         }
+    }
+
+    public void setAddressAdapter(GooglePlacesArrayAdapter adapter) {
+        mAutoCompleteTextView.setAdapter(adapter);
     }
 }

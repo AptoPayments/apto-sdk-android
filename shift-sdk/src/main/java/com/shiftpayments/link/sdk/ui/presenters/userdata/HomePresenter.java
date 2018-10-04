@@ -1,7 +1,14 @@
 package com.shiftpayments.link.sdk.ui.presenters.userdata;
 
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.places.Places;
 import com.shiftpayments.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
@@ -9,6 +16,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.HousingTypeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.geocoding.handlers.GeocodingHandler;
+import com.shiftpayments.link.sdk.ui.geocoding.handlers.GooglePlacesArrayAdapter;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.AddressComponentVo;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.ResultVo;
 import com.shiftpayments.link.sdk.ui.models.userdata.HomeModel;
@@ -28,7 +36,7 @@ import java8.util.concurrent.CompletableFuture;
  */
 public class HomePresenter
         extends UserDataPresenter<HomeModel, HomeView>
-        implements HomeView.ViewListener {
+        implements HomeView.ViewListener, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
 
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mHousingTypeAdapter;
     private HomeDelegate mDelegate;
@@ -36,6 +44,9 @@ public class HomePresenter
     private LoadingSpinnerManager mLoadingSpinnerManager;
     private boolean mIsNextClickHandlerPending = false;
     private GeocodingHandler mGeocodingHandler;
+    private GoogleApiClient mGoogleApiClient;
+    private GooglePlacesArrayAdapter mGooglePlacesArrayAdapter;
+    private static final String LOG_TAG = "Shift SDK";
 
     /**
      * Creates a new {@link HomePresenter} instance.
@@ -77,9 +88,24 @@ public class HomePresenter
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
 
         // Set data.
-        mView.setZipCode(mModel.getZip());
+        mView.setAddress(mModel.getStreetAddress());
 
-        mView.updateZipError(false, 0);
+        mGoogleApiClient = new GoogleApiClient.Builder(mActivity)
+                .addApi(Places.GEO_DATA_API)
+                .enableAutoManage(mActivity, this)
+                .addConnectionCallbacks(this)
+                .build();
+        // TODO filter results to allowed countries
+        /*AutocompleteFilter autocompleteFilter = new AutocompleteFilter.Builder()
+                .setCountry("US")
+                .build();*/
+
+        // Create the adapter and set it to the AutoCompleteTextView
+        mGooglePlacesArrayAdapter = new GooglePlacesArrayAdapter(mActivity, android.R.layout.simple_list_item_1,
+                null, null);
+        mView.setAddressAdapter(mGooglePlacesArrayAdapter);
+
+        mView.updateAddressError(false, 0);
         mView.updateHousingTypeError(false);
         mView.showHousingTypeHint(mIsHousingTypeRequired);
         if(mIsHousingTypeRequired) {
@@ -128,7 +154,7 @@ public class HomePresenter
         }
         else {
             // Store data.
-            mModel.setZip(mView.getZipCode());
+            mModel.setAddress(mView.getAddress());
             if(mIsHousingTypeRequired) {
                 mModel.setHousingType(mView.getHousingType());
             }
@@ -137,7 +163,7 @@ public class HomePresenter
     }
 
     private void validateData() {
-        mView.updateZipError(!mModel.hasValidZip(), R.string.address_zip_code_error);
+        mView.updateAddressError(!mModel.hasValidAddress(), R.string.address_address_error);
         if(mIsHousingTypeRequired) {
             mView.updateHousingTypeError(!mModel.hasValidHousingType());
             if (mModel.hasValidData()) {
@@ -145,7 +171,7 @@ public class HomePresenter
             }
         }
         else {
-            if(mModel.hasValidZip()) {
+            if(mModel.hasValidAddress()) {
                 saveDataAndExit();
             }
         }
@@ -195,17 +221,12 @@ public class HomePresenter
         }
     }
 
-    @Override
-    public void onZipFieldFilled() {
-        startZipValidation();
-    }
-
     private void startZipValidation() {
         if(mGeocodingHandler != null) {
             mGeocodingHandler.cancel();
         }
         mGeocodingHandler = new GeocodingHandler();
-        mGeocodingHandler.reverseGeocode(mActivity, mView.getZipCode(), null,
+        mGeocodingHandler.reverseGeocode(mActivity, mView.getAddress(), null,
                 response -> {
                     mGeocodingHandler = null;
                     if (response == null) {
@@ -229,5 +250,22 @@ public class HomePresenter
                     mLoadingSpinnerManager.showLoading(false);
                     ApiErrorUtil.showErrorMessage(e, mActivity);
                 });
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.e(LOG_TAG, "Google Places API connection failed with error code: "
+                + connectionResult.getErrorCode());
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        mGooglePlacesArrayAdapter.setGoogleApiClient(mGoogleApiClient);
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        mGooglePlacesArrayAdapter.setGoogleApiClient(null);
+        Log.e(LOG_TAG, "Google Places API connection suspended.");
     }
 }

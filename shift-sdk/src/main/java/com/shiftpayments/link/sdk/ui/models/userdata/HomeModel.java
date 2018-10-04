@@ -45,7 +45,7 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
     /** {@inheritDoc} */
     @Override
     public boolean hasValidData() {
-        return hasValidZip() && hasValidHousingType();
+        return hasValidAddress() && hasValidHousingType();
     }
 
     /** {@inheritDoc} */
@@ -53,7 +53,7 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
     public DataPointList getBaseData() {
         DataPointList base = super.getBaseData();
 
-        if(hasValidZip()) {
+        if(hasValidAddress()) {
             Address baseAddress = (Address) base.getUniqueDataPoint(
                     DataPointVo.DataPointType.Address, new Address());
             baseAddress.update(getAddress());
@@ -124,41 +124,26 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
     }
 
     /**
-     * @return Zip or postal code.
+     * @return The street address
      */
-    public String getZip() {
-        return mAddress.zip;
+    public String getStreetAddress() {
+        return mAddress.address;
     }
 
     /**
-     * Stores a valid zip code.
-     * @param zip Zip or postal code.
+     * Stores an address
+     * @param address the address to store
      */
-    public void setZip(String zip) {
-        VerbalExpression.Builder plusFourRegex = VerbalExpression.regex()
-                .then("-")
-                .digit().count(4);
-
-        VerbalExpression zipRegex = VerbalExpression.regex()
-                .startOfLine()
-                .digit().count(5)
-                .maybe(plusFourRegex)
-                .endOfLine()
-                .build();
-
-        if (zipRegex.testExact(zip)) {
-            mAddress.zip = zip;
-        } else {
-            mAddress.zip = null;
-        }
+    public void setAddress(String address) {
+        mAddress.address = address;
     }
 
 
     /**
-     * @return Whether a valid ZIP code has been set.
+     * @return Whether a valid address has been set.
      */
-    public boolean hasValidZip() {
-        return mAddress.zip != null;
+    public boolean hasValidAddress() {
+        return mAddress != null;
     }
 
     /**

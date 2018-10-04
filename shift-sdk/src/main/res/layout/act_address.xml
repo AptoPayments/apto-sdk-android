@@ -112,7 +112,7 @@
                 </LinearLayout>
 
                 <android.support.design.widget.TextInputLayout
-                        android:id="@+id/til_zip_code"
+                        android:id="@+id/til_address"
                         style="?attr/llsdk_idVerification_inputWrapperStyle"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -126,7 +126,7 @@
                             android:maxLength="@integer/zip_code_length"
                             android:paddingTop="16dp"
                             android:singleLine="true"
-                            android:hint="@string/address_zip_code_hint" />
+                            android:hint="@string/address_autocomplete_hint" />
 
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>

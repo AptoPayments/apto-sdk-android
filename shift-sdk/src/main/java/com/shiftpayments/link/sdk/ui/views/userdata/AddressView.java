@@ -84,7 +84,7 @@ public class AddressView
         mStateSpinner = findViewById(R.id.sp_state);
         mStateErrorField = findViewById(R.id.tv_state_spinner_error);
 
-        mZipWrapper = findViewById(R.id.til_zip_code);
+        mZipWrapper = findViewById(R.id.til_address);
         mZipField = findViewById(R.id.et_zip_code);
     }
 
