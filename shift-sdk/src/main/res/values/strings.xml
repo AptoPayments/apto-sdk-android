@@ -77,6 +77,7 @@
     <string name="address_housing_type_error">Please select a valid housing type.</string>
     <string name="geocoding_google_maps_api_key">AIzaSyBQuKFxmTO8gmxBwnXZlgG3TJY50KpbS-0</string>
     <string name="geocoding_google_maps_api_url">https://maps.googleapis.com/maps/api/geocode/json</string>
+    <string name="google_places_autocomplete_api_url">https://maps.googleapis.com/maps/api/place/autocomplete/json</string>
 
     <!-- Home -->
     <string name="home_title">Where do you live?</string>

@@ -1,24 +1,19 @@
 package com.shiftpayments.link.sdk.ui.geocoding.handlers;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.AutocompleteFilter;
-import com.google.android.gms.location.places.AutocompletePrediction;
-import com.google.android.gms.location.places.AutocompletePredictionBuffer;
-import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.shiftpayments.link.sdk.ui.geocoding.vos.AutocompleteResponseVo;
+import com.shiftpayments.link.sdk.ui.geocoding.vos.PredictionVo;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.concurrent.TimeUnit;
 
 public class GooglePlacesArrayAdapter
         extends ArrayAdapter<GooglePlacesArrayAdapter.PlaceAutocomplete> implements Filterable {
@@ -28,6 +23,7 @@ public class GooglePlacesArrayAdapter
     private AutocompleteFilter mPlaceFilter;
     private LatLngBounds mBounds;
     private ArrayList<PlaceAutocomplete> mResultList;
+    private AutocompleteHandler mAutocompleteHandler;
 
     /**
      * Constructor
@@ -43,6 +39,7 @@ public class GooglePlacesArrayAdapter
         mBounds = bounds;
         mPlaceFilter = filter;
         mDataFilter = new DataFilter();
+        mAutocompleteHandler = new AutocompleteHandler();
     }
 
     public void setGoogleApiClient(GoogleApiClient googleApiClient) {
@@ -63,8 +60,26 @@ public class GooglePlacesArrayAdapter
         return mResultList.get(position);
     }
 
-    private ArrayList<PlaceAutocomplete> getPredictions(CharSequence constraint) {
-        if (mGoogleApiClient != null) {
+    private void getPredictions(CharSequence constraint) {
+        mAutocompleteHandler.getPredictions(getContext(), constraint.toString(), null,
+                (AutocompleteResponseVo response) -> {
+                    final String status = response.status;
+                    if (!status.equals("OK")) {
+                        ApiErrorUtil.showErrorMessage(status, getContext());
+                        return;
+                    }
+
+                    Iterator<PredictionVo> iterator = response.predictions.iterator();
+                    ArrayList resultList = new ArrayList<PlaceAutocomplete>(response.predictions.size());
+                    while (iterator.hasNext()) {
+                        PredictionVo prediction = iterator.next();
+                        resultList.add(new PlaceAutocomplete(prediction.placeId,
+                                prediction.description));
+                    }
+                    mResultList = resultList;
+                },
+                (Exception e) -> ApiErrorUtil.showErrorMessage(e.getMessage(), getContext()));
+        /*if (mGoogleApiClient != null) {
             PendingResult<AutocompletePredictionBuffer> results =
                     Places.GeoDataApi
                             .getAutocompletePredictions(mGoogleApiClient, constraint.toString(),
@@ -91,7 +106,7 @@ public class GooglePlacesArrayAdapter
             return resultList;
         }
         Log.e(TAG, "Google API client is not connected.");
-        return null;
+        return null;*/
     }
 
     @Override
@@ -105,7 +120,7 @@ public class GooglePlacesArrayAdapter
             FilterResults results = new FilterResults();
             if (constraint != null) {
                 // Query the autocomplete API for the entered constraint
-                mResultList = getPredictions(constraint);
+                getPredictions(constraint);
                 if (mResultList != null) {
                     // Results
                     results.values = mResultList;

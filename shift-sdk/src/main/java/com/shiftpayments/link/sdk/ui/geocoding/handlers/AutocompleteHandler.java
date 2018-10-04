@@ -7,28 +7,37 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.shiftpayments.link.imageloaders.volley.VolleySingleton;
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.geocoding.vos.GeocodingResultVo;
+import com.shiftpayments.link.sdk.ui.geocoding.vos.AutocompleteResponseVo;
+
+import java.util.ArrayList;
 
 /**
- * Created by adrian on 01/09/2017.
+ * Created by adrian on 04/10/2018.
  */
 
-public class GeocodingHandler {
+public class AutocompleteHandler {
     private boolean mIsCancelled;
 
-    public GeocodingHandler() {
+    public AutocompleteHandler() {
         mIsCancelled = false;
     }
 
-    public void reverseGeocode(Context context, String address, String country, GeocodingOnSuccessCallback onSuccess, GetPredictionsOnErrorCallback onError) {
+    public void getPredictions(Context context, String input, ArrayList<String> allowedCountries,
+                               GetPredictionsOnSuccessCallback onSuccess, GetPredictionsOnErrorCallback onError) {
         if(mIsCancelled) {
             return;
         }
-        String url = context.getString(R.string.geocoding_google_maps_api_url);
-        url+="?address="+address;
+        String url = context.getString(R.string.google_places_autocomplete_api_url);
+        url+="?input="+input;
 
-        if(country != null) {
-            url+="&components=country:"+country;
+        if(allowedCountries != null) {
+            StringBuilder urlBuilder = new StringBuilder(url);
+            urlBuilder.append("&components=");
+            for (String country : allowedCountries) {
+                urlBuilder.append("country:").append(country).append("|");
+            }
+            urlBuilder.deleteCharAt(urlBuilder.length()-1);
+            url = urlBuilder.toString();
         } else {
             url+="&components=country:US";
         }
@@ -37,9 +46,9 @@ public class GeocodingHandler {
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, response -> {
                     Gson gson = new Gson();
-                    GeocodingResultVo geocodingResponse = gson.fromJson(response.toString(), GeocodingResultVo.class);
+                    AutocompleteResponseVo autocompleteResponse = gson.fromJson(response.toString(), AutocompleteResponseVo.class);
                     if(!mIsCancelled) {
-                        onSuccess.execute(geocodingResponse);
+                        onSuccess.execute(autocompleteResponse);
                     }
                 }, (e) -> {
                     if(!mIsCancelled) {

@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Places;
 import com.shiftpayments.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
@@ -96,9 +97,9 @@ public class HomePresenter
                 .addConnectionCallbacks(this)
                 .build();
         // TODO filter results to allowed countries
-        /*AutocompleteFilter autocompleteFilter = new AutocompleteFilter.Builder()
+        AutocompleteFilter autocompleteFilter = new AutocompleteFilter.Builder()
                 .setCountry("US")
-                .build();*/
+                .build();
 
         // Create the adapter and set it to the AutoCompleteTextView
         mGooglePlacesArrayAdapter = new GooglePlacesArrayAdapter(mActivity, android.R.layout.simple_list_item_1,
