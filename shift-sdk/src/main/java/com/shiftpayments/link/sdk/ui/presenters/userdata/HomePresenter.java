@@ -37,7 +37,7 @@ import java8.util.concurrent.CompletableFuture;
  */
 public class HomePresenter
         extends UserDataPresenter<HomeModel, HomeView>
-        implements HomeView.ViewListener, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
+        implements HomeView.ViewListener {
 
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mHousingTypeAdapter;
     private HomeDelegate mDelegate;
@@ -45,7 +45,6 @@ public class HomePresenter
     private LoadingSpinnerManager mLoadingSpinnerManager;
     private boolean mIsNextClickHandlerPending = false;
     private GeocodingHandler mGeocodingHandler;
-    private GoogleApiClient mGoogleApiClient;
     private GooglePlacesArrayAdapter mGooglePlacesArrayAdapter;
     private static final String LOG_TAG = "Shift SDK";
 
@@ -91,19 +90,10 @@ public class HomePresenter
         // Set data.
         mView.setAddress(mModel.getStreetAddress());
 
-        mGoogleApiClient = new GoogleApiClient.Builder(mActivity)
-                .addApi(Places.GEO_DATA_API)
-                .enableAutoManage(mActivity, this)
-                .addConnectionCallbacks(this)
-                .build();
-        // TODO filter results to allowed countries
-        AutocompleteFilter autocompleteFilter = new AutocompleteFilter.Builder()
-                .setCountry("US")
-                .build();
-
+        // TODO: read allowed countries
         // Create the adapter and set it to the AutoCompleteTextView
         mGooglePlacesArrayAdapter = new GooglePlacesArrayAdapter(mActivity, android.R.layout.simple_list_item_1,
-                null, null);
+                null);
         mView.setAddressAdapter(mGooglePlacesArrayAdapter);
 
         mView.updateAddressError(false, 0);
@@ -251,22 +241,5 @@ public class HomePresenter
                     mLoadingSpinnerManager.showLoading(false);
                     ApiErrorUtil.showErrorMessage(e, mActivity);
                 });
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.e(LOG_TAG, "Google Places API connection failed with error code: "
-                + connectionResult.getErrorCode());
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        mGooglePlacesArrayAdapter.setGoogleApiClient(mGoogleApiClient);
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        mGooglePlacesArrayAdapter.setGoogleApiClient(null);
-        Log.e(LOG_TAG, "Google Places API connection suspended.");
     }
 }

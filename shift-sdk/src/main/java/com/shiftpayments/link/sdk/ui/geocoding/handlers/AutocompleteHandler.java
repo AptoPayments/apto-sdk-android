@@ -10,6 +10,7 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.AutocompleteResponseVo;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Created by adrian on 04/10/2018.
@@ -41,7 +42,10 @@ public class AutocompleteHandler {
         } else {
             url+="&components=country:US";
         }
-        url+="&key="+context.getString(R.string.geocoding_google_maps_api_key);
+        url+="&key="+context.getString(R.string.google_places_autocomplete_api_key);
+        // https://developers.google.com/places/web-service/autocomplete#session_tokens
+        String uniqueID = UUID.randomUUID().toString();
+        url+="&sessiontoken="+uniqueID;
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, response -> {
