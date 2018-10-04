@@ -1,6 +1,8 @@
 package com.shiftpayments.link.sdk.ui.presenters.verification;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.Birthdate;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
@@ -27,12 +29,18 @@ import com.shiftpayments.link.sdk.ui.activities.verification.PhoneVerificationAc
 import com.shiftpayments.link.sdk.ui.presenters.userdata.EmailDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.PhoneDelegate;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.workflow.Command;
 import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.shiftpayments.link.sdk.ui.activities.userdata.PhoneActivity.EXTRA_ALLOWED_COUNTRIES;
 
 public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailDelegate,
         PhoneVerificationDelegate, EmailVerificationDelegate, BirthdateVerificationDelegate {
@@ -201,7 +209,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
 
     @Override
     public void phoneVerificationOnBackPressed() {
-        startActivity(PhoneActivity.class);
+        startPhoneActivity();
     }
 
     @Override
@@ -220,7 +228,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
                     basePhone.setVerification(new VerificationVo(secondaryCredential.verification_id, secondaryCredential.verification_type));
                     userData.add(basePhone);
                     UserStorage.getInstance().setUserData(userData);
-                    startActivity(PhoneActivity.class);
+                    startPhoneActivity();
                     break;
                 case BirthDate:
                     DataPointVo baseBirthdate = mInitialUserData.getUniqueDataPoint(DataPointVo.DataPointType.BirthDate, new Birthdate());
@@ -258,7 +266,7 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
 
     private void startPrimaryCredentialActivity() {
         if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Phone)) {
-            startActivity(PhoneActivity.class);
+            startPhoneActivity();
         } else if (mConfig.primaryCredentialType.equals(DataPointVo.DataPointType.Email)) {
             startActivity(EmailActivity.class);
         } else {
@@ -307,6 +315,19 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
         verifications.data = verificationList;
 
         return new LoginRequestVo(verifications);
+    }
+
+    private void startPhoneActivity() {
+        getActivity().startActivity(getPhoneActivityIntent(getActivity()));
+        getActivity().finish();
+    }
+
+    private static Intent getPhoneActivityIntent(Context context) {
+        Intent intent = new Intent(context, PhoneActivity.class);
+        List<String> allowedCountries = UIStorage.getInstance().getContextConfig().allowedCountries;
+        intent.putStringArrayListExtra(EXTRA_ALLOWED_COUNTRIES, new ArrayList<>(allowedCountries));
+
+        return intent;
     }
 
     private void stopModule() {

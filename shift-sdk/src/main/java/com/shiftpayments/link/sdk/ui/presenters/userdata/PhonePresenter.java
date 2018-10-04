@@ -7,10 +7,9 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.PhoneModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
-import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.userdata.PhoneView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Concrete {@link Presenter} for the phone screen.
@@ -21,14 +20,17 @@ public class PhonePresenter
         implements PhoneView.ViewListener {
 
     private PhoneDelegate mDelegate;
+    private ArrayList<String> mAllowedCountries;
 
     /**
      * Creates a new {@link PhonePresenter} instance.
      * @param activity Activity.
+     * @param allowedCountries List of allowed countries
      */
-    public PhonePresenter(AppCompatActivity activity, PhoneDelegate delegate) {
+    public PhonePresenter(AppCompatActivity activity, PhoneDelegate delegate, ArrayList<String> allowedCountries) {
         super(activity);
         mDelegate = delegate;
+        mAllowedCountries = allowedCountries;
     }
 
     /** {@inheritDoc} */
@@ -53,8 +55,9 @@ public class PhonePresenter
         }
 
         mView.setListener(this);
-        List<String> allowedCountries = UIStorage.getInstance().getContextConfig().allowedCountries;
-        mView.setPickerCountryList(TextUtils.join(",", allowedCountries));
+        if(mAllowedCountries!=null && !mAllowedCountries.isEmpty()) {
+            mView.setPickerCountryList(TextUtils.join(",", mAllowedCountries));
+        }
     }
 
     private boolean isVerificationRequired() {
