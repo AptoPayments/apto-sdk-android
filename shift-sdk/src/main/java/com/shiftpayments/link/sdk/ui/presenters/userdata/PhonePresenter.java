@@ -1,12 +1,15 @@
 package com.shiftpayments.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.PhoneModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shiftpayments.link.sdk.ui.views.userdata.PhoneView;
+
+import java.util.ArrayList;
 
 /**
  * Concrete {@link Presenter} for the phone screen.
@@ -17,14 +20,17 @@ public class PhonePresenter
         implements PhoneView.ViewListener {
 
     private PhoneDelegate mDelegate;
+    private ArrayList<String> mAllowedCountries;
 
     /**
      * Creates a new {@link PhonePresenter} instance.
      * @param activity Activity.
+     * @param allowedCountries List of allowed countries
      */
-    public PhonePresenter(AppCompatActivity activity, PhoneDelegate delegate) {
+    public PhonePresenter(AppCompatActivity activity, PhoneDelegate delegate, ArrayList<String> allowedCountries) {
         super(activity);
         mDelegate = delegate;
+        mAllowedCountries = allowedCountries;
     }
 
     /** {@inheritDoc} */
@@ -49,6 +55,9 @@ public class PhonePresenter
         }
 
         mView.setListener(this);
+        if(mAllowedCountries!=null && !mAllowedCountries.isEmpty()) {
+            mView.setPickerCountryList(TextUtils.join(",", mAllowedCountries));
+        }
     }
 
     private boolean isVerificationRequired() {
@@ -72,7 +81,7 @@ public class PhonePresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        mModel.setPhone(mView.getPhone());
+        mModel.setPhone(mView.getCountryCode(), mView.getPhone());
         mView.updatePhoneError(!mModel.hasPhone(), R.string.phone_error);
 
         if(mModel.hasValidData()) {

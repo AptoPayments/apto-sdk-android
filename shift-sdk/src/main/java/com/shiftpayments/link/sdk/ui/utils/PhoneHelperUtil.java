@@ -21,9 +21,9 @@ public class PhoneHelperUtil {
         return  mPhoneUtil.isValidNumber(number);
     }
 
-    public static Phonenumber.PhoneNumber parsePhone(String phoneAsString) {
+    public static Phonenumber.PhoneNumber parsePhone(String phoneAsString, String countryCode) {
         try {
-            return mPhoneUtil.parse(phoneAsString, "US");
+            return mPhoneUtil.parse(phoneAsString, countryCode);
         } catch (NumberParseException e) {
             return null;
         }

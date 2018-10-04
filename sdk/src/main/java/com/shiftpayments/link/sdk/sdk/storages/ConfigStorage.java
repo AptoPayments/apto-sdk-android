@@ -12,6 +12,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import java8.util.concurrent.CompletableFuture;

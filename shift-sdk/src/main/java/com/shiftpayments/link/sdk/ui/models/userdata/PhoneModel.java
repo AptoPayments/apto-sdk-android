@@ -84,8 +84,8 @@ public class PhoneModel extends AbstractUserDataModel implements UserDataModel {
      * Parses and stores a valid phone number.
      * @param phone Raw phone number.
      */
-    public void setPhone(String phone) {
-        PhoneNumber number = PhoneHelperUtil.parsePhone(phone);
+    public void setPhone(String countryCode, String phone) {
+        PhoneNumber number = PhoneHelperUtil.parsePhone(phone, countryCode);
         setPhone(number);
     }
 
