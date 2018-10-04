@@ -44,16 +44,16 @@ public class MainActivity extends AppCompatActivity implements MainView.ViewList
         branch.initSession((referringParams, error) -> {
             if (error == null && referringParams.has(KeysStorage.PREFS_ENVIRONMENT)
                     && referringParams.has(KeysStorage.PREFS_API_KEY)) {
-                boolean hasProjectChanged;
+                boolean hasApiKeyChanged;
                 try {
-                    hasProjectChanged = KeysStorage.storeKey(this, referringParams.getString(KeysStorage.PREFS_ENVIRONMENT),
+                    hasApiKeyChanged = KeysStorage.storeKey(this, referringParams.getString(KeysStorage.PREFS_ENVIRONMENT),
                             referringParams.getString(KeysStorage.PREFS_API_KEY));
                 } catch (JSONException e) {
-                    hasProjectChanged = KeysStorage.storeKey(this, getDefaultEnvironment(),
+                    hasApiKeyChanged = KeysStorage.storeKey(this, getDefaultEnvironment(),
                             getDefaultApiKey());
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-                if(hasProjectChanged) {
+                if(hasApiKeyChanged) {
                     ShiftPlatform.clearUserToken(this);
                 }
             }

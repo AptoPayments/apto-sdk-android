@@ -391,6 +391,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
                         addRequiredActivity(PersonalInformationActivity.class);
                         break;
                     case Phone:
+                        // TODO: pass in allowed countries from required datapoint config
                         addRequiredActivity(PhoneActivity.class);
                         break;
                     case Email:
