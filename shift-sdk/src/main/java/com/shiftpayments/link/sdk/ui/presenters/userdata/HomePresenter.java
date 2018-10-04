@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.shiftpayments.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
@@ -28,8 +29,7 @@ import java8.util.concurrent.CompletableFuture;
  * @author Adrian
  */
 public class HomePresenter
-        extends UserDataPresenter<HomeModel, HomeView>
-        implements HomeView.ViewListener {
+        extends UserDataPresenter<HomeModel, HomeView> implements HomeView.ViewListener {
 
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mHousingTypeAdapter;
     private HomeDelegate mDelegate;
@@ -233,5 +233,12 @@ public class HomePresenter
                     mLoadingSpinnerManager.showLoading(false);
                     ApiErrorUtil.showErrorMessage(e, mActivity);
                 });
+    }
+
+    @Override
+    public void onAddressSelected(int position) {
+        GooglePlacesArrayAdapter.PlaceAutocomplete item = mGooglePlacesArrayAdapter.getItem(position);
+        Log.d("ADRIAN", "place ID: " + item.placeId);
+        Log.d("ADRIAN", "place description: " + item.description);
     }
 }

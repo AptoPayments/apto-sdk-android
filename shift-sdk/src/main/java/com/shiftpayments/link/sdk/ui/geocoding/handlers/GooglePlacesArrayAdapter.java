@@ -30,7 +30,7 @@ public class GooglePlacesArrayAdapter
     public GooglePlacesArrayAdapter(Context context, int resource, ArrayList<String> allowedCountries) {
         super(context, resource);
         mDataFilter = new DataFilter();
-        mAutocompleteHandler = new AutocompleteHandler();
+        mAutocompleteHandler = null;
         mAllowedCountries = allowedCountries;
     }
 
@@ -45,8 +45,13 @@ public class GooglePlacesArrayAdapter
     }
 
     private void getPredictions(CharSequence constraint) {
+        if (mAutocompleteHandler != null) {
+            mAutocompleteHandler.cancel();
+        }
+        mAutocompleteHandler = new AutocompleteHandler();
         mAutocompleteHandler.getPredictions(getContext(), constraint.toString(), mAllowedCountries,
                 (AutocompleteResponseVo response) -> {
+                    mAutocompleteHandler = null;
                     final String status = response.status;
                     if (!status.equals("OK")) {
                         Log.e(TAG, "Autocomplete status: " + status);
@@ -62,7 +67,10 @@ public class GooglePlacesArrayAdapter
                     }
                     mResultList = resultList;
                 },
-                (Exception e) -> Log.e(TAG, "Autocomplete error: " + e.getMessage()));
+                (Exception e) -> {
+                    mAutocompleteHandler = null;
+                    Log.e(TAG, "Autocomplete error: " + e.getMessage());
+                });
     }
 
     @Override
@@ -82,6 +90,9 @@ public class GooglePlacesArrayAdapter
                     results.values = mResultList;
                     results.count = mResultList.size();
                 }
+                else {
+                    results.count = 0;
+                }
             }
             return results;
         }
@@ -90,6 +101,7 @@ public class GooglePlacesArrayAdapter
         protected void publishResults(CharSequence constraint, FilterResults results) {
             if (results != null && results.count > 0) {
                 // The API returned at least one result, update the data.
+                mResultList = (ArrayList<PlaceAutocomplete>) results.values;
                 notifyDataSetChanged();
             } else {
                 // The API did not return any results, invalidate the data set.
@@ -98,7 +110,7 @@ public class GooglePlacesArrayAdapter
         }
     }
 
-    class PlaceAutocomplete {
+    public class PlaceAutocomplete {
 
         public CharSequence placeId;
         public CharSequence description;

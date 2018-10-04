@@ -2,15 +2,18 @@ package com.shiftpayments.link.sdk.ui.geocoding.handlers;
 
 import android.content.Context;
 
-import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.RequestFuture;
 import com.google.gson.Gson;
 import com.shiftpayments.link.imageloaders.volley.VolleySingleton;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.AutocompleteResponseVo;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by adrian on 04/10/2018.
@@ -47,19 +50,22 @@ public class AutocompleteHandler {
         String uniqueID = UUID.randomUUID().toString();
         url+="&sessiontoken="+uniqueID;
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, response -> {
-                    Gson gson = new Gson();
-                    AutocompleteResponseVo autocompleteResponse = gson.fromJson(response.toString(), AutocompleteResponseVo.class);
-                    if(!mIsCancelled) {
-                        onSuccess.execute(autocompleteResponse);
-                    }
-                }, (e) -> {
-                    if(!mIsCancelled) {
-                        onError.execute(e);
-                    }
-                });
-        VolleySingleton.getInstance(context).addToRequestQueue(jsObjRequest);
+        RequestFuture<JSONObject> future = RequestFuture.newFuture();
+        JsonObjectRequest request = new JsonObjectRequest(url, new JSONObject(), future, future);
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+
+        try {
+            JSONObject response = future.get(); // this will block
+            Gson gson = new Gson();
+            AutocompleteResponseVo autocompleteResponse = gson.fromJson(response.toString(), AutocompleteResponseVo.class);
+            if(!mIsCancelled) {
+                onSuccess.execute(autocompleteResponse);
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            if(!mIsCancelled) {
+                onError.execute(e);
+            }
+        }
     }
 
     public void cancel() {

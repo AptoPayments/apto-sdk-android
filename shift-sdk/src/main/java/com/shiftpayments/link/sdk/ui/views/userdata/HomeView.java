@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,12 +27,19 @@ import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
  */
 public class HomeView
         extends UserDataView<HomeView.ViewListener>
-        implements ViewWithToolbar, ViewWithIndeterminateLoading {
+        implements ViewWithToolbar, ViewWithIndeterminateLoading, AdapterView.OnItemClickListener {
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+        mListener.onAddressSelected(pos);
+    }
 
     /**
      * Callbacks this {@link View} will invoke.
      */
-    public interface ViewListener extends StepperListener, NextButtonListener { }
+    public interface ViewListener extends StepperListener, NextButtonListener {
+        void onAddressSelected(int position);
+    }
 
     private LoadingView mLoadingView;
 
@@ -84,6 +92,7 @@ public class HomeView
         super.setupListeners();
         if (mAutoCompleteTextView != null) {
             super.setUiFieldsObservable(mAutoCompleteTextView);
+            mAutoCompleteTextView.setOnItemClickListener(this);
         }
         if(mHousingTypeSpinner != null) {
             mHousingTypeSpinner.setOnTouchListener((v, event) -> {
