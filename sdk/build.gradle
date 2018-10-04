@@ -4,7 +4,7 @@ apply from: '../jacoco.gradle'
 apply from: '../javadoc.gradle'
 apply plugin: 'me.tatarka.retrolambda'
 
-version = '1.0.11'
+version = '1.0.12'
 
 ext {
     bintrayRepo = 'maven'
@@ -94,3 +94,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
 }
+
+apply from: 'deploy.gradle'
