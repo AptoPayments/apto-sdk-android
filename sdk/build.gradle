@@ -95,4 +95,3 @@ dependencies {
     compile 'net.sourceforge.streamsupport:streamsupport-cfuture:1.5.3'
 }
 
-apply from: 'deploy.gradle'
