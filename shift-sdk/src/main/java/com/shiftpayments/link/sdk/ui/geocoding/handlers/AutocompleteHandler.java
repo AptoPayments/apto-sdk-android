@@ -8,11 +8,11 @@ import com.google.gson.Gson;
 import com.shiftpayments.link.imageloaders.volley.VolleySingleton;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.AutocompleteResponseVo;
+import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -47,8 +47,7 @@ public class AutocompleteHandler {
         }
         url+="&key="+context.getString(R.string.google_places_autocomplete_api_key);
         // https://developers.google.com/places/web-service/autocomplete#session_tokens
-        String uniqueID = UUID.randomUUID().toString();
-        url+="&sessiontoken="+uniqueID;
+        url+="&sessiontoken="+UserStorage.getInstance().getSessionToken();
 
         RequestFuture<JSONObject> future = RequestFuture.newFuture();
         JsonObjectRequest request = new JsonObjectRequest(url, new JSONObject(), future, future);

@@ -8,8 +8,7 @@ import com.google.gson.Gson;
 import com.shiftpayments.link.imageloaders.volley.VolleySingleton;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.GeocodingResultVo;
-
-import java.util.UUID;
+import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 
 /**
  * Created by adrian on 01/09/2017.
@@ -31,8 +30,7 @@ public class GeocodingHandler {
         url+="&fields=address_component";
         url+="&key="+context.getString(R.string.google_places_autocomplete_api_key);
         // https://developers.google.com/places/web-service/autocomplete#session_tokens
-        String uniqueID = UUID.randomUUID().toString();
-        url+="&sessiontoken="+uniqueID;
+        url+="&sessiontoken="+ UserStorage.getInstance().getSessionToken();
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, response -> {
