@@ -12,14 +12,14 @@ import com.shiftpayments.link.sdk.ui.views.userdata.PhoneView;
 
 import java.util.ArrayList;
 
+import static com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule.EXTRA_ALLOWED_COUNTRIES;
+
 /**
  * Wires up the MVP pattern for the phone screen.
  * @author Adrian
  */
 public class PhoneActivity
         extends MvpActivity<PhoneModel, PhoneView, PhonePresenter> {
-
-    public static final String EXTRA_ALLOWED_COUNTRIES = "com.shiftpayments.link.sdk.ui.activities.PhoneActivity.ALLOWEDCOUNTRIES";
 
     /** {@inheritDoc} */
     @Override

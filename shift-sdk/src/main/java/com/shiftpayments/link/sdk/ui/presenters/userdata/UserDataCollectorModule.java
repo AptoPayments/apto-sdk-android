@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
@@ -8,6 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
@@ -53,16 +55,19 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
         CreditScoreDelegate, PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate,
         ArmedForcesDelegate, TimeAtAddressDelegate {
 
+    public static final String EXTRA_ALLOWED_COUNTRIES = "com.shiftpayments.link.sdk.ui.presenters.userdata.ALLOWEDCOUNTRIES";
     private static UserDataCollectorModule instance;
     public LinkedList<RequiredDataPointVo> mRequiredDataPointList;
     public boolean isUpdatingProfile;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
+    private HashMap<Class<? extends MvpActivity>, DataPointConfigurationVo> mDataPointConfigurationMap;
     private DataPointList mCurrentUserDataCopy;
 
     private UserDataCollectorModule(Activity activity, Command onFinish, Command onBack) {
         super(activity, onFinish, onBack);
         mRequiredDataPointList = new LinkedList<>();
         mRequiredActivities = new ArrayList<>();
+        mDataPointConfigurationMap = new HashMap<>();
     }
 
     public static synchronized UserDataCollectorModule getInstance(Activity activity, Command onFinish, Command onBack) {
@@ -141,7 +146,16 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
         if(activity == null) {
             stopModule();
         } else {
-            super.startActivity(activity);
+            if(mDataPointConfigurationMap.containsKey(activity)) {
+                DataPointConfigurationVo dataPointConfiguration = mDataPointConfigurationMap.get(activity);
+                Intent intent = new Intent(getActivity(), activity);
+                List<String> allowedCountries = dataPointConfiguration.allowedCountries;
+                intent.putStringArrayListExtra(EXTRA_ALLOWED_COUNTRIES, new ArrayList<>(allowedCountries));
+                getActivity().startActivity(intent);
+            }
+            else {
+                super.startActivity(activity);
+            }
         }
     }
 
@@ -391,7 +405,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
                         addRequiredActivity(PersonalInformationActivity.class);
                         break;
                     case Phone:
-                        // TODO: pass in allowed countries from required datapoint config
+                        mDataPointConfigurationMap.put(PhoneActivity.class, requiredDataPointVo.datapointConfiguration);
                         addRequiredActivity(PhoneActivity.class);
                         break;
                     case Email:
@@ -399,6 +413,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
                         break;
                     case Address:
                     case Housing:
+                        mDataPointConfigurationMap.put(HomeActivity.class, requiredDataPointVo.datapointConfiguration);
                         addRequiredActivity(HomeActivity.class);
                         addRequiredActivity(AddressActivity.class);
                         break;

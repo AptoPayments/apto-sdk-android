@@ -22,6 +22,8 @@ import com.shiftpayments.link.sdk.ui.views.userdata.HomeView;
 import com.shiftpayments.link.sdk.ui.widgets.HintArrayAdapter;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
+import java.util.ArrayList;
+
 import java8.util.concurrent.CompletableFuture;
 
 import static com.shiftpayments.link.sdk.ui.geocoding.handlers.GooglePlacesArrayAdapter.GOOGLE_PLACES_TAG;
@@ -40,16 +42,18 @@ public class HomePresenter
     private boolean mIsNextClickHandlerPending = false;
     private GeocodingHandler mGeocodingHandler;
     private GooglePlacesArrayAdapter mGooglePlacesArrayAdapter;
+    private ArrayList<String> mAllowedCountries;
 
     /**
      * Creates a new {@link HomePresenter} instance.
      * @param activity Activity.
      */
-    public HomePresenter(AppCompatActivity activity, HomeDelegate delegate) {
+    public HomePresenter(AppCompatActivity activity, HomeDelegate delegate, ArrayList<String> allowedCountries) {
         super(activity);
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
         mIsHousingTypeRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Housing));
+        mAllowedCountries = allowedCountries;
     }
 
     /**
@@ -83,10 +87,9 @@ public class HomePresenter
         // Set data.
         mView.setAddress(mModel.getFullAddress());
 
-        // TODO: read allowed countries
         // Create the adapter and set it to the AutoCompleteTextView
         mGooglePlacesArrayAdapter = new GooglePlacesArrayAdapter(mActivity, android.R.layout.simple_list_item_1,
-                null);
+                mAllowedCountries);
         mView.setAddressAdapter(mGooglePlacesArrayAdapter);
 
         mView.updateAddressError(false, 0);

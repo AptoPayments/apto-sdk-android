@@ -10,6 +10,10 @@ import com.shiftpayments.link.sdk.ui.presenters.userdata.HomeDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.HomePresenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.HomeView;
 
+import java.util.ArrayList;
+
+import static com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule.EXTRA_ALLOWED_COUNTRIES;
+
 /**
  * Wires up the MVP pattern for the address validation screen.
  * @author Adrian
@@ -27,7 +31,8 @@ public class HomeActivity
     @Override
     protected HomePresenter createPresenter(BaseDelegate delegate) {
         if(delegate instanceof HomeDelegate) {
-            return new HomePresenter(this, (HomeDelegate) delegate);
+            ArrayList<String> allowedCountries = getIntent().getStringArrayListExtra(EXTRA_ALLOWED_COUNTRIES);
+            return new HomePresenter(this, (HomeDelegate) delegate, allowedCountries);
         }
         else {
             throw new NullPointerException("Received Module does not implement HomeDelegate!");
