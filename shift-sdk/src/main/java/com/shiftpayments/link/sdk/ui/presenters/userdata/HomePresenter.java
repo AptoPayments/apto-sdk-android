@@ -24,6 +24,8 @@ import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import java8.util.concurrent.CompletableFuture;
 
+import static com.shiftpayments.link.sdk.ui.geocoding.handlers.GooglePlacesArrayAdapter.GOOGLE_PLACES_TAG;
+
 /**
  * Concrete {@link Presenter} for the address validation screen.
  * @author Adrian
@@ -38,7 +40,6 @@ public class HomePresenter
     private boolean mIsNextClickHandlerPending = false;
     private GeocodingHandler mGeocodingHandler;
     private GooglePlacesArrayAdapter mGooglePlacesArrayAdapter;
-    private static final String LOG_TAG = "Shift SDK";
 
     /**
      * Creates a new {@link HomePresenter} instance.
@@ -80,7 +81,7 @@ public class HomePresenter
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
 
         // Set data.
-        mView.setAddress(mModel.getStreetAddress());
+        mView.setAddress(mModel.getFullAddress());
 
         // TODO: read allowed countries
         // Create the adapter and set it to the AutoCompleteTextView
@@ -137,7 +138,6 @@ public class HomePresenter
         }
         else {
             // Store data.
-            mModel.setAddress(mView.getAddress());
             if(mIsHousingTypeRequired) {
                 mModel.setHousingType(mView.getHousingType());
             }
@@ -204,24 +204,39 @@ public class HomePresenter
         }
     }
 
-    private void startZipValidation() {
+    private void getPlaceDetails(String placeId) {
         if(mGeocodingHandler != null) {
             mGeocodingHandler.cancel();
         }
         mGeocodingHandler = new GeocodingHandler();
-        mGeocodingHandler.reverseGeocode(mActivity, mView.getAddress(), null,
+        mGeocodingHandler.reverseGeocode(mActivity, placeId,
                 response -> {
                     mGeocodingHandler = null;
-                    if (response == null) {
+                    if (response == null || !response.status.equals("OK")) {
+                        Log.e(GOOGLE_PLACES_TAG, "Get places details status: " + response.status);
                         return;
                     }
-                    ResultVo result = response.getResults().get(0);
+                    ResultVo result = response.result;
                     for (AddressComponentVo addressComponent : result.getAddressComponents()) {
-                        if(addressComponent.getTypes().get(0).equals("locality")) {
-                            mModel.setCity(addressComponent.getLongName());
-                        }
-                        else if(addressComponent.getTypes().get(0).equals("administrative_area_level_1")) {
-                            mModel.setState(addressComponent.getShortName());
+                        switch (addressComponent.getTypes().get(0)) {
+                            case "locality":
+                                mModel.setCity(addressComponent.getLongName());
+                                break;
+                            case "administrative_area_level_1":
+                                mModel.setState(addressComponent.getShortName());
+                                break;
+                            case "country":
+                                mModel.setCountry(addressComponent.getShortName());
+                                break;
+                            case "postal_code":
+                                mModel.setZip(addressComponent.getShortName());
+                                break;
+                            case "street_number":
+                                mModel.setStreetNumber(addressComponent.getShortName());
+                                break;
+                            case "route":
+                                mModel.setStreet(addressComponent.getLongName());
+                                break;
                         }
                     }
                     if(mIsNextClickHandlerPending) {
@@ -238,7 +253,6 @@ public class HomePresenter
     @Override
     public void onAddressSelected(int position) {
         GooglePlacesArrayAdapter.PlaceAutocomplete item = mGooglePlacesArrayAdapter.getItem(position);
-        Log.d("ADRIAN", "place ID: " + item.placeId);
-        Log.d("ADRIAN", "place description: " + item.description);
+        getPlaceDetails(item.placeId);
     }
 }

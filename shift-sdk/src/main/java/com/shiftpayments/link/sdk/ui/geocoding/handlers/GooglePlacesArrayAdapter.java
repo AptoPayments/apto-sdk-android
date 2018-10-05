@@ -14,7 +14,7 @@ import java.util.Iterator;
 
 public class GooglePlacesArrayAdapter
         extends ArrayAdapter<GooglePlacesArrayAdapter.PlaceAutocomplete> implements Filterable {
-    private static final String TAG = "GooglePlacesAdapter";
+    public static final String GOOGLE_PLACES_TAG = "GooglePlacesAdapter";
     private DataFilter mDataFilter;
     private ArrayList<PlaceAutocomplete> mResultList;
     private AutocompleteHandler mAutocompleteHandler;
@@ -54,7 +54,7 @@ public class GooglePlacesArrayAdapter
                     mAutocompleteHandler = null;
                     final String status = response.status;
                     if (!status.equals("OK")) {
-                        Log.e(TAG, "Autocomplete status: " + status);
+                        Log.e(GOOGLE_PLACES_TAG, "Autocomplete status: " + status);
                         return;
                     }
 
@@ -69,7 +69,7 @@ public class GooglePlacesArrayAdapter
                 },
                 (Exception e) -> {
                     mAutocompleteHandler = null;
-                    Log.e(TAG, "Autocomplete error: " + e.getMessage());
+                    Log.e(GOOGLE_PLACES_TAG, "Autocomplete error: " + e.getMessage());
                 });
     }
 
@@ -112,17 +112,17 @@ public class GooglePlacesArrayAdapter
 
     public class PlaceAutocomplete {
 
-        public CharSequence placeId;
-        public CharSequence description;
+        public String placeId;
+        public String description;
 
-        PlaceAutocomplete(CharSequence placeId, CharSequence description) {
+        PlaceAutocomplete(String placeId, String description) {
             this.placeId = placeId;
             this.description = description;
         }
 
         @Override
         public String toString() {
-            return description.toString();
+            return description;
         }
     }
 }

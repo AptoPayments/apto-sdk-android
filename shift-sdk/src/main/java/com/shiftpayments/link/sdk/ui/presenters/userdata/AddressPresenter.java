@@ -5,11 +5,8 @@ import android.widget.ArrayAdapter;
 
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.geocoding.handlers.GeocodingHandler;
-import com.shiftpayments.link.sdk.ui.geocoding.vos.ResultVo;
 import com.shiftpayments.link.sdk.ui.models.userdata.AddressModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
-import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.userdata.AddressView;
 
@@ -153,7 +150,7 @@ public class AddressPresenter
     }
 
     private void startAddressVerification(AddressVerificationCallback callback) {
-        String address = String.format("%s,+%s,+%s,+%s",
+        /*String address = String.format("%s,+%s,+%s,+%s",
                 mView.getAddress(), mModel.getCity(), mModel.getState(), mModel.getZip());
         String formattedAddress = address.replace(' ', '+');
         new GeocodingHandler().reverseGeocode(mActivity, formattedAddress, mModel.getCountry(),
@@ -173,7 +170,7 @@ public class AddressPresenter
                 ex -> {
                     mLoadingSpinnerManager.showLoading(false);
                     ApiErrorUtil.showErrorMessage(ex, mActivity);
-                });
+                });*/
     }
 
     @Override

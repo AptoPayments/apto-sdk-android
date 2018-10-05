@@ -20,6 +20,8 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
 
     private Address mAddress;
     private IdDescriptionPairDisplayVo mHousingType;
+    private String mStreet;
+    private String mStreetNumber;
 
     /**
      * Creates a new {@link HomeModel} instance.
@@ -124,20 +126,82 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
     }
 
     /**
-     * @return The street address
+     * Stores a valid zip code.
+     * @param zip Zip or postal code.
      */
-    public String getStreetAddress() {
-        return mAddress.address;
+    public void setZip(String zip) {
+        VerbalExpression.Builder plusFourRegex = VerbalExpression.regex()
+                .then("-")
+                .digit().count(4);
+
+        VerbalExpression zipRegex = VerbalExpression.regex()
+                .startOfLine()
+                .digit().count(5)
+                .maybe(plusFourRegex)
+                .endOfLine()
+                .build();
+
+        if (zipRegex.testExact(zip)) {
+            mAddress.zip = zip;
+        } else {
+            mAddress.zip = null;
+        }
     }
 
     /**
-     * Stores an address
-     * @param address the address to store
+     * Stores a valid country code.
+     * @param country Country code.
      */
-    public void setAddress(String address) {
-        mAddress.address = address;
+    public void setCountry(String country) {
+        if (TextUtils.isEmpty(country)) {
+            mAddress.country = null;
+        } else {
+            mAddress.country = country;
+        }
     }
 
+    /**
+     * @return The full address
+     */
+    public String getFullAddress() {
+        return mAddress.toString();
+    }
+
+    /**
+     * Stores the street
+     * @param street street
+     */
+    public void setStreet(String street) {
+
+        if (TextUtils.isEmpty(street)) {
+            mStreet = null;
+        } else {
+            mStreet = street;
+            if (mStreetNumber != null && !mStreetNumber.isEmpty()) {
+                setStreetAddress(mStreet, mStreetNumber);
+            }
+        }
+    }
+
+    /**
+     * Stores the street number
+     * @param streetNumber street number
+     */
+    public void setStreetNumber(String streetNumber) {
+        if (TextUtils.isEmpty(streetNumber)) {
+            mStreetNumber = null;
+        } else {
+            mStreetNumber = streetNumber;
+            if (mStreet != null && !mStreet.isEmpty()) {
+                setStreetAddress(mStreet, mStreetNumber);
+            }
+        }
+    }
+
+    private void setStreetAddress(String streetName, String streetNumber) {
+        // TODO: format according to country
+        mAddress.address = streetNumber+ " " + streetName ;
+    }
 
     /**
      * @return Whether a valid address has been set.
