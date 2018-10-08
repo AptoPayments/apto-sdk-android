@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -44,7 +43,7 @@ public class AddressView
     private LoadingView mLoadingView;
 
     private TextInputLayout mAddressWrapper;
-    private AutoCompleteTextView mAutoCompleteTextView;
+    private UndismissableAutoCompleteTextView mAutoCompleteTextView;
 
     private Spinner mHousingTypeSpinner;
     private TextView mHousingTypeError;
@@ -93,6 +92,7 @@ public class AddressView
         if (mAutoCompleteTextView != null) {
             super.setUiFieldsObservable(mAutoCompleteTextView);
             mAutoCompleteTextView.setOnItemClickListener(this);
+            mAutoCompleteTextView.setForceIgnoreOutsideTouchWithReflexion(true);
         }
         if(mHousingTypeSpinner != null) {
             mHousingTypeSpinner.setOnTouchListener((v, event) -> {

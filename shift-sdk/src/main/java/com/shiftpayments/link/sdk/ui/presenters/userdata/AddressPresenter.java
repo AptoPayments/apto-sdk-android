@@ -83,6 +83,7 @@ public class AddressPresenter
     @Override
     public void attachView(AddressView view) {
         super.attachView(view);
+        mView.enableNextButton(false);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
 
         // Set data.
@@ -248,6 +249,7 @@ public class AddressPresenter
                                 break;
                         }
                     }
+                    mView.enableNextButton(true);
                     if(mIsNextClickHandlerPending) {
                         this.nextClickHandler();
                     }
