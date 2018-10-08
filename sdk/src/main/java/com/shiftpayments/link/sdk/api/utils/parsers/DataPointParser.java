@@ -64,10 +64,10 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                 return new IdDocument(IdDocument.IdDocumentType.valueOf(docType),
                         jObject.get("doc_value").getAsString(), verified, notSpecified);
             case "address":
-                return new Address(jObject.get("address").getAsString(),
-                        ParsingUtils.getStringFromJson(jObject.get("apt")),
-                        "US", jObject.get("city").getAsString(),
-                        jObject.get("state").getAsString(), jObject.get("zip").getAsString(),
+                return new Address(jObject.get("street_one").getAsString(),
+                        ParsingUtils.getStringFromJson(jObject.get("street_two")),
+                        jObject.get("country").getAsString(), jObject.get("locality").getAsString(),
+                        jObject.get("region").getAsString(), jObject.get("postal_code").getAsString(),
                         verified, notSpecified);
             case "housing":
                 return new Housing(jObject.get("housing_type_id").getAsInt(), verified,

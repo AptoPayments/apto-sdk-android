@@ -64,6 +64,7 @@
     <!-- Address -->
     <string name="address_title">Contact information</string>
     <string name="address_label">Where do you live?</string>
+    <string name="address_error">Invalid address</string>
     <string name="address_autocomplete_hint">your current address</string>
     <string name="address_housing_type_header">Residence</string>
     <string name="address_housing_type_hint">Select a housing type&#8230;</string>

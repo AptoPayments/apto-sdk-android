@@ -243,11 +243,11 @@ public class LoanApplicationSummaryView
                 addKeyValueTextView(data.getSsnLabel(getResources()), dataPoint.toString());
                 break;
             case Address:
-                addKeyValueTextView(data.getAddressLabel(getResources()), ((Address) dataPoint).address);
-                addKeyValueTextView(data.getAptUnitLabel(getResources()), ((Address) dataPoint).apUnit);
-                addKeyValueTextView(data.getZipCodeLabel(getResources()), ((Address) dataPoint).zip);
-                addKeyValueTextView(data.getCityLabel(getResources()), ((Address) dataPoint).city);
-                addKeyValueTextView(data.getStateLabel(getResources()), ((Address) dataPoint).stateCode);
+                addKeyValueTextView(data.getAddressLabel(getResources()), ((Address) dataPoint).streetOne);
+                addKeyValueTextView(data.getAptUnitLabel(getResources()), ((Address) dataPoint).streetTwo);
+                addKeyValueTextView(data.getZipCodeLabel(getResources()), ((Address) dataPoint).postalCode);
+                addKeyValueTextView(data.getCityLabel(getResources()), ((Address) dataPoint).locality);
+                addKeyValueTextView(data.getStateLabel(getResources()), ((Address) dataPoint).region);
                 break;
             case Housing:
                 addKeyValueTextView(data.getHousingStatusLabel(getResources()), ((Housing) dataPoint).housingType.toString());

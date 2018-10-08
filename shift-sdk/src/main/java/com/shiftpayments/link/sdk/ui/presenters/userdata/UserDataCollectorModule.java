@@ -149,8 +149,10 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
             if(mDataPointConfigurationMap.containsKey(activity)) {
                 DataPointConfigurationVo dataPointConfiguration = mDataPointConfigurationMap.get(activity);
                 Intent intent = new Intent(getActivity(), activity);
-                List<String> allowedCountries = dataPointConfiguration.allowedCountries;
-                intent.putStringArrayListExtra(EXTRA_ALLOWED_COUNTRIES, new ArrayList<>(allowedCountries));
+                if(dataPointConfiguration != null) {
+                    List<String> allowedCountries = dataPointConfiguration.allowedCountries;
+                    intent.putStringArrayListExtra(EXTRA_ALLOWED_COUNTRIES, new ArrayList<>(allowedCountries));
+                }
                 getActivity().startActivity(intent);
             }
             else {

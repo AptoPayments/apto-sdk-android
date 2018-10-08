@@ -149,6 +149,7 @@ public class AddressPresenter
     }
 
     private void validateData() {
+        mView.updateAddressError(!mModel.hasValidAddress(), R.string.address_error);
         if(mIsHousingTypeRequired) {
             mView.updateHousingTypeError(!mModel.hasValidHousingType());
             if (mModel.hasValidData()) {
@@ -228,7 +229,7 @@ public class AddressPresenter
                                 mModel.setCity(addressComponent.getLongName());
                                 break;
                             case "administrative_area_level_1":
-                                mModel.setState(addressComponent.getShortName());
+                                mModel.setRegion(addressComponent.getShortName());
                                 break;
                             case "country":
                                 mModel.setCountry(addressComponent.getShortName());

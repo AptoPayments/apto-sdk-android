@@ -76,7 +76,7 @@ public class ApartmentModel extends AbstractUserDataModel implements UserDataMod
      * @return Apartment number.
      */
     public String getApartmentNumber() {
-        return mAddress.apUnit;
+        return mAddress.streetTwo;
     }
 
     /**
@@ -84,6 +84,6 @@ public class ApartmentModel extends AbstractUserDataModel implements UserDataMod
      * @param apartmentNumber Apartment number.
      */
     public void setApartmentNumber(String apartmentNumber) {
-        mAddress.apUnit = apartmentNumber;
+        mAddress.streetTwo = apartmentNumber;
     }
 }

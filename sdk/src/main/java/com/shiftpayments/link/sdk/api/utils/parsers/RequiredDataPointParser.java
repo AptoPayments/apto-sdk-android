@@ -32,7 +32,7 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
             case "phone":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Phone,
                         isVerificationRequired, isNotSpecifiedAllowed,
-                        parseDataPointConfiguration(jObject.getAsJsonObject("datapoint_configuration")));
+                        parseDataPointConfiguration(jObject));
             case "email":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Email,
                         isVerificationRequired, isNotSpecifiedAllowed);
@@ -45,7 +45,7 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
             case "address":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Address,
                         isVerificationRequired, isNotSpecifiedAllowed,
-                        parseDataPointConfiguration(jObject.getAsJsonObject("datapoint_configuration")));
+                        parseDataPointConfiguration(jObject));
             case "housing":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Housing,
                         isVerificationRequired, isNotSpecifiedAllowed);
@@ -72,14 +72,15 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
     }
 
     private DataPointConfigurationVo parseDataPointConfiguration(JsonObject jObject) {
-        if(jObject == null) {
+        if(!jObject.has("datapoint_configuration") || jObject.get("datapoint_configuration").isJsonNull()) {
             return null;
         }
-        String type = jObject.get("type").getAsString();
-        String[] allowedCountries = new Gson().fromJson(jObject.get("allowed_countries"), String[].class);
+        JsonObject config = jObject.getAsJsonObject("datapoint_configuration");
+        String type = config.get("type").getAsString();
+        String[] allowedCountries = new Gson().fromJson(config.get("allowed_countries"), String[].class);
         Boolean syncCountry = null;
-        if(jObject.has("sync_country")) {
-            syncCountry = jObject.get("sync_country").getAsBoolean();
+        if(config.has("sync_country")) {
+            syncCountry = config.get("sync_country").getAsBoolean();
         }
 
         return new DataPointConfigurationVo(type, Arrays.asList(allowedCountries), syncCountry);

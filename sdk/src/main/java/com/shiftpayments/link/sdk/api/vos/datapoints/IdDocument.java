@@ -19,6 +19,7 @@ public class IdDocument extends DataPointVo {
 
     private IdDocumentType mType;
     private String mValue;
+    private String mCountry;
     private static final int EXPECTED_SSN_LENGTH = 9;
 
     public IdDocument() {
@@ -53,6 +54,8 @@ public class IdDocument extends DataPointVo {
         gsonObject.addProperty("data_type", "id_document");
         gsonObject.addProperty("doc_type", mType.toString());
         gsonObject.addProperty("doc_value", mValue);
+        // TODO
+        gsonObject.addProperty("country", "US");
         return gsonObject;
     }
 

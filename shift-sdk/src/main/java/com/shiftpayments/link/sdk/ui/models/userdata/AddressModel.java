@@ -10,8 +10,6 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.Housing;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.Model;
 
-import ru.lanwen.verbalregex.VerbalExpression;
-
 /**
  * Concrete {@link Model} for the address validation screen.
  * @author Adrian
@@ -101,27 +99,21 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      */
     public void setCity(String city) {
         if (TextUtils.isEmpty(city)) {
-            mAddress.city = null;
+            mAddress.locality = null;
         } else {
-            mAddress.city = city;
+            mAddress.locality = city;
         }
     }
 
     /**
-     * Stores a valid state abbreviation.
-     * @param state State abbreviation.
+     * Stores a valid region
+     * @param region Region
      */
-    public void setState(String state) {
-        VerbalExpression stateRegex = VerbalExpression.regex()
-                .startOfLine()
-                .add("[A-Za-z]").count(2)
-                .endOfLine()
-                .build();
-
-        if (stateRegex.testExact(state)) {
-            mAddress.stateCode = state.toUpperCase();
+    public void setRegion(String region) {
+        if (TextUtils.isEmpty(region)) {
+            mAddress.region = null;
         } else {
-            mAddress.stateCode = null;
+            mAddress.region = region;
         }
     }
 
@@ -131,9 +123,9 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      */
     public void setZip(String zip) {
         if (TextUtils.isEmpty(zip)) {
-            mAddress.zip = zip;
+            mAddress.postalCode = null;
         } else {
-            mAddress.zip = null;
+            mAddress.postalCode = zip;
         }
     }
 
@@ -161,7 +153,6 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * @param street street
      */
     public void setStreet(String street) {
-
         if (TextUtils.isEmpty(street)) {
             mStreet = null;
         } else {
@@ -189,14 +180,15 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
 
     private void setStreetAddress(String streetName, String streetNumber) {
         // TODO: format according to country
-        mAddress.address = streetNumber + " " + streetName ;
+        mAddress.streetOne = streetNumber + " " + streetName ;
     }
 
     /**
      * @return Whether a valid address has been set.
      */
     public boolean hasValidAddress() {
-        return mAddress != null;
+        return mAddress != null && mAddress.streetOne != null && mAddress.locality != null
+                && mAddress.region != null && mAddress.country != null;
     }
 
     /**

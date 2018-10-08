@@ -24,7 +24,7 @@ public class DateUtil {
         mLocale = locale;
     }
 
-    public static final String BIRTHDATE_DATE_FORMAT = "MM-dd-yyyy";
+    public static final String BIRTHDATE_DATE_FORMAT = "yyyy-MM-dd";
     private static final String ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
     private static Locale mLocale;
 
