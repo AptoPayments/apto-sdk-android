@@ -54,14 +54,6 @@ public class IdentityVerificationPresenter
     }
 
     /**
-     * @param activity The {@link Activity} that will be hosting the date picker.
-     * @return Resource ID of the theme to use with for the birthday date picker.
-     */
-    private int getBirthdayDialogThemeId(Activity activity) {
-        return new ResourceUtil().getResourceIdForAttribute(activity, R.attr.llsdk_userData_datePickerTheme);
-    }
-
-    /**
      * @param activity The {@link Activity} containing the attribute values.
      * @return Resource ID of the color to use for the progress bar.
      */
@@ -78,7 +70,6 @@ public class IdentityVerificationPresenter
     /** {@inheritDoc} */
     @Override
     protected void populateModelFromStorage() {
-        mModel.setExpectedSSNLength(mActivity.getResources().getInteger(R.integer.ssn_length));
         mModel.setMinimumAge(mActivity.getResources().getInteger(R.integer.min_age));
         super.populateModelFromStorage();
     }
@@ -99,8 +90,8 @@ public class IdentityVerificationPresenter
 
         mView.showSSN(mIsSSNRequired);
         mView.showSSNNotAvailableCheckbox(mIsSSNNotAvailableAllowed);
-        if(mIsSSNRequired && mModel.hasValidSsn()) {
-            mView.setSSN(mModel.getIdDocument());
+        if(mIsSSNRequired && mModel.hasValidDocumentNumber()) {
+            mView.setDocumentNumber(mModel.getDocumentNumber());
         }
 
         int progressColor = getProgressBarColor(mActivity);
@@ -111,12 +102,6 @@ public class IdentityVerificationPresenter
         if(mCallToActionConfig != null) {
             mView.setButtonText(mCallToActionConfig.callToAction.title.toUpperCase());
             mActivity.getSupportActionBar().setTitle(mCallToActionConfig.title);
-        }
-
-        if(((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile) {
-            if(mIsSSNRequired && mView.getSocialSecurityNumber().isEmpty()) {
-                mView.setMaskedSSN();
-            }
         }
     }
 
@@ -136,7 +121,7 @@ public class IdentityVerificationPresenter
     @Override
     public void ssnCheckBoxClickHandler() {
         mView.enableSSNField(!mView.isSSNCheckboxChecked());
-        mView.updateSocialSecurityError(false, 0);
+        mView.updateDocumentNumberError(false, 0);
     }
 
     @Override
@@ -162,8 +147,8 @@ public class IdentityVerificationPresenter
             mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
         }
         if(mIsSSNRequired && userHasUpdatedSSN()) {
-            mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
-            mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
+            mModel.setDocumentNumber(mView.getDocumentNumber());
+            mView.updateDocumentNumberError(!mModel.hasValidDocumentNumber(), mModel.getSsnErrorString());
         }
 
         if(mIsSSNRequired && mIsBirthdayRequired) {
@@ -178,7 +163,7 @@ public class IdentityVerificationPresenter
             }
         }
         else if(mIsSSNRequired){
-            if(mModel.hasValidSsn() || ((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
+            if(mModel.hasValidDocumentNumber() || ((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
                     && !userHasUpdatedSSN()) {
                 saveDataAndExit();
             }
@@ -189,10 +174,9 @@ public class IdentityVerificationPresenter
     }
 
     private boolean userHasUpdatedSSN() {
-        return (!mView.getSocialSecurityNumber().equals(mModel.getIdDocument()) &&
-                !mView.isSSNMasked()) ||
+        return !mView.getDocumentNumber().equals(mModel.getDocumentNumber()) ||
                 (!((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
-                && mView.getSocialSecurityNumber()!=null);
+                        && mView.getDocumentNumber() != null);
     }
 
     private void saveDataAndExit() {

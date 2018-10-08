@@ -279,12 +279,12 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
 
     @Override
     public void addressAndHousingTypeStored() {
-        startActivity(ApartmentActivity.class);
+        startActivity(getActivityAtPosition(AddressActivity.class, 1));
     }
 
     @Override
     public void addressOnBackPressed() {
-        startActivity(PersonalInformationActivity.class);
+        startActivity(getActivityAtPosition(AddressActivity.class, -1));
     }
 
     private void startModule() {

@@ -66,7 +66,7 @@ public class IdentityVerificationModelTest {
     public void allDataIsSet() {
         Calendar birthday = getValidBirthday();
         mModel.setBirthday(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DATE));
-        mModel.setSocialSecurityNumber(EXPECTED_SSN);
+        mModel.setDocumentNumber(EXPECTED_SSN);
 
         Assert.assertTrue("All data should be set.", mModel.hasValidData());
     }
@@ -116,8 +116,8 @@ public class IdentityVerificationModelTest {
      */
     @Test
     public void validSsnIsStored() {
-        mModel.setSocialSecurityNumber(EXPECTED_SSN);
-        Assert.assertTrue("SSN should be stored.", mModel.hasValidSsn());
+        mModel.setDocumentNumber(EXPECTED_SSN);
+        Assert.assertTrue("SSN should be stored.", mModel.hasValidDocumentNumber());
         Assert.assertFalse("There should be missing data.", mModel.hasValidData());
     }
 
@@ -128,8 +128,8 @@ public class IdentityVerificationModelTest {
      */
     @Test
     public void invalidSsnIsNotStored() {
-        mModel.setSocialSecurityNumber("123");
-        Assert.assertFalse("SSN should NOT be stored.", mModel.hasValidSsn());
+        mModel.setDocumentNumber("123");
+        Assert.assertFalse("SSN should NOT be stored.", mModel.hasValidDocumentNumber());
     }
 
     /**
@@ -152,7 +152,7 @@ public class IdentityVerificationModelTest {
 
         Calendar birthday = getValidBirthday();
         mModel.setBirthday(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DATE));
-        mModel.setSocialSecurityNumber(EXPECTED_SSN);
+        mModel.setDocumentNumber(EXPECTED_SSN);
 
         DataPointList apiData = mModel.getUserData();
         PhoneNumberVo apiPhone = (PhoneNumberVo) apiData.getUniqueDataPoint(

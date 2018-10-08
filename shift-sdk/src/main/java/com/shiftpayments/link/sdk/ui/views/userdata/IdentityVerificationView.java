@@ -16,7 +16,6 @@ import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
-import com.shiftpayments.link.sdk.ui.widgets.SsnEditText;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
 import java.util.Arrays;
@@ -42,9 +41,9 @@ public class IdentityVerificationView
     private EditText mBirthdayYear;
     private TextView mBirthdateErrorView;
     private TextView mBirthdateHint;
-    private TextInputLayout mSocialSecurityWrapper;
+    private TextInputLayout mDocumentNumberWrapper;
 
-    private SsnEditText mSocialSecurityField;
+    private EditText mDocumentNumberField;
     private CheckBox mSocialSecurityAvailableCheck;
     private TextView mSocialSecurityAvailableField;
 
@@ -87,11 +86,11 @@ public class IdentityVerificationView
         mBirthdayDay.setHintTextColor(textTertiaryColor);
         mBirthdayYear.setTextColor(textSecondaryColor);
         mBirthdayYear.setHintTextColor(textTertiaryColor);
-        mSocialSecurityField.setTextColor(textSecondaryColor);
-        mSocialSecurityField.setHintTextColor(textTertiaryColor);
+        mDocumentNumberField.setTextColor(textSecondaryColor);
+        mDocumentNumberField.setHintTextColor(textTertiaryColor);
         UIStorage.getInstance().setCursorColor(mBirthdayDay);
         UIStorage.getInstance().setCursorColor(mBirthdayYear);
-        UIStorage.getInstance().setCursorColor(mSocialSecurityField);
+        UIStorage.getInstance().setCursorColor(mDocumentNumberField);
     }
 
     /** {@inheritDoc} */
@@ -104,10 +103,15 @@ public class IdentityVerificationView
         mBirthdateErrorView = findViewById(R.id.tv_birthdate_error);
         mBirthdateHint = findViewById(R.id.tv_birthdate_label);
 
-        mSocialSecurityWrapper = findViewById(R.id.til_social_security);
-        mSocialSecurityField = findViewById(R.id.et_social_security);
+        mDocumentNumberWrapper = findViewById(R.id.til_document_number);
+        mDocumentNumberField = findViewById(R.id.et_social_security);
         mSocialSecurityAvailableCheck = findViewById(R.id.cb_ssn_itin_not_available);
         mSocialSecurityAvailableField = findViewById(R.id.tv_ssn_itin_not_available);
+
+        // remove hint from `TextInputLayout`
+        mDocumentNumberWrapper.setHint(null);
+        // set the hint back on the `EditText`
+        mDocumentNumberField.setHint(R.string.id_verification_document_number_hint);
 
         mNextButton = findViewById(R.id.tv_next_bttn);
 
@@ -119,7 +123,7 @@ public class IdentityVerificationView
     @Override
     protected void setupListeners() {
         super.setupListeners();
-        mSocialSecurityField.setOnClickListener(this);
+        mDocumentNumberField.setOnClickListener(this);
         mSocialSecurityAvailableCheck.setOnClickListener(this);
         mNextButton.setOnClickListener(this);
         mBirthdayMonth.setOnClickListener(this);
@@ -173,10 +177,10 @@ public class IdentityVerificationView
     }
 
     /**
-     * @return Social security number.
+     * @return ID document number.
      */
-    public String getSocialSecurityNumber() {
-        return mSocialSecurityField.getSsn();
+    public String getDocumentNumber() {
+        return mDocumentNumberField.getText().toString();
     }
 
     public void setBirthdayDay(String day) {
@@ -196,36 +200,19 @@ public class IdentityVerificationView
     }
 
     /**
-     * Shows the user's social security number with hyphens.
-     * @param ssn social security number.
+     * Shows the user's ID document number
+     * @param documentNumber ID document number
      */
-    public void setSSN(String ssn) {
-        ssn = new StringBuilder(ssn).insert(3, "-").toString();
-        ssn = new StringBuilder(ssn).insert(6, "-").toString();
-        mSocialSecurityField.setText(ssn);
-    }
-
-    private String getMaskedSSN() {
-        final char DOT = '\u2022';
-        char[] mask = new char[getResources().getInteger(R.integer.ssn_length)];
-        Arrays.fill(mask, DOT);
-        return new String(mask);
-    }
-
-    public void setMaskedSSN() {
-        setSSN(getMaskedSSN());
-    }
-
-    public boolean isSSNMasked() {
-        return getMaskedSSN().equals(getSocialSecurityNumber());
+    public void setDocumentNumber(String documentNumber) {
+        mDocumentNumberField.setText(documentNumber);
     }
 
     public void showSSN(boolean show) {
         if(show) {
-            mSocialSecurityField.setVisibility(VISIBLE);
+            mDocumentNumberField.setVisibility(VISIBLE);
         }
         else {
-            mSocialSecurityField.setVisibility(GONE);
+            mDocumentNumberField.setVisibility(GONE);
         }
     }
 
@@ -245,7 +232,7 @@ public class IdentityVerificationView
     }
 
     public void enableSSNField(boolean enabled) {
-        mSocialSecurityField.setEnabled(enabled);
+        mDocumentNumberField.setEnabled(enabled);
     }
 
     /**
@@ -269,8 +256,8 @@ public class IdentityVerificationView
      * @param show Whether the error should be shown.
      * @param errorMessageId Error message resource ID.
      */
-    public void updateSocialSecurityError(boolean show, int errorMessageId) {
-        updateErrorDisplay(mSocialSecurityWrapper, show, errorMessageId);
+    public void updateDocumentNumberError(boolean show, int errorMessageId) {
+        updateErrorDisplay(mDocumentNumberWrapper, show, errorMessageId);
     }
 
     @Override
