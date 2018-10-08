@@ -62,16 +62,10 @@
     <string name="email_verification_resent">A new code has been sent to your email</string>
 
     <!-- Address -->
+    <string name="addres_title">Contact information</string>
     <string name="address_label">Where do you live?</string>
-    <string name="address_address_hint">Address</string>
-    <string name="address_address_error">Please enter a valid address.</string>
-    <string name="address_apartment_number_hint">Unit/Apt #</string>
-    <string name="address_city_hint">City</string>
-    <string name="address_city_error">Please enter a valid city.</string>
-    <string name="address_state_hint">State</string>
-    <string name="address_state_error">Please select a state.</string>
+    <string name="address_apartment_number_hint">apartment, unit, floor, etc.</string>
     <string name="address_autocomplete_hint">your current address</string>
-    <string name="address_zip_error">Please enter a valid ZIP, i.e. \'12345\' or \'12345&#8211;6789\'.</string>
     <string name="address_housing_type_header">Residence</string>
     <string name="address_housing_type_hint">Select a housing type&#8230;</string>
     <string name="address_housing_type_error">Please select a valid housing type.</string>

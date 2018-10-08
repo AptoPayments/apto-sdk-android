@@ -130,18 +130,7 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
      * @param zip Zip or postal code.
      */
     public void setZip(String zip) {
-        VerbalExpression.Builder plusFourRegex = VerbalExpression.regex()
-                .then("-")
-                .digit().count(4);
-
-        VerbalExpression zipRegex = VerbalExpression.regex()
-                .startOfLine()
-                .digit().count(5)
-                .maybe(plusFourRegex)
-                .endOfLine()
-                .build();
-
-        if (zipRegex.testExact(zip)) {
+        if (TextUtils.isEmpty(zip)) {
             mAddress.zip = zip;
         } else {
             mAddress.zip = null;

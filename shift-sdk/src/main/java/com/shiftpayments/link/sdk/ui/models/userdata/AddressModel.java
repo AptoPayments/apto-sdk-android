@@ -37,7 +37,7 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
-        return R.string.address_label;
+        return R.string.addres_title;
     }
 
     /** {@inheritDoc} */
@@ -86,8 +86,8 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
         setCountry(address.country);
     }
 
-    public String getStreetAddress() {
-        return mAddress.address;
+    public String getFullAddress() {
+        return mAddress.toString();
     }
 
     /**

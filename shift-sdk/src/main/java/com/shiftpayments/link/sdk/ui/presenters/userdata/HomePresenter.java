@@ -149,7 +149,6 @@ public class HomePresenter
     }
 
     private void validateData() {
-        mView.updateAddressError(!mModel.hasValidAddress(), R.string.address_address_error);
         if(mIsHousingTypeRequired) {
             mView.updateHousingTypeError(!mModel.hasValidHousingType());
             if (mModel.hasValidData()) {
