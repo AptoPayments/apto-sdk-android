@@ -15,6 +15,7 @@ import com.shiftpayments.link.sdk.ui.geocoding.vos.AddressComponentVo;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.ResultVo;
 import com.shiftpayments.link.sdk.ui.models.userdata.AddressModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
@@ -232,7 +233,9 @@ public class AddressPresenter
                                 mModel.setRegion(addressComponent.getShortName());
                                 break;
                             case "country":
-                                mModel.setCountry(addressComponent.getShortName());
+                                String country = addressComponent.getShortName();
+                                mModel.setCountry(country);
+                                CardStorage.getInstance().setSelectedCountry(country);
                                 break;
                             case "postal_code":
                                 mModel.setZip(addressComponent.getShortName());

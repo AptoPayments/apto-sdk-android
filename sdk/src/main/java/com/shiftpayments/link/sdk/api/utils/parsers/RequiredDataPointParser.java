@@ -12,6 +12,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 
 import java.lang.reflect.Type;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by adrian on 25/01/2017.
@@ -78,11 +79,15 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
         JsonObject config = jObject.getAsJsonObject("datapoint_configuration");
         String type = config.get("type").getAsString();
         String[] allowedCountries = new Gson().fromJson(config.get("allowed_countries"), String[].class);
+        List<String> allowedCountriesArray = Arrays.asList(allowedCountries);
+        if(allowedCountriesArray.isEmpty()) {
+            allowedCountriesArray.add("US");
+        }
         Boolean syncCountry = null;
         if(config.has("sync_country")) {
             syncCountry = config.get("sync_country").getAsBoolean();
         }
 
-        return new DataPointConfigurationVo(type, Arrays.asList(allowedCountries), syncCountry);
+        return new DataPointConfigurationVo(type, allowedCountriesArray, syncCountry);
     }
 }

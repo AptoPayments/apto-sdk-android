@@ -29,6 +29,7 @@ import com.shiftpayments.link.sdk.ui.activities.userdata.PaydayLoanActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.PersonalInformationActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.PhoneActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.TimeAtAddressActivity;
+import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
@@ -145,19 +146,27 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     public void startActivity(Class activity) {
         if(activity == null) {
             stopModule();
-        } else {
-            if(mDataPointConfigurationMap.containsKey(activity)) {
-                DataPointConfigurationVo dataPointConfiguration = mDataPointConfigurationMap.get(activity);
-                Intent intent = new Intent(getActivity(), activity);
-                if(dataPointConfiguration != null) {
-                    List<String> allowedCountries = dataPointConfiguration.allowedCountries;
-                    intent.putStringArrayListExtra(EXTRA_ALLOWED_COUNTRIES, new ArrayList<>(allowedCountries));
+            return;
+        }
+
+        if(mDataPointConfigurationMap.containsKey(activity)) {
+            DataPointConfigurationVo dataPointConfiguration = mDataPointConfigurationMap.get(activity);
+            Intent intent = new Intent(getActivity(), activity);
+            if(dataPointConfiguration != null) {
+                List<String> allowedCountries = new ArrayList<>();
+                if(dataPointConfiguration.syncCountry && CardStorage.getInstance().hasUserSelectedCountry()) {
+                    // User must use same country as the previously selected one
+                    allowedCountries.add(CardStorage.getInstance().getSelectedCountry());
                 }
-                getActivity().startActivity(intent);
+                else {
+                    allowedCountries = dataPointConfiguration.allowedCountries;
+                }
+                intent.putStringArrayListExtra(EXTRA_ALLOWED_COUNTRIES, new ArrayList<>(allowedCountries));
             }
-            else {
-                super.startActivity(activity);
-            }
+            getActivity().startActivity(intent);
+        }
+        else {
+            super.startActivity(activity);
         }
     }
 

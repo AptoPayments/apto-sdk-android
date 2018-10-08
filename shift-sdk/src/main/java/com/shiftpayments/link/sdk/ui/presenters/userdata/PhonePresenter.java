@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.PhoneModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shiftpayments.link.sdk.ui.views.userdata.PhoneView;
 
@@ -81,7 +82,9 @@ public class PhonePresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        mModel.setPhone(mView.getCountryCode(), mView.getPhone());
+        String country = mView.getCountryCode();
+        CardStorage.getInstance().setSelectedCountry(country);
+        mModel.setPhone(country, mView.getPhone());
         mView.updatePhoneError(!mModel.hasPhone(), R.string.phone_error);
 
         if(mModel.hasValidData()) {
