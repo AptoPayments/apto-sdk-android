@@ -16,6 +16,8 @@ import com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Concrete {@link Presenter} for the ID verification screen.
@@ -31,11 +33,12 @@ public class IdentityVerificationPresenter
     private boolean mIsSSNNotAvailableAllowed;
     private boolean mIsBirthdayRequired;
     private UserDataCollectorConfigurationVo mCallToActionConfig;
+    private HashMap<String, List<String>> mAllowedDocumentTypes;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
      */
-    public IdentityVerificationPresenter(AppCompatActivity activity, IdentityVerificationDelegate delegate) {
+    public IdentityVerificationPresenter(AppCompatActivity activity, IdentityVerificationDelegate delegate, HashMap<String, List<String>> allowedDocumentTypes) {
         super(activity);
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
@@ -51,6 +54,7 @@ public class IdentityVerificationPresenter
 
         mIsBirthdayRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.BirthDate));
         mCallToActionConfig = module.getCallToActionConfig();
+        mAllowedDocumentTypes = allowedDocumentTypes;
     }
 
     /**

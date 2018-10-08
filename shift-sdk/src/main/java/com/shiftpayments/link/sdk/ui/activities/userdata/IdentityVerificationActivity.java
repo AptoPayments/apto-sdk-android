@@ -11,12 +11,17 @@ import com.shiftpayments.link.sdk.ui.presenters.userdata.IdentityVerificationDel
 import com.shiftpayments.link.sdk.ui.presenters.userdata.IdentityVerificationPresenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * Wires up the MVP pattern for the ID verification screen.
  * @author Wijnand
  */
 public class IdentityVerificationActivity
         extends MvpActivity<IdentityVerificationModel, IdentityVerificationView, IdentityVerificationPresenter> {
+
+    public static final String EXTRA_ALLOWED_DOCUMENT_TYPES = "com.shiftpayments.link.sdk.ui.presenters.userdata.ALLOWEDDOCUMENTS";
 
     /** {@inheritDoc} */
     @Override
@@ -28,7 +33,9 @@ public class IdentityVerificationActivity
     @Override
     protected IdentityVerificationPresenter createPresenter(BaseDelegate delegate) {
         if(delegate instanceof IdentityVerificationDelegate) {
-            return new IdentityVerificationPresenter(this, (IdentityVerificationDelegate) delegate);
+            HashMap<String, List<String>> allowedDocumentTypes =
+                    (HashMap<String, List<String>>)getIntent().getSerializableExtra(EXTRA_ALLOWED_DOCUMENT_TYPES);
+            return new IdentityVerificationPresenter(this, (IdentityVerificationDelegate) delegate, allowedDocumentTypes);
         }
         else {
             throw new NullPointerException("Received Module does not implement IdentityVerificationDelegate!");

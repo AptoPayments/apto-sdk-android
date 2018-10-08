@@ -10,6 +10,8 @@ import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointConfigurationVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.IdDocumentConfigurationVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.PhoneOrAddressConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
@@ -46,6 +48,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import java8.util.concurrent.CompletableFuture;
+
+import static com.shiftpayments.link.sdk.ui.activities.userdata.IdentityVerificationActivity.EXTRA_ALLOWED_DOCUMENT_TYPES;
 
 /**
  * Created by adrian on 29/12/2016.
@@ -153,15 +157,22 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
             DataPointConfigurationVo dataPointConfiguration = mDataPointConfigurationMap.get(activity);
             Intent intent = new Intent(getActivity(), activity);
             if(dataPointConfiguration != null) {
-                List<String> allowedCountries = new ArrayList<>();
-                if(dataPointConfiguration.syncCountry && CardStorage.getInstance().hasUserSelectedCountry()) {
-                    // User must use same country as the previously selected one
-                    allowedCountries.add(CardStorage.getInstance().getSelectedCountry());
+                if(dataPointConfiguration instanceof PhoneOrAddressConfigurationVo) {
+                    PhoneOrAddressConfigurationVo config = (PhoneOrAddressConfigurationVo) dataPointConfiguration;
+                    List<String> allowedCountries = new ArrayList<>();
+                    if(config.syncCountry && CardStorage.getInstance().hasUserSelectedCountry()) {
+                        // User must use same country as the previously selected one
+                        allowedCountries.add(CardStorage.getInstance().getSelectedCountry());
+                    }
+                    else {
+                        allowedCountries = config.allowedCountries;
+                    }
+                    intent.putStringArrayListExtra(EXTRA_ALLOWED_COUNTRIES, new ArrayList<>(allowedCountries));
                 }
-                else {
-                    allowedCountries = dataPointConfiguration.allowedCountries;
+                else if (dataPointConfiguration instanceof IdDocumentConfigurationVo) {
+                    IdDocumentConfigurationVo config = (IdDocumentConfigurationVo) dataPointConfiguration;
+                    intent.putExtra(EXTRA_ALLOWED_DOCUMENT_TYPES, config.allowedDocumentTypes);
                 }
-                intent.putStringArrayListExtra(EXTRA_ALLOWED_COUNTRIES, new ArrayList<>(allowedCountries));
             }
             getActivity().startActivity(intent);
         }
@@ -449,6 +460,9 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
                         addRequiredActivity(ArmedForcesActivity.class);
                         break;
                     case IdDocument:
+                        mDataPointConfigurationMap.put(IdentityVerificationActivity.class, requiredDataPointVo.datapointConfiguration);
+                        addRequiredActivity(IdentityVerificationActivity.class);
+                        break;
                     case BirthDate:
                         addRequiredActivity(IdentityVerificationActivity.class);
                         break;
