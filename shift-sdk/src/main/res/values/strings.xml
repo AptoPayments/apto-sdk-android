@@ -62,9 +62,8 @@
     <string name="email_verification_resent">A new code has been sent to your email</string>
 
     <!-- Address -->
-    <string name="addres_title">Contact information</string>
+    <string name="address_title">Contact information</string>
     <string name="address_label">Where do you live?</string>
-    <string name="address_apartment_number_hint">apartment, unit, floor, etc.</string>
     <string name="address_autocomplete_hint">your current address</string>
     <string name="address_housing_type_header">Residence</string>
     <string name="address_housing_type_hint">Select a housing type&#8230;</string>
@@ -74,8 +73,9 @@
     <string name="google_places_autocomplete_api_url">https://maps.googleapis.com/maps/api/place/autocomplete/json</string>
     <string name="google_places_autocomplete_api_key">AIzaSyAj21pmvNCyCzFqYq2D3nL4FwYPCzpHwRA</string>
 
-    <!-- Home -->
-    <string name="home_title">Contact information</string>
+    <!-- Apartment -->
+    <string name="apartment_title">Contact information</string>
+    <string name="address_apartment_number_hint">apartment, unit, floor, etc.</string>
 
     <!-- Time at Address -->
     <string name="time_at_address_label">Address</string>

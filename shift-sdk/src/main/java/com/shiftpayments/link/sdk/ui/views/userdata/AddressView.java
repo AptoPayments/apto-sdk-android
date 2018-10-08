@@ -25,8 +25,8 @@ import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
  * Displays the address validation screen.
  * @author Adrian
  */
-public class HomeView
-        extends UserDataView<HomeView.ViewListener>
+public class AddressView
+        extends UserDataView<AddressView.ViewListener>
         implements ViewWithToolbar, ViewWithIndeterminateLoading, AdapterView.OnItemClickListener {
 
     @Override
@@ -54,7 +54,7 @@ public class HomeView
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
      */
-    public HomeView(Context context) {
+    public AddressView(Context context) {
         super(context);
     }
 
@@ -63,7 +63,7 @@ public class HomeView
      * @param context See {@link UserDataView#UserDataView}.
      * @param attrs See {@link UserDataView#UserDataView}.
      */
-    public HomeView(Context context, AttributeSet attrs) {
+    public AddressView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

@@ -16,7 +16,7 @@ import ru.lanwen.verbalregex.VerbalExpression;
  * Concrete {@link Model} for the address validation screen.
  * @author Adrian
  */
-public class HomeModel extends AbstractUserDataModel implements UserDataModel {
+public class AddressModel extends AbstractUserDataModel implements UserDataModel {
 
     private Address mAddress;
     private IdDescriptionPairDisplayVo mHousingType;
@@ -24,9 +24,9 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
     private String mStreetNumber;
 
     /**
-     * Creates a new {@link HomeModel} instance.
+     * Creates a new {@link AddressModel} instance.
      */
-    public HomeModel() {
+    public AddressModel() {
         init();
     }
 
@@ -41,7 +41,7 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
-        return R.string.home_title;
+        return R.string.address_title;
     }
 
     /** {@inheritDoc} */
@@ -189,7 +189,7 @@ public class HomeModel extends AbstractUserDataModel implements UserDataModel {
 
     private void setStreetAddress(String streetName, String streetNumber) {
         // TODO: format according to country
-        mAddress.address = streetNumber+ " " + streetName ;
+        mAddress.address = streetNumber + " " + streetName ;
     }
 
     /**

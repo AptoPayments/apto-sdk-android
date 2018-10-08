@@ -13,12 +13,12 @@ import com.shiftpayments.link.sdk.ui.geocoding.handlers.GeocodingHandler;
 import com.shiftpayments.link.sdk.ui.geocoding.handlers.GooglePlacesArrayAdapter;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.AddressComponentVo;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.ResultVo;
-import com.shiftpayments.link.sdk.ui.models.userdata.HomeModel;
+import com.shiftpayments.link.sdk.ui.models.userdata.AddressModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
-import com.shiftpayments.link.sdk.ui.views.userdata.HomeView;
+import com.shiftpayments.link.sdk.ui.views.userdata.AddressView;
 import com.shiftpayments.link.sdk.ui.widgets.HintArrayAdapter;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
@@ -32,11 +32,11 @@ import static com.shiftpayments.link.sdk.ui.geocoding.handlers.GooglePlacesArray
  * Concrete {@link Presenter} for the address validation screen.
  * @author Adrian
  */
-public class HomePresenter
-        extends UserDataPresenter<HomeModel, HomeView> implements HomeView.ViewListener {
+public class AddressPresenter
+        extends UserDataPresenter<AddressModel, AddressView> implements AddressView.ViewListener {
 
     private HintArrayAdapter<IdDescriptionPairDisplayVo> mHousingTypeAdapter;
-    private HomeDelegate mDelegate;
+    private AddressDelegate mDelegate;
     private boolean mIsHousingTypeRequired;
     private LoadingSpinnerManager mLoadingSpinnerManager;
     private boolean mIsNextClickHandlerPending = false;
@@ -45,10 +45,10 @@ public class HomePresenter
     private ArrayList<String> mAllowedCountries;
 
     /**
-     * Creates a new {@link HomePresenter} instance.
+     * Creates a new {@link AddressPresenter} instance.
      * @param activity Activity.
      */
-    public HomePresenter(AppCompatActivity activity, HomeDelegate delegate, ArrayList<String> allowedCountries) {
+    public AddressPresenter(AppCompatActivity activity, AddressDelegate delegate, ArrayList<String> allowedCountries) {
         super(activity);
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
@@ -80,7 +80,7 @@ public class HomePresenter
 
     /** {@inheritDoc} */
     @Override
-    public void attachView(HomeView view) {
+    public void attachView(AddressView view) {
         super.attachView(view);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
 
@@ -122,7 +122,7 @@ public class HomePresenter
 
     @Override
     public void onBack() {
-        mDelegate.homeOnBackPressed();
+        mDelegate.addressOnBackPressed();
     }
 
     /** {@inheritDoc} */
@@ -169,8 +169,8 @@ public class HomePresenter
 
     /** {@inheritDoc} */
     @Override
-    public HomeModel createModel() {
-        return new HomeModel();
+    public AddressModel createModel() {
+        return new AddressModel();
     }
 
     /**
@@ -214,7 +214,10 @@ public class HomePresenter
         mGeocodingHandler.reverseGeocode(mActivity, placeId,
                 response -> {
                     mGeocodingHandler = null;
-                    if (response == null || !response.status.equals("OK")) {
+                    if (response == null) {
+                        Log.e(GOOGLE_PLACES_TAG, "Reverse geocoding failed");
+                        return;
+                    } else if(!response.status.equals("OK")) {
                         Log.e(GOOGLE_PLACES_TAG, "Get places details status: " + response.status);
                         return;
                     }

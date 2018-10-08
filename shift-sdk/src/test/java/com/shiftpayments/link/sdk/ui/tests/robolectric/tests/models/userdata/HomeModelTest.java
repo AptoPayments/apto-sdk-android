@@ -9,7 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Housing;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
-import com.shiftpayments.link.sdk.ui.models.userdata.HomeModel;
+import com.shiftpayments.link.sdk.ui.models.userdata.AddressModel;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,7 +24,7 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 /**
- * Tests the {@link HomeModel} class.
+ * Tests the {@link AddressModel} class.
  * @author Adrian
  */
 @RunWith(PowerMockRunner.class)
@@ -34,7 +34,7 @@ public class HomeModelTest {
     private static final String EXPECTED_ZIP = "92679";
     private static final int EXPECTED_HOUSING_TYPE_ID = 777;
 
-    private HomeModel mModel;
+    private AddressModel mModel;
 
     /**
      * Sets up each test.
@@ -44,7 +44,7 @@ public class HomeModelTest {
         mockStatic(TextUtils.class);
         when(TextUtils.isEmpty(any(CharSequence.class))).thenAnswer(new IsEmptyAnswer());
 
-        mModel = new HomeModel();
+        mModel = new AddressModel();
     }
 
     /**

@@ -28,7 +28,6 @@ public class ApartmentView
 
     private TextView mAddressHeader;
     private EditText mApartmentField;
-    private TextInputLayout mApartmentWrapper;
 
     /**
      * @see UserDataView#UserDataView
@@ -54,11 +53,6 @@ public class ApartmentView
 
         mAddressHeader = findViewById(R.id.tv_address_header);
         mApartmentField = findViewById(R.id.et_apartment_number);
-        mApartmentWrapper = findViewById(R.id.til_apartment_number);
-        // remove hint from `TextInputLayout`
-        mApartmentWrapper.setHint(null);
-        // set the hint back on the `EditText`
-        mApartmentField.setHint(R.string.address_apartment_number_hint);
     }
 
     @Override

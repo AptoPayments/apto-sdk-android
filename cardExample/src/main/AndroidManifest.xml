@@ -88,7 +88,7 @@
                 android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
-            android:name="com.shiftpayments.link.sdk.ui.activities.userdata.HomeActivity"
+            android:name="com.shiftpayments.link.sdk.ui.activities.userdata.AddressActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.LedgeLine.Example" />
 

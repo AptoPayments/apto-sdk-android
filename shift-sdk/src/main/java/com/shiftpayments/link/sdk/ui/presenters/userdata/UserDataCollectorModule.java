@@ -22,7 +22,7 @@ import com.shiftpayments.link.sdk.ui.activities.userdata.ApartmentActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.ArmedForcesActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.CreditScoreActivity;
-import com.shiftpayments.link.sdk.ui.activities.userdata.HomeActivity;
+import com.shiftpayments.link.sdk.ui.activities.userdata.AddressActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.PaydayLoanActivity;
@@ -52,7 +52,7 @@ import java8.util.concurrent.CompletableFuture;
 
 public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDelegate,
         IdentityVerificationDelegate, ApartmentDelegate, AnnualIncomeDelegate, MonthlyIncomeDelegate,
-        CreditScoreDelegate, PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate,
+        CreditScoreDelegate, PersonalInformationDelegate, AddressDelegate, PaydayLoanDelegate,
         ArmedForcesDelegate, TimeAtAddressDelegate {
 
     public static final String EXTRA_ALLOWED_COUNTRIES = "com.shiftpayments.link.sdk.ui.presenters.userdata.ALLOWEDCOUNTRIES";
@@ -272,7 +272,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     }
 
     @Override
-    public void homeOnBackPressed() {
+    public void addressOnBackPressed() {
         startActivity(PersonalInformationActivity.class);
     }
 
@@ -413,8 +413,8 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
                         break;
                     case Address:
                     case Housing:
-                        mDataPointConfigurationMap.put(HomeActivity.class, requiredDataPointVo.datapointConfiguration);
-                        addRequiredActivity(HomeActivity.class);
+                        mDataPointConfigurationMap.put(AddressActivity.class, requiredDataPointVo.datapointConfiguration);
+                        addRequiredActivity(AddressActivity.class);
                         addRequiredActivity(ApartmentActivity.class);
                         break;
                     case TimeAtAddress:

@@ -31,7 +31,7 @@ public class ApartmentModel extends AbstractUserDataModel implements UserDataMod
     /** {@inheritDoc} */
     @Override
     public int getActivityTitleResource() {
-        return R.string.addres_title;
+        return R.string.apartment_title;
     }
 
     /** {@inheritDoc} */

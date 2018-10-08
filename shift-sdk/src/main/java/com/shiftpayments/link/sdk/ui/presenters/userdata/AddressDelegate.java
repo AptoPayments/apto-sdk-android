@@ -5,8 +5,8 @@ package com.shiftpayments.link.sdk.ui.presenters.userdata;
  *
  * @author Adrian
  */
-public interface HomeDelegate {
+public interface AddressDelegate {
 
     void addressAndHousingTypeStored();
-    void homeOnBackPressed();
+    void addressOnBackPressed();
 }
