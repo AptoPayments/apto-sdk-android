@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.ui.presenters.userdata;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
@@ -15,9 +16,12 @@ import com.shiftpayments.link.sdk.ui.utils.ResourceUtil;
 import com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 /**
  * Concrete {@link Presenter} for the ID verification screen.
@@ -92,6 +96,19 @@ public class IdentityVerificationPresenter
             mView.setBirthdayYear(mModel.getBirthdateYear());
         }
 
+        Set<String> countryCodeSet = mAllowedDocumentTypes.keySet();
+        if(countryCodeSet.size() > 1) {
+            mView.showCitizenshipSpinner(true);
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(mActivity,
+                    android.R.layout.simple_spinner_item,
+                    getCountryListFromCountryCodeSet(countryCodeSet));
+            mView.setCitizenshipSpinnerAdapter(dataAdapter);
+            // TODO: set default selection
+        }
+        else {
+            mView.showCitizenshipSpinner(false);
+        }
+
         mView.showSSN(mIsSSNRequired);
         mView.showSSNNotAvailableCheckbox(mIsSSNNotAvailableAllowed);
         if(mIsSSNRequired && mModel.hasValidDocumentNumber()) {
@@ -131,6 +148,11 @@ public class IdentityVerificationPresenter
     @Override
     public void monthClickHandler() {
         showMonthPicker();
+    }
+
+    @Override
+    public void citizenshipClickHandler(String country) {
+        Log.d("ADRIAN", "citizenshipClickHandler: " + country);
     }
 
     /** {@inheritDoc} */
@@ -198,5 +220,14 @@ public class IdentityVerificationPresenter
             .setNegativeButton(android.R.string.cancel, null)
             .setAdapter(arrayAdapter, (dialog1, item) -> mView.setBirthdayMonth(arrayAdapter.getItem(item)))
             .show();
+    }
+
+    private List<String> getCountryListFromCountryCodeSet(Set<String> countryCodesSet) {
+        List<String> countryList = new ArrayList<>();
+        for(String countryCode : countryCodesSet) {
+            Locale locale = new Locale("",countryCode);
+            countryList.add(locale.getDisplayCountry());
+        }
+        return countryList;
     }
 }

@@ -6,9 +6,12 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
@@ -18,15 +21,27 @@ import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
-import java.util.Arrays;
-
 /**
  * Displays the user details screen.
  * @author Wijnand
  */
 public class IdentityVerificationView
         extends UserDataView<IdentityVerificationView.ViewListener>
-        implements View.OnClickListener, ViewWithToolbar, ViewWithIndeterminateLoading {
+        implements View.OnClickListener, ViewWithToolbar, ViewWithIndeterminateLoading, AdapterView.OnItemSelectedListener {
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View row, int pos, long l) {
+        // TODO: check which spinner
+        /*switch(parent.getId()) {
+
+        }*/
+        mListener.citizenshipClickHandler((String) parent.getItemAtPosition(pos));
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 
     /**
      * Callbacks this View will invoke.
@@ -34,6 +49,7 @@ public class IdentityVerificationView
     public interface ViewListener extends StepperListener, NextButtonListener {
         void ssnCheckBoxClickHandler();
         void monthClickHandler();
+        void citizenshipClickHandler(String country);
     }
 
     private EditText mBirthdayMonth;
@@ -46,6 +62,9 @@ public class IdentityVerificationView
     private EditText mDocumentNumberField;
     private CheckBox mSocialSecurityAvailableCheck;
     private TextView mSocialSecurityAvailableField;
+
+    private TextView mCitizenshipLabel;
+    private Spinner mCitizenshipSpinner;
 
     private LoadingView mLoadingView;
 
@@ -113,6 +132,9 @@ public class IdentityVerificationView
         // set the hint back on the `EditText`
         mDocumentNumberField.setHint(R.string.id_verification_document_number_hint);
 
+        mCitizenshipLabel = findViewById(R.id.tv_citizenship_label);
+        mCitizenshipSpinner = findViewById(R.id.sp_citizenship);
+
         mNextButton = findViewById(R.id.tv_next_bttn);
 
         mLoadingView = findViewById(R.id.rl_loading_overlay);
@@ -127,6 +149,7 @@ public class IdentityVerificationView
         mSocialSecurityAvailableCheck.setOnClickListener(this);
         mNextButton.setOnClickListener(this);
         mBirthdayMonth.setOnClickListener(this);
+        mCitizenshipSpinner.setOnItemSelectedListener(this);
     }
 
     /** {@inheritDoc} */
@@ -269,6 +292,14 @@ public class IdentityVerificationView
         mNextButton.setText(buttonText);
     }
 
+    public void setCitizenshipSpinnerAdapter(ArrayAdapter<String> adapter) {
+        mCitizenshipSpinner.setAdapter(adapter);
+    }
+
+    public String getCitizenship() {
+        return (String) mCitizenshipSpinner.getSelectedItem();
+    }
+
     public void showBirthday(boolean show) {
         if(show) {
             mBirthdayMonth.setVisibility(VISIBLE);
@@ -279,6 +310,17 @@ public class IdentityVerificationView
             mBirthdayMonth.setVisibility(GONE);
             mBirthdayDay.setVisibility(GONE);
             mBirthdayYear.setVisibility(GONE);
+        }
+    }
+
+    public void showCitizenshipSpinner(boolean show) {
+        if(show) {
+            mCitizenshipSpinner.setVisibility(VISIBLE);
+            mCitizenshipLabel.setVisibility(VISIBLE);
+        }
+        else {
+            mCitizenshipSpinner.setVisibility(GONE);
+            mCitizenshipLabel.setVisibility(GONE);
         }
     }
 }

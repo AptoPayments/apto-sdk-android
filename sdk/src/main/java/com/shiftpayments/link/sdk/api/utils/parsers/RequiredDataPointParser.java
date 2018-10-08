@@ -112,7 +112,9 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
         String type = "id_document_datapoint_configuration";
         HashMap<String, List<String>> allowedDocumentsMap = new HashMap<>();
         ArrayList<String> documentTypes = new ArrayList<>();
-        documentTypes.add("SSN");
+        documentTypes.add("passport");
+        allowedDocumentsMap.put("GB", documentTypes);
+        documentTypes.add("ssn");
         allowedDocumentsMap.put("US", documentTypes);
 
         return new IdDocumentConfigurationVo(type, allowedDocumentsMap);

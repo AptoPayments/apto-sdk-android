@@ -19,9 +19,10 @@
         style="?attr/llsdk_dataContainerStyle"
         android:scrollbarStyle="outsideOverlay">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_birthdate_label"
@@ -33,22 +34,34 @@
 
             <include
                 android:id="@+id/birthdate_holder"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 layout="@layout/include_birthdate_field" />
+
+            <TextView
+                android:id="@+id/tv_citizenship_label"
+                style="@style/llsdk_form_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/id_verification_citizenship_label" />
+
+            <Spinner
+                android:id="@+id/sp_citizenship"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tv_document_number_label"
                 style="@style/llsdk_form_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/birthdate_holder"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/id_verification_document_number_label" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/til_document_number"
                 style="?attr/llsdk_idVerification_inputWrapperStyle"
-                android:layout_below="@+id/tv_document_number_label"
                 android:theme="?attr/llsdk_idVerification_inputWrapperTheme">
 
                 <EditText
@@ -61,7 +74,6 @@
                 android:id="@+id/ll_ssn_itin_not_available_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/til_document_number"
                 android:layout_marginTop="8dp">
 
                 <CheckBox
@@ -83,7 +95,6 @@
             <TextView
                 android:id="@+id/tv_next_bttn"
                 style="?attr/llsdk_bigButtonStyle"
-                android:layout_below="@+id/ll_ssn_itin_not_available_holder"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
                 android:text="@string/id_verification_next_button_get_offers" />
@@ -91,10 +102,9 @@
             <TextView
                 android:id="@+id/tv_security"
                 style="?attr/llsdk_idVerification_disclaimerStyle"
-                android:layout_below="@+id/tv_next_bttn"
                 android:layout_centerHorizontal="true"
                 android:text="@string/id_verification_disclaimer" />
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 
 </com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView>
