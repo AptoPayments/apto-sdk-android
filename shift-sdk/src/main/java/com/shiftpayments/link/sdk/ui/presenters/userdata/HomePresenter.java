@@ -164,7 +164,7 @@ public class HomePresenter
 
     private void saveDataAndExit() {
         saveData();
-        mDelegate.zipCodeAndHousingTypeStored();
+        mDelegate.addressAndHousingTypeStored();
     }
 
     /** {@inheritDoc} */

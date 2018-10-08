@@ -2,36 +2,36 @@ package com.shiftpayments.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.shiftpayments.link.sdk.ui.models.userdata.AddressModel;
+import com.shiftpayments.link.sdk.ui.models.userdata.ApartmentModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
-import com.shiftpayments.link.sdk.ui.views.userdata.AddressView;
+import com.shiftpayments.link.sdk.ui.views.userdata.ApartmentView;
 
 /**
- * Concrete {@link Presenter} for the address screen.
+ * Concrete {@link Presenter} for the apartment screen.
  * @author Wijnand
  */
-public class AddressPresenter
-        extends UserDataPresenter<AddressModel, AddressView>
-        implements AddressView.ViewListener {
+public class ApartmentPresenter
+        extends UserDataPresenter<ApartmentModel, ApartmentView>
+        implements ApartmentView.ViewListener {
 
-    private AddressDelegate mDelegate;
+    private ApartmentDelegate mDelegate;
 
     /**
-     * Creates a new {@link AddressPresenter} instance.
+     * Creates a new {@link ApartmentPresenter} instance.
      * @param activity Activity.
      */
-    public AddressPresenter(AppCompatActivity activity, AddressDelegate delegate) {
+    public ApartmentPresenter(AppCompatActivity activity, ApartmentDelegate delegate) {
         super(activity);
         mDelegate = delegate;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void attachView(AddressView view) {
+    public void attachView(ApartmentView view) {
         super.attachView(view);
 
         // Set data.
-        mView.setAddress(mModel.getFullAddress());
+        mView.setAddressLabel(mModel.getAddress());
 
         mView.setListener(this);
         mView.enableNextButton(true);
@@ -39,7 +39,7 @@ public class AddressPresenter
 
     @Override
     public void onBack() {
-        mDelegate.addressOnBackPressed();
+        mDelegate.apartmentOnBackPressed();
     }
 
     /** {@inheritDoc} */
@@ -54,14 +54,13 @@ public class AddressPresenter
     public void nextClickHandler() {
         // Store data.
         mModel.setApartmentNumber(mView.getApartment());
-        mDelegate.addressStored();
+        mDelegate.apartmentStored();
     }
 
     /** {@inheritDoc} */
     @Override
-    public AddressModel createModel() {
-        return new AddressModel();
+    public ApartmentModel createModel() {
+        return new ApartmentModel();
     }
-
 }
 

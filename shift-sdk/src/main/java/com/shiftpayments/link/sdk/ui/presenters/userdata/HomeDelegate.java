@@ -7,6 +7,6 @@ package com.shiftpayments.link.sdk.ui.presenters.userdata;
  */
 public interface HomeDelegate {
 
-    void zipCodeAndHousingTypeStored();
+    void addressAndHousingTypeStored();
     void homeOnBackPressed();
 }

@@ -13,11 +13,11 @@ import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
 /**
- * Displays the address screen.
+ * Displays the apartment screen.
  * @author Wijnand
  */
-public class AddressView
-        extends UserDataView<AddressView.ViewListener>
+public class ApartmentView
+        extends UserDataView<ApartmentView.ViewListener>
         implements ViewWithToolbar {
 
     /**
@@ -34,7 +34,7 @@ public class AddressView
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
      */
-    public AddressView(Context context) {
+    public ApartmentView(Context context) {
         super(context);
     }
 
@@ -43,7 +43,7 @@ public class AddressView
      * @param context See {@link UserDataView#UserDataView}.
      * @param attrs See {@link UserDataView#UserDataView}.
      */
-    public AddressView(Context context, AttributeSet attrs) {
+    public ApartmentView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -71,7 +71,7 @@ public class AddressView
      * Shows the address.
      * @param address New address.
      */
-    public void setAddress(String address) {
+    public void setAddressLabel(String address) {
         mAddressHeader.setText(address);
     }
 

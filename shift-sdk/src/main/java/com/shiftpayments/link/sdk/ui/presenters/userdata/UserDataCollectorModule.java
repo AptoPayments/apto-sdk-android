@@ -18,7 +18,7 @@ import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
-import com.shiftpayments.link.sdk.ui.activities.userdata.AddressActivity;
+import com.shiftpayments.link.sdk.ui.activities.userdata.ApartmentActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.ArmedForcesActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.CreditScoreActivity;
@@ -51,7 +51,7 @@ import java8.util.concurrent.CompletableFuture;
  */
 
 public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDelegate,
-        IdentityVerificationDelegate, AddressDelegate, AnnualIncomeDelegate, MonthlyIncomeDelegate,
+        IdentityVerificationDelegate, ApartmentDelegate, AnnualIncomeDelegate, MonthlyIncomeDelegate,
         CreditScoreDelegate, PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate,
         ArmedForcesDelegate, TimeAtAddressDelegate {
 
@@ -180,13 +180,13 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     }
 
     @Override
-    public void addressStored() {
-        startActivity(getActivityAtPosition(AddressActivity.class, 1));
+    public void apartmentStored() {
+        startActivity(getActivityAtPosition(ApartmentActivity.class, 1));
     }
 
     @Override
-    public void addressOnBackPressed() {
-        startActivity(getActivityAtPosition(AddressActivity.class, -1));
+    public void apartmentOnBackPressed() {
+        startActivity(getActivityAtPosition(ApartmentActivity.class, -1));
     }
 
     @Override
@@ -267,8 +267,8 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     }
 
     @Override
-    public void zipCodeAndHousingTypeStored() {
-        startActivity(AddressActivity.class);
+    public void addressAndHousingTypeStored() {
+        startActivity(ApartmentActivity.class);
     }
 
     @Override
@@ -415,11 +415,11 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
                     case Housing:
                         mDataPointConfigurationMap.put(HomeActivity.class, requiredDataPointVo.datapointConfiguration);
                         addRequiredActivity(HomeActivity.class);
-                        addRequiredActivity(AddressActivity.class);
+                        addRequiredActivity(ApartmentActivity.class);
                         break;
                     case TimeAtAddress:
                         addRequiredActivityAfterGivenActivity(TimeAtAddressActivity.class,
-                                AddressActivity.class);
+                                ApartmentActivity.class);
                         break;
                     case IncomeSource:
                         addRequiredActivity(AnnualIncomeActivity.class);
