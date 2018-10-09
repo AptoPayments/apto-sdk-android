@@ -5,15 +5,18 @@ import android.content.res.ColorStateList;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
@@ -34,7 +37,7 @@ public class IdentityVerificationView
 
         int id = parent.getId();
         if (id == R.id.sp_document_type) {
-            mListener.documentTypeClickHandler((String) parent.getItemAtPosition(pos));
+            mListener.documentTypeClickHandler((IdDocument.IdDocumentType) parent.getItemAtPosition(pos));
         }
         else if(id == R.id.sp_citizenship) {
             mListener.citizenshipClickHandler((String) parent.getItemAtPosition(pos));
@@ -53,7 +56,7 @@ public class IdentityVerificationView
         void ssnCheckBoxClickHandler();
         void monthClickHandler();
         void citizenshipClickHandler(String country);
-        void documentTypeClickHandler(String documentType);
+        void documentTypeClickHandler(IdDocument.IdDocumentType documentType);
     }
 
     private EditText mBirthdayMonth;
@@ -76,6 +79,8 @@ public class IdentityVerificationView
 
     private ProgressBar mProgressBar;
     private TextView mNextButton;
+    private ScrollView mScrollView;
+
     /**
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
@@ -147,6 +152,7 @@ public class IdentityVerificationView
 
         mLoadingView = findViewById(R.id.rl_loading_overlay);
         mProgressBar = findViewById(R.id.pb_progress);
+        mScrollView = findViewById(R.id.sv_id_verification);
     }
 
     /** {@inheritDoc} */
@@ -159,6 +165,11 @@ public class IdentityVerificationView
         mBirthdayMonth.setOnClickListener(this);
         mCitizenshipSpinner.setOnItemSelectedListener(this);
         mDocumentTypeSpinner.setOnItemSelectedListener(this);
+        mDocumentNumberField.setOnTouchListener((view, motionEvent) -> {
+            mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            mScrollView.post(() -> mDocumentNumberField.requestFocus());
+            return false;
+        });
     }
 
     /** {@inheritDoc} */
@@ -305,7 +316,7 @@ public class IdentityVerificationView
         mCitizenshipSpinner.setAdapter(adapter);
     }
 
-    public void setDocumentTypeSpinnerAdapter(ArrayAdapter<String> adapter) {
+    public void setDocumentTypeSpinnerAdapter(ArrayAdapter<IdDocument.IdDocumentType> adapter) {
         mDocumentTypeSpinner.setAdapter(adapter);
     }
 

@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
 import com.shiftpayments.link.sdk.api.vos.responses.config.IdDocumentConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.PhoneOrAddressConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
@@ -102,11 +103,11 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
         }
         JsonObject config = jObject.getAsJsonObject("datapoint_configuration");
         String type = config.get("type").getAsString();
-        HashMap<String, List<String>> allowedDocumentsMap = new Gson().fromJson(config.get("allowed_document_types"), new TypeToken<HashMap<String, List<String>>>(){}.getType());
+        HashMap<String, List<IdDocument.IdDocumentType>> allowedDocumentsMap = new Gson().fromJson(config.get("allowed_document_types"), new TypeToken<HashMap<String, List<IdDocument.IdDocumentType>>>(){}.getType());
 
         if(allowedDocumentsMap.isEmpty()) {
-            ArrayList<String> documentTypes = new ArrayList<>();
-            documentTypes.add("SSN");
+            ArrayList<IdDocument.IdDocumentType> documentTypes = new ArrayList<>();
+            documentTypes.add(IdDocument.IdDocumentType.SSN);
             allowedDocumentsMap.put("US", documentTypes);
         }
 

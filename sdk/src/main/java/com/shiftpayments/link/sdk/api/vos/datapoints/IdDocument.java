@@ -1,35 +1,45 @@
 package com.shiftpayments.link.sdk.api.vos.datapoints;
 
 import com.google.gson.JsonObject;
+import com.google.gson.annotations.SerializedName;
 
 public class IdDocument extends DataPointVo {
 
     public enum IdDocumentType {
-        SSN,
-        IDENTITY_CARD,
-        PASSPORT,
-        DRIVER_LICENSE;
+        @SerializedName("ssn")
+        SSN("SSN"),
+        @SerializedName("identity_card")
+        IDENTITY_CARD("ID Card"),
+        @SerializedName("passport")
+        PASSPORT("Passport"),
+        @SerializedName("drivers_license")
+        DRIVERS_LICENSE("Driving license");
 
+        private final String description;
+
+        private IdDocumentType(String value) {
+            description = value;
+        }
 
         @Override
         public String toString() {
-            return super.toString().toLowerCase();
+            return description;
         }
     }
 
     private IdDocumentType mType;
     private String mValue;
     private String mCountry;
-    private static final int EXPECTED_SSN_LENGTH = 9;
 
     public IdDocument() {
-        this(null, null, false, false);
+        this(null, null, null, false, false);
     }
 
-    public IdDocument(IdDocumentType type, String value, boolean verified, boolean notSpecified) {
+    public IdDocument(IdDocumentType type, String value, String country, boolean verified, boolean notSpecified) {
         super(DataPointType.IdDocument, verified, notSpecified);
         mValue = value;
         mType = type;
+        mCountry = country;
     }
 
     public IdDocumentType getIdType() {
@@ -48,43 +58,48 @@ public class IdDocument extends DataPointVo {
         mValue = value;
     }
 
+    public String getCountry() {
+        return mCountry;
+    }
+
+    public void setCountry(String country) {
+        mCountry = country;
+    }
+
     @Override
     public JsonObject toJSON() {
         JsonObject gsonObject = super.toJSON();
         gsonObject.addProperty("data_type", "id_document");
-        gsonObject.addProperty("doc_type", mType.toString());
-        gsonObject.addProperty("doc_value", mValue);
-        // TODO
-        gsonObject.addProperty("country", "US");
+        gsonObject.addProperty("doc_type", mType.name().toLowerCase());
+        gsonObject.addProperty("value", mValue);
+        gsonObject.addProperty("country", mCountry);
         return gsonObject;
     }
 
     @Override
     public String toString() {
-        if(mType.equals(IdDocumentType.SSN)) {
-            StringBuilder outputBuffer = new StringBuilder(EXPECTED_SSN_LENGTH);
-            for (int i = 0; i < EXPECTED_SSN_LENGTH; i++){
-                outputBuffer.append("*");
-            }
-            return outputBuffer.toString();
-        }
-        else {
-            return mValue;
-        }
+        return mValue;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if(!super.equals(o)) return false;
-        IdDocument idDocument = (IdDocument) o;
+        if (!super.equals(o)) return false;
 
-        return mValue != null ? mValue.equals(idDocument.mValue) : idDocument.mValue == null;
+        IdDocument that = (IdDocument) o;
+
+        if (mType != that.mType) return false;
+        if (mValue != null ? !mValue.equals(that.mValue) : that.mValue != null) return false;
+        return mCountry != null ? mCountry.equals(that.mCountry) : that.mCountry == null;
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode() + (mValue != null ? mValue.hashCode() : 0);
+        int result = super.hashCode();
+        result = 31 * result + (mType != null ? mType.hashCode() : 0);
+        result = 31 * result + (mValue != null ? mValue.hashCode() : 0);
+        result = 31 * result + (mCountry != null ? mCountry.hashCode() : 0);
+        return result;
     }
 }

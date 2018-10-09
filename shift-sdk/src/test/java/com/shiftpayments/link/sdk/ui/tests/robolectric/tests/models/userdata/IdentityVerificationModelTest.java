@@ -117,7 +117,7 @@ public class IdentityVerificationModelTest {
     @Test
     public void validSsnIsStored() {
         mModel.setDocumentNumber(EXPECTED_SSN);
-        Assert.assertTrue("SSN should be stored.", mModel.hasValidDocumentNumber());
+        Assert.assertTrue("SSN should be stored.", mModel.hasValidDocument());
         Assert.assertFalse("There should be missing data.", mModel.hasValidData());
     }
 
@@ -129,7 +129,7 @@ public class IdentityVerificationModelTest {
     @Test
     public void invalidSsnIsNotStored() {
         mModel.setDocumentNumber("123");
-        Assert.assertFalse("SSN should NOT be stored.", mModel.hasValidDocumentNumber());
+        Assert.assertFalse("SSN should NOT be stored.", mModel.hasValidDocument());
     }
 
     /**

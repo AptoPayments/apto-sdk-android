@@ -3,6 +3,7 @@ package com.shiftpayments.link.sdk.ui.activities.userdata;
 import android.view.Menu;
 import android.view.View;
 
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.userdata.IdentityVerificationModel;
@@ -33,8 +34,8 @@ public class IdentityVerificationActivity
     @Override
     protected IdentityVerificationPresenter createPresenter(BaseDelegate delegate) {
         if(delegate instanceof IdentityVerificationDelegate) {
-            HashMap<String, List<String>> allowedDocumentTypes =
-                    (HashMap<String, List<String>>)getIntent().getSerializableExtra(EXTRA_ALLOWED_DOCUMENT_TYPES);
+            HashMap<String, List<IdDocument.IdDocumentType>> allowedDocumentTypes =
+                    (HashMap<String, List<IdDocument.IdDocumentType>>)getIntent().getSerializableExtra(EXTRA_ALLOWED_DOCUMENT_TYPES);
             return new IdentityVerificationPresenter(this, (IdentityVerificationDelegate) delegate, allowedDocumentTypes);
         }
         else {

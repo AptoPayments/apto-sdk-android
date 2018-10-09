@@ -3,10 +3,10 @@ package com.shiftpayments.link.sdk.ui.presenters.userdata;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import com.shiftpayments.link.sdk.ui.R;
@@ -37,13 +37,13 @@ public class IdentityVerificationPresenter
     private boolean mIsSSNNotAvailableAllowed;
     private boolean mIsBirthdayRequired;
     private UserDataCollectorConfigurationVo mCallToActionConfig;
-    private HashMap<String, List<String>> mAllowedDocumentTypes;
+    private HashMap<String, List<IdDocument.IdDocumentType>> mAllowedDocumentTypes;
     private HashMap<String, String> mCountryNameToCountryCodeMap;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
      */
-    public IdentityVerificationPresenter(AppCompatActivity activity, IdentityVerificationDelegate delegate, HashMap<String, List<String>> allowedDocumentTypes) {
+    public IdentityVerificationPresenter(AppCompatActivity activity, IdentityVerificationDelegate delegate, HashMap<String, List<IdDocument.IdDocumentType>> allowedDocumentTypes) {
         super(activity);
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
@@ -108,18 +108,14 @@ public class IdentityVerificationPresenter
         }
         else {
             mView.showCitizenshipSpinner(false);
+            String countryCode = countryCodeSet.iterator().next();
+            mModel.setCountry(countryCode);
+            setDocumentTypesAdapter(countryCode);
         }
-
-        mView.setCitizenship(0);
-        String selectedCountry = mView.getCitizenship();
-        List<String> documentTypes = mAllowedDocumentTypes.get(mCountryNameToCountryCodeMap.get(selectedCountry));
-        ArrayAdapter<String> documentTypesAdapter = new ArrayAdapter<>(mActivity,
-                android.R.layout.simple_spinner_item, documentTypes);
-        mView.setDocumentTypeSpinnerAdapter(documentTypesAdapter);
 
         mView.showSSN(mIsSSNRequired);
         mView.showSSNNotAvailableCheckbox(mIsSSNNotAvailableAllowed);
-        if(mIsSSNRequired && mModel.hasValidDocumentNumber()) {
+        if(mIsSSNRequired && mModel.hasValidDocument()) {
             mView.setDocumentNumber(mModel.getDocumentNumber());
         }
 
@@ -160,18 +156,14 @@ public class IdentityVerificationPresenter
 
     @Override
     public void citizenshipClickHandler(String country) {
-        Log.d("ADRIAN", "citizenshipClickHandler: name = " + country);
         String countryCode = mCountryNameToCountryCodeMap.get(country);
-        Log.d("ADRIAN", "citizenshipClickHandler: code = " + countryCode);
-        List<String> documentTypes = mAllowedDocumentTypes.get(countryCode);
-        ArrayAdapter<String> documentTypesAdapter = new ArrayAdapter<>(mActivity,
-                android.R.layout.simple_spinner_item, documentTypes);
-        mView.setDocumentTypeSpinnerAdapter(documentTypesAdapter);
+        mModel.setCountry(countryCode);
+        setDocumentTypesAdapter(countryCode);
     }
 
     @Override
-    public void documentTypeClickHandler(String documentType) {
-        Log.d("ADRIAN", "documentTypeClickHandler: name = " + documentType);
+    public void documentTypeClickHandler(IdDocument.IdDocumentType documentType) {
+        mModel.setDocumentType(documentType);
     }
 
     /** {@inheritDoc} */
@@ -193,7 +185,7 @@ public class IdentityVerificationPresenter
         }
         if(mIsSSNRequired && userHasUpdatedSSN()) {
             mModel.setDocumentNumber(mView.getDocumentNumber());
-            mView.updateDocumentNumberError(!mModel.hasValidDocumentNumber(), mModel.getSsnErrorString());
+            mView.updateDocumentNumberError(!mModel.hasValidDocument(), mModel.getSsnErrorString());
         }
 
         if(mIsSSNRequired && mIsBirthdayRequired) {
@@ -208,7 +200,7 @@ public class IdentityVerificationPresenter
             }
         }
         else if(mIsSSNRequired){
-            if(mModel.hasValidDocumentNumber() || ((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
+            if(mModel.hasValidDocument() || ((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
                     && !userHasUpdatedSSN()) {
                 saveDataAndExit();
             }
@@ -255,4 +247,13 @@ public class IdentityVerificationPresenter
         mCountryNameToCountryCodeMap.put(countryName, countryCode);
         return countryName;
     }
+
+    private void setDocumentTypesAdapter(String countryCode) {
+        List<IdDocument.IdDocumentType> documentTypes = mAllowedDocumentTypes.get(countryCode);
+        ArrayAdapter<IdDocument.IdDocumentType> documentTypesAdapter = new ArrayAdapter<>(mActivity,
+                android.R.layout.simple_spinner_item, documentTypes);
+        mView.setDocumentTypeSpinnerAdapter(documentTypesAdapter);
+    }
+
+
 }
