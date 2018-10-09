@@ -5,7 +5,7 @@ import android.content.res.ColorStateList;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,6 +35,8 @@ public class IdentityVerificationView
     @Override
     public void onItemSelected(AdapterView<?> parent, View row, int pos, long l) {
 
+        ((TextView) parent.getChildAt(0)).setTextColor(UIStorage.getInstance().getTextSecondaryColor());
+        ((TextView) parent.getChildAt(0)).setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.llsdk_form_field));
         int id = parent.getId();
         if (id == R.id.sp_document_type) {
             mListener.documentTypeClickHandler((IdDocument.IdDocumentType) parent.getItemAtPosition(pos));

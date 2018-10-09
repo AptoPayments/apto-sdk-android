@@ -50,7 +50,7 @@
             <Spinner
                 android:id="@+id/sp_citizenship"
                 android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
@@ -64,7 +64,7 @@
             <Spinner
                 android:id="@+id/sp_document_type"
                 android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView

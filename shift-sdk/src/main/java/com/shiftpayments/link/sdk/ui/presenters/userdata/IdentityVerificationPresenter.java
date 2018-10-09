@@ -104,6 +104,7 @@ public class IdentityVerificationPresenter
             List<String> countryNames = getCountryListFromCountryCodeSet(countryCodeSet);
             ArrayAdapter<String> countryListAdapter = new ArrayAdapter<>(mActivity,
                     android.R.layout.simple_spinner_item, countryNames);
+            countryListAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
             mView.setCitizenshipSpinnerAdapter(countryListAdapter);
         }
         else {
@@ -252,6 +253,7 @@ public class IdentityVerificationPresenter
         List<IdDocument.IdDocumentType> documentTypes = mAllowedDocumentTypes.get(countryCode);
         ArrayAdapter<IdDocument.IdDocumentType> documentTypesAdapter = new ArrayAdapter<>(mActivity,
                 android.R.layout.simple_spinner_item, documentTypes);
+        documentTypesAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         mView.setDocumentTypeSpinnerAdapter(documentTypesAdapter);
     }
 

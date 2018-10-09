@@ -104,7 +104,8 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
         JsonObject config = jObject.getAsJsonObject("datapoint_configuration");
         String type = config.get("type").getAsString();
         HashMap<String, List<IdDocument.IdDocumentType>> allowedDocumentsMap = new Gson().fromJson(config.get("allowed_document_types"), new TypeToken<HashMap<String, List<IdDocument.IdDocumentType>>>(){}.getType());
-
+        // Remove countries that have no document types
+        allowedDocumentsMap.values().remove(new ArrayList<IdDocument.IdDocumentType>());
         if(allowedDocumentsMap.isEmpty()) {
             ArrayList<IdDocument.IdDocumentType> documentTypes = new ArrayList<>();
             documentTypes.add(IdDocument.IdDocumentType.SSN);

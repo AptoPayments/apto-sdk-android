@@ -228,6 +228,7 @@ public class AddressPresenter
                     for (AddressComponentVo addressComponent : result.getAddressComponents()) {
                         switch (addressComponent.getTypes().get(0)) {
                             case "locality":
+                            case "postal_town":
                                 mModel.setCity(addressComponent.getLongName());
                                 break;
                             case "administrative_area_level_1":
