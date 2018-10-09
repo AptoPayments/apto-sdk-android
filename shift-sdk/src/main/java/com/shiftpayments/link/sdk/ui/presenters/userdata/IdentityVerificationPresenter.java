@@ -102,14 +102,20 @@ public class IdentityVerificationPresenter
         if(countryCodeSet.size() > 1) {
             mView.showCitizenshipSpinner(true);
             List<String> countryNames = getCountryListFromCountryCodeSet(countryCodeSet);
-            ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(mActivity,
+            ArrayAdapter<String> countryListAdapter = new ArrayAdapter<>(mActivity,
                     android.R.layout.simple_spinner_item, countryNames);
-            mView.setCitizenshipSpinnerAdapter(dataAdapter);
-            // TODO: set default selection
+            mView.setCitizenshipSpinnerAdapter(countryListAdapter);
         }
         else {
             mView.showCitizenshipSpinner(false);
         }
+
+        mView.setCitizenship(0);
+        String selectedCountry = mView.getCitizenship();
+        List<String> documentTypes = mAllowedDocumentTypes.get(mCountryNameToCountryCodeMap.get(selectedCountry));
+        ArrayAdapter<String> documentTypesAdapter = new ArrayAdapter<>(mActivity,
+                android.R.layout.simple_spinner_item, documentTypes);
+        mView.setDocumentTypeSpinnerAdapter(documentTypesAdapter);
 
         mView.showSSN(mIsSSNRequired);
         mView.showSSNNotAvailableCheckbox(mIsSSNNotAvailableAllowed);
@@ -157,6 +163,15 @@ public class IdentityVerificationPresenter
         Log.d("ADRIAN", "citizenshipClickHandler: name = " + country);
         String countryCode = mCountryNameToCountryCodeMap.get(country);
         Log.d("ADRIAN", "citizenshipClickHandler: code = " + countryCode);
+        List<String> documentTypes = mAllowedDocumentTypes.get(countryCode);
+        ArrayAdapter<String> documentTypesAdapter = new ArrayAdapter<>(mActivity,
+                android.R.layout.simple_spinner_item, documentTypes);
+        mView.setDocumentTypeSpinnerAdapter(documentTypesAdapter);
+    }
+
+    @Override
+    public void documentTypeClickHandler(String documentType) {
+        Log.d("ADRIAN", "documentTypeClickHandler: name = " + documentType);
     }
 
     /** {@inheritDoc} */

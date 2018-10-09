@@ -31,11 +31,14 @@ public class IdentityVerificationView
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View row, int pos, long l) {
-        // TODO: check which spinner
-        /*switch(parent.getId()) {
 
-        }*/
-        mListener.citizenshipClickHandler((String) parent.getItemAtPosition(pos));
+        int id = parent.getId();
+        if (id == R.id.sp_document_type) {
+            mListener.documentTypeClickHandler((String) parent.getItemAtPosition(pos));
+        }
+        else if(id == R.id.sp_citizenship) {
+            mListener.citizenshipClickHandler((String) parent.getItemAtPosition(pos));
+        }
     }
 
     @Override
@@ -50,6 +53,7 @@ public class IdentityVerificationView
         void ssnCheckBoxClickHandler();
         void monthClickHandler();
         void citizenshipClickHandler(String country);
+        void documentTypeClickHandler(String documentType);
     }
 
     private EditText mBirthdayMonth;
@@ -65,6 +69,8 @@ public class IdentityVerificationView
 
     private TextView mCitizenshipLabel;
     private Spinner mCitizenshipSpinner;
+
+    private Spinner mDocumentTypeSpinner;
 
     private LoadingView mLoadingView;
 
@@ -135,6 +141,8 @@ public class IdentityVerificationView
         mCitizenshipLabel = findViewById(R.id.tv_citizenship_label);
         mCitizenshipSpinner = findViewById(R.id.sp_citizenship);
 
+        mDocumentTypeSpinner = findViewById(R.id.sp_document_type);
+
         mNextButton = findViewById(R.id.tv_next_bttn);
 
         mLoadingView = findViewById(R.id.rl_loading_overlay);
@@ -150,6 +158,7 @@ public class IdentityVerificationView
         mNextButton.setOnClickListener(this);
         mBirthdayMonth.setOnClickListener(this);
         mCitizenshipSpinner.setOnItemSelectedListener(this);
+        mDocumentTypeSpinner.setOnItemSelectedListener(this);
     }
 
     /** {@inheritDoc} */
@@ -296,8 +305,16 @@ public class IdentityVerificationView
         mCitizenshipSpinner.setAdapter(adapter);
     }
 
+    public void setDocumentTypeSpinnerAdapter(ArrayAdapter<String> adapter) {
+        mDocumentTypeSpinner.setAdapter(adapter);
+    }
+
     public String getCitizenship() {
         return (String) mCitizenshipSpinner.getSelectedItem();
+    }
+
+    public void setCitizenship(int selection) {
+        mCitizenshipSpinner.setSelection(selection);
     }
 
     public void showBirthday(boolean show) {

@@ -30,11 +30,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp"
                 android:text="@string/birthdate_hint" />
 
             <include
                 android:id="@+id/birthdate_holder"
-                android:layout_marginTop="20dp"
                 layout="@layout/include_birthdate_field" />
 
             <TextView
@@ -47,6 +47,20 @@
 
             <Spinner
                 android:id="@+id/sp_citizenship"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_document_type_label"
+                style="@style/llsdk_form_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/id_verification_document_type_label" />
+
+            <Spinner
+                android:id="@+id/sp_document_type"
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

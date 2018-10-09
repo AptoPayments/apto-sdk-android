@@ -115,6 +115,7 @@
 
     <!-- ID Verification -->
     <string name="id_verification_citizenship_label">Citizenship</string>
+    <string name="id_verification_document_type_label">Type of document</string>
     <string name="id_verification_title_get_offers">Ready for your offers?</string>
     <string name="id_verification_next_button_get_offers">GET OFFERS</string>
     <string name="id_verification_title_issue_card">Ready for your card?</string>
