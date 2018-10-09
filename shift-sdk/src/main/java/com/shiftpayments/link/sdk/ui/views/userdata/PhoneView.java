@@ -135,4 +135,14 @@ public class PhoneView
     public void setPickerCountryList(String countryList) {
         mCountryCodePicker.setCustomMasterCountries(countryList);
     }
+
+    public void setPickerDefaultCountry(String country) {
+        mCountryCodePicker.setDefaultCountryUsingNameCode(country);
+        mCountryCodePicker.resetToDefaultCountry();
+    }
+
+    public void disableCountryPicker(boolean disable) {
+        mCountryCodePicker.setCcpClickable(!disable);
+        mCountryCodePicker.setArrowSize(1);
+    }
 }

@@ -57,7 +57,9 @@ public class PhonePresenter
 
         mView.setListener(this);
         if(mAllowedCountries!=null && !mAllowedCountries.isEmpty()) {
+            mView.setPickerDefaultCountry(mAllowedCountries.get(0));
             mView.setPickerCountryList(TextUtils.join(",", mAllowedCountries));
+            mView.disableCountryPicker(mAllowedCountries.size()==1);
         }
     }
 

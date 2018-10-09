@@ -325,6 +325,9 @@ public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailD
     private static Intent getPhoneActivityIntent(Context context) {
         Intent intent = new Intent(context, PhoneActivity.class);
         List<String> allowedCountries = UIStorage.getInstance().getContextConfig().allowedCountries;
+        if(allowedCountries.isEmpty()) {
+            allowedCountries.add("US");
+        }
         intent.putStringArrayListExtra(EXTRA_ALLOWED_COUNTRIES, new ArrayList<>(allowedCountries));
 
         return intent;
