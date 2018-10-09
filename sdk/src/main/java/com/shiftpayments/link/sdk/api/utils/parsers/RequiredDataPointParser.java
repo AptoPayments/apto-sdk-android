@@ -6,6 +6,7 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.reflect.TypeToken;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.IdDocumentConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.PhoneOrAddressConfigurationVo;
@@ -96,26 +97,18 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
     }
 
     private IdDocumentConfigurationVo parseIdDocumentConfiguration(JsonObject jObject) {
-        // TODO: hardcoding config until backend is ready
-        /*if(!jObject.has("datapoint_configuration") || jObject.get("datapoint_configuration").isJsonNull()) {
+        if(!jObject.has("datapoint_configuration") || jObject.get("datapoint_configuration").isJsonNull()) {
             return null;
         }
         JsonObject config = jObject.getAsJsonObject("datapoint_configuration");
         String type = config.get("type").getAsString();
-        Map<String, List<String>> allowedDocumentsMap = new Gson().fromJson(config.get("allowed_document_types"), new TypeToken<Map<String, List<String>>>(){}.getType());
+        HashMap<String, List<String>> allowedDocumentsMap = new Gson().fromJson(config.get("allowed_document_types"), new TypeToken<HashMap<String, List<String>>>(){}.getType());
 
         if(allowedDocumentsMap.isEmpty()) {
             ArrayList<String> documentTypes = new ArrayList<>();
             documentTypes.add("SSN");
             allowedDocumentsMap.put("US", documentTypes);
-        }*/
-        String type = "id_document_datapoint_configuration";
-        HashMap<String, List<String>> allowedDocumentsMap = new HashMap<>();
-        ArrayList<String> documentTypes = new ArrayList<>();
-        documentTypes.add("passport");
-        allowedDocumentsMap.put("GB", documentTypes);
-        documentTypes.add("ssn");
-        allowedDocumentsMap.put("US", documentTypes);
+        }
 
         return new IdDocumentConfigurationVo(type, allowedDocumentsMap);
     }

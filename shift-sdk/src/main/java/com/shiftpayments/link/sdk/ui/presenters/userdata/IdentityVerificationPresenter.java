@@ -38,6 +38,7 @@ public class IdentityVerificationPresenter
     private boolean mIsBirthdayRequired;
     private UserDataCollectorConfigurationVo mCallToActionConfig;
     private HashMap<String, List<String>> mAllowedDocumentTypes;
+    private HashMap<String, String> mCountryNameToCountryCodeMap;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
@@ -59,6 +60,7 @@ public class IdentityVerificationPresenter
         mIsBirthdayRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.BirthDate));
         mCallToActionConfig = module.getCallToActionConfig();
         mAllowedDocumentTypes = allowedDocumentTypes;
+        mCountryNameToCountryCodeMap = new HashMap<>();
     }
 
     /**
@@ -99,9 +101,9 @@ public class IdentityVerificationPresenter
         Set<String> countryCodeSet = mAllowedDocumentTypes.keySet();
         if(countryCodeSet.size() > 1) {
             mView.showCitizenshipSpinner(true);
+            List<String> countryNames = getCountryListFromCountryCodeSet(countryCodeSet);
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(mActivity,
-                    android.R.layout.simple_spinner_item,
-                    getCountryListFromCountryCodeSet(countryCodeSet));
+                    android.R.layout.simple_spinner_item, countryNames);
             mView.setCitizenshipSpinnerAdapter(dataAdapter);
             // TODO: set default selection
         }
@@ -152,7 +154,9 @@ public class IdentityVerificationPresenter
 
     @Override
     public void citizenshipClickHandler(String country) {
-        Log.d("ADRIAN", "citizenshipClickHandler: " + country);
+        Log.d("ADRIAN", "citizenshipClickHandler: name = " + country);
+        String countryCode = mCountryNameToCountryCodeMap.get(country);
+        Log.d("ADRIAN", "citizenshipClickHandler: code = " + countryCode);
     }
 
     /** {@inheritDoc} */
@@ -225,9 +229,15 @@ public class IdentityVerificationPresenter
     private List<String> getCountryListFromCountryCodeSet(Set<String> countryCodesSet) {
         List<String> countryList = new ArrayList<>();
         for(String countryCode : countryCodesSet) {
-            Locale locale = new Locale("",countryCode);
-            countryList.add(locale.getDisplayCountry());
+            countryList.add(getCountryNameFromCountryCode(countryCode));
         }
         return countryList;
+    }
+
+    private String getCountryNameFromCountryCode(String countryCode) {
+        Locale locale = new Locale("",countryCode);
+        String countryName = locale.getDisplayCountry();
+        mCountryNameToCountryCodeMap.put(countryName, countryCode);
+        return countryName;
     }
 }
