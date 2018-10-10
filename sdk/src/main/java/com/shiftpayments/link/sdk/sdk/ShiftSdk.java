@@ -427,9 +427,9 @@ public class ShiftSdk {
     /**
      * Gets the financial account's funding source.
      */
-    public static void getUserFundingSources() {
+    public static void getUserFundingSources(String cardId) {
         checkComponents();
-        GetUserFundingSourceRequestVo request = new GetUserFundingSourceRequestVo();
+        GetUserFundingSourceRequestVo request = new GetUserFundingSourceRequestVo(cardId);
         executeOrEnqueueRequest(request);
     }
 
@@ -492,11 +492,12 @@ public class ShiftSdk {
 
     /**
      * Adds a new balance
-     * @param request The oAuth tokens
+     * @param cardId The card ID
+     * @param data The oAuth tokens
      */
-    public static void addUserBalance(BalanceDataVo data) {
+    public static void addUserBalance(String cardId, BalanceDataVo data) {
         checkComponents();
-        executeOrEnqueueRequest(new AddBalanceRequestVo(data));
+        executeOrEnqueueRequest(new AddBalanceRequestVo(data, cardId));
     }
 
 
