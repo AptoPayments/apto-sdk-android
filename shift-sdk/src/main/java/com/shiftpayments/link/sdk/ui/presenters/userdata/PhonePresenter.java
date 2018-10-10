@@ -45,9 +45,6 @@ public class PhonePresenter
     public void attachView(PhoneView view) {
         super.attachView(view);
 
-        if(mModel.hasPhone()) {
-            mView.setPhone(Long.toString(mModel.getPhone().getNationalNumber()));
-        }
         if(isVerificationRequired()) {
             mView.setDescription(mActivity.getResources().getString(R.string.phone_label_sms));
         }
@@ -60,6 +57,10 @@ public class PhonePresenter
             mView.setPickerDefaultCountry(mAllowedCountries.get(0));
             mView.setPickerCountryList(TextUtils.join(",", mAllowedCountries));
             mView.disableCountryPicker(mAllowedCountries.size()==1);
+        }
+
+        if(mModel.hasPhone()) {
+            mView.setPhone(Long.toString(mModel.getPhone().getNationalNumber()));
         }
     }
 
