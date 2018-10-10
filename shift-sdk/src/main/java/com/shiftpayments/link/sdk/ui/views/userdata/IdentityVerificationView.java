@@ -276,7 +276,7 @@ public class IdentityVerificationView
         return mSocialSecurityAvailableCheck.isChecked();
     }
 
-    public void enableSSNField(boolean enabled) {
+    public void enableIdDocumentField(boolean enabled) {
         mDocumentNumberField.setEnabled(enabled);
     }
 
@@ -352,5 +352,10 @@ public class IdentityVerificationView
             mCitizenshipSpinner.setVisibility(GONE);
             mCitizenshipLabel.setVisibility(GONE);
         }
+    }
+
+    public void enableSpinners(boolean enable) {
+        mCitizenshipSpinner.setEnabled(enable);
+        mDocumentTypeSpinner.setEnabled(enable);
     }
 }

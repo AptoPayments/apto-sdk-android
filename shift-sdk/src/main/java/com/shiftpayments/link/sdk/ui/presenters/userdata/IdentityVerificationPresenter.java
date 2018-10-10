@@ -146,7 +146,8 @@ public class IdentityVerificationPresenter
 
     @Override
     public void ssnCheckBoxClickHandler() {
-        mView.enableSSNField(!mView.isSSNCheckboxChecked());
+        mView.enableSpinners(!mView.isSSNCheckboxChecked());
+        mView.enableIdDocumentField(!mView.isSSNCheckboxChecked());
         mView.updateDocumentNumberError(false, 0);
     }
 
