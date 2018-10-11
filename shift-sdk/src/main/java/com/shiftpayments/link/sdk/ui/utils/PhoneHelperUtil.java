@@ -4,7 +4,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
-import static com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL;
+import static com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat.NATIONAL;
 
 /**
  * Phone number helper class.
@@ -14,7 +14,16 @@ public class PhoneHelperUtil {
     private static PhoneNumberUtil mPhoneUtil = PhoneNumberUtil.getInstance();
 
     public static String formatPhone(Phonenumber.PhoneNumber phoneNumber) {
-        return mPhoneUtil.format(phoneNumber, INTERNATIONAL);
+        return mPhoneUtil.format(phoneNumber, NATIONAL);
+    }
+
+    public static String formatPhone(Phonenumber.PhoneNumber phoneNumber, boolean addDialCode) {
+        String formattedPhone = formatPhone(phoneNumber);
+        if(addDialCode) {
+            formattedPhone = "+" + phoneNumber.getCountryCode() + " " + formattedPhone;
+        }
+
+        return formattedPhone;
     }
 
     public static boolean isValidNumber(Phonenumber.PhoneNumber number) {

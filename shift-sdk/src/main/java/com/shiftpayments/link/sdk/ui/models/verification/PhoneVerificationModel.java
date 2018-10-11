@@ -134,7 +134,7 @@ public class PhoneVerificationModel extends AbstractUserDataModel implements Use
 
     public String getFormattedPhoneNumber() {
         PhoneNumberVo phoneNumber = getPhoneFromBaseData();
-        return PhoneHelperUtil.formatPhone(phoneNumber.phoneNumber);
+        return PhoneHelperUtil.formatPhone(phoneNumber.phoneNumber, true);
     }
 
     private void storeVerification() {

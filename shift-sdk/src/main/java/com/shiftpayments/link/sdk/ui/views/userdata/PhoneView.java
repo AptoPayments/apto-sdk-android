@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.ui.views.userdata;
 
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
@@ -70,7 +69,7 @@ public class PhoneView
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mPhoneField.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        /*mPhoneField.addTextChangedListener(new PhoneNumberFormattingTextWatcher());*/
         mPhoneField.requestFocus();
     }
 
@@ -143,6 +142,8 @@ public class PhoneView
 
     public void disableCountryPicker(boolean disable) {
         mCountryCodePicker.setCcpClickable(!disable);
-        mCountryCodePicker.setArrowSize(1);
+        if(disable) {
+            mCountryCodePicker.setArrowSize(1);
+        }
     }
 }
