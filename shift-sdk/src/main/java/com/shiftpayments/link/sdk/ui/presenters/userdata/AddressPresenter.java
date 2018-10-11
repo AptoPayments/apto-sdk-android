@@ -251,6 +251,7 @@ public class AddressPresenter
                         }
                     }
                     mView.enableNextButton(true);
+                    mView.setAddress(mModel.getFullAddress());
                     if(mIsNextClickHandlerPending) {
                         this.nextClickHandler();
                     }
@@ -265,6 +266,7 @@ public class AddressPresenter
     @Override
     public void onAddressSelected(int position) {
         GooglePlacesArrayAdapter.PlaceAutocomplete item = mGooglePlacesArrayAdapter.getItem(position);
+        mView.setAddress(item.mainText);
         getPlaceDetails(item.placeId);
     }
 }
