@@ -111,6 +111,10 @@ public class PersonalInformationConfirmationModel extends AbstractUserDataModel 
         return mIdDocument.toString();
     }
 
+    public String getIdDocumentType() {
+        return mIdDocument.getIdType().toString();
+    }
+
     public boolean hasIdDocument() {
         return mIdDocument != null;
     }

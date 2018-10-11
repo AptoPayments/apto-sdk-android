@@ -55,7 +55,7 @@ public class PersonalInformationConfirmationPresenter
             mView.setDateOfBirth(mModel.getDateOfBirth(mActivity.getResources().getConfiguration().locale));
         }
         if(mModel.hasIdDocument()) {
-            mView.setIdDocument(mModel.getIdDocument());
+            mView.setIdDocument(mModel.getIdDocument(), mModel.getIdDocumentType());
         }
         mView.setNextButtonText(mActivity.getResources().getString(R.string.toolbar_confirm_button_label));
         mView.enableNextButton(true);
