@@ -9,11 +9,11 @@ public class IdDocument extends DataPointVo {
         @SerializedName("ssn")
         SSN("SSN"),
         @SerializedName("identity_card")
-        IDENTITY_CARD("ID Card"),
+        IDENTITY_CARD("Identity Card"),
         @SerializedName("passport")
         PASSPORT("Passport"),
         @SerializedName("drivers_license")
-        DRIVERS_LICENSE("Driving license");
+        DRIVERS_LICENSE("Driver's license");
 
         private final String description;
 
