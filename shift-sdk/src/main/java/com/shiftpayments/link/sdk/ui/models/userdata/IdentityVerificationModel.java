@@ -1,5 +1,7 @@
 package com.shiftpayments.link.sdk.ui.models.userdata;
 
+import android.text.TextUtils;
+
 import com.shiftpayments.link.sdk.api.vos.datapoints.Birthdate;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
@@ -143,7 +145,11 @@ public class IdentityVerificationModel extends AbstractUserDataModel implements 
      * @param documentNumber The document number.
      */
     public void setDocumentNumber(String documentNumber) {
-        mIdDocument.setIdValue(documentNumber);
+        if (TextUtils.isEmpty(documentNumber)) {
+            mIdDocument.setIdValue(null);
+        } else {
+            mIdDocument.setIdValue(documentNumber);
+        }
     }
 
     public void setCountry(String country) {
