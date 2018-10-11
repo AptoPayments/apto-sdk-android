@@ -52,7 +52,7 @@ public class PersonalInformationConfirmationPresenter
             mView.setPhone(mModel.getPhoneNumber());
         }
         if(mModel.hasDateOfBirth()) {
-            mView.setDateOfBirth(mModel.getDateOfBirth());
+            mView.setDateOfBirth(mModel.getDateOfBirth(mActivity.getResources().getConfiguration().locale));
         }
         if(mModel.hasIdDocument()) {
             mView.setIdDocument(mModel.getIdDocument());

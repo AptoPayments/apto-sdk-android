@@ -10,6 +10,14 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PhoneNumberVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.Model;
+import com.shiftpayments.link.sdk.ui.utils.DateUtil;
+import com.shiftpayments.link.sdk.ui.utils.PhoneHelperUtil;
+
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import static com.shiftpayments.link.sdk.ui.utils.DateUtil.BIRTHDATE_DATE_FORMAT;
 
 
 /**
@@ -29,7 +37,6 @@ public class PersonalInformationConfirmationModel extends AbstractUserDataModel 
     /**
      * Creates a new {@link PersonalInformationConfirmationModel} instance.
      */
-
     public PersonalInformationConfirmationModel() { }
 
     /** {@inheritDoc} */
@@ -84,15 +91,16 @@ public class PersonalInformationConfirmationModel extends AbstractUserDataModel 
     }
 
     public String getPhoneNumber() {
-        return mPhoneNumber.toString();
+        return PhoneHelperUtil.formatPhone(mPhoneNumber.phoneNumber, true);
     }
 
     public boolean hasPhoneNumber() {
         return mPhoneNumber != null;
     }
 
-    public String getDateOfBirth() {
-        return mBirthdate.toString();
+    public String getDateOfBirth(Locale locale) {
+        Date date = new DateUtil(locale).getDateFromString(mBirthdate.getDate(), BIRTHDATE_DATE_FORMAT);
+        return DateFormat.getDateInstance(DateFormat.MEDIUM).format(date);
     }
 
     public boolean hasDateOfBirth() {
