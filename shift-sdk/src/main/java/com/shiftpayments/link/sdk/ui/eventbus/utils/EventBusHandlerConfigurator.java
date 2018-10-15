@@ -4,7 +4,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.activities.link.LoanAmountActivity;
 import com.shiftpayments.link.sdk.ui.activities.offers.OffersListActivity;
-import com.shiftpayments.link.sdk.ui.activities.userdata.AddressActivity;
+import com.shiftpayments.link.sdk.ui.activities.userdata.ApartmentActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.CreditScoreActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
@@ -32,7 +32,7 @@ public class EventBusHandlerConfigurator implements HandlerConfigurator {
         process.add(PersonalInformationActivity.class);
         process.add(PhoneVerificationActivity.class);
         process.add(EmailVerificationActivity.class);
-        process.add(AddressActivity.class);
+        process.add(ApartmentActivity.class);
         process.add(AnnualIncomeActivity.class);
         process.add(MonthlyIncomeActivity.class);
         process.add(CreditScoreActivity.class);

@@ -8,35 +8,35 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 
 public class Address extends DataPointVo implements Parcelable {
-    public String address;
-    public String apUnit;
+    public String streetOne;
+    public String streetTwo;
     public String country;
-    public String city;
-    public String stateCode;
-    public String zip;
+    public String locality;
+    public String region;
+    public String postalCode;
 
     public Address() {
         this(null, null, null, null, null, null, false, false);
     }
 
-    public Address(String address, String apUnit, String country, String city, String stateCode,
-                   String zip, boolean verified, boolean notSpecified) {
+    public Address(String streetOne, String streetTwo, String country, String locality, String region,
+                   String postalCode, boolean verified, boolean notSpecified) {
         super(DataPointType.Address, verified, notSpecified);
-        this.address = address;
-        this.apUnit = apUnit;
+        this.streetOne = streetOne;
+        this.streetTwo = streetTwo;
         this.country = country;
-        this.city = city;
-        this.stateCode = stateCode;
-        this.zip = zip;
+        this.locality = locality;
+        this.region = region;
+        this.postalCode = postalCode;
     }
 
     protected Address(Parcel in) {
-        address = in.readString();
-        apUnit = in.readString();
+        streetOne = in.readString();
+        streetTwo = in.readString();
         country = in.readString();
-        city = in.readString();
-        stateCode = in.readString();
-        zip = in.readString();
+        locality = in.readString();
+        region = in.readString();
+        postalCode = in.readString();
     }
 
     public static final Creator<Address> CREATOR = new Creator<Address>() {
@@ -52,40 +52,41 @@ public class Address extends DataPointVo implements Parcelable {
     };
 
     public void update(Address addressToCopy) {
-        this.address = addressToCopy.address;
-        this.apUnit = addressToCopy.apUnit;
+        this.streetOne = addressToCopy.streetOne;
+        this.streetTwo = addressToCopy.streetTwo;
         this.country = addressToCopy.country;
-        this.city = addressToCopy.city;
-        this.stateCode = addressToCopy.stateCode;
-        this.zip = addressToCopy.zip;
+        this.locality = addressToCopy.locality;
+        this.region = addressToCopy.region;
+        this.postalCode = addressToCopy.postalCode;
     }
 
     @Override
     public JsonObject toJSON() {
         JsonObject gsonObject = super.toJSON();
         gsonObject.addProperty("data_type", "address");
-        gsonObject.addProperty("address", address);
-        gsonObject.addProperty("apt", apUnit);
-        gsonObject.addProperty("city", city);
-        gsonObject.addProperty("state", stateCode);
-        gsonObject.addProperty("zip", zip);
+        gsonObject.addProperty("street_one", streetOne);
+        gsonObject.addProperty("street_two", streetTwo);
+        gsonObject.addProperty("locality", locality);
+        gsonObject.addProperty("region", region);
+        gsonObject.addProperty("postal_code", postalCode);
+        gsonObject.addProperty("country", country);
         return gsonObject;
     }
 
     @Override
     public String toString() {
         ArrayList<String> addressArray = new ArrayList<>();
-        if (this.address != null && !this.address.isEmpty()) {
-            addressArray.add(this.address);
+        if (this.streetOne != null && !this.streetOne.isEmpty()) {
+            addressArray.add(this.streetOne);
         }
-        if (this.city != null && !this.city.isEmpty()) {
-            addressArray.add(this.city);
+        if (this.locality != null && !this.locality.isEmpty()) {
+            addressArray.add(this.locality);
         }
-        if (this.stateCode != null && !this.stateCode.isEmpty()) {
-            addressArray.add(this.stateCode);
+        if (this.region != null && !this.region.isEmpty()) {
+            addressArray.add(this.region);
         }
-        if (this.zip != null && !this.zip.isEmpty()) {
-            addressArray.add(this.zip);
+        if (this.postalCode != null && !this.postalCode.isEmpty()) {
+            addressArray.add(this.postalCode);
         }
         if (this.country != null && !this.country.isEmpty()) {
             addressArray.add(this.country);
@@ -100,27 +101,27 @@ public class Address extends DataPointVo implements Parcelable {
         if(!super.equals(o)) return false;
         Address address1 = (Address) o;
 
-        if (address != null ? !address.equals(address1.address) : address1.address != null)
+        if (streetOne != null ? !streetOne.equals(address1.streetOne) : address1.streetOne != null)
             return false;
-        if (apUnit != null ? !apUnit.equals(address1.apUnit) : address1.apUnit != null)
+        if (streetTwo != null ? !streetTwo.equals(address1.streetTwo) : address1.streetTwo != null)
             return false;
         if (country != null ? !country.equals(address1.country) : address1.country != null)
             return false;
-        if (city != null ? !city.equals(address1.city) : address1.city != null) return false;
-        if (stateCode != null ? !stateCode.equals(address1.stateCode) : address1.stateCode != null)
+        if (locality != null ? !locality.equals(address1.locality) : address1.locality != null) return false;
+        if (region != null ? !region.equals(address1.region) : address1.region != null)
             return false;
-        return zip != null ? zip.equals(address1.zip) : address1.zip == null;
+        return postalCode != null ? postalCode.equals(address1.postalCode) : address1.postalCode == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode()+(address != null ? address.hashCode() : 0);
-        result = 31 * result + (apUnit != null ? apUnit.hashCode() : 0);
+        int result = super.hashCode()+(streetOne != null ? streetOne.hashCode() : 0);
+        result = 31 * result + (streetTwo != null ? streetTwo.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (stateCode != null ? stateCode.hashCode() : 0);
-        result = 31 * result + (zip != null ? zip.hashCode() : 0);
+        result = 31 * result + (locality != null ? locality.hashCode() : 0);
+        result = 31 * result + (region != null ? region.hashCode() : 0);
+        result = 31 * result + (postalCode != null ? postalCode.hashCode() : 0);
         return result;
     }
 
@@ -131,11 +132,11 @@ public class Address extends DataPointVo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(address);
-        parcel.writeString(apUnit);
+        parcel.writeString(streetOne);
+        parcel.writeString(streetTwo);
         parcel.writeString(country);
-        parcel.writeString(city);
-        parcel.writeString(stateCode);
-        parcel.writeString(zip);
+        parcel.writeString(locality);
+        parcel.writeString(region);
+        parcel.writeString(postalCode);
     }
 }

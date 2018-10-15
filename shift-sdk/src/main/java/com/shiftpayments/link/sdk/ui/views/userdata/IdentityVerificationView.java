@@ -5,21 +5,24 @@ import android.content.res.ColorStateList;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
-import com.shiftpayments.link.sdk.ui.widgets.SsnEditText;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
-
-import java.util.Arrays;
 
 /**
  * Displays the user details screen.
@@ -27,7 +30,26 @@ import java.util.Arrays;
  */
 public class IdentityVerificationView
         extends UserDataView<IdentityVerificationView.ViewListener>
-        implements View.OnClickListener, ViewWithToolbar, ViewWithIndeterminateLoading {
+        implements View.OnClickListener, ViewWithToolbar, ViewWithIndeterminateLoading, AdapterView.OnItemSelectedListener {
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View row, int pos, long l) {
+
+        ((TextView) parent.getChildAt(0)).setTextColor(UIStorage.getInstance().getTextSecondaryColor());
+        ((TextView) parent.getChildAt(0)).setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.llsdk_form_field));
+        int id = parent.getId();
+        if (id == R.id.sp_document_type) {
+            mListener.documentTypeClickHandler((IdDocument.IdDocumentType) parent.getItemAtPosition(pos));
+        }
+        else if(id == R.id.sp_citizenship) {
+            mListener.citizenshipClickHandler((String) parent.getItemAtPosition(pos));
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 
     /**
      * Callbacks this View will invoke.
@@ -35,6 +57,8 @@ public class IdentityVerificationView
     public interface ViewListener extends StepperListener, NextButtonListener {
         void ssnCheckBoxClickHandler();
         void monthClickHandler();
+        void citizenshipClickHandler(String country);
+        void documentTypeClickHandler(IdDocument.IdDocumentType documentType);
     }
 
     private EditText mBirthdayMonth;
@@ -42,16 +66,23 @@ public class IdentityVerificationView
     private EditText mBirthdayYear;
     private TextView mBirthdateErrorView;
     private TextView mBirthdateHint;
-    private TextInputLayout mSocialSecurityWrapper;
+    private TextInputLayout mDocumentNumberWrapper;
 
-    private SsnEditText mSocialSecurityField;
+    private EditText mDocumentNumberField;
     private CheckBox mSocialSecurityAvailableCheck;
     private TextView mSocialSecurityAvailableField;
+
+    private TextView mCitizenshipLabel;
+    private Spinner mCitizenshipSpinner;
+
+    private Spinner mDocumentTypeSpinner;
 
     private LoadingView mLoadingView;
 
     private ProgressBar mProgressBar;
     private TextView mNextButton;
+    private ScrollView mScrollView;
+
     /**
      * @see UserDataView#UserDataView
      * @param context See {@link UserDataView#UserDataView}.
@@ -87,11 +118,11 @@ public class IdentityVerificationView
         mBirthdayDay.setHintTextColor(textTertiaryColor);
         mBirthdayYear.setTextColor(textSecondaryColor);
         mBirthdayYear.setHintTextColor(textTertiaryColor);
-        mSocialSecurityField.setTextColor(textSecondaryColor);
-        mSocialSecurityField.setHintTextColor(textTertiaryColor);
+        mDocumentNumberField.setTextColor(textSecondaryColor);
+        mDocumentNumberField.setHintTextColor(textTertiaryColor);
         UIStorage.getInstance().setCursorColor(mBirthdayDay);
         UIStorage.getInstance().setCursorColor(mBirthdayYear);
-        UIStorage.getInstance().setCursorColor(mSocialSecurityField);
+        UIStorage.getInstance().setCursorColor(mDocumentNumberField);
     }
 
     /** {@inheritDoc} */
@@ -102,27 +133,45 @@ public class IdentityVerificationView
         mBirthdayDay = findViewById(R.id.et_birthday_day);
         mBirthdayYear = findViewById(R.id.et_birthday_year);
         mBirthdateErrorView = findViewById(R.id.tv_birthdate_error);
-        mBirthdateHint = findViewById(R.id.tv_birthdate_hint);
+        mBirthdateHint = findViewById(R.id.tv_birthdate_label);
 
-        mSocialSecurityWrapper = findViewById(R.id.til_social_security);
-        mSocialSecurityField = findViewById(R.id.et_social_security);
+        mDocumentNumberWrapper = findViewById(R.id.til_document_number);
+        mDocumentNumberField = findViewById(R.id.et_social_security);
         mSocialSecurityAvailableCheck = findViewById(R.id.cb_ssn_itin_not_available);
         mSocialSecurityAvailableField = findViewById(R.id.tv_ssn_itin_not_available);
+
+        // remove hint from `TextInputLayout`
+        mDocumentNumberWrapper.setHint(null);
+        // set the hint back on the `EditText`
+        mDocumentNumberField.setHint(R.string.id_verification_document_number_hint);
+
+        mCitizenshipLabel = findViewById(R.id.tv_citizenship_label);
+        mCitizenshipSpinner = findViewById(R.id.sp_citizenship);
+
+        mDocumentTypeSpinner = findViewById(R.id.sp_document_type);
 
         mNextButton = findViewById(R.id.tv_next_bttn);
 
         mLoadingView = findViewById(R.id.rl_loading_overlay);
         mProgressBar = findViewById(R.id.pb_progress);
+        mScrollView = findViewById(R.id.sv_id_verification);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void setupListeners() {
         super.setupListeners();
-        mSocialSecurityField.setOnClickListener(this);
+        mDocumentNumberField.setOnClickListener(this);
         mSocialSecurityAvailableCheck.setOnClickListener(this);
         mNextButton.setOnClickListener(this);
         mBirthdayMonth.setOnClickListener(this);
+        mCitizenshipSpinner.setOnItemSelectedListener(this);
+        mDocumentTypeSpinner.setOnItemSelectedListener(this);
+        mDocumentNumberField.setOnTouchListener((view, motionEvent) -> {
+            mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            mScrollView.post(() -> mDocumentNumberField.requestFocus());
+            return false;
+        });
     }
 
     /** {@inheritDoc} */
@@ -173,10 +222,10 @@ public class IdentityVerificationView
     }
 
     /**
-     * @return Social security number.
+     * @return ID document number.
      */
-    public String getSocialSecurityNumber() {
-        return mSocialSecurityField.getSsn();
+    public String getDocumentNumber() {
+        return mDocumentNumberField.getText().toString();
     }
 
     public void setBirthdayDay(String day) {
@@ -196,36 +245,19 @@ public class IdentityVerificationView
     }
 
     /**
-     * Shows the user's social security number with hyphens.
-     * @param ssn social security number.
+     * Shows the user's ID document number
+     * @param documentNumber ID document number
      */
-    public void setSSN(String ssn) {
-        ssn = new StringBuilder(ssn).insert(3, "-").toString();
-        ssn = new StringBuilder(ssn).insert(6, "-").toString();
-        mSocialSecurityField.setText(ssn);
-    }
-
-    private String getMaskedSSN() {
-        final char DOT = '\u2022';
-        char[] mask = new char[getResources().getInteger(R.integer.ssn_length)];
-        Arrays.fill(mask, DOT);
-        return new String(mask);
-    }
-
-    public void setMaskedSSN() {
-        setSSN(getMaskedSSN());
-    }
-
-    public boolean isSSNMasked() {
-        return getMaskedSSN().equals(getSocialSecurityNumber());
+    public void setDocumentNumber(String documentNumber) {
+        mDocumentNumberField.setText(documentNumber);
     }
 
     public void showSSN(boolean show) {
         if(show) {
-            mSocialSecurityField.setVisibility(VISIBLE);
+            mDocumentNumberField.setVisibility(VISIBLE);
         }
         else {
-            mSocialSecurityField.setVisibility(GONE);
+            mDocumentNumberField.setVisibility(GONE);
         }
     }
 
@@ -244,8 +276,8 @@ public class IdentityVerificationView
         return mSocialSecurityAvailableCheck.isChecked();
     }
 
-    public void enableSSNField(boolean enabled) {
-        mSocialSecurityField.setEnabled(enabled);
+    public void enableIdDocumentField(boolean enabled) {
+        mDocumentNumberField.setEnabled(enabled);
     }
 
     /**
@@ -269,8 +301,8 @@ public class IdentityVerificationView
      * @param show Whether the error should be shown.
      * @param errorMessageId Error message resource ID.
      */
-    public void updateSocialSecurityError(boolean show, int errorMessageId) {
-        updateErrorDisplay(mSocialSecurityWrapper, show, errorMessageId);
+    public void updateDocumentNumberError(boolean show, int errorMessageId) {
+        updateErrorDisplay(mDocumentNumberWrapper, show, errorMessageId);
     }
 
     @Override
@@ -280,6 +312,22 @@ public class IdentityVerificationView
 
     public void setButtonText(String buttonText) {
         mNextButton.setText(buttonText);
+    }
+
+    public void setCitizenshipSpinnerAdapter(ArrayAdapter<String> adapter) {
+        mCitizenshipSpinner.setAdapter(adapter);
+    }
+
+    public void setDocumentTypeSpinnerAdapter(ArrayAdapter<IdDocument.IdDocumentType> adapter) {
+        mDocumentTypeSpinner.setAdapter(adapter);
+    }
+
+    public String getCitizenship() {
+        return (String) mCitizenshipSpinner.getSelectedItem();
+    }
+
+    public void setCitizenship(int selection) {
+        mCitizenshipSpinner.setSelection(selection);
     }
 
     public void showBirthday(boolean show) {
@@ -293,5 +341,21 @@ public class IdentityVerificationView
             mBirthdayDay.setVisibility(GONE);
             mBirthdayYear.setVisibility(GONE);
         }
+    }
+
+    public void showCitizenshipSpinner(boolean show) {
+        if(show) {
+            mCitizenshipSpinner.setVisibility(VISIBLE);
+            mCitizenshipLabel.setVisibility(VISIBLE);
+        }
+        else {
+            mCitizenshipSpinner.setVisibility(GONE);
+            mCitizenshipLabel.setVisibility(GONE);
+        }
+    }
+
+    public void enableSpinners(boolean enable) {
+        mCitizenshipSpinner.setEnabled(enable);
+        mDocumentTypeSpinner.setEnabled(enable);
     }
 }

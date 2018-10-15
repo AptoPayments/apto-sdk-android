@@ -110,7 +110,7 @@ public interface ShiftApiWrapper {
     String FINANCIAL_ACCOUNT_DISABLE_PATH = "v1/user/accounts/{account_id}/disable";
     String FINANCIAL_ACCOUNT_TRANSACTIONS_PATH = "v1/user/accounts/{account_id}/transactions";
     String FINANCIAL_ACCOUNT_BALANCE_PATH = "v1/user/accounts/{account_id}/balance";
-    String USER_BALANCES_PATH = "v1/user/accounts/balances";
+    String USER_BALANCES_PATH = "v1/user/accounts/{account_id}/balances";
     String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
     String CARD_APPLICATION_STATUS_PATH = "v1/user/accounts/applications/{application_id}/status";
     String SET_BALANCE_STORE_PATH = "v1/user/accounts/applications/{application_id}/select_balance_store";
@@ -127,12 +127,11 @@ public interface ShiftApiWrapper {
 
     /**
      * Stores the basic request data.
-     * @param developerKey Public developer key.
      * @param device Device information, preferably including: manufacturer, model name and Android SDK version.
      * @param isCertificatePinningEnabled should certificate pinning be enabled
      * @param trustSelfSignedCerts should self signed certificates be trusted
      */
-    void setBaseRequestData(String developerKey, String device, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts);
+    void setBaseRequestData(String device, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts);
 
     /**
      * Stores a new bearer token.
@@ -146,26 +145,15 @@ public interface ShiftApiWrapper {
     String getBearerToken();
 
     /**
-     * @return Developer key.
+     * Stores a API key.
+     * @param apiKey API key.
      */
-    String getDeveloperKey();
+    void setApiKey(String apiKey);
 
     /**
-     * Stores a new developer key.
-     * @param key Developer key.
+     * @return API key.
      */
-    void setDeveloperKey(String key);
-
-    /**
-     * Stores a new project token.
-     * @param token Project token.
-     */
-    void setProjectToken(String token);
-
-    /**
-     * @return Project token.
-     */
-    String getProjectToken();
+    String getApiKey();
 
     /**
      * @return API endpoint.
@@ -458,18 +446,19 @@ public interface ShiftApiWrapper {
     BalanceVo getFinancialAccountFundingSource(String accountId) throws ApiException;
 
     /**
-     * @param requestData Mandatory request data.
+     * @param cardId The card ID
      * @return The funding source of the requested financial account
      * @throws ApiException When there is an error making the request.
      */
-    BalanceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException;
+    BalanceListVo getUserFundingSources(String cardId) throws ApiException;
 
     /**
+     * @param cardId The card ID
      * @param requestData Mandatory request data.
      * @return The newly added balance
      * @throws ApiException When there is an error making the request.
      */
-    BalanceVo addUserBalance(AddBalanceRequestVo requestData) throws ApiException;
+    BalanceVo addUserBalance(String cardId, AddBalanceRequestVo requestData) throws ApiException;
 
     /**
      * @param accountId The financial account ID.

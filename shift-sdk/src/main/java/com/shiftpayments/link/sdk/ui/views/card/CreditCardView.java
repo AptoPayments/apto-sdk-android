@@ -151,6 +151,17 @@ public class CreditCardView extends RelativeLayout {
         return mCardNumberView1;
     }
 
+    public void setCardBackgroundColor(int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Drawable background = mContext.getDrawable(color);
+            background.setColorFilter(UIStorage.getInstance().getCardBackgroundColor(), PorterDuff.Mode.SRC_ATOP);
+            setBackground(background);
+        }
+        else {
+            setBackgroundResource(color);
+        }
+    }
+
     private void setFonts() {
         Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/ocraextended.ttf");
         mCardNumberView1.setTypeface(typeface);
@@ -181,14 +192,7 @@ public class CreditCardView extends RelativeLayout {
         mCvvView.setVisibility(VISIBLE);
         mCvvLabel.setVisibility(VISIBLE);
         mCardOverlay.setVisibility(GONE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Drawable background = mContext.getDrawable(mEnabledCardBackground);
-            background.setColorFilter(UIStorage.getInstance().getUiPrimaryColor(), PorterDuff.Mode.SRC_ATOP);
-            setBackground(background);
-        }
-        else {
-            setBackgroundResource(mEnabledCardBackground);
-        }
+        setCardBackgroundColor(mEnabledCardBackground);
     }
 
     private void disableCard() {

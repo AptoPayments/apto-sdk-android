@@ -99,7 +99,7 @@
             <TextView
                 android:id="@+id/tv_direction_header"
                 style="?attr/llsdk_transactionDetails_detailHeaderTextStyle"
-                android:text="@string/transaction_details_direction" />
+                android:text="@string/transaction_details_address" />
 
             <include layout="@layout/include_ll_transaction_address" />
 

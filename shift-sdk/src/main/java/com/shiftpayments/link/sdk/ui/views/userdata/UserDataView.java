@@ -159,6 +159,13 @@ public class UserDataView<L extends StepperListener & NextButtonListener>
         });
     }
 
+    public void setNextButtonText(String text) {
+        mToolbar.post(() -> {
+            MenuItem item = mToolbar.getMenu().findItem(R.id.action_next);
+            item.setTitle(text);
+        });
+    }
+
     public void setObserver(Observer<Boolean> observer) {
         if(mUiFieldsObservable != null) {
             mUiFieldsObservable.subscribe(observer);

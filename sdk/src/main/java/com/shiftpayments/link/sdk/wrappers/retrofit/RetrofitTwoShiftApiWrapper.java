@@ -206,7 +206,7 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     private OkHttpClient.Builder createDefaultClientBuilder(boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         // Send correct data in the headers.
         if (mInterceptor == null) {
-            mInterceptor = new ShiftOkThreeInterceptor(getDeviceInfo(), getDeveloperKey(), getProjectToken());
+            mInterceptor = new ShiftOkThreeInterceptor(getDeviceInfo(), getApiKey());
         }
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
@@ -363,11 +363,10 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
 
     /** {@inheritDoc} */
     @Override
-    public void setBaseRequestData(String developerKey, String device,
+    public void setBaseRequestData(String device,
                                    boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
-        super.setBaseRequestData(developerKey, device, isCertificatePinningEnabled, trustSelfSignedCerts);
+        super.setBaseRequestData(device, isCertificatePinningEnabled, trustSelfSignedCerts);
         setUpRetrofit(isCertificatePinningEnabled, trustSelfSignedCerts);
-        mInterceptor.setDeveloperKey(developerKey);
     }
 
     /** {@inheritDoc} */
@@ -379,27 +378,19 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
 
     /** {@inheritDoc} */
     @Override
-    public void setProjectToken(String projectToken) {
-        super.setProjectToken(projectToken);
-        mInterceptor.setProjectToken(projectToken);
+    public void setApiKey(String apiKey) {
+        super.setApiKey(apiKey);
+        mInterceptor.setApiKey(apiKey);
     }
 
     @Override
     public HashMap<String, String> getHTTPHeaders() {
 
         HashMap<String, String> additionalHttpHeaders = new HashMap<>();
-        additionalHttpHeaders.put("Developer-Authorization", "Bearer=" + getDeveloperKey());
-        additionalHttpHeaders.put("Project", "Bearer=" + getProjectToken());
+        additionalHttpHeaders.put("Api-Key", "Bearer=" + getApiKey());
         additionalHttpHeaders.put("Authorization", "Bearer=" + getBearerToken());
 
         return additionalHttpHeaders;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setDeveloperKey(String developerKey) {
-        super.setDeveloperKey(developerKey);
-        mInterceptor.setDeveloperKey(developerKey);
     }
 
     /** {@inheritDoc} */
@@ -1046,10 +1037,10 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     }
 
     @Override
-    public BalanceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
+    public BalanceListVo getUserFundingSources(String cardId) throws ApiException {
         BalanceListVo result;
         try {
-            Response<BalanceListVo> response = mFinancialAccountService.getUserFundingSources().execute();
+            Response<BalanceListVo> response = mFinancialAccountService.getUserFundingSources(cardId).execute();
             result = handleResponse(response, ShiftApiWrapper.USER_BALANCES_PATH);
         } catch (IOException ioe) {
             result = null;
@@ -1059,10 +1050,10 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     }
 
     @Override
-    public BalanceVo addUserBalance(AddBalanceRequestVo requestData) throws ApiException {
+    public BalanceVo addUserBalance(String cardId, AddBalanceRequestVo requestData) throws ApiException {
         BalanceVo result;
         try {
-            Response<BalanceVo> response = mFinancialAccountService.addBalanceStore(requestData).execute();
+            Response<BalanceVo> response = mFinancialAccountService.addBalanceStore(cardId, requestData).execute();
             result = handleResponse(response, ShiftApiWrapper.USER_BALANCES_PATH);
         } catch (IOException ioe) {
             result = null;

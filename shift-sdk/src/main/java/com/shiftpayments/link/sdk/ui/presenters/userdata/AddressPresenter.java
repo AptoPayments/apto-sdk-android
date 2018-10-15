@@ -1,88 +1,125 @@
 package com.shiftpayments.link.sdk.ui.presenters.userdata;
 
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
+import android.util.Log;
 
-import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
+import com.shiftpayments.link.sdk.api.vos.IdDescriptionPairDisplayVo;
+import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.HousingTypeVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.geocoding.handlers.GeocodingHandler;
+import com.shiftpayments.link.sdk.ui.geocoding.handlers.GooglePlacesArrayAdapter;
+import com.shiftpayments.link.sdk.ui.geocoding.vos.AddressComponentVo;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.ResultVo;
 import com.shiftpayments.link.sdk.ui.models.userdata.AddressModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.storages.CardStorage;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.userdata.AddressView;
+import com.shiftpayments.link.sdk.ui.widgets.HintArrayAdapter;
+import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
+
+import java.util.ArrayList;
 
 import java8.util.concurrent.CompletableFuture;
-import me.ledge.common.models.countries.Usa;
-import me.ledge.common.models.countries.UsaState;
+
+import static com.shiftpayments.link.sdk.ui.geocoding.handlers.GooglePlacesArrayAdapter.GOOGLE_PLACES_TAG;
 
 /**
- * Concrete {@link Presenter} for the address screen.
- * @author Wijnand
+ * Concrete {@link Presenter} for the address validation screen.
+ * @author Adrian
  */
 public class AddressPresenter
-        extends UserDataPresenter<AddressModel, AddressView>
-        implements AddressView.ViewListener {
+        extends UserDataPresenter<AddressModel, AddressView> implements AddressView.ViewListener {
 
-    private Usa mStates;
+    private HintArrayAdapter<IdDescriptionPairDisplayVo> mHousingTypeAdapter;
     private AddressDelegate mDelegate;
-    private boolean mIsStrictAddressValidationEnabled;
+    private boolean mIsHousingTypeRequired;
     private LoadingSpinnerManager mLoadingSpinnerManager;
+    private boolean mIsNextClickHandlerPending = false;
+    private GeocodingHandler mGeocodingHandler;
+    private GooglePlacesArrayAdapter mGooglePlacesArrayAdapter;
+    private ArrayList<String> mAllowedCountries;
 
     /**
      * Creates a new {@link AddressPresenter} instance.
      * @param activity Activity.
      */
-    public AddressPresenter(AppCompatActivity activity, AddressDelegate delegate) {
+    public AddressPresenter(AppCompatActivity activity, AddressDelegate delegate, ArrayList<String> allowedCountries) {
         super(activity);
-        createStates();
         mDelegate = delegate;
+        UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
+        mIsHousingTypeRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.Housing));
+        mAllowedCountries = allowedCountries;
     }
 
     /**
-     * Generates the list of USA states.
+     * @param typesList List of housing types.
+     * @return Adapter used to display the list of housing types.
      */
-    private void createStates() {
-        String[] codes = mActivity.getResources().getStringArray(R.array.usa_state_codes);
-        String[] names = mActivity.getResources().getStringArray(R.array.usa_state_names);
-        mStates = new Usa(codes, names);
+    private HintArrayAdapter<IdDescriptionPairDisplayVo> generateHousingTypeAdapter(HousingTypeVo[] typesList) {
+        HintArrayAdapter<IdDescriptionPairDisplayVo> adapter
+                = new HintArrayAdapter<>(mActivity, android.R.layout.simple_spinner_dropdown_item);
+
+        IdDescriptionPairDisplayVo hint
+                = new IdDescriptionPairDisplayVo(-1, mActivity.getString(R.string.address_housing_type_hint));
+
+        adapter.add(hint);
+
+        if (typesList != null) {
+            for (HousingTypeVo type : typesList) {
+                adapter.add(new IdDescriptionPairDisplayVo(type.housing_type_id, type.description));
+            }
+        }
+
+        return adapter;
     }
 
     /** {@inheritDoc} */
     @Override
     public void attachView(AddressView view) {
         super.attachView(view);
+        mView.enableNextButton(false);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
-        CompletableFuture
-                .supplyAsync(()-> ConfigStorage.getInstance().isStrictAddressValidationEnabled())
-                .thenAccept(this::setIsAddressValidationEnabled);
-
-        // Create adapter.
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                mActivity, R.array.usa_state_names, android.R.layout.simple_spinner_dropdown_item);
-        mView.setStateSpinnerAdapter(adapter);
 
         // Set data.
-        mView.setAddress(mModel.getStreetAddress());
-        mView.setApartment(mModel.getApartmentNumber());
-        mView.setCity(mModel.getCity());
-        mView.setZipCode(mModel.getZip());
+        mView.setAddress(mModel.getFullAddress());
 
-        mView.updateStateError(false, 0);
-        mView.updateZipError(false, 0);
+        // Create the adapter and set it to the AutoCompleteTextView
+        mGooglePlacesArrayAdapter = new GooglePlacesArrayAdapter(mActivity, android.R.layout.simple_list_item_1,
+                mAllowedCountries);
+        mView.setAddressAdapter(mGooglePlacesArrayAdapter);
 
-        UsaState state = mStates.getStateByCode(mModel.getState());
-        if (state != null) {
-            mView.setState(state.getName());
+        mView.updateAddressError(false, 0);
+        mView.updateHousingTypeError(false);
+        mView.showHousingTypeHint(mIsHousingTypeRequired);
+        if(mIsHousingTypeRequired) {
+            if (mHousingTypeAdapter == null) {
+                mLoadingSpinnerManager.showLoading(true);
+                // Load housing types list.
+                CompletableFuture
+                        .supplyAsync(()-> UIStorage.getInstance().getContextConfig())
+                        .exceptionally(ex -> {
+                            ApiErrorUtil.showErrorMessage(ex, mActivity);
+                            return null;
+                        })
+                        .thenAccept(this::handleHousingTypes);
+            } else {
+                mView.setHousingTypeAdapter(mHousingTypeAdapter);
+
+                if (mModel.hasValidHousingType()) {
+                    mView.setHousingType(mModel.getHousingType().getKey());
+                }
+            }
         }
-
+        else {
+            mLoadingSpinnerManager.showLoading(false);
+        }
         mView.setListener(this);
-        mLoadingSpinnerManager.showLoading(false);
-    }
-
-    private void setIsAddressValidationEnabled(boolean isAddressValidationEnabled) {
-        mIsStrictAddressValidationEnabled = isAddressValidationEnabled;
     }
 
     @Override
@@ -100,50 +137,37 @@ public class AddressPresenter
     /** {@inheritDoc} */
     @Override
     public void nextClickHandler() {
-        // Store data.
-        mModel.setStreetAddress(mView.getAddress());
-        mModel.setApartmentNumber(mView.getApartment());
-        mModel.setCity(mView.getCity());
-        mModel.setZip(mView.getZipCode());
-
-        UsaState state = mStates.getStateByName(mView.getState());
-        if (state == null) {
-            mModel.setState(null);
-        } else {
-            mModel.setState(state.getCode());
-        }
-
-        if(!mIsStrictAddressValidationEnabled || mModel.hasVerifiedAddress()) {
-            validateData();
+        if(mGeocodingHandler != null) {
+            mLoadingSpinnerManager.showLoading(true);
+            mIsNextClickHandlerPending = true;
         }
         else {
-            mLoadingSpinnerManager.showLoading(true);
-            startAddressVerification(()-> mActivity.runOnUiThread(() -> {
-                if(mModel.hasVerifiedAddress()) {
-                    validateData();
-                }
-                else {
-                    mView.updateAddressError(true, R.string.address_address_error);
-                }
-            }));
+            // Store data.
+            if(mIsHousingTypeRequired) {
+                mModel.setHousingType(mView.getHousingType());
+            }
+            validateData();
         }
     }
 
     private void validateData() {
-        if (mModel.hasValidData()) {
-            saveData();
-            mDelegate.addressStored();
+        mView.updateAddressError(!mModel.hasValidAddress(), R.string.address_error);
+        if(mIsHousingTypeRequired) {
+            mView.updateHousingTypeError(!mModel.hasValidHousingType());
+            if (mModel.hasValidData()) {
+                saveDataAndExit();
+            }
         }
         else {
-            updateErrorLabels();
+            if(mModel.hasValidAddress()) {
+                saveDataAndExit();
+            }
         }
     }
 
-    private void updateErrorLabels() {
-        mView.updateAddressError(!mModel.hasValidAddress(), R.string.address_address_error);
-        mView.updateCityError(!mModel.hasValidCity(), R.string.address_city_error);
-        mView.updateStateError(!mModel.hasValidState(), R.string.address_state_error);
-        mView.updateZipError(!mModel.hasValidZip(), R.string.address_zip_code_error);
+    private void saveDataAndExit() {
+        saveData();
+        mDelegate.addressAndHousingTypeStored();
     }
 
     /** {@inheritDoc} */
@@ -152,38 +176,97 @@ public class AddressPresenter
         return new AddressModel();
     }
 
-    private void startAddressVerification(AddressVerificationCallback callback) {
-        String address = String.format("%s,+%s,+%s,+%s",
-                mView.getAddress(), mModel.getCity(), mModel.getState(), mModel.getZip());
-        String formattedAddress = address.replace(' ', '+');
-        new GeocodingHandler().reverseGeocode(mActivity, formattedAddress, mModel.getCountry(),
-                response -> {
-                    mLoadingSpinnerManager.showLoading(false);
-                    boolean isValidAddress = false;
+    /**
+     * Called when the housing types list API response has been received.
+     * @param response API response.
+     */
+    private void handleHousingTypes(ConfigResponseVo response) {
+        if (isHousingTypesPresent(response)) {
+            setHousingTypesList(response.housingTypeOpts.data);
+        }
+    }
 
-                    if (response != null && !response.getResults().isEmpty()) {
-                        ResultVo result = response.getResults().get(0);
-                        isValidAddress = !result.getFormattedAddress().isEmpty();
+    private boolean isHousingTypesPresent(ConfigResponseVo response) {
+        return response!=null && response.housingTypeOpts!=null;
+    }
+
+    /**
+     * Stores a new list of housing types and updates the View.
+     * @param typesList New list.
+     */
+    private void setHousingTypesList(HousingTypeVo[] typesList) {
+        mHousingTypeAdapter = generateHousingTypeAdapter(typesList);
+
+        if (mView != null) {
+            mActivity.runOnUiThread(()-> {
+                mLoadingSpinnerManager.showLoading(false);
+                mView.setHousingTypeAdapter(mHousingTypeAdapter);
+
+                if (mModel.hasValidHousingType()) {
+                    mView.setHousingType(mModel.getHousingType().getKey());
+                }
+            });
+        }
+    }
+
+    private void getPlaceDetails(String placeId) {
+        if(mGeocodingHandler != null) {
+            mGeocodingHandler.cancel();
+        }
+        mGeocodingHandler = new GeocodingHandler();
+        mGeocodingHandler.reverseGeocode(mActivity, placeId,
+                response -> {
+                    mGeocodingHandler = null;
+                    if (response == null) {
+                        Log.e(GOOGLE_PLACES_TAG, "Reverse geocoding failed");
+                        return;
+                    } else if(!response.status.equals("OK")) {
+                        Log.e(GOOGLE_PLACES_TAG, "Get places details status: " + response.status);
+                        return;
                     }
-                    mModel.setIsAddressValid(isValidAddress);
-                    if(callback != null) {
-                        callback.execute();
+                    ResultVo result = response.result;
+                    for (AddressComponentVo addressComponent : result.getAddressComponents()) {
+                        switch (addressComponent.getTypes().get(0)) {
+                            case "locality":
+                            case "postal_town":
+                                mModel.setCity(addressComponent.getLongName());
+                                break;
+                            case "administrative_area_level_1":
+                                mModel.setRegion(addressComponent.getShortName());
+                                break;
+                            case "country":
+                                String country = addressComponent.getShortName();
+                                mModel.setCountry(country);
+                                CardStorage.getInstance().setSelectedCountry(country);
+                                break;
+                            case "postal_code":
+                                mModel.setZip(addressComponent.getShortName());
+                                break;
+                            case "street_number":
+                                mModel.setStreetNumber(addressComponent.getShortName());
+                                break;
+                            case "route":
+                                mModel.setStreet(addressComponent.getLongName());
+                                break;
+                        }
+                    }
+                    mView.enableNextButton(true);
+                    mView.setAddress(mModel.getFullAddress());
+                    if(mIsNextClickHandlerPending) {
+                        this.nextClickHandler();
                     }
                 },
-                ex -> {
+                e -> {
+                    mGeocodingHandler = null;
                     mLoadingSpinnerManager.showLoading(false);
-                    ApiErrorUtil.showErrorMessage(ex, mActivity);
+                    ApiErrorUtil.showErrorMessage(e, mActivity);
                 });
     }
 
     @Override
-    public void onAddressLostFocus() {
-        startAddressVerification(()-> mActivity.runOnUiThread(
-                () -> mView.updateAddressError(mModel.hasValidAddress(), R.string.address_address_error)));
+    public void onAddressSelected(int position) {
+        GooglePlacesArrayAdapter.PlaceAutocomplete item = mGooglePlacesArrayAdapter.getItem(position);
+        mView.setAddress(item.mainText);
+        getPlaceDetails(item.placeId);
     }
 }
-
-interface AddressVerificationCallback {
-    void execute();
-}
-

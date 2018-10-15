@@ -29,6 +29,8 @@ import static org.powermock.api.mockito.PowerMockito.when;
 @PrepareForTest({ TextUtils.class })
 public class AddressModelTest {
 
+    private static final String EXPECTED_STREET_NUMBER = "31881";
+    private static final String EXPECTED_STREET = "Stoney Creek Rd";
     private static final String EXPECTED_ADDRESS = "31881 Stoney Creek Rd";
     private static final String EXPECTED_APARTMENT_NUMBER = "4d";
     private static final String EXPECTED_CITY = "Trabuco Canyon";
@@ -58,7 +60,7 @@ public class AddressModelTest {
     public void hasCorrectTitleResource() {
         Assert.assertThat("Incorrect resource ID.",
                 mModel.getActivityTitleResource(),
-                equalTo(R.string.address_label));
+                equalTo(R.string.address_title));
     }
 
     /**
@@ -75,11 +77,8 @@ public class AddressModelTest {
         base.add(baseAddress);
         mModel.setBaseData(base);
 
-        Assert.assertThat("Incorrect address.", mModel.getStreetAddress(), equalTo(baseAddress.address));
-        Assert.assertThat("Incorrect apartment number.", mModel.getApartmentNumber(), equalTo(baseAddress.apUnit));
-        Assert.assertThat("Incorrect city.", mModel.getCity(), equalTo(baseAddress.city));
-        Assert.assertThat("Incorrect state.", mModel.getState(), equalTo(baseAddress.stateCode));
-        Assert.assertTrue("All data should be set.", mModel.hasValidData());
+        Assert.assertThat("Incorrect address.", mModel.getFullAddress(), equalTo(baseAddress.toString()));
+        Assert.assertTrue("All data should be set.", mModel.hasValidAddress());
     }
 
     /**
@@ -91,19 +90,19 @@ public class AddressModelTest {
     public void baseDataIsUpdated() {
         mModel.setBaseData(new DataPointList());
 
-        mModel.setStreetAddress(EXPECTED_ADDRESS);
-        mModel.setApartmentNumber(EXPECTED_APARTMENT_NUMBER);
+        mModel.setStreet(EXPECTED_STREET);
+        mModel.setStreetNumber(EXPECTED_STREET_NUMBER);
         mModel.setCity(EXPECTED_CITY);
-        mModel.setState(EXPECTED_STATE);
+        mModel.setRegion(EXPECTED_STATE);
+        mModel.setCountry(EXPECTED_COUNTRY);
 
         DataPointList base = mModel.getBaseData();
         Address baseAddress = (Address) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Address, new Address());
 
-        Assert.assertThat("Incorrect address.", baseAddress.address, equalTo(mModel.getStreetAddress()));
-        Assert.assertThat("Incorrect apartment number.", baseAddress.apUnit, equalTo(mModel.getApartmentNumber()));
-        Assert.assertThat("Incorrect city.", baseAddress.city, equalTo(mModel.getCity()));
-        Assert.assertThat("Incorrect state.", baseAddress.stateCode, equalTo(mModel.getState()));
+        Assert.assertThat("Incorrect address.", baseAddress.streetOne, equalTo(mModel.getAddress().streetOne));
+        Assert.assertThat("Incorrect city.", baseAddress.locality, equalTo(mModel.getAddress().locality));
+        Assert.assertThat("Incorrect state.", baseAddress.region, equalTo(mModel.getAddress().region));
     }
 
     /**
@@ -113,9 +112,10 @@ public class AddressModelTest {
      */
     @Test
     public void validAddressIsStored() {
-        mModel.setStreetAddress(EXPECTED_ADDRESS);
-        Assert.assertTrue("Address should be stored.", mModel.hasValidAddress());
-        Assert.assertThat("Incorrect address.", mModel.getStreetAddress(), equalTo(EXPECTED_ADDRESS));
+        mModel.setStreet(EXPECTED_STREET);
+        mModel.setStreetNumber(EXPECTED_STREET_NUMBER);
+        Assert.assertTrue("Address should be stored.", mModel.hasValidStreet());
+        Assert.assertThat("Incorrect address.", mModel.getAddress().streetOne, equalTo(EXPECTED_ADDRESS));
     }
 
     /**
@@ -125,31 +125,8 @@ public class AddressModelTest {
      */
     @Test
     public void invalidAddressIsNotStored() {
-        mModel.setStreetAddress("");
+        mModel.setStreet("");
         Assert.assertFalse("Address should NOT be stored.", mModel.hasValidAddress());
-    }
-
-    /**
-     * Given an empty Model.<br />
-     * When trying to store an invalid address and strict validation is enabled.<br />
-     * Then the address should not be valid.
-     */
-    @Test
-    public void invalidAddressWithStrictValidationIsNotStored() {
-        mModel.setStreetAddress("");
-        Assert.assertFalse("Address should NOT be stored.", mModel.hasVerifiedAddress());
-    }
-
-    /**
-     * Given an empty Model.<br />
-     * When trying to store any apartment number.<br />
-     * Then the apartment number should be stored.
-     */
-    @Test
-    public void apartmentNumberIsAlwaysStored() {
-        mModel.setApartmentNumber(EXPECTED_APARTMENT_NUMBER);
-        Assert.assertThat("Incorrect apartment number.",
-                mModel.getApartmentNumber(), equalTo(EXPECTED_APARTMENT_NUMBER));
     }
 
     /**
@@ -160,8 +137,8 @@ public class AddressModelTest {
     @Test
     public void validCityIsStored() {
         mModel.setCity(EXPECTED_CITY);
-        Assert.assertTrue("City should be stored.", mModel.hasValidCity());
-        Assert.assertThat("Incorrect city.", mModel.getCity(), equalTo(EXPECTED_CITY));
+        Assert.assertTrue("City should be stored.", mModel.hasValidLocality());
+        Assert.assertThat("Incorrect city.", mModel.getAddress().locality, equalTo(EXPECTED_CITY));
     }
 
     /**
@@ -172,7 +149,7 @@ public class AddressModelTest {
     @Test
     public void invalidCityIsNotStored() {
         mModel.setCity("");
-        Assert.assertFalse("City should NOT be stored.", mModel.hasValidCity());
+        Assert.assertFalse("City should NOT be stored.", mModel.hasValidLocality());
     }
 
     /**
@@ -182,9 +159,9 @@ public class AddressModelTest {
      */
     @Test
     public void validStateIsStored() {
-        mModel.setState(EXPECTED_STATE);
-        Assert.assertTrue("State should be stored.", mModel.hasValidState());
-        Assert.assertThat("Incorrect state.", mModel.getState(), equalTo(EXPECTED_STATE));
+        mModel.setRegion(EXPECTED_STATE);
+        Assert.assertTrue("State should be stored.", mModel.hasValidRegion());
+        Assert.assertThat("Incorrect state.", mModel.getAddress().region, equalTo(EXPECTED_STATE));
     }
 
     /**
@@ -194,7 +171,7 @@ public class AddressModelTest {
      */
     @Test
     public void invalidStateIsNotStored() {
-        mModel.setState("1234");
-        Assert.assertFalse("State should NOT be stored.", mModel.hasValidState());
+        mModel.setRegion("");
+        Assert.assertFalse("State should NOT be stored.", mModel.hasValidRegion());
     }
 }

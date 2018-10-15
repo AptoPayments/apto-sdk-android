@@ -100,23 +100,16 @@ public class MockApiWrapper implements ShiftApiWrapper {
     public static final int EXPECTED_INCOME_TYPE = 1;
     public static final int EXPECTED_SALARY_FREQUENCY = 2;
 
-    private String mDeveloperKey;
     private String mDevice;
     private String mBearerToken;
-    private String mProjectToken;
+    private String mApiKey;
     private String mEndPoint;
     private String mVgsEndPoint;
     private NetworkCallback mNetworkCallback;
 
-    @Override
-    public String getDeveloperKey() {
-        return mDeveloperKey;
-    }
-
     /** {@inheritDoc} */
     @Override
-    public void setBaseRequestData(String developerKey, String device, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
-        mDeveloperKey = developerKey;
+    public void setBaseRequestData(String device, boolean isCertificatePinningEnabled, boolean trustSelfSignedCerts) {
         mDevice = device;
     }
 
@@ -131,18 +124,12 @@ public class MockApiWrapper implements ShiftApiWrapper {
         return mBearerToken;
     }
 
-    /** {@inheritDoc} */
     @Override
-    public void setDeveloperKey(String developerKey) {
-        mDeveloperKey = developerKey;
-    }
+    public void setApiKey(String apiKey) { mApiKey = apiKey; }
 
     @Override
-    public void setProjectToken(String projectToken) { mProjectToken = projectToken; }
-
-    @Override
-    public String getProjectToken() {
-        return mProjectToken;
+    public String getApiKey() {
+        return mApiKey;
     }
 
     /** {@inheritDoc} */
@@ -464,12 +451,12 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public BalanceListVo getUserFundingSources(UnauthorizedRequestVo requestData) throws ApiException {
+    public BalanceListVo getUserFundingSources(String s) throws ApiException {
         return null;
     }
 
     @Override
-    public BalanceVo addUserBalance(AddBalanceRequestVo addBalanceRequestVo) throws ApiException {
+    public BalanceVo addUserBalance(String s, AddBalanceRequestVo addBalanceRequestVo) throws ApiException {
         return null;
     }
 

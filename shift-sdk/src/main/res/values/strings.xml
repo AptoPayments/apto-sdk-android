@@ -6,6 +6,7 @@
 
     <!-- Toolbar -->
     <string name="toolbar_next_button_label">Next</string>
+    <string name="toolbar_confirm_button_label">Confirm</string>
 
     <!-- Loan Amount -->
     <string name="loan_amount_label">How much do you need?</string>
@@ -25,7 +26,7 @@
 
     <!-- Phone -->
     <string name="phone_title">Phone number</string>
-    <string name="phone_hint">Mobile number</string>
+    <string name="phone_hint">Phone number</string>
     <string name="phone_label">To identify you, we need your phone number</string>
     <string name="phone_label_sms">We\'ll send a one-time SMS to verify your phone number. Carrier SMS fees may apply.</string>
     <string name="phone_error">Invalid phone number</string>
@@ -61,24 +62,21 @@
     <string name="email_verification_resent">A new code has been sent to your email</string>
 
     <!-- Address -->
-    <string name="address_label">What\'s your address?</string>
-    <string name="address_address_hint">Address</string>
-    <string name="address_address_error">Please enter a valid address.</string>
-    <string name="address_apartment_number_hint">Unit/Apt #</string>
-    <string name="address_city_hint">City</string>
-    <string name="address_city_error">Please enter a valid city.</string>
-    <string name="address_state_hint">State</string>
-    <string name="address_state_error">Please select a state.</string>
-    <string name="address_zip_code_hint">ZIP Code</string>
-    <string name="address_zip_code_error">Please enter a valid ZIP, i.e. \'12345\' or \'12345&#8211;6789\'.</string>
+    <string name="address_title">Contact information</string>
+    <string name="address_label">Where do you live?</string>
+    <string name="address_error">Invalid address</string>
+    <string name="address_autocomplete_hint">your current address</string>
     <string name="address_housing_type_header">Residence</string>
     <string name="address_housing_type_hint">Select a housing type&#8230;</string>
     <string name="address_housing_type_error">Please select a valid housing type.</string>
     <string name="geocoding_google_maps_api_key">AIzaSyBQuKFxmTO8gmxBwnXZlgG3TJY50KpbS-0</string>
-    <string name="geocoding_google_maps_api_url">https://maps.googleapis.com/maps/api/geocode/json</string>
+    <string name="geocoding_google_maps_api_url">https://maps.googleapis.com/maps/api/place/details/json</string>
+    <string name="google_places_autocomplete_api_url">https://maps.googleapis.com/maps/api/place/autocomplete/json</string>
+    <string name="google_places_autocomplete_api_key">AIzaSyAj21pmvNCyCzFqYq2D3nL4FwYPCzpHwRA</string>
 
-    <!-- Home -->
-    <string name="home_title">Where do you live?</string>
+    <!-- Apartment -->
+    <string name="apartment_title">Contact information</string>
+    <string name="address_apartment_number_hint">apartment, unit, floor, etc.</string>
 
     <!-- Time at Address -->
     <string name="time_at_address_label">Address</string>
@@ -116,17 +114,24 @@
     <string name="armed_forces_error">Please choose an answer.</string>
 
     <!-- ID Verification -->
+    <string name="id_verification_citizenship_label">Citizenship</string>
+    <string name="id_verification_document_type_label">Type of document</string>
     <string name="id_verification_title_get_offers">Ready for your offers?</string>
     <string name="id_verification_next_button_get_offers">GET OFFERS</string>
     <string name="id_verification_title_issue_card">Ready for your card?</string>
-    <string name="id_verification_next_button_issue_card">ISSUE CARD</string>
+    <string name="id_verification_next_button_issue_card">GET CARD</string>
     <string name="id_verification_update_profile_title">Update Profile</string>
     <string name="id_verification_update_profile_button">UPDATE PROFILE</string>
     <string name="id_verification_birthday_error">You must be 18 years or older.</string>
-    <string name="id_verification_social_security_hint">Social security #</string>
-    <string name="id_verification_social_security_error">Please enter all 9 digits.</string>
+    <string name="id_verification_document_number_label">Document number</string>
+    <string name="id_verification_document_number_hint">the document number</string>
+    <string name="id_verification_document_number_error">Please enter a valid number.</string>
     <string name="id_verification_disclaimer">Your information is private and secure.</string>
     <string name="id_verification_ssn_itin_not_available">I don\'t have an SSN/ITIN</string>
+
+    <!-- PII Confirmation Screen -->
+    <string name="date_of_birth_label">Date of birth</string>
+    <string name="id_document_label">ID document</string>
 
     <!-- Offers List -->
     <string name="offers_list_label">Loan offers</string>
@@ -367,7 +372,7 @@
     <string name="account_management_funding_source_added">Funding source added</string>
 
     <!-- Transaction details screen -->
-    <string name="transaction_details_direction">Direction</string>
+    <string name="transaction_details_address">Address</string>
     <string name="transaction_details_title">Details</string>
     <string name="transaction_details_amount">Amount</string>
     <string name="transaction_details_currency">Currency</string>

@@ -2,14 +2,12 @@ package com.shiftpayments.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
 import android.text.TextUtils;
 
-import com.shiftpayments.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.Address;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shiftpayments.link.sdk.api.vos.datapoints.Housing;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
-import com.shiftpayments.link.sdk.ui.models.userdata.HomeModel;
+import com.shiftpayments.link.sdk.ui.models.userdata.ApartmentModel;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,17 +22,16 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 /**
- * Tests the {@link HomeModel} class.
+ * Tests the {@link ApartmentModel} class.
  * @author Adrian
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ TextUtils.class })
-public class HomeModelTest {
+public class ApartmentModelTest {
     
-    private static final String EXPECTED_ZIP = "92679";
-    private static final int EXPECTED_HOUSING_TYPE_ID = 777;
+    private static final String EXPECTED_APARTMENT = "100";
 
-    private HomeModel mModel;
+    private ApartmentModel mModel;
 
     /**
      * Sets up each test.
@@ -44,7 +41,7 @@ public class HomeModelTest {
         mockStatic(TextUtils.class);
         when(TextUtils.isEmpty(any(CharSequence.class))).thenAnswer(new IsEmptyAnswer());
 
-        mModel = new HomeModel();
+        mModel = new ApartmentModel();
     }
 
     /**
@@ -56,7 +53,7 @@ public class HomeModelTest {
     public void hasCorrectTitleResource() {
         Assert.assertThat("Incorrect resource ID.",
                 mModel.getActivityTitleResource(),
-                equalTo(R.string.home_title));
+                equalTo(R.string.apartment_title));
     }
 
     /**
@@ -68,14 +65,11 @@ public class HomeModelTest {
     public void allDataIsSetFromBaseData() {
         DataPointList base = new DataPointList();
         Address baseAddress = new Address();
-        baseAddress.zip = EXPECTED_ZIP;
+        baseAddress.streetTwo = EXPECTED_APARTMENT;
         base.add(baseAddress);
-        Housing baseHousing = new Housing(EXPECTED_HOUSING_TYPE_ID, false, false);
-        base.add(baseHousing);
         mModel.setBaseData(base);
 
-        Assert.assertThat("Incorrect zip.", mModel.getZip(), equalTo(baseAddress.zip));
-        Assert.assertThat("Incorrect housing type.", mModel.getHousingType().getKey(), equalTo(baseHousing.housingType.getKey()));
+        Assert.assertThat("Incorrect apartment number.", mModel.getApartmentNumber(), equalTo(baseAddress.streetTwo));
         Assert.assertTrue("All data should be set.", mModel.hasValidData());
     }
 
@@ -87,39 +81,34 @@ public class HomeModelTest {
     @Test
     public void baseDataIsUpdated() {
         mModel.setBaseData(new DataPointList());
-        mModel.setZip(EXPECTED_ZIP);
-        mModel.setHousingType(new IdDescriptionPairDisplayVo(EXPECTED_HOUSING_TYPE_ID, null));
+        mModel.setApartmentNumber(EXPECTED_APARTMENT);
 
         DataPointList base = mModel.getBaseData();
         Address baseAddress = (Address) base.getUniqueDataPoint(
                 DataPointVo.DataPointType.Address, new Address());
 
-        Housing baseHousing = (Housing) base.getUniqueDataPoint(
-                DataPointVo.DataPointType.Housing, new Housing());
-
-        Assert.assertThat("Incorrect zip.", baseAddress.zip, equalTo(mModel.getZip()));
-        Assert.assertThat("Incorrect housing type.", baseHousing.housingType.getKey(), equalTo(mModel.getHousingType().getKey()));
+        Assert.assertThat("Incorrect apartment number.", baseAddress.streetTwo, equalTo(mModel.getApartmentNumber()));
     }
 
     /**
      * Given an empty Model.<br />
-     * When trying to store a valid ZIP code.<br />
-     * Then the ZIP code should be stored.
+     * When trying to store a valid apartment number.<br />
+     * Then the apartment number should be stored.
      */
     @Test
-    public void validZipIsStored() {
-        mModel.setZip(EXPECTED_ZIP);
-        Assert.assertTrue("ZIP code should be stored.", mModel.hasValidZip());
-        Assert.assertThat("Incorrect ZIP code.", mModel.getZip(), equalTo(EXPECTED_ZIP));
+    public void validApartmentIsStored() {
+        mModel.setApartmentNumber(EXPECTED_APARTMENT);
+        Assert.assertTrue("Apartment number should be stored.", mModel.hasValidData());
+        Assert.assertThat("Incorrect apartment number.", mModel.getApartmentNumber(), equalTo(EXPECTED_APARTMENT));
     }
     /**
      * Given an empty Model.<br />
-     * When trying to store an invalid ZIP code.<br />
-     * Then the ZIP code should not be stored.
+     * When trying to store an empty apartment number.<br />
+     * Then the user should be allowed to continue.
      */
     @Test
-    public void invalidZipIsNotStored() {
-        mModel.setZip("abc");
-        Assert.assertFalse("ZIP code should NOT be stored.", mModel.hasValidZip());
+    public void emptyApartmentNumberIsAllowed() {
+        mModel.setApartmentNumber("");
+        Assert.assertTrue("Apartment number can be empty.", mModel.hasValidData());
     }
 }

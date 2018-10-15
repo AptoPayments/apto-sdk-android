@@ -1,54 +1,54 @@
 package com.shiftpayments.link.sdk.ui.views.userdata;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.design.widget.TextInputLayout;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.shiftpayments.link.sdk.api.vos.IdDescriptionPairDisplayVo;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.geocoding.handlers.GooglePlacesArrayAdapter;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.utils.KeyboardUtil;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
+import com.shiftpayments.link.sdk.ui.widgets.HintArrayAdapter;
 import com.shiftpayments.link.sdk.ui.widgets.steppers.StepperListener;
 
-import java.util.ArrayList;
-
 /**
- * Displays the address screen.
- * @author Wijnand
+ * Displays the address validation screen.
+ * @author Adrian
  */
 public class AddressView
         extends UserDataView<AddressView.ViewListener>
-        implements ViewWithToolbar, ViewWithIndeterminateLoading {
+        implements ViewWithToolbar, ViewWithIndeterminateLoading, AdapterView.OnItemClickListener {
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+        mListener.onAddressSelected(pos);
+    }
 
     /**
      * Callbacks this {@link View} will invoke.
      */
     public interface ViewListener extends StepperListener, NextButtonListener {
-        void onAddressLostFocus();
+        void onAddressSelected(int position);
     }
 
     private LoadingView mLoadingView;
 
     private TextInputLayout mAddressWrapper;
-    private EditText mAddressField;
+    private UndismissableAutoCompleteTextView mAutoCompleteTextView;
 
-    private EditText mApartmentField;
-
-    private TextInputLayout mCityWrapper;
-    private EditText mCityField;
-
-    private Spinner mStateSpinner;
-    private TextView mStateErrorField;
-
-    private TextInputLayout mZipWrapper;
-    private EditText mZipField;
-    private ArrayAdapter<CharSequence> mAdapter;
+    private Spinner mHousingTypeSpinner;
+    private TextView mHousingTypeError;
+    private TextView mHousingTypeHint;
 
     /**
      * @see UserDataView#UserDataView
@@ -73,59 +73,51 @@ public class AddressView
         super.findAllViews();
 
         mLoadingView = findViewById(R.id.rl_loading_overlay);
+
         mAddressWrapper = findViewById(R.id.til_address);
-        mAddressField = findViewById(R.id.et_address);
+        mAutoCompleteTextView = findViewById(R.id.actv_address);
+        // remove hint from `TextInputLayout`
+        mAddressWrapper.setHint(null);
+        // set the hint back on the `EditText`
+        mAutoCompleteTextView.setHint(R.string.address_autocomplete_hint);
 
-        mApartmentField = findViewById(R.id.et_apartment_number);
-
-        mCityWrapper = findViewById(R.id.til_city);
-        mCityField = findViewById(R.id.et_city);
-
-        mStateSpinner = findViewById(R.id.sp_state);
-        mStateErrorField = findViewById(R.id.tv_state_spinner_error);
-
-        mZipWrapper = findViewById(R.id.til_zip_code);
-        mZipField = findViewById(R.id.et_zip_code);
+        mHousingTypeSpinner = findViewById(R.id.sp_housing_type);
+        mHousingTypeError = findViewById(R.id.tv_housing_type_error);
+        mHousingTypeHint = findViewById(R.id.tv_housing_type_hint);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void setupListeners() {
         super.setupListeners();
-        if (mAddressField != null) {
-            mAddressField.setOnFocusChangeListener((v, hasFocus) -> {
-                if (!hasFocus) {
-                    mListener.onAddressLostFocus();
+        if (mAutoCompleteTextView != null) {
+            super.setUiFieldsObservable(mAutoCompleteTextView);
+            mAutoCompleteTextView.setOnItemClickListener(this);
+            mAutoCompleteTextView.setForceIgnoreOutsideTouchWithReflexion(true);
+        }
+        if(mHousingTypeSpinner != null) {
+            mHousingTypeSpinner.setOnTouchListener((v, event) -> {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    mAutoCompleteTextView.clearFocus();
+                    KeyboardUtil.hideKeyboard(v.getContext());
                 }
+                return false;
             });
         }
-        ArrayList<EditText> mFields = new ArrayList<>();
-        mFields.add(mAddressField);
-        mFields.add(mCityField);
-        mFields.add(mZipField);
-        super.setUiFieldsObservable(mFields);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mAddressField.requestFocus();
+        mAutoCompleteTextView.requestFocus();
     }
 
     /**
-     * Stores a new {@link ArrayAdapter} to use with the state {@link Spinner}.
-     * @param adapter The new Adapter.
-     */
-    public void setStateSpinnerAdapter(ArrayAdapter<CharSequence> adapter) {
-        mAdapter = adapter;
-        mStateSpinner.setAdapter(adapter);
-    }
-
-    /**
-     * @return Address.
+     * @return Zip or postal code.
      */
     public String getAddress() {
-        return mAddressField.getText().toString();
+        return mAutoCompleteTextView.getText().toString();
     }
 
     /**
@@ -133,94 +125,14 @@ public class AddressView
      * @param address New address.
      */
     public void setAddress(String address) {
-        mAddressField.setText(address);
-    }
-
-    /**
-     * @return Apartment or unit number.
-     */
-    public String getApartment() {
-        return mApartmentField.getText().toString();
-    }
-
-    /**
-     * Shows the apartment or unit number.
-     * @param apartment New apartment or unit number.
-     */
-    public void setApartment(String apartment) {
-        mApartmentField.setText(apartment);
-    }
-
-    /**
-     * @return City.
-     */
-    public String getCity() {
-        return mCityField.getText().toString();
-    }
-
-    @Override
-    protected void setColors() {
-        super.setColors();
-        Integer textSecondaryColor = UIStorage.getInstance().getTextSecondaryColor();
-        Integer textTertiaryColor = UIStorage.getInstance().getTextTertiaryColor();
-        mAddressField.setTextColor(textSecondaryColor);
-        mAddressField.setHintTextColor(textTertiaryColor);
-        mApartmentField.setTextColor(textSecondaryColor);
-        mApartmentField.setHintTextColor(textTertiaryColor);
-        mCityField.setTextColor(textSecondaryColor);
-        mCityField.setHintTextColor(textTertiaryColor);
-        mZipField.setTextColor(textSecondaryColor);
-        mZipField.setHintTextColor(textTertiaryColor);
-        UIStorage.getInstance().setCursorColor(mAddressField);
-        UIStorage.getInstance().setCursorColor(mApartmentField);
-        UIStorage.getInstance().setCursorColor(mCityField);
-        UIStorage.getInstance().setCursorColor(mZipField);
-    }
-
-    /**
-     * Shows the city.
-     * @param city New city.
-     */
-    public void setCity(String city) {
-        mCityField.setText(city);
-    }
-
-    /**
-     * @return State.
-     */
-    public String getState() {
-        String state = null;
-        int position = mStateSpinner.getSelectedItemPosition();
-
-        if (position != Spinner.INVALID_POSITION) {
-            state = mAdapter.getItem(mStateSpinner.getSelectedItemPosition()).toString();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            mAutoCompleteTextView.setText(address, false);
+        }
+        else {
+            mAutoCompleteTextView.setText(address);
+            mAutoCompleteTextView.dismissDropDown();
         }
 
-        return state;
-    }
-
-    /**
-     * Shows the new state.
-     * @param state New State.
-     */
-    public void setState(String state) {
-        int position = mAdapter.getPosition(state);
-        mStateSpinner.setSelection(position);
-    }
-
-    /**
-     * @return Zip or postal code.
-     */
-    public String getZipCode() {
-        return mZipField.getText().toString();
-    }
-
-    /**
-     * Shows the zip or postal code.
-     * @param zip New zip or postal code.
-     */
-    public void setZipCode(String zip) {
-        mZipField.setText(zip);
     }
 
     /**
@@ -233,39 +145,66 @@ public class AddressView
     }
 
     /**
-     * Updates the city field error display.
+     * Updates the housing type field error display.
      * @param show Whether the error should be shown.
-     * @param errorMessageId Error message resource ID.
      */
-    public void updateCityError(boolean show, int errorMessageId) {
-        updateErrorDisplay(mCityWrapper, show, errorMessageId);
-    }
-
-    /**
-     * Updates the state field error display.
-     * @param show Whether the error should be shown.
-     * @param errorMessageId Error message resource ID.
-     */
-    public void updateStateError(boolean show, int errorMessageId) {
+    public void updateHousingTypeError(boolean show) {
         if (show) {
-            mStateErrorField.setText(errorMessageId);
-            mStateErrorField.setVisibility(VISIBLE);
+            mHousingTypeError.setVisibility(VISIBLE);
         } else {
-            mStateErrorField.setVisibility(GONE);
+            mHousingTypeError.setVisibility(GONE);
         }
-    }
-
-    /**
-     * Updates the ZIP field error display.
-     * @param show Whether the error should be shown.
-     * @param errorMessageId Error message resource ID.
-     */
-    public void updateZipError(boolean show, int errorMessageId) {
-        updateErrorDisplay(mZipWrapper, show, errorMessageId);
     }
 
     @Override
     public LoadingView getLoadingView() {
         return mLoadingView;
+    }
+
+    /**
+     * @return Selected housing type.
+     */
+    public IdDescriptionPairDisplayVo getHousingType() {
+        return (IdDescriptionPairDisplayVo) mHousingTypeSpinner.getSelectedItem();
+    }
+
+    /**
+     * Stores a new {@link HintArrayAdapter} for the {@link Spinner} to use.
+     * @param adapter New {@link HintArrayAdapter}.
+     */
+    public void setHousingTypeAdapter(HintArrayAdapter<IdDescriptionPairDisplayVo> adapter) {
+        mHousingTypeSpinner.setAdapter(adapter);
+    }
+
+    /**
+     * Displays a new housing type.
+     * @param position Housing type index.
+     */
+    public void setHousingType(int position) {
+        mHousingTypeSpinner.setSelection(position);
+    }
+
+    @Override
+    protected void setColors() {
+        super.setColors();
+        mAutoCompleteTextView.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
+        mAutoCompleteTextView.setHintTextColor(UIStorage.getInstance().getTextTertiaryColor());
+        UIStorage.getInstance().setCursorColor(mAutoCompleteTextView);
+    }
+
+    public void showHousingTypeHint(boolean show) {
+        if(show) {
+            mHousingTypeHint.setVisibility(VISIBLE);
+            mHousingTypeSpinner.setVisibility(VISIBLE);
+        }
+        else {
+            mHousingTypeHint.setVisibility(GONE);
+            mHousingTypeSpinner.setVisibility(GONE);
+            updateHousingTypeError(false);
+        }
+    }
+
+    public void setAddressAdapter(GooglePlacesArrayAdapter adapter) {
+        mAutoCompleteTextView.setAdapter(adapter);
     }
 }

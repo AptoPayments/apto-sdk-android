@@ -15,6 +15,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.CardApplicationResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardconfig.CardConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
 import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
@@ -82,9 +83,11 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     @Override
-    public void onTokensRetrieved(String accessToken, String refreshToken) {
+    public void onTokensRetrieved(OAuthStatusResponseVo oAuthResponse) {
         ShiftSdk.getResponseHandler().subscribe(this);
-        ShiftPlatform.addUserBalance(new BalanceDataVo("coinbase", accessToken, refreshToken));
+        String cardId = CardStorage.getInstance().getCard().mAccountId;
+        BalanceDataVo balanceData = new BalanceDataVo("coinbase", oAuthResponse.tokens.access, oAuthResponse.tokens.refresh);
+        ShiftPlatform.addUserBalance(cardId, balanceData);
         startManageCardScreen();
     }
 
@@ -171,9 +174,8 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private boolean isStoredUserTokenValid() {
-        boolean isPOSMode = ConfigStorage.getInstance().getPOSMode();
-        String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
-        boolean isTokenValid = !isPOSMode && userToken != null;
+        String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), false);
+        boolean isTokenValid = userToken != null;
         if(isTokenValid) {
             ShiftPlatform.getApiWrapper().setBearerToken(userToken);
         }

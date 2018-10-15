@@ -13,6 +13,8 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.IncomeTypeVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 
+import java.util.UUID;
+
 /**
  * Stores user related data.
  * @author Wijnand
@@ -23,6 +25,7 @@ public class UserStorage {
     private String mBearerToken;
     private String mFirebaseToken;
     private String mSelectedFinancialAccountId;
+    private static String mSessionToken;
 
     private static UserStorage mInstance;
 
@@ -37,6 +40,7 @@ public class UserStorage {
     public static synchronized UserStorage getInstance() {
         if (mInstance == null) {
             mInstance = new UserStorage();
+            mSessionToken = UUID.randomUUID().toString();
         }
 
         return mInstance;
@@ -85,6 +89,10 @@ public class UserStorage {
     public void setBearerToken(String bearerToken) {
         mBearerToken = bearerToken;
         registerFirebaseToken();
+    }
+
+    public String getSessionToken() {
+        return mSessionToken;
     }
 
     public boolean hasBearerToken() {
