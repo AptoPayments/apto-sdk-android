@@ -1,17 +1,13 @@
 package com.shiftpayments.link.sdk.ui.geocoding.vos;
 
-/**
- * Google geocoding response.
- * @author Adrian
- */
-
 import com.google.gson.annotations.SerializedName;
 
-public class GeocodingResultVo {
+import java.util.List;
 
-    @SerializedName("result")
-    public ResultVo result;
-
+public class AutocompleteResponseVo {
     @SerializedName("status")
     public String status;
+
+    @SerializedName("predictions")
+    public List<PredictionVo> predictions;
 }

@@ -16,6 +16,7 @@ public class CardStorage {
     private String mBalanceId;
     private ApplicationVo mApplication;
     public boolean showCardInfo;
+    private String mSelectedCountry;
 
     /**
      * Creates a new {@link CardStorage} instance.
@@ -72,5 +73,17 @@ public class CardStorage {
 
     public void setApplication(ApplicationVo application) {
         mApplication = application;
+    }
+
+    public String getSelectedCountry() {
+        return mSelectedCountry;
+    }
+
+    public void setSelectedCountry(String selectedCountry) {
+        mSelectedCountry = selectedCountry;
+    }
+
+    public boolean hasUserSelectedCountry() {
+        return mSelectedCountry != null;
     }
 }

@@ -1,14 +1,18 @@
 package com.shiftpayments.link.sdk.api.utils.parsers;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 
 import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by adrian on 25/01/2017.
@@ -28,7 +32,8 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
                         isVerificationRequired, isNotSpecifiedAllowed);
             case "phone":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Phone,
-                        isVerificationRequired, isNotSpecifiedAllowed);
+                        isVerificationRequired, isNotSpecifiedAllowed,
+                        parseDataPointConfiguration(jObject));
             case "email":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Email,
                         isVerificationRequired, isNotSpecifiedAllowed);
@@ -40,7 +45,8 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
                         isVerificationRequired, isNotSpecifiedAllowed);
             case "address":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Address,
-                        isVerificationRequired, isNotSpecifiedAllowed);
+                        isVerificationRequired, isNotSpecifiedAllowed,
+                        parseDataPointConfiguration(jObject));
             case "housing":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Housing,
                         isVerificationRequired, isNotSpecifiedAllowed);
@@ -64,5 +70,24 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
                         isVerificationRequired, isNotSpecifiedAllowed);
         }
         return null;
+    }
+
+    private DataPointConfigurationVo parseDataPointConfiguration(JsonObject jObject) {
+        if(!jObject.has("datapoint_configuration") || jObject.get("datapoint_configuration").isJsonNull()) {
+            return null;
+        }
+        JsonObject config = jObject.getAsJsonObject("datapoint_configuration");
+        String type = config.get("type").getAsString();
+        String[] allowedCountries = new Gson().fromJson(config.get("allowed_countries"), String[].class);
+        List<String> allowedCountriesArray = Arrays.asList(allowedCountries);
+        if(allowedCountriesArray.isEmpty()) {
+            allowedCountriesArray.add("US");
+        }
+        Boolean syncCountry = null;
+        if(config.has("sync_country")) {
+            syncCountry = config.get("sync_country").getAsBoolean();
+        }
+
+        return new DataPointConfigurationVo(type, allowedCountriesArray, syncCountry);
     }
 }

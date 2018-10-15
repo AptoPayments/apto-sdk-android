@@ -40,7 +40,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.shiftpayments.link.sdk.ui.activities.userdata.PhoneActivity.EXTRA_ALLOWED_COUNTRIES;
+import static com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule.EXTRA_ALLOWED_COUNTRIES;
 
 public class AuthModule extends ShiftBaseModule implements PhoneDelegate, EmailDelegate,
         PhoneVerificationDelegate, EmailVerificationDelegate, BirthdateVerificationDelegate {

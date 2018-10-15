@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.ui.presenters.userdata;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
@@ -8,6 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.SessionExpiredErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.ConfigResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
@@ -16,17 +18,18 @@ import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
-import com.shiftpayments.link.sdk.ui.activities.userdata.AddressActivity;
+import com.shiftpayments.link.sdk.ui.activities.userdata.ApartmentActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.AnnualIncomeActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.ArmedForcesActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.CreditScoreActivity;
-import com.shiftpayments.link.sdk.ui.activities.userdata.HomeActivity;
+import com.shiftpayments.link.sdk.ui.activities.userdata.AddressActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.IdentityVerificationActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.MonthlyIncomeActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.PaydayLoanActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.PersonalInformationActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.PhoneActivity;
 import com.shiftpayments.link.sdk.ui.activities.userdata.TimeAtAddressActivity;
+import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.SharedPreferencesStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
@@ -49,20 +52,23 @@ import java8.util.concurrent.CompletableFuture;
  */
 
 public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDelegate,
-        IdentityVerificationDelegate, AddressDelegate, AnnualIncomeDelegate, MonthlyIncomeDelegate,
-        CreditScoreDelegate, PersonalInformationDelegate, HomeDelegate, PaydayLoanDelegate,
+        IdentityVerificationDelegate, ApartmentDelegate, AnnualIncomeDelegate, MonthlyIncomeDelegate,
+        CreditScoreDelegate, PersonalInformationDelegate, AddressDelegate, PaydayLoanDelegate,
         ArmedForcesDelegate, TimeAtAddressDelegate {
 
+    public static final String EXTRA_ALLOWED_COUNTRIES = "com.shiftpayments.link.sdk.ui.presenters.userdata.ALLOWEDCOUNTRIES";
     private static UserDataCollectorModule instance;
     public LinkedList<RequiredDataPointVo> mRequiredDataPointList;
     public boolean isUpdatingProfile;
     private ArrayList<Class<? extends MvpActivity>> mRequiredActivities;
+    private HashMap<Class<? extends MvpActivity>, DataPointConfigurationVo> mDataPointConfigurationMap;
     private DataPointList mCurrentUserDataCopy;
 
     private UserDataCollectorModule(Activity activity, Command onFinish, Command onBack) {
         super(activity, onFinish, onBack);
         mRequiredDataPointList = new LinkedList<>();
         mRequiredActivities = new ArrayList<>();
+        mDataPointConfigurationMap = new HashMap<>();
     }
 
     public static synchronized UserDataCollectorModule getInstance(Activity activity, Command onFinish, Command onBack) {
@@ -140,7 +146,26 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     public void startActivity(Class activity) {
         if(activity == null) {
             stopModule();
-        } else {
+            return;
+        }
+
+        if(mDataPointConfigurationMap.containsKey(activity)) {
+            DataPointConfigurationVo dataPointConfiguration = mDataPointConfigurationMap.get(activity);
+            Intent intent = new Intent(getActivity(), activity);
+            if(dataPointConfiguration != null) {
+                List<String> allowedCountries = new ArrayList<>();
+                if(dataPointConfiguration.syncCountry && CardStorage.getInstance().hasUserSelectedCountry()) {
+                    // User must use same country as the previously selected one
+                    allowedCountries.add(CardStorage.getInstance().getSelectedCountry());
+                }
+                else {
+                    allowedCountries = dataPointConfiguration.allowedCountries;
+                }
+                intent.putStringArrayListExtra(EXTRA_ALLOWED_COUNTRIES, new ArrayList<>(allowedCountries));
+            }
+            getActivity().startActivity(intent);
+        }
+        else {
             super.startActivity(activity);
         }
     }
@@ -166,13 +191,13 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     }
 
     @Override
-    public void addressStored() {
-        startActivity(getActivityAtPosition(AddressActivity.class, 1));
+    public void apartmentStored() {
+        startActivity(getActivityAtPosition(ApartmentActivity.class, 1));
     }
 
     @Override
-    public void addressOnBackPressed() {
-        startActivity(getActivityAtPosition(AddressActivity.class, -1));
+    public void apartmentOnBackPressed() {
+        startActivity(getActivityAtPosition(ApartmentActivity.class, -1));
     }
 
     @Override
@@ -253,12 +278,12 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
     }
 
     @Override
-    public void zipCodeAndHousingTypeStored() {
-        startActivity(AddressActivity.class);
+    public void addressAndHousingTypeStored() {
+        startActivity(ApartmentActivity.class);
     }
 
     @Override
-    public void homeOnBackPressed() {
+    public void addressOnBackPressed() {
         startActivity(PersonalInformationActivity.class);
     }
 
@@ -391,7 +416,7 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
                         addRequiredActivity(PersonalInformationActivity.class);
                         break;
                     case Phone:
-                        // TODO: pass in allowed countries from required datapoint config
+                        mDataPointConfigurationMap.put(PhoneActivity.class, requiredDataPointVo.datapointConfiguration);
                         addRequiredActivity(PhoneActivity.class);
                         break;
                     case Email:
@@ -399,12 +424,13 @@ public class UserDataCollectorModule extends ShiftBaseModule implements PhoneDel
                         break;
                     case Address:
                     case Housing:
-                        addRequiredActivity(HomeActivity.class);
+                        mDataPointConfigurationMap.put(AddressActivity.class, requiredDataPointVo.datapointConfiguration);
                         addRequiredActivity(AddressActivity.class);
+                        addRequiredActivity(ApartmentActivity.class);
                         break;
                     case TimeAtAddress:
                         addRequiredActivityAfterGivenActivity(TimeAtAddressActivity.class,
-                                AddressActivity.class);
+                                ApartmentActivity.class);
                         break;
                     case IncomeSource:
                         addRequiredActivity(AnnualIncomeActivity.class);

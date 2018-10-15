@@ -172,9 +172,8 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     private boolean isStoredUserTokenValid() {
-        boolean isPOSMode = ConfigStorage.getInstance().getPOSMode();
-        String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), isPOSMode);
-        boolean isTokenValid = !isPOSMode && userToken != null;
+        String userToken = SharedPreferencesStorage.getUserToken(super.getActivity(), false);
+        boolean isTokenValid = userToken != null;
         if(isTokenValid) {
             ShiftPlatform.getApiWrapper().setBearerToken(userToken);
         }

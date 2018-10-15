@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.shiftpayments.link.imageloaders.volley.VolleySingleton;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.geocoding.vos.GeocodingResultVo;
+import com.shiftpayments.link.sdk.ui.storages.UserStorage;
 
 /**
  * Created by adrian on 01/09/2017.
@@ -20,19 +21,16 @@ public class GeocodingHandler {
         mIsCancelled = false;
     }
 
-    public void reverseGeocode(Context context, String address, String country, GeocodingOnSuccessCallback onSuccess, GeocodingOnErrorCallback onError) {
+    public void reverseGeocode(Context context, String placeId, GeocodingOnSuccessCallback onSuccess, GetPredictionsOnErrorCallback onError) {
         if(mIsCancelled) {
             return;
         }
         String url = context.getString(R.string.geocoding_google_maps_api_url);
-        url+="?address="+address;
-
-        if(country != null) {
-            url+="&components=country:"+country;
-        } else {
-            url+="&components=country:US";
-        }
-        url+="&key="+context.getString(R.string.geocoding_google_maps_api_key);
+        url+="?placeid="+placeId;
+        url+="&fields=address_component";
+        url+="&key="+context.getString(R.string.google_places_autocomplete_api_key);
+        // https://developers.google.com/places/web-service/autocomplete#session_tokens
+        url+="&sessiontoken="+ UserStorage.getInstance().getSessionToken();
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, response -> {

@@ -7,7 +7,7 @@ import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.mocks.answers.textutils.IsEmptyAnswer;
-import com.shiftpayments.link.sdk.ui.models.userdata.AddressModel;
+import com.shiftpayments.link.sdk.ui.models.userdata.ApartmentModel;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -22,12 +22,12 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 /**
- * Tests the {@link AddressModel} class.
+ * Tests the {@link ApartmentModel} class.
  * @author Wijnand
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ TextUtils.class })
-public class AddressModelTest {
+public class ApartmentModelTest {
 
     private static final String EXPECTED_ADDRESS = "31881 Stoney Creek Rd";
     private static final String EXPECTED_APARTMENT_NUMBER = "4d";
@@ -36,7 +36,7 @@ public class AddressModelTest {
     private static final String EXPECTED_ZIP = "92679";
     private static final String EXPECTED_COUNTRY = "US";
 
-    private AddressModel mModel;
+    private ApartmentModel mModel;
 
     /**
      * Sets up each test.
@@ -46,7 +46,7 @@ public class AddressModelTest {
         mockStatic(TextUtils.class);
         when(TextUtils.isEmpty(any(CharSequence.class))).thenAnswer(new IsEmptyAnswer());
 
-        mModel = new AddressModel();
+        mModel = new ApartmentModel();
     }
 
     /**
