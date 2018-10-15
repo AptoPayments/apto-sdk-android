@@ -85,7 +85,9 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Override
     public void onTokensRetrieved(OAuthStatusResponseVo oAuthResponse) {
         ShiftSdk.getResponseHandler().subscribe(this);
-        ShiftPlatform.addUserBalance(new BalanceDataVo("coinbase", oAuthResponse.tokens.access, oAuthResponse.tokens.refresh));
+        String cardId = CardStorage.getInstance().getCard().mAccountId;
+        BalanceDataVo balanceData = new BalanceDataVo("coinbase", oAuthResponse.tokens.access, oAuthResponse.tokens.refresh);
+        ShiftPlatform.addUserBalance(cardId, balanceData);
         startManageCardScreen();
     }
 

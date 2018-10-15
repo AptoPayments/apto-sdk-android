@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.ui.views.userdata;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.design.widget.TextInputLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -124,7 +125,14 @@ public class AddressView
      * @param address New address.
      */
     public void setAddress(String address) {
-        mAutoCompleteTextView.setText(address);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            mAutoCompleteTextView.setText(address, false);
+        }
+        else {
+            mAutoCompleteTextView.setText(address);
+            mAutoCompleteTextView.dismissDropDown();
+        }
+
     }
 
     /**

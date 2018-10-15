@@ -6,12 +6,17 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.reflect.TypeToken;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointConfigurationVo;
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
+import com.shiftpayments.link.sdk.api.vos.responses.config.IdDocumentConfigurationVo;
+import com.shiftpayments.link.sdk.api.vos.responses.config.PhoneOrAddressConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,7 +47,8 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
                         isVerificationRequired, isNotSpecifiedAllowed);
             case "id_document":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.IdDocument,
-                        isVerificationRequired, isNotSpecifiedAllowed);
+                        isVerificationRequired, isNotSpecifiedAllowed,
+                        parseIdDocumentConfiguration(jObject));
             case "address":
                 return new RequiredDataPointVo(DataPointVo.DataPointType.Address,
                         isVerificationRequired, isNotSpecifiedAllowed,
@@ -72,7 +78,7 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
         return null;
     }
 
-    private DataPointConfigurationVo parseDataPointConfiguration(JsonObject jObject) {
+    private PhoneOrAddressConfigurationVo parseDataPointConfiguration(JsonObject jObject) {
         if(!jObject.has("datapoint_configuration") || jObject.get("datapoint_configuration").isJsonNull()) {
             return null;
         }
@@ -88,6 +94,24 @@ public class RequiredDataPointParser implements JsonDeserializer<RequiredDataPoi
             syncCountry = config.get("sync_country").getAsBoolean();
         }
 
-        return new DataPointConfigurationVo(type, allowedCountriesArray, syncCountry);
+        return new PhoneOrAddressConfigurationVo(type, allowedCountriesArray, syncCountry);
+    }
+
+    private IdDocumentConfigurationVo parseIdDocumentConfiguration(JsonObject jObject) {
+        if(!jObject.has("datapoint_configuration") || jObject.get("datapoint_configuration").isJsonNull()) {
+            return null;
+        }
+        JsonObject config = jObject.getAsJsonObject("datapoint_configuration");
+        String type = config.get("type").getAsString();
+        HashMap<String, List<IdDocument.IdDocumentType>> allowedDocumentsMap = new Gson().fromJson(config.get("allowed_document_types"), new TypeToken<HashMap<String, List<IdDocument.IdDocumentType>>>(){}.getType());
+        // Remove countries that have no document types
+        allowedDocumentsMap.values().remove(new ArrayList<IdDocument.IdDocumentType>());
+        if(allowedDocumentsMap.isEmpty()) {
+            ArrayList<IdDocument.IdDocumentType> documentTypes = new ArrayList<>();
+            documentTypes.add(IdDocument.IdDocumentType.SSN);
+            allowedDocumentsMap.put("US", documentTypes);
+        }
+
+        return new IdDocumentConfigurationVo(type, allowedDocumentsMap);
     }
 }

@@ -187,10 +187,25 @@ public class AddressModel extends AbstractUserDataModel implements UserDataModel
      * @return Whether a valid address has been set.
      */
     public boolean hasValidAddress() {
-        return mAddress != null && mAddress.streetOne != null && mAddress.locality != null
-                && mAddress.region != null && mAddress.country != null;
+        return mAddress != null &&  hasValidStreet() && hasValidLocality() && hasValidRegion()
+                && hasValidCountry();
     }
 
+    public boolean hasValidStreet() {
+        return mAddress.streetOne != null;
+    }
+
+    public boolean hasValidLocality() {
+        return mAddress.locality != null;
+    }
+
+    public boolean hasValidRegion() {
+        return mAddress.region != null;
+    }
+
+    public boolean hasValidCountry() {
+        return mAddress.country != null;
+    }
     /**
      * @return The selected housing type.
      */

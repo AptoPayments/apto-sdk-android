@@ -63,7 +63,7 @@ public class GooglePlacesArrayAdapter
                     while (iterator.hasNext()) {
                         PredictionVo prediction = iterator.next();
                         resultList.add(new PlaceAutocomplete(prediction.placeId,
-                                prediction.description));
+                                prediction.structuredText.mainText, prediction.description));
                     }
                     mResultList = resultList;
                 },
@@ -113,10 +113,12 @@ public class GooglePlacesArrayAdapter
     public class PlaceAutocomplete {
 
         public String placeId;
+        public String mainText;
         public String description;
 
-        PlaceAutocomplete(String placeId, String description) {
+        PlaceAutocomplete(String placeId, String mainText, String description) {
             this.placeId = placeId;
+            this.mainText = mainText;
             this.description = description;
         }
 

@@ -114,15 +114,18 @@
     <string name="armed_forces_error">Please choose an answer.</string>
 
     <!-- ID Verification -->
+    <string name="id_verification_citizenship_label">Citizenship</string>
+    <string name="id_verification_document_type_label">Type of document</string>
     <string name="id_verification_title_get_offers">Ready for your offers?</string>
     <string name="id_verification_next_button_get_offers">GET OFFERS</string>
     <string name="id_verification_title_issue_card">Ready for your card?</string>
-    <string name="id_verification_next_button_issue_card">ISSUE CARD</string>
+    <string name="id_verification_next_button_issue_card">GET CARD</string>
     <string name="id_verification_update_profile_title">Update Profile</string>
     <string name="id_verification_update_profile_button">UPDATE PROFILE</string>
     <string name="id_verification_birthday_error">You must be 18 years or older.</string>
-    <string name="id_verification_social_security_hint">Social security #</string>
-    <string name="id_verification_social_security_error">Please enter all 9 digits.</string>
+    <string name="id_verification_document_number_label">Document number</string>
+    <string name="id_verification_document_number_hint">the document number</string>
+    <string name="id_verification_document_number_error">Please enter a valid number.</string>
     <string name="id_verification_disclaimer">Your information is private and secure.</string>
     <string name="id_verification_ssn_itin_not_available">I don\'t have an SSN/ITIN</string>
 
@@ -369,7 +372,7 @@
     <string name="account_management_funding_source_added">Funding source added</string>
 
     <!-- Transaction details screen -->
-    <string name="transaction_details_direction">Direction</string>
+    <string name="transaction_details_address">Address</string>
     <string name="transaction_details_title">Details</string>
     <string name="transaction_details_amount">Amount</string>
     <string name="transaction_details_currency">Currency</string>

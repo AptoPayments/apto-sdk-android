@@ -21,4 +21,7 @@ public class PredictionVo {
     @SerializedName("types")
     public List<String> types = null;
 
+    @SerializedName("structured_formatting")
+    public StructuredText structuredText;
+
 }

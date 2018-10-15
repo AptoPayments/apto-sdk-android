@@ -62,7 +62,7 @@ public class DataPointParser implements JsonDeserializer<DataPointVo>, JsonSeria
                 String docType = ParsingUtils.getStringFromJson(jObject.get("doc_type"));
                 docType = docType == null ? "" : docType.toUpperCase();
                 return new IdDocument(IdDocument.IdDocumentType.valueOf(docType),
-                        jObject.get("doc_value").getAsString(), verified, notSpecified);
+                        jObject.get("value").getAsString(), jObject.get("country").getAsString(), verified, notSpecified);
             case "address":
                 return new Address(jObject.get("street_one").getAsString(),
                         ParsingUtils.getStringFromJson(jObject.get("street_two")),

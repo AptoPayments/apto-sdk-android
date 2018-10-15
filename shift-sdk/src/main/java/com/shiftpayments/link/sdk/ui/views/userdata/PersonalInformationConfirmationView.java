@@ -120,8 +120,9 @@ public class PersonalInformationConfirmationView
         showDateOfBirth(true);
     }
 
-    public void setIdDocument(String id) {
+    public void setIdDocument(String id, String label) {
         mIdDocumentField.setText(id);
+        mIdDocumentLabel.setText(label);
         showIdDocument(true);
     }
 

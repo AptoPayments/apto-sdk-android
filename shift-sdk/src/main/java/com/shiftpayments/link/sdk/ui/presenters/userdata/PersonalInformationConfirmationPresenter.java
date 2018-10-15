@@ -52,10 +52,10 @@ public class PersonalInformationConfirmationPresenter
             mView.setPhone(mModel.getPhoneNumber());
         }
         if(mModel.hasDateOfBirth()) {
-            mView.setDateOfBirth(mModel.getDateOfBirth());
+            mView.setDateOfBirth(mModel.getDateOfBirth(mActivity.getResources().getConfiguration().locale));
         }
         if(mModel.hasIdDocument()) {
-            mView.setIdDocument(mModel.getIdDocument());
+            mView.setIdDocument(mModel.getIdDocument(), mModel.getIdDocumentType());
         }
         mView.setNextButtonText(mActivity.getResources().getString(R.string.toolbar_confirm_button_label));
         mView.enableNextButton(true);

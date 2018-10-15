@@ -69,6 +69,7 @@ public class Address extends DataPointVo implements Parcelable {
         gsonObject.addProperty("locality", locality);
         gsonObject.addProperty("region", region);
         gsonObject.addProperty("postal_code", postalCode);
+        gsonObject.addProperty("country", country);
         return gsonObject;
     }
 
