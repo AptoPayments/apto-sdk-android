@@ -92,6 +92,10 @@ public class ManageCardPresenter
         view.setViewListener(this);
         view.showLoading(mActivity, false);
 
+        if(UIStorage.getInstance().isEmbeddedMode()) {
+            mView.showCloseButton();
+        }
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 

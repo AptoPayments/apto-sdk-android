@@ -77,6 +77,9 @@ public class ManageCardActivity extends FragmentMvpActivity {
         if (i == R.id.menu_update_profile) {
             ((ManageCardPresenter) mPresenter).accountClickHandler();
             return true;
+        } else if(i ==android.R.id.home) {
+            mDelegate.onManageCardBackPressed();
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
