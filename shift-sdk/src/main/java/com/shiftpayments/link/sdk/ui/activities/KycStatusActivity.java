@@ -11,6 +11,7 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.presenters.card.KycStatusDelegate;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.views.KycStatusView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
@@ -75,15 +76,21 @@ public class KycStatusActivity extends BaseActivity implements KycStatusView.Vie
         ApiErrorUtil.showErrorMessage(error, this);
     }
 
+    @Override
+    public void onBackPressed() {
+        // Disabled
+    }
+
     private void setView() {
         mView = (KycStatusView) View.inflate(this, R.layout.act_kyc_status, null);
         setContentView(mView);
         mView.getToolbar().setTitle(getString(R.string.kyc_status_title));
         mView.setViewListener(this);
-    }
-
-    @Override
-    public void onBackPressed() {
-        // Disabled
+        if(UIStorage.getInstance().isEmbeddedMode()) {
+            mView.getToolbar().setNavigationOnClickListener(v -> {
+                mDelegate.onKycClosed();
+            });
+            mView.showCloseButton();
+        }
     }
 }

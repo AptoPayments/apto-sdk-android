@@ -103,7 +103,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     @Override
-    public void onManageCardBackPressed() {
+    public void onManageCardClosed() {
         showHomeActivity();
     }
 
@@ -300,6 +300,11 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Override
     public void onKycPassed() {
         startManageCardScreen();
+    }
+
+    @Override
+    public void onKycClosed() {
+        showHomeActivity();
     }
 
     private void startKycStatusScreen(Card card) {
