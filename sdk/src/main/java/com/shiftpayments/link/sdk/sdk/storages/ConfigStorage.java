@@ -125,7 +125,6 @@ public class ConfigStorage {
     }
 
     public synchronized void setRequiredUserData(RequiredDataPointVo[] requiredDataPoints) {
-        // TODO: UserDataCollector should not read this from here, it should be an input to the module
         mRequiredDataPoints = requiredDataPoints;
     }
 
