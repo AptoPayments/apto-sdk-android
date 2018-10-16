@@ -321,8 +321,8 @@ public class TransactionsAdapter extends
         if(show) {
             viewHolder.bannerCancelButton.setTextColor(UIStorage.getInstance().getTextPrimaryColor());
             viewHolder.bannerAcceptButton.setTextColor(UIStorage.getInstance().getUiPrimaryColor());
-            viewHolder.bannerTitle.setTextColor(UIStorage.getInstance().getTextPrimaryColor());
-            viewHolder.bannerBody.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
+            viewHolder.bannerTitle.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
+            viewHolder.bannerBody.setTextColor(UIStorage.getInstance().getTextPrimaryColor());
             viewHolder.invalidFundingSourceBanner.setBackgroundColor(UIStorage.getInstance().adjustColorAlpha(UIStorage.getInstance().getUiPrimaryColor(), 0.15f));
             viewHolder.invalidFundingSourceBanner.setVisibility(View.VISIBLE);
         }

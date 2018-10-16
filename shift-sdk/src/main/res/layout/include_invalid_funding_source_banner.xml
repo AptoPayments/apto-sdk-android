@@ -14,7 +14,9 @@
         android:paddingRight="16dp"
         android:paddingTop="24dp"
         android:text="@string/invalid_funding_source_title"
-        android:textSize="14sp" />
+        android:textColor="@color/llsdk_secondary_text_color"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_banner_body"
@@ -26,7 +28,7 @@
         android:paddingRight="16dp"
         android:paddingTop="4dp"
         android:text="@string/invalid_funding_source_body"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
