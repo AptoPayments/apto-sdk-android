@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.ui.presenters.link;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.content.IntentCompat;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
@@ -161,7 +160,7 @@ public class LinkModule extends ShiftBaseModule {
         Activity currentActivity = this.getActivity();
         currentActivity.finish();
         Intent intent = currentActivity.getIntent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         currentActivity.startActivity(intent);
     }
 

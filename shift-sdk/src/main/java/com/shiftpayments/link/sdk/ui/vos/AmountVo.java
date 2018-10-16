@@ -53,6 +53,7 @@ public class AmountVo {
         Map<String, String> currencyMap = new HashMap<>();
         currencyMap.put("USD", "$");
         currencyMap.put("EUR", "€");
+        currencyMap.put("GBP", "£");
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             currencyMap.put("BTC", "\u20BF");
             currencyMap.put("ETH", "\u039E");

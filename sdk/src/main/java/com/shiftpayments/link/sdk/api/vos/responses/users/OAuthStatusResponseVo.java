@@ -14,4 +14,7 @@ public class OAuthStatusResponseVo {
 
     @SerializedName("tokens")
     public OAuthTokensVo tokens;
+
+    @SerializedName("user_data")
+    public UserDataListResponseVo userDataListVo;
 }

@@ -117,7 +117,7 @@ public interface FinancialAccountService {
      * Creates a {@link Call} to get the user's funding sources.
      * @return API call to execute.
      */
-    @GET(ShiftApiWrapper.GET_USER_BALANCES_PATH)
+    @GET(ShiftApiWrapper.USER_BALANCES_PATH)
     Call<BalanceListVo> getUserFundingSources(@Path("account_id") String accountId);
 
     /** Creates a {@link Call} to set the user's funding source
@@ -140,5 +140,5 @@ public interface FinancialAccountService {
      * @return API call to execute.
      */
     @POST(ShiftApiWrapper.USER_BALANCES_PATH)
-    Call<BalanceVo> addBalanceStore(@Body AddBalanceRequestVo request);
+    Call<BalanceVo> addBalanceStore(@Path("account_id") String accountId, @Body AddBalanceRequestVo request);
 }

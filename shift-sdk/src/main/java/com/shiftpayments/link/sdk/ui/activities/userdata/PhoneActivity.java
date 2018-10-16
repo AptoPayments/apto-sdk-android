@@ -10,6 +10,10 @@ import com.shiftpayments.link.sdk.ui.presenters.userdata.PhoneDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.userdata.PhonePresenter;
 import com.shiftpayments.link.sdk.ui.views.userdata.PhoneView;
 
+import java.util.ArrayList;
+
+import static com.shiftpayments.link.sdk.ui.presenters.userdata.UserDataCollectorModule.EXTRA_ALLOWED_COUNTRIES;
+
 /**
  * Wires up the MVP pattern for the phone screen.
  * @author Adrian
@@ -27,7 +31,8 @@ public class PhoneActivity
     @Override
     protected PhonePresenter createPresenter(BaseDelegate delegate) {
         if(delegate instanceof PhoneDelegate) {
-            return new PhonePresenter(this, (PhoneDelegate) delegate);
+            ArrayList<String> allowedCountries = getIntent().getStringArrayListExtra(EXTRA_ALLOWED_COUNTRIES);
+            return new PhonePresenter(this, (PhoneDelegate) delegate, allowedCountries);
         }
         else {
             throw new NullPointerException("Received Module does not implement PhoneDelegate!");

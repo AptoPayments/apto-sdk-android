@@ -1,7 +1,5 @@
 package com.shiftpayments.link.sdk.ui.utils;
 
-import android.content.Context;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,7 +22,7 @@ public class DateUtil {
         mLocale = locale;
     }
 
-    public static final String BIRTHDATE_DATE_FORMAT = "MM-dd-yyyy";
+    public static final String BIRTHDATE_DATE_FORMAT = "yyyy-MM-dd";
     private static final String ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
     private static Locale mLocale;
 
@@ -82,7 +80,7 @@ public class DateUtil {
         return expectedFormat.format(date);
     }
 
-    public static String getLocaleFormattedDate(String timestamp, Context context) {
+    public static String getLocaleFormattedDate(String timestamp) {
         Date date = new Date(Long.parseLong(timestamp) * 1000L);
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, Locale.US);
         return dateFormat.format(date);

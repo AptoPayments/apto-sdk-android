@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import com.shiftpayments.link.sdk.ui.R;
@@ -15,7 +16,12 @@ import com.shiftpayments.link.sdk.ui.utils.ResourceUtil;
 import com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 /**
  * Concrete {@link Presenter} for the ID verification screen.
@@ -31,11 +37,13 @@ public class IdentityVerificationPresenter
     private boolean mIsSSNNotAvailableAllowed;
     private boolean mIsBirthdayRequired;
     private UserDataCollectorConfigurationVo mCallToActionConfig;
+    private HashMap<String, List<IdDocument.IdDocumentType>> mAllowedDocumentTypes;
+    private HashMap<String, String> mCountryNameToCountryCodeMap;
 
     /**
      * Creates a new {@link IdentityVerificationPresenter} instance.
      */
-    public IdentityVerificationPresenter(AppCompatActivity activity, IdentityVerificationDelegate delegate) {
+    public IdentityVerificationPresenter(AppCompatActivity activity, IdentityVerificationDelegate delegate, HashMap<String, List<IdDocument.IdDocumentType>> allowedDocumentTypes) {
         super(activity);
         mDelegate = delegate;
         UserDataCollectorModule module = (UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule();
@@ -43,7 +51,7 @@ public class IdentityVerificationPresenter
         mIsSSNRequired = false;
         mIsSSNNotAvailableAllowed = false;
         for (RequiredDataPointVo requiredDataPointVo : module.mRequiredDataPointList) {
-            if(requiredDataPointVo.type.equals(DataPointVo.DataPointType.SSN)) {
+            if(requiredDataPointVo.type.equals(DataPointVo.DataPointType.IdDocument)) {
                 mIsSSNRequired = true;
                 mIsSSNNotAvailableAllowed = requiredDataPointVo.notSpecifiedAllowed;
             }
@@ -51,14 +59,8 @@ public class IdentityVerificationPresenter
 
         mIsBirthdayRequired = module.mRequiredDataPointList.contains(new RequiredDataPointVo(DataPointVo.DataPointType.BirthDate));
         mCallToActionConfig = module.getCallToActionConfig();
-    }
-
-    /**
-     * @param activity The {@link Activity} that will be hosting the date picker.
-     * @return Resource ID of the theme to use with for the birthday date picker.
-     */
-    private int getBirthdayDialogThemeId(Activity activity) {
-        return new ResourceUtil().getResourceIdForAttribute(activity, R.attr.llsdk_userData_datePickerTheme);
+        mAllowedDocumentTypes = allowedDocumentTypes;
+        mCountryNameToCountryCodeMap = new HashMap<>();
     }
 
     /**
@@ -78,7 +80,6 @@ public class IdentityVerificationPresenter
     /** {@inheritDoc} */
     @Override
     protected void populateModelFromStorage() {
-        mModel.setExpectedSSNLength(mActivity.getResources().getInteger(R.integer.ssn_length));
         mModel.setMinimumAge(mActivity.getResources().getInteger(R.integer.min_age));
         super.populateModelFromStorage();
     }
@@ -97,10 +98,26 @@ public class IdentityVerificationPresenter
             mView.setBirthdayYear(mModel.getBirthdateYear());
         }
 
+        Set<String> countryCodeSet = mAllowedDocumentTypes.keySet();
+        if(countryCodeSet.size() > 1) {
+            mView.showCitizenshipSpinner(true);
+            List<String> countryNames = getCountryListFromCountryCodeSet(countryCodeSet);
+            ArrayAdapter<String> countryListAdapter = new ArrayAdapter<>(mActivity,
+                    android.R.layout.simple_spinner_item, countryNames);
+            countryListAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            mView.setCitizenshipSpinnerAdapter(countryListAdapter);
+        }
+        else {
+            mView.showCitizenshipSpinner(false);
+            String countryCode = countryCodeSet.iterator().next();
+            mModel.setCountry(countryCode);
+            setDocumentTypesAdapter(countryCode);
+        }
+
         mView.showSSN(mIsSSNRequired);
         mView.showSSNNotAvailableCheckbox(mIsSSNNotAvailableAllowed);
-        if(mIsSSNRequired && mModel.hasValidSsn()) {
-            mView.setSSN(mModel.getSocialSecurityNumber());
+        if(mIsSSNRequired && mModel.hasValidDocument()) {
+            mView.setDocumentNumber(mModel.getDocumentNumber());
         }
 
         int progressColor = getProgressBarColor(mActivity);
@@ -111,12 +128,6 @@ public class IdentityVerificationPresenter
         if(mCallToActionConfig != null) {
             mView.setButtonText(mCallToActionConfig.callToAction.title.toUpperCase());
             mActivity.getSupportActionBar().setTitle(mCallToActionConfig.title);
-        }
-
-        if(((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile) {
-            if(mIsSSNRequired && mView.getSocialSecurityNumber().isEmpty()) {
-                mView.setMaskedSSN();
-            }
         }
     }
 
@@ -135,13 +146,26 @@ public class IdentityVerificationPresenter
 
     @Override
     public void ssnCheckBoxClickHandler() {
-        mView.enableSSNField(!mView.isSSNCheckboxChecked());
-        mView.updateSocialSecurityError(false, 0);
+        mView.enableSpinners(!mView.isSSNCheckboxChecked());
+        mView.enableIdDocumentField(!mView.isSSNCheckboxChecked());
+        mView.updateDocumentNumberError(false, 0);
     }
 
     @Override
     public void monthClickHandler() {
         showMonthPicker();
+    }
+
+    @Override
+    public void citizenshipClickHandler(String country) {
+        String countryCode = mCountryNameToCountryCodeMap.get(country);
+        mModel.setCountry(countryCode);
+        setDocumentTypesAdapter(countryCode);
+    }
+
+    @Override
+    public void documentTypeClickHandler(IdDocument.IdDocumentType documentType) {
+        mModel.setDocumentType(documentType);
     }
 
     /** {@inheritDoc} */
@@ -162,8 +186,8 @@ public class IdentityVerificationPresenter
             mView.updateBirthdayError(!mModel.hasValidBirthday(), mModel.getBirthdayErrorString());
         }
         if(mIsSSNRequired && userHasUpdatedSSN()) {
-            mModel.setSocialSecurityNumber(mView.getSocialSecurityNumber());
-            mView.updateSocialSecurityError(!mModel.hasValidSsn(), mModel.getSsnErrorString());
+            mModel.setDocumentNumber(mView.getDocumentNumber());
+            mView.updateDocumentNumberError(!mModel.hasValidDocument(), mModel.getSsnErrorString());
         }
 
         if(mIsSSNRequired && mIsBirthdayRequired) {
@@ -178,7 +202,7 @@ public class IdentityVerificationPresenter
             }
         }
         else if(mIsSSNRequired){
-            if(mModel.hasValidSsn() || ((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
+            if(mModel.hasValidDocument() || ((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
                     && !userHasUpdatedSSN()) {
                 saveDataAndExit();
             }
@@ -189,10 +213,9 @@ public class IdentityVerificationPresenter
     }
 
     private boolean userHasUpdatedSSN() {
-        return (!mView.getSocialSecurityNumber().equals(mModel.getSocialSecurityNumber()) &&
-                !mView.isSSNMasked()) ||
+        return !mView.getDocumentNumber().equals(mModel.getDocumentNumber()) ||
                 (!((UserDataCollectorModule) ModuleManager.getInstance().getCurrentModule()).isUpdatingProfile
-                && mView.getSocialSecurityNumber()!=null);
+                        && mView.getDocumentNumber() != null);
     }
 
     private void saveDataAndExit() {
@@ -211,4 +234,29 @@ public class IdentityVerificationPresenter
             .setAdapter(arrayAdapter, (dialog1, item) -> mView.setBirthdayMonth(arrayAdapter.getItem(item)))
             .show();
     }
+
+    private List<String> getCountryListFromCountryCodeSet(Set<String> countryCodesSet) {
+        List<String> countryList = new ArrayList<>();
+        for(String countryCode : countryCodesSet) {
+            countryList.add(getCountryNameFromCountryCode(countryCode));
+        }
+        return countryList;
+    }
+
+    private String getCountryNameFromCountryCode(String countryCode) {
+        Locale locale = new Locale("",countryCode);
+        String countryName = locale.getDisplayCountry();
+        mCountryNameToCountryCodeMap.put(countryName, countryCode);
+        return countryName;
+    }
+
+    private void setDocumentTypesAdapter(String countryCode) {
+        List<IdDocument.IdDocumentType> documentTypes = mAllowedDocumentTypes.get(countryCode);
+        ArrayAdapter<IdDocument.IdDocumentType> documentTypesAdapter = new ArrayAdapter<>(mActivity,
+                android.R.layout.simple_spinner_item, documentTypes);
+        documentTypesAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        mView.setDocumentTypeSpinnerAdapter(documentTypesAdapter);
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.ui.presenters.verification;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.verifications.FinishVerificationResponseVo;
@@ -95,6 +96,7 @@ public class PhoneVerificationPresenter
     public void handleResponse(VerificationResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
+            Log.d("ShiftVerification", "secret: " + response.secret);
             mModel.setVerification(response.verification_id, response.verification_type);
         }
     }

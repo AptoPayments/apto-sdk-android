@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.shiftpayments.link.sdk.ui.views.userdata.ApartmentView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/include_llsdk_toolbar" />
+
+    <!-- Dummy to get focus on start. -->
+    <RelativeLayout
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <LinearLayout
+        style="?attr/llsdk_dataContainerStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_address_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            style="@style/llsdk_form_label" />
+
+        <EditText
+            android:id="@+id/et_apartment_number"
+            android:layout_marginTop="8dp"
+            style="@style/llsdk_form_field_wide"
+            android:hint="@string/address_apartment_number_hint"
+            android:background="@android:color/transparent"
+            android:inputType="text"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <include layout="@layout/include_progress_bar" />
+
+</com.shiftpayments.link.sdk.ui.views.userdata.ApartmentView>

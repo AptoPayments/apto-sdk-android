@@ -1,10 +1,6 @@
 package com.shiftpayments.link.sdk.ui.tests.robolectric.tests.models.userdata;
 
-import com.google.i18n.phonenumbers.Phonenumber;
-import com.shiftpayments.link.sdk.api.vos.datapoints.Birthdate;
-import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
-import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
-import com.shiftpayments.link.sdk.api.vos.datapoints.PhoneNumberVo;
+import com.shiftpayments.link.sdk.api.vos.datapoints.IdDocument;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.IdentityVerificationModel;
 
@@ -24,14 +20,10 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class IdentityVerificationModelTest {
 
     private static final int MINIMUM_AGE = 18;
-    private static final int SSN_LENGTH = 9;
 
     private static final String EXPECTED_SSN = "123456789";
-    private static final int EXPECTED_COUNTRY_CODE = 1;
-    private static final long EXPECTED_NATIONAL_NUMBER = 9495860722L;
-
-    private static final String EXPECTED_FORMATTED_BIRTHDAY = "03-13-1996";
-    private static final String EXPECTED_FORMATTED_PHONE = "+19495860722";
+    private static final String EXPECTED_COUNTRY_CODE = "US";
+    private static final IdDocument.IdDocumentType EXPETED_DOCUMENT_TYPE = IdDocument.IdDocumentType.SSN;
 
     private IdentityVerificationModel mModel;
 
@@ -54,7 +46,6 @@ public class IdentityVerificationModelTest {
     public void setUp() {
         mModel = new IdentityVerificationModel();
         mModel.setMinimumAge(MINIMUM_AGE);
-        mModel.setExpectedSSNLength(SSN_LENGTH);
     }
 
     /**
@@ -66,7 +57,9 @@ public class IdentityVerificationModelTest {
     public void allDataIsSet() {
         Calendar birthday = getValidBirthday();
         mModel.setBirthday(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DATE));
-        mModel.setSocialSecurityNumber(EXPECTED_SSN);
+        mModel.setDocumentNumber(EXPECTED_SSN);
+        mModel.setDocumentType(EXPETED_DOCUMENT_TYPE);
+        mModel.setCountry(EXPECTED_COUNTRY_CODE);
 
         Assert.assertTrue("All data should be set.", mModel.hasValidData());
     }
@@ -115,9 +108,11 @@ public class IdentityVerificationModelTest {
      * Then the SSN should be stored.
      */
     @Test
-    public void validSsnIsStored() {
-        mModel.setSocialSecurityNumber(EXPECTED_SSN);
-        Assert.assertTrue("SSN should be stored.", mModel.hasValidSsn());
+    public void validIdDocumentIsStored() {
+        mModel.setDocumentNumber(EXPECTED_SSN);
+        mModel.setDocumentType(EXPETED_DOCUMENT_TYPE);
+        mModel.setCountry(EXPECTED_COUNTRY_CODE);
+        Assert.assertTrue("SSN should be stored.", mModel.hasValidDocument());
         Assert.assertFalse("There should be missing data.", mModel.hasValidData());
     }
 
@@ -127,40 +122,8 @@ public class IdentityVerificationModelTest {
      * Then the SSN should not be stored.
      */
     @Test
-    public void invalidSsnIsNotStored() {
-        mModel.setSocialSecurityNumber("123");
-        Assert.assertFalse("SSN should NOT be stored.", mModel.hasValidSsn());
+    public void invalidIdDocumentIsNotStored() {
+        mModel.setDocumentNumber("");
+        Assert.assertFalse("Id Document should NOT be stored.", mModel.hasValidDocument());
     }
-
-    /**
-     * Given a Model with data set.<br />
-     * When generating the API request data.<br />
-     * Then the correct data should be created.
-     */
-    @Test
-    public void apiDataIsCreated() {
-        DataPointList base = new DataPointList();
-
-        Phonenumber.PhoneNumber phone = new Phonenumber.PhoneNumber()
-                .setCountryCode(EXPECTED_COUNTRY_CODE)
-                .setNationalNumber(EXPECTED_NATIONAL_NUMBER);
-
-        PhoneNumberVo phoneNumber = new PhoneNumberVo("", false, false);
-        phoneNumber.setPhone(phone);
-        base.add(phoneNumber);
-        mModel.setBaseData(base);
-
-        Calendar birthday = getValidBirthday();
-        mModel.setBirthday(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DATE));
-        mModel.setSocialSecurityNumber(EXPECTED_SSN);
-
-        DataPointList apiData = mModel.getUserData();
-        PhoneNumberVo apiPhone = (PhoneNumberVo) apiData.getUniqueDataPoint(
-                DataPointVo.DataPointType.Phone, new PhoneNumberVo());
-        Birthdate apiBirthDate = (Birthdate) apiData.getUniqueDataPoint(
-                DataPointVo.DataPointType.BirthDate, new Birthdate());
-        Assert.assertThat("Incorrect phone number.", apiPhone.getPhoneAsString(), equalTo(EXPECTED_FORMATTED_PHONE));
-        Assert.assertThat("Incorrect birthday.", apiBirthDate.getDate(), equalTo(EXPECTED_FORMATTED_BIRTHDAY));
-    }
-
 }

@@ -34,17 +34,26 @@ public class PhoneNumberVo extends DataPointVo {
         return phoneNumber;
     }
 
-    public String getPhoneAsString() {
-        return "+" + String.valueOf(phoneNumber.getCountryCode()) + String.valueOf(phoneNumber.getNationalNumber());
+    /**
+     * Parses and stores a valid US phone number.
+     * @param phone Raw phone number.
+     */
+    public void setPhone(String phone) {
+        try {
+            Phonenumber.PhoneNumber number = PhoneNumberUtil.getInstance().parse(phone, "US");
+            setPhone(number);
+        } catch (NumberParseException npe) {
+            this.phoneNumber = null;
+        }
     }
 
     /**
      * Parses and stores a valid phone number.
      * @param phone Raw phone number.
      */
-    public void setPhone(String phone) {
+    public void setPhone(String phone, String countryCode) {
         try {
-            Phonenumber.PhoneNumber number = PhoneNumberUtil.getInstance().parse(phone, "US");
+            Phonenumber.PhoneNumber number = PhoneNumberUtil.getInstance().parse(phone, countryCode);
             setPhone(number);
         } catch (NumberParseException npe) {
             this.phoneNumber = null;
@@ -74,8 +83,7 @@ public class PhoneNumberVo extends DataPointVo {
 
     @Override
     public String toString() {
-        // TODO: refactor
-        return getPhoneAsString();
+        return "+" + String.valueOf(phoneNumber.getCountryCode()) + String.valueOf(phoneNumber.getNationalNumber());
     }
 
     @Override

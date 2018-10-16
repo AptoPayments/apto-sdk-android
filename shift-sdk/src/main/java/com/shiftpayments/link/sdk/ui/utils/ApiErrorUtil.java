@@ -82,15 +82,17 @@ public class ApiErrorUtil {
             builder.setTitle(spannableStringBuilder);
 
             String alertMessage = ApiErrorUtil.getErrorMessageGivenErrorCode(errorCode);
-            foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextSecondaryColor());
-            spannableStringBuilder = new SpannableStringBuilder(alertMessage);
-            spannableStringBuilder.setSpan(
-                    foregroundColorSpan,
-                    0,
-                    alertMessage.length(),
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            );
-            builder.setMessage(spannableStringBuilder);
+            if(alertMessage!=null) {
+                foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextSecondaryColor());
+                spannableStringBuilder = new SpannableStringBuilder(alertMessage);
+                spannableStringBuilder.setSpan(
+                        foregroundColorSpan,
+                        0,
+                        alertMessage.length(),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                );
+                builder.setMessage(spannableStringBuilder);
+            }
 
             builder.setPositiveButton("OK", (dialog, id) -> dialog.dismiss());
 

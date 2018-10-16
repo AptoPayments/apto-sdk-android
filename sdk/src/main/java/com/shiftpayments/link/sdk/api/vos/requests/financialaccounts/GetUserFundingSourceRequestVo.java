@@ -8,14 +8,14 @@ import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 public class GetUserFundingSourceRequestVo extends UnauthorizedRequestVo {
 
-    private String mAccountId;
+    public String cardId;
 
-    public GetUserFundingSourceRequestVo(String accountId) {
-        mAccountId = accountId;
+    public GetUserFundingSourceRequestVo(String cardId) {
+        this.cardId = cardId;
     }
 
     @Override
     public ShiftApiTask getApiTask(ShiftApiWrapper shiftApiWrapper, ApiResponseHandler responseHandler) {
-        return new GetUserFundingSourcesTask(mAccountId, shiftApiWrapper, responseHandler);
+        return new GetUserFundingSourcesTask(cardId, shiftApiWrapper, responseHandler);
     }
 }

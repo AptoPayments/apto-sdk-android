@@ -14,14 +14,14 @@ public class GetUserFundingSourcesTask extends ShiftApiTask<Void, Void, BalanceL
 
     /**
      * @see ShiftApiTask#ShiftApiTask
-     * @param requestData See {@link ShiftApiTask#ShiftApiTask}.
+     * @param cardId See {@link ShiftApiTask#ShiftApiTask}.
      * @param apiWrapper See {@link ShiftApiTask#ShiftApiTask}.
      * @param responseHandler See {@link ShiftApiTask#ShiftApiTask}.
      */
-    public GetUserFundingSourcesTask(String requestData,
+    public GetUserFundingSourcesTask(String cardId,
                                      ShiftApiWrapper apiWrapper,
                                      ApiResponseHandler responseHandler) {
-        super(requestData, apiWrapper, responseHandler);
+        super(cardId, apiWrapper, responseHandler);
     }
 
     /** {@inheritDoc} */

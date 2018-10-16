@@ -41,11 +41,6 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
         void clearUserTokenClickedHandler();
 
         /**
-         * Called when the clear team key button has been pressed.
-         */
-        void clearTeamKeyClickedHandler();
-
-        /**
          * Called when the clear project key button has been pressed.
          */
         void clearProjectKeyClickedHandler();
@@ -54,7 +49,6 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
     private Button mFillButton;
     private Button mClearButton;
     private ImageButton mClearUserTokenButton;
-    private ImageButton mClearTeamKeyButton;
     private ImageButton mClearProjectKeyButton;
 
     private EditText mLoanAmountField;
@@ -78,7 +72,6 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
     private EditText mSSN;
     private EditText mBearerToken;
     private EditText mProjectKey;
-    private EditText mTeamKey;
     private EditText mProjectName;
     private EditText mOffersListStyle;
     private Switch mArmedForces;
@@ -126,7 +119,6 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
         mFillButton = (Button) findViewById(R.id.bttn_fill_all);
         mClearButton = (Button) findViewById(R.id.bttn_clear_all);
         mClearUserTokenButton = (ImageButton) findViewById(R.id.bttn_clear_user_token);
-        mClearTeamKeyButton = (ImageButton) findViewById(R.id.bttn_clear_team_key);
         mClearProjectKeyButton = (ImageButton) findViewById(R.id.bttn_clear_project_key);
 
         mLoanAmountField = (EditText) findViewById(R.id.et_loan_amount);
@@ -150,7 +142,6 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
         mSSN = (EditText) findViewById(R.id.et_ssn);
         mBearerToken = (EditText) findViewById(R.id.et_user_token);
         mProjectKey = (EditText) findViewById(R.id.et_project_key);
-        mTeamKey = (EditText) findViewById(R.id.et_team_key);
         mProjectName = (EditText) findViewById(R.id.et_project_name);
         mOffersListStyle = (EditText) findViewById(R.id.et_offers_list_style);
         mArmedForces = (Switch) findViewById(R.id.sw_armed_forces);
@@ -189,9 +180,6 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
                 break;
             case R.id.bttn_clear_project_key:
                 mListener.clearProjectKeyClickedHandler();
-                break;
-            case R.id.bttn_clear_team_key:
-                mListener.clearTeamKeyClickedHandler();
                 break;
             default:
                 // Do nothing.
@@ -500,22 +488,6 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
 
     /**
      * Shows the stored team key.
-     * @param teamKey User token.
-     */
-    public void setTeamKey(String teamKey) {
-        if(teamKey!=null && !teamKey.isEmpty()) {
-            mTeamKey.setText(teamKey.substring(0,10) + "..." +
-                    teamKey.substring(teamKey.length()-10, teamKey.length()));
-            mClearTeamKeyButton.setVisibility(VISIBLE);
-        }
-        else {
-            mTeamKey.setText("");
-            mClearTeamKeyButton.setVisibility(GONE);
-        }
-    }
-
-    /**
-     * Shows the stored team key.
      * @param projectKey User token.
      */
     public void setProjectKey(String projectKey) {
@@ -532,10 +504,6 @@ public class SettingsView extends RelativeLayout implements View.OnClickListener
 
     public String getProjectKey() {
         return mProjectKey.getText().toString();
-    }
-
-    public String getTeamKey() {
-        return mTeamKey.getText().toString();
     }
 
     /**

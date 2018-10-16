@@ -8,6 +8,8 @@ package com.shiftpayments.link.sdk.api.vos.responses.config;
 import com.google.gson.annotations.SerializedName;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionVo;
 
+import java.util.List;
+
 public class ConfigResponseVo {
 
     public String name;
@@ -59,4 +61,7 @@ public class ConfigResponseVo {
 
     @SerializedName("welcome_screen_action")
     public ActionVo welcomeScreenAction;
+
+    @SerializedName("allowed_countries")
+    public List<String> allowedCountries;
 }

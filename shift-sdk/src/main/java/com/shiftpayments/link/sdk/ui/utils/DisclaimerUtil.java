@@ -37,7 +37,7 @@ public class DisclaimerUtil {
         Address userAddress = (Address) UserStorage.getInstance().getUserData().getUniqueDataPoint(
                 DataPointVo.DataPointType.Address, null);
         if(userAddress != null) {
-            url = url.replace("[language]", LanguageUtil.getLanguage()).replace("[state]", userAddress.stateCode.toUpperCase());
+            url = url.replace("[language]", LanguageUtil.getLanguage()).replace("[state]", userAddress.region.toUpperCase());
         }
         return url;
     }

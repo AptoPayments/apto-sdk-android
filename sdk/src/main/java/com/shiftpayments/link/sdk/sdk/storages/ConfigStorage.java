@@ -27,6 +27,7 @@ public class ConfigStorage {
     private LinkConfigResponseVo mLinkConfig;
     private CardConfigResponseVo mCardConfig;
     private UserDataCollectorConfigurationVo mUserDataCollectorConfig;
+    private RequiredDataPointVo[] mRequiredDataPoints;
 
     public enum OffersListStyle {
         list, carousel
@@ -104,6 +105,9 @@ public class ConfigStorage {
     }
 
     public synchronized RequiredDataPointVo[] getRequiredUserData() {
+        if(mRequiredDataPoints!=null) {
+            return mRequiredDataPoints;
+        }
         if(isLinkConfigCached()) {
             return mLinkConfig.userRequiredData.data;
         }
@@ -121,8 +125,7 @@ public class ConfigStorage {
     }
 
     public synchronized void setRequiredUserData(RequiredDataPointVo[] requiredDataPoints) {
-        // TODO: UserDataCollector should not read this from here, it should be an input to the module
-        mLinkConfig.userRequiredData.data = requiredDataPoints;
+        mRequiredDataPoints = requiredDataPoints;
     }
 
     public synchronized boolean getPOSMode() {

@@ -53,7 +53,7 @@ public class TransactionDetailsPresenter
         mView.setSubtitle(mModel.getLocalAmount());
         String transactionDate = mModel.getTransactionDate();
         if(transactionDate != null) {
-            mView.setTransactionDate(DateUtil.getLocaleFormattedDate(transactionDate, mActivity));
+            mView.setTransactionDate(DateUtil.getLocaleFormattedDate(transactionDate));
         }
         mView.setShiftId(mModel.getShiftId());
         mView.setType(mModel.getTransactionType().toString());
