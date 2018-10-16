@@ -176,14 +176,14 @@ public class TransactionsAdapter extends
                     setBalanceBannerTextToInvalidBalance(viewHolder);
                     showCardBalance(false, viewHolder);
                     showSpendableAmount(false, viewHolder);
-                    viewHolder.creditCardView.setCardEnabled(false);
+                    viewHolder.creditCardView.setCardEnabled(true);
                     viewHolder.creditCardView.setCardError(true);
                 } else {
                     showBalanceErrorBanner(true, viewHolder);
                     setBalanceBannerTextToNoBalance(viewHolder);
                     showCardBalance(false, viewHolder);
                     showSpendableAmount(false, viewHolder);
-                    viewHolder.creditCardView.setCardEnabled(false);
+                    viewHolder.creditCardView.setCardEnabled(true);
                     viewHolder.creditCardView.setCardError(true);
                 }
 
