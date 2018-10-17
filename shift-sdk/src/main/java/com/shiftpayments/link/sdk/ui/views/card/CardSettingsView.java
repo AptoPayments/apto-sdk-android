@@ -154,7 +154,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
             mListener.onClose();
         } else if (id == R.id.tv_change_pin) {
             mListener.changePinClickHandler();
-        } else if (id == R.id.tv_report_stolen_card) {
+        } else if (id == R.id.tv_report_stolen_card || id == R.id.tv_report_stolen_card_description) {
             mListener.contactSupportClickHandler();
         } else if (id == R.id.tv_cardholder_agreement || id == R.id.tv_cardholder_agreement_description) {
             mListener.cardholderAgreementClickHandler();
