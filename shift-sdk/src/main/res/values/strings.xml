@@ -307,6 +307,11 @@
     <string name="fingerprint_hint">Touch sensor</string>
     <string name="fingerprint_title">Use fingerprint?</string>
 
+    <!-- card welcome screen -->
+    <string name="card_welcome_title">Your Card is ready to run!</string>
+    <string name="card_welcome_subtitle">Your Physical Card is on the way! In the mean time, you can start enjoying your virtual card.</string>
+    <string name="card_welcome_button">ACTIVATE MY CARD</string>
+
     <!-- card management screen -->
     <string name="card_management_title">Card</string>
     <string name="card_management_card_balance">Current balance</string>
