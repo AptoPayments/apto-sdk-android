@@ -137,7 +137,7 @@ public class CardSettingsPresenter
     }
 
     @Override
-    public void contactSupportClickHandler() {
+    public void reportStolenCardClickHandler() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
 
         String alertTitle = mActivity.getString(R.string.contact_support_alert_title);
