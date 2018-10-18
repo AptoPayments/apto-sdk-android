@@ -213,11 +213,6 @@ public class CardSettingsPresenter
         mView.setShowCardInfoSwitch(false);
     }
 
-    @Override
-    public void onClose() {
-        mActivity.finish();
-    }
-
     @Subscribe
     public void handleResponse(BalanceListVo response) {
         mResponseHandler.unsubscribe(this);
