@@ -410,4 +410,13 @@
     <string name="issue_card_error_header">Error</string>
     <string name="issue_card_error_body">There was an error while issuing your card</string>
     <string name="issue_card_error_button">TRY AGAIN</string>
+
+    <!-- Invalid funding source banner -->
+    <string name="no_funding_source_title">Funding sources not found</string>
+    <string name="no_funding_source_body">Your card will be disabled until you add a new funding source!</string>
+    <string name="no_funding_source_accept">Add it now</string>
+    <string name="invalid_funding_source_title">Invalid funding source</string>
+    <string name="invalid_funding_source_body">Your current funding source is not valid. Please select or add a different one!</string>
+    <string name="invalid_funding_source_accept">Select now</string>
+    <string name="invalid_funding_source_cancel">Cancel</string>
 </resources>

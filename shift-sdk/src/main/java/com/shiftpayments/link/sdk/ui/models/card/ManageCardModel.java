@@ -26,6 +26,7 @@ public class ManageCardModel implements ActivityModel {
     private AmountVo mBalance;
     private AmountVo mSpendableAmount;
     private AmountVo mNativeBalance;
+    private boolean mIsBalanceValid;
 
     /**
      * Creates a new {@link ManageCardModel} instance.
@@ -157,6 +158,18 @@ public class ManageCardModel implements ActivityModel {
 
     public boolean cardNumberShown() {
         return CardStorage.getInstance().showCardInfo;
+    }
+
+    public boolean hasBalance() {
+        return mBalance != null;
+    }
+
+    public boolean isBalanceValid() {
+        return mIsBalanceValid;
+    }
+
+    public void setBalanceState(String state) {
+        mIsBalanceValid = state!=null && state.equals("valid");
     }
 
     public void setCard(Card card) {
