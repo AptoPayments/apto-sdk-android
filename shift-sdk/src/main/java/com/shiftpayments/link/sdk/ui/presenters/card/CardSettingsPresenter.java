@@ -226,7 +226,6 @@ public class CardSettingsPresenter
     public void handleResponse(BalanceVo balance) {
         mResponseHandler.unsubscribe(this);
         CardStorage.getInstance().setBalance(balance);
-        mModel.setSelectedBalance(balance.id);
         mAdapter.updateList(mModel.getBalances());
         mLoadingSpinnerManager.showLoading(false);
         Toast.makeText(mActivity, R.string.account_management_funding_source_changed, Toast.LENGTH_SHORT).show();
