@@ -7,6 +7,16 @@
     android:orientation="vertical"
     tools:context="com.shiftpayments.link.sdk.ui.activities.card.CardWelcomeActivity">
 
+    <com.shiftpayments.link.sdk.ui.views.card.CreditCardView
+        android:id="@+id/credit_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="78dp"
+        android:elevation="4dp"/>
+
     <TextView
         android:id="@+id/tv_card_welcome_title"
         android:layout_height="wrap_content"
@@ -36,5 +46,6 @@
         style="?attr/llsdk_bigButtonStyle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
+        android:textSize="16sp"
         android:text="@string/card_welcome_button" />
 </com.shiftpayments.link.sdk.ui.views.card.CardWelcomeView>

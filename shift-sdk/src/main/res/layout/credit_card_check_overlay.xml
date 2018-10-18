@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/disabled_card_overlay"
+    android:id="@+id/check_card_overlay"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,5 +15,5 @@
         android:paddingRight="80dp"
         android:paddingTop="40dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_lock" />
+        android:src="@drawable/ic_check_circle_gray_24dp" />
 </LinearLayout>

@@ -49,7 +49,8 @@ public class CreditCardView extends RelativeLayout {
     private TextView mCvvLabel;
 
     private ImageView mCardLogoView;
-    private LinearLayout mCardOverlay;
+    private LinearLayout mDisabledCardOverlay;
+    private LinearLayout mCheckCardOverlay;
 
     public CreditCardView(Context context) {
         this(context, null);
@@ -80,7 +81,8 @@ public class CreditCardView extends RelativeLayout {
         mCvvLabel = findViewById(R.id.tv_cvv_label);
         mCvvView = findViewById(R.id.et_cvv);
         mCardLogoView = findViewById(R.id.iv_card_logo);
-        mCardOverlay = findViewById(R.id.card_overlay);
+        mDisabledCardOverlay = findViewById(R.id.disabled_card_overlay);
+        mCheckCardOverlay = findViewById(R.id.check_card_overlay);
     }
 
     @Override
@@ -191,11 +193,15 @@ public class CreditCardView extends RelativeLayout {
         mExpiryDateLabel.setVisibility(VISIBLE);
         mCvvView.setVisibility(VISIBLE);
         mCvvLabel.setVisibility(VISIBLE);
-        mCardOverlay.setVisibility(GONE);
+        mDisabledCardOverlay.setVisibility(GONE);
         setCardBackgroundColor(mEnabledCardBackground);
     }
 
     private void disableCard() {
-        mCardOverlay.setVisibility(VISIBLE);
+        mDisabledCardOverlay.setVisibility(VISIBLE);
+    }
+
+    public void showCheckCardOverlay() {
+        mCheckCardOverlay.setVisibility(VISIBLE);
     }
 }
