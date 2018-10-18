@@ -87,7 +87,9 @@ public class BirthdateVerificationModel extends AbstractUserDataModel implements
                 DataPointVo.DataPointType.BirthDate, null);
         if(baseBirthdate!=null) {
             setBirthdate(baseBirthdate.getDate());
-            mVerification.setVerificationId(baseBirthdate.getVerification().getVerificationId());
+            if(baseBirthdate.hasVerification()) {
+                mVerification.setVerificationId(baseBirthdate.getVerification().getVerificationId());
+            }
         }
     }
 

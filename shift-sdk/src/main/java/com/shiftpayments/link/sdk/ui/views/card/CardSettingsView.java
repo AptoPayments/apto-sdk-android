@@ -110,7 +110,6 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         void cardholderAgreementClickHandler();
         void termsAndConditionsClickHandler();
         void privacyPolicyClickHandler();
-        void onClose();
     }
 
     /**
@@ -149,8 +148,6 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
 
         if (id == R.id.tv_add_funding_source_button) {
             mListener.addFundingSource();
-        } else if (id == R.id.toolbar) {
-            mListener.onClose();
         } else if (id == R.id.tv_change_pin) {
             mListener.changePinClickHandler();
         } else if (id == R.id.tv_report_stolen_card) {

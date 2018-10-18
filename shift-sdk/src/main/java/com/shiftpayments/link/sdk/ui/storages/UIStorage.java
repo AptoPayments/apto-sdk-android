@@ -385,6 +385,10 @@ public class UIStorage {
         return mSdkOptions.features.get(ShiftSdkOptions.OptionKeys.showActivateCardButton);
     }
 
+    public boolean isEmbeddedMode() {
+        return mSdkOptions.features.get(ShiftSdkOptions.OptionKeys.useEmbeddedMode);
+    }
+
     public void setCursorColor(EditText view) {
         try {
             // Get the cursor resource id

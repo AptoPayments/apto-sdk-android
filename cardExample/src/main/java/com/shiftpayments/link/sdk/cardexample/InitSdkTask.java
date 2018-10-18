@@ -9,7 +9,6 @@ import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.vos.ShiftSdkOptions;
 
 import java.lang.ref.WeakReference;
-import java.util.HashMap;
 
 public class InitSdkTask extends AsyncTask<Void, Void, ConfigResponseVo> {
 
@@ -23,10 +22,10 @@ public class InitSdkTask extends AsyncTask<Void, Void, ConfigResponseVo> {
 
     @Override
     protected ConfigResponseVo doInBackground(Void... params) {
-        HashMap<ShiftSdkOptions.OptionKeys, Boolean> features = new HashMap<>();
-        features.put(ShiftSdkOptions.OptionKeys.showActivateCardButton, false);
-        features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, true);
-        ShiftSdkOptions options = new ShiftSdkOptions(features);
+        ShiftSdkOptions options = new ShiftSdkOptions();
+        options.features.put(ShiftSdkOptions.OptionKeys.showAddFundingSourceButton, true);
+        options.features.put(ShiftSdkOptions.OptionKeys.showActivateCardButton, false);
+        options.features.put(ShiftSdkOptions.OptionKeys.useEmbeddedMode, true);
         ShiftPlatform.initialize(mContext.get(), getApiKey(),
                 getCertificatePinning(), getTrustSelfSignedCertificates(), getEnvironment(),
                 null, options);

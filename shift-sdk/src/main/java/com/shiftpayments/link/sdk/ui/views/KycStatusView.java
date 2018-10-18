@@ -1,7 +1,10 @@
 package com.shiftpayments.link.sdk.ui.views;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
@@ -82,5 +85,11 @@ public class KycStatusView extends RelativeLayout implements ViewWithToolbar, Vi
         mToolbar = findViewById(R.id.tb_llsdk_toolbar);
         mTextView = findViewById(R.id.tv_status_text);
         mRefreshButton = findViewById(R.id.bttn_refresh);
+    }
+
+    public void showCloseButton() {
+        Drawable closeIcon = ContextCompat.getDrawable(getContext(), R.drawable.ic_close);
+        closeIcon.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
+        mToolbar.setNavigationIcon(closeIcon);
     }
 }

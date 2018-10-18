@@ -2,8 +2,10 @@ package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -122,5 +124,11 @@ public class ManageCardView
             mNoTransactionsImage.setVisibility(GONE);
             mNoTransactionsText.setVisibility(GONE);
         }
+    }
+
+    public void showCloseButton() {
+        Drawable closeIcon = ContextCompat.getDrawable(getContext(), R.drawable.ic_close);
+        closeIcon.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
+        mToolbar.setNavigationIcon(closeIcon);
     }
 }
