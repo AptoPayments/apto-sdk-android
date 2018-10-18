@@ -102,6 +102,11 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         this.handleSessionExpiredError(error);
     }
 
+    @Override
+    public void onManageCardClosed() {
+        showHomeActivity();
+    }
+
     /**
      * Called when the card config has been received.
      * @param config API response.
@@ -295,6 +300,11 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Override
     public void onKycPassed() {
         startManageCardScreen();
+    }
+
+    @Override
+    public void onKycClosed() {
+        showHomeActivity();
     }
 
     private void startKycStatusScreen(Card card) {
