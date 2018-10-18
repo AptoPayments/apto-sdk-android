@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.support.v4.content.ContextCompat;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -199,18 +200,26 @@ public class UIStorage {
     }
 
     public int getStatusBarColor(int actionBarColor) {
-        return addAlphaToColor(actionBarColor);
+        return adjustColorValue(actionBarColor, 0.8f);
     }
 
     public int getDisabledTextTopbarColor() {
-        return addAlphaToColor(getTextTopbarColor());
+        return adjustColorValue(getTextTopbarColor(), 0.8f);
     }
 
-    private int addAlphaToColor(int color) {
+    public int adjustColorValue(@ColorInt int color, float value) {
         float[] hsv = new float[3];
         Color.colorToHSV(color, hsv);
-        hsv[2] *= 0.8f;
+        hsv[2] *= value;
         return Color.HSVToColor(hsv);
+    }
+
+    public static int adjustColorAlpha(@ColorInt int color, float factor) {
+        int alpha = Math.round(Color.alpha(color) * factor);
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+        return Color.argb(alpha, red, green, blue);
     }
 
     public synchronized ConfigResponseVo getContextConfig() {

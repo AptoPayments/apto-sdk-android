@@ -13,6 +13,8 @@ public class BalanceVo {
 
     public String id;
 
+    public String state;
+
     @SerializedName("funding_source_type")
     public String fundingSourceType;
 
