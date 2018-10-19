@@ -137,8 +137,44 @@ public class CardSettingsPresenter
     }
 
     @Override
-    public void contactSupportClickHandler() {
-        new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
+    public void reportStolenCardClickHandler() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+
+        String alertTitle = mActivity.getString(R.string.contact_support_alert_title);
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextPrimaryColor());
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(alertTitle);
+        spannableStringBuilder.setSpan(
+                foregroundColorSpan,
+                0,
+                alertTitle.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        builder.setTitle(spannableStringBuilder);
+
+        String alertMessage = mActivity.getString(R.string.contact_support_alert_message);
+        foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextSecondaryColor());
+        spannableStringBuilder = new SpannableStringBuilder(alertMessage);
+        spannableStringBuilder.setSpan(
+                foregroundColorSpan,
+                0,
+                alertMessage.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        builder.setMessage(spannableStringBuilder);
+
+        builder.setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
+        builder.setPositiveButton("Confirm", (dialog, id) -> {
+            changeCardState(false);
+            new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setOnShowListener(dialogInterface -> {
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(UIStorage.getInstance().getTextPrimaryColor());
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(UIStorage.getInstance().getUiPrimaryColor());
+        });
+        dialog.show();
     }
 
     @Override
