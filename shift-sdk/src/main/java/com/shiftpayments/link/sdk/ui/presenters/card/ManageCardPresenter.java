@@ -165,7 +165,7 @@ public class ManageCardPresenter
             mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());
         }
         else {
-            Log.d("ADRIAN", "bannerAcceptButtonClickHandler: activate physical card");
+            activatePhysicalCard();
         }
     }
 
@@ -304,6 +304,10 @@ public class ManageCardPresenter
             setBalanceInModel(balance);
             mTransactionsAdapter.notifyDataSetChanged();
         }
+    }
+
+    public void activatePhysicalCard() {
+        Log.d("ADRIAN", "bannerAcceptButtonClickHandler: activate physical card");
     }
 
     protected void setupToolbar() {

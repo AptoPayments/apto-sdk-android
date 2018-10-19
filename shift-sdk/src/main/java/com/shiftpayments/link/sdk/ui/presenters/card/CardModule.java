@@ -120,6 +120,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     @Override
     public void onActivatePhysicalCard() {
+        setCurrentModule();
         getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
     }
 

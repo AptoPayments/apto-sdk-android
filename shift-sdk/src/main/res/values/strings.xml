@@ -7,6 +7,7 @@
     <!-- Toolbar -->
     <string name="toolbar_next_button_label">Next</string>
     <string name="toolbar_confirm_button_label">Confirm</string>
+    <string name="toolbar_activate_card_button_label">Activate card</string>
 
     <!-- Loan Amount -->
     <string name="loan_amount_label">How much do you need?</string>
