@@ -32,12 +32,6 @@ public class Card extends FinancialAccountVo {
         UNKNOWN
     }
 
-    public enum PhysicalActivationState {
-        ACTIVATED,
-        PENDING_ACTIVATION,
-        NOT_APPLICABLE
-    }
-
     @SerializedName("card_network")
     public CardNetwork cardNetwork;
     @SerializedName("last_four")
@@ -58,8 +52,8 @@ public class Card extends FinancialAccountVo {
     public KycStatus kycStatus;
     @SerializedName("kyc_reason")
     public String[] kycReason;
-    @SerializedName("physical_card_activation_status")
-    public PhysicalActivationState physicalCardActivationStatus;
+    @SerializedName("physical_card_activation_required")
+    public Boolean physicalCardActivationRequired;
 
 
     public Card() {

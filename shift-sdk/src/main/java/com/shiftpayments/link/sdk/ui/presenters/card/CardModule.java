@@ -260,7 +260,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         setCurrentModule();
         ShiftSdk.getResponseHandler().unsubscribe(this);
         Card card = CardStorage.getInstance().getCard();
-        //if(card.physicalCardActivationStatus.equals(Card.PhysicalActivationState.PENDING_ACTIVATION)) {
+        //if(card.physicalCardActivationRequired) {
         // TODO: for testing purposes
         if(true) {
             getActivity().startActivity(new Intent(getActivity(), CardWelcomeActivity.class));

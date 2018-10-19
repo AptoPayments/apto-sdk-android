@@ -156,6 +156,10 @@ public class ManageCardModel implements ActivityModel {
         return mCard.isCardCreated();
     }
 
+    public boolean isPhysicalCardActivationRequired() {
+        return mCard.physicalCardActivationRequired;
+    }
+
     public boolean cardNumberShown() {
         return CardStorage.getInstance().showCardInfo;
     }

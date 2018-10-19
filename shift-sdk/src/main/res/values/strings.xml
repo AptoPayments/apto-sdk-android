@@ -419,4 +419,9 @@
     <string name="invalid_funding_source_body">Your current funding source is not valid. Please select or add a different one!</string>
     <string name="invalid_funding_source_accept">Select now</string>
     <string name="invalid_funding_source_cancel">Cancel</string>
+
+    <!-- Enable physical card banner -->
+    <string name="enable_physical_card_title">Enable your physical card</string>
+    <string name="enable_physical_card_body">Received your physical Shift Card? Nice! Tap here to enable it.</string>
+    <string name="enable_physical_card_accept">Enable now</string>
 </resources>
