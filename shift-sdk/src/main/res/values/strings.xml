@@ -335,8 +335,10 @@
     <string name="switch_show_card_info">Card Info</string>
     <string name="show_card_info_description">Show card number and CVV</string>
     <string name="save_to_android_pay_label">Add Card</string>
-    <string name="contact_support_label">Contact support</string>
-    <string name="contact_support_description">Report missing or stolen card</string>
+    <string name="contact_support_label">Report Lost or Stolen Card</string>
+    <string name="contact_support_description">Freeze your card and order a replacement</string>
+    <string name="contact_support_alert_title">Report Lost or Stolen Card</string>
+    <string name="contact_support_alert_message">Just as a heads up, once you confirm your card is lost or stolen, it\'ll instantly be locked so no one can use it.</string>
     <string name="legal_label">Legal</string>
     <string name="cardholder_agreement_label">Cardholder Agreement</string>
     <string name="cardholder_agreement_description">Terms and Conditions of the Card</string>
