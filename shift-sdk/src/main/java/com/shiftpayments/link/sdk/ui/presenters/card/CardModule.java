@@ -276,9 +276,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     private void startCardWelcomeScreenOrManageCardScreen() {
         ShiftSdk.getResponseHandler().unsubscribe(this);
         Card card = CardStorage.getInstance().getCard();
-        //if(card.physicalCardActivationRequired) {
-        // TODO: for testing purposes
-        if(true) {
+        if(card.physicalCardActivationRequired) {
             startCardWelcomeScreen();
         }
         else {

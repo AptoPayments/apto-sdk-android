@@ -14,6 +14,7 @@ import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.ManageCardDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.ManageCardPresenter;
+import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.card.ManageCardView;
 
@@ -63,9 +64,7 @@ public class ManageCardActivity extends FragmentMvpActivity<ManageCardModel, Man
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         MenuItem updateProfileItem;
-        /*if(CardStorage.getInstance().getCard().physicalCardActivationRequired) {*/
-        //TODO: testing
-        if(true) {
+        if(CardStorage.getInstance().getCard().physicalCardActivationRequired) {
             inflater.inflate(R.menu.menu_update_profile_and_activate_physical_card, menu);
             updateProfileItem = menu.getItem(1);
 

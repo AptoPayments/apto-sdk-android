@@ -187,9 +187,7 @@ public class TransactionsAdapter extends
                     viewHolder.creditCardView.setCardError(true);
                 }
 
-                /*if(mModel.isPhysicalCardActivationRequired())*/
-                // TODO: set for testing purposes
-                if(true) {
+                if(mModel.isPhysicalCardActivationRequired()) {
                     setBalanceBannerTextToEnablePhysicalCard(viewHolder);
                 }
 
