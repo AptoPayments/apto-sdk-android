@@ -307,7 +307,7 @@ public class ManageCardPresenter
     }
 
     public void activatePhysicalCard() {
-        Log.d("ADRIAN", "bannerAcceptButtonClickHandler: activate physical card");
+        mDelegate.onActivatePhysicalCard();
     }
 
     protected void setupToolbar() {

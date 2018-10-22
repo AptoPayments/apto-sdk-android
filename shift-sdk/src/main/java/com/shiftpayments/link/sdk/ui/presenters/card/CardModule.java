@@ -2,7 +2,6 @@ package com.shiftpayments.link.sdk.ui.presenters.card;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -62,7 +61,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     public CardModule(Activity activity, Command onFinish, Command onBack) {
         super(activity, onFinish, onBack);
-        mNewCardModule = new NewCardModule(getActivity(), this::getApplicationStatus, this::startManageCardScreen,
+        mNewCardModule = new NewCardModule(getActivity(), this::getApplicationStatus, this::startCardWelcomeScreenOrManageCardScreen,
                 this::showHomeActivity, this::onIssueCardError);
     }
 
@@ -83,7 +82,12 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Override
     public void addFundingSource(Command onFinishCallback) {
         ShiftSdk.getResponseHandler().unsubscribe(this);
-        startCustodianModule(onFinishCallback, this::startManageCardScreen);
+        startCustodianModule(onFinishCallback, this::startCardWelcomeScreenOrManageCardScreen);
+    }
+
+    @Override
+    public void onActivatePhysicalCard() {
+        getActivity().startActivity(new Intent(getActivity(), PhysicalCardActivationActivity.class));
     }
 
     @Override
@@ -92,7 +96,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         String cardId = CardStorage.getInstance().getCard().mAccountId;
         BalanceDataVo balanceData = new BalanceDataVo("coinbase", oAuthResponse.tokens.access, oAuthResponse.tokens.refresh);
         ShiftPlatform.addUserBalance(cardId, balanceData);
-        startManageCardScreen();
+        startCardWelcomeScreenOrManageCardScreen();
     }
 
     @Override
@@ -113,7 +117,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     @Override
     public void onKycPassed() {
-        startManageCardScreen();
+        startCardWelcomeScreenOrManageCardScreen();
     }
 
     @Override
@@ -122,20 +126,18 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     @Override
-    public void onActivatePhysicalCard() {
-        setCurrentModule();
-        getActivity().startActivity(new Intent(getActivity(), PhysicalCardActivationActivity.class));
+    public void onCardWelcomeNextClickHandler() {
+        startManageCardScreen();
     }
 
     @Override
     public void physicalCardActivated() {
-        setCurrentModule();
-        getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
+        startManageCardScreen();
     }
 
     @Override
     public void activatePhysicalCardOnBackPressed() {
-        Log.d("ADRIAN", "activatePhysicalCardOnBackPressed: ");
+        startManageCardScreen();
     }
 
     /**
@@ -162,7 +164,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         CardStorage.getInstance().setCard(card);
 
         if(card.kycStatus.equals(KycStatus.passed)) {
-            startManageCardScreen();
+            startCardWelcomeScreenOrManageCardScreen();
         }
         else {
             startKycStatusScreen(card);
@@ -271,18 +273,27 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         }
     }
 
-    private void startManageCardScreen() {
-        setCurrentModule();
+    private void startCardWelcomeScreenOrManageCardScreen() {
         ShiftSdk.getResponseHandler().unsubscribe(this);
         Card card = CardStorage.getInstance().getCard();
         //if(card.physicalCardActivationRequired) {
         // TODO: for testing purposes
         if(true) {
-            getActivity().startActivity(new Intent(getActivity(), CardWelcomeActivity.class));
+            startCardWelcomeScreen();
         }
         else {
-            getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
+            startManageCardScreen();
         }
+    }
+
+    private void startCardWelcomeScreen() {
+        setCurrentModule();
+        getActivity().startActivity(new Intent(getActivity(), CardWelcomeActivity.class));
+    }
+
+    private void startManageCardScreen() {
+        setCurrentModule();
+        getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
     }
 
     private void getUserInfo() {

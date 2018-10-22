@@ -34,6 +34,6 @@ public class CardWelcomePresenter extends BasePresenter<ManageCardModel, CardWel
 
     @Override
     public void activateCardClickHandler() {
-        mDelegate.onActivatePhysicalCard();
+        mDelegate.onCardWelcomeNextClickHandler();
     }
 }

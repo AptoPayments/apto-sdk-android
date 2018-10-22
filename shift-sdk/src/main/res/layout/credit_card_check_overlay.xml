@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:paddingBottom="56dp"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp"
-        android:paddingTop="40dp"
+        android:paddingBottom="68dp"
+        android:paddingLeft="124dp"
+        android:paddingRight="124dp"
+        android:paddingTop="68dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_check_circle_gray_24dp" />
+        android:src="@drawable/ic_successful_check_mark" />
 </LinearLayout>
