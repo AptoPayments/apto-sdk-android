@@ -313,6 +313,10 @@
     <string name="card_welcome_subtitle">Your Physical Card is on the way! In the mean time, you can start enjoying your virtual card.</string>
     <string name="card_welcome_button">ACTIVATE MY CARD</string>
 
+    <!-- physical card activation screen -->
+    <string name="physical_card_activation_title">Enable your physical card</string>
+    <string name="physical_card_activation_hint">Enable your card by entering the activation code that came attached with your physical card.</string>
+
     <!-- card management screen -->
     <string name="card_management_title">Card</string>
     <string name="card_management_card_balance">Current balance</string>

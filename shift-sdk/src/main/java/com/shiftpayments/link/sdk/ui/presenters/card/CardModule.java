@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.presenters.card;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -22,6 +23,7 @@ import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.CardWelcomeActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
+import com.shiftpayments.link.sdk.ui.activities.card.PhysicalCardActivationActivity;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
 import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModule;
@@ -53,7 +55,8 @@ import static com.shiftpayments.link.sdk.sdk.ShiftSdk.getApiWrapper;
  */
 
 public class CardModule extends ShiftBaseModule implements ManageAccountDelegate, ManageCardDelegate,
-        CardSettingsDelegate, KycStatusDelegate, CustodianSelectorDelegate, CardWelcomeDelegate {
+        CardSettingsDelegate, KycStatusDelegate, CustodianSelectorDelegate, CardWelcomeDelegate,
+        PhysicalCardActivationDelegate {
 
     private NewCardModule mNewCardModule;
 
@@ -121,7 +124,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Override
     public void onActivatePhysicalCard() {
         setCurrentModule();
-        getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
+        getActivity().startActivity(new Intent(getActivity(), PhysicalCardActivationActivity.class));
     }
 
     /**
@@ -334,6 +337,17 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     private void onIssueCardError() {
         startKycStatusScreen(CardStorage.getInstance().getCard());
+    }
+
+    @Override
+    public void physicalCardActivated() {
+        setCurrentModule();
+        getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
+    }
+
+    @Override
+    public void activatePhysicalCardOnBackPressed() {
+        Log.d("ADRIAN", "activatePhysicalCardOnBackPressed: ");
     }
 }
 

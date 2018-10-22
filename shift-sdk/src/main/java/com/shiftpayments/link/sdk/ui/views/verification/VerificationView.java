@@ -153,4 +153,13 @@ public class VerificationView
             mDataPointLabel.setVisibility(INVISIBLE);
         }
     }
+
+    public void showResendButton(boolean show) {
+        if(show) {
+            mResendButton.setVisibility(VISIBLE);
+        }
+        else {
+            mResendButton.setVisibility(INVISIBLE);
+        }
+    }
 }
