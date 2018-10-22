@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.presenters.card;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -21,6 +22,7 @@ import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.CardWelcomeActivity;
+import com.shiftpayments.link.sdk.ui.activities.card.GetPinActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.PhysicalCardActivationActivity;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorDelegate;
@@ -55,7 +57,7 @@ import static com.shiftpayments.link.sdk.sdk.ShiftSdk.getApiWrapper;
 
 public class CardModule extends ShiftBaseModule implements ManageAccountDelegate, ManageCardDelegate,
         CardSettingsDelegate, KycStatusDelegate, CustodianSelectorDelegate, CardWelcomeDelegate,
-        PhysicalCardActivationDelegate {
+        PhysicalCardActivationDelegate, GetPinDelegate {
 
     private NewCardModule mNewCardModule;
 
@@ -132,11 +134,23 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     @Override
     public void physicalCardActivated() {
-        startManageCardScreen();
+        getActivity().startActivity(new Intent(getActivity(), GetPinActivity.class));
     }
 
     @Override
     public void activatePhysicalCardOnBackPressed() {
+        startManageCardScreen();
+    }
+
+
+    @Override
+    public void onGetPinClickHandler() {
+        //TODO
+        Log.d("ADRIAN", "onGetPinClickHandler: ");
+    }
+
+    @Override
+    public void onGetPinOnClose() {
         startManageCardScreen();
     }
 

@@ -213,6 +213,11 @@
             android:theme="@style/Theme.LedgeLine.Example" />
 
         <activity
+            android:name="com.shiftpayments.link.sdk.ui.activities.card.GetPinActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.LedgeLine.Example" />
+
+        <activity
             android:name="com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity"
             android:theme="@style/Theme.LedgeLine.Example"
             android:windowSoftInputMode="stateHidden"
