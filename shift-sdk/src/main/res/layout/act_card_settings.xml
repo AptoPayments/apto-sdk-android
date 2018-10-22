@@ -40,7 +40,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/funding_sources_label" />
 
-            <android.support.v7.widget.RecyclerView
+            <com.shiftpayments.link.sdk.ui.widgets.EmptyRecyclerView
                 android:id="@+id/rv_funding_sources_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -49,31 +49,17 @@
                 android:scrollbarStyle="outsideOverlay"
                 android:scrollbars="vertical" />
 
-            <LinearLayout
-                android:id="@+id/ll_add_funding_source"
+            <include layout="@layout/include_no_funding_sources"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingTop="16dp"
-                android:paddingBottom="12dp">
-                <ImageButton
-                    android:id="@+id/ib_add_funding_source"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="14dp"
-                    android:background="@android:color/white"
-                    android:src="@drawable/ic_icon_add"/>
-                <TextView
-                    android:id="@+id/tv_add_funding_source_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="@string/add_funding_source"
-                    android:layout_weight="1" />
-            </LinearLayout>
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tv_add_funding_source_button"
+                android:layout_marginTop="16dp"
+                android:visibility="invisible"
+                style="?attr/llsdk_bigButtonStyle"
+                android:text="@string/add_funding_source" />
 
             <TextView
                 android:id="@+id/tv_settings_header"
