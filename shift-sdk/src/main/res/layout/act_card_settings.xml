@@ -51,7 +51,8 @@
 
             <include layout="@layout/include_no_funding_sources"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tv_add_funding_source_button"
