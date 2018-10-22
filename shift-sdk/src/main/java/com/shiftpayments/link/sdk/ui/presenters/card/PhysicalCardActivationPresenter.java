@@ -1,14 +1,14 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
-import android.util.Log;
-
+import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
-import com.shiftpayments.link.sdk.api.vos.responses.verifications.VerificationResponseVo;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.card.PhysicalCardActivationActivity;
 import com.shiftpayments.link.sdk.ui.models.card.PhysicalCardActivationModel;
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.verification.VerificationView;
@@ -75,11 +75,7 @@ public class PhysicalCardActivationPresenter
         mModel.setActivationCode(mView.getVerificationCode());
 
         if (mModel.hasActivationCode()) {
-            //ShiftPlatform.completeVerification(mModel.getActivationCode());
-            Log.d("ADRIAN", "nextClickHandler: " + mModel.getActivationCode());
-        }
-        else {
-            displayWrongCodeMessage();
+            ShiftPlatform.activatePhysicalCard(CardStorage.getInstance().getCard().mAccountId, mModel.getActivationCode());
         }
     }
 
@@ -88,10 +84,9 @@ public class PhysicalCardActivationPresenter
      * @param response API response.
      */
     @Subscribe
-    public void handleResponse(VerificationResponseVo response) {
+    public void handleResponse(ApiEmptyResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
-            // TODO
             mDelegate.physicalCardActivated();
         }
     }
@@ -103,20 +98,15 @@ public class PhysicalCardActivationPresenter
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
         mLoadingSpinnerManager.showLoading(false);
-        //super.setApiError(error);
+        mView.clearPinView();
+        ApiErrorUtil.showErrorMessage(error, mActivity);
     }
 
     @Override
     public void resendClickHandler() {
     }
 
-    private void displayWrongCodeMessage() {
-        ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.verification_error), mActivity);
-        mView.clearPinView();
-    }
-
     @Override
     public void stepperNextClickHandler() {
-
     }
 }

@@ -1,9 +1,10 @@
 package com.shiftpayments.link.sdk.ui.activities.card;
 
+import android.view.Menu;
 import android.view.View;
 
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.activities.FragmentMvpActivity;
+import com.shiftpayments.link.sdk.ui.activities.MvpActivity;
 import com.shiftpayments.link.sdk.ui.models.card.PhysicalCardActivationModel;
 import com.shiftpayments.link.sdk.ui.presenters.BaseDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.card.PhysicalCardActivationDelegate;
@@ -11,7 +12,7 @@ import com.shiftpayments.link.sdk.ui.presenters.card.PhysicalCardActivationPrese
 import com.shiftpayments.link.sdk.ui.views.verification.VerificationView;
 
 
-public class PhysicalCardActivationActivity extends FragmentMvpActivity<PhysicalCardActivationModel,
+public class PhysicalCardActivationActivity extends MvpActivity<PhysicalCardActivationModel,
         VerificationView, PhysicalCardActivationPresenter> {
 
     /** {@inheritDoc} */
@@ -29,6 +30,11 @@ public class PhysicalCardActivationActivity extends FragmentMvpActivity<Physical
         else {
             throw new NullPointerException("Received Module does not implement ManageCardDelegate!");
         }
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Do not show next button for this screen
+        return true;
     }
 }

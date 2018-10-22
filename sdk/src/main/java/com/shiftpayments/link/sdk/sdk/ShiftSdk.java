@@ -14,6 +14,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.config.GetCardConfigRequestVo
 import com.shiftpayments.link.sdk.api.vos.requests.config.GetLinkConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.config.GetProjectConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivateFinancialAccountRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivatePhysicalCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBalanceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddCardRequestVo;
@@ -377,6 +378,15 @@ public class ShiftSdk {
     public static void activateFinancialAccount(String accountId) {
         checkComponents();
         ActivateFinancialAccountRequestVo request = new ActivateFinancialAccountRequestVo(accountId);
+        executeOrEnqueueRequest(request);
+    }
+
+    /**
+     * Activate financial account.
+     */
+    public static void activatePhysicalCard(String cardId, String activationCode) {
+        checkComponents();
+        ActivatePhysicalCardRequestVo request = new ActivatePhysicalCardRequestVo(cardId, activationCode);
         executeOrEnqueueRequest(request);
     }
 

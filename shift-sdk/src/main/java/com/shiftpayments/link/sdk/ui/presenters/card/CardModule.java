@@ -127,6 +127,17 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         getActivity().startActivity(new Intent(getActivity(), PhysicalCardActivationActivity.class));
     }
 
+    @Override
+    public void physicalCardActivated() {
+        setCurrentModule();
+        getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
+    }
+
+    @Override
+    public void activatePhysicalCardOnBackPressed() {
+        Log.d("ADRIAN", "activatePhysicalCardOnBackPressed: ");
+    }
+
     /**
      * Called when the card config has been received.
      * @param config API response.
@@ -337,17 +348,6 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     private void onIssueCardError() {
         startKycStatusScreen(CardStorage.getInstance().getCard());
-    }
-
-    @Override
-    public void physicalCardActivated() {
-        setCurrentModule();
-        getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
-    }
-
-    @Override
-    public void activatePhysicalCardOnBackPressed() {
-        Log.d("ADRIAN", "activatePhysicalCardOnBackPressed: ");
     }
 }
 
