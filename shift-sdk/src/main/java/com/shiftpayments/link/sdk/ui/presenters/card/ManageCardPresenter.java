@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;

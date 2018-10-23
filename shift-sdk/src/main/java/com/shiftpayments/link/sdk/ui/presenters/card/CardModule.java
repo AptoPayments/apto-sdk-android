@@ -129,6 +129,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     @Override
     public void onCardWelcomeNextClickHandler() {
+        ShiftPlatform.enableFinancialAccount(CardStorage.getInstance().getCard().mAccountId);
         startManageCardScreen();
     }
 
@@ -295,7 +296,8 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     private void startCardWelcomeScreenOrManageCardScreen() {
         ShiftSdk.getResponseHandler().unsubscribe(this);
         Card card = CardStorage.getInstance().getCard();
-        if(card.physicalCardActivationRequired) {
+        // TODO: add SDK Option to make this screen configurable
+        if(card.isCardCreated()) {
             startCardWelcomeScreen();
         }
         else {

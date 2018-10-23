@@ -109,6 +109,7 @@ public class PhoneVerificationPresenter
     public void handleResponse(FinishVerificationResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
+            Log.d("ShiftVerification", "secret: " + response.secret);
             mModel.setVerificationStatus(response.status);
             if(mModel.hasValidData()) {
                 mDelegate.phoneVerificationSucceeded(response);

@@ -32,6 +32,7 @@ public class ManageCardActivity extends FragmentMvpActivity<ManageCardModel, Man
         super.onPostResume();
         mPresenter.subscribeToEvents(true);
         mPresenter.refreshView();
+        invalidateOptionsMenu();
     }
 
     @Override
@@ -56,10 +57,8 @@ public class ManageCardActivity extends FragmentMvpActivity<ManageCardModel, Man
         else {
             throw new NullPointerException("Received Module does not implement ManageCardDelegate!");
         }
-
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if(CardStorage.getInstance().getCard().physicalCardActivationRequired) {
@@ -68,7 +67,6 @@ public class ManageCardActivity extends FragmentMvpActivity<ManageCardModel, Man
         else {
             updateMenu(R.menu.menu_update_profile, 0, menu);
         }
-
         return super.onCreateOptionsMenu(menu);
     }
 
