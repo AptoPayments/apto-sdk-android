@@ -10,13 +10,13 @@ import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtua
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
-import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivatePhysicalCardResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
@@ -92,7 +92,7 @@ public interface FinancialAccountService {
      * @return API call to execute.
      */
     @POST(ShiftApiWrapper.ACTIVATE_PHYSICAL_CARD_PATH)
-    Call<ApiEmptyResponseVo> activatePhysicalCard(@Path("account_id") String accountId, @Body ActivatePhysicalCardRequestVo code);
+    Call<ActivatePhysicalCardResponseVo> activatePhysicalCard(@Path("account_id") String accountId, @Body ActivatePhysicalCardRequestVo code);
 
     /** Creates a {@link Call} to enable a card.
      * @param accountId Mandatory request data.

@@ -164,31 +164,24 @@ public class TransactionsAdapter extends
                 viewHolder.creditCardView.setCVV(mModel.getCVV());
                 viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
 
-                if (mModel.hasBalance() && mModel.isBalanceValid()) {
+                viewHolder.creditCardView.setCardEnabled(true);
+                viewHolder.creditCardView.setCardError(true);
+
+                if(!mModel.hasBalance()) {
+                    setBalanceBannerTextToNoBalance(viewHolder);
+                }
+                else if(!mModel.isBalanceValid()) {
+                    setBalanceBannerTextToInvalidBalance(viewHolder);
+                }
+                else if(mModel.isPhysicalCardActivationRequired()) {
+                    setBalanceBannerTextToEnablePhysicalCard(viewHolder);
+                }
+                else {
                     showBalanceErrorBanner(false, viewHolder);
                     showCardBalance(mModel.hasBalance(), viewHolder);
                     showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
                     viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
                     viewHolder.creditCardView.setCardError(false);
-                }
-                else if (!mModel.isBalanceValid()) {
-                    showBalanceErrorBanner(true, viewHolder);
-                    setBalanceBannerTextToInvalidBalance(viewHolder);
-                    showCardBalance(false, viewHolder);
-                    showSpendableAmount(false, viewHolder);
-                    viewHolder.creditCardView.setCardEnabled(true);
-                    viewHolder.creditCardView.setCardError(true);
-                } else {
-                    showBalanceErrorBanner(true, viewHolder);
-                    setBalanceBannerTextToNoBalance(viewHolder);
-                    showCardBalance(false, viewHolder);
-                    showSpendableAmount(false, viewHolder);
-                    viewHolder.creditCardView.setCardEnabled(true);
-                    viewHolder.creditCardView.setCardError(true);
-                }
-
-                if(mModel.isPhysicalCardActivationRequired()) {
-                    setBalanceBannerTextToEnablePhysicalCard(viewHolder);
                 }
 
                 if(mModel.cardNumberShown()) {
@@ -310,18 +303,27 @@ public class TransactionsAdapter extends
     }
 
     private void setBalanceBannerTextToInvalidBalance(ViewHolder viewHolder) {
+        showBalanceErrorBanner(true, viewHolder);
+        showCardBalance(false, viewHolder);
+        showSpendableAmount(false, viewHolder);
         viewHolder.bannerTitle.setText(mContext.getString(R.string.invalid_funding_source_title));
         viewHolder.bannerBody.setText(mContext.getString(R.string.invalid_funding_source_body));
         viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.invalid_funding_source_accept));
     }
 
     private void setBalanceBannerTextToNoBalance(ViewHolder viewHolder) {
+        showBalanceErrorBanner(true, viewHolder);
+        showCardBalance(false, viewHolder);
+        showSpendableAmount(false, viewHolder);
         viewHolder.bannerTitle.setText(mContext.getString(R.string.no_funding_source_title));
         viewHolder.bannerBody.setText(mContext.getString(R.string.no_funding_source_body));
         viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.no_funding_source_accept));
     }
 
     private void setBalanceBannerTextToEnablePhysicalCard(ViewHolder viewHolder) {
+        showBalanceErrorBanner(true, viewHolder);
+        showCardBalance(false, viewHolder);
+        showSpendableAmount(false, viewHolder);
         viewHolder.bannerTitle.setText(mContext.getString(R.string.enable_physical_card_title));
         viewHolder.bannerBody.setText(mContext.getString(R.string.enable_physical_card_body));
         viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.enable_physical_card_accept));

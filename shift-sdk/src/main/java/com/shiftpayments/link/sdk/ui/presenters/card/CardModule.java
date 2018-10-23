@@ -142,7 +142,6 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         startManageCardScreen();
     }
 
-
     @Override
     public void onGetPinClickHandler() {
         String ivrPhone = CardStorage.getInstance().getCard().features.getPin.ivrPhone.toString();
