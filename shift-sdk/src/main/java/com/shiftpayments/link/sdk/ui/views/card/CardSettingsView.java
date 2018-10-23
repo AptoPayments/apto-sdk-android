@@ -50,6 +50,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     private TextView mAddFundingSourceLabel;
     private FrameLayout mPinView;
     private TextView mChangePinButton;
+    private TextView mChangePinLabel;
     private TextView mContactSupportButton;
     private SwitchCompat mShowCardInfoSwitch;
     private SwitchCompat mEnableCardSwitch;
@@ -216,47 +217,28 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     }
 
     public void showFaq(boolean show) {
-        if(show) {
-            mFaqButton.setVisibility(VISIBLE);
-            mFaqLabel.setVisibility(VISIBLE);
-        }
-        else {
-            mFaqButton.setVisibility(GONE);
-            mFaqLabel.setVisibility(GONE);
-        }
+        mFaqButton.setVisibility(show ? VISIBLE : GONE);
+        mFaqLabel.setVisibility(show ? VISIBLE : GONE);
     }
 
     public void showCardholderAgreement(boolean show) {
-        if(show) {
-            mCardholderAgreementLabel.setVisibility(VISIBLE);
-            mCardholderAgreementButton.setVisibility(VISIBLE);
-        }
-        else {
-            mCardholderAgreementLabel.setVisibility(GONE);
-            mCardholderAgreementButton.setVisibility(GONE);
-        }
+        mCardholderAgreementLabel.setVisibility(show ? VISIBLE : GONE);
+        mCardholderAgreementButton.setVisibility(show ? VISIBLE : GONE);
     }
 
     public void showTermsAndConditions(boolean show) {
-        if(show) {
-            mTermsAndConditionsLabel.setVisibility(VISIBLE);
-            mTermsAndConditionsButton.setVisibility(VISIBLE);
-        }
-        else {
-            mTermsAndConditionsLabel.setVisibility(GONE);
-            mTermsAndConditionsButton.setVisibility(GONE);
-        }
+        mTermsAndConditionsLabel.setVisibility(show ? VISIBLE : GONE);
+        mTermsAndConditionsButton.setVisibility(show ? VISIBLE : GONE);
     }
 
     public void showPrivacyPolicy(boolean show) {
-        if(show) {
-            mPrivacyPolicyLabel.setVisibility(VISIBLE);
-            mPrivacyPolicyButton.setVisibility(VISIBLE);
-        }
-        else {
-            mPrivacyPolicyLabel.setVisibility(GONE);
-            mPrivacyPolicyButton.setVisibility(GONE);
-        }
+        mPrivacyPolicyLabel.setVisibility(show ? VISIBLE : GONE);
+        mPrivacyPolicyButton.setVisibility(show ? VISIBLE : GONE);
+    }
+
+    public void showSetPinButton(boolean show) {
+        mChangePinButton.setVisibility(show ? VISIBLE : GONE);
+        mChangePinLabel.setVisibility(show ? VISIBLE : GONE);
     }
 
     private void setupListeners() {
@@ -290,6 +272,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mAddFundingSourceLabel = findViewById(R.id.tv_add_funding_source_label);
         mPinView = findViewById(R.id.pin_fragment);
         mChangePinButton = findViewById(R.id.tv_change_pin);
+        mChangePinLabel = findViewById(R.id.tv_change_pin_description);
         mContactSupportButton = findViewById(R.id.tv_report_stolen_card);
         mShowCardInfoSwitch = findViewById(R.id.sw_show_card_info);
         mEnableCardSwitch = findViewById(R.id.sw_enable_card);
