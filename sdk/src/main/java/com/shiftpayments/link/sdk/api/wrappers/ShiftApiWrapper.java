@@ -112,6 +112,7 @@ public interface ShiftApiWrapper {
     String FINANCIAL_ACCOUNT_BALANCE_PATH = "v1/user/accounts/{account_id}/balance";
     String USER_BALANCES_PATH = "v1/user/accounts/{account_id}/balances";
     String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
+    String CARD_APPLICATION_PATH = "v1/user/accounts/applications/{application_id}";
     String CARD_APPLICATION_STATUS_PATH = "v1/user/accounts/applications/{application_id}/status";
     String SET_BALANCE_STORE_PATH = "v1/user/accounts/applications/{application_id}/select_balance_store";
     String ACCEPT_DISCLAIMER_PATH = "/v1/disclaimers/accept";
@@ -364,6 +365,14 @@ public interface ShiftApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     LoanApplicationDetailsResponseVo setApplicationAccount(ApplicationAccountRequestVo requestData, String applicationId) throws ApiException;
+
+
+    /**
+     * @param applicationId of the account to delete
+     * @return The application object with the status
+     * @throws ApiException When there is an error making the request
+     */
+    ApiEmptyResponseVo deleteApplication(final String applicationId) throws ApiException;
 
     /**
      * Delete a user given his phone number
