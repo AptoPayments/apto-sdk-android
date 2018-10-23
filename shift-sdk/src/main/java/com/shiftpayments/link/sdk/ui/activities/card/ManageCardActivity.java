@@ -62,22 +62,12 @@ public class ManageCardActivity extends FragmentMvpActivity<ManageCardModel, Man
     /** {@inheritDoc} */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        MenuItem updateProfileItem;
         if(CardStorage.getInstance().getCard().physicalCardActivationRequired) {
-            inflater.inflate(R.menu.menu_update_profile_and_activate_physical_card, menu);
-            updateProfileItem = menu.getItem(1);
-
+            updateMenu(R.menu.menu_update_profile_and_activate_physical_card, 1, menu);
         }
         else {
-            inflater.inflate(R.menu.menu_update_profile, menu);
-            updateProfileItem = menu.getItem(0);
+            updateMenu(R.menu.menu_update_profile, 0, menu);
         }
-        Drawable accountIcon = getResources().getDrawable(R.drawable.ic_icon_account);
-        final PorterDuffColorFilter colorFilter
-                = new PorterDuffColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
-        accountIcon.setColorFilter(colorFilter);
-        updateProfileItem.setIcon(accountIcon);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -102,5 +92,17 @@ public class ManageCardActivity extends FragmentMvpActivity<ManageCardModel, Man
     @Override
     public void onBackPressed() {
         // Disabled
+    }
+
+    private void updateMenu(final int menuResource, final int index, final Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        MenuItem updateProfileItem;
+        inflater.inflate(menuResource, menu);
+        updateProfileItem = menu.getItem(index);
+        Drawable accountIcon = getResources().getDrawable(R.drawable.ic_icon_account);
+        final PorterDuffColorFilter colorFilter
+                = new PorterDuffColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
+        accountIcon.setColorFilter(colorFilter);
+        updateProfileItem.setIcon(accountIcon);
     }
 }

@@ -72,6 +72,7 @@ public class CardSettingsPresenter
         mFragmentManager = fragmentManager;
         mIsUserAuthenticated = false;
         mFingerprintHandler = new FingerprintHandler(mActivity);
+        mAdapter = null;
     }
 
     /** {@inheritDoc} */
@@ -81,9 +82,6 @@ public class CardSettingsPresenter
         view.setViewListener(this);
         mActivity.setSupportActionBar(mView.getToolbar());
         mActivity.getSupportActionBar().setTitle(mActivity.getResources().getString(R.string.card_settings_title));
-        mAdapter = new FundingSourcesListRecyclerAdapter();
-        mAdapter.setViewListener(this);
-        view.setAdapter(mAdapter);
         mView.showAddFundingSourceButton(UIStorage.getInstance().showAddFundingSourceButton());
         mView.setShowCardInfoSwitch(CardStorage.getInstance().showCardInfo);
         mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
@@ -259,6 +257,11 @@ public class CardSettingsPresenter
     @Subscribe
     public void handleResponse(BalanceListVo response) {
         mResponseHandler.unsubscribe(this);
+        if(mAdapter==null) {
+            mAdapter = new FundingSourcesListRecyclerAdapter();
+            mAdapter.setViewListener(this);
+            mView.setAdapter(mAdapter);
+        }
         mModel.addBalances(response.data);
         mView.showFundingSourceLabel(true);
         mAdapter.updateList(mModel.getBalances());
@@ -269,7 +272,6 @@ public class CardSettingsPresenter
     public void handleResponse(BalanceVo balance) {
         mResponseHandler.unsubscribe(this);
         CardStorage.getInstance().setBalance(balance);
-        mModel.setSelectedBalance(balance.id);
         mAdapter.updateList(mModel.getBalances());
         mLoadingSpinnerManager.showLoading(false);
         Toast.makeText(mActivity, R.string.account_management_funding_source_changed, Toast.LENGTH_SHORT).show();
@@ -347,8 +349,6 @@ public class CardSettingsPresenter
     }
 
     private void showCardStateChangeConfirmationDialog() {
-        String text = mActivity.getString(R.string.disable_card_message);
-
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
 
         String alertTitle = mActivity.getString(R.string.card_settings_dialog_title);

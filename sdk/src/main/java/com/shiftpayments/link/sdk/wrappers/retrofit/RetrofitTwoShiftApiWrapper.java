@@ -1026,6 +1026,21 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     }
 
     @Override
+    public ApiEmptyResponseVo deleteApplication(String applicationId) throws ApiException {
+        ApiEmptyResponseVo result;
+        try {
+            Response<ApiEmptyResponseVo> response
+                    = mCardApplicationService.deleteApplicationAccount(applicationId).execute();
+            result = handleResponse(response, ShiftApiWrapper.CARD_APPLICATION_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.CARD_APPLICATION_PATH, ioe);
+        }
+
+        return result;
+    }
+
+    @Override
     public SetBalanceStoreResponseVo setBalanceStore(String applicationId, SetBalanceStoreRequestVo requestData) throws ApiException {
         SetBalanceStoreResponseVo result;
         try {

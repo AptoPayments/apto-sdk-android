@@ -41,6 +41,7 @@ public class DisclaimerActivity extends DisplayContentActivity {
 
     @Override
     public void cancelClickHandler() {
+        DisclaimerUtil.onCancel.execute();
         this.finish();
     }
 

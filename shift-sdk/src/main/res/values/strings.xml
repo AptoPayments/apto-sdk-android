@@ -363,6 +363,7 @@
     <string name="settings_label">Settings</string>
     <string name="support_label">Get help</string>
     <string name="add_funding_source">Add funding source</string>
+    <string name="card_settings_no_funding_sources">You have no Funding sources linked with your card.</string>
 
     <!-- card management enable/disable dialog -->
     <string name="enable_card_message">You are activating your card. Are you sure?</string>

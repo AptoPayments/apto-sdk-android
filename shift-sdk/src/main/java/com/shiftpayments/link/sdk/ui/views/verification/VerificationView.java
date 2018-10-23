@@ -146,20 +146,10 @@ public class VerificationView
     }
 
     public void showDataPoint(boolean show) {
-        if(show) {
-            mDataPointLabel.setVisibility(VISIBLE);
-        }
-        else {
-            mDataPointLabel.setVisibility(INVISIBLE);
-        }
+        mDataPointLabel.setVisibility(show ? VISIBLE : INVISIBLE);
     }
 
     public void showResendButton(boolean show) {
-        if(show) {
-            mResendButton.setVisibility(VISIBLE);
-        }
-        else {
-            mResendButton.setVisibility(INVISIBLE);
-        }
+        mResendButton.setVisibility(show ? VISIBLE : INVISIBLE);
     }
 }
