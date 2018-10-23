@@ -144,10 +144,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     @Override
     public void onGetPinClickHandler() {
-        String ivrPhone = CardStorage.getInstance().getCard().features.getPin.ivrPhone.toString();
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:" + ivrPhone));
-        getActivity().startActivity(intent);
+        callIvrPhone();
     }
 
     @Override
@@ -219,6 +216,13 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         super.handleSessionExpiredError(error);
         ShiftSdk.getResponseHandler().unsubscribe(this);
         showHomeActivity();
+    }
+
+    private void callIvrPhone() {
+        String ivrPhone = CardStorage.getInstance().getCard().features.getPin.ivrPhone.toString();
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + ivrPhone));
+        getActivity().startActivity(intent);
     }
 
     private boolean isStoredUserTokenValid() {

@@ -92,19 +92,6 @@ public class EmailVerificationPresenter
     }
 
     /**
-     * Called when the restart verification API response has been received.
-     * @param response API response.
-     */
-    @Subscribe
-    public void handleResponse(VerificationResponseVo response) {
-        mLoadingSpinnerManager.showLoading(false);
-        if (response != null) {
-            Log.d("ShiftVerification", "secret: " + response.secret);
-            mModel.setVerification(response.verification_id, response.verification_type);
-        }
-    }
-
-    /**
      * Called when the finish phone verification API response has been received.
      * @param response API response.
      */
@@ -112,6 +99,7 @@ public class EmailVerificationPresenter
     public void handleResponse(FinishVerificationResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
+            Log.d("ShiftVerification", "FinishVerificationResponseVo: " + response.secret);
             setVerificationResponse(response);
             mModel.setVerificationStatus(response.status);
             if(mModel.hasValidData()) {
@@ -142,6 +130,7 @@ public class EmailVerificationPresenter
     public void setVerificationResponse(VerificationResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
+            Log.d("ShiftVerification", "VerificationResponseVo: " + response.secret);
             Email email = mModel.getEmailFromBaseData();
             if(email.hasVerification()) {
                 email.getVerification().setVerificationId(response.verification_id);
@@ -160,6 +149,7 @@ public class EmailVerificationPresenter
     public void setVerificationResponse(VerificationStatusResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
         if (response != null) {
+            Log.d("ShiftVerification", "VerificationStatusResponseVo: " + response.secret);
             Email email = mModel.getEmailFromBaseData();
             email.getVerification().setVerificationStatus(response.status);
             if(!email.getVerification().isVerified()) {

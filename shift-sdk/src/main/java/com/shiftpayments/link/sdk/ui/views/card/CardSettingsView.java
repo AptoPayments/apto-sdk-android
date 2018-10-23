@@ -49,6 +49,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     private ImageButton mAddFundingSourceButton;
     private TextView mAddFundingSourceLabel;
     private FrameLayout mPinView;
+    private TextView mGetPinButton;
+    private TextView mGetPinLabel;
     private TextView mChangePinButton;
     private TextView mChangePinLabel;
     private TextView mContactSupportButton;
@@ -105,6 +107,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     public interface ViewListener {
         void addFundingSource();
         void changePinClickHandler();
+        void getPinClickHandler();
         void reportStolenCardClickHandler();
         void showCardInfoClickHandler(boolean show);
         void disableCardClickHandler(boolean disable);
@@ -150,8 +153,10 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
 
         if (id == R.id.ib_add_funding_source || id == R.id.tv_add_funding_source_label) {
             mListener.addFundingSource();
-        } else if (id == R.id.tv_change_pin) {
+        } else if (id == R.id.tv_change_pin || id == R.id.tv_change_pin_description) {
             mListener.changePinClickHandler();
+        } else if (id == R.id.tv_get_pin || id == R.id.tv_get_pin_description) {
+            mListener.getPinClickHandler();
         } else if (id == R.id.tv_report_stolen_card || id == R.id.tv_report_stolen_card_description) {
             mListener.reportStolenCardClickHandler();
         } else if (id == R.id.tv_cardholder_agreement || id == R.id.tv_cardholder_agreement_description) {
@@ -241,10 +246,18 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mChangePinLabel.setVisibility(show ? VISIBLE : GONE);
     }
 
+    public void showGetPinButton(boolean show) {
+        mGetPinButton.setVisibility(show ? VISIBLE : GONE);
+        mGetPinLabel.setVisibility(show ? VISIBLE : GONE);
+    }
+
     private void setupListeners() {
         mAddFundingSourceButton.setOnClickListener(this);
         mAddFundingSourceLabel.setOnClickListener(this);
         mChangePinButton.setOnClickListener(this);
+        mChangePinLabel.setOnClickListener(this);
+        mGetPinButton.setOnClickListener(this);
+        mGetPinLabel.setOnClickListener(this);
         mContactSupportButton.setOnClickListener(this);
         mShowCardInfoSwitch.setOnCheckedChangeListener(this);
         mShowCardInfoSwitch.setOnTouchListener(this);
@@ -273,6 +286,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mPinView = findViewById(R.id.pin_fragment);
         mChangePinButton = findViewById(R.id.tv_change_pin);
         mChangePinLabel = findViewById(R.id.tv_change_pin_description);
+        mGetPinButton = findViewById(R.id.tv_get_pin);
+        mGetPinLabel = findViewById(R.id.tv_get_pin_description);
         mContactSupportButton = findViewById(R.id.tv_report_stolen_card);
         mShowCardInfoSwitch = findViewById(R.id.sw_show_card_info);
         mEnableCardSwitch = findViewById(R.id.sw_enable_card);

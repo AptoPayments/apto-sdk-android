@@ -357,6 +357,8 @@
     <string name="privacy_policy_description">Information we collect</string>
     <string name="change_pin_label">Reset PIN</string>
     <string name="change_pin_description">Set a new PIN code for your card</string>
+    <string name="get_pin_label">Get my PIN</string>
+    <string name="get_pin_description">Retrieve your PIN via our automated system</string>
     <string name="funding_sources_label">Funding Sources</string>
     <string name="settings_label">Settings</string>
     <string name="support_label">Get help</string>
