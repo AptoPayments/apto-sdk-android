@@ -53,8 +53,8 @@ import static com.shiftpayments.link.sdk.ui.activities.DisplayContentActivity.ge
  */
 public class CardSettingsPresenter
         extends BasePresenter<CardSettingsModel, CardSettingsView>
-        implements Presenter<CardSettingsModel, CardSettingsView>,FundingSourceView.ViewListener,
-        CardSettingsView.ViewListener, FingerprintDelegate {
+        implements FundingSourceView.ViewListener, CardSettingsView.ViewListener,
+        FingerprintDelegate {
 
     private static final String DIALOG_FRAGMENT_TAG = "fingerprintFragment";
 

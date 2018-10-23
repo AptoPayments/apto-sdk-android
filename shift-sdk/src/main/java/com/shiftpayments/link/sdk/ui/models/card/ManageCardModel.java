@@ -1,8 +1,11 @@
 package com.shiftpayments.link.sdk.ui.models.card;
 
+import android.app.Activity;
+
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
+import com.shiftpayments.link.sdk.ui.models.ActivityModel;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
@@ -17,7 +20,7 @@ import java.util.Locale;
  * Concrete {@link Model} for managing a card.
  * @author Adrian
  */
-public class ManageCardModel implements Model {
+public class ManageCardModel implements ActivityModel {
 
     private Card mCard;
     private AmountVo mBalance;
@@ -153,6 +156,10 @@ public class ManageCardModel implements Model {
         return mCard.isCardCreated();
     }
 
+    public boolean isPhysicalCardActivationRequired() {
+        return mCard.physicalCardActivationRequired;
+    }
+
     public boolean cardNumberShown() {
         return CardStorage.getInstance().showCardInfo;
     }
@@ -183,5 +190,20 @@ public class ManageCardModel implements Model {
 
     public void setNativeBalance(AmountVo nativeBalance) {
         mNativeBalance = nativeBalance;
+    }
+
+    @Override
+    public int getActivityTitleResource() {
+        return 0;
+    }
+
+    @Override
+    public Class getPreviousActivity(Activity current) {
+        return null;
+    }
+
+    @Override
+    public Class getNextActivity(Activity current) {
+        return null;
     }
 }

@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -157,11 +158,14 @@ public class ManageCardPresenter
 
     @Override
     public void bannerAcceptButtonClickHandler() {
-        if(CardStorage.getInstance().hasBalance()) {
+        if(mModel.hasBalance() && !mModel.isBalanceValid()) {
             manageCardClickHandler();
         }
-        else {
+        else if(!mModel.hasBalance()) {
             mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());
+        }
+        else {
+            activatePhysicalCard();
         }
     }
 
@@ -300,6 +304,10 @@ public class ManageCardPresenter
             setBalanceInModel(balance);
             mTransactionsAdapter.notifyDataSetChanged();
         }
+    }
+
+    public void activatePhysicalCard() {
+        mDelegate.onActivatePhysicalCard();
     }
 
     protected void setupToolbar() {

@@ -50,6 +50,7 @@ public class CreditCardView extends RelativeLayout {
 
     private ImageView mCardLogoView;
     private LinearLayout mDisabledCardOverlay;
+    private LinearLayout mCheckCardOverlay;
     private LinearLayout mErrorCardOverlay;
 
     public CreditCardView(Context context) {
@@ -81,6 +82,7 @@ public class CreditCardView extends RelativeLayout {
         mCvvLabel = findViewById(R.id.tv_cvv_label);
         mCvvView = findViewById(R.id.et_cvv);
         mCardLogoView = findViewById(R.id.iv_card_logo);
+        mCheckCardOverlay = findViewById(R.id.check_card_overlay);
         mDisabledCardOverlay = findViewById(R.id.card_disabled_overlay);
         mErrorCardOverlay = findViewById(R.id.card_error_overlay);
     }
@@ -209,6 +211,10 @@ public class CreditCardView extends RelativeLayout {
 
     private void disableCard() {
         mDisabledCardOverlay.setVisibility(VISIBLE);
+    }
+
+    public void showCheckCardOverlay() {
+        mCheckCardOverlay.setVisibility(VISIBLE);
     }
 
     private void showCardError() {

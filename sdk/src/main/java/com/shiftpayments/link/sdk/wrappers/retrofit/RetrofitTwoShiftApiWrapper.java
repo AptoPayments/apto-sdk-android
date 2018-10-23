@@ -25,6 +25,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.CreateCardApplicationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivatePhysicalCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBalanceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
@@ -844,6 +845,19 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
             throwApiException(new ApiErrorVo(), ShiftApiWrapper.FINANCIAL_ACCOUNT_ACTIVATE_PATH, ioe);
         }
 
+        return result;
+    }
+
+    @Override
+    public ApiEmptyResponseVo activatePhysicalCard(String cardId, ActivatePhysicalCardRequestVo request) throws ApiException {
+        ApiEmptyResponseVo result;
+        try {
+            Response<ApiEmptyResponseVo> response = mFinancialAccountService.activatePhysicalCard(cardId, request).execute();
+            result = handleEmptyResponse(response, ShiftApiWrapper.ACTIVATE_PHYSICAL_CARD_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.ACTIVATE_PHYSICAL_CARD_PATH, ioe);
+        }
         return result;
     }
 

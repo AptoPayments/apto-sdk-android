@@ -3,12 +3,14 @@ package com.shiftpayments.link.sdk.wrappers.retrofit.services;
 import com.google.gson.JsonObject;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivatePhysicalCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBalanceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.IssueVirtualCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetBalanceStoreRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.SetFundingSourceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.UpdateFinancialAccountPinRequestVo;
+import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceStoreResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
@@ -84,6 +86,13 @@ public interface FinancialAccountService {
      */
     @POST(ShiftApiWrapper.FINANCIAL_ACCOUNT_ACTIVATE_PATH)
     Call<ActivateFinancialAccountResponseVo> activateFinancialAccount(@Path("account_id") String accountId);
+
+    /** Creates a {@link Call} to activate a physical card.
+     * @param accountId Mandatory request data.
+     * @return API call to execute.
+     */
+    @POST(ShiftApiWrapper.ACTIVATE_PHYSICAL_CARD_PATH)
+    Call<ApiEmptyResponseVo> activatePhysicalCard(@Path("account_id") String accountId, @Body ActivatePhysicalCardRequestVo code);
 
     /** Creates a {@link Call} to enable a card.
      * @param accountId Mandatory request data.

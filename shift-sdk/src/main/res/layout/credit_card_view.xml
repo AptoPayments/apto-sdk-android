@@ -210,6 +210,10 @@
         android:visibility="gone" />
 
     <include
+        layout="@layout/credit_card_check_overlay"
+        android:visibility="gone" />
+    
+    <include
         layout="@layout/credit_card_error_overlay"
         android:visibility="gone" />
 </merge>

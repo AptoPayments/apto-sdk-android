@@ -3,7 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/menu_activate_card_button"
+        android:orderInCategory="1"
+        android:title="@string/toolbar_activate_card_button_label"
+        android:icon="@drawable/ic_bank_card"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/menu_update_profile"
+        android:orderInCategory="2"
         android:icon="@drawable/ic_icon_account"
         android:title="@string/loan_amount_menu_update_profile"
         app:showAsAction="ifRoom"/>

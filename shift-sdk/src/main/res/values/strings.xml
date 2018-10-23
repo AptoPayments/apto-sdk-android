@@ -7,6 +7,7 @@
     <!-- Toolbar -->
     <string name="toolbar_next_button_label">Next</string>
     <string name="toolbar_confirm_button_label">Confirm</string>
+    <string name="toolbar_activate_card_button_label">Activate card</string>
 
     <!-- Loan Amount -->
     <string name="loan_amount_label">How much do you need?</string>
@@ -307,6 +308,15 @@
     <string name="fingerprint_hint">Touch sensor</string>
     <string name="fingerprint_title">Use fingerprint?</string>
 
+    <!-- card welcome screen -->
+    <string name="card_welcome_title">Your Card is ready to run!</string>
+    <string name="card_welcome_subtitle">Your Physical Card is on the way! In the mean time, you can start enjoying your virtual card.</string>
+    <string name="card_welcome_button">ACTIVATE MY CARD</string>
+
+    <!-- physical card activation screen -->
+    <string name="physical_card_activation_title">Enable your physical card</string>
+    <string name="physical_card_activation_hint">Enable your card by entering the activation code that came attached with your physical card.</string>
+
     <!-- card management screen -->
     <string name="card_management_title">Card</string>
     <string name="card_management_card_balance">Current balance</string>
@@ -417,4 +427,9 @@
     <string name="invalid_funding_source_body">Your current funding source is not valid. Please select or add a different one!</string>
     <string name="invalid_funding_source_accept">Select now</string>
     <string name="invalid_funding_source_cancel">Cancel</string>
+
+    <!-- Enable physical card banner -->
+    <string name="enable_physical_card_title">Enable your physical card</string>
+    <string name="enable_physical_card_body">Received your physical Shift Card? Nice! Tap here to enable it.</string>
+    <string name="enable_physical_card_accept">Enable now</string>
 </resources>

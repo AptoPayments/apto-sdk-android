@@ -52,6 +52,9 @@ public class Card extends FinancialAccountVo {
     public KycStatus kycStatus;
     @SerializedName("kyc_reason")
     public String[] kycReason;
+    @SerializedName("physical_card_activation_required")
+    public Boolean physicalCardActivationRequired;
+
 
     public Card() {
         super(null, FinancialAccountType.Card, false);

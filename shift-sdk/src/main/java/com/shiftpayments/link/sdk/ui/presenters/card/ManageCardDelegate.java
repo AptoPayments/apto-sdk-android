@@ -11,5 +11,6 @@ public interface ManageCardDelegate {
 
     void onSessionExpired(SessionExpiredErrorVo error);
     void addFundingSource(Command onFinishCallback);
+    void onActivatePhysicalCard();
     void onManageCardClosed();
 }

@@ -187,6 +187,10 @@ public class TransactionsAdapter extends
                     viewHolder.creditCardView.setCardError(true);
                 }
 
+                if(mModel.isPhysicalCardActivationRequired()) {
+                    setBalanceBannerTextToEnablePhysicalCard(viewHolder);
+                }
+
                 if(mModel.cardNumberShown()) {
                     setCopyCardNumberLabelText(viewHolder, mContext.getString(R.string.card_management_primary_button_full));
                 }
@@ -315,6 +319,12 @@ public class TransactionsAdapter extends
         viewHolder.bannerTitle.setText(mContext.getString(R.string.no_funding_source_title));
         viewHolder.bannerBody.setText(mContext.getString(R.string.no_funding_source_body));
         viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.no_funding_source_accept));
+    }
+
+    private void setBalanceBannerTextToEnablePhysicalCard(ViewHolder viewHolder) {
+        viewHolder.bannerTitle.setText(mContext.getString(R.string.enable_physical_card_title));
+        viewHolder.bannerBody.setText(mContext.getString(R.string.enable_physical_card_body));
+        viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.enable_physical_card_accept));
     }
 
     private void showBalanceErrorBanner(boolean show, ViewHolder viewHolder) {
