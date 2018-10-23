@@ -43,8 +43,6 @@ public class DisclaimerActivity extends DisplayContentActivity {
     @Override
     public void cancelClickHandler() {
         this.finish();
-        final boolean show = true;
-        mView.setVisibility(show? View.VISIBLE : View.INVISIBLE);
     }
 
 
