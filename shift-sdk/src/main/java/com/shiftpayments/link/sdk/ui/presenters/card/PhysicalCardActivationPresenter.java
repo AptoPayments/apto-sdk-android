@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.ui.models.card.PhysicalCardActivationModel;
 import com.shiftpayments.link.sdk.ui.presenters.ActivityPresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.LoadingSpinnerManager;
 import com.shiftpayments.link.sdk.ui.views.verification.VerificationView;
 
@@ -96,11 +97,9 @@ public class PhysicalCardActivationPresenter
      */
     @Subscribe
     public void handleApiError(ApiErrorVo error) {
-        //TODO testing
-        mDelegate.physicalCardActivated();
-        /*mLoadingSpinnerManager.showLoading(false);
+        mLoadingSpinnerManager.showLoading(false);
         mView.clearPinView();
-        ApiErrorUtil.showErrorMessage(error, mActivity);*/
+        ApiErrorUtil.showErrorMessage(error, mActivity);
     }
 
     @Override

@@ -15,6 +15,12 @@ import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
 public class GetPinActivity extends FragmentMvpActivity<GetPinModel, GetPinView, GetPinPresenter> {
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        mPresenter.onBack();
+    }
+
+    @Override
     protected GetPinView createView() {
         return (GetPinView) View.inflate(this, R.layout.act_get_pin, null);
     }

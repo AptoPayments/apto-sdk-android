@@ -2,7 +2,7 @@ package com.shiftpayments.link.sdk.ui.presenters.card;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
+import android.net.Uri;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -145,8 +145,10 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
 
     @Override
     public void onGetPinClickHandler() {
-        //TODO
-        Log.d("ADRIAN", "onGetPinClickHandler: ");
+        String ivrPhone = CardStorage.getInstance().getCard().features.getPin.ivrPhone.toString();
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + ivrPhone));
+        getActivity().startActivity(intent);
     }
 
     @Override
