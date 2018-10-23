@@ -19,6 +19,7 @@ import static com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo.form
 public class DisclaimerUtil {
 
     public static Command onAccept;
+    public static Command onCancel;
     public static String workflowId;
     public static String actionId;
 

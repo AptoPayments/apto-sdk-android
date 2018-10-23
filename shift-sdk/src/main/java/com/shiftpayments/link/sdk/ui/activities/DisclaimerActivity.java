@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 
 import com.shiftpayments.link.sdk.api.vos.requests.users.AcceptDisclaimerRequestVo;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
@@ -42,6 +43,8 @@ public class DisclaimerActivity extends DisplayContentActivity {
     @Override
     public void cancelClickHandler() {
         this.finish();
+        final boolean show = true;
+        mView.setVisibility(show? View.VISIBLE : View.INVISIBLE);
     }
 
 
