@@ -13,7 +13,7 @@ public class CancelCardApplicationTask extends ShiftApiTask<Void, Void, ApiEmpty
 
     public CancelCardApplicationTask(CancelCardApplicationRequest request, String applicationId, ShiftApiWrapper apiWrapper, ApiResponseHandler responseHandler) {
         super(request, apiWrapper, responseHandler);
-        this.mApplicationId = applicationId;
+        mApplicationId = applicationId;
     }
 
     @Override

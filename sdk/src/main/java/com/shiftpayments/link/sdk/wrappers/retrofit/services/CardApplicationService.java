@@ -34,7 +34,7 @@ public interface CardApplicationService {
     Call<CardApplicationResponseVo> getApplicationStatus(@Path("application_id") String applicationId);
 
     /**
-     * Delete a loan application
+     * Delete a card application
      * @param applicationId of the account to delete
      * @return
      */

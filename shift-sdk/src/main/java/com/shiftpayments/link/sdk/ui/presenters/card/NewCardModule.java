@@ -143,6 +143,7 @@ public class NewCardModule extends WorkflowModule {
         Command onCanceledCallback = ()->{
             final String applicationId = CardStorage.getInstance().getApplication().applicationId;
             ShiftSdk.cancelCardApplication(applicationId);
+            onBack.execute();
         };
 
         ShowDisclaimerModule disclaimerModule = ShowDisclaimerModule.getInstance(getActivity(),
