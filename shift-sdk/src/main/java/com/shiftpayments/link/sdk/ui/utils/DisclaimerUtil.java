@@ -23,9 +23,11 @@ public class DisclaimerUtil {
     public static String workflowId;
     public static String actionId;
 
-    public static void showDisclaimer(Activity activity, ContentVo disclaimer, Command onFinish,
+    public static void showDisclaimer(Activity activity, ContentVo disclaimer,
+                                      Command onFinish, Command onBack,
                                       String workflowId, String actionId) {
         onAccept = onFinish;
+        onCancel = onBack;
         DisclaimerUtil.workflowId = workflowId;
         DisclaimerUtil.actionId = actionId;
         if(ContentVo.formatValues.valueOf(disclaimer.format).equals(external_url)) {

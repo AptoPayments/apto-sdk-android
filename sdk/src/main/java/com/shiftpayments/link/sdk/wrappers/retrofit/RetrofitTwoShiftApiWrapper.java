@@ -1016,10 +1016,10 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
         try {
             Response<ApiEmptyResponseVo> response
                     = mCardApplicationService.deleteApplicationAccount(applicationId).execute();
-            result = handleResponse(response, ShiftApiWrapper.LINK_APPLICATION_ACCOUNT_PATH);
+            result = handleResponse(response, ShiftApiWrapper.CARD_APPLICATION_PATH);
         } catch (IOException ioe) {
             result = null;
-            throwApiException(new ApiErrorVo(), ShiftApiWrapper.LINK_APPLICATION_ACCOUNT_PATH, ioe);
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.CARD_APPLICATION_PATH, ioe);
         }
 
         return result;

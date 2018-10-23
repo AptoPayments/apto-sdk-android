@@ -139,8 +139,14 @@ public class NewCardModule extends WorkflowModule {
             setCurrentModule();
             this.startNextModule();
         };
+
+        Command onCanceledCallback = ()->{
+            final String applicationId = CardStorage.getInstance().getApplication().applicationId;
+            ShiftSdk.cancelCardApplication(applicationId);
+        };
+
         ShowDisclaimerModule disclaimerModule = ShowDisclaimerModule.getInstance(getActivity(),
-                onFinishCallback, onBack, (DisclaimerConfiguration) mWorkFlowObject.nextAction.configuration,
+                onFinishCallback, onCanceledCallback, (DisclaimerConfiguration) mWorkFlowObject.nextAction.configuration,
                 mWorkFlowObject.workflowObjectId, mWorkFlowObject.nextAction.actionId);
         disclaimerModule.initialModuleSetup();
     }
