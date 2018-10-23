@@ -163,18 +163,20 @@ public class TransactionsAdapter extends
                 viewHolder.creditCardView.setCardName(mModel.getCardHolderName());
                 viewHolder.creditCardView.setCVV(mModel.getCVV());
                 viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
-
                 viewHolder.creditCardView.setCardEnabled(true);
-                viewHolder.creditCardView.setCardError(true);
 
                 if(!mModel.hasBalance()) {
                     setBalanceBannerTextToNoBalance(viewHolder);
+                    viewHolder.creditCardView.setCardError(true);
                 }
                 else if(!mModel.isBalanceValid()) {
                     setBalanceBannerTextToInvalidBalance(viewHolder);
+                    viewHolder.creditCardView.setCardError(true);
                 }
                 else if(mModel.isPhysicalCardActivationRequired()) {
                     setBalanceBannerTextToEnablePhysicalCard(viewHolder);
+                    viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
+                    viewHolder.creditCardView.setCardError(false);
                 }
                 else {
                     showBalanceErrorBanner(false, viewHolder);
