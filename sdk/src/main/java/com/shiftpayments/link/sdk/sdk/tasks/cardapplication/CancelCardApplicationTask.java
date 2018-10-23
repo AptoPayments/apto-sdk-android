@@ -9,16 +9,16 @@ import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 public class CancelCardApplicationTask extends ShiftApiTask<Void, Void, ApiEmptyResponseVo, CancelCardApplicationRequest> {
 
-    private String mCardId;
+    private String mApplicationId;
 
-    public CancelCardApplicationTask(CancelCardApplicationRequest request, String cardId, ShiftApiWrapper apiWrapper, ApiResponseHandler responseHandler) {
+    public CancelCardApplicationTask(CancelCardApplicationRequest request, String applicationId, ShiftApiWrapper apiWrapper, ApiResponseHandler responseHandler) {
         super(request, apiWrapper, responseHandler);
-        this.mCardId = cardId;
+        this.mApplicationId = applicationId;
     }
 
     @Override
     protected ApiEmptyResponseVo callApi() throws ApiException {
-        return getApiWrapper().deleteApplication(mCardId);
+        return getApiWrapper().deleteApplication(mApplicationId);
     }
 
 }

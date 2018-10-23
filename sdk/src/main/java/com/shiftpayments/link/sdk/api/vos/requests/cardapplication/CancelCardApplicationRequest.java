@@ -8,15 +8,15 @@ import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
 public class CancelCardApplicationRequest extends UnauthorizedRequestVo {
 
-    private String mCardId;
+    private String mApplicationId;
 
-    public CancelCardApplicationRequest(final String cardId) {
-        this.mCardId = cardId;
+    public CancelCardApplicationRequest(final String applicationId) {
+        this.mApplicationId = applicationId;
     }
 
     @Override
     public ShiftApiTask getApiTask(ShiftApiWrapper shiftApiWrapper, ApiResponseHandler responseHandler) {
-        return new CancelCardApplicationTask(this, mCardId, shiftApiWrapper, responseHandler);
+        return new CancelCardApplicationTask(this, mApplicationId, shiftApiWrapper, responseHandler);
     }
 
 }
