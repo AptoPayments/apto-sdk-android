@@ -499,4 +499,9 @@ public class MockApiWrapper implements ShiftApiWrapper {
     public ApiEmptyResponseVo acceptDisclaimer(AcceptDisclaimerRequestVo acceptDisclaimerRequestVo) throws ApiException {
         return null;
     }
+
+    @Override
+    public ApiEmptyResponseVo deleteApplication(final String applicationId) throws ApiException {
+        return null;
+    }
 }
