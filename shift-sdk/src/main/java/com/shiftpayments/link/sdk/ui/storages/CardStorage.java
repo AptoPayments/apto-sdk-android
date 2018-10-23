@@ -44,8 +44,6 @@ public class CardStorage {
     }
 
     public Card getCard() {
-        // TODO: testing
-        mCard.physicalCardActivationRequired = true;
         return mCard;
     }
 
