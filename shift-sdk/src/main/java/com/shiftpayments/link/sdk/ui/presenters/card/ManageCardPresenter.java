@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -413,9 +412,6 @@ public class ManageCardPresenter
         if(balanceVo.balance!=null && balanceVo.balance.hasAmount()) {
             mModel.setBalance(new AmountVo(balanceVo.balance.amount, balanceVo.balance.currency));
             mModel.setBalanceState(balanceVo.state);
-        }
-        if(balanceVo.amountSpendable!=null && balanceVo.amountSpendable.hasAmount()) {
-            mModel.setSpendableAmount(new AmountVo(balanceVo.amountSpendable.amount, balanceVo.amountSpendable.currency));
         }
         if(balanceVo.custodianWallet!=null && balanceVo.custodianWallet != null && balanceVo.custodianWallet.balance.hasAmount()) {
             mModel.setNativeBalance(new AmountVo(balanceVo.custodianWallet.balance.amount, balanceVo.custodianWallet.balance.currency));

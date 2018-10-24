@@ -15,6 +15,11 @@ public class MoneyVo implements Parcelable {
 
     public Double amount;
 
+    public MoneyVo(Double amount, String currency) {
+        this.amount = amount;
+        this.currency = currency;
+    }
+
     protected MoneyVo(Parcel in) {
         type = in.readString();
         currency = in.readString();

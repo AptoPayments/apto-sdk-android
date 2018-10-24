@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.BankAccount;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.MoneyVo;
 
 import java.lang.reflect.Type;
 
@@ -42,6 +43,8 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     KycStatus.valueOf(kycStatus),
                     //TODO
                     null,
+                    parseAmount(jObject.get("spendable_today").getAsJsonObject()),
+                    parseAmount(jObject.get("native_spendable_today").getAsJsonObject()),
                     false);
         }
         else if(type.equalsIgnoreCase("bank_account")) {
@@ -52,5 +55,11 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
         else {
             return null;
         }
+    }
+
+    private MoneyVo parseAmount(JsonObject jObject ) {
+        Double amount = jObject.get("amount").getAsDouble();
+        String currency = ParsingUtils.getStringFromJson(jObject.get("currency"));
+        return new MoneyVo(amount, currency);
     }
 }
