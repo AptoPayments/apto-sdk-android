@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.BankAccount;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
+import com.shiftpayments.link.sdk.api.vos.responses.card.Features;
 
 import java.lang.reflect.Type;
 
@@ -30,6 +31,10 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     : ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase();
             String kycStatus = ParsingUtils.getStringFromJson(jObject.get("kyc_status")) == null ? ""
                     : ParsingUtils.getStringFromJson(jObject.get("kyc_status"));
+
+            Features features = new FeaturesParser().deserialize(
+                    jObject.get("features").getAsJsonObject(), iType, context);
+
             return new Card(jObject.get("account_id").getAsString(),
                     ParsingUtils.getStringFromJson(jObject.get("last_four")),
                     Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),
@@ -40,8 +45,10 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
                     Card.FinancialAccountState.valueOf(cardState),
                     KycStatus.valueOf(kycStatus),
-                    //TODO
+                    // TODO
                     null,
+                    jObject.get("physical_card_activation_required").getAsBoolean(),
+                    features,
                     false);
         }
         else if(type.equalsIgnoreCase("bank_account")) {

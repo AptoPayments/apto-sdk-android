@@ -2,12 +2,12 @@ package com.shiftpayments.link.sdk.sdk.tasks.financialaccounts;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivatePhysicalCardRequestVo;
-import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivatePhysicalCardResponseVo;
 import com.shiftpayments.link.sdk.api.wrappers.ShiftApiWrapper;
 import com.shiftpayments.link.sdk.sdk.tasks.ShiftApiTask;
 import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
 
-public class ActivatePhysicalCardTask extends ShiftApiTask<Void,Void,ApiEmptyResponseVo,ActivatePhysicalCardRequestVo> {
+public class ActivatePhysicalCardTask extends ShiftApiTask<Void,Void,ActivatePhysicalCardResponseVo,ActivatePhysicalCardRequestVo> {
 
     private String mCardId;
 
@@ -25,7 +25,7 @@ public class ActivatePhysicalCardTask extends ShiftApiTask<Void,Void,ApiEmptyRes
 
     /** {@inheritDoc} */
     @Override
-    protected ApiEmptyResponseVo callApi() throws ApiException {
+    protected ActivatePhysicalCardResponseVo callApi() throws ApiException {
         return getApiWrapper().activatePhysicalCard(mCardId, getRequestData());
     }
 }

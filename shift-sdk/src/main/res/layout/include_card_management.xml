@@ -85,12 +85,4 @@
         android:text="@string/card_management_primary_button"
         android:textColor="@color/llsdk_tertiary_text_color"
         android:textSize="10sp" />
-
-    <TextView
-        android:id="@+id/tv_display_card_secondary_bttn"
-        style="@style/ledge_big_button_style"
-        android:layout_below="@+id/tv_display_card_primary_bttn"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/card_management_secondary_button" />
 </RelativeLayout>

@@ -51,7 +51,6 @@ public class TransactionsAdapter extends
      */
     public interface ViewListener {
         void manageCardClickHandler();
-        void activateCardBySecondaryBtnClickHandler();
         void accountClickHandler();
         void cardNumberClickHandler(String cardNumber);
         void transactionClickHandler(int transactionId);
@@ -74,7 +73,6 @@ public class TransactionsAdapter extends
         TextView spendableAmountLabel;
         TextView spendableNativeAmount;
         TextView primaryButton;
-        TextView secondaryButton;
 
         // Invalid Funding Source Banner
         RelativeLayout invalidFundingSourceBanner;
@@ -107,7 +105,6 @@ public class TransactionsAdapter extends
                 spendableAmountLabel = itemView.findViewById(R.id.tv_card_spendable_balance_label);
                 spendableNativeAmount = itemView.findViewById(R.id.tv_spendable_native_balance);
                 primaryButton = itemView.findViewById(R.id.tv_display_card_primary_bttn);
-                secondaryButton = itemView.findViewById(R.id.tv_display_card_secondary_bttn);
                 invalidFundingSourceBanner = itemView.findViewById(R.id.rl_invalid_funding_source_banner);
                 bannerAcceptButton = itemView.findViewById(R.id.tv_banner_accept);
                 bannerCancelButton = itemView.findViewById(R.id.tv_banner_cancel);
@@ -163,32 +160,27 @@ public class TransactionsAdapter extends
                 viewHolder.creditCardView.setCardName(mModel.getCardHolderName());
                 viewHolder.creditCardView.setCVV(mModel.getCVV());
                 viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
+                viewHolder.creditCardView.setCardEnabled(true);
 
-                if (mModel.hasBalance() && mModel.isBalanceValid()) {
+                if(!mModel.hasBalance()) {
+                    setBalanceBannerTextToNoBalance(viewHolder);
+                    viewHolder.creditCardView.setCardError(true);
+                }
+                else if(!mModel.isBalanceValid()) {
+                    setBalanceBannerTextToInvalidBalance(viewHolder);
+                    viewHolder.creditCardView.setCardError(true);
+                }
+                else if(mModel.isPhysicalCardActivationRequired()) {
+                    setBalanceBannerTextToEnablePhysicalCard(viewHolder);
+                    viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
+                    viewHolder.creditCardView.setCardError(false);
+                }
+                else {
                     showBalanceErrorBanner(false, viewHolder);
                     showCardBalance(mModel.hasBalance(), viewHolder);
                     showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
                     viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
                     viewHolder.creditCardView.setCardError(false);
-                }
-                else if (!mModel.isBalanceValid()) {
-                    showBalanceErrorBanner(true, viewHolder);
-                    setBalanceBannerTextToInvalidBalance(viewHolder);
-                    showCardBalance(false, viewHolder);
-                    showSpendableAmount(false, viewHolder);
-                    viewHolder.creditCardView.setCardEnabled(true);
-                    viewHolder.creditCardView.setCardError(true);
-                } else {
-                    showBalanceErrorBanner(true, viewHolder);
-                    setBalanceBannerTextToNoBalance(viewHolder);
-                    showCardBalance(false, viewHolder);
-                    showSpendableAmount(false, viewHolder);
-                    viewHolder.creditCardView.setCardEnabled(true);
-                    viewHolder.creditCardView.setCardError(true);
-                }
-
-                if(mModel.isPhysicalCardActivationRequired()) {
-                    setBalanceBannerTextToEnablePhysicalCard(viewHolder);
                 }
 
                 if(mModel.cardNumberShown()) {
@@ -197,8 +189,6 @@ public class TransactionsAdapter extends
                 else {
                     setCopyCardNumberLabelText(viewHolder, mContext.getString(R.string.card_management_primary_button));
                 }
-                showActivateCardButton(UIStorage.getInstance().showActivateCardButton()
-                        && mModel.isCardCreated(), viewHolder);
                 break;
             case TransactionListItem.TYPE_DATE:
                 DateItem dateItem = (DateItem) mTransactionListItems.get(position);
@@ -248,8 +238,6 @@ public class TransactionsAdapter extends
                 viewHolder.creditCardView.setOnClickListener(v -> mListener.manageCardClickHandler());
                 viewHolder.creditCardView.getCardNumberView().setOnClickListener(
                         v -> mListener.cardNumberClickHandler(((EditText) v).getText().toString()));
-                viewHolder.secondaryButton.setOnClickListener(
-                        v -> mListener.activateCardBySecondaryBtnClickHandler());
                 viewHolder.bannerAcceptButton.setOnClickListener(
                         v -> mListener.bannerAcceptButtonClickHandler());
                 viewHolder.bannerCancelButton.setOnClickListener(
@@ -259,19 +247,6 @@ public class TransactionsAdapter extends
                 viewHolder.transactionHolder.setOnClickListener(
                         v -> mListener.transactionClickHandler(position));
                 break;
-        }
-    }
-
-    private void showActivateCardButton(boolean show, ViewHolder viewHolder) {
-        if(show) {
-            viewHolder.secondaryButton.setBackgroundColor(
-                    UIStorage.getInstance().getUiPrimaryColor());
-            viewHolder.secondaryButton.setTextColor(
-                    UIStorage.getInstance().getPrimaryContrastColor());
-            viewHolder.secondaryButton.setVisibility(View.VISIBLE);
-        }
-        else {
-            viewHolder.secondaryButton.setVisibility(View.GONE);
         }
     }
 
@@ -310,18 +285,27 @@ public class TransactionsAdapter extends
     }
 
     private void setBalanceBannerTextToInvalidBalance(ViewHolder viewHolder) {
+        showBalanceErrorBanner(true, viewHolder);
+        showCardBalance(false, viewHolder);
+        showSpendableAmount(false, viewHolder);
         viewHolder.bannerTitle.setText(mContext.getString(R.string.invalid_funding_source_title));
         viewHolder.bannerBody.setText(mContext.getString(R.string.invalid_funding_source_body));
         viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.invalid_funding_source_accept));
     }
 
     private void setBalanceBannerTextToNoBalance(ViewHolder viewHolder) {
+        showBalanceErrorBanner(true, viewHolder);
+        showCardBalance(false, viewHolder);
+        showSpendableAmount(false, viewHolder);
         viewHolder.bannerTitle.setText(mContext.getString(R.string.no_funding_source_title));
         viewHolder.bannerBody.setText(mContext.getString(R.string.no_funding_source_body));
         viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.no_funding_source_accept));
     }
 
     private void setBalanceBannerTextToEnablePhysicalCard(ViewHolder viewHolder) {
+        showBalanceErrorBanner(true, viewHolder);
+        showCardBalance(false, viewHolder);
+        showSpendableAmount(false, viewHolder);
         viewHolder.bannerTitle.setText(mContext.getString(R.string.enable_physical_card_title));
         viewHolder.bannerBody.setText(mContext.getString(R.string.enable_physical_card_body));
         viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.enable_physical_card_accept));

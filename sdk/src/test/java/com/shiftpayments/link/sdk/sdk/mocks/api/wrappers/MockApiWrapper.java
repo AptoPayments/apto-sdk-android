@@ -53,6 +53,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivatePhysicalCardResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
@@ -427,7 +428,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public ApiEmptyResponseVo activatePhysicalCard(String s, ActivatePhysicalCardRequestVo activatePhysicalCardRequestVo) throws ApiException {
+    public ActivatePhysicalCardResponseVo activatePhysicalCard(String s, ActivatePhysicalCardRequestVo activatePhysicalCardRequestVo) throws ApiException {
         return null;
     }
 

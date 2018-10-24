@@ -313,6 +313,11 @@
     <string name="card_welcome_subtitle">Your Physical Card is on the way! In the mean time, you can start enjoying your virtual card.</string>
     <string name="card_welcome_button">ACTIVATE MY CARD</string>
 
+    <!-- get pin screen -->
+    <string name="get_pin_title">Congratulations!</string>
+    <string name="get_pin_subtitle">Your physical Shift Card has been enabled. We\'ve set a random PIN code for your card.</string>
+    <string name="get_pin_button">GET MY PIN</string>
+
     <!-- physical card activation screen -->
     <string name="physical_card_activation_title">Enable your physical card</string>
     <string name="physical_card_activation_hint">Enable your card by entering the activation code that came attached with your physical card.</string>
@@ -352,6 +357,8 @@
     <string name="privacy_policy_description">Information we collect</string>
     <string name="change_pin_label">Reset PIN</string>
     <string name="change_pin_description">Set a new PIN code for your card</string>
+    <string name="get_pin_label">Get my PIN</string>
+    <string name="get_pin_description">Retrieve your PIN via our automated system</string>
     <string name="funding_sources_label">Funding Sources</string>
     <string name="settings_label">Settings</string>
     <string name="support_label">Get help</string>
