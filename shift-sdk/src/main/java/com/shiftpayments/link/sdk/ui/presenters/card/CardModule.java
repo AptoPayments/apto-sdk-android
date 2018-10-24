@@ -296,8 +296,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     private void startCardWelcomeScreenOrManageCardScreen() {
         ShiftSdk.getResponseHandler().unsubscribe(this);
         Card card = CardStorage.getInstance().getCard();
-        // TODO: add SDK Option to make this screen configurable
-        if(card.isCardCreated()) {
+        if(UIStorage.getInstance().showActivateCardButton() && card.isCardCreated()) {
             startCardWelcomeScreen();
         }
         else {

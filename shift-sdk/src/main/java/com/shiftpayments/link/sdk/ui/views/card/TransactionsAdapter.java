@@ -51,7 +51,6 @@ public class TransactionsAdapter extends
      */
     public interface ViewListener {
         void manageCardClickHandler();
-        void activateCardBySecondaryBtnClickHandler();
         void accountClickHandler();
         void cardNumberClickHandler(String cardNumber);
         void transactionClickHandler(int transactionId);
@@ -74,7 +73,6 @@ public class TransactionsAdapter extends
         TextView spendableAmountLabel;
         TextView spendableNativeAmount;
         TextView primaryButton;
-        TextView secondaryButton;
 
         // Invalid Funding Source Banner
         RelativeLayout invalidFundingSourceBanner;
@@ -107,7 +105,6 @@ public class TransactionsAdapter extends
                 spendableAmountLabel = itemView.findViewById(R.id.tv_card_spendable_balance_label);
                 spendableNativeAmount = itemView.findViewById(R.id.tv_spendable_native_balance);
                 primaryButton = itemView.findViewById(R.id.tv_display_card_primary_bttn);
-                secondaryButton = itemView.findViewById(R.id.tv_display_card_secondary_bttn);
                 invalidFundingSourceBanner = itemView.findViewById(R.id.rl_invalid_funding_source_banner);
                 bannerAcceptButton = itemView.findViewById(R.id.tv_banner_accept);
                 bannerCancelButton = itemView.findViewById(R.id.tv_banner_cancel);
@@ -192,8 +189,6 @@ public class TransactionsAdapter extends
                 else {
                     setCopyCardNumberLabelText(viewHolder, mContext.getString(R.string.card_management_primary_button));
                 }
-                showActivateCardButton(UIStorage.getInstance().showActivateCardButton()
-                        && mModel.isCardCreated(), viewHolder);
                 break;
             case TransactionListItem.TYPE_DATE:
                 DateItem dateItem = (DateItem) mTransactionListItems.get(position);
@@ -243,8 +238,6 @@ public class TransactionsAdapter extends
                 viewHolder.creditCardView.setOnClickListener(v -> mListener.manageCardClickHandler());
                 viewHolder.creditCardView.getCardNumberView().setOnClickListener(
                         v -> mListener.cardNumberClickHandler(((EditText) v).getText().toString()));
-                viewHolder.secondaryButton.setOnClickListener(
-                        v -> mListener.activateCardBySecondaryBtnClickHandler());
                 viewHolder.bannerAcceptButton.setOnClickListener(
                         v -> mListener.bannerAcceptButtonClickHandler());
                 viewHolder.bannerCancelButton.setOnClickListener(
@@ -254,19 +247,6 @@ public class TransactionsAdapter extends
                 viewHolder.transactionHolder.setOnClickListener(
                         v -> mListener.transactionClickHandler(position));
                 break;
-        }
-    }
-
-    private void showActivateCardButton(boolean show, ViewHolder viewHolder) {
-        if(show) {
-            viewHolder.secondaryButton.setBackgroundColor(
-                    UIStorage.getInstance().getUiPrimaryColor());
-            viewHolder.secondaryButton.setTextColor(
-                    UIStorage.getInstance().getPrimaryContrastColor());
-            viewHolder.secondaryButton.setVisibility(View.VISIBLE);
-        }
-        else {
-            viewHolder.secondaryButton.setVisibility(View.GONE);
         }
     }
 
