@@ -11,5 +11,6 @@ public interface CardSettingsDelegate {
 
     void addFundingSource(Command onFinishCallback);
     void onSessionExpired(SessionExpiredErrorVo error);
+    void onGetPinClickHandler();
 
 }

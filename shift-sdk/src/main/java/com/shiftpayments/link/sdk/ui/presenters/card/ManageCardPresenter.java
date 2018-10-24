@@ -5,12 +5,8 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -123,11 +119,6 @@ public class ManageCardPresenter
     @Override
     public void manageCardClickHandler() {
         mActivity.startActivity(new Intent(mActivity, CardSettingsActivity.class));
-    }
-
-    @Override
-    public void activateCardBySecondaryBtnClickHandler() {
-        showActivateCardConfirmationDialog();
     }
 
     @Override
@@ -285,6 +276,7 @@ public class ManageCardPresenter
     public void handleResponse(FinancialAccountVo response) {
         mSemaphore.release();
         CardStorage.getInstance().setCard((Card) response);
+        mActivity.invalidateOptionsMenu();
         refreshCard();
         if(isViewReady()) {
             mView.setRefreshing(false);
@@ -324,39 +316,6 @@ public class ManageCardPresenter
     private void activateCard() {
         ShiftPlatform.activateFinancialAccount(mModel.getAccountId());
         mView.showLoading(mActivity, true);
-    }
-
-    private void showActivateCardConfirmationDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-
-        String alertTitle = mActivity.getString(R.string.card_settings_dialog_title);
-        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextPrimaryColor());
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(alertTitle);
-        spannableStringBuilder.setSpan(
-                foregroundColorSpan,
-                0,
-                alertTitle.length(),
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
-        builder.setTitle(spannableStringBuilder);
-
-        String alertMessage = mActivity.getString(R.string.enable_card_message);
-        foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextSecondaryColor());
-        spannableStringBuilder = new SpannableStringBuilder(alertMessage);
-        spannableStringBuilder.setSpan(
-                foregroundColorSpan,
-                0,
-                alertMessage.length(),
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
-        builder.setMessage(spannableStringBuilder);
-
-        builder.setPositiveButton("YES", (dialog, id) -> activateCard());
-        builder.setNegativeButton("NO", (dialog, id) -> dialog.dismiss());
-
-        AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
     }
 
     private boolean isViewReady() {

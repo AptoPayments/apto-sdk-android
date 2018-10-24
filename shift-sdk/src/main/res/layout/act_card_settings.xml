@@ -67,6 +67,16 @@
                 android:text="@string/settings_label" />
 
             <TextView
+                android:id="@+id/tv_get_pin"
+                style="@style/llsdk_main_item_light"
+                android:text="@string/get_pin_label"/>
+
+            <TextView
+                android:id="@+id/tv_get_pin_description"
+                style="@style/llsdk_item_description"
+                android:text="@string/get_pin_description"/>
+
+            <TextView
                 android:id="@+id/tv_change_pin"
                 style="@style/llsdk_main_item_light"
                 android:text="@string/change_pin_label"/>

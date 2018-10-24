@@ -53,10 +53,11 @@ import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateProjectRespo
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.errors.ErrorResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivatePhysicalCardResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
@@ -849,11 +850,11 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     }
 
     @Override
-    public ApiEmptyResponseVo activatePhysicalCard(String cardId, ActivatePhysicalCardRequestVo request) throws ApiException {
-        ApiEmptyResponseVo result;
+    public ActivatePhysicalCardResponseVo activatePhysicalCard(String cardId, ActivatePhysicalCardRequestVo request) throws ApiException {
+        ActivatePhysicalCardResponseVo result;
         try {
-            Response<ApiEmptyResponseVo> response = mFinancialAccountService.activatePhysicalCard(cardId, request).execute();
-            result = handleEmptyResponse(response, ShiftApiWrapper.ACTIVATE_PHYSICAL_CARD_PATH);
+            Response<ActivatePhysicalCardResponseVo> response = mFinancialAccountService.activatePhysicalCard(cardId, request).execute();
+            result = handleResponse(response, ShiftApiWrapper.ACTIVATE_PHYSICAL_CARD_PATH);
         } catch (IOException ioe) {
             result = null;
             throwApiException(new ApiErrorVo(), ShiftApiWrapper.ACTIVATE_PHYSICAL_CARD_PATH, ioe);

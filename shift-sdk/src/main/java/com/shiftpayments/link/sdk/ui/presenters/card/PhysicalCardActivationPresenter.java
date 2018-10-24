@@ -1,7 +1,6 @@
 package com.shiftpayments.link.sdk.ui.presenters.card;
 
-import com.shiftpayments.link.sdk.api.vos.responses.ApiEmptyResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivatePhysicalCardResponseVo;
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.card.PhysicalCardActivationActivity;
@@ -84,22 +83,20 @@ public class PhysicalCardActivationPresenter
      * @param response API response.
      */
     @Subscribe
-    public void handleResponse(ApiEmptyResponseVo response) {
+    public void handleResponse(ActivatePhysicalCardResponseVo response) {
         mLoadingSpinnerManager.showLoading(false);
-        if (response != null) {
-            mDelegate.physicalCardActivated();
+        if(response == null) {
+            mView.clearPinView();
+            return;
         }
-    }
-
-    /**
-     * Called when an API error has been received.
-     * @param error API error.
-     */
-    @Subscribe
-    public void handleApiError(ApiErrorVo error) {
-        mLoadingSpinnerManager.showLoading(false);
-        mView.clearPinView();
-        ApiErrorUtil.showErrorMessage(error, mActivity);
+        if (response.result.equals("activated")) {
+            mDelegate.physicalCardActivated();
+            mActivity.finish();
+        }
+        else {
+            mView.clearPinView();
+            ApiErrorUtil.showErrorMessage(response.errorCode, mActivity);
+        }
     }
 
     @Override
