@@ -32,7 +32,6 @@ public class ManageCardActivity extends FragmentMvpActivity<ManageCardModel, Man
         super.onPostResume();
         mPresenter.subscribeToEvents(true);
         mPresenter.refreshView();
-        invalidateOptionsMenu();
     }
 
     @Override

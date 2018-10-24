@@ -285,6 +285,7 @@ public class ManageCardPresenter
     public void handleResponse(FinancialAccountVo response) {
         mSemaphore.release();
         CardStorage.getInstance().setCard((Card) response);
+        mActivity.invalidateOptionsMenu();
         refreshCard();
         if(isViewReady()) {
             mView.setRefreshing(false);
