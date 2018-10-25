@@ -278,6 +278,10 @@
     <string name="disclaimer_accept">Accept</string>
     <string name="disclaimer_cancel">Cancel</string>
     <string name="disclaimer_error">Error loading disclaimer</string>
+    <string name="disclaimer_alert_title">Cardholder agreement</string>
+    <string name="disclaimer_alert_message">Are you sure you do not want to agree to the Cardholder agreement?</string>
+    <string name="disclaimer_alert_confirm">CONFIRM</string>
+    <string name="disclaimer_alert_cancel">CANCEL</string>
 
     <!-- Action Not Supported -->
     <string name="action_not_supported_error">The received workflow action is currently not supported.</string>
