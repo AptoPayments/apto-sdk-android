@@ -511,6 +511,14 @@
         <item name="android:padding">8dp</item>
     </style>
 
+    <style name="llsdk_instructions">
+        <item name="android:layout_width">209dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/llsdk_tertiary_text_color</item>
+        <item name="android:textSize">@dimen/llsdk_instructions</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
     <!--
         LIGHT
     -->
