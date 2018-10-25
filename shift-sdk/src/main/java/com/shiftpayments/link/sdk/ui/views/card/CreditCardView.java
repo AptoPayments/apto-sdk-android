@@ -151,15 +151,6 @@ public class CreditCardView extends RelativeLayout {
         }
     }
 
-    public void setCardError(boolean isError) {
-        if(isError) {
-            showCardError();
-        }
-        else {
-            enableCard();
-        }
-    }
-
     public EditText getCardNumberView() {
         return mCardNumberView1;
     }
@@ -206,6 +197,7 @@ public class CreditCardView extends RelativeLayout {
         mCvvLabel.setVisibility(VISIBLE);
         mDisabledCardOverlay.setVisibility(GONE);
         mErrorCardOverlay.setVisibility(GONE);
+        mCheckCardOverlay.setVisibility(GONE);
         setCardBackgroundColor(mEnabledCardBackground);
     }
 
@@ -217,7 +209,7 @@ public class CreditCardView extends RelativeLayout {
         mCheckCardOverlay.setVisibility(VISIBLE);
     }
 
-    private void showCardError() {
+    public void showCardError() {
         mErrorCardOverlay.setVisibility(VISIBLE);
     }
 }
