@@ -1,11 +1,13 @@
 package com.shiftpayments.link.sdk.ui.tests.robolectric.tests.models.offers;
 
+import android.content.Context;
 import android.content.res.Resources;
 
 import com.shiftpayments.link.sdk.api.vos.responses.offers.OfferVo;
 import com.shiftpayments.link.sdk.sdk.mocks.api.wrappers.MockApiWrapper;
 import com.shiftpayments.link.sdk.ui.models.offers.OfferSummaryModel;
 import com.shiftpayments.link.sdk.ui.tests.robolectric.LibraryProjectTestRunner;
+import com.shiftpayments.link.sdk.ui.tests.robolectric.tests.TestLocaleUtil;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,9 +27,9 @@ import static org.hamcrest.core.IsNot.not;
 @RunWith(LibraryProjectTestRunner.class)
 public class OfferSummaryModelTest {
 
-    private static final String EXPECTED_AMOUNT_TEXT = "Amount financed: $ 5555";
+    private static final String EXPECTED_AMOUNT_TEXT = "Amount financed: $5,555.00";
     private static final String EXPECTED_INTEREST_TEXT = "Interest rate: 19.90%";
-    private static final String EXPECTED_PAYMENT_TEXT = "Monthly payment: $ 123.45";
+    private static final String EXPECTED_PAYMENT_TEXT = "Monthly payment: $123.45";
 
     private OfferSummaryModel mModel;
 
@@ -36,6 +38,7 @@ public class OfferSummaryModelTest {
      */
     @Before
     public void setUp() {
+        TestLocaleUtil.setLocale(getResources(), "en", "US");
         mModel = new OfferSummaryModel(getOffer(0), getResources(), null);
     }
 
@@ -48,10 +51,17 @@ public class OfferSummaryModelTest {
     }
 
     /**
+     * @return Context.
+     */
+    private Context getContext() {
+        return new ShadowContentProvider().getContext();
+    }
+
+    /**
      * @return Android resources.
      */
     private Resources getResources() {
-        return new ShadowContentProvider().getContext().getResources();
+        return this.getContext().getResources();
     }
 
     /**

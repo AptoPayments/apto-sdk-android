@@ -8,6 +8,7 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.activities.loanapplication.IntermediateLoanApplicationActivity;
 import com.shiftpayments.link.sdk.ui.models.loanapplication.LoanAgreementModel;
 import com.shiftpayments.link.sdk.ui.tests.robolectric.LibraryProjectTestRunner;
+import com.shiftpayments.link.sdk.ui.tests.robolectric.tests.TestLocaleUtil;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,6 +37,7 @@ public class LoanAgreementModelTest {
         offer.currency = "USD";
         mModel = new LoanAgreementModel(offer, null);
         mResources = new ShadowContentProvider().getContext().getResources();
+        TestLocaleUtil.setLocale(mResources, "en", "US");
     }
 
     /**
@@ -125,7 +127,7 @@ public class LoanAgreementModelTest {
      */
     @Test
     public void correctTotalAmountText() {
-        Assert.assertThat("Incorrect total amount text.", mModel.getTotalAmount(), equalTo("$ 5555"));
+        Assert.assertThat("Incorrect total amount text.", mModel.getTotalAmount(), equalTo("$5,555.00"));
     }
 
     /**
@@ -145,6 +147,6 @@ public class LoanAgreementModelTest {
      */
     @Test
     public void correctPaymentText() {
-        Assert.assertThat("Incorrect payment text.", mModel.getPaymentAmount(), equalTo("$ 123.45"));
+        Assert.assertThat("Incorrect payment text.", mModel.getPaymentAmount(), equalTo("$123.45"));
     }
 }

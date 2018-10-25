@@ -372,9 +372,6 @@ public class ManageCardPresenter
             mModel.setBalance(new AmountVo(balanceVo.balance.amount, balanceVo.balance.currency));
             mModel.setBalanceState(balanceVo.state);
         }
-        if(balanceVo.amountSpendable!=null && balanceVo.amountSpendable.hasAmount()) {
-            mModel.setSpendableAmount(new AmountVo(balanceVo.amountSpendable.amount, balanceVo.amountSpendable.currency));
-        }
         if(balanceVo.custodianWallet!=null && balanceVo.custodianWallet != null && balanceVo.custodianWallet.balance.hasAmount()) {
             mModel.setNativeBalance(new AmountVo(balanceVo.custodianWallet.balance.amount, balanceVo.custodianWallet.balance.currency));
         }

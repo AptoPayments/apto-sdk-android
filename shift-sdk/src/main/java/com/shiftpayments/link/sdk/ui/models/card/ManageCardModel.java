@@ -24,7 +24,6 @@ public class ManageCardModel implements ActivityModel {
 
     private Card mCard;
     private AmountVo mBalance;
-    private AmountVo mSpendableAmount;
     private AmountVo mNativeBalance;
     private boolean mIsBalanceValid;
 
@@ -105,8 +104,8 @@ public class ManageCardModel implements ActivityModel {
     }
 
     public String getSpendableAmount() {
-        if (mSpendableAmount != null) {
-            return mSpendableAmount.toString();
+        if (mCard.spendableAmount != null) {
+            return new AmountVo(mCard.spendableAmount.amount, mCard.spendableAmount.currency).toString();
         }
         return "";
     }
@@ -119,17 +118,8 @@ public class ManageCardModel implements ActivityModel {
     }
 
     public String getNativeSpendableAmount() {
-        // TODO: calculate exchange rate until it's returned from the backend
-        if (mNativeBalance != null && mSpendableAmount != null) {
-            double nativeSpendableAmount;
-            if(mNativeBalance.getAmount() > 0) {
-                double exchangeRate = mBalance.getAmount() / mNativeBalance.getAmount();
-                nativeSpendableAmount = mSpendableAmount.getAmount() / exchangeRate;
-            }
-            else {
-                nativeSpendableAmount = 0;
-            }
-            return new AmountVo(nativeSpendableAmount, mNativeBalance.getCurrency()).toString();
+        if (mCard.nativeSpendableAmount != null) {
+            return new AmountVo(mCard.nativeSpendableAmount.amount, mCard.nativeSpendableAmount.currency).toString();
         }
         return "";
     }
@@ -186,10 +176,6 @@ public class ManageCardModel implements ActivityModel {
 
     public void setBalance(AmountVo balance) {
         mBalance = balance;
-    }
-
-    public void setSpendableAmount(AmountVo amount) {
-        mSpendableAmount = amount;
     }
 
     public void setNativeBalance(AmountVo nativeBalance) {
