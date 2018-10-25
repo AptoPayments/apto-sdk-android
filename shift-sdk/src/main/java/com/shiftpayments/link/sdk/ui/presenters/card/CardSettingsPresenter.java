@@ -273,6 +273,7 @@ public class CardSettingsPresenter
         mResponseHandler.unsubscribe(this);
         mLoadingSpinnerManager.showLoading(false);
         showToastAndUpdateCard(card, mActivity.getString(R.string.card_enabled));
+        mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
     }
 
     /**
@@ -284,6 +285,7 @@ public class CardSettingsPresenter
         mResponseHandler.unsubscribe(this);
         mLoadingSpinnerManager.showLoading(false);
         showToastAndUpdateCard(card, mActivity.getString(R.string.card_disabled));
+        mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
     }
 
     /**
