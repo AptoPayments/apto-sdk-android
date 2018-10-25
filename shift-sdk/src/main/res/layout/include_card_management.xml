@@ -7,13 +7,20 @@
     <include layout="@layout/include_invalid_funding_source_banner"
         android:visibility="gone"/>
 
+    <RelativeLayout
+        android:id="@+id/rl_empty_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_invalid_funding_source_banner">
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/tv_current_balance_label"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/rl_invalid_funding_source_banner"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:layout_below="@+id/rl_empty_placeholder"
         style="@style/llsdk_manage_card_section_title"
         android:text="@string/card_management_card_balance" />
 
@@ -39,9 +46,9 @@
         android:id="@+id/tv_card_spendable_balance_label"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/rl_invalid_funding_source_banner"
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_below="@+id/rl_empty_placeholder"
         style="@style/llsdk_manage_card_section_title"
         android:text="@string/card_management_card_spendable_balance" />
 
@@ -67,7 +74,7 @@
         android:id="@+id/credit_card_view"
         android:layout_width="match_parent"
         android:layout_height="192dp"
-        android:layout_below="@id/tv_spendable_native_balance"
+        android:layout_below="@id/tv_current_native_balance"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"

@@ -239,7 +239,11 @@ public class TransactionsAdapter extends
                 viewHolder.bannerAcceptButton.setOnClickListener(
                         v -> mListener.bannerAcceptButtonClickHandler());
                 viewHolder.bannerCancelButton.setOnClickListener(
-                        v -> showBalanceErrorBanner(false, viewHolder));
+                        v -> {
+                            showBalanceErrorBanner(false, viewHolder);
+                            showCardBalance(true, viewHolder);
+                            showSpendableAmount(true, viewHolder);
+                        });
                 break;
             case TYPE_TRANSACTION:
                 viewHolder.transactionHolder.setOnClickListener(
