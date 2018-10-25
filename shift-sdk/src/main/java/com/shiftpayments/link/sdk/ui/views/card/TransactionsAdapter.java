@@ -253,33 +253,28 @@ public class TransactionsAdapter extends
     }
 
     private void showCardBalance(boolean show, ViewHolder viewHolder) {
-        if(show) {
-            viewHolder.cardBalance.setText(mModel.getCardBalance());
-            viewHolder.cardBalance.setVisibility(View.VISIBLE);
-            viewHolder.cardBalanceLabel.setVisibility(View.VISIBLE);
-            viewHolder.cardNativeBalance.setText(mModel.getNativeBalance());
-            viewHolder.cardNativeBalance.setVisibility(View.VISIBLE);
-        }
-        else {
-            viewHolder.cardBalanceLabel.setVisibility(View.GONE);
-            viewHolder.cardBalance.setVisibility(View.GONE);
-            viewHolder.cardNativeBalance.setVisibility(View.GONE);
-        }
+        viewHolder.cardBalance.setText(mModel.getCardBalance());
+        viewHolder.cardBalance.setVisibility(show ? View.VISIBLE : View.GONE);
+        viewHolder.cardBalanceLabel.setVisibility(show ? View.VISIBLE : View.GONE);
+        showCardNativeBalance(mModel.isNativeBalanceCurrencyDifferentFromLocalBalanceCurrency(), viewHolder);
+    }
+
+    private void showCardNativeBalance(boolean show, ViewHolder viewHolder) {
+        viewHolder.cardNativeBalance.setText(mModel.getNativeBalance());
+        viewHolder.cardNativeBalance.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     private void showSpendableAmount(boolean show, ViewHolder viewHolder) {
-        if(show) {
-            viewHolder.spendableAmount.setText(mModel.getSpendableAmount());
-            viewHolder.spendableAmount.setVisibility(View.VISIBLE);
-            viewHolder.spendableAmountLabel.setVisibility(View.VISIBLE);
-            viewHolder.spendableNativeAmount.setText(mModel.getNativeSpendableAmount());
-            viewHolder.spendableNativeAmount.setVisibility(View.VISIBLE);
-        }
-        else {
-            viewHolder.spendableAmountLabel.setVisibility(View.GONE);
-            viewHolder.spendableAmount.setVisibility(View.GONE);
-            viewHolder.spendableNativeAmount.setVisibility(View.GONE);
-        }
+        viewHolder.spendableAmount.setText(mModel.getSpendableAmount());
+        viewHolder.spendableAmountLabel.setVisibility(show ? View.VISIBLE : View.GONE);
+        viewHolder.spendableAmount.setVisibility(show ? View.VISIBLE : View.GONE);
+        // TODO: check currencies
+        showNativeSpendableAmount(true, viewHolder);
+    }
+
+    private void showNativeSpendableAmount(boolean show, ViewHolder viewHolder) {
+        viewHolder.spendableNativeAmount.setText(mModel.getNativeSpendableAmount());
+        viewHolder.spendableNativeAmount.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     private void setCopyCardNumberLabelText(ViewHolder viewHolder, String text) {
