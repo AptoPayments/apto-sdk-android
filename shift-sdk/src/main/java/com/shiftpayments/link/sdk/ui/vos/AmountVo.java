@@ -30,7 +30,7 @@ public class AmountVo {
         }
 
         if(mCurrencySymbols.containsKey(mCurrency)) {
-            return mCurrencySymbol + " " + String.format("%.6f", mAmount);
+            return String.format("%s %.6f", mCurrencySymbol, mAmount);
         }
         else {
             NumberFormat format = NumberFormat.getCurrencyInstance(Locale.getDefault());
