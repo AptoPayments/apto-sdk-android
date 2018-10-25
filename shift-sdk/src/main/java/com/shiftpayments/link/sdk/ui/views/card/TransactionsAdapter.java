@@ -241,8 +241,9 @@ public class TransactionsAdapter extends
                 viewHolder.bannerCancelButton.setOnClickListener(
                         v -> {
                             showBalanceErrorBanner(false, viewHolder);
-                            showCardBalance(true, viewHolder);
-                            showSpendableAmount(true, viewHolder);
+                            boolean showBalances = mModel.hasBalance() && mModel.isBalanceValid();
+                            showCardBalance(showBalances, viewHolder);
+                            showSpendableAmount(showBalances, viewHolder);
                         });
                 break;
             case TYPE_TRANSACTION:
@@ -253,10 +254,10 @@ public class TransactionsAdapter extends
     }
 
     private void showCardBalance(boolean show, ViewHolder viewHolder) {
+        viewHolder.cardBalanceLabel.setVisibility(show ? View.VISIBLE : View.GONE);
         viewHolder.cardBalance.setText(mModel.getCardBalance());
         viewHolder.cardBalance.setVisibility(show ? View.VISIBLE : View.GONE);
-        viewHolder.cardBalanceLabel.setVisibility(show ? View.VISIBLE : View.GONE);
-        showCardNativeBalance(mModel.isNativeBalanceCurrencyDifferentFromLocalBalanceCurrency(), viewHolder);
+        showCardNativeBalance(show && mModel.isNativeBalanceCurrencyDifferentFromLocalBalanceCurrency(), viewHolder);
     }
 
     private void showCardNativeBalance(boolean show, ViewHolder viewHolder) {
@@ -265,11 +266,10 @@ public class TransactionsAdapter extends
     }
 
     private void showSpendableAmount(boolean show, ViewHolder viewHolder) {
-        viewHolder.spendableAmount.setText(mModel.getSpendableAmount());
         viewHolder.spendableAmountLabel.setVisibility(show ? View.VISIBLE : View.GONE);
+        viewHolder.spendableAmount.setText(mModel.getSpendableAmount());
         viewHolder.spendableAmount.setVisibility(show ? View.VISIBLE : View.GONE);
-        // TODO: check currencies
-        showNativeSpendableAmount(true, viewHolder);
+        showNativeSpendableAmount(show && mModel.isSpendableAmountCurrencyDifferentFromNativeSpendableAmountCurrency(), viewHolder);
     }
 
     private void showNativeSpendableAmount(boolean show, ViewHolder viewHolder) {
