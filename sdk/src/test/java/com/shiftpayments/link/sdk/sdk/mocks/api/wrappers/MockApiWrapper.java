@@ -14,6 +14,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivatePhysicalCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBalanceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
@@ -52,6 +53,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.SalaryFrequencyVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivatePhysicalCardResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
@@ -426,6 +428,11 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
+    public ActivatePhysicalCardResponseVo activatePhysicalCard(String s, ActivatePhysicalCardRequestVo activatePhysicalCardRequestVo) throws ApiException {
+        return null;
+    }
+
+    @Override
     public EnableFinancialAccountResponseVo enableFinancialAccount(String s) throws ApiException {
         return null;
     }
@@ -451,7 +458,7 @@ public class MockApiWrapper implements ShiftApiWrapper {
     }
 
     @Override
-    public BalanceListVo getUserFundingSources(String s) throws ApiException {
+    public BalanceListVo getUserFundingSources(String accountId) throws ApiException {
         return null;
     }
 
@@ -497,6 +504,11 @@ public class MockApiWrapper implements ShiftApiWrapper {
 
     @Override
     public ApiEmptyResponseVo acceptDisclaimer(AcceptDisclaimerRequestVo acceptDisclaimerRequestVo) throws ApiException {
+        return null;
+    }
+
+    @Override
+    public ApiEmptyResponseVo deleteApplication(final String applicationId) throws ApiException {
         return null;
     }
 }

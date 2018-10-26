@@ -29,6 +29,7 @@ import com.shiftpayments.link.sdk.ui.presenters.BasePresenter;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.utils.AlertDialogUtil;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintAuthenticationDialogFragment;
 import com.shiftpayments.link.sdk.ui.utils.FingerprintDelegate;
@@ -53,8 +54,8 @@ import static com.shiftpayments.link.sdk.ui.activities.DisplayContentActivity.ge
  */
 public class CardSettingsPresenter
         extends BasePresenter<CardSettingsModel, CardSettingsView>
-        implements Presenter<CardSettingsModel, CardSettingsView>,FundingSourceView.ViewListener,
-        CardSettingsView.ViewListener, FingerprintDelegate {
+        implements FundingSourceView.ViewListener, CardSettingsView.ViewListener,
+        FingerprintDelegate {
 
     private static final String DIALOG_FRAGMENT_TAG = "fingerprintFragment";
 
@@ -72,6 +73,7 @@ public class CardSettingsPresenter
         mFragmentManager = fragmentManager;
         mIsUserAuthenticated = false;
         mFingerprintHandler = new FingerprintHandler(mActivity);
+        mAdapter = null;
     }
 
     /** {@inheritDoc} */
@@ -81,9 +83,6 @@ public class CardSettingsPresenter
         view.setViewListener(this);
         mActivity.setSupportActionBar(mView.getToolbar());
         mActivity.getSupportActionBar().setTitle(mActivity.getResources().getString(R.string.card_settings_title));
-        mAdapter = new FundingSourcesListRecyclerAdapter();
-        mAdapter.setViewListener(this);
-        view.setAdapter(mAdapter);
         mView.showAddFundingSourceButton(UIStorage.getInstance().showAddFundingSourceButton());
         mView.setShowCardInfoSwitch(CardStorage.getInstance().showCardInfo);
         mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
@@ -91,6 +90,8 @@ public class CardSettingsPresenter
         mView.showCardholderAgreement(ConfigStorage.getInstance().getCardConfig().cardProduct.cardholderAgreement != null);
         mView.showTermsAndConditions(ConfigStorage.getInstance().getCardConfig().cardProduct.termsOfService != null);
         mView.showPrivacyPolicy(ConfigStorage.getInstance().getCardConfig().cardProduct.privacyPolicy != null);
+        mView.showSetPinButton(CardStorage.getInstance().getCard().features.setPin.status.equals("enabled"));
+        mView.showGetPinButton(CardStorage.getInstance().getCard().features.getPin.status.equals("enabled"));
         mResponseHandler.subscribe(this);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(true, LoadingView.Position.TOP, false);
@@ -137,8 +138,24 @@ public class CardSettingsPresenter
     }
 
     @Override
-    public void contactSupportClickHandler() {
-        new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
+    public void getPinClickHandler() {
+        mDelegate.onGetPinClickHandler();
+    }
+
+    @Override
+    public void reportStolenCardClickHandler() {
+        final String alertTitle = mActivity.getString(R.string.contact_support_alert_title);
+        final String alertMessage = mActivity.getString(R.string.contact_support_alert_message);
+        final AlertDialogUtil dialogUtil = new AlertDialogUtil(mActivity);
+        final AlertDialog dialog = dialogUtil.getAlertDialog(alertTitle, alertMessage,
+                ()-> {
+                    changeCardState(false);
+                    new SendEmailUtil(UIStorage.getInstance().getContextConfig().supportEmailAddress).execute(mActivity);
+                },
+                ()-> {
+
+                });
+        dialog.show();
     }
 
     @Override
@@ -213,14 +230,14 @@ public class CardSettingsPresenter
         mView.setShowCardInfoSwitch(false);
     }
 
-    @Override
-    public void onClose() {
-        mActivity.finish();
-    }
-
     @Subscribe
     public void handleResponse(BalanceListVo response) {
         mResponseHandler.unsubscribe(this);
+        if(mAdapter==null) {
+            mAdapter = new FundingSourcesListRecyclerAdapter();
+            mAdapter.setViewListener(this);
+            mView.setAdapter(mAdapter);
+        }
         mModel.addBalances(response.data);
         mView.showFundingSourceLabel(true);
         mAdapter.updateList(mModel.getBalances());
@@ -231,7 +248,6 @@ public class CardSettingsPresenter
     public void handleResponse(BalanceVo balance) {
         mResponseHandler.unsubscribe(this);
         CardStorage.getInstance().setBalance(balance);
-        mModel.setSelectedBalance(balance.id);
         mAdapter.updateList(mModel.getBalances());
         mLoadingSpinnerManager.showLoading(false);
         Toast.makeText(mActivity, R.string.account_management_funding_source_changed, Toast.LENGTH_SHORT).show();
@@ -257,6 +273,7 @@ public class CardSettingsPresenter
         mResponseHandler.unsubscribe(this);
         mLoadingSpinnerManager.showLoading(false);
         showToastAndUpdateCard(card, mActivity.getString(R.string.card_enabled));
+        mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
     }
 
     /**
@@ -268,6 +285,7 @@ public class CardSettingsPresenter
         mResponseHandler.unsubscribe(this);
         mLoadingSpinnerManager.showLoading(false);
         showToastAndUpdateCard(card, mActivity.getString(R.string.card_disabled));
+        mView.setEnableCardSwitch(!CardStorage.getInstance().getCard().isCardActivated());
     }
 
     /**
@@ -309,8 +327,6 @@ public class CardSettingsPresenter
     }
 
     private void showCardStateChangeConfirmationDialog() {
-        String text = mActivity.getString(R.string.disable_card_message);
-
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
 
         String alertTitle = mActivity.getString(R.string.card_settings_dialog_title);

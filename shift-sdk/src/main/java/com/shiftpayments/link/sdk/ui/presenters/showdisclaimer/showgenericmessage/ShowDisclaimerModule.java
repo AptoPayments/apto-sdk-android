@@ -32,8 +32,8 @@ public class ShowDisclaimerModule extends ShiftBaseModule {
 
     @Override
     public void initialModuleSetup() {
-        DisclaimerUtil.showDisclaimer(getActivity(), mConfig.disclaimer, onFinish, mWorkflowId,
-                mActionId);
+        DisclaimerUtil.showDisclaimer(getActivity(), mConfig.disclaimer,
+                onFinish, onBack, mWorkflowId, mActionId);
     }
 
     public DisclaimerConfiguration getConfig() {

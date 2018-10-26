@@ -8,12 +8,14 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointList;
 import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.CancelCardApplicationRequest;
 import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.CreateCardApplicationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.GetCardApplicationStatusRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.config.GetCardConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.config.GetLinkConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.config.GetProjectConfigRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivateFinancialAccountRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivatePhysicalCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBalanceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddCardRequestVo;
@@ -381,6 +383,15 @@ public class ShiftSdk {
     }
 
     /**
+     * Activate financial account.
+     */
+    public static void activatePhysicalCard(String cardId, String activationCode) {
+        checkComponents();
+        ActivatePhysicalCardRequestVo request = new ActivatePhysicalCardRequestVo(cardId, activationCode);
+        executeOrEnqueueRequest(request);
+    }
+
+    /**
      * Enable financial account.
      */
     public static void enableFinancialAccount(String accountId) {
@@ -487,6 +498,16 @@ public class ShiftSdk {
     public static void getCardApplicationStatus(String applicationId) {
         checkComponents();
         GetCardApplicationStatusRequestVo request = new GetCardApplicationStatusRequestVo(applicationId);
+        executeOrEnqueueRequest(request);
+    }
+
+    /**
+     * Cancel the card application
+     * @param applicationId The card product ID.
+     */
+    public static void cancelCardApplication(final String applicationId) {
+        checkComponents();
+        CancelCardApplicationRequest request = new CancelCardApplicationRequest(applicationId);
         executeOrEnqueueRequest(request);
     }
 

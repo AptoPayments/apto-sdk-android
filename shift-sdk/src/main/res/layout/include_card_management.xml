@@ -4,13 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <include layout="@layout/include_invalid_funding_source_banner"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_empty_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_invalid_funding_source_banner">
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/tv_current_balance_label"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:layout_below="@+id/rl_empty_placeholder"
         style="@style/llsdk_manage_card_section_title"
         android:text="@string/card_management_card_balance" />
 
@@ -36,9 +46,9 @@
         android:id="@+id/tv_card_spendable_balance_label"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_below="@+id/rl_empty_placeholder"
         style="@style/llsdk_manage_card_section_title"
         android:text="@string/card_management_card_spendable_balance" />
 
@@ -64,7 +74,7 @@
         android:id="@+id/credit_card_view"
         android:layout_width="match_parent"
         android:layout_height="192dp"
-        android:layout_below="@id/tv_spendable_native_balance"
+        android:layout_below="@id/tv_current_native_balance"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
@@ -73,21 +83,9 @@
 
     <TextView
         android:id="@+id/tv_display_card_primary_bttn"
-        android:layout_width="209dp"
-        android:layout_height="wrap_content"
+        style="@style/llsdk_instructions"
         android:layout_below="@+id/credit_card_view"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:gravity="center_horizontal"
-        android:text="@string/card_management_primary_button"
-        android:textColor="@color/llsdk_tertiary_text_color"
-        android:textSize="10sp" />
-
-    <TextView
-        android:id="@+id/tv_display_card_secondary_bttn"
-        style="@style/ledge_big_button_style"
-        android:layout_below="@+id/tv_display_card_primary_bttn"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/card_management_secondary_button" />
+        android:text="@string/card_management_primary_button" />
 </RelativeLayout>

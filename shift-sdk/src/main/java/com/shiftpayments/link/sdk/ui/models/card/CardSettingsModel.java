@@ -17,7 +17,6 @@ public class CardSettingsModel implements Model {
 
     private Card mCard;
     private PagedList<BalanceModel> mBalancesList;
-    private BalanceModel mSelectedBalance;
 
     public CardSettingsModel(Card card) {
         mCard = card;
@@ -37,9 +36,6 @@ public class CardSettingsModel implements Model {
             }
             BalanceModel balanceModel = new BalanceModel(balance, isSelected);
             newBalances.add(balanceModel);
-            if(isSelected) {
-                mSelectedBalance = balanceModel;
-            }
         }
 
         mBalancesList.addAll(newBalances);
@@ -47,15 +43,6 @@ public class CardSettingsModel implements Model {
 
     public PagedList<BalanceModel> getBalances() {
         return mBalancesList;
-    }
-
-    public void setSelectedBalance(String id) {
-        ArrayList<BalanceModel> fundingSources = new ArrayList<>(mBalancesList.getList());
-        for(BalanceModel fundingSource : fundingSources) {
-            if(fundingSource.getBalanceId().equals(id)) {
-                mSelectedBalance = fundingSource;
-            }
-        }
     }
 
     public String getAccountId() {

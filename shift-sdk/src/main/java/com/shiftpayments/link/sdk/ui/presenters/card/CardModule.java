@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.presenters.card;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 
 import com.shiftpayments.link.sdk.api.exceptions.ApiException;
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -20,7 +21,10 @@ import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.KycStatusActivity;
+import com.shiftpayments.link.sdk.ui.activities.card.CardWelcomeActivity;
+import com.shiftpayments.link.sdk.ui.activities.card.GetPinActivity;
 import com.shiftpayments.link.sdk.ui.activities.card.ManageCardActivity;
+import com.shiftpayments.link.sdk.ui.activities.card.PhysicalCardActivationActivity;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorDelegate;
 import com.shiftpayments.link.sdk.ui.presenters.custodianselector.CustodianSelectorModule;
 import com.shiftpayments.link.sdk.ui.presenters.verification.AuthModule;
@@ -52,13 +56,14 @@ import static com.shiftpayments.link.sdk.sdk.ShiftSdk.getApiWrapper;
  */
 
 public class CardModule extends ShiftBaseModule implements ManageAccountDelegate, ManageCardDelegate,
-        CardSettingsDelegate, KycStatusDelegate, CustodianSelectorDelegate {
+        CardSettingsDelegate, KycStatusDelegate, CustodianSelectorDelegate, CardWelcomeDelegate,
+        PhysicalCardActivationDelegate, GetPinDelegate {
 
     private NewCardModule mNewCardModule;
 
     public CardModule(Activity activity, Command onFinish, Command onBack) {
         super(activity, onFinish, onBack);
-        mNewCardModule = new NewCardModule(getActivity(), this::getApplicationStatus, this::startManageCardScreen,
+        mNewCardModule = new NewCardModule(getActivity(), this::getApplicationStatus, this::startCardWelcomeScreenOrManageCardScreen,
                 this::showHomeActivity, this::onIssueCardError);
     }
 
@@ -79,7 +84,12 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     @Override
     public void addFundingSource(Command onFinishCallback) {
         ShiftSdk.getResponseHandler().unsubscribe(this);
-        startCustodianModule(onFinishCallback, this::startManageCardScreen);
+        startCustodianModule(onFinishCallback, this::startCardWelcomeScreenOrManageCardScreen);
+    }
+
+    @Override
+    public void onActivatePhysicalCard() {
+        getActivity().startActivity(new Intent(getActivity(), PhysicalCardActivationActivity.class));
     }
 
     @Override
@@ -88,7 +98,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         String cardId = CardStorage.getInstance().getCard().mAccountId;
         BalanceDataVo balanceData = new BalanceDataVo("coinbase", oAuthResponse.tokens.access, oAuthResponse.tokens.refresh);
         ShiftPlatform.addUserBalance(cardId, balanceData);
-        startManageCardScreen();
+        startCardWelcomeScreenOrManageCardScreen();
     }
 
     @Override
@@ -103,8 +113,44 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
     }
 
     @Override
-    public void onManageCardBackPressed() {
+    public void onManageCardClosed() {
         showHomeActivity();
+    }
+
+    @Override
+    public void onKycPassed() {
+        startCardWelcomeScreenOrManageCardScreen();
+    }
+
+    @Override
+    public void onKycClosed() {
+        showHomeActivity();
+    }
+
+    @Override
+    public void onCardWelcomeNextClickHandler() {
+        ShiftPlatform.enableFinancialAccount(CardStorage.getInstance().getCard().mAccountId);
+        startManageCardScreen();
+    }
+
+    @Override
+    public void physicalCardActivated() {
+        getActivity().startActivity(new Intent(getActivity(), GetPinActivity.class));
+    }
+
+    @Override
+    public void activatePhysicalCardOnBackPressed() {
+        startManageCardScreen();
+    }
+
+    @Override
+    public void onGetPinClickHandler() {
+        callIvrPhone();
+    }
+
+    @Override
+    public void onGetPinOnClose() {
+        startManageCardScreen();
     }
 
     /**
@@ -131,7 +177,7 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         CardStorage.getInstance().setCard(card);
 
         if(card.kycStatus.equals(KycStatus.passed)) {
-            startManageCardScreen();
+            startCardWelcomeScreenOrManageCardScreen();
         }
         else {
             startKycStatusScreen(card);
@@ -171,6 +217,13 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         super.handleSessionExpiredError(error);
         ShiftSdk.getResponseHandler().unsubscribe(this);
         showHomeActivity();
+    }
+
+    private void callIvrPhone() {
+        String ivrPhone = CardStorage.getInstance().getCard().features.getPin.ivrPhone.toString();
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + ivrPhone));
+        getActivity().startActivity(intent);
     }
 
     private boolean isStoredUserTokenValid() {
@@ -240,9 +293,24 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
         }
     }
 
+    private void startCardWelcomeScreenOrManageCardScreen() {
+        ShiftSdk.getResponseHandler().unsubscribe(this);
+        Card card = CardStorage.getInstance().getCard();
+        if(UIStorage.getInstance().showActivateCardButton() && card.isCardCreated()) {
+            startCardWelcomeScreen();
+        }
+        else {
+            startManageCardScreen();
+        }
+    }
+
+    private void startCardWelcomeScreen() {
+        setCurrentModule();
+        getActivity().startActivity(new Intent(getActivity(), CardWelcomeActivity.class));
+    }
+
     private void startManageCardScreen() {
         setCurrentModule();
-        ShiftSdk.getResponseHandler().unsubscribe(this);
         getActivity().startActivity(new Intent(getActivity(), ManageCardActivity.class));
     }
 
@@ -295,11 +363,6 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
             }
         }
         return null;
-    }
-
-    @Override
-    public void onKycPassed() {
-        startManageCardScreen();
     }
 
     private void startKycStatusScreen(Card card) {

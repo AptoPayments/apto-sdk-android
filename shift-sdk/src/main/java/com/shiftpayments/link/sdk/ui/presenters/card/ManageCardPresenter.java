@@ -5,12 +5,8 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.widget.Toast;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
@@ -92,6 +88,10 @@ public class ManageCardPresenter
         view.setViewListener(this);
         view.showLoading(mActivity, false);
 
+        if(UIStorage.getInstance().isEmbeddedMode()) {
+            mView.showCloseButton();
+        }
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
@@ -122,11 +122,6 @@ public class ManageCardPresenter
     }
 
     @Override
-    public void activateCardBySecondaryBtnClickHandler() {
-        showActivateCardConfirmationDialog();
-    }
-
-    @Override
     public void accountClickHandler() {
         mActivity.startActivity(new Intent(mActivity, ManageAccountActivity.class));
     }
@@ -149,6 +144,19 @@ public class ManageCardPresenter
         TransactionItem transactionItem = (TransactionItem) mTransactionsList.get(transactionId);
         TransactionVo transaction = transactionItem.transaction;
         mActivity.startActivity(getTransactionDetailsIntent(mActivity, transaction));
+    }
+
+    @Override
+    public void bannerAcceptButtonClickHandler() {
+        if(mModel.hasBalance() && !mModel.isBalanceValid()) {
+            manageCardClickHandler();
+        }
+        else if(!mModel.hasBalance()) {
+            mDelegate.addFundingSource(()->Toast.makeText(mActivity, R.string.account_management_funding_source_added, Toast.LENGTH_SHORT).show());
+        }
+        else {
+            activatePhysicalCard();
+        }
     }
 
     @Override
@@ -268,6 +276,7 @@ public class ManageCardPresenter
     public void handleResponse(FinancialAccountVo response) {
         mSemaphore.release();
         CardStorage.getInstance().setCard((Card) response);
+        mActivity.invalidateOptionsMenu();
         refreshCard();
         if(isViewReady()) {
             mView.setRefreshing(false);
@@ -288,6 +297,10 @@ public class ManageCardPresenter
         }
     }
 
+    public void activatePhysicalCard() {
+        mDelegate.onActivatePhysicalCard();
+    }
+
     protected void setupToolbar() {
         mActivity.setSupportActionBar(mView.getToolbar());
         mActionBar = mActivity.getSupportActionBar();
@@ -303,39 +316,6 @@ public class ManageCardPresenter
     private void activateCard() {
         ShiftPlatform.activateFinancialAccount(mModel.getAccountId());
         mView.showLoading(mActivity, true);
-    }
-
-    private void showActivateCardConfirmationDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-
-        String alertTitle = mActivity.getString(R.string.card_settings_dialog_title);
-        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextPrimaryColor());
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(alertTitle);
-        spannableStringBuilder.setSpan(
-                foregroundColorSpan,
-                0,
-                alertTitle.length(),
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
-        builder.setTitle(spannableStringBuilder);
-
-        String alertMessage = mActivity.getString(R.string.enable_card_message);
-        foregroundColorSpan = new ForegroundColorSpan(UIStorage.getInstance().getTextSecondaryColor());
-        spannableStringBuilder = new SpannableStringBuilder(alertMessage);
-        spannableStringBuilder.setSpan(
-                foregroundColorSpan,
-                0,
-                alertMessage.length(),
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
-        builder.setMessage(spannableStringBuilder);
-
-        builder.setPositiveButton("YES", (dialog, id) -> activateCard());
-        builder.setNegativeButton("NO", (dialog, id) -> dialog.dismiss());
-
-        AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
     }
 
     private boolean isViewReady() {
@@ -390,9 +370,7 @@ public class ManageCardPresenter
     private void setBalanceInModel(BalanceVo balanceVo) {
         if(balanceVo.balance!=null && balanceVo.balance.hasAmount()) {
             mModel.setBalance(new AmountVo(balanceVo.balance.amount, balanceVo.balance.currency));
-        }
-        if(balanceVo.amountSpendable!=null && balanceVo.amountSpendable.hasAmount()) {
-            mModel.setSpendableAmount(new AmountVo(balanceVo.amountSpendable.amount, balanceVo.amountSpendable.currency));
+            mModel.setBalanceState(balanceVo.state);
         }
         if(balanceVo.custodianWallet!=null && balanceVo.custodianWallet != null && balanceVo.custodianWallet.balance.hasAmount()) {
             mModel.setNativeBalance(new AmountVo(balanceVo.custodianWallet.balance.amount, balanceVo.custodianWallet.balance.currency));

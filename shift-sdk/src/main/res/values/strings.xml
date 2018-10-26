@@ -7,6 +7,7 @@
     <!-- Toolbar -->
     <string name="toolbar_next_button_label">Next</string>
     <string name="toolbar_confirm_button_label">Confirm</string>
+    <string name="toolbar_activate_card_button_label">Activate card</string>
 
     <!-- Loan Amount -->
     <string name="loan_amount_label">How much do you need?</string>
@@ -277,6 +278,10 @@
     <string name="disclaimer_accept">Accept</string>
     <string name="disclaimer_cancel">Cancel</string>
     <string name="disclaimer_error">Error loading disclaimer</string>
+    <string name="disclaimer_alert_title">Cardholder agreement</string>
+    <string name="disclaimer_alert_message">Are you sure you do not want to agree to the Cardholder agreement?</string>
+    <string name="disclaimer_alert_confirm">CONFIRM</string>
+    <string name="disclaimer_alert_cancel">CANCEL</string>
 
     <!-- Action Not Supported -->
     <string name="action_not_supported_error">The received workflow action is currently not supported.</string>
@@ -307,6 +312,21 @@
     <string name="fingerprint_hint">Touch sensor</string>
     <string name="fingerprint_title">Use fingerprint?</string>
 
+    <!-- card welcome screen -->
+    <string name="card_welcome_title">Your Card is ready to run!</string>
+    <string name="card_welcome_subtitle">Your Physical Card is on the way! In the mean time, you can start enjoying your virtual card.</string>
+    <string name="card_welcome_button">ACTIVATE MY CARD</string>
+
+    <!-- get pin screen -->
+    <string name="get_pin_title">Congratulations!</string>
+    <string name="get_pin_subtitle">Your physical Shift Card has been enabled. We\'ve set a random PIN code for your card.</string>
+    <string name="get_pin_button">GET MY PIN</string>
+    <string name="get_pin_disclaimer">PIN is obtained via phone call and charges may be applied by your mobile network operator.</string>
+
+    <!-- physical card activation screen -->
+    <string name="physical_card_activation_title">Enable your physical card</string>
+    <string name="physical_card_activation_hint">Enable your card by entering the activation code that came attached with your physical card.</string>
+
     <!-- card management screen -->
     <string name="card_management_title">Card</string>
     <string name="card_management_card_balance">Current balance</string>
@@ -329,8 +349,10 @@
     <string name="switch_show_card_info">Card Info</string>
     <string name="show_card_info_description">Show card number and CVV</string>
     <string name="save_to_android_pay_label">Add Card</string>
-    <string name="contact_support_label">Contact support</string>
-    <string name="contact_support_description">Report missing or stolen card</string>
+    <string name="contact_support_label">Report Lost or Stolen Card</string>
+    <string name="contact_support_description">Freeze your card and order a replacement</string>
+    <string name="contact_support_alert_title">Report Lost or Stolen Card</string>
+    <string name="contact_support_alert_message">Just as a heads up, once you confirm your card is lost or stolen, it\'ll instantly be locked so no one can use it.</string>
     <string name="legal_label">Legal</string>
     <string name="cardholder_agreement_label">Cardholder Agreement</string>
     <string name="cardholder_agreement_description">Terms and Conditions of the Card</string>
@@ -340,10 +362,13 @@
     <string name="privacy_policy_description">Information we collect</string>
     <string name="change_pin_label">Reset PIN</string>
     <string name="change_pin_description">Set a new PIN code for your card</string>
+    <string name="get_pin_label">Get my PIN</string>
+    <string name="get_pin_description">Retrieve your PIN via our automated system</string>
     <string name="funding_sources_label">Funding Sources</string>
     <string name="settings_label">Settings</string>
     <string name="support_label">Get help</string>
     <string name="add_funding_source">Add funding source</string>
+    <string name="card_settings_no_funding_sources">You have no Funding sources linked with your card.</string>
 
     <!-- card management enable/disable dialog -->
     <string name="enable_card_message">You are activating your card. Are you sure?</string>
@@ -405,4 +430,18 @@
     <string name="issue_card_error_header">Error</string>
     <string name="issue_card_error_body">There was an error while issuing your card</string>
     <string name="issue_card_error_button">TRY AGAIN</string>
+
+    <!-- Invalid funding source banner -->
+    <string name="no_funding_source_title">Funding sources not found</string>
+    <string name="no_funding_source_body">Your card will be disabled until you add a new funding source!</string>
+    <string name="no_funding_source_accept">Add it now</string>
+    <string name="invalid_funding_source_title">Invalid funding source</string>
+    <string name="invalid_funding_source_body">Your current funding source is not valid. Please select or add a different one!</string>
+    <string name="invalid_funding_source_accept">Select now</string>
+    <string name="invalid_funding_source_cancel">Cancel</string>
+
+    <!-- Enable physical card banner -->
+    <string name="enable_physical_card_title">Enable your physical card</string>
+    <string name="enable_physical_card_body">Received your physical Shift Card? Nice! Tap here to enable it.</string>
+    <string name="enable_physical_card_accept">Enable now</string>
 </resources>

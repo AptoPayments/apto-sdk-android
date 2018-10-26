@@ -1,7 +1,9 @@
 package com.shiftpayments.link.sdk.ui.activities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
@@ -11,6 +13,7 @@ import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.presenters.card.KycStatusDelegate;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
+import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.views.KycStatusView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
@@ -44,6 +47,11 @@ public class KycStatusActivity extends BaseActivity implements KycStatusView.Vie
         } else {
             throw new NullPointerException("Received Module does not implement KycStatusDelegate!");
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().setStatusBarColor(UIStorage.getInstance().getStatusBarColor());
+        }
     }
 
     @Override
@@ -75,15 +83,21 @@ public class KycStatusActivity extends BaseActivity implements KycStatusView.Vie
         ApiErrorUtil.showErrorMessage(error, this);
     }
 
+    @Override
+    public void onBackPressed() {
+        // Disabled
+    }
+
     private void setView() {
         mView = (KycStatusView) View.inflate(this, R.layout.act_kyc_status, null);
         setContentView(mView);
         mView.getToolbar().setTitle(getString(R.string.kyc_status_title));
         mView.setViewListener(this);
-    }
-
-    @Override
-    public void onBackPressed() {
-        // Disabled
+        if(UIStorage.getInstance().isEmbeddedMode()) {
+            mView.getToolbar().setNavigationOnClickListener(v -> {
+                mDelegate.onKycClosed();
+            });
+            mView.showCloseButton();
+        }
     }
 }

@@ -1,8 +1,11 @@
 package com.shiftpayments.link.sdk.ui.models.card;
 
+import android.app.Activity;
+
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
+import com.shiftpayments.link.sdk.ui.models.ActivityModel;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
 import com.shiftpayments.link.sdk.ui.storages.UserStorage;
@@ -17,12 +20,12 @@ import java.util.Locale;
  * Concrete {@link Model} for managing a card.
  * @author Adrian
  */
-public class ManageCardModel implements Model {
+public class ManageCardModel implements ActivityModel {
 
     private Card mCard;
     private AmountVo mBalance;
-    private AmountVo mSpendableAmount;
     private AmountVo mNativeBalance;
+    private boolean mIsBalanceValid;
 
     /**
      * Creates a new {@link ManageCardModel} instance.
@@ -101,8 +104,8 @@ public class ManageCardModel implements Model {
     }
 
     public String getSpendableAmount() {
-        if (mSpendableAmount != null) {
-            return mSpendableAmount.toString();
+        if (mCard.spendableAmount != null) {
+            return new AmountVo(mCard.spendableAmount.amount, mCard.spendableAmount.currency).toString();
         }
         return "";
     }
@@ -115,17 +118,8 @@ public class ManageCardModel implements Model {
     }
 
     public String getNativeSpendableAmount() {
-        // TODO: calculate exchange rate until it's returned from the backend
-        if (mNativeBalance != null && mSpendableAmount != null) {
-            double nativeSpendableAmount;
-            if(mNativeBalance.getAmount() > 0) {
-                double exchangeRate = mBalance.getAmount() / mNativeBalance.getAmount();
-                nativeSpendableAmount = mSpendableAmount.getAmount() / exchangeRate;
-            }
-            else {
-                nativeSpendableAmount = 0;
-            }
-            return new AmountVo(nativeSpendableAmount, mNativeBalance.getCurrency()).toString();
+        if (mCard.nativeSpendableAmount != null) {
+            return new AmountVo(mCard.nativeSpendableAmount.amount, mCard.nativeSpendableAmount.currency).toString();
         }
         return "";
     }
@@ -144,6 +138,14 @@ public class ManageCardModel implements Model {
         return null;
     }
 
+    public boolean isNativeBalanceCurrencyDifferentFromLocalBalanceCurrency() {
+        return !mBalance.getCurrency().equals(mNativeBalance.getCurrency());
+    }
+
+    public boolean isSpendableAmountCurrencyDifferentFromNativeSpendableAmountCurrency() {
+        return !mCard.nativeSpendableAmount.currency.equals(mCard.spendableAmount);
+    }
+
     public boolean isCardActivated() {
         return mCard.isCardActivated();
     }
@@ -152,8 +154,24 @@ public class ManageCardModel implements Model {
         return mCard.isCardCreated();
     }
 
+    public boolean isPhysicalCardActivationRequired() {
+        return mCard.physicalCardActivationRequired;
+    }
+
     public boolean cardNumberShown() {
         return CardStorage.getInstance().showCardInfo;
+    }
+
+    public boolean hasBalance() {
+        return mBalance != null;
+    }
+
+    public boolean isBalanceValid() {
+        return mIsBalanceValid;
+    }
+
+    public void setBalanceState(String state) {
+        mIsBalanceValid = state!=null && state.equals("valid");
     }
 
     public void setCard(Card card) {
@@ -164,11 +182,22 @@ public class ManageCardModel implements Model {
         mBalance = balance;
     }
 
-    public void setSpendableAmount(AmountVo amount) {
-        mSpendableAmount = amount;
-    }
-
     public void setNativeBalance(AmountVo nativeBalance) {
         mNativeBalance = nativeBalance;
+    }
+
+    @Override
+    public int getActivityTitleResource() {
+        return 0;
+    }
+
+    @Override
+    public Class getPreviousActivity(Activity current) {
+        return null;
+    }
+
+    @Override
+    public Class getNextActivity(Activity current) {
+        return null;
     }
 }

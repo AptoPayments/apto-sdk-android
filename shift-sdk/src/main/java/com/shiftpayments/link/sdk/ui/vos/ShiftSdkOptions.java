@@ -10,7 +10,8 @@ public class ShiftSdkOptions {
         showChangePIN,
         showLockCard,
         showActivateCardButton,
-        showAddFundingSourceButton
+        showAddFundingSourceButton,
+        useEmbeddedMode
     }
 
     public Map<OptionKeys, Boolean> features;
@@ -23,6 +24,7 @@ public class ShiftSdkOptions {
         features.put(OptionKeys.showLockCard, true);
         features.put(OptionKeys.showActivateCardButton, true);
         features.put(OptionKeys.showAddFundingSourceButton, true);
+        features.put(OptionKeys.useEmbeddedMode, false);
     }
 
     public ShiftSdkOptions(Map<OptionKeys, Boolean> features) {
