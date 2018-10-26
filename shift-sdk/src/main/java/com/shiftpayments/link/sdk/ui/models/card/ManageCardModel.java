@@ -138,6 +138,14 @@ public class ManageCardModel implements ActivityModel {
         return null;
     }
 
+    public boolean isNativeBalanceCurrencyDifferentFromLocalBalanceCurrency() {
+        return !mBalance.getCurrency().equals(mNativeBalance.getCurrency());
+    }
+
+    public boolean isSpendableAmountCurrencyDifferentFromNativeSpendableAmountCurrency() {
+        return !mCard.nativeSpendableAmount.currency.equals(mCard.spendableAmount);
+    }
+
     public boolean isCardActivated() {
         return mCard.isCardActivated();
     }
