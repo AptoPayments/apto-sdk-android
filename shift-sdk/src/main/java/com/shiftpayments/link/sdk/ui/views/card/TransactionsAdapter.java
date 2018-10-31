@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.shiftpayments.link.sdk.api.vos.responses.card.CardBackground;
+import com.shiftpayments.link.sdk.api.vos.responses.card.CardBackgroundColor;
+import com.shiftpayments.link.sdk.api.vos.responses.card.CardBackgroundImage;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.images.GenericImageLoader;
 import com.shiftpayments.link.sdk.ui.models.card.DateItem;
 import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.models.card.TransactionItem;
@@ -51,10 +56,10 @@ public class TransactionsAdapter extends
      */
     public interface ViewListener {
         void manageCardClickHandler();
-        void activateCardBySecondaryBtnClickHandler();
         void accountClickHandler();
         void cardNumberClickHandler(String cardNumber);
         void transactionClickHandler(int transactionId);
+        void bannerAcceptButtonClickHandler();
     }
     public void setViewListener(ViewListener viewListener) {
         mListener = viewListener;
@@ -73,7 +78,13 @@ public class TransactionsAdapter extends
         TextView spendableAmountLabel;
         TextView spendableNativeAmount;
         TextView primaryButton;
-        TextView secondaryButton;
+
+        // Invalid Funding Source Banner
+        RelativeLayout invalidFundingSourceBanner;
+        TextView bannerAcceptButton;
+        TextView bannerCancelButton;
+        TextView bannerTitle;
+        TextView bannerBody;
 
         // Transaction
         TextView titleTextView;
@@ -99,7 +110,11 @@ public class TransactionsAdapter extends
                 spendableAmountLabel = itemView.findViewById(R.id.tv_card_spendable_balance_label);
                 spendableNativeAmount = itemView.findViewById(R.id.tv_spendable_native_balance);
                 primaryButton = itemView.findViewById(R.id.tv_display_card_primary_bttn);
-                secondaryButton = itemView.findViewById(R.id.tv_display_card_secondary_bttn);
+                invalidFundingSourceBanner = itemView.findViewById(R.id.rl_invalid_funding_source_banner);
+                bannerAcceptButton = itemView.findViewById(R.id.tv_banner_accept);
+                bannerCancelButton = itemView.findViewById(R.id.tv_banner_cancel);
+                bannerTitle = itemView.findViewById(R.id.tv_banner_title);
+                bannerBody = itemView.findViewById(R.id.tv_banner_body);
             } else if (viewType == TYPE_TRANSACTION) {
                 titleTextView = itemView.findViewById(R.id.tv_title);
                 descriptionTextView = itemView.findViewById(R.id.tv_description);
@@ -149,18 +164,52 @@ public class TransactionsAdapter extends
                 viewHolder.creditCardView.setCardNumber(mModel.getCardNumber());
                 viewHolder.creditCardView.setCardName(mModel.getCardHolderName());
                 viewHolder.creditCardView.setCVV(mModel.getCVV());
-                viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
-                showCardBalance(!mModel.getCardBalance().isEmpty(), viewHolder);
-                showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
-                viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
+                CardBackground background = mModel.getBackgroundImage();
+                if(background!=null && background.value!=null && !background.value.isEmpty()) {
+                    if(background instanceof CardBackgroundImage) {
+                        viewHolder.creditCardView.setCardBackgroundImage(background.value);
+                    }
+                    else if(background instanceof CardBackgroundColor){
+                        viewHolder.creditCardView.setCardBackgroundColor(
+                                UIStorage.getInstance().convertHexToInt(background.value));
+                        viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
+                    }
+                    else {
+                        viewHolder.creditCardView.setDefaultBackground();
+                        viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
+                    }
+                }
+                else {
+                    viewHolder.creditCardView.setDefaultBackground();
+                    viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
+                }
+                viewHolder.creditCardView.setCardEnabled(true);
+
+                if(!mModel.hasBalance()) {
+                    setBalanceBannerTextToNoBalance(viewHolder);
+                    viewHolder.creditCardView.showCardError();
+                }
+                else if(!mModel.isBalanceValid()) {
+                    setBalanceBannerTextToInvalidBalance(viewHolder);
+                    viewHolder.creditCardView.showCardError();
+                }
+                else if(mModel.isPhysicalCardActivationRequired()) {
+                    setBalanceBannerTextToEnablePhysicalCard(viewHolder);
+                    viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
+                }
+                else {
+                    showBalanceErrorBanner(false, viewHolder);
+                    showCardBalance(mModel.hasBalance(), viewHolder);
+                    showSpendableAmount(!mModel.getSpendableAmount().isEmpty(), viewHolder);
+                    viewHolder.creditCardView.setCardEnabled(mModel.isCardActivated());
+                }
+
                 if(mModel.cardNumberShown()) {
                     setCopyCardNumberLabelText(viewHolder, mContext.getString(R.string.card_management_primary_button_full));
                 }
                 else {
                     setCopyCardNumberLabelText(viewHolder, mContext.getString(R.string.card_management_primary_button));
                 }
-                showActivateCardButton(UIStorage.getInstance().showActivateCardButton()
-                        && mModel.isCardCreated(), viewHolder);
                 break;
             case TransactionListItem.TYPE_DATE:
                 DateItem dateItem = (DateItem) mTransactionListItems.get(position);
@@ -210,8 +259,15 @@ public class TransactionsAdapter extends
                 viewHolder.creditCardView.setOnClickListener(v -> mListener.manageCardClickHandler());
                 viewHolder.creditCardView.getCardNumberView().setOnClickListener(
                         v -> mListener.cardNumberClickHandler(((EditText) v).getText().toString()));
-                viewHolder.secondaryButton.setOnClickListener(
-                        v -> mListener.activateCardBySecondaryBtnClickHandler());
+                viewHolder.bannerAcceptButton.setOnClickListener(
+                        v -> mListener.bannerAcceptButtonClickHandler());
+                viewHolder.bannerCancelButton.setOnClickListener(
+                        v -> {
+                            showBalanceErrorBanner(false, viewHolder);
+                            boolean showBalances = mModel.hasBalance() && mModel.isBalanceValid();
+                            showCardBalance(showBalances, viewHolder);
+                            showSpendableAmount(showBalances, viewHolder);
+                        });
                 break;
             case TYPE_TRANSACTION:
                 viewHolder.transactionHolder.setOnClickListener(
@@ -220,50 +276,72 @@ public class TransactionsAdapter extends
         }
     }
 
-    private void showActivateCardButton(boolean show, ViewHolder viewHolder) {
-        if(show) {
-            viewHolder.secondaryButton.setBackgroundColor(
-                    UIStorage.getInstance().getUiPrimaryColor());
-            viewHolder.secondaryButton.setTextColor(
-                    UIStorage.getInstance().getPrimaryContrastColor());
-            viewHolder.secondaryButton.setVisibility(View.VISIBLE);
-        }
-        else {
-            viewHolder.secondaryButton.setVisibility(View.GONE);
-        }
+    private void showCardBalance(boolean show, ViewHolder viewHolder) {
+        viewHolder.cardBalanceLabel.setVisibility(show ? View.VISIBLE : View.GONE);
+        viewHolder.cardBalance.setText(mModel.getCardBalance());
+        viewHolder.cardBalance.setVisibility(show ? View.VISIBLE : View.GONE);
+        showCardNativeBalance(show && mModel.isNativeBalanceCurrencyDifferentFromLocalBalanceCurrency(), viewHolder);
     }
 
-    private void showCardBalance(boolean show, ViewHolder viewHolder) {
-        if(show) {
-            viewHolder.cardBalance.setText(mModel.getCardBalance());
-            viewHolder.cardBalance.setVisibility(View.VISIBLE);
-            viewHolder.cardBalanceLabel.setVisibility(View.VISIBLE);
-            viewHolder.cardNativeBalance.setText(mModel.getNativeBalance());
-            viewHolder.cardNativeBalance.setVisibility(View.VISIBLE);
-        }
-        else {
-            viewHolder.cardBalanceLabel.setVisibility(View.GONE);
-            viewHolder.cardBalance.setVisibility(View.GONE);
-            viewHolder.cardNativeBalance.setVisibility(View.GONE);
-        }
+    private void showCardNativeBalance(boolean show, ViewHolder viewHolder) {
+        viewHolder.cardNativeBalance.setText(mModel.getNativeBalance());
+        viewHolder.cardNativeBalance.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     private void showSpendableAmount(boolean show, ViewHolder viewHolder) {
-        if(show) {
-            viewHolder.spendableAmount.setText(mModel.getSpendableAmount());
-            viewHolder.spendableAmount.setVisibility(View.VISIBLE);
-            viewHolder.spendableAmountLabel.setVisibility(View.VISIBLE);
-            viewHolder.spendableNativeAmount.setText(mModel.getNativeSpendableAmount());
-            viewHolder.spendableNativeAmount.setVisibility(View.VISIBLE);
-        }
-        else {
-            viewHolder.spendableAmountLabel.setVisibility(View.GONE);
-            viewHolder.spendableAmount.setVisibility(View.GONE);
-            viewHolder.spendableNativeAmount.setVisibility(View.GONE);
-        }
+        viewHolder.spendableAmountLabel.setVisibility(show ? View.VISIBLE : View.GONE);
+        viewHolder.spendableAmount.setText(mModel.getSpendableAmount());
+        viewHolder.spendableAmount.setVisibility(show ? View.VISIBLE : View.GONE);
+        showNativeSpendableAmount(show && mModel.isSpendableAmountCurrencyDifferentFromNativeSpendableAmountCurrency(), viewHolder);
+    }
+
+    private void showNativeSpendableAmount(boolean show, ViewHolder viewHolder) {
+        viewHolder.spendableNativeAmount.setText(mModel.getNativeSpendableAmount());
+        viewHolder.spendableNativeAmount.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     private void setCopyCardNumberLabelText(ViewHolder viewHolder, String text) {
         viewHolder.primaryButton.setText(text);
+    }
+
+    private void setBalanceBannerTextToInvalidBalance(ViewHolder viewHolder) {
+        showBalanceErrorBanner(true, viewHolder);
+        showCardBalance(false, viewHolder);
+        showSpendableAmount(false, viewHolder);
+        viewHolder.bannerTitle.setText(mContext.getString(R.string.invalid_funding_source_title));
+        viewHolder.bannerBody.setText(mContext.getString(R.string.invalid_funding_source_body));
+        viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.invalid_funding_source_accept));
+    }
+
+    private void setBalanceBannerTextToNoBalance(ViewHolder viewHolder) {
+        showBalanceErrorBanner(true, viewHolder);
+        showCardBalance(false, viewHolder);
+        showSpendableAmount(false, viewHolder);
+        viewHolder.bannerTitle.setText(mContext.getString(R.string.no_funding_source_title));
+        viewHolder.bannerBody.setText(mContext.getString(R.string.no_funding_source_body));
+        viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.no_funding_source_accept));
+    }
+
+    private void setBalanceBannerTextToEnablePhysicalCard(ViewHolder viewHolder) {
+        showBalanceErrorBanner(true, viewHolder);
+        showCardBalance(false, viewHolder);
+        showSpendableAmount(false, viewHolder);
+        viewHolder.bannerTitle.setText(mContext.getString(R.string.enable_physical_card_title));
+        viewHolder.bannerBody.setText(mContext.getString(R.string.enable_physical_card_body));
+        viewHolder.bannerAcceptButton.setText(mContext.getString(R.string.enable_physical_card_accept));
+    }
+
+    private void showBalanceErrorBanner(boolean show, ViewHolder viewHolder) {
+        if(show) {
+            viewHolder.bannerCancelButton.setTextColor(UIStorage.getInstance().getTextPrimaryColor());
+            viewHolder.bannerAcceptButton.setTextColor(UIStorage.getInstance().getUiPrimaryColor());
+            viewHolder.bannerTitle.setTextColor(UIStorage.getInstance().getTextSecondaryColor());
+            viewHolder.bannerBody.setTextColor(UIStorage.getInstance().getTextPrimaryColor());
+            viewHolder.invalidFundingSourceBanner.setBackgroundColor(UIStorage.getInstance().adjustColorAlpha(UIStorage.getInstance().getUiPrimaryColor(), 0.15f));
+            viewHolder.invalidFundingSourceBanner.setVisibility(View.VISIBLE);
+        }
+        else {
+            viewHolder.invalidFundingSourceBanner.setVisibility(View.GONE);
+        }
     }
 }

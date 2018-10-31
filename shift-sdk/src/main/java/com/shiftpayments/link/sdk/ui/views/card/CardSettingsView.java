@@ -17,16 +17,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.card.BalanceModel;
 import com.shiftpayments.link.sdk.ui.storages.UIStorage;
 import com.shiftpayments.link.sdk.ui.views.LoadingView;
+import com.shiftpayments.link.sdk.ui.views.NoFundingSourcesView;
 import com.shiftpayments.link.sdk.ui.views.ViewWithIndeterminateLoading;
 import com.shiftpayments.link.sdk.ui.views.ViewWithToolbar;
+import com.shiftpayments.link.sdk.ui.widgets.EmptyRecyclerView;
 
 import me.ledge.common.adapters.recyclerview.PagedListRecyclerAdapter;
 
@@ -43,13 +43,15 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     private static boolean mIsEnableCardSwitchTouched;
     private ViewListener mListener;
     private Toolbar mToolbar;
-    private RecyclerView mFundingSourcesListView;
+    private EmptyRecyclerView mFundingSourcesListView;
+    private NoFundingSourcesView mNoFundingSourcesView;
     private TextView mFundingSourceLabel;
-    private LinearLayout mAddFundingSourceHolder;
-    private ImageButton mAddFundingSourceButton;
-    private TextView mAddFundingSourceLabel;
+    private TextView mAddFundingSourceButton;
     private FrameLayout mPinView;
+    private TextView mGetPinButton;
+    private TextView mGetPinLabel;
     private TextView mChangePinButton;
+    private TextView mChangePinLabel;
     private TextView mContactSupportButton;
     private SwitchCompat mShowCardInfoSwitch;
     private SwitchCompat mEnableCardSwitch;
@@ -104,7 +106,8 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     public interface ViewListener {
         void addFundingSource();
         void changePinClickHandler();
-        void contactSupportClickHandler();
+        void getPinClickHandler();
+        void reportStolenCardClickHandler();
         void showCardInfoClickHandler(boolean show);
         void disableCardClickHandler(boolean disable);
         void faqClickHandler();
@@ -147,12 +150,14 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         }
         int id = view.getId();
 
-        if (id == R.id.ib_add_funding_source || id == R.id.tv_add_funding_source_label) {
+        if (id == R.id.tv_add_funding_source_button) {
             mListener.addFundingSource();
-        } else if (id == R.id.tv_change_pin) {
+        } else if (id == R.id.tv_change_pin || id == R.id.tv_change_pin_description) {
             mListener.changePinClickHandler();
-        } else if (id == R.id.tv_report_stolen_card) {
-            mListener.contactSupportClickHandler();
+        } else if (id == R.id.tv_get_pin || id == R.id.tv_get_pin_description) {
+            mListener.getPinClickHandler();
+        } else if (id == R.id.tv_report_stolen_card || id == R.id.tv_report_stolen_card_description) {
+            mListener.reportStolenCardClickHandler();
         } else if (id == R.id.tv_cardholder_agreement || id == R.id.tv_cardholder_agreement_description) {
             mListener.cardholderAgreementClickHandler();
         } else if (id == R.id.tv_terms_and_conditions || id == R.id.tv_terms_and_conditions_description) {
@@ -191,10 +196,10 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
 
     public void showAddFundingSourceButton(boolean show) {
         if(show) {
-            mAddFundingSourceHolder.setVisibility(VISIBLE);
+            mAddFundingSourceButton.setVisibility(VISIBLE);
         }
         else {
-            mAddFundingSourceHolder.setVisibility(GONE);
+            mAddFundingSourceButton.setVisibility(GONE);
         }
     }
 
@@ -216,53 +221,41 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     }
 
     public void showFaq(boolean show) {
-        if(show) {
-            mFaqButton.setVisibility(VISIBLE);
-            mFaqLabel.setVisibility(VISIBLE);
-        }
-        else {
-            mFaqButton.setVisibility(GONE);
-            mFaqLabel.setVisibility(GONE);
-        }
+        mFaqButton.setVisibility(show ? VISIBLE : GONE);
+        mFaqLabel.setVisibility(show ? VISIBLE : GONE);
     }
 
     public void showCardholderAgreement(boolean show) {
-        if(show) {
-            mCardholderAgreementLabel.setVisibility(VISIBLE);
-            mCardholderAgreementButton.setVisibility(VISIBLE);
-        }
-        else {
-            mCardholderAgreementLabel.setVisibility(GONE);
-            mCardholderAgreementButton.setVisibility(GONE);
-        }
+        mCardholderAgreementLabel.setVisibility(show ? VISIBLE : GONE);
+        mCardholderAgreementButton.setVisibility(show ? VISIBLE : GONE);
     }
 
     public void showTermsAndConditions(boolean show) {
-        if(show) {
-            mTermsAndConditionsLabel.setVisibility(VISIBLE);
-            mTermsAndConditionsButton.setVisibility(VISIBLE);
-        }
-        else {
-            mTermsAndConditionsLabel.setVisibility(GONE);
-            mTermsAndConditionsButton.setVisibility(GONE);
-        }
+        mTermsAndConditionsLabel.setVisibility(show ? VISIBLE : GONE);
+        mTermsAndConditionsButton.setVisibility(show ? VISIBLE : GONE);
     }
 
     public void showPrivacyPolicy(boolean show) {
-        if(show) {
-            mPrivacyPolicyLabel.setVisibility(VISIBLE);
-            mPrivacyPolicyButton.setVisibility(VISIBLE);
-        }
-        else {
-            mPrivacyPolicyLabel.setVisibility(GONE);
-            mPrivacyPolicyButton.setVisibility(GONE);
-        }
+        mPrivacyPolicyLabel.setVisibility(show ? VISIBLE : GONE);
+        mPrivacyPolicyButton.setVisibility(show ? VISIBLE : GONE);
+    }
+
+    public void showSetPinButton(boolean show) {
+        mChangePinButton.setVisibility(show ? VISIBLE : GONE);
+        mChangePinLabel.setVisibility(show ? VISIBLE : GONE);
+    }
+
+    public void showGetPinButton(boolean show) {
+        mGetPinButton.setVisibility(show ? VISIBLE : GONE);
+        mGetPinLabel.setVisibility(show ? VISIBLE : GONE);
     }
 
     private void setupListeners() {
         mAddFundingSourceButton.setOnClickListener(this);
-        mAddFundingSourceLabel.setOnClickListener(this);
         mChangePinButton.setOnClickListener(this);
+        mChangePinLabel.setOnClickListener(this);
+        mGetPinButton.setOnClickListener(this);
+        mGetPinLabel.setOnClickListener(this);
         mContactSupportButton.setOnClickListener(this);
         mShowCardInfoSwitch.setOnCheckedChangeListener(this);
         mShowCardInfoSwitch.setOnTouchListener(this);
@@ -285,11 +278,13 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         mToolbar = findViewById(R.id.toolbar);
         mFundingSourcesListView = findViewById(R.id.rv_funding_sources_list);
         mFundingSourceLabel = findViewById(R.id.tv_funding_sources_header);
-        mAddFundingSourceButton = findViewById(R.id.ib_add_funding_source);
-        mAddFundingSourceHolder = findViewById(R.id.ll_add_funding_source);
-        mAddFundingSourceLabel = findViewById(R.id.tv_add_funding_source_label);
+        mNoFundingSourcesView = findViewById(R.id.ll_no_funding_sources);
+        mAddFundingSourceButton = findViewById(R.id.tv_add_funding_source_button);
         mPinView = findViewById(R.id.pin_fragment);
         mChangePinButton = findViewById(R.id.tv_change_pin);
+        mChangePinLabel = findViewById(R.id.tv_change_pin_description);
+        mGetPinButton = findViewById(R.id.tv_get_pin);
+        mGetPinLabel = findViewById(R.id.tv_get_pin_description);
         mContactSupportButton = findViewById(R.id.tv_report_stolen_card);
         mShowCardInfoSwitch = findViewById(R.id.sw_show_card_info);
         mEnableCardSwitch = findViewById(R.id.sw_enable_card);
@@ -309,8 +304,7 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
         Drawable closeIcon = ContextCompat.getDrawable(getContext(), R.drawable.ic_close);
         closeIcon.setColorFilter(UIStorage.getInstance().getIconTertiaryColor(), PorterDuff.Mode.SRC_ATOP);
         mToolbar.setNavigationIcon(closeIcon);
-        mAddFundingSourceButton.setColorFilter(primaryColor);
-        mAddFundingSourceLabel.setTextColor(primaryColor);
+        mAddFundingSourceButton.setBackgroundColor(UIStorage.getInstance().getUiPrimaryColor());
         ColorStateList foregroundColors = UIStorage.getInstance().getSwitchForegroundColors();
         ColorStateList backgroundColors = UIStorage.getInstance().getSwitchBackgroundColors();
         DrawableCompat.setTintList(DrawableCompat.wrap(mShowCardInfoSwitch.getThumbDrawable()), foregroundColors);
@@ -325,5 +319,6 @@ public class CardSettingsView extends CoordinatorLayout implements ViewWithToolb
     private void setupRecyclerView() {
         mFundingSourcesListView.setHasFixedSize(true);
         mFundingSourcesListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mFundingSourcesListView.setEmptyView(mNoFundingSourcesView);
     }
 }

@@ -25,6 +25,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.cardapplication.CreateCardApplicationRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivatePhysicalCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBalanceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
@@ -52,10 +53,11 @@ import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateProjectRespo
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.errors.ErrorResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivatePhysicalCardResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
@@ -848,6 +850,19 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
     }
 
     @Override
+    public ActivatePhysicalCardResponseVo activatePhysicalCard(String cardId, ActivatePhysicalCardRequestVo request) throws ApiException {
+        ActivatePhysicalCardResponseVo result;
+        try {
+            Response<ActivatePhysicalCardResponseVo> response = mFinancialAccountService.activatePhysicalCard(cardId, request).execute();
+            result = handleResponse(response, ShiftApiWrapper.ACTIVATE_PHYSICAL_CARD_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.ACTIVATE_PHYSICAL_CARD_PATH, ioe);
+        }
+        return result;
+    }
+
+    @Override
     public EnableFinancialAccountResponseVo enableFinancialAccount(String accountId) throws ApiException {
         EnableFinancialAccountResponseVo result;
         try {
@@ -1007,6 +1022,21 @@ public class RetrofitTwoShiftApiWrapper extends BaseShiftApiWrapper implements S
             result = null;
             throwApiException(new ApiErrorVo(), ShiftApiWrapper.CARD_APPLICATION_STATUS_PATH, ioe);
         }
+        return result;
+    }
+
+    @Override
+    public ApiEmptyResponseVo deleteApplication(String applicationId) throws ApiException {
+        ApiEmptyResponseVo result;
+        try {
+            Response<ApiEmptyResponseVo> response
+                    = mCardApplicationService.deleteApplicationAccount(applicationId).execute();
+            result = handleResponse(response, ShiftApiWrapper.CARD_APPLICATION_PATH);
+        } catch (IOException ioe) {
+            result = null;
+            throwApiException(new ApiErrorVo(), ShiftApiWrapper.CARD_APPLICATION_PATH, ioe);
+        }
+
         return result;
     }
 

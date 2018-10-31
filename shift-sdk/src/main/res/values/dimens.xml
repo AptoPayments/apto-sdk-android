@@ -53,4 +53,5 @@
     <dimen name="llsdk_form_label">14sp</dimen>
     <dimen name="llsdk_form_field">20sp</dimen>
     <dimen name="llsdk_form_text_link">13sp</dimen>
+    <dimen name="llsdk_instructions">12sp</dimen>
 </resources>

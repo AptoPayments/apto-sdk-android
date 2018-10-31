@@ -7,5 +7,4 @@
         android:icon="@drawable/ic_icon_account"
         android:title="@string/loan_amount_menu_update_profile"
         app:showAsAction="ifRoom"/>
-
 </menu>

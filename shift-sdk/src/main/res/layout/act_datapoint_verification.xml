@@ -31,6 +31,7 @@
                 android:layout_marginTop="32dp"
                 android:paddingTop="12dp"
                 android:paddingBottom="4dp"
+                android:textAlignment="center"
                 android:text="@string/verification_code_hint" />
 
             <TextView

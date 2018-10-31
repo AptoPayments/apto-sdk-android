@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.shiftpayments.link.sdk.api.vos.responses.ApiErrorVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.StartOAuthResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.AllowedBalanceType;
 import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.BaseActivity;
@@ -33,7 +34,8 @@ public class OAuthActivity extends BaseActivity {
             throw new NullPointerException("Received Module does not implement OAuthDelegate!");
         }
         ShiftSdk.getResponseHandler().subscribe(this);
-        ShiftPlatform.startOAuth(mCurrentModule.getProvider());
+        AllowedBalanceType allowedBalanceType = mCurrentModule.getAllowedBalanceType();
+        ShiftPlatform.startOAuth(allowedBalanceType.balanceType.toString(), allowedBalanceType.baseUri);
     }
 
     @Override

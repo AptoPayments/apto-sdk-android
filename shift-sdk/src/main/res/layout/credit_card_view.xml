@@ -4,7 +4,14 @@
     android:id="@+id/credit_card_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:drawable/dialog_holo_light_frame">
+    android:background="@android:color/transparent">
+
+    <ImageView
+        android:id="@+id/iv_background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_background"
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:id="@+id/ll_card_number"
@@ -207,5 +214,13 @@
 
     <include
         layout="@layout/credit_card_disabled_overlay"
+        android:visibility="gone" />
+
+    <include
+        layout="@layout/credit_card_check_overlay"
+        android:visibility="gone" />
+    
+    <include
+        layout="@layout/credit_card_error_overlay"
         android:visibility="gone" />
 </merge>

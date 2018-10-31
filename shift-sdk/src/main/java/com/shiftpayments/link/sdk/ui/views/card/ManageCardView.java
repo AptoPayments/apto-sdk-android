@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -36,6 +39,10 @@ public class ManageCardView
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private ImageView mNoTransactionsImage;
     private TextView mNoTransactionsText;
+
+    public interface RecyclerViewReadyCallback {
+        void onLayoutReady();
+    }
 
     public ManageCardView(Context context) {
         this(context, null);
@@ -73,11 +80,21 @@ public class ManageCardView
         mListener.pullToRefreshHandler();
     }
 
-    public void configureTransactionsView(LinearLayoutManager linearLayoutManager, EndlessRecyclerViewScrollListener scrollListener, TransactionsAdapter adapter) {
+    public void configureTransactionsView(LinearLayoutManager linearLayoutManager, EndlessRecyclerViewScrollListener scrollListener, TransactionsAdapter adapter, RecyclerViewReadyCallback recyclerViewReadyCallback) {
         if (mTransactionsRecyclerView != null) {
             mTransactionsRecyclerView.setLayoutManager(linearLayoutManager);
             mTransactionsRecyclerView.setAdapter(adapter);
             mTransactionsRecyclerView.addOnScrollListener(scrollListener);
+            mTransactionsRecyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+                @Override
+                public void onGlobalLayout() {
+                    if (recyclerViewReadyCallback != null) {
+                        recyclerViewReadyCallback.onLayoutReady();
+                    }
+                    mTransactionsRecyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+            });
         }
     }
 

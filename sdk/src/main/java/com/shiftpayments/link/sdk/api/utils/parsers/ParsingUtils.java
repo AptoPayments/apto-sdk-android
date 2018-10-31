@@ -1,6 +1,7 @@
 package com.shiftpayments.link.sdk.api.utils.parsers;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 /**
  * Created by adrian on 23/10/2017.
@@ -13,6 +14,14 @@ class ParsingUtils {
         }
 
         return element.getAsString();
+    }
+
+    static JsonObject getJsonObject(JsonElement element) {
+        if(element == null || element.isJsonNull()) {
+            return null;
+        }
+
+        return element.getAsJsonObject();
     }
 
     static String getCurrencyStringFromJson(JsonElement element) {

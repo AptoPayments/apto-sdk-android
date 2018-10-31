@@ -28,7 +28,7 @@ public class ApiErrorUtil {
             String message = getErrorMessageGivenErrorCode(error.serverCode);
             if(message == null) {
                 if(error.statusCode >= 400 && error.statusCode < 600) {
-                    message = "Something went wrong.";
+                    message = context.getString(R.string.error_something_went_wrong);
                     if(error.statusCode<500) {
                         message += " Error code: " + error.serverCode;
                     }
@@ -59,6 +59,10 @@ public class ApiErrorUtil {
         if(!message.isEmpty()) {
             showSnackBar(message, context);
         }
+    }
+
+    public static void showErrorMessage(int errorCode, Context context) {
+        showErrorMessage(mErrorMapping.get(errorCode), context);
     }
 
     public static String getErrorMessageGivenErrorCode(int errorCode) {
@@ -155,6 +159,13 @@ public class ApiErrorUtil {
         errorsSparseArray.append(90194, "Oops!\nCurrency not supported. Please try again.");
         errorsSparseArray.append(90195, "Oops!\nCannot capture funds. Please try again.");
         errorsSparseArray.append(90196, "Oops!\nInsufficient funds. Please try again.");
+
+        errorsSparseArray.append(90206, "Your card can not be enabled, please contact with Customer Support.");
+        errorsSparseArray.append(90207, "The activation code that you entered is invalid, please try again or contact with Customer Support.");
+        errorsSparseArray.append(90208, "You have exceeded the number of attempts allowed, please contact with Customer Support.");
+        errorsSparseArray.append(90209, "Your card is already enabled, please try again or contact with Customer Support.");
+        errorsSparseArray.append(90210, "Your card can not be enabled, please contact with Customer Support.");
+        errorsSparseArray.append(90211, "The activation code that you entered is invalid, please try again or contact with Customer Support.");
 
         return errorsSparseArray;
     }

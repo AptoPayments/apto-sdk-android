@@ -9,6 +9,12 @@ import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.BankAccount;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
+import com.shiftpayments.link.sdk.api.vos.responses.card.CardBackground;
+import com.shiftpayments.link.sdk.api.vos.responses.card.CardBackgroundColor;
+import com.shiftpayments.link.sdk.api.vos.responses.card.CardBackgroundImage;
+import com.shiftpayments.link.sdk.api.vos.responses.card.CardStyle;
+import com.shiftpayments.link.sdk.api.vos.responses.card.Features;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.MoneyVo;
 
 import java.lang.reflect.Type;
 
@@ -30,6 +36,12 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     : ParsingUtils.getStringFromJson(jObject.get("state")).toUpperCase();
             String kycStatus = ParsingUtils.getStringFromJson(jObject.get("kyc_status")) == null ? ""
                     : ParsingUtils.getStringFromJson(jObject.get("kyc_status"));
+
+            Features features = new FeaturesParser().deserialize(
+                    jObject.get("features"), iType, context);
+
+            Boolean physicalCardActivationRequired = jObject.has("physical_card_activation_required") && jObject.get("physical_card_activation_required").getAsBoolean();
+
             return new Card(jObject.get("account_id").getAsString(),
                     ParsingUtils.getStringFromJson(jObject.get("last_four")),
                     Card.CardNetwork.valueOf(ParsingUtils.getStringFromJson(jObject.get("card_network"))),
@@ -40,8 +52,13 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     ParsingUtils.getStringFromJson(jObject.get("cvv")),
                     Card.FinancialAccountState.valueOf(cardState),
                     KycStatus.valueOf(kycStatus),
-                    //TODO
+                    // TODO
                     null,
+                    parseAmount(ParsingUtils.getJsonObject(jObject.get("spendable_today"))),
+                    parseAmount(ParsingUtils.getJsonObject(jObject.get("native_spendable_today"))),
+                    physicalCardActivationRequired,
+                    features,
+                    parseCardStyle(jObject.get("card_style").getAsJsonObject()),
                     false);
         }
         else if(type.equalsIgnoreCase("bank_account")) {
@@ -52,5 +69,29 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
         else {
             return null;
         }
+    }
+
+    private MoneyVo parseAmount(JsonObject jObject ) {
+        if(jObject==null) {
+            return null;
+        }
+        Double amount = jObject.get("amount").getAsDouble();
+        String currency = ParsingUtils.getStringFromJson(jObject.get("currency"));
+        return new MoneyVo(amount, currency);
+    }
+
+    private CardStyle parseCardStyle(JsonObject jObject) {
+        JsonObject backgroundJson = jObject.get("background").getAsJsonObject();
+        String backgroundType = ParsingUtils.getStringFromJson(backgroundJson.get("background_type"));
+        CardBackground background = null;
+        switch(backgroundType) {
+            case "color":
+                background = new CardBackgroundColor(ParsingUtils.getStringFromJson(backgroundJson.get("background_color")));
+                break;
+            case "image":
+                background = new CardBackgroundImage(ParsingUtils.getStringFromJson(backgroundJson.get("background_image")));
+                break;
+        }
+        return new CardStyle(background);
     }
 }

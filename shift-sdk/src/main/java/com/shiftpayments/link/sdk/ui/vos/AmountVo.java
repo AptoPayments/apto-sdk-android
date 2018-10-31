@@ -1,6 +1,9 @@
 package com.shiftpayments.link.sdk.ui.vos;
 
+import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class AmountVo {
@@ -22,14 +25,18 @@ public class AmountVo {
 
     @Override
     public String toString() {
-        int intAmount = (int) mAmount;
-        String format = String.format("%.2f", mAmount);
-        if(mCurrency!=null && !mCurrency.equals("USD") && !mCurrency.equals("EUR")) {
-            format = String.format("%.6f", mAmount);
+        if(mCurrency==null) {
+            return String.valueOf(mAmount);
         }
-        String amount = mAmount == intAmount ? String.valueOf(intAmount)
-                : format;
-        return mCurrencySymbol + " " + amount;
+
+        if(mCurrencySymbols.containsKey(mCurrency)) {
+            return String.format("%s %.6f", mCurrencySymbol, mAmount);
+        }
+        else {
+            NumberFormat format = NumberFormat.getCurrencyInstance(Locale.getDefault());
+            format.setCurrency(Currency.getInstance(mCurrency));
+            return format.format(mAmount);
+        }
     }
 
     public double getAmount() {
@@ -51,9 +58,6 @@ public class AmountVo {
     private static Map<String, String> createCurrencySymbolsMap()
     {
         Map<String, String> currencyMap = new HashMap<>();
-        currencyMap.put("USD", "$");
-        currencyMap.put("EUR", "€");
-        currencyMap.put("GBP", "£");
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             currencyMap.put("BTC", "\u20BF");
             currencyMap.put("ETH", "\u039E");

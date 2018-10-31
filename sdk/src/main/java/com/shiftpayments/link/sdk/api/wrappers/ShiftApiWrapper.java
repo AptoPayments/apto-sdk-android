@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.requests.base.ListRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.base.UnauthorizedRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateProjectRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.dashboard.CreateTeamRequestVo;
+import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ActivatePhysicalCardRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBalanceRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.AddBankAccountRequestVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.ApplicationAccountRequestVo;
@@ -33,10 +34,11 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.LinkConfigResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateProjectResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.dashboard.CreateTeamResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivateFinancialAccountResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.ActivatePhysicalCardResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceListVo;
+import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.DisableFinancialAccountResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.EnableFinancialAccountResponseVo;
-import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.BalanceVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.UpdateFinancialAccountPinResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.loanapplication.LoanApplicationDetailsResponseVo;
@@ -105,6 +107,7 @@ public interface ShiftApiWrapper {
     String FINANCIAL_ACCOUNTS_PATH = "v1/user/accounts";
     String FINANCIAL_ACCOUNT_PATH = "v1/user/accounts/{account_id}";
     String FINANCIAL_ACCOUNT_PIN_PATH = "v1/user/accounts/{account_id}/pin";
+    String ACTIVATE_PHYSICAL_CARD_PATH = "v1//user/accounts/{account_id}/activate_physical";
     String FINANCIAL_ACCOUNT_ACTIVATE_PATH = "v1/user/accounts/{account_id}/activate";
     String FINANCIAL_ACCOUNT_ENABLE_PATH = "v1/user/accounts/{account_id}/enable";
     String FINANCIAL_ACCOUNT_DISABLE_PATH = "v1/user/accounts/{account_id}/disable";
@@ -112,6 +115,7 @@ public interface ShiftApiWrapper {
     String FINANCIAL_ACCOUNT_BALANCE_PATH = "v1/user/accounts/{account_id}/balance";
     String USER_BALANCES_PATH = "v1/user/accounts/{account_id}/balances";
     String ISSUE_CARD_PATH = "/v1/user/accounts/issuecard";
+    String CARD_APPLICATION_PATH = "v1/user/accounts/applications/{application_id}";
     String CARD_APPLICATION_STATUS_PATH = "v1/user/accounts/applications/{application_id}/status";
     String SET_BALANCE_STORE_PATH = "v1/user/accounts/applications/{application_id}/select_balance_store";
     String ACCEPT_DISCLAIMER_PATH = "/v1/disclaimers/accept";
@@ -365,6 +369,14 @@ public interface ShiftApiWrapper {
      */
     LoanApplicationDetailsResponseVo setApplicationAccount(ApplicationAccountRequestVo requestData, String applicationId) throws ApiException;
 
+
+    /**
+     * @param applicationId of the account to delete
+     * @return The application object with the status
+     * @throws ApiException When there is an error making the request
+     */
+    ApiEmptyResponseVo deleteApplication(final String applicationId) throws ApiException;
+
     /**
      * Delete a user given his phone number
      * @param requestData Mandatory request data.
@@ -407,6 +419,14 @@ public interface ShiftApiWrapper {
      * @throws ApiException When there is an error making the request.
      */
     ActivateFinancialAccountResponseVo activateFinancialAccount(String accountId) throws ApiException;
+
+    /**
+     * @param cardId The ID of the card
+     * @param requestData The card activation code
+     * @throws ApiException When there is an error making the request.
+     */
+    ActivatePhysicalCardResponseVo activatePhysicalCard(String cardId, ActivatePhysicalCardRequestVo requestData) throws ApiException;
+
 
     /**
      * @param accountId The ID of the financial account

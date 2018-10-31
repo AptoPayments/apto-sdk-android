@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.shiftpayments.link.sdk.ui.views.NoFundingSourcesView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_no_funding_sources"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_no_funding_sources"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_emptycase_funding_sources"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/tv_no_funding_sources_label"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:text="@string/card_settings_no_funding_sources"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+    
+</com.shiftpayments.link.sdk.ui.views.NoFundingSourcesView>
