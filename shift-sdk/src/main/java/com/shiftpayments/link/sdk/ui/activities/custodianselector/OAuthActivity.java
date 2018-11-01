@@ -35,13 +35,17 @@ public class OAuthActivity extends BaseActivity {
         }
         ShiftSdk.getResponseHandler().subscribe(this);
         AllowedBalanceType allowedBalanceType = mCurrentModule.getAllowedBalanceType();
-        ShiftPlatform.startOAuth(allowedBalanceType.balanceType.toString(), allowedBalanceType.baseUri);
+        if(allowedBalanceType != null) {
+            ShiftPlatform.startOAuth(allowedBalanceType.balanceType.toString(), allowedBalanceType.baseUri);
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mGetStatusThread.interrupt();
+        if(mGetStatusThread != null) {
+            mGetStatusThread.interrupt();
+        }
         ShiftSdk.getResponseHandler().unsubscribe(this);
     }
 

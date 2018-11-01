@@ -31,8 +31,13 @@ public class FeaturesParser implements JsonDeserializer<Features> {
         String status = ParsingUtils.getStringFromJson(getPinJson.get("status"));
         String type = ParsingUtils.getStringFromJson(getPinJson.get("type"));
         JsonObject phoneJson = getPinJson.get("ivr_phone").getAsJsonObject();
-        IvrPhone ivrPhone = new IvrPhone(phoneJson.get("country_code").getAsString(),
-                phoneJson.get("phone_number").getAsString());
+
+        String countryCode = ParsingUtils.getStringFromJson(phoneJson.get("country_code"));
+        String phoneNumber = ParsingUtils.getStringFromJson(phoneJson.get("phone_number"));
+        IvrPhone ivrPhone = null;
+        if(countryCode != null && phoneNumber != null) {
+            ivrPhone = new IvrPhone(countryCode, phoneNumber);
+        }
         GetPin getPin = new GetPin(status, type, ivrPhone);
 
         JsonObject setPinJson = jObject.get("set_pin").getAsJsonObject();
@@ -41,7 +46,9 @@ public class FeaturesParser implements JsonDeserializer<Features> {
         JsonObject selectBalanceStoreJson = jObject.get("select_balance_store").getAsJsonObject();
         AllowedBalancesTypesList allowedBalancesTypesList = new Gson().fromJson(selectBalanceStoreJson.get("allowed_balance_types"), AllowedBalancesTypesList.class);
         ArrayList<AllowedBalanceType> allowedBalanceTypes = new ArrayList<>();
-        allowedBalanceTypes.addAll(Arrays.asList(allowedBalancesTypesList.data));
+        if(allowedBalancesTypesList != null) {
+            allowedBalanceTypes.addAll(Arrays.asList(allowedBalancesTypesList.data));
+        }
 
         SelectBalanceStore selectBalanceStore = new SelectBalanceStore(allowedBalanceTypes);
         return new Features(getPin, setPin, selectBalanceStore);

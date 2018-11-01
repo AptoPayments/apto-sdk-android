@@ -22,7 +22,6 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
         OAuthDelegate {
 
     private static CustodianSelectorModule instance;
-    private String mProvider;
     private static CustodianSelectorDelegate mDelegate;
     private ArrayList<AllowedBalanceType> balanceTypeList;
 
@@ -56,20 +55,21 @@ public class CustodianSelectorModule extends ShiftBaseModule implements AddCusto
 
     @Override
     public void addCoinbase() {
-        mProvider = "COINBASE";
         startOAuthActivity();
     }
 
     @Override
     public void addDwolla() {
-        mProvider = "DWOLLA";
         startOAuthActivity();
     }
 
     @Override
     public AllowedBalanceType getAllowedBalanceType() {
         //TODO: send the balance type chosen by the user
-        return balanceTypeList.get(0);
+        if(balanceTypeList != null && !balanceTypeList.isEmpty()) {
+            return balanceTypeList.get(0);
+        }
+        return null;
     }
 
     @Override

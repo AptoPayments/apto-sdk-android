@@ -173,7 +173,7 @@ public class Card extends FinancialAccountVo {
 
     public boolean isGetPinEnabled() {
         return features != null && features.getPin != null && features.getPin.status != null
-                && features.getPin.status.equals("enabled");
+                && features.getPin.status.equals("enabled") && features.getPin.ivrPhone != null;
     }
 
 
