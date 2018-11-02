@@ -22,7 +22,7 @@ public class FeaturesParser implements JsonDeserializer<Features> {
 
     @Override
     public Features deserialize(JsonElement json, Type iType, JsonDeserializationContext context) throws JsonParseException {
-        if(json == null) {
+        if(ParsingUtils.getJsonObject(json) == null) {
             return null;
         }
         JsonObject jObject = json.getAsJsonObject();
