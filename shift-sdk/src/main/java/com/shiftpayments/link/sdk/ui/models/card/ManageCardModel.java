@@ -140,7 +140,10 @@ public class ManageCardModel implements ActivityModel {
     }
 
     public CardBackground getBackgroundImage() {
-        return mCard.style.background;
+        if (mCard != null && mCard.style != null) {
+            return mCard.style.background;
+        }
+        return null;
     }
 
     public boolean isNativeBalanceCurrencyDifferentFromLocalBalanceCurrency() {

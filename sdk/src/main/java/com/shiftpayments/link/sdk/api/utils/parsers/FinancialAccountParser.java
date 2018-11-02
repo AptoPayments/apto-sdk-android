@@ -61,7 +61,7 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
                     nativeSpendableToday,
                     physicalCardActivationRequired,
                     features,
-                    parseCardStyle(jObject.get("card_style").getAsJsonObject()),
+                    parseCardStyle(jObject.get("card_style")),
                     false);
         }
         else if(type.equalsIgnoreCase("bank_account")) {
@@ -74,7 +74,11 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
         }
     }
 
-    private CardStyle parseCardStyle(JsonObject jObject) {
+    private CardStyle parseCardStyle(JsonElement json) {
+        if(ParsingUtils.getJsonObject(json) == null) {
+            return null;
+        }
+        JsonObject jObject = json.getAsJsonObject();
         JsonObject backgroundJson = jObject.get("background").getAsJsonObject();
         String backgroundType = ParsingUtils.getStringFromJson(backgroundJson.get("background_type"));
         CardBackground background = null;
