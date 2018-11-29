@@ -109,6 +109,8 @@ public class OAuthActivity extends BaseActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        this.finish();
+        if(mGetStatusThread.isInterrupted()) {
+            this.finish();
+        }
     }
 }
