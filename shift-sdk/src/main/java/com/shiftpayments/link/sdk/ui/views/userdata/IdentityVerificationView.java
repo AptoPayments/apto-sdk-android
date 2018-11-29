@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -66,6 +67,7 @@ public class IdentityVerificationView
     private EditText mBirthdayYear;
     private TextView mBirthdateErrorView;
     private TextView mBirthdateHint;
+    private RelativeLayout mBirthdateHolder;
     private TextInputLayout mDocumentNumberWrapper;
 
     private EditText mDocumentNumberField;
@@ -134,6 +136,7 @@ public class IdentityVerificationView
         mBirthdayYear = findViewById(R.id.et_birthday_year);
         mBirthdateErrorView = findViewById(R.id.tv_birthdate_error);
         mBirthdateHint = findViewById(R.id.tv_birthdate_label);
+        mBirthdateHolder = findViewById(R.id.birthdate_holder);
 
         mDocumentNumberWrapper = findViewById(R.id.til_document_number);
         mDocumentNumberField = findViewById(R.id.et_social_security);
@@ -331,16 +334,8 @@ public class IdentityVerificationView
     }
 
     public void showBirthday(boolean show) {
-        if(show) {
-            mBirthdayMonth.setVisibility(VISIBLE);
-            mBirthdayDay.setVisibility(VISIBLE);
-            mBirthdayYear.setVisibility(VISIBLE);
-        }
-        else {
-            mBirthdayMonth.setVisibility(GONE);
-            mBirthdayDay.setVisibility(GONE);
-            mBirthdayYear.setVisibility(GONE);
-        }
+        mBirthdateHolder.setVisibility(show ? VISIBLE : GONE);
+        mBirthdateHint.setVisibility(show ? VISIBLE : GONE);
     }
 
     public void showCitizenshipSpinner(boolean show) {
