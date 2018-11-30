@@ -261,6 +261,12 @@ public class IdentityVerificationPresenter
             ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.error_something_went_wrong), mActivity);
             return;
         }
+        else if(documentTypes.size() == 1) {
+            mModel.setDocumentType(documentTypes.get(0));
+            mView.setDocumentNumberLabel(documentTypes.get(0).toString());
+            mView.showDocumentSpinner(false);
+            return;
+        }
         ArrayAdapter<IdDocument.IdDocumentType> documentTypesAdapter = new ArrayAdapter<>(mActivity,
                 android.R.layout.simple_spinner_item, documentTypes);
         documentTypesAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);

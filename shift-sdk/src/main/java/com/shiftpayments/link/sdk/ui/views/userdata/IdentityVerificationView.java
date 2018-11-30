@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -66,8 +67,10 @@ public class IdentityVerificationView
     private EditText mBirthdayYear;
     private TextView mBirthdateErrorView;
     private TextView mBirthdateHint;
+    private RelativeLayout mBirthdateHolder;
     private TextInputLayout mDocumentNumberWrapper;
 
+    private TextView mDocumentNumberLabel;
     private EditText mDocumentNumberField;
     private CheckBox mSocialSecurityAvailableCheck;
     private TextView mSocialSecurityAvailableField;
@@ -75,6 +78,7 @@ public class IdentityVerificationView
     private TextView mCitizenshipLabel;
     private Spinner mCitizenshipSpinner;
 
+    private TextView mDocumentTypeLabel;
     private Spinner mDocumentTypeSpinner;
 
     private LoadingView mLoadingView;
@@ -134,7 +138,9 @@ public class IdentityVerificationView
         mBirthdayYear = findViewById(R.id.et_birthday_year);
         mBirthdateErrorView = findViewById(R.id.tv_birthdate_error);
         mBirthdateHint = findViewById(R.id.tv_birthdate_label);
+        mBirthdateHolder = findViewById(R.id.birthdate_holder);
 
+        mDocumentNumberLabel = findViewById(R.id.tv_document_number_label);
         mDocumentNumberWrapper = findViewById(R.id.til_document_number);
         mDocumentNumberField = findViewById(R.id.et_social_security);
         mSocialSecurityAvailableCheck = findViewById(R.id.cb_ssn_itin_not_available);
@@ -148,6 +154,7 @@ public class IdentityVerificationView
         mCitizenshipLabel = findViewById(R.id.tv_citizenship_label);
         mCitizenshipSpinner = findViewById(R.id.sp_citizenship);
 
+        mDocumentTypeLabel = findViewById(R.id.tv_document_type_label);
         mDocumentTypeSpinner = findViewById(R.id.sp_document_type);
 
         mNextButton = findViewById(R.id.tv_next_bttn);
@@ -252,6 +259,10 @@ public class IdentityVerificationView
         mDocumentNumberField.setText(documentNumber);
     }
 
+    public void setDocumentNumberLabel(String label) {
+        mDocumentNumberLabel.setText(label);
+    }
+
     public void showSSN(boolean show) {
         if(show) {
             mDocumentNumberField.setVisibility(VISIBLE);
@@ -331,27 +342,18 @@ public class IdentityVerificationView
     }
 
     public void showBirthday(boolean show) {
-        if(show) {
-            mBirthdayMonth.setVisibility(VISIBLE);
-            mBirthdayDay.setVisibility(VISIBLE);
-            mBirthdayYear.setVisibility(VISIBLE);
-        }
-        else {
-            mBirthdayMonth.setVisibility(GONE);
-            mBirthdayDay.setVisibility(GONE);
-            mBirthdayYear.setVisibility(GONE);
-        }
+        mBirthdateHolder.setVisibility(show ? VISIBLE : GONE);
+        mBirthdateHint.setVisibility(show ? VISIBLE : GONE);
     }
 
     public void showCitizenshipSpinner(boolean show) {
-        if(show) {
-            mCitizenshipSpinner.setVisibility(VISIBLE);
-            mCitizenshipLabel.setVisibility(VISIBLE);
-        }
-        else {
-            mCitizenshipSpinner.setVisibility(GONE);
-            mCitizenshipLabel.setVisibility(GONE);
-        }
+        mCitizenshipSpinner.setVisibility(show ? VISIBLE : GONE);
+        mCitizenshipLabel.setVisibility(show ? VISIBLE : GONE);
+    }
+
+    public void showDocumentSpinner(boolean show) {
+        mDocumentTypeSpinner.setVisibility(show ? VISIBLE : GONE);
+        mDocumentTypeLabel.setVisibility(show ? VISIBLE : GONE);
     }
 
     public void enableSpinners(boolean enable) {
