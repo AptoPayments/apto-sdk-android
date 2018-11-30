@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 import com.shiftpayments.link.sdk.api.vos.datapoints.FinancialAccountVo;
 import com.shiftpayments.link.sdk.api.vos.requests.financialaccounts.KycStatus;
+import com.shiftpayments.link.sdk.api.vos.responses.card.CardStyle;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.MoneyVo;
 import com.shiftpayments.link.sdk.api.vos.responses.card.Features;
 
@@ -62,6 +63,8 @@ public class Card extends FinancialAccountVo {
     public MoneyVo nativeSpendableAmount;
     @SerializedName("features")
     public Features features;
+    @SerializedName("card_style")
+    public CardStyle style;
 
     public Card() {
         super(null, FinancialAccountType.Card, false);
@@ -79,6 +82,7 @@ public class Card extends FinancialAccountVo {
         nativeSpendableAmount = null;
         physicalCardActivationRequired = null;
         features = null;
+        style = null;
     }
 
     public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
@@ -94,11 +98,14 @@ public class Card extends FinancialAccountVo {
         this.state = state;
         this.kycStatus = null;
         this.kycReason = null;
+        this.style = null;
     }
 
     public Card(String accountId, String lastFourDigits, CardNetwork type, String cardBrand, String cardIssuer, String expirationDate,
                 String PANToken, String CVVToken, FinancialAccountState state, KycStatus kycStatus, String[] kycReason, 
-                MoneyVo spendableAmount, MoneyVo nativeSpendableAmount, boolean physicalCardActivationRequired, Features features, boolean verified) {
+                MoneyVo spendableAmount, MoneyVo nativeSpendableAmount, boolean physicalCardActivationRequired,
+                Features features, CardStyle style, boolean verified) {
+
         super(accountId, FinancialAccountType.Card, verified);
         this.cardNetwork = type;
         this.lastFourDigits = lastFourDigits;
@@ -114,6 +121,7 @@ public class Card extends FinancialAccountVo {
         this.nativeSpendableAmount = nativeSpendableAmount;
         this.physicalCardActivationRequired = physicalCardActivationRequired;
         this.features = features;
+        this.style = style;
     }
 
     public Card(Card c) {
@@ -132,6 +140,7 @@ public class Card extends FinancialAccountVo {
         this.nativeSpendableAmount = c.nativeSpendableAmount;
         this.physicalCardActivationRequired = c.physicalCardActivationRequired;
         this.features = c.features;
+        this.style = c.style;
     }
 
     @Override
@@ -156,6 +165,17 @@ public class Card extends FinancialAccountVo {
     public boolean isCardCreated() {
         return ((state != null) && (state == CREATED));
     }
+
+    public boolean isSetPinEnabled() {
+        return features != null && features.setPin != null && features.setPin.status != null
+                && features.setPin.status.equals("enabled");
+    }
+
+    public boolean isGetPinEnabled() {
+        return features != null && features.getPin != null && features.getPin.status != null
+                && features.getPin.status.equals("enabled") && features.getPin.ivrPhone != null;
+    }
+
 
     private String getAPIFormatExpirationDate(String expirationDate) {
         final String CARD_EXPIRATION_FORMAT = "MM/yy";

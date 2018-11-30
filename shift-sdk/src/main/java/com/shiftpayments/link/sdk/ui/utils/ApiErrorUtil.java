@@ -28,7 +28,7 @@ public class ApiErrorUtil {
             String message = getErrorMessageGivenErrorCode(error.serverCode);
             if(message == null) {
                 if(error.statusCode >= 400 && error.statusCode < 600) {
-                    message = "Something went wrong.";
+                    message = context.getString(R.string.error_something_went_wrong);
                     if(error.statusCode<500) {
                         message += " Error code: " + error.serverCode;
                     }

@@ -12,6 +12,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorCo
 import com.shiftpayments.link.sdk.ui.R;
 import com.shiftpayments.link.sdk.ui.models.userdata.IdentityVerificationModel;
 import com.shiftpayments.link.sdk.ui.presenters.Presenter;
+import com.shiftpayments.link.sdk.ui.utils.ApiErrorUtil;
 import com.shiftpayments.link.sdk.ui.utils.ResourceUtil;
 import com.shiftpayments.link.sdk.ui.views.userdata.IdentityVerificationView;
 import com.shiftpayments.link.sdk.ui.workflow.ModuleManager;
@@ -98,6 +99,10 @@ public class IdentityVerificationPresenter
             mView.setBirthdayYear(mModel.getBirthdateYear());
         }
 
+        if(mAllowedDocumentTypes == null || mAllowedDocumentTypes.isEmpty()) {
+            ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.error_something_went_wrong), mActivity);
+            return;
+        }
         Set<String> countryCodeSet = mAllowedDocumentTypes.keySet();
         if(countryCodeSet.size() > 1) {
             mView.showCitizenshipSpinner(true);
@@ -252,6 +257,16 @@ public class IdentityVerificationPresenter
 
     private void setDocumentTypesAdapter(String countryCode) {
         List<IdDocument.IdDocumentType> documentTypes = mAllowedDocumentTypes.get(countryCode);
+        if(documentTypes.size() == 0) {
+            ApiErrorUtil.showErrorMessage(mActivity.getString(R.string.error_something_went_wrong), mActivity);
+            return;
+        }
+        else if(documentTypes.size() == 1) {
+            mModel.setDocumentType(documentTypes.get(0));
+            mView.setDocumentNumberLabel(documentTypes.get(0).toString());
+            mView.showDocumentSpinner(false);
+            return;
+        }
         ArrayAdapter<IdDocument.IdDocumentType> documentTypesAdapter = new ArrayAdapter<>(mActivity,
                 android.R.layout.simple_spinner_item, documentTypes);
         documentTypesAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);

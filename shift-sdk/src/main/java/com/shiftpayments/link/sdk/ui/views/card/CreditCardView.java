@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -17,7 +17,8 @@ import android.widget.TextView;
 
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.ui.R;
-import com.shiftpayments.link.sdk.ui.storages.UIStorage;
+import com.shiftpayments.link.sdk.ui.ShiftPlatform;
+import com.shiftpayments.link.sdk.ui.images.GenericImageLoader;
 
 
 /**
@@ -35,7 +36,7 @@ public class CreditCardView extends RelativeLayout {
     private final static int mExpiryDateLabelTextColor = Color.WHITE;
     private final static int mCvvTextColor = Color.WHITE;
     private final static int mCvvLabelColor = Color.WHITE;
-    private int mEnabledCardBackground = R.drawable.card_enabled_background;
+    private ImageView mBackgroundImage;
 
     private EditText mCardNumberView1;
     private EditText mCardNumberView2;
@@ -85,6 +86,7 @@ public class CreditCardView extends RelativeLayout {
         mCheckCardOverlay = findViewById(R.id.check_card_overlay);
         mDisabledCardOverlay = findViewById(R.id.card_disabled_overlay);
         mErrorCardOverlay = findViewById(R.id.card_error_overlay);
+        mBackgroundImage = findViewById(R.id.iv_background_image);
     }
 
     @Override
@@ -155,15 +157,31 @@ public class CreditCardView extends RelativeLayout {
         return mCardNumberView1;
     }
 
+    public void setDefaultBackground() {
+        mBackgroundImage.setImageDrawable(mContext.getDrawable(R.drawable.card_enabled_background));
+    }
+
     public void setCardBackgroundColor(int color) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Drawable background = mContext.getDrawable(color);
-            background.setColorFilter(UIStorage.getInstance().getCardBackgroundColor(), PorterDuff.Mode.SRC_ATOP);
-            setBackground(background);
-        }
-        else {
-            setBackgroundResource(color);
-        }
+        GradientDrawable shapeDrawable = (GradientDrawable) mBackgroundImage.getBackground();
+        shapeDrawable.setColor(color);
+    }
+
+    public void setCardBackgroundImage(String imageUrl) {
+        GenericImageLoader imageLoader = ShiftPlatform.getImageLoader();
+        imageLoader.setResponseObserver(new GenericImageLoader.ResponseObserver() {
+            @Override
+            public void onSuccess() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mBackgroundImage.setClipToOutline(true);
+                }
+            }
+
+            @Override
+            public void onError() {
+                setDefaultBackground();
+            }
+        });
+        imageLoader.load(imageUrl, mBackgroundImage);
     }
 
     private void setFonts() {
@@ -198,7 +216,6 @@ public class CreditCardView extends RelativeLayout {
         mDisabledCardOverlay.setVisibility(GONE);
         mErrorCardOverlay.setVisibility(GONE);
         mCheckCardOverlay.setVisibility(GONE);
-        setCardBackgroundColor(mEnabledCardBackground);
     }
 
     private void disableCard() {

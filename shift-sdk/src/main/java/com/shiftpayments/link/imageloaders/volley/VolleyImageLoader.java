@@ -19,6 +19,7 @@ public class VolleyImageLoader implements GenericImageLoader {
 
     private final ImageLoader mLoader;
     private List<ImageLoader.ImageContainer> mContainers;
+    private ResponseObserver mObserver;
 
     /**
      * Creates a new {@link VolleyImageLoader} instance.
@@ -62,6 +63,9 @@ public class VolleyImageLoader implements GenericImageLoader {
 
                 if (response.getBitmap() != null) {
                     target.setImageBitmap(response.getBitmap());
+                    if(mObserver != null) {
+                        mObserver.onSuccess();
+                    }
                 }
             }
 
@@ -72,6 +76,9 @@ public class VolleyImageLoader implements GenericImageLoader {
 
                 if (container != null) {
                     containerList.remove(container);
+                }
+                if(mObserver != null) {
+                    mObserver.onError();
                 }
             }
         };
@@ -92,6 +99,11 @@ public class VolleyImageLoader implements GenericImageLoader {
         }
 
         return result;
+    }
+
+    @Override
+    public void setResponseObserver(ResponseObserver observer) {
+        mObserver = observer;
     }
 
     /** {@inheritDoc} */

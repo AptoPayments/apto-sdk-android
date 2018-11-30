@@ -90,8 +90,8 @@ public class CardSettingsPresenter
         mView.showCardholderAgreement(ConfigStorage.getInstance().getCardConfig().cardProduct.cardholderAgreement != null);
         mView.showTermsAndConditions(ConfigStorage.getInstance().getCardConfig().cardProduct.termsOfService != null);
         mView.showPrivacyPolicy(ConfigStorage.getInstance().getCardConfig().cardProduct.privacyPolicy != null);
-        mView.showSetPinButton(CardStorage.getInstance().getCard().features.setPin.status.equals("enabled"));
-        mView.showGetPinButton(CardStorage.getInstance().getCard().features.getPin.status.equals("enabled"));
+        mView.showSetPinButton(CardStorage.getInstance().getCard().isSetPinEnabled());
+        mView.showGetPinButton(CardStorage.getInstance().getCard().isGetPinEnabled());
         mResponseHandler.subscribe(this);
         mLoadingSpinnerManager = new LoadingSpinnerManager(mView);
         mLoadingSpinnerManager.showLoading(true, LoadingView.Position.TOP, false);

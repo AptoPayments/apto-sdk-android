@@ -10,7 +10,7 @@ apply from: '../javadoc.gradle'
 apply from: '../jacoco.gradle'
 apply plugin: 'me.tatarka.retrolambda'
 
-version = '1.1.12'
+version = '1.1.17'
 
 ext {
     bintrayRepo = 'maven'
@@ -114,7 +114,7 @@ dependencies {
     }
 
     // Shift Libraries
-    compile 'com.shiftpayments.android:sdk:1.0.14'
+    compile 'com.shiftpayments.android:sdk:1.0.18'
     compile 'me.ledge.common:common:+'
     // 3rd Party Libraries
     compile('com.android.support:support-v13:24.0.0') {

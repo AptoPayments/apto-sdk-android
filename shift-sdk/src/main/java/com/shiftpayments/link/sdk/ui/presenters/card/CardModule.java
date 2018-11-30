@@ -267,7 +267,8 @@ public class CardModule extends ShiftBaseModule implements ManageAccountDelegate
                     setCurrentModule();
                     onFinish.execute();
                     },
-                onBack);
+                onBack,
+                CardStorage.getInstance().getCard().features.selectBalanceStore.allowedBalanceTypes);
         startModule(custodianSelectorModule);
     }
 

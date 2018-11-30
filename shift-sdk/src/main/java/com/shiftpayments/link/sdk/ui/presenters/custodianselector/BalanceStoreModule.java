@@ -12,6 +12,8 @@ import com.shiftpayments.link.sdk.api.vos.responses.cardapplication.SetBalanceSt
 import com.shiftpayments.link.sdk.api.vos.responses.users.OAuthStatusResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserDataListResponseVo;
 import com.shiftpayments.link.sdk.api.vos.responses.users.UserResponseVo;
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.AllowedBalanceType;
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectBalanceStoreConfigurationVo;
 import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.ui.ShiftPlatform;
 import com.shiftpayments.link.sdk.ui.activities.userdata.PersonalInformationConfirmationActivity;
@@ -27,6 +29,8 @@ import com.shiftpayments.link.sdk.ui.workflow.ShiftBaseModule;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by adrian on 19/09/2018.
@@ -38,16 +42,18 @@ public class BalanceStoreModule extends ShiftBaseModule implements CustodianSele
     private static BalanceStoreModule instance;
     private boolean updateUserRequired = false;
     private SetBalanceStoreRequestVo setBalanceStoreRequest;
+    private SelectBalanceStoreConfigurationVo config;
 
-    public static synchronized BalanceStoreModule getInstance(Activity activity, Command onFinish, Command onBack) {
+    public static synchronized BalanceStoreModule getInstance(Activity activity, Command onFinish, Command onBack, SelectBalanceStoreConfigurationVo configuration) {
         if (instance == null) {
-            instance = new BalanceStoreModule(activity, onFinish, onBack);
+            instance = new BalanceStoreModule(activity, onFinish, onBack, configuration);
         }
         return instance;
     }
 
-    private BalanceStoreModule(Activity activity, Command onFinish, Command onBack) {
+    private BalanceStoreModule(Activity activity, Command onFinish, Command onBack, SelectBalanceStoreConfigurationVo configuration) {
         super(activity, onFinish, onBack);
+        config = configuration;
     }
 
     @Override
@@ -116,8 +122,10 @@ public class BalanceStoreModule extends ShiftBaseModule implements CustodianSele
     }
 
     private void startCustodianModule(Command onFinish, Command onBack) {
+        ArrayList<AllowedBalanceType> allowedBalanceTypeArrayList = new ArrayList<>();
+        allowedBalanceTypeArrayList.addAll(Arrays.asList(config.allowedBalanceTypes.data));
         CustodianSelectorModule custodianSelectorModule = CustodianSelectorModule.getInstance(
-                this.getActivity(), this, onFinish, onBack);
+                this.getActivity(), this, onFinish, onBack, allowedBalanceTypeArrayList);
         startModule(custodianSelectorModule);
     }
 
