@@ -76,7 +76,6 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
         }
     }
 
-
     private MoneyVo parseAmount(JsonObject jObject ) {
         if (jObject == null) {
             return null;
