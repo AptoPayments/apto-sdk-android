@@ -86,7 +86,7 @@ public class ManageCardPresenter
         super.attachView(view);
         setupToolbar();
         view.setViewListener(this);
-        view.showLoading(mActivity, false);
+        view.showLoading(mActivity, true);
 
         if(UIStorage.getInstance().isEmbeddedMode()) {
             mView.showCloseButton();
@@ -105,7 +105,11 @@ public class ManageCardPresenter
         mTransactionsList = new ArrayList<>();
         mTransactionsAdapter = new TransactionsAdapter(mActivity, mTransactionsList, mModel);
         mTransactionsAdapter.setViewListener(this);
-        view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter);
+        view.configureTransactionsView(linearLayoutManager, mScrollListener, mTransactionsAdapter, () -> {
+            if(isViewReady()) {
+                mView.showLoading(mActivity, false);
+            }
+        });
         getCard();
         getFundingSource();
         getTransactions();
@@ -259,6 +263,7 @@ public class ManageCardPresenter
         }
         if(isViewReady()) {
             mView.setRefreshing(false);
+            mView.showLoading(mActivity, false);
         }
     }
 
@@ -269,6 +274,7 @@ public class ManageCardPresenter
         setBalanceInModel(response);
         if(isViewReady()) {
             mView.setRefreshing(false);
+            mView.showLoading(mActivity, false);
         }
     }
 
@@ -280,6 +286,7 @@ public class ManageCardPresenter
         refreshCard();
         if(isViewReady()) {
             mView.setRefreshing(false);
+            mView.showLoading(mActivity, false);
         }
     }
 
@@ -311,11 +318,6 @@ public class ManageCardPresenter
         Intent intent = new Intent(context, TransactionDetailsActivity.class);
         intent.putExtra(EXTRA_TRANSACTION, transactionVo);
         return intent;
-    }
-
-    private void activateCard() {
-        ShiftPlatform.activateFinancialAccount(mModel.getAccountId());
-        mView.showLoading(mActivity, true);
     }
 
     private boolean isViewReady() {

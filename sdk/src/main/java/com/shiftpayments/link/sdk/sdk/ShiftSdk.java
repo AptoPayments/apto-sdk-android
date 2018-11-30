@@ -464,11 +464,11 @@ public class ShiftSdk {
     }
 
     /**
-     * Requests a URL to start the OAuth for the given provider
+     * Requests a URL to start the OAuth for the given provider with the given base URI
      */
-    public static void startOAuth(String provider) {
+    public static void startOAuth(String provider, String baseUri) {
         checkComponents();
-        StartOAuthRequestVo request = new StartOAuthRequestVo(provider);
+        StartOAuthRequestVo request = new StartOAuthRequestVo(provider, baseUri);
         executeOrEnqueueRequest(request);
     }
 

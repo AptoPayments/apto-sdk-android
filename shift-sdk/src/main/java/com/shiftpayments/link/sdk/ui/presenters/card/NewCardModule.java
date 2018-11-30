@@ -9,6 +9,7 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointGroupVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.RequiredDataPointVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CollectUserDataActionConfigurationVo;
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectBalanceStoreConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.UserDataCollectorConfigurationVo;
 import com.shiftpayments.link.sdk.sdk.ShiftSdk;
 import com.shiftpayments.link.sdk.sdk.storages.ConfigStorage;
@@ -114,7 +115,8 @@ public class NewCardModule extends WorkflowModule {
     }
 
     private void startBalanceStoreModule() {
-        BalanceStoreModule balanceStoreModule = BalanceStoreModule.getInstance(this.getActivity(), this::startNextModule, super.onBack);
+        SelectBalanceStoreConfigurationVo configuration = (SelectBalanceStoreConfigurationVo) mWorkFlowObject.nextAction.configuration;
+        BalanceStoreModule balanceStoreModule = BalanceStoreModule.getInstance(this.getActivity(), this::startNextModule, super.onBack, configuration);
         startModule(balanceStoreModule);
     }
 

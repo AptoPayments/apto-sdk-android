@@ -11,7 +11,7 @@ import com.shiftpayments.link.sdk.sdk.tasks.handlers.ApiResponseHandler;
  * A concrete {@link ShiftApiTask} to start OAuth
  * @author Adrian
  */
-public class StartOAuthTask extends ShiftApiTask<Void, Void, StartOAuthResponseVo, String> {
+public class StartOAuthTask extends ShiftApiTask<Void, Void, StartOAuthResponseVo, StartOAuthRequestVo> {
 
     /**
      * @see ShiftApiTask#ShiftApiTask
@@ -19,7 +19,7 @@ public class StartOAuthTask extends ShiftApiTask<Void, Void, StartOAuthResponseV
      * @param apiWrapper See {@link ShiftApiTask#ShiftApiTask}.
      * @param responseHandler See {@link ShiftApiTask#ShiftApiTask}.
      */
-    public StartOAuthTask(String requestData, ShiftApiWrapper apiWrapper,
+    public StartOAuthTask(StartOAuthRequestVo requestData, ShiftApiWrapper apiWrapper,
                           ApiResponseHandler responseHandler) {
 
         super(requestData, apiWrapper, responseHandler);
@@ -28,6 +28,6 @@ public class StartOAuthTask extends ShiftApiTask<Void, Void, StartOAuthResponseV
     /** {@inheritDoc} */
     @Override
     protected StartOAuthResponseVo callApi() throws ApiException {
-        return getApiWrapper().startOAuth(new StartOAuthRequestVo(getRequestData()));
+        return getApiWrapper().startOAuth(getRequestData());
     }
 }

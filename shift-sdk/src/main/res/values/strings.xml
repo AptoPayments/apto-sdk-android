@@ -3,6 +3,7 @@
     <!-- Generic -->
     <string name="user_data_menu_info">Info &amp; terms</string>
     <string name="toast_api_error" formatted="false">Error: %s</string>
+    <string name="error_something_went_wrong">Something went wrong.</string>
 
     <!-- Toolbar -->
     <string name="toolbar_next_button_label">Next</string>

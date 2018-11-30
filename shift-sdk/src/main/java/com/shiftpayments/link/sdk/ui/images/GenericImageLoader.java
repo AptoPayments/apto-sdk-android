@@ -8,6 +8,14 @@ import android.widget.ImageView;
  */
 public interface GenericImageLoader {
 
+    interface ResponseObserver
+    {
+        void onSuccess();
+        void onError();
+    }
+
+    void setResponseObserver(ResponseObserver observer);
+
     /**
      * Loads an image from a {@code url} into the {@code target}.
      * @param url The image URL.

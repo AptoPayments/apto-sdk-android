@@ -2,6 +2,7 @@ package com.shiftpayments.link.sdk.ui.views.card;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.shiftpayments.link.sdk.api.vos.responses.card.CardBackground;
+import com.shiftpayments.link.sdk.api.vos.responses.card.CardBackgroundColor;
+import com.shiftpayments.link.sdk.api.vos.responses.card.CardBackgroundImage;
 import com.shiftpayments.link.sdk.api.vos.responses.financialaccounts.TransactionVo;
 import com.shiftpayments.link.sdk.ui.R;
+import com.shiftpayments.link.sdk.ui.images.GenericImageLoader;
 import com.shiftpayments.link.sdk.ui.models.card.DateItem;
 import com.shiftpayments.link.sdk.ui.models.card.ManageCardModel;
 import com.shiftpayments.link.sdk.ui.models.card.TransactionItem;
@@ -159,7 +164,25 @@ public class TransactionsAdapter extends
                 viewHolder.creditCardView.setCardNumber(mModel.getCardNumber());
                 viewHolder.creditCardView.setCardName(mModel.getCardHolderName());
                 viewHolder.creditCardView.setCVV(mModel.getCVV());
-                viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
+                CardBackground background = mModel.getBackgroundImage();
+                if(background!=null && background.value!=null && !background.value.isEmpty()) {
+                    if(background instanceof CardBackgroundImage) {
+                        viewHolder.creditCardView.setCardBackgroundImage(background.value);
+                    }
+                    else if(background instanceof CardBackgroundColor){
+                        viewHolder.creditCardView.setCardBackgroundColor(
+                                UIStorage.getInstance().convertHexToInt(background.value));
+                        viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
+                    }
+                    else {
+                        viewHolder.creditCardView.setDefaultBackground();
+                        viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
+                    }
+                }
+                else {
+                    viewHolder.creditCardView.setDefaultBackground();
+                    viewHolder.creditCardView.setCardLogo(mModel.getCardNetwork());
+                }
                 viewHolder.creditCardView.setCardEnabled(true);
 
                 if(!mModel.hasBalance()) {

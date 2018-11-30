@@ -10,12 +10,13 @@ public class Features {
     @SerializedName("set_pin")
     public SetPin setPin;
 
-    public Features() {
-    }
+    @SerializedName("select_balance_store")
+    public SelectBalanceStore selectBalanceStore;
 
-    public Features(GetPin getPin, SetPin setPin) {
+    public Features(GetPin getPin, SetPin setPin, SelectBalanceStore selectBalanceStore) {
         super();
         this.getPin = getPin;
         this.setPin = setPin;
+        this.selectBalanceStore = selectBalanceStore;
     }
 }

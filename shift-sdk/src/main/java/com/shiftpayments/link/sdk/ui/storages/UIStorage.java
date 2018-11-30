@@ -298,7 +298,7 @@ public class UIStorage {
         }
     }
 
-    private int convertHexToInt(String hexColor) {
+    public int convertHexToInt(String hexColor) {
         return Color.parseColor("#"+hexColor);
     }
 

@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.shiftpayments.link.sdk.api.vos.Card;
 import com.shiftpayments.link.sdk.api.vos.datapoints.DataPointVo;
 import com.shiftpayments.link.sdk.api.vos.datapoints.PersonalName;
+import com.shiftpayments.link.sdk.api.vos.responses.card.CardBackground;
 import com.shiftpayments.link.sdk.ui.models.ActivityModel;
 import com.shiftpayments.link.sdk.ui.models.Model;
 import com.shiftpayments.link.sdk.ui.storages.CardStorage;
@@ -136,6 +137,10 @@ public class ManageCardModel implements ActivityModel {
             return mCard.state;
         }
         return null;
+    }
+
+    public CardBackground getBackgroundImage() {
+        return mCard.style.background;
     }
 
     public boolean isNativeBalanceCurrencyDifferentFromLocalBalanceCurrency() {

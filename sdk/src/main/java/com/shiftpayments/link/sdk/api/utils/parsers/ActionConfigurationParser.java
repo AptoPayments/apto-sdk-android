@@ -1,5 +1,6 @@
 package com.shiftpayments.link.sdk.api.utils.parsers;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -12,9 +13,11 @@ import com.shiftpayments.link.sdk.api.vos.responses.config.ContentVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointGroupVo;
 import com.shiftpayments.link.sdk.api.vos.responses.config.DataPointGroupsListVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.ActionConfigurationVo;
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.AllowedBalancesTypesList;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CallToActionVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.CollectUserDataActionConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.GenericMessageConfigurationVo;
+import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectBalanceStoreConfigurationVo;
 import com.shiftpayments.link.sdk.api.vos.responses.workflow.SelectFundingAccountConfigurationVo;
 
 import java.lang.reflect.Type;
@@ -44,6 +47,8 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
                     return parseCollectUserDataConfig(config, iType, context);
                 case WorkflowConfigType.SHOW_DISCLAIMER_CONFIG:
                     return parseShowDisclaimerConfig(config);
+                case WorkflowConfigType.SELECT_BALANCE_STORE_CONFIG:
+                    return parseSelectBalanceStoreConfig(config);
             }
         }
         return null;
@@ -119,5 +124,11 @@ public class ActionConfigurationParser implements JsonDeserializer<ActionConfigu
             content = parseContent(contentJson.getAsJsonObject());
         }
         return new DisclaimerConfiguration(type, content);
+    }
+
+    private ActionConfigurationVo parseSelectBalanceStoreConfig(JsonObject config) {
+        AllowedBalancesTypesList allowedBalancesTypesList = new Gson().fromJson(config.get("allowed_balance_types"), AllowedBalancesTypesList.class);
+
+        return new SelectBalanceStoreConfigurationVo(allowedBalancesTypesList);
     }
 }
