@@ -41,7 +41,9 @@ public class FinancialAccountParser implements JsonDeserializer<FinancialAccount
             Features features = new FeaturesParser().deserialize(
                     jObject.get("features"), iType, context);
 
-            Boolean physicalCardActivationRequired = jObject.has("physical_card_activation_required") && jObject.get("physical_card_activation_required").getAsBoolean();
+            Boolean physicalCardActivationRequired = jObject.has("physical_card_activation_required")
+                    && !jObject.get("physical_card_activation_required").isJsonNull()
+                    && jObject.get("physical_card_activation_required").getAsBoolean();
             Gson gson = new Gson();
             MoneyVo spendableToday = gson.fromJson(jObject.get("spendable_today"), MoneyVo.class);
             MoneyVo nativeSpendableToday = gson.fromJson(jObject.get("native_spendable_today"), MoneyVo.class);
