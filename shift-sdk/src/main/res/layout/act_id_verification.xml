@@ -112,7 +112,7 @@
                 android:id="@+id/tv_next_bttn"
                 style="?attr/llsdk_bigButtonStyle"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/id_verification_next_button_get_offers" />
 
             <TextView

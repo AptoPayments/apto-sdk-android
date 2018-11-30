@@ -119,7 +119,7 @@ public class ManageCardModel implements ActivityModel {
     }
 
     public String getNativeSpendableAmount() {
-        if (mCard.nativeSpendableAmount != null) {
+        if (mCard.nativeSpendableAmount != null && mCard.nativeSpendableAmount.amount != null) {
             return new AmountVo(mCard.nativeSpendableAmount.amount, mCard.nativeSpendableAmount.currency).toString();
         }
         return "";
@@ -140,7 +140,10 @@ public class ManageCardModel implements ActivityModel {
     }
 
     public CardBackground getBackgroundImage() {
-        return mCard.style.background;
+        if (mCard != null && mCard.style != null) {
+            return mCard.style.background;
+        }
+        return null;
     }
 
     public boolean isNativeBalanceCurrencyDifferentFromLocalBalanceCurrency() {
