@@ -1,0 +1,11 @@
+package com.aptopayments.core.repository.cardapplication.remote.entities
+
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
+
+data class SelectBalanceStoreRequest(
+
+        @SerializedName("oauth_token_id")
+        val tokenId: String
+
+) : Serializable
