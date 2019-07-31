@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <bool name="enable_certificate_pinning">true</bool>
-    <bool name="trust_self_signed_certificates">true</bool>
-</resources>
