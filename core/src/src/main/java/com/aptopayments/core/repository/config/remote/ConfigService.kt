@@ -2,11 +2,8 @@ package com.aptopayments.core.repository.config.remote
 
 import com.aptopayments.core.network.ApiCatalog
 import com.aptopayments.core.platform.BaseService
-import javax.inject.Inject
 
-internal class ConfigService
-@Inject
-constructor(apiCatalog: ApiCatalog) : BaseService() {
+internal class ConfigService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
     private val configApi by lazy { apiCatalog.api().create(ConfigApi::class.java) }
 

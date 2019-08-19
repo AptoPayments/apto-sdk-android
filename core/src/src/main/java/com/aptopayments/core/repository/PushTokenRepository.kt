@@ -7,23 +7,23 @@ import com.aptopayments.core.repository.user.usecases.RegisterPushDeviceUseCase
 import com.aptopayments.core.repository.user.usecases.UnregisterPushDeviceParams
 import com.aptopayments.core.repository.user.usecases.UnregisterPushDeviceUseCase
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 private const val PREF_PUSH_TOKEN_FILENAME = "com.aptopayments.sdk.pushtoken"
 private const val PREF_PUSH_TOKEN = "PREF_PUSH_TOKEN"
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class PushTokenRepository @Inject constructor(
+internal class PushTokenRepository constructor(
         private val userSessionRepository: UserSessionRepository,
         private var registerPushDeviceUseCase: RegisterPushDeviceUseCase,
         private var unregisterPushDeviceUseCase: UnregisterPushDeviceUseCase,
-        val context: Context) {
+        val context: Context
+) {
 
     private val sharedPref: SharedPreferences = context.getSharedPreferences(
             PREF_PUSH_TOKEN_FILENAME, Context.MODE_PRIVATE)
 
     var pushToken: String
-        get() = sharedPref.getString(PREF_PUSH_TOKEN, "")
+        get() = sharedPref.getString(PREF_PUSH_TOKEN, "")!!
         set(token) {
             sharedPref.edit().putString(PREF_PUSH_TOKEN, token).apply()
             if (userSessionRepository.userSession.isValid()) registerPushDeviceUseCase(pushToken)

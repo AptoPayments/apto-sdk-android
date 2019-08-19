@@ -4,6 +4,7 @@ import com.aptopayments.core.data.cardproduct.CardProduct
 import com.aptopayments.core.extension.ColorParser
 import com.aptopayments.core.extension.ColorParserImpl
 import com.aptopayments.core.repository.cardapplication.remote.entities.workflowaction.ContentEntity
+import com.aptopayments.core.repository.LiteralsRepository
 import com.google.gson.annotations.SerializedName
 import java.net.URL
 
@@ -33,19 +34,25 @@ internal data class CardProductEntity (
         @SerializedName ("wait_list_asset")
         var waitlistAsset: String? = null,
 
+        @SerializedName("labels")
+        var labels: Map<String, String>? = null,
+
         // This is a dependency, no need to serialize or parse it
         @Transient
         var colorParser: ColorParser = ColorParserImpl()
 
 ) {
-    fun toCardProduct() = CardProduct (
-            id = id,
-            cardholderAgreement = cardholderAgreement?.toContent(),
-            privacyPolicy = privacyPolicy?.toContent(),
-            termsAndConditions = termsOfService?.toContent(),
-            faq = faq?.toContent(),
-            waitlistBackgroundImage = waitlistBackgroundImage?.let { URL(it) },
-            waitlistBackgroundColor = waitlistBackgroundColor?.let { colorParser.fromHexString(waitlistBackgroundColor, "FFFFFF") },
-            waitlistAsset = waitlistAsset?.let{ URL(it) }
-    )
+    fun toCardProduct(): CardProduct {
+        labels?.let { LiteralsRepository.appendServerLiterals(it) }
+        return CardProduct (
+                id = id,
+                cardholderAgreement = cardholderAgreement?.toContent(),
+                privacyPolicy = privacyPolicy?.toContent(),
+                termsAndConditions = termsOfService?.toContent(),
+                faq = faq?.toContent(),
+                waitlistBackgroundImage = waitlistBackgroundImage?.let { URL(it) },
+                waitlistBackgroundColor = waitlistBackgroundColor?.let { colorParser.fromHexString(waitlistBackgroundColor, "FFFFFF") },
+                waitlistAsset = waitlistAsset?.let{ URL(it) }
+        )
+    }
 }

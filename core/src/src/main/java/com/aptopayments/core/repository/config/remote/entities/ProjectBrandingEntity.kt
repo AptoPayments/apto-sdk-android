@@ -7,26 +7,30 @@ import com.aptopayments.core.extension.ColorParser
 import com.aptopayments.core.extension.ColorParserImpl
 import com.google.gson.annotations.SerializedName
 
-const val DEFAULT_ICON_PRIMARY_COLOR = "000000"
-const val DEFAULT_ICON_SECONDARY_COLOR = "000000"
-const val DEFAULT_ICON_TERTIARY_COLOR = "000000"
-const val DEFAULT_TEXT_PRIMARY_COLOR = "FF2B2D35"
-const val DEFAULT_TEXT_SECONDARY_COLOR = "FF54565F"
-const val DEFAULT_TEXT_TERTIARY_COLOR = "FFBBBDBD"
-const val DEFAULT_TEXT_TOP_BAR_COLOR = "FFFFFF"
-const val DEFAULT_TEXT_LINK_COLOR = "000000"
-const val DEFAULT_UI_PRIMARY_COLOR = "F90D00"
-const val DEFAULT_UI_SECONDARY_COLOR = "FF9500"
-const val DEFAULT_UI_TERTIARY_COLOR = "FFCC00"
-const val DEFAULT_UI_ERROR_COLOR = "FFDC4337"
-const val DEFAULT_UI_SUCCESS_COLOR = "DB1D0E"
-const val DEFAULT_UI_BACKGROUND_PRIMARY_COLOR = "f2f3f4"
-const val DEFAULT_UI_BACKGROUND_SECONDARY_COLOR = "f2f3f4"
-const val DEFAULT_UI_NAVIGATION_PRIMARY_COLOR = "f2f3f4"
-const val DEFAULT_UI_NAVIGATION_SECONDARY_COLOR = "202a36"
-const val DEFAULT_TEXT_MESSAGE_COLOR = "FFFFFF"
-const val DEFAULT_STATS_POSITIVE_COLOR = "61CA00"
-const val DEFAULT_STATS_NEGATIVE_COLOR = "326700"
+internal const val DEFAULT_ICON_PRIMARY_COLOR = "000000"
+internal const val DEFAULT_ICON_SECONDARY_COLOR = "000000"
+internal const val DEFAULT_ICON_TERTIARY_COLOR = "000000"
+internal const val DEFAULT_TEXT_PRIMARY_COLOR = "FF2B2D35"
+internal const val DEFAULT_TEXT_SECONDARY_COLOR = "FF54565F"
+internal const val DEFAULT_TEXT_TERTIARY_COLOR = "FFBBBDBD"
+internal const val DEFAULT_TEXT_TOP_BAR_PRIMARY_COLOR = "202A36"
+internal const val DEFAULT_TEXT_TOP_BAR_SECONDARY_COLOR = "FFFFFF"
+internal const val DEFAULT_TEXT_LINK_COLOR = "FF54565F"
+internal const val DEFAULT_TEXT_BUTTON_COLOR = "FFFFFF"
+internal const val DEFAULT_BUTTON_CORNER_RADIUS = 12f
+internal const val DEFAULT_UI_PRIMARY_COLOR = "F90D00"
+internal const val DEFAULT_UI_SECONDARY_COLOR = "FF9500"
+internal const val DEFAULT_UI_TERTIARY_COLOR = "FFCC00"
+internal const val DEFAULT_UI_ERROR_COLOR = "FFDC4337"
+internal const val DEFAULT_UI_SUCCESS_COLOR = "DB1D0E"
+internal const val DEFAULT_UI_BACKGROUND_PRIMARY_COLOR = "f2f3f4"
+internal const val DEFAULT_UI_BACKGROUND_SECONDARY_COLOR = "f2f3f4"
+internal const val DEFAULT_UI_NAVIGATION_PRIMARY_COLOR = "f2f3f4"
+internal const val DEFAULT_UI_NAVIGATION_SECONDARY_COLOR = "202a36"
+internal const val DEFAULT_TEXT_MESSAGE_COLOR = "FFFFFF"
+internal const val DEFAULT_BADGE_BG_POSITIVE_COLOR = "61ca00"
+internal const val DEFAULT_BADGE_BG_NEGATIVE_COLOR = "326700"
+internal const val DEFAULT_DISCLAIMER_BACKGROUND_COLOR = "f2f3f4"
 
 internal data class ProjectBrandingEntity(
 
@@ -48,11 +52,23 @@ internal data class ProjectBrandingEntity(
         @SerializedName("text_tertiary_color")
         val textTertiaryColor: String = DEFAULT_TEXT_TERTIARY_COLOR,
 
-        @SerializedName("text_topbar_color")
-        val textTopBarColor: String = DEFAULT_TEXT_TOP_BAR_COLOR,
+        @SerializedName("text_topbar_primary_color")
+        val textTopBarPrimaryColor: String = DEFAULT_TEXT_TOP_BAR_PRIMARY_COLOR,
+
+        @SerializedName("text_topbar_secondary_color")
+        val textTopBarSecondaryColor: String = DEFAULT_TEXT_TOP_BAR_SECONDARY_COLOR,
 
         @SerializedName("text_link_color")
         val textLinkColor: String = DEFAULT_TEXT_LINK_COLOR,
+
+        @SerializedName("text_link_underlined")
+        val textLinkUnderlined: Boolean = true,
+
+        @SerializedName("text_button_color")
+        val textButtonColor: String = DEFAULT_TEXT_BUTTON_COLOR,
+
+        @SerializedName("button_corner_radius")
+        val buttonCornerRadius: Float = DEFAULT_BUTTON_CORNER_RADIUS,
 
         @SerializedName("ui_primary_color")
         val uiPrimaryColor: String = DEFAULT_UI_PRIMARY_COLOR,
@@ -84,6 +100,21 @@ internal data class ProjectBrandingEntity(
         @SerializedName("text_message_color")
         val textMessageColor: String = DEFAULT_TEXT_MESSAGE_COLOR,
 
+        @SerializedName("badge_bg_positive_color")
+        val badgeBackgroundPositiveColor: String = DEFAULT_BADGE_BG_POSITIVE_COLOR,
+
+        @SerializedName("badge_bg_negative_color")
+        val badgeBackgroundNegativeColor: String = DEFAULT_BADGE_BG_NEGATIVE_COLOR,
+
+        @SerializedName("show_toast_title")
+        val showToastTitle: Boolean = true,
+
+        @SerializedName("txn_details_collapsable")
+        val transactionDetailsCollapsable: Boolean = true,
+
+        @SerializedName("disclaimer_background_color")
+        val disclaimerBackgroundColor: String = DEFAULT_DISCLAIMER_BACKGROUND_COLOR,
+
         @SerializedName("ui_status_bar_style")
         val uiStatusBarStyle: String = "light",
 
@@ -112,48 +143,67 @@ internal data class ProjectBrandingEntity(
                 iconSecondaryColor = colorParser.fromHexString(
                         iconSecondaryColor,
                         DEFAULT_ICON_SECONDARY_COLOR),
-                iconTertiaryColor= colorParser.fromHexString(
+                iconTertiaryColor = colorParser.fromHexString(
                         iconTertiaryColor,
                         DEFAULT_ICON_TERTIARY_COLOR),
-                textPrimaryColor= colorParser.fromHexString(
+                textPrimaryColor = colorParser.fromHexString(
                         textPrimaryColor,
                         DEFAULT_TEXT_PRIMARY_COLOR),
-                textSecondaryColor= colorParser.fromHexString(
+                textSecondaryColor = colorParser.fromHexString(
                         textSecondaryColor,
                         DEFAULT_TEXT_SECONDARY_COLOR),
-                textTertiaryColor= colorParser.fromHexString(
+                textTertiaryColor = colorParser.fromHexString(
                         textTertiaryColor,
                         DEFAULT_TEXT_TERTIARY_COLOR),
-                textTopBarColor= colorParser.fromHexString(
-                        textTopBarColor,
-                        DEFAULT_TEXT_TOP_BAR_COLOR),
-                textLinkColor= colorParser.fromHexString(
+                textTopBarPrimaryColor = colorParser.fromHexString(
+                        textTopBarPrimaryColor,
+                        DEFAULT_TEXT_TOP_BAR_PRIMARY_COLOR),
+                textTopBarSecondaryColor = colorParser.fromHexString(
+                        textTopBarSecondaryColor,
+                        DEFAULT_TEXT_TOP_BAR_SECONDARY_COLOR),
+                textLinkColor = colorParser.fromHexString(
                         textLinkColor,
                         DEFAULT_TEXT_LINK_COLOR),
-                uiPrimaryColor= colorParser.fromHexString(
+                textLinkUnderlined = textLinkUnderlined,
+                textButtonColor = colorParser.fromHexString(
+                        textButtonColor,
+                        DEFAULT_TEXT_BUTTON_COLOR),
+                buttonCornerRadius = buttonCornerRadius,
+                uiPrimaryColor = colorParser.fromHexString(
                         uiPrimaryColor,
                         DEFAULT_UI_PRIMARY_COLOR),
-                uiSecondaryColor= colorParser.fromHexString(
+                uiSecondaryColor = colorParser.fromHexString(
                         uiSecondaryColor,
                         DEFAULT_UI_SECONDARY_COLOR),
-                uiTertiaryColor= colorParser.fromHexString(
+                uiTertiaryColor = colorParser.fromHexString(
                         uiTertiaryColor,
                         DEFAULT_UI_TERTIARY_COLOR),
-                uiErrorColor= colorParser.fromHexString(
+                uiErrorColor = colorParser.fromHexString(
                         uiErrorColor,
                         DEFAULT_UI_ERROR_COLOR),
-                uiSuccessColor= colorParser.fromHexString(
+                uiSuccessColor = colorParser.fromHexString(
                         uiSuccessColor,
                         DEFAULT_UI_SUCCESS_COLOR),
-                uiNavigationPrimaryColor= colorParser.fromHexString(
+                uiNavigationPrimaryColor = colorParser.fromHexString(
                         uiNavigationPrimaryColor,
                         DEFAULT_UI_NAVIGATION_PRIMARY_COLOR),
-                uiNavigationSecondaryColor= colorParser.fromHexString(
+                uiNavigationSecondaryColor = colorParser.fromHexString(
                         uiNavigationSecondaryColor,
                         DEFAULT_UI_NAVIGATION_SECONDARY_COLOR),
-                textMessageColor= colorParser.fromHexString(
+                textMessageColor = colorParser.fromHexString(
                         textMessageColor,
                         DEFAULT_TEXT_MESSAGE_COLOR),
+                badgeBackgroundPositiveColor = colorParser.fromHexString(
+                        badgeBackgroundPositiveColor,
+                        DEFAULT_BADGE_BG_POSITIVE_COLOR),
+                badgeBackgroundNegativeColor = colorParser.fromHexString(
+                        badgeBackgroundNegativeColor,
+                        DEFAULT_BADGE_BG_NEGATIVE_COLOR),
+                showToastTitle = showToastTitle,
+                transactionDetailsCollapsable = transactionDetailsCollapsable,
+                disclaimerBackgroundColor = colorParser.fromHexString(
+                        disclaimerBackgroundColor,
+                        DEFAULT_DISCLAIMER_BACKGROUND_COLOR),
                 uiStatusBarStyle = UIStatusBarStyle.parseStatusBarStyle(uiStatusBarStyle),
                 logoUrl = logoUrl,
                 uiTheme = UITheme.parseUITheme(uiTheme)

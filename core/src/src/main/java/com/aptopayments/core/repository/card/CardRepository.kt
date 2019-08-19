@@ -29,7 +29,6 @@ import com.aptopayments.core.repository.fundingsources.remote.entities.BalanceEn
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal interface CardRepository : BaseRepository {
@@ -45,14 +44,13 @@ internal interface CardRepository : BaseRepository {
     fun addCardBalance(params: AddCardBalanceParams): Either<Failure, Balance>
     fun setPin(params: SetPinParams): Either<Failure, Card>
 
-    class Network
-    @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val service: CardService,
-                        private val cardLocalDao: CardLocalDao,
-                        private val cardBalanceLocalDao: CardBalanceLocalDao,
-                        userSessionRepository: UserSessionRepository
-    ) : BaseRepository.BaseRepositoryImpl(),
-        CardRepository {
+    class Network constructor(
+            private val networkHandler: NetworkHandler,
+            private val service: CardService,
+            private val cardLocalDao: CardLocalDao,
+            private val cardBalanceLocalDao: CardBalanceLocalDao,
+            userSessionRepository: UserSessionRepository
+    ) : BaseRepository.BaseRepositoryImpl(), CardRepository {
 
         init {
             userSessionRepository.subscribeSessionInvalidListener(this) {

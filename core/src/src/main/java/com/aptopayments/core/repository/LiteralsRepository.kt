@@ -1,4 +1,4 @@
-package com.aptopayments.sdk.core.repository
+package com.aptopayments.core.repository
 
 import android.content.Context
 import java.util.*

@@ -1,7 +1,7 @@
 package com.aptopayments.core.platform
 
 import androidx.annotation.VisibleForTesting
-import com.aptopayments.core.di.CoreApplicationComponent
+import com.aptopayments.core.repository.UserSessionRepository
 import com.aptopayments.core.repository.card.usecases.*
 import com.aptopayments.core.repository.cardapplication.usecases.*
 import com.aptopayments.core.repository.config.usecases.GetCardProductUseCase
@@ -22,52 +22,49 @@ import com.aptopayments.core.repository.verification.usecase.RestartVerification
 import com.aptopayments.core.repository.verification.usecase.StartEmailVerificationUseCase
 import com.aptopayments.core.repository.verification.usecase.StartPhoneVerificationUseCase
 import com.aptopayments.core.repository.voip.usecases.SetupVoipCallUseCase
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class UseCasesWrapper @Inject constructor(appComponent: CoreApplicationComponent) {
-
-    @Inject lateinit var getContextConfigurationUseCase: GetContextConfigurationUseCase
-    @Inject lateinit var getCardProductUseCase: GetCardProductUseCase
-    @Inject lateinit var getCardProductsUseCase: GetCardProductsUseCase
-    @Inject lateinit var createUserUseCase: CreateUserUseCase
-    @Inject lateinit var loginUserUseCase: LoginUserUseCase
-    @Inject lateinit var updateUserDataUseCase: UpdateUserDataUseCase
-    @Inject lateinit var startOAuthAuthenticationUseCase: StartOAuthAuthenticationUseCase
-    @Inject lateinit var getOAuthAttemptStatusUseCase: GetOAuthAttemptStatusUseCase
-    @Inject lateinit var saveOAuthUserDataUseCase: SaveOAuthUserDataUseCase
-    @Inject lateinit var retrieveOAuthUserDataUseCase: RetrieveOAuthUserDataUseCase
-    @Inject lateinit var startPhoneVerificationUseCase: StartPhoneVerificationUseCase
-    @Inject lateinit var startEmailVerificationUseCase: StartEmailVerificationUseCase
-    @Inject lateinit var finishVerificationUseCase: FinishVerificationUseCase
-    @Inject lateinit var restartVerificationUseCase: RestartVerificationUseCase
-    @Inject lateinit var startCardApplicationUseCase: StartCardApplicationUseCase
-    @Inject lateinit var getCardApplicationUseCase: GetCardApplicationUseCase
-    @Inject lateinit var setBalanceStoreUseCase: SetBalanceStoreUseCase
-    @Inject lateinit var acceptDisclaimerUseCase: AcceptDisclaimerUseCase
-    @Inject lateinit var cancelCardApplicationUseCase: CancelCardApplicationUseCase
-    @Inject lateinit var issueCardUseCase: IssueCardUseCase
-    @Inject lateinit var issueCardCardProductUseCase: com.aptopayments.core.repository.card.usecases.IssueCardUseCase
-    @Inject lateinit var getCardsUseCase: GetCardsUseCase
-    @Inject lateinit var getCardUseCase: GetCardUseCase
-    @Inject lateinit var getCardDetailsUseCase: GetCardDetailsUseCase
-    @Inject lateinit var activatePhysicalCardUseCase: ActivatePhysicalCardUseCase
-    @Inject lateinit var unlockCardUseCase: UnlockCardUseCase
-    @Inject lateinit var lockCardUseCase: LockCardUseCase
-    @Inject lateinit var setPinUseCase: SetPinUseCase
-    @Inject lateinit var getTransactionsUseCase: GetTransactionsUseCase
-    @Inject lateinit var getMonthlySpendingUseCase: GetMonthlySpendingUseCase
-    @Inject lateinit var clearMonthlySpendingCacheUseCase: ClearMonthlySpendingCacheUseCase
-    @Inject lateinit var getFundingSourcesUseCase: GetFundingSourcesUseCase
-    @Inject lateinit var getCardBalanceUseCase: GetCardBalanceUseCase
-    @Inject lateinit var setFundingSourcesUseCase: SetCardFundingSourceUseCase
-    @Inject lateinit var addCardBalanceUseCase: AddCardBalanceUseCase
-    @Inject lateinit var getNotificationPreferencesUseCase: GetNotificationPreferencesUseCase
-    @Inject lateinit var updateNotificationPreferencesUseCase: UpdateNotificationPreferencesUseCase
-    @Inject lateinit var setupVoipCallUseCase: SetupVoipCallUseCase
-
-    init {
-        appComponent.inject(this)
-    }
+internal class UseCasesWrapper : KoinComponent {
+    val getContextConfigurationUseCase: GetContextConfigurationUseCase by inject()
+    val getCardProductUseCase: GetCardProductUseCase by inject()
+    val getCardProductsUseCase: GetCardProductsUseCase by inject()
+    val createUserUseCase: CreateUserUseCase by inject()
+    val loginUserUseCase: LoginUserUseCase by inject()
+    val updateUserDataUseCase: UpdateUserDataUseCase by inject()
+    val startOAuthAuthenticationUseCase: StartOAuthAuthenticationUseCase by inject()
+    val getOAuthAttemptStatusUseCase: GetOAuthAttemptStatusUseCase by inject()
+    val saveOAuthUserDataUseCase: SaveOAuthUserDataUseCase by inject()
+    val retrieveOAuthUserDataUseCase: RetrieveOAuthUserDataUseCase by inject()
+    val startPhoneVerificationUseCase: StartPhoneVerificationUseCase by inject()
+    val startEmailVerificationUseCase: StartEmailVerificationUseCase by inject()
+    val finishVerificationUseCase: FinishVerificationUseCase by inject()
+    val restartVerificationUseCase: RestartVerificationUseCase by inject()
+    val startCardApplicationUseCase: StartCardApplicationUseCase by inject()
+    val getCardApplicationUseCase: GetCardApplicationUseCase by inject()
+    val setBalanceStoreUseCase: SetBalanceStoreUseCase by inject()
+    val acceptDisclaimerUseCase: AcceptDisclaimerUseCase by inject()
+    val cancelCardApplicationUseCase: CancelCardApplicationUseCase by inject()
+    val issueCardUseCase: IssueCardUseCase by inject()
+    val issueCardCardProductUseCase: com.aptopayments.core.repository.card.usecases.IssueCardUseCase by inject()
+    val getCardsUseCase: GetCardsUseCase by inject()
+    val getCardUseCase: GetCardUseCase by inject()
+    val getCardDetailsUseCase: GetCardDetailsUseCase by inject()
+    val activatePhysicalCardUseCase: ActivatePhysicalCardUseCase by inject()
+    val unlockCardUseCase: UnlockCardUseCase by inject()
+    val lockCardUseCase: LockCardUseCase by inject()
+    val setPinUseCase: SetPinUseCase by inject()
+    val getTransactionsUseCase: GetTransactionsUseCase by inject()
+    val getMonthlySpendingUseCase: GetMonthlySpendingUseCase by inject()
+    val clearMonthlySpendingCacheUseCase: ClearMonthlySpendingCacheUseCase by inject()
+    val getFundingSourcesUseCase: GetFundingSourcesUseCase by inject()
+    val getCardBalanceUseCase: GetCardBalanceUseCase by inject()
+    val setFundingSourcesUseCase: SetCardFundingSourceUseCase by inject()
+    val addCardBalanceUseCase: AddCardBalanceUseCase by inject()
+    val getNotificationPreferencesUseCase: GetNotificationPreferencesUseCase by inject()
+    val updateNotificationPreferencesUseCase: UpdateNotificationPreferencesUseCase by inject()
+    val setupVoipCallUseCase: SetupVoipCallUseCase by inject()
+    val userSessionRepository: UserSessionRepository by inject()
 }

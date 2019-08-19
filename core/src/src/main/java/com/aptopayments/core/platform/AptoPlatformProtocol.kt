@@ -34,12 +34,23 @@ interface AptoPlatformProtocol {
 
     fun fetchCardProducts(callback: (Either<Failure, List<CardProductSummary>>) -> Unit)
 
+    fun isShowDetailedCardActivityEnabled(): Boolean
+    fun setIsShowDetailedCardActivityEnabled(enabled: Boolean)
+
     // User handling
+    fun userTokenPresent(): Boolean
+
     fun createUser(userData: DataPointList, callback: (Either<Failure, User>) -> Unit)
 
     fun loginUserWith(verifications: List<Verification>, callback: (Either<Failure, User>) -> Unit)
 
     fun updateUserInfo(userData: DataPointList, callback: (Either<Failure, User>) -> Unit)
+
+    fun subscribeSessionInvalidListener(instance: Any, callback: (String) -> Unit)
+
+    fun unsubscribeSessionInvalidListener(instance: Any)
+
+    fun logout()
 
     // Oauth handling
     fun startOauthAuthentication(balanceType: AllowedBalanceType, callback: (Either<Failure, OAuthAttempt>) -> Unit)

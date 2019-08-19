@@ -2,13 +2,9 @@ package com.aptopayments.core.repository.card.remote
 
 import com.aptopayments.core.network.ApiCatalog
 import com.aptopayments.core.platform.BaseService
-import com.aptopayments.core.repository.card.remote.requests.IssueCardRequest
 import com.aptopayments.core.repository.card.remote.requests.*
-import javax.inject.Inject
 
-internal class CardService
-@Inject
-constructor(apiCatalog: ApiCatalog) : BaseService() {
+internal class CardService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
     private val cardApi by lazy { apiCatalog.api().create(CardApi::class.java) }
     private val vaultCardApi by lazy { apiCatalog.vaultApi().create(CardApi::class.java) }

@@ -3,21 +3,17 @@ package com.aptopayments.core.repository.transaction
 import com.aptopayments.core.data.transaction.Transaction
 import com.aptopayments.core.exception.Failure
 import com.aptopayments.core.functional.Either
-import com.aptopayments.core.repository.UserPreferencesRepository
+import com.aptopayments.core.platform.AptoPlatformProtocol
 import com.aptopayments.core.repository.transaction.usecases.GetTransactionsUseCase
-import javax.inject.Inject
 
-class FetchTransactionsTaskQueue
-@Inject constructor(
-        private val userPreferencesRepository: UserPreferencesRepository
-) {
+class FetchTransactionsTaskQueue constructor(private val aptoPlatformProtocol: AptoPlatformProtocol) {
     private var loadOperation: FetchTransactionsTask? = null
     private var loadMoreOperation: FetchTransactionsTask? = null
     private var backgroundRefreshOperation: FetchTransactionsTask? = null
     private val stateList: ArrayList<String>
         get() {
             val stateList = arrayListOf("complete")
-            if (userPreferencesRepository.showDetailedCardActivity) {
+            if (aptoPlatformProtocol.isShowDetailedCardActivityEnabled()) {
                 stateList.add("declined")
             }
             return stateList

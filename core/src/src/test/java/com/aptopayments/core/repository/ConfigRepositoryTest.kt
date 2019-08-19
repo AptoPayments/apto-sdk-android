@@ -20,6 +20,8 @@ import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import org.mockito.Mock
 import retrofit2.Call
 import retrofit2.Response
@@ -44,6 +46,12 @@ class ConfigRepositoryTest : UnitTest() {
     @Before
     override fun setUp() {
         super.setUp()
+        startKoin {
+            modules(module {
+                single { networkHandler }
+                single { service }
+            })
+        }
         sut = ConfigRepository.Network(networkHandler, service)
     }
 

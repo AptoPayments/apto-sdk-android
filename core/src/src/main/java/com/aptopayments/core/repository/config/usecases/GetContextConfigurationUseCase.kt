@@ -8,12 +8,11 @@ import com.aptopayments.core.functional.Either
 import com.aptopayments.core.interactor.UseCase
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.config.ConfigRepository
-import com.aptopayments.sdk.core.repository.LiteralsRepository
+import com.aptopayments.core.repository.LiteralsRepository
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class GetContextConfigurationUseCase @Inject constructor(
+internal class GetContextConfigurationUseCase constructor(
         private val repository: ConfigRepository,
         networkHandler: NetworkHandler
 ) : UseCase<ContextConfiguration, Boolean>(networkHandler) {

@@ -2,7 +2,6 @@ package com.aptopayments.core.repository
 
 import android.content.Context
 import com.aptopayments.core.UnitTest
-import com.aptopayments.sdk.core.repository.LiteralsRepository
 import org.amshove.kluent.`should equal`
 import org.junit.Test
 import org.mockito.Mock

@@ -9,18 +9,16 @@ import com.aptopayments.core.platform.BaseRepository
 import com.aptopayments.core.repository.stats.remote.StatsService
 import com.aptopayments.core.repository.stats.remote.entities.MonthlySpendingEntity
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 internal interface StatsRepository : BaseRepository {
 
     fun getMonthlySpending(cardId: String, month: String, year: String): Either<Failure, MonthlySpending>
     fun invalidateMonthlySpendingCache(): Either<Failure, Unit>
 
-    class Network
-    @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val service: StatsService
-    ) : BaseRepository.BaseRepositoryImpl(),
-            StatsRepository {
+    class Network constructor(
+            private val networkHandler: NetworkHandler,
+            private val service: StatsService
+    ) : BaseRepository.BaseRepositoryImpl(), StatsRepository {
 
         @VisibleForTesting(otherwise = Modifier.PRIVATE)
         var monthlySpendingCache: HashMap<Triple<String, String, String>, MonthlySpending> = HashMap()

@@ -16,7 +16,6 @@ import com.aptopayments.core.repository.user.remote.requests.LoginUserRequest
 import com.aptopayments.core.repository.user.remote.requests.NotificationPreferencesRequest
 import com.aptopayments.core.repository.user.remote.requests.PushDeviceRequest
 import com.aptopayments.core.repository.user.usecases.UnregisterPushDeviceParams
-import javax.inject.Inject
 
 internal interface UserRepository : BaseRepository {
 
@@ -28,11 +27,10 @@ internal interface UserRepository : BaseRepository {
     fun getNotificationPreferences(): Either<Failure, NotificationPreferences>
     fun updateNotificationPreferences(notificationPreferencesList: List<NotificationGroup>): Either<Failure, Unit>
 
-    class Network
-    @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val service: UserService
-    ) : BaseRepository.BaseRepositoryImpl(),
-        UserRepository {
+    class Network constructor(
+            private val networkHandler: NetworkHandler,
+            private val service: UserService
+    ) : BaseRepository.BaseRepositoryImpl(), UserRepository {
 
         override fun createUser(userData: DataPointList): Either<Failure, User> {
             return when (networkHandler.isConnected) {

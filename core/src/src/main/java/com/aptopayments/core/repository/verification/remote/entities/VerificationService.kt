@@ -10,14 +10,11 @@ import com.aptopayments.core.repository.verification.remote.entities.request.Fin
 import com.aptopayments.core.repository.verification.remote.entities.request.RestartVerificationRequest
 import com.aptopayments.core.repository.verification.remote.entities.request.StartVerificationRequest
 import retrofit2.Call
-import javax.inject.Inject
 
 private const val REQUEST_TYPE_PHONE = "phone"
 private const val REQUEST_TYPE_EMAIL = "email"
 
-internal class VerificationService
-@Inject
-constructor(apiCatalog: ApiCatalog) {
+internal class VerificationService constructor(apiCatalog: ApiCatalog) {
 
     private val verificationApi by lazy { apiCatalog.api().create(VerificationApi::class.java) }
 

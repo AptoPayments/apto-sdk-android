@@ -8,17 +8,18 @@ import com.aptopayments.core.repository.UserSessionRepository
 import com.google.gson.JsonElement
 import com.google.gson.JsonParser
 import okhttp3.ResponseBody
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 import retrofit2.Call
 import retrofit2.Response
-import javax.inject.Inject
 
-internal interface BaseRepository {
+internal interface BaseRepository : KoinComponent {
 
     fun<T> handleError(response: Response<T>): Failure
 
     open class BaseRepositoryImpl : BaseRepository {
 
-        @Inject lateinit var userSessionRepository: UserSessionRepository
+        val userSessionRepository: UserSessionRepository by inject()
 
         override fun<T> handleError(response: Response<T>) : Failure {
             return when (response.code()) {

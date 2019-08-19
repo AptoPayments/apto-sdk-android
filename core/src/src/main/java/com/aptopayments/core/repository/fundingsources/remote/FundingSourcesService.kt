@@ -2,19 +2,17 @@ package com.aptopayments.core.repository.fundingsources.remote
 
 import com.aptopayments.core.network.ApiCatalog
 import com.aptopayments.core.repository.UserSessionRepository
-import javax.inject.Inject
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-internal class FundingSourcesService
-@Inject constructor(apiCatalog: ApiCatalog) {
+internal class FundingSourcesService constructor(apiCatalog: ApiCatalog) : KoinComponent {
 
     private val fundingSourcesApi by lazy { apiCatalog.api().create(FundingSourcesApi::class.java) }
+    val userSessionRepository: UserSessionRepository by inject()
 
-    @Inject lateinit var userSessionRepository: UserSessionRepository
-
-    fun getFundingSources(accountId: String) =
-            fundingSourcesApi.getFundingSources(
-                    apiKey = ApiCatalog.apiKey,
-                    userToken = userSessionRepository.userToken,
-                    accountID = accountId
-            )
+    fun getFundingSources(accountId: String) = fundingSourcesApi.getFundingSources(
+            apiKey = ApiCatalog.apiKey,
+            userToken = userSessionRepository.userToken,
+            accountID = accountId
+    )
 }

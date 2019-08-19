@@ -10,18 +10,16 @@ import com.aptopayments.core.repository.fundingsources.local.BalanceLocalDao
 import com.aptopayments.core.repository.fundingsources.local.entities.BalanceLocalEntity
 import com.aptopayments.core.repository.fundingsources.remote.FundingSourcesService
 import com.aptopayments.core.repository.fundingsources.remote.entities.BalanceEntity
-import javax.inject.Inject
 
 internal interface FundingSourceRepository : BaseRepository {
 
     fun getFundingSources(accountId: String, refresh: Boolean): Either<Failure, List<Balance>>
 
-    class Network
-    @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val service: FundingSourcesService,
-                        private val balanceLocalDao: BalanceLocalDao
-    ) : BaseRepository.BaseRepositoryImpl(),
-            FundingSourceRepository {
+    class Network constructor(
+            private val networkHandler: NetworkHandler,
+            private val service: FundingSourcesService,
+            private val balanceLocalDao: BalanceLocalDao
+    ) : BaseRepository.BaseRepositoryImpl(), FundingSourceRepository {
 
         override fun getFundingSources(accountId: String, refresh: Boolean): Either<Failure, List<Balance>> {
             if (refresh) {

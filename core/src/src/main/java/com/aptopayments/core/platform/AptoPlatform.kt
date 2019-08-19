@@ -2,7 +2,6 @@ package com.aptopayments.core.platform
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Context
 import androidx.annotation.VisibleForTesting
 import com.aptopayments.core.data.PhoneNumber
 import com.aptopayments.core.data.card.*
@@ -23,15 +22,16 @@ import com.aptopayments.core.data.voip.Action
 import com.aptopayments.core.data.voip.VoipCall
 import com.aptopayments.core.data.workflowaction.AllowedBalanceType
 import com.aptopayments.core.data.workflowaction.WorkflowAction
-import com.aptopayments.core.di.CoreApplicationComponent
-import com.aptopayments.core.di.CoreApplicationModule
-import com.aptopayments.core.di.DaggerCoreApplicationComponent
+import com.aptopayments.core.di.applicationModule
+import com.aptopayments.core.di.repositoryModule
+import com.aptopayments.core.di.useCasesModule
 import com.aptopayments.core.exception.Failure
 import com.aptopayments.core.features.managecard.CardOptions
 import com.aptopayments.core.functional.Either
 import com.aptopayments.core.network.ApiCatalog
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.PushTokenRepository
+import com.aptopayments.core.repository.UserPreferencesRepository
 import com.aptopayments.core.repository.UserSessionRepository
 import com.aptopayments.core.repository.card.usecases.*
 import com.aptopayments.core.repository.cardapplication.usecases.AcceptDisclaimerUseCase
@@ -45,10 +45,14 @@ import com.aptopayments.core.repository.transaction.TransactionListFilters
 import com.aptopayments.core.repository.transaction.usecases.GetTransactionsUseCase
 import com.aptopayments.core.repository.voip.usecases.SetupVoipCallParams
 import com.jakewharton.threetenabp.AndroidThreeTen
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.Koin
+import org.koin.core.KoinComponent
+import org.koin.core.context.startKoin
+import org.koin.core.inject
 import java.io.File
 import java.lang.ref.WeakReference
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @SuppressLint("VisibleForTests")
 object AptoPlatform : AptoPlatformProtocol {
@@ -61,10 +65,10 @@ object AptoPlatform : AptoPlatformProtocol {
     private var weakDelegate: WeakReference<AptoPlatformDelegate?>? = null
     private lateinit var networkHandlerWrapper: NetworkHandlerWrapper
     private lateinit var pushTokenRepositoryWrapper: PushTokenRepositoryWrapper
+    private lateinit var koin: Koin
     @VisibleForTesting(otherwise = Modifier.PRIVATE)
     internal lateinit var useCasesWrapper: UseCasesWrapper
     @VisibleForTesting(otherwise = Modifier.PROTECTED)
-    internal lateinit var appComponent: CoreApplicationComponent
     var cardOptions: CardOptions = CardOptions()
     internal var cacheDir: File? = null
     lateinit var application: Application
@@ -73,26 +77,18 @@ object AptoPlatform : AptoPlatformProtocol {
                              apiKey: String,
                              environment: AptoSdkEnvironment) {
         this.application = application
-        appComponent = DaggerCoreApplicationComponent
-                .builder()
-                .coreApplicationModule(CoreApplicationModule(application))
-                .build()
-        appComponent.inject(application)
-        AndroidThreeTen.init(application)
         recreateAppComponent(application)
-        networkHandlerWrapper = NetworkHandlerWrapper(appComponent)
-        pushTokenRepositoryWrapper = PushTokenRepositoryWrapper(appComponent)
-        useCasesWrapper = UseCasesWrapper(appComponent)
+        AndroidThreeTen.init(application)
+        networkHandlerWrapper = NetworkHandlerWrapper()
+        pushTokenRepositoryWrapper = PushTokenRepositoryWrapper()
+        useCasesWrapper = UseCasesWrapper()
 
         ApiCatalog.set(apiKey, environment)
         cacheDir = application.cacheDir
         subscribeToSdkDeprecatedEvent()
     }
 
-    fun userTokenPresent(context: Context): Boolean {
-        val userSessionRepository = UserSessionRepository(context)
-        return userSessionRepository.userToken.isNotEmpty()
-    }
+    override fun userTokenPresent(): Boolean = useCasesWrapper.userSessionRepository.userToken.isNotEmpty()
 
     private fun subscribeToSdkDeprecatedEvent() {
         networkHandlerWrapper.networkHandler.subscribeDeprecatedSdkListener(this) { deprecated ->
@@ -107,12 +103,14 @@ object AptoPlatform : AptoPlatformProtocol {
     }
 
     fun recreateAppComponent(application: Application) {
-        if (AptoPlatform::appComponent.isInitialized) return
-        appComponent = DaggerCoreApplicationComponent
-                .builder()
-                .coreApplicationModule(CoreApplicationModule(application))
-                .build()
-        appComponent.inject(application)
+        if (AptoPlatform::koin.isInitialized) return
+        this.application = application
+        this.koin = startKoin {
+            // Android context
+            androidContext(application)
+            // Modules
+            modules(listOf(applicationModule, repositoryModule, useCasesModule))
+        }.koin
     }
 
     fun clearMonthlySpendingCache() = useCasesWrapper.clearMonthlySpendingCacheUseCase(Unit)
@@ -129,14 +127,38 @@ object AptoPlatform : AptoPlatformProtocol {
     override fun fetchCardProducts(callback: (Either<Failure, List<CardProductSummary>>) -> Unit) =
             useCasesWrapper.getCardProductsUseCase(Unit) { callback(it) }
 
+    override fun isShowDetailedCardActivityEnabled(): Boolean =
+            UserPreferencesRepository(useCasesWrapper.userSessionRepository, application).showDetailedCardActivity
+
+    override fun setIsShowDetailedCardActivityEnabled(enabled: Boolean) {
+        UserPreferencesRepository(useCasesWrapper.userSessionRepository, application).showDetailedCardActivity = enabled
+    }
+
     override fun createUser(userData: DataPointList, callback: (Either<Failure, User>) -> Unit) =
-            useCasesWrapper.createUserUseCase(userData) { callback(it) }
+            useCasesWrapper.createUserUseCase(userData) {
+                if (it is Either.Right) useCasesWrapper.userSessionRepository.userToken = it.b.token
+                callback(it)
+            }
 
     override fun loginUserWith(verifications: List<Verification>, callback: (Either<Failure, User>) -> Unit) =
-            useCasesWrapper.loginUserUseCase(verifications) { callback(it) }
+            useCasesWrapper.loginUserUseCase(verifications) {
+                if (it is Either.Right) useCasesWrapper.userSessionRepository.userToken = it.b.token
+                callback(it)
+            }
 
     override fun updateUserInfo(userData: DataPointList, callback: (Either<Failure, User>) -> Unit) =
             useCasesWrapper.updateUserDataUseCase(userData) { callback(it) }
+
+    override fun subscribeSessionInvalidListener(instance: Any, callback: (String) -> Unit) =
+            useCasesWrapper.userSessionRepository.subscribeSessionInvalidListener(instance, callback)
+
+    override fun unsubscribeSessionInvalidListener(instance: Any) {
+        useCasesWrapper.userSessionRepository.unsubscribeSessionInvalidListener(instance)
+    }
+
+    override fun logout() {
+        useCasesWrapper.userSessionRepository.clearUserSession()
+    }
 
     override fun startOauthAuthentication(balanceType: AllowedBalanceType,
                                           callback: (Either<Failure, OAuthAttempt>) -> Unit) =
@@ -269,17 +291,11 @@ object AptoPlatform : AptoPlatformProtocol {
 }
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class NetworkHandlerWrapper @Inject constructor(appComponent: CoreApplicationComponent) {
-    @Inject lateinit var networkHandler: NetworkHandler
-    init {
-        appComponent.inject(this)
-    }
+internal class NetworkHandlerWrapper : KoinComponent {
+    val networkHandler: NetworkHandler by inject()
 }
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class PushTokenRepositoryWrapper @Inject constructor(appComponent: CoreApplicationComponent) {
-    @Inject lateinit var pushTokenRepository: PushTokenRepository
-    init {
-        appComponent.inject(this)
-    }
+internal class PushTokenRepositoryWrapper : KoinComponent {
+    val pushTokenRepository: PushTokenRepository by inject()
 }

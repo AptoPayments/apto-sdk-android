@@ -1,66 +1,102 @@
 package com.aptopayments.core.di
 
-import android.app.Application
-import android.content.Context
+import android.annotation.SuppressLint
+import androidx.annotation.VisibleForTesting
 import com.aptopayments.core.db.DataBaseProvider
 import com.aptopayments.core.db.LocalDB
+import com.aptopayments.core.network.ApiCatalog
+import com.aptopayments.core.network.NetworkHandler
+import com.aptopayments.core.repository.PushTokenRepository
 import com.aptopayments.core.repository.UserPreferencesRepository
 import com.aptopayments.core.repository.UserSessionRepository
 import com.aptopayments.core.repository.card.CardRepository
-import com.aptopayments.core.repository.card.local.CardBalanceLocalDao
-import com.aptopayments.core.repository.card.local.CardLocalDao
+import com.aptopayments.core.repository.card.remote.CardService
 import com.aptopayments.core.repository.cardapplication.CardApplicationRepository
+import com.aptopayments.core.repository.cardapplication.remote.CardApplicationService
 import com.aptopayments.core.repository.config.ConfigRepository
+import com.aptopayments.core.repository.config.remote.ConfigService
 import com.aptopayments.core.repository.fundingsources.FundingSourceRepository
-import com.aptopayments.core.repository.fundingsources.local.BalanceLocalDao
+import com.aptopayments.core.repository.fundingsources.remote.FundingSourcesService
 import com.aptopayments.core.repository.oauth.OAuthRepository
+import com.aptopayments.core.repository.oauth.remote.OAuthService
 import com.aptopayments.core.repository.stats.StatsRepository
+import com.aptopayments.core.repository.stats.remote.StatsService
 import com.aptopayments.core.repository.transaction.TransactionRepository
-import com.aptopayments.core.repository.transaction.local.TransactionLocalDao
+import com.aptopayments.core.repository.transaction.remote.TransactionService
 import com.aptopayments.core.repository.user.UserRepository
+import com.aptopayments.core.repository.user.remote.UserService
 import com.aptopayments.core.repository.verification.VerificationRepository
+import com.aptopayments.core.repository.verification.remote.entities.VerificationService
 import com.aptopayments.core.repository.voip.VoipRepository
-import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
+import com.aptopayments.core.repository.voip.remote.VoipService
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module
+import java.lang.reflect.Modifier
 
-@Module
-internal class CoreApplicationModule(private val application: Application) {
+@VisibleForTesting(otherwise = Modifier.PROTECTED)
+internal val applicationModule = module {
+    single { DataBaseProvider.getInstance(context = androidContext()) }
 
-    @Provides @Singleton fun provideApplicationContext(): Context = application
+    single { get<LocalDB>().balanceLocalDao() }
 
-    @Provides @Singleton fun provideInputPhoneRepository(dataSource: VerificationRepository.Network): VerificationRepository = dataSource
+    single { get<LocalDB>().cardLocalDao() }
 
-    @Provides @Singleton fun provideOAuthRepository(dataSource: OAuthRepository.Network): OAuthRepository = dataSource
+    single { get<LocalDB>().cardBalanceLocalDao() }
 
-    @Provides @Singleton fun provideNewCardRepository(dataSource: CardApplicationRepository.Network): CardApplicationRepository = dataSource
+    single { get<LocalDB>().transactionLocalDao() }
 
-    @Provides @Singleton fun provideConfigRepository(dataSource: ConfigRepository.Network): ConfigRepository = dataSource
+    single { NetworkHandler(androidContext()) }
 
-    @Provides @Singleton fun provideUserSessionRepository(): UserSessionRepository { return UserSessionRepository(provideApplicationContext()) }
-
-    @Provides @Singleton fun provideUserRepository(dataSource: UserRepository.Network): UserRepository = dataSource
-
-    @Provides @Singleton fun provideFundingSourceRepository(dataSource: FundingSourceRepository.Network): FundingSourceRepository = dataSource
-
-    @Provides @Singleton fun provideBalanceLocalDao(): BalanceLocalDao = provideLocalDB().balanceLocalDao()
-
-    @Provides @Singleton fun provideLocalDB(): LocalDB = DataBaseProvider.getInstance(provideApplicationContext())
-
-    @Provides @Singleton fun provideCardRepository(dataSource: CardRepository.Network): CardRepository = dataSource
-
-    @Provides @Singleton fun provideCardLocalDao(): CardLocalDao = provideLocalDB().cardLocalDao()
-
-    @Provides @Singleton fun provideCardBalanceLocalDao(): CardBalanceLocalDao = provideLocalDB().cardBalanceLocalDao()
-
-    @Provides @Singleton fun provideTransactionRepository(dataSource: TransactionRepository.Network): TransactionRepository = dataSource
-
-    @Provides @Singleton fun provideTransactionLocalDao(): TransactionLocalDao = provideLocalDB().transactionLocalDao()
-
-    @Provides @Singleton fun provideStatsRepository(dataSource: StatsRepository.Network): StatsRepository = dataSource
-
-    @Provides @Singleton fun provideVoipRepository(dataSource: VoipRepository.Network): VoipRepository = dataSource
-
-    @Provides @Singleton fun provideUserPreferencesRepository(): UserPreferencesRepository { return UserPreferencesRepository(context = provideApplicationContext(), userSessionRepository = provideUserSessionRepository()) }
+    single { ApiCatalog() }
 }
 
+@SuppressLint("VisibleForTests")
+@VisibleForTesting(otherwise = Modifier.PROTECTED)
+internal val repositoryModule = module {
+    single { UserSessionRepository(context = androidContext(), localDB = get()) }
+    single { UserPreferencesRepository(userSessionRepository = get(), context = androidContext()) }
+    single { PushTokenRepository(
+            userSessionRepository = get(),
+            registerPushDeviceUseCase = get(),
+            unregisterPushDeviceUseCase = get(),
+            context = androidContext()
+    ) }
+    single { VerificationService(apiCatalog = get()) }
+    single<VerificationRepository> { VerificationRepository.Network(networkHandler = get(), service = get()) }
+    single { OAuthService(apiCatalog = get()) }
+    single<OAuthRepository> { OAuthRepository.Network(networkHandler = get(), service = get()) }
+    single { CardApplicationService(apiCatalog = get()) }
+    single<CardApplicationRepository> { CardApplicationRepository.Network(
+            networkHandler = get(),
+            cardApplicationService = get()
+    ) }
+    single { ConfigService(apiCatalog = get()) }
+    single<ConfigRepository> { ConfigRepository.Network(networkHandler = get(), service = get()) }
+    single { UserService(apiCatalog = get()) }
+    single<UserRepository> { UserRepository.Network(networkHandler = get(), service = get()) }
+    single { FundingSourcesService(apiCatalog = get()) }
+    single<FundingSourceRepository> { FundingSourceRepository.Network(
+            networkHandler = get(),
+            service = get(),
+            balanceLocalDao = get()
+    ) }
+    single { CardService(apiCatalog = get()) }
+    single<CardRepository> { CardRepository.Network(
+            networkHandler = get(),
+            service = get(),
+            cardLocalDao = get(),
+            cardBalanceLocalDao = get(),
+            userSessionRepository = get()
+    ) }
+    single { TransactionService(apiCatalog = get()) }
+    single<TransactionRepository> { TransactionRepository.Network(
+            networkHandler = get(),
+            service = get(),
+            transactionLocalDao = get(),
+            userSessionRepository = get()
+    ) }
+    single { StatsService(apiCatalog = get()) }
+    single<StatsRepository> { StatsRepository.Network(networkHandler = get(), service = get()) }
+    single { VoipService(apiCatalog = get()) }
+    single<VoipRepository> { VoipRepository.Network(networkHandler = get(), service = get()) }
+}

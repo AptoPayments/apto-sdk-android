@@ -1,12 +1,9 @@
 package com.aptopayments.core
 
-import com.aptopayments.core.di.CoreApplicationComponent
-import com.aptopayments.core.platform.AptoPlatform
-import com.aptopayments.core.platform.UseCasesWrapper
-import com.nhaarman.mockito_kotlin.mock
 import org.junit.Before
 import org.junit.Rule
 import org.junit.runner.RunWith
+import org.koin.test.AutoCloseKoinTest
 import org.mockito.junit.MockitoJUnitRunner
 
 /**
@@ -16,15 +13,12 @@ import org.mockito.junit.MockitoJUnitRunner
  * @see AndroidTest
  */
 @RunWith(MockitoJUnitRunner::class)
-abstract class UnitTest {
+abstract class UnitTest : AutoCloseKoinTest() {
 
     @Suppress("LeakingThis")
     @Rule @JvmField val injectMocks = InjectMocksRule.create(this@UnitTest)
 
     @Before
     open fun setUp() {
-        val mockApplicationComponent = mock<CoreApplicationComponent>()
-        AptoPlatform.appComponent = mockApplicationComponent
-        AptoPlatform.useCasesWrapper = UseCasesWrapper(AptoPlatform.appComponent)
     }
 }

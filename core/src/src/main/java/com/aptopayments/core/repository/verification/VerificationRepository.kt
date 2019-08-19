@@ -9,7 +9,6 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.platform.BaseRepository
 import com.aptopayments.core.repository.verification.remote.entities.VerificationEntity
 import com.aptopayments.core.repository.verification.remote.entities.VerificationService
-import javax.inject.Inject
 
 internal interface VerificationRepository: BaseRepository {
 
@@ -18,11 +17,10 @@ internal interface VerificationRepository: BaseRepository {
     fun restartVerification(params: Verification): Either<Failure, Verification>
     fun finishVerification(verificationId: String, secret: String): Either<Failure, Verification>
 
-    class Network
-    @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val service: VerificationService
-    ) : BaseRepository.BaseRepositoryImpl(),
-        VerificationRepository {
+    class Network constructor(
+            private val networkHandler: NetworkHandler,
+            private val service: VerificationService
+    ) : BaseRepository.BaseRepositoryImpl(), VerificationRepository {
         override fun startPhoneVerification(params: PhoneNumber): Either<Failure, Verification> {
             return when (networkHandler.isConnected) {
                 true -> request(service.startVerification(params),

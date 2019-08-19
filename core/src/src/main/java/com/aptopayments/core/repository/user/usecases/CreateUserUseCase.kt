@@ -7,10 +7,9 @@ import com.aptopayments.core.interactor.UseCase
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.user.UserRepository
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class CreateUserUseCase @Inject constructor(
+internal class CreateUserUseCase constructor(
         private val userRepository: UserRepository,
         networkHandler: NetworkHandler
 ) : UseCase<User, DataPointList>(networkHandler) {

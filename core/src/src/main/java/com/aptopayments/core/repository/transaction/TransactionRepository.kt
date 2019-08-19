@@ -13,20 +13,17 @@ import com.aptopayments.core.repository.transaction.remote.TransactionService
 import com.aptopayments.core.repository.transaction.remote.entities.TransactionEntity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.threeten.bp.LocalDate
-import javax.inject.Inject
 
 internal interface TransactionRepository : BaseRepository {
 
     fun getTransactions(cardId: String, filters: TransactionListFilters, forceApiCall: Boolean, clearCachedValues: Boolean): Either<Failure, List<Transaction>>
 
-    class Network
-    @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val service: TransactionService,
-                        private val transactionLocalDao: TransactionLocalDao,
-                        userSessionRepository: UserSessionRepository
-    ) : BaseRepository.BaseRepositoryImpl(),
-            TransactionRepository {
+    class Network constructor(
+            private val networkHandler: NetworkHandler,
+            private val service: TransactionService,
+            private val transactionLocalDao: TransactionLocalDao,
+            userSessionRepository: UserSessionRepository
+    ) : BaseRepository.BaseRepositoryImpl(), TransactionRepository {
 
         init {
             userSessionRepository.subscribeSessionInvalidListener(this) {

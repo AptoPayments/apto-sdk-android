@@ -7,10 +7,9 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.transaction.TransactionListFilters
 import com.aptopayments.core.repository.transaction.TransactionRepository
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class GetTransactionsUseCase @Inject constructor(
+internal class GetTransactionsUseCase constructor(
         private val repository: TransactionRepository,
         networkHandler: NetworkHandler
 ) : UseCase<List<Transaction>, GetTransactionsUseCase.Params>(networkHandler) {

@@ -12,7 +12,6 @@ import com.aptopayments.core.repository.card.remote.entities.CardEntity
 import com.aptopayments.core.repository.cardapplication.remote.CardApplicationService
 import com.aptopayments.core.repository.cardapplication.remote.entities.CardApplicationEntity
 import com.aptopayments.core.repository.cardapplication.remote.entities.SelectBalanceStoreResultEntity
-import javax.inject.Inject
 
 internal interface CardApplicationRepository : BaseRepository {
 
@@ -23,11 +22,10 @@ internal interface CardApplicationRepository : BaseRepository {
     fun acceptDisclaimer(workflowObjectId: String, actionId: String): Either<Failure, Unit>
     fun issueCard(applicationId: String): Either<Failure, Card>
 
-    class Network
-    @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val cardApplicationService: CardApplicationService
-    ) : BaseRepository.BaseRepositoryImpl(),
-        CardApplicationRepository {
+    class Network constructor(
+            private val networkHandler: NetworkHandler,
+            private val cardApplicationService: CardApplicationService
+    ) : BaseRepository.BaseRepositoryImpl(), CardApplicationRepository {
 
         override fun startCardApplication(cardProductId: String): Either<Failure, CardApplication> {
             if (networkHandler.isConnected != true) {

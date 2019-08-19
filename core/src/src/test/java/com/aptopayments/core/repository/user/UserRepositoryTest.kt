@@ -7,6 +7,8 @@ import com.aptopayments.core.repository.user.remote.UserService
 import com.aptopayments.core.repository.user.remote.entities.UserEntity
 import org.junit.Before
 import org.junit.Test
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.verify
@@ -25,6 +27,12 @@ class UserRepositoryTest : UnitTest() {
     @Before
     override fun setUp() {
         super.setUp()
+        startKoin {
+            modules(module {
+                single { networkHandler }
+                single { service }
+            })
+        }
         repositoryNetwork = UserRepository.Network(networkHandler, service)
     }
 

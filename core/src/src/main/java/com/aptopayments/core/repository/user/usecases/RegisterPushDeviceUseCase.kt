@@ -5,10 +5,9 @@ import com.aptopayments.core.interactor.UseCase
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.user.UserRepository
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class RegisterPushDeviceUseCase @Inject constructor(
+internal class RegisterPushDeviceUseCase constructor(
         private val repository: UserRepository,
         networkHandler: NetworkHandler
 ) : UseCase<Unit, String>(networkHandler) {

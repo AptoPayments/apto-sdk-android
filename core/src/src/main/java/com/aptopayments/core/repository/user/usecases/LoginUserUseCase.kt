@@ -8,10 +8,8 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.user.UserRepository
 import java.lang.reflect.Modifier
 
-import javax.inject.Inject
-
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class LoginUserUseCase @Inject constructor(
+internal class LoginUserUseCase constructor(
         private val repository: UserRepository,
         networkHandler: NetworkHandler
 ) : UseCase<User, List<Verification>>(networkHandler) {

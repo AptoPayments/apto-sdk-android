@@ -6,20 +6,14 @@ import java.lang.ref.WeakReference
 import java.net.InetAddress
 import java.net.InetSocketAddress
 import java.net.Socket
-import javax.inject.Inject
-import javax.inject.Singleton
-
 
 /**
  * Injectable class which returns information about the network connection state.
  */
-@Singleton
-class NetworkHandler
-@Inject constructor(context: Context) {
+class NetworkHandler constructor(context: Context) {
 
     var context: WeakReference<Context> = WeakReference(context)
     val isConnected get() = context.get()?.networkInfo?.isConnectedOrConnecting
-
 
     private val networkReachabilityListenerPool = BooleanListenersPool()
     private val maintenanceModeListenerPool = BooleanListenersPool()
@@ -62,5 +56,4 @@ class NetworkHandler
 
     fun deprecatedSdkDetected() =
             deprecatedSdkListenerPool.notifyListeners(true)
-
 }

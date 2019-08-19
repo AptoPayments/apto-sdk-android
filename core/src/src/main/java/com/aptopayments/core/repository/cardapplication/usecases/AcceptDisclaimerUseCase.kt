@@ -5,10 +5,9 @@ import com.aptopayments.core.interactor.UseCase
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.cardapplication.CardApplicationRepository
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class AcceptDisclaimerUseCase @Inject constructor(
+internal class AcceptDisclaimerUseCase constructor(
         private val applicationRepository: CardApplicationRepository,
         networkHandler: NetworkHandler
 ) : UseCase<Unit, AcceptDisclaimerUseCase.Params>(networkHandler) {
@@ -18,8 +17,7 @@ internal class AcceptDisclaimerUseCase @Inject constructor(
             val actionId: String
     )
 
-    override fun run(params: Params) =
-            applicationRepository.acceptDisclaimer(
-                    workflowObjectId = params.workflowObjectId,
-                    actionId = params.actionId)
+    override fun run(params: Params) = applicationRepository.acceptDisclaimer(
+            workflowObjectId = params.workflowObjectId,
+            actionId = params.actionId)
 }

@@ -7,10 +7,9 @@ import com.aptopayments.core.interactor.UseCase
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.oauth.OAuthRepository
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class RetrieveOAuthUserDataUseCase @Inject constructor(
+internal class RetrieveOAuthUserDataUseCase constructor(
         private val repository: OAuthRepository,
         networkHandler: NetworkHandler
 ) : UseCase<OAuthUserDataUpdate, RetrieveOAuthUserDataUseCase.Params>(networkHandler) {

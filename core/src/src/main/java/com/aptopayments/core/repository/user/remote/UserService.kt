@@ -11,12 +11,10 @@ import com.aptopayments.core.repository.user.remote.requests.PushDeviceRequest
 import com.aptopayments.core.repository.user.remote.requests.UserDataRequest
 import retrofit2.Call
 import java.net.URLEncoder
-import javax.inject.Inject
 
 private const val CHARSET = "UTF_8"
 
-internal class UserService
-@Inject constructor(apiCatalog: ApiCatalog) : BaseService() {
+internal class UserService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
     private val userApi by lazy { apiCatalog.api().create(UserApi::class.java) }
 

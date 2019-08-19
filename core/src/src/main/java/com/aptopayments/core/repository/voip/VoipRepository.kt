@@ -9,17 +9,15 @@ import com.aptopayments.core.repository.voip.remote.VoipService
 import com.aptopayments.core.repository.voip.remote.entities.VoipCallEntity
 import com.aptopayments.core.repository.voip.remote.requests.GetTokensRequest
 import com.aptopayments.core.repository.voip.usecases.SetupVoipCallParams
-import javax.inject.Inject
 
 internal interface VoipRepository : BaseRepository {
 
     fun setupVoIPCall(params: SetupVoipCallParams): Either<Failure, VoipCall>
 
-    class Network
-    @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val service: VoipService
-    ) : BaseRepository.BaseRepositoryImpl(),
-        VoipRepository {
+    class Network constructor(
+            private val networkHandler: NetworkHandler,
+            private val service: VoipService
+    ) : BaseRepository.BaseRepositoryImpl(), VoipRepository {
 
         override fun setupVoIPCall(params: SetupVoipCallParams): Either<Failure, VoipCall> {
             return when (networkHandler.isConnected) {

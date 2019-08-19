@@ -21,6 +21,8 @@ import org.amshove.kluent.shouldBeInstanceOf
 import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import org.mockito.Mock
 import retrofit2.Call
 import retrofit2.Response
@@ -41,6 +43,11 @@ class OAuthConnectRepositoryTest : UnitTest() {
     @Before
     override fun setUp() {
         super.setUp()
+        startKoin {
+            modules(module {
+                single { mockUserSessionRepository }
+            })
+        }
         sut = OAuthRepository.Network(networkHandler, service)
     }
 
@@ -52,7 +59,6 @@ class OAuthConnectRepositoryTest : UnitTest() {
         given { startOAuthCall.execute() }.willReturn(startOAuthResponse)
         given { service.startOAuthAuthentication(allowedBalanceType = allowedBalanceType) }
                 .willReturn(startOAuthCall)
-        sut.userSessionRepository = mockUserSessionRepository
 
         val oauthAttempt = sut.startOAuthAuthentication(allowedBalanceType)
 
@@ -100,7 +106,6 @@ class OAuthConnectRepositoryTest : UnitTest() {
         given { saveOAuthUserDataCall.execute() }.willReturn(saveOAuthUserDataResponse)
         given { service.saveOAuthUserData(allowedBalanceType = allowedBalanceType, dataPointList = oAuthAttempt.userData!!, tokenId = oAuthAttempt.tokenId) }
                 .willReturn(saveOAuthUserDataCall)
-        sut.userSessionRepository = mockUserSessionRepository
 
         val oAuthUserDataUpdate = sut.saveOAuthUserData(allowedBalanceType, dataPointList = oAuthAttempt.userData!!, tokenId = oAuthAttempt.tokenId)
 

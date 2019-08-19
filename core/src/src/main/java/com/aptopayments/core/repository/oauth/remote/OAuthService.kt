@@ -11,13 +11,10 @@ import com.aptopayments.core.repository.oauth.remote.requests.SaveOAuthUserDataR
 import com.aptopayments.core.repository.oauth.remote.requests.StartOAuthAuthenticationRequest
 import com.aptopayments.core.repository.user.remote.requests.UserDataRequest.Companion.serializeDataPointList
 import retrofit2.Call
-import javax.inject.Inject
 
 const val OAUTH_FINISHED_URL = "apto-sdk://oauth-finish"
 
-internal class OAuthService
-@Inject
-constructor(apiCatalog: ApiCatalog) : BaseService() {
+internal class OAuthService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
     private val oauthConnectApi by lazy { apiCatalog.api().create(OAuthApi::class.java) }
 

@@ -7,10 +7,9 @@ import com.aptopayments.core.interactor.UseCase
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.oauth.OAuthRepository
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class StartOAuthAuthenticationUseCase @Inject constructor(
+internal class StartOAuthAuthenticationUseCase constructor(
         private val repository: OAuthRepository,
         networkHandler: NetworkHandler
 ) : UseCase<OAuthAttempt, AllowedBalanceType>(networkHandler) {

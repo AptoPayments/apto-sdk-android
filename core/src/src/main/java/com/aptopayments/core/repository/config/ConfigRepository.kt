@@ -12,7 +12,6 @@ import com.aptopayments.core.repository.config.remote.ConfigService
 import com.aptopayments.core.repository.config.remote.entities.CardConfigurationEntity
 import com.aptopayments.core.repository.config.remote.entities.CardProductSummaryEntity
 import com.aptopayments.core.repository.config.remote.entities.ContextConfigurationEntity
-import javax.inject.Inject
 
 internal interface ConfigRepository : BaseRepository {
 
@@ -20,11 +19,10 @@ internal interface ConfigRepository : BaseRepository {
     fun getCardProduct(cardProductId: String, forceRefresh: Boolean = false): Either<Failure, CardProduct>
     fun getCardProducts(): Either<Failure, List<CardProductSummary>>
 
-    class Network
-    @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val service: ConfigService
-    ) : BaseRepository.BaseRepositoryImpl(),
-        ConfigRepository {
+    class Network constructor(
+            private val networkHandler: NetworkHandler,
+            private val service: ConfigService
+    ) : BaseRepository.BaseRepositoryImpl(), ConfigRepository {
 
         private var contextConfigurationCache: ContextConfiguration? = null
         private var cardProductCache: HashMap<String, CardProduct> = HashMap()

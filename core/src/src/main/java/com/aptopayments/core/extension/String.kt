@@ -1,7 +1,7 @@
 package com.aptopayments.core.extension
 
 import android.content.Context
-import com.aptopayments.sdk.core.repository.LiteralsRepository
+import com.aptopayments.core.repository.LiteralsRepository
 
 fun String.Companion.empty() = ""
 

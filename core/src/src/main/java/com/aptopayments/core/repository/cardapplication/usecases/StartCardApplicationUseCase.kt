@@ -6,10 +6,9 @@ import com.aptopayments.core.interactor.UseCase
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.cardapplication.CardApplicationRepository
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class StartCardApplicationUseCase @Inject constructor(
+internal class StartCardApplicationUseCase constructor(
         private val applicationRepository: CardApplicationRepository,
         networkHandler: NetworkHandler
 ) : UseCase<CardApplication, String>(networkHandler) {

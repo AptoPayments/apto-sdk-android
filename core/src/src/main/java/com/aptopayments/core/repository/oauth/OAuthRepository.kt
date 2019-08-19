@@ -11,7 +11,6 @@ import com.aptopayments.core.platform.BaseRepository
 import com.aptopayments.core.repository.oauth.remote.OAuthService
 import com.aptopayments.core.repository.oauth.remote.entities.OAuthAttemptEntity
 import com.aptopayments.core.repository.oauth.remote.entities.OAuthUserDataUpdateEntity
-import javax.inject.Inject
 
 internal interface OAuthRepository : BaseRepository {
 
@@ -20,11 +19,10 @@ internal interface OAuthRepository : BaseRepository {
     fun saveOAuthUserData(allowedBalanceType: AllowedBalanceType, dataPointList: DataPointList, tokenId: String): Either<Failure, OAuthUserDataUpdate>
     fun retrieveOAuthUserData(allowedBalanceType: AllowedBalanceType, tokenId: String): Either<Failure, OAuthUserDataUpdate>
 
-    class Network
-    @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val service: OAuthService
-    ) : BaseRepository.BaseRepositoryImpl(),
-        OAuthRepository {
+    class Network constructor(
+            private val networkHandler: NetworkHandler,
+            private val service: OAuthService
+    ) : BaseRepository.BaseRepositoryImpl(), OAuthRepository {
 
         override fun startOAuthAuthentication(allowedBalanceType: AllowedBalanceType): Either<Failure, OAuthAttempt> {
             return when (networkHandler.isConnected) {

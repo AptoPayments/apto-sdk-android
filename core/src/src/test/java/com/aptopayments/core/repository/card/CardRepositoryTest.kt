@@ -20,6 +20,8 @@ import org.amshove.kluent.shouldBeInstanceOf
 import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import org.mockito.Mock
 import retrofit2.Call
 import retrofit2.Response
@@ -40,6 +42,15 @@ class CardRepositoryTest : UnitTest() {
     @Before
     override fun setUp() {
         super.setUp()
+        startKoin {
+            modules(module {
+                single { networkHandler }
+                single { service }
+                single { cardLocalDao }
+                single { cardBalanceLocalDao }
+                single { userSessionRepository }
+            })
+        }
         sut = CardRepository.Network(networkHandler, service, cardLocalDao, cardBalanceLocalDao, userSessionRepository)
     }
 

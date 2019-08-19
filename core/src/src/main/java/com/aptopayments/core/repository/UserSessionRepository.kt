@@ -2,11 +2,15 @@ package com.aptopayments.core.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.aptopayments.core.db.LocalDB
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-private const val PREF_USER_TOKEN_FILENAME = "com.aptopayments.sdk.usertoken"
+private const val PREF_USER_TOKEN_FILENAME = "com.shiftpayments.sdk.usertoken"
 private const val PREF_USER_TOKEN = "PREF_USER_TOKEN"
 
-class UserSessionRepository(context: Context) {
+internal class UserSessionRepository constructor(context: Context, private val localDB: LocalDB) {
 
     private val sharedPref: SharedPreferences = context.getSharedPreferences(
             PREF_USER_TOKEN_FILENAME, Context.MODE_PRIVATE)
@@ -27,13 +31,14 @@ class UserSessionRepository(context: Context) {
     var userToken: String
         get() {
             if(mUserToken.isEmpty()) {
-                mUserToken = sharedPref.getString(PREF_USER_TOKEN, "")
+                mUserToken = sharedPref.getString(PREF_USER_TOKEN, "")!!
             }
             return mUserToken
         }
         set(value) {
             if (value.isEmpty()) {
                 notifySessionInvalidListeners(mUserToken)
+                clearDataBaseCache()
                 mUserToken = value
             } else {
                 mUserToken = value
@@ -42,11 +47,13 @@ class UserSessionRepository(context: Context) {
             sharedPref.edit().putString(PREF_USER_TOKEN, value).apply()
         }
 
+    private fun clearDataBaseCache() = GlobalScope.launch(Dispatchers.IO) { localDB.clearAllTables() }
+
     fun clearUserSession() {
         if (userToken.isNotEmpty()) userToken = ""
     }
 
-    fun subscribeSessionInvalidListener(instance: Any, callback: (String)->Unit) {
+    fun subscribeSessionInvalidListener(instance: Any, callback: (String) -> Unit) {
         sessionInvalidEventListeners[instance] = callback
     }
 

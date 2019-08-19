@@ -2,7 +2,7 @@ package com.aptopayments.core.repository.cardapplication.remote.entities.workflo
 
 import com.aptopayments.core.data.workflowaction.WorkflowAction
 import com.aptopayments.core.data.workflowaction.WorkflowActionType
-import com.aptopayments.sdk.core.repository.LiteralsRepository
+import com.aptopayments.core.repository.LiteralsRepository
 import com.google.gson.annotations.SerializedName
 
 internal data class WorkflowActionEntity (

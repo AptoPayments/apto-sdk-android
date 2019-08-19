@@ -6,11 +6,8 @@ import com.aptopayments.core.repository.cardapplication.remote.entities.AcceptDi
 import com.aptopayments.core.repository.cardapplication.remote.entities.IssueCardRequest
 import com.aptopayments.core.repository.cardapplication.remote.entities.NewCardApplicationRequest
 import com.aptopayments.core.repository.cardapplication.remote.entities.SelectBalanceStoreRequest
-import javax.inject.Inject
 
-internal class CardApplicationService
-@Inject
-constructor(apiCatalog: ApiCatalog) : BaseService() {
+internal class CardApplicationService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
     private val cardApplicationApi by lazy { apiCatalog.api().create(CardApplicationApi::class.java) }
 

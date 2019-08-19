@@ -8,10 +8,9 @@ import com.aptopayments.core.interactor.UseCase
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.verification.VerificationRepository
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class FinishVerificationUseCase @Inject constructor(
+internal class FinishVerificationUseCase constructor(
         val repository: VerificationRepository,
         networkHandler: NetworkHandler
 ) : UseCase<Verification, Verification>(networkHandler)

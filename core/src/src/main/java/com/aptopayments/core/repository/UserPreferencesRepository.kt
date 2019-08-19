@@ -2,12 +2,11 @@ package com.aptopayments.core.repository
 
 import android.content.Context
 import android.content.SharedPreferences
-import javax.inject.Inject
 
 private const val PREF_USER_PREFERENCES_FILENAME = "com.aptopayments.sdk.userpreferences"
 private const val PREF_SHOW_DETAILED_ACTIVITY = "PREF_SHOW_DETAILED_ACTIVITY"
 
-class UserPreferencesRepository @Inject constructor(
+internal class UserPreferencesRepository constructor(
         private val userSessionRepository: UserSessionRepository,
         context: Context
 ) {

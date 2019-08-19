@@ -6,10 +6,9 @@ import com.aptopayments.core.interactor.UseCase
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.stats.StatsRepository
 import java.lang.reflect.Modifier
-import javax.inject.Inject
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
-internal class GetMonthlySpendingUseCase @Inject constructor(
+internal class GetMonthlySpendingUseCase constructor(
         private val repository: StatsRepository,
         networkHandler: NetworkHandler
 ) : UseCase<MonthlySpending, GetMonthlySpendingUseCase.Params>(networkHandler) {
