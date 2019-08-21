@@ -37,13 +37,35 @@ class UserRepositoryTest : UnitTest() {
     }
 
     @Test
-    fun `start the user creation service`() {
+    fun `start the user creation service without custodian uid`() {
+        // Given
         val userData = DataPointList()
         Mockito.`when`(networkHandler.isConnected).thenReturn(true)
-        Mockito.`when`(service.createUser(userData)).thenReturn(createUserRequest)
+        Mockito.`when`(service.createUser(userData, null)).thenReturn(createUserRequest)
         Mockito.`when`(createUserResponse.isSuccessful).thenReturn(true)
         Mockito.`when`(createUserRequest.execute()).thenReturn(createUserResponse)
-        repositoryNetwork.createUser(userData)
-        verify(service).createUser(userData)
+
+        // When
+        repositoryNetwork.createUser(userData, null)
+
+        // Then
+        verify(service).createUser(userData, null)
+    }
+
+    @Test
+    fun `pass custodian uid to user creation service`() {
+        // Given
+        val userData = DataPointList()
+        val custodianUid = "custodian_uid"
+        Mockito.`when`(networkHandler.isConnected).thenReturn(true)
+        Mockito.`when`(service.createUser(userData, custodianUid)).thenReturn(createUserRequest)
+        Mockito.`when`(createUserResponse.isSuccessful).thenReturn(true)
+        Mockito.`when`(createUserRequest.execute()).thenReturn(createUserResponse)
+
+        // When
+        repositoryNetwork.createUser(userData, custodianUid)
+
+        // Then
+        verify(service).createUser(userData, custodianUid)
     }
 }

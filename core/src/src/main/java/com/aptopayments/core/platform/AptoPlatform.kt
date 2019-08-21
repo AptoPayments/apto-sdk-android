@@ -43,6 +43,7 @@ import com.aptopayments.core.repository.oauth.usecases.SaveOAuthUserDataUseCase
 import com.aptopayments.core.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.core.repository.transaction.TransactionListFilters
 import com.aptopayments.core.repository.transaction.usecases.GetTransactionsUseCase
+import com.aptopayments.core.repository.user.usecases.CreateUserUseCase
 import com.aptopayments.core.repository.voip.usecases.SetupVoipCallParams
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.koin.android.ext.koin.androidContext
@@ -134,8 +135,8 @@ object AptoPlatform : AptoPlatformProtocol {
         UserPreferencesRepository(useCasesWrapper.userSessionRepository, application).showDetailedCardActivity = enabled
     }
 
-    override fun createUser(userData: DataPointList, callback: (Either<Failure, User>) -> Unit) =
-            useCasesWrapper.createUserUseCase(userData) {
+    override fun createUser(userData: DataPointList, custodianUid: String?, callback: (Either<Failure, User>) -> Unit) =
+            useCasesWrapper.createUserUseCase(CreateUserUseCase.Params(userData, custodianUid)) {
                 if (it is Either.Right) useCasesWrapper.userSessionRepository.userToken = it.b.token
                 callback(it)
             }
@@ -216,12 +217,13 @@ object AptoPlatform : AptoPlatformProtocol {
     override fun issueCard(applicationId: String, callback: (Either<Failure, Card>) -> Unit) =
             useCasesWrapper.issueCardUseCase(applicationId) { callback(it) }
 
-    override fun issueCard(cardProductId: String, credential: OAuthCredential?,
+    override fun issueCard(cardProductId: String, credential: OAuthCredential?, additionalFields: Map<String, Any>?,
                            callback: (Either<Failure, Card>) -> Unit) = useCasesWrapper.issueCardCardProductUseCase(
             IssueCardUseCase.Params(
                     cardProductId = cardProductId,
                     credential = credential,
-                    useBalanceV2 = cardOptions.useBalancesV2())
+                    useBalanceV2 = cardOptions.useBalancesV2(),
+                    additionalFields = additionalFields)
     )
 
     override fun fetchCards(callback: (Either<Failure, List<Card>>) -> Unit) =

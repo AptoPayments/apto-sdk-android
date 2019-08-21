@@ -17,7 +17,7 @@ internal data class WorkflowActionEntity (
         var configuration: WorkflowActionConfigurationEntity? = null,
 
         @SerializedName("labels")
-        var labels: Map<String,String>? = null
+        var labels: Map<String, String>? = null
 ) {
     fun toWorkflowAction(): WorkflowAction {
         labels?.let { LiteralsRepository.appendServerLiterals(it) }

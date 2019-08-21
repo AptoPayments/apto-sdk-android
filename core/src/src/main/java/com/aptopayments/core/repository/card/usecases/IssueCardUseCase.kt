@@ -16,12 +16,14 @@ internal class IssueCardUseCase constructor(
     data class Params(
             val cardProductId: String,
             val credential: OAuthCredential?,
-            val useBalanceV2: Boolean
+            val useBalanceV2: Boolean,
+            val additionalFields: Map<String, Any>?
     )
 
     override fun run(params: Params) = cardRepository.issueCard(
             cardProductId = params.cardProductId,
             credential = params.credential,
-            useBalanceV2 = params.useBalanceV2
+            useBalanceV2 = params.useBalanceV2,
+            additionalFields = params.additionalFields
     )
 }

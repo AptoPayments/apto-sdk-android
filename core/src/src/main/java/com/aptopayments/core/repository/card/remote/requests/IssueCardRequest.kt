@@ -17,5 +17,8 @@ data class IssueCardRequest(
         val balanceVersion: String,
 
         @SerializedName("balance_store")
-        val oAuthCredentialRequest: OAuthCredentialRequest? = null
+        val oAuthCredentialRequest: OAuthCredentialRequest? = null,
+
+        @SerializedName("additional_fields")
+        val additionalFields: Map<String, Any>? = null
 ) : Serializable

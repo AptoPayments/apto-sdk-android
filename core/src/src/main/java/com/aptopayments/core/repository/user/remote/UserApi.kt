@@ -4,10 +4,7 @@ import com.aptopayments.core.network.X_API_KEY
 import com.aptopayments.core.network.X_AUTHORIZATION
 import com.aptopayments.core.repository.user.remote.entities.NotificationPreferencesEntity
 import com.aptopayments.core.repository.user.remote.entities.UserEntity
-import com.aptopayments.core.repository.user.remote.requests.LoginUserRequest
-import com.aptopayments.core.repository.user.remote.requests.NotificationPreferencesRequest
-import com.aptopayments.core.repository.user.remote.requests.PushDeviceRequest
-import com.aptopayments.core.repository.user.remote.requests.UserDataRequest
+import com.aptopayments.core.repository.user.remote.requests.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -24,7 +21,7 @@ internal interface UserApi {
     @POST(CREATE_USER_PATH)
     fun createUser(
             @Header(X_API_KEY) apiKey: String,
-            @Body request: UserDataRequest
+            @Body request: CreateUserDataRequest
     ): Call<UserEntity>
 
     @PUT(USER_PATH)

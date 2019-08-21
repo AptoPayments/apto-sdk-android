@@ -19,7 +19,7 @@ import com.aptopayments.core.repository.user.usecases.UnregisterPushDeviceParams
 
 internal interface UserRepository : BaseRepository {
 
-    fun createUser(userData: DataPointList): Either<Failure, User>
+    fun createUser(userData: DataPointList, custodianUid: String?): Either<Failure, User>
     fun updateUserData(userData: DataPointList): Either<Failure, User>
     fun loginUser(verificationList: List<Verification>): Either<Failure, User>
     fun registerPushDevice(pushToken: String): Either<Failure, Unit>
@@ -32,9 +32,9 @@ internal interface UserRepository : BaseRepository {
             private val service: UserService
     ) : BaseRepository.BaseRepositoryImpl(), UserRepository {
 
-        override fun createUser(userData: DataPointList): Either<Failure, User> {
+        override fun createUser(userData: DataPointList, custodianUid: String?): Either<Failure, User> {
             return when (networkHandler.isConnected) {
-                true -> request(service.createUser(userData),
+                true -> request(service.createUser(userData, custodianUid),
                         { it.toUser() }, UserEntity())
                 false, null -> Either.Left(Failure.NetworkConnection)
             }

@@ -12,8 +12,14 @@ import java.lang.reflect.Modifier
 internal class CreateUserUseCase constructor(
         private val userRepository: UserRepository,
         networkHandler: NetworkHandler
-) : UseCase<User, DataPointList>(networkHandler) {
+) : UseCase<User, CreateUserUseCase.Params>(networkHandler) {
 
-    override fun run(params: DataPointList) = userRepository.createUser(userData = params)
+    data class Params (
+            val userData: DataPointList,
+            val custodianUid: String? = null
+    )
+
+    override fun run(params: Params) = userRepository.createUser(userData = params.userData,
+            custodianUid = params.custodianUid)
 
 }

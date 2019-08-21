@@ -15,7 +15,6 @@ import org.amshove.kluent.shouldBeInstanceOf
 import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.notification.Failure
 import org.mockito.Mock
 
 class IssueCardUseCaseTest : UnitTest() {
@@ -27,7 +26,8 @@ class IssueCardUseCaseTest : UnitTest() {
     private val params = IssueCardUseCase.Params(
             cardProductId = "card_product_id",
             credential = OAuthCredential(oauthToken = "token", refreshToken = "refresh_token"),
-            useBalanceV2 = true)
+            useBalanceV2 = true,
+            additionalFields = null)
 
     @Before
     override fun setUp() {
@@ -41,14 +41,15 @@ class IssueCardUseCaseTest : UnitTest() {
         sut.run(params)
 
         // Then
-        verify(cardRepository).issueCard(params.cardProductId, params.credential, params.useBalanceV2)
+        verify(cardRepository).issueCard(params.cardProductId, params.credential, params.useBalanceV2,
+                params.additionalFields)
     }
 
     @Test
     fun `repository return success sut return success`() {
         // Given
-        given { cardRepository.issueCard(params.cardProductId, params.credential, params.useBalanceV2) }
-                .willReturn { Either.Right(TestDataProvider.provideCard()) }
+        given { cardRepository.issueCard(params.cardProductId, params.credential, params.useBalanceV2,
+                params.additionalFields) }.willReturn { Either.Right(TestDataProvider.provideCard()) }
 
         // When
         val result = sut.run(params)
@@ -62,8 +63,8 @@ class IssueCardUseCaseTest : UnitTest() {
     @Test
     fun `repository return failure sut return failure`() {
         // Given
-        given { cardRepository.issueCard(params.cardProductId, params.credential, params.useBalanceV2) }
-                .willReturn { Either.Left(ServerError(errorCode = null)) }
+        given { cardRepository.issueCard(params.cardProductId, params.credential, params.useBalanceV2,
+                params.additionalFields) }.willReturn { Either.Left(ServerError(errorCode = null)) }
 
         // When
         val result = sut.run(params)

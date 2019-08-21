@@ -9,6 +9,7 @@ import com.aptopayments.core.data.oauth.OAuthAttemptStatus
 import com.aptopayments.core.data.oauth.OAuthUserDataUpdate
 import com.aptopayments.core.data.oauth.OAuthUserDataUpdateResult
 import com.aptopayments.core.data.user.DataPointList
+import com.aptopayments.core.data.user.User
 import com.aptopayments.core.data.user.Verification
 import com.aptopayments.core.data.workflowaction.AllowedBalanceType
 import com.aptopayments.core.data.workflowaction.BalanceType
@@ -180,5 +181,7 @@ class TestDataProvider {
                 cardHolder = cardHolder,
                 features = features
         )
+
+        fun provideUser(userData: DataPointList?) = User(userId = "user_id", token = "token", userData = userData)
     }
 }

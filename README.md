@@ -128,7 +128,7 @@ AptoPlatform.completeVerification(verification) {
 Once the primary credential has been verified, you can use the following SDK method to create a new user:
 
 ```kotlin
-let primaryCredential = PhoneNumber(countryCode, phoneNumber)
+val primaryCredential = PhoneNumber(countryCode, phoneNumber)
 primaryCredential.verification = verification // The verification obtained before.
 
 AptoPlatform.createUser(DataPointList().add(primaryCredential)) {
@@ -140,6 +140,17 @@ AptoPlatform.createUser(DataPointList().add(primaryCredential)) {
   })
 }
 ```
+
+The `createUser` method also accepts an optional `custodianUid` parameter:
+
+```kotlin
+val custodianUid = "custodian_uid"
+AptoPlatform.createUser(DataPointList().add(primaryCredential), custodianUid) {
+  ...
+}
+```
+
+this parameter can be used to send Apto the id of the user in your platform so future notifications (webhooks) can contain that information, making easier matching the event with the user in your platform.
 
 ### Login with an existing user
 
@@ -253,6 +264,15 @@ AptoPlatform.fetchCardProducts {
       })
     }
   })
+}
+```
+
+The `issueCard` method also accepts an optional `additionalFields` parameter that can be used to send Apto additional data required to card issuance that is not captured during the user creation process. For a list of allowed fields and values contact us.
+
+```kotlin
+val additionalFields = mapOf<String, Any>("field1" to "value1", "field2" to 2)
+AptoPlatform.issueCard(cardProductId = cardProducts[0].id, credential = credential, additionalFields = additionalFields) {
+  ...
 }
 ```
 

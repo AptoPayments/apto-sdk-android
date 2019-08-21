@@ -5,10 +5,7 @@ import com.aptopayments.core.network.ApiCatalog
 import com.aptopayments.core.platform.BaseService
 import com.aptopayments.core.repository.user.remote.entities.NotificationPreferencesEntity
 import com.aptopayments.core.repository.user.remote.entities.UserEntity
-import com.aptopayments.core.repository.user.remote.requests.LoginUserRequest
-import com.aptopayments.core.repository.user.remote.requests.NotificationPreferencesRequest
-import com.aptopayments.core.repository.user.remote.requests.PushDeviceRequest
-import com.aptopayments.core.repository.user.remote.requests.UserDataRequest
+import com.aptopayments.core.repository.user.remote.requests.*
 import retrofit2.Call
 import java.net.URLEncoder
 
@@ -18,8 +15,8 @@ internal class UserService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
     private val userApi by lazy { apiCatalog.api().create(UserApi::class.java) }
 
-    fun createUser(userData: DataPointList): Call<UserEntity> {
-        val request = UserDataRequest.from(userData)
+    fun createUser(userData: DataPointList, custodianUid: String?): Call<UserEntity> {
+        val request = CreateUserDataRequest.from(userData, custodianUid)
         return userApi.createUser(
                 apiKey = ApiCatalog.apiKey,
                 request = request)

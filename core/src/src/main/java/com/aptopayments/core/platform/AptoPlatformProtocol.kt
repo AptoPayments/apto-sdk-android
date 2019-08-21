@@ -40,7 +40,7 @@ interface AptoPlatformProtocol {
     // User handling
     fun userTokenPresent(): Boolean
 
-    fun createUser(userData: DataPointList, callback: (Either<Failure, User>) -> Unit)
+    fun createUser(userData: DataPointList, custodianUid: String? = null, callback: (Either<Failure, User>) -> Unit)
 
     fun loginUserWith(verifications: List<Verification>, callback: (Either<Failure, User>) -> Unit)
 
@@ -92,7 +92,8 @@ interface AptoPlatformProtocol {
 
     fun issueCard(applicationId: String, callback: (Either<Failure, Card>) -> Unit)
 
-    fun issueCard(cardProductId: String, credential: OAuthCredential?, callback: (Either<Failure, Card>) -> Unit)
+    fun issueCard(cardProductId: String, credential: OAuthCredential?, additionalFields: Map<String, Any>? = null,
+                  callback: (Either<Failure, Card>) -> Unit)
 
     // Card handling
     fun fetchCards(callback: (Either<Failure, List<Card>>) -> Unit)

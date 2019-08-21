@@ -32,7 +32,8 @@ import java.lang.reflect.Modifier
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal interface CardRepository : BaseRepository {
-    fun issueCard(cardProductId: String, credential: OAuthCredential?, useBalanceV2: Boolean): Either<Failure, Card>
+    fun issueCard(cardProductId: String, credential: OAuthCredential?, useBalanceV2: Boolean,
+                  additionalFields: Map<String, Any>?): Either<Failure, Card>
     fun getCard(params: GetCardParams): Either<Failure, Card>
     fun getCardDetails(cardId: String): Either<Failure, CardDetails>
     fun getCards(): Either<Failure, List<Card>>
@@ -65,8 +66,8 @@ internal interface CardRepository : BaseRepository {
             userSessionRepository.unsubscribeSessionInvalidListener(this)
         }
 
-        override fun issueCard(cardProductId: String, credential: OAuthCredential?,
-                      useBalanceV2: Boolean) = when(networkHandler.isConnected) {
+        override fun issueCard(cardProductId: String, credential: OAuthCredential?, useBalanceV2: Boolean,
+                               additionalFields: Map<String, Any>?) = when(networkHandler.isConnected) {
             true -> {
                 val credentialRequest: OAuthCredentialRequest? = credential?.let {
                     OAuthCredentialRequest(
@@ -77,7 +78,8 @@ internal interface CardRepository : BaseRepository {
                 val issueCardRequest = IssueCardRequest(
                         cardProductId = cardProductId,
                         balanceVersion = if (useBalanceV2) "v2" else "v1",
-                        oAuthCredentialRequest = credentialRequest
+                        oAuthCredentialRequest = credentialRequest,
+                        additionalFields = additionalFields
                 )
                 request(service.issueCard(issueCardRequest), { it.toCard() }, CardEntity())
             }
