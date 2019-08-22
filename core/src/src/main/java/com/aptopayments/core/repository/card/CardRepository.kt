@@ -33,7 +33,7 @@ import java.lang.reflect.Modifier
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal interface CardRepository : BaseRepository {
     fun issueCard(cardProductId: String, credential: OAuthCredential?, useBalanceV2: Boolean,
-                  additionalFields: Map<String, Any>?): Either<Failure, Card>
+                  additionalFields: Map<String, Any>?, initialFundingSourceId: String?): Either<Failure, Card>
     fun getCard(params: GetCardParams): Either<Failure, Card>
     fun getCardDetails(cardId: String): Either<Failure, CardDetails>
     fun getCards(): Either<Failure, List<Card>>
@@ -67,24 +67,26 @@ internal interface CardRepository : BaseRepository {
         }
 
         override fun issueCard(cardProductId: String, credential: OAuthCredential?, useBalanceV2: Boolean,
-                               additionalFields: Map<String, Any>?) = when(networkHandler.isConnected) {
-            true -> {
-                val credentialRequest: OAuthCredentialRequest? = credential?.let {
-                    OAuthCredentialRequest(
-                            accessToken = it.oauthToken,
-                            refreshToken = it.refreshToken
-                    )
+                               additionalFields: Map<String, Any>?, initialFundingSourceId: String?) =
+                when (networkHandler.isConnected) {
+                    true -> {
+                        val credentialRequest: OAuthCredentialRequest? = credential?.let {
+                            OAuthCredentialRequest(
+                                    accessToken = it.oauthToken,
+                                    refreshToken = it.refreshToken
+                            )
+                        }
+                        val issueCardRequest = IssueCardRequest(
+                                cardProductId = cardProductId,
+                                balanceVersion = if (useBalanceV2) "v2" else "v1",
+                                oAuthCredentialRequest = credentialRequest,
+                                additionalFields = additionalFields,
+                                initialFundingSourceId = initialFundingSourceId
+                        )
+                        request(service.issueCard(issueCardRequest), { it.toCard() }, CardEntity())
+                    }
+                    false, null -> Either.Left(Failure.NetworkConnection)
                 }
-                val issueCardRequest = IssueCardRequest(
-                        cardProductId = cardProductId,
-                        balanceVersion = if (useBalanceV2) "v2" else "v1",
-                        oAuthCredentialRequest = credentialRequest,
-                        additionalFields = additionalFields
-                )
-                request(service.issueCard(issueCardRequest), { it.toCard() }, CardEntity())
-            }
-            false, null -> Either.Left(Failure.NetworkConnection)
-        }
 
         override fun getCard(params: GetCardParams): Either<Failure, Card> {
             if (params.refresh) {

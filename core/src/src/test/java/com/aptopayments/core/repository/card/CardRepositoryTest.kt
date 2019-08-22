@@ -60,7 +60,7 @@ class CardRepositoryTest : UnitTest() {
         given { networkHandler.isConnected }.willReturn(false)
 
         // When
-        val result = sut.issueCard("cardProductId", null, true, null)
+        val result = sut.issueCard("cardProductId", null, true, null, null)
 
         // Then
         result shouldBeInstanceOf Either::class.java
@@ -75,7 +75,7 @@ class CardRepositoryTest : UnitTest() {
         given { networkHandler.isConnected }.willReturn(null)
 
         // When
-        val result = sut.issueCard("cardProductId", null, true, null)
+        val result = sut.issueCard("cardProductId", null, true, null, null)
 
         // Then
         result shouldBeInstanceOf Either::class.java
@@ -90,7 +90,7 @@ class CardRepositoryTest : UnitTest() {
         givenSetUpIssueCardMocks(willRequestSucceed = true)
 
         // When
-        sut.issueCard("card_product_id", null, true, null)
+        sut.issueCard("card_product_id", null, true, null, null)
 
         // Then
         verify(service).issueCard(TestDataProvider.anyObject())
@@ -102,7 +102,7 @@ class CardRepositoryTest : UnitTest() {
         givenSetUpIssueCardMocks(willRequestSucceed = true)
 
         // When
-        sut.issueCard("card_product_id", null, false, null)
+        sut.issueCard("card_product_id", null, false, null, null)
 
         // Then
         verify(service).issueCard(IssueCardRequest(
@@ -119,7 +119,7 @@ class CardRepositoryTest : UnitTest() {
         givenSetUpIssueCardMocks(willRequestSucceed = true)
 
         // When
-        sut.issueCard("card_product_id", null, true, null)
+        sut.issueCard("card_product_id", null, true, null, null)
 
         // Then
         verify(service).issueCard(IssueCardRequest(
@@ -138,7 +138,7 @@ class CardRepositoryTest : UnitTest() {
         givenSetUpIssueCardMocks(willRequestSucceed = true)
 
         // When
-        sut.issueCard("card_product_id", null, true, additionalFields)
+        sut.issueCard("card_product_id", null, true, additionalFields, null)
 
         // Then
         verify(service).issueCard(IssueCardRequest(
@@ -150,12 +150,32 @@ class CardRepositoryTest : UnitTest() {
     }
 
     @Test
+    fun `issue card with initial funding source id pass initial funding source id`() {
+        // Given
+        val nestedMap = mapOf<String, Any>("nestedField1" to "nestedValue1")
+        val initialFundingSourceId = "initial_funding_source_id"
+        givenSetUpIssueCardMocks(willRequestSucceed = true)
+
+        // When
+        sut.issueCard("card_product_id", null, true, null, initialFundingSourceId)
+
+        // Then
+        verify(service).issueCard(IssueCardRequest(
+                cardProductId = "card_product_id",
+                balanceVersion = "v2",
+                oAuthCredentialRequest = null,
+                additionalFields = null,
+                initialFundingSourceId = initialFundingSourceId)
+        )
+    }
+
+    @Test
     fun `issue card with network connection and request succeed return Right`() {
         // Given
         givenSetUpIssueCardMocks(willRequestSucceed = true)
 
         // When
-        val result = sut.issueCard("cardProductId", null, true, null)
+        val result = sut.issueCard("cardProductId", null, true, null, null)
 
         // Then
         result shouldBeInstanceOf Either::class.java
@@ -169,7 +189,7 @@ class CardRepositoryTest : UnitTest() {
         givenSetUpIssueCardMocks(willRequestSucceed = false)
 
         // When
-        val result = sut.issueCard("cardProductId", null, true, null)
+        val result = sut.issueCard("cardProductId", null, true, null, null)
 
         // Then
         result shouldBeInstanceOf Either::class.java

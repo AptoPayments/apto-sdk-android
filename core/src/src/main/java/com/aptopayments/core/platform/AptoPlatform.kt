@@ -32,7 +32,6 @@ import com.aptopayments.core.network.ApiCatalog
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.PushTokenRepository
 import com.aptopayments.core.repository.UserPreferencesRepository
-import com.aptopayments.core.repository.UserSessionRepository
 import com.aptopayments.core.repository.card.usecases.*
 import com.aptopayments.core.repository.cardapplication.usecases.AcceptDisclaimerUseCase
 import com.aptopayments.core.repository.cardapplication.usecases.SetBalanceStoreUseCase
@@ -90,6 +89,10 @@ object AptoPlatform : AptoPlatformProtocol {
     }
 
     override fun userTokenPresent(): Boolean = useCasesWrapper.userSessionRepository.userToken.isNotEmpty()
+
+    override fun setUserToken(userToken: String) {
+        useCasesWrapper.userSessionRepository.userToken = userToken
+    }
 
     private fun subscribeToSdkDeprecatedEvent() {
         networkHandlerWrapper.networkHandler.subscribeDeprecatedSdkListener(this) { deprecated ->
@@ -218,12 +221,14 @@ object AptoPlatform : AptoPlatformProtocol {
             useCasesWrapper.issueCardUseCase(applicationId) { callback(it) }
 
     override fun issueCard(cardProductId: String, credential: OAuthCredential?, additionalFields: Map<String, Any>?,
-                           callback: (Either<Failure, Card>) -> Unit) = useCasesWrapper.issueCardCardProductUseCase(
-            IssueCardUseCase.Params(
-                    cardProductId = cardProductId,
-                    credential = credential,
-                    useBalanceV2 = cardOptions.useBalancesV2(),
-                    additionalFields = additionalFields)
+                           initialFundingSourceId: String?, callback: (Either<Failure, Card>) -> Unit) =
+            useCasesWrapper.issueCardCardProductUseCase(
+                    IssueCardUseCase.Params(
+                            cardProductId = cardProductId,
+                            credential = credential,
+                            useBalanceV2 = cardOptions.useBalancesV2(),
+                            additionalFields = additionalFields,
+                            initialFundingSourceId = initialFundingSourceId)
     )
 
     override fun fetchCards(callback: (Either<Failure, List<Card>>) -> Unit) =

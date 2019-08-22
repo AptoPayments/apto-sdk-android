@@ -4,6 +4,7 @@ import com.aptopayments.core.UnitTest
 import com.aptopayments.core.data.TestDataProvider
 import com.aptopayments.core.data.user.DataPointList
 import com.aptopayments.core.features.managecard.CardOptions
+import com.aptopayments.core.repository.UserSessionRepository
 import com.aptopayments.core.repository.card.usecases.IssueCardUseCase
 import com.aptopayments.core.repository.user.usecases.CreateUserUseCase
 import com.nhaarman.mockito_kotlin.eq
@@ -18,12 +19,14 @@ class AptoPlatformTest : UnitTest() {
     // Collaborators
     @Mock private lateinit var issueCardCardProductUseCase: IssueCardUseCase
     @Mock private lateinit var createUserUseCase: CreateUserUseCase
+    @Mock private lateinit var userSessionRepository: UserSessionRepository
     @Mock private lateinit var useCasesWrapper: UseCasesWrapper
 
     override fun setUp() {
         super.setUp()
         given { useCasesWrapper.issueCardCardProductUseCase }.willReturn(issueCardCardProductUseCase)
         given { useCasesWrapper.createUserUseCase }.willReturn(createUserUseCase)
+        given { useCasesWrapper.userSessionRepository }.willReturn(userSessionRepository)
         sut.useCasesWrapper = useCasesWrapper
     }
 
@@ -47,7 +50,8 @@ class AptoPlatformTest : UnitTest() {
                 cardProductId = "card_product_id",
                 credential = null,
                 useBalanceV2 = false,
-                additionalFields = null
+                additionalFields = null,
+                initialFundingSourceId = null
         )
 
         // When
@@ -68,7 +72,8 @@ class AptoPlatformTest : UnitTest() {
                 cardProductId = "card_product_id",
                 credential = null,
                 useBalanceV2 = true,
-                additionalFields = null
+                additionalFields = null,
+                initialFundingSourceId = null
         )
 
         // When
@@ -90,7 +95,8 @@ class AptoPlatformTest : UnitTest() {
                 cardProductId = "card_product_id",
                 credential = null,
                 useBalanceV2 = true,
-                additionalFields = additionalFields
+                additionalFields = additionalFields,
+                initialFundingSourceId = null
         )
 
         // When
@@ -98,6 +104,31 @@ class AptoPlatformTest : UnitTest() {
                 cardProductId = "card_product_id",
                 credential = null,
                 additionalFields = additionalFields
+        ) {}
+
+        // Then
+        verify(issueCardCardProductUseCase).invoke(eq(expectedParams), TestDataProvider.anyObject())
+    }
+
+    @Test
+    fun `initial funding source id is sent to issue card`() {
+        // Given
+        AptoPlatform.cardOptions = CardOptions(useBalanceVersionV2 = true)
+        val initialFundingSourceId = "initial_funding_source_id"
+        val expectedParams = IssueCardUseCase.Params(
+                cardProductId = "card_product_id",
+                credential = null,
+                useBalanceV2 = true,
+                additionalFields = null,
+                initialFundingSourceId = initialFundingSourceId
+        )
+
+        // When
+        AptoPlatform.issueCard(
+                cardProductId = "card_product_id",
+                credential = null,
+                additionalFields = null,
+                initialFundingSourceId = initialFundingSourceId
         ) {}
 
         // Then
@@ -126,5 +157,17 @@ class AptoPlatformTest : UnitTest() {
 
         // Then
         verify(createUserUseCase).invoke(eq(expectedParams), TestDataProvider.anyObject())
+    }
+
+    @Test
+    fun `set user token call user repository`() {
+        // Given
+        val userToken = "user_token"
+
+        // When
+        sut.setUserToken(userToken)
+
+        // Then
+        verify(userSessionRepository).userToken = userToken
     }
 }

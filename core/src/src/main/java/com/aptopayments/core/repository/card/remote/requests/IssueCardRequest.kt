@@ -20,5 +20,8 @@ data class IssueCardRequest(
         val oAuthCredentialRequest: OAuthCredentialRequest? = null,
 
         @SerializedName("additional_fields")
-        val additionalFields: Map<String, Any>? = null
+        val additionalFields: Map<String, Any>? = null,
+
+        @SerializedName("initial_funding_source_id")
+        val initialFundingSourceId: String? = null
 ) : Serializable

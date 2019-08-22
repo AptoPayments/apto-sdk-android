@@ -27,7 +27,8 @@ class IssueCardUseCaseTest : UnitTest() {
             cardProductId = "card_product_id",
             credential = OAuthCredential(oauthToken = "token", refreshToken = "refresh_token"),
             useBalanceV2 = true,
-            additionalFields = null)
+            additionalFields = null,
+            initialFundingSourceId = null)
 
     @Before
     override fun setUp() {
@@ -42,14 +43,15 @@ class IssueCardUseCaseTest : UnitTest() {
 
         // Then
         verify(cardRepository).issueCard(params.cardProductId, params.credential, params.useBalanceV2,
-                params.additionalFields)
+                params.additionalFields, params.initialFundingSourceId)
     }
 
     @Test
     fun `repository return success sut return success`() {
         // Given
         given { cardRepository.issueCard(params.cardProductId, params.credential, params.useBalanceV2,
-                params.additionalFields) }.willReturn { Either.Right(TestDataProvider.provideCard()) }
+                params.additionalFields, params.initialFundingSourceId)
+        }.willReturn { Either.Right(TestDataProvider.provideCard()) }
 
         // When
         val result = sut.run(params)
@@ -64,7 +66,8 @@ class IssueCardUseCaseTest : UnitTest() {
     fun `repository return failure sut return failure`() {
         // Given
         given { cardRepository.issueCard(params.cardProductId, params.credential, params.useBalanceV2,
-                params.additionalFields) }.willReturn { Either.Left(ServerError(errorCode = null)) }
+                params.additionalFields, params.initialFundingSourceId)
+        }.willReturn { Either.Left(ServerError(errorCode = null)) }
 
         // When
         val result = sut.run(params)
