@@ -8,5 +8,5 @@ abstract class DataPoint : Serializable {
     abstract val notSpecified: Boolean?
     abstract fun getType(): Type
 
-    enum class Type { NAME, PHONE, EMAIL, BIRTHDATE, ADDRESS }
+    enum class Type { NAME, PHONE, EMAIL, BIRTHDATE, ADDRESS, ID_DOCUMENT }
 }

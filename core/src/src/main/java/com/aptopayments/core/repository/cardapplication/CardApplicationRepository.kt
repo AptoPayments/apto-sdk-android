@@ -53,10 +53,7 @@ internal interface CardApplicationRepository : BaseRepository {
             if (networkHandler.isConnected != true) {
                 return Either.Left(Failure.NetworkConnection)
             }
-            return request(
-                    cardApplicationService.cancelCardApplication(cardApplicationId),
-                    { Unit }, Unit
-            )
+            return request(cardApplicationService.cancelCardApplication(cardApplicationId), {}, Unit)
         }
 
         override fun setBalanceStore(cardApplicationId: String,
@@ -78,12 +75,8 @@ internal interface CardApplicationRepository : BaseRepository {
             if (networkHandler.isConnected != true) {
                 return Either.Left(Failure.NetworkConnection)
             }
-            return request(
-                    cardApplicationService.acceptDisclaimer(
-                            workflowObjectId = workflowObjectId,
-                            actionId = actionId),
-                    { Unit }, Unit
-            )
+            return request(cardApplicationService.acceptDisclaimer(
+                    workflowObjectId = workflowObjectId, actionId = actionId), {}, Unit)
         }
 
         override fun issueCard(applicationId: String): Either<Failure, Card> {

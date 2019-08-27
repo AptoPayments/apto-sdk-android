@@ -3,6 +3,7 @@ package com.aptopayments.core.repository.cardapplication.remote.entities.workflo
 import com.aptopayments.core.data.content.Content
 import com.aptopayments.core.extension.ColorParser
 import com.aptopayments.core.extension.ColorParserImpl
+import com.aptopayments.core.extension.toUrl
 import com.google.gson.annotations.SerializedName
 import java.net.URL
 
@@ -22,11 +23,9 @@ class NativeValueEntity (
         var colorParser: ColorParser = ColorParserImpl()
 
 ) : ContentEntity {
-    override fun toContent(): Content {
-        return Content.Native(
-                backgroundColor = backgroundColor?.let { colorParser.fromHexString(backgroundColor, "FFFFFF") },
-                backgroundImage = backgroundImage?.let { URL(it) },
-                asset = asset?.let{ URL(it) })
-    }
+    override fun toContent() = Content.Native(
+            backgroundColor = backgroundColor?.let { colorParser.fromHexString(backgroundColor, "FFFFFF") },
+            backgroundImage = backgroundImage?.toUrl(),
+            asset = asset?.toUrl()
+    )
 }
-

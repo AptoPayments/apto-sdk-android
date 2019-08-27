@@ -24,6 +24,7 @@ internal data class UserDataRequest(
                     DataPoint.Type.PHONE -> PhoneDataPointEntity.from(it as PhoneDataPoint)
                     DataPoint.Type.ADDRESS -> AddressDataPointEntity.from(it as AddressDataPoint)
                     DataPoint.Type.BIRTHDATE -> BirthdateDataPointEntity.from(it as BirthdateDataPoint)
+                    DataPoint.Type.ID_DOCUMENT -> IdDocumentDataPointEntity.from(it as IdDocumentDataPoint)
                 }
             }
             return ListEntity(
