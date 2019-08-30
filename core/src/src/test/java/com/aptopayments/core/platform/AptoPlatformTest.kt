@@ -3,7 +3,6 @@ package com.aptopayments.core.platform
 import com.aptopayments.core.UnitTest
 import com.aptopayments.core.data.TestDataProvider
 import com.aptopayments.core.data.user.DataPointList
-import com.aptopayments.core.features.managecard.CardOptions
 import com.aptopayments.core.repository.UserSessionRepository
 import com.aptopayments.core.repository.card.usecases.IssueCardUseCase
 import com.aptopayments.core.repository.user.usecases.CreateUserUseCase
@@ -43,58 +42,12 @@ class AptoPlatformTest : UnitTest() {
     }
 
     @Test
-    fun `balance v1 used set useBalanceV2 to false`() {
-        // Given
-        AptoPlatform.cardOptions = CardOptions(useBalanceVersionV2 = false)
-        val expectedParams = IssueCardUseCase.Params(
-                cardProductId = "card_product_id",
-                credential = null,
-                useBalanceV2 = false,
-                additionalFields = null,
-                initialFundingSourceId = null
-        )
-
-        // When
-        AptoPlatform.issueCard(
-                cardProductId = "card_product_id",
-                credential = null
-        ) {}
-
-        // Then
-        verify(issueCardCardProductUseCase).invoke(eq(expectedParams), TestDataProvider.anyObject())
-    }
-
-    @Test
-    fun `balance v2 used set useBalanceV2 to true`() {
-        // Given
-        AptoPlatform.cardOptions = CardOptions(useBalanceVersionV2 = true)
-        val expectedParams = IssueCardUseCase.Params(
-                cardProductId = "card_product_id",
-                credential = null,
-                useBalanceV2 = true,
-                additionalFields = null,
-                initialFundingSourceId = null
-        )
-
-        // When
-        AptoPlatform.issueCard(
-                cardProductId = "card_product_id",
-                credential = null
-        ) {}
-
-        // Then
-        verify(issueCardCardProductUseCase).invoke(eq(expectedParams), TestDataProvider.anyObject())
-    }
-
-    @Test
     fun `additional params are sent to issue card`() {
         // Given
-        AptoPlatform.cardOptions = CardOptions(useBalanceVersionV2 = true)
         val additionalFields = mapOf<String, Any>("field" to "value")
         val expectedParams = IssueCardUseCase.Params(
                 cardProductId = "card_product_id",
                 credential = null,
-                useBalanceV2 = true,
                 additionalFields = additionalFields,
                 initialFundingSourceId = null
         )
@@ -113,12 +66,10 @@ class AptoPlatformTest : UnitTest() {
     @Test
     fun `initial funding source id is sent to issue card`() {
         // Given
-        AptoPlatform.cardOptions = CardOptions(useBalanceVersionV2 = true)
         val initialFundingSourceId = "initial_funding_source_id"
         val expectedParams = IssueCardUseCase.Params(
                 cardProductId = "card_product_id",
                 credential = null,
-                useBalanceV2 = true,
                 additionalFields = null,
                 initialFundingSourceId = initialFundingSourceId
         )

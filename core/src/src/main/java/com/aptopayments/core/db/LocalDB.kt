@@ -17,26 +17,26 @@ import com.aptopayments.core.repository.transaction.local.entities.TransactionLo
 private const val DATABASE_NAME = "local_db"
 private const val DB_VERSION = 12
 
-@Database(entities = arrayOf(
+@Database(entities = [
         CardLocalEntity::class,
         TransactionLocalEntity::class,
         CardBalanceLocalEntity::class,
         BalanceLocalEntity::class
-), version = DB_VERSION, exportSchema = false)
+], version = DB_VERSION, exportSchema = false)
 @TypeConverters(
         Converters::class,
         CardLocalEntity.Converters::class,
         TransactionLocalEntity.Converters::class,
         BalanceLocalEntity.Converters::class
 )
-abstract class LocalDB : RoomDatabase() {
+internal abstract class LocalDB : RoomDatabase() {
     abstract fun cardLocalDao(): CardLocalDao
     abstract fun cardBalanceLocalDao(): CardBalanceLocalDao
     abstract fun transactionLocalDao(): TransactionLocalDao
     abstract fun balanceLocalDao(): BalanceLocalDao
 }
 
-object DataBaseProvider {
+internal object DataBaseProvider {
 
     private var cacheDB: LocalDB? = null
 

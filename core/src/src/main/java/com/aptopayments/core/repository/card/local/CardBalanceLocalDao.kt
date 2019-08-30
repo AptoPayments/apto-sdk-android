@@ -6,7 +6,7 @@ import androidx.room.Query
 import com.aptopayments.core.repository.card.local.entities.CardBalanceLocalEntity
 
 @Dao
-interface CardBalanceLocalDao {
+internal interface CardBalanceLocalDao {
 
     @Insert
     fun saveCardBalance(cardBalanceLocalEntity: CardBalanceLocalEntity)

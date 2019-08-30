@@ -26,7 +26,6 @@ class IssueCardUseCaseTest : UnitTest() {
     private val params = IssueCardUseCase.Params(
             cardProductId = "card_product_id",
             credential = OAuthCredential(oauthToken = "token", refreshToken = "refresh_token"),
-            useBalanceV2 = true,
             additionalFields = null,
             initialFundingSourceId = null)
 
@@ -42,14 +41,14 @@ class IssueCardUseCaseTest : UnitTest() {
         sut.run(params)
 
         // Then
-        verify(cardRepository).issueCard(params.cardProductId, params.credential, params.useBalanceV2,
+        verify(cardRepository).issueCard(params.cardProductId, params.credential,
                 params.additionalFields, params.initialFundingSourceId)
     }
 
     @Test
     fun `repository return success sut return success`() {
         // Given
-        given { cardRepository.issueCard(params.cardProductId, params.credential, params.useBalanceV2,
+        given { cardRepository.issueCard(params.cardProductId, params.credential,
                 params.additionalFields, params.initialFundingSourceId)
         }.willReturn { Either.Right(TestDataProvider.provideCard()) }
 
@@ -65,7 +64,7 @@ class IssueCardUseCaseTest : UnitTest() {
     @Test
     fun `repository return failure sut return failure`() {
         // Given
-        given { cardRepository.issueCard(params.cardProductId, params.credential, params.useBalanceV2,
+        given { cardRepository.issueCard(params.cardProductId, params.credential,
                 params.additionalFields, params.initialFundingSourceId)
         }.willReturn { Either.Left(ServerError(errorCode = null)) }
 

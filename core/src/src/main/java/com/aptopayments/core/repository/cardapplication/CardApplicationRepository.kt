@@ -83,8 +83,7 @@ internal interface CardApplicationRepository : BaseRepository {
             if (networkHandler.isConnected != true) {
                 return Either.Left(Failure.NetworkConnection)
             }
-            val useBalanceV2 = if (AptoPlatform.cardOptions.useBalancesV2()) "v2" else "v1"
-            return request(cardApplicationService.issueCard(applicationId, useBalanceV2), { it.toCard() }, CardEntity())
+            return request(cardApplicationService.issueCard(applicationId), { it.toCard() }, CardEntity())
         }
     }
 }

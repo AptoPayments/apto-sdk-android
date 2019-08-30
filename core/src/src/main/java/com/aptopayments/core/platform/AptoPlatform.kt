@@ -226,7 +226,6 @@ object AptoPlatform : AptoPlatformProtocol {
                     IssueCardUseCase.Params(
                             cardProductId = cardProductId,
                             credential = credential,
-                            useBalanceV2 = cardOptions.useBalancesV2(),
                             additionalFields = additionalFields,
                             initialFundingSourceId = initialFundingSourceId)
     )

@@ -50,13 +50,12 @@ internal class CardApplicationService constructor(apiCatalog: ApiCatalog) : Base
                     )
             )
 
-    fun issueCard(applicationId: String, balanceVersion: String) =
+    fun issueCard(applicationId: String) =
             cardApplicationApi.issueCard(
                     ApiCatalog.apiKey,
                     userToken = authorizationHeader(userSessionRepository.userToken),
                     request = IssueCardRequest(
-                            applicationId = applicationId,
-                            balanceVersion = balanceVersion
+                            applicationId = applicationId
                     )
             )
 

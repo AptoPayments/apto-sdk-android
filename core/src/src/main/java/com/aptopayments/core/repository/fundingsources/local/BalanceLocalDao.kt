@@ -6,7 +6,7 @@ import androidx.room.Query
 import com.aptopayments.core.repository.fundingsources.local.entities.BalanceLocalEntity
 
 @Dao
-interface BalanceLocalDao {
+internal interface BalanceLocalDao {
 
     @Insert
     fun saveBalances(balances: List<BalanceLocalEntity>)

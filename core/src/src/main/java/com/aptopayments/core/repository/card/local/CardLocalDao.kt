@@ -6,7 +6,7 @@ import androidx.room.Query
 import com.aptopayments.core.repository.card.local.entities.CardLocalEntity
 
 @Dao
-interface CardLocalDao {
+internal interface CardLocalDao {
 
     @Insert
     fun saveCard(cardLocalEntity: CardLocalEntity)

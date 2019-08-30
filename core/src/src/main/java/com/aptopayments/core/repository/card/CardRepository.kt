@@ -32,7 +32,7 @@ import java.lang.reflect.Modifier
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal interface CardRepository : BaseRepository {
-    fun issueCard(cardProductId: String, credential: OAuthCredential?, useBalanceV2: Boolean,
+    fun issueCard(cardProductId: String, credential: OAuthCredential?,
                   additionalFields: Map<String, Any>?, initialFundingSourceId: String?): Either<Failure, Card>
     fun getCard(params: GetCardParams): Either<Failure, Card>
     fun getCardDetails(cardId: String): Either<Failure, CardDetails>
@@ -66,7 +66,7 @@ internal interface CardRepository : BaseRepository {
             userSessionRepository.unsubscribeSessionInvalidListener(this)
         }
 
-        override fun issueCard(cardProductId: String, credential: OAuthCredential?, useBalanceV2: Boolean,
+        override fun issueCard(cardProductId: String, credential: OAuthCredential?,
                                additionalFields: Map<String, Any>?, initialFundingSourceId: String?) =
                 when (networkHandler.isConnected) {
                     true -> {
@@ -78,7 +78,6 @@ internal interface CardRepository : BaseRepository {
                         }
                         val issueCardRequest = IssueCardRequest(
                                 cardProductId = cardProductId,
-                                balanceVersion = if (useBalanceV2) "v2" else "v1",
                                 oAuthCredentialRequest = credentialRequest,
                                 additionalFields = additionalFields,
                                 initialFundingSourceId = initialFundingSourceId

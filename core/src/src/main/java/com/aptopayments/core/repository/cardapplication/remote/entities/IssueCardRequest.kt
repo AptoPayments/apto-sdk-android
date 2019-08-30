@@ -6,9 +6,6 @@ import java.io.Serializable
 data class IssueCardRequest(
 
         @SerializedName("application_id")
-        val applicationId: String,
-
-        @SerializedName("balance_version")
-        val balanceVersion: String
+        val applicationId: String
 
 ) : Serializable

@@ -6,7 +6,7 @@ import androidx.room.Query
 import com.aptopayments.core.repository.transaction.local.entities.TransactionLocalEntity
 
 @Dao
-interface TransactionLocalDao {
+internal interface TransactionLocalDao {
 
     @Insert
     fun saveTransactions(transactions: List<TransactionLocalEntity>)

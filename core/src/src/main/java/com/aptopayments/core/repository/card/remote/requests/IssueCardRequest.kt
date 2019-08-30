@@ -13,9 +13,6 @@ data class IssueCardRequest(
         @SerializedName("card_product_id")
         val cardProductId: String,
 
-        @SerializedName("balance_version")
-        val balanceVersion: String,
-
         @SerializedName("balance_store")
         val oAuthCredentialRequest: OAuthCredentialRequest? = null,
 
