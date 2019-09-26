@@ -24,7 +24,9 @@ class TestDataProvider {
                 url = URL("http://www.google.es"),
                 status = OAuthAttemptStatus.PENDING,
                 userData = DataPointList(),
-                tokenId = ""
+                tokenId = "",
+                error = null,
+                errorMessage = null
         )
 
         fun provideContextConfiguration() = ContextConfiguration(

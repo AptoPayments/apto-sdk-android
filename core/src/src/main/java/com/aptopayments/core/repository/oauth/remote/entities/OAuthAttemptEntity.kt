@@ -23,7 +23,13 @@ internal data class OAuthAttemptEntity(
         val tokenId: String = "",
 
         @SerializedName("user_data")
-        val userData: ListEntity<DataPointEntity>? = null
+        val userData: ListEntity<DataPointEntity>? = null,
+
+        @SerializedName("error")
+        val error: String? = null,
+
+        @SerializedName("error_message")
+        val errorMessage: String? = null
 
 ) {
     fun toOAuthAttempt() = OAuthAttempt(
@@ -31,7 +37,9 @@ internal data class OAuthAttemptEntity(
             status = parseOAuthAttemptStatus(status),
             url = parseURL(url),
             tokenId = tokenId,
-            userData = if (userData?.data?.isEmpty() == false) DataPointList(userData.data?.map { it.toDataPoint() }) else null
+            userData = if (userData?.data?.isEmpty() == false) DataPointList(userData.data?.map { it.toDataPoint() }) else null,
+            error = error,
+            errorMessage = errorMessage
     )
 
     private fun parseOAuthAttemptStatus(status: String): OAuthAttemptStatus {

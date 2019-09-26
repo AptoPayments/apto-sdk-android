@@ -67,7 +67,9 @@ class OAuthConnectRepositoryTest : UnitTest() {
                 status = OAuthAttemptStatus.PENDING,
                 url = null,
                 userData = null,
-                tokenId = "")
+                tokenId = "",
+                error = null,
+                errorMessage = null)
         )
 
         verify(service).startOAuthAuthentication(allowedBalanceType = allowedBalanceType)
