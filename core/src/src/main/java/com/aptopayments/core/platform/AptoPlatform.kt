@@ -266,10 +266,10 @@ object AptoPlatform : AptoPlatformProtocol {
             useCasesWrapper.getMonthlySpendingUseCase(GetMonthlySpendingUseCase.Params(
                     cardId = cardId, month = month, year = year)) { callback(it) }
 
-    override fun fetchCardFundingSources(cardId: String, forceRefresh: Boolean,
+    override fun fetchCardFundingSources(cardId: String, page: Int, rows: Int, forceRefresh: Boolean,
                                          callback: (Either<Failure, List<Balance>>) -> Unit) =
             useCasesWrapper.getFundingSourcesUseCase(GetFundingSourcesUseCase.Params(
-                    cardId, forceRefresh)) { callback(it) }
+                    cardId, forceRefresh, page, rows)) { callback(it) }
 
     override fun fetchCardFundingSource(cardId: String, forceRefresh: Boolean,
                                         callback: (Either<Failure, Balance>) -> Unit) =

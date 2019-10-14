@@ -13,7 +13,7 @@ import com.aptopayments.core.repository.fundingsources.remote.entities.BalanceEn
 
 internal interface FundingSourceRepository : BaseRepository {
 
-    fun getFundingSources(accountId: String, refresh: Boolean): Either<Failure, List<Balance>>
+    fun getFundingSources(accountId: String, refresh: Boolean, page: Int, rows: Int): Either<Failure, List<Balance>>
 
     class Network constructor(
             private val networkHandler: NetworkHandler,
@@ -21,21 +21,29 @@ internal interface FundingSourceRepository : BaseRepository {
             private val balanceLocalDao: BalanceLocalDao
     ) : BaseRepository.BaseRepositoryImpl(), FundingSourceRepository {
 
-        override fun getFundingSources(accountId: String, refresh: Boolean): Either<Failure, List<Balance>> {
+        override fun getFundingSources(accountId: String, refresh: Boolean, page: Int, rows: Int): Either<Failure, List<Balance>> {
             if (refresh) {
-                return getFundingSourcesFromRemoteAPI(accountId)
+                return getFundingSourcesFromRemoteAPI(
+                        accountId = accountId,
+                        page = page,
+                        rows = rows
+                )
             }
             else {
                 balanceLocalDao.getBalances()?.let { localBalances ->
                     return Either.Right(localBalances.map { it.toBalance() })
-                } ?: return getFundingSourcesFromRemoteAPI(accountId)
+                } ?: return getFundingSourcesFromRemoteAPI(
+                        accountId = accountId,
+                        page = page,
+                        rows = rows
+                )
             }
         }
 
-        private fun getFundingSourcesFromRemoteAPI(accountId: String): Either<Failure, List<Balance>> {
+        private fun getFundingSourcesFromRemoteAPI(accountId: String, page: Int, rows: Int): Either<Failure, List<Balance>> {
             return when (networkHandler.isConnected) {
                 true -> {
-                    request(service.getFundingSources(accountId), { listEntity: ListEntity<BalanceEntity> ->
+                    request(service.getFundingSources(accountId, page, rows), { listEntity: ListEntity<BalanceEntity> ->
                         val balanceList = listEntity.data?.map {
                             it.toBalance()
                         } ?: emptyList()

@@ -123,7 +123,7 @@ interface AptoPlatformProtocol {
                             callback: (Either<Failure, MonthlySpending>) -> Unit)
 
     // Card funding sources handling
-    fun fetchCardFundingSources(cardId: String, forceRefresh: Boolean,
+    fun fetchCardFundingSources(cardId: String, page: Int, rows: Int, forceRefresh: Boolean,
                                 callback: (Either<Failure, List<Balance>>) -> Unit)
 
     fun fetchCardFundingSource(cardId: String, forceRefresh: Boolean, callback: (Either<Failure, Balance>) -> Unit)

@@ -16,11 +16,14 @@ internal class GetFundingSourcesUseCase constructor(
 ) : UseCase<List<Balance>, GetFundingSourcesUseCase.Params>(networkHandler) {
 
     override fun run(params: Params): Either<Failure, List<Balance>> =
-            fundingSourceRepository.getFundingSources(params.cardId, params.refresh)
+            fundingSourceRepository.getFundingSources(params.cardId, params.refresh, params.page,
+                    params.rows)
 
     data class Params (
             val cardId: String,
-            val refresh: Boolean = true
+            val refresh: Boolean = true,
+            val page: Int,
+            val rows: Int
     )
 
 }
