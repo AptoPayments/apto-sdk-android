@@ -9,7 +9,6 @@ internal class StatsService constructor(apiCatalog: ApiCatalog) : BaseService() 
 
     fun getMonthlySpending(cardId: String, month: String, year: String) =
             statsApi.getMonthlySpending(
-                    apiKey = ApiCatalog.apiKey,
                     userToken = authorizationHeader(userSessionRepository.userToken),
                     cardId = cardId,
                     month = month,

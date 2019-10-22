@@ -13,10 +13,10 @@ private const val PREF_PUSH_TOKEN = "PREF_PUSH_TOKEN"
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal class PushTokenRepository constructor(
-        private val userSessionRepository: UserSessionRepository,
-        private var registerPushDeviceUseCase: RegisterPushDeviceUseCase,
-        private var unregisterPushDeviceUseCase: UnregisterPushDeviceUseCase,
-        val context: Context
+    private val userSessionRepository: UserSessionRepository,
+    private val registerPushDeviceUseCase: RegisterPushDeviceUseCase,
+    private val unregisterPushDeviceUseCase: UnregisterPushDeviceUseCase,
+    context: Context
 ) {
 
     private val sharedPref: SharedPreferences = context.getSharedPreferences(

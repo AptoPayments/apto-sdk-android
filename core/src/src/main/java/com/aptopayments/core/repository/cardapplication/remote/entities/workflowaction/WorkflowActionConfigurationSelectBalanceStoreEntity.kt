@@ -9,13 +9,16 @@ import com.google.gson.annotations.SerializedName
 internal class WorkflowActionConfigurationSelectBalanceStoreEntity (
 
         @SerializedName("allowed_balance_types")
-        var allowedBalanceTypes: ListEntity<AllowedBalanceTypeEntity>
+        var allowedBalanceTypes: ListEntity<AllowedBalanceTypeEntity>,
+
+        @SerializedName("action_asset")
+        var assetUrl: String? = null
 
 ) : WorkflowActionConfigurationEntity {
     override fun toWorkflowActionConfiguration(): WorkflowActionConfiguration {
         val parsedAllowedBalanceTypes = allowedBalanceTypes.data?.let {
             it.map { allowedBalanceType -> allowedBalanceType.toAllowedBalanceType() }
         }
-        return WorkflowActionConfigurationSelectBalanceStore(parsedAllowedBalanceTypes)
+        return WorkflowActionConfigurationSelectBalanceStore(parsedAllowedBalanceTypes, assetUrl)
     }
 }

@@ -1,7 +1,6 @@
 package com.aptopayments.core.repository.card.remote
 
 import com.aptopayments.core.network.ListEntity
-import com.aptopayments.core.network.X_API_KEY
 import com.aptopayments.core.network.X_AUTHORIZATION
 import com.aptopayments.core.repository.card.remote.entities.ActivatePhysicalCardEntity
 import com.aptopayments.core.repository.card.remote.entities.CardDetailsEntity
@@ -31,14 +30,12 @@ internal interface CardApi {
 
     @POST(ISSUE_CARD_PATH)
     fun issueCard(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Body request: IssueCardRequest
     ): Call<CardEntity>
 
     @GET(FINANCIAL_ACCOUNT_PATH)
     fun getCard(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(ACCOUNT_ID) accountID: String,
             @Query(SHOW_DETAILS) showDetails: Boolean
@@ -46,7 +43,6 @@ internal interface CardApi {
 
     @GET(FINANCIAL_ACCOUNT_PATH)
     fun getCardDetails(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(ACCOUNT_ID) accountID: String,
             @Query(SHOW_DETAILS) showDetails: Boolean
@@ -54,13 +50,11 @@ internal interface CardApi {
 
     @GET(FINANCIAL_ACCOUNTS_PATH)
     fun getCards(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String
     ): Call<ListEntity<CardEntity>>
 
     @POST(CHANGE_CARD_STATE_PATH)
     fun changeCardState(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(ACCOUNT_ID) accountID: String,
             @Path(ACTION) action: String
@@ -68,7 +62,6 @@ internal interface CardApi {
 
     @POST(ACTIVATE_PHYSICAL_CARD_PATH)
     fun activatePhysicalCard(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(ACCOUNT_ID) accountID: String,
             @Body request: ActivatePhysicalCardRequest
@@ -76,14 +69,12 @@ internal interface CardApi {
 
     @GET(FINANCIAL_ACCOUNT_BALANCE_PATH)
     fun getCardBalance(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(ACCOUNT_ID) accountID: String
     ): Call<BalanceEntity>
 
     @POST(FINANCIAL_ACCOUNT_BALANCE_PATH)
     fun setCardFundingSource(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(ACCOUNT_ID) accountID: String,
             @Body request: SetCardFundingSourceRequest
@@ -91,7 +82,6 @@ internal interface CardApi {
 
     @POST(USER_BALANCES_PATH)
     fun addCardBalance(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(ACCOUNT_ID) accountID: String,
             @Body request: AddCardBalanceRequest
@@ -99,7 +89,6 @@ internal interface CardApi {
 
     @POST(FINANCIAL_ACCOUNT_PIN_PATH)
     fun setPin(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(ACCOUNT_ID) accountID: String,
             @Body request: SetPinRequest

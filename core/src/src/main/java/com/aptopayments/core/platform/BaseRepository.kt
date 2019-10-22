@@ -52,6 +52,20 @@ internal interface BaseRepository : KoinComponent {
         }
     }
 
+    fun <T, R> request(call: Call<T>, transform: (T) -> R): Either<Failure, R> {
+        return try {
+            val response = call.execute()
+
+            when {
+                response.isSuccessful && response.body() != null -> Either.Right(transform(response.body()!!))
+                !response.isSuccessful -> Either.Left(handleError(response))
+                else -> Either.Left(Failure.ServerError(null))
+            }
+        } catch (exception: Throwable) {
+            Either.Left(Failure.ServerError(null))
+        }
+    }
+
     fun parseErrorBody(errorBody: ResponseBody?): Failure.ServerError {
         errorBody?.let {
             return getServerError(JsonParser().parse(errorBody.string()))

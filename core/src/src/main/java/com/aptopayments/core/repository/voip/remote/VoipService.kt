@@ -9,7 +9,6 @@ internal class VoipService constructor(apiCatalog: ApiCatalog) : BaseService() {
     private val voipApi by lazy { apiCatalog.api().create(VoipApi::class.java) }
 
     fun getTokens(getTokensRequest: GetTokensRequest) = voipApi.getTokens(
-            apiKey = ApiCatalog.apiKey,
             userToken = authorizationHeader(userSessionRepository.userToken),
             request = getTokensRequest
     )

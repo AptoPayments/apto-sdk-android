@@ -67,5 +67,7 @@ enum class Event(val event: String) {
     IssueCardInsufficientFunds("issue_card.issue_card.insufficient_funds"),
     IssueCardEmailSendsDisabled("issue_card.issue_card.email_sends_disabled"),
     IssueCardInsufficientApplicationLimit("issue_card.issue_card.insufficient_application_limit"),
-    IssueCardUnknownError("issue_card.issue_card.unknown_error")
+    IssueCardUnknownError("issue_card.issue_card.unknown_error"),
+    MonthlyStatementsReportStart("statements.report.start"),
+    MonthlyStatementsListStart("statements.list.start")
 }

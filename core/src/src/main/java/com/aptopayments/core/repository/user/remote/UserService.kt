@@ -17,43 +17,35 @@ internal class UserService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
     fun createUser(userData: DataPointList, custodianUid: String?): Call<UserEntity> {
         val request = CreateUserDataRequest.from(userData, custodianUid)
-        return userApi.createUser(
-                apiKey = ApiCatalog.apiKey,
-                request = request)
+        return userApi.createUser(request = request)
     }
 
     fun updateUser(userData: DataPointList): Call<UserEntity> {
         val request = UserDataRequest.from(userData)
         return userApi.updateUser(
-                apiKey = ApiCatalog.apiKey,
                 userToken = authorizationHeader(userSessionRepository.userToken),
                 request = request)
     }
 
     fun loginUser(loginUserRequest: LoginUserRequest): Call<UserEntity> =
             userApi.loginExistingUser(
-                    apiKey = ApiCatalog.apiKey,
                     request = loginUserRequest)
 
     fun registerPushDevice(pushDeviceRequest: PushDeviceRequest): Call<Unit> = userApi.registerPushDevice(
-            apiKey = ApiCatalog.apiKey,
             userToken = authorizationHeader(userSessionRepository.userToken),
             request = pushDeviceRequest)
 
     fun unregisterPushDevice(userToken: String, pushToken: String): Call<Unit> =
             userApi.unregisterPushDevice(
-                    apiKey = ApiCatalog.apiKey,
                     userToken = userToken,
                     pushToken = URLEncoder.encode(pushToken, CHARSET)
             )
 
     fun getNotificationPreferences(): Call<NotificationPreferencesEntity> = userApi.getNotificationPreferences(
-            apiKey = ApiCatalog.apiKey,
             userToken = authorizationHeader(userSessionRepository.userToken)
     )
 
     fun updateNotificationPreferences(notificationPreferencesRequest: NotificationPreferencesRequest): Call<Unit> = userApi.updateNotificationPreferences(
-            apiKey = ApiCatalog.apiKey,
             userToken = authorizationHeader(userSessionRepository.userToken),
             request = notificationPreferencesRequest
     )

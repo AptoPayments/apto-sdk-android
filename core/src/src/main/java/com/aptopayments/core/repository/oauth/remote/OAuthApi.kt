@@ -1,6 +1,5 @@
 package com.aptopayments.core.repository.oauth.remote
 
-import com.aptopayments.core.network.X_API_KEY
 import com.aptopayments.core.network.X_AUTHORIZATION
 import com.aptopayments.core.repository.oauth.remote.entities.OAuthAttemptEntity
 import com.aptopayments.core.repository.oauth.remote.entities.OAuthUserDataUpdateEntity
@@ -20,28 +19,24 @@ internal interface OAuthApi {
 
     @POST(START_OAUTH_PATH)
     fun startOAuthAuthentication(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Body request: StartOAuthAuthenticationRequest
     ): Call<OAuthAttemptEntity>
 
     @GET(GET_OAUTH_ATTEMPT)
     fun getOAuthAttemptStatus(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(ATTEMPT_ID) attemptId: String
     ): Call<OAuthAttemptEntity>
 
     @POST(SAVE_OAUTH_USER_DATA)
     fun saveOAuthUserData(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Body request: SaveOAuthUserDataRequest
     ): Call<OAuthUserDataUpdateEntity>
 
     @POST(RETRIEVE_OAUTH_USER_DATA)
     fun retrieveOAuthUserData(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Body request: RetrieveOAuthUserDataRequest
     ): Call<OAuthUserDataUpdateEntity>

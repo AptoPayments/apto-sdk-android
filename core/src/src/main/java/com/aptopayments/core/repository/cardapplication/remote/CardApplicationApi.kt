@@ -1,6 +1,5 @@
 package com.aptopayments.core.repository.cardapplication.remote
 
-import com.aptopayments.core.network.X_API_KEY
 import com.aptopayments.core.network.X_AUTHORIZATION
 import com.aptopayments.core.repository.card.remote.entities.CardEntity
 import com.aptopayments.core.repository.cardapplication.remote.entities.*
@@ -19,28 +18,24 @@ internal interface CardApplicationApi {
 
     @POST(NEW_CARD_APPLICATION_PATH)
     fun startCardApplication(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Body applicationRequest: NewCardApplicationRequest
     ): Call<CardApplicationEntity>
 
     @GET(GET_CARD_APPLICATION_PATH)
     fun getCardApplication(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(CARD_APPLICATION_ID) cardApplicationId: String
     ): Call<CardApplicationEntity>
 
     @DELETE(CANCEL_CARD_APPLICATION_PATH)
     fun cancelCardApplication(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(CARD_APPLICATION_ID) cardApplicationId: String
     ): Call<Unit>
 
     @POST(SELECT_BALANCE_STORE_PATH)
     fun setBalanceStore(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(CARD_APPLICATION_ID) cardApplicationId: String,
             @Body request: SelectBalanceStoreRequest
@@ -48,14 +43,12 @@ internal interface CardApplicationApi {
 
     @POST(ACCEPT_DISCLAIMER_PATH)
     fun acceptDisclaimer(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Body request: AcceptDisclaimerRequest
     ): Call<Unit>
 
     @POST(ISSUE_CARD_PATH)
     fun issueCard(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Body request: IssueCardRequest
     ): Call<CardEntity>

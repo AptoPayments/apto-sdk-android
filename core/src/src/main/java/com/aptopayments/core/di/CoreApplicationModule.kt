@@ -19,6 +19,8 @@ import com.aptopayments.core.repository.fundingsources.FundingSourceRepository
 import com.aptopayments.core.repository.fundingsources.remote.FundingSourcesService
 import com.aptopayments.core.repository.oauth.OAuthRepository
 import com.aptopayments.core.repository.oauth.remote.OAuthService
+import com.aptopayments.core.repository.statements.MonthlyStatementRepository
+import com.aptopayments.core.repository.statements.remote.MonthlyStatementService
 import com.aptopayments.core.repository.stats.StatsRepository
 import com.aptopayments.core.repository.stats.remote.StatsService
 import com.aptopayments.core.repository.transaction.TransactionRepository
@@ -97,6 +99,10 @@ internal val repositoryModule = module {
     ) }
     single { StatsService(apiCatalog = get()) }
     single<StatsRepository> { StatsRepository.Network(networkHandler = get(), service = get()) }
+    single { MonthlyStatementService(apiCatalog = get()) }
+    single<MonthlyStatementRepository> {
+        MonthlyStatementRepository.Network(networkHandler = get(), service = get())
+    }
     single { VoipService(apiCatalog = get()) }
     single<VoipRepository> { VoipRepository.Network(networkHandler = get(), service = get()) }
 }

@@ -13,28 +13,24 @@ internal class CardApplicationService constructor(apiCatalog: ApiCatalog) : Base
 
     fun startCardApplication(cardProductId: String) =
             cardApplicationApi.startCardApplication(
-                    ApiCatalog.apiKey,
                     userToken = authorizationHeader(userSessionRepository.userToken),
                     applicationRequest = NewCardApplicationRequest(cardProductId = cardProductId)
             )
 
     fun getCardApplication(cardApplicationId: String) =
             cardApplicationApi.getCardApplication(
-                    ApiCatalog.apiKey,
                     userToken = authorizationHeader(userSessionRepository.userToken),
                     cardApplicationId = cardApplicationId
             )
 
     internal  fun cancelCardApplication(cardApplicationId: String) =
             cardApplicationApi.cancelCardApplication(
-                    ApiCatalog.apiKey,
                     userToken = authorizationHeader(userSessionRepository.userToken),
                     cardApplicationId = cardApplicationId
             )
 
     fun setBalanceStore(cardApplicationId: String, tokenId: String) =
             cardApplicationApi.setBalanceStore(
-                    ApiCatalog.apiKey,
                     userToken = authorizationHeader(userSessionRepository.userToken),
                     cardApplicationId = cardApplicationId,
                     request = SelectBalanceStoreRequest(tokenId)
@@ -42,7 +38,6 @@ internal class CardApplicationService constructor(apiCatalog: ApiCatalog) : Base
 
     fun acceptDisclaimer(workflowObjectId: String, actionId: String) =
             cardApplicationApi.acceptDisclaimer(
-                    ApiCatalog.apiKey,
                     userToken = authorizationHeader(userSessionRepository.userToken),
                     request = AcceptDisclaimerRequest(
                             workflowObjectId = workflowObjectId,
@@ -52,11 +47,9 @@ internal class CardApplicationService constructor(apiCatalog: ApiCatalog) : Base
 
     fun issueCard(applicationId: String) =
             cardApplicationApi.issueCard(
-                    ApiCatalog.apiKey,
                     userToken = authorizationHeader(userSessionRepository.userToken),
                     request = IssueCardRequest(
                             applicationId = applicationId
                     )
             )
-
 }

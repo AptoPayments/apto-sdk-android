@@ -1,6 +1,5 @@
 package com.aptopayments.core.repository.stats.remote
 
-import com.aptopayments.core.network.X_API_KEY
 import com.aptopayments.core.network.X_AUTHORIZATION
 import com.aptopayments.core.repository.stats.remote.entities.MonthlySpendingEntity
 import retrofit2.Call
@@ -18,7 +17,6 @@ internal interface StatsApi {
 
     @GET(MONTHLY_SPENDING_STATS_PATH)
     fun getMonthlySpending(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Path(ACCOUNT_ID) cardId: String,
             @Query(MONTH) month: String,

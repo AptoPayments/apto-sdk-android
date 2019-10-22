@@ -13,6 +13,8 @@ import com.aptopayments.core.repository.oauth.usecases.GetOAuthAttemptStatusUseC
 import com.aptopayments.core.repository.oauth.usecases.RetrieveOAuthUserDataUseCase
 import com.aptopayments.core.repository.oauth.usecases.SaveOAuthUserDataUseCase
 import com.aptopayments.core.repository.oauth.usecases.StartOAuthAuthenticationUseCase
+import com.aptopayments.core.repository.statements.usecases.GetMonthlyStatementPeriodUseCase
+import com.aptopayments.core.repository.statements.usecases.GetMonthlyStatementUseCase
 import com.aptopayments.core.repository.stats.usecases.ClearMonthlySpendingCacheUseCase
 import com.aptopayments.core.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.core.repository.transaction.usecases.GetTransactionsUseCase
@@ -74,4 +76,6 @@ internal val useCasesModule = module {
     factory { GetNotificationPreferencesUseCase(repository = get(), networkHandler = get()) }
     factory { UpdateNotificationPreferencesUseCase(repository = get(), networkHandler = get()) }
     factory { SetupVoipCallUseCase(repository = get(), networkHandler = get()) }
+    factory { GetMonthlyStatementUseCase(get(), get()) }
+    factory { GetMonthlyStatementPeriodUseCase(get(), get()) }
 }

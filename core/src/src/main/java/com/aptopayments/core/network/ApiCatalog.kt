@@ -40,18 +40,18 @@ class ApiCatalog {
 
     fun api(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(environment.baseUrl)
-                .client(createClient())
-                .addConverterFactory(getConverterFactory())
-                .build()
+            .baseUrl(environment.baseUrl)
+            .client(createClient())
+            .addConverterFactory(getConverterFactory())
+            .build()
     }
 
     fun vaultApi(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(environment.vaultBaseUrl)
-                .client(createClient())
-                .addConverterFactory(getConverterFactory())
-                .build()
+            .baseUrl(environment.vaultBaseUrl)
+            .client(createClient())
+            .addConverterFactory(getConverterFactory())
+            .build()
     }
 
     private fun getConverterFactory(): GsonConverterFactory {
@@ -60,24 +60,34 @@ class ApiCatalog {
 
     private fun createClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
+        addInterceptors(okHttpClientBuilder)
+        addCertificatePinner(okHttpClientBuilder)
+        disableConnectingPool(okHttpClientBuilder)
+        manageCache(okHttpClientBuilder)
+        addFixedHeaders(okHttpClientBuilder)
+        return okHttpClientBuilder.build()
+    }
+
+    private fun addInterceptors(okHttpClientBuilder: OkHttpClient.Builder) {
+        addLoggingInterceptor(okHttpClientBuilder)
+        addApiKeyInterceptor(okHttpClientBuilder)
+    }
+
+    private fun addLoggingInterceptor(okHttpClientBuilder: OkHttpClient.Builder) {
         if (BuildConfig.DEBUG) {
             val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             okHttpClientBuilder.addInterceptor(loggingInterceptor)
         }
-        val certificatePinner = CertificatePinner.Builder()
-                .add(SSL_API_HOST, SHA_256_PREFIX + SSL_FINGERPRINT_ONE)
-                .add(SSL_API_HOST, SHA_256_PREFIX + SSL_FINGERPRINT_TWO)
-                .add(SSL_API_HOST, SHA_256_PREFIX + SSL_FINGERPRINT_THREE)
-                .build()
-        okHttpClientBuilder.certificatePinner(certificatePinner)
-        // Disabling the ConnectionPool to avoid SocketTimeOut Exceptions related to network restarts
-        // Source: https://github.com/square/okhttp/issues/3146#issuecomment-311158567
-        okHttpClientBuilder.connectionPool(ConnectionPool(0, 1, TimeUnit.NANOSECONDS))
-        // Cache (Etag)
-        AptoPlatform.cacheDir?.let { cacheDir ->
-            okHttpClientBuilder.cache(Cache(cacheDir, CACHE_SIZE_BYTES))
+    }
+
+    private fun addApiKeyInterceptor(okHttpClientBuilder: OkHttpClient.Builder) {
+        okHttpClientBuilder.addInterceptor { chain ->
+            val newRequest = chain.request().newBuilder().addHeader(X_API_KEY, apiKey).build()
+            chain.proceed(newRequest)
         }
-        // Fixed headers
+    }
+
+    private fun addFixedHeaders(okHttpClientBuilder: OkHttpClient.Builder) {
         okHttpClientBuilder.addInterceptor { chain ->
             val newRequest = chain.request().newBuilder().apply {
                 addHeader(X_SDK_VERSION_HEADER, BuildConfig.VERSION_NAME)
@@ -88,7 +98,27 @@ class ApiCatalog {
             }.build()
             chain.proceed(newRequest)
         }
-        return okHttpClientBuilder.build()
+    }
+
+    private fun manageCache(okHttpClientBuilder: OkHttpClient.Builder) {
+        AptoPlatform.cacheDir?.let { cacheDir ->
+            okHttpClientBuilder.cache(Cache(cacheDir, CACHE_SIZE_BYTES))
+        }
+    }
+
+    private fun disableConnectingPool(okHttpClientBuilder: OkHttpClient.Builder) {
+        // Disabling the ConnectionPool to avoid SocketTimeOut Exceptions related to network restarts
+        // Source: https://github.com/square/okhttp/issues/3146#issuecomment-311158567
+        okHttpClientBuilder.connectionPool(ConnectionPool(0, 1, TimeUnit.NANOSECONDS))
+    }
+
+    private fun addCertificatePinner(okHttpClientBuilder: OkHttpClient.Builder) {
+        val certificatePinner = CertificatePinner.Builder()
+            .add(SSL_API_HOST, SHA_256_PREFIX + SSL_FINGERPRINT_ONE)
+            .add(SSL_API_HOST, SHA_256_PREFIX + SSL_FINGERPRINT_TWO)
+            .add(SSL_API_HOST, SHA_256_PREFIX + SSL_FINGERPRINT_THREE)
+            .build()
+        okHttpClientBuilder.certificatePinner(certificatePinner)
     }
 
     companion object {
@@ -104,8 +134,10 @@ class ApiCatalog {
             return gson ?: run {
                 val gsonBuilder = GsonBuilder()
                 gsonBuilder.registerTypeAdapter(DataPointEntity::class.java, DataPointParser())
-                gsonBuilder.registerTypeAdapter(WorkflowActionConfigurationEntity::class.java,
-                        WorkflowActionConfigurationParser())
+                gsonBuilder.registerTypeAdapter(
+                    WorkflowActionConfigurationEntity::class.java,
+                    WorkflowActionConfigurationParser()
+                )
                 gsonBuilder.registerTypeAdapter(ContentEntity::class.java, ContentParser())
                 val gson = gsonBuilder.serializeNulls().create()
                 this.gson = gson

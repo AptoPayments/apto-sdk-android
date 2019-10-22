@@ -7,12 +7,14 @@ internal class ConfigService constructor(apiCatalog: ApiCatalog) : BaseService()
 
     private val configApi by lazy { apiCatalog.api().create(ConfigApi::class.java) }
 
-    fun getContextConfiguration() = configApi.getContextConfiguration(ApiCatalog.apiKey)
+    fun getContextConfiguration() = configApi.getContextConfiguration()
+
     fun getCardProduct(cardProductId: String) = configApi.getCardProduct(
-            apiKey = ApiCatalog.apiKey,
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            cardProductId = cardProductId)
+        userToken = authorizationHeader(userSessionRepository.userToken),
+        cardProductId = cardProductId
+    )
+
     fun getCardProducts() = configApi.getCardProducts(
-            apiKey = ApiCatalog.apiKey,
-            userToken = authorizationHeader(userSessionRepository.userToken))
+        userToken = authorizationHeader(userSessionRepository.userToken)
+    )
 }

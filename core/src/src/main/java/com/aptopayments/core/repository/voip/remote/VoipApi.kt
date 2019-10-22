@@ -1,6 +1,5 @@
 package com.aptopayments.core.repository.voip.remote
 
-import com.aptopayments.core.network.X_API_KEY
 import com.aptopayments.core.network.X_AUTHORIZATION
 import com.aptopayments.core.repository.voip.remote.entities.VoipCallEntity
 import com.aptopayments.core.repository.voip.remote.requests.GetTokensRequest
@@ -15,7 +14,6 @@ internal interface VoipApi {
 
     @POST(VOIP_AUTH_PATH)
     fun getTokens(
-            @Header(X_API_KEY) apiKey: String,
             @Header(X_AUTHORIZATION) userToken: String,
             @Body request: GetTokensRequest
     ): Call<VoipCallEntity>

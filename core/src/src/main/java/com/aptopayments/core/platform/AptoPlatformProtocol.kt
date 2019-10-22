@@ -9,6 +9,8 @@ import com.aptopayments.core.data.fundingsources.Balance
 import com.aptopayments.core.data.oauth.OAuthAttempt
 import com.aptopayments.core.data.oauth.OAuthCredential
 import com.aptopayments.core.data.oauth.OAuthUserDataUpdate
+import com.aptopayments.core.data.statements.MonthlyStatement
+import com.aptopayments.core.data.statements.MonthlyStatementPeriod
 import com.aptopayments.core.data.stats.MonthlySpending
 import com.aptopayments.core.data.transaction.Transaction
 import com.aptopayments.core.data.user.DataPointList
@@ -121,6 +123,10 @@ interface AptoPlatformProtocol {
 
     fun cardMonthlySpending(cardId: String, month: String, year: String,
                             callback: (Either<Failure, MonthlySpending>) -> Unit)
+
+    fun fetchMonthlyStatement(month: Int, year: Int, callback: (Either<Failure, MonthlyStatement>) -> Unit)
+
+    fun fetchMonthlyStatementPeriod(callback: (Either<Failure, MonthlyStatementPeriod>) -> Unit)
 
     // Card funding sources handling
     fun fetchCardFundingSources(cardId: String, page: Int, rows: Int, forceRefresh: Boolean,

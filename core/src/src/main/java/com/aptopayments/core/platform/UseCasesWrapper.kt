@@ -13,6 +13,8 @@ import com.aptopayments.core.repository.oauth.usecases.GetOAuthAttemptStatusUseC
 import com.aptopayments.core.repository.oauth.usecases.RetrieveOAuthUserDataUseCase
 import com.aptopayments.core.repository.oauth.usecases.SaveOAuthUserDataUseCase
 import com.aptopayments.core.repository.oauth.usecases.StartOAuthAuthenticationUseCase
+import com.aptopayments.core.repository.statements.usecases.GetMonthlyStatementPeriodUseCase
+import com.aptopayments.core.repository.statements.usecases.GetMonthlyStatementUseCase
 import com.aptopayments.core.repository.stats.usecases.ClearMonthlySpendingCacheUseCase
 import com.aptopayments.core.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.core.repository.transaction.usecases.GetTransactionsUseCase
@@ -58,6 +60,8 @@ internal class UseCasesWrapper : KoinComponent {
     val setPinUseCase: SetPinUseCase by inject()
     val getTransactionsUseCase: GetTransactionsUseCase by inject()
     val getMonthlySpendingUseCase: GetMonthlySpendingUseCase by inject()
+    val getMonthlyStatementUseCase: GetMonthlyStatementUseCase by inject()
+    val getMonthlyStatementPeriodUseCase: GetMonthlyStatementPeriodUseCase by inject()
     val clearMonthlySpendingCacheUseCase: ClearMonthlySpendingCacheUseCase by inject()
     val getFundingSourcesUseCase: GetFundingSourcesUseCase by inject()
     val getCardBalanceUseCase: GetCardBalanceUseCase by inject()

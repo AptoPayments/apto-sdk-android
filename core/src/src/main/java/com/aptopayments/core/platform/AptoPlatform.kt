@@ -12,6 +12,8 @@ import com.aptopayments.core.data.fundingsources.Balance
 import com.aptopayments.core.data.oauth.OAuthAttempt
 import com.aptopayments.core.data.oauth.OAuthCredential
 import com.aptopayments.core.data.oauth.OAuthUserDataUpdate
+import com.aptopayments.core.data.statements.MonthlyStatement
+import com.aptopayments.core.data.statements.MonthlyStatementPeriod
 import com.aptopayments.core.data.stats.MonthlySpending
 import com.aptopayments.core.data.transaction.Transaction
 import com.aptopayments.core.data.user.DataPointList
@@ -39,6 +41,8 @@ import com.aptopayments.core.repository.config.usecases.GetCardProductParams
 import com.aptopayments.core.repository.fundingsources.remote.usecases.GetFundingSourcesUseCase
 import com.aptopayments.core.repository.oauth.usecases.RetrieveOAuthUserDataUseCase
 import com.aptopayments.core.repository.oauth.usecases.SaveOAuthUserDataUseCase
+import com.aptopayments.core.repository.statements.usecases.GetMonthlyStatementPeriodUseCase
+import com.aptopayments.core.repository.statements.usecases.GetMonthlyStatementUseCase
 import com.aptopayments.core.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.core.repository.transaction.TransactionListFilters
 import com.aptopayments.core.repository.transaction.usecases.GetTransactionsUseCase
@@ -64,7 +68,7 @@ object AptoPlatform : AptoPlatformProtocol {
 
     private var weakDelegate: WeakReference<AptoPlatformDelegate?>? = null
     private lateinit var networkHandlerWrapper: NetworkHandlerWrapper
-    private lateinit var pushTokenRepositoryWrapper: PushTokenRepositoryWrapper
+    private lateinit var pushTokenRepository: PushTokenRepository
     private lateinit var koin: Koin
     @VisibleForTesting(otherwise = Modifier.PRIVATE)
     internal lateinit var useCasesWrapper: UseCasesWrapper
@@ -80,7 +84,7 @@ object AptoPlatform : AptoPlatformProtocol {
         recreateAppComponent(application)
         AndroidThreeTen.init(application)
         networkHandlerWrapper = NetworkHandlerWrapper()
-        pushTokenRepositoryWrapper = PushTokenRepositoryWrapper()
+        pushTokenRepository = PushTokenRepositoryWrapper().pushTokenRepository
         useCasesWrapper = UseCasesWrapper()
 
         ApiCatalog.set(apiKey, environment)
@@ -103,7 +107,7 @@ object AptoPlatform : AptoPlatformProtocol {
     }
 
     fun registerFirebaseToken(firebaseToken: String) {
-        pushTokenRepositoryWrapper.pushTokenRepository.pushToken = firebaseToken
+        PushTokenRepositoryWrapper().pushTokenRepository.pushToken = firebaseToken
     }
 
     fun recreateAppComponent(application: Application) {
@@ -265,6 +269,16 @@ object AptoPlatform : AptoPlatformProtocol {
                                      callback: (Either<Failure, MonthlySpending>) -> Unit) =
             useCasesWrapper.getMonthlySpendingUseCase(GetMonthlySpendingUseCase.Params(
                     cardId = cardId, month = month, year = year)) { callback(it) }
+
+    override fun fetchMonthlyStatement(month: Int, year: Int,
+        callback: (Either<Failure, MonthlyStatement>) -> Unit) {
+        useCasesWrapper.getMonthlyStatementUseCase(GetMonthlyStatementUseCase.Params(month, year)) { callback(it) }
+    }
+
+    override fun fetchMonthlyStatementPeriod(
+        callback: (Either<Failure, MonthlyStatementPeriod>) -> Unit
+    ) = useCasesWrapper.getMonthlyStatementPeriodUseCase(Unit) { callback(it) }
+
 
     override fun fetchCardFundingSources(cardId: String, page: Int, rows: Int, forceRefresh: Boolean,
                                          callback: (Either<Failure, List<Balance>>) -> Unit) =

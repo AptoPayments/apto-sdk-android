@@ -25,14 +25,12 @@ internal class OAuthService constructor(apiCatalog: ApiCatalog) : BaseService() 
                 redirectUrl = OAUTH_FINISHED_URL
         )
         return oauthConnectApi.startOAuthAuthentication(
-                apiKey = ApiCatalog.apiKey,
                 userToken = authorizationHeader(userSessionRepository.userToken),
                 request = request)
     }
 
     fun getOAuthAttemptStatus(attemptId: String): Call<OAuthAttemptEntity> =
             oauthConnectApi.getOAuthAttemptStatus(
-                    apiKey = ApiCatalog.apiKey,
                     userToken = authorizationHeader(userSessionRepository.userToken),
                     attemptId = attemptId)
 
@@ -44,7 +42,6 @@ internal class OAuthService constructor(apiCatalog: ApiCatalog) : BaseService() 
                 userData = serializeDataPointList(dataPointList)
         )
         return oauthConnectApi.saveOAuthUserData(
-                apiKey = ApiCatalog.apiKey,
                 userToken = authorizationHeader(userSessionRepository.userToken),
                 request = request)
     }
@@ -56,7 +53,6 @@ internal class OAuthService constructor(apiCatalog: ApiCatalog) : BaseService() 
                 tokenId = tokenId
         )
         return oauthConnectApi.retrieveOAuthUserData(
-                apiKey = ApiCatalog.apiKey,
                 userToken = authorizationHeader(userSessionRepository.userToken),
                 request = request)
     }

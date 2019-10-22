@@ -10,7 +10,6 @@ internal class TransactionService constructor(apiCatalog: ApiCatalog) : BaseServ
 
     fun getTransactions(cardId: String, filters: TransactionListFilters) =
             transactionApi.getTransactions(
-                    apiKey = ApiCatalog.apiKey,
                     userToken = authorizationHeader(userSessionRepository.userToken),
                     cardId = cardId,
                     options = filters.toOptionsMap(),
