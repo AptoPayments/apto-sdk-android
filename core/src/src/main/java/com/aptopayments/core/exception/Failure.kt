@@ -58,19 +58,30 @@ private const val STATEMENT_GENERATING_ERROR = 200051
  * Every feature specific failure should extend [FeatureFailure] class.
  */
 sealed class Failure {
-    object NetworkConnection : Failure()
-    object MaintenanceMode : Failure()
+    fun errorMessage(context: Context?): String = context?.let { getErrorKey().localized(context) } ?: ""
+
+    protected open fun getErrorKey() = ""
+
+    object NetworkConnection : Failure() {
+        override fun getErrorKey() = "no_network_description"
+    }
+
+    object MaintenanceMode : Failure() {
+        override fun getErrorKey() = "maintenance_description"
+    }
+
     object DeprecatedSDK : Failure()
-    object UserSessionExpired : Failure()
+    object UserSessionExpired : Failure() {
+        override fun getErrorKey() = "session_expired_error"
+    }
+
     class ServerError(val errorCode: Int?) : Failure() {
         val isErrorBalanceValidationsEmailSendsDisabled: Boolean = errorCode == BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED
         val isErrorBalanceValidationsInsufficientApplicationLimit: Boolean =
             errorCode == BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT
         val isErrorInsufficientFunds: Boolean = errorCode == INSUFFICIENT_FUNDS
 
-        fun errorMessage(context: Context) = getErrorString().localized(context)
-
-        private fun getErrorString(): String {
+        override fun getErrorKey(): String {
             return when (this.errorCode) {
                 UNKNOWN_SESSION, INVALID_SESSION -> "error.transport.invalid_session"
                 SESSION_EXPIRED -> "error.transport.session_expired"
@@ -122,5 +133,7 @@ sealed class Failure {
     }
 
     /** * Extend this class for feature specific failures.*/
-    abstract class FeatureFailure(val message: String = "") : Failure()
+    abstract class FeatureFailure(private val message: String = "") : Failure() {
+        override fun getErrorKey() = message
+    }
 }
