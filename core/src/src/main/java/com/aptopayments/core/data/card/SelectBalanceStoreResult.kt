@@ -1,6 +1,5 @@
 package com.aptopayments.core.data.card
 
-import android.content.Context
 import com.aptopayments.core.analytics.Event
 import com.aptopayments.core.data.card.SelectBalanceStoreResult.Type.VALID
 import com.aptopayments.core.extension.localized
@@ -33,28 +32,28 @@ data class SelectBalanceStoreResult (
 
     enum class Type { VALID, INVALID }
 
-    fun errorMessage(context: Context): String {
-        customErrorMessage?.let { return it.localized(context) }
+    fun errorMessage(): String {
+        customErrorMessage?.let { return it.localized() }
         return when (errorCode) {
-            COUNTRY_UNSUPPORTED -> "select_balance_store.login.error_wrong_country.message".localized(context)
-            REGION_UNSUPPORTED -> "select_balance_store.login.error_wrong_region.message".localized(context)
-            ADDRESS_UNVERIFIED -> "select_balance_store.login.error_unverified_address.message".localized(context)
-            CURRENCY_UNSUPPORTED -> "select_balance_store.login.error_unsupported_currency.message".localized(context)
-            CANNOT_CAPTURE_FUNDS -> "select_balance_store.login.error_cant_capture_funds.message".localized(context)
-            INSUFFICIENT_FUNDS -> "select_balance_store.login.error_insufficient_funds.message".localized(context)
-            BALANCE_NOT_FOUND -> "select_balance_store.login.error_balance_not_found.message".localized(context)
-            ACCESS_TOKEN_INVALID -> "select_balance_store.login.error_access_token_invalid.message".localized(context)
-            SCOPES_REQUIRED -> "select_balance_store.login.error_scopes_required.message".localized(context)
-            LEGAL_NAME_MISSING -> "select_balance_store.login.error_missing_legal_name.message".localized(context)
-            DATE_OF_BIRTH_MISSING -> "select_balance_store.login.error_missing_birthdate.message".localized(context)
-            DATE_OF_BIRTH_ERROR -> "select_balance_store.login.error_wrong_birthdate.message".localized(context)
-            ADDRESS_MISSING -> "select_balance_store.login.error_missing_address.message".localized(context)
-            EMAIL_MISSING -> "select_balance_store.login.error_missing_email.message".localized(context)
-            EMAIL_ERROR -> "select_balance_store.login.error_wrong_email.message".localized(context)
-            BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED -> "select_balance_store.login.error_email_sends_disabled.message".localized(context)
-            BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT -> "select_balance_store.login.error_insufficient_application_limit.message".localized(context)
-            IDENTITY_NOT_VERIFIED -> "select_balance_store.login.error_identity_not_verified.message".localized(context)
-            else -> "select_balance_store.login.error_unknown.message".localized(context).replace("ERROR_CODE", errorCode.toString())
+            COUNTRY_UNSUPPORTED -> "select_balance_store.login.error_wrong_country.message".localized()
+            REGION_UNSUPPORTED -> "select_balance_store.login.error_wrong_region.message".localized()
+            ADDRESS_UNVERIFIED -> "select_balance_store.login.error_unverified_address.message".localized()
+            CURRENCY_UNSUPPORTED -> "select_balance_store.login.error_unsupported_currency.message".localized()
+            CANNOT_CAPTURE_FUNDS -> "select_balance_store.login.error_cant_capture_funds.message".localized()
+            INSUFFICIENT_FUNDS -> "select_balance_store.login.error_insufficient_funds.message".localized()
+            BALANCE_NOT_FOUND -> "select_balance_store.login.error_balance_not_found.message".localized()
+            ACCESS_TOKEN_INVALID -> "select_balance_store.login.error_access_token_invalid.message".localized()
+            SCOPES_REQUIRED -> "select_balance_store.login.error_scopes_required.message".localized()
+            LEGAL_NAME_MISSING -> "select_balance_store.login.error_missing_legal_name.message".localized()
+            DATE_OF_BIRTH_MISSING -> "select_balance_store.login.error_missing_birthdate.message".localized()
+            DATE_OF_BIRTH_ERROR -> "select_balance_store.login.error_wrong_birthdate.message".localized()
+            ADDRESS_MISSING -> "select_balance_store.login.error_missing_address.message".localized()
+            EMAIL_MISSING -> "select_balance_store.login.error_missing_email.message".localized()
+            EMAIL_ERROR -> "select_balance_store.login.error_wrong_email.message".localized()
+            BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED -> "select_balance_store.login.error_email_sends_disabled.message".localized()
+            BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT -> "select_balance_store.login.error_insufficient_application_limit.message".localized()
+            IDENTITY_NOT_VERIFIED -> "select_balance_store.login.error_identity_not_verified.message".localized()
+            else -> "select_balance_store.login.error_unknown.message".localized().replace("ERROR_CODE", errorCode.toString())
         }
     }
 

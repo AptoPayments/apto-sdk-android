@@ -1,6 +1,5 @@
 package com.aptopayments.core.data.transaction
 
-import android.content.Context
 import com.aptopayments.core.extension.localized
 
 enum class DeclineCode(val code: String) {
@@ -19,9 +18,9 @@ enum class DeclineCode(val code: String) {
     DECLINE_MISC("decline_misc"),
     Other("");
 
-    fun toString(context: Context): String =
-            if (this == Other) "transaction_details.details.decline_default".localized(context)
-            else ("transaction_details.details."+this.code).localized(context)
+    override fun toString(): String =
+        if (this == Other) "transaction_details.details.decline_default".localized()
+        else ("transaction_details.details." + this.code).localized()
 
     companion object {
         fun from(code: String?): DeclineCode? = code?.let {

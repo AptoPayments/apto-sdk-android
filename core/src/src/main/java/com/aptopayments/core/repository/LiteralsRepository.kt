@@ -1,6 +1,6 @@
 package com.aptopayments.core.repository
 
-import android.content.Context
+import com.aptopayments.core.platform.AptoPlatform
 import java.util.*
 
 object LiteralsRepository {
@@ -13,17 +13,14 @@ object LiteralsRepository {
         })
     }
 
-    fun localized(context: Context, key: String): String {
+    fun localized(key: String): String {
         val curatedKey = key.replace(".", "_")
+        val context = AptoPlatform.application.applicationContext
         return serverLiterals[curatedKey]
-                ?: return try {
-                    context.resources.getString(context.resources.getIdentifier(
-                            curatedKey,
-                            "string",
-                            context.packageName)
-                    )
-                } catch (exception: Throwable) {
-                    key
-                }
+            ?: return try {
+                context.resources.getString(context.resources.getIdentifier(curatedKey, "string", context.packageName))
+            } catch (exception: Throwable) {
+                key
+            }
     }
 }

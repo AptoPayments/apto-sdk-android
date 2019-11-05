@@ -1,8 +1,6 @@
 package com.aptopayments.core.data.card
 
-import android.content.Context
 import com.aptopayments.core.UnitTest
-import org.amshove.kluent.mock
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -13,7 +11,7 @@ class SelectBalanceStoreResultTest : UnitTest() {
         val sut = SelectBalanceStoreResult(SelectBalanceStoreResult.Type.INVALID, 90191)
 
         // When
-        val errorMessage = sut.errorMessage(mock(Context::class))
+        val errorMessage = sut.errorMessage()
 
         // Then
         assertEquals("select_balance_store.login.error_wrong_country.message", errorMessage)
@@ -26,7 +24,7 @@ class SelectBalanceStoreResultTest : UnitTest() {
         val sut = SelectBalanceStoreResult(SelectBalanceStoreResult.Type.INVALID, 90191, listOf(expectedError))
 
         // When
-        val errorMessage = sut.errorMessage(mock(Context::class))
+        val errorMessage = sut.errorMessage()
 
         // Then
         assertEquals(expectedError, errorMessage)

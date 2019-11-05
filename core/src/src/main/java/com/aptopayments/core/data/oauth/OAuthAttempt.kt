@@ -1,6 +1,5 @@
 package com.aptopayments.core.data.oauth
 
-import android.content.Context
 import com.aptopayments.core.data.user.DataPointList
 import com.aptopayments.core.extension.localized
 import java.io.Serializable
@@ -18,7 +17,7 @@ data class OAuthAttempt(
         val errorMessage: String?,
         var errorMessageKeys: List<String>? = null
 ) : Serializable {
-    fun localizedErrorMessage(context: Context) = errorMessageKey?.localized(context) ?: ""
+    fun localizedErrorMessage() = errorMessageKey?.localized() ?: ""
 
     private val errorMessageKey: String?
         get() {

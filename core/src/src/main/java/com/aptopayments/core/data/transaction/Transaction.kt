@@ -1,6 +1,5 @@
 package com.aptopayments.core.data.transaction
 
-import android.content.Context
 import com.aptopayments.core.data.card.Card
 import com.aptopayments.core.data.card.Money
 import com.aptopayments.core.extension.localized
@@ -74,22 +73,20 @@ data class Transaction (
             return !isCredit()
         }
 
-        fun toString(context: Context): String {
-            context.let {
-                return when (this) {
-                    PENDING -> "transaction_details.details.transaction_type.pending".localized(it)
-                    REVERSAL -> "transaction_details.details.transaction_type.reversal".localized(it)
-                    PURCHASE -> "transaction_details.details.transaction_type.purchase".localized(it)
-                    PIN_PURCHASE -> "transaction_details.details.transaction_type.pin_purchase".localized(it)
-                    REFUND -> "transaction_details.details.transaction_type.refund".localized(it)
-                    DECLINE -> "transaction_details.details.transaction_type.decline".localized(it)
-                    BALANCE_INQUIRY -> "transaction_details.details.transaction_type.balance_inquiry".localized(it)
-                    WITHDRAWAL -> "transaction_details.details.transaction_type.atm_withdrawal".localized(it)
-                    CREDIT -> "transaction_details.details.transaction_type.credit".localized(it)
-                    OTHER -> "transaction_details.details.transaction_type.other".localized(it)
-                }
-            }
-        }
+        override fun toString() =
+            when (this) {
+                PENDING -> "transaction_details.details.transaction_type.pending"
+                REVERSAL -> "transaction_details.details.transaction_type.reversal"
+                PURCHASE -> "transaction_details.details.transaction_type.purchase"
+                PIN_PURCHASE -> "transaction_details.details.transaction_type.pin_purchase"
+                REFUND -> "transaction_details.details.transaction_type.refund"
+                DECLINE -> "transaction_details.details.transaction_type.decline"
+                BALANCE_INQUIRY -> "transaction_details.details.transaction_type.balance_inquiry"
+                WITHDRAWAL -> "transaction_details.details.transaction_type.atm_withdrawal"
+                CREDIT -> "transaction_details.details.transaction_type.credit"
+                OTHER -> "transaction_details.details.transaction_type.other"
+            }.localized()
+
     }
 
     enum class TransactionState {
@@ -98,16 +95,14 @@ data class Transaction (
         COMPLETE,
         OTHER;
 
-        fun toString(context: Context): String {
-            context.let {
-                return when (this) {
-                    PENDING -> "transaction_details.basic_info.transaction_status.pending".localized(it)
-                    DECLINED -> "transaction_details.basic_info.transaction_status.declined".localized(it)
-                    COMPLETE -> "transaction_details.basic_info.transaction_status.complete".localized(it)
-                    OTHER -> "transaction_details.basic_info.transaction_status.other".localized(it)
-                }
-            }
-        }
+        override fun toString() =
+            when (this) {
+                PENDING -> "transaction_details.basic_info.transaction_status.pending"
+                DECLINED -> "transaction_details.basic_info.transaction_status.declined"
+                COMPLETE -> "transaction_details.basic_info.transaction_status.complete"
+                OTHER -> "transaction_details.basic_info.transaction_status.other"
+            }.localized()
+
     }
 
     enum class TransactionClass {
@@ -117,17 +112,14 @@ data class Transaction (
         DECLINED,
         REVERSED;
 
-        fun toString(context: Context): String {
-            context.let {
-                return when (this) {
-                    ATM -> "transaction_details.details.transaction_type.atm_withdrawal".localized(it)
-                    AUTHORISED -> "transaction_details.details.transaction_type.authorised".localized(it)
-                    PREAUTHORISED -> "transaction_details.details.transaction_type.pending".localized(it)
-                    DECLINED -> "transaction_details.details.transaction_type.declined".localized(it)
-                    REVERSED -> "transaction_details.details.transaction_type.reversed".localized(it)
-                }
-            }
-        }
+        override fun toString() =
+            when (this) {
+                ATM -> "transaction_details.details.transaction_type.atm_withdrawal"
+                AUTHORISED -> "transaction_details.details.transaction_type.authorised"
+                PREAUTHORISED -> "transaction_details.details.transaction_type.pending"
+                DECLINED -> "transaction_details.details.transaction_type.declined"
+                REVERSED -> "transaction_details.details.transaction_type.reversed"
+            }.localized()
     }
 
     enum class TransactionDeviceType {
@@ -137,21 +129,19 @@ data class Transaction (
         EMV,
         OTHER;
 
-        fun toString(context: Context): String? {
-            context.let {
-                return when (this) {
-                    ECOMMERCE -> "transaction_details.details.device_type.ecommerce".localized(it)
-                    CARDPRESENT -> "transaction_details.details.device_type.pos".localized(it)
-                    INTERNATIONAL -> "transaction_details.details.device_type.international".localized(it)
-                    EMV -> "transaction_details.details.device_type.emv".localized(it)
-                    OTHER -> null
-                }
+        override fun toString(): String {
+            return when (this) {
+                ECOMMERCE -> "transaction_details.details.device_type.ecommerce".localized()
+                CARDPRESENT -> "transaction_details.details.device_type.pos".localized()
+                INTERNATIONAL -> "transaction_details.details.device_type.international".localized()
+                EMV -> "transaction_details.details.device_type.emv".localized()
+                OTHER -> ""
             }
         }
     }
 
     fun getAmountPrefix(): String {
-        if(transactionType.isCredit()) {
+        if (transactionType.isCredit()) {
             return "+ "
         }
         return ""

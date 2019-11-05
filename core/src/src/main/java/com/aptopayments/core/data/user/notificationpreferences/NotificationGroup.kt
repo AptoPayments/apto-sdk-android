@@ -16,15 +16,13 @@ data class NotificationGroup(
         CARD_STATUS,
         LEGAL;
 
-        fun toString(context: Context): String {
-            context.let {
-                return when (this) {
-                    CARD_ACTIVITY -> "notification_preferences.card_activity.title".localized(it)
-                    CARD_STATUS -> "notification_preferences.card_status.title".localized(it)
-                    LEGAL -> "notification_preferences.legal.title".localized(it)
-                }
-            }
-        }
+        override fun toString() =
+            when (this) {
+                CARD_ACTIVITY -> "notification_preferences.card_activity.title"
+                CARD_STATUS -> "notification_preferences.card_status.title"
+                LEGAL -> "notification_preferences.legal.title"
+            }.localized()
+
     }
 
     enum class Group {
@@ -38,12 +36,12 @@ data class NotificationGroup(
         fun toString(context: Context): String {
             context.let {
                 return when (this) {
-                    PAYMENT_SUCCESSFUL -> "notification_preferences.card_activity.payment_successful.title".localized(it)
-                    PAYMENT_DECLINED -> "notification_preferences.card_activity.payment_declined.title".localized(it)
-                    ATM_WITHDRAWAL -> "notification_preferences.card_activity.atm_withdrawal.title".localized(it)
-                    INCOMING_TRANSFER -> "notification_preferences.card_activity.incoming_transfer.title".localized(it)
-                    CARD_STATUS -> "notification_preferences.card_status.title".localized(it)
-                    LEGAL -> "notification_preferences.legal.title".localized(it)
+                    PAYMENT_SUCCESSFUL -> "notification_preferences.card_activity.payment_successful.title".localized()
+                    PAYMENT_DECLINED -> "notification_preferences.card_activity.payment_declined.title".localized()
+                    ATM_WITHDRAWAL -> "notification_preferences.card_activity.atm_withdrawal.title".localized()
+                    INCOMING_TRANSFER -> "notification_preferences.card_activity.incoming_transfer.title".localized()
+                    CARD_STATUS -> "notification_preferences.card_status.title".localized()
+                    LEGAL -> "notification_preferences.legal.title".localized()
                 }
             }
         }

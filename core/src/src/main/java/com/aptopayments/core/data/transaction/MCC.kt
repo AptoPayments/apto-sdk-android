@@ -1,7 +1,5 @@
 package com.aptopayments.core.data.transaction
 
-import android.content.Context
-import com.aptopayments.core.R
 import com.aptopayments.core.extension.localized
 import java.io.Serializable
 
@@ -10,8 +8,8 @@ data class MCC (
         val icon: Icon?
 ) : Serializable {
 
-    fun toString(context: Context): String {
-        return (mccDescriptions[icon] ?: "transaction_details.basic_info.category.unavailable").localized(context)
+    override fun toString(): String {
+        return (mccDescriptions[icon] ?: "transaction_details.basic_info.category.unavailable").localized()
     }
 
     companion object {

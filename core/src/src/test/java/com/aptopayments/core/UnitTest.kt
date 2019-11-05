@@ -1,6 +1,9 @@
 package com.aptopayments.core
 
+import android.app.Application
+import com.aptopayments.core.platform.AptoPlatform
 import org.junit.Before
+import org.junit.BeforeClass
 import org.junit.Rule
 import org.junit.runner.RunWith
 import org.koin.test.AutoCloseKoinTest
@@ -20,5 +23,12 @@ abstract class UnitTest : AutoCloseKoinTest() {
 
     @Before
     open fun setUp() {
+    }
+
+    companion object {
+        @BeforeClass @JvmStatic
+        fun setUpAplication() {
+            AptoPlatform.application = Application()
+        }
     }
 }

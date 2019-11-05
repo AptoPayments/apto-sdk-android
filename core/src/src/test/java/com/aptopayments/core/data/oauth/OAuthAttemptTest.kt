@@ -1,11 +1,7 @@
 package com.aptopayments.core.data.oauth
 
-import android.content.Context
 import com.aptopayments.core.UnitTest
-import com.aptopayments.core.data.oauth.OAuthAttemptStatus.FAILED
-import com.aptopayments.core.data.oauth.OAuthAttemptStatus.PASSED
-import com.aptopayments.core.data.oauth.OAuthAttemptStatus.PENDING
-import org.amshove.kluent.mock
+import com.aptopayments.core.data.oauth.OAuthAttemptStatus.*
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -17,7 +13,7 @@ class OAuthAttemptTest : UnitTest() {
                 error = "invalid_request", errorMessage = "Invalid request")
 
         // When
-        val errorMessage = sut.localizedErrorMessage(mock(Context::class))
+        val errorMessage = sut.localizedErrorMessage()
 
         // Then
         assertEquals("", errorMessage)
@@ -30,7 +26,7 @@ class OAuthAttemptTest : UnitTest() {
                 error = "invalid_request", errorMessage = "Invalid request")
 
         // When
-        val errorMessage = sut.localizedErrorMessage(mock(Context::class))
+        val errorMessage = sut.localizedErrorMessage()
 
         // Then
         assertEquals("", errorMessage)
@@ -43,7 +39,7 @@ class OAuthAttemptTest : UnitTest() {
                 error = "invalid_request", errorMessage = "Invalid request")
 
         // When
-        val errorMessage = sut.localizedErrorMessage(mock(Context::class))
+        val errorMessage = sut.localizedErrorMessage()
 
         // Then
         assertEquals("select_balance_store.login.error_oauth_invalid_request.message", errorMessage)
@@ -57,7 +53,7 @@ class OAuthAttemptTest : UnitTest() {
                 error = "invalid_request", errorMessage = "Invalid request", errorMessageKeys = listOf(expectedError))
 
         // When
-        val errorMessage = sut.localizedErrorMessage(mock(Context::class))
+        val errorMessage = sut.localizedErrorMessage()
 
         // Then
         assertEquals(expectedError, errorMessage)

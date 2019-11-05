@@ -1,15 +1,10 @@
 package com.aptopayments.core.repository
 
-import android.content.Context
 import com.aptopayments.core.UnitTest
 import org.amshove.kluent.`should equal`
 import org.junit.Test
-import org.mockito.Mock
 
 class LiteralsRepositoryTest: UnitTest() {
-
-    @Mock
-    lateinit var mockContext: Context
 
     @Test
     fun `should return server value if it's defined`() {
@@ -18,7 +13,7 @@ class LiteralsRepositoryTest: UnitTest() {
         LiteralsRepository.appendServerLiterals(serverLiterals = hashMapOf("string_key" to "my value"))
 
         // When
-        val value = LiteralsRepository.localized(mockContext, "string_key")
+        val value = LiteralsRepository.localized("string_key")
 
         // Then
         value `should equal` "my value"
@@ -31,7 +26,7 @@ class LiteralsRepositoryTest: UnitTest() {
         LiteralsRepository.appendServerLiterals(serverLiterals = hashMapOf("string.key" to "my value"))
 
         // Then
-        LiteralsRepository.localized(mockContext, "string_key") `should equal` "my value"
+        LiteralsRepository.localized("string_key") `should equal` "my value"
     }
 
     @Test
@@ -41,6 +36,6 @@ class LiteralsRepositoryTest: UnitTest() {
         LiteralsRepository.appendServerLiterals(serverLiterals = hashMapOf("string_key" to "my value"))
 
         // Then
-        LiteralsRepository.localized(mockContext, "string.key") `should equal` "my value"
+        LiteralsRepository.localized("string.key") `should equal` "my value"
     }
 }

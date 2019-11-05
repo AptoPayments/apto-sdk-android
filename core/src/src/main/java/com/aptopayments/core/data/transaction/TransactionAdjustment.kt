@@ -1,6 +1,5 @@
 package com.aptopayments.core.data.transaction
 
-import android.content.Context
 import com.aptopayments.core.data.card.Money
 import com.aptopayments.core.extension.localized
 import java.io.Serializable
@@ -25,16 +24,13 @@ data class TransactionAdjustment (
         RELEASE,
         OTHER;
 
-        fun toString(context: Context): String {
-            context.let {
-                return when (this) {
-                    CAPTURE -> "transaction_details.adjustment.capture.text".localized(it)
-                    REFUND -> "transaction_details.adjustment.refund.text".localized(it)
-                    HOLD -> "transaction_details.adjustment.hold.text".localized(it)
-                    RELEASE -> "transaction_details.adjustment.release.text".localized(it)
-                    OTHER -> "transaction_details.adjustment.other.text".localized(it)
-                }
-            }
-        }
+        override fun toString() =
+            when (this) {
+                CAPTURE -> "transaction_details.adjustment.capture.text"
+                REFUND -> "transaction_details.adjustment.refund.text"
+                HOLD -> "transaction_details.adjustment.hold.text"
+                RELEASE -> "transaction_details.adjustment.release.text"
+                OTHER -> "transaction_details.adjustment.other.text"
+            }.localized()
     }
 }

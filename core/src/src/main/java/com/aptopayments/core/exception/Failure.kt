@@ -1,6 +1,5 @@
 package com.aptopayments.core.exception
 
-import android.content.Context
 import com.aptopayments.core.exception.Failure.FeatureFailure
 import com.aptopayments.core.extension.localized
 
@@ -58,7 +57,7 @@ private const val STATEMENT_GENERATING_ERROR = 200051
  * Every feature specific failure should extend [FeatureFailure] class.
  */
 sealed class Failure {
-    fun errorMessage(context: Context?): String = context?.let { getErrorKey().localized(context) } ?: ""
+    fun errorMessage(): String = getErrorKey().localized()
 
     protected open fun getErrorKey() = ""
 
