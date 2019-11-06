@@ -2,6 +2,7 @@ package com.aptopayments.core.exception
 
 import com.aptopayments.core.exception.Failure.FeatureFailure
 import com.aptopayments.core.extension.localized
+import org.json.JSONObject
 
 private const val UNKNOWN_SESSION = 3030
 private const val SESSION_EXPIRED = 3031
@@ -51,6 +52,7 @@ private const val STATEMENT_URL_NOT_GENERATED = 200043
 private const val STATEMENT_NOT_UPLOADED = 200044
 private const val STATEMENT_URL_NOT_GENERATED2 = 200045
 private const val STATEMENT_GENERATING_ERROR = 200051
+private const val UNDEFINED_MESSAGE = "error.transport.undefined"
 
 /**
  * Base Class for handling errors/failures/exceptions.
@@ -74,14 +76,18 @@ sealed class Failure {
         override fun getErrorKey() = "session_expired_error"
     }
 
-    class ServerError(val errorCode: Int?) : Failure() {
-        val isErrorBalanceValidationsEmailSendsDisabled: Boolean = errorCode == BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED
-        val isErrorBalanceValidationsInsufficientApplicationLimit: Boolean =
-            errorCode == BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT
-        val isErrorInsufficientFunds: Boolean = errorCode == INSUFFICIENT_FUNDS
+    class ServerError(val code: Int?, private val message: String? = null) :
+        Failure() {
+
+        fun isErrorBalanceValidationsEmailSendsDisabled() = code == BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED
+
+        fun isErrorBalanceValidationsInsufficientApplicationLimit() =
+            code == BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT
+
+        fun isErrorInsufficientFunds() = code == INSUFFICIENT_FUNDS
 
         override fun getErrorKey(): String {
-            return when (this.errorCode) {
+            return when (this.code) {
                 UNKNOWN_SESSION, INVALID_SESSION -> "error.transport.invalid_session"
                 SESSION_EXPIRED -> "error.transport.session_expired"
                 EMPTY_SESSION -> "error.transport.empty_session"
@@ -124,11 +130,23 @@ sealed class Failure {
                 INVALID_CALLED_PHONE_NUMBER -> "auth.input_phone.error.invalid_called_phone_number"
                 STATEMENT_URL_NOT_GENERATED, STATEMENT_NOT_UPLOADED, STATEMENT_URL_NOT_GENERATED2,
                 STATEMENT_GENERATING_ERROR -> "monthly_statements.list.error_generating_report.message"
-                else -> "error.transport.undefined"
+                else -> UNDEFINED_MESSAGE
             }
         }
 
-        fun isOauthTokenRevokedError() = errorCode == REVOKED_TOKEN
+        fun isOauthTokenRevokedError() = code == REVOKED_TOKEN
+
+        fun toJSonObject(): JSONObject {
+            val errorKey = getErrorKey()
+            val rawCode = if (errorKey == UNDEFINED_MESSAGE) "" else (code?.toString() ?: "")
+
+            return JSONObject()
+                .put("code", code)
+                .put("message", errorKey.localized())
+                .put("reason", message ?: "")
+                .put("raw_code", rawCode)
+        }
+
     }
 
     /** * Extend this class for feature specific failures.*/

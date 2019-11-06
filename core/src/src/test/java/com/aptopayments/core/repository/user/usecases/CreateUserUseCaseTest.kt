@@ -60,7 +60,7 @@ class CreateUserUseCaseTest : UnitTest() {
     fun `repository return failure sut return failure`() {
         // Given
         given { userRepository.createUser(params.userData, params.custodianUid) }
-                .willReturn { Either.Left(ServerError(errorCode = null)) }
+                .willReturn { Either.Left(ServerError(code = null)) }
 
         // When
         val result = sut.run(params)

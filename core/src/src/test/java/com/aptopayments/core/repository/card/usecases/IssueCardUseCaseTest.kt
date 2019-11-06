@@ -66,7 +66,7 @@ class IssueCardUseCaseTest : UnitTest() {
         // Given
         given { cardRepository.issueCard(params.cardProductId, params.credential,
                 params.additionalFields, params.initialFundingSourceId)
-        }.willReturn { Either.Left(ServerError(errorCode = null)) }
+        }.willReturn { Either.Left(ServerError(code = null)) }
 
         // When
         val result = sut.run(params)
