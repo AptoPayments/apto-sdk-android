@@ -1,5 +1,6 @@
 package com.aptopayments.core.repository.oauth.remote.entities
 
+import androidx.annotation.VisibleForTesting
 import com.aptopayments.core.data.oauth.OAuthAttempt
 import com.aptopayments.core.data.oauth.OAuthAttemptStatus
 import com.aptopayments.core.data.user.DataPointList
@@ -7,6 +8,7 @@ import com.aptopayments.core.extension.parseURL
 import com.aptopayments.core.network.ListEntity
 import com.aptopayments.core.repository.user.remote.entities.DataPointEntity
 import com.google.gson.annotations.SerializedName
+import java.lang.reflect.Modifier
 
 internal data class OAuthAttemptEntity(
 
@@ -30,14 +32,19 @@ internal data class OAuthAttemptEntity(
 
         @SerializedName("error_message")
         val errorMessage: String? = null
-
 ) {
+
+    @VisibleForTesting(otherwise = Modifier.PRIVATE)
+    fun getUserDataContent(): List<DataPointEntity>? {
+        return userData?.data?.filterNotNull()
+    }
+
     fun toOAuthAttempt() = OAuthAttempt(
             id = id,
             status = parseOAuthAttemptStatus(status),
             url = parseURL(url),
             tokenId = tokenId,
-            userData = if (userData?.data?.isEmpty() == false) DataPointList(userData.data?.map { it.toDataPoint() }) else null,
+            userData = if (getUserDataContent()?.isEmpty() == false) DataPointList(getUserDataContent()?.map { it.toDataPoint() }) else null,
             error = error,
             errorMessage = errorMessage
     )

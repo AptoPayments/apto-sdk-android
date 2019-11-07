@@ -1,7 +1,9 @@
 package com.aptopayments.core.repository.user.remote.entities
 
 import com.aptopayments.core.UnitTest
+import com.aptopayments.core.data.TestDataProvider
 import com.aptopayments.core.data.user.IdDocumentDataPoint
+import com.google.gson.Gson
 import org.amshove.kluent.shouldBeInstanceOf
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -46,5 +48,18 @@ class IdDocumentDataPointEntityTest : UnitTest() {
         assertEquals("SSN", entity.type)
         assertEquals("000000000", entity.value)
         assertEquals("US", entity.country)
+    }
+
+    @Test
+    fun `IdDocumentParsedCorrectly from json`(){
+        val json = TestDataProvider.provideCorrectIdDocumentDataPointEntity()
+
+        val sut = Gson().fromJson(json,IdDocumentDataPointEntity::class.java).toDataPoint()
+
+        assertEquals(sut.type, IdDocumentDataPoint.Type.SSN)
+        assertEquals(sut.value, "111119999")
+        assertEquals(sut.verified, false)
+        assertEquals(sut.country, "US")
+        assertEquals(sut.notSpecified, false)
     }
 }

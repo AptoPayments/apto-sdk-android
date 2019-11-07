@@ -11,16 +11,23 @@ private const val PHONE_DATAPOINT_TYPE = "phone"
 private const val EMAIL_DATAPOINT_TYPE = "email"
 private const val BIRTHDATE_DATAPOINT_TYPE = "birthdate"
 private const val ADDRESS_DATAPOINT_TYPE = "address"
+private const val ID_DOCUMENT_DATAPOINT_TYPE = "id_document"
 
 internal class DataPointParser : JsonDeserializer<DataPointEntity?>, JsonSerializer<DataPointEntity> {
-    override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): DataPointEntity? {
-        val datapointJson= json?.asJsonObject ?: return null
+
+    override fun deserialize(
+        json: JsonElement?,
+        typeOfT: Type?,
+        context: JsonDeserializationContext?
+    ): DataPointEntity? {
+        val datapointJson = json?.asJsonObject ?: return null
         return when (safeStringFromJson(datapointJson.get("type"))) {
             NAME_DATAPOINT_TYPE -> parseNameDataPoint(datapointJson)
             PHONE_DATAPOINT_TYPE -> parsePhoneDataPoint(datapointJson)
             EMAIL_DATAPOINT_TYPE -> parseEmailDataPoint(datapointJson)
             BIRTHDATE_DATAPOINT_TYPE -> parseBirthdateDataPoint(datapointJson)
             ADDRESS_DATAPOINT_TYPE -> parseAddressDataPoint(datapointJson)
+            ID_DOCUMENT_DATAPOINT_TYPE -> parseIdDocumentDataPoint(datapointJson)
             else -> null
         }
     }
@@ -50,6 +57,10 @@ internal class DataPointParser : JsonDeserializer<DataPointEntity?>, JsonSeriali
                 AddressDataPointEntity::class.java)
     }
 
+    private fun parseIdDocumentDataPoint(configJson: JsonObject): IdDocumentDataPointEntity? {
+        return ApiCatalog.gson().fromJson<IdDocumentDataPointEntity>(configJson, IdDocumentDataPointEntity::class.java)
+    }
+
     override fun serialize(src: DataPointEntity?,
                            typeOfSrc: Type?,
                            context: JsonSerializationContext?): JsonElement {
@@ -59,20 +70,20 @@ internal class DataPointParser : JsonDeserializer<DataPointEntity?>, JsonSeriali
             is EmailDataPointEntity -> serializeEmailDataPointEntity(src)
             is BirthdateDataPointEntity -> serializeBirthdateDataPointEntity(src)
             is AddressDataPointEntity -> serializeAddressDataPointEntity(src)
+            is IdDocumentDataPointEntity -> serializeIdDocumentDataPointEntity(src)
             else -> JsonNull.INSTANCE
         }
     }
 
     private fun serializeDataPointEntity(entity: DataPointEntity): JsonObject {
-        val jsonObject = JsonObject().apply {
+        return JsonObject().apply {
             addProperty("data_type", entity.dataType)
             addProperty("verified", entity.verified)
+            entity.verification?.let {
+                add("verification", ApiCatalog.gson().toJsonTree(it))
+            }
             addProperty("not_specified", entity.notSpecified)
         }
-        entity.verification?.let {
-            jsonObject.add("verification", ApiCatalog.gson().toJsonTree(it))
-        }
-        return jsonObject
     }
 
     private fun serializeNameDataPointEntity(entity: NameDataPointEntity): JsonElement {
@@ -109,6 +120,15 @@ internal class DataPointParser : JsonDeserializer<DataPointEntity?>, JsonSeriali
             addProperty("region", entity.region)
             addProperty("postal_code", entity.postalCode)
             addProperty("country", entity.country)
+        }
+    }
+
+    private fun serializeIdDocumentDataPointEntity(entity: IdDocumentDataPointEntity): JsonElement {
+        return serializeDataPointEntity(entity).apply {
+            entity.country?.let { addProperty("country", entity.country) }
+            entity.value?.let { addProperty("value", entity.value) }
+            entity.type?.let { addProperty("doc_type", entity.type) }
+            entity.notSpecified?.let { addProperty("not_specified", entity.notSpecified) }
         }
     }
 }
