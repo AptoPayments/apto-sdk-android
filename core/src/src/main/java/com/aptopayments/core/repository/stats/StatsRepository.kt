@@ -23,6 +23,7 @@ internal interface StatsRepository : BaseRepository {
         @VisibleForTesting(otherwise = Modifier.PRIVATE)
         var monthlySpendingCache: HashMap<Triple<String, String, String>, MonthlySpending> = HashMap()
 
+        @Synchronized
         override fun getMonthlySpending(cardId: String, month: String, year: String): Either<Failure, MonthlySpending> {
             val dateKey = Triple(cardId, month, year)
             if (monthlySpendingCache.containsKey(dateKey)) {
