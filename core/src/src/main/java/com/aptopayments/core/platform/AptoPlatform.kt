@@ -28,7 +28,6 @@ import com.aptopayments.core.di.applicationModule
 import com.aptopayments.core.di.repositoryModule
 import com.aptopayments.core.di.useCasesModule
 import com.aptopayments.core.exception.Failure
-import com.aptopayments.core.features.managecard.CardOptions
 import com.aptopayments.core.functional.Either
 import com.aptopayments.core.network.ApiCatalog
 import com.aptopayments.core.network.NetworkHandler
@@ -41,7 +40,6 @@ import com.aptopayments.core.repository.config.usecases.GetCardProductParams
 import com.aptopayments.core.repository.fundingsources.remote.usecases.GetFundingSourcesUseCase
 import com.aptopayments.core.repository.oauth.usecases.RetrieveOAuthUserDataUseCase
 import com.aptopayments.core.repository.oauth.usecases.SaveOAuthUserDataUseCase
-import com.aptopayments.core.repository.statements.usecases.GetMonthlyStatementPeriodUseCase
 import com.aptopayments.core.repository.statements.usecases.GetMonthlyStatementUseCase
 import com.aptopayments.core.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.core.repository.transaction.TransactionListFilters
@@ -54,7 +52,7 @@ import org.koin.core.Koin
 import org.koin.core.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.inject
-import java.io.File
+import org.koin.core.module.Module
 import java.lang.ref.WeakReference
 import java.lang.reflect.Modifier
 
@@ -73,22 +71,27 @@ object AptoPlatform : AptoPlatformProtocol {
     @VisibleForTesting(otherwise = Modifier.PRIVATE)
     internal lateinit var useCasesWrapper: UseCasesWrapper
     @VisibleForTesting(otherwise = Modifier.PROTECTED)
-    var cardOptions: CardOptions = CardOptions()
-    internal var cacheDir: File? = null
     lateinit var application: Application
 
-    fun initializeWithApiKey(application: Application,
-                             apiKey: String,
-                             environment: AptoSdkEnvironment) {
+    private var uiModules : List<Module> = listOf()
+
+    fun setUiModules(list: List<Any>) {
+        uiModules = list.filterIsInstance<Module>()
+    }
+
+    fun initializeWithApiKey(
+        application: Application,
+        apiKey: String,
+        environment: AptoSdkEnvironment = AptoSdkEnvironment.PRD
+    ) {
         this.application = application
-        recreateAppComponent(application)
+        initKoin(application)
         AndroidThreeTen.init(application)
         networkHandlerWrapper = NetworkHandlerWrapper()
         pushTokenRepository = PushTokenRepositoryWrapper().pushTokenRepository
         useCasesWrapper = UseCasesWrapper()
 
         ApiCatalog.set(apiKey, environment)
-        cacheDir = application.cacheDir
         subscribeToSdkDeprecatedEvent()
     }
 
@@ -110,15 +113,17 @@ object AptoPlatform : AptoPlatformProtocol {
         PushTokenRepositoryWrapper().pushTokenRepository.pushToken = firebaseToken
     }
 
-    fun recreateAppComponent(application: Application) {
-        if (AptoPlatform::koin.isInitialized) return
-        this.application = application
+    private fun initKoin(application: Application) {
         this.koin = startKoin {
-            // Android context
             androidContext(application)
-            // Modules
-            modules(listOf(applicationModule, repositoryModule, useCasesModule))
+            modules(getModules())
         }.koin
+    }
+
+    private fun getModules(): List<Module> {
+        val list = mutableListOf(applicationModule, repositoryModule, useCasesModule)
+        list.addAll(uiModules)
+        return list
     }
 
     fun clearMonthlySpendingCache() = useCasesWrapper.clearMonthlySpendingCacheUseCase(Unit)

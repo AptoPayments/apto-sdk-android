@@ -73,7 +73,7 @@ data class Transaction (
             return !isCredit()
         }
 
-        override fun toString() =
+        fun toLocalizedString() =
             when (this) {
                 PENDING -> "transaction_details.details.transaction_type.pending"
                 REVERSAL -> "transaction_details.details.transaction_type.reversal"
@@ -95,7 +95,7 @@ data class Transaction (
         COMPLETE,
         OTHER;
 
-        override fun toString() =
+        fun toLocalizedString() =
             when (this) {
                 PENDING -> "transaction_details.basic_info.transaction_status.pending"
                 DECLINED -> "transaction_details.basic_info.transaction_status.declined"
@@ -112,7 +112,7 @@ data class Transaction (
         DECLINED,
         REVERSED;
 
-        override fun toString() =
+        fun toLocalizedString() =
             when (this) {
                 ATM -> "transaction_details.details.transaction_type.atm_withdrawal"
                 AUTHORISED -> "transaction_details.details.transaction_type.authorised"
@@ -129,7 +129,7 @@ data class Transaction (
         EMV,
         OTHER;
 
-        override fun toString(): String {
+        fun toLocalizedString(): String {
             return when (this) {
                 ECOMMERCE -> "transaction_details.details.device_type.ecommerce".localized()
                 CARDPRESENT -> "transaction_details.details.device_type.pos".localized()

@@ -8,7 +8,7 @@ data class MCC (
         val icon: Icon?
 ) : Serializable {
 
-    override fun toString(): String {
+    fun toLocalizedString(): String {
         return (mccDescriptions[icon] ?: "transaction_details.basic_info.category.unavailable").localized()
     }
 

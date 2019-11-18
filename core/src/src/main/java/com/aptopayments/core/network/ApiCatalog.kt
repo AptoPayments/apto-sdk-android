@@ -101,7 +101,7 @@ class ApiCatalog {
     }
 
     private fun manageCache(okHttpClientBuilder: OkHttpClient.Builder) {
-        AptoPlatform.cacheDir?.let { cacheDir ->
+        AptoPlatform.application.cacheDir?.let { cacheDir ->
             okHttpClientBuilder.cache(Cache(cacheDir, CACHE_SIZE_BYTES))
         }
     }

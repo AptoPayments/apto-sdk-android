@@ -9,8 +9,8 @@ For more information, see the [Apto developer portal](https://aptopayments.com/d
 ## Requirements
 
     * Android Version - API Level 21 (Android 5.0)
-    * Kotlin - 1.3.31
-    * Gradle - 3.4.1
+    * Kotlin - 1.3.50
+    * Gradle - 3.5.2
 
 ### Required permisions
 
@@ -22,7 +22,9 @@ For more information, see the [Apto developer portal](https://aptopayments.com/d
 1. In your `build.gradle` file, add the following dependency:
 
     ```
-    implementation 'com.aptopayments.sdk:core:2.0.0'
+    
+    implementation 'com.aptopayments.sdk:core:2.6.2'
+    
     ```
 
 2. Run `./gradlew build`.
@@ -32,16 +34,14 @@ For more information, see the [Apto developer portal](https://aptopayments.com/d
 To run the SDK you must first register a project in order to get a `API KEY`. Please contact Apto to create a project for you. Then, initialise the SDK by passing the public api key:
 
 ```kotlin
-AptoPlatform.initializeWithApiKey(application = application,
-                                  apiKey = "API KEY")
+AptoPlatform.initializeWithApiKey(application, "API KEY")
 ```
 
 This will initialise the SDK to operate in production mode. If you want to use it in sandbox mode, an additional parameter can be sent during initialization:
 
 ```kotlin
-AptoPlatform.initializeWithApiKey(application = application,
-                                  apiKey = "API KEY",
-                                  environment = Environment.SBX)
+AptoPlatform.initializeWithApiKey(application, "API KEY", AptoSdkEnvironment.SBX)
+
 ```
 
 ## User session token

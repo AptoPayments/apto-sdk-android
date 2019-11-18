@@ -18,7 +18,7 @@ enum class DeclineCode(val code: String) {
     DECLINE_MISC("decline_misc"),
     Other("");
 
-    override fun toString(): String =
+    fun toLocalizedString(): String =
         if (this == Other) "transaction_details.details.decline_default".localized()
         else ("transaction_details.details." + this.code).localized()
 

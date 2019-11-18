@@ -24,7 +24,7 @@ data class TransactionAdjustment (
         RELEASE,
         OTHER;
 
-        override fun toString() =
+        fun toLocalizedDescription() =
             when (this) {
                 CAPTURE -> "transaction_details.adjustment.capture.text"
                 REFUND -> "transaction_details.adjustment.refund.text"
