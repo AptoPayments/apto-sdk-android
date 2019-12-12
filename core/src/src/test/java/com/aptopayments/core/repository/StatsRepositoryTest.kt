@@ -8,9 +8,9 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.stats.StatsRepository
 import com.aptopayments.core.repository.stats.remote.StatsService
 import com.aptopayments.core.repository.stats.remote.entities.MonthlySpendingEntity
-import com.nhaarman.mockito_kotlin.given
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.verifyZeroInteractions
+import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.verifyZeroInteractions
 import org.amshove.kluent.shouldBeInstanceOf
 import org.amshove.kluent.shouldEqual
 import org.junit.Before

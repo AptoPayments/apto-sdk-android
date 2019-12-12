@@ -10,7 +10,7 @@ For more information, see the [Apto developer portal](https://aptopayments.com/d
 
     * Android Version - API Level 21 (Android 5.0)
     * Kotlin - 1.3.50
-    * Gradle - 3.5.2
+    * Gradle - 3.5.3
 
 ### Required permisions
 

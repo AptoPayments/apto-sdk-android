@@ -6,9 +6,9 @@ import com.aptopayments.core.data.user.DataPointList
 import com.aptopayments.core.repository.UserSessionRepository
 import com.aptopayments.core.repository.card.usecases.IssueCardUseCase
 import com.aptopayments.core.repository.user.usecases.CreateUserUseCase
-import com.nhaarman.mockito_kotlin.eq
-import com.nhaarman.mockito_kotlin.given
-import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockitokotlin2.eq
+import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
 import org.mockito.Mock
 

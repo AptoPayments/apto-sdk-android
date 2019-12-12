@@ -14,9 +14,9 @@ import com.aptopayments.core.repository.oauth.OAuthRepository
 import com.aptopayments.core.repository.oauth.remote.OAuthService
 import com.aptopayments.core.repository.oauth.remote.entities.OAuthAttemptEntity
 import com.aptopayments.core.repository.oauth.remote.entities.OAuthUserDataUpdateEntity
-import com.nhaarman.mockito_kotlin.given
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.verifyZeroInteractions
+import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.verifyZeroInteractions
 import org.amshove.kluent.shouldBeInstanceOf
 import org.amshove.kluent.shouldEqual
 import org.junit.Before

@@ -69,6 +69,7 @@ object UIConfig {
             DEFAULT_DISCLAIMER_BACKGROUND_COLOR)
     var buttonCornerRadius = DEFAULT_BUTTON_CORNER_RADIUS
     var underlineLinks = true
+    var logoImage = ""
 
     fun updateUIConfigFrom(projectBranding: ProjectBranding) {
         uiBackgroundPrimaryColor = projectBranding.uiBackgroundPrimaryColor
@@ -101,5 +102,6 @@ object UIConfig {
         disclaimerBackgroundColor = projectBranding.disclaimerBackgroundColor
         uiStatusBarStyle = projectBranding.uiStatusBarStyle
         uiTheme = projectBranding.uiTheme
+        logoImage = projectBranding.logoUrl ?: ""
     }
 }

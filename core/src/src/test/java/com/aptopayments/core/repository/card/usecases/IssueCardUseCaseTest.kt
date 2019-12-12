@@ -8,9 +8,9 @@ import com.aptopayments.core.exception.Failure.ServerError
 import com.aptopayments.core.functional.Either
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.card.CardRepository
-import com.nhaarman.mockito_kotlin.given
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.willReturn
+import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.willReturn
 import org.amshove.kluent.shouldBeInstanceOf
 import org.amshove.kluent.shouldEqual
 import org.junit.Before

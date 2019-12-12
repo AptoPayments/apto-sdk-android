@@ -8,9 +8,9 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.card.CardRepository
 import com.aptopayments.core.repository.card.usecases.SetPinParams
 import com.aptopayments.core.repository.card.usecases.SetPinUseCase
-import com.nhaarman.mockito_kotlin.given
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
+import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test

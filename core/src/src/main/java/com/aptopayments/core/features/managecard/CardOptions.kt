@@ -1,46 +1,33 @@
 package com.aptopayments.core.features.managecard
 
 class CardOptions(
-        showStatsButton: Boolean = false,
-        showNotificationPreferences: Boolean = false,
-        showDetailedCardActivityOption: Boolean = false,
-        hideFundingSourcesReconnectButton: Boolean = false,
-        showAccountSettingsButton: Boolean = true,
-        showMonthlyStatementsOption: Boolean = true,
-        var openingMode: OpeningMode = OpeningMode.STANDALONE,
-        var fontOptions: FontOptions = FontOptions()
+    private val showStatsButton: Boolean = false,
+    private val showNotificationPreferences: Boolean = false,
+    private val showDetailedCardActivityOption: Boolean = false,
+    private val hideFundingSourcesReconnectButton: Boolean = false,
+    private val showAccountSettingsButton: Boolean = true,
+    private val showMonthlyStatementsOption: Boolean = true,
+    private val authenticateOnStartup: Boolean = false,
+    private val authenticateWithPINOnPCI: Boolean = false,
+    var openingMode: OpeningMode = OpeningMode.STANDALONE,
+    var fontOptions: FontOptions = FontOptions()
 ) {
-    private var features: MutableMap<OptionKeys, Boolean> = mutableMapOf()
-
-    private enum class OptionKeys {
-        SHOW_STATS_BUTTON,
-        SHOW_NOTIFICATION_PREFERENCES,
-        SHOW_DETAILED_CARD_ACTIVITY_OPTION,
-        HIDE_FUNDING_SOURCES_RECONNECT_BUTTON,
-        SHOW_ACCOUNT_SETTINGS_BUTTON,
-        SHOW_MONTHLY_STATEMENTS_OPTION
-    }
 
     enum class OpeningMode { EMBEDDED, STANDALONE }
 
-    init {
-        features[OptionKeys.SHOW_STATS_BUTTON] = showStatsButton
-        features[OptionKeys.SHOW_NOTIFICATION_PREFERENCES] = showNotificationPreferences
-        features[OptionKeys.SHOW_DETAILED_CARD_ACTIVITY_OPTION] = showDetailedCardActivityOption
-        features[OptionKeys.HIDE_FUNDING_SOURCES_RECONNECT_BUTTON] = hideFundingSourcesReconnectButton
-        features[OptionKeys.SHOW_ACCOUNT_SETTINGS_BUTTON] = showAccountSettingsButton
-        features[OptionKeys.SHOW_MONTHLY_STATEMENTS_OPTION] = showMonthlyStatementsOption
-    }
+    fun showStatsButton() = showStatsButton
 
-    fun showStatsButton() = features[OptionKeys.SHOW_STATS_BUTTON] == true
+    fun showNotificationPreferences() = showNotificationPreferences
 
-    fun showNotificationPreferences() = features[OptionKeys.SHOW_NOTIFICATION_PREFERENCES] == true
+    fun showDetailedCardActivityOption() = showDetailedCardActivityOption
 
-    fun showDetailedCardActivityOption() = features[OptionKeys.SHOW_DETAILED_CARD_ACTIVITY_OPTION] == true
+    fun hideFundingSourcesReconnectButton() = hideFundingSourcesReconnectButton
 
-    fun hideFundingSourcesReconnectButton() = features[OptionKeys.HIDE_FUNDING_SOURCES_RECONNECT_BUTTON] == true
+    fun showAccountSettingsButton() = showAccountSettingsButton
 
-    fun showAccountSettingsButton() = features[OptionKeys.SHOW_ACCOUNT_SETTINGS_BUTTON] == true
+    fun showMonthlyStatementOption() = showMonthlyStatementsOption
 
-    fun showMonthlyStatementOption() = features[OptionKeys.SHOW_MONTHLY_STATEMENTS_OPTION] == true
+    fun authenticateOnStartup() = authenticateOnStartup
+
+    fun authenticateWithPINOnPCI() = authenticateWithPINOnPCI
 }

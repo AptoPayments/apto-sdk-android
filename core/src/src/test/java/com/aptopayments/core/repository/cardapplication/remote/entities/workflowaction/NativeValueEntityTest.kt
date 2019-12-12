@@ -3,7 +3,7 @@ package com.aptopayments.core.repository.cardapplication.remote.entities.workflo
 import com.aptopayments.core.UnitTest
 import com.aptopayments.core.data.content.Content
 import com.aptopayments.core.extension.ColorParser
-import com.nhaarman.mockito_kotlin.given
+import com.nhaarman.mockitokotlin2.given
 import org.amshove.kluent.shouldBeInstanceOf
 import org.junit.Before
 import org.junit.Test

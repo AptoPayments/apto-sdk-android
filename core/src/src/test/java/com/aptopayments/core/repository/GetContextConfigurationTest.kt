@@ -7,9 +7,9 @@ import com.aptopayments.core.functional.Either.Right
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.config.ConfigRepository
 import com.aptopayments.core.repository.config.usecases.GetContextConfigurationUseCase
-import com.nhaarman.mockito_kotlin.given
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
+import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test

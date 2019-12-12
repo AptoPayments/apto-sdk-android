@@ -101,7 +101,7 @@ internal interface CardRepository : BaseRepository {
         override fun getCardDetails(cardId: String): Either<Failure, CardDetails> {
             return when (networkHandler.isConnected) {
                 true -> {
-                    request(service.getCardDetails(cardId), { it.toCardDetails() }, CardDetailsEntity())
+                    request(service.getCardDetails(cardId)) { it.toCardDetails() }
                 }
                 false, null -> Either.Left(Failure.NetworkConnection)
             }
