@@ -75,7 +75,8 @@ class ApiCatalog {
 
     private fun addLoggingInterceptor(okHttpClientBuilder: OkHttpClient.Builder) {
         if (BuildConfig.DEBUG) {
-            val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            val loggingInterceptor = HttpLoggingInterceptor()
+            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
             okHttpClientBuilder.addInterceptor(loggingInterceptor)
         }
     }

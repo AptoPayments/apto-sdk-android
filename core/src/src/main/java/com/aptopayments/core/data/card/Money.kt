@@ -5,6 +5,7 @@ import java.math.BigDecimal
 import java.math.MathContext
 import java.text.DecimalFormatSymbols
 import java.util.*
+import kotlin.math.abs
 
 private const val MINIMUM_DECIMAL_PLACES = 2
 
@@ -13,13 +14,9 @@ data class Money (
         val amount: Double?
 ) : Serializable
 {
-    override fun toString(): String {
-        return if (amount != null) formattedString(amount) else ""
-    }
+    override fun toString(): String = amount?.let { formattedString(amount) } ?: ""
 
-    fun toAbsString(): String {
-        return if (amount != null) formattedString(Math.abs(amount)) else ""
-    }
+    fun toAbsString() = amount?.let { formattedString(abs(amount)) } ?: ""
 
     private fun formattedString(amount: Double): String {
         val absAmount = Math.abs(amount)

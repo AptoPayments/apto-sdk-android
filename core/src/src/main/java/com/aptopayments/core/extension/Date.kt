@@ -9,26 +9,12 @@ import java.util.*
 object ISO8601 {
 
     private val dateFormatter = SimpleDateFormat("yyyy-MM-dd")
-    private val dateTimeFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
 
     fun formatDate(date: Date) = dateFormatter.format(date)
-
-    fun formatDateTime(date: Date) = dateTimeFormatter.format(date)
 
     @Throws(ParseException::class)
     fun parseDate(iso8601string: String): Date {
         return dateFormatter.parse(iso8601string)
-    }
-
-    @Throws(ParseException::class)
-    fun parseDateTime(iso8601string: String): Date {
-        var s = iso8601string.replace("Z", "+00:00")
-        try {
-            s = s.substring(0, 22) + s.substring(23)  // to get rid of the ":"
-        } catch (e: IndexOutOfBoundsException) {
-            throw ParseException("Invalid length", 0)
-        }
-        return dateTimeFormatter.parse(s)
     }
 }
 
