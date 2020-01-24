@@ -126,7 +126,7 @@ object AptoPlatform : AptoPlatformProtocol {
         return list
     }
 
-    fun clearMonthlySpendingCache() = useCasesWrapper.clearMonthlySpendingCacheUseCase(Unit)
+    override fun clearMonthlySpendingCache() = useCasesWrapper.clearMonthlySpendingCacheUseCase(Unit)
 
     override fun fetchContextConfiguration(forceRefresh: Boolean,
                                            callback: (Either<Failure, ContextConfiguration>) -> Unit) =

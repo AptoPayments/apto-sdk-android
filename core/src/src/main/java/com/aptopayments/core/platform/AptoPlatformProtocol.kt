@@ -149,4 +149,6 @@ interface AptoPlatformProtocol {
     // VoIP
     fun fetchVoIPToken(cardId: String, actionSource: Action,
                        callback: (Either<Failure, VoipCall>) -> Unit)
+
+    fun clearMonthlySpendingCache()
 }
