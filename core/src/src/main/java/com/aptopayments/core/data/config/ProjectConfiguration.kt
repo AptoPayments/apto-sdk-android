@@ -6,7 +6,7 @@ import java.io.Serializable
 data class ProjectConfiguration (
         val name: String,
         val summary: String?,
-        val branding: ProjectBranding,
+        val branding: Branding,
         val labels: Map<String, String>,
         val allowedCountries: List<Country>,
         val supportEmailAddress: String?,

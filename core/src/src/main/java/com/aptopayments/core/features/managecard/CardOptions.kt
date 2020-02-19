@@ -9,6 +9,7 @@ class CardOptions(
     private val showMonthlyStatementsOption: Boolean = true,
     private val authenticateOnStartup: Boolean = false,
     private val authenticateWithPINOnPCI: Boolean = false,
+    private val darkThemeEnabled: Boolean = false,
     var openingMode: OpeningMode = OpeningMode.STANDALONE,
     var fontOptions: FontOptions = FontOptions()
 ) {
@@ -30,4 +31,6 @@ class CardOptions(
     fun authenticateOnStartup() = authenticateOnStartup
 
     fun authenticateWithPINOnPCI() = authenticateWithPINOnPCI
+
+    fun darkThemeEnabled() = darkThemeEnabled
 }

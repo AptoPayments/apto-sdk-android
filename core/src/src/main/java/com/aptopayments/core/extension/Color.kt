@@ -5,6 +5,7 @@ import androidx.annotation.ColorInt
 
 interface ColorParser {
     fun fromHexString(colorString: String?, default: String): Int
+    fun fromHexString(colorString: String): Int
 }
 
 class ColorParserImpl: ColorParser {
@@ -13,6 +14,14 @@ class ColorParserImpl: ColorParser {
             Color.parseColor("#$colorString")
         } catch (exception: Throwable) {
             Color.parseColor("#$default")
+        }
+    }
+
+    override fun fromHexString(colorString: String): Int {
+        return try {
+            Color.parseColor("#$colorString")
+        } catch (exception: Throwable) {
+            Color.WHITE
         }
     }
 }

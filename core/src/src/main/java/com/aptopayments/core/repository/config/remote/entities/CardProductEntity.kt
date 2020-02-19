@@ -31,6 +31,9 @@ internal data class CardProductEntity (
         @SerializedName ("wait_list_background_color")
         var waitlistBackgroundColor: String? = null,
 
+        @SerializedName ("wait_list_dark_background_color")
+        var waitlistDarkBackgroundColor: String? = null,
+
         @SerializedName ("wait_list_asset")
         var waitlistAsset: String? = null,
 
@@ -52,6 +55,7 @@ internal data class CardProductEntity (
                 faq = faq?.toContent(),
                 waitlistBackgroundImage = waitlistBackgroundImage?.let { URL(it) },
                 waitlistBackgroundColor = waitlistBackgroundColor?.let { colorParser.fromHexString(waitlistBackgroundColor, "FFFFFF") },
+                waitlistDarkBackgroundColor = waitlistDarkBackgroundColor?.let { colorParser.fromHexString(waitlistDarkBackgroundColor, "000000") },
                 waitlistAsset = waitlistAsset?.let{ URL(it) }
         )
     }

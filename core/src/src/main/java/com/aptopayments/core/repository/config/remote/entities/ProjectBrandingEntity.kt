@@ -131,82 +131,105 @@ internal data class ProjectBrandingEntity(
 ) {
     fun toProjectBranding(): ProjectBranding {
         return ProjectBranding(
-                uiBackgroundPrimaryColor = colorParser.fromHexString(
-                        uiBackgroundPrimaryColor,
-                        DEFAULT_UI_BACKGROUND_PRIMARY_COLOR),
-                uiBackgroundSecondaryColor = colorParser.fromHexString(
-                        uiBackgroundSecondaryColor,
-                        DEFAULT_UI_BACKGROUND_SECONDARY_COLOR),
-                iconPrimaryColor = colorParser.fromHexString(
-                        iconPrimaryColor,
-                        DEFAULT_ICON_PRIMARY_COLOR),
-                iconSecondaryColor = colorParser.fromHexString(
-                        iconSecondaryColor,
-                        DEFAULT_ICON_SECONDARY_COLOR),
-                iconTertiaryColor = colorParser.fromHexString(
-                        iconTertiaryColor,
-                        DEFAULT_ICON_TERTIARY_COLOR),
-                textPrimaryColor = colorParser.fromHexString(
-                        textPrimaryColor,
-                        DEFAULT_TEXT_PRIMARY_COLOR),
-                textSecondaryColor = colorParser.fromHexString(
-                        textSecondaryColor,
-                        DEFAULT_TEXT_SECONDARY_COLOR),
-                textTertiaryColor = colorParser.fromHexString(
-                        textTertiaryColor,
-                        DEFAULT_TEXT_TERTIARY_COLOR),
-                textTopBarPrimaryColor = colorParser.fromHexString(
-                        textTopBarPrimaryColor,
-                        DEFAULT_TEXT_TOP_BAR_PRIMARY_COLOR),
-                textTopBarSecondaryColor = colorParser.fromHexString(
-                        textTopBarSecondaryColor,
-                        DEFAULT_TEXT_TOP_BAR_SECONDARY_COLOR),
-                textLinkColor = colorParser.fromHexString(
-                        textLinkColor,
-                        DEFAULT_TEXT_LINK_COLOR),
-                textLinkUnderlined = textLinkUnderlined,
-                textButtonColor = colorParser.fromHexString(
-                        textButtonColor,
-                        DEFAULT_TEXT_BUTTON_COLOR),
-                buttonCornerRadius = buttonCornerRadius,
-                uiPrimaryColor = colorParser.fromHexString(
-                        uiPrimaryColor,
-                        DEFAULT_UI_PRIMARY_COLOR),
-                uiSecondaryColor = colorParser.fromHexString(
-                        uiSecondaryColor,
-                        DEFAULT_UI_SECONDARY_COLOR),
-                uiTertiaryColor = colorParser.fromHexString(
-                        uiTertiaryColor,
-                        DEFAULT_UI_TERTIARY_COLOR),
-                uiErrorColor = colorParser.fromHexString(
-                        uiErrorColor,
-                        DEFAULT_UI_ERROR_COLOR),
-                uiSuccessColor = colorParser.fromHexString(
-                        uiSuccessColor,
-                        DEFAULT_UI_SUCCESS_COLOR),
-                uiNavigationPrimaryColor = colorParser.fromHexString(
-                        uiNavigationPrimaryColor,
-                        DEFAULT_UI_NAVIGATION_PRIMARY_COLOR),
-                uiNavigationSecondaryColor = colorParser.fromHexString(
-                        uiNavigationSecondaryColor,
-                        DEFAULT_UI_NAVIGATION_SECONDARY_COLOR),
-                textMessageColor = colorParser.fromHexString(
-                        textMessageColor,
-                        DEFAULT_TEXT_MESSAGE_COLOR),
-                badgeBackgroundPositiveColor = colorParser.fromHexString(
-                        badgeBackgroundPositiveColor,
-                        DEFAULT_BADGE_BG_POSITIVE_COLOR),
-                badgeBackgroundNegativeColor = colorParser.fromHexString(
-                        badgeBackgroundNegativeColor,
-                        DEFAULT_BADGE_BG_NEGATIVE_COLOR),
-                showToastTitle = showToastTitle,
-                transactionDetailsCollapsable = transactionDetailsCollapsable,
-                disclaimerBackgroundColor = colorParser.fromHexString(
-                        disclaimerBackgroundColor,
-                        DEFAULT_DISCLAIMER_BACKGROUND_COLOR),
-                uiStatusBarStyle = UIStatusBarStyle.parseStatusBarStyle(uiStatusBarStyle),
-                logoUrl = logoUrl,
-                uiTheme = UITheme.parseUITheme(uiTheme)
+            uiBackgroundPrimaryColor = colorParser.fromHexString(
+                uiBackgroundPrimaryColor,
+                DEFAULT_UI_BACKGROUND_PRIMARY_COLOR
+            ),
+            uiBackgroundSecondaryColor = colorParser.fromHexString(
+                uiBackgroundSecondaryColor,
+                DEFAULT_UI_BACKGROUND_SECONDARY_COLOR
+            ),
+            iconPrimaryColor = colorParser.fromHexString(
+                iconPrimaryColor,
+                DEFAULT_ICON_PRIMARY_COLOR
+            ),
+            iconSecondaryColor = colorParser.fromHexString(
+                iconSecondaryColor,
+                DEFAULT_ICON_SECONDARY_COLOR
+            ),
+            iconTertiaryColor = colorParser.fromHexString(
+                iconTertiaryColor,
+                DEFAULT_ICON_TERTIARY_COLOR
+            ),
+            textPrimaryColor = colorParser.fromHexString(
+                textPrimaryColor,
+                DEFAULT_TEXT_PRIMARY_COLOR
+            ),
+            textSecondaryColor = colorParser.fromHexString(
+                textSecondaryColor,
+                DEFAULT_TEXT_SECONDARY_COLOR
+            ),
+            textTertiaryColor = colorParser.fromHexString(
+                textTertiaryColor,
+                DEFAULT_TEXT_TERTIARY_COLOR
+            ),
+            textTopBarPrimaryColor = colorParser.fromHexString(
+                textTopBarPrimaryColor,
+                DEFAULT_TEXT_TOP_BAR_PRIMARY_COLOR
+            ),
+            textTopBarSecondaryColor = colorParser.fromHexString(
+                textTopBarSecondaryColor,
+                DEFAULT_TEXT_TOP_BAR_SECONDARY_COLOR
+            ),
+            textLinkColor = colorParser.fromHexString(
+                textLinkColor,
+                DEFAULT_TEXT_LINK_COLOR
+            ),
+            textLinkUnderlined = textLinkUnderlined,
+            textButtonColor = colorParser.fromHexString(
+                textButtonColor,
+                DEFAULT_TEXT_BUTTON_COLOR
+            ),
+            buttonCornerRadius = buttonCornerRadius,
+            uiPrimaryColor = colorParser.fromHexString(
+                uiPrimaryColor,
+                DEFAULT_UI_PRIMARY_COLOR
+            ),
+            uiSecondaryColor = colorParser.fromHexString(
+                uiSecondaryColor,
+                DEFAULT_UI_SECONDARY_COLOR
+            ),
+            uiTertiaryColor = colorParser.fromHexString(
+                uiTertiaryColor,
+                DEFAULT_UI_TERTIARY_COLOR
+            ),
+            uiErrorColor = colorParser.fromHexString(
+                uiErrorColor,
+                DEFAULT_UI_ERROR_COLOR
+            ),
+            uiSuccessColor = colorParser.fromHexString(
+                uiSuccessColor,
+                DEFAULT_UI_SUCCESS_COLOR
+            ),
+            uiNavigationPrimaryColor = colorParser.fromHexString(
+                uiNavigationPrimaryColor,
+                DEFAULT_UI_NAVIGATION_PRIMARY_COLOR
+            ),
+            uiNavigationSecondaryColor = colorParser.fromHexString(
+                uiNavigationSecondaryColor,
+                DEFAULT_UI_NAVIGATION_SECONDARY_COLOR
+            ),
+            textMessageColor = colorParser.fromHexString(
+                textMessageColor,
+                DEFAULT_TEXT_MESSAGE_COLOR
+            ),
+            badgeBackgroundPositiveColor = colorParser.fromHexString(
+                badgeBackgroundPositiveColor,
+                DEFAULT_BADGE_BG_POSITIVE_COLOR
+            ),
+            badgeBackgroundNegativeColor = colorParser.fromHexString(
+                badgeBackgroundNegativeColor,
+                DEFAULT_BADGE_BG_NEGATIVE_COLOR
+            ),
+            showToastTitle = showToastTitle,
+            transactionDetailsCollapsable = transactionDetailsCollapsable,
+            disclaimerBackgroundColor = colorParser.fromHexString(
+                disclaimerBackgroundColor,
+                DEFAULT_DISCLAIMER_BACKGROUND_COLOR
+            ),
+            uiStatusBarStyle = UIStatusBarStyle.parseStatusBarStyle(uiStatusBarStyle),
+            logoUrl = logoUrl,
+            uiTheme = UITheme.parseUITheme(uiTheme)
         )
     }
 }

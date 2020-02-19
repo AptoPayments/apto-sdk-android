@@ -13,8 +13,8 @@ internal data class ProjectConfigurationEntity(
         @SerializedName("summary")
         val summary: String? = null,
 
-        @SerializedName("project_branding")
-        val projectBrandingEntity: ProjectBrandingEntity = ProjectBrandingEntity(),
+        @SerializedName("branding")
+        val brandingEntity: BrandingEntity = BrandingEntity(),
 
         @SerializedName("primary_auth_credential")
         val primaryOAuthCredential: String = "",
@@ -42,7 +42,7 @@ internal data class ProjectConfigurationEntity(
     fun toProjectConfiguration() = ProjectConfiguration(
             name = name,
             summary = summary,
-            branding = projectBrandingEntity.toProjectBranding(),
+            branding = brandingEntity.toBranding(),
             labels = labels,
             allowedCountries = allowedCountries.map { Country(it) },
             supportEmailAddress = supportEmailAddress,
