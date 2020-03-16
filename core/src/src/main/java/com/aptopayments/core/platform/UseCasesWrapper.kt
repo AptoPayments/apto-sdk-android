@@ -71,4 +71,5 @@ internal class UseCasesWrapper : KoinComponent {
     val updateNotificationPreferencesUseCase: UpdateNotificationPreferencesUseCase by inject()
     val setupVoipCallUseCase: SetupVoipCallUseCase by inject()
     val userSessionRepository: UserSessionRepository by inject()
+    val getProvisioningDataUseCase: GetProvisioningDataUseCase by inject()
 }

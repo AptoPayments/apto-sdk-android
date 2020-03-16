@@ -4,6 +4,7 @@ import androidx.annotation.VisibleForTesting
 import com.aptopayments.core.data.card.ActivatePhysicalCardResult
 import com.aptopayments.core.data.card.Card
 import com.aptopayments.core.data.card.CardDetails
+import com.aptopayments.core.data.card.ProvisioningData
 import com.aptopayments.core.data.fundingsources.Balance
 import com.aptopayments.core.data.oauth.OAuthCredential
 import com.aptopayments.core.exception.Failure
@@ -18,7 +19,6 @@ import com.aptopayments.core.repository.card.local.entities.CardBalanceLocalEnti
 import com.aptopayments.core.repository.card.local.entities.CardLocalEntity
 import com.aptopayments.core.repository.card.remote.CardService
 import com.aptopayments.core.repository.card.remote.entities.ActivatePhysicalCardEntity
-import com.aptopayments.core.repository.card.remote.entities.CardDetailsEntity
 import com.aptopayments.core.repository.card.remote.entities.CardEntity
 import com.aptopayments.core.repository.card.remote.requests.AddCardBalanceRequest
 import com.aptopayments.core.repository.card.remote.requests.GetCardRequest
@@ -44,6 +44,7 @@ internal interface CardRepository : BaseRepository {
     fun setCardBalance(params: SetCardBalanceParams): Either<Failure, Balance>
     fun addCardBalance(params: AddCardBalanceParams): Either<Failure, Balance>
     fun setPin(params: SetPinParams): Either<Failure, Card>
+    fun getProvisioningData(cardId: String, clientAppId: String, clientDeviceId:String, walletId: String): Either<Failure, ProvisioningData>
 
     class Network constructor(
             private val networkHandler: NetworkHandler,
@@ -211,6 +212,28 @@ internal interface CardRepository : BaseRepository {
                     }, BalanceEntity())
                 }
                 false, null -> Either.Left(Failure.NetworkConnection)
+            }
+        }
+
+        override fun getProvisioningData(
+            cardId: String,
+            clientAppId: String,
+            clientDeviceId: String,
+            walletId: String
+        ): Either<Failure, ProvisioningData> {
+
+            return when (networkHandler.isConnected) {
+                true -> {
+                    request(
+                        service.getProvisioningData(
+                            cardId,
+                            clientAppId,
+                            clientDeviceId,
+                            walletId
+                        )
+                    ) { it.pushTokenizeRequestData.toProvisioningData() }
+                }
+                else -> Either.Left(Failure.NetworkConnection)
             }
         }
     }

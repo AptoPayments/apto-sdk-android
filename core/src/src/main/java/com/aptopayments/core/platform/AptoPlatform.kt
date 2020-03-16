@@ -313,6 +313,23 @@ object AptoPlatform : AptoPlatformProtocol {
 
     override fun fetchVoIPToken(cardId: String, actionSource: Action, callback: (Either<Failure, VoipCall>) -> Unit) =
             useCasesWrapper.setupVoipCallUseCase(SetupVoipCallParams(cardId, actionSource)) { callback(it) }
+
+    override fun fetchProvisioningData(
+        cardId: String,
+        clientAppId: String,
+        clientDeviceId: String,
+        walletId: String,
+        callback: (Either<Failure, ProvisioningData>) -> Unit
+    ) {
+        return useCasesWrapper.getProvisioningDataUseCase(
+            GetProvisioningDataUseCase.Params(
+                cardId,
+                clientAppId,
+                clientDeviceId,
+                walletId
+            )
+        ) { callback(it) }
+    }
 }
 
 @VisibleForTesting(otherwise = Modifier.PROTECTED)

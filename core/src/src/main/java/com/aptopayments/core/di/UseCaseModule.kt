@@ -78,4 +78,5 @@ internal val useCasesModule = module {
     factory { SetupVoipCallUseCase(repository = get(), networkHandler = get()) }
     factory { GetMonthlyStatementUseCase(get(), get()) }
     factory { GetMonthlyStatementPeriodUseCase(get(), get()) }
+    factory { GetProvisioningDataUseCase(get(), get()) }
 }

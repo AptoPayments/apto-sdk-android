@@ -70,4 +70,11 @@ internal class CardService constructor(apiCatalog: ApiCatalog) : BaseService() {
             accountID = cardId,
             request = SetPinRequest(pin)
     )
+
+    fun getProvisioningData(cardId: String, clientAppId: String, clientDeviceId: String, walletId: String) =
+        cardApi.getProvisioningOPC(
+            userToken = authorizationHeader(userSessionRepository.userToken),
+            accountID = cardId,
+            request = GetProvisioningDataRequestWrapper(GetProvisioningDataRequest(clientAppId, clientDeviceId, walletId))
+        )
 }

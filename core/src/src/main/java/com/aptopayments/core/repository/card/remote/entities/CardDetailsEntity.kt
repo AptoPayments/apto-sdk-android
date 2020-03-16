@@ -18,6 +18,6 @@ internal data class CardDetailsEntity(
     fun toCardDetails() = CardDetails(
             pan = pan,
             cvv = cvv,
-            expirationDate = expirationDate
+            expirationDate = expirationDate.replace("/","-")
     )
 }

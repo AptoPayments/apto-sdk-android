@@ -5,11 +5,8 @@ import com.aptopayments.core.network.X_AUTHORIZATION
 import com.aptopayments.core.repository.card.remote.entities.ActivatePhysicalCardEntity
 import com.aptopayments.core.repository.card.remote.entities.CardDetailsEntity
 import com.aptopayments.core.repository.card.remote.entities.CardEntity
-import com.aptopayments.core.repository.card.remote.requests.IssueCardRequest
-import com.aptopayments.core.repository.card.remote.requests.ActivatePhysicalCardRequest
-import com.aptopayments.core.repository.card.remote.requests.AddCardBalanceRequest
-import com.aptopayments.core.repository.card.remote.requests.SetCardFundingSourceRequest
-import com.aptopayments.core.repository.card.remote.requests.SetPinRequest
+import com.aptopayments.core.repository.card.remote.entities.ProvisioningEntity
+import com.aptopayments.core.repository.card.remote.requests.*
 import com.aptopayments.core.repository.fundingsources.remote.entities.BalanceEntity
 import retrofit2.Call
 import retrofit2.http.*
@@ -22,6 +19,7 @@ private const val FINANCIAL_ACCOUNT_BALANCE_PATH = "v1/user/accounts/{account_id
 private const val FINANCIAL_ACCOUNT_PIN_PATH = "v1/user/accounts/{account_id}/pin"
 private const val CHANGE_CARD_STATE_PATH = "v1/user/accounts/{account_id}/{action}"
 private const val ACTIVATE_PHYSICAL_CARD_PATH = "v1/user/accounts/{account_id}/activate_physical"
+private const val GPAY_PROVISIONING_PATH = "v1/user/accounts/{account_id}/provision/androidpay"
 private const val ACCOUNT_ID = "account_id"
 private const val ACTION = "action"
 private const val SHOW_DETAILS = "show_details"
@@ -93,4 +91,11 @@ internal interface CardApi {
             @Path(ACCOUNT_ID) accountID: String,
             @Body request: SetPinRequest
     ): Call<CardEntity>
+
+    @POST(GPAY_PROVISIONING_PATH)
+    fun getProvisioningOPC(
+        @Header(X_AUTHORIZATION) userToken: String,
+        @Path(ACCOUNT_ID) accountID: String,
+        @Body request: GetProvisioningDataRequestWrapper
+    ): Call<ProvisioningEntity>
 }

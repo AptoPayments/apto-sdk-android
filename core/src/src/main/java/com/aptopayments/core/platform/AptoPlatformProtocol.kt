@@ -151,4 +151,12 @@ interface AptoPlatformProtocol {
                        callback: (Either<Failure, VoipCall>) -> Unit)
 
     fun clearMonthlySpendingCache()
+
+    fun fetchProvisioningData(
+        cardId: String,
+        clientAppId: String,
+        clientDeviceId: String,
+        walletId: String,
+        callback: (Either<Failure, ProvisioningData>) -> Unit
+    )
 }
