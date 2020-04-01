@@ -34,10 +34,9 @@ class NativeValueEntityTest : UnitTest() {
 
         // Then
         content shouldBeInstanceOf Content.Native::class.java
-        val nativeContent = content as Content.Native
-        assertNotNull(nativeContent.backgroundColor)
-        assertNotNull(nativeContent.backgroundImage)
-        assertNotNull(nativeContent.asset)
+        assertNotNull(content.backgroundColor)
+        assertNotNull(content.backgroundImage)
+        assertNotNull(content.asset)
     }
 
     @Test
@@ -51,10 +50,9 @@ class NativeValueEntityTest : UnitTest() {
 
         // Then
         content shouldBeInstanceOf Content.Native::class.java
-        val nativeContent = content as Content.Native
-        assertNull(nativeContent.backgroundColor)
-        assertNull(nativeContent.backgroundImage)
-        assertNull(nativeContent.asset)
+        assertNull(content.backgroundColor)
+        assertNull(content.backgroundImage)
+        assertNull(content.asset)
     }
 
     @Test
@@ -68,9 +66,8 @@ class NativeValueEntityTest : UnitTest() {
 
         // Then
         content shouldBeInstanceOf Content.Native::class.java
-        val nativeContent = content as Content.Native
-        assertNull(nativeContent.backgroundColor)
-        assertNull(nativeContent.backgroundImage)
-        assertNull(nativeContent.asset)
+        assertNull(content.backgroundColor)
+        assertNull(content.backgroundImage)
+        assertNull(content.asset)
     }
 }

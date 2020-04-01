@@ -9,8 +9,8 @@ For more information, see the [Apto developer portal](https://aptopayments.com/d
 ## Requirements
 
     * Android Version - API Level 21 (Android 5.0)
-    * Kotlin - 1.3.50
-    * Gradle - 3.5.3
+    * Kotlin - 1.3.71
+    * Gradle - 3.6.1
 
 ### Required permisions
 
@@ -23,7 +23,7 @@ For more information, see the [Apto developer portal](https://aptopayments.com/d
 
     ```
     
-    implementation 'com.aptopayments.sdk:core:2.6.2'
+    implementation 'com.aptopayments.sdk:core:2.9.2'
     
     ```
 

@@ -2,11 +2,14 @@ package com.aptopayments.core.data.transaction
 
 import com.aptopayments.core.extension.localized
 import java.io.Serializable
+import java.util.Locale
 
 data class MCC (
         val name: String?,
         val icon: Icon?
 ) : Serializable {
+
+    constructor(name: String) : this(name, Icon.valueOf(name.toUpperCase(Locale.US)))
 
     fun toLocalizedString(): String {
         return (mccDescriptions[icon] ?: "transaction_details.basic_info.category.unavailable").localized()

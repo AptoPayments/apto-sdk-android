@@ -4,6 +4,7 @@ import com.aptopayments.core.data.workflowaction.WorkflowAction
 import com.aptopayments.core.data.workflowaction.WorkflowActionType
 import com.aptopayments.core.repository.LiteralsRepository
 import com.google.gson.annotations.SerializedName
+import java.util.Locale
 
 internal data class WorkflowActionEntity (
 
@@ -31,7 +32,7 @@ internal data class WorkflowActionEntity (
 
     private fun parseActionType(type: String): WorkflowActionType {
         return try {
-            WorkflowActionType.valueOf(type.toUpperCase())
+            WorkflowActionType.valueOf(type.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             WorkflowActionType.UNSUPPORTED_ACTION_TYPE
         }

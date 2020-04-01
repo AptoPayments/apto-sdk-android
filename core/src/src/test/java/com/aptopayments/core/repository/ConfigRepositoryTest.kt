@@ -55,20 +55,18 @@ class ConfigRepositoryTest : UnitTest() {
         sut = ConfigRepository.Network(networkHandler, service)
     }
 
-    @Ignore
     @Test fun `Get context configuration should delegate to the service`() {
         val testContextConfiguration = TestDataProvider.provideContextConfiguration()
         given { networkHandler.isConnected }.willReturn(true)
-        given { getConfigResponse.body() }.willReturn(ContextConfigurationEntity())
+        given { getConfigResponse.body() }.willReturn(contextConfigurationEntity)
         given { getConfigResponse.isSuccessful }.willReturn(true)
         given { getConfigCall.execute() }.willReturn(getConfigResponse)
         given { service.getContextConfiguration() }.willReturn(getConfigCall)
-        given { contextConfigurationEntity.toContextConfiguration() }
-                .willReturn(testContextConfiguration)
+        given { contextConfigurationEntity.toContextConfiguration() }.willReturn(testContextConfiguration)
 
         val contextConfig = sut.getContextConfiguration()
 
-        contextConfig shouldEqual Right(ContextConfigurationEntity())
+        contextConfig shouldEqual Right(testContextConfiguration)
 
         verify(service).getContextConfiguration()
     }

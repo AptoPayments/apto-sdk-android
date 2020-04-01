@@ -2,6 +2,7 @@ package com.aptopayments.core.data.user
 
 import com.aptopayments.core.data.user.DataPoint.Type.ID_DOCUMENT
 import java.io.Serializable
+import java.util.Locale
 
 data class IdDocumentDataPoint(
         override val verification: Verification? = null,
@@ -13,5 +14,16 @@ data class IdDocumentDataPoint(
 ) : DataPoint(), Serializable {
     override fun getType() = ID_DOCUMENT
 
-    enum class Type { SSN, IDENTITY_CARD, PASSPORT, DRIVERS_LICENSE }
+    enum class Type {
+        SSN, IDENTITY_CARD, PASSPORT, DRIVERS_LICENSE, UNKNOWN;
+
+        companion object {
+            fun fromString(value: String) =
+                try {
+                    valueOf(value.toUpperCase(Locale.US))
+                } catch (e: Exception) {
+                    UNKNOWN
+                }
+        }
+    }
 }

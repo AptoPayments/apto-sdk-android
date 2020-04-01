@@ -3,6 +3,7 @@ package com.aptopayments.core.repository.fundingsources.remote.entities
 import com.aptopayments.core.data.fundingsources.Balance
 import com.aptopayments.core.repository.card.remote.entities.MoneyEntity
 import com.google.gson.annotations.SerializedName
+import java.util.Locale
 
 internal class BalanceEntity(
 
@@ -45,7 +46,7 @@ internal class BalanceEntity(
     private fun parseBalanceState(state: String?): Balance.BalanceState? {
         return state?.let {
             try {
-                Balance.BalanceState.valueOf(it.toUpperCase())
+                Balance.BalanceState.valueOf(it.toUpperCase(Locale.US))
             } catch (exception: Throwable) {
                 Balance.BalanceState.INVALID
             }

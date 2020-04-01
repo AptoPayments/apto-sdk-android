@@ -11,6 +11,7 @@ import com.aptopayments.core.repository.oauth.remote.requests.SaveOAuthUserDataR
 import com.aptopayments.core.repository.oauth.remote.requests.StartOAuthAuthenticationRequest
 import com.aptopayments.core.repository.user.remote.requests.UserDataRequest.Companion.serializeDataPointList
 import retrofit2.Call
+import java.util.Locale
 
 const val OAUTH_FINISHED_URL = "apto-sdk://oauth-finish"
 
@@ -20,7 +21,7 @@ internal class OAuthService constructor(apiCatalog: ApiCatalog) : BaseService() 
 
     fun startOAuthAuthentication(allowedBalanceType: AllowedBalanceType): Call<OAuthAttemptEntity> {
         val request = StartOAuthAuthenticationRequest(
-                provider = allowedBalanceType.balanceType.toString().toLowerCase(),
+                provider = allowedBalanceType.balanceType.toString().toLowerCase(Locale.US),
                 baseUri = allowedBalanceType.baseUri.toString(),
                 redirectUrl = OAUTH_FINISHED_URL
         )
@@ -37,7 +38,7 @@ internal class OAuthService constructor(apiCatalog: ApiCatalog) : BaseService() 
     fun saveOAuthUserData(allowedBalanceType: AllowedBalanceType, dataPointList: DataPointList, tokenId: String):
             Call<OAuthUserDataUpdateEntity> {
         val request = SaveOAuthUserDataRequest(
-                provider = allowedBalanceType.balanceType.toString().toLowerCase(),
+                provider = allowedBalanceType.balanceType.toString().toLowerCase(Locale.US),
                 tokenId = tokenId,
                 userData = serializeDataPointList(dataPointList)
         )
@@ -49,7 +50,7 @@ internal class OAuthService constructor(apiCatalog: ApiCatalog) : BaseService() 
     fun retrieveOAuthUserData(allowedBalanceType: AllowedBalanceType, tokenId: String):
             Call<OAuthUserDataUpdateEntity> {
         val request = RetrieveOAuthUserDataRequest(
-                provider = allowedBalanceType.balanceType.toString().toLowerCase(),
+                provider = allowedBalanceType.balanceType.toString().toLowerCase(Locale.US),
                 tokenId = tokenId
         )
         return oauthConnectApi.retrieveOAuthUserData(

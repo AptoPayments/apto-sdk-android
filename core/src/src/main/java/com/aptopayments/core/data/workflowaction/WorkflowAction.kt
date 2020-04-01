@@ -6,7 +6,8 @@ enum class WorkflowActionType {
     UNSUPPORTED_ACTION_TYPE,
     SELECT_BALANCE_STORE,
     ISSUE_CARD,
-    SHOW_DISCLAIMER
+    SHOW_DISCLAIMER,
+    COLLECT_USER_DATA
 }
 
 data class WorkflowAction (

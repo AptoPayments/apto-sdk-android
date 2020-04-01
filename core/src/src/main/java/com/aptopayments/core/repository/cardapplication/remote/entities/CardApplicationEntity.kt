@@ -4,6 +4,7 @@ import com.aptopayments.core.data.card.CardApplication
 import com.aptopayments.core.data.card.CardApplicationStatus
 import com.aptopayments.core.repository.cardapplication.remote.entities.workflowaction.WorkflowActionEntity
 import com.google.gson.annotations.SerializedName
+import java.util.Locale
 
 internal data class CardApplicationEntity(
 
@@ -29,7 +30,7 @@ internal data class CardApplicationEntity(
 
     private fun parseCardApplicationStatus(status: String): CardApplicationStatus {
         return try {
-            CardApplicationStatus.valueOf(status.toUpperCase())
+            CardApplicationStatus.valueOf(status.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             CardApplicationStatus.UNKNOWN
         }

@@ -2,7 +2,8 @@ package com.aptopayments.core.data.user
 
 import java.io.Serializable
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 data class BirthdateDataPoint (
         override val verification: Verification? = null,

@@ -9,7 +9,9 @@ import com.aptopayments.core.repository.cardapplication.remote.entities.workflow
 import com.aptopayments.core.repository.cardapplication.remote.parser.ContentParser
 import com.aptopayments.core.repository.cardapplication.remote.parser.WorkflowActionConfigurationParser
 import com.aptopayments.core.repository.user.remote.entities.DataPointEntity
+import com.aptopayments.core.repository.user.remote.entities.DataPointConfigurationEntity
 import com.aptopayments.core.repository.user.remote.parser.DataPointParser
+import com.aptopayments.core.repository.user.remote.parser.RequiredDatapointEntityParser
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.Cache
@@ -19,7 +21,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.*
+import java.util.concurrent.TimeUnit.NANOSECONDS
 
 private const val SHA_256_PREFIX = "sha256/"
 private const val SSL_FINGERPRINT_ONE = "k2v657xBsOVe1PQRwOsHsw3bsGT2VzIqz5K+59sNQws="
@@ -110,7 +112,7 @@ class ApiCatalog {
     private fun disableConnectingPool(okHttpClientBuilder: OkHttpClient.Builder) {
         // Disabling the ConnectionPool to avoid SocketTimeOut Exceptions related to network restarts
         // Source: https://github.com/square/okhttp/issues/3146#issuecomment-311158567
-        okHttpClientBuilder.connectionPool(ConnectionPool(0, 1, TimeUnit.NANOSECONDS))
+        okHttpClientBuilder.connectionPool(ConnectionPool(0, 1, NANOSECONDS))
     }
 
     private fun addCertificatePinner(okHttpClientBuilder: OkHttpClient.Builder) {
@@ -135,6 +137,7 @@ class ApiCatalog {
             return gson ?: run {
                 val gsonBuilder = GsonBuilder()
                 gsonBuilder.registerTypeAdapter(DataPointEntity::class.java, DataPointParser())
+                gsonBuilder.registerTypeAdapter(DataPointConfigurationEntity::class.java, RequiredDatapointEntityParser())
                 gsonBuilder.registerTypeAdapter(
                     WorkflowActionConfigurationEntity::class.java,
                     WorkflowActionConfigurationParser()

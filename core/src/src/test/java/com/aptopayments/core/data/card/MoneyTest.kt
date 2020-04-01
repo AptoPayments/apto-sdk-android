@@ -4,7 +4,7 @@ import com.aptopayments.core.UnitTest
 import org.amshove.kluent.`should equal`
 import org.junit.Before
 import org.junit.Test
-import java.util.*
+import java.util.Locale
 import kotlin.test.AfterTest
 
 class MoneyTest : UnitTest() {

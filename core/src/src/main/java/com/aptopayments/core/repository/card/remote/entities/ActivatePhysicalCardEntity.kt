@@ -3,6 +3,7 @@ package com.aptopayments.core.repository.card.remote.entities
 import com.aptopayments.core.data.card.ActivatePhysicalCardResult
 import com.aptopayments.core.data.card.ActivatePhysicalCardResultType
 import com.google.gson.annotations.SerializedName
+import java.util.Locale
 
 internal data class ActivatePhysicalCardEntity (
 
@@ -23,7 +24,7 @@ internal data class ActivatePhysicalCardEntity (
 
     private fun parseResult(result: String): ActivatePhysicalCardResultType {
         return try {
-            ActivatePhysicalCardResultType.valueOf(result.toUpperCase())
+            ActivatePhysicalCardResultType.valueOf(result.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             ActivatePhysicalCardResultType.ERROR
         }

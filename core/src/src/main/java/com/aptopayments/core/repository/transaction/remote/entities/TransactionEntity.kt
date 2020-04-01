@@ -7,7 +7,8 @@ import com.aptopayments.core.network.ListEntity
 import com.aptopayments.core.repository.card.remote.entities.MoneyEntity
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 internal data class TransactionEntity (
 
@@ -111,7 +112,7 @@ internal data class TransactionEntity (
     private fun parseTransactionType(transactionType: String?): Transaction.TransactionType {
         return transactionType?.let {
             try {
-                Transaction.TransactionType.valueOf(it.toUpperCase())
+                Transaction.TransactionType.valueOf(it.toUpperCase(Locale.US))
             } catch (exception: Throwable) {
                 Transaction.TransactionType.OTHER
             }
@@ -121,7 +122,7 @@ internal data class TransactionEntity (
     private fun parseCardNetwork(cardNetwork: String?): Card.CardNetwork? {
         return cardNetwork?.let {
             try {
-                Card.CardNetwork.valueOf(it.toUpperCase())
+                Card.CardNetwork.valueOf(it.toUpperCase(Locale.US))
             } catch (exception: Throwable) {
                 null
             }
@@ -131,7 +132,7 @@ internal data class TransactionEntity (
     private fun parseTransactionState(state: String?): Transaction.TransactionState {
         return state?.let {
             try {
-                Transaction.TransactionState.valueOf(it.toUpperCase())
+                Transaction.TransactionState.valueOf(it.toUpperCase(Locale.US))
             } catch (exception: Throwable) {
                 Transaction.TransactionState.OTHER
             }

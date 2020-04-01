@@ -4,6 +4,7 @@ import com.aptopayments.core.data.workflowaction.AllowedBalanceType
 import com.aptopayments.core.data.workflowaction.BalanceType
 import com.google.gson.annotations.SerializedName
 import java.net.URL
+import java.util.Locale
 
 internal data class AllowedBalanceTypeEntity(
 
@@ -17,7 +18,7 @@ internal data class AllowedBalanceTypeEntity(
 
     private fun parseBalanceType(type: String): BalanceType {
         return try {
-            BalanceType.valueOf(type.toUpperCase())
+            BalanceType.valueOf(type.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             BalanceType.COINBASE
         }

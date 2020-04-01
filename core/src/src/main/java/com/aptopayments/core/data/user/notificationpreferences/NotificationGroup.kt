@@ -1,8 +1,8 @@
 package com.aptopayments.core.data.user.notificationpreferences
 
-import android.content.Context
 import com.aptopayments.core.extension.localized
 import java.io.Serializable
+import java.util.Locale
 
 data class NotificationGroup(
         val categoryId: Category? = null,
@@ -45,7 +45,7 @@ data class NotificationGroup(
         }
 
         override fun toString(): String {
-            return name.toLowerCase()
+            return name.toLowerCase(Locale.US)
         }
     }
 

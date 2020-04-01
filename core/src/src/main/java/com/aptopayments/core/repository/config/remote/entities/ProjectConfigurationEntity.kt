@@ -1,9 +1,10 @@
 package com.aptopayments.core.repository.config.remote.entities
 
 import com.aptopayments.core.data.config.AuthCredential
-import com.aptopayments.core.data.geo.Country
 import com.aptopayments.core.data.config.ProjectConfiguration
+import com.aptopayments.core.data.geo.Country
 import com.google.gson.annotations.SerializedName
+import java.util.Locale
 
 internal data class ProjectConfigurationEntity(
 
@@ -53,7 +54,7 @@ internal data class ProjectConfigurationEntity(
 
     private fun parseAuthType(type: String): AuthCredential {
         return try {
-            AuthCredential.valueOf(type.toUpperCase())
+            AuthCredential.valueOf(type.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             AuthCredential.PHONE
         }

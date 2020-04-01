@@ -2,6 +2,7 @@ package com.aptopayments.core.repository.user.remote.entities
 
 import com.aptopayments.core.data.user.notificationpreferences.NotificationGroup
 import com.google.gson.annotations.SerializedName
+import java.util.Locale
 
 internal data class NotificationGroupEntity (
 
@@ -27,7 +28,7 @@ internal data class NotificationGroupEntity (
 
     private fun parseCategoryId(categoryId: String): NotificationGroup.Category? {
         return try {
-            NotificationGroup.Category.valueOf(categoryId.toUpperCase())
+            NotificationGroup.Category.valueOf(categoryId.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             null
         }
@@ -35,7 +36,7 @@ internal data class NotificationGroupEntity (
 
     private fun parseGroupId(groupId: String): NotificationGroup.Group? {
         return try {
-            NotificationGroup.Group.valueOf(groupId.toUpperCase())
+            NotificationGroup.Group.valueOf(groupId.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             null
         }
@@ -43,7 +44,7 @@ internal data class NotificationGroupEntity (
 
     private fun parseState(state: String): NotificationGroup.State? {
         return try {
-            NotificationGroup.State.valueOf(state.toUpperCase())
+            NotificationGroup.State.valueOf(state.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             null
         }

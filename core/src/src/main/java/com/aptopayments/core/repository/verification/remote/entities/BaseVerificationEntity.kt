@@ -1,6 +1,7 @@
 package com.aptopayments.core.repository.verification.remote.entities
 
 import com.aptopayments.core.data.user.VerificationStatus
+import java.util.Locale
 
 interface BaseVerificationEntity {
     val verificationType: String
@@ -9,7 +10,7 @@ interface BaseVerificationEntity {
 
     fun parseStatus(status: String): VerificationStatus {
         return try {
-            VerificationStatus.valueOf(status.toUpperCase())
+            VerificationStatus.valueOf(status.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             VerificationStatus.PENDING
         }

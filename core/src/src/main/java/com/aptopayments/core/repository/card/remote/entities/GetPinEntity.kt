@@ -4,6 +4,7 @@ import com.aptopayments.core.data.card.FeatureStatus
 import com.aptopayments.core.data.card.FeatureType
 import com.aptopayments.core.data.card.GetPin
 import com.google.gson.annotations.SerializedName
+import java.util.Locale
 
 internal data class GetPinEntity(
 
@@ -23,7 +24,7 @@ internal data class GetPinEntity(
 
     private fun parseFeatureStatus(state: String): FeatureStatus {
         return try {
-            FeatureStatus.valueOf(state.toUpperCase())
+            FeatureStatus.valueOf(state.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             FeatureStatus.DISABLED
         }
@@ -47,7 +48,7 @@ internal data class GetPinEntity(
                 }
             }
             GetPinEntity(
-                    status = it.status.toString().toLowerCase(),
+                    status = it.status.toString().toLowerCase(Locale.US),
                     type = it.type.name,
                     ivrPhoneEntity = phone
             )

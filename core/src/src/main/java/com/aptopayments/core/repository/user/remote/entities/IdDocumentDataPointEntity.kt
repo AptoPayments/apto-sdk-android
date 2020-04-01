@@ -4,6 +4,7 @@ import com.aptopayments.core.data.user.IdDocumentDataPoint
 import com.aptopayments.core.data.user.IdDocumentDataPoint.Type
 import com.aptopayments.core.repository.verification.remote.entities.VerificationEntity
 import com.google.gson.annotations.SerializedName
+import java.util.Locale
 
 internal data class IdDocumentDataPointEntity (
         @SerializedName("data_type")
@@ -38,7 +39,7 @@ internal data class IdDocumentDataPointEntity (
 
     private fun parseDocumentType(type: String): Type? {
         return try {
-            Type.valueOf(type.toUpperCase())
+            Type.valueOf(type.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             null
         }

@@ -2,6 +2,7 @@ package com.aptopayments.core.repository.cardapplication.remote.entities
 
 import com.aptopayments.core.data.card.SelectBalanceStoreResult
 import com.google.gson.annotations.SerializedName
+import java.util.Locale
 
 internal data class SelectBalanceStoreResultEntity(
 
@@ -19,7 +20,7 @@ internal data class SelectBalanceStoreResultEntity(
 
     private fun parseResult(result: String): SelectBalanceStoreResult.Type {
         return try {
-            SelectBalanceStoreResult.Type.valueOf(result.toUpperCase())
+            SelectBalanceStoreResult.Type.valueOf(result.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             SelectBalanceStoreResult.Type.INVALID
         }

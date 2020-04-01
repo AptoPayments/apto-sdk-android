@@ -3,6 +3,7 @@ package com.aptopayments.core.repository.transaction.remote.entities
 import com.aptopayments.core.data.transaction.MCC
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
+import java.util.Locale
 
 internal data class MCCEntity (
 
@@ -22,7 +23,7 @@ internal data class MCCEntity (
     private fun parseMCCIcon(icon: String?): MCC.Icon? {
         return icon?.let {
             try {
-                MCC.Icon.valueOf(it.toUpperCase())
+                MCC.Icon.valueOf(it.toUpperCase(Locale.US))
             } catch (exception: Throwable) {
                 MCC.Icon.OTHER
             }

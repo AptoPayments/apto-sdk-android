@@ -1,6 +1,7 @@
 package com.aptopayments.core.data.transaction
 
 import com.aptopayments.core.extension.localized
+import java.util.Locale
 
 enum class DeclineCode(val code: String) {
     DECLINE_NSF("decline_nsf"),
@@ -25,7 +26,7 @@ enum class DeclineCode(val code: String) {
     companion object {
         fun from(code: String?): DeclineCode? = code?.let {
             try {
-                valueOf(it.toUpperCase())
+                valueOf(it.toUpperCase(Locale.US))
             } catch (exception: Throwable) {
                 Other
             }

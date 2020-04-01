@@ -2,6 +2,7 @@ package com.aptopayments.core.repository.verification.remote.entities
 
 import com.aptopayments.core.data.user.Verification
 import com.google.gson.annotations.SerializedName
+import java.util.Locale
 
 internal data class VerificationEntity(
 
@@ -33,7 +34,7 @@ internal data class VerificationEntity(
             return VerificationEntity(
                     verificationType = verification.verificationType,
                     verificationId = verification.verificationId,
-                    status = verification.status.toString().toLowerCase()
+                    status = verification.status.toString().toLowerCase(Locale.US)
             )
         }
     }

@@ -5,6 +5,7 @@ import com.aptopayments.core.data.card.FeatureStatus
 import com.aptopayments.core.data.card.SetPin
 import com.google.gson.annotations.SerializedName
 import java.lang.reflect.Modifier
+import java.util.Locale
 
 internal data class SetPinEntity(
 
@@ -19,7 +20,7 @@ internal data class SetPinEntity(
     @VisibleForTesting(otherwise = Modifier.PRIVATE)
     fun parseFeatureStatus(state: String): FeatureStatus {
         return try {
-            FeatureStatus.valueOf(state.toUpperCase())
+            FeatureStatus.valueOf(state.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             FeatureStatus.DISABLED
         }
@@ -27,7 +28,7 @@ internal data class SetPinEntity(
 
     companion object {
         fun from(setPin: SetPin?): SetPinEntity? {
-            return setPin?.let { SetPinEntity(status = it.status.toString().toLowerCase()) }
+            return setPin?.let { SetPinEntity(status = it.status.toString().toLowerCase(Locale.US)) }
         }
     }
 }

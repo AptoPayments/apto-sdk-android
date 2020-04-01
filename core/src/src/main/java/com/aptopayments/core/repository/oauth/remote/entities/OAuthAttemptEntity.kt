@@ -9,6 +9,7 @@ import com.aptopayments.core.network.ListEntity
 import com.aptopayments.core.repository.user.remote.entities.DataPointEntity
 import com.google.gson.annotations.SerializedName
 import java.lang.reflect.Modifier
+import java.util.Locale
 
 internal data class OAuthAttemptEntity(
 
@@ -51,7 +52,7 @@ internal data class OAuthAttemptEntity(
 
     private fun parseOAuthAttemptStatus(status: String): OAuthAttemptStatus {
         return try {
-            OAuthAttemptStatus.valueOf(status.toUpperCase())
+            OAuthAttemptStatus.valueOf(status.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             OAuthAttemptStatus.PENDING
         }

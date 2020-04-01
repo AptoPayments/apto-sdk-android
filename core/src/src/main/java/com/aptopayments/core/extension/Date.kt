@@ -4,11 +4,13 @@ import android.annotation.SuppressLint
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 object ISO8601 {
 
-    private val dateFormatter = SimpleDateFormat("yyyy-MM-dd")
+    private val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 
     fun formatDate(date: Date) = dateFormatter.format(date)
 

@@ -4,7 +4,8 @@ import com.aptopayments.core.data.transaction.TransactionAdjustment
 import com.aptopayments.core.repository.card.remote.entities.MoneyEntity
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 internal data class TransactionAdjustmentEntity (
 
@@ -52,7 +53,7 @@ internal data class TransactionAdjustmentEntity (
     private fun parseTransactionAdjustmentType(type: String?): TransactionAdjustment.Type {
         return type?.let {
             try {
-                TransactionAdjustment.Type.valueOf(it.toUpperCase())
+                TransactionAdjustment.Type.valueOf(it.toUpperCase(Locale.US))
             } catch (exception: Throwable) {
                 TransactionAdjustment.Type.OTHER
             }
