@@ -21,6 +21,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeUnit.NANOSECONDS
 
 private const val SHA_256_PREFIX = "sha256/"
@@ -37,6 +38,7 @@ private const val X_SDK_VERSION_HEADER = "X-SDK-Version"
 private const val X_DEVICE_VERSION_HEADER = "X-Device-Version"
 private const val X_CONTENT_TYPE_HEADER = "Content-Type"
 private const val X_CONTENT_TYPE_CONTENT = "application/json"
+private const val TIMEOUT_SECONDS = 30L
 
 class ApiCatalog {
 
@@ -62,12 +64,17 @@ class ApiCatalog {
 
     private fun createClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
+        addTimeout(okHttpClientBuilder)
         addInterceptors(okHttpClientBuilder)
         addCertificatePinner(okHttpClientBuilder)
         disableConnectingPool(okHttpClientBuilder)
         manageCache(okHttpClientBuilder)
         addFixedHeaders(okHttpClientBuilder)
         return okHttpClientBuilder.build()
+    }
+
+    private fun addTimeout(okHttpClientBuilder: OkHttpClient.Builder) {
+        okHttpClientBuilder.readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
     }
 
     private fun addInterceptors(okHttpClientBuilder: OkHttpClient.Builder) {
