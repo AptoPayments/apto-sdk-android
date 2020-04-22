@@ -15,9 +15,9 @@ object LiteralsRepository {
 
     fun localized(key: String): String {
         val curatedKey = key.replace(".", "_")
-        val context = AptoPlatform.application.applicationContext
         return serverLiterals[curatedKey]
             ?: return try {
+                val context = AptoPlatform.application.applicationContext
                 context.resources.getString(context.resources.getIdentifier(curatedKey, "string", context.packageName))
             } catch (exception: Throwable) {
                 key

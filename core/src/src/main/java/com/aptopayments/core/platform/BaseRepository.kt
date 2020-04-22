@@ -67,10 +67,9 @@ internal interface BaseRepository : KoinComponent {
     }
 
     fun parseErrorBody(errorBody: ResponseBody?): Failure.ServerError {
-        errorBody?.let {
-            return getServerError(JsonParser().parse(errorBody.string()))
-        }
-        return Failure.ServerError(null)
+        return errorBody?.let {
+            getServerError(JsonParser().parse(errorBody.string()))
+        } ?: Failure.ServerError(null)
     }
 
     fun getServerError(jsonElement: JsonElement): Failure.ServerError {
@@ -78,6 +77,6 @@ internal interface BaseRepository : KoinComponent {
     }
 
     fun parseServerErrorEntity(jsonElement: JsonElement): ServerErrorEntity {
-        return ApiCatalog.gson().fromJson<ServerErrorEntity>(jsonElement, ServerErrorEntity::class.java)
+        return ApiCatalog.gson().fromJson(jsonElement, ServerErrorEntity::class.java)
     }
 }

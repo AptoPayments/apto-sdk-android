@@ -76,8 +76,7 @@ sealed class Failure {
         override fun getErrorKey() = "session_expired_error"
     }
 
-    class ServerError(val code: Int?, private val message: String? = null) :
-        Failure() {
+    class ServerError(val code: Int?, private val message: String? = null) : Failure() {
 
         fun isErrorBalanceValidationsEmailSendsDisabled() = code == BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED
 
@@ -146,7 +145,6 @@ sealed class Failure {
                 .put("reason", message ?: "")
                 .put("raw_code", rawCode)
         }
-
     }
 
     /** * Extend this class for feature specific failures.*/
