@@ -73,14 +73,14 @@ internal interface TransactionRepository : BaseRepository {
                                         replaceCachedTransactionsWith(transactionList.map { TransactionLocalEntity.fromTransaction(it, cardId) })
                                     }
 
-                                    if (transactionList.last().createdAt.after(currentTransactions.first().createdAt)) {
+                                    if (transactionList.last().createdAt.isAfter(currentTransactions.first().createdAt)) {
                                         // There's a gap between new and old transactions. Instead of paginating, we just store the new ones
                                         replaceCachedTransactionsWith(transactionList.map { TransactionLocalEntity.fromTransaction(it, cardId) })
                                     }
                                     else {
                                         var newTransactionIndex = 0
                                         val topCachedTransactionDate = currentTransactions.first().createdAt
-                                        while (newTransactionIndex<transactionList.size && transactionList[newTransactionIndex].createdAt.after(topCachedTransactionDate)) {
+                                        while (newTransactionIndex<transactionList.size && transactionList[newTransactionIndex].createdAt.isAfter(topCachedTransactionDate)) {
                                             currentTransactions.add(0, transactionList[newTransactionIndex])
                                             newTransactionIndex++
                                         }

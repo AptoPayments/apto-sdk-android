@@ -1,10 +1,10 @@
 package com.aptopayments.core.repository.transaction.remote.entities
 
 import com.aptopayments.core.data.transaction.TransactionAdjustment
+import com.aptopayments.core.extension.toZonedDateTime
 import com.aptopayments.core.repository.card.remote.entities.MoneyEntity
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import java.util.Date
 import java.util.Locale
 
 internal data class TransactionAdjustmentEntity (
@@ -41,7 +41,7 @@ internal data class TransactionAdjustmentEntity (
     fun toTransactionAdjustment() = TransactionAdjustment (
             id = id,
             externalId = externalId,
-            createdAt = if (createdAt != null) Date(createdAt.toLong()) else null,
+            createdAt = createdAt?.toLong()?.toZonedDateTime(),
             localAmount = localAmount?.toMoney(),
             nativeAmount = nativeAmount?.toMoney(),
             exchangeRate = exchangeRate,

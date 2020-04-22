@@ -2,7 +2,7 @@ package com.aptopayments.core.repository.user.remote.parser
 
 import com.aptopayments.core.extension.safeStringFromJson
 import com.aptopayments.core.network.ApiCatalog
-import com.aptopayments.core.repository.user.remote.entities.AddressDataPointConfigurationEntity
+import com.aptopayments.core.repository.user.remote.entities.AllowedCountriesDataPointConfigurationEntity
 import com.aptopayments.core.repository.user.remote.entities.DataPointConfigurationEntity
 import com.aptopayments.core.repository.user.remote.entities.IdDataPointConfigurationEntity
 import com.google.gson.JsonDeserializationContext
@@ -34,7 +34,7 @@ internal class RequiredDatapointEntityParser : JsonDeserializer<DataPointConfigu
         )
 
     private fun parseAddressDataPoint(datapointJson: JsonObject) =
-        ApiCatalog.gson().fromJson<AddressDataPointConfigurationEntity>(
-            datapointJson, AddressDataPointConfigurationEntity::class.java
+        ApiCatalog.gson().fromJson<AllowedCountriesDataPointConfigurationEntity>(
+            datapointJson, AllowedCountriesDataPointConfigurationEntity::class.java
         )
 }

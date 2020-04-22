@@ -2,13 +2,13 @@ package com.aptopayments.core.data.transaction
 
 import com.aptopayments.core.data.card.Money
 import com.aptopayments.core.extension.localized
+import org.threeten.bp.ZonedDateTime
 import java.io.Serializable
-import java.util.*
 
 data class TransactionAdjustment (
         val id: String?,
         val externalId: String?,
-        val createdAt: Date?,
+        val createdAt: ZonedDateTime?,
         val localAmount: Money?,
         val nativeAmount: Money?,
         val exchangeRate: Double?,

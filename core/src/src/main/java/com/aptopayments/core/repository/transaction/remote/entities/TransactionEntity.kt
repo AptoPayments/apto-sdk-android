@@ -3,11 +3,11 @@ package com.aptopayments.core.repository.transaction.remote.entities
 import com.aptopayments.core.data.card.Card
 import com.aptopayments.core.data.transaction.DeclineCode
 import com.aptopayments.core.data.transaction.Transaction
+import com.aptopayments.core.extension.toZonedDateTime
 import com.aptopayments.core.network.ListEntity
 import com.aptopayments.core.repository.card.remote.entities.MoneyEntity
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import java.util.Date
 import java.util.Locale
 
 internal data class TransactionEntity (
@@ -86,7 +86,7 @@ internal data class TransactionEntity (
     fun toTransaction() = Transaction (
             transactionId = transactionId,
             transactionType = parseTransactionType(transactionType),
-            createdAt = Date((createdAt * 1000.0).toLong()),
+            createdAt = (createdAt * 1000).toLong().toZonedDateTime(),
             transactionDescription = transactionDescription,
             lastMessage = lastMessage,
             declineCode = DeclineCode.from(declineCode),

@@ -8,7 +8,6 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.platform.BaseRepository
 import com.aptopayments.core.repository.statements.remote.MonthlyStatementService
 import com.aptopayments.core.repository.statements.remote.entities.MonthlyStatementReportEntity
-import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneOffset
 import org.threeten.bp.ZonedDateTime
 

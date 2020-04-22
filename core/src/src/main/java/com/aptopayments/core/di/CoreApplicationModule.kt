@@ -10,6 +10,8 @@ import com.aptopayments.core.repository.PushTokenRepository
 import com.aptopayments.core.repository.UserPreferencesRepository
 import com.aptopayments.core.repository.UserSessionRepository
 import com.aptopayments.core.repository.card.CardRepository
+import com.aptopayments.core.repository.card.local.CardLocalRepository
+import com.aptopayments.core.repository.card.local.CardLocalRepositoryImpl
 import com.aptopayments.core.repository.card.remote.CardService
 import com.aptopayments.core.repository.cardapplication.CardApplicationRepository
 import com.aptopayments.core.repository.cardapplication.remote.CardApplicationService
@@ -41,11 +43,11 @@ internal val applicationModule = module {
 
     single { get<LocalDB>().balanceLocalDao() }
 
-    single { get<LocalDB>().cardLocalDao() }
-
     single { get<LocalDB>().cardBalanceLocalDao() }
 
     single { get<LocalDB>().transactionLocalDao() }
+
+    single<CardLocalRepository> { CardLocalRepositoryImpl(androidContext()) }
 
     single { NetworkHandler(androidContext()) }
 
@@ -83,13 +85,7 @@ internal val repositoryModule = module {
             balanceLocalDao = get()
     ) }
     single { CardService(apiCatalog = get()) }
-    single<CardRepository> { CardRepository.Network(
-            networkHandler = get(),
-            service = get(),
-            cardLocalDao = get(),
-            cardBalanceLocalDao = get(),
-            userSessionRepository = get()
-    ) }
+    single<CardRepository> { CardRepository.Network(get(), get(), get(), get(), get()) }
     single { TransactionService(apiCatalog = get()) }
     single<TransactionRepository> { TransactionRepository.Network(
             networkHandler = get(),

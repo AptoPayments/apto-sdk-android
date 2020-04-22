@@ -12,7 +12,7 @@ import com.aptopayments.core.repository.transaction.remote.entities.MerchantEnti
 import com.aptopayments.core.repository.transaction.remote.entities.StoreEntity
 import com.aptopayments.core.repository.transaction.remote.entities.TransactionSettlementEntity
 import com.google.gson.reflect.TypeToken
-import java.util.*
+import org.threeten.bp.ZonedDateTime
 
 @Entity(tableName = "transaction")
 class TransactionLocalEntity(
@@ -28,7 +28,7 @@ class TransactionLocalEntity(
         val transactionType: Transaction.TransactionType,
 
         @ColumnInfo(name = "created_at")
-        val createdAt: Date,
+        val createdAt: ZonedDateTime,
 
         @ColumnInfo(name = "description")
         val transactionDescription: String?,
@@ -205,6 +205,20 @@ class TransactionLocalEntity(
         @TypeConverter
         fun declineCodeToString(declineCode: DeclineCode?): String? =
                 ApiCatalog.gson().toJson(declineCode)
+
+        @TypeConverter
+        fun stringToCardNetwork(value: String?): Card.CardNetwork? =
+            ApiCatalog.gson().fromJson(value, Card.CardNetwork::class.java)
+
+        @TypeConverter
+        fun cardNetworkToString(cardNetwork: Card.CardNetwork?): String? =
+            ApiCatalog.gson().toJson(cardNetwork)
+
+        @TypeConverter
+        fun zonedDateTimeToString(dateTime: ZonedDateTime?): String? = dateTime?.toString()
+
+        @TypeConverter
+        fun stringToZonedDateTime(value: String?): ZonedDateTime? = value?.let { ZonedDateTime.parse(value) }
     }
 }
 

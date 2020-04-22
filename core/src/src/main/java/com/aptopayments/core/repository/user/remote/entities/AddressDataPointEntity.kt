@@ -38,15 +38,15 @@ internal data class AddressDataPointEntity (
 
 ) : DataPointEntity {
     override fun toDataPoint() = AddressDataPoint(
-            verification = verification?.toVerification(),
-            verified = verified,
-            notSpecified = notSpecified,
             streetOne = streetOne,
             streetTwo = streetTwo,
             locality = locality,
             region = region,
             postalCode = postalCode,
-            country = country
+            country = country,
+            verification = verification?.toVerification(),
+            verified = verified,
+            notSpecified = notSpecified
     )
 
     companion object {

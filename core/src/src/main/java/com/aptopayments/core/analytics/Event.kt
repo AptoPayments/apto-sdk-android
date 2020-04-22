@@ -73,4 +73,10 @@ enum class Event(val event: String) {
     CreatePasscodeStart("biometric.create_pin.start"),
     ChangePasscodeStart("biometric.change_pin.start"),
     VerifyPasscodeStart("biometric.verify_pin.start"),
+    WorkflowUserInputName("workflow.user_input.name"),
+    WorkflowUserInputEmail("workflow.user_input.email"),
+    WorkflowUserIdDocument("workflow.user_input.id"),
+    WorkflowUserIdAddress("workflow.user_input.address"),
+    WorkflowUserBirthdate("workflow.user_input.birthdate"),
+    WorkflowUserPhone("workflow.user_input.phone")
 }

@@ -8,8 +8,9 @@ import com.aptopayments.core.repository.cardapplication.remote.entities.workflow
 import com.aptopayments.core.repository.cardapplication.remote.entities.workflowaction.WorkflowActionConfigurationEntity
 import com.aptopayments.core.repository.cardapplication.remote.parser.ContentParser
 import com.aptopayments.core.repository.cardapplication.remote.parser.WorkflowActionConfigurationParser
-import com.aptopayments.core.repository.user.remote.entities.DataPointEntity
+import com.aptopayments.core.repository.cardapplication.remote.parser.ZonedDateTimeConverter
 import com.aptopayments.core.repository.user.remote.entities.DataPointConfigurationEntity
+import com.aptopayments.core.repository.user.remote.entities.DataPointEntity
 import com.aptopayments.core.repository.user.remote.parser.DataPointParser
 import com.aptopayments.core.repository.user.remote.parser.RequiredDatapointEntityParser
 import com.google.gson.Gson
@@ -19,6 +20,7 @@ import okhttp3.CertificatePinner
 import okhttp3.ConnectionPool
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.threeten.bp.ZonedDateTime
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -149,6 +151,7 @@ class ApiCatalog {
                     WorkflowActionConfigurationEntity::class.java,
                     WorkflowActionConfigurationParser()
                 )
+                gsonBuilder.registerTypeAdapter(ZonedDateTime::class.java, ZonedDateTimeConverter())
                 gsonBuilder.registerTypeAdapter(ContentEntity::class.java, ContentParser())
                 val gson = gsonBuilder.serializeNulls().create()
                 this.gson = gson

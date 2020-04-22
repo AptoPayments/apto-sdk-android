@@ -23,10 +23,10 @@ internal data class EmailDataPointEntity (
 
 ) : DataPointEntity {
     override fun toDataPoint() = EmailDataPoint (
-            verification = verification?.toVerification(),
-            verified = verified,
-            notSpecified = notSpecified,
-            email = email
+        email = email,
+        verification = verification?.toVerification(),
+        verified = verified,
+        notSpecified = notSpecified
     )
 
     companion object {

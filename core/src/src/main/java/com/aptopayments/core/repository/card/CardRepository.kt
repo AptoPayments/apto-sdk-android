@@ -14,9 +14,8 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.platform.BaseRepository
 import com.aptopayments.core.repository.UserSessionRepository
 import com.aptopayments.core.repository.card.local.CardBalanceLocalDao
-import com.aptopayments.core.repository.card.local.CardLocalDao
+import com.aptopayments.core.repository.card.local.CardLocalRepository
 import com.aptopayments.core.repository.card.local.entities.CardBalanceLocalEntity
-import com.aptopayments.core.repository.card.local.entities.CardLocalEntity
 import com.aptopayments.core.repository.card.remote.CardService
 import com.aptopayments.core.repository.card.remote.entities.ActivatePhysicalCardEntity
 import com.aptopayments.core.repository.card.remote.entities.CardEntity
@@ -49,7 +48,7 @@ internal interface CardRepository : BaseRepository {
     class Network constructor(
             private val networkHandler: NetworkHandler,
             private val service: CardService,
-            private val cardLocalDao: CardLocalDao,
+            private val cardLocalRepo: CardLocalRepository,
             private val cardBalanceLocalDao: CardBalanceLocalDao,
             userSessionRepository: UserSessionRepository
     ) : BaseRepository.BaseRepositoryImpl(), CardRepository {
@@ -57,7 +56,7 @@ internal interface CardRepository : BaseRepository {
         init {
             userSessionRepository.subscribeSessionInvalidListener(this) {
                 GlobalScope.launch {
-                    cardLocalDao.clearCardCache()
+                    cardLocalRepo.clearCardCache()
                     cardBalanceLocalDao.clearCardBalanceCache()
                 }
             }
@@ -89,13 +88,12 @@ internal interface CardRepository : BaseRepository {
                 }
 
         override fun getCard(params: GetCardParams): Either<Failure, Card> {
-            if (params.refresh) {
-                return getCardFromRemoteAPI(params.cardId, params.showDetails)
+            return if (params.refresh) {
+                getCardFromRemoteAPI(params.cardId, params.showDetails)
             }
             else {
-                cardLocalDao.getCard(params.cardId)?.let { localCard ->
-                    return Either.Right(localCard.toCard())
-                } ?: return getCardFromRemoteAPI(params.cardId, params.showDetails)
+                cardLocalRepo.getCard(params.cardId)?.let { Either.Right(it) }
+                    ?: getCardFromRemoteAPI(params.cardId, params.showDetails)
             }
         }
 
@@ -192,8 +190,7 @@ internal interface CardRepository : BaseRepository {
                     val getCardRequest = GetCardRequest(accountID = cardId, showDetails = showDetails)
                     request(service.getCard(getCardRequest), {
                         val card = it.toCard()
-                        cardLocalDao.clearCardCache()
-                        cardLocalDao.saveCard(CardLocalEntity.fromCard(card))
+                        cardLocalRepo.saveCard(card)
                         card
                     }, CardEntity())
                 }

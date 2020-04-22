@@ -28,10 +28,10 @@ internal data class PhoneDataPointEntity (
 
 ) : DataPointEntity, Serializable {
     override fun toDataPoint() = PhoneDataPoint(
-            verification = verification?.toVerification(),
-            verified = verified,
-            notSpecified = notSpecified,
-            phoneNumber = PhoneNumber(countryCode = countryCode, phoneNumber = phoneNumber)
+        phoneNumber = PhoneNumber(countryCode = countryCode, phoneNumber = phoneNumber),
+        verification = verification?.toVerification(),
+        verified = verified,
+        notSpecified = notSpecified
     )
 
     companion object {

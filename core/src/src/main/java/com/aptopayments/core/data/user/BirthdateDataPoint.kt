@@ -1,17 +1,17 @@
 package com.aptopayments.core.data.user
 
+import org.threeten.bp.LocalDate
+import org.threeten.bp.format.DateTimeFormatter
+import org.threeten.bp.format.FormatStyle
 import java.io.Serializable
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
-data class BirthdateDataPoint (
-        override val verification: Verification? = null,
-        override val verified: Boolean? = false,
-        override val notSpecified: Boolean? = false,
-        val birthdate: Date = Date()
+data class BirthdateDataPoint(
+    val birthdate: LocalDate = LocalDate.now(),
+    override val verification: Verification? = null,
+    override val verified: Boolean? = false,
+    override val notSpecified: Boolean? = false
 ) : DataPoint(), Serializable {
     override fun getType() = Type.BIRTHDATE
-    fun toStringRepresentation(): String? = SimpleDateFormat.getDateInstance(
-            SimpleDateFormat.LONG, Locale.getDefault()).format(birthdate)
+
+    fun toStringRepresentation(): String? = birthdate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
 }

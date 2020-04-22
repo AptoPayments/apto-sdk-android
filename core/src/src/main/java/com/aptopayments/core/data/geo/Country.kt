@@ -22,4 +22,6 @@ data class Country(var isoCode: String) : Serializable {
             val secondLetter = Character.codePointAt(countryCode, 1) - 0x41 + 0x1F1E6
             return String(Character.toChars(firstLetter)) + String(Character.toChars(secondLetter))
         }
+
+    override fun toString() = name
 }

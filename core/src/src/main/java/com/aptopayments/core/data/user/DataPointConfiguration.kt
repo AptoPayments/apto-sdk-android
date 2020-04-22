@@ -1,3 +1,5 @@
 package com.aptopayments.core.data.user
 
-internal interface DataPointConfiguration
+import java.io.Serializable
+
+interface DataPointConfiguration : Serializable

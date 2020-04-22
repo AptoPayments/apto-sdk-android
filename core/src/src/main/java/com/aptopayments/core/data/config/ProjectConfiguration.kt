@@ -1,6 +1,7 @@
 package com.aptopayments.core.data.config
 
 import com.aptopayments.core.data.geo.Country
+import com.aptopayments.core.data.user.DataPoint
 import java.io.Serializable
 
 data class ProjectConfiguration (
@@ -12,5 +13,6 @@ data class ProjectConfiguration (
         val supportEmailAddress: String?,
         val trackerAccessToken: String?,
         val isTrackerActive: Boolean?,
-        val authCredential: AuthCredential?
+        val primaryAuthCredential: DataPoint.Type?,
+        val secondaryAuthCredential: DataPoint.Type? = null
 ) : Serializable

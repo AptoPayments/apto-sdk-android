@@ -1,0 +1,54 @@
+package com.aptopayments.core.repository.card.local
+
+import android.content.Context
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
+import com.aptopayments.core.data.card.Card
+import com.aptopayments.core.network.ApiCatalog
+
+const val SECURE_FILE_NAME = "com.aptopayments.core.repository.local.secure.txt"
+
+const val KEY = "card_key"
+
+interface CardLocalRepository {
+    fun saveCard(card: Card)
+    fun getCard(cardId: String): Card?
+    fun clearCardCache()
+}
+
+class CardLocalRepositoryImpl(context: Context) : CardLocalRepository {
+
+    private val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
+    private val masterKeyAlias = MasterKeys.getOrCreate(keyGenParameterSpec)
+
+    private val pref = EncryptedSharedPreferences
+        .create(
+            SECURE_FILE_NAME,
+            masterKeyAlias,
+            context,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+
+    override fun saveCard(card: Card) {
+        pref.edit().putString(KEY, ApiCatalog.gson().toJson(card)).apply()
+    }
+
+    override fun getCard(cardId: String): Card? {
+        val card = getCardFromStorage()
+        return if (card != null && card.accountID == cardId) card else null
+    }
+
+    private fun getCardFromStorage(): Card? {
+        return try {
+            val cardString = pref.getString(KEY, null)
+            ApiCatalog.gson().fromJson(cardString, Card::class.java)
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    override fun clearCardCache() {
+        pref.edit().clear().apply()
+    }
+}

@@ -26,11 +26,11 @@ internal data class NameDataPointEntity (
 
 ) : DataPointEntity {
     override fun toDataPoint() = NameDataPoint(
-            verification = verification?.toVerification(),
-            verified = verified,
-            notSpecified = notSpecified,
-            firstName = firstName,
-            lastName = lastName
+        firstName = firstName,
+        lastName = lastName,
+        verification = verification?.toVerification(),
+        verified = verified,
+        notSpecified = notSpecified
     )
 
     companion object {

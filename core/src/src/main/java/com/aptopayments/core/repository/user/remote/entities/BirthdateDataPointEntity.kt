@@ -1,10 +1,9 @@
 package com.aptopayments.core.repository.user.remote.entities
 
 import com.aptopayments.core.data.user.BirthdateDataPoint
-import com.aptopayments.core.extension.ISO8601
-import com.aptopayments.core.extension.parseISO8601Date
 import com.aptopayments.core.repository.verification.remote.entities.VerificationEntity
 import com.google.gson.annotations.SerializedName
+import org.threeten.bp.LocalDate
 
 internal data class BirthdateDataPointEntity (
 
@@ -25,10 +24,10 @@ internal data class BirthdateDataPointEntity (
 
 ) : DataPointEntity {
     override fun toDataPoint() = BirthdateDataPoint(
-            verification = verification?.toVerification(),
-            verified = verified,
-            notSpecified = notSpecified,
-            birthdate = parseISO8601Date(birthdate)
+        birthdate = LocalDate.parse(birthdate),
+        verification = verification?.toVerification(),
+        verified = verified,
+        notSpecified = notSpecified
     )
 
     companion object {
@@ -36,7 +35,7 @@ internal data class BirthdateDataPointEntity (
                 verification = VerificationEntity.from(dataPoint.verification),
                 verified = dataPoint.verified,
                 notSpecified = dataPoint.notSpecified,
-                birthdate = ISO8601.formatDate(dataPoint.birthdate)
+                birthdate = dataPoint.birthdate.toString()
         )
     }
 }

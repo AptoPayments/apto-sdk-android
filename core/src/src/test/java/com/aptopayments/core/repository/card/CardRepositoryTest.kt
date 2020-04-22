@@ -9,7 +9,7 @@ import com.aptopayments.core.functional.Either
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.UserSessionRepository
 import com.aptopayments.core.repository.card.local.CardBalanceLocalDao
-import com.aptopayments.core.repository.card.local.CardLocalDao
+import com.aptopayments.core.repository.card.local.CardLocalRepository
 import com.aptopayments.core.repository.card.remote.CardService
 import com.aptopayments.core.repository.card.remote.entities.CardEntity
 import com.aptopayments.core.repository.card.remote.requests.IssueCardRequest
@@ -32,7 +32,7 @@ class CardRepositoryTest : UnitTest() {
     // Collaborators
     @Mock private lateinit var networkHandler: NetworkHandler
     @Mock private lateinit var service: CardService
-    @Mock private lateinit var cardLocalDao: CardLocalDao
+    @Mock private lateinit var cardLocalRepository: CardLocalRepository
     @Mock private lateinit var cardBalanceLocalDao: CardBalanceLocalDao
     @Mock private lateinit var userSessionRepository: UserSessionRepository
     // Issue card
@@ -46,12 +46,12 @@ class CardRepositoryTest : UnitTest() {
             modules(module {
                 single { networkHandler }
                 single { service }
-                single { cardLocalDao }
+                single { cardLocalRepository }
                 single { cardBalanceLocalDao }
                 single { userSessionRepository }
             })
         }
-        sut = CardRepository.Network(networkHandler, service, cardLocalDao, cardBalanceLocalDao, userSessionRepository)
+        sut = CardRepository.Network(networkHandler, service, cardLocalRepository, cardBalanceLocalDao, userSessionRepository)
     }
 
     @Test

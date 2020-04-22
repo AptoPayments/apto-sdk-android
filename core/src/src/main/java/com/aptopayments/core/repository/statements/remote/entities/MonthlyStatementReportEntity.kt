@@ -2,10 +2,8 @@ package com.aptopayments.core.repository.statements.remote.entities
 
 import com.aptopayments.core.data.statements.MonthlyStatement
 import com.google.gson.annotations.SerializedName
-import org.threeten.bp.ZoneId
 import org.threeten.bp.ZoneOffset
 import org.threeten.bp.ZonedDateTime
-import org.threeten.bp.format.DateTimeFormatter
 
 internal data class MonthlyStatementReportEntity(
     @SerializedName("month")
@@ -33,6 +31,6 @@ internal data class MonthlyStatementReportEntity(
         )
 
     private fun getLocalDateTime(expiration: String?) =
-        expiration?.let { ZonedDateTime.parse(expiration) }?.withZoneSameInstant(ZoneId.systemDefault())?.toLocalDateTime()
+        expiration?.let { ZonedDateTime.parse(expiration) }?.withZoneSameInstant(ZoneOffset.UTC)
 
 }

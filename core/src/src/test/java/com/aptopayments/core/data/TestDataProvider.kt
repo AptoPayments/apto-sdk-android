@@ -2,18 +2,20 @@ package com.aptopayments.core.data
 
 import com.aptopayments.core.data.card.*
 import com.aptopayments.core.data.cardproduct.CardProduct
-import com.aptopayments.core.data.config.*
 import com.aptopayments.core.data.config.Branding
+import com.aptopayments.core.data.config.ContextConfiguration
+import com.aptopayments.core.data.config.ProjectConfiguration
+import com.aptopayments.core.data.config.TeamConfiguration
 import com.aptopayments.core.data.geo.Country
 import com.aptopayments.core.data.oauth.OAuthAttempt
 import com.aptopayments.core.data.oauth.OAuthAttemptStatus
 import com.aptopayments.core.data.oauth.OAuthUserDataUpdate
 import com.aptopayments.core.data.oauth.OAuthUserDataUpdateResult
+import com.aptopayments.core.data.user.DataPoint
 import com.aptopayments.core.data.user.DataPointList
 import com.aptopayments.core.data.user.User
 import com.aptopayments.core.data.user.Verification
 import com.aptopayments.core.data.workflowaction.AllowedBalanceType
-import com.aptopayments.core.data.workflowaction.BalanceType
 import org.mockito.Mockito
 import java.net.URL
 
@@ -44,7 +46,7 @@ class TestDataProvider {
                 supportEmailAddress = "",
                 trackerAccessToken = "",
                 isTrackerActive = false,
-                authCredential = AuthCredential.PHONE
+                primaryAuthCredential = DataPoint.Type.PHONE
             )
         )
 
@@ -62,7 +64,7 @@ class TestDataProvider {
                 supportEmailAddress = "",
                 trackerAccessToken = "",
                 isTrackerActive = false,
-                authCredential = AuthCredential.EMAIL
+                primaryAuthCredential = DataPoint.Type.EMAIL
             )
         )
 
@@ -77,7 +79,7 @@ class TestDataProvider {
         )
 
         fun provideAllowedBalanceType() = AllowedBalanceType(
-            balanceType = BalanceType.COINBASE,
+            balanceType = "type",
             baseUri = URL("http://www.aptopayments.com")
         )
 

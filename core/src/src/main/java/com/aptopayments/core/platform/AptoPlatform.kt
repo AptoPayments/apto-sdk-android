@@ -31,6 +31,7 @@ import com.aptopayments.core.exception.Failure
 import com.aptopayments.core.functional.Either
 import com.aptopayments.core.network.ApiCatalog
 import com.aptopayments.core.network.NetworkHandler
+import com.aptopayments.core.platform.AptoSdkEnvironment.PRD
 import com.aptopayments.core.repository.PushTokenRepository
 import com.aptopayments.core.repository.UserPreferencesRepository
 import com.aptopayments.core.repository.card.usecases.*
@@ -79,18 +80,21 @@ object AptoPlatform : AptoPlatformProtocol {
         uiModules = list.filterIsInstance<Module>()
     }
 
-    fun initializeWithApiKey(
-        application: Application,
-        apiKey: String,
-        environment: AptoSdkEnvironment = AptoSdkEnvironment.PRD
-    ) {
+    fun initializeWithApiKey(application: Application, apiKey: String, environment: AptoSdkEnvironment = PRD) {
+        initialize(application)
+        setApiKey(apiKey, environment)
+    }
+
+    fun initialize(application: Application) {
         this.application = application
         initKoin(application)
         AndroidThreeTen.init(application)
         networkHandlerWrapper = NetworkHandlerWrapper()
         pushTokenRepository = PushTokenRepositoryWrapper().pushTokenRepository
         useCasesWrapper = UseCasesWrapper()
+    }
 
+    fun setApiKey(apiKey: String, environment: AptoSdkEnvironment = PRD) {
         ApiCatalog.set(apiKey, environment)
         subscribeToSdkDeprecatedEvent()
     }

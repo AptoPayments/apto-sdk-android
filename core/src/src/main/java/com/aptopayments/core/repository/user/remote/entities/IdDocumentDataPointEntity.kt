@@ -29,12 +29,12 @@ internal data class IdDocumentDataPointEntity (
         val country: String? = null
 ) : DataPointEntity {
     override fun toDataPoint() = IdDocumentDataPoint(
-            verification = verification?.toVerification(),
-            verified = verified,
-            notSpecified = notSpecified,
-            type = type?.let { parseDocumentType(it) },
-            value = value,
-            country = country
+        type = type?.let { parseDocumentType(it) },
+        value = value,
+        country = country,
+        verification = verification?.toVerification(),
+        verified = verified,
+        notSpecified = notSpecified
     )
 
     private fun parseDocumentType(type: String): Type? {

@@ -1,10 +1,10 @@
 package com.aptopayments.core.data.transaction
 
 import com.aptopayments.core.data.card.Money
+import org.threeten.bp.ZonedDateTime
 import java.io.Serializable
-import java.util.*
 
 data class TransactionSettlement (
-        val createdAt: Date,
+        val createdAt: ZonedDateTime,
         val amount: Money?
 ) : Serializable

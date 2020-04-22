@@ -1,10 +1,9 @@
 package com.aptopayments.core.repository.config.remote.entities
 
-import com.aptopayments.core.data.config.AuthCredential
 import com.aptopayments.core.data.config.ProjectConfiguration
 import com.aptopayments.core.data.geo.Country
+import com.aptopayments.core.data.user.DataPoint
 import com.google.gson.annotations.SerializedName
-import java.util.Locale
 
 internal data class ProjectConfigurationEntity(
 
@@ -21,7 +20,7 @@ internal data class ProjectConfigurationEntity(
         val primaryOAuthCredential: String = "",
 
         @SerializedName("secondary_auth_credential")
-        val secondaryOAuthCredential: String = "email",
+        val secondaryOAuthCredential: String = "",
 
         @SerializedName("allowed_countries")
         val allowedCountries: List<String> = arrayListOf("US"),
@@ -49,15 +48,8 @@ internal data class ProjectConfigurationEntity(
             supportEmailAddress = supportEmailAddress,
             trackerAccessToken = trackerAccessToken,
             isTrackerActive = isTrackerActive,
-            authCredential = parseAuthType(primaryOAuthCredential)
+            primaryAuthCredential = DataPoint.Type.fromString(primaryOAuthCredential),
+            secondaryAuthCredential = DataPoint.Type.fromString(secondaryOAuthCredential)
     )
-
-    private fun parseAuthType(type: String): AuthCredential {
-        return try {
-            AuthCredential.valueOf(type.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
-            AuthCredential.PHONE
-        }
-    }
 
 }

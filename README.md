@@ -8,7 +8,7 @@ For more information, see the [Apto developer portal](https://aptopayments.com/d
 
 ## Requirements
 
-    * Android Version - API Level 21 (Android 5.0)
+    * Android Version - API Level 23 (Android 6.0)
     * Kotlin - 1.3.71
     * Gradle - 3.6.2
 
@@ -23,7 +23,7 @@ For more information, see the [Apto developer portal](https://aptopayments.com/d
 
     ```
     
-    implementation 'com.aptopayments.sdk:core:2.9.2'
+    implementation 'com.aptopayments.sdk:core:2.9.4'
     
     ```
 
@@ -31,16 +31,30 @@ For more information, see the [Apto developer portal](https://aptopayments.com/d
 
 ## Using the SDK
 
-To run the SDK you must first register a project in order to get a `API KEY`. Please contact Apto to create a project for you. Then, initialise the SDK by passing the public api key:
+To run the SDK you must first register a project in order to get a `API KEY`. Please contact Apto to create a project for you.
+
+The SDK must be initialized in the `onCreate` method of your Application class, this can be done in one or two steps. If you have the `API KEY` and environment at the time Application `onCreate` is executed you can do it in one step otherwise use the two step option.
+
+### One step initialization
 
 ```kotlin
-AptoPlatform.initializeWithApiKey(application, "API KEY")
+AptoPlatform.initializeWithApiKey(application, "API_KEY", AptoSdkEnvironment.SBX)
 ```
 
-This will initialise the SDK to operate in production mode. If you want to use it in sandbox mode, an additional parameter can be sent during initialization:
+The last parameter is optional and indicates the environment that you are pointing to, in this case is Sandbox, by default is production.
+
+### Two Step initialization
+
+This call has to be done from the Application class
 
 ```kotlin
-AptoPlatform.initializeWithApiKey(application, "API KEY", AptoSdkEnvironment.SBX)
+AptoPlatform.initialize(application)
+```
+
+This second step can be deferred and placed anywhere before the first interaction with the SDK
+
+```kotlin
+AptoPlatform.setApiKey("API_KEY", AptoSdkEnvironment.SBX)
 
 ```
 
@@ -61,7 +75,7 @@ Typical steps to obtain a user token involve:
 
 Use this method to specify a user session token (obtained using the Apto B2B API) to be used by the SDK. This is optional, if a session token is not provided, the SDK will verify the user to obtain one.
 
-```swift
+```kotlin
 AptoPlatform.setUserToken("user_token")
 ```
 

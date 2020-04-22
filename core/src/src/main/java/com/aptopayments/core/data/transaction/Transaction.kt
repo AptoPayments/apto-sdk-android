@@ -3,13 +3,13 @@ package com.aptopayments.core.data.transaction
 import com.aptopayments.core.data.card.Card
 import com.aptopayments.core.data.card.Money
 import com.aptopayments.core.extension.localized
+import org.threeten.bp.ZonedDateTime
 import java.io.Serializable
-import java.util.*
 
 data class Transaction (
         val transactionId: String,
         val transactionType: TransactionType,
-        val createdAt: Date,
+        val createdAt: ZonedDateTime,
         val transactionDescription: String?,
         val lastMessage: String?,
         val declineCode: DeclineCode?,

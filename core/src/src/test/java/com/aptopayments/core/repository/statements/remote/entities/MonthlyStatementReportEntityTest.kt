@@ -1,7 +1,6 @@
 package com.aptopayments.core.repository.statements.remote.entities
 
 import org.junit.Test
-import org.threeten.bp.ZoneId
 import org.threeten.bp.ZoneOffset
 import org.threeten.bp.ZonedDateTime
 import kotlin.test.assertEquals
@@ -21,7 +20,6 @@ class MonthlyStatementReportEntityTest {
         val downloadUrl = "http://www.example.com"
         val urlExpiration = "2019-10-15T12:13:19.195312+00:00"
         val expirationDate = ZonedDateTime.of(2019, 10, 15, 12, 13, 19, 195312000, ZoneOffset.UTC)
-        val expirationLocal = expirationDate.withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime()
 
         val report = MonthlyStatementReportEntity(
             month,
@@ -35,6 +33,6 @@ class MonthlyStatementReportEntityTest {
         assertEquals(year, report.year)
         assertEquals(id, report.id)
         assertEquals(downloadUrl, report.downloadUrl)
-        assertEquals(expirationLocal, report.urlExpiration)
+        assertEquals(expirationDate, report.urlExpiration)
     }
 }

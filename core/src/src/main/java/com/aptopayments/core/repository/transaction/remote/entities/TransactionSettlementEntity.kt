@@ -1,10 +1,10 @@
 package com.aptopayments.core.repository.transaction.remote.entities
 
 import com.aptopayments.core.data.transaction.TransactionSettlement
+import com.aptopayments.core.extension.toZonedDateTime
 import com.aptopayments.core.repository.card.remote.entities.MoneyEntity
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import java.util.*
 
 internal data class TransactionSettlementEntity (
 
@@ -17,7 +17,7 @@ internal data class TransactionSettlementEntity (
 ) : Serializable {
 
     fun toTransactionSettlement() = TransactionSettlement (
-            createdAt = Date(createdAt.toLong()),
+            createdAt = createdAt.toLong().toZonedDateTime(),
             amount = amount?.toMoney()
     )
 }
