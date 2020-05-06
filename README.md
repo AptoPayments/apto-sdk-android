@@ -4,13 +4,13 @@ Welcome to the Apto Android SDK. This SDK gives access to the Apto's mobile API,
 
 With this SDK, you'll be able to onboard new users, issue cards, obtain card activity information and manage the card (set pin, freeze / unfreeze, etc.)
 
-For more information, see the [Apto developer portal](https://aptopayments.com/developer).
+For more information, see the [Apto developer portal](https://aptopayments.com/#/developers).
 
 ## Requirements
 
     * Android Version - API Level 23 (Android 6.0)
     * Kotlin - 1.3.71
-    * Gradle - 3.6.2
+    * Gradle - 3.6.3
 
 ### Required permisions
 

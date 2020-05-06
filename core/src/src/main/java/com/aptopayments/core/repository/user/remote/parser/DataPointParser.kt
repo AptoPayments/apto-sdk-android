@@ -1,7 +1,7 @@
 package com.aptopayments.core.repository.user.remote.parser
 
 import com.aptopayments.core.extension.safeStringFromJson
-import com.aptopayments.core.network.ApiCatalog
+import com.aptopayments.core.network.GsonProvider
 import com.aptopayments.core.repository.user.remote.entities.*
 import com.google.gson.*
 import java.lang.reflect.Type
@@ -33,32 +33,29 @@ internal class DataPointParser : JsonDeserializer<DataPointEntity?>, JsonSeriali
     }
 
     private fun parseNameDataPoint(configJson: JsonObject): NameDataPointEntity? {
-        return ApiCatalog.gson().fromJson<NameDataPointEntity>(configJson,
-                NameDataPointEntity::class.java)
+        return GsonProvider.provide().fromJson(configJson, NameDataPointEntity::class.java)
     }
 
     private fun parsePhoneDataPoint(configJson: JsonObject): PhoneDataPointEntity? {
-        return ApiCatalog.gson().fromJson<PhoneDataPointEntity>(configJson,
-                PhoneDataPointEntity::class.java)
+        return GsonProvider.provide().fromJson(configJson, PhoneDataPointEntity::class.java)
     }
 
     private fun parseEmailDataPoint(configJson: JsonObject): EmailDataPointEntity? {
-        return ApiCatalog.gson().fromJson<EmailDataPointEntity>(configJson,
+        return GsonProvider.provide().fromJson(configJson,
                 EmailDataPointEntity::class.java)
     }
 
     private fun parseBirthdateDataPoint(configJson: JsonObject): BirthdateDataPointEntity? {
-        return ApiCatalog.gson().fromJson<BirthdateDataPointEntity>(configJson,
+        return GsonProvider.provide().fromJson(configJson,
                 BirthdateDataPointEntity::class.java)
     }
 
     private fun parseAddressDataPoint(configJson: JsonObject): AddressDataPointEntity? {
-        return ApiCatalog.gson().fromJson<AddressDataPointEntity>(configJson,
-                AddressDataPointEntity::class.java)
+        return GsonProvider.provide().fromJson(configJson, AddressDataPointEntity::class.java)
     }
 
     private fun parseIdDocumentDataPoint(configJson: JsonObject): IdDocumentDataPointEntity? {
-        return ApiCatalog.gson().fromJson<IdDocumentDataPointEntity>(configJson, IdDocumentDataPointEntity::class.java)
+        return GsonProvider.provide().fromJson(configJson, IdDocumentDataPointEntity::class.java)
     }
 
     override fun serialize(src: DataPointEntity?,
@@ -80,7 +77,7 @@ internal class DataPointParser : JsonDeserializer<DataPointEntity?>, JsonSeriali
             addProperty("data_type", entity.dataType)
             addProperty("verified", entity.verified)
             entity.verification?.let {
-                add("verification", ApiCatalog.gson().toJsonTree(it))
+                add("verification", GsonProvider.provide().toJsonTree(it))
             }
             addProperty("not_specified", entity.notSpecified)
         }

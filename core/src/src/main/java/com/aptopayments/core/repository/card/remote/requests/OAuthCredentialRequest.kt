@@ -1,12 +1,9 @@
 package com.aptopayments.core.repository.card.remote.requests
 
-import androidx.annotation.VisibleForTesting
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import java.lang.reflect.Modifier
 
-@VisibleForTesting(otherwise = Modifier.PROTECTED)
-data class OAuthCredentialRequest (
+internal data class OAuthCredentialRequest (
         @SerializedName("type")
         val type: String = "custodian",
 

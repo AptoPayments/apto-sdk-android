@@ -30,6 +30,7 @@ import com.aptopayments.core.di.useCasesModule
 import com.aptopayments.core.exception.Failure
 import com.aptopayments.core.functional.Either
 import com.aptopayments.core.network.ApiCatalog
+import com.aptopayments.core.network.ApiKeyProvider
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.platform.AptoSdkEnvironment.PRD
 import com.aptopayments.core.repository.PushTokenRepository
@@ -95,7 +96,7 @@ object AptoPlatform : AptoPlatformProtocol {
     }
 
     fun setApiKey(apiKey: String, environment: AptoSdkEnvironment = PRD) {
-        ApiCatalog.set(apiKey, environment)
+        ApiKeyProvider.set(apiKey, environment)
         subscribeToSdkDeprecatedEvent()
     }
 
@@ -336,12 +337,10 @@ object AptoPlatform : AptoPlatformProtocol {
     }
 }
 
-@VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal class NetworkHandlerWrapper : KoinComponent {
     val networkHandler: NetworkHandler by inject()
 }
 
-@VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal class PushTokenRepositoryWrapper : KoinComponent {
     val pushTokenRepository: PushTokenRepository by inject()
 }

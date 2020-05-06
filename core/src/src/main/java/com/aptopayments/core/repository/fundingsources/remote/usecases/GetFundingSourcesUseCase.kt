@@ -1,15 +1,12 @@
 package com.aptopayments.core.repository.fundingsources.remote.usecases
 
-import androidx.annotation.VisibleForTesting
 import com.aptopayments.core.data.fundingsources.Balance
 import com.aptopayments.core.exception.Failure
 import com.aptopayments.core.functional.Either
 import com.aptopayments.core.interactor.UseCase
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.fundingsources.FundingSourceRepository
-import java.lang.reflect.Modifier
 
-@VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal class GetFundingSourcesUseCase constructor(
         private val fundingSourceRepository: FundingSourceRepository,
         networkHandler: NetworkHandler

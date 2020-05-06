@@ -1,5 +1,6 @@
 package com.aptopayments.core.repository.config.remote.entities
 
+import androidx.annotation.RestrictTo
 import com.aptopayments.core.data.config.ProjectBranding
 import com.aptopayments.core.data.config.UIStatusBarStyle
 import com.aptopayments.core.data.config.UITheme
@@ -8,13 +9,16 @@ import com.aptopayments.core.extension.ColorParserImpl
 import com.google.gson.annotations.SerializedName
 
 internal const val DEFAULT_ICON_PRIMARY_COLOR = "000000"
-internal const val DEFAULT_ICON_SECONDARY_COLOR = "000000"
-internal const val DEFAULT_ICON_TERTIARY_COLOR = "000000"
+const val DEFAULT_ICON_SECONDARY_COLOR = "000000"
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+const val DEFAULT_ICON_TERTIARY_COLOR = "000000"
 internal const val DEFAULT_TEXT_PRIMARY_COLOR = "FF2B2D35"
 internal const val DEFAULT_TEXT_SECONDARY_COLOR = "FF54565F"
 internal const val DEFAULT_TEXT_TERTIARY_COLOR = "FFBBBDBD"
-internal const val DEFAULT_TEXT_TOP_BAR_PRIMARY_COLOR = "202A36"
-internal const val DEFAULT_TEXT_TOP_BAR_SECONDARY_COLOR = "FFFFFF"
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+const val DEFAULT_TEXT_TOP_BAR_PRIMARY_COLOR = "202A36"
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+const val DEFAULT_TEXT_TOP_BAR_SECONDARY_COLOR = "FFFFFF"
 internal const val DEFAULT_TEXT_LINK_COLOR = "FF54565F"
 internal const val DEFAULT_TEXT_BUTTON_COLOR = "FFFFFF"
 internal const val DEFAULT_BUTTON_CORNER_RADIUS = 12f
@@ -25,8 +29,10 @@ internal const val DEFAULT_UI_ERROR_COLOR = "FFDC4337"
 internal const val DEFAULT_UI_SUCCESS_COLOR = "DB1D0E"
 internal const val DEFAULT_UI_BACKGROUND_PRIMARY_COLOR = "f2f3f4"
 internal const val DEFAULT_UI_BACKGROUND_SECONDARY_COLOR = "f2f3f4"
-internal const val DEFAULT_UI_NAVIGATION_PRIMARY_COLOR = "f2f3f4"
-internal const val DEFAULT_UI_NAVIGATION_SECONDARY_COLOR = "202a36"
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+const val DEFAULT_UI_NAVIGATION_PRIMARY_COLOR = "f2f3f4"
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+const val DEFAULT_UI_NAVIGATION_SECONDARY_COLOR = "202a36"
 internal const val DEFAULT_TEXT_MESSAGE_COLOR = "FFFFFF"
 internal const val DEFAULT_BADGE_BG_POSITIVE_COLOR = "61ca00"
 internal const val DEFAULT_BADGE_BG_NEGATIVE_COLOR = "326700"

@@ -7,7 +7,7 @@ import androidx.room.TypeConverter
 import com.aptopayments.core.data.card.Card
 import com.aptopayments.core.data.card.Money
 import com.aptopayments.core.data.transaction.*
-import com.aptopayments.core.network.ApiCatalog
+import com.aptopayments.core.network.GsonProvider
 import com.aptopayments.core.repository.transaction.remote.entities.MerchantEntity
 import com.aptopayments.core.repository.transaction.remote.entities.StoreEntity
 import com.aptopayments.core.repository.transaction.remote.entities.TransactionSettlementEntity
@@ -152,67 +152,65 @@ class TransactionLocalEntity(
 
         @TypeConverter
         fun stringToTransactionType(value: String?): Transaction.TransactionType? =
-                ApiCatalog.gson().fromJson(value, Transaction.TransactionType::class.java)
+            GsonProvider.provide().fromJson(value, Transaction.TransactionType::class.java)
 
         @TypeConverter
         fun transactionTypeToString(transactionType: Transaction.TransactionType?): String? =
-                ApiCatalog.gson().toJson(transactionType)
+            GsonProvider.provide().toJson(transactionType)
 
         @TypeConverter
         fun stringToMerchant(value: String?): Merchant? =
-                ApiCatalog.gson().fromJson(value, MerchantEntity::class.java).toMerchant()
+            GsonProvider.provide().fromJson(value, MerchantEntity::class.java).toMerchant()
 
         @TypeConverter
         fun merchantToString(merchant: Merchant?): String? =
-                ApiCatalog.gson().toJson(MerchantEntity.from(merchant))
+            GsonProvider.provide().toJson(MerchantEntity.from(merchant))
 
         @TypeConverter
         fun stringToStore(value: String?): Store? =
-                ApiCatalog.gson().fromJson(value, StoreEntity::class.java)?.toStore()
+            GsonProvider.provide().fromJson(value, StoreEntity::class.java)?.toStore()
 
         @TypeConverter
         fun storeToString(store: Store?): String? =
-                ApiCatalog.gson().toJson(StoreEntity.from(store))
+            GsonProvider.provide().toJson(StoreEntity.from(store))
 
         @TypeConverter
         fun stringToTransactionSettlement(value: String?): TransactionSettlement? =
-                ApiCatalog.gson().fromJson(value, TransactionSettlementEntity::class.java).toTransactionSettlement()
+            GsonProvider.provide().fromJson(value, TransactionSettlementEntity::class.java).toTransactionSettlement()
 
         @TypeConverter
         fun transactionSettlementToString(transactionSettlement: TransactionSettlement?): String? =
-                ApiCatalog.gson().toJson(transactionSettlement)
+            GsonProvider.provide().toJson(transactionSettlement)
 
         @TypeConverter
         fun stringToTransactionState(value: String?): Transaction.TransactionState? =
-                ApiCatalog.gson().fromJson(value, Transaction.TransactionState::class.java)
+            GsonProvider.provide().fromJson(value, Transaction.TransactionState::class.java)
 
         @TypeConverter
         fun transactionStateToString(transactionState: Transaction.TransactionState?): String? =
-                ApiCatalog.gson().toJson(transactionState)
+            GsonProvider.provide().toJson(transactionState)
 
         @TypeConverter
         fun stringToAdjustmentsList(value: String?): List<TransactionAdjustment>? =
-            ApiCatalog.gson().fromJson(value, genericType<List<TransactionAdjustment>>())
+            GsonProvider.provide().fromJson(value, genericType<List<TransactionAdjustment>>())
 
         @TypeConverter
         fun adjustmentsListToString(stringList: List<TransactionAdjustment>?): String? =
-                ApiCatalog.gson().toJson(stringList)
+            GsonProvider.provide().toJson(stringList)
 
         @TypeConverter
         fun stringToDeclineCode(value: String?): DeclineCode? =
-                ApiCatalog.gson().fromJson(value, DeclineCode::class.java)
+            GsonProvider.provide().fromJson(value, DeclineCode::class.java)
 
         @TypeConverter
-        fun declineCodeToString(declineCode: DeclineCode?): String? =
-                ApiCatalog.gson().toJson(declineCode)
+        fun declineCodeToString(declineCode: DeclineCode?): String? = GsonProvider.provide().toJson(declineCode)
 
         @TypeConverter
         fun stringToCardNetwork(value: String?): Card.CardNetwork? =
-            ApiCatalog.gson().fromJson(value, Card.CardNetwork::class.java)
+            GsonProvider.provide().fromJson(value, Card.CardNetwork::class.java)
 
         @TypeConverter
-        fun cardNetworkToString(cardNetwork: Card.CardNetwork?): String? =
-            ApiCatalog.gson().toJson(cardNetwork)
+        fun cardNetworkToString(cardNetwork: Card.CardNetwork?): String? = GsonProvider.provide().toJson(cardNetwork)
 
         @TypeConverter
         fun zonedDateTimeToString(dateTime: ZonedDateTime?): String? = dateTime?.toString()
@@ -222,4 +220,4 @@ class TransactionLocalEntity(
     }
 }
 
-inline fun <reified T> genericType() = object: TypeToken<T>() {}.type
+inline fun <reified T> genericType() = object : TypeToken<T>() {}.type

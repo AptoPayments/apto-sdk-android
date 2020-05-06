@@ -7,7 +7,7 @@ import androidx.room.TypeConverter
 import com.aptopayments.core.data.card.CustodianWallet
 import com.aptopayments.core.data.card.Money
 import com.aptopayments.core.data.fundingsources.Balance
-import com.aptopayments.core.network.ApiCatalog
+import com.aptopayments.core.network.GsonProvider
 
 @Entity(tableName = "balance")
 class BalanceLocalEntity(
@@ -68,18 +68,18 @@ class BalanceLocalEntity(
 
         @TypeConverter
         fun stringToCustodianWallet(value: String?): CustodianWallet? =
-                ApiCatalog.gson().fromJson(value, CustodianWallet::class.java)
+                GsonProvider.provide().fromJson(value, CustodianWallet::class.java)
 
         @TypeConverter
         fun custodianWalletToString(custodianWallet: CustodianWallet?): String? =
-                ApiCatalog.gson().toJson(custodianWallet)
+                GsonProvider.provide().toJson(custodianWallet)
 
         @TypeConverter
         fun stringToBalanceState(value: String?): Balance.BalanceState? =
-                ApiCatalog.gson().fromJson(value, Balance.BalanceState::class.java)
+                GsonProvider.provide().fromJson(value, Balance.BalanceState::class.java)
 
         @TypeConverter
         fun balanceStateToString(balanceState: Balance.BalanceState?): String? =
-                ApiCatalog.gson().toJson(balanceState)
+                GsonProvider.provide().toJson(balanceState)
     }
 }

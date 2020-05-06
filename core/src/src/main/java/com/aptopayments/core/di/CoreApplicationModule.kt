@@ -1,11 +1,10 @@
 package com.aptopayments.core.di
 
-import android.annotation.SuppressLint
-import androidx.annotation.VisibleForTesting
 import com.aptopayments.core.db.DataBaseProvider
 import com.aptopayments.core.db.LocalDB
+import com.aptopayments.core.network.*
 import com.aptopayments.core.network.ApiCatalog
-import com.aptopayments.core.network.NetworkHandler
+import com.aptopayments.core.network.GsonProvider
 import com.aptopayments.core.repository.PushTokenRepository
 import com.aptopayments.core.repository.UserPreferencesRepository
 import com.aptopayments.core.repository.UserSessionRepository
@@ -35,27 +34,19 @@ import com.aptopayments.core.repository.voip.VoipRepository
 import com.aptopayments.core.repository.voip.remote.VoipService
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
-import java.lang.reflect.Modifier
 
-@VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal val applicationModule = module {
     single { DataBaseProvider.getInstance(context = androidContext()) }
-
     single { get<LocalDB>().balanceLocalDao() }
-
     single { get<LocalDB>().cardBalanceLocalDao() }
-
     single { get<LocalDB>().transactionLocalDao() }
-
     single<CardLocalRepository> { CardLocalRepositoryImpl(androidContext()) }
-
     single { NetworkHandler(androidContext()) }
-
-    single { ApiCatalog() }
+    factory<OkHttpClientProvider> { OkHttpClientProviderImpl() }
+    factory<RetrofitFactory> { RetrofitFactoryImpl(GsonProvider, get()) }
+    single { ApiCatalog(get()) }
 }
 
-@SuppressLint("VisibleForTests")
-@VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal val repositoryModule = module {
     single { UserSessionRepository(context = androidContext(), localDB = get()) }
     single { UserPreferencesRepository(userSessionRepository = get(), context = androidContext()) }

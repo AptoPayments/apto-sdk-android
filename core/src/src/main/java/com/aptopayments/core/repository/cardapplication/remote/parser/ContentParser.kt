@@ -1,7 +1,7 @@
 package com.aptopayments.core.repository.cardapplication.remote.parser
 
 import com.aptopayments.core.extension.safeStringFromJson
-import com.aptopayments.core.network.ApiCatalog
+import com.aptopayments.core.network.GsonProvider
 import com.aptopayments.core.repository.cardapplication.remote.entities.workflowaction.*
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
@@ -22,10 +22,10 @@ class ContentParser : JsonDeserializer<ContentEntity?> {
     }
 
     private fun parseNativeContent(contentJson: JsonObject): ContentEntity? {
-        return ApiCatalog.gson().fromJson<NativeContentEntity>(contentJson, NativeContentEntity::class.java)
+        return GsonProvider.provide().fromJson(contentJson, NativeContentEntity::class.java)
     }
 
     private fun parsePlainContent(contentJson: JsonObject): ContentEntity? {
-        return ApiCatalog.gson().fromJson<PlainTextContentEntity>(contentJson, PlainTextContentEntity::class.java)
+        return GsonProvider.provide().fromJson(contentJson, PlainTextContentEntity::class.java)
     }
 }

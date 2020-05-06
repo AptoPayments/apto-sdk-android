@@ -2,16 +2,13 @@ package com.aptopayments.core.repository
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.annotation.VisibleForTesting
 import com.aptopayments.core.repository.user.usecases.RegisterPushDeviceUseCase
 import com.aptopayments.core.repository.user.usecases.UnregisterPushDeviceParams
 import com.aptopayments.core.repository.user.usecases.UnregisterPushDeviceUseCase
-import java.lang.reflect.Modifier
 
 private const val PREF_PUSH_TOKEN_FILENAME = "com.aptopayments.sdk.pushtoken"
 private const val PREF_PUSH_TOKEN = "PREF_PUSH_TOKEN"
 
-@VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal class PushTokenRepository constructor(
     private val userSessionRepository: UserSessionRepository,
     private val registerPushDeviceUseCase: RegisterPushDeviceUseCase,

@@ -2,7 +2,7 @@ package com.aptopayments.core.platform
 
 import com.aptopayments.core.exception.Failure
 import com.aptopayments.core.functional.Either
-import com.aptopayments.core.network.ApiCatalog
+import com.aptopayments.core.network.GsonProvider
 import com.aptopayments.core.network.ServerErrorEntity
 import com.aptopayments.core.repository.UserSessionRepository
 import com.google.gson.JsonElement
@@ -31,7 +31,7 @@ internal interface BaseRepository : KoinComponent {
                 503 -> Failure.MaintenanceMode
                 400 -> parseErrorBody(response.errorBody())
                 else -> {
-                    ApiCatalog.gson().toJsonTree(response.body())?.asJsonObject?.let { jsonObject ->
+                    GsonProvider.provide().toJsonTree(response.body())?.asJsonObject?.let { jsonObject ->
                         return getServerError(jsonObject)
                     }
                     Failure.ServerError(null)
@@ -77,6 +77,6 @@ internal interface BaseRepository : KoinComponent {
     }
 
     fun parseServerErrorEntity(jsonElement: JsonElement): ServerErrorEntity {
-        return ApiCatalog.gson().fromJson(jsonElement, ServerErrorEntity::class.java)
+        return GsonProvider.provide().fromJson(jsonElement, ServerErrorEntity::class.java)
     }
 }

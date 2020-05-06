@@ -1,13 +1,10 @@
 package com.aptopayments.core.repository.config.usecases
 
-import androidx.annotation.VisibleForTesting
 import com.aptopayments.core.data.cardproduct.CardProductSummary
 import com.aptopayments.core.interactor.UseCase
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.config.ConfigRepository
-import java.lang.reflect.Modifier
 
-@VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal class GetCardProductsUseCase constructor(
         private val repository: ConfigRepository,
         networkHandler: NetworkHandler

@@ -1,7 +1,5 @@
 package com.aptopayments.core.di
 
-import android.annotation.SuppressLint
-import androidx.annotation.VisibleForTesting
 import com.aptopayments.core.repository.card.usecases.*
 import com.aptopayments.core.repository.card.usecases.IssueCardUseCase
 import com.aptopayments.core.repository.cardapplication.usecases.*
@@ -25,10 +23,7 @@ import com.aptopayments.core.repository.verification.usecase.StartEmailVerificat
 import com.aptopayments.core.repository.verification.usecase.StartPhoneVerificationUseCase
 import com.aptopayments.core.repository.voip.usecases.SetupVoipCallUseCase
 import org.koin.dsl.module
-import java.lang.reflect.Modifier
 
-@SuppressLint("VisibleForTests")
-@VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal val useCasesModule = module {
     factory { RegisterPushDeviceUseCase(repository = get(), networkHandler = get()) }
     factory { UnregisterPushDeviceUseCase(repository = get(), networkHandler = get()) }

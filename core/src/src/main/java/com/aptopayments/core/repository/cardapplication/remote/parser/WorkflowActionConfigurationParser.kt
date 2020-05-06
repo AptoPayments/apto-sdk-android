@@ -1,7 +1,7 @@
 package com.aptopayments.core.repository.cardapplication.remote.parser
 
 import com.aptopayments.core.extension.safeStringFromJson
-import com.aptopayments.core.network.ApiCatalog
+import com.aptopayments.core.network.GsonProvider
 import com.aptopayments.core.repository.cardapplication.remote.entities.workflowaction.WorkflowActionConfigurationEntity
 import com.aptopayments.core.repository.cardapplication.remote.entities.workflowaction.WorkflowActionConfigurationIssueCardEntity
 import com.aptopayments.core.repository.cardapplication.remote.entities.workflowaction.WorkflowActionConfigurationSelectBalanceStoreEntity
@@ -35,22 +35,14 @@ internal class WorkflowActionConfigurationParser : JsonDeserializer<WorkflowActi
     }
 
     private fun parseSelectBalanceStoreConfig(configJson: JsonObject) =
-        ApiCatalog.gson().fromJson<WorkflowActionConfigurationSelectBalanceStoreEntity>(
-            configJson, WorkflowActionConfigurationSelectBalanceStoreEntity::class.java
-        )
+        GsonProvider.provide().fromJson(configJson, WorkflowActionConfigurationSelectBalanceStoreEntity::class.java)
 
     private fun parseShowDisclaimerConfig(configJson: JsonObject) =
-        ApiCatalog.gson().fromJson<WorkflowActionConfigurationShowDisclaimerEntity>(
-            configJson, WorkflowActionConfigurationShowDisclaimerEntity::class.java
-        )
+        GsonProvider.provide().fromJson(configJson, WorkflowActionConfigurationShowDisclaimerEntity::class.java)
 
     private fun parseIssueCardConfig(configJson: JsonObject) =
-        ApiCatalog.gson().fromJson<WorkflowActionConfigurationIssueCardEntity>(
-            configJson, WorkflowActionConfigurationIssueCardEntity::class.java
-        )
+        GsonProvider.provide().fromJson(configJson, WorkflowActionConfigurationIssueCardEntity::class.java)
 
     private fun parseCollectUserDataConfig(configJson: JsonObject) =
-        ApiCatalog.gson().fromJson<CollectUserDataActionConfigurationEntity>(
-            configJson, CollectUserDataActionConfigurationEntity::class.java
-        )
+        GsonProvider.provide().fromJson(configJson, CollectUserDataActionConfigurationEntity::class.java)
 }

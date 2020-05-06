@@ -1,13 +1,11 @@
 package com.aptopayments.core.interactor
 
-import androidx.annotation.VisibleForTesting
 import com.aptopayments.core.exception.Failure
 import com.aptopayments.core.functional.Either
 import com.aptopayments.core.network.NetworkHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.lang.reflect.Modifier
 
 /**
  * Abstract class for a Use Case (Interactor in terms of Clean Architecture).
@@ -17,7 +15,6 @@ import java.lang.reflect.Modifier
  * By convention each [UseCase] implementation will execute its job in a background thread
  * and will post the result in the UI thread.
  */
-@VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal abstract class UseCase<out Type, in Params> (val networkHandler: NetworkHandler) where Type : Any {
 
     abstract fun run(params: Params): Either<Failure, Type>

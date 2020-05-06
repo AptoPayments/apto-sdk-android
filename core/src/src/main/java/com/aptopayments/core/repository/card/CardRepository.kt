@@ -1,6 +1,5 @@
 package com.aptopayments.core.repository.card
 
-import androidx.annotation.VisibleForTesting
 import com.aptopayments.core.data.card.ActivatePhysicalCardResult
 import com.aptopayments.core.data.card.Card
 import com.aptopayments.core.data.card.CardDetails
@@ -27,9 +26,7 @@ import com.aptopayments.core.repository.card.usecases.*
 import com.aptopayments.core.repository.fundingsources.remote.entities.BalanceEntity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.lang.reflect.Modifier
 
-@VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal interface CardRepository : BaseRepository {
     fun issueCard(cardProductId: String, credential: OAuthCredential?,
                   additionalFields: Map<String, Any>?, initialFundingSourceId: String?): Either<Failure, Card>

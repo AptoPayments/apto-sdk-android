@@ -16,6 +16,7 @@ import com.aptopayments.core.data.user.DataPointList
 import com.aptopayments.core.data.user.User
 import com.aptopayments.core.data.user.Verification
 import com.aptopayments.core.data.workflowaction.AllowedBalanceType
+import com.aptopayments.core.platform.AptoSdkEnvironment
 import org.mockito.Mockito
 import java.net.URL
 
@@ -253,5 +254,10 @@ class TestDataProvider {
                 "\"verified\": false,\n" +
                 "\"not_specified\": false\n" +
                 "}"
+
+        fun provideEnvironment() = AptoSdkEnvironment.STG
+
+        fun provideAPiKey() = "api_key_123"
+
     }
 }

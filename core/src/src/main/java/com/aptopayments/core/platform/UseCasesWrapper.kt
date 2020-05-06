@@ -1,11 +1,10 @@
 package com.aptopayments.core.platform
 
-import androidx.annotation.VisibleForTesting
 import com.aptopayments.core.repository.UserSessionRepository
 import com.aptopayments.core.repository.card.usecases.*
 import com.aptopayments.core.repository.cardapplication.usecases.*
-import com.aptopayments.core.repository.config.usecases.GetCardProductUseCase
 import com.aptopayments.core.repository.cardapplication.usecases.IssueCardUseCase
+import com.aptopayments.core.repository.config.usecases.GetCardProductUseCase
 import com.aptopayments.core.repository.config.usecases.GetCardProductsUseCase
 import com.aptopayments.core.repository.config.usecases.GetContextConfigurationUseCase
 import com.aptopayments.core.repository.fundingsources.remote.usecases.GetFundingSourcesUseCase
@@ -26,9 +25,7 @@ import com.aptopayments.core.repository.verification.usecase.StartPhoneVerificat
 import com.aptopayments.core.repository.voip.usecases.SetupVoipCallUseCase
 import org.koin.core.KoinComponent
 import org.koin.core.inject
-import java.lang.reflect.Modifier
 
-@VisibleForTesting(otherwise = Modifier.PROTECTED)
 internal class UseCasesWrapper : KoinComponent {
     val getContextConfigurationUseCase: GetContextConfigurationUseCase by inject()
     val getCardProductUseCase: GetCardProductUseCase by inject()

@@ -59,14 +59,11 @@ interface AptoPlatformProtocol {
     // Oauth handling
     fun startOauthAuthentication(balanceType: AllowedBalanceType, callback: (Either<Failure, OAuthAttempt>) -> Unit)
 
-    // TODO: use other UseCase passing CustodianType (Pivotal #167395532)
     fun verifyOauthAttemptStatus(oAuthAttempt: OAuthAttempt, callback: (Either<Failure, OAuthAttempt>) -> Unit)
 
-    // TODO: use other UseCase passing Custodian (Pivotal #167395532)
     fun saveOauthUserData(userData: DataPointList, allowedBalanceType: AllowedBalanceType, tokenId: String,
                           callback: (Either<Failure, OAuthUserDataUpdate>) -> Unit)
 
-    // TODO: use other UseCase passing Custodian (Pivotal #167395532)
     fun fetchOAuthData(allowedBalanceType: AllowedBalanceType, tokenId: String,
                        callback: (Either<Failure, OAuthUserDataUpdate>) -> Unit)
 
@@ -84,11 +81,8 @@ interface AptoPlatformProtocol {
 
     fun fetchCardApplicationStatus(applicationId: String, callback: (Either<Failure, CardApplication>) -> Unit)
 
-    // TODO: use other UseCase passing Custodian (Pivotal #167395532)
     fun setBalanceStore(applicationId: String, tokenId: String,
                         callback: (Either<Failure, SelectBalanceStoreResult>) -> Unit)
-
-    // TODO: create WorkflowObject and pass it instead of ID
     fun acceptDisclaimer(workflowObjectId: String, workflowAction: WorkflowAction,
                          callback: (Either<Failure, Unit>) -> Unit)
 
@@ -136,7 +130,6 @@ interface AptoPlatformProtocol {
 
     fun setCardFundingSource(fundingSourceId: String, cardId: String, callback: (Either<Failure, Balance>) -> Unit)
 
-    // TODO: use other UseCase passing Custodian (Pivotal #167395532)
     fun addCardFundingSource(cardId: String, fundingSourceType: String, custodianType: String, credentialType: String,
                              tokenId: String, callback: (Either<Failure, Balance>) -> Unit)
 
