@@ -31,11 +31,13 @@ class MonthlyStatementRepositoryTest : UnitTest() {
 
     @Mock
     private lateinit var networkHandler: NetworkHandler
+
     @Mock
     private lateinit var service: MonthlyStatementService
 
     @Mock
     private lateinit var getStatementCall: Call<MonthlyStatementReportEntity>
+
     @Mock
     private lateinit var getStatementResponse: Response<MonthlyStatementReportEntity>
 
@@ -73,7 +75,7 @@ class MonthlyStatementRepositoryTest : UnitTest() {
 
     @Test
     fun `getMonthlyStatement should return network failure when undefined connection`() {
-        given { networkHandler.isConnected }.willReturn(null)
+        given { networkHandler.isConnected }.willReturn(false)
 
         val result = network.getMonthlyStatement(MONTH, YEAR)
 
@@ -114,7 +116,7 @@ class MonthlyStatementRepositoryTest : UnitTest() {
 
     @Test
     fun `getMonthlyStatementPeriod should return network failure when undefined connection`() {
-        given { networkHandler.isConnected }.willReturn(null)
+        given { networkHandler.isConnected }.willReturn(false)
 
         val result = network.getMonthlyStatementPeriod()
 

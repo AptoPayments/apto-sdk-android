@@ -24,10 +24,10 @@ private const val BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED = 200040
 private const val BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT = 200041
 private const val IDENTITY_NOT_VERIFIED = 200046
 
-data class SelectBalanceStoreResult (
-        val result: Type,
-        val errorCode: Int?,
-        private val errorMessageKeys: List<String>? = null
+data class SelectBalanceStoreResult(
+    val result: Type,
+    val errorCode: Int?,
+    private val errorMessageKeys: List<String>? = null
 ) : Serializable {
 
     enum class Type { VALID, INVALID }
@@ -53,7 +53,8 @@ data class SelectBalanceStoreResult (
             BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED -> "select_balance_store.login.error_email_sends_disabled.message".localized()
             BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT -> "select_balance_store.login.error_insufficient_application_limit.message".localized()
             IDENTITY_NOT_VERIFIED -> "select_balance_store.login.error_identity_not_verified.message".localized()
-            else -> "select_balance_store.login.error_unknown.message".localized().replace("ERROR_CODE", errorCode.toString())
+            else -> "select_balance_store.login.error_unknown.message".localized()
+                .replace("ERROR_CODE", errorCode.toString())
         }
     }
 
@@ -126,4 +127,3 @@ data class SelectBalanceStoreResult (
         }
     }
 }
-

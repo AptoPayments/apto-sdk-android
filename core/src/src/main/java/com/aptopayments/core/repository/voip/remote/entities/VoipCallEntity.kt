@@ -16,7 +16,8 @@ internal data class VoipCallEntity(
 
 ) {
     fun toVoipCall() = VoipCall(
-            accessToken = accessToken,
-            requestToken = requestToken,
-            provider = provider)
+        accessToken = accessToken,
+        requestToken = requestToken,
+        provider = provider
+    )
 }

@@ -16,10 +16,17 @@ class AptoPlatformTest : UnitTest() {
     private val sut = AptoPlatform
 
     // Collaborators
-    @Mock private lateinit var issueCardCardProductUseCase: IssueCardUseCase
-    @Mock private lateinit var createUserUseCase: CreateUserUseCase
-    @Mock private lateinit var userSessionRepository: UserSessionRepository
-    @Mock private lateinit var useCasesWrapper: UseCasesWrapper
+    @Mock
+    private lateinit var issueCardCardProductUseCase: IssueCardUseCase
+
+    @Mock
+    private lateinit var createUserUseCase: CreateUserUseCase
+
+    @Mock
+    private lateinit var userSessionRepository: UserSessionRepository
+
+    @Mock
+    private lateinit var useCasesWrapper: UseCasesWrapper
 
     override fun setUp() {
         super.setUp()
@@ -32,10 +39,7 @@ class AptoPlatformTest : UnitTest() {
     @Test
     fun `issue card called invoke use case`() {
         // When
-        AptoPlatform.issueCard(
-                cardProductId = "card_product_id",
-                credential = null
-        ) {}
+        AptoPlatform.issueCard(cardProductId = "card_product_id", credential = null) {}
 
         // Then
         verify(issueCardCardProductUseCase).invoke(TestDataProvider.anyObject(), TestDataProvider.anyObject())
@@ -46,17 +50,17 @@ class AptoPlatformTest : UnitTest() {
         // Given
         val additionalFields = mapOf<String, Any>("field" to "value")
         val expectedParams = IssueCardUseCase.Params(
-                cardProductId = "card_product_id",
-                credential = null,
-                additionalFields = additionalFields,
-                initialFundingSourceId = null
+            cardProductId = "card_product_id",
+            credential = null,
+            additionalFields = additionalFields,
+            initialFundingSourceId = null
         )
 
         // When
         AptoPlatform.issueCard(
-                cardProductId = "card_product_id",
-                credential = null,
-                additionalFields = additionalFields
+            cardProductId = "card_product_id",
+            credential = null,
+            additionalFields = additionalFields
         ) {}
 
         // Then
@@ -68,18 +72,18 @@ class AptoPlatformTest : UnitTest() {
         // Given
         val initialFundingSourceId = "initial_funding_source_id"
         val expectedParams = IssueCardUseCase.Params(
-                cardProductId = "card_product_id",
-                credential = null,
-                additionalFields = null,
-                initialFundingSourceId = initialFundingSourceId
+            cardProductId = "card_product_id",
+            credential = null,
+            additionalFields = null,
+            initialFundingSourceId = initialFundingSourceId
         )
 
         // When
         AptoPlatform.issueCard(
-                cardProductId = "card_product_id",
-                credential = null,
-                additionalFields = null,
-                initialFundingSourceId = initialFundingSourceId
+            cardProductId = "card_product_id",
+            credential = null,
+            additionalFields = null,
+            initialFundingSourceId = initialFundingSourceId
         ) {}
 
         // Then

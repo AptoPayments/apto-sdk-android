@@ -17,76 +17,79 @@ internal object ModelDataProvider {
 
     fun features(): Features {
         return Features(
-                activation = activation(),
-                getPin = getPin(),
-                setPin = setPin(),
-                ivrSupport = ivr(),
-                selectBalanceStore = selectBalanceStore()
+            activation = activation(),
+            getPin = getPin(),
+            setPin = setPin(),
+            ivrSupport = ivr(),
+            selectBalanceStore = selectBalanceStore()
         )
     }
 
     fun cardStyle(): CardStyle {
         return CardStyle(
-                background = cardBackgroundStyle(),
-                textColor = 0,
-                balanceSelectorAsset = URL("https://www.aptopayments.com"))
+            background = cardBackgroundStyle(),
+            textColor = 0,
+            balanceSelectorAsset = URL("https://www.aptopayments.com")
+        )
     }
 
-    fun cardEntity(accountID: String = "TEST_ACCOUNT_ID",
-                   cardNetwork: String = "TEST_CARD_NETWORK",
-                   lastFourDigits: String = "TEST_LAST_FOUR_DIGITS",
-                   cardBrand: String = "TEST_CARD_BRAND",
-                   cardIssuer: String = "TEST_CARD_ISSUER",
-                   state: String = "TEST_STATE",
-                   isWaitlisted: Boolean = false,
-                   kycStatus: String = "TEST_KYC_STATUS",
-                   kycReason: List<String> = listOf("KYC_REASON"),
-                   orderedStatus: String = "TEST_ORDERED_STATUS",
-                   spendableAmount: MoneyEntity = moneyEntity(),
-                   nativeSpendableAmount: MoneyEntity = moneyEntity(),
-                   features: FeaturesEntity = featuresEntity(),
-                   style: CardStyleEntity = cardStyleEntity(),
-                   cardholderFirstName: String = "TEST_CARDHOLDER_FIRST_NAME",
-                   cardholderLastName: String = "TEST_CARDHOLDER_LAST_NAME",
-                   nameOnCard: String? = "TEST_NAME_ON_CARD"): CardEntity {
+    fun cardEntity(
+        accountID: String = "TEST_ACCOUNT_ID",
+        cardNetwork: String = "TEST_CARD_NETWORK",
+        lastFourDigits: String = "TEST_LAST_FOUR_DIGITS",
+        cardBrand: String = "TEST_CARD_BRAND",
+        cardIssuer: String = "TEST_CARD_ISSUER",
+        state: String = "TEST_STATE",
+        isWaitlisted: Boolean = false,
+        kycStatus: String = "TEST_KYC_STATUS",
+        kycReason: List<String> = listOf("KYC_REASON"),
+        orderedStatus: String = "TEST_ORDERED_STATUS",
+        spendableAmount: MoneyEntity = moneyEntity(),
+        nativeSpendableAmount: MoneyEntity = moneyEntity(),
+        features: FeaturesEntity = featuresEntity(),
+        style: CardStyleEntity = cardStyleEntity(),
+        cardholderFirstName: String = "TEST_CARDHOLDER_FIRST_NAME",
+        cardholderLastName: String = "TEST_CARDHOLDER_LAST_NAME",
+        nameOnCard: String? = "TEST_NAME_ON_CARD"
+    ): CardEntity {
         return CardEntity(
-                accountID = accountID,
-                cardNetwork = cardNetwork,
-                lastFourDigits = lastFourDigits,
-                cardBrand = cardBrand,
-                cardIssuer = cardIssuer,
-                state = state,
-                isWaitlisted = isWaitlisted,
-                kycStatus = kycStatus,
-                kycReason = kycReason,
-                orderedStatus = orderedStatus,
-                spendableAmount = spendableAmount,
-                nativeSpendableAmount = nativeSpendableAmount,
-                features = features,
-                style = style,
-                cardholderFirstName = cardholderFirstName,
-                cardholderLastName = cardholderLastName,
-                nameOnCard = nameOnCard
+            accountID = accountID,
+            cardNetwork = cardNetwork,
+            lastFourDigits = lastFourDigits,
+            cardBrand = cardBrand,
+            cardIssuer = cardIssuer,
+            state = state,
+            isWaitlisted = isWaitlisted,
+            kycStatus = kycStatus,
+            kycReason = kycReason,
+            orderedStatus = orderedStatus,
+            spendableAmount = spendableAmount,
+            nativeSpendableAmount = nativeSpendableAmount,
+            features = features,
+            style = style,
+            cardholderFirstName = cardholderFirstName,
+            cardholderLastName = cardholderLastName,
+            nameOnCard = nameOnCard
         )
     }
 
     val card = Card(
-            accountID = "account_id",
-            cardProductID = "cardProductId",
-            cardNetwork = VISA,
-            lastFourDigits = "1234",
-            cardBrand = "brand",
-            cardIssuer = "Apto",
-            state = ACTIVE,
-            isWaitlisted = false,
-            cardStyle = null,
-            kycStatus = PASSED,
-            kycReason = null,
-            orderedStatus = RECEIVED,
-            spendableAmount = Money(currency = "USD", amount = 1000.0),
-            nativeSpendableAmount = Money(currency = "BTC", amount = 0.1),
-            cardHolder = "Cardholder Name",
-            features = null
+        accountID = "account_id",
+        cardProductID = "cardProductId",
+        cardNetwork = VISA,
+        lastFourDigits = "1234",
+        cardBrand = "brand",
+        cardIssuer = "Apto",
+        state = ACTIVE,
+        isWaitlisted = false,
+        cardStyle = null,
+        kycStatus = PASSED,
+        kycReason = null,
+        orderedStatus = RECEIVED,
+        spendableAmount = Money(currency = "USD", amount = 1000.0),
+        nativeSpendableAmount = Money(currency = "BTC", amount = 0.1),
+        cardHolder = "Cardholder Name",
+        features = null
     )
 
     private fun activation(): Activation {
@@ -97,9 +100,11 @@ internal object ModelDataProvider {
         return PhoneNumber(countryCode = countryCode, phoneNumber = phoneNumber)
     }
 
-    private fun ivr(status: FeatureStatus = FeatureStatus.ENABLED,
-                    countryCode: String = "1",
-                    phoneNumber: String = "9366666743"): Ivr {
+    private fun ivr(
+        status: FeatureStatus = FeatureStatus.ENABLED,
+        countryCode: String = "1",
+        phoneNumber: String = "9366666743"
+    ): Ivr {
         return Ivr(status = status, ivrPhone = phone(countryCode = countryCode, phoneNumber = phoneNumber))
     }
 

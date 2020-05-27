@@ -22,6 +22,15 @@ data class ProvisioningUserAddressEntity(
     val phone: String?
 ) {
     fun toProvisioningAddress(): ProvisioningUserAddress {
-        return ProvisioningUserAddress(name?: "", address1?: "", address2 ?: "", city?: "", state?: "", postalCode?: "", country?: "", phone ?: "")
+        return ProvisioningUserAddress(
+            name ?: "",
+            address1 ?: "",
+            address2 ?: "",
+            city ?: "",
+            state ?: "",
+            postalCode ?: "",
+            country ?: "",
+            phone ?: ""
+        )
     }
 }

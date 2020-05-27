@@ -3,12 +3,12 @@ package com.aptopayments.core.network
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class ServerErrorEntity (
+data class ServerErrorEntity(
 
-    @SerializedName ("code")
+    @SerializedName("code")
     var code: Int? = null,
 
-    @SerializedName ("message")
+    @SerializedName("message")
     var message: String? = null
 
 ) : Serializable

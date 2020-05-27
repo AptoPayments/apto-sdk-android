@@ -1,9 +1,9 @@
 package com.aptopayments.core.repository
 
-import android.app.Activity
 import com.aptopayments.core.UnitTest
 import com.aptopayments.core.data.TestDataProvider
 import com.aptopayments.core.functional.Either.Right
+import com.aptopayments.core.network.ConnectivityCheckerAlwaysConnected
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.config.ConfigRepository
 import com.aptopayments.core.repository.config.usecases.GetContextConfigurationUseCase
@@ -19,21 +19,23 @@ class GetContextConfigurationTest : UnitTest() {
 
     private lateinit var sut: GetContextConfigurationUseCase
 
-    @Mock private lateinit var repository: ConfigRepository
+    @Mock
+    private lateinit var repository: ConfigRepository
 
     @Before
     override fun setUp() {
         super.setUp()
-        sut = GetContextConfigurationUseCase(repository, NetworkHandler(Activity()))
+        sut = GetContextConfigurationUseCase(repository, NetworkHandler(ConnectivityCheckerAlwaysConnected()))
     }
 
-    @Test fun `should get config through the repository`() {
+    @Test
+    fun `should get config through the repository`() {
 
         // Given
         val testContextConfiguration =
-                TestDataProvider.provideContextConfiguration()
+            TestDataProvider.provideContextConfiguration()
         given { repository.getContextConfiguration() }
-                .willReturn(Right(testContextConfiguration))
+            .willReturn(Right(testContextConfiguration))
 
         // When
         runBlocking { sut.run(false) }
@@ -42,5 +44,4 @@ class GetContextConfigurationTest : UnitTest() {
         verify(repository).getContextConfiguration()
         verifyNoMoreInteractions(repository)
     }
-
 }

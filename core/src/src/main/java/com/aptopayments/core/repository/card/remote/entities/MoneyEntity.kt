@@ -5,16 +5,16 @@ import com.google.gson.annotations.SerializedName
 
 internal data class MoneyEntity(
 
-        @SerializedName("currency")
-        var currency: String? = "",
+    @SerializedName("currency")
+    var currency: String? = "",
 
-        @SerializedName("amount")
-        var amount: Double? = 0.0
+    @SerializedName("amount")
+    var amount: Double? = 0.0
 
 ) {
     fun toMoney() = Money(
-            currency = currency,
-            amount = amount
+        currency = currency,
+        amount = amount
     )
 
     companion object {

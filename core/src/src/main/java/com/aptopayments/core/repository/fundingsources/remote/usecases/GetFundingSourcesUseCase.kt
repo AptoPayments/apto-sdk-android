@@ -8,19 +8,17 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.fundingsources.FundingSourceRepository
 
 internal class GetFundingSourcesUseCase constructor(
-        private val fundingSourceRepository: FundingSourceRepository,
-        networkHandler: NetworkHandler
+    private val fundingSourceRepository: FundingSourceRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<List<Balance>, GetFundingSourcesUseCase.Params>(networkHandler) {
 
     override fun run(params: Params): Either<Failure, List<Balance>> =
-            fundingSourceRepository.getFundingSources(params.cardId, params.refresh, params.page,
-                    params.rows)
+        fundingSourceRepository.getFundingSources(params.cardId, params.refresh, params.page, params.rows)
 
-    data class Params (
-            val cardId: String,
-            val refresh: Boolean = true,
-            val page: Int,
-            val rows: Int
+    data class Params(
+        val cardId: String,
+        val refresh: Boolean = true,
+        val page: Int,
+        val rows: Int
     )
-
 }

@@ -3,7 +3,7 @@ package com.aptopayments.core.data.user.notificationpreferences
 import java.io.Serializable
 
 data class ActiveChannels(
-        private val activeChannelsMap: HashMap<NotificationChannel, Boolean?>
+    private val activeChannelsMap: HashMap<NotificationChannel, Boolean?>
 ) : Serializable {
 
     operator fun get(channel: NotificationChannel): Boolean? = activeChannelsMap[channel]

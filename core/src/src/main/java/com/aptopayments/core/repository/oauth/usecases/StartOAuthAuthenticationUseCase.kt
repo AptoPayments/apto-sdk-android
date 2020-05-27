@@ -7,8 +7,8 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.oauth.OAuthRepository
 
 internal class StartOAuthAuthenticationUseCase constructor(
-        private val repository: OAuthRepository,
-        networkHandler: NetworkHandler
+    private val repository: OAuthRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<OAuthAttempt, AllowedBalanceType>(networkHandler) {
 
     override fun run(params: AllowedBalanceType) = repository.startOAuthAuthentication(params)

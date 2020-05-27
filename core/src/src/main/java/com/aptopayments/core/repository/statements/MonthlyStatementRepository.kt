@@ -31,7 +31,7 @@ internal interface MonthlyStatementRepository : BaseRepository {
                         it.toMonthlyStatementReport()
                     }, MonthlyStatementReportEntity(month, year))
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 

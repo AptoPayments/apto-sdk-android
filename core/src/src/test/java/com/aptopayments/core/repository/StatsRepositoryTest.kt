@@ -26,12 +26,17 @@ class StatsRepositoryTest : UnitTest() {
 
     private lateinit var sut: StatsRepository.Network
 
-    @Mock private lateinit var networkHandler: NetworkHandler
-    @Mock private lateinit var service: StatsService
+    @Mock
+    private lateinit var networkHandler: NetworkHandler
+    @Mock
+    private lateinit var service: StatsService
 
-    @Mock private lateinit var getMonthlySpendingCall: Call<MonthlySpendingEntity>
-    @Mock private lateinit var getMonthlySpendingResponse: Response<MonthlySpendingEntity>
-    @Mock private lateinit var monthlySpending: MonthlySpending
+    @Mock
+    private lateinit var getMonthlySpendingCall: Call<MonthlySpendingEntity>
+    @Mock
+    private lateinit var getMonthlySpendingResponse: Response<MonthlySpendingEntity>
+    @Mock
+    private lateinit var monthlySpending: MonthlySpending
 
     @Before
     override fun setUp() {
@@ -45,7 +50,8 @@ class StatsRepositoryTest : UnitTest() {
         sut = StatsRepository.Network(networkHandler, service)
     }
 
-    @Test fun `Get monthly spending should return network failure when no connection`() {
+    @Test
+    fun `Get monthly spending should return network failure when no connection`() {
         given { networkHandler.isConnected }.willReturn(false)
 
         val result = sut.getMonthlySpending("", "", "")
@@ -56,8 +62,9 @@ class StatsRepositoryTest : UnitTest() {
         verifyZeroInteractions(service)
     }
 
-    @Test fun `Get monthly spending should return network failure when undefined connection`() {
-        given { networkHandler.isConnected }.willReturn(null)
+    @Test
+    fun `Get monthly spending should return network failure when undefined connection`() {
+        given { networkHandler.isConnected }.willReturn(false)
 
         val result = sut.getMonthlySpending("", "", "")
 
@@ -67,7 +74,8 @@ class StatsRepositoryTest : UnitTest() {
         verifyZeroInteractions(service)
     }
 
-    @Test fun `Get monthly spending should delegate to the service`() {
+    @Test
+    fun `Get monthly spending should delegate to the service`() {
         given { networkHandler.isConnected }.willReturn(true)
         given { getMonthlySpendingResponse.body() }.willReturn(MonthlySpendingEntity())
         given { getMonthlySpendingResponse.isSuccessful }.willReturn(true)
@@ -78,7 +86,8 @@ class StatsRepositoryTest : UnitTest() {
         verify(service).getMonthlySpending("", "", "")
     }
 
-    @Test fun `Get monthly spending should return cached value if present`() {
+    @Test
+    fun `Get monthly spending should return cached value if present`() {
         // Given
         val cardId = "cardId"
         val month = "month"
@@ -93,7 +102,8 @@ class StatsRepositoryTest : UnitTest() {
         assertEquals(result, Either.Right(monthlySpending))
     }
 
-    @Test fun `Invalidate cache should clear all stored values`() {
+    @Test
+    fun `Invalidate cache should clear all stored values`() {
         // Given
         val cardId = "cardId"
         val month = "month"

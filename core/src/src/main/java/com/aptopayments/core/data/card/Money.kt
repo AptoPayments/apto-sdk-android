@@ -4,16 +4,15 @@ import java.io.Serializable
 import java.math.BigDecimal
 import java.math.MathContext
 import java.text.DecimalFormatSymbols
-import java.util.*
+import java.util.Currency
 import kotlin.math.abs
 
 private const val MINIMUM_DECIMAL_PLACES = 2
 
-data class Money (
-        val currency: String?,
-        val amount: Double?
-) : Serializable
-{
+data class Money(
+    val currency: String?,
+    val amount: Double?
+) : Serializable {
     override fun toString(): String = amount?.let { formattedString(amount) } ?: ""
 
     fun toAbsString() = amount?.let { formattedString(abs(amount)) } ?: ""

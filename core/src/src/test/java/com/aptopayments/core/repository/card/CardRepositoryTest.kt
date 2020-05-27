@@ -30,14 +30,27 @@ class CardRepositoryTest : UnitTest() {
     private lateinit var sut: CardRepository.Network
 
     // Collaborators
-    @Mock private lateinit var networkHandler: NetworkHandler
-    @Mock private lateinit var service: CardService
-    @Mock private lateinit var cardLocalRepository: CardLocalRepository
-    @Mock private lateinit var cardBalanceLocalDao: CardBalanceLocalDao
-    @Mock private lateinit var userSessionRepository: UserSessionRepository
+    @Mock
+    private lateinit var networkHandler: NetworkHandler
+
+    @Mock
+    private lateinit var service: CardService
+
+    @Mock
+    private lateinit var cardLocalRepository: CardLocalRepository
+
+    @Mock
+    private lateinit var cardBalanceLocalDao: CardBalanceLocalDao
+
+    @Mock
+    private lateinit var userSessionRepository: UserSessionRepository
+
     // Issue card
-    @Mock private lateinit var issueCardCall: Call<CardEntity>
-    @Mock private lateinit var issueCardResponse: Response<CardEntity>
+    @Mock
+    private lateinit var issueCardCall: Call<CardEntity>
+
+    @Mock
+    private lateinit var issueCardResponse: Response<CardEntity>
 
     @Before
     override fun setUp() {
@@ -51,7 +64,13 @@ class CardRepositoryTest : UnitTest() {
                 single { userSessionRepository }
             })
         }
-        sut = CardRepository.Network(networkHandler, service, cardLocalRepository, cardBalanceLocalDao, userSessionRepository)
+        sut = CardRepository.Network(
+            networkHandler,
+            service,
+            cardLocalRepository,
+            cardBalanceLocalDao,
+            userSessionRepository
+        )
     }
 
     @Test
@@ -60,8 +79,10 @@ class CardRepositoryTest : UnitTest() {
         given { networkHandler.isConnected }.willReturn(false)
 
         // When
-        val result = sut.issueCard(cardProductId = "cardProductId",
-                credential = null, additionalFields = null, initialFundingSourceId = null)
+        val result = sut.issueCard(
+            cardProductId = "cardProductId",
+            credential = null, additionalFields = null, initialFundingSourceId = null
+        )
 
         // Then
         result shouldBeInstanceOf Either::class.java
@@ -73,12 +94,13 @@ class CardRepositoryTest : UnitTest() {
     @Test
     fun `issue card return network failure when network state is unknown`() {
         // Given
-        given { networkHandler.isConnected }.willReturn(null)
+        given { networkHandler.isConnected }.willReturn(false)
 
         // When
-        val result = sut.issueCard(cardProductId = "cardProductId",
-                credential = null, additionalFields = null, initialFundingSourceId = null)
-
+        val result = sut.issueCard(
+            cardProductId = "cardProductId",
+            credential = null, additionalFields = null, initialFundingSourceId = null
+        )
 
         // Then
         result shouldBeInstanceOf Either::class.java
@@ -93,8 +115,10 @@ class CardRepositoryTest : UnitTest() {
         givenSetUpIssueCardMocks(willRequestSucceed = true)
 
         // When
-        sut.issueCard(cardProductId = "cardProductId", credential = null, additionalFields = null,
-                initialFundingSourceId = null)
+        sut.issueCard(
+            cardProductId = "cardProductId", credential = null, additionalFields = null,
+            initialFundingSourceId = null
+        )
 
         // Then
         verify(service).issueCard(TestDataProvider.anyObject())
@@ -108,14 +132,18 @@ class CardRepositoryTest : UnitTest() {
         givenSetUpIssueCardMocks(willRequestSucceed = true)
 
         // When
-        sut.issueCard(cardProductId = "cardProductId", credential = null,
-                additionalFields = additionalFields, initialFundingSourceId = null)
+        sut.issueCard(
+            cardProductId = "cardProductId", credential = null,
+            additionalFields = additionalFields, initialFundingSourceId = null
+        )
 
         // Then
-        verify(service).issueCard(IssueCardRequest(
+        verify(service).issueCard(
+            IssueCardRequest(
                 cardProductId = "cardProductId",
                 oAuthCredentialRequest = null,
-                additionalFields = additionalFields)
+                additionalFields = additionalFields
+            )
         )
     }
 
@@ -127,15 +155,19 @@ class CardRepositoryTest : UnitTest() {
         givenSetUpIssueCardMocks(willRequestSucceed = true)
 
         // When
-        sut.issueCard(cardProductId = "cardProductId",  credential = null, additionalFields = null,
-                initialFundingSourceId = initialFundingSourceId)
+        sut.issueCard(
+            cardProductId = "cardProductId", credential = null, additionalFields = null,
+            initialFundingSourceId = initialFundingSourceId
+        )
 
         // Then
-        verify(service).issueCard(IssueCardRequest(
+        verify(service).issueCard(
+            IssueCardRequest(
                 cardProductId = "cardProductId",
                 oAuthCredentialRequest = null,
                 additionalFields = null,
-                initialFundingSourceId = initialFundingSourceId)
+                initialFundingSourceId = initialFundingSourceId
+            )
         )
     }
 
@@ -145,8 +177,10 @@ class CardRepositoryTest : UnitTest() {
         givenSetUpIssueCardMocks(willRequestSucceed = true)
 
         // When
-        val result = sut.issueCard(cardProductId = "cardProductId",
-                credential = null, additionalFields = null,  initialFundingSourceId = null)
+        val result = sut.issueCard(
+            cardProductId = "cardProductId",
+            credential = null, additionalFields = null, initialFundingSourceId = null
+        )
 
         // Then
         result shouldBeInstanceOf Either::class.java
@@ -160,8 +194,10 @@ class CardRepositoryTest : UnitTest() {
         givenSetUpIssueCardMocks(willRequestSucceed = false)
 
         // When
-        val result = sut.issueCard(cardProductId = "cardProductId",
-                credential = null, additionalFields = null,  initialFundingSourceId = null)
+        val result = sut.issueCard(
+            cardProductId = "cardProductId",
+            credential = null, additionalFields = null, initialFundingSourceId = null
+        )
 
         // Then
         result shouldBeInstanceOf Either::class.java

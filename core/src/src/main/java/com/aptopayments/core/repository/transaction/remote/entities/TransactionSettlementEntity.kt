@@ -6,18 +6,18 @@ import com.aptopayments.core.repository.card.remote.entities.MoneyEntity
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-internal data class TransactionSettlementEntity (
+internal data class TransactionSettlementEntity(
 
-        @SerializedName("date")
-        val createdAt: Double,
+    @SerializedName("date")
+    val createdAt: Double,
 
-        @SerializedName("amount")
-        val amount: MoneyEntity? = null
+    @SerializedName("amount")
+    val amount: MoneyEntity? = null
 
 ) : Serializable {
 
-    fun toTransactionSettlement() = TransactionSettlement (
-            createdAt = createdAt.toLong().toZonedDateTime(),
-            amount = amount?.toMoney()
+    fun toTransactionSettlement() = TransactionSettlement(
+        createdAt = createdAt.toLong().toZonedDateTime(),
+        amount = amount?.toMoney()
     )
 }

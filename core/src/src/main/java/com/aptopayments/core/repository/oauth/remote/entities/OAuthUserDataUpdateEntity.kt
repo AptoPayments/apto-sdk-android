@@ -10,16 +10,16 @@ import java.util.Locale
 
 internal data class OAuthUserDataUpdateEntity(
 
-        @SerializedName("result")
-        val result: String = "",
+    @SerializedName("result")
+    val result: String = "",
 
-        @SerializedName("user_data")
-        val userData: ListEntity<DataPointEntity>? = null
+    @SerializedName("user_data")
+    val userData: ListEntity<DataPointEntity>? = null
 
 ) {
     fun toOAuthUserDataUpdate() = OAuthUserDataUpdate(
-            result = parseOAuthUpdateResult(result),
-            userData = if (userData?.data?.isEmpty() == false) DataPointList(userData.data?.map { it.toDataPoint() }) else null
+        result = parseOAuthUpdateResult(result),
+        userData = if (userData?.data?.isEmpty() == false) DataPointList(userData.data?.map { it.toDataPoint() }) else null
     )
 
     private fun parseOAuthUpdateResult(result: String): OAuthUserDataUpdateResult {

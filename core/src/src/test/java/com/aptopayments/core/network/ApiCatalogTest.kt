@@ -12,11 +12,11 @@ class ApiCatalogTest : UnitTest() {
     @Mock
     private lateinit var retrofitFactory: RetrofitFactory
 
-    private lateinit var sut : ApiCatalog
+    private lateinit var sut: ApiCatalog
 
     @Before
     fun configure() {
-        sut = ApiCatalog(retrofitFactory)
+        sut = ApiCatalog(retrofitFactory, ApiKeyProvider)
     }
 
     @Test

@@ -13,10 +13,10 @@ class IdDocumentDataPointEntityTest : UnitTest() {
     fun `converts to id document data point`() {
         // Given
         val sut = IdDocumentDataPointEntity(
-                verified = true,
-                type = "SSN",
-                value = "000000000",
-                country = "US"
+            verified = true,
+            type = "SSN",
+            value = "000000000",
+            country = "US"
         )
 
         // When
@@ -34,10 +34,10 @@ class IdDocumentDataPointEntityTest : UnitTest() {
     fun `from create entity from data point`() {
         // Given
         val dataPoint = IdDocumentDataPoint(
-                verified = true,
-                type = IdDocumentDataPoint.Type.SSN,
-                value = "000000000",
-                country = "US"
+            verified = true,
+            type = IdDocumentDataPoint.Type.SSN,
+            value = "000000000",
+            country = "US"
         )
 
         // When
@@ -51,10 +51,10 @@ class IdDocumentDataPointEntityTest : UnitTest() {
     }
 
     @Test
-    fun `IdDocumentParsedCorrectly from json`(){
+    fun `IdDocumentParsedCorrectly from json`() {
         val json = TestDataProvider.provideCorrectIdDocumentDataPointEntity()
 
-        val sut = Gson().fromJson(json,IdDocumentDataPointEntity::class.java).toDataPoint()
+        val sut = Gson().fromJson(json, IdDocumentDataPointEntity::class.java).toDataPoint()
 
         assertEquals(sut.type, IdDocumentDataPoint.Type.SSN)
         assertEquals(sut.value, "111119999")

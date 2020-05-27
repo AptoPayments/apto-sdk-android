@@ -5,15 +5,15 @@ import com.google.gson.annotations.SerializedName
 
 internal data class ContextConfigurationEntity(
 
-        @SerializedName("team")
-        val teamConfiguration: TeamConfigurationEntity = TeamConfigurationEntity(),
+    @SerializedName("team")
+    val teamConfiguration: TeamConfigurationEntity = TeamConfigurationEntity(),
 
-        @SerializedName("project")
-        val projectConfiguration: ProjectConfigurationEntity = ProjectConfigurationEntity()
+    @SerializedName("project")
+    val projectConfiguration: ProjectConfigurationEntity = ProjectConfigurationEntity()
 
 ) {
     fun toContextConfiguration() = ContextConfiguration(
-            teamConfiguration = teamConfiguration.toTeamConfiguration(),
-            projectConfiguration = projectConfiguration.toProjectConfiguration()
+        teamConfiguration = teamConfiguration.toTeamConfiguration(),
+        projectConfiguration = projectConfiguration.toProjectConfiguration()
     )
 }

@@ -5,13 +5,13 @@ import com.aptopayments.core.common.ModelDataProvider
 import com.aptopayments.core.data.TestDataProvider
 import com.aptopayments.core.data.card.Card
 import com.aptopayments.core.data.card.KycStatus
+import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito
 import kotlin.test.assertEquals
 
-class CardEntityTest: UnitTest() {
+class CardEntityTest : UnitTest() {
 
     @Mock
     private lateinit var mockCardStyleEntity: CardStyleEntity
@@ -44,23 +44,23 @@ class CardEntityTest: UnitTest() {
     @Before
     fun `set up for testing`() {
         sut = CardEntity(
-                accountID = TEST_ACCOUNT_ID,
-                cardNetwork = TEST_CARD_NETWORK,
-                lastFourDigits = TEST_LAST_FOUR_DIGITS,
-                cardBrand = TEST_CARD_BRAND,
-                cardIssuer = TEST_CARD_ISSUER,
-                state = TEST_STATE,
-                isWaitlisted = TEST_IS_WAIT_LISTED,
-                kycStatus = TEST_KYC_STATUS,
-                kycReason = TEST_KYC_REASONS,
-                orderedStatus = TEST_ORDERED_STATUS,
-                spendableAmount = mockSpendableAmountEntity,
-                nativeSpendableAmount = mockNativeAmountEntity,
-                features = mockFeaturesEntity,
-                style = mockCardStyleEntity,
-                cardholderFirstName = TEST_CARDHOLDER_FIRST_NAME,
-                cardholderLastName = TEST_CARDHOLDER_LAST_NAME,
-                nameOnCard = TEST_NAME_ON_CARD
+            accountID = TEST_ACCOUNT_ID,
+            cardNetwork = TEST_CARD_NETWORK,
+            lastFourDigits = TEST_LAST_FOUR_DIGITS,
+            cardBrand = TEST_CARD_BRAND,
+            cardIssuer = TEST_CARD_ISSUER,
+            state = TEST_STATE,
+            isWaitlisted = TEST_IS_WAIT_LISTED,
+            kycStatus = TEST_KYC_STATUS,
+            kycReason = TEST_KYC_REASONS,
+            orderedStatus = TEST_ORDERED_STATUS,
+            spendableAmount = mockSpendableAmountEntity,
+            nativeSpendableAmount = mockNativeAmountEntity,
+            features = mockFeaturesEntity,
+            style = mockCardStyleEntity,
+            cardholderFirstName = TEST_CARDHOLDER_FIRST_NAME,
+            cardholderLastName = TEST_CARDHOLDER_LAST_NAME,
+            nameOnCard = TEST_NAME_ON_CARD
         )
     }
 
@@ -69,16 +69,16 @@ class CardEntityTest: UnitTest() {
 
         // Given
         val testSpendableAmount = ModelDataProvider.money()
-        Mockito.`when`(mockSpendableAmountEntity.toMoney()).thenReturn(testSpendableAmount)
+        whenever(mockSpendableAmountEntity.toMoney()).thenReturn(testSpendableAmount)
 
         val testNativeAmount = ModelDataProvider.money()
-        Mockito.`when`(mockNativeAmountEntity.toMoney()).thenReturn(testNativeAmount)
+        whenever(mockNativeAmountEntity.toMoney()).thenReturn(testNativeAmount)
 
         val testFeatures = ModelDataProvider.features()
-        Mockito.`when`(mockFeaturesEntity.toFeatures()).thenReturn(testFeatures)
+        whenever(mockFeaturesEntity.toFeatures()).thenReturn(testFeatures)
 
         val testCardStyle = ModelDataProvider.cardStyle()
-        Mockito.`when`(mockCardStyleEntity.toCardStyle(TestDataProvider.anyObject())).thenReturn(testCardStyle)
+        whenever(mockCardStyleEntity.toCardStyle(TestDataProvider.anyObject())).thenReturn(testCardStyle)
 
         // When
         val card = sut.toCard()
@@ -105,8 +105,9 @@ class CardEntityTest: UnitTest() {
     fun `name on card takes precedence over legacy first and last name fields`() {
         // When
         val sut = ModelDataProvider.cardEntity(
-                style = mockCardStyleEntity,
-                nameOnCard = TEST_NAME_ON_CARD)
+            style = mockCardStyleEntity,
+            nameOnCard = TEST_NAME_ON_CARD
+        )
         val card = sut.toCard()
         // Then
         assertEquals(card.cardHolder, TEST_NAME_ON_CARD)
@@ -115,9 +116,7 @@ class CardEntityTest: UnitTest() {
     @Test
     fun `no name on card uses first and last name fields`() {
         // When
-        val sut = ModelDataProvider.cardEntity(
-                style = mockCardStyleEntity,
-                nameOnCard = null)
+        val sut = ModelDataProvider.cardEntity(style = mockCardStyleEntity, nameOnCard = null)
         val card = sut.toCard()
         // Then
         assertEquals(card.cardHolder, "$TEST_CARDHOLDER_FIRST_NAME $TEST_CARDHOLDER_LAST_NAME")

@@ -17,13 +17,14 @@ internal class PushTokenRepository constructor(
 ) {
 
     private val sharedPref: SharedPreferences = context.getSharedPreferences(
-            PREF_PUSH_TOKEN_FILENAME, Context.MODE_PRIVATE)
+        PREF_PUSH_TOKEN_FILENAME, Context.MODE_PRIVATE
+    )
 
     var pushToken: String
         get() = sharedPref.getString(PREF_PUSH_TOKEN, "")!!
         set(token) {
             sharedPref.edit().putString(PREF_PUSH_TOKEN, token).apply()
-            if (userSessionRepository.userSession.isValid()) registerPushDeviceUseCase(pushToken)
+            if (userSessionRepository.isUserSessionValid()) registerPushDeviceUseCase(pushToken)
         }
 
     init {

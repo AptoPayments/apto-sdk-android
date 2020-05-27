@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class GetTokensRequest(
-        @SerializedName("card_id")
-        val cardID: String,
-        @SerializedName("action")
-        val action: String
+    @SerializedName("card_id")
+    val cardID: String,
+    @SerializedName("action")
+    val action: String
 ) : Serializable

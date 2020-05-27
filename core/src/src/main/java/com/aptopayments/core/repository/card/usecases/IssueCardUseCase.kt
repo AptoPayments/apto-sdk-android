@@ -7,20 +7,20 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.card.CardRepository
 
 internal class IssueCardUseCase constructor(
-        private val cardRepository: CardRepository,
-        networkHandler: NetworkHandler
+    private val cardRepository: CardRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<Card, IssueCardUseCase.Params>(networkHandler) {
     data class Params(
-            val cardProductId: String,
-            val credential: OAuthCredential?,
-            val additionalFields: Map<String, Any>?,
-            val initialFundingSourceId: String?
+        val cardProductId: String,
+        val credential: OAuthCredential?,
+        val additionalFields: Map<String, Any>?,
+        val initialFundingSourceId: String?
     )
 
     override fun run(params: Params) = cardRepository.issueCard(
-            cardProductId = params.cardProductId,
-            credential = params.credential,
-            additionalFields = params.additionalFields,
-            initialFundingSourceId = params.initialFundingSourceId
+        cardProductId = params.cardProductId,
+        credential = params.credential,
+        additionalFields = params.additionalFields,
+        initialFundingSourceId = params.initialFundingSourceId
     )
 }

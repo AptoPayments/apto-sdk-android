@@ -28,8 +28,13 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 internal interface CardRepository : BaseRepository {
-    fun issueCard(cardProductId: String, credential: OAuthCredential?,
-                  additionalFields: Map<String, Any>?, initialFundingSourceId: String?): Either<Failure, Card>
+    fun issueCard(
+        cardProductId: String,
+        credential: OAuthCredential?,
+        additionalFields: Map<String, Any>?,
+        initialFundingSourceId: String?
+    ): Either<Failure, Card>
+
     fun getCard(params: GetCardParams): Either<Failure, Card>
     fun getCardDetails(cardId: String): Either<Failure, CardDetails>
     fun getCards(): Either<Failure, List<Card>>
@@ -40,14 +45,19 @@ internal interface CardRepository : BaseRepository {
     fun setCardBalance(params: SetCardBalanceParams): Either<Failure, Balance>
     fun addCardBalance(params: AddCardBalanceParams): Either<Failure, Balance>
     fun setPin(params: SetPinParams): Either<Failure, Card>
-    fun getProvisioningData(cardId: String, clientAppId: String, clientDeviceId:String, walletId: String): Either<Failure, ProvisioningData>
+    fun getProvisioningData(
+        cardId: String,
+        clientAppId: String,
+        clientDeviceId: String,
+        walletId: String
+    ): Either<Failure, ProvisioningData>
 
     class Network constructor(
-            private val networkHandler: NetworkHandler,
-            private val service: CardService,
-            private val cardLocalRepo: CardLocalRepository,
-            private val cardBalanceLocalDao: CardBalanceLocalDao,
-            userSessionRepository: UserSessionRepository
+        private val networkHandler: NetworkHandler,
+        private val service: CardService,
+        private val cardLocalRepo: CardLocalRepository,
+        private val cardBalanceLocalDao: CardBalanceLocalDao,
+        userSessionRepository: UserSessionRepository
     ) : BaseRepository.BaseRepositoryImpl(), CardRepository {
 
         init {
@@ -63,34 +73,36 @@ internal interface CardRepository : BaseRepository {
             userSessionRepository.unsubscribeSessionInvalidListener(this)
         }
 
-        override fun issueCard(cardProductId: String, credential: OAuthCredential?,
-                               additionalFields: Map<String, Any>?, initialFundingSourceId: String?) =
-                when (networkHandler.isConnected) {
-                    true -> {
-                        val credentialRequest: OAuthCredentialRequest? = credential?.let {
-                            OAuthCredentialRequest(
-                                    accessToken = it.oauthToken,
-                                    refreshToken = it.refreshToken
-                            )
-                        }
-                        val issueCardRequest = IssueCardRequest(
-                                cardProductId = cardProductId,
-                                oAuthCredentialRequest = credentialRequest,
-                                additionalFields = additionalFields,
-                                initialFundingSourceId = initialFundingSourceId
-                        )
-                        request(service.issueCard(issueCardRequest), { it.toCard() }, CardEntity())
-                    }
-                    false, null -> Either.Left(Failure.NetworkConnection)
+        override fun issueCard(
+            cardProductId: String,
+            credential: OAuthCredential?,
+            additionalFields: Map<String, Any>?,
+            initialFundingSourceId: String?
+        ) = when (networkHandler.isConnected) {
+            true -> {
+                val credentialRequest: OAuthCredentialRequest? = credential?.let {
+                    OAuthCredentialRequest(
+                        accessToken = it.oauthToken,
+                        refreshToken = it.refreshToken
+                    )
                 }
+                val issueCardRequest = IssueCardRequest(
+                    cardProductId = cardProductId,
+                    oAuthCredentialRequest = credentialRequest,
+                    additionalFields = additionalFields,
+                    initialFundingSourceId = initialFundingSourceId
+                )
+                request(service.issueCard(issueCardRequest), { it.toCard() }, CardEntity())
+            }
+            false -> Either.Left(Failure.NetworkConnection)
+        }
 
         override fun getCard(params: GetCardParams): Either<Failure, Card> {
             return if (params.refresh) {
-                getCardFromRemoteAPI(params.cardId, params.showDetails)
-            }
-            else {
+                getCardFromRemoteAPI(params.cardId)
+            } else {
                 cardLocalRepo.getCard(params.cardId)?.let { Either.Right(it) }
-                    ?: getCardFromRemoteAPI(params.cardId, params.showDetails)
+                    ?: getCardFromRemoteAPI(params.cardId)
             }
         }
 
@@ -99,7 +111,7 @@ internal interface CardRepository : BaseRepository {
                 true -> {
                     request(service.getCardDetails(cardId)) { it.toCardDetails() }
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 
@@ -112,7 +124,7 @@ internal interface CardRepository : BaseRepository {
                         } ?: emptyList()
                     }, ListEntity())
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 
@@ -121,7 +133,7 @@ internal interface CardRepository : BaseRepository {
                 true -> {
                     request(service.unlockCard(cardId), { it.toCard() }, CardEntity())
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 
@@ -130,16 +142,20 @@ internal interface CardRepository : BaseRepository {
                 true -> {
                     request(service.lockCard(cardId), { it.toCard() }, CardEntity())
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 
         override fun activatePhysicalCard(cardId: String, code: String): Either<Failure, ActivatePhysicalCardResult> {
             return when (networkHandler.isConnected) {
                 true -> {
-                    request(service.activatePhysicalCard(cardId, code), { it.toActivatePhysicalCardResult() }, ActivatePhysicalCardEntity())
+                    request(
+                        service.activatePhysicalCard(cardId, code),
+                        { it.toActivatePhysicalCardResult() },
+                        ActivatePhysicalCardEntity()
+                    )
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 
@@ -156,9 +172,13 @@ internal interface CardRepository : BaseRepository {
         override fun setCardBalance(params: SetCardBalanceParams): Either<Failure, Balance> {
             return when (networkHandler.isConnected) {
                 true -> {
-                    request(service.setCardBalance(params.cardID, params.fundingSourceID), { it.toBalance() }, BalanceEntity())
+                    request(
+                        service.setCardBalance(params.cardID, params.fundingSourceID),
+                        { it.toBalance() },
+                        BalanceEntity()
+                    )
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 
@@ -166,9 +186,13 @@ internal interface CardRepository : BaseRepository {
             return when (networkHandler.isConnected) {
                 true -> {
                     val addCardBalanceRequest = AddCardBalanceRequest(params.fundingSourceType, params.tokenId)
-                    request(service.addCardBalance(params.cardID, addCardBalanceRequest), { it.toBalance() }, BalanceEntity())
+                    request(
+                        service.addCardBalance(params.cardID, addCardBalanceRequest),
+                        { it.toBalance() },
+                        BalanceEntity()
+                    )
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 
@@ -177,21 +201,21 @@ internal interface CardRepository : BaseRepository {
                 true -> {
                     request(service.setPin(params.cardId, params.pin), { it.toCard() }, CardEntity())
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 
-        private fun getCardFromRemoteAPI(cardId: String, showDetails: Boolean): Either<Failure, Card> {
+        private fun getCardFromRemoteAPI(cardId: String): Either<Failure, Card> {
             return when (networkHandler.isConnected) {
                 true -> {
-                    val getCardRequest = GetCardRequest(accountID = cardId, showDetails = showDetails)
+                    val getCardRequest = GetCardRequest(accountID = cardId)
                     request(service.getCard(getCardRequest), {
                         val card = it.toCard()
                         cardLocalRepo.saveCard(card)
                         card
                     }, CardEntity())
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 
@@ -205,7 +229,7 @@ internal interface CardRepository : BaseRepository {
                         balance
                     }, BalanceEntity())
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 

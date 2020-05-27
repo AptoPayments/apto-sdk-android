@@ -5,7 +5,7 @@ import java.io.Serializable
 
 data class RestartVerificationRequest(
 
-        @SerializedName("show_verification_secret")
-        val showVerificationSecret: Boolean = false
+    @SerializedName("show_verification_secret")
+    val showVerificationSecret: Boolean = false
 
 ) : Serializable

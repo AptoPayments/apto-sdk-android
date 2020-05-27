@@ -18,41 +18,26 @@ private const val PUSH_TOKEN = "push_token"
 internal interface UserApi {
 
     @POST(CREATE_USER_PATH)
-    fun createUser(
-            @Body request: CreateUserDataRequest
-    ): Call<UserEntity>
+    fun createUser(@Body request: CreateUserDataRequest): Call<UserEntity>
 
     @PUT(USER_PATH)
-    fun updateUser(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Body request: UserDataRequest
-    ): Call<UserEntity>
+    fun updateUser(@Body request: UserDataRequest): Call<UserEntity>
 
     @POST(LOGIN_USER_PATH)
-    fun loginExistingUser(
-            @Body request: LoginUserRequest
-    ): Call<UserEntity>
+    fun loginExistingUser(@Body request: LoginUserRequest): Call<UserEntity>
 
     @POST(REGISTER_PUSH_DEVICE_PATH)
-    fun registerPushDevice(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Body request: PushDeviceRequest
-    ): Call<Unit>
+    fun registerPushDevice(@Body request: PushDeviceRequest): Call<Unit>
 
     @DELETE(UNREGISTER_PUSH_DEVICE_PATH)
     fun unregisterPushDevice(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(PUSH_TOKEN, encoded = true) pushToken: String
+        @Header(X_AUTHORIZATION) userToken: String,
+        @Path(PUSH_TOKEN, encoded = true) pushToken: String
     ): Call<Unit>
 
     @GET(NOTIFICATION_PREFERENCES_PATH)
-    fun getNotificationPreferences(
-            @Header(X_AUTHORIZATION) userToken: String
-    ): Call<NotificationPreferencesEntity>
+    fun getNotificationPreferences(): Call<NotificationPreferencesEntity>
 
     @PUT(NOTIFICATION_PREFERENCES_PATH)
-    fun updateNotificationPreferences(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Body request: NotificationPreferencesRequest
-    ): Call<Unit>
+    fun updateNotificationPreferences(@Body request: NotificationPreferencesRequest): Call<Unit>
 }

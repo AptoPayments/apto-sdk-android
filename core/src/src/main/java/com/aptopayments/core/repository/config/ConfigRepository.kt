@@ -20,8 +20,8 @@ internal interface ConfigRepository : BaseRepository {
     fun getCardProducts(): Either<Failure, List<CardProductSummary>>
 
     class Network constructor(
-            private val networkHandler: NetworkHandler,
-            private val service: ConfigService
+        private val networkHandler: NetworkHandler,
+        private val service: ConfigService
     ) : BaseRepository.BaseRepositoryImpl(), ConfigRepository {
 
         private var contextConfigurationCache: ContextConfiguration? = null
@@ -31,10 +31,14 @@ internal interface ConfigRepository : BaseRepository {
             if (!forceRefresh && contextConfigurationCache != null) {
                 return Either.Right(contextConfigurationCache!!)
             }
-            if (networkHandler.isConnected != true) {
+            if (!networkHandler.isConnected) {
                 return Either.Left(Failure.NetworkConnection)
             }
-            val result = request(service.getContextConfiguration(), { it.toContextConfiguration() }, ContextConfigurationEntity())
+            val result = request(
+                service.getContextConfiguration(),
+                { it.toContextConfiguration() },
+                ContextConfigurationEntity()
+            )
             result.either({}, ::handleNewContextConfigurationReceived)
             return result
         }
@@ -47,13 +51,13 @@ internal interface ConfigRepository : BaseRepository {
             if (!forceRefresh && cardProductCache.containsKey(cardProductId)) {
                 return Either.Right(cardProductCache[cardProductId]!!)
             }
-            if (networkHandler.isConnected != true) {
+            if (!networkHandler.isConnected) {
                 return Either.Left(Failure.NetworkConnection)
             }
             val result = request(
-                    service.getCardProduct(cardProductId),
-                    { it.toCardProduct() },
-                    CardConfigurationEntity()
+                service.getCardProduct(cardProductId),
+                { it.toCardProduct() },
+                CardConfigurationEntity()
             )
             result.either({}, { handleNewCardProductReceived(it, cardProductId) })
             return result
@@ -72,7 +76,7 @@ internal interface ConfigRepository : BaseRepository {
                         } ?: emptyList()
                     }, ListEntity())
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
     }

@@ -4,5 +4,5 @@ import com.aptopayments.core.data.workflowaction.AllowedBalanceType
 import java.io.Serializable
 
 data class SelectBalanceStore(
-        val allowedBalanceTypes: List<AllowedBalanceType>?
+    val allowedBalanceTypes: List<AllowedBalanceType>?
 ) : Serializable

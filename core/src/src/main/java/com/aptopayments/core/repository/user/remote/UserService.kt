@@ -22,31 +22,25 @@ internal class UserService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
     fun updateUser(userData: DataPointList): Call<UserEntity> {
         val request = UserDataRequest.from(userData)
-        return userApi.updateUser(
-                userToken = authorizationHeader(userSessionRepository.userToken),
-                request = request)
+        return userApi.updateUser(request = request)
     }
 
     fun loginUser(loginUserRequest: LoginUserRequest): Call<UserEntity> =
-            userApi.loginExistingUser(
-                    request = loginUserRequest)
+        userApi.loginExistingUser(request = loginUserRequest)
 
-    fun registerPushDevice(pushDeviceRequest: PushDeviceRequest): Call<Unit> = userApi.registerPushDevice(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            request = pushDeviceRequest)
+    fun registerPushDevice(pushDeviceRequest: PushDeviceRequest): Call<Unit> =
+        userApi.registerPushDevice(request = pushDeviceRequest)
 
     fun unregisterPushDevice(userToken: String, pushToken: String): Call<Unit> =
-            userApi.unregisterPushDevice(
-                    userToken = userToken,
-                    pushToken = URLEncoder.encode(pushToken, CHARSET)
-            )
+        userApi.unregisterPushDevice(
+            userToken = authorizationHeader(userToken),
+            pushToken = URLEncoder.encode(pushToken, CHARSET)
+        )
 
-    fun getNotificationPreferences(): Call<NotificationPreferencesEntity> = userApi.getNotificationPreferences(
-            userToken = authorizationHeader(userSessionRepository.userToken)
-    )
+    fun getNotificationPreferences(): Call<NotificationPreferencesEntity> = userApi.getNotificationPreferences()
 
-    fun updateNotificationPreferences(notificationPreferencesRequest: NotificationPreferencesRequest): Call<Unit> = userApi.updateNotificationPreferences(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            request = notificationPreferencesRequest
-    )
+    fun updateNotificationPreferences(notificationPreferencesRequest: NotificationPreferencesRequest): Call<Unit> =
+        userApi.updateNotificationPreferences(request = notificationPreferencesRequest)
+
+    private fun authorizationHeader(userToken: String) = "Bearer $userToken"
 }

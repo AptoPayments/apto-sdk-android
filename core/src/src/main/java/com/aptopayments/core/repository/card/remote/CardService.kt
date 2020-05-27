@@ -9,72 +9,41 @@ internal class CardService constructor(apiCatalog: ApiCatalog) : BaseService() {
     private val cardApi by lazy { apiCatalog.api().create(CardApi::class.java) }
     private val vaultCardApi by lazy { apiCatalog.vaultApi().create(CardApi::class.java) }
 
-    fun issueCard(issueCardRequest: IssueCardRequest) = cardApi.issueCard(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            request = issueCardRequest
-    )
+    fun issueCard(issueCardRequest: IssueCardRequest) = cardApi.issueCard(request = issueCardRequest)
 
-    fun getCard(getCardRequest: GetCardRequest) = cardApi.getCard(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            accountID = getCardRequest.accountID,
-            showDetails = getCardRequest.showDetails
-    )
+    fun getCard(getCardRequest: GetCardRequest) =
+        cardApi.getCard(accountID = getCardRequest.accountID, showDetails = false)
 
-    fun getCardDetails(cardId: String) = vaultCardApi.getCardDetails(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            accountID = cardId,
-            showDetails = true
-    )
+    fun getCardDetails(cardId: String) = vaultCardApi.getCardDetails(accountID = cardId, showDetails = true)
 
-    fun getCards() = cardApi.getCards(
-            userToken = authorizationHeader(userSessionRepository.userToken)
-    )
+    fun getCards() = cardApi.getCards()
 
-    fun unlockCard(cardId: String) = cardApi.changeCardState(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            accountID = cardId,
-            action = "enable"
-    )
+    fun unlockCard(cardId: String) = cardApi.changeCardState(accountID = cardId, action = "enable")
 
-    fun lockCard(cardId: String) = cardApi.changeCardState(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            accountID = cardId,
-            action = "disable"
-    )
+    fun lockCard(cardId: String) = cardApi.changeCardState(accountID = cardId, action = "disable")
 
-    fun activatePhysicalCard(cardId: String, code: String) = cardApi.activatePhysicalCard(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            accountID = cardId,
-            request = ActivatePhysicalCardRequest(code)
-    )
+    fun activatePhysicalCard(cardId: String, code: String) =
+        cardApi.activatePhysicalCard(accountID = cardId, request = ActivatePhysicalCardRequest(code))
 
-    fun getCardBalance(cardID: String) = cardApi.getCardBalance(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            accountID = cardID
-    )
+    fun getCardBalance(cardID: String) = cardApi.getCardBalance(accountID = cardID)
 
-    fun setCardBalance(cardID: String, fundingSourceID: String) = cardApi.setCardFundingSource(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            accountID = cardID,
-            request = SetCardFundingSourceRequest(fundingSourceID)
-    )
+    fun setCardBalance(cardID: String, fundingSourceID: String) =
+        cardApi.setCardFundingSource(accountID = cardID, request = SetCardFundingSourceRequest(fundingSourceID))
 
-    fun addCardBalance(cardID: String, request: AddCardBalanceRequest) = cardApi.addCardBalance(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            accountID = cardID,
-            request = request
-    )
+    fun addCardBalance(cardID: String, request: AddCardBalanceRequest) =
+        cardApi.addCardBalance(accountID = cardID, request = request)
 
-    fun setPin(cardId: String, pin: String) = cardApi.setPin(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            accountID = cardId,
-            request = SetPinRequest(pin)
-    )
+    fun setPin(cardId: String, pin: String) = cardApi.setPin(accountID = cardId, request = SetPinRequest(pin))
 
     fun getProvisioningData(cardId: String, clientAppId: String, clientDeviceId: String, walletId: String) =
         cardApi.getProvisioningOPC(
-            userToken = authorizationHeader(userSessionRepository.userToken),
             accountID = cardId,
-            request = GetProvisioningDataRequestWrapper(GetProvisioningDataRequest(clientAppId, clientDeviceId, walletId))
+            request = GetProvisioningDataRequestWrapper(
+                GetProvisioningDataRequest(
+                    clientAppId,
+                    clientDeviceId,
+                    walletId
+                )
+            )
         )
 }

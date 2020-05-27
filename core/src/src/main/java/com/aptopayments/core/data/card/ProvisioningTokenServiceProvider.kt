@@ -8,5 +8,4 @@ enum class ProvisioningTokenServiceProvider {
     companion object {
         fun fromString(str: String) = valueOf(str.toUpperCase(Locale.US))
     }
-
 }

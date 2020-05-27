@@ -16,13 +16,18 @@ import kotlinx.coroutines.launch
 
 internal interface TransactionRepository : BaseRepository {
 
-    fun getTransactions(cardId: String, filters: TransactionListFilters, forceApiCall: Boolean, clearCachedValues: Boolean): Either<Failure, List<Transaction>>
+    fun getTransactions(
+        cardId: String,
+        filters: TransactionListFilters,
+        forceApiCall: Boolean,
+        clearCachedValues: Boolean
+    ): Either<Failure, List<Transaction>>
 
     class Network constructor(
-            private val networkHandler: NetworkHandler,
-            private val service: TransactionService,
-            private val transactionLocalDao: TransactionLocalDao,
-            userSessionRepository: UserSessionRepository
+        private val networkHandler: NetworkHandler,
+        private val service: TransactionService,
+        private val transactionLocalDao: TransactionLocalDao,
+        userSessionRepository: UserSessionRepository
     ) : BaseRepository.BaseRepositoryImpl(), TransactionRepository {
 
         init {
@@ -37,16 +42,29 @@ internal interface TransactionRepository : BaseRepository {
             userSessionRepository.unsubscribeSessionInvalidListener(this)
         }
 
-        override fun getTransactions(cardId: String, filters: TransactionListFilters, forceApiCall: Boolean, clearCachedValues: Boolean): Either<Failure, List<Transaction>> {
+        override fun getTransactions(
+            cardId: String,
+            filters: TransactionListFilters,
+            forceApiCall: Boolean,
+            clearCachedValues: Boolean
+        ): Either<Failure, List<Transaction>> {
             if (forceApiCall) return getTransactionsFromRemoteAPI(cardId, filters, clearCachedValues)
 
             transactionLocalDao.getTransactions(cardId)?.let { localTransactions ->
-                if (localTransactions.isEmpty()) return getTransactionsFromRemoteAPI(cardId, filters, clearCachedValues = true)
+                if (localTransactions.isEmpty()) return getTransactionsFromRemoteAPI(
+                    cardId,
+                    filters,
+                    clearCachedValues = true
+                )
                 return Either.Right(localTransactions.map { it.toTransaction() })
             } ?: return getTransactionsFromRemoteAPI(cardId, filters, clearCachedValues = true)
         }
 
-        private fun getTransactionsFromRemoteAPI(cardId: String, filters: TransactionListFilters, clearCachedValues: Boolean): Either<Failure, List<Transaction>> {
+        private fun getTransactionsFromRemoteAPI(
+            cardId: String,
+            filters: TransactionListFilters,
+            clearCachedValues: Boolean
+        ): Either<Failure, List<Transaction>> {
             return when (networkHandler.isConnected) {
                 true -> {
                     request(service.getTransactions(cardId, filters), { listEntity: ListEntity<TransactionEntity> ->
@@ -58,33 +76,44 @@ internal interface TransactionRepository : BaseRepository {
 
                         if (filters.lastTransactionId != null) {
                             // Load more transactions - append them to cached transactions
-                            transactionLocalDao.saveTransactions(transactionList.map { TransactionLocalEntity.fromTransaction(it, cardId) })
-                        }
-                        else {
+                            transactionLocalDao.saveTransactions(transactionList.map {
+                                TransactionLocalEntity.fromTransaction(it, cardId)
+                            })
+                        } else {
                             if (clearCachedValues) {
                                 // Pull to refresh - clear cache and save new ones
-                                replaceCachedTransactionsWith(transactionList.map { TransactionLocalEntity.fromTransaction(it, cardId) })
-                            }
-                            else {
+                                replaceCachedTransactionsWith(transactionList.map {
+                                    TransactionLocalEntity.fromTransaction(it, cardId)
+                                })
+                            } else {
                                 // Background refresh - prepend distinct transactions to cached transactions
                                 transactionLocalDao.getTransactions(cardId)?.let { localTransactions ->
-                                    val currentTransactions = localTransactions.map { it.toTransaction() } as ArrayList<Transaction>
+                                    val currentTransactions =
+                                        localTransactions.map { it.toTransaction() } as ArrayList<Transaction>
                                     if (currentTransactions.isEmpty()) {
-                                        replaceCachedTransactionsWith(transactionList.map { TransactionLocalEntity.fromTransaction(it, cardId) })
+                                        replaceCachedTransactionsWith(transactionList.map {
+                                            TransactionLocalEntity.fromTransaction(it, cardId)
+                                        })
                                     }
 
                                     if (transactionList.last().createdAt.isAfter(currentTransactions.first().createdAt)) {
                                         // There's a gap between new and old transactions. Instead of paginating, we just store the new ones
-                                        replaceCachedTransactionsWith(transactionList.map { TransactionLocalEntity.fromTransaction(it, cardId) })
-                                    }
-                                    else {
+                                        replaceCachedTransactionsWith(transactionList.map {
+                                            TransactionLocalEntity.fromTransaction(it, cardId)
+                                        })
+                                    } else {
                                         var newTransactionIndex = 0
                                         val topCachedTransactionDate = currentTransactions.first().createdAt
-                                        while (newTransactionIndex<transactionList.size && transactionList[newTransactionIndex].createdAt.isAfter(topCachedTransactionDate)) {
+                                        while (newTransactionIndex < transactionList.size && transactionList[newTransactionIndex].createdAt.isAfter(
+                                                topCachedTransactionDate
+                                            )
+                                        ) {
                                             currentTransactions.add(0, transactionList[newTransactionIndex])
                                             newTransactionIndex++
                                         }
-                                        replaceCachedTransactionsWith(currentTransactions.map { TransactionLocalEntity.fromTransaction(it, cardId) })
+                                        replaceCachedTransactionsWith(currentTransactions.map {
+                                            TransactionLocalEntity.fromTransaction(it, cardId)
+                                        })
                                     }
                                 }
                             }
@@ -92,7 +121,7 @@ internal interface TransactionRepository : BaseRepository {
                         transactionList
                     }, ListEntity())
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 

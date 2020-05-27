@@ -17,8 +17,8 @@ data class AddressDataPoint(
 
     fun toStringRepresentation(): String {
         return arrayListOf(streetOne, streetTwo, locality, region, postalCode, country)
-                .asSequence()
-                .filterNotNull()
-                .joinToString(", ")
+            .asSequence()
+            .filterNotNull()
+            .joinToString(", ")
     }
 }

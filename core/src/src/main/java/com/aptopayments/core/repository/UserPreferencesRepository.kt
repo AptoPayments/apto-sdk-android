@@ -7,12 +7,13 @@ private const val PREF_USER_PREFERENCES_FILENAME = "com.aptopayments.sdk.userpre
 private const val PREF_SHOW_DETAILED_ACTIVITY = "PREF_SHOW_DETAILED_ACTIVITY"
 
 internal class UserPreferencesRepository constructor(
-        private val userSessionRepository: UserSessionRepository,
-        context: Context
+    private val userSessionRepository: UserSessionRepository,
+    context: Context
 ) {
 
     private val sharedPref: SharedPreferences = context.getSharedPreferences(
-            PREF_USER_PREFERENCES_FILENAME, Context.MODE_PRIVATE)
+        PREF_USER_PREFERENCES_FILENAME, Context.MODE_PRIVATE
+    )
 
     var showDetailedCardActivity: Boolean
         get() = sharedPref.getBoolean(PREF_SHOW_DETAILED_ACTIVITY, false)

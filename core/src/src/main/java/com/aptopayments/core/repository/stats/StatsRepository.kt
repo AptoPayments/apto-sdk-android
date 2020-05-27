@@ -16,8 +16,8 @@ internal interface StatsRepository : BaseRepository {
     fun invalidateMonthlySpendingCache(): Either<Failure, Unit>
 
     class Network constructor(
-            private val networkHandler: NetworkHandler,
-            private val service: StatsService
+        private val networkHandler: NetworkHandler,
+        private val service: StatsService
     ) : BaseRepository.BaseRepositoryImpl(), StatsRepository {
 
         @VisibleForTesting(otherwise = Modifier.PRIVATE)
@@ -35,14 +35,15 @@ internal interface StatsRepository : BaseRepository {
                     val result = request(service.getMonthlySpending(cardId, month, year), {
                         it.toMonthlySpending()
                     }, MonthlySpendingEntity())
-                    result.either({}, {cacheMonthlySpending(it, dateKey)})
+                    result.either({}, { cacheMonthlySpending(it, dateKey) })
                     return result
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
 
-        override fun invalidateMonthlySpendingCache(): Either<Failure, Unit> = Either.Right(monthlySpendingCache.clear())
+        override fun invalidateMonthlySpendingCache(): Either<Failure, Unit> =
+            Either.Right(monthlySpendingCache.clear())
 
         private fun cacheMonthlySpending(monthlySpending: MonthlySpending, key: Triple<String, String, String>) {
             monthlySpendingCache[key] = monthlySpending

@@ -4,13 +4,13 @@ import com.aptopayments.core.data.content.Content
 import com.google.gson.annotations.SerializedName
 import java.net.URL
 
-class PlainTextContentEntity (
+class PlainTextContentEntity(
 
-        @SerializedName("format")
-        var format: String,
+    @SerializedName("format")
+    var format: String,
 
-        @SerializedName("value")
-        var value: String
+    @SerializedName("value")
+    var value: String
 
 ) : ContentEntity {
     override fun toContent(): Content {

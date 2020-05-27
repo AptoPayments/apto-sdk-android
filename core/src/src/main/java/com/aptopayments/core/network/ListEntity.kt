@@ -3,24 +3,24 @@ package com.aptopayments.core.network
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-internal data class ListEntity<DataType> (
+internal data class ListEntity<DataType>(
 
-    @SerializedName ("type")
+    @SerializedName("type")
     var type: String? = null,
 
-    @SerializedName ("page")
+    @SerializedName("page")
     var page: Int = 0,
 
-    @SerializedName ("rows")
+    @SerializedName("rows")
     var rows: Int = 0,
 
-    @SerializedName ("has_more")
+    @SerializedName("has_more")
     var hasMore: Boolean = false,
 
-    @SerializedName ("total_count")
+    @SerializedName("total_count")
     var totalCount: Int = 0,
 
-    @SerializedName ("data")
+    @SerializedName("data")
     var data: List<DataType>? = null
 
 ) : Serializable

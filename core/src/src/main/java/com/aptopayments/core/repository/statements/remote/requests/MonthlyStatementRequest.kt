@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 internal data class MonthlyStatementRequest(
 
-        @SerializedName("month")
-        val month: Int,
+    @SerializedName("month")
+    val month: Int,
 
-        @SerializedName("year")
-        val year: Int
+    @SerializedName("year")
+    val year: Int
 )

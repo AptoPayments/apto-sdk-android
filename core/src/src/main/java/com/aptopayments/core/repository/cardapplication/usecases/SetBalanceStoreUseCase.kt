@@ -6,17 +6,18 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.cardapplication.CardApplicationRepository
 
 internal class SetBalanceStoreUseCase constructor(
-        private val applicationRepository: CardApplicationRepository,
-        networkHandler: NetworkHandler
+    private val applicationRepository: CardApplicationRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<SelectBalanceStoreResult, SetBalanceStoreUseCase.Params>(networkHandler) {
 
-    data class Params (
-            val cardApplicationId: String,
-            val tokenId: String
+    data class Params(
+        val cardApplicationId: String,
+        val tokenId: String
     )
 
     override fun run(params: Params) =
-            applicationRepository.setBalanceStore(
-                    cardApplicationId = params.cardApplicationId,
-                    tokenId = params.tokenId)
+        applicationRepository.setBalanceStore(
+            cardApplicationId = params.cardApplicationId,
+            tokenId = params.tokenId
+        )
 }

@@ -14,5 +14,9 @@ internal class RequiredDataPointEntity {
     @SerializedName("datapoint_configuration")
     var dataPointConfiguration: DataPointConfigurationEntity? = null
 
-    fun toRequiredDataPoint()  = RequiredDataPoint(DataPoint.Type.fromString(dataPointType), notSpecifiedAllowed, dataPointConfiguration?.toDataPointConfiguration())
+    fun toRequiredDataPoint() = RequiredDataPoint(
+        DataPoint.Type.fromString(dataPointType),
+        notSpecifiedAllowed,
+        dataPointConfiguration?.toDataPointConfiguration()
+    )
 }

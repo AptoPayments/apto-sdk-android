@@ -5,35 +5,35 @@ import com.aptopayments.core.data.transaction.StoreAddress
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-internal data class StoreAddressEntity (
+internal data class StoreAddressEntity(
 
-        @SerializedName("street_one")
-        val address: String?,
+    @SerializedName("street_one")
+    val address: String?,
 
-        @SerializedName("street_two")
-        val apUnit: String?,
+    @SerializedName("street_two")
+    val apUnit: String?,
 
-        @SerializedName("country")
-        val country: String?,
+    @SerializedName("country")
+    val country: String?,
 
-        @SerializedName("locality")
-        val city: String?,
+    @SerializedName("locality")
+    val city: String?,
 
-        @SerializedName("region")
-        val region: String?,
+    @SerializedName("region")
+    val region: String?,
 
-        @SerializedName("postal_code")
-        val zip: String?
+    @SerializedName("postal_code")
+    val zip: String?
 
 ) : Serializable {
 
-    fun toStoreAddress() = StoreAddress (
-            address = address,
-            apUnit = apUnit,
-            country = parseCountry(country),
-            city = city,
-            region = region,
-            zip = zip
+    fun toStoreAddress() = StoreAddress(
+        address = address,
+        apUnit = apUnit,
+        country = parseCountry(country),
+        city = city,
+        region = region,
+        zip = zip
     )
 
     private fun parseCountry(country: String?): Country? {
@@ -46,12 +46,12 @@ internal data class StoreAddressEntity (
         fun from(storeAddress: StoreAddress?): StoreAddressEntity? {
             return storeAddress?.let {
                 StoreAddressEntity(
-                        address = it.address,
-                        apUnit = it.apUnit,
-                        country = it.country?.isoCode,
-                        city = it.city,
-                        region = it.region,
-                        zip = it.zip
+                    address = it.address,
+                    apUnit = it.apUnit,
+                    country = it.country?.isoCode,
+                    city = it.city,
+                    region = it.region,
+                    zip = it.zip
                 )
             }
         }

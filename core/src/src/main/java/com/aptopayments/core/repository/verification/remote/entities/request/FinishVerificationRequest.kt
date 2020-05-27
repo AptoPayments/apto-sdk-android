@@ -5,7 +5,7 @@ import java.io.Serializable
 
 data class FinishVerificationRequest(
 
-        @SerializedName("secret")
-        val secret: String
+    @SerializedName("secret")
+    val secret: String
 
 ) : Serializable

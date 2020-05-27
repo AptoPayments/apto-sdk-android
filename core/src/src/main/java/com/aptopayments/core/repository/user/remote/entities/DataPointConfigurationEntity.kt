@@ -7,5 +7,5 @@ internal abstract class DataPointConfigurationEntity {
     @SerializedName("type")
     val type: String = ""
 
-    abstract fun toDataPointConfiguration() : DataPointConfiguration
+    abstract fun toDataPointConfiguration(): DataPointConfiguration
 }

@@ -19,37 +19,36 @@ internal class VerificationService constructor(apiCatalog: ApiCatalog) {
     private val verificationApi by lazy { apiCatalog.api().create(VerificationApi::class.java) }
 
     fun startVerification(request: PhoneNumber): Call<VerificationEntity> =
-            verificationApi.startVerification(prepareDataRequest(request))
+        verificationApi.startVerification(prepareDataRequest(request))
 
     fun startVerification(request: String): Call<VerificationEntity> =
-            verificationApi.startVerification(prepareDataRequest(request))
+        verificationApi.startVerification(prepareDataRequest(request))
 
     fun restartVerification(request: Verification): Call<VerificationEntity> =
-            verificationApi.restartVerification(
-                    request.verificationId,
-                    RestartVerificationRequest(showVerificationSecret = true))
+        verificationApi.restartVerification(
+            request.verificationId,
+            RestartVerificationRequest(showVerificationSecret = true)
+        )
 
     fun finishVerification(verificationId: String, secret: String): Call<VerificationEntity> =
-            verificationApi.finishVerification(
-                    verificationId,
-                    FinishVerificationRequest(secret))
+        verificationApi.finishVerification(verificationId, FinishVerificationRequest(secret))
 
     private fun prepareDataRequest(phoneNumber: PhoneNumber): StartVerificationRequest =
-            StartVerificationRequest(
-                    datapointType = REQUEST_TYPE_PHONE,
-                    showVerificationSecret = true,
-                    datapoint = PhoneDataPointEntity(
-                            countryCode = phoneNumber.countryCode,
-                            phoneNumber = phoneNumber.phoneNumber
-                    )
+        StartVerificationRequest(
+            datapointType = REQUEST_TYPE_PHONE,
+            showVerificationSecret = true,
+            datapoint = PhoneDataPointEntity(
+                countryCode = phoneNumber.countryCode,
+                phoneNumber = phoneNumber.phoneNumber
             )
+        )
 
     private fun prepareDataRequest(emailAddress: String): StartVerificationRequest =
-            StartVerificationRequest(
-                    datapointType = REQUEST_TYPE_EMAIL,
-                    showVerificationSecret = true,
-                    datapoint = EmailDataPointEntity(
-                            email = emailAddress
-                    )
+        StartVerificationRequest(
+            datapointType = REQUEST_TYPE_EMAIL,
+            showVerificationSecret = true,
+            datapoint = EmailDataPointEntity(
+                email = emailAddress
             )
+        )
 }

@@ -8,6 +8,7 @@ import com.aptopayments.core.network.GsonProvider
 import com.aptopayments.core.repository.PushTokenRepository
 import com.aptopayments.core.repository.UserPreferencesRepository
 import com.aptopayments.core.repository.UserSessionRepository
+import com.aptopayments.core.repository.UserSessionRepositoryImpl
 import com.aptopayments.core.repository.card.CardRepository
 import com.aptopayments.core.repository.card.local.CardLocalRepository
 import com.aptopayments.core.repository.card.local.CardLocalRepositoryImpl
@@ -41,14 +42,15 @@ internal val applicationModule = module {
     single { get<LocalDB>().cardBalanceLocalDao() }
     single { get<LocalDB>().transactionLocalDao() }
     single<CardLocalRepository> { CardLocalRepositoryImpl(androidContext()) }
-    single { NetworkHandler(androidContext()) }
-    factory<OkHttpClientProvider> { OkHttpClientProviderImpl() }
+    factory<ConnectivityChecker> { ConnectivityCheckerImpl(androidContext()) }
+    single { NetworkHandler(get()) }
+    factory<OkHttpClientProvider> { OkHttpClientProviderImpl(ApiKeyProvider, get()) }
     factory<RetrofitFactory> { RetrofitFactoryImpl(GsonProvider, get()) }
-    single { ApiCatalog(get()) }
+    single { ApiCatalog(get(), ApiKeyProvider) }
 }
 
 internal val repositoryModule = module {
-    single { UserSessionRepository(context = androidContext(), localDB = get()) }
+    single<UserSessionRepository> { UserSessionRepositoryImpl(androidContext(), get()) }
     single { UserPreferencesRepository(userSessionRepository = get(), context = androidContext()) }
     single { PushTokenRepository(
             userSessionRepository = get(),

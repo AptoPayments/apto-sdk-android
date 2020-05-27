@@ -10,9 +10,9 @@ enum class WorkflowActionType {
     COLLECT_USER_DATA
 }
 
-data class WorkflowAction (
-        var actionId: String,
-        var actionType: WorkflowActionType = WorkflowActionType.UNSUPPORTED_ACTION_TYPE,
-        var configuration: WorkflowActionConfiguration? = null,
-        var labels: Map<String,String>? = null
+data class WorkflowAction(
+    var actionId: String,
+    var actionType: WorkflowActionType = WorkflowActionType.UNSUPPORTED_ACTION_TYPE,
+    var configuration: WorkflowActionConfiguration? = null,
+    var labels: Map<String, String>? = null
 ) : Serializable

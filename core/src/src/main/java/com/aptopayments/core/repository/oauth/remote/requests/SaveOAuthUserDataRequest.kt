@@ -7,13 +7,13 @@ import java.io.Serializable
 
 internal data class SaveOAuthUserDataRequest(
 
-        @SerializedName("provider")
-        val provider: String,
+    @SerializedName("provider")
+    val provider: String,
 
-        @SerializedName("oauth_token_id")
-        val tokenId: String,
+    @SerializedName("oauth_token_id")
+    val tokenId: String,
 
-        @SerializedName("data_points")
-        val userData: ListEntity<DataPointEntity>
+    @SerializedName("data_points")
+    val userData: ListEntity<DataPointEntity>
 
 ) : Serializable

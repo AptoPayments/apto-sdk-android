@@ -3,17 +3,16 @@ package com.aptopayments.core.repository.cardapplication.remote.entities.workflo
 import com.aptopayments.core.data.content.Content
 import com.google.gson.annotations.SerializedName
 
-class NativeContentEntity (
+class NativeContentEntity(
 
-        @SerializedName("format")
-        var format: String,
+    @SerializedName("format")
+    var format: String,
 
-        @SerializedName("value")
-        var value: NativeValueEntity
+    @SerializedName("value")
+    var value: NativeValueEntity
 
 ) : ContentEntity {
     override fun toContent(): Content {
         return value.toContent()
     }
 }
-

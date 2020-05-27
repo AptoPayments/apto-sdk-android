@@ -6,8 +6,9 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.card.CardRepository
 
 internal class GetCardBalanceUseCase constructor(
-        private val repository: CardRepository,
-        networkHandler: NetworkHandler
+    private val repository: CardRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<Balance, GetCardBalanceParams>(networkHandler) {
+
     override fun run(params: GetCardBalanceParams) = repository.getCardBalance(params)
 }

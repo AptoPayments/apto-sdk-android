@@ -5,7 +5,7 @@ import java.io.Serializable
 
 enum class OAuthUserDataUpdateResult { VALID, INVALID }
 
-data class OAuthUserDataUpdate (
-        val result: OAuthUserDataUpdateResult,
-        val userData: DataPointList?
+data class OAuthUserDataUpdate(
+    val result: OAuthUserDataUpdateResult,
+    val userData: DataPointList?
 ) : Serializable

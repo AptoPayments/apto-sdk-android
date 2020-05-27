@@ -5,15 +5,15 @@ import com.google.gson.annotations.SerializedName
 
 internal data class TeamConfigurationEntity(
 
-        @SerializedName("name")
-        val name: String = "",
+    @SerializedName("name")
+    val name: String = "",
 
-        @SerializedName("logo_url")
-        val logoUrl: String? = null
+    @SerializedName("logo_url")
+    val logoUrl: String? = null
 
 ) {
     fun toTeamConfiguration() = TeamConfiguration(
-            name = name,
-            logoUrl = logoUrl
+        name = name,
+        logoUrl = logoUrl
     )
 }

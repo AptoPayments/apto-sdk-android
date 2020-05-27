@@ -6,8 +6,8 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.oauth.OAuthRepository
 
 internal class GetOAuthAttemptStatusUseCase constructor(
-        private val repository: OAuthRepository,
-        networkHandler: NetworkHandler
+    private val repository: OAuthRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<OAuthAttempt, String>(networkHandler) {
 
     override fun run(params: String) = repository.getOAuthAttemptStatus(attemptId = params)

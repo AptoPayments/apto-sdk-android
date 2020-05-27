@@ -6,30 +6,30 @@ import com.aptopayments.core.extension.localized
 import org.threeten.bp.ZonedDateTime
 import java.io.Serializable
 
-data class Transaction (
-        val transactionId: String,
-        val transactionType: TransactionType,
-        val createdAt: ZonedDateTime,
-        val transactionDescription: String?,
-        val lastMessage: String?,
-        val declineCode: DeclineCode?,
-        val merchant: Merchant?,
-        val store: Store?,
-        val localAmount: Money?,
-        val billingAmount: Money?,
-        val holdAmount: Money?,
-        val cashbackAmount: Money?,
-        val feeAmount: Money?,
-        val nativeBalance: Money?,
-        val settlement: TransactionSettlement?,
-        val ecommerce: Boolean?,
-        val international: Boolean?,
-        val cardPresent: Boolean?,
-        val emv: Boolean?,
-        val cardNetwork: Card.CardNetwork?,
-        val state: TransactionState,
-        val adjustments: List<TransactionAdjustment>?,
-        val fundingSourceName: String?
+data class Transaction(
+    val transactionId: String,
+    val transactionType: TransactionType,
+    val createdAt: ZonedDateTime,
+    val transactionDescription: String?,
+    val lastMessage: String?,
+    val declineCode: DeclineCode?,
+    val merchant: Merchant?,
+    val store: Store?,
+    val localAmount: Money?,
+    val billingAmount: Money?,
+    val holdAmount: Money?,
+    val cashbackAmount: Money?,
+    val feeAmount: Money?,
+    val nativeBalance: Money?,
+    val settlement: TransactionSettlement?,
+    val ecommerce: Boolean?,
+    val international: Boolean?,
+    val cardPresent: Boolean?,
+    val emv: Boolean?,
+    val cardNetwork: Card.CardNetwork?,
+    val state: TransactionState,
+    val adjustments: List<TransactionAdjustment>?,
+    val fundingSourceName: String?
 ) : Serializable {
 
     fun transactionClass(): TransactionClass {
@@ -86,7 +86,6 @@ data class Transaction (
                 CREDIT -> "transaction_details.details.transaction_type.credit"
                 OTHER -> "transaction_details.details.transaction_type.other"
             }.localized()
-
     }
 
     enum class TransactionState {
@@ -102,7 +101,6 @@ data class Transaction (
                 COMPLETE -> "transaction_details.basic_info.transaction_status.complete"
                 OTHER -> "transaction_details.basic_info.transaction_status.other"
             }.localized()
-
     }
 
     enum class TransactionClass {

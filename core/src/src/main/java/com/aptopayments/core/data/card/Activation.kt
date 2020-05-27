@@ -4,5 +4,5 @@ import com.aptopayments.core.data.PhoneNumber
 import java.io.Serializable
 
 data class Activation(
-        val ivrPhone: PhoneNumber?
+    val ivrPhone: PhoneNumber?
 ) : Serializable

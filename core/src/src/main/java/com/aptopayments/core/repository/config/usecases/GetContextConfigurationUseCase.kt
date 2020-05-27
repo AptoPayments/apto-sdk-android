@@ -10,8 +10,8 @@ import com.aptopayments.core.repository.LiteralsRepository
 import com.aptopayments.core.repository.config.ConfigRepository
 
 internal class GetContextConfigurationUseCase constructor(
-        private val repository: ConfigRepository,
-        networkHandler: NetworkHandler
+    private val repository: ConfigRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<ContextConfiguration, Boolean>(networkHandler) {
     override fun run(params: Boolean): Either<Failure, ContextConfiguration> {
         val result = repository.getContextConfiguration(params)

@@ -8,8 +8,8 @@ sealed class CardBackgroundStyle : Serializable {
     class Color(val color: Int) : CardBackgroundStyle()
 }
 
-data class CardStyle (
-        var background: CardBackgroundStyle,
-        var textColor: Int?,
-        var balanceSelectorAsset: URL?
+data class CardStyle(
+    var background: CardBackgroundStyle,
+    var textColor: Int?,
+    var balanceSelectorAsset: URL?
 ) : Serializable

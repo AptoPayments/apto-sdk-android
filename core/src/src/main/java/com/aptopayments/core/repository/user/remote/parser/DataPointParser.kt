@@ -41,13 +41,11 @@ internal class DataPointParser : JsonDeserializer<DataPointEntity?>, JsonSeriali
     }
 
     private fun parseEmailDataPoint(configJson: JsonObject): EmailDataPointEntity? {
-        return GsonProvider.provide().fromJson(configJson,
-                EmailDataPointEntity::class.java)
+        return GsonProvider.provide().fromJson(configJson, EmailDataPointEntity::class.java)
     }
 
     private fun parseBirthdateDataPoint(configJson: JsonObject): BirthdateDataPointEntity? {
-        return GsonProvider.provide().fromJson(configJson,
-                BirthdateDataPointEntity::class.java)
+        return GsonProvider.provide().fromJson(configJson, BirthdateDataPointEntity::class.java)
     }
 
     private fun parseAddressDataPoint(configJson: JsonObject): AddressDataPointEntity? {
@@ -58,9 +56,11 @@ internal class DataPointParser : JsonDeserializer<DataPointEntity?>, JsonSeriali
         return GsonProvider.provide().fromJson(configJson, IdDocumentDataPointEntity::class.java)
     }
 
-    override fun serialize(src: DataPointEntity?,
-                           typeOfSrc: Type?,
-                           context: JsonSerializationContext?): JsonElement {
+    override fun serialize(
+        src: DataPointEntity?,
+        typeOfSrc: Type?,
+        context: JsonSerializationContext?
+    ): JsonElement {
         return when (src) {
             is NameDataPointEntity -> serializeNameDataPointEntity(src)
             is PhoneDataPointEntity -> serializePhoneDataPointEntity(src)

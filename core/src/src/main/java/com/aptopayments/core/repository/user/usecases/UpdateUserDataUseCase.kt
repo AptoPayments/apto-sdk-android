@@ -7,8 +7,8 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.user.UserRepository
 
 internal class UpdateUserDataUseCase constructor(
-        private val repository: UserRepository,
-        networkHandler: NetworkHandler
+    private val repository: UserRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<User, DataPointList>(networkHandler) {
 
     override fun run(params: DataPointList) = repository.updateUserData(userData = params)

@@ -5,16 +5,16 @@ import com.aptopayments.core.extension.localized
 import org.threeten.bp.ZonedDateTime
 import java.io.Serializable
 
-data class TransactionAdjustment (
-        val id: String?,
-        val externalId: String?,
-        val createdAt: ZonedDateTime?,
-        val localAmount: Money?,
-        val nativeAmount: Money?,
-        val exchangeRate: Double?,
-        val type: Type,
-        val fundingSourceName: String?,
-        val feeAmount: Money?
+data class TransactionAdjustment(
+    val id: String?,
+    val externalId: String?,
+    val createdAt: ZonedDateTime?,
+    val localAmount: Money?,
+    val nativeAmount: Money?,
+    val exchangeRate: Double?,
+    val type: Type,
+    val fundingSourceName: String?,
+    val feeAmount: Money?
 ) : Serializable {
 
     enum class Type {

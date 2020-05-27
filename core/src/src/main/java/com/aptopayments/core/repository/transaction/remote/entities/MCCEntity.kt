@@ -5,19 +5,19 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.util.Locale
 
-internal data class MCCEntity (
+internal data class MCCEntity(
 
-        @SerializedName("name")
-        val name: String? = null,
+    @SerializedName("name")
+    val name: String? = null,
 
-        @SerializedName("icon")
-        val icon: String? = null
+    @SerializedName("icon")
+    val icon: String? = null
 
 ) : Serializable {
 
-    fun toMCC() = MCC (
-            name = name,
-            icon = parseMCCIcon(icon)
+    fun toMCC() = MCC(
+        name = name,
+        icon = parseMCCIcon(icon)
     )
 
     private fun parseMCCIcon(icon: String?): MCC.Icon? {
@@ -33,10 +33,7 @@ internal data class MCCEntity (
     companion object {
         fun from(mcc: MCC?): MCCEntity? {
             return mcc?.let {
-                MCCEntity(
-                        name = it.name,
-                        icon = it.icon.toString()
-                )
+                MCCEntity(name = it.name, icon = it.icon.toString())
             }
         }
     }

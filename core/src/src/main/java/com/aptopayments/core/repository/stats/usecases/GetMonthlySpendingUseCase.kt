@@ -6,15 +6,14 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.stats.StatsRepository
 
 internal class GetMonthlySpendingUseCase constructor(
-        private val repository: StatsRepository,
-        networkHandler: NetworkHandler
+    private val repository: StatsRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<MonthlySpending, GetMonthlySpendingUseCase.Params>(networkHandler) {
-    override fun run(params: Params) = repository.getMonthlySpending(
-            params.cardId, params.month, params.year)
+    override fun run(params: Params) = repository.getMonthlySpending(params.cardId, params.month, params.year)
 
-    data class Params (
-            val cardId: String,
-            val month: String,
-            val year: String
+    data class Params(
+        val cardId: String,
+        val month: String,
+        val year: String
     )
 }

@@ -15,16 +15,20 @@ internal interface VoipRepository : BaseRepository {
     fun setupVoIPCall(params: SetupVoipCallParams): Either<Failure, VoipCall>
 
     class Network constructor(
-            private val networkHandler: NetworkHandler,
-            private val service: VoipService
+        private val networkHandler: NetworkHandler,
+        private val service: VoipService
     ) : BaseRepository.BaseRepositoryImpl(), VoipRepository {
 
         override fun setupVoIPCall(params: SetupVoipCallParams): Either<Failure, VoipCall> {
             return when (networkHandler.isConnected) {
                 true -> {
-                    request(service.getTokens(GetTokensRequest(params.cardId, params.action.source)), { it.toVoipCall() }, VoipCallEntity())
+                    request(
+                        service.getTokens(GetTokensRequest(params.cardId, params.action.source)),
+                        { it.toVoipCall() },
+                        VoipCallEntity()
+                    )
                 }
-                false, null -> Either.Left(Failure.NetworkConnection)
+                false -> Either.Left(Failure.NetworkConnection)
             }
         }
     }

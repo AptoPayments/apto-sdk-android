@@ -6,27 +6,27 @@ import com.aptopayments.core.repository.LiteralsRepository
 import com.google.gson.annotations.SerializedName
 import java.util.Locale
 
-internal data class WorkflowActionEntity (
+internal data class WorkflowActionEntity(
 
-        @SerializedName("action_id")
-        var actionId: String = "",
+    @SerializedName("action_id")
+    var actionId: String = "",
 
-        @SerializedName("action_type")
-        var actionType: String = "",
+    @SerializedName("action_type")
+    var actionType: String = "",
 
-        @SerializedName("configuration")
-        var configuration: WorkflowActionConfigurationEntity? = null,
+    @SerializedName("configuration")
+    var configuration: WorkflowActionConfigurationEntity? = null,
 
-        @SerializedName("labels")
-        var labels: Map<String, String>? = null
+    @SerializedName("labels")
+    var labels: Map<String, String>? = null
 ) {
     fun toWorkflowAction(): WorkflowAction {
         labels?.let { LiteralsRepository.appendServerLiterals(it) }
         return WorkflowAction(
-                actionId=actionId,
-                actionType = parseActionType(actionType),
-                configuration = configuration?.toWorkflowActionConfiguration(),
-                labels = labels
+            actionId = actionId,
+            actionType = parseActionType(actionType),
+            configuration = configuration?.toWorkflowActionConfiguration(),
+            labels = labels
         )
     }
 

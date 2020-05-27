@@ -6,19 +6,19 @@ import java.net.URL
 
 internal data class AllowedBalanceTypeEntity(
 
-        @SerializedName("balance_type")
-        val type: String = "",
+    @SerializedName("balance_type")
+    val type: String = "",
 
-        @SerializedName("base_uri")
-        val baseUrl : String
+    @SerializedName("base_uri")
+    val baseUrl: String
 ) {
     fun toAllowedBalanceType() = AllowedBalanceType(type, URL(baseUrl))
 
     companion object {
-        fun from (allowedBalanceType: AllowedBalanceType): AllowedBalanceTypeEntity {
+        fun from(allowedBalanceType: AllowedBalanceType): AllowedBalanceTypeEntity {
             return AllowedBalanceTypeEntity(
-                    type = allowedBalanceType.balanceType,
-                    baseUrl = allowedBalanceType.baseUri.toString()
+                type = allowedBalanceType.balanceType,
+                baseUrl = allowedBalanceType.baseUri.toString()
             )
         }
     }

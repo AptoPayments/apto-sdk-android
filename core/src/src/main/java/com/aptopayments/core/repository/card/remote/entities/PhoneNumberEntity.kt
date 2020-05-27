@@ -5,24 +5,24 @@ import com.google.gson.annotations.SerializedName
 
 internal data class PhoneNumberEntity(
 
-        @SerializedName("phone_number")
-        val phoneNumber: String? = "",
+    @SerializedName("phone_number")
+    val phoneNumber: String? = "",
 
-        @SerializedName("country_code")
-        val countryCode: String? = ""
+    @SerializedName("country_code")
+    val countryCode: String? = ""
 
 ) {
     fun toPhoneNumber() = PhoneNumber(
-            phoneNumber = phoneNumber ?: "",
-            countryCode = countryCode ?: ""
+        phoneNumber = phoneNumber ?: "",
+        countryCode = countryCode ?: ""
     )
 
     companion object {
         fun from(phoneNumber: PhoneNumber?): PhoneNumberEntity? {
             return phoneNumber?.let {
                 return PhoneNumberEntity(
-                        phoneNumber = it.phoneNumber,
-                        countryCode = it.countryCode
+                    phoneNumber = it.phoneNumber,
+                    countryCode = it.countryCode
                 )
             }
         }

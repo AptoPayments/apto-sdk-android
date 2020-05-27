@@ -1,6 +1,5 @@
 package com.aptopayments.core.repository.cardapplication.remote
 
-import com.aptopayments.core.network.X_AUTHORIZATION
 import com.aptopayments.core.repository.card.remote.entities.CardEntity
 import com.aptopayments.core.repository.cardapplication.remote.entities.*
 import retrofit2.Call
@@ -17,40 +16,23 @@ private const val ISSUE_CARD_PATH = "v1/user/accounts/issuecard"
 internal interface CardApplicationApi {
 
     @POST(NEW_CARD_APPLICATION_PATH)
-    fun startCardApplication(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Body applicationRequest: NewCardApplicationRequest
-    ): Call<CardApplicationEntity>
+    fun startCardApplication(@Body applicationRequest: NewCardApplicationRequest): Call<CardApplicationEntity>
 
     @GET(GET_CARD_APPLICATION_PATH)
-    fun getCardApplication(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(CARD_APPLICATION_ID) cardApplicationId: String
-    ): Call<CardApplicationEntity>
+    fun getCardApplication(@Path(CARD_APPLICATION_ID) cardApplicationId: String): Call<CardApplicationEntity>
 
     @DELETE(CANCEL_CARD_APPLICATION_PATH)
-    fun cancelCardApplication(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(CARD_APPLICATION_ID) cardApplicationId: String
-    ): Call<Unit>
+    fun cancelCardApplication(@Path(CARD_APPLICATION_ID) cardApplicationId: String): Call<Unit>
 
     @POST(SELECT_BALANCE_STORE_PATH)
     fun setBalanceStore(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(CARD_APPLICATION_ID) cardApplicationId: String,
-            @Body request: SelectBalanceStoreRequest
+        @Path(CARD_APPLICATION_ID) cardApplicationId: String,
+        @Body request: SelectBalanceStoreRequest
     ): Call<SelectBalanceStoreResultEntity>
 
     @POST(ACCEPT_DISCLAIMER_PATH)
-    fun acceptDisclaimer(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Body request: AcceptDisclaimerRequest
-    ): Call<Unit>
+    fun acceptDisclaimer(@Body request: AcceptDisclaimerRequest): Call<Unit>
 
     @POST(ISSUE_CARD_PATH)
-    fun issueCard(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Body request: IssueCardRequest
-    ): Call<CardEntity>
-
+    fun issueCard(@Body request: IssueCardRequest): Call<CardEntity>
 }

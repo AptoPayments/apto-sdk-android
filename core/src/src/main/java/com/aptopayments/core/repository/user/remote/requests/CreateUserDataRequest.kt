@@ -8,14 +8,14 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 internal data class CreateUserDataRequest(
-        @SerializedName("data_points")
-        val userData: ListEntity<DataPointEntity>,
+    @SerializedName("data_points")
+    val userData: ListEntity<DataPointEntity>,
 
-        @SerializedName("custodian_uid")
-        val custodianUid: String? = null
+    @SerializedName("custodian_uid")
+    val custodianUid: String? = null
 ) : Serializable {
     companion object {
         fun from(dataPointList: DataPointList, custodianUid: String?): CreateUserDataRequest =
-                CreateUserDataRequest(serializeDataPointList(dataPointList), custodianUid)
+            CreateUserDataRequest(serializeDataPointList(dataPointList), custodianUid)
     }
 }

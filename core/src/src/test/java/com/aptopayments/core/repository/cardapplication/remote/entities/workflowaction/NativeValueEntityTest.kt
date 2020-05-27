@@ -13,7 +13,8 @@ import kotlin.test.assertNull
 
 class NativeValueEntityTest : UnitTest() {
     // Collaborators
-    @Mock private lateinit var colorParser: ColorParser
+    @Mock
+    private lateinit var colorParser: ColorParser
     private val url = "https://aptopayments.com"
     private val colorString = "FFFFFF"
 
@@ -26,8 +27,10 @@ class NativeValueEntityTest : UnitTest() {
     @Test
     fun `all values set return a well configured content object`() {
         // Given
-        val sut = NativeValueEntity(backgroundColor = colorString, backgroundImage = url, asset = url,
-                colorParser = colorParser)
+        val sut = NativeValueEntity(
+            backgroundColor = colorString, backgroundImage = url, asset = url,
+            colorParser = colorParser
+        )
 
         // When
         val content = sut.toContent()
@@ -42,8 +45,10 @@ class NativeValueEntityTest : UnitTest() {
     @Test
     fun `null fields set return a well configured content object`() {
         // Given
-        val sut = NativeValueEntity(backgroundColor = null, backgroundImage = null, asset = null,
-                colorParser = colorParser)
+        val sut = NativeValueEntity(
+            backgroundColor = null, backgroundImage = null, asset = null,
+            colorParser = colorParser
+        )
 
         // When
         val content = sut.toContent()
@@ -58,8 +63,10 @@ class NativeValueEntityTest : UnitTest() {
     @Test
     fun `empty urls fields set return a well configured content object`() {
         // Given
-        val sut = NativeValueEntity(backgroundColor = null, backgroundImage = "", asset = "",
-                colorParser = colorParser)
+        val sut = NativeValueEntity(
+            backgroundColor = null, backgroundImage = "", asset = "",
+            colorParser = colorParser
+        )
 
         // When
         val content = sut.toContent()

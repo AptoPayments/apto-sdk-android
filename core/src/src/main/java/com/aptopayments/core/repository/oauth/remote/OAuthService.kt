@@ -20,40 +20,32 @@ internal class OAuthService constructor(apiCatalog: ApiCatalog) : BaseService() 
 
     fun startOAuthAuthentication(allowedBalanceType: AllowedBalanceType): Call<OAuthAttemptEntity> {
         val request = StartOAuthAuthenticationRequest(
-                provider = allowedBalanceType.balanceType,
-                baseUri = allowedBalanceType.baseUri.toString(),
-                redirectUrl = OAUTH_FINISHED_URL
+            provider = allowedBalanceType.balanceType,
+            baseUri = allowedBalanceType.baseUri.toString(),
+            redirectUrl = OAUTH_FINISHED_URL
         )
-        return oauthConnectApi.startOAuthAuthentication(
-                userToken = authorizationHeader(userSessionRepository.userToken),
-                request = request)
+        return oauthConnectApi.startOAuthAuthentication(request = request)
     }
 
     fun getOAuthAttemptStatus(attemptId: String): Call<OAuthAttemptEntity> =
-            oauthConnectApi.getOAuthAttemptStatus(
-                    userToken = authorizationHeader(userSessionRepository.userToken),
-                    attemptId = attemptId)
+        oauthConnectApi.getOAuthAttemptStatus(attemptId = attemptId)
 
     fun saveOAuthUserData(allowedBalanceType: AllowedBalanceType, dataPointList: DataPointList, tokenId: String):
             Call<OAuthUserDataUpdateEntity> {
         val request = SaveOAuthUserDataRequest(
-                provider = allowedBalanceType.balanceType,
-                tokenId = tokenId,
-                userData = serializeDataPointList(dataPointList)
+            provider = allowedBalanceType.balanceType,
+            tokenId = tokenId,
+            userData = serializeDataPointList(dataPointList)
         )
-        return oauthConnectApi.saveOAuthUserData(
-                userToken = authorizationHeader(userSessionRepository.userToken),
-                request = request)
+        return oauthConnectApi.saveOAuthUserData(request = request)
     }
 
     fun retrieveOAuthUserData(allowedBalanceType: AllowedBalanceType, tokenId: String):
             Call<OAuthUserDataUpdateEntity> {
         val request = RetrieveOAuthUserDataRequest(
-                provider = allowedBalanceType.balanceType,
-                tokenId = tokenId
+            provider = allowedBalanceType.balanceType,
+            tokenId = tokenId
         )
-        return oauthConnectApi.retrieveOAuthUserData(
-                userToken = authorizationHeader(userSessionRepository.userToken),
-                request = request)
+        return oauthConnectApi.retrieveOAuthUserData(request = request)
     }
 }

@@ -21,9 +21,9 @@ class GetPinEntityTest : UnitTest() {
     fun `get pin entity converts to get pin`() {
         // Given
         sut = GetPinEntity(
-                status = "enabled",
-                type = "voip",
-                ivrPhoneEntity = mockPhoneNumberEntity
+            status = "enabled",
+            type = "voip",
+            ivrPhoneEntity = mockPhoneNumberEntity
         )
 
         // When
@@ -37,9 +37,11 @@ class GetPinEntityTest : UnitTest() {
     @Test
     fun `get pin converts to get pin entity`() {
         // When
-        val getPinEntity = GetPinEntity.from(ModelDataProvider.getPin(
+        val getPinEntity = GetPinEntity.from(
+            ModelDataProvider.getPin(
                 status = FeatureStatus.ENABLED,
-                type = FeatureType.Voip())
+                type = FeatureType.Voip()
+            )
         )
 
         // Then

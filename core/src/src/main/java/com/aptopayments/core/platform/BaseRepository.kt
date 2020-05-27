@@ -15,13 +15,13 @@ import retrofit2.Response
 
 internal interface BaseRepository : KoinComponent {
 
-    fun<T> handleError(response: Response<T>): Failure
+    fun <T> handleError(response: Response<T>): Failure
 
     open class BaseRepositoryImpl : BaseRepository {
 
         val userSessionRepository: UserSessionRepository by inject()
 
-        override fun<T> handleError(response: Response<T>) : Failure {
+        override fun <T> handleError(response: Response<T>): Failure {
             return when (response.code()) {
                 401 -> {
                     userSessionRepository.clearUserSession()

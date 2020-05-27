@@ -10,103 +10,103 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.util.Locale
 
-internal data class TransactionEntity (
+internal data class TransactionEntity(
 
-        @SerializedName("id")
-        val transactionId: String = "",
+    @SerializedName("id")
+    val transactionId: String = "",
 
-        @SerializedName("transaction_type")
-        val transactionType: String? = null,
+    @SerializedName("transaction_type")
+    val transactionType: String? = null,
 
-        @SerializedName("created_at")
-        val createdAt: Double,
+    @SerializedName("created_at")
+    val createdAt: Double,
 
-        @SerializedName("description")
-        val transactionDescription: String?,
+    @SerializedName("description")
+    val transactionDescription: String?,
 
-        @SerializedName("last_message")
-        val lastMessage: String?,
+    @SerializedName("last_message")
+    val lastMessage: String?,
 
-        @SerializedName("decline_code")
-        val declineCode: String?,
+    @SerializedName("decline_code")
+    val declineCode: String?,
 
-        @SerializedName("merchant")
-        val merchant: MerchantEntity? = null,
+    @SerializedName("merchant")
+    val merchant: MerchantEntity? = null,
 
-        @SerializedName("store")
-        val store: StoreEntity? = null,
+    @SerializedName("store")
+    val store: StoreEntity? = null,
 
-        @SerializedName("local_amount")
-        val localAmount: MoneyEntity? = null,
+    @SerializedName("local_amount")
+    val localAmount: MoneyEntity? = null,
 
-        @SerializedName("billing_amount")
-        val billingAmount: MoneyEntity? = null,
+    @SerializedName("billing_amount")
+    val billingAmount: MoneyEntity? = null,
 
-        @SerializedName("hold_amount")
-        val holdAmount: MoneyEntity? = null,
+    @SerializedName("hold_amount")
+    val holdAmount: MoneyEntity? = null,
 
-        @SerializedName("cashback_amount")
-        val cashbackAmount: MoneyEntity? = null,
+    @SerializedName("cashback_amount")
+    val cashbackAmount: MoneyEntity? = null,
 
-        @SerializedName("fee_amount")
-        val feeAmount: MoneyEntity? = null,
+    @SerializedName("fee_amount")
+    val feeAmount: MoneyEntity? = null,
 
-        @SerializedName("native_balance")
-        val nativeBalance: MoneyEntity? = null,
+    @SerializedName("native_balance")
+    val nativeBalance: MoneyEntity? = null,
 
-        @SerializedName("settlement")
-        val settlement: TransactionSettlementEntity? = null,
+    @SerializedName("settlement")
+    val settlement: TransactionSettlementEntity? = null,
 
-        @SerializedName("ecommerce")
-        val ecommerce: Boolean?,
+    @SerializedName("ecommerce")
+    val ecommerce: Boolean?,
 
-        @SerializedName("international")
-        val international: Boolean?,
+    @SerializedName("international")
+    val international: Boolean?,
 
-        @SerializedName("card_present")
-        val cardPresent: Boolean?,
+    @SerializedName("card_present")
+    val cardPresent: Boolean?,
 
-        @SerializedName("emv")
-        val emv: Boolean?,
+    @SerializedName("emv")
+    val emv: Boolean?,
 
-        @SerializedName("network")
-        val cardNetwork: String? = null,
+    @SerializedName("network")
+    val cardNetwork: String? = null,
 
-        @SerializedName("state")
-        val state: String? = null,
+    @SerializedName("state")
+    val state: String? = null,
 
-        @SerializedName("adjustments")
-        val adjustments: ListEntity<TransactionAdjustmentEntity>?,
+    @SerializedName("adjustments")
+    val adjustments: ListEntity<TransactionAdjustmentEntity>?,
 
-        @SerializedName("funding_source_name")
-        val fundingSourceName: String? = null
+    @SerializedName("funding_source_name")
+    val fundingSourceName: String? = null
 
 ) : Serializable {
 
-    fun toTransaction() = Transaction (
-            transactionId = transactionId,
-            transactionType = parseTransactionType(transactionType),
-            createdAt = (createdAt * 1000).toLong().toZonedDateTime(),
-            transactionDescription = transactionDescription,
-            lastMessage = lastMessage,
-            declineCode = DeclineCode.from(declineCode),
-            merchant = merchant?.toMerchant(),
-            store = store?.toStore(),
-            localAmount = localAmount?.toMoney(),
-            billingAmount = billingAmount?.toMoney(),
-            holdAmount = holdAmount?.toMoney(),
-            cashbackAmount = cashbackAmount?.toMoney(),
-            feeAmount = feeAmount?.toMoney(),
-            nativeBalance = nativeBalance?.toMoney(),
-            settlement = settlement?.toTransactionSettlement(),
-            ecommerce = ecommerce,
-            international = international,
-            cardPresent = cardPresent,
-            emv = emv,
-            cardNetwork = parseCardNetwork(cardNetwork),
-            state = parseTransactionState(state),
-            adjustments = if (adjustments?.data?.isEmpty() == false) adjustments.data?.map { it.toTransactionAdjustment() } else null,
-            fundingSourceName = fundingSourceName
+    fun toTransaction() = Transaction(
+        transactionId = transactionId,
+        transactionType = parseTransactionType(transactionType),
+        createdAt = (createdAt * 1000).toLong().toZonedDateTime(),
+        transactionDescription = transactionDescription,
+        lastMessage = lastMessage,
+        declineCode = DeclineCode.from(declineCode),
+        merchant = merchant?.toMerchant(),
+        store = store?.toStore(),
+        localAmount = localAmount?.toMoney(),
+        billingAmount = billingAmount?.toMoney(),
+        holdAmount = holdAmount?.toMoney(),
+        cashbackAmount = cashbackAmount?.toMoney(),
+        feeAmount = feeAmount?.toMoney(),
+        nativeBalance = nativeBalance?.toMoney(),
+        settlement = settlement?.toTransactionSettlement(),
+        ecommerce = ecommerce,
+        international = international,
+        cardPresent = cardPresent,
+        emv = emv,
+        cardNetwork = parseCardNetwork(cardNetwork),
+        state = parseTransactionState(state),
+        adjustments = if (adjustments?.data?.isEmpty() == false) adjustments.data?.map { it.toTransactionAdjustment() } else null,
+        fundingSourceName = fundingSourceName
     )
 
     private fun parseTransactionType(transactionType: String?): Transaction.TransactionType {

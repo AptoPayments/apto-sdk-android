@@ -5,22 +5,22 @@ import com.aptopayments.core.repository.verification.remote.entities.Verificatio
 import com.google.gson.annotations.SerializedName
 import org.threeten.bp.LocalDate
 
-internal data class BirthdateDataPointEntity (
+internal data class BirthdateDataPointEntity(
 
-        @SerializedName("data_type")
-        override val dataType: String = "birthdate",
+    @SerializedName("data_type")
+    override val dataType: String = "birthdate",
 
-        @SerializedName("verification")
-        override val verification: VerificationEntity? = null,
+    @SerializedName("verification")
+    override val verification: VerificationEntity? = null,
 
-        @SerializedName("verified")
-        override val verified: Boolean? = false,
+    @SerializedName("verified")
+    override val verified: Boolean? = false,
 
-        @SerializedName("not_specified")
-        override val notSpecified: Boolean? = false,
+    @SerializedName("not_specified")
+    override val notSpecified: Boolean? = false,
 
-        @SerializedName("date")
-        val birthdate: String = ""
+    @SerializedName("date")
+    val birthdate: String = ""
 
 ) : DataPointEntity {
     override fun toDataPoint() = BirthdateDataPoint(
@@ -32,10 +32,10 @@ internal data class BirthdateDataPointEntity (
 
     companion object {
         fun from(dataPoint: BirthdateDataPoint) = BirthdateDataPointEntity(
-                verification = VerificationEntity.from(dataPoint.verification),
-                verified = dataPoint.verified,
-                notSpecified = dataPoint.notSpecified,
-                birthdate = dataPoint.birthdate.toString()
+            verification = VerificationEntity.from(dataPoint.verification),
+            verified = dataPoint.verified,
+            notSpecified = dataPoint.notSpecified,
+            birthdate = dataPoint.birthdate.toString()
         )
     }
 }

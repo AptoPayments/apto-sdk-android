@@ -6,16 +6,16 @@ import java.util.Locale
 
 internal data class SelectBalanceStoreResultEntity(
 
-        @SerializedName("result")
-        val result: String = "",
+    @SerializedName("result")
+    val result: String = "",
 
-        @SerializedName("error_code")
-        val errorCode: Int? = null
+    @SerializedName("error_code")
+    val errorCode: Int? = null
 
 ) {
     fun toSelectBalanceStoreResult() = SelectBalanceStoreResult(
-            result = parseResult(result),
-            errorCode = errorCode
+        result = parseResult(result),
+        errorCode = errorCode
     )
 
     private fun parseResult(result: String): SelectBalanceStoreResult.Type {

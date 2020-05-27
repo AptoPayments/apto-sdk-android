@@ -11,9 +11,9 @@ enum class CardApplicationStatus {
     REJECTED
 }
 
-data class CardApplication (
-        val id: String,
-        val status: CardApplicationStatus,
-        val workflowObjectId: String,
-        val nextAction: WorkflowAction?
+data class CardApplication(
+    val id: String,
+    val status: CardApplicationStatus,
+    val workflowObjectId: String,
+    val nextAction: WorkflowAction?
 ) : Serializable

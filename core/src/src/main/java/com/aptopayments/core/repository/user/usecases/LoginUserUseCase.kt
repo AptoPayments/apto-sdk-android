@@ -7,8 +7,8 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.user.UserRepository
 
 internal class LoginUserUseCase constructor(
-        private val repository: UserRepository,
-        networkHandler: NetworkHandler
+    private val repository: UserRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<User, List<Verification>>(networkHandler) {
 
     override fun run(params: List<Verification>) = repository.loginUser(params)

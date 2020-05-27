@@ -8,14 +8,14 @@ import java.net.URL
 enum class OAuthAttemptStatus { PENDING, PASSED, FAILED }
 
 data class OAuthAttempt(
-        val id: String,
-        val status: OAuthAttemptStatus,
-        val url: URL?,
-        val tokenId: String,
-        var userData: DataPointList?,
-        val error: String?,
-        val errorMessage: String?,
-        var errorMessageKeys: List<String>? = null
+    val id: String,
+    val status: OAuthAttemptStatus,
+    val url: URL?,
+    val tokenId: String,
+    var userData: DataPointList?,
+    val error: String?,
+    val errorMessage: String?,
+    var errorMessageKeys: List<String>? = null
 ) : Serializable {
     fun localizedErrorMessage() = errorMessageKey?.localized() ?: ""
 
@@ -34,13 +34,13 @@ data class OAuthAttempt(
 
     private val defaultErrorMessageKeys: List<String>
         get() = listOf(
-                "select_balance_store.login.error_oauth_invalid_request.message",
-                "select_balance_store.login.error_oauth_unauthorised_client.message",
-                "select_balance_store.login.error_oauth_access_denied.message",
-                "select_balance_store.login.error_oauth_unsupported_response_type.message",
-                "select_balance_store.login.error_oauth_invalid_scope.message",
-                "select_balance_store.login.error_oauth_server_error.message",
-                "select_balance_store.login.error_oauth_temporarily_unavailable.message",
-                "select_balance_store.login.error_oauth_unknown.message"
+            "select_balance_store.login.error_oauth_invalid_request.message",
+            "select_balance_store.login.error_oauth_unauthorised_client.message",
+            "select_balance_store.login.error_oauth_access_denied.message",
+            "select_balance_store.login.error_oauth_unsupported_response_type.message",
+            "select_balance_store.login.error_oauth_invalid_scope.message",
+            "select_balance_store.login.error_oauth_server_error.message",
+            "select_balance_store.login.error_oauth_temporarily_unavailable.message",
+            "select_balance_store.login.error_oauth_unknown.message"
         )
 }

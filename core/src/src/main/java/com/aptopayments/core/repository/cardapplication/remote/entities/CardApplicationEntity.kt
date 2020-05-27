@@ -8,24 +8,24 @@ import java.util.Locale
 
 internal data class CardApplicationEntity(
 
-        @SerializedName("id")
-        val id: String = "",
+    @SerializedName("id")
+    val id: String = "",
 
-        @SerializedName("status")
-        val status: String = "",
+    @SerializedName("status")
+    val status: String = "",
 
-        @SerializedName("workflow_object_id")
-        val workflowObjectId: String = "",
+    @SerializedName("workflow_object_id")
+    val workflowObjectId: String = "",
 
-        @SerializedName("next_action")
-        val workflowAction: WorkflowActionEntity? = null
+    @SerializedName("next_action")
+    val workflowAction: WorkflowActionEntity? = null
 
 ) {
     fun toCardApplication() = CardApplication(
-            id = id,
-            status = parseCardApplicationStatus(status),
-            workflowObjectId = workflowObjectId,
-            nextAction = workflowAction?.toWorkflowAction()
+        id = id,
+        status = parseCardApplicationStatus(status),
+        workflowObjectId = workflowObjectId,
+        nextAction = workflowAction?.toWorkflowAction()
     )
 
     private fun parseCardApplicationStatus(status: String): CardApplicationStatus {

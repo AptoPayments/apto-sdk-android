@@ -9,9 +9,7 @@ internal data class ActivationEntity(
     val ivrPhoneEntity: PhoneNumberEntity? = null
 
 ) {
-    fun toActivation() = Activation (
-            ivrPhone = ivrPhoneEntity?.toPhoneNumber()
-    )
+    fun toActivation() = Activation(ivrPhone = ivrPhoneEntity?.toPhoneNumber())
 
     companion object {
         fun from(activation: Activation?): ActivationEntity? {

@@ -8,19 +8,20 @@ import java.util.Locale
 
 internal data class GetPinEntity(
 
-        @SerializedName("status")
-        val status: String = "",
+    @SerializedName("status")
+    val status: String = "",
 
-        @SerializedName("type")
-        val type: String? = "",
+    @SerializedName("type")
+    val type: String? = "",
 
-        @SerializedName("ivr_phone")
-        val ivrPhoneEntity: PhoneNumberEntity? = null
+    @SerializedName("ivr_phone")
+    val ivrPhoneEntity: PhoneNumberEntity? = null
 
 ) {
     fun toGetPin() = GetPin(
-            status = parseFeatureStatus(status),
-            type = parseFeatureType(type))
+        status = parseFeatureStatus(status),
+        type = parseFeatureType(type)
+    )
 
     private fun parseFeatureStatus(state: String): FeatureStatus {
         return try {
@@ -43,14 +44,15 @@ internal data class GetPinEntity(
             if (it.type is FeatureType.Ivr) {
                 it.type.ivrPhone?.let { phoneNumber ->
                     phone = PhoneNumberEntity(
-                            countryCode = phoneNumber.countryCode,
-                            phoneNumber = phoneNumber.phoneNumber)
+                        countryCode = phoneNumber.countryCode,
+                        phoneNumber = phoneNumber.phoneNumber
+                    )
                 }
             }
             GetPinEntity(
-                    status = it.status.toString().toLowerCase(Locale.US),
-                    type = it.type.name,
-                    ivrPhoneEntity = phone
+                status = it.status.toString().toLowerCase(Locale.US),
+                type = it.type.name,
+                ivrPhoneEntity = phone
             )
         }
     }

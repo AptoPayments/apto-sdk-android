@@ -7,49 +7,48 @@ import com.google.gson.annotations.SerializedName
 
 internal data class ProjectConfigurationEntity(
 
-        @SerializedName("name")
-        val name: String = "",
+    @SerializedName("name")
+    val name: String = "",
 
-        @SerializedName("summary")
-        val summary: String? = null,
+    @SerializedName("summary")
+    val summary: String? = null,
 
-        @SerializedName("branding")
-        val brandingEntity: BrandingEntity = BrandingEntity(),
+    @SerializedName("branding")
+    val brandingEntity: BrandingEntity = BrandingEntity(),
 
-        @SerializedName("primary_auth_credential")
-        val primaryOAuthCredential: String = "",
+    @SerializedName("primary_auth_credential")
+    val primaryOAuthCredential: String = "",
 
-        @SerializedName("secondary_auth_credential")
-        val secondaryOAuthCredential: String = "",
+    @SerializedName("secondary_auth_credential")
+    val secondaryOAuthCredential: String = "",
 
-        @SerializedName("allowed_countries")
-        val allowedCountries: List<String> = arrayListOf("US"),
+    @SerializedName("allowed_countries")
+    val allowedCountries: List<String> = arrayListOf("US"),
 
-        @SerializedName("labels")
-        val labels: Map<String, String> = hashMapOf(),
+    @SerializedName("labels")
+    val labels: Map<String, String> = hashMapOf(),
 
-        @SerializedName("support_source_address")
-        var supportEmailAddress: String? = null,
+    @SerializedName("support_source_address")
+    var supportEmailAddress: String? = null,
 
-        @SerializedName("tracker_access_token")
-        var trackerAccessToken: String? = null,
+    @SerializedName("tracker_access_token")
+    var trackerAccessToken: String? = null,
 
-        @SerializedName("tracker_active")
-        var isTrackerActive: Boolean? = false
-        // TODO: Parse the welcome action
+    @SerializedName("tracker_active")
+    var isTrackerActive: Boolean? = false
+    // TODO: Parse the welcome action
 
 ) {
     fun toProjectConfiguration() = ProjectConfiguration(
-            name = name,
-            summary = summary,
-            branding = brandingEntity.toBranding(),
-            labels = labels,
-            allowedCountries = allowedCountries.map { Country(it) },
-            supportEmailAddress = supportEmailAddress,
-            trackerAccessToken = trackerAccessToken,
-            isTrackerActive = isTrackerActive,
-            primaryAuthCredential = DataPoint.Type.fromString(primaryOAuthCredential),
-            secondaryAuthCredential = DataPoint.Type.fromString(secondaryOAuthCredential)
+        name = name,
+        summary = summary,
+        branding = brandingEntity.toBranding(),
+        labels = labels,
+        allowedCountries = allowedCountries.map { Country(it) },
+        supportEmailAddress = supportEmailAddress,
+        trackerAccessToken = trackerAccessToken,
+        isTrackerActive = isTrackerActive,
+        primaryAuthCredential = DataPoint.Type.fromString(primaryOAuthCredential),
+        secondaryAuthCredential = DataPoint.Type.fromString(secondaryOAuthCredential)
     )
-
 }

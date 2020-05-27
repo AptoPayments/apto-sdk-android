@@ -3,13 +3,13 @@ package com.aptopayments.core.repository.cardapplication.remote.entities.workflo
 import com.aptopayments.core.data.workflowaction.WorkflowActionConfigurationShowDisclaimer
 import com.google.gson.annotations.SerializedName
 
-class WorkflowActionConfigurationShowDisclaimerEntity (
+class WorkflowActionConfigurationShowDisclaimerEntity(
 
-        @SerializedName("disclaimer")
-        var contentEntity: ContentEntity
+    @SerializedName("disclaimer")
+    var contentEntity: ContentEntity
 
 ) : WorkflowActionConfigurationEntity {
     override fun toWorkflowActionConfiguration() = WorkflowActionConfigurationShowDisclaimer(
-            content = contentEntity.toContent()
+        content = contentEntity.toContent()
     )
 }

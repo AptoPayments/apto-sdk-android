@@ -8,11 +8,10 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.verification.VerificationRepository
 
 internal class RestartVerificationUseCase constructor(
-        val repository: VerificationRepository,
-        networkHandler: NetworkHandler
+    val repository: VerificationRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<Verification, Verification>(networkHandler) {
 
     override fun run(params: Verification): Either<Failure, Verification> =
-            repository.restartVerification(params)
-
+        repository.restartVerification(params)
 }

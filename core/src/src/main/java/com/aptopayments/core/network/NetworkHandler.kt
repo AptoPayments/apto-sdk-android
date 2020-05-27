@@ -1,8 +1,5 @@
 package com.aptopayments.core.network
 
-import android.content.Context
-import com.aptopayments.core.extension.networkInfo
-import java.lang.ref.WeakReference
 import java.net.InetAddress
 import java.net.InetSocketAddress
 import java.net.Socket
@@ -10,23 +7,22 @@ import java.net.Socket
 /**
  * Injectable class which returns information about the network connection state.
  */
-class NetworkHandler constructor(context: Context) {
-
-    var context: WeakReference<Context> = WeakReference(context)
-    val isConnected get() = context.get()?.networkInfo?.isConnectedOrConnecting
+class NetworkHandler(private val connectivityChecker: ConnectivityChecker) {
 
     private val networkReachabilityListenerPool = BooleanListenersPool()
     private val maintenanceModeListenerPool = BooleanListenersPool()
     private val deprecatedSdkListenerPool = BooleanListenersPool()
 
+    val isConnected get() = connectivityChecker.isConnected()
+
     fun subscribeNetworkReachabilityListener(instance: Any, callback: (Boolean) -> Unit) =
-            networkReachabilityListenerPool.registerListener(instance, callback)
+        networkReachabilityListenerPool.registerListener(instance, callback)
 
     fun unsubscribeNetworkReachabilityListener(instance: Any) =
-            networkReachabilityListenerPool.unregisterListener(instance)
+        networkReachabilityListenerPool.unregisterListener(instance)
 
     fun networkNotReachable() =
-            networkReachabilityListenerPool.notifyListeners(available = false)
+        networkReachabilityListenerPool.notifyListeners(available = false)
 
     fun checkNetworkReachability(host: String, port: Int) {
         try {
@@ -36,24 +32,25 @@ class NetworkHandler constructor(context: Context) {
                 socket.connect(inetSocketAddress, 2000)
                 networkReachabilityListenerPool.notifyListeners(available = true)
             }
-        } catch (e: java.io.IOException) {}
+        } catch (e: java.io.IOException) {
+        }
     }
 
     fun subscribeMaintenanceListener(instance: Any, callback: (Boolean) -> Unit) =
-            maintenanceModeListenerPool.registerListener(instance, callback)
+        maintenanceModeListenerPool.registerListener(instance, callback)
 
     fun unsubscribeMaintenanceListener(instance: Any) =
-            maintenanceModeListenerPool.unregisterListener(instance)
+        maintenanceModeListenerPool.unregisterListener(instance)
 
     fun maintenanceModeDetected() =
-            maintenanceModeListenerPool.notifyListeners(available = false)
+        maintenanceModeListenerPool.notifyListeners(available = false)
 
     fun checkMaintenanceMode() =
-            maintenanceModeListenerPool.notifyListeners(available = true)
+        maintenanceModeListenerPool.notifyListeners(available = true)
 
     fun subscribeDeprecatedSdkListener(instance: Any, callback: (Boolean) -> Unit) =
-            deprecatedSdkListenerPool.registerListener(instance, callback)
+        deprecatedSdkListenerPool.registerListener(instance, callback)
 
     fun deprecatedSdkDetected() =
-            deprecatedSdkListenerPool.notifyListeners(true)
+        deprecatedSdkListenerPool.notifyListeners(true)
 }

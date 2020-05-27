@@ -1,7 +1,6 @@
 package com.aptopayments.core.repository.card.remote
 
 import com.aptopayments.core.network.ListEntity
-import com.aptopayments.core.network.X_AUTHORIZATION
 import com.aptopayments.core.repository.card.remote.entities.ActivatePhysicalCardEntity
 import com.aptopayments.core.repository.card.remote.entities.CardDetailsEntity
 import com.aptopayments.core.repository.card.remote.entities.CardEntity
@@ -27,74 +26,49 @@ private const val SHOW_DETAILS = "show_details"
 internal interface CardApi {
 
     @POST(ISSUE_CARD_PATH)
-    fun issueCard(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Body request: IssueCardRequest
-    ): Call<CardEntity>
+    fun issueCard(@Body request: IssueCardRequest): Call<CardEntity>
 
     @GET(FINANCIAL_ACCOUNT_PATH)
-    fun getCard(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(ACCOUNT_ID) accountID: String,
-            @Query(SHOW_DETAILS) showDetails: Boolean
-    ): Call<CardEntity>
+    fun getCard(@Path(ACCOUNT_ID) accountID: String, @Query(SHOW_DETAILS) showDetails: Boolean): Call<CardEntity>
 
     @GET(FINANCIAL_ACCOUNT_PATH)
     fun getCardDetails(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(ACCOUNT_ID) accountID: String,
-            @Query(SHOW_DETAILS) showDetails: Boolean
+        @Path(ACCOUNT_ID) accountID: String,
+        @Query(SHOW_DETAILS) showDetails: Boolean
     ): Call<CardDetailsEntity>
 
     @GET(FINANCIAL_ACCOUNTS_PATH)
-    fun getCards(
-            @Header(X_AUTHORIZATION) userToken: String
-    ): Call<ListEntity<CardEntity>>
+    fun getCards(): Call<ListEntity<CardEntity>>
 
     @POST(CHANGE_CARD_STATE_PATH)
     fun changeCardState(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(ACCOUNT_ID) accountID: String,
-            @Path(ACTION) action: String
+        @Path(ACCOUNT_ID) accountID: String,
+        @Path(ACTION) action: String
     ): Call<CardEntity>
 
     @POST(ACTIVATE_PHYSICAL_CARD_PATH)
     fun activatePhysicalCard(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(ACCOUNT_ID) accountID: String,
-            @Body request: ActivatePhysicalCardRequest
+        @Path(ACCOUNT_ID) accountID: String,
+        @Body request: ActivatePhysicalCardRequest
     ): Call<ActivatePhysicalCardEntity>
 
     @GET(FINANCIAL_ACCOUNT_BALANCE_PATH)
-    fun getCardBalance(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(ACCOUNT_ID) accountID: String
-    ): Call<BalanceEntity>
+    fun getCardBalance(@Path(ACCOUNT_ID) accountID: String): Call<BalanceEntity>
 
     @POST(FINANCIAL_ACCOUNT_BALANCE_PATH)
     fun setCardFundingSource(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(ACCOUNT_ID) accountID: String,
-            @Body request: SetCardFundingSourceRequest
+        @Path(ACCOUNT_ID) accountID: String,
+        @Body request: SetCardFundingSourceRequest
     ): Call<BalanceEntity>
 
     @POST(USER_BALANCES_PATH)
-    fun addCardBalance(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(ACCOUNT_ID) accountID: String,
-            @Body request: AddCardBalanceRequest
-    ): Call<BalanceEntity>
+    fun addCardBalance(@Path(ACCOUNT_ID) accountID: String, @Body request: AddCardBalanceRequest): Call<BalanceEntity>
 
     @POST(FINANCIAL_ACCOUNT_PIN_PATH)
-    fun setPin(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(ACCOUNT_ID) accountID: String,
-            @Body request: SetPinRequest
-    ): Call<CardEntity>
+    fun setPin(@Path(ACCOUNT_ID) accountID: String, @Body request: SetPinRequest): Call<CardEntity>
 
     @POST(GPAY_PROVISIONING_PATH)
     fun getProvisioningOPC(
-        @Header(X_AUTHORIZATION) userToken: String,
         @Path(ACCOUNT_ID) accountID: String,
         @Body request: GetProvisioningDataRequestWrapper
     ): Call<ProvisioningEntity>

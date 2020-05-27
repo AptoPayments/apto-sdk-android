@@ -18,18 +18,18 @@ internal interface VerificationApi {
 
     @POST(VERIFICATION_START_PATH)
     fun startVerification(
-            @Body request: StartVerificationRequest
+        @Body request: StartVerificationRequest
     ): Call<VerificationEntity>
 
     @POST(VERIFICATION_RESTART_PATH)
     fun restartVerification(
-            @Path(VERIFICATION_ID) verificationID: String,
-            @Body request: RestartVerificationRequest
+        @Path(VERIFICATION_ID) verificationID: String,
+        @Body request: RestartVerificationRequest
     ): Call<VerificationEntity>
 
     @POST(VERIFICATION_FINISH_PATH)
     fun finishVerification(
-            @Path(VERIFICATION_ID) verificationID: String,
-            @Body secret: FinishVerificationRequest
+        @Path(VERIFICATION_ID) verificationID: String,
+        @Body secret: FinishVerificationRequest
     ): Call<VerificationEntity>
 }

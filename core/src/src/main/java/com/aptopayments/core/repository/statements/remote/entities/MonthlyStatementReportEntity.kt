@@ -32,5 +32,4 @@ internal data class MonthlyStatementReportEntity(
 
     private fun getLocalDateTime(expiration: String?) =
         expiration?.let { ZonedDateTime.parse(expiration) }?.withZoneSameInstant(ZoneOffset.UTC)
-
 }

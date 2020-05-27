@@ -16,5 +16,4 @@ internal class IdDataPointConfigurationEntity : DataPointConfigurationEntity() {
             .mapValues { value ->
                 value.value.map { IdDocumentDataPoint.Type.fromString(it) }
             })
-
 }

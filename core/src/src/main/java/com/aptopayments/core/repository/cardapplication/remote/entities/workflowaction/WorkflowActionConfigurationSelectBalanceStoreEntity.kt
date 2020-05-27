@@ -6,13 +6,13 @@ import com.aptopayments.core.network.ListEntity
 import com.aptopayments.core.repository.oauth.remote.entities.AllowedBalanceTypeEntity
 import com.google.gson.annotations.SerializedName
 
-internal class WorkflowActionConfigurationSelectBalanceStoreEntity (
+internal class WorkflowActionConfigurationSelectBalanceStoreEntity(
 
-        @SerializedName("allowed_balance_types")
-        var allowedBalanceTypes: ListEntity<AllowedBalanceTypeEntity>,
+    @SerializedName("allowed_balance_types")
+    var allowedBalanceTypes: ListEntity<AllowedBalanceTypeEntity>,
 
-        @SerializedName("action_asset")
-        var assetUrl: String? = null
+    @SerializedName("action_asset")
+    var assetUrl: String? = null
 
 ) : WorkflowActionConfigurationEntity {
     override fun toWorkflowActionConfiguration(): WorkflowActionConfiguration {

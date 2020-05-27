@@ -19,7 +19,7 @@ class CardDetailsTest {
         sut = CardDetails(PAN, CVV, EMPTY)
 
         assertEquals(EMPTY, sut.expirationMonth)
-        assertEquals(EMPTY,sut.expirationYear)
+        assertEquals(EMPTY, sut.expirationYear)
     }
 
     @Test

@@ -5,21 +5,21 @@ import com.aptopayments.core.data.card.ActivatePhysicalCardResultType
 import com.google.gson.annotations.SerializedName
 import java.util.Locale
 
-internal data class ActivatePhysicalCardEntity (
+internal data class ActivatePhysicalCardEntity(
 
-        @SerializedName("result")
-        val result: String = "",
+    @SerializedName("result")
+    val result: String = "",
 
-        @SerializedName("error_code")
-        val errorCode: String = "",
+    @SerializedName("error_code")
+    val errorCode: String = "",
 
-        @SerializedName("error_message")
-        val errorMessage: String = ""
+    @SerializedName("error_message")
+    val errorMessage: String = ""
 ) {
     fun toActivatePhysicalCardResult() = ActivatePhysicalCardResult(
-            result = parseResult(result),
-            errorCode = errorCode,
-            errorMessage = errorMessage
+        result = parseResult(result),
+        errorCode = errorCode,
+        errorMessage = errorMessage
     )
 
     private fun parseResult(result: String): ActivatePhysicalCardResultType {

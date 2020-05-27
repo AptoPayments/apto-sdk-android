@@ -7,16 +7,16 @@ import java.util.Locale
 
 internal data class IvrEntity(
 
-        @SerializedName("status")
-        val status: String = "",
+    @SerializedName("status")
+    val status: String = "",
 
-        @SerializedName("ivr_phone")
-        val ivrPhoneEntity: PhoneNumberEntity? = null
+    @SerializedName("ivr_phone")
+    val ivrPhoneEntity: PhoneNumberEntity? = null
 
 ) {
     fun toIvr() = Ivr(
-            status = parseFeatureStatus(status),
-            ivrPhone = ivrPhoneEntity?.toPhoneNumber()
+        status = parseFeatureStatus(status),
+        ivrPhone = ivrPhoneEntity?.toPhoneNumber()
     )
 
     private fun parseFeatureStatus(state: String): FeatureStatus {
@@ -31,8 +31,8 @@ internal data class IvrEntity(
         fun from(getPin: Ivr?): IvrEntity? {
             return getPin?.let {
                 IvrEntity(
-                        status = it.status.toString().toLowerCase(Locale.US),
-                        ivrPhoneEntity = PhoneNumberEntity.from(it.ivrPhone)
+                    status = it.status.toString().toLowerCase(Locale.US),
+                    ivrPhoneEntity = PhoneNumberEntity.from(it.ivrPhone)
                 )
             }
         }

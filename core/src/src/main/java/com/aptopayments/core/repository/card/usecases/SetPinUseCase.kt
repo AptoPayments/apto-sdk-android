@@ -6,8 +6,8 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.card.CardRepository
 
 internal class SetPinUseCase constructor(
-        private val repository: CardRepository,
-        networkHandler: NetworkHandler
+    private val repository: CardRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<Card, SetPinParams>(networkHandler) {
     override fun run(params: SetPinParams) = repository.setPin(params)
 }

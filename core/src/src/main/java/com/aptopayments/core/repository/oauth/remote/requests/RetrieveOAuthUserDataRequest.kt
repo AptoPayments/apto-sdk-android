@@ -5,10 +5,10 @@ import java.io.Serializable
 
 data class RetrieveOAuthUserDataRequest(
 
-        @SerializedName("provider")
-        val provider: String,
+    @SerializedName("provider")
+    val provider: String,
 
-        @SerializedName("oauth_token_id")
-        val tokenId: String
+    @SerializedName("oauth_token_id")
+    val tokenId: String
 
 ) : Serializable

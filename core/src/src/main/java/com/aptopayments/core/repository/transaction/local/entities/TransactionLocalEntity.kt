@@ -17,133 +17,133 @@ import org.threeten.bp.ZonedDateTime
 @Entity(tableName = "transaction")
 class TransactionLocalEntity(
 
-        @PrimaryKey(autoGenerate = false)
-        @ColumnInfo(name = "transaction_id")
-        val transactionId: String,
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "transaction_id")
+    val transactionId: String,
 
-        @ColumnInfo(name = "account_id")
-        val accountId: String,
+    @ColumnInfo(name = "account_id")
+    val accountId: String,
 
-        @ColumnInfo(name = "transaction_type")
-        val transactionType: Transaction.TransactionType,
+    @ColumnInfo(name = "transaction_type")
+    val transactionType: Transaction.TransactionType,
 
-        @ColumnInfo(name = "created_at")
-        val createdAt: ZonedDateTime,
+    @ColumnInfo(name = "created_at")
+    val createdAt: ZonedDateTime,
 
-        @ColumnInfo(name = "description")
-        val transactionDescription: String?,
+    @ColumnInfo(name = "description")
+    val transactionDescription: String?,
 
-        @ColumnInfo(name = "last_message")
-        val lastMessage: String?,
+    @ColumnInfo(name = "last_message")
+    val lastMessage: String?,
 
-        @ColumnInfo(name = "decline_code")
-        val declineCode: DeclineCode?,
+    @ColumnInfo(name = "decline_code")
+    val declineCode: DeclineCode?,
 
-        @ColumnInfo(name = "merchant")
-        val merchant: Merchant?,
+    @ColumnInfo(name = "merchant")
+    val merchant: Merchant?,
 
-        @ColumnInfo(name = "store")
-        val store: Store?,
+    @ColumnInfo(name = "store")
+    val store: Store?,
 
-        @ColumnInfo(name = "local_amount")
-        val localAmount: Money?,
+    @ColumnInfo(name = "local_amount")
+    val localAmount: Money?,
 
-        @ColumnInfo(name = "billing_amount")
-        val billingAmount: Money?,
+    @ColumnInfo(name = "billing_amount")
+    val billingAmount: Money?,
 
-        @ColumnInfo(name = "hold_amount")
-        val holdAmount: Money?,
+    @ColumnInfo(name = "hold_amount")
+    val holdAmount: Money?,
 
-        @ColumnInfo(name = "cashback_amount")
-        val cashbackAmount: Money?,
+    @ColumnInfo(name = "cashback_amount")
+    val cashbackAmount: Money?,
 
-        @ColumnInfo(name = "fee_amount")
-        val feeAmount: Money?,
+    @ColumnInfo(name = "fee_amount")
+    val feeAmount: Money?,
 
-        @ColumnInfo(name = "native_balance")
-        val nativeBalance: Money?,
+    @ColumnInfo(name = "native_balance")
+    val nativeBalance: Money?,
 
-        @ColumnInfo(name = "settlement")
-        val settlement: TransactionSettlement?,
+    @ColumnInfo(name = "settlement")
+    val settlement: TransactionSettlement?,
 
-        @ColumnInfo(name = "ecommerce")
-        val ecommerce: Boolean?,
+    @ColumnInfo(name = "ecommerce")
+    val ecommerce: Boolean?,
 
-        @ColumnInfo(name = "international")
-        val international: Boolean?,
+    @ColumnInfo(name = "international")
+    val international: Boolean?,
 
-        @ColumnInfo(name = "card_present")
-        val cardPresent: Boolean?,
+    @ColumnInfo(name = "card_present")
+    val cardPresent: Boolean?,
 
-        @ColumnInfo(name = "emv")
-        val emv: Boolean?,
+    @ColumnInfo(name = "emv")
+    val emv: Boolean?,
 
-        @ColumnInfo(name = "network")
-        val cardNetwork: Card.CardNetwork?,
+    @ColumnInfo(name = "network")
+    val cardNetwork: Card.CardNetwork?,
 
-        @ColumnInfo(name = "state")
-        val state: Transaction.TransactionState,
+    @ColumnInfo(name = "state")
+    val state: Transaction.TransactionState,
 
-        @ColumnInfo(name = "adjustments")
-        val adjustments: List<TransactionAdjustment>?,
+    @ColumnInfo(name = "adjustments")
+    val adjustments: List<TransactionAdjustment>?,
 
-        @ColumnInfo(name = "funding_source_name")
-        val fundingSourceName: String?
+    @ColumnInfo(name = "funding_source_name")
+    val fundingSourceName: String?
 
 ) {
-    fun toTransaction() = Transaction (
-            transactionId = transactionId,
-            transactionType = transactionType,
-            createdAt = createdAt,
-            transactionDescription = transactionDescription,
-            lastMessage = lastMessage,
-            declineCode = declineCode,
-            merchant = merchant,
-            store = store,
-            localAmount = localAmount,
-            billingAmount = billingAmount,
-            holdAmount = holdAmount,
-            cashbackAmount = cashbackAmount,
-            feeAmount = feeAmount,
-            nativeBalance = nativeBalance,
-            settlement = settlement,
-            ecommerce = ecommerce,
-            international = international,
-            cardPresent = cardPresent,
-            emv = emv,
-            cardNetwork = cardNetwork,
-            state = state,
-            adjustments = adjustments,
-            fundingSourceName = fundingSourceName
+    fun toTransaction() = Transaction(
+        transactionId = transactionId,
+        transactionType = transactionType,
+        createdAt = createdAt,
+        transactionDescription = transactionDescription,
+        lastMessage = lastMessage,
+        declineCode = declineCode,
+        merchant = merchant,
+        store = store,
+        localAmount = localAmount,
+        billingAmount = billingAmount,
+        holdAmount = holdAmount,
+        cashbackAmount = cashbackAmount,
+        feeAmount = feeAmount,
+        nativeBalance = nativeBalance,
+        settlement = settlement,
+        ecommerce = ecommerce,
+        international = international,
+        cardPresent = cardPresent,
+        emv = emv,
+        cardNetwork = cardNetwork,
+        state = state,
+        adjustments = adjustments,
+        fundingSourceName = fundingSourceName
     )
 
     companion object {
         fun fromTransaction(transaction: Transaction, accountId: String): TransactionLocalEntity {
             return TransactionLocalEntity(
-                    transactionId = transaction.transactionId,
-                    accountId = accountId,
-                    transactionType = transaction.transactionType,
-                    createdAt = transaction.createdAt,
-                    transactionDescription = transaction.transactionDescription,
-                    lastMessage = transaction.lastMessage,
-                    declineCode = transaction.declineCode,
-                    merchant = transaction.merchant,
-                    store = transaction.store,
-                    localAmount = transaction.localAmount,
-                    billingAmount = transaction.billingAmount,
-                    holdAmount = transaction.holdAmount,
-                    cashbackAmount = transaction.cashbackAmount,
-                    feeAmount = transaction.feeAmount,
-                    nativeBalance =  transaction.nativeBalance,
-                    settlement = transaction.settlement,
-                    ecommerce = transaction.ecommerce,
-                    international = transaction.international,
-                    cardPresent = transaction.cardPresent,
-                    emv = transaction.emv,
-                    cardNetwork = transaction.cardNetwork,
-                    state = transaction.state,
-                    adjustments = transaction.adjustments,
-                    fundingSourceName = transaction.fundingSourceName
+                transactionId = transaction.transactionId,
+                accountId = accountId,
+                transactionType = transaction.transactionType,
+                createdAt = transaction.createdAt,
+                transactionDescription = transaction.transactionDescription,
+                lastMessage = transaction.lastMessage,
+                declineCode = transaction.declineCode,
+                merchant = transaction.merchant,
+                store = transaction.store,
+                localAmount = transaction.localAmount,
+                billingAmount = transaction.billingAmount,
+                holdAmount = transaction.holdAmount,
+                cashbackAmount = transaction.cashbackAmount,
+                feeAmount = transaction.feeAmount,
+                nativeBalance = transaction.nativeBalance,
+                settlement = transaction.settlement,
+                ecommerce = transaction.ecommerce,
+                international = transaction.international,
+                cardPresent = transaction.cardPresent,
+                emv = transaction.emv,
+                cardNetwork = transaction.cardNetwork,
+                state = transaction.state,
+                adjustments = transaction.adjustments,
+                fundingSourceName = transaction.fundingSourceName
             )
         }
     }

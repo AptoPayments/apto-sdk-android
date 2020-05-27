@@ -1,9 +1,9 @@
 package com.aptopayments.core.repository
 
-import android.app.Activity
 import com.aptopayments.core.UnitTest
 import com.aptopayments.core.data.TestDataProvider
 import com.aptopayments.core.functional.Either.Right
+import com.aptopayments.core.network.ConnectivityCheckerAlwaysConnected
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.oauth.OAuthRepository
 import com.aptopayments.core.repository.oauth.usecases.StartOAuthAuthenticationUseCase
@@ -19,21 +19,23 @@ class StartOAuthAuthenticationTest : UnitTest() {
 
     private lateinit var sut: StartOAuthAuthenticationUseCase
 
-    @Mock private lateinit var oauthRepository: OAuthRepository
+    @Mock
+    private lateinit var oauthRepository: OAuthRepository
 
     @Before
     override fun setUp() {
         super.setUp()
-        sut = StartOAuthAuthenticationUseCase(oauthRepository, NetworkHandler(Activity()))
+        sut = StartOAuthAuthenticationUseCase(oauthRepository, NetworkHandler(ConnectivityCheckerAlwaysConnected()))
     }
 
-    @Test fun `should start oauth authentication through the repository`() {
+    @Test
+    fun `should start oauth authentication through the repository`() {
 
         // Given
         val testOAuthAttempt = TestDataProvider.provideOAuthAttempt()
         val testAllowedBalanceType = TestDataProvider.provideAllowedBalanceType()
         given { oauthRepository.startOAuthAuthentication(testAllowedBalanceType) }
-                .willReturn(Right(testOAuthAttempt))
+            .willReturn(Right(testOAuthAttempt))
 
         // When
         runBlocking { sut.run(testAllowedBalanceType) }
@@ -42,5 +44,4 @@ class StartOAuthAuthenticationTest : UnitTest() {
         verify(oauthRepository).startOAuthAuthentication(testAllowedBalanceType)
         verifyNoMoreInteractions(oauthRepository)
     }
-
 }

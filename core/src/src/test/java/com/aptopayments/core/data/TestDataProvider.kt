@@ -91,6 +91,8 @@ class TestDataProvider {
 
         fun provideCardApplicationId() = "bestCardApplicationIdEver"
 
+        fun provideCardId() = "crd_thebestcardId"
+
         fun provideVerification() = Verification("", "")
 
         fun <T> anyObject(): T = Mockito.any<T>()
@@ -258,6 +260,5 @@ class TestDataProvider {
         fun provideEnvironment() = AptoSdkEnvironment.STG
 
         fun provideAPiKey() = "api_key_123"
-
     }
 }

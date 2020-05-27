@@ -4,16 +4,16 @@ import com.aptopayments.core.data.user.notificationpreferences.ActiveChannels
 import com.aptopayments.core.data.user.notificationpreferences.NotificationChannel
 import com.google.gson.annotations.SerializedName
 
-internal data class ActiveChannelsEntity (
+internal data class ActiveChannelsEntity(
 
-        @SerializedName("email")
-        val email: Boolean? = null,
+    @SerializedName("email")
+    val email: Boolean? = null,
 
-        @SerializedName("push")
-        val push: Boolean? = null,
+    @SerializedName("push")
+    val push: Boolean? = null,
 
-        @SerializedName("sms")
-        val sms: Boolean? = null
+    @SerializedName("sms")
+    val sms: Boolean? = null
 
 ) {
     fun toActiveChannels(): ActiveChannels {
@@ -27,9 +27,9 @@ internal data class ActiveChannelsEntity (
     companion object {
         fun from(activeChannels: ActiveChannels): ActiveChannelsEntity {
             return ActiveChannelsEntity(
-                    email = activeChannels[NotificationChannel.EMAIL],
-                    push = activeChannels[NotificationChannel.PUSH],
-                    sms = activeChannels[NotificationChannel.SMS]
+                email = activeChannels[NotificationChannel.EMAIL],
+                push = activeChannels[NotificationChannel.PUSH],
+                sms = activeChannels[NotificationChannel.SMS]
             )
         }
     }

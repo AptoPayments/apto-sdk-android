@@ -11,12 +11,13 @@ class AddressDataPointTest : UnitTest() {
 
         // Given
         val sut = AddressDataPoint(
-                streetOne = "streetOne",
-                streetTwo = "streetTwo",
-                locality = "locality",
-                region = "region",
-                postalCode = "postalCode",
-                country = "country")
+            streetOne = "streetOne",
+            streetTwo = "streetTwo",
+            locality = "locality",
+            region = "region",
+            postalCode = "postalCode",
+            country = "country"
+        )
 
         // When
         val result = sut.toStringRepresentation()
@@ -30,11 +31,12 @@ class AddressDataPointTest : UnitTest() {
 
         // Given
         val sut = AddressDataPoint(
-                streetOne = "streetOne",
-                streetTwo = "streetTwo",
-                locality = "locality",
-                postalCode = "postalCode",
-                country = "country")
+            streetOne = "streetOne",
+            streetTwo = "streetTwo",
+            locality = "locality",
+            postalCode = "postalCode",
+            country = "country"
+        )
 
         // When
         val result = sut.toStringRepresentation()
@@ -42,5 +44,4 @@ class AddressDataPointTest : UnitTest() {
         // Then
         assertEquals(result, "streetOne, streetTwo, locality, postalCode, country")
     }
-
 }

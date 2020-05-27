@@ -8,78 +8,78 @@ import java.util.Locale
 
 internal data class CardEntity(
 
-        @SerializedName("account_id")
-        val accountID: String = "",
+    @SerializedName("account_id")
+    val accountID: String = "",
 
-        @SerializedName("card_product_id")
-        val cardProductID: String? = null,
+    @SerializedName("card_product_id")
+    val cardProductID: String? = null,
 
-        @SerializedName("card_network")
-        val cardNetwork: String? = null,
+    @SerializedName("card_network")
+    val cardNetwork: String? = null,
 
-        @SerializedName("last_four")
-        val lastFourDigits: String = "",
+    @SerializedName("last_four")
+    val lastFourDigits: String = "",
 
-        @SerializedName("card_brand")
-        val cardBrand: String? = null,
+    @SerializedName("card_brand")
+    val cardBrand: String? = null,
 
-        @SerializedName("card_issuer")
-        val cardIssuer: String? = null,
+    @SerializedName("card_issuer")
+    val cardIssuer: String? = null,
 
-        @SerializedName("state")
-        val state: String = "",
+    @SerializedName("state")
+    val state: String = "",
 
-        @SerializedName("wait_list")
-        val isWaitlisted: Boolean? = false,
+    @SerializedName("wait_list")
+    val isWaitlisted: Boolean? = false,
 
-        @SerializedName("kyc_status")
-        val kycStatus: String? = null,
+    @SerializedName("kyc_status")
+    val kycStatus: String? = null,
 
-        @SerializedName("kyc_reason")
-        val kycReason: List<String>? = null,
+    @SerializedName("kyc_reason")
+    val kycReason: List<String>? = null,
 
-        @SerializedName("ordered_status")
-        val orderedStatus: String = "",
+    @SerializedName("ordered_status")
+    val orderedStatus: String = "",
 
-        @SerializedName("spendable_today")
-        val spendableAmount: MoneyEntity? = null,
+    @SerializedName("spendable_today")
+    val spendableAmount: MoneyEntity? = null,
 
-        @SerializedName("native_spendable_today")
-        val nativeSpendableAmount: MoneyEntity? = null,
+    @SerializedName("native_spendable_today")
+    val nativeSpendableAmount: MoneyEntity? = null,
 
-        @SerializedName("features")
-        val features: FeaturesEntity? = null,
+    @SerializedName("features")
+    val features: FeaturesEntity? = null,
 
-        @SerializedName("card_style")
-        val style: CardStyleEntity? = null,
+    @SerializedName("card_style")
+    val style: CardStyleEntity? = null,
 
-        @SerializedName("cardholder_first_name")
-        val cardholderFirstName: String? = null,
+    @SerializedName("cardholder_first_name")
+    val cardholderFirstName: String? = null,
 
-        @SerializedName("cardholder_last_name")
-        val cardholderLastName: String? = null,
+    @SerializedName("cardholder_last_name")
+    val cardholderLastName: String? = null,
 
-        @SerializedName("name_on_card")
-        val nameOnCard: String? = null
+    @SerializedName("name_on_card")
+    val nameOnCard: String? = null
 
 ) {
     fun toCard() = Card(
-            accountID = accountID,
-            cardProductID = cardProductID,
-            cardNetwork = parseCardNetwork(cardNetwork),
-            lastFourDigits = lastFourDigits,
-            cardBrand = cardBrand,
-            cardIssuer = cardIssuer,
-            state = parseCardState(state),
-            isWaitlisted = isWaitlisted,
-            kycStatus = parseKycStatus(kycStatus),
-            kycReason = kycReason,
-            orderedStatus = parseOrderedStatus(orderedStatus),
-            spendableAmount = spendableAmount?.toMoney(),
-            nativeSpendableAmount = nativeSpendableAmount?.toMoney(),
-            cardHolder = nameOnCard ?: "$cardholderFirstName $cardholderLastName",
-            cardStyle = style?.toCardStyle(ColorParserImpl()),
-            features = features?.toFeatures()
+        accountID = accountID,
+        cardProductID = cardProductID,
+        cardNetwork = parseCardNetwork(cardNetwork),
+        lastFourDigits = lastFourDigits,
+        cardBrand = cardBrand,
+        cardIssuer = cardIssuer,
+        state = parseCardState(state),
+        isWaitlisted = isWaitlisted,
+        kycStatus = parseKycStatus(kycStatus),
+        kycReason = kycReason,
+        orderedStatus = parseOrderedStatus(orderedStatus),
+        spendableAmount = spendableAmount?.toMoney(),
+        nativeSpendableAmount = nativeSpendableAmount?.toMoney(),
+        cardHolder = nameOnCard ?: "$cardholderFirstName $cardholderLastName",
+        cardStyle = style?.toCardStyle(ColorParserImpl()),
+        features = features?.toFeatures()
     )
 
     private fun parseCardNetwork(network: String?): Card.CardNetwork? {

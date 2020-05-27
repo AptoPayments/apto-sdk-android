@@ -5,7 +5,7 @@ import java.io.Serializable
 
 data class NewCardApplicationRequest(
 
-        @SerializedName("card_product_id")
-        val cardProductId: String
+    @SerializedName("card_product_id")
+    val cardProductId: String
 
 ) : Serializable

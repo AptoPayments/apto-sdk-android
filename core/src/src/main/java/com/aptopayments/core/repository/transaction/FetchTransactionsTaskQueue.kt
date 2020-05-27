@@ -23,32 +23,38 @@ class FetchTransactionsTaskQueue constructor(private val aptoPlatformProtocol: A
     private fun isLoadMoreInProgress(): Boolean = loadMoreOperation?.isExecuting ?: false
     private fun isBackgroundRefreshInProgress(): Boolean = backgroundRefreshOperation?.isExecuting ?: false
 
-    fun loadTransactions(cardID: String, rows: Int = 20, forceApiCall: Boolean,
-                         clearCachedValue: Boolean, onComplete: ((Either<Failure, List<Transaction>>) -> Unit)) {
+    fun loadTransactions(
+        cardID: String,
+        rows: Int = 20,
+        forceApiCall: Boolean,
+        clearCachedValue: Boolean,
+        onComplete: ((Either<Failure, List<Transaction>>) -> Unit)
+    ) {
         if (isLoadInProgress()) return
         loadMoreOperation?.cancel()
         val params = GetTransactionsUseCase.Params(
-                cardId = cardID,
-                filters = TransactionListFilters(rows = rows, state = stateList),
-                forceApiCall = forceApiCall,
-                clearCachedValues = clearCachedValue
+            cardId = cardID,
+            filters = TransactionListFilters(rows = rows, state = stateList),
+            forceApiCall = forceApiCall,
+            clearCachedValues = clearCachedValue
         )
         val task = FetchTransactionsTask(params, onComplete)
         loadOperation = task
         task.start()
     }
 
-    fun loadMoreTransactions(cardID: String, lastTransactionId: String?, rows: Int = 20,
-                             onComplete: ((Either<Failure, List<Transaction>>) -> Unit)) {
+    fun loadMoreTransactions(
+        cardID: String,
+        lastTransactionId: String?,
+        rows: Int = 20,
+        onComplete: ((Either<Failure, List<Transaction>>) -> Unit)
+    ) {
         if (isLoadInProgress() || isLoadMoreInProgress()) return
         val params = GetTransactionsUseCase.Params(
-                cardId = cardID,
-                filters = TransactionListFilters(
-                        rows = rows,
-                        lastTransactionId = lastTransactionId,
-                        state = stateList),
-                forceApiCall = true,
-                clearCachedValues = false
+            cardId = cardID,
+            filters = TransactionListFilters(rows = rows, lastTransactionId = lastTransactionId, state = stateList),
+            forceApiCall = true,
+            clearCachedValues = false
         )
         val task = FetchTransactionsTask(params, onComplete)
         loadMoreOperation = task
@@ -58,10 +64,10 @@ class FetchTransactionsTaskQueue constructor(private val aptoPlatformProtocol: A
     fun backgroundRefresh(cardID: String, rows: Int = 20, onComplete: ((Either<Failure, List<Transaction>>) -> Unit)) {
         if (isLoadInProgress() || isLoadMoreInProgress() || isBackgroundRefreshInProgress()) return
         val params = GetTransactionsUseCase.Params(
-                cardId = cardID,
-                filters = TransactionListFilters(rows = rows, state = stateList),
-                forceApiCall = true,
-                clearCachedValues = false
+            cardId = cardID,
+            filters = TransactionListFilters(rows = rows, state = stateList),
+            forceApiCall = true,
+            clearCachedValues = false
         )
         val task = FetchTransactionsTask(params, onComplete)
         backgroundRefreshOperation = task

@@ -11,7 +11,7 @@ import java.lang.reflect.Type
 
 class ContentParser : JsonDeserializer<ContentEntity?> {
     override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): ContentEntity? {
-        val contentJson= json?.asJsonObject ?: return null
+        val contentJson = json?.asJsonObject ?: return null
         return when (safeStringFromJson(contentJson.get("format"))) {
             FORMAT_PLAIN_TEXT -> parsePlainContent(contentJson)
             FORMAT_MARKDOWN -> parsePlainContent(contentJson)

@@ -10,10 +10,6 @@ internal class FundingSourcesService constructor(apiCatalog: ApiCatalog) : KoinC
     private val fundingSourcesApi by lazy { apiCatalog.api().create(FundingSourcesApi::class.java) }
     val userSessionRepository: UserSessionRepository by inject()
 
-    fun getFundingSources(accountId: String, page: Int, rows: Int) = fundingSourcesApi.getFundingSources(
-            userToken = userSessionRepository.userToken,
-            accountID = accountId,
-            page = page,
-            rows = rows
-    )
+    fun getFundingSources(accountId: String, page: Int, rows: Int) =
+        fundingSourcesApi.getFundingSources(accountID = accountId, page = page, rows = rows)
 }

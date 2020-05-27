@@ -1,6 +1,5 @@
 package com.aptopayments.core.repository.oauth.remote
 
-import com.aptopayments.core.network.X_AUTHORIZATION
 import com.aptopayments.core.repository.oauth.remote.entities.OAuthAttemptEntity
 import com.aptopayments.core.repository.oauth.remote.entities.OAuthUserDataUpdateEntity
 import com.aptopayments.core.repository.oauth.remote.requests.RetrieveOAuthUserDataRequest
@@ -18,26 +17,14 @@ private const val RETRIEVE_OAUTH_USER_DATA = "/v1/oauth/userdata/retrieve"
 internal interface OAuthApi {
 
     @POST(START_OAUTH_PATH)
-    fun startOAuthAuthentication(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Body request: StartOAuthAuthenticationRequest
-    ): Call<OAuthAttemptEntity>
+    fun startOAuthAuthentication(@Body request: StartOAuthAuthenticationRequest): Call<OAuthAttemptEntity>
 
     @GET(GET_OAUTH_ATTEMPT)
-    fun getOAuthAttemptStatus(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(ATTEMPT_ID) attemptId: String
-    ): Call<OAuthAttemptEntity>
+    fun getOAuthAttemptStatus(@Path(ATTEMPT_ID) attemptId: String): Call<OAuthAttemptEntity>
 
     @POST(SAVE_OAUTH_USER_DATA)
-    fun saveOAuthUserData(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Body request: SaveOAuthUserDataRequest
-    ): Call<OAuthUserDataUpdateEntity>
+    fun saveOAuthUserData(@Body request: SaveOAuthUserDataRequest): Call<OAuthUserDataUpdateEntity>
 
     @POST(RETRIEVE_OAUTH_USER_DATA)
-    fun retrieveOAuthUserData(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Body request: RetrieveOAuthUserDataRequest
-    ): Call<OAuthUserDataUpdateEntity>
+    fun retrieveOAuthUserData(@Body request: RetrieveOAuthUserDataRequest): Call<OAuthUserDataUpdateEntity>
 }

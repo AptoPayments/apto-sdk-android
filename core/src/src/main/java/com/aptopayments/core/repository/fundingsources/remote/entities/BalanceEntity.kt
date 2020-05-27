@@ -7,40 +7,40 @@ import java.util.Locale
 
 internal class BalanceEntity(
 
-        @SerializedName("id")
-        var id: String = "",
+    @SerializedName("id")
+    var id: String = "",
 
-        @SerializedName("state")
-        var state: String = "",
+    @SerializedName("state")
+    var state: String = "",
 
-        @SerializedName("type")
-        var type: String = "",
+    @SerializedName("type")
+    var type: String = "",
 
-        @SerializedName("funding_source_type")
-        var fundingSourceType: String = "",
+    @SerializedName("funding_source_type")
+    var fundingSourceType: String = "",
 
-        @SerializedName("balance")
-        var balance: MoneyEntity? = null,
+    @SerializedName("balance")
+    var balance: MoneyEntity? = null,
 
-        @SerializedName("amount_spendable")
-        var amountSpendable: MoneyEntity? = null,
+    @SerializedName("amount_spendable")
+    var amountSpendable: MoneyEntity? = null,
 
-        @SerializedName("amount_held")
-        var amountHeld: MoneyEntity? = null,
+    @SerializedName("amount_held")
+    var amountHeld: MoneyEntity? = null,
 
-        @SerializedName("details")
-        var custodianWallet: CustodianWalletEntity? = null
+    @SerializedName("details")
+    var custodianWallet: CustodianWalletEntity? = null
 
 ) {
     fun toBalance() = Balance(
-            id = id,
-            state = parseBalanceState(state),
-            type = type,
-            fundingSourceType = fundingSourceType,
-            balance = balance?.toMoney(),
-            amountSpendable = amountSpendable?.toMoney(),
-            amountHeld = amountHeld?.toMoney(),
-            custodianWallet = custodianWallet?.toCustodianWallet()
+        id = id,
+        state = parseBalanceState(state),
+        type = type,
+        fundingSourceType = fundingSourceType,
+        balance = balance?.toMoney(),
+        amountSpendable = amountSpendable?.toMoney(),
+        amountHeld = amountHeld?.toMoney(),
+        custodianWallet = custodianWallet?.toCustodianWallet()
     )
 
     private fun parseBalanceState(state: String?): Balance.BalanceState? {

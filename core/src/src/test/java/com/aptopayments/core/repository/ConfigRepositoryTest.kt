@@ -18,7 +18,6 @@ import com.nhaarman.mockitokotlin2.verifyZeroInteractions
 import org.amshove.kluent.shouldBeInstanceOf
 import org.amshove.kluent.shouldEqual
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
@@ -30,18 +29,27 @@ class ConfigRepositoryTest : UnitTest() {
 
     private lateinit var sut: ConfigRepository.Network
 
-    @Mock private lateinit var networkHandler: NetworkHandler
-    @Mock private lateinit var service: ConfigService
+    @Mock
+    private lateinit var networkHandler: NetworkHandler
+    @Mock
+    private lateinit var service: ConfigService
 
-    @Mock private lateinit var getConfigCall: Call<ContextConfigurationEntity>
-    @Mock private lateinit var getConfigResponse: Response<ContextConfigurationEntity>
-    @Mock private lateinit var contextConfigurationEntity: ContextConfigurationEntity
+    @Mock
+    private lateinit var getConfigCall: Call<ContextConfigurationEntity>
+    @Mock
+    private lateinit var getConfigResponse: Response<ContextConfigurationEntity>
+    @Mock
+    private lateinit var contextConfigurationEntity: ContextConfigurationEntity
 
-    @Mock private lateinit var getCardConfigCall: Call<CardConfigurationEntity>
-    @Mock private lateinit var getCardConfigResponse: Response<CardConfigurationEntity>
+    @Mock
+    private lateinit var getCardConfigCall: Call<CardConfigurationEntity>
+    @Mock
+    private lateinit var getCardConfigResponse: Response<CardConfigurationEntity>
 
-    @Mock private lateinit var getCardProductsCall: Call<ListEntity<CardProductSummaryEntity>>
-    @Mock private lateinit var getCardProductsResponse: Response<ListEntity<CardProductSummaryEntity>>
+    @Mock
+    private lateinit var getCardProductsCall: Call<ListEntity<CardProductSummaryEntity>>
+    @Mock
+    private lateinit var getCardProductsResponse: Response<ListEntity<CardProductSummaryEntity>>
 
     @Before
     override fun setUp() {
@@ -55,7 +63,8 @@ class ConfigRepositoryTest : UnitTest() {
         sut = ConfigRepository.Network(networkHandler, service)
     }
 
-    @Test fun `Get context configuration should delegate to the service`() {
+    @Test
+    fun `Get context configuration should delegate to the service`() {
         val testContextConfiguration = TestDataProvider.provideContextConfiguration()
         given { networkHandler.isConnected }.willReturn(true)
         given { getConfigResponse.body() }.willReturn(contextConfigurationEntity)
@@ -71,7 +80,8 @@ class ConfigRepositoryTest : UnitTest() {
         verify(service).getContextConfiguration()
     }
 
-    @Test fun `Get context configuration should return network failure when no connection`() {
+    @Test
+    fun `Get context configuration should return network failure when no connection`() {
         given { networkHandler.isConnected }.willReturn(false)
 
         val result = sut.getContextConfiguration()
@@ -82,8 +92,9 @@ class ConfigRepositoryTest : UnitTest() {
         verifyZeroInteractions(service)
     }
 
-    @Test fun `Get context configuration should return network failure when undefined connection`() {
-        given { networkHandler.isConnected }.willReturn(null)
+    @Test
+    fun `Get context configuration should return network failure when undefined connection`() {
+        given { networkHandler.isConnected }.willReturn(false)
 
         val result = sut.getContextConfiguration()
 
@@ -93,7 +104,8 @@ class ConfigRepositoryTest : UnitTest() {
         verifyZeroInteractions(service)
     }
 
-    @Test fun `Get card configuration should delegate to the service`() {
+    @Test
+    fun `Get card configuration should delegate to the service`() {
         given { networkHandler.isConnected }.willReturn(true)
         given { getCardConfigResponse.body() }.willReturn(CardConfigurationEntity())
         given { getCardConfigResponse.isSuccessful }.willReturn(true)
@@ -104,7 +116,8 @@ class ConfigRepositoryTest : UnitTest() {
         verify(service).getCardProduct(cardProductId = "")
     }
 
-    @Test fun `Get card configuration should return network failure when no connection`() {
+    @Test
+    fun `Get card configuration should return network failure when no connection`() {
         given { networkHandler.isConnected }.willReturn(false)
 
         val result = sut.getCardProduct(cardProductId = "")
@@ -115,8 +128,9 @@ class ConfigRepositoryTest : UnitTest() {
         verifyZeroInteractions(service)
     }
 
-    @Test fun `Get card configuration should return network failure when undefined connection`() {
-        given { networkHandler.isConnected }.willReturn(null)
+    @Test
+    fun `Get card configuration should return network failure when undefined connection`() {
+        given { networkHandler.isConnected }.willReturn(false)
 
         val result = sut.getCardProduct(cardProductId = "")
 
@@ -126,8 +140,8 @@ class ConfigRepositoryTest : UnitTest() {
         verifyZeroInteractions(service)
     }
 
-
-    @Test fun `Get card products should delegate to the service`() {
+    @Test
+    fun `Get card products should delegate to the service`() {
         given { networkHandler.isConnected }.willReturn(true)
         given { getCardProductsResponse.body() }.willReturn(ListEntity())
         given { getCardProductsResponse.isSuccessful }.willReturn(true)
@@ -138,7 +152,8 @@ class ConfigRepositoryTest : UnitTest() {
         verify(service).getCardProducts()
     }
 
-    @Test fun `Get card products should return network failure when no connection`() {
+    @Test
+    fun `Get card products should return network failure when no connection`() {
         given { networkHandler.isConnected }.willReturn(false)
 
         val result = sut.getCardProducts()
@@ -149,8 +164,9 @@ class ConfigRepositoryTest : UnitTest() {
         verifyZeroInteractions(service)
     }
 
-    @Test fun `Get card products should return network failure when undefined connection`() {
-        given { networkHandler.isConnected }.willReturn(null)
+    @Test
+    fun `Get card products should return network failure when undefined connection`() {
+        given { networkHandler.isConnected }.willReturn(false)
 
         val result = sut.getCardProducts()
 

@@ -6,20 +6,20 @@ import com.aptopayments.core.extension.ColorParserImpl
 import com.google.gson.annotations.SerializedName
 import java.net.URL
 
-internal data class CardBackgroundStyleEntity (
+internal data class CardBackgroundStyleEntity(
 
-        @SerializedName ("background_type")
-        var background_type: String? = "color",
+    @SerializedName("background_type")
+    var background_type: String? = "color",
 
-        @SerializedName ("background_image")
-        var image: String? = null,
+    @SerializedName("background_image")
+    var image: String? = null,
 
-        @SerializedName ("background_color")
-        var color: String? = null,
+    @SerializedName("background_color")
+    var color: String? = null,
 
-        // This is a dependency, no need to serialize or parse it
-        @Transient
-        var colorParser: ColorParser = ColorParserImpl()
+    // This is a dependency, no need to serialize or parse it
+    @Transient
+    var colorParser: ColorParser = ColorParserImpl()
 
 ) {
     fun toCardBackgroundStyle(): CardBackgroundStyle? {
@@ -34,15 +34,9 @@ internal data class CardBackgroundStyleEntity (
         fun from(cardBackgroundStyle: CardBackgroundStyle?): CardBackgroundStyleEntity? {
             return when (cardBackgroundStyle) {
                 is CardBackgroundStyle.Image ->
-                    CardBackgroundStyleEntity(
-                            background_type = "image",
-                            image = cardBackgroundStyle.url.toString()
-                    )
+                    CardBackgroundStyleEntity(background_type = "image", image = cardBackgroundStyle.url.toString())
                 is CardBackgroundStyle.Color ->
-                    CardBackgroundStyleEntity(
-                            background_type = "color",
-                            color = cardBackgroundStyle.color.toString(16)
-                    )
+                    CardBackgroundStyleEntity(background_type = "color", color = cardBackgroundStyle.color.toString(16))
                 else -> null
             }
         }

@@ -6,8 +6,8 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.user.UserRepository
 
 internal class UpdateNotificationPreferencesUseCase constructor(
-        private val repository: UserRepository,
-        networkHandler: NetworkHandler
+    private val repository: UserRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<Unit, List<NotificationGroup>>(networkHandler) {
 
     override fun run(params: List<NotificationGroup>) = repository.updateNotificationPreferences(params)

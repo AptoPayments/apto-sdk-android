@@ -10,13 +10,16 @@ import com.google.gson.annotations.SerializedName
 
 internal const val DEFAULT_ICON_PRIMARY_COLOR = "000000"
 const val DEFAULT_ICON_SECONDARY_COLOR = "000000"
+
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 const val DEFAULT_ICON_TERTIARY_COLOR = "000000"
 internal const val DEFAULT_TEXT_PRIMARY_COLOR = "FF2B2D35"
 internal const val DEFAULT_TEXT_SECONDARY_COLOR = "FF54565F"
 internal const val DEFAULT_TEXT_TERTIARY_COLOR = "FFBBBDBD"
+
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 const val DEFAULT_TEXT_TOP_BAR_PRIMARY_COLOR = "202A36"
+
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 const val DEFAULT_TEXT_TOP_BAR_SECONDARY_COLOR = "FFFFFF"
 internal const val DEFAULT_TEXT_LINK_COLOR = "FF54565F"
@@ -29,8 +32,10 @@ internal const val DEFAULT_UI_ERROR_COLOR = "FFDC4337"
 internal const val DEFAULT_UI_SUCCESS_COLOR = "DB1D0E"
 internal const val DEFAULT_UI_BACKGROUND_PRIMARY_COLOR = "f2f3f4"
 internal const val DEFAULT_UI_BACKGROUND_SECONDARY_COLOR = "f2f3f4"
+
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 const val DEFAULT_UI_NAVIGATION_PRIMARY_COLOR = "f2f3f4"
+
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 const val DEFAULT_UI_NAVIGATION_SECONDARY_COLOR = "202a36"
 internal const val DEFAULT_TEXT_MESSAGE_COLOR = "FFFFFF"
@@ -40,99 +45,99 @@ internal const val DEFAULT_DISCLAIMER_BACKGROUND_COLOR = "f2f3f4"
 
 internal data class ProjectBrandingEntity(
 
-        @SerializedName("icon_primary_color")
-        val iconPrimaryColor: String = DEFAULT_ICON_PRIMARY_COLOR,
+    @SerializedName("icon_primary_color")
+    val iconPrimaryColor: String = DEFAULT_ICON_PRIMARY_COLOR,
 
-        @SerializedName("icon_secondary_color")
-        val iconSecondaryColor: String = DEFAULT_ICON_SECONDARY_COLOR,
+    @SerializedName("icon_secondary_color")
+    val iconSecondaryColor: String = DEFAULT_ICON_SECONDARY_COLOR,
 
-        @SerializedName("icon_tertiary_color")
-        val iconTertiaryColor: String = DEFAULT_ICON_TERTIARY_COLOR,
+    @SerializedName("icon_tertiary_color")
+    val iconTertiaryColor: String = DEFAULT_ICON_TERTIARY_COLOR,
 
-        @SerializedName("text_primary_color")
-        val textPrimaryColor: String = DEFAULT_TEXT_PRIMARY_COLOR,
+    @SerializedName("text_primary_color")
+    val textPrimaryColor: String = DEFAULT_TEXT_PRIMARY_COLOR,
 
-        @SerializedName("text_secondary_color")
-        val textSecondaryColor: String = DEFAULT_TEXT_SECONDARY_COLOR,
+    @SerializedName("text_secondary_color")
+    val textSecondaryColor: String = DEFAULT_TEXT_SECONDARY_COLOR,
 
-        @SerializedName("text_tertiary_color")
-        val textTertiaryColor: String = DEFAULT_TEXT_TERTIARY_COLOR,
+    @SerializedName("text_tertiary_color")
+    val textTertiaryColor: String = DEFAULT_TEXT_TERTIARY_COLOR,
 
-        @SerializedName("text_topbar_primary_color")
-        val textTopBarPrimaryColor: String = DEFAULT_TEXT_TOP_BAR_PRIMARY_COLOR,
+    @SerializedName("text_topbar_primary_color")
+    val textTopBarPrimaryColor: String = DEFAULT_TEXT_TOP_BAR_PRIMARY_COLOR,
 
-        @SerializedName("text_topbar_secondary_color")
-        val textTopBarSecondaryColor: String = DEFAULT_TEXT_TOP_BAR_SECONDARY_COLOR,
+    @SerializedName("text_topbar_secondary_color")
+    val textTopBarSecondaryColor: String = DEFAULT_TEXT_TOP_BAR_SECONDARY_COLOR,
 
-        @SerializedName("text_link_color")
-        val textLinkColor: String = DEFAULT_TEXT_LINK_COLOR,
+    @SerializedName("text_link_color")
+    val textLinkColor: String = DEFAULT_TEXT_LINK_COLOR,
 
-        @SerializedName("text_link_underlined")
-        val textLinkUnderlined: Boolean = true,
+    @SerializedName("text_link_underlined")
+    val textLinkUnderlined: Boolean = true,
 
-        @SerializedName("text_button_color")
-        val textButtonColor: String = DEFAULT_TEXT_BUTTON_COLOR,
+    @SerializedName("text_button_color")
+    val textButtonColor: String = DEFAULT_TEXT_BUTTON_COLOR,
 
-        @SerializedName("button_corner_radius")
-        val buttonCornerRadius: Float = DEFAULT_BUTTON_CORNER_RADIUS,
+    @SerializedName("button_corner_radius")
+    val buttonCornerRadius: Float = DEFAULT_BUTTON_CORNER_RADIUS,
 
-        @SerializedName("ui_primary_color")
-        val uiPrimaryColor: String = DEFAULT_UI_PRIMARY_COLOR,
+    @SerializedName("ui_primary_color")
+    val uiPrimaryColor: String = DEFAULT_UI_PRIMARY_COLOR,
 
-        @SerializedName("ui_secondary_color")
-        val uiSecondaryColor: String = DEFAULT_UI_SECONDARY_COLOR,
+    @SerializedName("ui_secondary_color")
+    val uiSecondaryColor: String = DEFAULT_UI_SECONDARY_COLOR,
 
-        @SerializedName("ui_tertiary_color")
-        val uiTertiaryColor: String = DEFAULT_UI_TERTIARY_COLOR,
+    @SerializedName("ui_tertiary_color")
+    val uiTertiaryColor: String = DEFAULT_UI_TERTIARY_COLOR,
 
-        @SerializedName("ui_error_color")
-        val uiErrorColor: String = DEFAULT_UI_ERROR_COLOR,
+    @SerializedName("ui_error_color")
+    val uiErrorColor: String = DEFAULT_UI_ERROR_COLOR,
 
-        @SerializedName("ui_success_color")
-        val uiSuccessColor: String = DEFAULT_UI_SUCCESS_COLOR,
+    @SerializedName("ui_success_color")
+    val uiSuccessColor: String = DEFAULT_UI_SUCCESS_COLOR,
 
-        @SerializedName("ui_bg_primary_color")
-        val uiBackgroundPrimaryColor: String = DEFAULT_UI_BACKGROUND_PRIMARY_COLOR,
+    @SerializedName("ui_bg_primary_color")
+    val uiBackgroundPrimaryColor: String = DEFAULT_UI_BACKGROUND_PRIMARY_COLOR,
 
-        @SerializedName("ui_bg_secondary_color")
-        val uiBackgroundSecondaryColor: String = DEFAULT_UI_BACKGROUND_SECONDARY_COLOR,
+    @SerializedName("ui_bg_secondary_color")
+    val uiBackgroundSecondaryColor: String = DEFAULT_UI_BACKGROUND_SECONDARY_COLOR,
 
-        @SerializedName("ui_nav_primary_color")
-        val uiNavigationPrimaryColor: String = DEFAULT_UI_NAVIGATION_PRIMARY_COLOR,
+    @SerializedName("ui_nav_primary_color")
+    val uiNavigationPrimaryColor: String = DEFAULT_UI_NAVIGATION_PRIMARY_COLOR,
 
-        @SerializedName("ui_nav_secondary_color")
-        val uiNavigationSecondaryColor: String = DEFAULT_UI_NAVIGATION_SECONDARY_COLOR,
+    @SerializedName("ui_nav_secondary_color")
+    val uiNavigationSecondaryColor: String = DEFAULT_UI_NAVIGATION_SECONDARY_COLOR,
 
-        @SerializedName("text_message_color")
-        val textMessageColor: String = DEFAULT_TEXT_MESSAGE_COLOR,
+    @SerializedName("text_message_color")
+    val textMessageColor: String = DEFAULT_TEXT_MESSAGE_COLOR,
 
-        @SerializedName("badge_bg_positive_color")
-        val badgeBackgroundPositiveColor: String = DEFAULT_BADGE_BG_POSITIVE_COLOR,
+    @SerializedName("badge_bg_positive_color")
+    val badgeBackgroundPositiveColor: String = DEFAULT_BADGE_BG_POSITIVE_COLOR,
 
-        @SerializedName("badge_bg_negative_color")
-        val badgeBackgroundNegativeColor: String = DEFAULT_BADGE_BG_NEGATIVE_COLOR,
+    @SerializedName("badge_bg_negative_color")
+    val badgeBackgroundNegativeColor: String = DEFAULT_BADGE_BG_NEGATIVE_COLOR,
 
-        @SerializedName("show_toast_title")
-        val showToastTitle: Boolean = true,
+    @SerializedName("show_toast_title")
+    val showToastTitle: Boolean = true,
 
-        @SerializedName("txn_details_collapsable")
-        val transactionDetailsCollapsable: Boolean = true,
+    @SerializedName("txn_details_collapsable")
+    val transactionDetailsCollapsable: Boolean = true,
 
-        @SerializedName("disclaimer_background_color")
-        val disclaimerBackgroundColor: String = DEFAULT_DISCLAIMER_BACKGROUND_COLOR,
+    @SerializedName("disclaimer_background_color")
+    val disclaimerBackgroundColor: String = DEFAULT_DISCLAIMER_BACKGROUND_COLOR,
 
-        @SerializedName("ui_status_bar_style")
-        val uiStatusBarStyle: String = "light",
+    @SerializedName("ui_status_bar_style")
+    val uiStatusBarStyle: String = "light",
 
-        @SerializedName("logo_url")
-        val logoUrl: String? = null,
+    @SerializedName("logo_url")
+    val logoUrl: String? = null,
 
-        @SerializedName("ui_theme")
-        val uiTheme: String = "theme_1",
+    @SerializedName("ui_theme")
+    val uiTheme: String = "theme_1",
 
-        // This is a dependency, no need to serialize or parse it
-        @Transient
-        var colorParser: ColorParser = ColorParserImpl()
+    // This is a dependency, no need to serialize or parse it
+    @Transient
+    var colorParser: ColorParser = ColorParserImpl()
 
 ) {
     fun toProjectBranding(): ProjectBranding {

@@ -1,8 +1,8 @@
 package com.aptopayments.core.interactor
 
-import android.app.Activity
 import com.aptopayments.core.UnitTest
 import com.aptopayments.core.functional.Either.Right
+import com.aptopayments.core.network.ConnectivityCheckerAlwaysConnected
 import com.aptopayments.core.network.NetworkHandler
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldEqual
@@ -15,7 +15,8 @@ class UseCaseTest : UnitTest() {
 
     private val useCase = MyUseCase()
 
-    @Test fun `running use case should return 'Either' of use case type`() {
+    @Test
+    fun `running use case should return 'Either' of use case type`() {
         val params = MyParams(TYPE_PARAM)
         val result = runBlocking { useCase.run(params) }
 
@@ -25,8 +26,7 @@ class UseCaseTest : UnitTest() {
     data class MyType(val name: String)
     data class MyParams(val name: String)
 
-    private inner class MyUseCase : UseCase<MyType, MyParams>(NetworkHandler(Activity())) {
+    private inner class MyUseCase : UseCase<MyType, MyParams>(NetworkHandler(ConnectivityCheckerAlwaysConnected())) {
         override fun run(params: MyParams) = Right(MyType(TYPE_TEST))
     }
-
 }

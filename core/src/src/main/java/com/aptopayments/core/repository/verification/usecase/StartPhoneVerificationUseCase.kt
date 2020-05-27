@@ -9,12 +9,9 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.verification.VerificationRepository
 
 internal class StartPhoneVerificationUseCase constructor(
-        private val repository: VerificationRepository,
-        networkHandler: NetworkHandler
-) : UseCase<Verification, PhoneNumber>(networkHandler)
-{
+    private val repository: VerificationRepository,
+    networkHandler: NetworkHandler
+) : UseCase<Verification, PhoneNumber>(networkHandler) {
 
-    override fun run(params: PhoneNumber): Either<Failure, Verification>
-            = repository.startPhoneVerification(params)
-
+    override fun run(params: PhoneNumber): Either<Failure, Verification> = repository.startPhoneVerification(params)
 }

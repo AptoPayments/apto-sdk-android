@@ -9,10 +9,10 @@ enum class VerificationStatus {
 }
 
 data class Verification(
-        var verificationId: String,
-        var verificationType: String,
-        var status : VerificationStatus = VerificationStatus.FAILED,
-        var verificationDataPoint: String? = null,
-        var secondaryCredential: Verification? = null,
-        var secret: String? = null
+    var verificationId: String,
+    var verificationType: String,
+    var status: VerificationStatus = VerificationStatus.FAILED,
+    var verificationDataPoint: String? = null,
+    var secondaryCredential: Verification? = null,
+    var secret: String? = null
 ) : Serializable

@@ -31,14 +31,21 @@ class OAuthConnectRepositoryTest : UnitTest() {
 
     private lateinit var sut: OAuthRepository.Network
 
-    @Mock private lateinit var networkHandler: NetworkHandler
-    @Mock private lateinit var service: OAuthService
-    @Mock private lateinit var mockUserSessionRepository: UserSessionRepository
+    @Mock
+    private lateinit var networkHandler: NetworkHandler
+    @Mock
+    private lateinit var service: OAuthService
+    @Mock
+    private lateinit var mockUserSessionRepository: UserSessionRepository
 
-    @Mock private lateinit var startOAuthCall: Call<OAuthAttemptEntity>
-    @Mock private lateinit var startOAuthResponse: Response<OAuthAttemptEntity>
-    @Mock private lateinit var saveOAuthUserDataCall: Call<OAuthUserDataUpdateEntity>
-    @Mock private lateinit var saveOAuthUserDataResponse: Response<OAuthUserDataUpdateEntity>
+    @Mock
+    private lateinit var startOAuthCall: Call<OAuthAttemptEntity>
+    @Mock
+    private lateinit var startOAuthResponse: Response<OAuthAttemptEntity>
+    @Mock
+    private lateinit var saveOAuthUserDataCall: Call<OAuthUserDataUpdateEntity>
+    @Mock
+    private lateinit var saveOAuthUserDataResponse: Response<OAuthUserDataUpdateEntity>
 
     @Before
     override fun setUp() {
@@ -51,31 +58,35 @@ class OAuthConnectRepositoryTest : UnitTest() {
         sut = OAuthRepository.Network(networkHandler, service)
     }
 
-    @Test fun `should start OAuth Authentication from service`() {
+    @Test
+    fun `should start OAuth Authentication from service`() {
         val allowedBalanceType = TestDataProvider.provideAllowedBalanceType()
         given { networkHandler.isConnected }.willReturn(true)
         given { startOAuthResponse.body() }.willReturn(OAuthAttemptEntity())
         given { startOAuthResponse.isSuccessful }.willReturn(true)
         given { startOAuthCall.execute() }.willReturn(startOAuthResponse)
         given { service.startOAuthAuthentication(allowedBalanceType = allowedBalanceType) }
-                .willReturn(startOAuthCall)
+            .willReturn(startOAuthCall)
 
         val oauthAttempt = sut.startOAuthAuthentication(allowedBalanceType)
 
-        oauthAttempt shouldEqual Right(OAuthAttempt(
-                id="",
+        oauthAttempt shouldEqual Right(
+            OAuthAttempt(
+                id = "",
                 status = OAuthAttemptStatus.PENDING,
                 url = null,
                 userData = null,
                 tokenId = "",
                 error = null,
-                errorMessage = null)
+                errorMessage = null
+            )
         )
 
         verify(service).startOAuthAuthentication(allowedBalanceType = allowedBalanceType)
     }
 
-    @Test fun `OAuth connect service should return network failure when no connection`() {
+    @Test
+    fun `OAuth connect service should return network failure when no connection`() {
         val allowedBalanceType = TestDataProvider.provideAllowedBalanceType()
         given { networkHandler.isConnected }.willReturn(false)
 
@@ -87,9 +98,10 @@ class OAuthConnectRepositoryTest : UnitTest() {
         verifyZeroInteractions(service)
     }
 
-    @Test fun `OAuth connect service should return network failure when undefined connection`() {
+    @Test
+    fun `OAuth connect service should return network failure when undefined connection`() {
         val allowedBalanceType = TestDataProvider.provideAllowedBalanceType()
-        given { networkHandler.isConnected }.willReturn(null)
+        given { networkHandler.isConnected }.willReturn(false)
 
         val result = sut.startOAuthAuthentication(allowedBalanceType)
 
@@ -99,32 +111,54 @@ class OAuthConnectRepositoryTest : UnitTest() {
         verifyZeroInteractions(service)
     }
 
-    @Test fun `should save OAuth user data from service`() {
+    @Test
+    fun `should save OAuth user data from service`() {
         val allowedBalanceType = TestDataProvider.provideAllowedBalanceType()
         val oAuthAttempt = TestDataProvider.provideOAuthAttempt()
         given { networkHandler.isConnected }.willReturn(true)
         given { saveOAuthUserDataResponse.body() }.willReturn(OAuthUserDataUpdateEntity())
         given { saveOAuthUserDataResponse.isSuccessful }.willReturn(true)
         given { saveOAuthUserDataCall.execute() }.willReturn(saveOAuthUserDataResponse)
-        given { service.saveOAuthUserData(allowedBalanceType = allowedBalanceType, dataPointList = oAuthAttempt.userData!!, tokenId = oAuthAttempt.tokenId) }
-                .willReturn(saveOAuthUserDataCall)
+        given {
+            service.saveOAuthUserData(
+                allowedBalanceType = allowedBalanceType,
+                dataPointList = oAuthAttempt.userData!!,
+                tokenId = oAuthAttempt.tokenId
+            )
+        }
+            .willReturn(saveOAuthUserDataCall)
 
-        val oAuthUserDataUpdate = sut.saveOAuthUserData(allowedBalanceType, dataPointList = oAuthAttempt.userData!!, tokenId = oAuthAttempt.tokenId)
-
-        oAuthUserDataUpdate shouldEqual Right(OAuthUserDataUpdate(
-                result = OAuthUserDataUpdateResult.INVALID,
-                userData = null)
+        val oAuthUserDataUpdate = sut.saveOAuthUserData(
+            allowedBalanceType,
+            dataPointList = oAuthAttempt.userData!!,
+            tokenId = oAuthAttempt.tokenId
         )
 
-        verify(service).saveOAuthUserData(allowedBalanceType = allowedBalanceType, dataPointList = oAuthAttempt.userData!!, tokenId = oAuthAttempt.tokenId)
+        oAuthUserDataUpdate shouldEqual Right(
+            OAuthUserDataUpdate(
+                result = OAuthUserDataUpdateResult.INVALID,
+                userData = null
+            )
+        )
+
+        verify(service).saveOAuthUserData(
+            allowedBalanceType = allowedBalanceType,
+            dataPointList = oAuthAttempt.userData!!,
+            tokenId = oAuthAttempt.tokenId
+        )
     }
 
-    @Test fun `save OAuth user data should return network failure when no connection`() {
+    @Test
+    fun `save OAuth user data should return network failure when no connection`() {
         val allowedBalanceType = TestDataProvider.provideAllowedBalanceType()
         val oAuthAttempt = TestDataProvider.provideOAuthAttempt()
         given { networkHandler.isConnected }.willReturn(false)
 
-        val result = sut.saveOAuthUserData(allowedBalanceType, dataPointList = oAuthAttempt.userData!!, tokenId = oAuthAttempt.tokenId)
+        val result = sut.saveOAuthUserData(
+            allowedBalanceType,
+            dataPointList = oAuthAttempt.userData!!,
+            tokenId = oAuthAttempt.tokenId
+        )
 
         result shouldBeInstanceOf Either::class.java
         result.isLeft shouldEqual true

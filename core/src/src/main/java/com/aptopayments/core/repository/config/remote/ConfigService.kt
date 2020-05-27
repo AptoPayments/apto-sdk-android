@@ -9,12 +9,7 @@ internal class ConfigService constructor(apiCatalog: ApiCatalog) : BaseService()
 
     fun getContextConfiguration() = configApi.getContextConfiguration()
 
-    fun getCardProduct(cardProductId: String) = configApi.getCardProduct(
-        userToken = authorizationHeader(userSessionRepository.userToken),
-        cardProductId = cardProductId
-    )
+    fun getCardProduct(cardProductId: String) = configApi.getCardProduct(cardProductId = cardProductId)
 
-    fun getCardProducts() = configApi.getCardProducts(
-        userToken = authorizationHeader(userSessionRepository.userToken)
-    )
+    fun getCardProducts() = configApi.getCardProducts()
 }

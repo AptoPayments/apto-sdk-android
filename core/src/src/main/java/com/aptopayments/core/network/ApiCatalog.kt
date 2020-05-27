@@ -1,11 +1,11 @@
 package com.aptopayments.core.network
 
 internal class ApiCatalog(
-    private val retrofitFactory: RetrofitFactory
+    private val retrofitFactory: RetrofitFactory,
+    private val apiKeyProvider: ApiKeyProvider
 ) {
 
-    fun api() = retrofitFactory.create(ApiKeyProvider.environment.baseUrl)
+    fun api() = retrofitFactory.create(apiKeyProvider.getEnvironmentUrl())
 
-    fun vaultApi() = retrofitFactory.create(ApiKeyProvider.environment.vaultBaseUrl)
-
+    fun vaultApi() = retrofitFactory.create(apiKeyProvider.getEnvironmentVaultUrl())
 }

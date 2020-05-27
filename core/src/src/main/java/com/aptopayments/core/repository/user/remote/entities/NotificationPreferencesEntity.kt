@@ -4,13 +4,13 @@ import com.aptopayments.core.data.user.notificationpreferences.NotificationPrefe
 import com.aptopayments.core.network.ListEntity
 import com.google.gson.annotations.SerializedName
 
-internal data class NotificationPreferencesEntity (
+internal data class NotificationPreferencesEntity(
 
-        @SerializedName("preferences")
-        val preferences: ListEntity<NotificationGroupEntity>? = null
+    @SerializedName("preferences")
+    val preferences: ListEntity<NotificationGroupEntity>? = null
 
 ) {
-    fun toNotificationPreferences() = NotificationPreferences (
-            preferences = if (preferences?.data?.isEmpty() == false) preferences.data?.map { it.toNotificationGroup() } else null
+    fun toNotificationPreferences() = NotificationPreferences(
+        preferences = if (preferences?.data?.isEmpty() == false) preferences.data?.map { it.toNotificationGroup() } else null
     )
 }

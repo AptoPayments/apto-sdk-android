@@ -5,7 +5,7 @@ import java.io.Serializable
 
 data class ActivatePhysicalCardRequest(
 
-        @SerializedName("code")
-        val code: String
+    @SerializedName("code")
+    val code: String
 
 ) : Serializable

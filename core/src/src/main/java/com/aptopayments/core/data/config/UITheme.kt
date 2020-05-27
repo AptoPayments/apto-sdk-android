@@ -14,5 +14,4 @@ enum class UITheme {
             }
         }
     }
-
 }

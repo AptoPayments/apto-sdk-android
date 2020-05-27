@@ -5,13 +5,13 @@ import java.io.Serializable
 
 data class StartOAuthAuthenticationRequest(
 
-        @SerializedName("provider")
-        val provider: String,
+    @SerializedName("provider")
+    val provider: String,
 
-        @SerializedName("base_uri")
-        val baseUri: String,
+    @SerializedName("base_uri")
+    val baseUri: String,
 
-        @SerializedName("redirect_url")
-        val redirectUrl: String
+    @SerializedName("redirect_url")
+    val redirectUrl: String
 
 ) : Serializable

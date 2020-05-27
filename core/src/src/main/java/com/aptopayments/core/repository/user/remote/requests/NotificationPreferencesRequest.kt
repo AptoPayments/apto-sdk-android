@@ -8,15 +8,16 @@ import java.io.Serializable
 
 internal data class NotificationPreferencesRequest(
 
-        @SerializedName("preferences")
-        val preferences: List<NotificationGroupEntity>
+    @SerializedName("preferences")
+    val preferences: List<NotificationGroupEntity>
 
 ) : Serializable {
     companion object {
         fun from(notificationGroupList: List<NotificationGroup>): NotificationPreferencesRequest {
             val notificationGroupEntityList: ArrayList<NotificationGroupEntity> = ArrayList()
             for (notification in notificationGroupList) {
-                notificationGroupEntityList.add(NotificationGroupEntity(
+                notificationGroupEntityList.add(
+                    NotificationGroupEntity(
                         groupId = notification.groupId.toString(),
                         activeChannels = notification.activeChannels?.let { ActiveChannelsEntity.from(it) })
                 )

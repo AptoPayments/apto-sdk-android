@@ -7,9 +7,8 @@ import com.aptopayments.core.platform.AptoPlatform
 import com.aptopayments.core.repository.transaction.usecases.GetTransactionsUseCase
 
 internal class FetchTransactionsTask(
-        private val params: GetTransactionsUseCase.Params,
-        private val onComplete: ((Either<Failure, List<Transaction>>) -> Unit)
-
+    private val params: GetTransactionsUseCase.Params,
+    private val onComplete: ((Either<Failure, List<Transaction>>) -> Unit)
 ) {
     var isExecuting = false
         private set
@@ -33,8 +32,10 @@ internal class FetchTransactionsTask(
 
     private fun run() {
         if (isCancelled) return
-        AptoPlatform.fetchCardTransactions(cardId = params.cardId, filters = params.filters,
-                forceRefresh = params.forceApiCall, clearCachedValues = params.clearCachedValues) {
+        AptoPlatform.fetchCardTransactions(
+            cardId = params.cardId, filters = params.filters,
+            forceRefresh = params.forceApiCall, clearCachedValues = params.clearCachedValues
+        ) {
             if (isCancelled) return@fetchCardTransactions
             isExecuting = false
             isFinished = true

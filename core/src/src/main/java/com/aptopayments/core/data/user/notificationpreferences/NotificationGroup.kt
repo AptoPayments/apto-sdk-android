@@ -5,10 +5,10 @@ import java.io.Serializable
 import java.util.Locale
 
 data class NotificationGroup(
-        val categoryId: Category? = null,
-        val groupId: Group? = null,
-        val state: State? = null,
-        val activeChannels: ActiveChannels? = null
+    val categoryId: Category? = null,
+    val groupId: Group? = null,
+    val state: State? = null,
+    val activeChannels: ActiveChannels? = null
 ) : Serializable {
 
     enum class Category {
@@ -22,7 +22,6 @@ data class NotificationGroup(
                 CARD_STATUS -> "notification_preferences.card_status.title"
                 LEGAL -> "notification_preferences.legal.title"
             }.localized()
-
     }
 
     enum class Group {

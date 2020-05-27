@@ -8,13 +8,13 @@ import java.io.Serializable
 
 internal data class UserDataRequest(
 
-        @SerializedName("data_points")
-        val userData: ListEntity<DataPointEntity>
+    @SerializedName("data_points")
+    val userData: ListEntity<DataPointEntity>
 
 ) : Serializable {
     companion object {
         fun from(dataPointList: DataPointList): UserDataRequest =
-                UserDataRequest(serializeDataPointList(dataPointList))
+            UserDataRequest(serializeDataPointList(dataPointList))
 
         fun serializeDataPointList(dataPointList: DataPointList): ListEntity<DataPointEntity> {
             val entities = dataPointList.getAllDataPoints()?.map {
@@ -28,11 +28,11 @@ internal data class UserDataRequest(
                 }
             }
             return ListEntity(
-                    type = "list",
-                    page = 0,
-                    totalCount = entities?.size ?: 0,
-                    rows = entities?.size ?: 0,
-                    data = entities
+                type = "list",
+                page = 0,
+                totalCount = entities?.size ?: 0,
+                rows = entities?.size ?: 0,
+                data = entities
             )
         }
     }

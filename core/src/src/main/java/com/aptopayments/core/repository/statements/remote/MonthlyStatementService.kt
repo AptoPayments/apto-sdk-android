@@ -6,18 +6,10 @@ import com.aptopayments.core.repository.statements.remote.requests.MonthlyStatem
 
 internal class MonthlyStatementService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
-    private val monthlyStatementsApi by lazy {
-        apiCatalog.api().create(MonthlyStatementApi::class.java)
-    }
+    private val monthlyStatementsApi by lazy { apiCatalog.api().create(MonthlyStatementApi::class.java) }
 
     fun getMonthlyStatement(month: Int, year: Int) =
-        monthlyStatementsApi.getMonthlyStatement(
-            userToken = authorizationHeader(userSessionRepository.userToken),
-            request = MonthlyStatementRequest(month, year)
-        )
+        monthlyStatementsApi.getMonthlyStatement(request = MonthlyStatementRequest(month, year))
 
-    fun getMonthlyStatementPeriod() =
-        monthlyStatementsApi.getMonthlyStatementPeriod(
-            userToken = authorizationHeader(userSessionRepository.userToken)
-        )
+    fun getMonthlyStatementPeriod() = monthlyStatementsApi.getMonthlyStatementPeriod()
 }

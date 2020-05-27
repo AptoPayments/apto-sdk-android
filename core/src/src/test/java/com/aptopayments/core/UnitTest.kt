@@ -19,14 +19,17 @@ import org.mockito.junit.MockitoJUnitRunner
 abstract class UnitTest : AutoCloseKoinTest() {
 
     @Suppress("LeakingThis")
-    @Rule @JvmField val injectMocks = InjectMocksRule.create(this@UnitTest)
+    @Rule
+    @JvmField
+    val injectMocks = InjectMocksRule.create(this@UnitTest)
 
     @Before
     open fun setUp() {
     }
 
     companion object {
-        @BeforeClass @JvmStatic
+        @BeforeClass
+        @JvmStatic
         fun setUpAplication() {
             AptoPlatform.application = Application()
         }

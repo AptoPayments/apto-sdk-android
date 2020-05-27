@@ -11,5 +11,4 @@ internal class GetMonthlyStatementPeriodUseCase constructor(
 ) : UseCase<MonthlyStatementPeriod, Unit>(networkHandler) {
 
     override fun run(params: Unit) = repository.getMonthlyStatementPeriod()
-
 }

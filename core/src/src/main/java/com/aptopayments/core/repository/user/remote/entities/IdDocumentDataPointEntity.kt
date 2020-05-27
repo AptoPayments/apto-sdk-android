@@ -6,27 +6,27 @@ import com.aptopayments.core.repository.verification.remote.entities.Verificatio
 import com.google.gson.annotations.SerializedName
 import java.util.Locale
 
-internal data class IdDocumentDataPointEntity (
-        @SerializedName("data_type")
-        override val dataType: String = "id_document",
+internal data class IdDocumentDataPointEntity(
+    @SerializedName("data_type")
+    override val dataType: String = "id_document",
 
-        @SerializedName("verification")
-        override val verification: VerificationEntity? = null,
+    @SerializedName("verification")
+    override val verification: VerificationEntity? = null,
 
-        @SerializedName("verified")
-        override val verified: Boolean? = false,
+    @SerializedName("verified")
+    override val verified: Boolean? = false,
 
-        @SerializedName("not_specified")
-        override val notSpecified: Boolean? = false,
+    @SerializedName("not_specified")
+    override val notSpecified: Boolean? = false,
 
-        @SerializedName("doc_type")
-        val type: String? = null,
+    @SerializedName("doc_type")
+    val type: String? = null,
 
-        @SerializedName("value")
-        val value: String? = null,
+    @SerializedName("value")
+    val value: String? = null,
 
-        @SerializedName("country")
-        val country: String? = null
+    @SerializedName("country")
+    val country: String? = null
 ) : DataPointEntity {
     override fun toDataPoint() = IdDocumentDataPoint(
         type = type?.let { parseDocumentType(it) },
@@ -47,12 +47,12 @@ internal data class IdDocumentDataPointEntity (
 
     companion object {
         fun from(dataPoint: IdDocumentDataPoint) = IdDocumentDataPointEntity(
-                verification = VerificationEntity.from(dataPoint.verification),
-                verified = dataPoint.verified,
-                notSpecified = dataPoint.notSpecified,
-                type = dataPoint.type.toString(),
-                value = dataPoint.value,
-                country = dataPoint.country
+            verification = VerificationEntity.from(dataPoint.verification),
+            verified = dataPoint.verified,
+            notSpecified = dataPoint.notSpecified,
+            type = dataPoint.type.toString(),
+            value = dataPoint.value,
+            country = dataPoint.country
         )
     }
 }

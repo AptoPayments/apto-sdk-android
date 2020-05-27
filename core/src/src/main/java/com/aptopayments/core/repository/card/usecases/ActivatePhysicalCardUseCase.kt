@@ -6,14 +6,14 @@ import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.repository.card.CardRepository
 
 internal class ActivatePhysicalCardUseCase constructor(
-        private val repository: CardRepository,
-        networkHandler: NetworkHandler
+    private val repository: CardRepository,
+    networkHandler: NetworkHandler
 ) : UseCase<ActivatePhysicalCardResult, ActivatePhysicalCardUseCase.Params>(networkHandler) {
 
     override fun run(params: Params) = repository.activatePhysicalCard(params.cardId, params.code)
 
-    data class Params (
-            val cardId: String,
-            val code: String
+    data class Params(
+        val cardId: String,
+        val code: String
     )
 }

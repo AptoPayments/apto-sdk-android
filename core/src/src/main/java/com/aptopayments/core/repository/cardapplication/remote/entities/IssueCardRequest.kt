@@ -5,7 +5,10 @@ import java.io.Serializable
 
 data class IssueCardRequest(
 
-        @SerializedName("application_id")
-        val applicationId: String
+    @SerializedName("application_id")
+    val applicationId: String,
+
+    @SerializedName("additional_fields")
+    val additionalFields: Map<String, Any>? = null
 
 ) : Serializable

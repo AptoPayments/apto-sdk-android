@@ -2,11 +2,9 @@ package com.aptopayments.core.repository.fundingsources.remote
 
 import android.drm.DrmInfoRequest.ACCOUNT_ID
 import com.aptopayments.core.network.ListEntity
-import com.aptopayments.core.network.X_AUTHORIZATION
 import com.aptopayments.core.repository.fundingsources.remote.entities.BalanceEntity
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -18,9 +16,8 @@ internal interface FundingSourcesApi {
 
     @GET(USER_BALANCES_PATH)
     fun getFundingSources(
-            @Header(X_AUTHORIZATION) userToken: String,
-            @Path(ACCOUNT_ID) accountID: String,
-            @Query(PAGE) page: Int,
-            @Query(ROWS) rows: Int
+        @Path(ACCOUNT_ID) accountID: String,
+        @Query(PAGE) page: Int,
+        @Query(ROWS) rows: Int
     ): Call<ListEntity<BalanceEntity>>
 }

@@ -4,26 +4,26 @@ import com.aptopayments.core.data.user.notificationpreferences.NotificationGroup
 import com.google.gson.annotations.SerializedName
 import java.util.Locale
 
-internal data class NotificationGroupEntity (
+internal data class NotificationGroupEntity(
 
-        @SerializedName("category_id")
-        val categoryId: String = "",
+    @SerializedName("category_id")
+    val categoryId: String = "",
 
-        @SerializedName("group_id")
-        val groupId: String = "",
+    @SerializedName("group_id")
+    val groupId: String = "",
 
-        @SerializedName("state")
-        val state: String = "",
+    @SerializedName("state")
+    val state: String = "",
 
-        @SerializedName("active_channels")
-        val activeChannels: ActiveChannelsEntity? = null
+    @SerializedName("active_channels")
+    val activeChannels: ActiveChannelsEntity? = null
 
 ) {
-    fun toNotificationGroup() = NotificationGroup (
-            categoryId = parseCategoryId(categoryId),
-            groupId = parseGroupId(groupId),
-            state = parseState(state),
-            activeChannels = activeChannels?.toActiveChannels()
+    fun toNotificationGroup() = NotificationGroup(
+        categoryId = parseCategoryId(categoryId),
+        groupId = parseGroupId(groupId),
+        state = parseState(state),
+        activeChannels = activeChannels?.toActiveChannels()
     )
 
     private fun parseCategoryId(categoryId: String): NotificationGroup.Category? {

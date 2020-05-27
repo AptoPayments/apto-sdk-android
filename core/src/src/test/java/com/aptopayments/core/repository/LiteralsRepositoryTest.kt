@@ -4,7 +4,7 @@ import com.aptopayments.core.UnitTest
 import org.amshove.kluent.`should equal`
 import org.junit.Test
 
-class LiteralsRepositoryTest: UnitTest() {
+class LiteralsRepositoryTest : UnitTest() {
 
     @Test
     fun `should return server value if it's defined`() {

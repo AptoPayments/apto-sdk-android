@@ -6,18 +6,18 @@ import com.google.gson.annotations.SerializedName
 
 internal class CustodianWalletEntity(
 
-        @SerializedName("type")
-        var type: String,
+    @SerializedName("type")
+    var type: String,
 
-        @SerializedName("custodian")
-        var custodian: CustodianEntity,
+    @SerializedName("custodian")
+    var custodian: CustodianEntity,
 
-        @SerializedName("balance")
-        var balance: MoneyEntity? = null
-        ) {
+    @SerializedName("balance")
+    var balance: MoneyEntity? = null
+) {
     fun toCustodianWallet() = CustodianWallet(
-            type = type,
-            custodian = custodian.toCustodian(),
-            balance = balance?.toMoney()
+        type = type,
+        custodian = custodian.toCustodian(),
+        balance = balance?.toMoney()
     )
 }

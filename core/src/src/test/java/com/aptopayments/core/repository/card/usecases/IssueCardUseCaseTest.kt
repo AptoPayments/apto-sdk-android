@@ -21,13 +21,16 @@ class IssueCardUseCaseTest : UnitTest() {
     private lateinit var sut: IssueCardUseCase
 
     // Collaborators
-    @Mock private lateinit var cardRepository: CardRepository
-    @Mock private lateinit var networkHandler: NetworkHandler
+    @Mock
+    private lateinit var cardRepository: CardRepository
+    @Mock
+    private lateinit var networkHandler: NetworkHandler
     private val params = IssueCardUseCase.Params(
-            cardProductId = "card_product_id",
-            credential = OAuthCredential(oauthToken = "token", refreshToken = "refresh_token"),
-            additionalFields = null,
-            initialFundingSourceId = null)
+        cardProductId = "card_product_id",
+        credential = OAuthCredential(oauthToken = "token", refreshToken = "refresh_token"),
+        additionalFields = null,
+        initialFundingSourceId = null
+    )
 
     @Before
     override fun setUp() {
@@ -41,15 +44,20 @@ class IssueCardUseCaseTest : UnitTest() {
         sut.run(params)
 
         // Then
-        verify(cardRepository).issueCard(params.cardProductId, params.credential,
-                params.additionalFields, params.initialFundingSourceId)
+        verify(cardRepository).issueCard(
+            params.cardProductId, params.credential,
+            params.additionalFields, params.initialFundingSourceId
+        )
     }
 
     @Test
     fun `repository return success sut return success`() {
         // Given
-        given { cardRepository.issueCard(params.cardProductId, params.credential,
-                params.additionalFields, params.initialFundingSourceId)
+        given {
+            cardRepository.issueCard(
+                params.cardProductId, params.credential,
+                params.additionalFields, params.initialFundingSourceId
+            )
         }.willReturn { Either.Right(TestDataProvider.provideCard()) }
 
         // When
@@ -64,8 +72,11 @@ class IssueCardUseCaseTest : UnitTest() {
     @Test
     fun `repository return failure sut return failure`() {
         // Given
-        given { cardRepository.issueCard(params.cardProductId, params.credential,
-                params.additionalFields, params.initialFundingSourceId)
+        given {
+            cardRepository.issueCard(
+                params.cardProductId, params.credential,
+                params.additionalFields, params.initialFundingSourceId
+            )
         }.willReturn { Either.Left(ServerError(code = null)) }
 
         // When

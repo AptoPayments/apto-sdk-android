@@ -9,6 +9,7 @@ import kotlin.test.AfterTest
 
 class MoneyTest : UnitTest() {
     private lateinit var locale: Locale
+
     @Before
     fun setup() {
         locale = Locale.getDefault()

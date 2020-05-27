@@ -22,8 +22,10 @@ class CreateUserUseCaseTest : UnitTest() {
     private lateinit var sut: CreateUserUseCase
 
     // Collaborators
-    @Mock private lateinit var userRepository: UserRepository
-    @Mock private lateinit var networkHandler: NetworkHandler
+    @Mock
+    private lateinit var userRepository: UserRepository
+    @Mock
+    private lateinit var networkHandler: NetworkHandler
     private val params = Params(userData = DataPointList(), custodianUid = "custodianUid")
 
     @Before
@@ -45,7 +47,7 @@ class CreateUserUseCaseTest : UnitTest() {
     fun `repository return success sut return success`() {
         // Given
         given { userRepository.createUser(params.userData, params.custodianUid) }
-                .willReturn { Either.Right(TestDataProvider.provideUser(params.userData)) }
+            .willReturn { Either.Right(TestDataProvider.provideUser(params.userData)) }
 
         // When
         val result = sut.run(params)
@@ -53,14 +55,14 @@ class CreateUserUseCaseTest : UnitTest() {
         // Then
         result shouldBeInstanceOf Either.Right::class.java
         result.isRight shouldEqual true
-        result.either({}, { user -> user shouldBeInstanceOf User::class.java})
+        result.either({}, { user -> user shouldBeInstanceOf User::class.java })
     }
 
     @Test
     fun `repository return failure sut return failure`() {
         // Given
         given { userRepository.createUser(params.userData, params.custodianUid) }
-                .willReturn { Either.Left(ServerError(code = null)) }
+            .willReturn { Either.Left(ServerError(code = null)) }
 
         // When
         val result = sut.run(params)

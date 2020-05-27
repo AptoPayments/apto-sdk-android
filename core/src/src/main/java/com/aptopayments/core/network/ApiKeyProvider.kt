@@ -8,8 +8,10 @@ object ApiKeyProvider {
 
     var apiKey = ""
         private set
-    var environment: AptoSdkEnvironment = AptoSdkEnvironment.PRD
-        private set
+    private var environment = AptoSdkEnvironment.PRD
+
+    fun getEnvironmentUrl() = environment.baseUrl
+    fun getEnvironmentVaultUrl() = environment.vaultBaseUrl
 
     fun set(apiKey: String, environment: AptoSdkEnvironment) {
         this.apiKey = apiKey

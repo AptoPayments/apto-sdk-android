@@ -28,14 +28,11 @@ import com.aptopayments.core.repository.transaction.TransactionListFilters
 interface AptoPlatformProtocol {
 
     // Configuration handling
-    fun fetchContextConfiguration(forceRefresh: Boolean,
-                                  callback: (Either<Failure, ContextConfiguration>) -> Unit)
+    fun fetchContextConfiguration(forceRefresh: Boolean, callback: (Either<Failure, ContextConfiguration>) -> Unit)
 
-    fun fetchCardProduct(cardProductId: String, forceRefresh: Boolean,
-                         callback: (Either<Failure, CardProduct>) -> Unit)
+    fun fetchCardProduct(cardProductId: String, forceRefresh: Boolean, callback: (Either<Failure, CardProduct>) -> Unit)
 
     fun fetchCardProducts(callback: (Either<Failure, List<CardProductSummary>>) -> Unit)
-
     fun isShowDetailedCardActivityEnabled(): Boolean
     fun setIsShowDetailedCardActivityEnabled(enabled: Boolean)
 
@@ -61,11 +58,18 @@ interface AptoPlatformProtocol {
 
     fun verifyOauthAttemptStatus(oAuthAttempt: OAuthAttempt, callback: (Either<Failure, OAuthAttempt>) -> Unit)
 
-    fun saveOauthUserData(userData: DataPointList, allowedBalanceType: AllowedBalanceType, tokenId: String,
-                          callback: (Either<Failure, OAuthUserDataUpdate>) -> Unit)
+    fun saveOauthUserData(
+        userData: DataPointList,
+        allowedBalanceType: AllowedBalanceType,
+        tokenId: String,
+        callback: (Either<Failure, OAuthUserDataUpdate>) -> Unit
+    )
 
-    fun fetchOAuthData(allowedBalanceType: AllowedBalanceType, tokenId: String,
-                       callback: (Either<Failure, OAuthUserDataUpdate>) -> Unit)
+    fun fetchOAuthData(
+        allowedBalanceType: AllowedBalanceType,
+        tokenId: String,
+        callback: (Either<Failure, OAuthUserDataUpdate>) -> Unit
+    )
 
     // Verifications
     fun startPhoneVerification(phoneNumber: PhoneNumber, callback: (Either<Failure, Verification>) -> Unit)
@@ -81,29 +85,46 @@ interface AptoPlatformProtocol {
 
     fun fetchCardApplicationStatus(applicationId: String, callback: (Either<Failure, CardApplication>) -> Unit)
 
-    fun setBalanceStore(applicationId: String, tokenId: String,
-                        callback: (Either<Failure, SelectBalanceStoreResult>) -> Unit)
-    fun acceptDisclaimer(workflowObjectId: String, workflowAction: WorkflowAction,
-                         callback: (Either<Failure, Unit>) -> Unit)
+    fun setBalanceStore(
+        applicationId: String,
+        tokenId: String,
+        callback: (Either<Failure, SelectBalanceStoreResult>) -> Unit
+    )
+
+    fun acceptDisclaimer(
+        workflowObjectId: String,
+        workflowAction: WorkflowAction,
+        callback: (Either<Failure, Unit>) -> Unit
+    )
 
     fun cancelCardApplication(applicationId: String, callback: (Either<Failure, Unit>) -> Unit)
 
-    fun issueCard(applicationId: String, callback: (Either<Failure, Card>) -> Unit)
+    fun issueCard(
+        applicationId: String,
+        additionalFields: IssueCardAdditionalFields? = null,
+        callback: (Either<Failure, Card>) -> Unit
+    )
 
-    fun issueCard(cardProductId: String, credential: OAuthCredential?, additionalFields: Map<String, Any>? = null,
-                  initialFundingSourceId: String? = null, callback: (Either<Failure, Card>) -> Unit)
+    fun issueCard(
+        cardProductId: String,
+        credential: OAuthCredential?,
+        additionalFields: Map<String, Any>? = null,
+        initialFundingSourceId: String? = null,
+        callback: (Either<Failure, Card>) -> Unit
+    )
 
     // Card handling
     fun fetchCards(callback: (Either<Failure, List<Card>>) -> Unit)
 
-    // TODO: remove showDetails param
-    fun fetchFinancialAccount(accountId: String, forceRefresh: Boolean, showDetails: Boolean,
-                              callback: (Either<Failure, Card>) -> Unit)
+    fun fetchFinancialAccount(accountId: String, forceRefresh: Boolean, callback: (Either<Failure, Card>) -> Unit)
 
     fun fetchCardDetails(cardId: String, callback: (Either<Failure, CardDetails>) -> Unit)
 
-    fun activatePhysicalCard(cardId: String, code: String,
-                             callback: (Either<Failure, ActivatePhysicalCardResult>) -> Unit)
+    fun activatePhysicalCard(
+        cardId: String,
+        code: String,
+        callback: (Either<Failure, ActivatePhysicalCardResult>) -> Unit
+    )
 
     fun unlockCard(cardId: String, callback: (Either<Failure, Card>) -> Unit)
 
@@ -111,37 +132,54 @@ interface AptoPlatformProtocol {
 
     fun changeCardPin(cardId: String, pin: String, callback: (Either<Failure, Card>) -> Unit)
 
-    fun fetchCardTransactions(cardId: String, filters: TransactionListFilters,
-                              forceRefresh: Boolean, clearCachedValues: Boolean,
-                              callback: (Either<Failure, List<Transaction>>) -> Unit)
+    fun fetchCardTransactions(
+        cardId: String,
+        filters: TransactionListFilters,
+        forceRefresh: Boolean,
+        clearCachedValues: Boolean,
+        callback: (Either<Failure, List<Transaction>>) -> Unit
+    )
 
-    fun cardMonthlySpending(cardId: String, month: String, year: String,
-                            callback: (Either<Failure, MonthlySpending>) -> Unit)
+    fun cardMonthlySpending(
+        cardId: String,
+        month: String,
+        year: String,
+        callback: (Either<Failure, MonthlySpending>) -> Unit
+    )
 
     fun fetchMonthlyStatement(month: Int, year: Int, callback: (Either<Failure, MonthlyStatement>) -> Unit)
 
     fun fetchMonthlyStatementPeriod(callback: (Either<Failure, MonthlyStatementPeriod>) -> Unit)
 
     // Card funding sources handling
-    fun fetchCardFundingSources(cardId: String, page: Int, rows: Int, forceRefresh: Boolean,
-                                callback: (Either<Failure, List<Balance>>) -> Unit)
+    fun fetchCardFundingSources(
+        cardId: String,
+        page: Int,
+        rows: Int,
+        forceRefresh: Boolean,
+        callback: (Either<Failure, List<Balance>>) -> Unit
+    )
 
     fun fetchCardFundingSource(cardId: String, forceRefresh: Boolean, callback: (Either<Failure, Balance>) -> Unit)
 
     fun setCardFundingSource(fundingSourceId: String, cardId: String, callback: (Either<Failure, Balance>) -> Unit)
 
-    fun addCardFundingSource(cardId: String, fundingSourceType: String, custodianType: String, credentialType: String,
-                             tokenId: String, callback: (Either<Failure, Balance>) -> Unit)
+    fun addCardFundingSource(
+        cardId: String,
+        fundingSourceType: String,
+        custodianType: String,
+        credentialType: String,
+        tokenId: String,
+        callback: (Either<Failure, Balance>) -> Unit
+    )
 
     // Notification preferences handling
     fun fetchNotificationPreferences(callback: (Either<Failure, NotificationPreferences>) -> Unit)
 
-    fun updateNotificationPreferences(preferences: NotificationPreferences,
-                                      callback: (Either<Failure, Unit>) -> Unit)
+    fun updateNotificationPreferences(preferences: NotificationPreferences, callback: (Either<Failure, Unit>) -> Unit)
 
     // VoIP
-    fun fetchVoIPToken(cardId: String, actionSource: Action,
-                       callback: (Either<Failure, VoipCall>) -> Unit)
+    fun fetchVoIPToken(cardId: String, actionSource: Action, callback: (Either<Failure, VoipCall>) -> Unit)
 
     fun clearMonthlySpendingCache()
 

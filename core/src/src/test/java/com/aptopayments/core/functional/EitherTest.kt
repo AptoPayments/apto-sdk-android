@@ -111,7 +111,6 @@ class EitherTest : UnitTest() {
 
         val result: Either<*, Int> = sut.flatMap { Right(it % 2) }
 
-
         result.either({ throw RuntimeException() }, { assertTrue(it == 1) })
     }
 
