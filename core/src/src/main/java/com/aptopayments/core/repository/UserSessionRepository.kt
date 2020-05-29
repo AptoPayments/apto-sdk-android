@@ -66,7 +66,7 @@ internal class UserSessionRepositoryImpl(context: Context, private val localDB: 
     }
 
     private fun notifySessionInvalidListeners(userToken: String) =
-        sessionInvalidEventListeners.forEach { it.value.invoke(userToken) }
+        sessionInvalidEventListeners.iterator().forEach { it.value.invoke(userToken) }
 
     override fun subscribeNewSessionListener(instance: Any, callback: () -> Unit) {
         newSessionEventListeners[instance] = callback

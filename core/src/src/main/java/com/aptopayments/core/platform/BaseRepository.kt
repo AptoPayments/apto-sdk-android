@@ -20,7 +20,7 @@ internal interface BaseRepository : KoinComponent {
 
     open class BaseRepositoryImpl : BaseRepository {
 
-        val userSessionRepository: UserSessionRepository by inject()
+        protected val userSessionRepository: UserSessionRepository by inject()
 
         override fun <T> handleError(response: Response<T>): Failure {
             return when (response.code()) {

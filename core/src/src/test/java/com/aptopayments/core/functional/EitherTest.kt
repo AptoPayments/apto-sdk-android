@@ -15,13 +15,11 @@ import kotlin.test.assertTrue
 private const val STRING_INPUT = "test"
 private const val MAPPED_STRING_INPUT = "hello test"
 private const val INTEGER_INPUT = 3
-private const val MAPPED_INTEGER_INPUT = 4
 private const val SECOND_INTEGER_INPUT = 11
 
 class EitherTest : UnitTest() {
 
     private val stringMapFunction = { input: String -> "hello $input" }
-    private val intMapFunction = { input: Int -> input + 1 }
 
     @Test
     fun `Either Right should return correct type`() {
@@ -94,6 +92,25 @@ class EitherTest : UnitTest() {
         val result = sut.exists { it > 10 }
 
         assertTrue(result)
+    }
+
+    @Test
+    fun `runIfRight predicate is Executed when it matches right condition`() {
+        val sut = Right(11)
+        var executed = false
+        sut.runIfRight {
+            assertEquals(11, it)
+            executed = true
+        }
+
+        assertTrue(executed)
+    }
+
+    @Test
+    fun `runIfRight predicate is not executed when it matches left condition`() {
+        val sut = Left(11)
+
+        sut.runIfRight { throw RuntimeException() }
     }
 
     @Test

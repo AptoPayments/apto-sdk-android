@@ -55,6 +55,18 @@ sealed class Either<out L, out R> {
     fun exists(predicate: (R) -> Boolean): Boolean =
         either({ false }, { predicate(it) })
 
+    /**
+     * Execute the predicate if [Right]
+     *
+     * Example:
+     * ```
+     * Right(12).executeIfRight { doSomeAction() } // doSomeAction is executed
+     *
+     * Left(12).executeIfRight { doSomeAction() }      // doSomeAction is not executed
+     * ```
+     */
+    fun runIfRight(predicate: (R) -> Unit): Unit = either({ }, { predicate(it) })
+
     companion object {
         fun <L, R> cond(test: Boolean, ifTrue: () -> R, ifFalse: () -> L): Either<L, R> =
             if (test) Right(ifTrue()) else Left(ifFalse())

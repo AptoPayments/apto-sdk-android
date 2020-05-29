@@ -6,7 +6,6 @@ import com.aptopayments.core.functional.Either
 import com.aptopayments.core.network.ListEntity
 import com.aptopayments.core.network.NetworkHandler
 import com.aptopayments.core.platform.BaseRepository
-import com.aptopayments.core.repository.UserSessionRepository
 import com.aptopayments.core.repository.transaction.local.TransactionLocalDao
 import com.aptopayments.core.repository.transaction.local.entities.TransactionLocalEntity
 import com.aptopayments.core.repository.transaction.remote.TransactionService
@@ -26,8 +25,7 @@ internal interface TransactionRepository : BaseRepository {
     class Network constructor(
         private val networkHandler: NetworkHandler,
         private val service: TransactionService,
-        private val transactionLocalDao: TransactionLocalDao,
-        userSessionRepository: UserSessionRepository
+        private val transactionLocalDao: TransactionLocalDao
     ) : BaseRepository.BaseRepositoryImpl(), TransactionRepository {
 
         init {

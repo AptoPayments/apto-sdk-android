@@ -78,6 +78,7 @@ object AptoPlatform : AptoPlatformProtocol {
     lateinit var application: Application
 
     private var uiModules: List<Module> = listOf()
+    private val userPreferencesRepository: UserPreferencesRepository by lazy { koin.get<UserPreferencesRepository>() }
 
     fun setUiModules(list: List<Any>) {
         uiModules = list.filterIsInstance<Module>()
@@ -151,27 +152,22 @@ object AptoPlatform : AptoPlatformProtocol {
     override fun fetchCardProducts(callback: (Either<Failure, List<CardProductSummary>>) -> Unit) =
         useCasesWrapper.getCardProductsUseCase(Unit) { callback(it) }
 
-    override fun isShowDetailedCardActivityEnabled(): Boolean =
-        UserPreferencesRepository(useCasesWrapper.userSessionRepository, application).showDetailedCardActivity
+    override fun isShowDetailedCardActivityEnabled(): Boolean = userPreferencesRepository.showDetailedCardActivity
 
     override fun setIsShowDetailedCardActivityEnabled(enabled: Boolean) {
-        UserPreferencesRepository(useCasesWrapper.userSessionRepository, application).showDetailedCardActivity = enabled
+        userPreferencesRepository.showDetailedCardActivity = enabled
     }
 
     override fun createUser(userData: DataPointList, custodianUid: String?, callback: (Either<Failure, User>) -> Unit) =
-        useCasesWrapper.createUserUseCase(CreateUserUseCase.Params(userData, custodianUid)) {
-            if (it is Either.Right) {
-                useCasesWrapper.userSessionRepository.userToken = it.b.token
-            }
-            callback(it)
+        useCasesWrapper.createUserUseCase(CreateUserUseCase.Params(userData, custodianUid)) { result ->
+            result.either({}, { user -> useCasesWrapper.userSessionRepository.userToken = user.token })
+            callback(result)
         }
 
     override fun loginUserWith(verifications: List<Verification>, callback: (Either<Failure, User>) -> Unit) =
-        useCasesWrapper.loginUserUseCase(verifications) {
-            if (it is Either.Right) {
-                useCasesWrapper.userSessionRepository.userToken = it.b.token
-            }
-            callback(it)
+        useCasesWrapper.loginUserUseCase(verifications) { result ->
+            result.either({}, { user -> useCasesWrapper.userSessionRepository.userToken = user.token })
+            callback(result)
         }
 
     override fun updateUserInfo(userData: DataPointList, callback: (Either<Failure, User>) -> Unit) =

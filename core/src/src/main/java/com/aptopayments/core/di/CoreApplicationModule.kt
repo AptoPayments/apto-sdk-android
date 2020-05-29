@@ -51,7 +51,7 @@ internal val applicationModule = module {
 
 internal val repositoryModule = module {
     single<UserSessionRepository> { UserSessionRepositoryImpl(androidContext(), get()) }
-    single { UserPreferencesRepository(userSessionRepository = get(), context = androidContext()) }
+    single { UserPreferencesRepository(userSessionRepository = get(), context = get()) }
     single { PushTokenRepository(
             userSessionRepository = get(),
             registerPushDeviceUseCase = get(),
@@ -83,8 +83,7 @@ internal val repositoryModule = module {
     single<TransactionRepository> { TransactionRepository.Network(
             networkHandler = get(),
             service = get(),
-            transactionLocalDao = get(),
-            userSessionRepository = get()
+            transactionLocalDao = get()
     ) }
     single { StatsService(apiCatalog = get()) }
     single<StatsRepository> { StatsRepository.Network(networkHandler = get(), service = get()) }
