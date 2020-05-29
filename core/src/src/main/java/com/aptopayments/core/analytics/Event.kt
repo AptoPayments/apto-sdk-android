@@ -78,5 +78,6 @@ enum class Event(val event: String) {
     WorkflowUserIdDocument("workflow.user_input.id"),
     WorkflowUserIdAddress("workflow.user_input.address"),
     WorkflowUserBirthdate("workflow.user_input.birthdate"),
-    WorkflowUserPhone("workflow.user_input.phone")
+    WorkflowUserPhone("workflow.user_input.phone"),
+    UnknownServerError("unknown.server_error")
 }

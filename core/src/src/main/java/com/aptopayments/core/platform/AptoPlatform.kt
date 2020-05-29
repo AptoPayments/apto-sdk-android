@@ -261,7 +261,7 @@ object AptoPlatform : AptoPlatformProtocol {
 
     override fun issueCard(
         applicationId: String,
-        additionalFields: IssueCardAdditionalFields?,
+        additionalFields: Map<String, Any>?,
         callback: (Either<Failure, Card>) -> Unit
     ) = useCasesWrapper.issueCardUseCase(Params(applicationId, additionalFields)) { callback(it) }
 

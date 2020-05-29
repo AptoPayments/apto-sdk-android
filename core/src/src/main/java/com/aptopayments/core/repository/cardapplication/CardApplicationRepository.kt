@@ -2,7 +2,6 @@ package com.aptopayments.core.repository.cardapplication
 
 import com.aptopayments.core.data.card.Card
 import com.aptopayments.core.data.card.CardApplication
-import com.aptopayments.core.data.card.IssueCardAdditionalFields
 import com.aptopayments.core.data.card.SelectBalanceStoreResult
 import com.aptopayments.core.exception.Failure
 import com.aptopayments.core.functional.Either
@@ -20,7 +19,7 @@ internal interface CardApplicationRepository : BaseRepository {
     fun cancelCardApplication(cardApplicationId: String): Either<Failure, Unit>
     fun setBalanceStore(cardApplicationId: String, tokenId: String): Either<Failure, SelectBalanceStoreResult>
     fun acceptDisclaimer(workflowObjectId: String, actionId: String): Either<Failure, Unit>
-    fun issueCard(applicationId: String, additionalFields: IssueCardAdditionalFields?): Either<Failure, Card>
+    fun issueCard(applicationId: String, additionalFields: Map<String, Any>?): Either<Failure, Card>
 
     class Network constructor(
         private val networkHandler: NetworkHandler,
@@ -89,13 +88,13 @@ internal interface CardApplicationRepository : BaseRepository {
 
         override fun issueCard(
             applicationId: String,
-            additionalFields: IssueCardAdditionalFields?
+            additionalFields: Map<String, Any>?
         ): Either<Failure, Card> {
             return if (!networkHandler.isConnected) {
                 Either.Left(Failure.NetworkConnection)
             } else {
                 request(
-                    cardApplicationService.issueCard(applicationId, additionalFields?.fields),
+                    cardApplicationService.issueCard(applicationId, additionalFields),
                     { it.toCard() },
                     CardEntity()
                 )

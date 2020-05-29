@@ -139,11 +139,19 @@ sealed class Failure {
             val errorKey = getErrorKey()
             val rawCode = if (errorKey == UNDEFINED_MESSAGE) "" else (code?.toString() ?: "")
 
-            return JSONObject()
+            val json = JSONObject()
                 .put("code", code)
                 .put("message", errorKey.localized())
-                .put("reason", message ?: "")
                 .put("raw_code", rawCode)
+
+            addErrorTracking255CharactersRestriction(json, message)
+            return json
+        }
+
+        private fun addErrorTracking255CharactersRestriction(json: JSONObject, message: String?) {
+            if (!message.isNullOrEmpty()) {
+                message.chunked(255).take(7).forEachIndexed { index, chunk -> json.put("reason$index", chunk) }
+            }
         }
     }
 

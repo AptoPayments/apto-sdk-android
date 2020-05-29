@@ -1,5 +1,6 @@
 package com.aptopayments.core.platform
 
+import android.util.Log
 import com.aptopayments.core.exception.Failure
 import com.aptopayments.core.functional.Either
 import com.aptopayments.core.network.GsonProvider
@@ -48,7 +49,7 @@ internal interface BaseRepository : KoinComponent {
                 false -> Either.Left(handleError(response))
             }
         } catch (exception: Throwable) {
-            Either.Left(Failure.ServerError(null))
+            Either.Left(Failure.ServerError(null, message = getLog(exception)))
         }
     }
 
@@ -62,9 +63,11 @@ internal interface BaseRepository : KoinComponent {
                 else -> Either.Left(Failure.ServerError(null))
             }
         } catch (exception: Throwable) {
-            Either.Left(Failure.ServerError(null))
+            Either.Left(Failure.ServerError(null, message = getLog(exception)))
         }
     }
+
+    fun getLog(exception: Throwable) = Log.getStackTraceString(exception).replace("\\n\\t", " ")
 
     fun parseErrorBody(errorBody: ResponseBody?): Failure.ServerError {
         return errorBody?.let {
