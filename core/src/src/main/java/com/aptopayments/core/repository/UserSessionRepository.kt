@@ -65,8 +65,11 @@ internal class UserSessionRepositoryImpl(context: Context, private val localDB: 
         sessionInvalidEventListeners.remove(instance)
     }
 
-    private fun notifySessionInvalidListeners(userToken: String) =
-        sessionInvalidEventListeners.iterator().forEach { it.value.invoke(userToken) }
+    private fun notifySessionInvalidListeners(userToken: String) {
+        val copy = sessionInvalidEventListeners.toMutableMap()
+        copy.iterator().forEach { it.value.invoke(userToken) }
+        copy.clear()
+    }
 
     override fun subscribeNewSessionListener(instance: Any, callback: () -> Unit) {
         newSessionEventListeners[instance] = callback

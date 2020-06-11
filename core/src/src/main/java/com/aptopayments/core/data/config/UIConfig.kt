@@ -1,10 +1,12 @@
 package com.aptopayments.core.data.config
 
+import androidx.annotation.RestrictTo
 import androidx.core.graphics.ColorUtils
 
 private const val UI_COLOR_DISABLED_ALPHA = 0.3
 private const val TOP_BAR_DISABLED_ALPHA = 0.4
 
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 object UIConfig {
 
     var darkTheme: Boolean = false

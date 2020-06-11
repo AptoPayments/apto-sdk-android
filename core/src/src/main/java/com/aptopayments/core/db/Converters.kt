@@ -5,7 +5,7 @@ import com.aptopayments.core.data.card.Money
 import com.aptopayments.core.network.GsonProvider
 import com.aptopayments.core.repository.card.remote.entities.MoneyEntity
 
-class Converters {
+internal class Converters {
 
     @TypeConverter
     fun stringToMoney(value: String?): Money? =

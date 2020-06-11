@@ -3,7 +3,7 @@ package com.aptopayments.core.network
 import com.aptopayments.core.repository.UserSessionRepository
 import okhttp3.OkHttpClient
 
-class SimpleOkHttpClientProvider(
+internal class SimpleOkHttpClientProvider(
     apiKeyProvider: ApiKeyProvider,
     userSessionRepository: UserSessionRepository
 ) : OkHttpClientProviderImpl(apiKeyProvider, userSessionRepository) {

@@ -3,7 +3,7 @@ package com.aptopayments.core.network
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class ServerErrorEntity(
+internal data class ServerErrorEntity(
 
     @SerializedName("code")
     var code: Int? = null,

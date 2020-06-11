@@ -2,7 +2,7 @@ package com.aptopayments.core.repository.user.remote.requests
 
 import com.google.gson.annotations.SerializedName
 
-data class PushDeviceRequest(
+internal data class PushDeviceRequest(
     @SerializedName("device_type")
     val deviceType: String = "ANDROID",
 

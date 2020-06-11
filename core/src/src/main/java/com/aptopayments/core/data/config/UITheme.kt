@@ -10,7 +10,7 @@ enum class UITheme {
             return try {
                 valueOf(theme.toUpperCase(Locale.US))
             } catch (exception: Throwable) {
-                THEME_1
+                THEME_2
             }
         }
     }

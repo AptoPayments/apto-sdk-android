@@ -2,7 +2,7 @@ package com.aptopayments.core.repository.card.remote.requests
 
 import com.google.gson.annotations.SerializedName
 
-data class GetProvisioningDataRequest(
+internal data class GetProvisioningDataRequest(
     @SerializedName("client_app_id")
     val clientAppId: String,
     @SerializedName("client_device_id")
@@ -13,7 +13,7 @@ data class GetProvisioningDataRequest(
     val intent: String = "PUSH_PROV_MOBILE"
 )
 
-data class GetProvisioningDataRequestWrapper(
+internal data class GetProvisioningDataRequestWrapper(
     @SerializedName("data")
     val data: GetProvisioningDataRequest
 )

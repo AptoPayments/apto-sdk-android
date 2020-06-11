@@ -7,7 +7,7 @@ import java.lang.reflect.Type
 
 private val FORMATTER: DateTimeFormatter = DateTimeFormatter.ISO_DATE_TIME
 
-class ZonedDateTimeConverter : JsonSerializer<ZonedDateTime?>, JsonDeserializer<ZonedDateTime?> {
+internal class ZonedDateTimeConverter : JsonSerializer<ZonedDateTime?>, JsonDeserializer<ZonedDateTime?> {
 
     override fun serialize(src: ZonedDateTime?, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
         return JsonPrimitive(FORMATTER.format(src))

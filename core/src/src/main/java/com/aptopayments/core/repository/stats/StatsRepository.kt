@@ -51,4 +51,4 @@ internal interface StatsRepository : BaseRepository {
     }
 }
 
-open class InvalidCachedValueError : Failure.FeatureFailure()
+internal open class InvalidCachedValueError : Failure.FeatureFailure()

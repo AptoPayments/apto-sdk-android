@@ -29,9 +29,9 @@ sealed class Either<out L, out R> {
         }
 
     /**
-     * The given function is applied if this is a `Right`.
+     * The given function is applied if this is a [Right].
      *
-     * Example:
+     * * Example:
      * ```
      * Right(12).map { "flower" } // Result: Right("flower")
      * Left(12).map { "flower" }  // Result: Left(12)
@@ -43,8 +43,9 @@ sealed class Either<out L, out R> {
      * Returns `false` if [Left] or returns the result of the application of
      * the given predicate to the [Right] value.
      *
-     * Example:
      * ```
+     * Example:
+     *
      * Right(12).exists { it > 10 } // Result: true
      * Right(7).exists { it > 10 }  // Result: false
      *
@@ -58,8 +59,9 @@ sealed class Either<out L, out R> {
     /**
      * Execute the predicate if [Right]
      *
-     * Example:
      * ```
+     * Example:
+     *
      * Right(12).executeIfRight { doSomeAction() } // doSomeAction is executed
      *
      * Left(12).executeIfRight { doSomeAction() }      // doSomeAction is not executed
@@ -104,8 +106,9 @@ fun <T, L, R> Either<L, R>.flatMap(fn: (R) -> Either<L, T>): Either<L, T> =
 /**
  * Returns the value from this [Either.Right] or the given argument if this is a [Either.Left].
  *
- * Example:
  * ```
+ * Example:
+ *
  * Right(12).getOrElse(17) // Result: 12
  * Left(12).getOrElse(17)  // Result: 17
  * ```
@@ -119,8 +122,9 @@ fun <R> Either<*, R>.getOrElse(default: () -> R): R =
 /**
  * Returns the value from this [Either.Right] or null if this is a [Either.Left].
  *
- * Example:
  * ```
+ * Example:
+ *
  * Right(12).orNull() // Result: 12
  * Left(12).orNull()  // Result: null
  * ```
@@ -136,8 +140,9 @@ fun <L, R> Either<L, R>.contains(elem: R): Boolean =
 /**
  * Creates a [Either.Left] out of any object
  *
+ * ```
  * Example:
- *```
+ *
  * 2.left() // is the same as Either.Left(2)
  * ```
  */
@@ -146,8 +151,9 @@ fun <L> L.left(): Either<L, Nothing> = Either.Left(this)
 /**
  * Creates a [Either.Right] out of any object
  *
+ * ```
  * Example:
- *```
+ *
  * 2.right() // is the same as Either.Right(2)
  * ```
  */
@@ -157,8 +163,9 @@ fun <R> R.right(): Either<Nothing, R> = Either.Right(this)
  * Returns [Either.Right] if the value of type B is not null, otherwise the specified A value wrapped into an
  * [Either.Left].
  *
- * Example:
  * ```
+ * Example:
+ *
  * "value".rightIfNotNull { "left" } // Right(b="value")
  * null.rightIfNotNull { "left" }    // Left(a="left")
  * ```
@@ -169,7 +176,7 @@ fun <L, R> R?.rightIfNotNull(default: () -> L): Either<L, R> = when (this) {
 }
 
 /**
- * Applies the given function `f` if this is a [Left], otherwise returns this if this is a [Right].
+ * Applies the given function `f` if this is a [Either.Left], otherwise returns this if this is a [Either.Right].
  * This is like `flatMap` for the exception.
  */
 fun <L, R> Either<L, R>.handleErrorWith(f: (L) -> Either<L, R>): Either<L, R> = when (this) {

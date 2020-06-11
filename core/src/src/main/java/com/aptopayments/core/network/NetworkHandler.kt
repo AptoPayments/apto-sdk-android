@@ -30,6 +30,7 @@ class NetworkHandler(private val connectivityChecker: ConnectivityChecker) {
                 val inetAddress = InetAddress.getByName(host)
                 val inetSocketAddress = InetSocketAddress(inetAddress, port)
                 socket.connect(inetSocketAddress, 2000)
+                socket.close()
                 networkReachabilityListenerPool.notifyListeners(available = true)
             }
         } catch (e: java.io.IOException) {

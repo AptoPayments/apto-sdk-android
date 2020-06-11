@@ -8,7 +8,7 @@ import com.aptopayments.core.data.card.Money
 import com.aptopayments.core.data.fundingsources.Balance
 
 @Entity(tableName = "card_balance")
-class CardBalanceLocalEntity(
+internal class CardBalanceLocalEntity(
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "card_id")

@@ -3,7 +3,7 @@ package com.aptopayments.core.repository.cardapplication.remote.entities
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class NewCardApplicationRequest(
+internal data class NewCardApplicationRequest(
 
     @SerializedName("card_product_id")
     val cardProductId: String

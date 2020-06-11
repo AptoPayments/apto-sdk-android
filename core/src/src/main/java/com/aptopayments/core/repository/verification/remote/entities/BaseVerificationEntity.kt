@@ -3,7 +3,7 @@ package com.aptopayments.core.repository.verification.remote.entities
 import com.aptopayments.core.data.user.VerificationStatus
 import java.util.Locale
 
-interface BaseVerificationEntity {
+internal interface BaseVerificationEntity {
     val verificationType: String
     val verificationId: String
     val status: String

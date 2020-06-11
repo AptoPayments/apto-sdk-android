@@ -9,7 +9,7 @@ import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import java.lang.reflect.Type
 
-class ContentParser : JsonDeserializer<ContentEntity?> {
+internal class ContentParser : JsonDeserializer<ContentEntity?> {
     override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): ContentEntity? {
         val contentJson = json?.asJsonObject ?: return null
         return when (safeStringFromJson(contentJson.get("format"))) {

@@ -3,7 +3,7 @@ package com.aptopayments.core.repository.fundingsources.remote.entities
 import com.aptopayments.core.data.card.Custodian
 import com.google.gson.annotations.SerializedName
 
-class CustodianEntity(
+internal class CustodianEntity(
 
     @SerializedName("name")
     var name: String = "",

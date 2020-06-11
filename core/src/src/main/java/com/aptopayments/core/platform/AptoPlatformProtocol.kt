@@ -34,24 +34,30 @@ import com.aptopayments.core.repository.transaction.TransactionListFilters
  */
 interface AptoPlatformProtocol {
 
-    // Configuration handling
+    /**
+     * Fetches the project configuration, colors, sizes, etc
+     * In addition, it gets the translations for the UI Sdk
+     *
+     * @param forceRefresh Boolean, forces an API call if true, otherwise gets the cached version if exists
+     * @param callback Either<Failure, ContextConfiguration>
+     */
     fun fetchContextConfiguration(forceRefresh: Boolean, callback: (Either<Failure, ContextConfiguration>) -> Unit)
 
     /**
+     * Gets the details of a specific card program
      *
-     * To get the details of a specific card program, you can use the following SDK method
-     * {@code
+     * ```
+     * Example:
      *
      * AptoPlatform.fetchCardProduct(cardProductId) {
      * it.either({ error ->
-     * // Do something with the error
-     * ),
-     * { cardProduct ->
-     * // cardProduct is a CardProduct object.
-     * })
+     *      // Do something with the error
+     *  ),
+     *  { cardProduct ->
+     *      // cardProduct is a CardProduct object.
+     *  })
      * }
-     *
-     * }
+     * ```
      *
      * @param cardProductId The card product that is being fetched
      * @param forceRefresh Forces the Sdk to get a new response from the API instead of the cached one (if exists)
@@ -62,20 +68,18 @@ interface AptoPlatformProtocol {
     /**
      * Get a list of all the available card programs that can be used to issue cards
      *
-     * * <pre>
-     * {@code
+     * ```
+     * Example:
      *
      * AptoPlatform.fetchCardProducts {
-     * it.either({ error ->
-     * // Do something with the error
-     * ),
-     * { cardProducts ->
-     * // cardProducts is a list of CardProductSummary objects.
-     * })
-     *
+     *  it.either({ error ->
+     *      // Do something with the error
+     *  ),
+     *  { cardProducts ->
+     *      // cardProducts is a list of CardProductSummary objects.
+     *  })
      * }
-     *
-     * </pre>
+     * ```
      *
      * @param callback Lambda called when the fetchCardProducts response is back, Either<Failure, List<CardProductSummary>>>
      */
@@ -85,16 +89,13 @@ interface AptoPlatformProtocol {
      * Sets the configuration to get the list of transactions
      * This method persists the configuration
      *
-     * If false is given, when getting the transaction list it will only get the Accepted transactions
-     * if true is given, it will get all the transactions
-     *
-     * @param enabled is a Boolean that if false is provided configures the SDK to get the transaction list only with
-     *  accepted transactions, otherwise all the transactions are going to be fetched
+     * @param enabled Boolean If false is given, when fetching the transaction list it will only get the Accepted
+     * transactions otherwise all the transactions are going to be fetched
      */
     fun setIsShowDetailedCardActivityEnabled(enabled: Boolean)
 
     /**
-     * Checks the current state of the configuration set in {@link #setIsShowDetailedCardActivityEnabled(Boolean)},
+     * Checks the current state of the configuration set in [setIsShowDetailedCardActivityEnabled],
      *
      * @return The result of the configuration previously set
      */
@@ -118,6 +119,19 @@ interface AptoPlatformProtocol {
 
     /**
      * Once the primary credential has been verified, you can use the following SDK method to create a new user
+     *
+     * ```
+     * Example:
+     *
+     * AptoPlatform.createUser(userData) {
+     *  it.either({ error ->
+     *      // Do something with the error
+     *  ),
+     *  { user ->
+     *      // user has been created
+     *  })
+     * }
+     * ```
      *
      * @param userData a DataPointList withe the User Datapoints
      * @param custodianUid This parameter is optional

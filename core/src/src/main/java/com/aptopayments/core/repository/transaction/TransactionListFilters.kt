@@ -12,7 +12,7 @@ data class TransactionListFilters(
     val type: String? = null,
     val state: List<String> = listOf("complete")
 ) {
-    fun toOptionsMap(): Map<String, String?> {
+    internal fun toOptionsMap(): Map<String, String?> {
         return hashMapOf(
             "page" to page?.toString(),
             "rows" to rows?.toString(),

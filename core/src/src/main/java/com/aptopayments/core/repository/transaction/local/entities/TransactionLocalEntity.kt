@@ -15,7 +15,7 @@ import com.google.gson.reflect.TypeToken
 import org.threeten.bp.ZonedDateTime
 
 @Entity(tableName = "transaction")
-class TransactionLocalEntity(
+internal class TransactionLocalEntity(
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "transaction_id")
@@ -220,4 +220,4 @@ class TransactionLocalEntity(
     }
 }
 
-inline fun <reified T> genericType() = object : TypeToken<T>() {}.type
+internal inline fun <reified T> genericType() = object : TypeToken<T>() {}.type

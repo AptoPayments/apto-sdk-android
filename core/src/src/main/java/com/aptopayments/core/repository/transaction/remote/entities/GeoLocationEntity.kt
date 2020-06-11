@@ -2,7 +2,7 @@ package com.aptopayments.core.repository.transaction.remote.entities
 
 import com.google.gson.annotations.SerializedName
 
-data class GeoLocationEntity(
+internal data class GeoLocationEntity(
 
     @SerializedName("latitude")
     val latitude: Double?,

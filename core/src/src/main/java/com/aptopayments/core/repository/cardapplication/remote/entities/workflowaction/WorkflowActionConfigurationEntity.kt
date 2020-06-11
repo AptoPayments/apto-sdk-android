@@ -2,6 +2,6 @@ package com.aptopayments.core.repository.cardapplication.remote.entities.workflo
 
 import com.aptopayments.core.data.workflowaction.WorkflowActionConfiguration
 
-interface WorkflowActionConfigurationEntity {
+internal interface WorkflowActionConfigurationEntity {
     fun toWorkflowActionConfiguration(): WorkflowActionConfiguration
 }

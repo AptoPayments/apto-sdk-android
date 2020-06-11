@@ -1,4 +1,4 @@
-# Apto SDK for Android
+# Module core
 
 Welcome to the Apto Android SDK. This SDK gives access to the Apto's mobile API, designed to be used from a mobile app. Using this SDK there's no need to integrate the API itself, all the API endpoints are exposed as simple to use methods, and the data returned by the API is properly encapsulated and easy to access.
 
@@ -9,8 +9,8 @@ For more information, see the [Apto developer portal](https://aptopayments.com/#
 ## Requirements
 
     * Android Version - API Level 23 (Android 6.0)
-    * Kotlin - 1.3.71
-    * Gradle - 3.6.3
+    * Kotlin - 1.3.72
+    * Gradle - 4.0.0
 
 ### Required permisions
 

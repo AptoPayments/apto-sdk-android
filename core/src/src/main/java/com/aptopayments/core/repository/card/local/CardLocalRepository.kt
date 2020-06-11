@@ -10,13 +10,13 @@ const val SECURE_FILE_NAME = "com.aptopayments.core.repository.local.secure.txt"
 
 const val KEY = "card_key"
 
-interface CardLocalRepository {
+internal interface CardLocalRepository {
     fun saveCard(card: Card)
     fun getCard(cardId: String): Card?
     fun clearCardCache()
 }
 
-class CardLocalRepositoryImpl(context: Context) : CardLocalRepository {
+internal class CardLocalRepositoryImpl(context: Context) : CardLocalRepository {
 
     private val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
     private val masterKeyAlias = MasterKeys.getOrCreate(keyGenParameterSpec)

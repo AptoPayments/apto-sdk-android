@@ -6,7 +6,7 @@ import org.junit.Test
 import org.threeten.bp.ZoneId
 import org.threeten.bp.ZonedDateTime
 
-class ZonedDateTimeConverterTest {
+internal class ZonedDateTimeConverterTest {
 
     val sut = ZonedDateTimeConverter()
 

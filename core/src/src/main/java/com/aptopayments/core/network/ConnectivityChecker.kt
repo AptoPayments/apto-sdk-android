@@ -8,7 +8,7 @@ interface ConnectivityChecker {
     fun isConnected(): Boolean
 }
 
-class ConnectivityCheckerImpl(context: Context) : ConnectivityChecker {
+internal class ConnectivityCheckerImpl(context: Context) : ConnectivityChecker {
     private val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     override fun isConnected() =

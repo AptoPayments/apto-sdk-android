@@ -44,11 +44,11 @@ const val X_AUTHORIZATION = "Authorization"
 
 private const val TIMEOUT_SECONDS = 30L
 
-interface OkHttpClientProvider {
+internal interface OkHttpClientProvider {
     fun provide(): OkHttpClient
 }
 
-open class OkHttpClientProviderImpl(
+internal open class OkHttpClientProviderImpl(
     private val apiKeyProvider: ApiKeyProvider,
     private val userSessionRepository: UserSessionRepository
 ) : OkHttpClientProvider {

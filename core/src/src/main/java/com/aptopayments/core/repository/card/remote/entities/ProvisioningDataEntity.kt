@@ -5,7 +5,7 @@ import com.aptopayments.core.data.card.ProvisioningData
 import com.aptopayments.core.data.card.ProvisioningTokenServiceProvider
 import com.google.gson.annotations.SerializedName
 
-data class ProvisioningDataEntity(
+internal data class ProvisioningDataEntity(
     @SerializedName("network")
     val network: String,
     @SerializedName("token_service_provider")

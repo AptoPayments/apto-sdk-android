@@ -1,6 +1,6 @@
 package com.aptopayments.core.network
 
-class BooleanListenersPool {
+internal class BooleanListenersPool {
 
     private var listeners: MutableMap<Any, (Boolean) -> Unit> = mutableMapOf()
     private val listenersLock = Any()

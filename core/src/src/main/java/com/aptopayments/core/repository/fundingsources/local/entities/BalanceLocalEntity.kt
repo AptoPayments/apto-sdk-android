@@ -10,7 +10,7 @@ import com.aptopayments.core.data.fundingsources.Balance
 import com.aptopayments.core.network.GsonProvider
 
 @Entity(tableName = "balance")
-class BalanceLocalEntity(
+internal class BalanceLocalEntity(
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")

@@ -6,7 +6,7 @@ import com.aptopayments.core.extension.ColorParserImpl
 import com.aptopayments.core.extension.toUrl
 import com.google.gson.annotations.SerializedName
 
-class NativeValueEntity(
+internal class NativeValueEntity(
 
     @SerializedName("background_color")
     var backgroundColor: String? = null,

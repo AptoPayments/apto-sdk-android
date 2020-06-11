@@ -11,17 +11,18 @@ data class Country(var isoCode: String) : Serializable {
         }
 
     val flag: String
-        get() {
-            if (isoCode.length != 2) {
-                return ""
-            }
+        get() = getFlagEmoji()
 
-            // Source: https://stackoverflow.com/a/35849652
+    private fun getFlagEmoji(): String {
+        return if (isoCode.length != 2) {
+            ""
+        } else {
             val countryCode = isoCode.toUpperCase(Locale.US)
             val firstLetter = Character.codePointAt(countryCode, 0) - 0x41 + 0x1F1E6
             val secondLetter = Character.codePointAt(countryCode, 1) - 0x41 + 0x1F1E6
-            return String(Character.toChars(firstLetter)) + String(Character.toChars(secondLetter))
+            String(Character.toChars(firstLetter)) + String(Character.toChars(secondLetter))
         }
+    }
 
     override fun toString() = name
 }

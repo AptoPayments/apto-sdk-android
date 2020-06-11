@@ -3,7 +3,7 @@ package com.aptopayments.core.repository.cardapplication.remote.entities.workflo
 import com.aptopayments.core.data.content.Content
 import com.google.gson.annotations.SerializedName
 
-class NativeContentEntity(
+internal class NativeContentEntity(
 
     @SerializedName("format")
     var format: String,

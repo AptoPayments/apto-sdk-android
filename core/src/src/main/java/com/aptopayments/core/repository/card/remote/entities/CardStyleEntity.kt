@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 import java.net.MalformedURLException
 import java.net.URL
 
-const val DEFAULT_TEXT_CARD_COLOR = "FFFFFF"
+internal const val DEFAULT_TEXT_CARD_COLOR = "FFFFFF"
 
 internal data class CardStyleEntity(
 

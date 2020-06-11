@@ -7,6 +7,6 @@ internal const val FORMAT_MARKDOWN = "markdown"
 internal const val FORMAT_EXTERNAL_URL = "external_url"
 internal const val FORMAT_NATIVE_CONTENT = "native_content"
 
-interface ContentEntity {
+internal interface ContentEntity {
     fun toContent(): Content
 }

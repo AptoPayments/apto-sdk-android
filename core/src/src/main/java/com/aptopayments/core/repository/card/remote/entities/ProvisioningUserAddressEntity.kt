@@ -3,7 +3,7 @@ package com.aptopayments.core.repository.card.remote.entities
 import com.aptopayments.core.data.card.ProvisioningUserAddress
 import com.google.gson.annotations.SerializedName
 
-data class ProvisioningUserAddressEntity(
+internal data class ProvisioningUserAddressEntity(
     @SerializedName("name")
     val name: String?,
     @SerializedName("address1")

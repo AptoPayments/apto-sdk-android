@@ -5,7 +5,6 @@ import com.aptopayments.core.data.cardproduct.CardProduct
 import com.aptopayments.core.data.config.Branding
 import com.aptopayments.core.data.config.ContextConfiguration
 import com.aptopayments.core.data.config.ProjectConfiguration
-import com.aptopayments.core.data.config.TeamConfiguration
 import com.aptopayments.core.data.geo.Country
 import com.aptopayments.core.data.oauth.OAuthAttempt
 import com.aptopayments.core.data.oauth.OAuthAttemptStatus
@@ -34,10 +33,6 @@ class TestDataProvider {
         )
 
         fun provideContextConfiguration() = ContextConfiguration(
-            teamConfiguration = TeamConfiguration(
-                name = "",
-                logoUrl = ""
-            ),
             projectConfiguration = ProjectConfiguration(
                 name = "",
                 summary = "",
@@ -52,10 +47,6 @@ class TestDataProvider {
         )
 
         fun provideContextConfigurationEmail() = ContextConfiguration(
-            teamConfiguration = TeamConfiguration(
-                name = "",
-                logoUrl = ""
-            ),
             projectConfiguration = ProjectConfiguration(
                 name = "",
                 summary = "",
