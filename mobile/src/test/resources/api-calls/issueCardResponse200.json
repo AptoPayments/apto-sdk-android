@@ -1,0 +1,39 @@
+{
+  "type":"card",
+  "account_id":"crd_asdasd",
+  "last_four":"1111",
+  "card_network":"VISA",
+  "card_brand":null,
+  "card_issuer":"shift",
+  "expiration":null,
+  "pan":null,
+  "cvv":null,
+  "state":"active",
+  "kyc_status":"passed",
+  "kyc_reason":null,
+  "features":null,
+  "spendable_today":{
+    "amount":123.45,
+    "currency":"EUR"
+  },
+  "native_spendable_today":{
+    "amount":0.00345,
+    "currency":"ETH"
+  },
+  "total_balance":{
+    "amount":321.77,
+    "currency":"GBP"
+  },
+  "native_total_balance":{
+    "amount":0.00646,
+    "currency":"ETH"
+  },
+  "ordered_status":"received",
+  "card_style":null,
+  "cardholder_first_name":"John",
+  "cardholder_last_name":"Snow",
+  "issued_at":"2020-05-05T14:22:27+00:00",
+  "wait_list":false,
+  "name_on_card":"John Snow",
+  "card_product_id":null
+}

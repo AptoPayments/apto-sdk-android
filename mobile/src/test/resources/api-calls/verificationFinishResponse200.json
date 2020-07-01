@@ -1,0 +1,12 @@
+{
+  "secondary_credential": {
+    "verification_id": "entity_12345",
+    "status": "pending",
+    "verification_type": "birthdate",
+    "type": "verification"
+  },
+  "verification_id": "entity_1234",
+  "status": "passed",
+  "verification_type": "phone",
+  "type": "verification"
+}

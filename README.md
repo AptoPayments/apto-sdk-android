@@ -1,6 +1,6 @@
-# Module core
+# Module
 
-Welcome to the Apto Android SDK. This SDK gives access to the Apto's mobile API, designed to be used from a mobile app. Using this SDK there's no need to integrate the API itself, all the API endpoints are exposed as simple to use methods, and the data returned by the API is properly encapsulated and easy to access.
+Welcome to the Apto Mobile Android SDK. This SDK gives access to the Apto's mobile API, designed to be used from a mobile app. Using this SDK there's no need to integrate the API itself, all the API endpoints are exposed as simple to use methods, and the data returned by the API is properly encapsulated and easy to access.
 
 With this SDK, you'll be able to onboard new users, issue cards, obtain card activity information and manage the card (set pin, freeze / unfreeze, etc.)
 
@@ -23,7 +23,7 @@ For more information, see the [Apto developer portal](https://aptopayments.com/#
 
     ```
     
-    implementation 'com.aptopayments.sdk:core:2.9.4'
+    implementation 'com.aptopayments.sdk:mobile:3.0.0'
     
     ```
 
