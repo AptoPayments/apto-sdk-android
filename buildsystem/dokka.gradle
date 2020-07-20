@@ -1,0 +1,16 @@
+apply plugin: 'org.jetbrains.dokka'
+
+android {
+    dokka {
+        outputFormat = 'html'
+        outputDirectory = "$buildDir/javadoc"
+        disableAutoconfiguration = false
+        cacheRoot = 'default'
+        configuration {
+            includeNonPublic = false
+            skipDeprecated = true
+            skipEmptyPackages = true
+            includes = ['README.md']
+        }
+    }
+}
