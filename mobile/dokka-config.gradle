@@ -1,0 +1,31 @@
+android {
+    dokka {
+        configuration {
+            includes = ['README.md','guides/IssueCardWorkflow.md']
+            perPackageOption {
+                prefix = "com.aptopayments.core.data.config"
+                suppress = true
+            }
+            perPackageOption {
+                prefix = "com.aptopayments.core.analytics"
+                suppress = true
+            }
+            perPackageOption {
+                prefix = "com.aptopayments.core.data.voip"
+                suppress = true
+            }
+            perPackageOption {
+                prefix = "com.aptopayments.core.extension"
+                suppress = true
+            }
+            perPackageOption {
+                prefix = "com.aptopayments.core.repository.config.remote.entities"
+                suppress = true
+            }
+            perPackageOption {
+                prefix = "com.aptopayments.core.repository.oauth.remote"
+                suppress = true
+            }
+        }
+    }
+}

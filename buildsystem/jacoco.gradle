@@ -1,0 +1,73 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+project.afterEvaluate {
+    // Grab all build types and product flavors
+    def buildTypes = android.buildTypes.collect { type -> type.name }
+    def productFlavors = android.productFlavors.collect { flavor -> flavor.name }
+
+    // When no product flavors defined, use empty
+    if (!productFlavors) productFlavors.add('')
+
+    productFlavors.each { productFlavorName ->
+        buildTypes.each { buildTypeName ->
+            def sourceName, sourcePath
+            if (!productFlavorName) {
+                sourceName = sourcePath = "${buildTypeName}"
+            } else {
+                sourceName = "${productFlavorName}${buildTypeName.capitalize()}"
+                sourcePath = "${productFlavorName}/${buildTypeName}"
+            }
+            def testTaskName = "test${sourceName.capitalize()}UnitTest"
+
+            // Create coverage task of form 'testFlavorTypeCoverage' depending on 'testFlavorTypeUnitTest'
+            task "${testTaskName}Coverage" (type:JacocoReport, dependsOn: "$testTaskName") {
+                group = "Reporting"
+                description = "Generate Jacoco coverage reports on the ${sourceName.capitalize()} build."
+
+                def excludes = [
+                        '**/R.class',
+                        '**/R$*.class',
+                        '**/*$ViewInjector*.*',
+                        '**/BuildConfig.*',
+                        '**/Manifest*.*',
+                        '**/*Test*.*',
+                        'android/**/*.*',
+                        '**/*Fragment.*',
+                        '**/*Activity.*',
+                        '**/com/aptopayments/**/databinding/*',
+                        '**/com/aptopayments/**/generated/callback/*',
+                        '**/androidx/databinding/*',
+                        '**/*MapperImpl*.*',
+                        '**/*$ViewBinder*.*',
+                        '**/*Component*.*',
+                        '**/*BR*.*',
+                        '**/*$Lambda$*.*',
+                        '**/*Companion*.*',
+                        '**/*Module.*'
+                ]
+
+                def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: excludes)
+                def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: excludes)
+                classDirectories.from = files([debugTree], [kotlinDebugTree])
+
+                def coverageSourceDirs = [
+                        "src/main/kotlin",
+                        "src/$productFlavorName/kotlin",
+                        "src/$buildTypeName/kotlin"
+                ]
+                additionalSourceDirs.from = files(coverageSourceDirs)
+                sourceDirectories.from = files(coverageSourceDirs)
+                executionData.from = files("${project.buildDir}/jacoco/${testTaskName}.exec")
+
+                reports {
+                    xml.enabled = true
+                    html.enabled = true
+                }
+            }
+        }
+    }
+}
