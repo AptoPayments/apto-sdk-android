@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
 internal data class SelectBalanceStoreEntity(
 
     @SerializedName("allowed_balance_types")
-    var allowedBalanceTypes: ListEntity<AllowedBalanceTypeEntity>
+    var allowedBalanceTypes: ListEntity<AllowedBalanceTypeEntity>?
 
 ) {
     fun toSelectBalanceStore() = SelectBalanceStore(
@@ -17,7 +17,7 @@ internal data class SelectBalanceStoreEntity(
     )
 
     private fun parseAllowedBalanceTypes(): List<AllowedBalanceType>? {
-        return allowedBalanceTypes.data?.let {
+        return allowedBalanceTypes?.data?.let {
             it.map { allowedBalanceType -> allowedBalanceType.toAllowedBalanceType() }
         }
     }

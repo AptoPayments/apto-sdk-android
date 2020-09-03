@@ -10,6 +10,7 @@ data class CardProduct(
     val privacyPolicy: Content? = null,
     val termsAndConditions: Content? = null,
     val faq: Content? = null,
+    val name: String = "",
     val waitlistBackgroundImage: URL? = null,
     val waitlistBackgroundColor: Int? = null,
     val waitlistDarkBackgroundColor: Int? = null,

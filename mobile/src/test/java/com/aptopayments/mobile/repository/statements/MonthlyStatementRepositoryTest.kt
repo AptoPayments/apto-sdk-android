@@ -4,11 +4,14 @@ import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.exception.Failure
 import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.network.NetworkHandler
+import com.aptopayments.mobile.platform.ErrorHandler
+import com.aptopayments.mobile.platform.RequestExecutor
 import com.aptopayments.mobile.repository.statements.remote.MonthlyStatementService
 import com.aptopayments.mobile.repository.statements.remote.entities.MonthlyStatementPeriodEntity
 import com.aptopayments.mobile.repository.statements.remote.entities.MonthlyStatementReportEntity
 import com.aptopayments.mobile.repository.statements.remote.entities.StatementMonthEntity
 import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyZeroInteractions
 import org.amshove.kluent.shouldBeInstanceOf
@@ -27,6 +30,7 @@ const val YEAR = 2019
 
 class MonthlyStatementRepositoryTest : UnitTest() {
 
+    private lateinit var requestExecutor: RequestExecutor
     private lateinit var network: MonthlyStatementRepository.Network
 
     @Mock
@@ -50,9 +54,11 @@ class MonthlyStatementRepositoryTest : UnitTest() {
     @Before
     override fun setUp() {
         super.setUp()
+        requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock()))
         startKoin {
             modules(module {
                 single { networkHandler }
+                single { requestExecutor }
                 single { service }
             })
         }

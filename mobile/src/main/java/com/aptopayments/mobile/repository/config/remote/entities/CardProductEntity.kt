@@ -1,7 +1,6 @@
 package com.aptopayments.mobile.repository.config.remote.entities
 
 import com.aptopayments.mobile.data.cardproduct.CardProduct
-import com.aptopayments.mobile.extension.ColorParser
 import com.aptopayments.mobile.extension.ColorParserImpl
 import com.aptopayments.mobile.repository.LiteralsRepository
 import com.aptopayments.mobile.repository.cardapplication.remote.entities.workflowaction.ContentEntity
@@ -12,6 +11,9 @@ internal data class CardProductEntity(
 
     @SerializedName("id")
     val id: String = "",
+
+    @SerializedName("name")
+    val name: String? = "",
 
     @SerializedName("cardholder_agreement")
     val cardholderAgreement: ContentEntity? = null,
@@ -38,17 +40,16 @@ internal data class CardProductEntity(
     var waitlistAsset: String? = null,
 
     @SerializedName("labels")
-    var labels: Map<String, String>? = null,
-
-    // This is a dependency, no need to serialize or parse it
-    @Transient
-    var colorParser: ColorParser = ColorParserImpl()
+    var labels: Map<String, String>? = null
 
 ) {
     fun toCardProduct(): CardProduct {
+        val colorParser = ColorParserImpl()
+
         labels?.let { LiteralsRepository.appendServerLiterals(it) }
         return CardProduct(
             id = id,
+            name = name ?: "",
             cardholderAgreement = cardholderAgreement?.toContent(),
             privacyPolicy = privacyPolicy?.toContent(),
             termsAndConditions = termsOfService?.toContent(),

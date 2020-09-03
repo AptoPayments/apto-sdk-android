@@ -7,12 +7,15 @@ import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.functional.Either.Right
 import com.aptopayments.mobile.network.ListEntity
 import com.aptopayments.mobile.network.NetworkHandler
+import com.aptopayments.mobile.platform.ErrorHandler
+import com.aptopayments.mobile.platform.RequestExecutor
 import com.aptopayments.mobile.repository.config.ConfigRepository
 import com.aptopayments.mobile.repository.config.remote.ConfigService
 import com.aptopayments.mobile.repository.config.remote.entities.CardConfigurationEntity
 import com.aptopayments.mobile.repository.config.remote.entities.CardProductSummaryEntity
 import com.aptopayments.mobile.repository.config.remote.entities.ContextConfigurationEntity
 import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyZeroInteractions
 import org.amshove.kluent.shouldBeInstanceOf
@@ -27,36 +30,44 @@ import retrofit2.Response
 
 class ConfigRepositoryTest : UnitTest() {
 
+    private lateinit var requestExecutor: RequestExecutor
     private lateinit var sut: ConfigRepository.Network
 
     @Mock
     private lateinit var networkHandler: NetworkHandler
+
     @Mock
     private lateinit var service: ConfigService
 
     @Mock
     private lateinit var getConfigCall: Call<ContextConfigurationEntity>
+
     @Mock
     private lateinit var getConfigResponse: Response<ContextConfigurationEntity>
+
     @Mock
     private lateinit var contextConfigurationEntity: ContextConfigurationEntity
 
     @Mock
     private lateinit var getCardConfigCall: Call<CardConfigurationEntity>
+
     @Mock
     private lateinit var getCardConfigResponse: Response<CardConfigurationEntity>
 
     @Mock
     private lateinit var getCardProductsCall: Call<ListEntity<CardProductSummaryEntity>>
+
     @Mock
     private lateinit var getCardProductsResponse: Response<ListEntity<CardProductSummaryEntity>>
 
     @Before
     override fun setUp() {
         super.setUp()
+        requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock()))
         startKoin {
             modules(module {
                 single { networkHandler }
+                single { requestExecutor }
                 single { service }
             })
         }

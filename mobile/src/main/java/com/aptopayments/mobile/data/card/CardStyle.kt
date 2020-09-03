@@ -3,9 +3,9 @@ package com.aptopayments.mobile.data.card
 import java.io.Serializable
 import java.net.URL
 
-sealed class CardBackgroundStyle : Serializable {
-    class Image(val url: URL) : CardBackgroundStyle()
-    class Color(val color: Int) : CardBackgroundStyle()
+sealed class CardBackgroundStyle(val logo: URL?) : Serializable {
+    class Image(val url: URL, logo: URL?) : CardBackgroundStyle(logo)
+    class Color(val color: Int, logo: URL?) : CardBackgroundStyle(logo)
 }
 
 data class CardStyle(

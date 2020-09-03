@@ -2,8 +2,21 @@ package com.aptopayments.mobile.data.card
 
 import com.aptopayments.mobile.data.PhoneNumber
 import java.io.Serializable
+import java.util.Locale
 
-enum class FeatureStatus { ENABLED, DISABLED }
+enum class FeatureStatus {
+    ENABLED, DISABLED;
+
+    companion object {
+        fun fromString(state: String): FeatureStatus {
+            return try {
+                valueOf(state.toUpperCase(Locale.US))
+            } catch (exception: Throwable) {
+                DISABLED
+            }
+        }
+    }
+}
 
 sealed class FeatureType : Serializable {
     abstract val name: String
@@ -19,5 +32,6 @@ data class Features(
     val setPin: SetPin?,
     val selectBalanceStore: SelectBalanceStore?,
     val activation: Activation?,
-    val ivrSupport: Ivr?
+    val ivrSupport: Ivr?,
+    val funding: FundingFeature?
 ) : Serializable

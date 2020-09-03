@@ -10,11 +10,14 @@ import com.aptopayments.mobile.exception.Failure.NetworkConnection
 import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.functional.Either.Right
 import com.aptopayments.mobile.network.NetworkHandler
+import com.aptopayments.mobile.platform.ErrorHandler
+import com.aptopayments.mobile.platform.RequestExecutor
 import com.aptopayments.mobile.repository.oauth.OAuthRepository
 import com.aptopayments.mobile.repository.oauth.remote.OAuthService
 import com.aptopayments.mobile.repository.oauth.remote.entities.OAuthAttemptEntity
 import com.aptopayments.mobile.repository.oauth.remote.entities.OAuthUserDataUpdateEntity
 import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyZeroInteractions
 import org.amshove.kluent.shouldBeInstanceOf
@@ -29,30 +32,38 @@ import retrofit2.Response
 
 class OAuthConnectRepositoryTest : UnitTest() {
 
+    private lateinit var requestExecutor: RequestExecutor
     private lateinit var sut: OAuthRepository.Network
 
     @Mock
     private lateinit var networkHandler: NetworkHandler
+
     @Mock
     private lateinit var service: OAuthService
+
     @Mock
     private lateinit var mockUserSessionRepository: UserSessionRepository
 
     @Mock
     private lateinit var startOAuthCall: Call<OAuthAttemptEntity>
+
     @Mock
     private lateinit var startOAuthResponse: Response<OAuthAttemptEntity>
+
     @Mock
     private lateinit var saveOAuthUserDataCall: Call<OAuthUserDataUpdateEntity>
+
     @Mock
     private lateinit var saveOAuthUserDataResponse: Response<OAuthUserDataUpdateEntity>
 
     @Before
     override fun setUp() {
         super.setUp()
+        requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock()))
         startKoin {
             modules(module {
                 single { mockUserSessionRepository }
+                single { requestExecutor }
             })
         }
         sut = OAuthRepository.Network(networkHandler, service)

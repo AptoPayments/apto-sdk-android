@@ -1,10 +1,8 @@
 package com.aptopayments.mobile.repository.card.remote.entities
 
-import androidx.annotation.VisibleForTesting
 import com.aptopayments.mobile.data.card.FeatureStatus
 import com.aptopayments.mobile.data.card.SetPin
 import com.google.gson.annotations.SerializedName
-import java.lang.reflect.Modifier
 import java.util.Locale
 
 internal data class SetPinEntity(
@@ -14,17 +12,8 @@ internal data class SetPinEntity(
 
 ) {
     fun toSetPin() = SetPin(
-        status = parseFeatureStatus(status)
+        status = FeatureStatus.fromString(status)
     )
-
-    @VisibleForTesting(otherwise = Modifier.PRIVATE)
-    fun parseFeatureStatus(state: String): FeatureStatus {
-        return try {
-            FeatureStatus.valueOf(state.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
-            FeatureStatus.DISABLED
-        }
-    }
 
     companion object {
         fun from(setPin: SetPin?): SetPinEntity? {

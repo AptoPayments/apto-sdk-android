@@ -5,10 +5,13 @@ import com.aptopayments.mobile.data.stats.MonthlySpending
 import com.aptopayments.mobile.exception.Failure.NetworkConnection
 import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.network.NetworkHandler
+import com.aptopayments.mobile.platform.ErrorHandler
+import com.aptopayments.mobile.platform.RequestExecutor
 import com.aptopayments.mobile.repository.stats.StatsRepository
 import com.aptopayments.mobile.repository.stats.remote.StatsService
 import com.aptopayments.mobile.repository.stats.remote.entities.MonthlySpendingEntity
 import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyZeroInteractions
 import org.amshove.kluent.shouldBeInstanceOf
@@ -25,6 +28,7 @@ import kotlin.test.assertEquals
 class StatsRepositoryTest : UnitTest() {
 
     private lateinit var sut: StatsRepository.Network
+    private lateinit var requestExecutor: RequestExecutor
 
     @Mock
     private lateinit var networkHandler: NetworkHandler
@@ -41,10 +45,12 @@ class StatsRepositoryTest : UnitTest() {
     @Before
     override fun setUp() {
         super.setUp()
+        requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock()))
         startKoin {
             modules(module {
                 single { networkHandler }
                 single { service }
+                single { requestExecutor }
             })
         }
         sut = StatsRepository.Network(networkHandler, service)

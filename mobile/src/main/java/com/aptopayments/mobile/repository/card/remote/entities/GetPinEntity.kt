@@ -19,17 +19,9 @@ internal data class GetPinEntity(
 
 ) {
     fun toGetPin() = GetPin(
-        status = parseFeatureStatus(status),
+        status = FeatureStatus.fromString(status),
         type = parseFeatureType(type)
     )
-
-    private fun parseFeatureStatus(state: String): FeatureStatus {
-        return try {
-            FeatureStatus.valueOf(state.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
-            FeatureStatus.DISABLED
-        }
-    }
 
     private fun parseFeatureType(type: String?): FeatureType = when (type) {
         "ivr" -> FeatureType.Ivr(ivrPhoneEntity?.toPhoneNumber())

@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.platform
 
-import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.card.usecases.*
 import com.aptopayments.mobile.repository.cardapplication.usecases.*
 import com.aptopayments.mobile.repository.cardapplication.usecases.IssueCardUseCase
@@ -12,6 +11,10 @@ import com.aptopayments.mobile.repository.oauth.usecases.GetOAuthAttemptStatusUs
 import com.aptopayments.mobile.repository.oauth.usecases.RetrieveOAuthUserDataUseCase
 import com.aptopayments.mobile.repository.oauth.usecases.SaveOAuthUserDataUseCase
 import com.aptopayments.mobile.repository.oauth.usecases.StartOAuthAuthenticationUseCase
+import com.aptopayments.mobile.repository.payment.usecases.PushFundsUseCase
+import com.aptopayments.mobile.repository.paymentsources.usecases.AddPaymentSourceUseCase
+import com.aptopayments.mobile.repository.paymentsources.usecases.DeletePaymentSourceUseCase
+import com.aptopayments.mobile.repository.paymentsources.usecases.GetPaymentSourcesUseCase
 import com.aptopayments.mobile.repository.statements.usecases.GetMonthlyStatementPeriodUseCase
 import com.aptopayments.mobile.repository.statements.usecases.GetMonthlyStatementUseCase
 import com.aptopayments.mobile.repository.stats.usecases.ClearMonthlySpendingCacheUseCase
@@ -67,6 +70,9 @@ internal class UseCasesWrapper : KoinComponent {
     val getNotificationPreferencesUseCase: GetNotificationPreferencesUseCase by inject()
     val updateNotificationPreferencesUseCase: UpdateNotificationPreferencesUseCase by inject()
     val setupVoipCallUseCase: SetupVoipCallUseCase by inject()
-    val userSessionRepository: UserSessionRepository by inject()
     val getProvisioningDataUseCase: GetProvisioningDataUseCase by inject()
+    val addPaymentSourceUseCase: AddPaymentSourceUseCase by inject()
+    val getPaymentSourcesUseCase: GetPaymentSourcesUseCase by inject()
+    val deletePaymentSourceUseCase: DeletePaymentSourceUseCase by inject()
+    val pushFundsUseCase: PushFundsUseCase by inject()
 }

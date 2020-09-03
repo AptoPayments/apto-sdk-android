@@ -11,6 +11,10 @@ import com.aptopayments.mobile.repository.oauth.usecases.GetOAuthAttemptStatusUs
 import com.aptopayments.mobile.repository.oauth.usecases.RetrieveOAuthUserDataUseCase
 import com.aptopayments.mobile.repository.oauth.usecases.SaveOAuthUserDataUseCase
 import com.aptopayments.mobile.repository.oauth.usecases.StartOAuthAuthenticationUseCase
+import com.aptopayments.mobile.repository.payment.usecases.PushFundsUseCase
+import com.aptopayments.mobile.repository.paymentsources.usecases.AddPaymentSourceUseCase
+import com.aptopayments.mobile.repository.paymentsources.usecases.DeletePaymentSourceUseCase
+import com.aptopayments.mobile.repository.paymentsources.usecases.GetPaymentSourcesUseCase
 import com.aptopayments.mobile.repository.statements.usecases.GetMonthlyStatementPeriodUseCase
 import com.aptopayments.mobile.repository.statements.usecases.GetMonthlyStatementUseCase
 import com.aptopayments.mobile.repository.stats.usecases.ClearMonthlySpendingCacheUseCase
@@ -46,14 +50,18 @@ internal val useCasesModule = module {
     factory { SetBalanceStoreUseCase(applicationRepository = get(), networkHandler = get()) }
     factory { AcceptDisclaimerUseCase(applicationRepository = get(), networkHandler = get()) }
     factory { CancelCardApplicationUseCase(applicationRepository = get(), networkHandler = get()) }
-    factory { com.aptopayments.mobile.repository.cardapplication.usecases.IssueCardUseCase(
+    factory {
+        com.aptopayments.mobile.repository.cardapplication.usecases.IssueCardUseCase(
             applicationRepository = get(),
             networkHandler = get()
-    ) }
-    factory { IssueCardUseCase(
+        )
+    }
+    factory {
+        IssueCardUseCase(
             cardRepository = get(),
             networkHandler = get()
-    ) }
+        )
+    }
     factory { GetCardsUseCase(repository = get(), networkHandler = get()) }
     factory { GetCardUseCase(repository = get(), networkHandler = get()) }
     factory { GetCardDetailsUseCase(repository = get(), networkHandler = get()) }
@@ -74,4 +82,8 @@ internal val useCasesModule = module {
     factory { GetMonthlyStatementUseCase(get(), get()) }
     factory { GetMonthlyStatementPeriodUseCase(get(), get()) }
     factory { GetProvisioningDataUseCase(get(), get()) }
+    factory { AddPaymentSourceUseCase(get(), get()) }
+    factory { GetPaymentSourcesUseCase(get(), get()) }
+    factory { DeletePaymentSourceUseCase(get(), get()) }
+    factory { PushFundsUseCase(get(), get()) }
 }

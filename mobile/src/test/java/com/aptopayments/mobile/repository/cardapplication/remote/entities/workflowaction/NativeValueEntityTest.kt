@@ -2,35 +2,20 @@ package com.aptopayments.mobile.repository.cardapplication.remote.entities.workf
 
 import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.content.Content
-import com.aptopayments.mobile.extension.ColorParser
-import com.nhaarman.mockitokotlin2.given
 import org.amshove.kluent.shouldBeInstanceOf
-import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class NativeValueEntityTest : UnitTest() {
     // Collaborators
-    @Mock
-    private lateinit var colorParser: ColorParser
     private val url = "https://aptopayments.com"
     private val colorString = "FFFFFF"
-
-    @Before
-    override fun setUp() {
-        super.setUp()
-        given(colorParser.fromHexString(colorString, colorString)).willReturn(0x000000)
-    }
 
     @Test
     fun `all values set return a well configured content object`() {
         // Given
-        val sut = NativeValueEntity(
-            backgroundColor = colorString, backgroundImage = url, asset = url,
-            colorParser = colorParser
-        )
+        val sut = NativeValueEntity(backgroundColor = colorString, backgroundImage = url, asset = url)
 
         // When
         val content = sut.toContent()
@@ -45,10 +30,7 @@ class NativeValueEntityTest : UnitTest() {
     @Test
     fun `null fields set return a well configured content object`() {
         // Given
-        val sut = NativeValueEntity(
-            backgroundColor = null, backgroundImage = null, asset = null,
-            colorParser = colorParser
-        )
+        val sut = NativeValueEntity(backgroundColor = null, backgroundImage = null, asset = null)
 
         // When
         val content = sut.toContent()
@@ -63,10 +45,7 @@ class NativeValueEntityTest : UnitTest() {
     @Test
     fun `empty urls fields set return a well configured content object`() {
         // Given
-        val sut = NativeValueEntity(
-            backgroundColor = null, backgroundImage = "", asset = "",
-            colorParser = colorParser
-        )
+        val sut = NativeValueEntity(backgroundColor = null, backgroundImage = "", asset = "")
 
         // When
         val content = sut.toContent()

@@ -15,17 +15,9 @@ internal data class IvrEntity(
 
 ) {
     fun toIvr() = Ivr(
-        status = parseFeatureStatus(status),
+        status = FeatureStatus.fromString(status),
         ivrPhone = ivrPhoneEntity?.toPhoneNumber()
     )
-
-    private fun parseFeatureStatus(state: String): FeatureStatus {
-        return try {
-            FeatureStatus.valueOf(state.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
-            FeatureStatus.DISABLED
-        }
-    }
 
     companion object {
         fun from(getPin: Ivr?): IvrEntity? {

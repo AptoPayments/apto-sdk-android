@@ -3,8 +3,8 @@ package com.aptopayments.mobile.di
 import com.aptopayments.mobile.db.DataBaseProvider
 import com.aptopayments.mobile.db.LocalDB
 import com.aptopayments.mobile.network.*
-import com.aptopayments.mobile.network.ApiCatalog
-import com.aptopayments.mobile.network.GsonProvider
+import com.aptopayments.mobile.platform.ErrorHandler
+import com.aptopayments.mobile.platform.RequestExecutor
 import com.aptopayments.mobile.repository.PushTokenRepository
 import com.aptopayments.mobile.repository.UserPreferencesRepository
 import com.aptopayments.mobile.repository.UserSessionRepository
@@ -21,6 +21,12 @@ import com.aptopayments.mobile.repository.fundingsources.FundingSourceRepository
 import com.aptopayments.mobile.repository.fundingsources.remote.FundingSourcesService
 import com.aptopayments.mobile.repository.oauth.OAuthRepository
 import com.aptopayments.mobile.repository.oauth.remote.OAuthService
+import com.aptopayments.mobile.repository.payment.PaymentRepository
+import com.aptopayments.mobile.repository.payment.PaymentRepositoryImpl
+import com.aptopayments.mobile.repository.payment.PaymentService
+import com.aptopayments.mobile.repository.paymentsources.PaymentSourcesRepository
+import com.aptopayments.mobile.repository.paymentsources.PaymentSourcesRepositoryImpl
+import com.aptopayments.mobile.repository.paymentsources.PaymentSourcesService
 import com.aptopayments.mobile.repository.statements.MonthlyStatementRepository
 import com.aptopayments.mobile.repository.statements.remote.MonthlyStatementService
 import com.aptopayments.mobile.repository.stats.StatsRepository
@@ -47,44 +53,54 @@ internal val applicationModule = module {
     factory<OkHttpClientProvider> { OkHttpClientProviderImpl(ApiKeyProvider, get()) }
     factory<RetrofitFactory> { RetrofitFactoryImpl(GsonProvider, get()) }
     single { ApiCatalog(get(), ApiKeyProvider) }
+    factory { RequestExecutor(get(), get()) }
+    factory { ErrorHandler(get()) }
 }
 
 internal val repositoryModule = module {
     single<UserSessionRepository> { UserSessionRepositoryImpl(androidContext(), get()) }
     single { UserPreferencesRepository(userSessionRepository = get(), context = get()) }
-    single { PushTokenRepository(
+    single {
+        PushTokenRepository(
             userSessionRepository = get(),
             registerPushDeviceUseCase = get(),
             unregisterPushDeviceUseCase = get(),
             context = androidContext()
-    ) }
+        )
+    }
     single { VerificationService(apiCatalog = get()) }
     single<VerificationRepository> { VerificationRepository.Network(networkHandler = get(), service = get()) }
     single { OAuthService(apiCatalog = get()) }
     single<OAuthRepository> { OAuthRepository.Network(networkHandler = get(), service = get()) }
     single { CardApplicationService(apiCatalog = get()) }
-    single<CardApplicationRepository> { CardApplicationRepository.Network(
+    single<CardApplicationRepository> {
+        CardApplicationRepository.Network(
             networkHandler = get(),
             cardApplicationService = get()
-    ) }
+        )
+    }
     single { ConfigService(apiCatalog = get()) }
     single<ConfigRepository> { ConfigRepository.Network(networkHandler = get(), service = get()) }
     single { UserService(apiCatalog = get()) }
     single<UserRepository> { UserRepository.Network(networkHandler = get(), service = get()) }
     single { FundingSourcesService(apiCatalog = get()) }
-    single<FundingSourceRepository> { FundingSourceRepository.Network(
+    single<FundingSourceRepository> {
+        FundingSourceRepository.Network(
             networkHandler = get(),
             service = get(),
             balanceLocalDao = get()
-    ) }
+        )
+    }
     single { CardService(apiCatalog = get()) }
     single<CardRepository> { CardRepository.Network(get(), get(), get(), get(), get()) }
     single { TransactionService(apiCatalog = get()) }
-    single<TransactionRepository> { TransactionRepository.Network(
+    single<TransactionRepository> {
+        TransactionRepository.Network(
             networkHandler = get(),
             service = get(),
             transactionLocalDao = get()
-    ) }
+        )
+    }
     single { StatsService(apiCatalog = get()) }
     single<StatsRepository> { StatsRepository.Network(networkHandler = get(), service = get()) }
     single { MonthlyStatementService(apiCatalog = get()) }
@@ -93,4 +109,8 @@ internal val repositoryModule = module {
     }
     single { VoipService(apiCatalog = get()) }
     single<VoipRepository> { VoipRepository.Network(networkHandler = get(), service = get()) }
+    single { PaymentSourcesService(get()) }
+    single<PaymentSourcesRepository> { PaymentSourcesRepositoryImpl(get()) }
+    single { PaymentService(get()) }
+    single<PaymentRepository> { PaymentRepositoryImpl(get()) }
 }

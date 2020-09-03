@@ -5,6 +5,7 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.network.GsonProvider
+import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
 
 const val SECURE_FILE_NAME = "com.aptopayments.core.repository.local.secure.txt"
 
@@ -31,7 +32,7 @@ internal class CardLocalRepositoryImpl(context: Context) : CardLocalRepository {
         )
 
     override fun saveCard(card: Card) {
-        pref.edit().putString(KEY, GsonProvider.provide().toJson(card)).apply()
+        pref.edit().putString(KEY, GsonProvider.provide().toJson(CardEntity.from(card))).apply()
     }
 
     override fun getCard(cardId: String): Card? {
@@ -42,7 +43,8 @@ internal class CardLocalRepositoryImpl(context: Context) : CardLocalRepository {
     private fun getCardFromStorage(): Card? {
         return try {
             val cardString = pref.getString(KEY, null)
-            GsonProvider.provide().fromJson(cardString, Card::class.java)
+            val cardEntity = GsonProvider.provide().fromJson(cardString, CardEntity::class.java)
+            return cardEntity.toCard()
         } catch (e: Exception) {
             null
         }

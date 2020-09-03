@@ -4,7 +4,6 @@ import androidx.annotation.RestrictTo
 import com.aptopayments.mobile.data.config.ProjectBranding
 import com.aptopayments.mobile.data.config.UIStatusBarStyle
 import com.aptopayments.mobile.data.config.UITheme
-import com.aptopayments.mobile.extension.ColorParser
 import com.aptopayments.mobile.extension.ColorParserImpl
 import com.google.gson.annotations.SerializedName
 
@@ -133,14 +132,13 @@ internal data class ProjectBrandingEntity(
     val logoUrl: String? = null,
 
     @SerializedName("ui_theme")
-    val uiTheme: String = "theme_1",
-
-    // This is a dependency, no need to serialize or parse it
-    @Transient
-    var colorParser: ColorParser = ColorParserImpl()
+    val uiTheme: String = "theme_1"
 
 ) {
+
     fun toProjectBranding(): ProjectBranding {
+        val colorParser = ColorParserImpl()
+
         return ProjectBranding(
             uiBackgroundPrimaryColor = colorParser.fromHexString(
                 uiBackgroundPrimaryColor,

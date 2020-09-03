@@ -36,13 +36,12 @@ class SetPinEntityTest : UnitTest() {
     @Test
     fun `wrong feature status is parsed to disabled`() {
         // Given
-        sut = SetPinEntity()
+        sut = SetPinEntity("UNKNOWN_STATUS")
 
         // When
-        val status = sut.parseFeatureStatus("UNKNOWN_STATUS")
+        val status = sut.toSetPin().status
 
         // Then
-        assertNotNull(status)
-        assertEquals(status, FeatureStatus.DISABLED)
+        assertEquals(FeatureStatus.DISABLED, status)
     }
 }

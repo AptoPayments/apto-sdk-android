@@ -2,7 +2,6 @@ package com.aptopayments.mobile.repository.card.remote.entities
 
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.data.card.KycStatus
-import com.aptopayments.mobile.extension.ColorParserImpl
 import com.google.gson.annotations.SerializedName
 import java.util.Locale
 
@@ -78,18 +77,18 @@ internal data class CardEntity(
         spendableAmount = spendableAmount?.toMoney(),
         nativeSpendableAmount = nativeSpendableAmount?.toMoney(),
         cardHolder = nameOnCard ?: "$cardholderFirstName $cardholderLastName",
-        cardStyle = style?.toCardStyle(ColorParserImpl()),
+        cardStyle = style?.toCardStyle(),
         features = features?.toFeatures()
     )
 
-    private fun parseCardNetwork(network: String?): Card.CardNetwork? {
+    private fun parseCardNetwork(network: String?): Card.CardNetwork {
         return network?.let {
             try {
                 Card.CardNetwork.valueOf(it.toUpperCase(Locale.US))
             } catch (exception: Throwable) {
                 Card.CardNetwork.UNKNOWN
             }
-        }
+        } ?: Card.CardNetwork.UNKNOWN
     }
 
     private fun parseCardState(state: String): Card.CardState {
@@ -115,6 +114,29 @@ internal data class CardEntity(
             Card.OrderedStatus.valueOf(status.toUpperCase(Locale.US))
         } catch (exception: Throwable) {
             Card.OrderedStatus.UNKNOWN
+        }
+    }
+
+    companion object {
+        fun from(card: Card): CardEntity {
+            return CardEntity(
+                accountID = card.accountID,
+                cardProductID = card.cardProductID,
+                cardNetwork = card.cardNetwork.toString(),
+                lastFourDigits = card.lastFourDigits,
+                cardBrand = card.cardBrand,
+                cardIssuer = card.cardIssuer,
+                state = card.state.toString(),
+                isWaitlisted = card.isWaitlisted,
+                kycStatus = card.kycStatus.toString(),
+                kycReason = card.kycReason,
+                orderedStatus = card.orderedStatus.toString(),
+                spendableAmount = MoneyEntity.from(card.spendableAmount),
+                nativeSpendableAmount = MoneyEntity.from(card.nativeSpendableAmount),
+                features = FeaturesEntity.from(features = card.features),
+                style = CardStyleEntity.from(card.cardStyle),
+                nameOnCard = card.cardHolder
+            )
         }
     }
 }

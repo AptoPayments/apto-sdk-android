@@ -156,7 +156,8 @@ sealed class Failure {
     }
 
     /** * Extend this class for feature specific failures.*/
-    abstract class FeatureFailure(private val message: String = "") : Failure() {
+    abstract class FeatureFailure(private val message: String = "", private val title: String = "") : Failure() {
         override fun getErrorKey() = message
+        fun getErrorTitleKey() = title
     }
 }

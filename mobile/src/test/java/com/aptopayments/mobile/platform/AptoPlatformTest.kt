@@ -9,10 +9,15 @@ import com.aptopayments.mobile.repository.user.usecases.CreateUserUseCase
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.verify
+import org.junit.After
 import org.junit.Test
+import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
+import org.koin.dsl.module
+import org.koin.test.KoinTest
 import org.mockito.Mock
 
-class AptoPlatformTest : UnitTest() {
+class AptoPlatformTest : UnitTest(), KoinTest {
     private val sut = AptoPlatform
 
     // Collaborators
@@ -30,10 +35,19 @@ class AptoPlatformTest : UnitTest() {
 
     override fun setUp() {
         super.setUp()
+        AptoPlatform.koin = startKoin {
+            modules(module {
+                factory<UserSessionRepository> { userSessionRepository }
+            })
+        }.koin
         given { useCasesWrapper.issueCardCardProductUseCase }.willReturn(issueCardCardProductUseCase)
         given { useCasesWrapper.createUserUseCase }.willReturn(createUserUseCase)
-        given { useCasesWrapper.userSessionRepository }.willReturn(userSessionRepository)
         sut.useCasesWrapper = useCasesWrapper
+    }
+
+    @After
+    fun tearDown() {
+        stopKoin()
     }
 
     @Test

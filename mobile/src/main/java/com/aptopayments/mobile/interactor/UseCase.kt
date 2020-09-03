@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
  * By convention each [UseCase] implementation will execute its job in a background thread
  * and will post the result in the UI thread.
  */
-internal abstract class UseCase<out Type, in Params>(val networkHandler: NetworkHandler) where Type : Any {
+internal abstract class UseCase<out Type, in Params>(protected val networkHandler: NetworkHandler) where Type : Any {
 
     abstract fun run(params: Params): Either<Failure, Type>
 

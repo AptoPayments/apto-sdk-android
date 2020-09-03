@@ -1,11 +1,12 @@
 package com.aptopayments.mobile.data.card
 
 import java.io.Serializable
+import java.util.Locale
 
 data class Card(
     val accountID: String,
     val cardProductID: String?,
-    val cardNetwork: CardNetwork?,
+    val cardNetwork: CardNetwork,
     val lastFourDigits: String,
     val cardBrand: String?,
     val cardIssuer: String?,
@@ -17,7 +18,7 @@ data class Card(
     val orderedStatus: OrderedStatus,
     val spendableAmount: Money?,
     val nativeSpendableAmount: Money?,
-    val cardHolder: String?,
+    val cardHolder: String,
     val features: Features?
 ) : Serializable {
 
@@ -33,7 +34,19 @@ data class Card(
         VISA,
         MASTERCARD,
         AMEX,
-        UNKNOWN
+        DISCOVER,
+        TEST,
+        UNKNOWN;
+
+        companion object {
+            fun fromString(value: String): CardNetwork {
+                return try {
+                    valueOf(value.toUpperCase(Locale.US))
+                } catch (e: Exception) {
+                    UNKNOWN
+                }
+            }
+        }
     }
 
     enum class OrderedStatus {

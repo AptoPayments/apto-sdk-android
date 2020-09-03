@@ -2,6 +2,7 @@ package com.aptopayments.mobile.common
 
 import com.aptopayments.mobile.data.PhoneNumber
 import com.aptopayments.mobile.data.card.*
+import com.aptopayments.mobile.data.card.Card.CardNetwork.MASTERCARD
 import com.aptopayments.mobile.data.card.Card.CardNetwork.VISA
 import com.aptopayments.mobile.data.card.Card.CardState.ACTIVE
 import com.aptopayments.mobile.data.card.Card.OrderedStatus.RECEIVED
@@ -21,7 +22,8 @@ internal object ModelDataProvider {
             getPin = getPin(),
             setPin = setPin(),
             ivrSupport = ivr(),
-            selectBalanceStore = selectBalanceStore()
+            selectBalanceStore = selectBalanceStore(),
+            funding = fundingFeature()
         )
     }
 
@@ -116,12 +118,27 @@ internal object ModelDataProvider {
         return GetPin(status = status, type = type)
     }
 
+    fun fundingFeature(): FundingFeature {
+        val fundingLimits = fundingLimits()
+        return FundingFeature(true, listOf(VISA, MASTERCARD), fundingLimits, "soft descriptor")
+    }
+
+    fun fundingLimits(): FundingLimits {
+        val singleLimit = FundingSingleLimit(money(), money())
+        return FundingLimits(singleLimit, singleLimit)
+    }
+
+    fun fundingLimitsEntity(): FundingLimitsEntity {
+        val singleLimit = FundingSingleLimitEntity(moneyEntity(), moneyEntity())
+        return FundingLimitsEntity(singleLimit, singleLimit)
+    }
+
     private fun selectBalanceStore(): SelectBalanceStore {
         return SelectBalanceStore(allowedBalanceTypes = null)
     }
 
     private fun cardBackgroundStyle(url: URL = URL("http://www.google.es")): CardBackgroundStyle {
-        return CardBackgroundStyle.Image(url = url)
+        return CardBackgroundStyle.Image(url = url, logo = null)
     }
 
     private fun moneyEntity(amount: Double = 1.0, currency: String = "GBP"): MoneyEntity {

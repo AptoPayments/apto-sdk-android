@@ -1,5 +1,6 @@
 package com.aptopayments.mobile.platform
 
+import com.aptopayments.mobile.data.AccessToken
 import com.aptopayments.mobile.data.PhoneNumber
 import com.aptopayments.mobile.data.card.*
 import com.aptopayments.mobile.data.cardproduct.CardProduct
@@ -9,6 +10,9 @@ import com.aptopayments.mobile.data.fundingsources.Balance
 import com.aptopayments.mobile.data.oauth.OAuthAttempt
 import com.aptopayments.mobile.data.oauth.OAuthCredential
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdate
+import com.aptopayments.mobile.data.payment.Payment
+import com.aptopayments.mobile.data.paymentsources.NewPaymentSource
+import com.aptopayments.mobile.data.paymentsources.PaymentSource
 import com.aptopayments.mobile.data.statements.MonthlyStatement
 import com.aptopayments.mobile.data.statements.MonthlyStatementPeriod
 import com.aptopayments.mobile.data.stats.MonthlySpending
@@ -108,6 +112,8 @@ interface AptoPlatformProtocol {
      * @param userToken String provided by the B2B API
      */
     fun setUserToken(userToken: String)
+
+    fun currentToken(): AccessToken?
 
     /**
      * Checks if the SDK has a configured userToken
@@ -446,5 +452,59 @@ interface AptoPlatformProtocol {
         clientDeviceId: String,
         walletId: String,
         callback: (Either<Failure, ProvisioningData>) -> Unit
+    )
+
+    /**
+     * Adds a payment source for Loading funds into the account
+     *
+     * @param paymentSource NewPaymentSource to be added to the list
+     * @param callback Lambda called when the task has ended returning Either Failure if there was an error
+     * or a PaymentSource if the task was successful
+     */
+    fun addPaymentSource(paymentSource: NewPaymentSource, callback: (Either<Failure, PaymentSource>) -> Unit)
+
+    /**
+     * Gets a list with all the payment sources already added
+     *
+     * @param startingAfter Optional Parameter. Return the page starting right after the specified element. Optional Parameter.
+     * @param endingBefore Optional Parameter. Return the page ending before the specified element
+     * @param limit Optional Parameter. A limit on the number of objects to be returned. Default value is 25. Max allowed value is 50.
+     * @param callback Lambda called when the task has ended returning Either Failure if there was an error
+     * or a List<PaymentSource> if the task was successful
+     */
+    fun getPaymentSources(
+        callback: (Either<Failure, List<PaymentSource>>) -> Unit,
+        limit: Int? = null,
+        startingAfter: String? = null,
+        endingBefore: String? = null
+    )
+
+    /**
+     * Deletes a payment source
+     *
+     * @param paymentSourceId String Id of the payment source that will be deleted
+     * @param callback Lambda called when the task has ended returning Either Failure if there was an error
+     * or Unit if the task was successful
+     */
+    fun deletePaymentSource(
+        paymentSourceId: String,
+        callback: (Either<Failure, Unit>) -> Unit
+    )
+
+    /**
+     * Pushes money from a payment source to an Apto card,
+     * the provided paymentSourceId will be selected as preferred when the operation ends
+     *
+     * @param balanceId String containing the Id of the balance that will be funded
+     * @param paymentSourceId String containing the Id of the source that the money will be taken from
+     * @param amount Money that represents the amount and currency of the funds that will be taken
+     * @param callback Lambda called when the task has ended returning Either Failure if there was an error
+     * or the Payment if the task was successful
+     */
+    fun pushFunds(
+        balanceId: String,
+        paymentSourceId: String,
+        amount: Money,
+        callback: (Either<Failure, Payment>) -> Unit
     )
 }

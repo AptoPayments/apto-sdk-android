@@ -1,7 +1,7 @@
 package com.aptopayments.mobile.repository.card.remote.entities
 
 import com.aptopayments.mobile.data.card.CardStyle
-import com.aptopayments.mobile.extension.ColorParser
+import com.aptopayments.mobile.extension.ColorParserImpl
 import com.google.gson.annotations.SerializedName
 import java.net.MalformedURLException
 import java.net.URL
@@ -19,7 +19,9 @@ internal data class CardStyleEntity(
     @SerializedName("balance_selector_asset")
     var balanceSelectorAsset: String? = null
 ) {
-    fun toCardStyle(colorParser: ColorParser): CardStyle? {
+    fun toCardStyle(): CardStyle? {
+        val colorParser = ColorParserImpl()
+
         return background?.let {
             it.toCardBackgroundStyle()?.let { cardBackgroundStyle ->
                 CardStyle(

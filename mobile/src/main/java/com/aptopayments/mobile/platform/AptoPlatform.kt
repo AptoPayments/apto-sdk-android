@@ -3,6 +3,7 @@ package com.aptopayments.mobile.platform
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.annotation.VisibleForTesting
+import com.aptopayments.mobile.data.AccessToken
 import com.aptopayments.mobile.data.PhoneNumber
 import com.aptopayments.mobile.data.card.*
 import com.aptopayments.mobile.data.cardproduct.CardProduct
@@ -12,6 +13,9 @@ import com.aptopayments.mobile.data.fundingsources.Balance
 import com.aptopayments.mobile.data.oauth.OAuthAttempt
 import com.aptopayments.mobile.data.oauth.OAuthCredential
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdate
+import com.aptopayments.mobile.data.payment.Payment
+import com.aptopayments.mobile.data.paymentsources.NewPaymentSource
+import com.aptopayments.mobile.data.paymentsources.PaymentSource
 import com.aptopayments.mobile.data.statements.MonthlyStatement
 import com.aptopayments.mobile.data.statements.MonthlyStatementPeriod
 import com.aptopayments.mobile.data.stats.MonthlySpending
@@ -34,6 +38,7 @@ import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.platform.AptoSdkEnvironment.PRD
 import com.aptopayments.mobile.repository.PushTokenRepository
 import com.aptopayments.mobile.repository.UserPreferencesRepository
+import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.card.usecases.*
 import com.aptopayments.mobile.repository.cardapplication.usecases.AcceptDisclaimerUseCase
 import com.aptopayments.mobile.repository.cardapplication.usecases.IssueCardUseCase.Params
@@ -42,6 +47,8 @@ import com.aptopayments.mobile.repository.config.usecases.GetCardProductParams
 import com.aptopayments.mobile.repository.fundingsources.remote.usecases.GetFundingSourcesUseCase
 import com.aptopayments.mobile.repository.oauth.usecases.RetrieveOAuthUserDataUseCase
 import com.aptopayments.mobile.repository.oauth.usecases.SaveOAuthUserDataUseCase
+import com.aptopayments.mobile.repository.payment.usecases.PushFundsUseCase
+import com.aptopayments.mobile.repository.paymentsources.usecases.GetPaymentSourcesUseCase
 import com.aptopayments.mobile.repository.statements.usecases.GetMonthlyStatementUseCase
 import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.mobile.repository.transaction.TransactionListFilters
@@ -51,9 +58,7 @@ import com.aptopayments.mobile.repository.voip.usecases.SetupVoipCallParams
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.Koin
-import org.koin.core.KoinComponent
 import org.koin.core.context.startKoin
-import org.koin.core.inject
 import org.koin.core.module.Module
 import java.lang.ref.WeakReference
 import java.lang.reflect.Modifier
@@ -66,13 +71,14 @@ object AptoPlatform : AptoPlatformProtocol {
             weakDelegate = WeakReference(newValue)
         }
 
-    private var weakDelegate: WeakReference<AptoPlatformDelegate?>? = null
-    private lateinit var networkHandlerWrapper: NetworkHandlerWrapper
-    private lateinit var pushTokenRepository: PushTokenRepository
-    private lateinit var koin: Koin
+    private var weakDelegate = WeakReference<AptoPlatformDelegate?>(null)
+
+    @VisibleForTesting(otherwise = Modifier.PRIVATE)
+    lateinit var koin: Koin
 
     @VisibleForTesting(otherwise = Modifier.PRIVATE)
     internal lateinit var useCasesWrapper: UseCasesWrapper
+    private val userSessionRepository: UserSessionRepository by lazy { koin.get<UserSessionRepository>() }
 
     @VisibleForTesting(otherwise = Modifier.PROTECTED)
     lateinit var application: Application
@@ -93,8 +99,6 @@ object AptoPlatform : AptoPlatformProtocol {
         this.application = application
         initKoin(application)
         AndroidThreeTen.init(application)
-        networkHandlerWrapper = NetworkHandlerWrapper()
-        pushTokenRepository = PushTokenRepositoryWrapper().pushTokenRepository
         useCasesWrapper = UseCasesWrapper()
     }
 
@@ -103,22 +107,30 @@ object AptoPlatform : AptoPlatformProtocol {
         subscribeToSdkDeprecatedEvent()
     }
 
-    override fun userTokenPresent(): Boolean = useCasesWrapper.userSessionRepository.userToken.isNotEmpty()
+    override fun userTokenPresent(): Boolean = userSessionRepository.userToken.isNotEmpty()
 
     override fun setUserToken(userToken: String) {
-        useCasesWrapper.userSessionRepository.userToken = userToken
+        userSessionRepository.userToken = userToken
+    }
+
+    override fun currentToken(): AccessToken? {
+        return if (userTokenPresent()) {
+            AccessToken(userSessionRepository.userToken)
+        } else {
+            null
+        }
     }
 
     private fun subscribeToSdkDeprecatedEvent() {
-        networkHandlerWrapper.networkHandler.subscribeDeprecatedSdkListener(this) { deprecated ->
+        koin.get<NetworkHandler>().subscribeDeprecatedSdkListener(this) { deprecated ->
             if (deprecated) {
-                weakDelegate?.get()?.sdkDeprecated()
+                weakDelegate.get()?.sdkDeprecated()
             }
         }
     }
 
     fun registerFirebaseToken(firebaseToken: String) {
-        PushTokenRepositoryWrapper().pushTokenRepository.pushToken = firebaseToken
+        koin.get<PushTokenRepository>().pushToken = firebaseToken
     }
 
     private fun initKoin(application: Application) {
@@ -160,13 +172,13 @@ object AptoPlatform : AptoPlatformProtocol {
 
     override fun createUser(userData: DataPointList, custodianUid: String?, callback: (Either<Failure, User>) -> Unit) =
         useCasesWrapper.createUserUseCase(CreateUserUseCase.Params(userData, custodianUid)) { result ->
-            result.either({}, { user -> useCasesWrapper.userSessionRepository.userToken = user.token })
+            result.either({}, { user -> userSessionRepository.userToken = user.token })
             callback(result)
         }
 
     override fun loginUserWith(verifications: List<Verification>, callback: (Either<Failure, User>) -> Unit) =
         useCasesWrapper.loginUserUseCase(verifications) { result ->
-            result.either({}, { user -> useCasesWrapper.userSessionRepository.userToken = user.token })
+            result.either({}, { user -> userSessionRepository.userToken = user.token })
             callback(result)
         }
 
@@ -174,14 +186,14 @@ object AptoPlatform : AptoPlatformProtocol {
         useCasesWrapper.updateUserDataUseCase(userData) { callback(it) }
 
     override fun subscribeSessionInvalidListener(instance: Any, callback: (String) -> Unit) =
-        useCasesWrapper.userSessionRepository.subscribeSessionInvalidListener(instance, callback)
+        userSessionRepository.subscribeSessionInvalidListener(instance, callback)
 
     override fun unsubscribeSessionInvalidListener(instance: Any) {
-        useCasesWrapper.userSessionRepository.unsubscribeSessionInvalidListener(instance)
+        userSessionRepository.unsubscribeSessionInvalidListener(instance)
     }
 
     override fun logout() {
-        useCasesWrapper.userSessionRepository.clearUserSession()
+        userSessionRepository.clearUserSession()
     }
 
     override fun startOauthAuthentication(
@@ -394,12 +406,45 @@ object AptoPlatform : AptoPlatformProtocol {
             )
         ) { callback(it) }
     }
-}
 
-internal class NetworkHandlerWrapper : KoinComponent {
-    val networkHandler: NetworkHandler by inject()
-}
+    override fun addPaymentSource(
+        paymentSource: NewPaymentSource,
+        callback: (Either<Failure, PaymentSource>) -> Unit
+    ) {
+        useCasesWrapper.addPaymentSourceUseCase(paymentSource) { callback(it) }
+    }
 
-internal class PushTokenRepositoryWrapper : KoinComponent {
-    val pushTokenRepository: PushTokenRepository by inject()
+    override fun getPaymentSources(
+        callback: (Either<Failure, List<PaymentSource>>) -> Unit,
+        limit: Int?,
+        startingAfter: String?,
+        endingBefore: String?
+    ) {
+        useCasesWrapper.getPaymentSourcesUseCase(
+            GetPaymentSourcesUseCase.Params(
+                startingAfter,
+                endingBefore,
+                limit
+            )
+        ) { callback(it) }
+    }
+
+    override fun deletePaymentSource(paymentSourceId: String, callback: (Either<Failure, Unit>) -> Unit) {
+        useCasesWrapper.deletePaymentSourceUseCase(paymentSourceId)
+    }
+
+    override fun pushFunds(
+        balanceId: String,
+        paymentSourceId: String,
+        amount: Money,
+        callback: (Either<Failure, Payment>) -> Unit
+    ) {
+        useCasesWrapper.pushFundsUseCase(
+            PushFundsUseCase.Params(
+                balanceId = balanceId,
+                paymentSourceId = paymentSourceId,
+                amount = amount
+            )
+        ) { callback(it) }
+    }
 }

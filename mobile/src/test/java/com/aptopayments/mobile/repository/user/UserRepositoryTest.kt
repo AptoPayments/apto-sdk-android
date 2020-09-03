@@ -3,8 +3,11 @@ package com.aptopayments.mobile.repository.user
 import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.network.NetworkHandler
+import com.aptopayments.mobile.platform.ErrorHandler
+import com.aptopayments.mobile.platform.RequestExecutor
 import com.aptopayments.mobile.repository.user.remote.UserService
 import com.aptopayments.mobile.repository.user.remote.entities.UserEntity
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Before
@@ -17,6 +20,7 @@ import retrofit2.Response
 
 class UserRepositoryTest : UnitTest() {
 
+    private lateinit var requestExecutor: RequestExecutor
     private lateinit var repositoryNetwork: UserRepository.Network
 
     @Mock
@@ -31,9 +35,11 @@ class UserRepositoryTest : UnitTest() {
     @Before
     override fun setUp() {
         super.setUp()
+        requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock()))
         startKoin {
             modules(module {
                 single { networkHandler }
+                single { requestExecutor }
                 single { service }
             })
         }

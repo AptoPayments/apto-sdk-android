@@ -2,7 +2,6 @@ package com.aptopayments.mobile.repository.card.remote.entities
 
 import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.common.ModelDataProvider
-import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.data.card.KycStatus
 import com.nhaarman.mockitokotlin2.whenever
@@ -78,7 +77,7 @@ class CardEntityTest : UnitTest() {
         whenever(mockFeaturesEntity.toFeatures()).thenReturn(testFeatures)
 
         val testCardStyle = ModelDataProvider.cardStyle()
-        whenever(mockCardStyleEntity.toCardStyle(TestDataProvider.anyObject())).thenReturn(testCardStyle)
+        whenever(mockCardStyleEntity.toCardStyle()).thenReturn(testCardStyle)
 
         // When
         val card = sut.toCard()

@@ -15,13 +15,11 @@ internal class NativeValueEntity(
     var backgroundImage: String? = null,
 
     @SerializedName("asset")
-    var asset: String? = null,
+    var asset: String? = null
+) : ContentEntity {
 
-    // This is a dependency, no need to serialize or parse it
-    @Transient
     var colorParser: ColorParser = ColorParserImpl()
 
-) : ContentEntity {
     override fun toContent() = Content.Native(
         backgroundColor = backgroundColor?.let { colorParser.fromHexString(backgroundColor, "FFFFFF") },
         backgroundImage = backgroundImage?.toUrl(),

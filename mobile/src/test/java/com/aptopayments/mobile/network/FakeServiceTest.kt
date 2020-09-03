@@ -68,6 +68,6 @@ internal class FakeServiceTest : ServiceTest() {
 
         val request = takeRequest()!!
 
-        assertEquals(TestDataProvider.provideAPiKey(), request.headers[X_API_KEY])
+        assertEquals("Bearer ${TestDataProvider.provideAPiKey()}", request.headers[X_API_KEY])
     }
 }

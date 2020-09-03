@@ -73,8 +73,8 @@ internal open class OkHttpClientProviderImpl(
     }
 
     private fun addInterceptors(okHttpClientBuilder: OkHttpClient.Builder) {
-        addLoggingInterceptor(okHttpClientBuilder)
         addApiKeyInterceptor(okHttpClientBuilder)
+        addLoggingInterceptor(okHttpClientBuilder)
         addFixedHeaders(okHttpClientBuilder)
         addTokenInterceptor(okHttpClientBuilder)
     }
@@ -99,7 +99,7 @@ internal open class OkHttpClientProviderImpl(
 
     private fun addApiKeyInterceptor(okHttpClientBuilder: OkHttpClient.Builder) {
         okHttpClientBuilder.addInterceptor { chain ->
-            val newRequest = chain.request().newBuilder().addHeader(X_API_KEY, apiKeyProvider.apiKey).build()
+            val newRequest = chain.request().newBuilder().addHeader(X_API_KEY, "Bearer ${apiKeyProvider.apiKey}").build()
             chain.proceed(newRequest)
         }
     }

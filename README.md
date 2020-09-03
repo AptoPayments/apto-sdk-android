@@ -19,15 +19,23 @@ For more information, see the [Apto developer portal](https://aptopayments.com/#
 
 ### Installation (Using [Gradle](https://gradle.org))
 
-1. In your `build.gradle` file, add the following dependency:
+1. On your project root build.gradle add the Apto repository and Jcenter:
+```
+allprojects {
+  repositories {
+    ...
+    jcenter()
+    maven { url "https://dl.bintray.com/apto/maven" }
+    ...
+  }
+}
+```
 
-    ```
-    
-    implementation 'com.aptopayments.sdk:mobile:3.0.0'
-    
-    ```
+2. On your library module's `build.gradle` add the following dependency:
 
-2. Run `./gradlew build`.
+```
+implementation 'com.aptopayments.sdk:mobile:3.0.0'
+```
 
 ## Using the SDK
 

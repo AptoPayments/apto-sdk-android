@@ -7,6 +7,8 @@ import com.aptopayments.mobile.exception.Failure.NetworkConnection
 import com.aptopayments.mobile.exception.Failure.ServerError
 import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.network.NetworkHandler
+import com.aptopayments.mobile.platform.ErrorHandler
+import com.aptopayments.mobile.platform.RequestExecutor
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.card.local.CardBalanceLocalDao
 import com.aptopayments.mobile.repository.card.local.CardLocalRepository
@@ -14,6 +16,7 @@ import com.aptopayments.mobile.repository.card.remote.CardService
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
 import com.aptopayments.mobile.repository.card.remote.requests.IssueCardRequest
 import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyZeroInteractions
 import org.amshove.kluent.shouldBeInstanceOf
@@ -27,6 +30,8 @@ import retrofit2.Call
 import retrofit2.Response
 
 class CardRepositoryTest : UnitTest() {
+
+    private lateinit var requestExecutor: RequestExecutor
     private lateinit var sut: CardRepository.Network
 
     // Collaborators
@@ -62,8 +67,10 @@ class CardRepositoryTest : UnitTest() {
                 single { cardLocalRepository }
                 single { cardBalanceLocalDao }
                 single { userSessionRepository }
+                single { requestExecutor }
             })
         }
+        requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock()))
         sut = CardRepository.Network(
             networkHandler,
             service,
