@@ -1,97 +1,176 @@
-# Module
+# Apto Mobile Android SDK
 
-Welcome to the Apto Mobile Android SDK. This SDK gives access to the Apto's mobile API, designed to be used from a mobile app. Using this SDK there's no need to integrate the API itself, all the API endpoints are exposed as simple to use methods, and the data returned by the API is properly encapsulated and easy to access.
+Welcome to the Apto Mobile Android SDK. This SDK provides access to Apto's mobile API, and is designed to be used for mobile apps. When using this SDK, there is no need for a separate API integration. All the API endpoints are exposed as simple-to-use SDK methods, and the data returned by the API is already encapsulated in the SDK and is easily accessible.
 
-With this SDK, you'll be able to onboard new users, issue cards, obtain card activity information and manage the card (set pin, freeze / unfreeze, etc.)
+With this SDK, you can:
 
-For more information, see the [Apto developer portal](https://aptopayments.com/#/developers).
+* Onboard new users
+* Issue new cards
+* Obtain card activity information
+* Manage cards (set pin, lock / unlock, etc.)
+
+This document provides an overview of how to:
+
+* [Install the SDK](#install-the-sdk)
+* [Initialize the SDK](#initialize-the-sdk)
+* [Authenticate a User](#authenticate-a-user)
+* [Verify a User](#verify-a-user)
+* [Manage Users](#manage-users)
+* [Manage Card Programs](#manage-card-programs)
+* [Manage Cards](#manage-cards)
+* [Manage Funding Sources](#manage-funding-sources)
+* [Set Notification Preferences](#set-notification-preferences)
+* [Manage Transactions](#manage-transactions)
+
+For more information, see the [Apto developer portal](https://developer.aptopayments.com).
+
+To contribute to the SDK development, see [Contributions & Development](#contributions-Development)
 
 ## Requirements
 
-    * Android Version - API Level 23 (Android 6.0)
-    * Kotlin - 1.3.72
-    * Gradle - 4.0.0
+* Android SDK - API Level 23 (Android 6.0)
+* Kotlin version 1.3.72
+* Gradle version 4.0.0
 
-### Required permisions
+**Note:** The SDK is built using Kotlin, but is fully interoperable with Java. Code adjustments may be needed, if used within a Java project.
 
-    * <uses-permission android:name="android.permission.INTERNET" />
-    * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+### Register a Project and Get API key
 
-### Installation (Using [Gradle](https://gradle.org))
+You must register a project in the [Apto Developer Portal](https://developer.aptopayments.com) to run the SDK. 
 
-1. On your project root build.gradle add the Apto repository and Jcenter:
-```
-allprojects {
-  repositories {
-    ...
-    jcenter()
-    maven { url "https://dl.bintray.com/apto/maven" }
-    ...
-  }
-}
-```
+In the developer portal, retrieve your `API KEY`. Please contact Apto to create a project for you.
 
-2. On your library module's `build.gradle` add the following dependency:
+### Required Permissions
+
+Your app must require the following permissions, in order to use the SDK.
 
 ```
-implementation 'com.aptopayments.sdk:mobile:3.0.0'
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 ```
 
-## Using the SDK
 
-To run the SDK you must first register a project in order to get a `API KEY`. Please contact Apto to create a project for you.
+## Install the SDK 
 
-The SDK must be initialized in the `onCreate` method of your Application class, this can be done in one or two steps. If you have the `API KEY` and environment at the time Application `onCreate` is executed you can do it in one step otherwise use the two step option.
+We suggest using [Gradle](https://gradle.org) to install the SDK:
 
-### One step initialization
+1. In your project's `build.gradle` file, add the Apto repository:
+
+	```
+	allprojects {
+		repositories {
+		
+			...
+			
+			maven { url "https://dl.bintray.com/apto/maven" }
+			
+			...
+		}
+	}
+```
+
+2. In your app's `build.gradle`, add the following dependency:
+
+	```
+    dependencies {
+	    ...
+    
+    	implementation 'com.aptopayments.sdk:mobile:3.0.0'
+    
+    	...
+    }
+```
+
+
+## Initialize the SDK
+
+The SDK must be initialized using the `onCreate` method of your Application class, and requires your `API KEY`: 
+
+* **One-step initialization:** Load your `API KEY` in the `onCreate` method of your Application class.
+* **Two-step initialization:** Initialize the SDK, and set up the "API_KEY" prior to interacting with the SDK methods.
+
+
+### One-step Initialization
+
+In the `onCreate` method of your Application class, invoke `AptoPlatform.initializeWithApiKey` and pass in the `API_KEY` from the [Apto Developer Portal](https://developer.aptopayments.com). This fully initializes the SDK for your application.
 
 ```kotlin
 AptoPlatform.initializeWithApiKey(application, "API_KEY", AptoSdkEnvironment.SBX)
 ```
 
-The last parameter is optional and indicates the environment that you are pointing to, in this case is Sandbox, by default is production.
+**Note:** The last parameter is optional and indicates the deployment environment. The default deployment environment is Production. This example uses the Sandbox environment (`AptoSdkEnvironment.SBX`). 
 
-### Two Step initialization
+### Two-step Initialization
 
-This call has to be done from the Application class
+If you want to defer setting your `API_KEY`, use the two-step initialization process:
 
-```kotlin
+1. In the `onCreate` method of your Application class, invoke `AptoPlatform.initialize` initialize the SDK for your application.
+
+	```kotlin
 AptoPlatform.initialize(application)
 ```
 
-This second step can be deferred and placed anywhere before the first interaction with the SDK
+2. Prior to your app's first interaction with the SDK, ensure you set your `API_KEY`. This fully initializes the SDK for your application.
 
-```kotlin
+	```kotlin
 AptoPlatform.setApiKey("API_KEY", AptoSdkEnvironment.SBX)
-
 ```
+**Note:** The last parameter is optional and indicates the deployment environment. The default deployment environment is Production. This example uses the Sandbox environment (`AptoSdkEnvironment.SBX`).
 
-## User session token
 
-In order to authenticate a user and retrieve a user session token, the Apto mobile API provides mechanisms to sign up or sign in. Both mechanisms are based on verifying the user primary credentials, which can be user's phone or email, depending on the configuration of your project. Please contact us to set up the proper primary credential for your users.
+## Authenticate a User
 
-Typical steps to obtain a user token involve:
+The SDK enables users to sign up or sign in to the Apto mobile API. Authentication requires the user to verify their primary credentials. Depending on your project's configuration, the user credentials can be a phone number or email address.
 
-1. Verify user's primary credential. Once verified, the verification contains data showing if the credential belongs to an existing user or to a new user.
+Please contact us to set up proper primary credentials for your users.
 
-2.1) If the credential belongs to an existing user, verify user's secondary credential.
-2.2) Obtain a user session token by using the login method on the SDK. That method receives the two previous verifications. The user token will be stored and handled by the SDK.
+### Retrieve a User Token
 
-3.1) If the credential doesn't belong to any existing user, create a new user with the verified credential and obtain a user token. The user token will be stored and handled by the SDK.
+A user session token is required for authentication. The standard steps for obtaining a user token are:
 
-### Set user token
+1. **Verify the user's primary credential.**
 
-Use this method to specify a user session token (obtained using the Apto B2B API) to be used by the SDK. This is optional, if a session token is not provided, the SDK will verify the user to obtain one.
+2. **Determine if the the user is a new or existing user.** Once the primary credential is verified, the API response will contain data indicating if the credentials belong to an existing user or a new user.
+
+	**If the credentials belong to an existing user:**
+	
+	1. Verify the user's secondary credential.
+	2. Using the SDK's login method to obtain a user session token. The login method consumes the two previous verifications, and the SDK automatically stores and manages the user token.
+
+	**If the credentials don't belong to an existing user:**
+	
+	- Create a new user with the verified credentials and obtain a user token. The SDK automatically stores and manages the user token.
+
+### Set User Token
+
+If you are using the Apto B2B API and have an existing user session token, you can set the user token with:
 
 ```kotlin
 AptoPlatform.setUserToken("user_token")
 ```
 
-## Verifications
+**Note:** This is optional. If a session token is not provided, the SDK will obtain one by verifying the user.
 
-### Start a new verification
 
-To start a new verification, you can use the following SDK methods:
+## Verify a User
+
+There are three methods for verifying a user:
+
+- [Start a New Verification](#start-a-new-verification) - Use this to initialize the verification process.
+- [Restart a Verification](#restart-a-verification) - Use this to conduct subsequent verifications, should the initial verification fail.
+- [Complete a Verification](#complete-a-verification) - Use this to completion the verifiation process.
+
+### Start a New Verification
+
+Depending on your project's configuration for your users, use one of the following SDK methods to start a new verification:
+
+- [Phone Verification](#phone-verification): `AptoPlatform.startPhoneVerification` 
+- [Email Verification](#email-verification): `AptoPlatform.startEmailVerification`
+
+
+#### Phone Verification
+
+To initialize a user verification with a phone number, use:
 
 ```kotlin
 AptoPlatform.startPhoneVerification(phoneNumber) {
@@ -104,6 +183,13 @@ AptoPlatform.startPhoneVerification(phoneNumber) {
 }
 ```
 
+- When the method succeeds, the user will receive a single use code via SMS. You can add additional verification handling within the `verification` response.
+- When the method fails, error handling can be included within the `error` response.
+
+#### Email Verification
+
+To initialize a user verification with an email address, use:
+
 ```kotlin
 AptoPlatform.startEmailVerification(email) {
   it.either({ error ->
@@ -115,9 +201,12 @@ AptoPlatform.startEmailVerification(email) {
 }
 ```
 
-### Restart a verification
+- When the method succeeds, the user will receive a single use code via email. You can add additional verification handling within the `verification` response.
+- When the method fails, error handling can be included within the `error` response.
 
-Verifications can be restarted, by using the following SDK method:
+### Restart a Verification
+
+If you previously initialized a verification, you can restart a verification by passing in the verification object to the `AptoPlatform.restartVerification` method:
 
 ```kotlin
 AptoPlatform.restartVerification(verification) {
@@ -130,12 +219,23 @@ AptoPlatform.restartVerification(verification) {
 }
 ```
 
-### Complete a verification
+- When the method succeeds, the user will receive a single use code via email or SMS (depending on your project's configuration for your users). You can add additional verification handling within the `verification` response.
+- When the method fails, error handling can be included within the `error` response.
 
-To complete a new verification, you can use the following SDK method:
 
-```kotlin
+### Complete a Verification
+
+To complete a verification, the user will need to enter their pin number.
+
+1. Set the `secret` property on the `verification` object to the user's pin number.
+
+	```kotlin
 verification.secret = pin // pin entered by the user
+```
+
+2. Complete the verification by passing the `verification` object into the `AptoPlatform.completeVerification` method.
+
+	```kotlin
 AptoPlatform.completeVerification(verification) {
   it.either({ error ->
     // Do something with the error
@@ -151,16 +251,36 @@ AptoPlatform.completeVerification(verification) {
 }
 ```
 
-## Users management
+- When the method succeeds:
+	- If the `status` property is set to `.passed`, the verification is successful. If the verification belongs to an existing user, the response will contain a non-null `secondaryCredential` value.
+	- Otherwise, the verification failed due to an invalid `secret` value. You can add error handling for the user to re-enter their pin.
+- When the method fails, error handling can be included within the `error` response.
 
-### Creating a new user
+## Manage Users
 
-Once the primary credential has been verified, you can use the following SDK method to create a new user:
+The SDK enables you to:
 
-```kotlin
+- [Create a New User](#create-a-new-user)
+- [Login with an Existing User](#login-with-an-existing-user)
+- [Update a User's Info](#update-a-user-s-info)
+- [Close a User Session](#close-a-user-session)
+
+### Create a New User
+
+Once a user's primary credential is verified, you can create a new user using the `AptoPlatform.createUser` method.
+
+1. Create a primary credential object and set its `verification` object.
+
+	This example, creates a `PhoneNumber` object for project configurations that use a phone number as the primary credential.
+
+	```kotlin
 val primaryCredential = PhoneNumber(countryCode, phoneNumber)
 primaryCredential.verification = verification // The verification obtained before.
+```
 
+2. Create a new user, by passing in the `primaryCredential` into `DataPointList().add`.
+
+	```kotlin
 AptoPlatform.createUser(DataPointList().add(primaryCredential)) {
   it.either({ error ->
     // Do something with the error
@@ -171,20 +291,21 @@ AptoPlatform.createUser(DataPointList().add(primaryCredential)) {
 }
 ```
 
-The `createUser` method also accepts an optional `custodianUid` parameter:
+	- When the method succeeds, the `user` object contains the user ID and user session token.
+	- When the method fails, error handling can be included within the `error` response.
 
-```kotlin
+	**Note:** The `createUser` method can accept an optional `custodianUid` parameter. Use this parameter to send Apto the user ID, so future webhook notifications can include this information. This simplifies the process of matching the user with the notification event.
+
+	```kotlin
 val custodianUid = "custodian_uid"
 AptoPlatform.createUser(DataPointList().add(primaryCredential), custodianUid) {
   ...
 }
 ```
 
-this parameter can be used to send Apto the id of the user in your platform so future notifications (webhooks) can contain that information, making easier matching the event with the user in your platform.
+### Login with an Existing User
 
-### Login with an existing user
-
-Once the primary and secondary credentials have been verified, you can use the following SDK method to obtain a user token for an existing user:
+Once the primary and secondary credentials are verified, you log the user in with the `AptoPlatform.loginUserWith` method and obtain a user token for the existing user.
 
 ```kotlin
 AptoPlatform.loginUserWith(listOf(phoneVerification, dobVerification)) {
@@ -196,13 +317,22 @@ AptoPlatform.loginUserWith(listOf(phoneVerification, dobVerification)) {
   })
 }
 ```
+	- When the method succeeds, the `user` object contains the user ID and user session token.
+	- When the method fails, error handling can be included within the `error` response.
 
-### Update user info
+### Update a User's Info
 
-To update user's info, use the following SDK method:
+You can update the user's info, with the `AptoPlatform.updateUserInfo` method:
 
-```kotlin
+1. Create a `DataPointList` object:
+
+	```kotlin
 val userData = DataPointList()
+```
+
+2. Pass the `userData` into the `AptoPlatform.updateUserInfo` method:
+
+	```kotlin
 // Add to userPII the datapoints that you want to update
 AptoPlatform.updateUserInfo(userData) {
   it.either({ error ->
@@ -214,19 +344,27 @@ AptoPlatform.updateUserInfo(userData) {
 }
 ```
 
-### Close user session
+	- When the method succeeds, the update is successful and the `user` object contains the updated user information.
+	- When the method fails, error handling can be included within the `error` response.
 
-To close the current user's session, use the following SDK method:
+### Close a User Session
+
+To close the current user's session, use the `logout` SDK method:
 
 ```kotlin
 AptoPlatform.logout()
 ```
 
-## Card programs management
+## Manage Card Programs
 
-### Get available card programs
+The SDK enables you to manage card programs. This document explains how to use the SDK to:
 
-To get a list of all the available card programs that can be used to issue cards, you can use the following SDK method:
+* [Get Available Card Programs](#get-available-card-programs)
+* [Get Card Program Details](#get-card-program-details)
+
+### Get Available Card Programs
+
+To retrieve a list of all the available card programs, use the `AptoPlatform.fetchCardProducts` method:
 
 ```kotlin
 AptoPlatform.fetchCardProducts {
@@ -239,9 +377,12 @@ AptoPlatform.fetchCardProducts {
 }
 ```
 
-### Get card program details
+- When the method succeeds, a `cardProducts` object is returned with a list of `CardProductSummary` objects, containing details for each card product.
+- When the method fails, error handling can be included within the `error` response.
 
-To get the details of a specific card program, you can use the following SDK method:
+### Get Card Program Details
+
+To retrieve a specific card program, pass a card product ID into the `AptoPlatform.fetchCardProduct` method:
 
 ```kotlin
 AptoPlatform.fetchCardProduct(cardProductId) {
@@ -254,11 +395,23 @@ AptoPlatform.fetchCardProduct(cardProductId) {
 }
 ```
 
-## Cards management
+- When the method succeeds, a `cardProduct` object is returned containing details for the card product.
+- When the method fails, error handling can be included within the `error` response.
 
-### Get cards
+## Manage Cards
 
-To retrieve the user cards, you can use the following SDK method:
+The SDK enables you to manage cards. This document explains how to use the SDK to:
+
+* [Get Cards](#get-cards)
+* [Issue a Card](#issue-a-card)
+* [Activate a Physical Card](#activate-a-physical-card)
+* [Change a Card PIN](#change-a-card-pin)
+* [Lock / unloack a Card](#lock-unlock-a-card)
+* [View Monthly Spending Stats](#view-monthly-spending-stats)
+
+### Get Cards
+
+To retrieve a list of cards for the current user, use the `AptoPlatform.fetchCards` method:
 
 ```kotlin
 AptoPlatform.fetchCards {
@@ -271,20 +424,39 @@ AptoPlatform.fetchCards {
 }
 ```
 
-### Issue a card
+- When the method succeeds, a `cards` object is returned, containing a list of `Card` objects.
+- When the method fails, error handling can be included within the `error` response.
 
-To issue a card, you can use the following SDK methods:
+### Issue a Card
 
-```kotlin
+To issue a card for the current user, use the `AptoPlatform.issueCard` method:
+
+1. Generate an `OAuthCredential` object.
+
+	```kotlin
 val credential = OAuthCredential(oauthToken = "token", refreshToken = "refresh_token")
+```
+
+2. Retrieve a list of all the card products using the `AptoPlatform.fetchCardProducts` method.
+
+	```kotlin
 AptoPlatform.fetchCardProducts {
   it.either({ error ->
       // Do something with the error
   },
   { cardProducts ->
-    // Depending on the card program setup you might need to allow the user to select the appropriate card product
-    // instead of using the first one. You can use the fetchCardProduct(cardProductId = "", forceRefresh = false) {}
-    // method to get more details about the card product.
+		...
+  })
+}
+```
+
+3. with the returned `cardProducts` value, pass the card product you want to issue into the `AptoPlatform.issueCard` method.
+
+	If you have more than one card product, you may need to enable the user to select a specific card product. This example demonstrates how to issue a card on the first card product.
+	
+	**Note:** To retrieve details about the card product, use the `fetchCardProduct(cardProductId = "", forceRefresh = false) {}` method.
+
+	```kotlin
     AptoPlatform.issueCard(cardProductId = cardProducts[0].id, credential = credential) {
       it.either({ error ->
         // Do something with the error
@@ -293,11 +465,21 @@ AptoPlatform.fetchCardProducts {
         // card contains the issued Card object
       })
     }
-  })
-}
 ```
+	
+	- When the method succeeds, a `card` object is returned containing a the issued card details.
+	- When the method fails, error handling can be included within the `error` response.
+	
 
-The `issueCard` method also accepts an optional `additionalFields` parameter that can be used to send Apto additional data required to card issuance that is not captured during the user creation process. For a list of allowed fields and values contact us. You can also use `initialFundingSourceId` to specify the id of the wallet that will be connected to the card when issued. Only applies to debit card programs. For additional information regarding this parameter, contact us.
+#### Issue a Card with Additional Info
+
+The `issueCard` method also accepts two optional parameters:
+
+- `additionalFields` - Use this parameter to send additional data that may be required for card issuance, but may not have been captured during the user creation process. For a list of allowed fields and values contact us.
+
+- `initialFundingSourceId` - Use this parameter to specify the wallet ID connected to the issued card.
+	
+	**Note:** This only applies to debit card programs. For additional information regarding this parameter, contact us.
 
 ```kotlin
 val additionalFields = mapOf<String, Any>("field1" to "value1", "field2" to 2)
@@ -308,9 +490,11 @@ AptoPlatform.issueCard(cardProductId = cardProducts[0].id, credential = credenti
 }
 ```
 
-### Physical card activation
+### Activate a Physical Card
 
-Physical cards need to be activated by providing an activation code that is sent to the cardholder. In order to activate the physical card, you can use this SDK method:
+Physical cards need to be activated using the provided activation code sent to the cardholder.
+
+To activate the physical card, use the `AptoPlatform.activatePhysicalCard` method:
 
 ```kotlin
 AptoPlatform.activatePhysicalCard(cardId, code) {
@@ -323,9 +507,13 @@ AptoPlatform.activatePhysicalCard(cardId, code) {
 }
 ```
 
-### Change card PIN
+- When the method succeeds, a `result` object is returned containing information about the activation process. If the activation fails, the `result` object will contain the reason for the failure.
+- When the method fails, error handling can be included within the `error` response.
 
-In order to set the card PIN, you can use the following SDK method:
+
+### Change a Card PIN
+
+To set or change the card pin, use the `AptoPlatform.changeCardPin` method:
 
 ```kotlin
 AptoPlatform.changeCardPin(cardId, pin) {
@@ -338,9 +526,17 @@ AptoPlatform.changeCardPin(cardId, pin) {
 }
 ```
 
-### Freeze / unfreeze card
+- When the method succeeds, a `card` object is returned containing information about the updated card.
+- When the method fails, error handling can be included within the `error` response.
 
-Cards can be freezed and unfreezed at any moment. Transactions of a freezed card will be rejected in the merchant's POS. To freeze / unfreeze cards, you can ue the following SDK methods:
+
+### Lock / Unlock a Card
+
+Cards can be locked or unlocked at any time. Transactions using a locked card will be rejected by the merchant's POS.
+
+#### Lock a Card
+
+To lock a card, pass the account ID into the `AptoPlatform.lockCard` method:
 
 ```kotlin
 AptoPlatform.lockCard(accountId) {
@@ -353,6 +549,13 @@ AptoPlatform.lockCard(accountId) {
 }
 ```
 
+- When the method succeeds, a `card` object is returned containing information about the locked card.
+- When the method fails, error handling can be included within the `error` response.
+
+#### Unlock a Card
+
+To unlock a card, pass the account ID into the `AptoPlatform.unlockCard` method:
+
 ```kotlin
 AptoPlatform.unlockCard(accountId) {
   it.either({ error ->
@@ -364,52 +567,14 @@ AptoPlatform.unlockCard(accountId) {
 }
 ```
 
-## Funding Sources management
+- When the method succeeds, a `card` object is returned containing information about the unlocked card.
+- When the method fails, error handling can be included within the `error` response.
 
-Apto cards can be connected to different funding sources. You can obtain a list of the available funding sources for the current user, and connect one of them to a user's card.
+### View Monthly Spending Stats
 
-### Get a list of the available funding sources
+The SDK enables you to view the monthly spending for cards, classified by category.
 
-```kotlin
-AptoPlatform.fetchCardFundingSources(cardId) {
-  it.either({ error ->
-    // Do something with the error
-  ),
-  { fundingSources ->
-    // fundingSources contain a list of FundingSource objects.
-  })
-}
-```
-
-### Get the funding source connected to a card
-
-```kotlin
-AptoPlatform.fetchCardFundingSource(cardId) {
-  it.either({ error ->
-    // Do something with the error
-  ),
-  { fundingSource ->
-    // fundingSource is a FundingSource object.
-  })
-}
-```
-
-### Connect a funding source to a card
-
-```kotlin
-AptoPlatform.setCardFundingSource(cardId, fundingSourceId) {
-  it.either({ error ->
-    // Do something with the error
-  ),
-  { fundingSource ->
-    // Operation successful.
-  })
-}
-```
-
-## Monthly spending stats
-
-To obtain information about the monthly spendings of a given card, classified by Category, you can use the following SDK method:
+To retrieve information about the monthly spending for a card, pass the card ID, spending month, and spending year into the `AptoPlatform.cardMonthlySpending` method.
 
 ```kotlin
 AptoPlatform.cardMonthlySpending(cardId, month, year) {
@@ -422,13 +587,84 @@ AptoPlatform.cardMonthlySpending(cardId, month, year) {
 }
 ```
 
-date represents the month of the spending stats.
+- When the method succeeds, a `monthlySpending` object is returned containing the stats for the provided month. The spending is classified by transaction category, and difference from the previous month.
+- When the method fails, error handling can be included within the `error` response.
 
-## Notification preferences
+## Manage Funding Sources
 
-Users can be notified via push notifications regarding several events (transactions, card status changes, etc.). The SDK offers some functions that allow the users to decide how they receive these notifications.
+The SDK enables you to:
 
-### Obtain the current user notification preferences
+* [Get a Card's Default Funding Source](#get-a-card-s-default-funding-source)
+* [List a Card's Available Funding Sources](#list-a-card-s-available-funding-sources)
+* [Connect a Funding Source to a Card](#connect-a-funding-source-to-a-card)
+
+### Get a Card's Default Funding Source
+
+To retrieve a card's default funding source, pass the card ID into the `AptoPlatform.fetchCardFundingSource` method.
+
+```kotlin
+AptoPlatform.fetchCardFundingSource(cardId) {
+  it.either({ error ->
+    // Do something with the error
+  ),
+  { fundingSource ->
+    // fundingSource is a FundingSource object.
+  })
+}
+```
+
+- When the method succeeds, a `fundingSource` object is returned containing information about the funding source.
+- When the method fails, error handling can be included within the `error` response.
+
+### List a Card's Available Funding Sources
+
+Apto cards may have multiple funding sources. To retrieve a list of available funding sources for a card, pass the card ID into the `AptoPlatform.fetchCardFundingSources` method.
+
+```kotlin
+AptoPlatform.fetchCardFundingSources(cardId) {
+  it.either({ error ->
+    // Do something with the error
+  ),
+  { fundingSources ->
+    // fundingSources contain a list of FundingSource objects.
+  })
+}
+```
+
+- When the method succeeds, a `fundingSources` object is returned containing a list of `FundingSource` objects.
+- When the method fails, error handling can be included within the `error` response.
+
+### Connect a Funding Source to a Card
+
+To connect a funding source to a card, pass the card ID and funding source ID into the `AptoPlatform.setCardFundingSource` method.
+
+```kotlin
+AptoPlatform.setCardFundingSource(cardId, fundingSourceId) {
+  it.either({ error ->
+    // Do something with the error
+  ),
+  { fundingSource ->
+    // Operation successful.
+  })
+}
+```
+
+- When the method succeeds, a `fundingSource` object is returned containing information for the funding source.
+- When the method fails, error handling can be included within the `error` response.
+
+
+## Set Notification Preferences
+
+Push notifications for users are available for several events (transactions, card status changes, etc.). The SDK can enable the users to decide how they receive some of these notifications.
+
+This document demonstrates how to:
+
+* [Get Notification Preferences](#get-notification-preferences)
+* [Update Notification Preferences](#update-notification-preferences)
+
+### Get Notification Preferences
+
+To retrieve the current user's notification preferences, use the `AptoPlatform.fetchNotificationPreferences` method.
 
 ```kotlin
 AptoPlatform.fetchNotificationPreferences {
@@ -441,10 +677,22 @@ AptoPlatform.fetchNotificationPreferences {
 }
 ```
 
-### Update the current user notification preferences
+- When the method succeeds, a `notificationPreferences` object is returned containing the information for current user's notification preferences.
+- When the method fails, error handling can be included within the `error` response.
 
-```kotlin
+### Update Notification Preferences
+
+To update the current user's notification preferences:
+
+1. Create a `NotificationPreferences` object.
+
+	```kotlin
 val preferences = NotificationPreferences()
+```
+
+2. Pass the preferences object into the `AptoPlatform.updateNotificationPreferences` method.
+
+	```kotlin
 // Set the user preferences in `preferences`
 AptoPlatform.updateNotificationPreferences(preferences) {
   it.either({ error ->
@@ -456,9 +704,16 @@ AptoPlatform.updateNotificationPreferences(preferences) {
 }
 ```
 
-## Transactions management
+	- When the method succeeds, a `notificationPreferences` object is returned containing the information for current user's notification preferences.
+	- When the method fails, error handling can be included within the `error` response.
 
-To get a list of transactions, you can use the following SDK method:
+## Manage Transactions
+
+To retrieve a list of transactions, pass the following into the `AptoPlatform.fetchCardTransactions` method:
+
+* `cardId` - The card ID
+* `filters` - Filters the transactions by type.
+* `forceRefresh` - Boolean value indicating if transactions should be retrieved from the Apto Mobile API or the local cached transaction list. If true, transactions are retrieved from the Apto Mobile API.
 
 ```kotlin
 AptoPlatform.fetchCardTransactions(cardId, filters, forceRefresh) {
@@ -471,12 +726,17 @@ AptoPlatform.fetchCardTransactions(cardId, filters, forceRefresh) {
 }
 ```
 
-The filters parameter allows you to filter the type of transactions that are returned by the SDK.
+- When the method succeeds, a `transactions` object is returned containing a list of `Transaction` objects.
+- When the method fails, error handling can be included within the `error` response.
 
-The forceRefresh parameter controls whenever the SDK returns the local cached transaction list of whenever it asks for the transaction list through the Apto mobile API.
 
-## Contributing & Development
+## Contributions & Development
 
-We're looking forward to receive your feedback including new feature requests, bug fixes and documentation improvements. If you waht to help us, please take a look at the [issues](https://github.com/AptoPayments/apto-sdk-android/issues) section in the repository first; maybe someone else had the same idea and it's an ongoing or even better a finished task! If what you want to share with us is not in the issues section, please [create one](https://github.com/AptoPayments/apto-sdk-android/issues/new) and we'll get back to you as soon as possible.
+We look forward to receiving your feedback, including new feature requests, bug fixes and documentation improvements.
 
-And, if you want to help us improve our SDK by adding a new feature or fixing a bug, we'll be glad to see your [pull requests!](https://github.com/AptoPayments/apto-sdk-android/compare)
+If you would like to help: 
+
+1. Refer to the [issues](https://github.com/AptoPayments/apto-sdk-android/issues) section of the repository first, to ensure your feature or bug doesn't already exist (The request may be ongoing, or newly finished task).
+2. If your request is not in the [issues](https://github.com/AptoPayments/apto-sdk-android/issues) section, please feel free to [create one](https://github.com/AptoPayments/apto-sdk-android/issues/new). We'll get back to you as soon as possible.
+
+If you want to help improve the SDK by adding a new feature or bug fix, we'd be happy to receive [pull requests](https://github.com/AptoPayments/apto-sdk-android/compare)!
