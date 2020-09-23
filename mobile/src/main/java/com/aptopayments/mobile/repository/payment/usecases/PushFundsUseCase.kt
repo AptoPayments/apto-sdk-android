@@ -12,7 +12,7 @@ internal class PushFundsUseCase constructor(
     networkHandler: NetworkHandler
 ) : UseCase<Payment, Params>(networkHandler) {
     override fun run(params: Params) =
-        repository.pushFunds(accountId = params.balanceId, paymentSourceId = params.paymentSourceId, amount = params.amount)
+        repository.pushFunds(balanceId = params.balanceId, paymentSourceId = params.paymentSourceId, amount = params.amount)
 
     data class Params(
         val balanceId: String,

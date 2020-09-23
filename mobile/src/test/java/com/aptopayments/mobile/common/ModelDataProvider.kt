@@ -7,7 +7,12 @@ import com.aptopayments.mobile.data.card.Card.CardNetwork.VISA
 import com.aptopayments.mobile.data.card.Card.CardState.ACTIVE
 import com.aptopayments.mobile.data.card.Card.OrderedStatus.RECEIVED
 import com.aptopayments.mobile.data.card.KycStatus.PASSED
+import com.aptopayments.mobile.data.statements.MonthlyStatement
+import com.aptopayments.mobile.data.statements.MonthlyStatementPeriod
+import com.aptopayments.mobile.data.statements.StatementMonth
 import com.aptopayments.mobile.repository.card.remote.entities.*
+import org.threeten.bp.ZoneOffset
+import org.threeten.bp.ZonedDateTime
 import java.net.URL
 
 internal object ModelDataProvider {
@@ -124,13 +129,27 @@ internal object ModelDataProvider {
     }
 
     fun fundingLimits(): FundingLimits {
-        val singleLimit = FundingSingleLimit(money(), money())
-        return FundingLimits(singleLimit, singleLimit)
+        val singleLimit = FundingSingleLimit(money())
+        return FundingLimits(singleLimit)
     }
 
     fun fundingLimitsEntity(): FundingLimitsEntity {
-        val singleLimit = FundingSingleLimitEntity(moneyEntity(), moneyEntity())
-        return FundingLimitsEntity(singleLimit, singleLimit)
+        val singleLimit = FundingSingleLimitEntity(moneyEntity())
+        return FundingLimitsEntity(singleLimit)
+    }
+
+    fun monthlyStatement(): MonthlyStatement {
+        return MonthlyStatement(
+            "monthly_statement_12345",
+            12,
+            2019,
+            "https://www.aptopayments.com/statement.pdf",
+            ZonedDateTime.of(2020, 9, 9, 10, 0, 30, 0, ZoneOffset.UTC)
+        )
+    }
+
+    fun monthlyStatementsPeriod(): MonthlyStatementPeriod {
+        return MonthlyStatementPeriod(StatementMonth(1, 2019), StatementMonth(12, 2019))
     }
 
     private fun selectBalanceStore(): SelectBalanceStore {

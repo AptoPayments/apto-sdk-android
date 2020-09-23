@@ -7,7 +7,7 @@ import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.platform.BaseNoNetworkRepository
 
 internal interface PaymentRepository : BaseNoNetworkRepository {
-    fun pushFunds(accountId: String, paymentSourceId: String, amount: Money): Either<Failure, Payment>
+    fun pushFunds(balanceId: String, paymentSourceId: String, amount: Money): Either<Failure, Payment>
 }
 
 internal class PaymentRepositoryImpl(private val service: PaymentService) : PaymentRepository {

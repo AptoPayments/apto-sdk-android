@@ -5,13 +5,13 @@ import com.aptopayments.mobile.functional.Either.Right
 import com.aptopayments.mobile.network.ConnectivityCheckerAlwaysConnected
 import com.aptopayments.mobile.network.NetworkHandler
 import kotlinx.coroutines.runBlocking
-import org.amshove.kluent.shouldEqual
 import org.junit.Test
+import kotlin.test.assertEquals
+
+private const val TYPE_TEST = "Test"
+private const val TYPE_PARAM = "ParamTest"
 
 class UseCaseTest : UnitTest() {
-
-    private val TYPE_TEST = "Test"
-    private val TYPE_PARAM = "ParamTest"
 
     private val useCase = MyUseCase()
 
@@ -20,7 +20,7 @@ class UseCaseTest : UnitTest() {
         val params = MyParams(TYPE_PARAM)
         val result = runBlocking { useCase.run(params) }
 
-        result shouldEqual Right(MyType(TYPE_TEST))
+        assertEquals(Right(MyType(TYPE_TEST)), result)
     }
 
     data class MyType(val name: String)

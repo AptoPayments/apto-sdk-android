@@ -62,5 +62,6 @@ internal class RequestExecutor(
         }
     }
 
+    @Suppress("UNNECESSARY_SAFE_CALL")
     private fun getLog(exception: Throwable): String? = Log.getStackTraceString(exception)?.replace("\\n\\t", " ")
 }

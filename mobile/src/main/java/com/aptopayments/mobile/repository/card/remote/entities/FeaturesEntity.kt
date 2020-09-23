@@ -1,8 +1,6 @@
 package com.aptopayments.mobile.repository.card.remote.entities
 
 import com.aptopayments.mobile.data.card.*
-import com.aptopayments.mobile.network.ApiKeyProvider
-import com.aptopayments.mobile.platform.AptoSdkEnvironment
 import com.google.gson.annotations.SerializedName
 
 internal data class FeaturesEntity(
@@ -32,29 +30,8 @@ internal data class FeaturesEntity(
         selectBalanceStore = selectBalanceStoreEntity?.toSelectBalanceStore(),
         activation = activationEntity?.toActivation(),
         ivrSupport = ivrSupportEntity?.toIvr(),
-        funding = getFundingSource() // fundingFeatureEntity?.toFundingFeature() TODO - REPLACE
+        funding = fundingFeatureEntity?.toFundingFeature()
     )
-
-    private fun getFundingSource(): FundingFeature? {
-        // TODO REMOVE when API is defined
-        val money = Money("USD", 2000.0)
-        val limit = FundingSingleLimit(money, money)
-
-        return FundingFeature(
-            true,
-            getCardNetworkList(),
-            FundingLimits(limit, limit),
-            "Soft descriptor"
-        )
-    }
-
-    private fun getCardNetworkList(): List<Card.CardNetwork> {
-        val list = mutableListOf(Card.CardNetwork.VISA, Card.CardNetwork.MASTERCARD)
-        if (ApiKeyProvider.environment != AptoSdkEnvironment.PRD) {
-            list.add(Card.CardNetwork.TEST)
-        }
-        return list
-    }
 
     companion object {
         fun from(features: Features?) = features?.let {

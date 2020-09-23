@@ -9,14 +9,11 @@ class FundingSingleLimitEntityTest {
     @Test
     fun `toFundingSingleLimit converts correctly`() {
         val maxLimit = 10.0
-        val remainingLimit = 9.0
-        val sut = FundingSingleLimitEntity(MoneyEntity(CURRENCY, maxLimit), MoneyEntity(CURRENCY, remainingLimit))
+        val sut = FundingSingleLimitEntity(MoneyEntity(CURRENCY, maxLimit))
 
         val transformed = sut.toFundingSingleLimit()
 
         assertEquals(CURRENCY, transformed.max.currency)
         assertEquals(maxLimit, transformed.max.amount)
-        assertEquals(CURRENCY, transformed.remaining.currency)
-        assertEquals(remainingLimit, transformed.remaining.amount)
     }
 }

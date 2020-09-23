@@ -5,7 +5,8 @@ import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.exception.Failure.NetworkConnection
 import com.aptopayments.mobile.exception.Failure.ServerError
-import com.aptopayments.mobile.functional.Either
+import com.aptopayments.mobile.extension.shouldBeLeftAndInstanceOf
+import com.aptopayments.mobile.extension.shouldBeRightAndInstanceOf
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.platform.ErrorHandler
 import com.aptopayments.mobile.platform.RequestExecutor
@@ -19,8 +20,6 @@ import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyZeroInteractions
-import org.amshove.kluent.shouldBeInstanceOf
-import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.startKoin
@@ -92,27 +91,7 @@ class CardRepositoryTest : UnitTest() {
         )
 
         // Then
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
-        verifyZeroInteractions(service)
-    }
-
-    @Test
-    fun `issue card return network failure when network state is unknown`() {
-        // Given
-        given { networkHandler.isConnected }.willReturn(false)
-
-        // When
-        val result = sut.issueCard(
-            cardProductId = "cardProductId",
-            credential = null, additionalFields = null, initialFundingSourceId = null
-        )
-
-        // Then
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
+        result.shouldBeLeftAndInstanceOf(NetworkConnection::class.java)
         verifyZeroInteractions(service)
     }
 
@@ -190,9 +169,7 @@ class CardRepositoryTest : UnitTest() {
         )
 
         // Then
-        result shouldBeInstanceOf Either::class.java
-        result.isRight shouldEqual true
-        result.either({}, { card -> card shouldBeInstanceOf Card::class.java })
+        result.shouldBeRightAndInstanceOf(Card::class.java)
     }
 
     @Test
@@ -207,9 +184,7 @@ class CardRepositoryTest : UnitTest() {
         )
 
         // Then
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf ServerError::class.java }, {})
+        result.shouldBeLeftAndInstanceOf(ServerError::class.java)
     }
 
     // Helpers

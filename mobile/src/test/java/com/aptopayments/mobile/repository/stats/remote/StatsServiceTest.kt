@@ -1,15 +1,15 @@
 package com.aptopayments.mobile.repository.stats.remote
 
-import com.aptopayments.mobile.ServiceTest
+import com.aptopayments.mobile.NetworkServiceTest
 import com.aptopayments.mobile.data.TestDataProvider
+import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.repository.stats.remote.entities.MonthlySpendingEntity
-import org.junit.Assert.*
 import org.junit.Test
 import org.koin.core.inject
-import java.net.HttpURLConnection.HTTP_OK
 import java.time.LocalDate
+import kotlin.test.assertTrue
 
-internal class StatsServiceTest : ServiceTest() {
+internal class StatsServiceTest : NetworkServiceTest() {
 
     private val sut: StatsService by inject()
     private val cardId = TestDataProvider.provideCardId()
@@ -20,22 +20,20 @@ internal class StatsServiceTest : ServiceTest() {
     fun `when startCardApplication then request is made to the correct url`() {
         enqueueFile("userAccountsStatsMonthlySpending200.json")
 
-        val response = executeGetMonthlySpending()
+        val response = sut.getMonthlySpending(cardId, month, year)
 
         assertRequestSentTo("v1/user/accounts/$cardId/stats/monthly_spending?month=$month&year=$year", "GET")
-        assertCode(response, HTTP_OK)
+        assertTrue(response.isRight)
     }
 
     @Test
-    fun `when issuecard then response parses correctly`() {
+    fun `when startCardApplication then response parses correctly`() {
         val fileContent = readFile("userAccountsStatsMonthlySpending200.json")
         val cardEntity = parseEntity(fileContent, MonthlySpendingEntity::class.java)
         enqueueContent(fileContent)
 
-        val response = executeGetMonthlySpending()
+        val response = sut.getMonthlySpending(cardId, month, year)
 
-        assertEquals(cardEntity, response.body()!!)
+        response.shouldBeRightAndEqualTo(cardEntity.toMonthlySpending())
     }
-
-    private fun executeGetMonthlySpending() = sut.getMonthlySpending(cardId, month, year).execute()
 }

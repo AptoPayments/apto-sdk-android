@@ -6,6 +6,7 @@ import com.aptopayments.mobile.di.repositoryModule
 import com.aptopayments.mobile.network.*
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.UserSessionRepositoryDouble
+import com.aptopayments.mobile.utils.FileReader
 import com.nhaarman.mockitokotlin2.whenever
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -13,12 +14,11 @@ import org.junit.After
 import org.junit.Before
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import org.mockito.Mock
 import retrofit2.Response
-import java.io.BufferedReader
 import java.io.IOException
-import java.io.InputStreamReader
 import java.net.HttpURLConnection.HTTP_OK
 import java.util.concurrent.TimeUnit
 import kotlin.test.assertEquals
@@ -28,6 +28,9 @@ internal abstract class ServiceTest : UnitTest() {
 
     @Mock
     lateinit var apiKeyProvider: ApiKeyProvider
+
+    @Mock
+    lateinit var networkHandler: NetworkHandler
 
     private var server: MockWebServer = MockWebServer()
     protected val gson = GsonProvider.provide()
@@ -42,6 +45,7 @@ internal abstract class ServiceTest : UnitTest() {
     @After
     fun tearDown() {
         server.shutdown()
+        stopKoin()
     }
 
     protected fun enqueueContent(content: String, code: Int = HTTP_OK) {
@@ -77,10 +81,11 @@ internal abstract class ServiceTest : UnitTest() {
             single<UserSessionRepository>(override = true) { UserSessionRepositoryDouble() }
             factory<OkHttpClientProvider>(override = true) { SimpleOkHttpClientProvider(apiKeyProvider, get()) }
             single(override = true) { ApiCatalog(get(), apiKeyProvider) }
+            single(override = true) { networkHandler }
         })
     }
 
-    private fun configureEnvironment() {
+    protected open fun configureEnvironment() {
         whenever(apiKeyProvider.apiKey).thenReturn(TestDataProvider.provideAPiKey())
         whenever(apiKeyProvider.getEnvironmentUrl()).thenReturn(getServerUrl())
     }
@@ -91,24 +96,6 @@ internal abstract class ServiceTest : UnitTest() {
 
     @Throws(IOException::class)
     protected fun readFile(jsonFileName: String): String {
-        val inputStream = this::class.java.getResourceAsStream("/api-calls/$jsonFileName")
-            ?: throw NullPointerException("Have you added the local resource correctly?, Hint: name it as: $jsonFileName")
-        val stringBuilder = StringBuilder()
-        var inputStreamReader: InputStreamReader? = null
-        try {
-            inputStreamReader = InputStreamReader(inputStream)
-            val bufferedReader = BufferedReader(inputStreamReader)
-            var character: Int = bufferedReader.read()
-            while (character != -1) {
-                stringBuilder.append(character.toChar())
-                character = bufferedReader.read()
-            }
-        } catch (exception: IOException) {
-            exception.printStackTrace()
-        } finally {
-            inputStream.close()
-            inputStreamReader?.close()
-        }
-        return stringBuilder.toString()
+        return FileReader().readFile(jsonFileName, "api-calls")
     }
 }

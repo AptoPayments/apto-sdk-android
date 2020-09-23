@@ -21,12 +21,14 @@ internal data class FundingFeatureEntity(
 ) {
     fun toFundingFeature(): FundingFeature {
         return FundingFeature(
-            isEnabled = FeatureStatus.ENABLED == FeatureStatus.fromString(status),
+            isEnabled = calculateEnabled(),
             cardNetworks = parseCardNetworksList(),
             limits = limits.toFundingLimits(),
             softDescriptor = softDescriptor ?: ""
         )
     }
+
+    private fun calculateEnabled() = FeatureStatus.ENABLED == FeatureStatus.fromString(status)
 
     private fun parseCardNetworksList(): List<Card.CardNetwork> {
         return cardNetworks.map { Card.CardNetwork.fromString(it) }.filter { elem -> elem != Card.CardNetwork.UNKNOWN }

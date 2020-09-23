@@ -8,20 +8,21 @@ import com.google.gson.JsonElement
 import com.google.gson.JsonParser
 import okhttp3.ResponseBody
 import retrofit2.Response
+import java.lang.Exception
 
 internal class ErrorHandler(private val userSessionRepository: UserSessionRepository) {
 
     fun <T> handle(response: Response<T>): Failure {
-        return when (response.code()) {
-            400 -> parseErrorBody(response.errorBody())
-            401 -> userSessionExpired()
-            412 -> Failure.DeprecatedSDK
-            503 -> Failure.MaintenanceMode
-            else -> {
-                GsonProvider.provide().toJsonTree(response.body())?.asJsonObject?.let {
-                    getServerError(it)
-                } ?: Failure.ServerError(null)
+        return try {
+            when (response.code()) {
+                400 -> parseErrorBody(response.errorBody())
+                401 -> userSessionExpired()
+                412 -> Failure.DeprecatedSDK
+                503 -> Failure.MaintenanceMode
+                else -> parseErrorBody(response.errorBody())
             }
+        } catch (e: Exception) {
+            genericServerError()
         }
     }
 
@@ -33,8 +34,10 @@ internal class ErrorHandler(private val userSessionRepository: UserSessionReposi
     private fun parseErrorBody(errorBody: ResponseBody?): Failure.ServerError {
         return errorBody?.let {
             getServerError(JsonParser().parse(errorBody.string()))
-        } ?: Failure.ServerError(null)
+        } ?: genericServerError()
     }
+
+    private fun genericServerError() = Failure.ServerError(null)
 
     private fun getServerError(jsonElement: JsonElement): Failure.ServerError {
         return Failure.ServerError(parseServerErrorEntity(jsonElement).code)

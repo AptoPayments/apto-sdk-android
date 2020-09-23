@@ -1,13 +1,16 @@
 package com.aptopayments.mobile.data.card
 
 import com.aptopayments.mobile.UnitTest
-import org.amshove.kluent.`should equal`
 import org.junit.Before
 import org.junit.Test
 import java.util.Locale
 import kotlin.test.AfterTest
+import kotlin.test.assertEquals
+
+private const val VALUE_0 = "$0.00"
 
 class MoneyTest : UnitTest() {
+
     private lateinit var locale: Locale
 
     @Before
@@ -27,10 +30,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("USD", amount = 0.toDouble())
 
         // When
-        val string = sut.toString()
+        val value = sut.toString()
 
         // Then
-        string `should equal` "$0.00"
+        assertEquals(VALUE_0, value)
     }
 
     @Test
@@ -39,10 +42,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("USD", amount = -(0.toDouble()))
 
         // When
-        val string = sut.toString()
+        val value = sut.toString()
 
         // Then
-        string `should equal` "$0.00"
+        assertEquals(VALUE_0, value)
     }
 
     @Test
@@ -51,10 +54,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("USD", 12.3012)
 
         // When
-        val string = sut.toString()
+        val value = sut.toString()
 
         // Then
-        string `should equal` "$12.30"
+        assertEquals("$12.30", value)
     }
 
     @Test
@@ -63,10 +66,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("USD", -12.3012)
 
         // When
-        val string = sut.toString()
+        val value = sut.toString()
 
         // Then
-        string `should equal` "-$12.30"
+        assertEquals("-$12.30", value)
     }
 
     @Test
@@ -75,10 +78,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("USD", 0.003492)
 
         // When
-        val string = sut.toString()
+        val value = sut.toString()
 
         // Then
-        string `should equal` "$0.0035"
+        assertEquals("$0.0035", value)
     }
 
     @Test
@@ -87,10 +90,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("USD", -0.003492)
 
         // When
-        val string = sut.toString()
+        val value = sut.toString()
 
         // Then
-        string `should equal` "-$0.0035"
+        assertEquals("-$0.0035", value)
     }
 
     @Test
@@ -99,10 +102,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("USD", -12.3012)
 
         // When
-        val string = sut.toAbsString()
+        val value = sut.toAbsString()
 
         // Then
-        string `should equal` "$12.30"
+        assertEquals("$12.30", value)
     }
 
     @Test
@@ -111,10 +114,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("USD", -0.003492)
 
         // When
-        val string = sut.toAbsString()
+        val value = sut.toAbsString()
 
         // Then
-        string `should equal` "$0.0035"
+        assertEquals("$0.0035", value)
     }
 
     @Test
@@ -123,10 +126,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("BTC", 12.3012)
 
         // When
-        val string = sut.toString()
+        val value = sut.toString()
 
         // Then
-        string `should equal` "BTC12.30"
+        assertEquals("BTC12.30", value)
     }
 
     @Test
@@ -135,10 +138,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("BTC", -12.3012)
 
         // When
-        val string = sut.toAbsString()
+        val value = sut.toAbsString()
 
         // Then
-        string `should equal` "BTC12.30"
+        assertEquals("BTC12.30", value)
     }
 
     @Test
@@ -147,10 +150,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("MXN", 12.3012)
 
         // When
-        val string = sut.toString()
+        val value = sut.toString()
 
         // Then
-        string `should equal` "MXN12.30"
+        assertEquals("MXN12.30", value)
     }
 
     @Test
@@ -159,10 +162,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("MXN", -12.3012)
 
         // When
-        val string = sut.toAbsString()
+        val value = sut.toAbsString()
 
         // Then
-        string `should equal` "MXN12.30"
+        assertEquals("MXN12.30", value)
     }
 
     @Test
@@ -172,10 +175,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("USD", amount = 0.toDouble())
 
         // When
-        val string = sut.toString()
+        val value = sut.toString()
 
         // Then
-        string `should equal` "USD0,00"
+        assertEquals("USD0,00", value)
     }
 
     @Test
@@ -184,10 +187,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("USD", null)
 
         // When
-        val string = sut.toString()
+        val value = sut.toString()
 
         // Then
-        string `should equal` ""
+        assertEquals("", value)
     }
 
     @Test
@@ -196,10 +199,10 @@ class MoneyTest : UnitTest() {
         val sut = Money("USD", null)
 
         // When
-        val string = sut.toAbsString()
+        val value = sut.toAbsString()
 
         // Then
-        string `should equal` ""
+        assertEquals("", value)
     }
 
     @Test
@@ -211,6 +214,6 @@ class MoneyTest : UnitTest() {
         val currencySymbol = sut.currencySymbol()
 
         // Then
-        currencySymbol `should equal` ""
+        assertEquals("", currencySymbol)
     }
 }

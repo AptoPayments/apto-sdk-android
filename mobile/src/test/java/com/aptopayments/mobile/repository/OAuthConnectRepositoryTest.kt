@@ -7,8 +7,9 @@ import com.aptopayments.mobile.data.oauth.OAuthAttemptStatus
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdate
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdateResult
 import com.aptopayments.mobile.exception.Failure.NetworkConnection
+import com.aptopayments.mobile.extension.shouldBeLeftAndInstanceOf
 import com.aptopayments.mobile.functional.Either
-import com.aptopayments.mobile.functional.Either.Right
+import com.aptopayments.mobile.functional.right
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.platform.ErrorHandler
 import com.aptopayments.mobile.platform.RequestExecutor
@@ -20,8 +21,6 @@ import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyZeroInteractions
-import org.amshove.kluent.shouldBeInstanceOf
-import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.startKoin
@@ -29,6 +28,7 @@ import org.koin.dsl.module
 import org.mockito.Mock
 import retrofit2.Call
 import retrofit2.Response
+import kotlin.test.assertEquals
 
 class OAuthConnectRepositoryTest : UnitTest() {
 
@@ -81,17 +81,7 @@ class OAuthConnectRepositoryTest : UnitTest() {
 
         val oauthAttempt = sut.startOAuthAuthentication(allowedBalanceType)
 
-        oauthAttempt shouldEqual Right(
-            OAuthAttempt(
-                id = "",
-                status = OAuthAttemptStatus.PENDING,
-                url = null,
-                userData = null,
-                tokenId = "",
-                error = null,
-                errorMessage = null
-            )
-        )
+        assertEquals(getPendingOauthAttempt(), oauthAttempt)
 
         verify(service).startOAuthAuthentication(allowedBalanceType = allowedBalanceType)
     }
@@ -103,22 +93,7 @@ class OAuthConnectRepositoryTest : UnitTest() {
 
         val result = sut.startOAuthAuthentication(allowedBalanceType)
 
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
-        verifyZeroInteractions(service)
-    }
-
-    @Test
-    fun `OAuth connect service should return network failure when undefined connection`() {
-        val allowedBalanceType = TestDataProvider.provideAllowedBalanceType()
-        given { networkHandler.isConnected }.willReturn(false)
-
-        val result = sut.startOAuthAuthentication(allowedBalanceType)
-
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
+        result.shouldBeLeftAndInstanceOf(NetworkConnection::class.java)
         verifyZeroInteractions(service)
     }
 
@@ -145,12 +120,7 @@ class OAuthConnectRepositoryTest : UnitTest() {
             tokenId = oAuthAttempt.tokenId
         )
 
-        oAuthUserDataUpdate shouldEqual Right(
-            OAuthUserDataUpdate(
-                result = OAuthUserDataUpdateResult.INVALID,
-                userData = null
-            )
-        )
+        assertEquals(getInvalidOauthUserDataUpdate(), oAuthUserDataUpdate)
 
         verify(service).saveOAuthUserData(
             allowedBalanceType = allowedBalanceType,
@@ -171,9 +141,26 @@ class OAuthConnectRepositoryTest : UnitTest() {
             tokenId = oAuthAttempt.tokenId
         )
 
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
+        result.shouldBeLeftAndInstanceOf(NetworkConnection::class.java)
         verifyZeroInteractions(service)
+    }
+
+    private fun getPendingOauthAttempt(): Either<Nothing, OAuthAttempt> {
+        return OAuthAttempt(
+            id = "",
+            status = OAuthAttemptStatus.PENDING,
+            url = null,
+            userData = null,
+            tokenId = "",
+            error = null,
+            errorMessage = null
+        ).right()
+    }
+
+    private fun getInvalidOauthUserDataUpdate(): Either<Nothing, OAuthUserDataUpdate> {
+        return OAuthUserDataUpdate(
+            result = OAuthUserDataUpdateResult.INVALID,
+            userData = null
+        ).right()
     }
 }

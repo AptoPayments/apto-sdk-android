@@ -3,8 +3,8 @@ package com.aptopayments.mobile.repository
 import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.exception.Failure.NetworkConnection
-import com.aptopayments.mobile.functional.Either
-import com.aptopayments.mobile.functional.Either.Right
+import com.aptopayments.mobile.extension.shouldBeLeftAndInstanceOf
+import com.aptopayments.mobile.functional.right
 import com.aptopayments.mobile.network.ListEntity
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.platform.ErrorHandler
@@ -18,8 +18,6 @@ import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyZeroInteractions
-import org.amshove.kluent.shouldBeInstanceOf
-import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.startKoin
@@ -27,6 +25,7 @@ import org.koin.dsl.module
 import org.mockito.Mock
 import retrofit2.Call
 import retrofit2.Response
+import kotlin.test.assertEquals
 
 class ConfigRepositoryTest : UnitTest() {
 
@@ -86,7 +85,7 @@ class ConfigRepositoryTest : UnitTest() {
 
         val contextConfig = sut.getContextConfiguration()
 
-        contextConfig shouldEqual Right(testContextConfiguration)
+        assertEquals(testContextConfiguration.right(), contextConfig)
 
         verify(service).getContextConfiguration()
     }
@@ -97,21 +96,7 @@ class ConfigRepositoryTest : UnitTest() {
 
         val result = sut.getContextConfiguration()
 
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
-        verifyZeroInteractions(service)
-    }
-
-    @Test
-    fun `Get context configuration should return network failure when undefined connection`() {
-        given { networkHandler.isConnected }.willReturn(false)
-
-        val result = sut.getContextConfiguration()
-
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
+        result.shouldBeLeftAndInstanceOf(NetworkConnection::class.java)
         verifyZeroInteractions(service)
     }
 
@@ -133,21 +118,7 @@ class ConfigRepositoryTest : UnitTest() {
 
         val result = sut.getCardProduct(cardProductId = "")
 
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
-        verifyZeroInteractions(service)
-    }
-
-    @Test
-    fun `Get card configuration should return network failure when undefined connection`() {
-        given { networkHandler.isConnected }.willReturn(false)
-
-        val result = sut.getCardProduct(cardProductId = "")
-
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
+        result.shouldBeLeftAndInstanceOf(NetworkConnection::class.java)
         verifyZeroInteractions(service)
     }
 
@@ -169,21 +140,7 @@ class ConfigRepositoryTest : UnitTest() {
 
         val result = sut.getCardProducts()
 
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
-        verifyZeroInteractions(service)
-    }
-
-    @Test
-    fun `Get card products should return network failure when undefined connection`() {
-        given { networkHandler.isConnected }.willReturn(false)
-
-        val result = sut.getCardProducts()
-
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
+        result.shouldBeLeftAndInstanceOf(NetworkConnection::class.java)
         verifyZeroInteractions(service)
     }
 }

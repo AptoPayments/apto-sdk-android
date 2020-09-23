@@ -54,6 +54,18 @@ private const val STATEMENT_URL_NOT_GENERATED2 = 200045
 private const val STATEMENT_GENERATING_ERROR = 200051
 private const val UNDEFINED_MESSAGE = "error.transport.undefined"
 
+private const val INVALID_PAYMENT_SOURCE_CARD_TYPE = 200058
+private const val INVALID_PAYMENT_SOURCE_CARD_NUMBER = 200059
+private const val INVALID_PAYMENT_SOURCE_CARD_CVV = 200060
+private const val INVALID_PAYMENT_SOURCE_CARD_EXPIRATION = 200061
+private const val INVALID_PAYMENT_SOURCE_CARD_POSTAL_CODE = 200062
+private const val INVALID_PAYMENT_SOURCE_CARD_ADDRESS = 200063
+private const val INVALID_PAYMENT_SOURCE_CARD_ENTITY = 200064
+private const val INVALID_PAYMENT_SOURCE_AMOUNT = 200065
+private const val INVALID_PAYMENT_SOURCE_CURRENCY = 200066
+private const val PAYMENT_SOURCE_ADD_LIMIT = 200067
+private const val INVALID_PAYMENT_SOURCE_CARD_NETWORK = 200068
+
 /**
  * Base Class for handling errors/failures/exceptions.
  * Every feature specific failure should extend [FeatureFailure] class.
@@ -61,7 +73,7 @@ private const val UNDEFINED_MESSAGE = "error.transport.undefined"
 sealed class Failure {
     fun errorMessage(): String = getErrorKey().localized()
 
-    protected open fun getErrorKey() = ""
+    open fun getErrorKey() = ""
 
     object NetworkConnection : Failure() {
         override fun getErrorKey() = "no_network_description"
@@ -77,6 +89,8 @@ sealed class Failure {
     }
 
     class ServerError(val code: Int?, private val message: String? = null) : Failure() {
+
+        fun hasUndefinedKey() = getErrorKey() == UNDEFINED_MESSAGE
 
         fun isErrorBalanceValidationsEmailSendsDisabled() = code == BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED
 
@@ -129,6 +143,15 @@ sealed class Failure {
                 INVALID_CALLED_PHONE_NUMBER -> "auth.input_phone.error.invalid_called_phone_number"
                 STATEMENT_URL_NOT_GENERATED, STATEMENT_NOT_UPLOADED, STATEMENT_URL_NOT_GENERATED2,
                 STATEMENT_GENERATING_ERROR -> "monthly_statements.list.error_generating_report.message"
+                INVALID_PAYMENT_SOURCE_CARD_NETWORK, INVALID_PAYMENT_SOURCE_CARD_TYPE, INVALID_PAYMENT_SOURCE_CARD_ENTITY -> "load_funds_add_card_error_message"
+                INVALID_PAYMENT_SOURCE_CARD_NUMBER -> "load_funds_add_card_error_number"
+                INVALID_PAYMENT_SOURCE_CARD_CVV -> "load_funds_add_card_error_cvv"
+                INVALID_PAYMENT_SOURCE_CARD_EXPIRATION -> "load_funds_add_card_error_expiration"
+                INVALID_PAYMENT_SOURCE_CARD_POSTAL_CODE -> "load_funds_add_card_error_postal_code"
+                INVALID_PAYMENT_SOURCE_CARD_ADDRESS -> "load_funds_add_card_error_address"
+                INVALID_PAYMENT_SOURCE_AMOUNT -> "load_funds_add_money_error_limit"
+                INVALID_PAYMENT_SOURCE_CURRENCY -> "load_funds_add_money_error_message"
+                PAYMENT_SOURCE_ADD_LIMIT -> "load_funds_add_card_error_limit"
                 else -> UNDEFINED_MESSAGE
             }
         }

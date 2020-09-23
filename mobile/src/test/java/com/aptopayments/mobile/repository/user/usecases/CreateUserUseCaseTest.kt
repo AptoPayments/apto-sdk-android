@@ -5,6 +5,8 @@ import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.data.user.User
 import com.aptopayments.mobile.exception.Failure.ServerError
+import com.aptopayments.mobile.extension.shouldBeLeftAndInstanceOf
+import com.aptopayments.mobile.extension.shouldBeRightAndInstanceOf
 import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.user.UserRepository
@@ -12,8 +14,6 @@ import com.aptopayments.mobile.repository.user.usecases.CreateUserUseCase.Params
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.willReturn
-import org.amshove.kluent.shouldBeInstanceOf
-import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -24,6 +24,7 @@ class CreateUserUseCaseTest : UnitTest() {
     // Collaborators
     @Mock
     private lateinit var userRepository: UserRepository
+
     @Mock
     private lateinit var networkHandler: NetworkHandler
     private val params = Params(userData = DataPointList(), custodianUid = "custodianUid")
@@ -53,9 +54,7 @@ class CreateUserUseCaseTest : UnitTest() {
         val result = sut.run(params)
 
         // Then
-        result shouldBeInstanceOf Either.Right::class.java
-        result.isRight shouldEqual true
-        result.either({}, { user -> user shouldBeInstanceOf User::class.java })
+        result.shouldBeRightAndInstanceOf(User::class.java)
     }
 
     @Test
@@ -68,8 +67,6 @@ class CreateUserUseCaseTest : UnitTest() {
         val result = sut.run(params)
 
         // Then
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf ServerError::class.java }, {})
+        result.shouldBeLeftAndInstanceOf(ServerError::class.java)
     }
 }

@@ -4,7 +4,6 @@ import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.user.IdDocumentDataPoint
 import com.google.gson.Gson
-import org.amshove.kluent.shouldBeInstanceOf
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -23,7 +22,6 @@ class IdDocumentDataPointEntityTest : UnitTest() {
         val dataPoint = sut.toDataPoint()
 
         // Then
-        dataPoint shouldBeInstanceOf IdDocumentDataPoint::class.java
         assertEquals(true, dataPoint.verified)
         assertEquals(IdDocumentDataPoint.Type.SSN, dataPoint.type)
         assertEquals("000000000", dataPoint.value)

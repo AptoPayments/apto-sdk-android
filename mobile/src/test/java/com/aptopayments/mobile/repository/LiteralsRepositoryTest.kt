@@ -1,8 +1,12 @@
 package com.aptopayments.mobile.repository
 
 import com.aptopayments.mobile.UnitTest
-import org.amshove.kluent.`should equal`
 import org.junit.Test
+import kotlin.test.assertEquals
+
+private const val MY_VALUE = "my value"
+private const val STRING_KEY = "string_key"
+private const val STRING_DOT_KEY = "string.key"
 
 class LiteralsRepositoryTest : UnitTest() {
 
@@ -10,32 +14,32 @@ class LiteralsRepositoryTest : UnitTest() {
     fun `should return server value if it's defined`() {
 
         // Given
-        LiteralsRepository.appendServerLiterals(serverLiterals = hashMapOf("string_key" to "my value"))
+        LiteralsRepository.appendServerLiterals(serverLiterals = hashMapOf(STRING_KEY to MY_VALUE))
 
         // When
-        val value = LiteralsRepository.localized("string_key")
+        val value = LiteralsRepository.localized(STRING_KEY)
 
         // Then
-        value `should equal` "my value"
+        assertEquals(MY_VALUE, value)
     }
 
     @Test
     fun `stores keys replacing dots by underline characters`() {
 
         // When
-        LiteralsRepository.appendServerLiterals(serverLiterals = hashMapOf("string.key" to "my value"))
+        LiteralsRepository.appendServerLiterals(hashMapOf(STRING_DOT_KEY to MY_VALUE))
 
         // Then
-        LiteralsRepository.localized("string_key") `should equal` "my value"
+        assertEquals(MY_VALUE, LiteralsRepository.localized(STRING_KEY))
     }
 
     @Test
     fun `replaces dots by underline characters in the input key when localizing`() {
 
         // When
-        LiteralsRepository.appendServerLiterals(serverLiterals = hashMapOf("string_key" to "my value"))
+        LiteralsRepository.appendServerLiterals(hashMapOf(STRING_KEY to MY_VALUE))
 
         // Then
-        LiteralsRepository.localized("string.key") `should equal` "my value"
+        assertEquals(MY_VALUE, LiteralsRepository.localized(STRING_DOT_KEY))
     }
 }

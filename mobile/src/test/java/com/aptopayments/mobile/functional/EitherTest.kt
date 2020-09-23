@@ -3,9 +3,6 @@ package com.aptopayments.mobile.functional
 import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.functional.Either.Left
 import com.aptopayments.mobile.functional.Either.Right
-import org.amshove.kluent.shouldBe
-import org.amshove.kluent.shouldBeInstanceOf
-import org.amshove.kluent.shouldEqualTo
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -25,13 +22,11 @@ class EitherTest : UnitTest() {
     fun `Either Right should return correct type`() {
         val result = Right("ironman")
 
-        result shouldBeInstanceOf Either::class.java
-        result.isRight shouldBe true
-        result.isLeft shouldBe false
+        assertTrue(result.isRight)
+        assertFalse(result.isLeft)
         result.either({},
             { right ->
-                right shouldBeInstanceOf String::class.java
-                right shouldEqualTo "ironman"
+                assertEquals(right, "ironman")
             })
     }
 
@@ -39,14 +34,9 @@ class EitherTest : UnitTest() {
     fun `Either Left should return correct type`() {
         val result = Left("ironman")
 
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldBe true
-        result.isRight shouldBe false
-        result.either(
-            { left ->
-                left shouldBeInstanceOf String::class.java
-                left shouldEqualTo "ironman"
-            }, {})
+        assertFalse(result.isRight)
+        assertTrue(result.isLeft)
+        result.runIfLeft { assertEquals(it, "ironman") }
     }
 
     @Test

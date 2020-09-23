@@ -5,14 +5,14 @@ import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.data.oauth.OAuthCredential
 import com.aptopayments.mobile.exception.Failure.ServerError
+import com.aptopayments.mobile.extension.shouldBeLeftAndInstanceOf
+import com.aptopayments.mobile.extension.shouldBeRightAndInstanceOf
 import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.card.CardRepository
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.willReturn
-import org.amshove.kluent.shouldBeInstanceOf
-import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -23,6 +23,7 @@ class IssueCardUseCaseTest : UnitTest() {
     // Collaborators
     @Mock
     private lateinit var cardRepository: CardRepository
+
     @Mock
     private lateinit var networkHandler: NetworkHandler
     private val params = IssueCardUseCase.Params(
@@ -64,9 +65,7 @@ class IssueCardUseCaseTest : UnitTest() {
         val result = sut.run(params)
 
         // Then
-        result shouldBeInstanceOf Either::class.java
-        result.isRight shouldEqual true
-        result.either({}, { card -> card shouldBeInstanceOf Card::class.java })
+        result.shouldBeRightAndInstanceOf(Card::class.java)
     }
 
     @Test
@@ -83,8 +82,6 @@ class IssueCardUseCaseTest : UnitTest() {
         val result = sut.run(params)
 
         // Then
-        result shouldBeInstanceOf Either::class.java
-        result.isLeft shouldEqual true
-        result.either({ failure -> failure shouldBeInstanceOf ServerError::class.java }, {})
+        result.shouldBeLeftAndInstanceOf(ServerError::class.java)
     }
 }

@@ -62,12 +62,31 @@ sealed class Either<out L, out R> {
      * ```
      * Example:
      *
-     * Right(12).executeIfRight { doSomeAction() } // doSomeAction is executed
+     * Right(12).runIfRight { doSomeAction() } // doSomeAction is executed
      *
-     * Left(12).executeIfRight { doSomeAction() }      // doSomeAction is not executed
+     * Left(12).runIfRight { doSomeAction() }      // doSomeAction is not executed
      * ```
      */
-    fun runIfRight(predicate: (R) -> Unit): Unit = either({ }, { predicate(it) })
+    fun runIfRight(predicate: (R) -> Unit): Either<L, R> {
+        either({ }, { predicate(it) })
+        return this
+    }
+
+    /**
+     * Execute the predicate if [Left]
+     *
+     * ```
+     * Example:
+     *
+     * Right(12).runIfLeft { doSomeAction() } // doSomeAction is not executed
+     *
+     * Left(12).runIfLeft { doSomeAction() }      // doSomeAction is executed
+     * ```
+     */
+    fun runIfLeft(predicate: (L) -> Unit): Either<L, R> {
+        either({ predicate(it) }, { })
+        return this
+    }
 
     companion object {
         fun <L, R> cond(test: Boolean, ifTrue: () -> R, ifFalse: () -> L): Either<L, R> =

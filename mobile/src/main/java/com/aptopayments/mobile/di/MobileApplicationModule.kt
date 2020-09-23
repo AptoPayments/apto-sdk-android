@@ -28,8 +28,10 @@ import com.aptopayments.mobile.repository.paymentsources.PaymentSourcesRepositor
 import com.aptopayments.mobile.repository.paymentsources.PaymentSourcesRepositoryImpl
 import com.aptopayments.mobile.repository.paymentsources.PaymentSourcesService
 import com.aptopayments.mobile.repository.statements.MonthlyStatementRepository
+import com.aptopayments.mobile.repository.statements.MonthlyStatementRepositoryImpl
 import com.aptopayments.mobile.repository.statements.remote.MonthlyStatementService
 import com.aptopayments.mobile.repository.stats.StatsRepository
+import com.aptopayments.mobile.repository.stats.StatsRepositoryImpl
 import com.aptopayments.mobile.repository.stats.remote.StatsService
 import com.aptopayments.mobile.repository.transaction.TransactionRepository
 import com.aptopayments.mobile.repository.transaction.remote.TransactionService
@@ -102,11 +104,9 @@ internal val repositoryModule = module {
         )
     }
     single { StatsService(apiCatalog = get()) }
-    single<StatsRepository> { StatsRepository.Network(networkHandler = get(), service = get()) }
-    single { MonthlyStatementService(apiCatalog = get()) }
-    single<MonthlyStatementRepository> {
-        MonthlyStatementRepository.Network(networkHandler = get(), service = get())
-    }
+    single<StatsRepository> { StatsRepositoryImpl(get()) }
+    single { MonthlyStatementService(get()) }
+    single<MonthlyStatementRepository> { MonthlyStatementRepositoryImpl(get()) }
     single { VoipService(apiCatalog = get()) }
     single<VoipRepository> { VoipRepository.Network(networkHandler = get(), service = get()) }
     single { PaymentSourcesService(get()) }

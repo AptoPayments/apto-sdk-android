@@ -10,7 +10,7 @@ internal data class CardEntity(
     override val description: String? = null,
     @SerializedName("is_preferred")
     override val isPreferred: Boolean = false,
-    @SerializedName("network")
+    @SerializedName("card_network")
     private val network: String? = "",
     @SerializedName("last_four")
     private val lastFour: String = ""
