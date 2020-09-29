@@ -16,5 +16,9 @@ internal data class FundingLimitsEntity(
                 FundingSingleLimitEntity.from(limits.daily)
             )
         }
+
+        fun getDefaultLimit(): FundingLimitsEntity {
+            return FundingLimitsEntity(FundingSingleLimitEntity(MoneyEntity("USD", 0.0)))
+        }
     }
 }

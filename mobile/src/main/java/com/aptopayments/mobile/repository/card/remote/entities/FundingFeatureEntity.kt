@@ -3,6 +3,7 @@ package com.aptopayments.mobile.repository.card.remote.entities
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.data.card.FeatureStatus
 import com.aptopayments.mobile.data.card.FundingFeature
+import com.aptopayments.mobile.data.card.FundingLimits
 import com.google.gson.annotations.SerializedName
 
 internal data class FundingFeatureEntity(
@@ -10,10 +11,10 @@ internal data class FundingFeatureEntity(
     val status: String = "",
 
     @SerializedName("card_networks")
-    val cardNetworks: List<String> = listOf(),
+    val cardNetworks: List<String>? = listOf(),
 
     @SerializedName("limits")
-    val limits: FundingLimitsEntity,
+    val limits: FundingLimitsEntity?,
 
     @SerializedName("soft_descriptor")
     val softDescriptor: String?
@@ -23,7 +24,7 @@ internal data class FundingFeatureEntity(
         return FundingFeature(
             isEnabled = calculateEnabled(),
             cardNetworks = parseCardNetworksList(),
-            limits = limits.toFundingLimits(),
+            limits = parseFundingLimits(),
             softDescriptor = softDescriptor ?: ""
         )
     }
@@ -31,7 +32,13 @@ internal data class FundingFeatureEntity(
     private fun calculateEnabled() = FeatureStatus.ENABLED == FeatureStatus.fromString(status)
 
     private fun parseCardNetworksList(): List<Card.CardNetwork> {
-        return cardNetworks.map { Card.CardNetwork.fromString(it) }.filter { elem -> elem != Card.CardNetwork.UNKNOWN }
+        return cardNetworks?.map { Card.CardNetwork.fromString(it) }
+            ?.filter { elem -> elem != Card.CardNetwork.UNKNOWN }
+            ?: emptyList()
+    }
+
+    private fun parseFundingLimits(): FundingLimits {
+        return (limits ?: FundingLimitsEntity.getDefaultLimit()).toFundingLimits()
     }
 
     companion object {

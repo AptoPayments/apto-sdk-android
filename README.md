@@ -11,7 +11,7 @@ With this SDK, you can:
 * Obtain card activity information
 * Manage cards (set pin, lock / unlock, etc.)
 
-**Note:** The Apto Mobile API has a request rate limit of 1 request per 30 seconds.
+**Note:** The Apto Mobile API has a request rate limit of 1 request per 30 seconds for the verification and login endpoints.
 
 This document provides an overview of how to:
 
@@ -33,6 +33,8 @@ To contribute to the SDK development, see [Contributions & Development](#user-co
 ## Requirements
 
 * Android SDK, minimum API Level 23 (Android 6.0)
+* Kotlin, minimum version 1.4.0
+* Gradle, minimum version 4.0.1
 
 **Note:** The SDK is built using Kotlin, but is fully interoperable with Java. Code adjustments may be needed, if used within a Java project.
 
@@ -141,7 +143,7 @@ There are three main methods for the [User Verification Process](#user-content-u
 
 * [Start a New Verification](#user-content-start-a-new-verification) - Use this to initialize the verification process.
 * [Complete a Verification](#user-content-complete-a-verification) - Use this to finish the verification process.
-* [Restart a Verification](#user-content-restart-a-verification) - Use this to conduct subsequent verifications, should the initial verification fail.
+* [Restart a Verification](#user-content-restart-a-verification) - This only applies to phone / email verifications. Use this to conduct subsequent verifications, should the initial verification fail.
 
 ### User Verification Process
 
@@ -246,7 +248,7 @@ AptoPlatform.completeVerification(verification) {
 
 ### Restart a Verification
 
-If you previously initialized a verification, you can restart a verification by passing in the verification object to the `restartVerification` method:
+If you previously initialized a phone or email verification, you can restart a verification by passing in the verification object to the `restartVerification` method:
 
 ```kotlin
 AptoPlatform.restartVerification(verification) {
