@@ -13,11 +13,13 @@ internal class CreateUserUseCase constructor(
 
     data class Params(
         val userData: DataPointList,
-        val custodianUid: String? = null
+        val custodianUid: String? = null,
+        val metadata: String? = null
     )
 
     override fun run(params: Params) = userRepository.createUser(
         userData = params.userData,
-        custodianUid = params.custodianUid
+        custodianUid = params.custodianUid,
+        metadata = params.metadata
     )
 }

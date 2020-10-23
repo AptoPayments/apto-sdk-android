@@ -27,7 +27,7 @@ class CreateUserUseCaseTest : UnitTest() {
 
     @Mock
     private lateinit var networkHandler: NetworkHandler
-    private val params = Params(userData = DataPointList(), custodianUid = "custodianUid")
+    private val params = Params(userData = DataPointList(), custodianUid = "custodianUid", metadata = "metadata")
 
     @Before
     override fun setUp() {
@@ -41,13 +41,13 @@ class CreateUserUseCaseTest : UnitTest() {
         sut.run(params)
 
         // Then
-        verify(userRepository).createUser(params.userData, params.custodianUid)
+        verify(userRepository).createUser(params.userData, params.custodianUid, params.metadata)
     }
 
     @Test
     fun `repository return success sut return success`() {
         // Given
-        given { userRepository.createUser(params.userData, params.custodianUid) }
+        given { userRepository.createUser(params.userData, params.custodianUid, params.metadata) }
             .willReturn { Either.Right(TestDataProvider.provideUser(params.userData)) }
 
         // When
@@ -60,7 +60,7 @@ class CreateUserUseCaseTest : UnitTest() {
     @Test
     fun `repository return failure sut return failure`() {
         // Given
-        given { userRepository.createUser(params.userData, params.custodianUid) }
+        given { userRepository.createUser(params.userData, params.custodianUid, params.metadata) }
             .willReturn { Either.Left(ServerError(code = null)) }
 
         // When

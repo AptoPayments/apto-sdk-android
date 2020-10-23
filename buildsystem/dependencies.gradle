@@ -68,7 +68,7 @@ ext {
           androidSecurity:            "androidx.security:security-crypto:1.0.0-rc02",
           places:                     "com.google.android.libraries.places:places:2.3.0",
           inputmask:                  "com.redmadrobot:input-mask-android:6.0.0",
-          pci:                        "com.aptopayments.sdk:pci:1.1.0"
+          pci:                        "com.aptopayments.sdk:pci:2.0.0"
   ]
 
   unitTesting = [

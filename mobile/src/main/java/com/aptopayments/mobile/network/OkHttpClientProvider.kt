@@ -107,7 +107,7 @@ internal open class OkHttpClientProviderImpl(
     private fun addFixedHeaders(okHttpClientBuilder: OkHttpClient.Builder) {
         okHttpClientBuilder.addInterceptor { chain ->
             val newRequest = chain.request().newBuilder().apply {
-                addHeader(X_SDK_VERSION_HEADER, BuildConfig.VERSION_NAME)
+                addHeader(X_SDK_VERSION_HEADER, BuildConfig.LIBRARY_VERSION_NAME)
                 addHeader(X_DEVICE_HEADER, X_DEVICE_CONTENT)
                 addHeader(X_DEVICE_VERSION_HEADER, Build.MODEL ?: "Unknown model")
                 addHeader(X_CACHE_CONTROL_HEADER, X_CACHE_CONTROL_CONTENT)

@@ -3,7 +3,7 @@ package com.aptopayments.mobile.network
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-internal data class ListEntity<DataType>(
+internal data class ListEntity<T>(
 
     @SerializedName("type")
     var type: String? = null,
@@ -21,6 +21,6 @@ internal data class ListEntity<DataType>(
     var totalCount: Int = 0,
 
     @SerializedName("data")
-    var data: List<DataType>? = null
+    var data: List<T>? = null
 
 ) : Serializable

@@ -59,7 +59,7 @@ internal class FakeServiceTest : ServiceTest() {
         assertEquals("private, must-revalidate", request.headers[X_CACHE_CONTROL_HEADER])
         assertEquals("application/json", request.headers[X_CONTENT_TYPE_HEADER])
         assertNotNull(request.headers[X_DEVICE_VERSION_HEADER])
-        assertEquals(BuildConfig.VERSION_NAME, request.headers[X_SDK_VERSION_HEADER])
+        assertEquals(BuildConfig.LIBRARY_VERSION_NAME, request.headers[X_SDK_VERSION_HEADER])
     }
 
     @Test

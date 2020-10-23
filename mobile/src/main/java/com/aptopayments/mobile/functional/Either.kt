@@ -73,6 +73,24 @@ sealed class Either<out L, out R> {
     }
 
     /**
+     * Execute the predicate if [Right]
+     *
+     * ```
+     * Example:
+     *
+     * Right(12).runIfRightSuspending { doSomeAction() } // doSomeAction is executed
+     *
+     * Left(12).runIfRightSuspending { doSomeAction() }      // doSomeAction is not executed
+     * ```
+     */
+    suspend fun runIfRightSuspending(predicate: suspend (R) -> Unit): Either<L, R> {
+        if (this is Right) {
+            predicate(this.b)
+        }
+        return this
+    }
+
+    /**
      * Execute the predicate if [Left]
      *
      * ```

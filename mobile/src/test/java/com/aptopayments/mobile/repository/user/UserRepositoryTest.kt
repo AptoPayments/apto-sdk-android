@@ -51,15 +51,15 @@ class UserRepositoryTest : UnitTest() {
         // Given
         val userData = DataPointList()
         whenever(networkHandler.isConnected).thenReturn(true)
-        whenever(service.createUser(userData, null)).thenReturn(createUserRequest)
+        whenever(service.createUser(userData, null, null)).thenReturn(createUserRequest)
         whenever(createUserResponse.isSuccessful).thenReturn(true)
         whenever(createUserRequest.execute()).thenReturn(createUserResponse)
 
         // When
-        repositoryNetwork.createUser(userData, null)
+        repositoryNetwork.createUser(userData, null, null)
 
         // Then
-        verify(service).createUser(userData, null)
+        verify(service).createUser(userData, null, null)
     }
 
     @Test
@@ -68,14 +68,31 @@ class UserRepositoryTest : UnitTest() {
         val userData = DataPointList()
         val custodianUid = "custodian_uid"
         whenever(networkHandler.isConnected).thenReturn(true)
-        whenever(service.createUser(userData, custodianUid)).thenReturn(createUserRequest)
+        whenever(service.createUser(userData, custodianUid, null)).thenReturn(createUserRequest)
         whenever(createUserResponse.isSuccessful).thenReturn(true)
         whenever(createUserRequest.execute()).thenReturn(createUserResponse)
 
         // When
-        repositoryNetwork.createUser(userData, custodianUid)
+        repositoryNetwork.createUser(userData, custodianUid, null)
 
         // Then
-        verify(service).createUser(userData, custodianUid)
+        verify(service).createUser(userData, custodianUid, null)
+    }
+
+    @Test
+    fun `pass metadata uid to user creation service`() {
+        // Given
+        val userData = DataPointList()
+        val metadata = "metadata"
+        whenever(networkHandler.isConnected).thenReturn(true)
+        whenever(service.createUser(userData, null, metadata)).thenReturn(createUserRequest)
+        whenever(createUserResponse.isSuccessful).thenReturn(true)
+        whenever(createUserRequest.execute()).thenReturn(createUserResponse)
+
+        // When
+        repositoryNetwork.createUser(userData, null, metadata)
+
+        // Then
+        verify(service).createUser(userData, null, metadata)
     }
 }

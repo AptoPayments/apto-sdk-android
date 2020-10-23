@@ -19,22 +19,26 @@ import com.aptopayments.mobile.repository.user.usecases.UnregisterPushDevicePara
 
 internal interface UserRepository : BaseRepository {
 
-    fun createUser(userData: DataPointList, custodianUid: String?): Either<Failure, User>
+    fun createUser(userData: DataPointList, custodianUid: String?, metadata: String?): Either<Failure, User>
     fun updateUserData(userData: DataPointList): Either<Failure, User>
     fun loginUser(verificationList: List<Verification>): Either<Failure, User>
     fun registerPushDevice(pushToken: String): Either<Failure, Unit>
     fun unregisterPushDevice(params: UnregisterPushDeviceParams): Either<Failure, Unit>
     fun getNotificationPreferences(): Either<Failure, NotificationPreferences>
-    fun updateNotificationPreferences(notificationPreferencesList: List<NotificationGroup>): Either<Failure, Unit>
+    fun updateNotificationPreferences(notificationPreferencesList: List<NotificationGroup>): Either<Failure, NotificationPreferences>
 
     class Network constructor(
         private val networkHandler: NetworkHandler,
         private val service: UserService
     ) : BaseRepository.BaseRepositoryImpl(), UserRepository {
 
-        override fun createUser(userData: DataPointList, custodianUid: String?): Either<Failure, User> {
+        override fun createUser(
+            userData: DataPointList,
+            custodianUid: String?,
+            metadata: String?
+        ): Either<Failure, User> {
             return when (networkHandler.isConnected) {
-                true -> request(service.createUser(userData, custodianUid), { it.toUser() }, UserEntity())
+                true -> request(service.createUser(userData, custodianUid, metadata), { it.toUser() }, UserEntity())
                 false -> Either.Left(Failure.NetworkConnection)
             }
         }
@@ -86,13 +90,13 @@ internal interface UserRepository : BaseRepository {
             }
         }
 
-        override fun updateNotificationPreferences(notificationPreferencesList: List<NotificationGroup>): Either<Failure, Unit> {
+        override fun updateNotificationPreferences(notificationPreferencesList: List<NotificationGroup>): Either<Failure, NotificationPreferences> {
             return when (networkHandler.isConnected) {
                 true -> request(
                     service.updateNotificationPreferences(
                         NotificationPreferencesRequest.from(notificationPreferencesList)
                     ),
-                    { }, Unit
+                    { it.toNotificationPreferences() }, NotificationPreferencesEntity()
                 )
                 false -> Either.Left(Failure.NetworkConnection)
             }

@@ -16,7 +16,7 @@ internal class CardService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
     fun getCardDetails(cardId: String) = vaultCardApi.getCardDetails(accountID = cardId, showDetails = true)
 
-    fun getCards() = cardApi.getCards()
+    fun getCards(startingAfter: String?, endingBefore: String?, limit: Int?) = cardApi.getCards(startingAfter, endingBefore, limit)
 
     fun unlockCard(cardId: String) = cardApi.changeCardState(accountID = cardId, action = "enable")
 

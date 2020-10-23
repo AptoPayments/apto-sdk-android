@@ -5,10 +5,9 @@ import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.card.usecases.IssueCardUseCase
+import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.mobile.repository.user.usecases.CreateUserUseCase
-import com.nhaarman.mockitokotlin2.eq
-import com.nhaarman.mockitokotlin2.given
-import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.*
 import org.junit.After
 import org.junit.Test
 import org.koin.core.context.startKoin
@@ -138,5 +137,19 @@ class AptoPlatformTest : UnitTest(), KoinTest {
 
         // Then
         verify(userSessionRepository).userToken = userToken
+    }
+
+    @Test
+    fun `cardMonthlySpending calls correctly to UseCase`() {
+        val cardId = "cardId"
+        val month = 10
+        val year = 2020
+        val useCase = mock<GetMonthlySpendingUseCase>()
+        whenever(useCasesWrapper.getMonthlySpendingUseCase).thenReturn(useCase)
+        val params = GetMonthlySpendingUseCase.Params(cardId, "October", "2020")
+
+        sut.cardMonthlySpending(cardId, month, year) {}
+
+        verify(useCase).invoke(eq(params), TestDataProvider.anyObject())
     }
 }

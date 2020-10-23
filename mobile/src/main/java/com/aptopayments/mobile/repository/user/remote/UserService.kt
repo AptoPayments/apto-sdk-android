@@ -15,8 +15,8 @@ internal class UserService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
     private val userApi by lazy { apiCatalog.api().create(UserApi::class.java) }
 
-    fun createUser(userData: DataPointList, custodianUid: String?): Call<UserEntity> {
-        val request = CreateUserDataRequest.from(userData, custodianUid)
+    fun createUser(userData: DataPointList, custodianUid: String?, metadata: String?): Call<UserEntity> {
+        val request = CreateUserDataRequest.from(userData, custodianUid, metadata)
         return userApi.createUser(request = request)
     }
 
@@ -39,7 +39,7 @@ internal class UserService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
     fun getNotificationPreferences(): Call<NotificationPreferencesEntity> = userApi.getNotificationPreferences()
 
-    fun updateNotificationPreferences(notificationPreferencesRequest: NotificationPreferencesRequest): Call<Unit> =
+    fun updateNotificationPreferences(notificationPreferencesRequest: NotificationPreferencesRequest): Call<NotificationPreferencesEntity> =
         userApi.updateNotificationPreferences(request = notificationPreferencesRequest)
 
     private fun authorizationHeader(userToken: String) = "Bearer $userToken"

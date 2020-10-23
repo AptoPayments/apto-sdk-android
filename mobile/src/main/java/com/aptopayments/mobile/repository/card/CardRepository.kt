@@ -1,5 +1,7 @@
 package com.aptopayments.mobile.repository.card
 
+import com.aptopayments.mobile.data.ListPagination
+import com.aptopayments.mobile.data.PaginatedList
 import com.aptopayments.mobile.data.card.ActivatePhysicalCardResult
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.data.card.CardDetails
@@ -8,8 +10,8 @@ import com.aptopayments.mobile.data.fundingsources.Balance
 import com.aptopayments.mobile.data.oauth.OAuthCredential
 import com.aptopayments.mobile.exception.Failure
 import com.aptopayments.mobile.functional.Either
-import com.aptopayments.mobile.network.ListEntity
 import com.aptopayments.mobile.network.NetworkHandler
+import com.aptopayments.mobile.network.PaginatedListEntity
 import com.aptopayments.mobile.platform.BaseRepository
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.card.local.CardBalanceLocalDao
@@ -37,7 +39,7 @@ internal interface CardRepository : BaseRepository {
 
     fun getCard(params: GetCardParams): Either<Failure, Card>
     fun getCardDetails(cardId: String): Either<Failure, CardDetails>
-    fun getCards(): Either<Failure, List<Card>>
+    fun getCards(pagination: ListPagination? = null): Either<Failure, PaginatedList<Card>>
     fun unlockCard(cardId: String): Either<Failure, Card>
     fun lockCard(cardId: String): Either<Failure, Card>
     fun activatePhysicalCard(cardId: String, code: String): Either<Failure, ActivatePhysicalCardResult>
@@ -115,14 +117,16 @@ internal interface CardRepository : BaseRepository {
             }
         }
 
-        override fun getCards(): Either<Failure, List<Card>> {
+        override fun getCards(pagination: ListPagination?): Either<Failure, PaginatedList<Card>> {
             return when (networkHandler.isConnected) {
                 true -> {
-                    request(service.getCards(), { listEntity: ListEntity<CardEntity> ->
-                        listEntity.data?.map {
-                            it.toCard()
-                        } ?: emptyList()
-                    }, ListEntity())
+                    request(
+                        service.getCards(pagination?.startingAfter, pagination?.endingBefore, pagination?.limit),
+                        { listEntity: PaginatedListEntity<CardEntity> ->
+                            listEntity.toPaginatedList { it.toCard() }
+                        },
+                        PaginatedListEntity()
+                    )
                 }
                 false -> Either.Left(Failure.NetworkConnection)
             }

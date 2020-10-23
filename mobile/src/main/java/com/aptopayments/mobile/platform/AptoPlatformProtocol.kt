@@ -1,6 +1,8 @@
 package com.aptopayments.mobile.platform
 
 import com.aptopayments.mobile.data.AccessToken
+import com.aptopayments.mobile.data.ListPagination
+import com.aptopayments.mobile.data.PaginatedList
 import com.aptopayments.mobile.data.PhoneNumber
 import com.aptopayments.mobile.data.card.*
 import com.aptopayments.mobile.data.cardproduct.CardProduct
@@ -139,11 +141,17 @@ interface AptoPlatformProtocol {
      * }
      * ```
      *
-     * @param userData a DataPointList withe the User Datapoints
-     * @param custodianUid This parameter is optional
+     * @param userData a DataPointList withe the User Datapoints.
+     * @param custodianUid This parameter is optional.
+     * @param metadata Metadata that will be saved with the user (Optional Parameter).
      * @param callback Lambda called when method ended, Either<Failure, User>
      */
-    fun createUser(userData: DataPointList, custodianUid: String? = null, callback: (Either<Failure, User>) -> Unit)
+    fun createUser(
+        userData: DataPointList,
+        custodianUid: String? = null,
+        metadata: String? = null,
+        callback: (Either<Failure, User>) -> Unit
+    )
 
     /**
      * Once the primary and secondary credentials have been verified, you can use the following SDK method to obtain
@@ -294,10 +302,24 @@ interface AptoPlatformProtocol {
      * @param callback Lambda called when the api call has been made returning Either Failure if there was an error
      * or a List of cards it it was successful
      */
+    @Deprecated("To obtain the list of cards please use fetchCards with pagination")
     fun fetchCards(callback: (Either<Failure, List<Card>>) -> Unit)
 
+    /**
+     * This method is used to retrieve the list of the user cards
+     *
+     * @param pagination [ListPagination] Indicates the API how to filter the results (Optional Parameter).
+     * @param callback Lambda called when the api call has been made returning Either Failure if there was an error.
+     * or a List of cards it it was successful
+     */
+    fun fetchCards(pagination: ListPagination?, callback: (Either<Failure, PaginatedList<Card>>) -> Unit)
+
+    @Deprecated("To obtain card data, please use fetchCard")
     fun fetchFinancialAccount(accountId: String, forceRefresh: Boolean, callback: (Either<Failure, Card>) -> Unit)
 
+    fun fetchCard(cardId: String, forceRefresh: Boolean, callback: (Either<Failure, Card>) -> Unit)
+
+    @Deprecated(message = "To show the card data to your users, please use the Apto PCI SDK")
     fun fetchCardDetails(cardId: String, callback: (Either<Failure, CardDetails>) -> Unit)
 
     /**
@@ -372,10 +394,27 @@ interface AptoPlatformProtocol {
      * @param callback Lambda called when the transactions has been fetched returning Either Failure if there was an error
      * or a MonthlySpending if the fetching was successful
      */
+    @Deprecated(message = "Use the version with Integer parameters")
     fun cardMonthlySpending(
         cardId: String,
         month: String,
         year: String,
+        callback: (Either<Failure, MonthlySpending>) -> Unit
+    )
+
+    /**
+     * Obtains information about the monthly spendings of a given card, classified by Category
+     *
+     * @param cardId String containing the cardId
+     * @param month Int containing the month number, being 01 for January
+     * @param year Int containing the year in numbers, i.e. 2020
+     * @param callback Lambda called when the transactions has been fetched returning Either Failure if there was an error
+     * or a MonthlySpending if the fetching was successful
+     */
+    fun cardMonthlySpending(
+        cardId: String,
+        month: Int,
+        year: Int,
         callback: (Either<Failure, MonthlySpending>) -> Unit
     )
 
@@ -436,7 +475,10 @@ interface AptoPlatformProtocol {
      * @param preferences
      * @param callback
      */
-    fun updateNotificationPreferences(preferences: NotificationPreferences, callback: (Either<Failure, Unit>) -> Unit)
+    fun updateNotificationPreferences(
+        preferences: NotificationPreferences,
+        callback: (Either<Failure, NotificationPreferences>) -> Unit
+    )
 
     // VoIP
     fun fetchVoIPToken(cardId: String, actionSource: Action, callback: (Either<Failure, VoipCall>) -> Unit)
@@ -457,7 +499,7 @@ interface AptoPlatformProtocol {
     /**
      * Adds a payment source for Loading funds into the account
      *
-     * @param paymentSource NewPaymentSource to be added to the list
+     * @param paymentSource [NewPaymentSource] to be added to the list
      * @param callback Lambda called when the task has ended returning Either Failure if there was an error
      * or a PaymentSource if the task was successful
      */

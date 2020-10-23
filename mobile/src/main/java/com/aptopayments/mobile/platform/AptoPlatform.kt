@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.annotation.VisibleForTesting
 import com.aptopayments.mobile.data.AccessToken
+import com.aptopayments.mobile.data.ListPagination
+import com.aptopayments.mobile.data.PaginatedList
 import com.aptopayments.mobile.data.PhoneNumber
 import com.aptopayments.mobile.data.card.*
 import com.aptopayments.mobile.data.cardproduct.CardProduct
@@ -60,8 +62,11 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.Koin
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
+import org.threeten.bp.LocalDate
+import org.threeten.bp.format.TextStyle
 import java.lang.ref.WeakReference
 import java.lang.reflect.Modifier
+import java.util.Locale
 
 @SuppressLint("VisibleForTests")
 object AptoPlatform : AptoPlatformProtocol {
@@ -170,8 +175,13 @@ object AptoPlatform : AptoPlatformProtocol {
         userPreferencesRepository.showDetailedCardActivity = enabled
     }
 
-    override fun createUser(userData: DataPointList, custodianUid: String?, callback: (Either<Failure, User>) -> Unit) =
-        useCasesWrapper.createUserUseCase(CreateUserUseCase.Params(userData, custodianUid)) { result ->
+    override fun createUser(
+        userData: DataPointList,
+        custodianUid: String?,
+        metadata: String?,
+        callback: (Either<Failure, User>) -> Unit
+    ) =
+        useCasesWrapper.createUserUseCase(CreateUserUseCase.Params(userData, custodianUid, metadata)) { result ->
             result.either({}, { user -> userSessionRepository.userToken = user.token })
             callback(result)
         }
@@ -289,13 +299,21 @@ object AptoPlatform : AptoPlatformProtocol {
     )
 
     override fun fetchCards(callback: (Either<Failure, List<Card>>) -> Unit) =
-        useCasesWrapper.getCardsUseCase(Unit) { callback(it) }
+        fetchCards(null) { result -> callback(result.map { it.data }) }
+
+    override fun fetchCards(pagination: ListPagination?, callback: (Either<Failure, PaginatedList<Card>>) -> Unit) {
+        useCasesWrapper.getCardsUseCase(pagination) { callback(it) }
+    }
 
     override fun fetchFinancialAccount(
         accountId: String,
         forceRefresh: Boolean,
         callback: (Either<Failure, Card>) -> Unit
-    ) = useCasesWrapper.getCardUseCase(GetCardParams(accountId, forceRefresh)) { callback(it) }
+    ) = fetchCard(accountId, forceRefresh, callback)
+
+    override fun fetchCard(cardId: String, forceRefresh: Boolean, callback: (Either<Failure, Card>) -> Unit) {
+        useCasesWrapper.getCardUseCase(GetCardParams(cardId, forceRefresh)) { callback(it) }
+    }
 
     override fun fetchCardDetails(cardId: String, callback: (Either<Failure, CardDetails>) -> Unit) =
         useCasesWrapper.getCardDetailsUseCase(cardId) { callback(it) }
@@ -338,6 +356,20 @@ object AptoPlatform : AptoPlatformProtocol {
     ) = useCasesWrapper.getMonthlySpendingUseCase(
         GetMonthlySpendingUseCase.Params(cardId = cardId, month = month, year = year)
     ) { callback(it) }
+
+    override fun cardMonthlySpending(
+        cardId: String,
+        month: Int,
+        year: Int,
+        callback: (Either<Failure, MonthlySpending>) -> Unit
+    ) {
+        val date = LocalDate.of(year, month, 1)
+        val monthName = date.month.getDisplayName(TextStyle.FULL, Locale.US)
+
+        useCasesWrapper.getMonthlySpendingUseCase(
+            GetMonthlySpendingUseCase.Params(cardId = cardId, month = monthName, year = year.toString())
+        ) { callback(it) }
+    }
 
     override fun fetchMonthlyStatement(month: Int, year: Int, callback: (Either<Failure, MonthlyStatement>) -> Unit) {
         useCasesWrapper.getMonthlyStatementUseCase(GetMonthlyStatementUseCase.Params(month, year)) { callback(it) }
@@ -384,7 +416,7 @@ object AptoPlatform : AptoPlatformProtocol {
 
     override fun updateNotificationPreferences(
         preferences: NotificationPreferences,
-        callback: (Either<Failure, Unit>) -> Unit
+        callback: (Either<Failure, NotificationPreferences>) -> Unit
     ) = useCasesWrapper.updateNotificationPreferencesUseCase(preferences.preferences!!) { callback(it) }
 
     override fun fetchVoIPToken(cardId: String, actionSource: Action, callback: (Either<Failure, VoipCall>) -> Unit) =

@@ -12,10 +12,13 @@ internal data class CreateUserDataRequest(
     val userData: ListEntity<DataPointEntity>,
 
     @SerializedName("custodian_uid")
-    val custodianUid: String? = null
+    val custodianUid: String? = null,
+
+    @SerializedName("metadata")
+    val metadata: String? = null
 ) : Serializable {
     companion object {
-        fun from(dataPointList: DataPointList, custodianUid: String?): CreateUserDataRequest =
-            CreateUserDataRequest(serializeDataPointList(dataPointList), custodianUid)
+        fun from(dataPointList: DataPointList, custodianUid: String?, metadata: String?): CreateUserDataRequest =
+            CreateUserDataRequest(serializeDataPointList(dataPointList), custodianUid, metadata)
     }
 }

@@ -1,0 +1,1 @@
+{"code": 10050, "message": "https://backend-web-service.internal.stg.aptopayments.com/internal/payment_sources ({\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Invalid expiration date\",\"error_code\":200061}})"}

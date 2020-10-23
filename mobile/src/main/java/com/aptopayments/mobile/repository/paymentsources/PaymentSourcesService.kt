@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.repository.paymentsources
 
-import com.aptopayments.mobile.data.paymentsources.NewBankAccount
 import com.aptopayments.mobile.data.paymentsources.NewCard
 import com.aptopayments.mobile.data.paymentsources.NewPaymentSource
 import com.aptopayments.mobile.data.paymentsources.PaymentSource
@@ -10,7 +9,6 @@ import com.aptopayments.mobile.network.ApiCatalog
 import com.aptopayments.mobile.platform.BaseNetworkService
 import com.aptopayments.mobile.repository.paymentsources.remote.requests.AddPaymentSourceRequest
 import com.aptopayments.mobile.repository.paymentsources.remote.requests.AddPaymentSourceType
-import com.aptopayments.mobile.repository.paymentsources.remote.requests.BankAccountRequest
 import com.aptopayments.mobile.repository.paymentsources.remote.requests.CardRequest
 
 private const val MAX_PAYMENT_SOURCES_PAGE = 50
@@ -40,7 +38,6 @@ internal class PaymentSourcesService constructor(apiCatalog: ApiCatalog) : BaseN
 
     private fun getAddPaymentSourceRequest(source: NewPaymentSource): AddPaymentSourceRequest {
         return when (source) {
-            is NewBankAccount -> getAddBankPaymentSourceRequest(source)
             is NewCard -> getAddCardPaymentSourceRequest(source)
             else -> throw RuntimeException("Unrecognized Payment Source")
         }
@@ -63,15 +60,6 @@ internal class PaymentSourcesService constructor(apiCatalog: ApiCatalog) : BaseN
 
     private fun getNewCardExpiration(month: String, year: String): String {
         val yearFourDigits = if (year.length == 2) "20$year" else year
-        return "$yearFourDigits$month"
-    }
-
-    private fun getAddBankPaymentSourceRequest(source: NewBankAccount): AddPaymentSourceRequest {
-        val bank = BankAccountRequest(routingNumber = source.routingNumber, accountNumber = source.accountNumber)
-        return AddPaymentSourceRequest(
-            type = AddPaymentSourceType.BANK.toString(),
-            description = source.description,
-            bank = bank
-        )
+        return "$yearFourDigits-$month"
     }
 }

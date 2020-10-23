@@ -16,9 +16,3 @@ data class Card(
     val network: Card.CardNetwork,
     val lastFour: String
 ) : PaymentSource
-
-data class BankAccount(
-    override val id: String,
-    override val description: String?,
-    override val isPreferred: Boolean
-) : PaymentSource

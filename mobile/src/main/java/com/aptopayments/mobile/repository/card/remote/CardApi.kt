@@ -1,6 +1,6 @@
 package com.aptopayments.mobile.repository.card.remote
 
-import com.aptopayments.mobile.network.ListEntity
+import com.aptopayments.mobile.network.PaginatedListEntity
 import com.aptopayments.mobile.repository.card.remote.entities.ActivatePhysicalCardEntity
 import com.aptopayments.mobile.repository.card.remote.entities.CardDetailsEntity
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
@@ -22,6 +22,9 @@ private const val GPAY_PROVISIONING_PATH = "v1/user/accounts/{account_id}/provis
 private const val ACCOUNT_ID = "account_id"
 private const val ACTION = "action"
 private const val SHOW_DETAILS = "show_details"
+private const val PARAMETER_STARTING_AFTER = "starting_after"
+private const val PARAMETER_ENDING_BEFORE = "ending_before"
+private const val PARAMETER_LIMIT = "limit"
 
 internal interface CardApi {
 
@@ -38,7 +41,11 @@ internal interface CardApi {
     ): Call<CardDetailsEntity>
 
     @GET(FINANCIAL_ACCOUNTS_PATH)
-    fun getCards(): Call<ListEntity<CardEntity>>
+    fun getCards(
+        @Query(PARAMETER_STARTING_AFTER) startingAfter: String?,
+        @Query(PARAMETER_ENDING_BEFORE) endingBefore: String?,
+        @Query(PARAMETER_LIMIT) limit: Int?
+    ): Call<PaginatedListEntity<CardEntity>>
 
     @POST(CHANGE_CARD_STATE_PATH)
     fun changeCardState(

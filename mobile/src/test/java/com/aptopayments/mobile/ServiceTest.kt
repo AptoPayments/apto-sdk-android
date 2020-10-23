@@ -26,6 +26,8 @@ import kotlin.test.assertTrue
 
 internal abstract class ServiceTest : UnitTest() {
 
+    open var environments = listOf(Environment.NORMAL)
+
     @Mock
     lateinit var apiKeyProvider: ApiKeyProvider
 
@@ -64,9 +66,9 @@ internal abstract class ServiceTest : UnitTest() {
     }
 
     protected fun assertRequestBodyFile(fileName: String) {
-        val request = takeRequest()
+        val request = takeRequest()?.body?.readUtf8()
         val fileContent = readFile(fileName)
-        assertTrue { request?.body.toString().contains(fileContent.trim()) }
+        assertTrue { request?.contains(fileContent.trim()) ?: false }
     }
 
     protected fun <T> assertCode(test: Response<T>, code: Int = HTTP_OK) {
@@ -87,6 +89,23 @@ internal abstract class ServiceTest : UnitTest() {
 
     protected open fun configureEnvironment() {
         whenever(apiKeyProvider.apiKey).thenReturn(TestDataProvider.provideAPiKey())
+        mockEnvironments()
+    }
+
+    private fun mockEnvironments() {
+        environments.forEach {
+            when (it) {
+                Environment.NORMAL -> mockNormalEnvironment()
+                Environment.VAULT -> mockVaultEnvironment()
+            }
+        }
+    }
+
+    private fun mockVaultEnvironment() {
+        whenever(apiKeyProvider.getEnvironmentVaultUrl()).thenReturn(getServerUrl())
+    }
+
+    private fun mockNormalEnvironment() {
         whenever(apiKeyProvider.getEnvironmentUrl()).thenReturn(getServerUrl())
     }
 
@@ -97,5 +116,9 @@ internal abstract class ServiceTest : UnitTest() {
     @Throws(IOException::class)
     protected fun readFile(jsonFileName: String): String {
         return FileReader().readFile(jsonFileName, "api-calls")
+    }
+
+    enum class Environment {
+        NORMAL, VAULT
     }
 }
