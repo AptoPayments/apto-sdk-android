@@ -19,7 +19,8 @@ data class Card(
     val spendableAmount: Money?,
     val nativeSpendableAmount: Money?,
     val cardHolder: String,
-    val features: Features?
+    val features: Features?,
+    val metadata: String?
 ) : Serializable {
 
     enum class CardState {

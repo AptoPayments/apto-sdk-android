@@ -2,6 +2,7 @@ package com.aptopayments.mobile.platform
 
 import android.annotation.SuppressLint
 import android.app.Application
+import androidx.annotation.RestrictTo
 import androidx.annotation.VisibleForTesting
 import com.aptopayments.mobile.data.AccessToken
 import com.aptopayments.mobile.data.ListPagination
@@ -45,6 +46,7 @@ import com.aptopayments.mobile.repository.card.usecases.*
 import com.aptopayments.mobile.repository.cardapplication.usecases.AcceptDisclaimerUseCase
 import com.aptopayments.mobile.repository.cardapplication.usecases.IssueCardUseCase.Params
 import com.aptopayments.mobile.repository.cardapplication.usecases.SetBalanceStoreUseCase
+import com.aptopayments.mobile.repository.cardapplication.usecases.StartCardApplicationParams
 import com.aptopayments.mobile.repository.config.usecases.GetCardProductParams
 import com.aptopayments.mobile.repository.fundingsources.remote.usecases.GetFundingSourcesUseCase
 import com.aptopayments.mobile.repository.oauth.usecases.RetrieveOAuthUserDataUseCase
@@ -78,18 +80,18 @@ object AptoPlatform : AptoPlatformProtocol {
 
     private var weakDelegate = WeakReference<AptoPlatformDelegate?>(null)
 
-    @VisibleForTesting(otherwise = Modifier.PRIVATE)
+    @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
     lateinit var koin: Koin
 
     @VisibleForTesting(otherwise = Modifier.PRIVATE)
     internal lateinit var useCasesWrapper: UseCasesWrapper
-    private val userSessionRepository: UserSessionRepository by lazy { koin.get<UserSessionRepository>() }
+    private val userSessionRepository: UserSessionRepository by lazy { koin.get() }
 
     @VisibleForTesting(otherwise = Modifier.PROTECTED)
     lateinit var application: Application
 
     private var uiModules: List<Module> = listOf()
-    private val userPreferencesRepository: UserPreferencesRepository by lazy { koin.get<UserPreferencesRepository>() }
+    private val userPreferencesRepository: UserPreferencesRepository by lazy { koin.get() }
 
     fun setUiModules(list: List<Any>) {
         uiModules = list.filterIsInstance<Module>()
@@ -250,8 +252,15 @@ object AptoPlatform : AptoPlatformProtocol {
     override fun restartVerification(verification: Verification, callback: (Either<Failure, Verification>) -> Unit) =
         useCasesWrapper.restartVerificationUseCase(verification) { callback(it) }
 
-    override fun applyToCard(cardProduct: CardProduct, callback: (Either<Failure, CardApplication>) -> Unit) =
-        useCasesWrapper.startCardApplicationUseCase(cardProduct.id) { callback(it) }
+    override fun applyToCard(
+        cardProduct: CardProduct,
+        callback: (Either<Failure, CardApplication>) -> Unit
+    ) =
+        useCasesWrapper.startCardApplicationUseCase(
+            StartCardApplicationParams(
+                cardProductId = cardProduct.id
+            )
+        ) { callback(it) }
 
     override fun fetchCardApplicationStatus(
         applicationId: String,
@@ -280,8 +289,9 @@ object AptoPlatform : AptoPlatformProtocol {
     override fun issueCard(
         applicationId: String,
         additionalFields: Map<String, Any>?,
+        metadata: String?,
         callback: (Either<Failure, Card>) -> Unit
-    ) = useCasesWrapper.issueCardUseCase(Params(applicationId, additionalFields)) { callback(it) }
+    ) = useCasesWrapper.issueCardUseCase(Params(applicationId, additionalFields, metadata)) { callback(it) }
 
     override fun issueCard(
         cardProductId: String,

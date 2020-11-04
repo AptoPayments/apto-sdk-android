@@ -8,7 +8,9 @@ import com.aptopayments.mobile.repository.cardapplication.CardApplicationReposit
 internal class StartCardApplicationUseCase constructor(
     private val applicationRepository: CardApplicationRepository,
     networkHandler: NetworkHandler
-) : UseCase<CardApplication, String>(networkHandler) {
-    override fun run(params: String) =
-        applicationRepository.startCardApplication(cardProductId = params)
+) : UseCase<CardApplication, StartCardApplicationParams>(networkHandler) {
+    override fun run(params: StartCardApplicationParams) =
+        applicationRepository.startCardApplication(cardProductId = params.cardProductId)
 }
+
+data class StartCardApplicationParams(val cardProductId: String)

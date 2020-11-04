@@ -1,39 +1,65 @@
 package com.aptopayments.mobile.repository.cardapplication.remote
 
 import com.aptopayments.mobile.network.ApiCatalog
-import com.aptopayments.mobile.platform.BaseService
-import com.aptopayments.mobile.repository.cardapplication.remote.entities.AcceptDisclaimerRequest
-import com.aptopayments.mobile.repository.cardapplication.remote.entities.IssueCardRequest
-import com.aptopayments.mobile.repository.cardapplication.remote.entities.NewCardApplicationRequest
-import com.aptopayments.mobile.repository.cardapplication.remote.entities.SelectBalanceStoreRequest
+import com.aptopayments.mobile.platform.BaseNetworkService
+import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
+import com.aptopayments.mobile.repository.cardapplication.remote.entities.*
 
-internal class CardApplicationService constructor(apiCatalog: ApiCatalog) : BaseService() {
+internal class CardApplicationService constructor(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
     private val cardApplicationApi by lazy { apiCatalog.api().create(CardApplicationApi::class.java) }
 
     fun startCardApplication(cardProductId: String) =
-        cardApplicationApi.startCardApplication(applicationRequest = NewCardApplicationRequest(cardProductId = cardProductId))
+        request(
+            call = cardApplicationApi.startCardApplication(
+                applicationRequest = NewCardApplicationRequest(
+                    cardProductId = cardProductId
+                )
+            ),
+            transform = { it.toCardApplication() },
+            CardApplicationEntity()
+        )
 
     fun getCardApplication(cardApplicationId: String) =
-        cardApplicationApi.getCardApplication(cardApplicationId = cardApplicationId)
+        request(
+            call = cardApplicationApi.getCardApplication(cardApplicationId = cardApplicationId),
+            transform = { it.toCardApplication() },
+            default = CardApplicationEntity()
+        )
 
     internal fun cancelCardApplication(cardApplicationId: String) =
-        cardApplicationApi.cancelCardApplication(cardApplicationId = cardApplicationId)
+        request(
+            call = cardApplicationApi.cancelCardApplication(cardApplicationId = cardApplicationId),
+            transform = {},
+            default = Unit
+        )
 
     fun setBalanceStore(cardApplicationId: String, tokenId: String) =
-        cardApplicationApi.setBalanceStore(
-            cardApplicationId = cardApplicationId,
-            request = SelectBalanceStoreRequest(tokenId)
+        request(
+            call = cardApplicationApi.setBalanceStore(
+                cardApplicationId = cardApplicationId,
+                request = SelectBalanceStoreRequest(tokenId)
+            ),
+            transform = { it.toSelectBalanceStoreResult() },
+            default = SelectBalanceStoreResultEntity()
         )
 
     fun acceptDisclaimer(workflowObjectId: String, actionId: String) =
-        cardApplicationApi.acceptDisclaimer(
-            request = AcceptDisclaimerRequest(
-                workflowObjectId = workflowObjectId,
-                actionId = actionId
-            )
+        request(
+            cardApplicationApi.acceptDisclaimer(
+                request = AcceptDisclaimerRequest(
+                    workflowObjectId = workflowObjectId,
+                    actionId = actionId
+                )
+            ),
+            transform = {},
+            default = Unit
         )
 
-    fun issueCard(applicationId: String, additionalFields: Map<String, Any>?) =
-        cardApplicationApi.issueCard(request = IssueCardRequest(applicationId, additionalFields))
+    fun issueCard(applicationId: String, additionalFields: Map<String, Any>?, metadata: String?) =
+        request(
+            call = cardApplicationApi.issueCard(request = IssueCardRequest(applicationId, additionalFields, metadata)),
+            transform = { it.toCard() },
+            default = CardEntity()
+        )
 }

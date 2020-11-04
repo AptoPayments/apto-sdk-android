@@ -59,7 +59,10 @@ internal data class CardEntity(
     val cardholderLastName: String? = null,
 
     @SerializedName("name_on_card")
-    val nameOnCard: String? = null
+    val nameOnCard: String? = null,
+
+    @SerializedName("metadata")
+    val metadata: String? = null
 
 ) {
     fun toCard() = Card(
@@ -78,7 +81,8 @@ internal data class CardEntity(
         nativeSpendableAmount = nativeSpendableAmount?.toMoney(),
         cardHolder = nameOnCard ?: "$cardholderFirstName $cardholderLastName",
         cardStyle = style?.toCardStyle(),
-        features = features?.toFeatures()
+        features = features?.toFeatures(),
+        metadata = metadata
     )
 
     private fun parseCardNetwork(network: String?): Card.CardNetwork {

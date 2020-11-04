@@ -10,7 +10,8 @@ internal class IssueCardUseCase constructor(
     networkHandler: NetworkHandler
 ) : UseCase<Card, IssueCardUseCase.Params>(networkHandler) {
 
-    data class Params(val applicationId: String, val additionalFields: Map<String, Any>?)
+    override fun run(params: Params) =
+        applicationRepository.issueCard(params.applicationId, params.additionalFields, params.metadata)
 
-    override fun run(params: Params) = applicationRepository.issueCard(params.applicationId, params.additionalFields)
+    data class Params(val applicationId: String, val additionalFields: Map<String, Any>?, val metadata: String?)
 }

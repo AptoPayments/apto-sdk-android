@@ -121,7 +121,8 @@ class TestDataProvider {
             spendableAmount = spendableAmount,
             nativeSpendableAmount = nativeSpendableAmount,
             cardHolder = cardHolder,
-            features = features
+            features = features,
+            metadata = null
         )
 
         fun provideUser(userData: DataPointList?) = User(userId = "user_id", token = "token", userData = userData)

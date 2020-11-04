@@ -2,7 +2,7 @@
 
 ## Apto Android Mobile SDK
 
-Welcome to the Apto Android Mobile SDK. This SDK provides access to Apto's Mobile SDK, and is designed to be used for mobile apps. When using this SDK, there is no need for a separate API integration. All the API endpoints are exposed as simple-to-use SDK methods, and the data returned by the API is already encapsulated in the SDK and is easily accessible.
+Welcome to the Apto Android Mobile SDK. This SDK provides access to Apto's Mobile API, and is designed to be used for mobile apps. When using this SDK, there is no need for a separate API integration. All the API endpoints are exposed as simple-to-use SDK methods, and the data returned by the API is already encapsulated in the SDK and is easily accessible.
 
 **Note:** This SDK can be used in conjunction with our [UI SDK](https://github.com/AptoPayments/apto-ui-sdk-android). However, if you would like to control your UI/UX, we recommend using the standalone Mobile SDK and implementing your own UI/UX.
 
@@ -25,8 +25,8 @@ This document provides an overview of how to:
 * [Manage Card Programs](#user-content-manage-card-programs)
 * [Manage Cards](#user-content-manage-cards)
 * [View Card Transactions and Spending](#user-content-view-card-transactions-and-spending)
-* [Manage Card Payment Sources and Load Funds](#user-content-manage-card-payment-sources-and-load-funds)
-* [Manage Card Funding Sources](#user-content-manage-card-funding-sources--enterprise-only-) (Enterprise Only)
+* [Manage Card Payment Sources / Load Funds](#user-content-manage-card-payment-sources--load-funds)
+* [Manage Card Funding Sources for On-demand Debits](#user-content-manage-card-funding-sources-for-on-demand-debits-enterprise-only) (Enterprise Only)
 * [Set Notification Preferences](#user-content-set-notification-preferences)
 
 **Note:** To enable your cardholders to view PCI Data, you will also need to implement our [PCI SDK](https://github.com/AptoPayments/apto-pci-sdk-android). 
@@ -171,7 +171,7 @@ A user's credentials must be verified prior to authenticating a user. A successf
 
 * **Primary credential**: The user's phone number or email address. An [Instant Issuance Program](http://docs.aptopayments.com/docs/instant-issuance-programs) is the default program, which uses a phone number as the primary credential. Only Enterprise Programs can use an email address as the primary credential, and this must be configured by Apto Payments. Please [contact us](mailto:developers@aptopayments.com) if you would like to use a different primary credential.
 
-	**Note:** The primary credential must be capable of receiving a secret code which is used to verify the user's Primary credential. For example, the phone number must be able to receive an SMS message, and the email address must be able to receive an email sent by Apto Payments.
+	**Note:** The primary credential must be capable of receiving a secret One-Time Passcode (OTP) code which is used to verify the user's Primary credential. For example, the phone number must be able to receive an SMS message, and the email address must be able to receive an email sent by Apto Payments.
 
 * **Secondary credential**: The user's date of birth.
 
@@ -229,15 +229,15 @@ AptoPlatform.startPhoneVerification(phoneNumber) {
 	it.either({ error ->
 		// Do something with the error
 	}) { verification ->
-		// The verification started and the user received an SMS with a single use code.
+		// The verification started and the user received an SMS with a single use code (OTP).
 	}
 }
 ```
 
 * When the method succeeds, a `Verification` object is included in the callback:
-	* The user will receive a single use code via SMS. Use that code and the returned `Verification` object to [complete verification for the user's primary credential](#user-content-complete-a-verification).
+	* The user will receive a single use code (OTP) via SMS. Use that code and the returned `Verification` object to [complete verification for the user's primary credential](#user-content-complete-a-verification).
 	* *(Optional)* Add verification handling within the success callback.
-* When the method fails, error handling can be included within the `error` response. Errors can include an incorrect SMS code submission or connection problems to the API.
+* When the method fails, error handling can be included within the `error` response. Errors can include an incorrect OTP code submission or connection problems to the API.
 
 #### Email Verification
 
@@ -251,29 +251,29 @@ AptoPlatform.startEmailVerification(email) {
     // Do something with the error
   },
   { verification ->
-    // The verification started and the user received an email with a single use code.
+    // The verification started and the user received an email with a single use code (OTP).
     this.verification = verification
   })
 }
 ```
 
 * When the method succeeds, a `Verification` object is included in the callback:
-	* The user will receive a single use code via email. Use that code and the `Verification` object to [complete verification for the user's primary credential](#user-content-complete-a-verification).
+	* The user will receive a single use code (OTP) via email. Use that code and the `Verification` object to [complete verification for the user's primary credential](#user-content-complete-a-verification).
 	* *(Optional)* Add verification handling within the success callback.
-* When the method fails, error handling can be included within the `error` response. Errors can include an incorrect email code submission or connection problems to the API.
+* When the method fails, error handling can be included within the `error` response. Errors can include an incorrect OTP code submission or connection problems to the API.
 
 ### Complete a Verification
 
-To complete a verification, the user will need to enter their SMS / email code or date of birth, depending on the type of verification.
+To complete a verification, the user will need to enter their OTP code or date of birth, depending on the type of verification.
 
 1. Set the `secret` property on the `Verification` object:
 
-	* If verifying a phone number, replace `SMS_EMAIL_CODE_OR_BIRTHDATE` with the SMS code from the [Start a New Verification](#user-content-start-a-new-verification) process. **Note:** Use only numerical values.
-	* If verifying an email address, replace `SMS_EMAIL_CODE_OR_BIRTHDATE` with the email code from the [Start a New Verification](#user-content-start-a-new-verification) process. **Note:** Use only numerical values.
-	* If verifying a date of birth, replace `SMS_EMAIL_CODE_OR_BIRTHDATE` with the user's date of birth, using the format `YYYY-MM-DD`. For example, `1999-01-01`.
+	* If verifying a phone number, replace `OTP_CODE_OR_BIRTHDATE` with the OTP code received via SMS from the [Start a New Verification](#user-content-start-a-new-verification) process. **Note:** Use only numerical values.
+	* If verifying an email address, replace `OTP_CODE_OR_BIRTHDATE` with the OTP code received via email from the [Start a New Verification](#user-content-start-a-new-verification) process. **Note:** Use only numerical values.
+	* If verifying a date of birth, replace `OTP_CODE_OR_BIRTHDATE` with the user's date of birth, using the format `YYYY-MM-DD`. For example, `1999-01-01`.
 
 ```kotlin
-verification.secret = "SMS_EMAIL_CODE_OR_BIRTHDATE"
+verification.secret = "OTP_CODE_OR_BIRTHDATE"
 ```
 
 2. Complete the verification by passing the `Verification` object into the `completeVerification` method.
@@ -300,7 +300,7 @@ AptoPlatform.completeVerification(verification) {
 	* If the verification's `status` property is set to `VerificationStatus.PASSED`, the verification is successful. 
 		* For primary verifications, if the verification belongs to an existing user, the response will contain a non-null `secondaryCredential` value. Use the `secondaryCredential.secret` value to [complete verification for the user's secondary credential](#user-content-complete-a-verification).
 		* For secondary verifications, the user is now fully verified and [login](#user-content-login-with-an-existing-user) can proceed.
-	* Otherwise, the verification failed due to an invalid `secret` value. If this is primary verification, you can add error handling and [restart the primary verification](#user-content-restart-a-primary-verification) for the user to re-enter their SMS / email code. 
+	* Otherwise, the verification failed due to an invalid `secret` value. If this is primary verification, you can add error handling and [restart the primary verification](#user-content-restart-a-primary-verification) for the user to re-enter their OTP code. 
 * When the method fails, error handling can be included within the `error` response.
 
 
@@ -313,25 +313,30 @@ AptoPlatform.restartVerification(primaryVerification) {
 	it.either({ error ->
 		// Do something with the error
 	}, { verification ->
-		// The verification started and the user received a new code via email or phone.		
+		// The verification started and the user received a new OTP code via email or phone.		
 	})
 }
 
 ```
 
 * When the method succeeds, a `Verification` object is included in the callback:
-	* The user will receive a single use code via SMS or email (depending on the type of verification). Use that code and the returned `Verification` object to [complete verification for the user's primary credential](#user-content-complete-a-verification).
+	* The user will receive a single use code (OTP) via SMS or email (depending on the type of verification). Use that code and the returned `Verification` object to [complete verification for the user's primary credential](#user-content-complete-a-verification).
 	* *(Optional)* Add verification handling within the success callback.
 * When the method fails, error handling can be included within the `error` response.
 
 
 ## Authenticate a User
 
-A user session token is required for authentication.
+A user session token is required for authentication. A session token is generated once you successfully sign up a new user or log a user into the SDK. The session token is valid until:
+
+* The user is logged out of the SDK.
+* A timeout occurs. IE The user doesn't interact with the app for one year in Production mode or one month in Sandbox mode.
+
+	**Note:** The session length may be configured to a custom duration. Please [contact us](mailto:developers@aptopayments.com) if you'd like to customize the session length.
 
 For [Instant Issuance programs](http://docs.aptopayments.com/docs/instant-issuance-programs), the session token is created by the SDK after [verifying the user](#user-content-verify-a-user-credential-to-obtain-a-user-token).
 
-Enterprise Programs, have access to our Mobile API which enables you to leverage an existing session token for a user. Use the `setUserToken` method and replace `USER_TOKEN` with your existing user token. This enables the user to bypass the requirement to enter a code they receive via SMS or email.
+Enterprise Programs, have access to our Mobile API which enables you to leverage an existing session token for a user. Use the `setUserToken` method and replace `USER_TOKEN` with your existing user token. This enables the user to bypass the requirement to enter an OTP code they receive via SMS or email.
 
 **Note:** Ensure your user token is passed in as a string.
 
@@ -381,8 +386,10 @@ AptoPlatform.createUser(DataPointList().add(primaryCredential)) {
 * When the method succeeds, a `User` object is returned containing the user ID and user session token.
 * When the method fails, error handling can be included within the `error` response.
 
-**Note:** The `createUser` method can accept an optional `custodianUid` parameter. Use this parameter to send Apto the user ID, so future webhook notifications can include this information. This simplifies the process of matching the user with the notification event.
-**Note:** The `createUser` method can accept an optional `metadata` parameter. Use this parameter to send Apto metadata about the new user (Max 256 chars).
+**Note:** The `createUser` method can accept the following optional parameters:
+
+* `custodianUid` - Use this parameter to send Apto the user's ID for inclusion in future webhook notifications. This simplifies the process of matching the user with the notification event.
+* `metadata` - Use this parameter to send Apto metadata about the new user (Max 256 chars).
 
 ```kotlin
 val custodianUid = "custodian_uid"
@@ -418,13 +425,14 @@ You can update the user's info, with the `updateUserInfo` method:
 1. Create a `DataPointList` object:
 
 ```kotlin
-val userData = DataPointList()
+val userDataList = listOf<DataPoint>(birthdateDataPoint, addressDataPoint, idDataPoint, ...)
+val userData = DataPointList(userDataList)
 ```
 
 2. Pass the `userData` into the `updateUserInfo` method:
 
 ```kotlin
-// Add to userPII the datapoints that you want to update
+// Add to user PII (Personal Identifiable Information) the datapoints that you want to update
 AptoPlatform.updateUserInfo(userData) {
   it.either({ error ->
     // Do something with the error
@@ -440,11 +448,15 @@ AptoPlatform.updateUserInfo(userData) {
 
 ### Close a User Session
 
+When a session is closed, it will log the user out of all sessions on all devices. 
+
 To close the current user's session, use the `logout` SDK method:
 
 ```kotlin
 AptoPlatform.logout()
 ```
+
+**Note:** If the user closes the app without invoking the `logout` method (i.e. the user jumps to another app, manually closes the app, etc.), the user's session will still be active.
 
 ## Manage Card Programs
 
@@ -452,6 +464,8 @@ The SDK enables you to manage card programs. This document explains how to use t
 
 * [Get Available Card Programs](#user-content-get-available-card-programs)
 * [Get Card Program Details](#user-content-get-card-program-details)
+
+**Note:** Card Programs used to be called Card Products, so you may see the SDK methods reflect the term *products*. These method names may change in the future to match the correct term *programs*.
 
 ### Get Available Card Programs
 
@@ -669,7 +683,7 @@ AptoPlatform.lockCard(accountID) {
 ```
 
 * When the method succeeds:
-	* A `Card` object is returned containing information about the locked card.
+	* A `Card` object is returned containing information about the locked card, and the card's `state` property will be listed as `INACTIVE`.
 	* The registered user will receive an email confirmation that the card has been deactivated.
 * When the method fails, error handling can be included within the `error` response.
 
@@ -689,7 +703,7 @@ AptoPlatform.unlockCard(accountID) {
 }
 ```
 
-* When the method succeeds, a `Card` object is returned containing information about the unlocked card.
+* When the method succeeds, a `Card` object is returned containing information about the unlocked card, and the card's `state` property will be listed as `ACTIVE`. **Note:** Unlike the `lock` method, the registered user will NOT receive an email confirmation that the card has been activated.
 * When the method fails, error handling can be included within the `error` response.
 
 ## View Card Transactions and Spending
@@ -758,11 +772,9 @@ AptoPlatform.cardMonthlySpending(accountID, month, year) {
 * When the method succeeds, a `MonthlySpending` object is returned containing the stats for the provided month. The spending is classified by transaction category, and the difference from the previous month.
 * When the method fails, error handling can be included within the `error` response.
 
-## Manage Card Payment Sources and Load Funds
+## Manage Card Payment Sources / Load Funds
 
-You can load money onto a user's card using a valid debit card. 
-
-**Note:** To enable this, [contact us](mailto:developers@aptopayments.com) so we can configure the backend for your account.
+Funds loaded onto a user's card is automatically deducted from the payment source. The balance is maintained on the user's card, managed by Apto Payments. You can load money onto a user's card using a valid debit card. 
 
 * [Get Payment Sources](#user-content-get-payment-sources)
 * [Add a Payment Source](#user-content-add-a-payment-source)
@@ -779,7 +791,7 @@ Parameter|Type|Description
 `startingAfter`|`String`|If this value is set, only payment sources ID's larger than this value are returned.
 `endingBefore`|`String`|If this value is set, only payment sources ID's less than this value are returned.
 
-**Note:** The `startingAfter` and `endingBefore` parameters are mutually exclusive. Only one of these parameters may be present per call.
+**Note:** The `startingAfter` and `endingBefore` parameters are mutually exclusive. Only one of these parameters may be present per call. If both parameters are set, an error will be thrown.
 
 ```kotlin
 AptoPlatform.getPaymentSources(limit, startingAfter, endingBefore) {
@@ -800,12 +812,19 @@ AptoPlatform.getPaymentSources(limit, startingAfter, endingBefore) {
 
 To add a payment source:
 
-1. Create a `NewPaymentSource` object:
+1. Create a `NewCard` object:
 
 	**Note:** Currently only cards are accepted.
 
 ```kotlin
-val paymentSource = NewPaymentSource()
+val paymentSource = NewCard(
+            description = "test description",
+            pan = "4242424242424242",
+            cvv = "123",
+            expirationMonth = "12",
+            expirationYear = "22",
+            zipCode = "12345"
+        )
 ```
 
 2. Pass `paymentSource` into the `addPaymentSource` method:
@@ -813,7 +832,6 @@ val paymentSource = NewPaymentSource()
 	**Note:** Added payment sources are automatically marked as `preferred`.
 
 ```kotlin
-val paymentSource = NewPaymentSource()
 AptoPlatform.addPaymentSource(paymentSource) {
   it.either({ error ->
     // Do something with the error
@@ -824,7 +842,7 @@ AptoPlatform.addPaymentSource(paymentSource) {
 }
 ```
 
-* When the method succeeds, the added `PaymentSource` object is returned without the PII.
+* When the method succeeds, the added `PaymentSource` object is returned without the PII (Personal Identifiable Information).
 * When the method fails, error handling can be included within the `error` response.
 
 ### Delete a Payment Source
@@ -845,7 +863,7 @@ AptoPlatform.deletePaymentSource(paymentSourceId) {
 }
 ```
 
-* When the method succeeds, a deleted `PaymentSource` object`PaymentSource` object is returned without the PII.
+* When the method succeeds, a deleted `PaymentSource` object`PaymentSource` object is returned without the PII (Personal Identifiable Information).
 * When the method fails, error handling can be included within the `error` response.
 
 ### Add Funds to a Card
@@ -859,7 +877,7 @@ Parameter|Type|Description
 `amount`|`Money`|This object specifies the amount and currency that will be added to the balance.
 
 ```kotlin
-val money = Money()
+val money = Money("USD", 100)
 AptoPlatform.pushFunds(balanceId, paymentSourceId, money) {
 	it.either(
 		{ error ->
@@ -874,20 +892,17 @@ AptoPlatform.pushFunds(balanceId, paymentSourceId, money) {
 * When the method succeeds, a `Payment` object is returned with the completed payment information.
 * When the method fails, error handling can be included within the `error` response.
 
-## Manage Card Funding Sources (Enterprise only)
+## Manage Card Funding Sources for On-demand Debits (Enterprise only)
 
-A card can have multiple funding sources. Enterprise card program, 
+Funding sources may be used for on-demand debiting. When a user spends using their card, the amount can be debited from a specified funding source, rather than using the [funds loaded onto their card](#user-content-manage-card-payment-sources-for-loading-funds). A card can have more than one funding source. 
 
-You can connect cards to different accounts already created in the client. This involves an integration 
-
-
-**Note:** Apto Payments manages funding sources for all [Instant Issuance programs](http://docs.aptopayments.com/docs/instant-issuance-programs), and therefore the method to connect a funding source only available for Enterprise Programs.
+**Note:** Only Enterprise Programs may use this feature to connect a funding source to a card. [Instant Issuance programs](http://docs.aptopayments.com/docs/instant-issuance-programs) may only [load funds onto a card](#user-content-manage-card-payment-sources-for-loading-funds). 
 
 The Mobile SDK enables you to:
 
 * [Get a Card's Default Funding Source](#user-content-get-a-cards-default-funding-source)
 * [List a Card's Available Funding Sources](#user-content-list-a-cards-available-funding-sources)
-* [Connect a Funding Source to a Card](#user-content-connect-a-funding-source-to-a-card) (Enterprise Programs only)
+* [Connect a Funding Source to a Card](#user-content-connect-a-funding-source-to-a-card)
 
 ### Get a Card's Default Funding Source
 
@@ -950,11 +965,9 @@ Enterprise Programs can issue cards connected to a funding source not controlled
 
 For example, when using the Coinbase card program, users connect their Coinbase wallet and select whether the card is Bitcoin or Ethereum using these funding source management methods.
 
-To connect a funding source to a card, pass the card's `accountID` and funding source ID into the `setCardFundingSource` method:
+To connect a funding source to a card, pass the [card](#user-content-get-cards) `accountID` and [funding source](#user-content-list-a-cards-available-funding-sources) `id` into the `setCardFundingSource` method:
 
 ```kotlin
-val fundingSource = FundingSource()
-
 AptoPlatform.setCardFundingSource(accountID, fundingSource.id) {
 	it.either(
 		{ error ->

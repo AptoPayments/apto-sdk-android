@@ -1,0 +1,39 @@
+{
+  "type":"card_configuration",
+  "card_product":{
+    "type":"card_product",
+    "id":"entity_12345",
+    "team_id":"entity_4567",
+    "name":"Your Company ES",
+    "status":"enabled",
+    "shared":false,
+    "card_issuer":"shift",
+    "website":null,
+    "cardholder_agreement":{
+      "type":"content",
+      "format":"external_url",
+      "value":"https://yoururl.com/agreement.html"
+    },
+    "privacy_policy":{
+      "type":"content",
+      "format":"external_url",
+      "value":"https://yoururl.com/privacy.html"
+    },
+    "terms_of_service":null,
+    "faq":{
+      "type":"content",
+      "format":"external_url",
+      "value":"https://yoururl.com/faq.html"
+    },
+    "wait_list_background_image":"https://yoururl.com/waitlist_backgorund.png",
+    "wait_list_background_color":null,
+    "wait_list_dark_background_color":null,
+    "wait_list_asset":"https://yoururl.com/waitlist_asset.png",
+    "allowed_countries":[
+      "ES"
+    ],
+    "labels":{
+      "external_oauth.login.call_to_action.title":"Connect to Company"
+    }
+  }
+}

@@ -9,6 +9,9 @@ internal data class IssueCardRequest(
     val applicationId: String,
 
     @SerializedName("additional_fields")
-    val additionalFields: Map<String, Any>? = null
+    val additionalFields: Map<String, Any>? = null,
+
+    @SerializedName("metadata")
+    val metadata: String? = null
 
 ) : Serializable

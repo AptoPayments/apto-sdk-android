@@ -14,10 +14,13 @@ import com.aptopayments.mobile.repository.card.local.CardLocalRepository
 import com.aptopayments.mobile.repository.card.local.CardLocalRepositoryImpl
 import com.aptopayments.mobile.repository.card.remote.CardService
 import com.aptopayments.mobile.repository.cardapplication.CardApplicationRepository
+import com.aptopayments.mobile.repository.cardapplication.CardApplicationRepositoryImpl
 import com.aptopayments.mobile.repository.cardapplication.remote.CardApplicationService
 import com.aptopayments.mobile.repository.config.ConfigRepository
+import com.aptopayments.mobile.repository.config.ConfigRepositoryImpl
 import com.aptopayments.mobile.repository.config.remote.ConfigService
 import com.aptopayments.mobile.repository.fundingsources.FundingSourceRepository
+import com.aptopayments.mobile.repository.fundingsources.FundingSourceRepositoryImpl
 import com.aptopayments.mobile.repository.fundingsources.remote.FundingSourcesService
 import com.aptopayments.mobile.repository.oauth.OAuthRepository
 import com.aptopayments.mobile.repository.oauth.remote.OAuthService
@@ -40,6 +43,7 @@ import com.aptopayments.mobile.repository.user.remote.UserService
 import com.aptopayments.mobile.repository.verification.VerificationRepository
 import com.aptopayments.mobile.repository.verification.remote.entities.VerificationService
 import com.aptopayments.mobile.repository.voip.VoipRepository
+import com.aptopayments.mobile.repository.voip.VoipRepositoryImpl
 import com.aptopayments.mobile.repository.voip.remote.VoipService
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -75,24 +79,13 @@ internal val repositoryModule = module {
     single { OAuthService(apiCatalog = get()) }
     single<OAuthRepository> { OAuthRepository.Network(networkHandler = get(), service = get()) }
     single { CardApplicationService(apiCatalog = get()) }
-    single<CardApplicationRepository> {
-        CardApplicationRepository.Network(
-            networkHandler = get(),
-            cardApplicationService = get()
-        )
-    }
+    single<CardApplicationRepository> { CardApplicationRepositoryImpl(get()) }
     single { ConfigService(apiCatalog = get()) }
-    single<ConfigRepository> { ConfigRepository.Network(networkHandler = get(), service = get()) }
+    single<ConfigRepository> { ConfigRepositoryImpl(service = get()) }
     single { UserService(apiCatalog = get()) }
     single<UserRepository> { UserRepository.Network(networkHandler = get(), service = get()) }
     single { FundingSourcesService(apiCatalog = get()) }
-    single<FundingSourceRepository> {
-        FundingSourceRepository.Network(
-            networkHandler = get(),
-            service = get(),
-            balanceLocalDao = get()
-        )
-    }
+    single<FundingSourceRepository> { FundingSourceRepositoryImpl(get(), get()) }
     single { CardService(apiCatalog = get()) }
     single<CardRepository> { CardRepository.Network(get(), get(), get(), get(), get()) }
     single { TransactionService(apiCatalog = get()) }
@@ -108,7 +101,7 @@ internal val repositoryModule = module {
     single { MonthlyStatementService(get()) }
     single<MonthlyStatementRepository> { MonthlyStatementRepositoryImpl(get()) }
     single { VoipService(apiCatalog = get()) }
-    single<VoipRepository> { VoipRepository.Network(networkHandler = get(), service = get()) }
+    single<VoipRepository> { VoipRepositoryImpl(service = get()) }
     single { PaymentSourcesService(get()) }
     single<PaymentSourcesRepository> { PaymentSourcesRepositoryImpl(get()) }
     single { PaymentService(get()) }

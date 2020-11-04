@@ -20,6 +20,9 @@ internal data class PaymentEntity(
     @SerializedName("source")
     val source: PaymentSourceEntity,
 
+    @SerializedName("approval_code")
+    val approvalCode: String?,
+
     @SerializedName("created_at")
     val createdAt: String
 ) {
@@ -29,6 +32,7 @@ internal data class PaymentEntity(
             status = PaymentStatus.fromString(status),
             amount = amount.toMoney(),
             source = source.toPaymentSource(),
+            approvalCode = approvalCode ?: "",
             createdAt = ZonedDateTime.parse(createdAt)
         )
     }

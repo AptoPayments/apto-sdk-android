@@ -245,7 +245,10 @@ interface AptoPlatformProtocol {
     fun restartVerification(verification: Verification, callback: (Either<Failure, Verification>) -> Unit)
 
     // Card application handling
-    fun applyToCard(cardProduct: CardProduct, callback: (Either<Failure, CardApplication>) -> Unit)
+    fun applyToCard(
+        cardProduct: CardProduct,
+        callback: (Either<Failure, CardApplication>) -> Unit
+    )
 
     fun fetchCardApplicationStatus(applicationId: String, callback: (Either<Failure, CardApplication>) -> Unit)
 
@@ -268,18 +271,21 @@ interface AptoPlatformProtocol {
      *
      * @param applicationId String got from {@link fetchCardProducts((Either<Failure, List<CardProductSummary>>) -> Unit)}
      * or {@link fetchCardProduct(String, Boolean, (Either<Failure, CardProduct>) -> Unit)}
+     * @param additionalFields Map<String, Any> (Optional)(Deprecated)
+     * @param metadata String
      * @param callback Lambda called when card has been issued returning Either Failure if was not successful or the Card if it was correct
      */
     fun issueCard(
         applicationId: String,
         additionalFields: Map<String, Any>? = null,
+        metadata: String? = null,
         callback: (Either<Failure, Card>) -> Unit
     )
 
     /**
      * This methods allows to issue a card providing different parameters
      *
-     * @param cardProductIdString got from {@link fetchCardProducts((Either<Failure, List<CardProductSummary>>) -> Unit)}
+     * @param cardProductId String got from {@link fetchCardProducts((Either<Failure, List<CardProductSummary>>) -> Unit)}
      * or {@link fetchCardProduct(String, Boolean, (Either<Failure, CardProduct>) -> Unit)}
      * @param credential OAuthCredential
      * @param additionalFields can be used to send Apto additional data required to card issuance that is not captured
@@ -312,7 +318,7 @@ interface AptoPlatformProtocol {
      * @param callback Lambda called when the api call has been made returning Either Failure if there was an error.
      * or a List of cards it it was successful
      */
-    fun fetchCards(pagination: ListPagination?, callback: (Either<Failure, PaginatedList<Card>>) -> Unit)
+    fun fetchCards(pagination: ListPagination? = null, callback: (Either<Failure, PaginatedList<Card>>) -> Unit)
 
     @Deprecated("To obtain card data, please use fetchCard")
     fun fetchFinancialAccount(accountId: String, forceRefresh: Boolean, callback: (Either<Failure, Card>) -> Unit)

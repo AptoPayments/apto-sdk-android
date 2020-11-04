@@ -96,7 +96,8 @@ internal object ModelDataProvider {
         spendableAmount = Money(currency = "USD", amount = 1000.0),
         nativeSpendableAmount = Money(currency = "BTC", amount = 0.1),
         cardHolder = "Cardholder Name",
-        features = null
+        features = null,
+        metadata = null
     )
 
     private fun activation(): Activation {
