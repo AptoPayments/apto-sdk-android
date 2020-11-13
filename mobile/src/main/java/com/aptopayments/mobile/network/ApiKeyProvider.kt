@@ -18,4 +18,6 @@ object ApiKeyProvider {
         this.apiKey = apiKey
         this.environment = environment
     }
+
+    fun isCurrentEnvironmentPrd() = environment == AptoSdkEnvironment.PRD
 }

@@ -6,13 +6,10 @@ import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.data.workflowaction.AllowedBalanceType
 import com.aptopayments.mobile.exception.Failure
 import com.aptopayments.mobile.functional.Either
-import com.aptopayments.mobile.network.NetworkHandler
-import com.aptopayments.mobile.platform.BaseRepository
+import com.aptopayments.mobile.platform.BaseNoNetworkRepository
 import com.aptopayments.mobile.repository.oauth.remote.OAuthService
-import com.aptopayments.mobile.repository.oauth.remote.entities.OAuthAttemptEntity
-import com.aptopayments.mobile.repository.oauth.remote.entities.OAuthUserDataUpdateEntity
 
-internal interface OAuthRepository : BaseRepository {
+internal interface OAuthRepository : BaseNoNetworkRepository {
 
     fun startOAuthAuthentication(allowedBalanceType: AllowedBalanceType): Either<Failure, OAuthAttempt>
     fun getOAuthAttemptStatus(attemptId: String): Either<Failure, OAuthAttempt>
@@ -26,64 +23,31 @@ internal interface OAuthRepository : BaseRepository {
         allowedBalanceType: AllowedBalanceType,
         tokenId: String
     ): Either<Failure, OAuthUserDataUpdate>
+}
 
-    class Network constructor(
-        private val networkHandler: NetworkHandler,
-        private val service: OAuthService
-    ) : BaseRepository.BaseRepositoryImpl(), OAuthRepository {
+internal class OAuthRepositoryImpl constructor(
+    private val service: OAuthService
+) : OAuthRepository {
 
-        override fun startOAuthAuthentication(allowedBalanceType: AllowedBalanceType): Either<Failure, OAuthAttempt> {
-            return when (networkHandler.isConnected) {
-                true -> request(
-                    service.startOAuthAuthentication(allowedBalanceType = allowedBalanceType),
-                    { it.toOAuthAttempt() },
-                    OAuthAttemptEntity()
-                )
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
+    override fun startOAuthAuthentication(allowedBalanceType: AllowedBalanceType) =
+        service.startOAuthAuthentication(allowedBalanceType = allowedBalanceType)
 
-        override fun getOAuthAttemptStatus(attemptId: String): Either<Failure, OAuthAttempt> {
-            return when (networkHandler.isConnected) {
-                true -> request(
-                    service.getOAuthAttemptStatus(attemptId = attemptId), { it.toOAuthAttempt() }, OAuthAttemptEntity()
-                )
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
+    override fun getOAuthAttemptStatus(attemptId: String) =
+        service.getOAuthAttemptStatus(attemptId = attemptId)
 
-        override fun saveOAuthUserData(
-            allowedBalanceType: AllowedBalanceType,
-            dataPointList: DataPointList,
-            tokenId: String
-        ): Either<Failure, OAuthUserDataUpdate> {
-            return when (networkHandler.isConnected) {
-                true -> request(
-                    service.saveOAuthUserData(
-                        allowedBalanceType = allowedBalanceType, dataPointList = dataPointList, tokenId = tokenId
-                    ),
-                    { it.toOAuthUserDataUpdate() },
-                    OAuthUserDataUpdateEntity()
-                )
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
+    override fun saveOAuthUserData(
+        allowedBalanceType: AllowedBalanceType,
+        dataPointList: DataPointList,
+        tokenId: String
+    ) = service.saveOAuthUserData(
+        allowedBalanceType = allowedBalanceType, dataPointList = dataPointList, tokenId = tokenId
+    )
 
-        override fun retrieveOAuthUserData(
-            allowedBalanceType: AllowedBalanceType,
-            tokenId: String
-        ): Either<Failure, OAuthUserDataUpdate> {
-            return when (networkHandler.isConnected) {
-                true -> request(
-                    service.retrieveOAuthUserData(
-                        allowedBalanceType = allowedBalanceType,
-                        tokenId = tokenId
-                    ),
-                    { it.toOAuthUserDataUpdate() },
-                    OAuthUserDataUpdateEntity()
-                )
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
-    }
+    override fun retrieveOAuthUserData(
+        allowedBalanceType: AllowedBalanceType,
+        tokenId: String
+    ) = service.retrieveOAuthUserData(
+        allowedBalanceType = allowedBalanceType,
+        tokenId = tokenId
+    )
 }

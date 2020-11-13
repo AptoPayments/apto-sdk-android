@@ -1,0 +1,55 @@
+{
+  "type":"oauth_attempt",
+  "id":"entity_1234",
+  "status":"passed",
+  "tokens":{
+    "refresh":"refresh_asdasd",
+    "access":"access_123"
+  },
+  "oauth_token_id":"entity_5555",
+  "user_data":{
+    "type":"list",
+    "data":[
+      {
+        "type":"name",
+        "first_name":"John",
+        "last_name":"Smith",
+        "verified":false,
+        "not_specified":false
+      },
+      {
+        "type":"email",
+        "email":"john_smith@matrix.com",
+        "verified":false,
+        "not_specified":false,
+        "verification":null
+      },
+      {
+        "type":"birthdate",
+        "date":"1980-01-01",
+        "verified":false,
+        "not_specified":false,
+        "verification":null
+      },
+      {
+        "type":"address",
+        "address_id":null,
+        "street_one":"1 Union Street",
+        "street_two":null,
+        "locality":"San Francisco",
+        "region":null,
+        "postal_code":"12345",
+        "country":"US",
+        "primary":true,
+        "verified":false,
+        "not_specified":false
+      }
+    ],
+    "page":0,
+    "rows":4,
+    "has_more":false,
+    "total_count":4
+  },
+  "error":null,
+  "error_message":null
+}

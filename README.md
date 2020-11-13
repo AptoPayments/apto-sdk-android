@@ -29,7 +29,7 @@ This document provides an overview of how to:
 * [Manage Card Funding Sources for On-demand Debits](#user-content-manage-card-funding-sources-for-on-demand-debits-enterprise-only) (Enterprise Only)
 * [Set Notification Preferences](#user-content-set-notification-preferences)
 
-**Note:** To enable your cardholders to view PCI Data, you will also need to implement our [PCI SDK](https://github.com/AptoPayments/apto-pci-sdk-android). 
+**Note:** To enable your cardholders to view PCI Data, you will also need to implement our [PCI SDK](https://github.com/AptoPayments/apto-pci-sdk-android).
 
 For more information, see the [Apto Developer Guides](http://docs.aptopayments.com) or the [Apto API Docs](https://docs.aptopayments.com/api/MobileAPI.html).
 
@@ -52,12 +52,12 @@ The following Android permissions need to be added to the `AndroidManifest.xml` 
 
 A Mobile API Key is required to run the SDK. To retrieve your Mobile API Key:
 
-1. Register for an account or login into the [Apto Developer Portal](https://developer.aptopayments.com). 
+1. Register for an account or login into the [Apto Developer Portal](https://developer.aptopayments.com).
 
 	**Note:** In order to register or login to your [Apto Developer Portal](https://developer.aptopayments.com) account, you will need to download a 2FA app such as the [Google Authenticator App](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2) for your mobile device.
 
-2. 	Your account has different Mobile API Keys: Sandbox and Production. Ensure you choose the correct environment from the dropdown located in the lower left of the page. 
-	
+2. 	Your account has different Mobile API Keys: Sandbox and Production. Ensure you choose the correct environment from the dropdown located in the lower left of the page.
+
 	![Mobile API Key](readme_images/environment.jpg)
 
 3. Select **Developers** from the left menu. Your **Mobile API Key** is listed on this page.
@@ -67,7 +67,7 @@ A Mobile API Key is required to run the SDK. To retrieve your Mobile API Key:
 	**Note:** `MOBILE_API_KEY` is used throughout this document to represent your Mobile API key. Ensure you replace `MOBILE_API_KEY` with the Mobile API Key in your account.
 
 
-## Install the SDK 
+## Install the SDK
 
 We suggest using [Gradle](https://gradle.org) to install the SDK:
 
@@ -76,13 +76,13 @@ We suggest using [Gradle](https://gradle.org) to install the SDK:
 ```
 	allprojects {
 		repositories {
-		
+
 			...
-			
+
 		    jcenter()
 		    maven { url 'https://dl.bintray.com/apto/maven' }
 		    maven { url "https://jitpack.io" }
-			
+
 			...
 		}
 	}
@@ -92,16 +92,16 @@ We suggest using [Gradle](https://gradle.org) to install the SDK:
 
 ```
 android {
-	
+
 	...
-	
+
 	compileOptions {
 		sourceCompatibility = 1.8
 		targetCompatibility = 1.8
 	}
-		
+
 	...
-	
+
 }
 ```
 
@@ -112,9 +112,9 @@ android {
 ```
     dependencies {
     	...
-    
-		implementation 'com.aptopayments.sdk:mobile:3.2.2'
-    
+
+		implementation 'com.aptopayments.sdk:mobile:3.4.1'
+
     	...
     }
 ```
@@ -126,7 +126,7 @@ android {
 
 ## Initialize the SDK
 
-The SDK must be initialized using the `onCreate` method of your Application class, and requires your `MOBILE_API_KEY`: 
+The SDK must be initialized using the `onCreate` method of your Application class, and requires your `MOBILE_API_KEY`:
 
 * **One-step initialization:** Load your `MOBILE_API_KEY` in the `onCreate` method of your Application class.
 * **Two-step initialization:** Initialize the SDK, and set up the `MOBILE_API_KEY` prior to interacting with the SDK methods.
@@ -165,7 +165,7 @@ AptoUiSdk.setApiKey("MOBILE_API_KEY", AptoSdkEnvironment.SBX)
 
 ## Verify a User Credential to Obtain a User Token
 
-The SDK enables users to sign up or sign in to the Apto Mobile API. 
+The SDK enables users to sign up or sign in to the Apto Mobile API.
 
 A user's credentials must be verified prior to authenticating a user. A successful verification will return a user token, which is used during the authentication process. Depending on your project's configuration, the user's credentials can be:
 
@@ -190,19 +190,19 @@ There are three main methods for the [User Verification Process](#user-content-u
 3. **Determine if the user is a new or existing user.** Once the user's primary credential is verified, the API response will contain data indicating if the credential belongs to an existing user or a new user.
 
 	**If the credentials belong to an existing user:**
-	
+
 	1. Verify the user's secondary credential. See [Complete a Verification](#user-content-complete-a-verification) for more information.
 	2. Use the SDK's login method to obtain a user session token. The login method consumes the two previous verifications, and the SDK automatically stores and manages the user token. See [Login with an Existing User](#user-content-login-with-an-existing-user) for more information.
 
 	**If the credentials don't belong to an existing user:**
-	
+
 	* Create a new user with the verified credentials and obtain a user token. The SDK automatically stores and manages the user token.
 
 ### Start a New Verification
 
 Depending on your project's configuration for your users, use one of the following SDK methods to start a new verification. [Instant Issuance Programs](http://docs.aptopayments.com/docs/instant-issuance-programs) can only use the phone verification.
 
-* [Phone Verification](#user-content-phone-verification): `AptoPlatform.startPhoneVerification` 
+* [Phone Verification](#user-content-phone-verification): `AptoPlatform.startPhoneVerification`
 * [Email Verification](#user-content-email-verification): `AptoPlatform.startEmailVerification` (Enterprise Programs only)
 
 #### Phone Verification
@@ -214,7 +214,7 @@ To initialize a user verification with a phone number:
 1. Initialize a `PhoneNumber` object, passing in the user's country code and phone number as strings:
 
 	**Note:**
-	
+
 	* The country code for the United States is `1`.
 	* The `PHONE_NUMBER` value should only contain numerical values.
 
@@ -285,11 +285,11 @@ AptoPlatform.completeVerification(verification) {
 			// Do something with the error
 		},
 		{ verification ->
-		
+
 			if (verification.status == VerificationStatus.PASSED) {
-				// The verification succeeded. If it belongs to an existing user, it will contain a non null `secondaryCredential`.				
+				// The verification succeeded. If it belongs to an existing user, it will contain a non null `secondaryCredential`.
 			} else {
-				// The verification failed: the secret is invalid.			
+				// The verification failed: the secret is invalid.
 			}
 		})
 	}
@@ -297,10 +297,10 @@ AptoPlatform.completeVerification(verification) {
 ```
 
 * When the method succeeds, a `Verification` object is included in the callback:
-	* If the verification's `status` property is set to `VerificationStatus.PASSED`, the verification is successful. 
+	* If the verification's `status` property is set to `VerificationStatus.PASSED`, the verification is successful.
 		* For primary verifications, if the verification belongs to an existing user, the response will contain a non-null `secondaryCredential` value. Use the `secondaryCredential.secret` value to [complete verification for the user's secondary credential](#user-content-complete-a-verification).
 		* For secondary verifications, the user is now fully verified and [login](#user-content-login-with-an-existing-user) can proceed.
-	* Otherwise, the verification failed due to an invalid `secret` value. If this is primary verification, you can add error handling and [restart the primary verification](#user-content-restart-a-primary-verification) for the user to re-enter their OTP code. 
+	* Otherwise, the verification failed due to an invalid `secret` value. If this is primary verification, you can add error handling and [restart the primary verification](#user-content-restart-a-primary-verification) for the user to re-enter their OTP code.
 * When the method fails, error handling can be included within the `error` response.
 
 
@@ -313,7 +313,7 @@ AptoPlatform.restartVerification(primaryVerification) {
 	it.either({ error ->
 		// Do something with the error
 	}, { verification ->
-		// The verification started and the user received a new OTP code via email or phone.		
+		// The verification started and the user received a new OTP code via email or phone.
 	})
 }
 
@@ -407,7 +407,7 @@ AptoPlatform.loginUserWith(listOf(primaryVerification, verification) as List<Ver
 	it.either(
 		{ error ->
 			// Do something with the error
-		}, 
+		},
 		{ user ->
 			// The user logged in. The user variable contains the user id and the user session token.
 		}
@@ -448,7 +448,7 @@ AptoPlatform.updateUserInfo(userData) {
 
 ### Close a User Session
 
-When a session is closed, it will log the user out of all sessions on all devices. 
+When a session is closed, it will log the user out of all sessions on all devices.
 
 To close the current user's session, use the `logout` SDK method:
 
@@ -483,7 +483,7 @@ AptoPlatform.fetchCardProducts {
 }
 ```
 
-* When the method succeeds, a list of `CardProduct` objects are returned, containing details for each card program.
+* When the method succeeds, a list of `CardProductSummary` objects are returned, containing details for each card program.
 * When the method fails, error handling can be included within the `error` response.
 
 ### Get Card Program Details
@@ -522,6 +522,119 @@ This document explains how to use the SDK to:
 * [Change a Card PIN](#user-content-change-a-card-pin)
 * [Lock / Unlock a Card](#user-content-lock--unlock-a-card)
 
+### Issue a Card
+
+
+In order to issue a card there are some steps that need to be followed and the API will tell which is the next one according to your advance in the process.
+
+1. Fetch the available Card Products.
+2. Select the card product (Only if you've more than one available).
+3. Apply for a card
+4. The received CardApplication object will guide you on the steps that must be executed to fulfill the card application. There are multiple steps that you'll have to support:
+
+* Collect User Data
+* Show & accept disclaimer
+* Select Balance Store (Enterprise programs only)
+* Issue Card
+
+
+**Note:** The Apto platform will guide you in the card application process. For example, if there's missing user data to be collected, the next action will be a Collect User Data action. If the user already provided all the required data, that step will be skipped and the next one will be returned in the nextAction property. Make sure that you implement support for at least CollectUserDataAction, ShowDisclaimerAction and IssueCardAction, and in Enterprise programs, also SelectBalanceStoreAction.
+
+**Note:** after executing the requested action (collect user data, accept disclaimer, issue card), please refresh the card application (using the method fetchCardApplicationStatus) to obtain the next action to be executed:
+
+```kotlin
+AptoPlatform.fetchCardApplicationStatus(cardApplication.id) { result ->
+  result.either({
+		// failure
+	}, { cardApplication ->
+		....
+    })
+}
+```
+### Fetch Card Products
+
+Cards are issued under specific card programs, this method returns all the available card programs in your project.
+
+```kotlin
+aptoPlatformProtocol.fetchCardProducts {
+	result.either({
+		// failure
+	}, { cardProductList ->
+		// Success
+    })
+}
+```
+* When the method fails, error handling can be included within the `error` response.
+* When the method succeeds, a list of `CardProductSummary` objects are returned, containing details for each card program.
+These details include `id` and `name` and a list of Countries (represented by their ISO Code).
+* If the list contains more than one card product (Instant Issuance will have only one configured) then the user should choose from the list to which he wants to apply.
+
+### Apply for a card
+
+With the cardProductId collected in the previous step, users can apply for cards.
+
+
+```kotlin
+val cardProduct = CardProduct(cardProductId)
+aptoPlatform.applyToCard(cardProduct) { result ->
+	result.either({
+		// handle failure
+	}, { cardApplication ->
+		// Card Application was successful
+    })
+ }
+```
+
+* When the method succeeds, a `CardApplication` object is returned containing details for the current Application indicating the next step that needs to be done in the `nextAction` property.
+
+
+This will be an instance of the decendants of `WorkflowAction`
+
+* SelectBalanceStoreAction
+* IssueCardAction
+* ShowDisclaimerAction
+* CollectUserDataAction
+
+
+**Note:** All the actions have a `configuration` property attached that will provide more information about it.
+
+### Disclaimer
+
+
+To continue the process is mandatory that the user accepts the disclaimer. A copy of it is provided in the `configuration` property.
+
+When they do this, the application must use the acceptDisclaimer method to mark the disclaimer as accepted.
+
+```kotlin
+aptoPlatform.acceptDisclaimer(cardApplication.workflowObjectId, cardApplication.nextAction) { result ->
+    result.either({
+		// failure
+	}, {
+		// disclaimer has been accepted
+    })
+}
+```
+
+### Issue Card
+
+Once the next action is `IssueCardAction`, you can issue the card by using the following method:
+
+When get to this point the API is ready to issue the card.
+
+```kotlin
+aptoPlatform.issueCard(cardApplicationId) { result ->
+  result.either({
+		// failure
+	}, { card ->
+		// card has been issued
+    })
+}
+```
+
+* When the method succeeds, a `Card` objet will be retured
+* When the method fails, error handling can be included within the `error` response.
+
+
 ### Get Cards
 
 To retrieve a list of cards for the current user, pass the following into the `fetchCards` method:
@@ -541,70 +654,6 @@ AptoPlatform.fetchCards(pagination) {
 
 * When the method succeeds, a `cards` object is returned, containing a list of `Card` objects.
 * When the method fails, error handling can be included within the `error` response.
-
-### Issue a Card
-
-To issue a card for the current user, use the `issueCard` method:
-
-1. Generate an `OAuthCredential` object.
-
-```kotlin
-val credential = OAuthCredential("TOKEN", "refresh_token")
-```
-
-2. Retrieve a list of all the card programs using the `fetchCardProducts` method.
-
-```kotlin
-AptoPlatform.fetchCardProducts {
-  it.either({ error ->
-      // Do something with the error
-  },
-  { cardProducts ->
-		...
-  })
-}
-```
-
-3. with the returned `cardProducts` value, pass the card program you want to issue, into the `issueCard` method.
-
-	If you have more than one card program, you may need to enable the user to select a specific card program. This example demonstrates how to issue a card for the first card program.
-	
-	**Note:** To retrieve details about the card program, use the `fetchCardProduct` method and pass in the card program's ID and `OAuthCredential` object.
-
-```kotlin
-AptoPlatform.issueCard(cardProducts[0].id, credential) {
-	it.either({ error ->
-		// Do something with the error
-	}, { card ->
-		// card is the issued Card object
-	})
-}
-```
-	
-* When the method succeeds, a `Card` object is returned containing the issued card details.
-* When the method fails, error handling can be included within the `error` response.
-	
-
-#### Issue a Card with Additional Info
-
-Enterprise Programs have the ability to issue cards
-with additional information. Use the following two optional parameters of the `issueCard` to add additional information:
-
-* `additionalFields` - Use this parameter to send additional data that may be required for card issuance, but may not have been captured during the user creation process. For a list of allowed fields and values [contact us](mailto:developers@aptopayments.com).
-
-* `initialFundingSourceId` - Use this parameter to specify the wallet ID connected to the issued card.
-	
-	**Note:** This only applies to debit card programs. For additional information regarding this parameter, [contact us](mailto:developers@aptopayments.com).
-
-```kotlin
-val additionalFields = mapOf<String, Any>("field1" to "value1", "field2" to 2)
-val initialFundingSourceId = "initial_funding_source_id"
-
-AptoPlatform.issueCard(cardProducts[0].id, credential,
-                       additionalFields = additionalFields, initialFundingSourceId = initialFundingSourceId) {
-  ...
-}
-```
 
 ### Activate a Physical Card
 
@@ -655,6 +704,8 @@ AptoPlatform.changeCardPin(accountID, pin) {
 	)
 }
 ```
+
+**Note:** The returned `Card` object will not contain the pin property.
 
 * When the method succeeds, a `Card` object is returned containing information about the updated card.
 * When the method fails, error handling can be included within the `error` response.
@@ -774,7 +825,7 @@ AptoPlatform.cardMonthlySpending(accountID, month, year) {
 
 ## Manage Card Payment Sources / Load Funds
 
-Funds loaded onto a user's card is automatically deducted from the payment source. The balance is maintained on the user's card, managed by Apto Payments. You can load money onto a user's card using a valid debit card. 
+Funds loaded onto a user's card is automatically deducted from the payment source. The balance is maintained on the user's card, managed by Apto Payments. You can load money onto a user's card using a valid debit card.
 
 * [Get Payment Sources](#user-content-get-payment-sources)
 * [Add a Payment Source](#user-content-add-a-payment-source)
@@ -788,13 +839,15 @@ A list of payment sources can be retrieved using the `getPaymentSources` method.
 Parameter|Type|Description
 ---|---|---
 `limit`|`Int`|This value specifies the upper limit of the number of payment sources returned per call. The maximum value for this parameter is `50`.
-`startingAfter`|`String`|If this value is set, only payment sources ID's larger than this value are returned.
-`endingBefore`|`String`|If this value is set, only payment sources ID's less than this value are returned.
+`startingAfter`|`String`|If this value is set, only payment source ID's larger than this value are returned.
+`endingBefore`|`String`|If this value is set, only payment source ID's less than this value are returned.
 
 **Note:** The `startingAfter` and `endingBefore` parameters are mutually exclusive. Only one of these parameters may be present per call. If both parameters are set, an error will be thrown.
 
 ```kotlin
-AptoPlatform.getPaymentSources(limit, startingAfter, endingBefore) {
+val limit = 10
+val startingAfter = "0"
+AptoPlatform.getPaymentSources( {
 	it.either(
 		{ error ->
 			// Do something with the error
@@ -802,7 +855,10 @@ AptoPlatform.getPaymentSources(limit, startingAfter, endingBefore) {
 			// paymentSources contains a list of PaymentSource objects.
 		}
 	)
-}
+	},
+	limit,
+	startingAfter
+ )
 ```
 
 * When the method succeeds, a `paymentSources` object is returned containing a list of `PaymentSource` objects.
@@ -833,17 +889,18 @@ val paymentSource = NewCard(
 
 ```kotlin
 AptoPlatform.addPaymentSource(paymentSource) {
-  it.either({ error ->
-    // Do something with the error
-  },
-  { source ->
-    // source contains a PaymentSource object.
-  })
+	it.either({ error ->
+		// Do something with the error
+	}, { source ->
+		// source contains a PaymentSource object.
+	})
 }
 ```
 
 * When the method succeeds, the added `PaymentSource` object is returned without the PII (Personal Identifiable Information).
 * When the method fails, error handling can be included within the `error` response.
+
+**Note:** The API allows cards to be added multiple times, due to connectivity with third-party systems. If you want your users to add a card only once, [check if the payment source exists](#user-content-get-payment-sources) prior to adding the card.
 
 ### Delete a Payment Source
 
@@ -852,6 +909,7 @@ To delete a payment source, pass the payment source ID into the `deletePaymentSo
 **Note:** A preferred payment source can not be deleted.
 
 ```kotlin
+val paymentSourceId = "payment_source_XXXXXXXXX"
 AptoPlatform.deletePaymentSource(paymentSourceId) {
 	it.either(
 		{ error ->
@@ -868,16 +926,19 @@ AptoPlatform.deletePaymentSource(paymentSourceId) {
 
 ### Add Funds to a Card
 
-To add funds to a card, pass the following parameters into the `deletePaymentSource` method:
+To add funds to a card, pass the following parameters into the `pushFunds` method:
 
 Parameter|Type|Description
 ---|---|---
-`balanceId`|`String`|This is the ID for the card balance you want to fund. See [Get Payment Sources](#user-content-get-payment-sources) to retreive the ID property.
+`balanceId`|`String`|This is the card's funding source ID you want to fund. See [Get a Card's Default Funding Source](#user-content-get-a-cards-default-funding-source) to retrieve the balance ID property.
 `paymentSourceId`|`String`|This is the Payment Source ID that will be used to add funds.
-`amount`|`Money`|This object specifies the amount and currency that will be added to the balance.
+`amount`|`Money`|This object specifies the amount and currency that will be added to the balance. **Note:** The amount parameter of this object must use the `Double` format.
 
 ```kotlin
-val money = Money("USD", 100)
+val balanceId = "bal_XXXXXXXXX"
+val paymentSourceId = "payment_source_XXXXXXXXX"
+val money = Money("USD", 100.00)
+
 AptoPlatform.pushFunds(balanceId, paymentSourceId, money) {
 	it.either(
 		{ error ->
@@ -894,9 +955,9 @@ AptoPlatform.pushFunds(balanceId, paymentSourceId, money) {
 
 ## Manage Card Funding Sources for On-demand Debits (Enterprise only)
 
-Funding sources may be used for on-demand debiting. When a user spends using their card, the amount can be debited from a specified funding source, rather than using the [funds loaded onto their card](#user-content-manage-card-payment-sources-for-loading-funds). A card can have more than one funding source. 
+Funding sources may be used for on-demand debiting. When a user spends using their card, the amount can be debited from a specified funding source, rather than using the [funds loaded onto their card](#user-content-manage-card-payment-sources-for-loading-funds). A card can have more than one funding source.
 
-**Note:** Only Enterprise Programs may use this feature to connect a funding source to a card. [Instant Issuance programs](http://docs.aptopayments.com/docs/instant-issuance-programs) may only [load funds onto a card](#user-content-manage-card-payment-sources-for-loading-funds). 
+**Note:** Only Enterprise Programs may use this feature to connect a funding source to a card. [Instant Issuance programs](http://docs.aptopayments.com/docs/instant-issuance-programs) may only [load funds onto a card](#user-content-manage-card-payment-sources-for-loading-funds).
 
 The Mobile SDK enables you to:
 
@@ -1047,7 +1108,7 @@ AptoPlatform.updateNotificationPreferences(preferences) {
 
 We look forward to receiving your feedback, including new feature requests, bug fixes and documentation improvements.
 
-If you would like to help: 
+If you would like to help:
 
 1. Refer to the [issues](https://github.com/AptoPayments/apto-sdk-android/issues) section of the repository first, to ensure your feature or bug doesn't already exist (The request may be ongoing, or newly finished task).
 2. If your request is not in the [issues](https://github.com/AptoPayments/apto-sdk-android/issues) section, please feel free to [create one](https://github.com/AptoPayments/apto-sdk-android/issues/new). We'll get back to you as soon as possible.

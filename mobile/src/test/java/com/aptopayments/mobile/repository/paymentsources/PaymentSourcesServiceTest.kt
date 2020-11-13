@@ -25,7 +25,7 @@ internal class PaymentSourcesServiceTest : NetworkServiceTest() {
     @Test
     fun `when addPaymentSource then correct request is sent`() {
         enqueueFile("addPaymentSourceResponse400.json", HTTP_BAD_REQUEST)
-        val response = sut.addPaymentSource(getNewCard())
+        sut.addPaymentSource(getNewCard())
 
         assertRequestBodyFile("addPaymentSourceRequest.json")
     }

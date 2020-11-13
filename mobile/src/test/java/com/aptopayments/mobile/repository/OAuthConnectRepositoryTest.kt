@@ -6,34 +6,32 @@ import com.aptopayments.mobile.data.oauth.OAuthAttempt
 import com.aptopayments.mobile.data.oauth.OAuthAttemptStatus
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdate
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdateResult
-import com.aptopayments.mobile.exception.Failure.NetworkConnection
-import com.aptopayments.mobile.extension.shouldBeLeftAndInstanceOf
+import com.aptopayments.mobile.data.workflowaction.AllowedBalanceType
+import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.functional.right
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.platform.ErrorHandler
 import com.aptopayments.mobile.platform.RequestExecutor
-import com.aptopayments.mobile.repository.oauth.OAuthRepository
+import com.aptopayments.mobile.repository.oauth.OAuthRepositoryImpl
 import com.aptopayments.mobile.repository.oauth.remote.OAuthService
 import com.aptopayments.mobile.repository.oauth.remote.entities.OAuthAttemptEntity
 import com.aptopayments.mobile.repository.oauth.remote.entities.OAuthUserDataUpdateEntity
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyZeroInteractions
+import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.mockito.Mock
-import retrofit2.Call
-import retrofit2.Response
 import kotlin.test.assertEquals
 
 class OAuthConnectRepositoryTest : UnitTest() {
 
     private lateinit var requestExecutor: RequestExecutor
-    private lateinit var sut: OAuthRepository.Network
+    private lateinit var sut: OAuthRepositoryImpl
 
     @Mock
     private lateinit var networkHandler: NetworkHandler
@@ -43,18 +41,6 @@ class OAuthConnectRepositoryTest : UnitTest() {
 
     @Mock
     private lateinit var mockUserSessionRepository: UserSessionRepository
-
-    @Mock
-    private lateinit var startOAuthCall: Call<OAuthAttemptEntity>
-
-    @Mock
-    private lateinit var startOAuthResponse: Response<OAuthAttemptEntity>
-
-    @Mock
-    private lateinit var saveOAuthUserDataCall: Call<OAuthUserDataUpdateEntity>
-
-    @Mock
-    private lateinit var saveOAuthUserDataResponse: Response<OAuthUserDataUpdateEntity>
 
     @Before
     override fun setUp() {
@@ -66,18 +52,15 @@ class OAuthConnectRepositoryTest : UnitTest() {
                 single { requestExecutor }
             })
         }
-        sut = OAuthRepository.Network(networkHandler, service)
+        sut = OAuthRepositoryImpl(service)
     }
 
     @Test
     fun `should start OAuth Authentication from service`() {
         val allowedBalanceType = TestDataProvider.provideAllowedBalanceType()
-        given { networkHandler.isConnected }.willReturn(true)
-        given { startOAuthResponse.body() }.willReturn(OAuthAttemptEntity())
-        given { startOAuthResponse.isSuccessful }.willReturn(true)
-        given { startOAuthCall.execute() }.willReturn(startOAuthResponse)
+        val entity = OAuthAttemptEntity()
         given { service.startOAuthAuthentication(allowedBalanceType = allowedBalanceType) }
-            .willReturn(startOAuthCall)
+            .willReturn(entity.toOAuthAttempt().right())
 
         val oauthAttempt = sut.startOAuthAuthentication(allowedBalanceType)
 
@@ -87,24 +70,10 @@ class OAuthConnectRepositoryTest : UnitTest() {
     }
 
     @Test
-    fun `OAuth connect service should return network failure when no connection`() {
-        val allowedBalanceType = TestDataProvider.provideAllowedBalanceType()
-        given { networkHandler.isConnected }.willReturn(false)
-
-        val result = sut.startOAuthAuthentication(allowedBalanceType)
-
-        result.shouldBeLeftAndInstanceOf(NetworkConnection::class.java)
-        verifyZeroInteractions(service)
-    }
-
-    @Test
     fun `should save OAuth user data from service`() {
         val allowedBalanceType = TestDataProvider.provideAllowedBalanceType()
         val oAuthAttempt = TestDataProvider.provideOAuthAttempt()
-        given { networkHandler.isConnected }.willReturn(true)
-        given { saveOAuthUserDataResponse.body() }.willReturn(OAuthUserDataUpdateEntity())
-        given { saveOAuthUserDataResponse.isSuccessful }.willReturn(true)
-        given { saveOAuthUserDataCall.execute() }.willReturn(saveOAuthUserDataResponse)
+        val entity = OAuthUserDataUpdateEntity()
         given {
             service.saveOAuthUserData(
                 allowedBalanceType = allowedBalanceType,
@@ -112,7 +81,7 @@ class OAuthConnectRepositoryTest : UnitTest() {
                 tokenId = oAuthAttempt.tokenId
             )
         }
-            .willReturn(saveOAuthUserDataCall)
+            .willReturn(entity.toOAuthUserDataUpdate().right())
 
         val oAuthUserDataUpdate = sut.saveOAuthUserData(
             allowedBalanceType,
@@ -130,19 +99,28 @@ class OAuthConnectRepositoryTest : UnitTest() {
     }
 
     @Test
-    fun `save OAuth user data should return network failure when no connection`() {
-        val allowedBalanceType = TestDataProvider.provideAllowedBalanceType()
-        val oAuthAttempt = TestDataProvider.provideOAuthAttempt()
-        given { networkHandler.isConnected }.willReturn(false)
+    fun `when getOAuthAttemptStatus correct data is fetched`() {
+        val attemptId = "attempt_123"
+        val attempt: OAuthAttempt = mock()
+        whenever(service.getOAuthAttemptStatus(attemptId)).thenReturn(attempt.right())
 
-        val result = sut.saveOAuthUserData(
-            allowedBalanceType,
-            dataPointList = oAuthAttempt.userData!!,
-            tokenId = oAuthAttempt.tokenId
-        )
+        val result = sut.getOAuthAttemptStatus(attemptId)
 
-        result.shouldBeLeftAndInstanceOf(NetworkConnection::class.java)
-        verifyZeroInteractions(service)
+        verify(service).getOAuthAttemptStatus(attemptId)
+        result.shouldBeRightAndEqualTo(attempt)
+    }
+
+    @Test
+    fun `when retrieveOAuthUserData correct data is fetched`() {
+        val tokenId = "token_123"
+        val balanceType: AllowedBalanceType = mock()
+        val update: OAuthUserDataUpdate = mock()
+        whenever(service.retrieveOAuthUserData(balanceType, tokenId)).thenReturn(update.right())
+
+        val result = sut.retrieveOAuthUserData(balanceType, tokenId)
+
+        verify(service).retrieveOAuthUserData(balanceType, tokenId)
+        result.shouldBeRightAndEqualTo(update)
     }
 
     private fun getPendingOauthAttempt(): Either<Nothing, OAuthAttempt> {

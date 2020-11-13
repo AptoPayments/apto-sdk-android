@@ -7,6 +7,7 @@ import com.aptopayments.mobile.network.*
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.UserSessionRepositoryDouble
 import com.aptopayments.mobile.utils.FileReader
+import com.google.gson.JsonParser
 import com.nhaarman.mockitokotlin2.whenever
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -22,7 +23,6 @@ import java.io.IOException
 import java.net.HttpURLConnection.HTTP_OK
 import java.util.concurrent.TimeUnit
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 internal abstract class ServiceTest : UnitTest() {
 
@@ -36,6 +36,7 @@ internal abstract class ServiceTest : UnitTest() {
 
     private var server: MockWebServer = MockWebServer()
     protected val gson = GsonProvider.provide()
+    private val jsonParser = JsonParser()
 
     @Before
     open fun setup() {
@@ -66,9 +67,10 @@ internal abstract class ServiceTest : UnitTest() {
     }
 
     protected fun assertRequestBodyFile(fileName: String) {
-        val request = takeRequest()?.body?.readUtf8()
-        val fileContent = readFile(fileName)
-        assertTrue { request?.contains(fileContent.trim()) ?: false }
+        val requestJson = jsonParser.parse(takeRequest()?.body?.readUtf8())
+        val fileJson = jsonParser.parse(readFile(fileName))
+
+        assertEquals(requestJson, fileJson)
     }
 
     protected fun <T> assertCode(test: Response<T>, code: Int = HTTP_OK) {

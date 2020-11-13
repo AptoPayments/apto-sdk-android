@@ -1,0 +1,43 @@
+{
+  "provider":"test",
+  "oauth_token_id":"entity_12345",
+  "data_points":{
+    "data":[
+      {
+        "data_type":"birthdate",
+        "verified":false,
+        "not_specified":false,
+        "date":"1980-01-01"
+      },
+      {
+        "data_type":"email",
+        "verified":false,
+        "not_specified":false,
+        "email":"john_smith@matrix.com"
+      },
+      {
+        "data_type":"address",
+        "verified":false,
+        "not_specified":false,
+        "street_one":"1 Union Street",
+        "street_two":null,
+        "locality":"San Francisco",
+        "region":null,
+        "postal_code":"12345",
+        "country":"US"
+      },
+      {
+        "data_type":"name",
+        "verified":false,
+        "not_specified":false,
+        "first_name":"John",
+        "last_name":"Smith"
+      }
+    ],
+    "has_more":false,
+    "page":0,
+    "rows":4,
+    "total_count":4,
+    "type":"list"
+  }
+}

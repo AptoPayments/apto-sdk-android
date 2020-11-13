@@ -3,6 +3,9 @@ package com.aptopayments.mobile.data.content
 import java.io.Serializable
 import java.net.URL
 
+/**
+ * A Content to be shown to a User.
+ */
 sealed class Content : Serializable {
     data class PlainText(val text: String) : Content()
     data class Markdown(val markdown: String) : Content()

@@ -1,0 +1,1 @@
+{"custodian_uid":"id_12345","metadata":"METADATA","data_points":{"data":[{"data_type":"phone","verified":false,"verification":{"secondary_credential":null,"status":"passed","verification_id":"entity_123","verification_type":"phone"},"not_specified":false,"country_code":"44","phone_number":"7709000000"}],"has_more":false,"page":0,"rows":1,"total_count":1,"type":"list"}}

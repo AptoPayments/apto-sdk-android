@@ -1,0 +1,1 @@
+{"type": "user", "user_id": "crdhldr_12345", "user_token": "thisismytoken", "user_data": {"type": "list", "data": [{"type": "phone", "country_code": "44", "phone_number": "7709000000", "verified": true, "not_specified": false, "verification": null}], "page": 0, "rows": 1, "has_more": false, "total_count": 1}, "metadata": null}

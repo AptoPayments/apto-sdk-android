@@ -1,12 +1,11 @@
 package com.aptopayments.mobile.data.user
 
 import java.io.Serializable
-import java.util.Arrays
 import java.util.HashMap
 
-class DataPointList(dataPoints: List<DataPoint>? = null) : Serializable {
+data class DataPointList(val dataPoints: List<DataPoint>? = null) : Serializable {
 
-    private val dataPoints = HashMap<DataPoint.Type, MutableList<DataPoint>>()
+    private val dataPointsHash = HashMap<DataPoint.Type, MutableList<DataPoint>>()
 
     init {
         dataPoints?.let {
@@ -22,12 +21,12 @@ class DataPointList(dataPoints: List<DataPoint>? = null) : Serializable {
         if (!dataPointList.contains(dataPoint)) {
             dataPointList.add(dataPoint)
         }
-        dataPoints[type] = Arrays.asList<DataPoint>(dataPoint)
+        dataPointsHash[type] = mutableListOf(dataPoint)
         return this
     }
 
     fun getDataPointsOf(type: DataPoint.Type): MutableList<DataPoint>? {
-        return dataPoints[type]
+        return dataPointsHash[type]
     }
 
     fun getUniqueDataPointOf(type: DataPoint.Type, defaultValue: DataPoint?): DataPoint? {
@@ -37,11 +36,11 @@ class DataPointList(dataPoints: List<DataPoint>? = null) : Serializable {
 
     fun getAllDataPoints(): List<DataPoint>? {
         val allDataPoints = ArrayList<DataPoint>()
-        dataPoints.forEach {
+        dataPointsHash.forEach {
             allDataPoints.addAll(it.value)
         }
         return allDataPoints
     }
 
-    fun isEmpty(): Boolean = dataPoints.isEmpty()
+    fun isEmpty(): Boolean = dataPointsHash.isEmpty()
 }
