@@ -113,7 +113,7 @@ android {
     dependencies {
     	...
 
-		implementation 'com.aptopayments.sdk:mobile:3.4.1'
+		implementation 'com.aptopayments.sdk:mobile:3.4.2'
 
     	...
     }
