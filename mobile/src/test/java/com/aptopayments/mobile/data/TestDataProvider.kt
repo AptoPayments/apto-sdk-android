@@ -10,16 +10,19 @@ import com.aptopayments.mobile.data.oauth.OAuthAttempt
 import com.aptopayments.mobile.data.oauth.OAuthAttemptStatus
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdate
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdateResult
+import com.aptopayments.mobile.data.transaction.Transaction
 import com.aptopayments.mobile.data.user.DataPoint
 import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.data.user.User
 import com.aptopayments.mobile.data.user.Verification
 import com.aptopayments.mobile.data.workflowaction.AllowedBalanceType
 import com.aptopayments.mobile.platform.AptoSdkEnvironment
+import com.aptopayments.mobile.repository.transaction.local.entities.TransactionLocalEntity
 import org.mockito.Mockito
+import org.threeten.bp.ZonedDateTime
 import java.net.URL
 
-class TestDataProvider {
+internal class TestDataProvider {
 
     companion object {
         fun provideOAuthAttempt() = OAuthAttempt(
@@ -251,6 +254,43 @@ class TestDataProvider {
 
         fun provideEnvironment() = AptoSdkEnvironment.STG
 
+        fun provideMoney(amount: Double = 10.0, currency: String = "USD") = Money(currency, amount)
+
         fun provideAPiKey() = "api_key_123"
+
+        fun provideTransaction(
+            transactionId: String = "transaction_1234",
+            createdAt: ZonedDateTime = ZonedDateTime.now()
+        ) = Transaction(
+            transactionId,
+            transactionType = Transaction.TransactionType.PURCHASE,
+            createdAt = createdAt,
+            transactionDescription = null,
+            lastMessage = null,
+            declineCode = null,
+            merchant = null,
+            store = null,
+            localAmount = provideMoney(),
+            billingAmount = provideMoney(),
+            holdAmount = provideMoney(0.0),
+            cashbackAmount = provideMoney(0.0),
+            feeAmount = provideMoney(0.0),
+            nativeBalance = provideMoney(),
+            settlement = null,
+            ecommerce = null,
+            international = null,
+            cardPresent = null,
+            emv = null,
+            cardNetwork = Card.CardNetwork.VISA,
+            state = Transaction.TransactionState.COMPLETE,
+            adjustments = null,
+            fundingSourceName = null
+        )
+
+        fun provideTransactionLocalEntity(
+            transactionId: String = "transaction_1234",
+            createdAt: ZonedDateTime = ZonedDateTime.now(),
+            cardId: String = "card_1234"
+        ) = TransactionLocalEntity.fromTransaction(provideTransaction(transactionId, createdAt), cardId)
     }
 }

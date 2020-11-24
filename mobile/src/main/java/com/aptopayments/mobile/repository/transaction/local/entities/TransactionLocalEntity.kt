@@ -15,7 +15,7 @@ import com.google.gson.reflect.TypeToken
 import org.threeten.bp.ZonedDateTime
 
 @Entity(tableName = "transaction")
-internal class TransactionLocalEntity(
+internal data class TransactionLocalEntity(
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "transaction_id")

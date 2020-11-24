@@ -1,134 +1,193 @@
 # Module 
 
-## Mobile API Calls Issuing Sequence
+# Android Mobile SDK - Issue Card Workflow
 
-Issuing a card for a new user has 3 major steps
+Once a user is created, you can issue a card for the user.
 
- 1. Phone Verification
- 2. User Creation
- 3. Agreement & Issue Card
+The steps to issue a card are:
 
+1. [Get Card Programs](#user-content-get-card-programs)
+2. [Apply for a Card](#user-content-apply-for-a-card)
+3. [Get the Next Application Step](#user-content-get-the-next-application-step)
+	* [Accept the Disclaimer](#user-content-accept-the-disclaimer) 
+5. [Issue the Card](#user-content-issue-the-card)
 
-## 1 - Phone Verification
+## Get Card Programs
 
-### Start Verification
+Each card must be issued under a card program. 
 
-The first step is to verify the user's primary authentication factor. The examples will be held for Phone because is selected by default.
-
-First we should call the start Phone Verification method 
-
-```kotlin
-val phoneNumber = PhoneNumber(countryCode, number)
-aptoPlatform.startPhoneVerification(phoneNumber) { result ->
-	result.either({
-		// handle failure
-  	}, { verification ->
-		if (verification.status == VerificationStatus.PENDING) {
-        	// The code has been sent in an SMS to the user
-		}  
-    })  
-}
-```
-### Finish Verification
-
-We should ask the user to enter in a screen the SMS that has been sent to the phone number provided
+To retrieve a list of all the available card programs, use the `fetchCardProducts` method:
 
 ```kotlin
-verification.secret = smsCode
-aptoPlatform.completeVerification(verification) { result ->
-	result.either({
-		// handle failure  
-	}, { verification ->  
-		if (verification.status == VerificationStatus.PASSED) {
-	    	// New user verification has completed, we are ready to create user
-            // The following datapoint will be used in user creation
-        	val phoneDataPoint = PhoneDataPoint(verification, phoneNumber)
-		} else {
-			// Show Wrong code error
-		}
-    })  
-}
-```
-
-## 2 - User Creation
-
-To create a user you need to provide a data point list including at least: 
- - PhoneNumber (verified)
- - PersonalName (first name, last name)
- - Address
- - Email
- - Date Of Birth
-
-but you can also include any other data available in the DataPoint.Type enum
-
-```kotlin
-val dataPointList = DataPointList()
-// create and add all the datapoint that you have/collected from the user (including the 2FA)
-dataPointList.add(phoneDataPoint)
-
-AptoPlatform.createUser(dataPointList) { result ->
-    result.either({
-		// handle failure  
-	}, { user ->
-		// user has been created
-    })  
-}
-```
-
-## 3 - Agreement & Issue Card
-
-### Fetch Card Products
-
-Card are issued under specific card products, this method returns all the available card products in your program
-
-```kotlin
-aptoPlatformProtocol.fetchCardProducts {
-	result.either({
-		// failure
-	}, { cardProductList ->
-		when (cardProductList.size) {
-			0 -> {} // Error
-			1 -> {
-				val cardProductId = cardProductList[0].id 
+AptoPlatform.fetchCardProducts {
+	it.either(
+		{ error ->
+			// Do something with the error
+		}, { cardProducts ->
+			// cardProducts is a list of CardProduct objects.
+			when (c cardProducts.size) {
+				0 -> {} // Error
+				1 -> {
+					val cardProductId = cardProductList[0].id 
+				}
+				2 -> {
+					// Show screen to select the card program
+				}
 			}
-			2 -> {} // Show screen to select the card product
 		}
-    }) 
+	)
 }
 ```
 
-### Apply to card
+**Note:** Card Programs used to be called Card Products, so you may see the SDK methods reflect the term *products*. These method names may change in the future to match the correct term *programs*.
 
-With the cardProductId collected in the previous step, you should apply to a card.
-The API will guide you in the process from now on, for that reason you'll get in the cardApplication the next action
-that you have to perform. The list of possible actions is:
+* When the method succeeds, a list of `CardProductSummary` objects are returned, containing details for each card program. Save the card program's ID you want to use to apply for a new card.
+* When the method fails, error handling can be included within the `error` response.
 
-- ISSUE_CARD
-- SHOW_DISCLAIMER
-- COLLECT_USER_DATA
+## Apply for a Card
+
+Use the card program's ID from the previous step to apply for a card.
+
+To apply for a card:
+
+1. Create a `CardProduct` object passing in the `cardProductId`:
 
 ```kotlin
 val cardProduct = CardProduct(cardProductId)
-aptoPlatform.applyToCard(cardProduct) { result ->
+```
+
+2. Pass `cardProduct` into the `applyToCard` SDK method:
+
+```kotlin
+AptoPlatform.applyToCard(cardProduct) { result ->
 	result.either({
 		// handle failure  
 	}, { cardApplication ->
-		// In this step we have successfully applied to a card.
-		// We should check the type of cardApplication.nextAction to know what is the next step
+		// In this step we have successfully applied for a card.
+		// Check the cardApplication.nextAction property to identify the next step of the application
     })
  }
 ```
 
-By default the next step in the cardApplication would be SHOW_DISCLAIMER as long as all the required User Datapoints
-are set in the User Creation Step. If there is any required Datapoint that is missing, the action type would be COLLECT_USER_DATA
+* When the method succeeds, a `CardApplication` object is returned, containing details for the card application. Save the `cardApplication` object for the remaining steps of the application.
+* When the method fails, error handling can be included within the `error` response.
 
-### Accept Disclaimer
+## Get the Next Application Step
 
-To continue the process is mandatory to show the disclaimer to the users and their acceptance. 
-When they do this, the application must use the acceptDisclaimer method to mark the disclaimer as accepted.
+Once you have a card application initiated, check for the next application step in the `nextAction` property.
 
 ```kotlin
-aptoPlatform.acceptDisclaimer(cardApplication.workflowObjectId, cardApplication.nextAction) { result ->
+if (cardApplication.nextAction == "SHOW_DISCLAIMER") {
+	// Show the disclaimer
+}
+```
+
+The available values for the `nextAction` property are:
+
+Value|Description
+---|---
+`COLLECT_USER_DATA`|If any required user information is missing, the next action value will be `COLLECT_USER_DATA`.
+`SELECT_BALANCE_STORE`|For Enterprise programs, if using an OAuth application process and all required user information was submitted during user creation, this is the default step. See [Set the Balance Store using OAuth (Enterprise Only)](#user-content-set-the-balance-store-using-oauth--enterprise-only-) to process this step.
+`SHOW_DISCLAIMER`|For both Instant Issuance and Enterprise programs, if all required user information was submitted during user creation, this is the default step prior to issuing a card. See [Accept the Disclaimer](#user-content-accept-the-disclaimer) to process this step.
+`ISSUE_CARD`|This indicates the application is complete and a card can be issued for the user. See [Issue the Card](#user-content-issue-the-card) to issue a card for the user.
+
+**Note:** After each application step, ensure you update the current card application to see if the card can be issued (`ISSUE_CARD`), or if there are additional steps in the application process.
+
+### Set the Balance Store using OAuth (Enterprise Only)
+
+To set the balance store using OAuth:
+
+1. Get the allowed balance type from the `nextAction`'s `actionConfiguration.allowedBalanceTypes.first()` property.
+
+```kotlin
+val allowedBalanceType = cardApplication.nextAction.actionConfiguration.allowedBalanceTypes.first()
+```
+
+2. Pass the allowed balance type into the `startOauthAuthentication` method:
+
+```kotlin
+AptoPlatform.startOauthAuthentication(allowedBalanceType) { result ->
+    result.either({
+        // handle failure
+    }, { oauthAttempt ->
+            val url = oauthAttempt.url
+           // Start the oauth attempt in a separate screen
+    })
+}
+```
+
+* When the method succeeds, an OAuth attempt object will be returned. Save its `url` property for the next OAuth process. 
+* When the method fails, error handling can be included within the `error` response.
+
+3. Load the OAuth attempt URL in a web view. 
+
+**Note:** Your OAuth server must call the Apto OAuth callback endpoint `/v1/oauth/callback` adhering to OAuth2 standards, including passing in the token and secret, or the error message (if any).
+
+4. Once the user completes the OAuth process, the user will be redirected to the `apto-sdk://oauth-finish` URL. Use this to check for the OAuth status. 
+
+```kotlin
+AptoPlatform.verifyOauthAttemptStatus(oauthAttempt) { result ->
+    result.either({
+        // handle failure
+    }, { oauthAttempt ->
+        // Verify that the state is PASSED
+        if (oauthAttempt.state == "PASSED") {
+        	// The OAuth attempt is successful
+        } else {
+        	// The OAuth attempt failed
+        }
+    })
+}
+```
+
+The available values for the OAuth `state` are `PASSED` or `FAILED`:
+
+* If the OAuth `state` is `PASSED`, proceed to the next step to set the balance store using the returned OAuth token ID.
+* If the OAuth `state` is `FAILED`, the user must restart the OAuth process to retrieve an OAuth token ID.
+
+5. Once the OAuth completes successfully, pass the card application ID and OAuth token ID into the `setBalanceStore` method:
+
+```kotlin
+aptoPlatformProtocol.setBalanceStore(cardApplication.id, oauthAttempt.tokenId) { result ->
+    result.either({
+        // handle failure
+    }, { selectBalanceStoreResult ->
+           // selectBalanceStoreResult.result should be VALID
+    })
+}
+```
+
+* When the method succeeds, a select balance store result object is returned. Ensure the `result` property is `VALID` before proceeding to the next step.
+* When the method fails, error handling can be included within the `error` response.
+
+6. Check the application status by passing the card application ID into the `fetchCardApplicationStatus` method:
+
+```kotlin
+AptoPlatform.fetchCardApplicationStatus(cardApplication.id) { result ->
+  result.either({
+		// failure
+	}, {
+		// Check the next step. After the disclaimer the result should be ISSUE_CARD
+		if (cardApplication.nextAction == "ISSUE_CARD") {
+			// Show the disclaimer
+		}
+    })
+}
+```
+
+* When the method succeeds, check the application's `nextAction` property. The value should be `SHOW_DISCLAIMER` to indicate the next step in the application is to display the disclaimer. See [Accept the Disclaimer](#user-content-accept-the-disclaimer) to process this step.
+* When the method fails, error handling can be included within the `error` response.
+
+### Accept the Disclaimer
+
+The user must accept the disclaimer to complete their card application. To process the user's disclaimer acceptance:
+
+1. Display the disclaimer to the user and ask for their acceptance.
+
+2. Once the user confirms they accept the disclaimer, pass the applications's `workflowObjectId` and `nextAction` properties into the `acceptDisclaimer` method to mark the disclaimer as accepted:
+
+```kotlin
+AptoPlatform.acceptDisclaimer(cardApplication.workflowObjectId, cardApplication.nextAction) { result ->
     result.either({
 		// failure
 	}, {
@@ -137,27 +196,39 @@ aptoPlatform.acceptDisclaimer(cardApplication.workflowObjectId, cardApplication.
 }
 ```
 
-After every step, we should update our current cardApplication and check which is the next step defined in the card application.
+* When the method succeeds, the disclaimer has been successfully processed.
+* When the method fails, error handling can be included within the `error` response.
+
+3. Check the application status by passing the card application ID into the `fetchCardApplicationStatus` method:
 
 ```kotlin
 AptoPlatform.fetchCardApplicationStatus(cardApplication.id) { result ->
   result.either({
 		// failure
 	}, {
-		// check the next step, at this point the result would be ISSUE_CARD
+		// Check the next step. After the disclaimer the result should be ISSUE_CARD
+		if (cardApplication.nextAction == "ISSUE_CARD") {
+			// Show the disclaimer
+		}
     })
 }
 ```
 
-### Issue Card
+* When the method succeeds, check the application's `nextAction` property. The value should be `ISSUE_CARD` to indicate the application is approved so you may issue a card to the user.
+* When the method fails, error handling can be included within the `error` response.
 
-Finally we can issue a card sending the cardApplicationId to the issueCard function and complete the last step.
+## Issue the Card
+
+To issue a card to the user, pass in the card's approved application ID into the `issueCard` method.
 
 ```kotlin
-aptoPlatform.issueCard(cardApplicationId) { result ->
+AptoPlatform.issueCard(cardApplication.id) { result ->
   result.either({
 		// failure
 	}, { card ->
 		// card has been issued
     })
 }
+
+* When the method succeeds, the card has been issued.
+* When the method fails, error handling can be included within the `error` response.

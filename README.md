@@ -113,7 +113,7 @@ android {
     dependencies {
     	...
 
-		implementation 'com.aptopayments.sdk:mobile:3.4.2'
+		implementation 'com.aptopayments.sdk:mobile:3.4.3'
 
     	...
     }
@@ -370,10 +370,42 @@ val primaryCredential = PhoneNumber(countryCode, phoneNumber)
 primaryCredential.verification = verification // The verification obtained before.
 ```
 
-2. Create a `DataPointList` object and add the `primaryCredential`; then pass the `DataPointList` object into the `createUser` method to create a new user.
+2. Create a `DataPointList` object and add the following information:
+
+	* Verified primary credential object
+	* Phone Number **Note:** The `PhoneNumber` object requires a numerical country code and numerical phone number passed in as strings.
+	* Email
+	* First and last name
+	* Address
+	* Date Of Birth
+	* *(Optional)* Any additional `DataPoint.Type` enum data.
 
 ```kotlin
-AptoPlatform.createUser(DataPointList().add(primaryCredential)) {
+val userData = DataPointList()
+
+userData.add(primaryCredential)
+
+val phoneNumber = PhoneNumber("1", "1234567890")
+val phone = PhoneDataPoint()
+userData.add(phone)
+
+val email = EmailDataPoint("user@gmail.com")
+userData.add(email)
+
+val name = NameDataPoint(firstName = "Jane", lastname = "Smith")
+userData.add(name)
+
+val address = AddressDataPoint(streetOne = "123 Main Street", locality = "San Francisco", region = "CA", postalCode = "94103", country = "US")
+userData.add(address)
+
+val birthdate = BirthDataPoint(LocalDate.of(year = 1963, month = 1, dayOfMonth: 31 ))
+userData.add(name)
+```
+
+3. Pass the `userData` object into the `createUser` method to create a new user.
+
+```kotlin
+AptoPlatform.createUser(userData) {
   it.either({ error ->
     // Do something with the error
   },
@@ -393,7 +425,7 @@ AptoPlatform.createUser(DataPointList().add(primaryCredential)) {
 
 ```kotlin
 val custodianUid = "custodian_uid"
-AptoPlatform.createUser(DataPointList().add(primaryCredential), custodianUid) {
+AptoPlatform.createUser(userData, custodianUid) {
   ...
 }
 ```
@@ -875,7 +907,7 @@ To add a payment source:
 ```kotlin
 val paymentSource = NewCard(
             description = "test description",
-            pan = "4242424242424242",
+            pan = "4111111111111111",
             cvv = "123",
             expirationMonth = "12",
             expirationYear = "22",
@@ -952,6 +984,17 @@ AptoPlatform.pushFunds(balanceId, paymentSourceId, money) {
 
 * When the method succeeds, a `Payment` object is returned with the completed payment information.
 * When the method fails, error handling can be included within the `error` response.
+
+Test Cards:
+
+The following is the list of cards that can be used to test Loading Funds into your card in Sandbox Environment:
+
+---|---
+Visa|4111111111111111
+Visa|400000076000002
+Mastercard|5200828282828210
+Mastercard|2223000048400011
+
 
 ## Manage Card Funding Sources for On-demand Debits (Enterprise only)
 

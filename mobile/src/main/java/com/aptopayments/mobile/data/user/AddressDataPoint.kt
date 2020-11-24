@@ -2,6 +2,14 @@ package com.aptopayments.mobile.data.user
 
 import java.io.Serializable
 
+/**
+ * @property streetOne Address
+ * @property streetTwo Apartment
+ * @property locality City
+ * @property region Province / State
+ * @property postalCode
+ * @property country Country code in standard ISO_3166-1 alpha-2
+ */
 data class AddressDataPoint(
     val streetOne: String? = null,
     val streetTwo: String? = null,

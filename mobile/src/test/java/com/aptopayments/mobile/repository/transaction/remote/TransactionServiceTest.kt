@@ -1,18 +1,17 @@
 package com.aptopayments.mobile.repository.transaction.remote
 
-import com.aptopayments.mobile.ServiceTest
+import com.aptopayments.mobile.NetworkServiceTest
 import com.aptopayments.mobile.data.TestDataProvider
+import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.network.ListEntity
 import com.aptopayments.mobile.repository.transaction.TransactionListFilters
 import com.aptopayments.mobile.repository.transaction.remote.entities.TransactionEntity
 import com.google.gson.reflect.TypeToken
-import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.koin.test.inject
 import java.lang.reflect.Type
-import java.net.HttpURLConnection.HTTP_OK
 
-internal class TransactionServiceTest : ServiceTest() {
+internal class TransactionServiceTest : NetworkServiceTest() {
 
     private val sut: TransactionService by inject()
     private val filters = TransactionListFilters(rows = 20, state = listOf("complete"))
@@ -22,10 +21,9 @@ internal class TransactionServiceTest : ServiceTest() {
     fun `when getTransactions then request is made to the correct url`() {
         enqueueFile("userAccountsTransactionsResponse200.json")
 
-        val response = executeGetTransactions()
+        sut.getTransactions(cardId, filters)
 
         assertRequestSentTo("v1/user/accounts/$cardId/transactions?rows=20&state=complete", "GET")
-        assertCode(response, HTTP_OK)
     }
 
     @Test
@@ -35,10 +33,8 @@ internal class TransactionServiceTest : ServiceTest() {
         val entity: ListEntity<TransactionEntity> = gson.fromJson(fileContent, listType)
         enqueueContent(fileContent)
 
-        val response = executeGetTransactions()
+        val response = sut.getTransactions(cardId, filters)
 
-        assertEquals(entity, response.body()!!)
+        response.shouldBeRightAndEqualTo(entity.data?.map { it.toTransaction() })
     }
-
-    private fun executeGetTransactions() = sut.getTransactions(cardId, filters).execute()
 }

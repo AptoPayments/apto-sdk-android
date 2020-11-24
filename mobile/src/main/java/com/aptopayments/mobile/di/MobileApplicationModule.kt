@@ -37,7 +37,9 @@ import com.aptopayments.mobile.repository.statements.remote.MonthlyStatementServ
 import com.aptopayments.mobile.repository.stats.StatsRepository
 import com.aptopayments.mobile.repository.stats.StatsRepositoryImpl
 import com.aptopayments.mobile.repository.stats.remote.StatsService
+import com.aptopayments.mobile.repository.transaction.TransactionListMerger
 import com.aptopayments.mobile.repository.transaction.TransactionRepository
+import com.aptopayments.mobile.repository.transaction.TransactionRepositoryImpl
 import com.aptopayments.mobile.repository.transaction.remote.TransactionService
 import com.aptopayments.mobile.repository.user.UserRepository
 import com.aptopayments.mobile.repository.user.UserRepositoryImpl
@@ -63,6 +65,7 @@ internal val applicationModule = module {
     single { ApiCatalog(get(), ApiKeyProvider) }
     factory { RequestExecutor(get(), get()) }
     factory { ErrorHandler(get()) }
+    factory { TransactionListMerger() }
 }
 
 internal val repositoryModule = module {
@@ -90,14 +93,8 @@ internal val repositoryModule = module {
     single<FundingSourceRepository> { FundingSourceRepositoryImpl(get(), get()) }
     single { CardService(apiCatalog = get()) }
     single<CardRepository> { CardRepository.Network(get(), get(), get(), get(), get()) }
-    single { TransactionService(apiCatalog = get()) }
-    single<TransactionRepository> {
-        TransactionRepository.Network(
-            networkHandler = get(),
-            service = get(),
-            transactionLocalDao = get()
-        )
-    }
+    single { TransactionService(get()) }
+    single<TransactionRepository> { TransactionRepositoryImpl(get(), get(), get(), get()) }
     single { StatsService(apiCatalog = get()) }
     single<StatsRepository> { StatsRepositoryImpl(get()) }
     single { MonthlyStatementService(get()) }
