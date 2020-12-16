@@ -6,7 +6,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.paymentsources.PaymentSourcesRepository
 
-internal class AddPaymentSourceUseCase constructor(
+internal class AddPaymentSourceUseCase(
     private val repository: PaymentSourcesRepository,
     networkHandler: NetworkHandler
 ) : UseCase<PaymentSource, NewPaymentSource>(networkHandler) {

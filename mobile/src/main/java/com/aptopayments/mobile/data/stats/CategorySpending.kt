@@ -10,7 +10,7 @@ import com.aptopayments.mobile.data.card.Money
  * @property difference
  */
 data class CategorySpending(
-    var categoryId: String,
+    val categoryId: String,
     val spending: Money?,
     val difference: String? = null
 )

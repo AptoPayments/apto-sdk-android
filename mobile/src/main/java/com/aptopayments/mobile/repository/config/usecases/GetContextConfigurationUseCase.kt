@@ -9,7 +9,7 @@ import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.LiteralsRepository
 import com.aptopayments.mobile.repository.config.ConfigRepository
 
-internal class GetContextConfigurationUseCase constructor(
+internal class GetContextConfigurationUseCase(
     private val repository: ConfigRepository,
     networkHandler: NetworkHandler
 ) : UseCase<ContextConfiguration, Boolean>(networkHandler) {

@@ -5,7 +5,7 @@ import com.aptopayments.mobile.platform.BaseNetworkService
 import com.aptopayments.mobile.repository.statements.remote.entities.MonthlyStatementReportEntity
 import com.aptopayments.mobile.repository.statements.remote.requests.MonthlyStatementRequest
 
-internal class MonthlyStatementService constructor(apiCatalog: ApiCatalog) : BaseNetworkService() {
+internal class MonthlyStatementService(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
     private val api by lazy { apiCatalog.api().create(MonthlyStatementApi::class.java) }
 

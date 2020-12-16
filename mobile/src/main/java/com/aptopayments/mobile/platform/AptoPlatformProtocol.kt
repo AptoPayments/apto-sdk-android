@@ -555,4 +555,16 @@ interface AptoPlatformProtocol {
         amount: Money,
         callback: (Either<Failure, Payment>) -> Unit
     )
+
+    /**
+     * Sets a passcode to the card
+     *
+     * @param cardId String containing the Id of the card that will have the passcode
+     * @param paymentSourceId String containing the passcode, it should be numeric with 4 digits
+     */
+    fun setCardPasscode(
+        cardId: String,
+        passcode: String,
+        callback: (Either<Failure, Unit>) -> Unit
+    )
 }

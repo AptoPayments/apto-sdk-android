@@ -14,14 +14,14 @@ ext {
   version_code = 1
 
   // Kotlin
-  kotlin_version = '1.4.20'
+  kotlin_version = '1.4.0'
 
   // Android libraries
   life_cycle = '2.2.0'
   room_version = '2.2.5'
 
   //Third party libraries
-  kotlin_coroutines_version = '1.4.1'
+  kotlin_coroutines_version = '1.4.0'
   koin_version = '2.1.6'
   markdown_version = '4.4.0'
   okhttp_version = '4.7.2'

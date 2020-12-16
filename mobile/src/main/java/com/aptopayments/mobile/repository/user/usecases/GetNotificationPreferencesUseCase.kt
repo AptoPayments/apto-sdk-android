@@ -5,7 +5,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.user.UserRepository
 
-internal class GetNotificationPreferencesUseCase constructor(
+internal class GetNotificationPreferencesUseCase(
     private val repository: UserRepository,
     networkHandler: NetworkHandler
 ) : UseCase<NotificationPreferences, Unit>(networkHandler) {

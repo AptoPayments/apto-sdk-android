@@ -6,10 +6,10 @@ import com.google.gson.annotations.SerializedName
 internal class NativeContentEntity(
 
     @SerializedName("format")
-    var format: String,
+    val format: String,
 
     @SerializedName("value")
-    var value: NativeValueEntity
+    val value: NativeValueEntity
 
 ) : ContentEntity {
     override fun toContent(): Content {

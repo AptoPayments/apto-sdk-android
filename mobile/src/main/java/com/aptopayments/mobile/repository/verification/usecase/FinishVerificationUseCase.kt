@@ -7,7 +7,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.verification.VerificationRepository
 
-internal class FinishVerificationUseCase constructor(
+internal class FinishVerificationUseCase(
     val repository: VerificationRepository,
     networkHandler: NetworkHandler
 ) : UseCase<Verification, Verification>(networkHandler) {

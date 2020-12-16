@@ -60,14 +60,16 @@ class CardRepositoryTest : UnitTest() {
     override fun setUp() {
         super.setUp()
         startKoin {
-            modules(module {
-                single { networkHandler }
-                single { service }
-                single { cardLocalRepository }
-                single { cardBalanceLocalDao }
-                single { userSessionRepository }
-                single { requestExecutor }
-            })
+            modules(
+                module {
+                    single { networkHandler }
+                    single { service }
+                    single { cardLocalRepository }
+                    single { cardBalanceLocalDao }
+                    single { userSessionRepository }
+                    single { requestExecutor }
+                }
+            )
         }
         requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock()))
         sut = CardRepository.Network(

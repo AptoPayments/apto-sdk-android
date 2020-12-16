@@ -56,7 +56,8 @@ class TransactionListMergerTest {
                 getTransactionWithDate(date02),
                 getTransactionWithDate(date01),
                 getTransactionWithDate(date00)
-            ), result
+            ),
+            result
         )
     }
 
@@ -73,7 +74,8 @@ class TransactionListMergerTest {
                 getTransactionWithDate(date02),
                 getTransactionWithDate(date01),
                 getTransactionWithDate(date00)
-            ), result
+            ),
+            result
         )
     }
 

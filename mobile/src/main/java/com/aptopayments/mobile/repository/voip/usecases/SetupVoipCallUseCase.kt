@@ -5,7 +5,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.voip.VoipRepository
 
-internal class SetupVoipCallUseCase constructor(
+internal class SetupVoipCallUseCase(
     private val repository: VoipRepository,
     networkHandler: NetworkHandler
 ) : UseCase<VoipCall, SetupVoipCallParams>(networkHandler) {

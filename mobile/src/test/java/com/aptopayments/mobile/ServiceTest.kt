@@ -81,12 +81,14 @@ internal abstract class ServiceTest : UnitTest() {
 
     private fun configureKoin() {
         startKoin { modules(applicationModule, repositoryModule) }
-        loadKoinModules(module {
-            single<UserSessionRepository>(override = true) { UserSessionRepositoryDouble() }
-            factory<OkHttpClientProvider>(override = true) { SimpleOkHttpClientProvider(apiKeyProvider, get()) }
-            single(override = true) { ApiCatalog(get(), apiKeyProvider) }
-            single(override = true) { networkHandler }
-        })
+        loadKoinModules(
+            module {
+                single<UserSessionRepository>(override = true) { UserSessionRepositoryDouble() }
+                factory<OkHttpClientProvider>(override = true) { SimpleOkHttpClientProvider(apiKeyProvider, get()) }
+                single(override = true) { ApiCatalog(get(), apiKeyProvider) }
+                single(override = true) { networkHandler }
+            }
+        )
     }
 
     protected open fun configureEnvironment() {

@@ -7,7 +7,7 @@ import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.payment.PaymentRepository
 import com.aptopayments.mobile.repository.payment.usecases.PushFundsUseCase.Params
 
-internal class PushFundsUseCase constructor(
+internal class PushFundsUseCase(
     private val repository: PaymentRepository,
     networkHandler: NetworkHandler
 ) : UseCase<Payment, Params>(networkHandler) {

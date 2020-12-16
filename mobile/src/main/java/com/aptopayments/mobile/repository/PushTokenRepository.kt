@@ -9,7 +9,7 @@ import com.aptopayments.mobile.repository.user.usecases.UnregisterPushDeviceUseC
 private const val PREF_PUSH_TOKEN_FILENAME = "com.aptopayments.sdk.pushtoken"
 private const val PREF_PUSH_TOKEN = "PREF_PUSH_TOKEN"
 
-internal class PushTokenRepository constructor(
+internal class PushTokenRepository(
     private val userSessionRepository: UserSessionRepository,
     private val registerPushDeviceUseCase: RegisterPushDeviceUseCase,
     private val unregisterPushDeviceUseCase: UnregisterPushDeviceUseCase,

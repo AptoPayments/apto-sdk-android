@@ -4,7 +4,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.paymentsources.PaymentSourcesRepository
 
-internal class DeletePaymentSourceUseCase constructor(
+internal class DeletePaymentSourceUseCase(
     private val repository: PaymentSourcesRepository,
     networkHandler: NetworkHandler
 ) : UseCase<Unit, String>(networkHandler) {

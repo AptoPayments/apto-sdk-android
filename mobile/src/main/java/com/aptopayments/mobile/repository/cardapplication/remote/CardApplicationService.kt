@@ -5,7 +5,7 @@ import com.aptopayments.mobile.platform.BaseNetworkService
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
 import com.aptopayments.mobile.repository.cardapplication.remote.entities.*
 
-internal class CardApplicationService constructor(apiCatalog: ApiCatalog) : BaseNetworkService() {
+internal class CardApplicationService(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
     private val cardApplicationApi by lazy { apiCatalog.api().create(CardApplicationApi::class.java) }
 

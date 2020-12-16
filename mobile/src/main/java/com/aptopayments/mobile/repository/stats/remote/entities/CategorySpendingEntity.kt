@@ -7,13 +7,13 @@ import com.google.gson.annotations.SerializedName
 internal data class CategorySpendingEntity(
 
     @SerializedName("category_id")
-    var categoryId: String = "",
+    val categoryId: String = "",
 
     @SerializedName("spending")
-    var spending: MoneyEntity? = null,
+    val spending: MoneyEntity? = null,
 
     @SerializedName("difference")
-    var difference: String? = null
+    val difference: String? = null
 
 ) {
     fun toCategorySpending() = CategorySpending(

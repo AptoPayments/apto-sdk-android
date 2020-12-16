@@ -15,6 +15,14 @@ enum class FeatureStatus {
                 DISABLED
             }
         }
+
+        fun fromBoolean(value: Boolean): FeatureStatus {
+            return if (value) ENABLED else DISABLED
+        }
+    }
+
+    fun toBoolean(): Boolean {
+        return this == ENABLED
     }
 }
 
@@ -33,5 +41,6 @@ data class Features(
     val selectBalanceStore: SelectBalanceStore?,
     val activation: Activation?,
     val ivrSupport: Ivr?,
-    val funding: FundingFeature?
+    val funding: FundingFeature?,
+    val passcode: CardPasscodeFeature?
 ) : Serializable

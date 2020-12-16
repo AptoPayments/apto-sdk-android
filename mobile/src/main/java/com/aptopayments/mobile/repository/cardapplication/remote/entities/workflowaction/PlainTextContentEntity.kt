@@ -7,10 +7,10 @@ import java.net.URL
 internal class PlainTextContentEntity(
 
     @SerializedName("format")
-    var format: String,
+    val format: String,
 
     @SerializedName("value")
-    var value: String
+    val value: String
 
 ) : ContentEntity {
     override fun toContent(): Content {

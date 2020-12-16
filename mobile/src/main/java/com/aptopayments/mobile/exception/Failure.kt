@@ -75,6 +75,10 @@ sealed class Failure {
 
     open fun getErrorKey() = ""
 
+    object RateLimitFailure : Failure() {
+        override fun getErrorKey() = "error_transport_rate_limit"
+    }
+
     object NetworkConnection : Failure() {
         override fun getErrorKey() = "no_network_description"
     }

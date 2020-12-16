@@ -54,7 +54,9 @@ internal interface CardRepository : BaseRepository {
         walletId: String
     ): Either<Failure, ProvisioningData>
 
-    class Network constructor(
+    fun setCardPasscode(cardId: String, passcode: String): Either<Failure, Unit>
+
+    class Network(
         private val networkHandler: NetworkHandler,
         private val service: CardService,
         private val cardLocalRepo: CardLocalRepository,
@@ -213,11 +215,15 @@ internal interface CardRepository : BaseRepository {
             return when (networkHandler.isConnected) {
                 true -> {
                     val getCardRequest = GetCardRequest(accountID = cardId)
-                    request(service.getCard(getCardRequest), {
-                        val card = it.toCard()
-                        cardLocalRepo.saveCard(card)
-                        card
-                    }, CardEntity())
+                    request(
+                        service.getCard(getCardRequest),
+                        {
+                            val card = it.toCard()
+                            cardLocalRepo.saveCard(card)
+                            card
+                        },
+                        CardEntity()
+                    )
                 }
                 false -> Either.Left(Failure.NetworkConnection)
             }
@@ -226,12 +232,16 @@ internal interface CardRepository : BaseRepository {
         private fun getCardBalanceFromRemoteAPI(cardID: String): Either<Failure, Balance> {
             return when (networkHandler.isConnected) {
                 true -> {
-                    request(service.getCardBalance(cardID), {
-                        val balance = it.toBalance()
-                        cardBalanceLocalDao.clearCardBalanceCache()
-                        cardBalanceLocalDao.saveCardBalance(CardBalanceLocalEntity.fromBalance(cardID, balance))
-                        balance
-                    }, BalanceEntity())
+                    request(
+                        service.getCardBalance(cardID),
+                        {
+                            val balance = it.toBalance()
+                            cardBalanceLocalDao.clearCardBalanceCache()
+                            cardBalanceLocalDao.saveCardBalance(CardBalanceLocalEntity.fromBalance(cardID, balance))
+                            balance
+                        },
+                        BalanceEntity()
+                    )
                 }
                 false -> Either.Left(Failure.NetworkConnection)
             }
@@ -254,6 +264,23 @@ internal interface CardRepository : BaseRepository {
                             walletId
                         )
                     ) { it.pushTokenizeRequestData.toProvisioningData() }
+                }
+                else -> Either.Left(Failure.NetworkConnection)
+            }
+        }
+
+        override fun setCardPasscode(
+            cardId: String,
+            passcode: String
+        ): Either<Failure, Unit> {
+            return when (networkHandler.isConnected) {
+                true -> {
+                    request(
+                        service.setCardPasscode(
+                            cardId,
+                            passcode
+                        )
+                    ) { }
                 }
                 else -> Either.Left(Failure.NetworkConnection)
             }

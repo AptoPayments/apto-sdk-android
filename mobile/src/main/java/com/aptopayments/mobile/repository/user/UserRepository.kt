@@ -25,7 +25,7 @@ internal interface UserRepository : BaseNoNetworkRepository {
     fun updateNotificationPreferences(notificationPreferencesList: List<NotificationGroup>): Either<Failure, NotificationPreferences>
 }
 
-internal class UserRepositoryImpl constructor(
+internal class UserRepositoryImpl(
     private val service: UserService
 ) : UserRepository {
 

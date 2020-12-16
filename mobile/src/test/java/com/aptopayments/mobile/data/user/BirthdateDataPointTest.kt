@@ -3,6 +3,7 @@ package com.aptopayments.mobile.data.user
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.threeten.bp.LocalDate
+import java.util.*
 
 class BirthdateDataPointTest {
 
@@ -10,7 +11,7 @@ class BirthdateDataPointTest {
 
     @Test
     fun `when toStringRepresentation then correct format is applied`() {
-        assertEquals("April 14, 2020", sut.toStringRepresentation())
+        assertEquals("April 14, 2020", sut.toStringRepresentation(Locale.US))
     }
 
     @Test

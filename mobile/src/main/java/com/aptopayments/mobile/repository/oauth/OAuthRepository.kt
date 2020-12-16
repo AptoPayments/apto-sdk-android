@@ -25,7 +25,7 @@ internal interface OAuthRepository : BaseNoNetworkRepository {
     ): Either<Failure, OAuthUserDataUpdate>
 }
 
-internal class OAuthRepositoryImpl constructor(
+internal class OAuthRepositoryImpl(
     private val service: OAuthService
 ) : OAuthRepository {
 

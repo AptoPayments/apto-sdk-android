@@ -35,9 +35,11 @@ class AptoPlatformTest : UnitTest(), KoinTest {
     override fun setUp() {
         super.setUp()
         AptoPlatform.koin = startKoin {
-            modules(module {
-                factory<UserSessionRepository> { userSessionRepository }
-            })
+            modules(
+                module {
+                    factory<UserSessionRepository> { userSessionRepository }
+                }
+            )
         }.koin
         given { useCasesWrapper.issueCardCardProductUseCase }.willReturn(issueCardCardProductUseCase)
         given { useCasesWrapper.createUserUseCase }.willReturn(createUserUseCase)

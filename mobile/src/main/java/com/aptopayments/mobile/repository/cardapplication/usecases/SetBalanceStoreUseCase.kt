@@ -5,7 +5,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.cardapplication.CardApplicationRepository
 
-internal class SetBalanceStoreUseCase constructor(
+internal class SetBalanceStoreUseCase(
     private val applicationRepository: CardApplicationRepository,
     networkHandler: NetworkHandler
 ) : UseCase<SelectBalanceStoreResult, SetBalanceStoreUseCase.Params>(networkHandler) {

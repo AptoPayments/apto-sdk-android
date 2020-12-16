@@ -8,12 +8,14 @@ import com.google.gson.annotations.SerializedName
 internal class IdDataPointConfigurationEntity : DataPointConfigurationEntity() {
 
     @SerializedName("allowed_document_types")
-    var allowedDocumentTypes: HashMap<String, List<String>> = hashMapOf()
+    val allowedDocumentTypes: HashMap<String, List<String>> = hashMapOf()
 
     override fun toDataPointConfiguration() =
-        IdDataPointConfiguration(allowedDocumentTypes
-            .mapKeys { Country(it.key) }
-            .mapValues { value ->
-                value.value.map { IdDocumentDataPoint.Type.fromString(it) }
-            })
+        IdDataPointConfiguration(
+            allowedDocumentTypes
+                .mapKeys { Country(it.key) }
+                .mapValues { value ->
+                    value.value.map { IdDocumentDataPoint.Type.fromString(it) }
+                }
+        )
 }

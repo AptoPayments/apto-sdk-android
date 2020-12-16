@@ -19,7 +19,8 @@ internal data class NotificationPreferencesRequest(
                 notificationGroupEntityList.add(
                     NotificationGroupEntity(
                         groupId = notification.groupId.toString(),
-                        activeChannels = notification.activeChannels?.let { ActiveChannelsEntity.from(it) })
+                        activeChannels = notification.activeChannels?.let { ActiveChannelsEntity.from(it) }
+                    )
                 )
             }
 

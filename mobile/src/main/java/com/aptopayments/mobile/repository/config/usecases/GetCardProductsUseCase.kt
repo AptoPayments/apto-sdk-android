@@ -5,7 +5,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.config.ConfigRepository
 
-internal class GetCardProductsUseCase constructor(
+internal class GetCardProductsUseCase(
     private val repository: ConfigRepository,
     networkHandler: NetworkHandler
 ) : UseCase<List<CardProductSummary>, Unit>(networkHandler) {

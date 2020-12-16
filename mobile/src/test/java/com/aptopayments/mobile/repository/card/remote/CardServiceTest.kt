@@ -3,10 +3,12 @@ package com.aptopayments.mobile.repository.card.remote
 import com.aptopayments.mobile.ServiceTest
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
 import com.aptopayments.mobile.repository.card.remote.requests.GetCardRequest
-import org.junit.Assert
 import org.junit.Test
 import org.koin.core.inject
 import java.net.HttpURLConnection
+import kotlin.test.assertEquals
+
+private const val PASSCODE = "1234"
 
 internal class CardServiceTest : ServiceTest() {
 
@@ -32,7 +34,25 @@ internal class CardServiceTest : ServiceTest() {
 
         val response = executeGetCard()
 
-        Assert.assertEquals(cardEntity, response.body()!!)
+        assertEquals(cardEntity, response.body()!!)
+    }
+
+    @Test
+    fun `when setCardPasscode then request is made correct`() {
+        enqueueContent("{}")
+
+        sut.setCardPasscode(accountId, PASSCODE).execute()
+
+        assertRequestSentTo("v1/user/accounts/$accountId/passcode", "POST")
+    }
+
+    @Test
+    fun `when setCardPasscode then request is made correctly`() {
+        enqueueContent("{}")
+
+        sut.setCardPasscode(accountId, PASSCODE).execute()
+
+        assertRequestBodyFile("userAccountsPasscodeRequestPost.json")
     }
 
     private fun executeGetCard() = sut.getCard(GetCardRequest(accountId)).execute()

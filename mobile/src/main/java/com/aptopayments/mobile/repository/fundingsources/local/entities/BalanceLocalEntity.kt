@@ -14,28 +14,28 @@ internal class BalanceLocalEntity(
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
-    var id: String,
+    val id: String,
 
     @ColumnInfo(name = "state")
-    var state: Balance.BalanceState? = null,
+    val state: Balance.BalanceState? = null,
 
     @ColumnInfo(name = "type")
-    var type: String,
+    val type: String,
 
     @ColumnInfo(name = "funding_source_type")
-    var fundingSourceType: String,
+    val fundingSourceType: String,
 
     @ColumnInfo(name = "balance")
-    var balance: Money? = null,
+    val balance: Money? = null,
 
     @ColumnInfo(name = "amount_spendable")
-    var amountSpendable: Money? = null,
+    val amountSpendable: Money? = null,
 
     @ColumnInfo(name = "amount_held")
-    var amountHeld: Money? = null,
+    val amountHeld: Money? = null,
 
     @ColumnInfo(name = "details")
-    var custodianWallet: CustodianWallet? = null
+    val custodianWallet: CustodianWallet? = null
 
 ) {
     fun toBalance() = Balance(

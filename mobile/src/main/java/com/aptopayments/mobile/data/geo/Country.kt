@@ -3,7 +3,7 @@ package com.aptopayments.mobile.data.geo
 import java.io.Serializable
 import java.util.Locale
 
-data class Country(var isoCode: String) : Serializable {
+data class Country(val isoCode: String) : Serializable {
     val name: String
         get() {
             val loc = Locale("", isoCode)

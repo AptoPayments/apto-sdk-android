@@ -27,34 +27,37 @@ internal abstract class UseCase<out Type, in Params>(protected val networkHandle
 
     private fun runUseCase(params: Params, onResult: (Either<Failure, Type>) -> Unit) {
         GlobalScope.launch {
-            run(params).either({ failure ->
-                when (failure) {
-                    is Failure.NetworkConnection -> {
-                        networkHandler.subscribeNetworkReachabilityListener(this) { available ->
-                            if (available) {
-                                networkHandler.unsubscribeNetworkReachabilityListener(this)
-                                runUseCase(params, onResult)
+            run(params).either(
+                { failure ->
+                    when (failure) {
+                        is Failure.NetworkConnection -> {
+                            networkHandler.subscribeNetworkReachabilityListener(this) { available ->
+                                if (available) {
+                                    networkHandler.unsubscribeNetworkReachabilityListener(this)
+                                    runUseCase(params, onResult)
+                                }
                             }
+                            networkHandler.networkNotReachable()
                         }
-                        networkHandler.networkNotReachable()
-                    }
-                    is Failure.MaintenanceMode -> {
-                        networkHandler.subscribeMaintenanceListener(this) { available ->
-                            if (available) {
-                                networkHandler.unsubscribeMaintenanceListener(this)
-                                runUseCase(params, onResult)
+                        is Failure.MaintenanceMode -> {
+                            networkHandler.subscribeMaintenanceListener(this) { available ->
+                                if (available) {
+                                    networkHandler.unsubscribeMaintenanceListener(this)
+                                    runUseCase(params, onResult)
+                                }
                             }
+                            networkHandler.maintenanceModeDetected()
                         }
-                        networkHandler.maintenanceModeDetected()
+                        is Failure.DeprecatedSDK -> {
+                            networkHandler.deprecatedSdkDetected()
+                        }
+                        else -> onResult(Either.Left(failure))
                     }
-                    is Failure.DeprecatedSDK -> {
-                        networkHandler.deprecatedSdkDetected()
-                    }
-                    else -> onResult(Either.Left(failure))
+                },
+                { value ->
+                    onResult(Either.Right(value))
                 }
-            }, { value ->
-                onResult(Either.Right(value))
-            })
+            )
         }
     }
 }

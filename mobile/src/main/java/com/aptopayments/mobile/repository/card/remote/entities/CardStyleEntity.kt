@@ -11,13 +11,13 @@ internal const val DEFAULT_TEXT_CARD_COLOR = "FFFFFF"
 internal data class CardStyleEntity(
 
     @SerializedName("background")
-    var background: CardBackgroundStyleEntity?,
+    val background: CardBackgroundStyleEntity?,
 
     @SerializedName("text_color")
-    var textColor: String? = DEFAULT_TEXT_CARD_COLOR,
+    val textColor: String? = DEFAULT_TEXT_CARD_COLOR,
 
     @SerializedName("balance_selector_asset")
-    var balanceSelectorAsset: String? = null
+    val balanceSelectorAsset: String? = null
 ) {
     fun toCardStyle(): CardStyle? {
         val colorParser = ColorParserImpl()

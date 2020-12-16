@@ -9,16 +9,16 @@ import com.google.gson.annotations.SerializedName
 internal class NativeValueEntity(
 
     @SerializedName("background_color")
-    var backgroundColor: String? = null,
+    val backgroundColor: String? = null,
 
     @SerializedName("background_image")
-    var backgroundImage: String? = null,
+    val backgroundImage: String? = null,
 
     @SerializedName("asset")
-    var asset: String? = null
+    val asset: String? = null
 ) : ContentEntity {
 
-    var colorParser: ColorParser = ColorParserImpl()
+    private val colorParser: ColorParser = ColorParserImpl()
 
     override fun toContent() = Content.Native(
         backgroundColor = backgroundColor?.let { colorParser.fromHexString(backgroundColor, "FFFFFF") },

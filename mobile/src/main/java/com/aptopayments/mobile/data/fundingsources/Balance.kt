@@ -4,14 +4,14 @@ import com.aptopayments.mobile.data.card.CustodianWallet
 import com.aptopayments.mobile.data.card.Money
 
 data class Balance(
-    var id: String = "",
-    var state: BalanceState? = null,
-    var type: String = "",
-    var fundingSourceType: String = "",
-    var balance: Money? = null,
-    var amountSpendable: Money? = null,
-    var amountHeld: Money? = null,
-    var custodianWallet: CustodianWallet? = null
+    val id: String = "",
+    val state: BalanceState? = null,
+    val type: String = "",
+    val fundingSourceType: String = "",
+    val balance: Money? = null,
+    val amountSpendable: Money? = null,
+    val amountHeld: Money? = null,
+    val custodianWallet: CustodianWallet? = null
 ) {
     enum class BalanceState {
         VALID,

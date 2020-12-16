@@ -36,10 +36,12 @@ class StatsRepositoryOldTest : UnitTest() {
     override fun setUp() {
         super.setUp()
         startKoin {
-            modules(module {
-                single { service }
-                single { requestExecutor }
-            })
+            modules(
+                module {
+                    single { service }
+                    single { requestExecutor }
+                }
+            )
         }
         sut = StatsRepositoryImpl(service)
     }

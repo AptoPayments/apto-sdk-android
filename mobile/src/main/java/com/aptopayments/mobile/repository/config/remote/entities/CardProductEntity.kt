@@ -28,19 +28,19 @@ internal data class CardProductEntity(
     val faq: ContentEntity? = null,
 
     @SerializedName("wait_list_background_image")
-    var waitlistBackgroundImage: String? = null,
+    val waitlistBackgroundImage: String? = null,
 
     @SerializedName("wait_list_background_color")
-    var waitlistBackgroundColor: String? = null,
+    val waitlistBackgroundColor: String? = null,
 
     @SerializedName("wait_list_dark_background_color")
-    var waitlistDarkBackgroundColor: String? = null,
+    val waitlistDarkBackgroundColor: String? = null,
 
     @SerializedName("wait_list_asset")
-    var waitlistAsset: String? = null,
+    val waitlistAsset: String? = null,
 
     @SerializedName("labels")
-    var labels: Map<String, String>? = null
+    val labels: Map<String, String>? = null
 
 ) {
     fun toCardProduct(): CardProduct {

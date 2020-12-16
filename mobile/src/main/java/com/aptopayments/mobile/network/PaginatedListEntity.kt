@@ -7,16 +7,16 @@ import java.io.Serializable
 internal data class PaginatedListEntity<T>(
 
     @SerializedName("type")
-    var type: String? = null,
+    val type: String? = null,
 
     @SerializedName("has_more")
-    var hasMore: Boolean = false,
+    val hasMore: Boolean = false,
 
     @SerializedName("total")
-    var totalCount: Int = 0,
+    val totalCount: Int = 0,
 
     @SerializedName("data")
-    var data: List<T>? = null
+    val data: List<T>? = null
 
 ) : Serializable {
     fun <R> toPaginatedList(transform: ((T) -> R)): PaginatedList<R> {

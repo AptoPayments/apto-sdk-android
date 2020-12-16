@@ -38,6 +38,15 @@ class ErrorHandlerTest : UnitTest() {
     }
 
     @Test
+    fun `when 429 then RateLimitFailure`() {
+        whenever(response.code()).thenReturn(429)
+
+        val result = sut.handle(response)
+
+        assertEquals(Failure.RateLimitFailure, result)
+    }
+
+    @Test
     fun `when 503 then MaintenanceMode`() {
         whenever(response.code()).thenReturn(503)
 

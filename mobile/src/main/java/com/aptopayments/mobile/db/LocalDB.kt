@@ -15,15 +15,19 @@ import com.aptopayments.mobile.repository.transaction.local.entities.Transaction
 private const val DATABASE_NAME = "local_db"
 private const val DB_VERSION = 14
 
-@Database(entities = [
+@Database(
+    entities = [
         TransactionLocalEntity::class,
         CardBalanceLocalEntity::class,
         BalanceLocalEntity::class
-], version = DB_VERSION, exportSchema = false)
+    ],
+    version = DB_VERSION,
+    exportSchema = false
+)
 @TypeConverters(
-        Converters::class,
-        TransactionLocalEntity.Converters::class,
-        BalanceLocalEntity.Converters::class
+    Converters::class,
+    TransactionLocalEntity.Converters::class,
+    BalanceLocalEntity.Converters::class
 )
 internal abstract class LocalDB : RoomDatabase() {
     abstract fun cardBalanceLocalDao(): CardBalanceLocalDao
@@ -39,12 +43,12 @@ internal object DataBaseProvider {
     fun getInstance(context: Context): LocalDB {
         if (cacheDB == null) {
             cacheDB = Room.databaseBuilder(
-                    context.applicationContext,
-                    LocalDB::class.java,
-                    DATABASE_NAME
+                context.applicationContext,
+                LocalDB::class.java,
+                DATABASE_NAME
             )
-            .fallbackToDestructiveMigration()
-            .build()
+                .fallbackToDestructiveMigration()
+                .build()
         }
         return cacheDB!!
     }

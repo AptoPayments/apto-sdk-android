@@ -6,7 +6,7 @@ import com.aptopayments.mobile.platform.BaseNetworkService
 import com.aptopayments.mobile.repository.transaction.TransactionListFilters
 import com.aptopayments.mobile.repository.transaction.remote.entities.TransactionEntity
 
-internal class TransactionService constructor(apiCatalog: ApiCatalog) : BaseNetworkService() {
+internal class TransactionService(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
     private val transactionApi by lazy { apiCatalog.api().create(TransactionApi::class.java) }
 
@@ -16,10 +16,12 @@ internal class TransactionService constructor(apiCatalog: ApiCatalog) : BaseNetw
                 cardId = cardId,
                 options = filters.toOptionsMap(),
                 state = filters.state
-            ), { listEntity: ListEntity<TransactionEntity> ->
+            ),
+            { listEntity: ListEntity<TransactionEntity> ->
                 listEntity.data?.map {
                     it.toTransaction()
                 } ?: emptyList()
-            }, ListEntity()
+            },
+            ListEntity()
         )
 }

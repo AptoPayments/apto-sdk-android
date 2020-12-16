@@ -86,4 +86,5 @@ internal val useCasesModule = module {
     factory { GetPaymentSourcesUseCase(get(), get()) }
     factory { DeletePaymentSourceUseCase(get(), get()) }
     factory { PushFundsUseCase(get(), get()) }
+    factory { SetCardPasscodeUseCase(get(), get()) }
 }

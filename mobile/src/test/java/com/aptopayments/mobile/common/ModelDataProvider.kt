@@ -28,7 +28,8 @@ internal object ModelDataProvider {
             setPin = setPin(),
             ivrSupport = ivr(),
             selectBalanceStore = selectBalanceStore(),
-            funding = fundingFeature()
+            funding = fundingFeature(),
+            passcode = passcodeFeature()
         )
     }
 
@@ -124,12 +125,16 @@ internal object ModelDataProvider {
         return GetPin(status = status, type = type)
     }
 
-    fun fundingFeature(): FundingFeature {
+    private fun fundingFeature(): FundingFeature {
         val fundingLimits = fundingLimits()
         return FundingFeature(true, listOf(VISA, MASTERCARD), fundingLimits, "soft descriptor")
     }
 
-    fun fundingLimits(): FundingLimits {
+    private fun passcodeFeature(): CardPasscodeFeature {
+        return CardPasscodeFeature(isEnabled = true, isPasscodeSet = true)
+    }
+
+    private fun fundingLimits(): FundingLimits {
         val singleLimit = FundingSingleLimit(money())
         return FundingLimits(singleLimit)
     }

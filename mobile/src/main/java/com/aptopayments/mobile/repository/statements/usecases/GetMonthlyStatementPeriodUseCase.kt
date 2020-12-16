@@ -5,7 +5,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.statements.MonthlyStatementRepository
 
-internal class GetMonthlyStatementPeriodUseCase constructor(
+internal class GetMonthlyStatementPeriodUseCase(
     private val repository: MonthlyStatementRepository,
     networkHandler: NetworkHandler
 ) : UseCase<MonthlyStatementPeriod, Unit>(networkHandler) {

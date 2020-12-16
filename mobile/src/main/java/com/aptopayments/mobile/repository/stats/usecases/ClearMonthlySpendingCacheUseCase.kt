@@ -4,7 +4,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.stats.StatsRepository
 
-internal class ClearMonthlySpendingCacheUseCase constructor(
+internal class ClearMonthlySpendingCacheUseCase(
     private val repository: StatsRepository,
     networkHandler: NetworkHandler
 ) : UseCase<Unit, Unit>(networkHandler) {

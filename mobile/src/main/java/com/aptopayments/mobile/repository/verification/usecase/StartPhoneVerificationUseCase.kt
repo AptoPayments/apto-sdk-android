@@ -8,7 +8,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.verification.VerificationRepository
 
-internal class StartPhoneVerificationUseCase constructor(
+internal class StartPhoneVerificationUseCase(
     private val repository: VerificationRepository,
     networkHandler: NetworkHandler
 ) : UseCase<Verification, PhoneNumber>(networkHandler) {

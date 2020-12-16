@@ -8,28 +8,28 @@ import java.util.Locale
 internal class BalanceEntity(
 
     @SerializedName("id")
-    var id: String = "",
+    val id: String = "",
 
     @SerializedName("state")
-    var state: String = "",
+    val state: String = "",
 
     @SerializedName("type")
-    var type: String = "",
+    val type: String = "",
 
     @SerializedName("funding_source_type")
-    var fundingSourceType: String = "",
+    val fundingSourceType: String = "",
 
     @SerializedName("balance")
-    var balance: MoneyEntity? = null,
+    val balance: MoneyEntity? = null,
 
     @SerializedName("amount_spendable")
-    var amountSpendable: MoneyEntity? = null,
+    val amountSpendable: MoneyEntity? = null,
 
     @SerializedName("amount_held")
-    var amountHeld: MoneyEntity? = null,
+    val amountHeld: MoneyEntity? = null,
 
     @SerializedName("details")
-    var custodianWallet: CustodianWalletEntity? = null
+    val custodianWallet: CustodianWalletEntity? = null
 
 ) {
     fun toBalance() = Balance(

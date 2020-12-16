@@ -47,10 +47,12 @@ class OAuthConnectRepositoryTest : UnitTest() {
         super.setUp()
         requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock()))
         startKoin {
-            modules(module {
-                single { mockUserSessionRepository }
-                single { requestExecutor }
-            })
+            modules(
+                module {
+                    single { mockUserSessionRepository }
+                    single { requestExecutor }
+                }
+            )
         }
         sut = OAuthRepositoryImpl(service)
     }

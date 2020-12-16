@@ -9,7 +9,7 @@ import com.aptopayments.mobile.platform.BaseNetworkService
 import com.aptopayments.mobile.repository.card.remote.entities.MoneyEntity
 import com.aptopayments.mobile.repository.payment.remote.requests.PushFundsRequest
 
-internal class PaymentService constructor(apiCatalog: ApiCatalog) : BaseNetworkService() {
+internal class PaymentService(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
     private val api by lazy { apiCatalog.api().create(PaymentApi::class.java) }
 

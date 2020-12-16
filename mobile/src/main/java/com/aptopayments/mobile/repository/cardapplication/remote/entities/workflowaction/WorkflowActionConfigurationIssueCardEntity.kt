@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 internal class WorkflowActionConfigurationIssueCardEntity(
 
     @SerializedName("error_asset")
-    var errorAsset: String?
+    val errorAsset: String?
 
 ) : WorkflowActionConfigurationEntity {
     override fun toWorkflowActionConfiguration(): WorkflowActionConfiguration {

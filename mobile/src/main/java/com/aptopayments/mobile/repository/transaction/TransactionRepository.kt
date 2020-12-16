@@ -22,7 +22,7 @@ internal interface TransactionRepository : BaseNoNetworkRepository {
     ): Either<Failure, List<Transaction>>
 }
 
-internal class TransactionRepositoryImpl constructor(
+internal class TransactionRepositoryImpl(
     private val service: TransactionService,
     private val transactionLocalDao: TransactionLocalDao,
     private val userSessionRepository: UserSessionRepository,

@@ -7,7 +7,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.fundingsources.FundingSourceRepository
 
-internal class GetFundingSourcesUseCase constructor(
+internal class GetFundingSourcesUseCase(
     private val fundingSourceRepository: FundingSourceRepository,
     networkHandler: NetworkHandler
 ) : UseCase<List<Balance>, GetFundingSourcesUseCase.Params>(networkHandler) {

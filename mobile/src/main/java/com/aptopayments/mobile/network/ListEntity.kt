@@ -6,21 +6,21 @@ import java.io.Serializable
 internal data class ListEntity<T>(
 
     @SerializedName("type")
-    var type: String? = null,
+    val type: String? = null,
 
     @SerializedName("page")
-    var page: Int = 0,
+    val page: Int = 0,
 
     @SerializedName("rows")
-    var rows: Int = 0,
+    val rows: Int = 0,
 
     @SerializedName("has_more")
-    var hasMore: Boolean = false,
+    val hasMore: Boolean = false,
 
     @SerializedName("total_count")
-    var totalCount: Int = 0,
+    val totalCount: Int = 0,
 
     @SerializedName("data")
-    var data: List<T>? = null
+    val data: List<T>? = null
 
 ) : Serializable

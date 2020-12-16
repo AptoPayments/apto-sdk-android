@@ -18,6 +18,7 @@ internal class ErrorHandler(private val userSessionRepository: UserSessionReposi
                 400 -> parseErrorBody(response.errorBody())
                 401 -> userSessionExpired()
                 412 -> Failure.DeprecatedSDK
+                429 -> Failure.RateLimitFailure
                 503 -> Failure.MaintenanceMode
                 else -> parseErrorBody(response.errorBody())
             }

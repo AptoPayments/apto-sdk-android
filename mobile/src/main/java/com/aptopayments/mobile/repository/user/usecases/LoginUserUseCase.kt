@@ -6,7 +6,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.user.UserRepository
 
-internal class LoginUserUseCase constructor(
+internal class LoginUserUseCase(
     private val repository: UserRepository,
     networkHandler: NetworkHandler
 ) : UseCase<User, List<Verification>>(networkHandler) {

@@ -6,7 +6,7 @@ import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.transaction.TransactionListFilters
 import com.aptopayments.mobile.repository.transaction.TransactionRepository
 
-internal class GetTransactionsUseCase constructor(
+internal class GetTransactionsUseCase(
     private val repository: TransactionRepository,
     networkHandler: NetworkHandler
 ) : UseCase<List<Transaction>, GetTransactionsUseCase.Params>(networkHandler) {

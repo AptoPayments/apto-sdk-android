@@ -21,7 +21,7 @@ internal interface CardApplicationRepository : BaseNoNetworkRepository {
     ): Either<Failure, Card>
 }
 
-internal class CardApplicationRepositoryImpl constructor(
+internal class CardApplicationRepositoryImpl(
     private val cardApplicationService: CardApplicationService
 ) : CardApplicationRepository {
 

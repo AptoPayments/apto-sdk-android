@@ -4,6 +4,6 @@ import java.io.Serializable
 import java.net.URL
 
 data class AllowedBalanceType(
-    var balanceType: String,
-    var baseUri: URL
+    val balanceType: String,
+    val baseUri: URL
 ) : Serializable

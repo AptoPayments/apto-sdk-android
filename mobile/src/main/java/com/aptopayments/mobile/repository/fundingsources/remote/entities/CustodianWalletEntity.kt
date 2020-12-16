@@ -7,13 +7,13 @@ import com.google.gson.annotations.SerializedName
 internal class CustodianWalletEntity(
 
     @SerializedName("type")
-    var type: String,
+    val type: String,
 
     @SerializedName("custodian")
-    var custodian: CustodianEntity,
+    val custodian: CustodianEntity,
 
     @SerializedName("balance")
-    var balance: MoneyEntity? = null
+    val balance: MoneyEntity? = null
 ) {
     fun toCustodianWallet() = CustodianWallet(
         type = type,

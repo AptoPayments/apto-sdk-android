@@ -15,12 +15,12 @@ internal interface ConfigRepository : BaseNoNetworkRepository {
     fun getCardProducts(): Either<Failure, List<CardProductSummary>>
 }
 
-internal class ConfigRepositoryImpl constructor(
+internal class ConfigRepositoryImpl(
     private val service: ConfigService
 ) : ConfigRepository {
 
     private var contextConfigurationCache: ContextConfiguration? = null
-    private var cardProductCache: HashMap<String, CardProduct> = HashMap()
+    private val cardProductCache: HashMap<String, CardProduct> = HashMap()
 
     override fun getContextConfiguration(forceRefresh: Boolean): Either<Failure, ContextConfiguration> {
         return if (!forceRefresh && contextConfigurationCache != null) {

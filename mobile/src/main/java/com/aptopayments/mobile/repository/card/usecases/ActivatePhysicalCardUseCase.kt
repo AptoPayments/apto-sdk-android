@@ -5,7 +5,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.card.CardRepository
 
-internal class ActivatePhysicalCardUseCase constructor(
+internal class ActivatePhysicalCardUseCase(
     private val repository: CardRepository,
     networkHandler: NetworkHandler
 ) : UseCase<ActivatePhysicalCardResult, ActivatePhysicalCardUseCase.Params>(networkHandler) {

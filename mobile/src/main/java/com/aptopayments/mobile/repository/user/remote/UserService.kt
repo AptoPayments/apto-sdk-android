@@ -12,7 +12,7 @@ import com.aptopayments.mobile.repository.user.remote.requests.*
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
-internal class UserService constructor(apiCatalog: ApiCatalog) : BaseNetworkService() {
+internal class UserService(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
     private val userApi by lazy { apiCatalog.api().create(UserApi::class.java) }
 
@@ -35,7 +35,8 @@ internal class UserService constructor(apiCatalog: ApiCatalog) : BaseNetworkServ
             userApi.unregisterPushDevice(
                 userToken = authorizationHeader(userToken),
                 pushToken = URLEncoder.encode(pushToken, StandardCharsets.UTF_8.toString())
-            ), { }, Unit
+            ),
+            { }, Unit
         )
 
     fun getNotificationPreferences() =

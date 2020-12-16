@@ -17,4 +17,28 @@ class FeatureStatusTest {
 
         assertEquals(FeatureStatus.DISABLED, value)
     }
+
+    @Test
+    fun `fromBoolean with true turns into Enabled`() {
+        val value = FeatureStatus.fromBoolean(true)
+
+        assertEquals(FeatureStatus.ENABLED, value)
+    }
+
+    @Test
+    fun `fromBoolean with true turns into Disabled`() {
+        val value = FeatureStatus.fromBoolean(false)
+
+        assertEquals(FeatureStatus.DISABLED, value)
+    }
+
+    @Test
+    fun `toBoolean with Enabled turns into true`() {
+        assertEquals(true, FeatureStatus.ENABLED.toBoolean())
+    }
+
+    @Test
+    fun `toBoolean with Disabled turns into false`() {
+        assertEquals(false, FeatureStatus.DISABLED.toBoolean())
+    }
 }

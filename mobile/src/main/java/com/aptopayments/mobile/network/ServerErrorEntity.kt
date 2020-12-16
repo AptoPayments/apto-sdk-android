@@ -6,9 +6,9 @@ import java.io.Serializable
 internal data class ServerErrorEntity(
 
     @SerializedName("code")
-    var code: Int? = null,
+    val code: Int? = null,
 
     @SerializedName("message")
-    var message: String? = null
+    val message: String? = null
 
 ) : Serializable

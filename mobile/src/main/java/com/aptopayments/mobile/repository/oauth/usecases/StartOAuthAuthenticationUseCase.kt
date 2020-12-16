@@ -6,7 +6,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.oauth.OAuthRepository
 
-internal class StartOAuthAuthenticationUseCase constructor(
+internal class StartOAuthAuthenticationUseCase(
     private val repository: OAuthRepository,
     networkHandler: NetworkHandler
 ) : UseCase<OAuthAttempt, AllowedBalanceType>(networkHandler) {

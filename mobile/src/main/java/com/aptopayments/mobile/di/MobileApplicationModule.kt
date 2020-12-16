@@ -49,6 +49,7 @@ import com.aptopayments.mobile.repository.verification.remote.entities.Verificat
 import com.aptopayments.mobile.repository.voip.VoipRepository
 import com.aptopayments.mobile.repository.voip.VoipRepositoryImpl
 import com.aptopayments.mobile.repository.voip.remote.VoipService
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -57,7 +58,7 @@ internal val applicationModule = module {
     single { get<LocalDB>().balanceLocalDao() }
     single { get<LocalDB>().cardBalanceLocalDao() }
     single { get<LocalDB>().transactionLocalDao() }
-    single<CardLocalRepository> { CardLocalRepositoryImpl(androidContext()) }
+    single<CardLocalRepository> { CardLocalRepositoryImpl(androidApplication()) }
     factory<ConnectivityChecker> { ConnectivityCheckerImpl(androidContext()) }
     single { NetworkHandler(get()) }
     factory<OkHttpClientProvider> { OkHttpClientProviderImpl(ApiKeyProvider, get()) }

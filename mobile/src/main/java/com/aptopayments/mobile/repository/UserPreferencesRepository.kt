@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 private const val PREF_USER_PREFERENCES_FILENAME = "com.aptopayments.sdk.userpreferences"
 private const val PREF_SHOW_DETAILED_ACTIVITY = "PREF_SHOW_DETAILED_ACTIVITY"
 
-internal class UserPreferencesRepository constructor(
+internal class UserPreferencesRepository(
     private val userSessionRepository: UserSessionRepository,
     context: Context
 ) {

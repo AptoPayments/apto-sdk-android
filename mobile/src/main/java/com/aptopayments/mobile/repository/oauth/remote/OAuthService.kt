@@ -13,7 +13,7 @@ import com.aptopayments.mobile.repository.user.remote.requests.UserDataRequest.C
 
 const val OAUTH_FINISHED_URL = "apto-sdk://oauth-finish"
 
-internal class OAuthService constructor(apiCatalog: ApiCatalog) : BaseNetworkService() {
+internal class OAuthService(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
     private val oauthConnectApi by lazy { apiCatalog.api().create(OAuthApi::class.java) }
 

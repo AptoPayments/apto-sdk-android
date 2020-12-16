@@ -4,7 +4,7 @@ import com.aptopayments.mobile.network.ApiCatalog
 import com.aptopayments.mobile.platform.BaseService
 import com.aptopayments.mobile.repository.card.remote.requests.*
 
-internal class CardService constructor(apiCatalog: ApiCatalog) : BaseService() {
+internal class CardService(apiCatalog: ApiCatalog) : BaseService() {
 
     private val cardApi by lazy { apiCatalog.api().create(CardApi::class.java) }
     private val vaultCardApi by lazy { apiCatalog.vaultApi().create(CardApi::class.java) }
@@ -16,7 +16,8 @@ internal class CardService constructor(apiCatalog: ApiCatalog) : BaseService() {
 
     fun getCardDetails(cardId: String) = vaultCardApi.getCardDetails(accountID = cardId, showDetails = true)
 
-    fun getCards(startingAfter: String?, endingBefore: String?, limit: Int?) = cardApi.getCards(startingAfter, endingBefore, limit)
+    fun getCards(startingAfter: String?, endingBefore: String?, limit: Int?) =
+        cardApi.getCards(startingAfter, endingBefore, limit)
 
     fun unlockCard(cardId: String) = cardApi.changeCardState(accountID = cardId, action = "enable")
 
@@ -45,5 +46,11 @@ internal class CardService constructor(apiCatalog: ApiCatalog) : BaseService() {
                     walletId
                 )
             )
+        )
+
+    fun setCardPasscode(cardId: String, passcode: String) =
+        cardApi.setCardPasscode(
+            cardId = cardId,
+            request = SetPasscodeRequest(passcode = passcode)
         )
 }

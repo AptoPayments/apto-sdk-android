@@ -489,4 +489,8 @@ object AptoPlatform : AptoPlatformProtocol {
             )
         ) { callback(it) }
     }
+
+    override fun setCardPasscode(cardId: String, passcode: String, callback: (Either<Failure, Unit>) -> Unit) {
+        useCasesWrapper.setCardPasscodeUseCase(SetCardPasscodeUseCase.Params(cardId, passcode)) { callback(it) }
+    }
 }

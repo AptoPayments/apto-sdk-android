@@ -6,6 +6,8 @@ import androidx.security.crypto.MasterKeys
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.network.GsonProvider
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
+import com.aptopayments.mobile.utils.RetryMechanism
+import java.security.GeneralSecurityException
 
 const val SECURE_FILE_NAME = "com.aptopayments.core.repository.local.secure.txt"
 
@@ -51,6 +53,12 @@ internal class CardLocalRepositoryImpl(context: Context) : CardLocalRepository {
     }
 
     override fun clearCardCache() {
-        pref.edit().clear().apply()
+        try {
+            RetryMechanism.retryWithBackOff {
+                pref.edit().clear().apply()
+            }
+        } catch (e: GeneralSecurityException) {
+            // Do nothing
+        }
     }
 }

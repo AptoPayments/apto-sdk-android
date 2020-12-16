@@ -4,6 +4,7 @@ import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.FormatStyle
 import java.io.Serializable
+import java.util.*
 
 data class BirthdateDataPoint(
     val birthdate: LocalDate = LocalDate.now(),
@@ -13,5 +14,6 @@ data class BirthdateDataPoint(
 ) : DataPoint(), Serializable {
     override fun getType() = Type.BIRTHDATE
 
-    fun toStringRepresentation(): String? = birthdate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
+    fun toStringRepresentation(locale: Locale = Locale.getDefault()): String? =
+        birthdate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(locale))
 }

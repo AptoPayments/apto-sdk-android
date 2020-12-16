@@ -2,7 +2,7 @@ package com.aptopayments.mobile.network
 
 internal class BooleanListenersPool {
 
-    private var listeners: MutableMap<Any, (Boolean) -> Unit> = mutableMapOf()
+    private val listeners: MutableMap<Any, (Boolean) -> Unit> = mutableMapOf()
     private val listenersLock = Any()
 
     fun registerListener(instance: Any, callback: (Boolean) -> Unit) {
@@ -15,7 +15,7 @@ internal class BooleanListenersPool {
 
     fun notifyListeners(available: Boolean) {
         synchronized(listenersLock) {
-            listeners.iterator().forEach { it.value.invoke(available) }
+            listeners.values.toList().iterator().forEach { it.invoke(available) }
         }
     }
 }

@@ -4,7 +4,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.cardapplication.CardApplicationRepository
 
-internal class CancelCardApplicationUseCase constructor(
+internal class CancelCardApplicationUseCase(
     private val applicationRepository: CardApplicationRepository,
     networkHandler: NetworkHandler
 ) : UseCase<Unit, String>(networkHandler) {

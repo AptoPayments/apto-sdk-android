@@ -75,4 +75,5 @@ internal class UseCasesWrapper : KoinComponent {
     val getPaymentSourcesUseCase: GetPaymentSourcesUseCase by inject()
     val deletePaymentSourceUseCase: DeletePaymentSourceUseCase by inject()
     val pushFundsUseCase: PushFundsUseCase by inject()
+    val setCardPasscodeUseCase: SetCardPasscodeUseCase by inject()
 }

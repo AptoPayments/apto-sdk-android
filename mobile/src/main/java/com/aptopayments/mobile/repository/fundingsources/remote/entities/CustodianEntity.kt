@@ -6,16 +6,16 @@ import com.google.gson.annotations.SerializedName
 internal class CustodianEntity(
 
     @SerializedName("name")
-    var name: String = "",
+    val name: String = "",
 
     @SerializedName("logo")
-    var logo: String = "",
+    val logo: String = "",
 
     @SerializedName("custodian_type")
-    var type: String = "",
+    val type: String = "",
 
     @SerializedName("id")
-    var id: String = ""
+    val id: String = ""
 ) {
     fun toCustodian() = Custodian(
         name = name,

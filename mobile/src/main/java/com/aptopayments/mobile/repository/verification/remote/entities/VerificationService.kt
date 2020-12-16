@@ -14,7 +14,7 @@ import retrofit2.Call
 private const val REQUEST_TYPE_PHONE = "phone"
 private const val REQUEST_TYPE_EMAIL = "email"
 
-internal class VerificationService constructor(apiCatalog: ApiCatalog) {
+internal class VerificationService(apiCatalog: ApiCatalog) {
 
     private val verificationApi by lazy { apiCatalog.api().create(VerificationApi::class.java) }
 

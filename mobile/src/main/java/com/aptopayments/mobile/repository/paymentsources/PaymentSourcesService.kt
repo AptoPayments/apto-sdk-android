@@ -13,7 +13,7 @@ import com.aptopayments.mobile.repository.paymentsources.remote.requests.CardReq
 
 private const val MAX_PAYMENT_SOURCES_PAGE = 50
 
-internal class PaymentSourcesService constructor(apiCatalog: ApiCatalog) : BaseNetworkService() {
+internal class PaymentSourcesService(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
     private val api by lazy { apiCatalog.api().create(PaymentSourcesApi::class.java) }
     private val vaultApi by lazy { apiCatalog.vaultApi().create(PaymentSourcesApi::class.java) }

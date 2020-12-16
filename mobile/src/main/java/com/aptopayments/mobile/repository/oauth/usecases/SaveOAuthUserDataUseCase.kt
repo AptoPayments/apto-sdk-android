@@ -7,7 +7,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.oauth.OAuthRepository
 
-internal class SaveOAuthUserDataUseCase constructor(
+internal class SaveOAuthUserDataUseCase(
     private val repository: OAuthRepository,
     networkHandler: NetworkHandler
 ) : UseCase<OAuthUserDataUpdate, SaveOAuthUserDataUseCase.Params>(networkHandler) {

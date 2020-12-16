@@ -9,10 +9,10 @@ internal class RequiredDataPointEntity {
     val dataPointType: String = ""
 
     @SerializedName("not_specified_allowed")
-    var notSpecifiedAllowed = false
+    val notSpecifiedAllowed = false
 
     @SerializedName("datapoint_configuration")
-    var dataPointConfiguration: DataPointConfigurationEntity? = null
+    val dataPointConfiguration: DataPointConfigurationEntity? = null
 
     fun toRequiredDataPoint() = RequiredDataPoint(
         DataPoint.Type.fromString(dataPointType),

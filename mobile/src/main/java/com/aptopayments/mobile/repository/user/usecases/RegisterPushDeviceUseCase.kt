@@ -4,7 +4,7 @@ import com.aptopayments.mobile.interactor.UseCase
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.user.UserRepository
 
-internal class RegisterPushDeviceUseCase constructor(
+internal class RegisterPushDeviceUseCase(
     private val repository: UserRepository,
     networkHandler: NetworkHandler
 ) : UseCase<Unit, String>(networkHandler) {

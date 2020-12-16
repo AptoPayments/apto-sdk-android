@@ -19,6 +19,7 @@ private const val FINANCIAL_ACCOUNT_PIN_PATH = "v1/user/accounts/{account_id}/pi
 private const val CHANGE_CARD_STATE_PATH = "v1/user/accounts/{account_id}/{action}"
 private const val ACTIVATE_PHYSICAL_CARD_PATH = "v1/user/accounts/{account_id}/activate_physical"
 private const val GPAY_PROVISIONING_PATH = "v1/user/accounts/{account_id}/provision/androidpay"
+private const val SET_PASSCODE = "/v1/user/accounts/{account_id}/passcode"
 private const val ACCOUNT_ID = "account_id"
 private const val ACTION = "action"
 private const val SHOW_DETAILS = "show_details"
@@ -79,4 +80,7 @@ internal interface CardApi {
         @Path(ACCOUNT_ID) accountID: String,
         @Body request: GetProvisioningDataRequestWrapper
     ): Call<ProvisioningEntity>
+
+    @POST(SET_PASSCODE)
+    fun setCardPasscode(@Path(ACCOUNT_ID) cardId: String, @Body request: SetPasscodeRequest): Call<Unit>
 }

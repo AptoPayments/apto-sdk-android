@@ -22,14 +22,12 @@ internal data class FundingFeatureEntity(
 ) {
     fun toFundingFeature(): FundingFeature {
         return FundingFeature(
-            isEnabled = calculateEnabled(),
+            isEnabled = FeatureStatus.fromString(status).toBoolean(),
             cardNetworks = parseCardNetworksList(),
             limits = parseFundingLimits(),
             softDescriptor = softDescriptor ?: ""
         )
     }
-
-    private fun calculateEnabled() = FeatureStatus.ENABLED == FeatureStatus.fromString(status)
 
     private fun parseCardNetworksList(): List<Card.CardNetwork> {
         return cardNetworks?.map { Card.CardNetwork.fromString(it) }
@@ -45,15 +43,12 @@ internal data class FundingFeatureEntity(
         fun from(funding: FundingFeature?): FundingFeatureEntity? {
             return funding?.let {
                 FundingFeatureEntity(
-                    status = getStatusFromFunding(funding),
+                    status = FeatureStatus.fromBoolean(funding.isEnabled).toString(),
                     cardNetworks = funding.cardNetworks.map { it.toString() },
                     limits = FundingLimitsEntity.from(funding.limits),
                     softDescriptor = funding.softDescriptor
                 )
             }
         }
-
-        private fun getStatusFromFunding(funding: FundingFeature) =
-            (if (funding.isEnabled) FeatureStatus.ENABLED else FeatureStatus.DISABLED).toString()
     }
 }

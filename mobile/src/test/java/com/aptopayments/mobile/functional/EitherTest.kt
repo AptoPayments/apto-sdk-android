@@ -24,10 +24,12 @@ class EitherTest : UnitTest() {
 
         assertTrue(result.isRight)
         assertFalse(result.isLeft)
-        result.either({},
+        result.either(
+            {},
             { right ->
                 assertEquals(right, "ironman")
-            })
+            }
+        )
     }
 
     @Test

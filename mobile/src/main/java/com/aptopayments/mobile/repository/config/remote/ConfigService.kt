@@ -6,7 +6,7 @@ import com.aptopayments.mobile.platform.BaseNetworkService
 import com.aptopayments.mobile.repository.config.remote.entities.CardConfigurationEntity
 import com.aptopayments.mobile.repository.config.remote.entities.ContextConfigurationEntity
 
-internal class ConfigService constructor(apiCatalog: ApiCatalog) : BaseNetworkService() {
+internal class ConfigService(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
     private val configApi by lazy { apiCatalog.api().create(ConfigApi::class.java) }
 
@@ -25,9 +25,13 @@ internal class ConfigService constructor(apiCatalog: ApiCatalog) : BaseNetworkSe
         )
 
     fun getCardProducts() =
-        request(configApi.getCardProducts(), { listEntity ->
-            listEntity.data?.map {
-                it.toCardProductSummary()
-            } ?: emptyList()
-        }, ListEntity())
+        request(
+            configApi.getCardProducts(),
+            { listEntity ->
+                listEntity.data?.map {
+                    it.toCardProductSummary()
+                } ?: emptyList()
+            },
+            ListEntity()
+        )
 }
