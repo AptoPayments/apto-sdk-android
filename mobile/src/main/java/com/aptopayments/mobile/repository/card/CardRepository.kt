@@ -54,7 +54,7 @@ internal interface CardRepository : BaseRepository {
         walletId: String
     ): Either<Failure, ProvisioningData>
 
-    fun setCardPasscode(cardId: String, passcode: String): Either<Failure, Unit>
+    fun setCardPasscode(cardId: String, passcode: String, verificationId: String?): Either<Failure, Unit>
 
     class Network(
         private val networkHandler: NetworkHandler,
@@ -271,14 +271,16 @@ internal interface CardRepository : BaseRepository {
 
         override fun setCardPasscode(
             cardId: String,
-            passcode: String
+            passcode: String,
+            verificationId: String?
         ): Either<Failure, Unit> {
             return when (networkHandler.isConnected) {
                 true -> {
                     request(
                         service.setCardPasscode(
                             cardId,
-                            passcode
+                            passcode,
+                            verificationId
                         )
                     ) { }
                 }

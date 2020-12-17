@@ -10,6 +10,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 private const val VERIFICATION_START_PATH = "v1/verifications/start"
+private const val VERIFICATION_PRIMARY_START_PATH = "v1/verifications/primary/start"
 private const val VERIFICATION_RESTART_PATH = "v1/verifications/{verificationId}/restart"
 private const val VERIFICATION_FINISH_PATH = "v1/verifications/{verificationId}/finish"
 private const val VERIFICATION_ID = "verificationId"
@@ -20,6 +21,9 @@ internal interface VerificationApi {
     fun startVerification(
         @Body request: StartVerificationRequest
     ): Call<VerificationEntity>
+
+    @POST(VERIFICATION_PRIMARY_START_PATH)
+    fun startPrimaryVerification(): Call<VerificationEntity>
 
     @POST(VERIFICATION_RESTART_PATH)
     fun restartVerification(

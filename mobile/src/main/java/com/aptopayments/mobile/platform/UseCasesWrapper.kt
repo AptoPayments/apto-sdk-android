@@ -21,10 +21,12 @@ import com.aptopayments.mobile.repository.stats.usecases.ClearMonthlySpendingCac
 import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.mobile.repository.transaction.usecases.GetTransactionsUseCase
 import com.aptopayments.mobile.repository.user.usecases.*
+import com.aptopayments.mobile.repository.verification.usecase.*
 import com.aptopayments.mobile.repository.verification.usecase.FinishVerificationUseCase
 import com.aptopayments.mobile.repository.verification.usecase.RestartVerificationUseCase
 import com.aptopayments.mobile.repository.verification.usecase.StartEmailVerificationUseCase
 import com.aptopayments.mobile.repository.verification.usecase.StartPhoneVerificationUseCase
+import com.aptopayments.mobile.repository.verification.usecase.StartPrimaryVerificationUseCase
 import com.aptopayments.mobile.repository.voip.usecases.SetupVoipCallUseCase
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -42,6 +44,7 @@ internal class UseCasesWrapper : KoinComponent {
     val retrieveOAuthUserDataUseCase: RetrieveOAuthUserDataUseCase by inject()
     val startPhoneVerificationUseCase: StartPhoneVerificationUseCase by inject()
     val startEmailVerificationUseCase: StartEmailVerificationUseCase by inject()
+    val startPrimaryVerificationUseCase: StartPrimaryVerificationUseCase by inject()
     val finishVerificationUseCase: FinishVerificationUseCase by inject()
     val restartVerificationUseCase: RestartVerificationUseCase by inject()
     val startCardApplicationUseCase: StartCardApplicationUseCase by inject()

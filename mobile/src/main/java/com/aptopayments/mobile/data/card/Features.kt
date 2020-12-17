@@ -36,11 +36,11 @@ sealed class FeatureType : Serializable {
 }
 
 data class Features(
-    val getPin: GetPin?,
-    val setPin: SetPin?,
-    val selectBalanceStore: SelectBalanceStore?,
-    val activation: Activation?,
-    val ivrSupport: Ivr?,
-    val funding: FundingFeature?,
-    val passcode: CardPasscodeFeature?
+    val getPin: GetPin? = null,
+    val setPin: SetPin? = null,
+    val selectBalanceStore: SelectBalanceStore? = null,
+    val activation: Activation? = null,
+    val ivrSupport: Ivr? = null,
+    val funding: FundingFeature? = null,
+    val passcode: CardPasscodeFeature? = null
 ) : Serializable

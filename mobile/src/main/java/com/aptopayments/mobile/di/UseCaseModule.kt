@@ -21,10 +21,12 @@ import com.aptopayments.mobile.repository.stats.usecases.ClearMonthlySpendingCac
 import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.mobile.repository.transaction.usecases.GetTransactionsUseCase
 import com.aptopayments.mobile.repository.user.usecases.*
+import com.aptopayments.mobile.repository.verification.usecase.*
 import com.aptopayments.mobile.repository.verification.usecase.FinishVerificationUseCase
 import com.aptopayments.mobile.repository.verification.usecase.RestartVerificationUseCase
 import com.aptopayments.mobile.repository.verification.usecase.StartEmailVerificationUseCase
 import com.aptopayments.mobile.repository.verification.usecase.StartPhoneVerificationUseCase
+import com.aptopayments.mobile.repository.verification.usecase.StartPrimaryVerificationUseCase
 import com.aptopayments.mobile.repository.voip.usecases.SetupVoipCallUseCase
 import org.koin.dsl.module
 
@@ -43,6 +45,7 @@ internal val useCasesModule = module {
     factory { RetrieveOAuthUserDataUseCase(repository = get(), networkHandler = get()) }
     factory { StartPhoneVerificationUseCase(repository = get(), networkHandler = get()) }
     factory { StartEmailVerificationUseCase(repository = get(), networkHandler = get()) }
+    factory { StartPrimaryVerificationUseCase(get(), get()) }
     factory { FinishVerificationUseCase(repository = get(), networkHandler = get()) }
     factory { RestartVerificationUseCase(repository = get(), networkHandler = get()) }
     factory { StartCardApplicationUseCase(applicationRepository = get(), networkHandler = get()) }

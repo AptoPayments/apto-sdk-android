@@ -227,6 +227,13 @@ interface AptoPlatformProtocol {
     fun startEmailVerification(email: String, callback: (Either<Failure, Verification>) -> Unit)
 
     /**
+     * Starts a verification with the primary credential
+     *
+     * @param callback Lambda called when verification started
+     */
+    fun startPrimaryVerification(callback: (Either<Failure, Verification>) -> Unit)
+
+    /**
      * This methods completes the verification
      *
      * @param verification Verification, if the status of the verification is Passed, means that the code was correct
@@ -560,11 +567,13 @@ interface AptoPlatformProtocol {
      * Sets a passcode to the card
      *
      * @param cardId String containing the Id of the card that will have the passcode
-     * @param paymentSourceId String containing the passcode, it should be numeric with 4 digits
+     * @param passcode String containing the passcode, it should be numeric with 4 digits
+     * @param verificationId String (Optional) Verification_id provided by api-call if needed
      */
     fun setCardPasscode(
         cardId: String,
         passcode: String,
+        verificationId: String? = null,
         callback: (Either<Failure, Unit>) -> Unit
     )
 }

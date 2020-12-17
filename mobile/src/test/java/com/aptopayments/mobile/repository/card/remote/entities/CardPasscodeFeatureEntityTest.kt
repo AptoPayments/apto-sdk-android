@@ -14,6 +14,7 @@ internal class CardPasscodeFeatureEntityTest {
 
         assertFalse(result.isEnabled)
         assertFalse(result.isPasscodeSet)
+        assertTrue(result.isVerificationRequired)
     }
 
     @Test
@@ -50,5 +51,23 @@ internal class CardPasscodeFeatureEntityTest {
         val result = entity.toCardPasscode()
 
         assertTrue(result.isPasscodeSet)
+    }
+
+    @Test
+    fun `whenever verificationRequired  then object is created correctly`() {
+        val entity = CardPasscodeFeatureEntity(verificationRequired = false)
+
+        val result = entity.toCardPasscode()
+
+        assertFalse(result.isVerificationRequired)
+    }
+
+    @Test
+    fun `whenever verificationRequired is false then object is created correctly`() {
+        val entity = CardPasscodeFeatureEntity(verificationRequired = true)
+
+        val result = entity.toCardPasscode()
+
+        assertTrue(result.isVerificationRequired)
     }
 }

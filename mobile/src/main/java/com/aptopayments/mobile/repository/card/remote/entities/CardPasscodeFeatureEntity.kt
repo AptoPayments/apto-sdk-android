@@ -9,9 +9,16 @@ internal data class CardPasscodeFeatureEntity(
     val status: String? = "",
 
     @SerializedName("passcode_set")
-    val passcodeSet: Boolean? = false
+    val passcodeSet: Boolean? = false,
+
+    @SerializedName("verification_required")
+    val verificationRequired: Boolean? = true,
 ) {
-    fun toCardPasscode() = CardPasscodeFeature(calculateEnabled(), passcodeSet ?: false)
+    fun toCardPasscode() = CardPasscodeFeature(
+        calculateEnabled(),
+        passcodeSet ?: false,
+        isVerificationRequired = verificationRequired ?: true
+    )
 
     private fun calculateEnabled() = FeatureStatus.fromString(status ?: "").toBoolean()
 
@@ -20,7 +27,8 @@ internal data class CardPasscodeFeatureEntity(
             return value?.let {
                 CardPasscodeFeatureEntity(
                     status = FeatureStatus.fromBoolean(value.isEnabled).toString(),
-                    passcodeSet = value.isEnabled
+                    passcodeSet = value.isEnabled,
+                    verificationRequired = value.isVerificationRequired
                 )
             }
         }

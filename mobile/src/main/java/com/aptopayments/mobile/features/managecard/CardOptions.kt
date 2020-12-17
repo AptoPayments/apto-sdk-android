@@ -8,7 +8,7 @@ class CardOptions(
     private val showAccountSettingsButton: Boolean = true,
     private val showMonthlyStatementsOption: Boolean = true,
     private val authenticateOnStartup: Boolean = false,
-    private val authenticateWithPINOnPCI: Boolean = false,
+    private val authenticateOnPCI: PCIAuthType = PCIAuthType.NONE,
     private val darkThemeEnabled: Boolean = false,
     private val inAppProvisioningEnabled: Boolean = false,
     var openingMode: OpeningMode = OpeningMode.STANDALONE,
@@ -16,6 +16,8 @@ class CardOptions(
 ) {
 
     enum class OpeningMode { EMBEDDED, STANDALONE }
+
+    enum class PCIAuthType { PIN_OR_BIOMETRICS, BIOMETRICS, NONE }
 
     fun showStatsButton() = showStatsButton
 
@@ -31,7 +33,7 @@ class CardOptions(
 
     fun authenticateOnStartup() = authenticateOnStartup
 
-    fun authenticateWithPINOnPCI() = authenticateWithPINOnPCI
+    fun authenticatePCI() = authenticateOnPCI
 
     fun darkThemeEnabled() = darkThemeEnabled
 

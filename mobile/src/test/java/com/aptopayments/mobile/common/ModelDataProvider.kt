@@ -131,7 +131,7 @@ internal object ModelDataProvider {
     }
 
     private fun passcodeFeature(): CardPasscodeFeature {
-        return CardPasscodeFeature(isEnabled = true, isPasscodeSet = true)
+        return CardPasscodeFeature(isEnabled = true, isPasscodeSet = true, isVerificationRequired = true)
     }
 
     private fun fundingLimits(): FundingLimits {

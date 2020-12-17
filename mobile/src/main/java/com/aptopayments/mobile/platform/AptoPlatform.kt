@@ -246,6 +246,10 @@ object AptoPlatform : AptoPlatformProtocol {
     override fun startEmailVerification(email: String, callback: (Either<Failure, Verification>) -> Unit) =
         useCasesWrapper.startEmailVerificationUseCase(email) { callback(it) }
 
+    override fun startPrimaryVerification(callback: (Either<Failure, Verification>) -> Unit) {
+        useCasesWrapper.startPrimaryVerificationUseCase(Unit) { callback(it) }
+    }
+
     override fun completeVerification(verification: Verification, callback: (Either<Failure, Verification>) -> Unit) =
         useCasesWrapper.finishVerificationUseCase(verification) { callback(it) }
 
@@ -490,7 +494,18 @@ object AptoPlatform : AptoPlatformProtocol {
         ) { callback(it) }
     }
 
-    override fun setCardPasscode(cardId: String, passcode: String, callback: (Either<Failure, Unit>) -> Unit) {
-        useCasesWrapper.setCardPasscodeUseCase(SetCardPasscodeUseCase.Params(cardId, passcode)) { callback(it) }
+    override fun setCardPasscode(
+        cardId: String,
+        passcode: String,
+        verificationId: String?,
+        callback: (Either<Failure, Unit>) -> Unit
+    ) {
+        useCasesWrapper.setCardPasscodeUseCase(
+            SetCardPasscodeUseCase.Params(
+                cardId = cardId,
+                passcode = passcode,
+                verificationId = verificationId
+            )
+        ) { callback(it) }
     }
 }

@@ -14,6 +14,7 @@ internal interface VerificationRepository : BaseRepository {
 
     fun startPhoneVerification(params: PhoneNumber): Either<Failure, Verification>
     fun startEmailVerification(params: String): Either<Failure, Verification>
+    fun startPrimaryVerification(): Either<Failure, Verification>
     fun restartVerification(params: Verification): Either<Failure, Verification>
     fun finishVerification(verificationId: String, secret: String): Either<Failure, Verification>
 
@@ -37,6 +38,17 @@ internal interface VerificationRepository : BaseRepository {
                 true ->
                     request(
                         service.startVerification(params),
+                        { it.toVerification() }, VerificationEntity()
+                    )
+                false -> Left(Failure.NetworkConnection)
+            }
+        }
+
+        override fun startPrimaryVerification(): Either<Failure, Verification> {
+            return when (networkHandler.isConnected) {
+                true ->
+                    request(
+                        service.startPrimaryVerification(),
                         { it.toVerification() }, VerificationEntity()
                     )
                 false -> Left(Failure.NetworkConnection)

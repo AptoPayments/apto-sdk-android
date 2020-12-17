@@ -48,9 +48,9 @@ internal class CardService(apiCatalog: ApiCatalog) : BaseService() {
             )
         )
 
-    fun setCardPasscode(cardId: String, passcode: String) =
+    fun setCardPasscode(cardId: String, passcode: String, verificationId: String?) =
         cardApi.setCardPasscode(
             cardId = cardId,
-            request = SetPasscodeRequest(passcode = passcode)
+            request = SetPasscodeRequest(passcode = passcode, verificationId = verificationId)
         )
 }

@@ -40,7 +40,7 @@ internal class VerificationServiceTest : ServiceTest() {
     }
 
     @Test
-    fun `when vefificationFinish then request is made to the correct url`() {
+    fun `when verificationFinish then request is made to the correct url`() {
         enqueueFile("verificationFinishResponse200.json")
 
         val response = sut.finishVerification(VERIFICATION_ID, VERIFICATION).execute()
@@ -50,12 +50,34 @@ internal class VerificationServiceTest : ServiceTest() {
     }
 
     @Test
-    fun `when vefificationFinish then response parses correctly`() {
+    fun `when verificationFinish then response parses correctly`() {
         val fileContent = readFile("verificationFinishResponse200.json")
         val entity = parseEntity(fileContent, VerificationEntity::class.java)
         enqueueContent(fileContent)
 
         val response = sut.finishVerification(VERIFICATION_ID, VERIFICATION).execute()
+
+        assertEquals(entity, response.body()!!)
+        assertNotNull(entity.toVerification())
+    }
+
+    @Test
+    fun `when startPrimaryVerification then request is made to the correct url`() {
+        enqueueContent("{}")
+
+        val response = sut.startPrimaryVerification().execute()
+
+        assertRequestSentTo("v1/verifications/primary/start", "POST")
+        assertCode(response, HTTP_OK)
+    }
+
+    @Test
+    fun `when startPrimaryVerification then response parses correctly`() {
+        val fileContent = readFile("verificationStartResponse200.json")
+        val entity = parseEntity(fileContent, VerificationEntity::class.java)
+        enqueueContent(fileContent)
+
+        val response = sut.startPrimaryVerification().execute()
 
         assertEquals(entity, response.body()!!)
         assertNotNull(entity.toVerification())

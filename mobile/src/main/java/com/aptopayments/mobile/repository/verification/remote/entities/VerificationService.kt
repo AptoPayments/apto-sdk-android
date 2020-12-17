@@ -24,6 +24,9 @@ internal class VerificationService(apiCatalog: ApiCatalog) {
     fun startVerification(request: String): Call<VerificationEntity> =
         verificationApi.startVerification(prepareDataRequest(request))
 
+    fun startPrimaryVerification(): Call<VerificationEntity> =
+        verificationApi.startPrimaryVerification()
+
     fun restartVerification(request: Verification): Call<VerificationEntity> =
         verificationApi.restartVerification(
             request.verificationId,

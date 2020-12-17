@@ -9,6 +9,7 @@ import java.net.HttpURLConnection
 import kotlin.test.assertEquals
 
 private const val PASSCODE = "1234"
+private const val VERIFICATION_ID = "vid_1234"
 
 internal class CardServiceTest : ServiceTest() {
 
@@ -38,19 +39,28 @@ internal class CardServiceTest : ServiceTest() {
     }
 
     @Test
-    fun `when setCardPasscode then request is made correct`() {
+    fun `when setCardPasscode then request is made to the correct url`() {
         enqueueContent("{}")
 
-        sut.setCardPasscode(accountId, PASSCODE).execute()
+        sut.setCardPasscode(accountId, PASSCODE, VERIFICATION_ID).execute()
 
         assertRequestSentTo("v1/user/accounts/$accountId/passcode", "POST")
     }
 
     @Test
-    fun `when setCardPasscode then request is made correctly`() {
+    fun `when setCardPasscode with verificationID then request is made correctly`() {
         enqueueContent("{}")
 
-        sut.setCardPasscode(accountId, PASSCODE).execute()
+        sut.setCardPasscode(accountId, PASSCODE, VERIFICATION_ID).execute()
+
+        assertRequestBodyFile("userAccountsPasscodeRequestWithVerificationPost.json")
+    }
+
+    @Test
+    fun `when setCardPasscode without verificationID then request is made correctly`() {
+        enqueueContent("{}")
+
+        sut.setCardPasscode(accountId, PASSCODE, null).execute()
 
         assertRequestBodyFile("userAccountsPasscodeRequestPost.json")
     }
