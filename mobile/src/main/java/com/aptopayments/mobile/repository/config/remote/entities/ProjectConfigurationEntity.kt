@@ -29,14 +29,16 @@ internal data class ProjectConfigurationEntity(
     val labels: Map<String, String> = hashMapOf(),
 
     @SerializedName("support_source_address")
-    var supportEmailAddress: String? = null,
+    val supportEmailAddress: String? = null,
 
     @SerializedName("tracker_access_token")
-    var trackerAccessToken: String? = null,
+    val trackerAccessToken: String? = null,
 
     @SerializedName("tracker_active")
-    var isTrackerActive: Boolean? = false
-    // TODO: Parse the welcome action
+    val isTrackerActive: Boolean? = false,
+
+    @SerializedName("chatbot_active")
+    val isChatbotActive: Boolean? = false
 
 ) {
     fun toProjectConfiguration() = ProjectConfiguration(
@@ -48,6 +50,7 @@ internal data class ProjectConfigurationEntity(
         supportEmailAddress = supportEmailAddress,
         trackerAccessToken = trackerAccessToken,
         isTrackerActive = isTrackerActive,
+        isChatbotActive = isChatbotActive ?: false,
         primaryAuthCredential = DataPoint.Type.fromString(primaryOAuthCredential),
         secondaryAuthCredential = DataPoint.Type.fromString(secondaryOAuthCredential)
     )

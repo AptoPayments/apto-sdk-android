@@ -113,7 +113,7 @@ android {
     dependencies {
     	...
 
-		implementation 'com.aptopayments.sdk:mobile:3.6.0'
+		implementation 'com.aptopayments.sdk:mobile:3.7.0'
 
     	...
     }
@@ -755,12 +755,12 @@ AptoPlatform.applyToCard(cardProduct) { result ->
 Once you have a card application initiated, check for the next application step in the `nextAction` property.
 
 ```kotlin
-if (cardApplication.nextAction.actionType == WorkflowActionType.SHOW_DISCLAIMER) {
+if (cardApplication.nextAction.actionId == WorkflowActionType.SHOW_DISCLAIMER.toString()) {
 	// Show the disclaimer
 }
 ```
 
-The `cardApplication.nextAction.actionType` is a `WorkflowActionType` value. The available `WorkflowActionType` values are:
+The `cardApplication.nextAction.actionId` is a `WorkflowActionType` value. The available `WorkflowActionType` values are:
 
 Value|Description
 ---|---
@@ -847,7 +847,7 @@ AptoPlatform.fetchCardApplicationStatus(cardApplication.id) { result ->
 		// failure
 	}, {
 		// Check the next step. After the balance store the result should be SHOW_DISCLAIMER
-		if (cardApplication.nextAction.actionType == WorkflowActionType.SHOW_DISCLAIMER) {
+		if (cardApplication.nextAction.actionId == WorkflowActionType.SHOW_DISCLAIMER.toString()) {
 			// Show the disclaimer
 		}
     })
@@ -886,7 +886,7 @@ AptoPlatform.fetchCardApplicationStatus(cardApplication.id) { result ->
 		// failure
 	}, {
 		// Check the next step. After the disclaimer the result should be ISSUE_CARD
-		if (cardApplication.nextAction.actionType == WorkflowActionType.ISSUE_CARD) {
+		if (cardApplication.nextAction.actionId == WorkflowActionType.ISSUE_CARD.toString()) {
 			// Issue the card
 		}
     })
@@ -983,10 +983,29 @@ AptoPlatform.cardMonthlySpending(accountID, month, year) {
 
 Funds loaded onto a user's card is automatically deducted from the payment source. The balance is maintained on the user's card, managed by Apto Payments. You can load money onto a user's card using a valid debit card.
 
+* [Sandbox Cards for Testing](#user-content-sandbox-cards-for-testing)
 * [Get Payment Sources](#user-content-get-payment-sources)
 * [Add a Payment Source](#user-content-add-a-payment-source)
 * [Delete a Payment Source](#user-content-delete-a-payment-source)
 * [Add Funds to a Card](#user-content-add-funds-to-a-card)
+
+
+### Sandbox Cards for Testing
+
+We've provided a list of cards that can be used to test adding card funds, within the Sandbox environment:
+
+Card Type|Card Number
+---|---
+Visa|4111111111111111
+Visa|400000076000002
+Mastercard|5200828282828210
+Mastercard|2223000048400011
+
+For all test cards:
+
+* Any expiration date set to a future date may be used.
+* Any CVV value may be used.
+* Any 5-digit postal code value may be used.
 
 ### Get Payment Sources
 
@@ -1108,17 +1127,6 @@ AptoPlatform.pushFunds(balanceId, paymentSourceId, money) {
 
 * When the method succeeds, a `Payment` object is returned with the completed payment information.
 * When the method fails, error handling can be included within the `error` response.
-
-#### Sandbox Cards for Testing
-
-We've provided a list of cards that can be used to test adding card funds, within the Sandbox environment:
-
-Card Type|Card Number
----|---
-Visa|4111111111111111
-Visa|400000076000002
-Mastercard|5200828282828210
-Mastercard|2223000048400011
 
 
 ## Manage Card Funding Sources for On-demand Debits (Enterprise only)

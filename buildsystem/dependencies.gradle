@@ -3,6 +3,7 @@ allprojects {
     google()
     jcenter()
     maven { url "https://jitpack.io" }
+    maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
   }
 }
 
@@ -66,28 +67,30 @@ ext {
           androidSecurity:            "androidx.security:security-crypto:1.0.0-rc03",
           places:                     "com.google.android.libraries.places:places:2.3.0",
           inputmask:                  "com.redmadrobot:input-mask-android:6.0.0",
-          pci:                        "com.aptopayments.sdk:pci:2.0.2"
+          pci:                        "com.aptopayments.sdk:pci:2.0.2",
+          zendeskChat:                "com.zendesk:chat:3.1.0",
+          zendeskMessaging:           "com.zendesk:messaging:5.1.0"
   ]
 
   unitTesting = [
-      kotlinTest:         "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
-      robolectric:        "org.robolectric:robolectric:4.3.1",
-      junit:              "junit:junit:4.13",
-      mockito:            "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0",
-      koinTest:           "org.koin:koin-test:$koin_version",
-      coreTesting:        "androidx.arch.core:core-testing:2.1.0",
-      coroutinesTest:     "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlin_coroutines_version",
-      mockWebServer:      "com.squareup.okhttp3:mockwebserver:$okhttp_version"
+          kotlinTest:         "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
+          robolectric:        "org.robolectric:robolectric:4.3.1",
+          junit:              "junit:junit:4.13",
+          mockito:            "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0",
+          koinTest:           "org.koin:koin-test:$koin_version",
+          coreTesting:        "androidx.arch.core:core-testing:2.1.0",
+          coroutinesTest:     "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlin_coroutines_version",
+          mockWebServer:      "com.squareup.okhttp3:mockwebserver:$okhttp_version"
   ]
 
   acceptanceTesting = [
-      testRunner: 'androidx.test:runner:1.2.0',
-      testRules: 'androidx.test:rules:1.2.0',
-      espressoCore: 'androidx.test.espresso:espresso-core:3.2.0',
-      espressoIntents: 'androidx.test.espresso:espresso-intents:3.2.0',
+          testRunner: 'androidx.test:runner:1.2.0',
+          testRules: 'androidx.test:rules:1.2.0',
+          espressoCore: 'androidx.test.espresso:espresso-core:3.2.0',
+          espressoIntents: 'androidx.test.espresso:espresso-intents:3.2.0',
   ]
 
   development = [
-      leakCanary:         "com.squareup.leakcanary:leakcanary-android:2.3",
+          leakCanary:         "com.squareup.leakcanary:leakcanary-android:2.3",
   ]
 }
