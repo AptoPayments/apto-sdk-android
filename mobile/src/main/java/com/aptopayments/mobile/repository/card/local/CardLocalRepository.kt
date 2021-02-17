@@ -1,15 +1,11 @@
 package com.aptopayments.mobile.repository.card.local
 
 import android.content.Context
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKeys
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.network.GsonProvider
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
-import com.aptopayments.mobile.utils.RetryMechanism
-import java.security.GeneralSecurityException
 
-const val SECURE_FILE_NAME = "com.aptopayments.core.repository.local.secure.txt"
+const val FILE_NAME = "com.aptopayments.core.repository.card.local.txt"
 
 const val KEY = "card_key"
 
@@ -21,17 +17,7 @@ internal interface CardLocalRepository {
 
 internal class CardLocalRepositoryImpl(context: Context) : CardLocalRepository {
 
-    private val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
-    private val masterKeyAlias = MasterKeys.getOrCreate(keyGenParameterSpec)
-
-    private val pref = EncryptedSharedPreferences
-        .create(
-            SECURE_FILE_NAME,
-            masterKeyAlias,
-            context,
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
+    private val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
 
     override fun saveCard(card: Card) {
         pref.edit().putString(KEY, GsonProvider.provide().toJson(CardEntity.from(card))).apply()
@@ -53,12 +39,6 @@ internal class CardLocalRepositoryImpl(context: Context) : CardLocalRepository {
     }
 
     override fun clearCardCache() {
-        try {
-            RetryMechanism.retryWithBackOff {
-                pref.edit().clear().apply()
-            }
-        } catch (e: GeneralSecurityException) {
-            // Do nothing
-        }
+        pref.edit().clear().apply()
     }
 }

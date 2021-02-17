@@ -64,7 +64,6 @@ ext {
           viewPager2:                 "androidx.viewpager2:viewpager2:1.0.0",
           tapAndPay:                  "com.google.android.gms:play-services-tapandpay:17.0.1",
           playServicesLicences:       "com.google.android.gms:play-services-oss-licenses:17.0.0",
-          androidSecurity:            "androidx.security:security-crypto:1.0.0-rc03",
           places:                     "com.google.android.libraries.places:places:2.3.0",
           inputmask:                  "com.redmadrobot:input-mask-android:6.0.0",
           pci:                        "com.aptopayments.sdk:pci:2.0.2",
