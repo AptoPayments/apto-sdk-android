@@ -9,4 +9,14 @@ internal const val FORMAT_NATIVE_CONTENT = "native_content"
 
 internal interface ContentEntity {
     fun toContent(): Content
+
+    companion object {
+        fun from(content: Content): ContentEntity {
+            return when (content) {
+                is Content.PlainText, is Content.Markdown, is Content.Web -> PlainTextContentEntity.from(content)
+                is Content.Native -> NativeContentEntity.from(content)
+                else -> throw RuntimeException()
+            }
+        }
+    }
 }

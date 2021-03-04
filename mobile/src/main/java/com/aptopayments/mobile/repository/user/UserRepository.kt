@@ -3,6 +3,7 @@ package com.aptopayments.mobile.repository.user
 import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.data.user.User
 import com.aptopayments.mobile.data.user.Verification
+import com.aptopayments.mobile.data.user.agreements.ReviewAgreementsInput
 import com.aptopayments.mobile.data.user.notificationpreferences.NotificationGroup
 import com.aptopayments.mobile.data.user.notificationpreferences.NotificationPreferences
 import com.aptopayments.mobile.exception.Failure
@@ -23,6 +24,7 @@ internal interface UserRepository : BaseNoNetworkRepository {
     fun unregisterPushDevice(params: UnregisterPushDeviceParams): Either<Failure, Unit>
     fun getNotificationPreferences(): Either<Failure, NotificationPreferences>
     fun updateNotificationPreferences(notificationPreferencesList: List<NotificationGroup>): Either<Failure, NotificationPreferences>
+    fun reviewAgreements(input: ReviewAgreementsInput): Either<Failure, Unit>
 }
 
 internal class UserRepositoryImpl(
@@ -53,4 +55,6 @@ internal class UserRepositoryImpl(
         service.updateNotificationPreferences(
             NotificationPreferencesRequest.from(notificationPreferencesList)
         )
+
+    override fun reviewAgreements(input: ReviewAgreementsInput) = service.reviewAgreements(input.keys, input.action)
 }

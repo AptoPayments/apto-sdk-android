@@ -1,7 +1,7 @@
 package com.aptopayments.mobile.repository.card.remote.entities
 
-import junit.framework.Assert.assertFalse
 import org.junit.Test
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 internal class CardPasscodeFeatureEntityTest {

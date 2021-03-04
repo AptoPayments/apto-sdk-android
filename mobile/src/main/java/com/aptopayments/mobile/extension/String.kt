@@ -5,6 +5,8 @@ import com.aptopayments.mobile.repository.LiteralsRepository
 import java.net.URL
 import java.util.Locale
 
+private const val VALUE = "<<VALUE>>"
+
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 fun String.localized(): String = LiteralsRepository.localized(this)
 

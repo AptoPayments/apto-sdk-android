@@ -141,6 +141,20 @@ fun <T, L, R> Either<L, R>.flatMap(fn: (R) -> Either<L, T>): Either<L, T> =
     }
 
 /**
+ * Applies the given function `f` if this is a [Either.Right], otherwise returns this if this is a [Either.Left].
+ *  * Example:
+ * ```
+ * Right(12).flatMap { Right(it % 2) } // Result: Either.Right(0)
+ * Right(12).flatMap { Left(it % 2) } // Result: Either.Left(0)
+ * ```
+ */
+suspend fun <T, L, R> Either<L, R>.flatMapSuspending(fn: suspend (R) -> Either<L, T>): Either<L, T> =
+    when (this) {
+        is Either.Left -> Either.Left(a)
+        is Either.Right -> fn(b)
+    }
+
+/**
  * Returns the value from this [Either.Right] or the given argument if this is a [Either.Left].
  *
  * ```

@@ -12,6 +12,7 @@ import com.aptopayments.mobile.data.card.*
 import com.aptopayments.mobile.data.cardproduct.CardProduct
 import com.aptopayments.mobile.data.cardproduct.CardProductSummary
 import com.aptopayments.mobile.data.config.ContextConfiguration
+import com.aptopayments.mobile.data.fundingsources.AchAccountDetails
 import com.aptopayments.mobile.data.fundingsources.Balance
 import com.aptopayments.mobile.data.oauth.OAuthAttempt
 import com.aptopayments.mobile.data.oauth.OAuthCredential
@@ -26,6 +27,8 @@ import com.aptopayments.mobile.data.transaction.Transaction
 import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.data.user.User
 import com.aptopayments.mobile.data.user.Verification
+import com.aptopayments.mobile.data.user.agreements.AgreementAction
+import com.aptopayments.mobile.data.user.agreements.ReviewAgreementsInput
 import com.aptopayments.mobile.data.user.notificationpreferences.NotificationPreferences
 import com.aptopayments.mobile.data.voip.Action
 import com.aptopayments.mobile.data.voip.VoipCall
@@ -507,5 +510,21 @@ object AptoPlatform : AptoPlatformProtocol {
                 verificationId = verificationId
             )
         ) { callback(it) }
+    }
+
+    override fun reviewAgreements(
+        keys: List<String>,
+        action: AgreementAction,
+        callback: (Either<Failure, Unit>) -> Unit
+    ) {
+        useCasesWrapper.reviewAgreementsUseCase(ReviewAgreementsInput(keys, action)) { callback(it) }
+    }
+
+    override fun assignAchAccount(balanceId: String, callback: (Either<Failure, AchAccountDetails>) -> Unit) {
+        useCasesWrapper.assignAchAccountToBalanceUseCase(balanceId) { callback(it) }
+    }
+
+    override fun getAchAccountDetails(balanceId: String, callback: (Either<Failure, AchAccountDetails>) -> Unit) {
+        useCasesWrapper.getAchAccountDetailsUseCase(balanceId) { callback(it) }
     }
 }

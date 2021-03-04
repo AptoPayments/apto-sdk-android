@@ -8,6 +8,7 @@ import com.aptopayments.mobile.data.card.*
 import com.aptopayments.mobile.data.cardproduct.CardProduct
 import com.aptopayments.mobile.data.cardproduct.CardProductSummary
 import com.aptopayments.mobile.data.config.ContextConfiguration
+import com.aptopayments.mobile.data.fundingsources.AchAccountDetails
 import com.aptopayments.mobile.data.fundingsources.Balance
 import com.aptopayments.mobile.data.oauth.OAuthAttempt
 import com.aptopayments.mobile.data.oauth.OAuthCredential
@@ -22,6 +23,7 @@ import com.aptopayments.mobile.data.transaction.Transaction
 import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.data.user.User
 import com.aptopayments.mobile.data.user.Verification
+import com.aptopayments.mobile.data.user.agreements.AgreementAction
 import com.aptopayments.mobile.data.user.notificationpreferences.NotificationPreferences
 import com.aptopayments.mobile.data.voip.Action
 import com.aptopayments.mobile.data.voip.VoipCall
@@ -300,6 +302,7 @@ interface AptoPlatformProtocol {
      * @param initialFundingSourceId specifies the id of the wallet that will be connected to the card when issued
      * @param callback Lambda called when card has been issued returning Either Failure if was not successful or the Card if it was correct
      */
+    @Deprecated("Please use issueCard with applicationId")
     fun issueCard(
         cardProductId: String,
         credential: OAuthCredential?,
@@ -576,4 +579,38 @@ interface AptoPlatformProtocol {
         verificationId: String? = null,
         callback: (Either<Failure, Unit>) -> Unit
     )
+
+    /**
+     * Allows send the user decision on a certain agreement
+     * A certain Agreement can be Accepted or Rejected
+     *
+     * @param keys The agreement keys that is being reviewed
+     * @param action The action that the user has taken over the agreement
+     */
+    fun reviewAgreements(
+        keys: List<String>,
+        action: AgreementAction,
+        callback: (Either<Failure, Unit>) -> Unit
+    )
+
+    /**
+     * Assigns an Ach Account to the provided balance
+     * If the agreements have not been approved then Failure will be returned
+     * If an account has already been assigned, then Failure will be returned
+     *
+     * @param balanceId the id of the balance that the Ach Account will be created to
+     * @param callback Lambda called when the task has ended returning Either Failure if there was an error
+     * or AchAccountDetails if the task was successful
+     */
+    fun assignAchAccount(balanceId: String, callback: (Either<Failure, AchAccountDetails>) -> Unit)
+
+    /**
+     * Gets the Ach Account details for the balanceId provided
+     * If the balanceId has no assigned account, then Failure will be returned
+     *
+     * @param balanceId the id of the balance that the Ach Account will be created to
+     * @param callback Lambda called when the task has ended returning Either Failure if there was an error
+     * or AchAccountDetails if the task was successful
+     */
+    fun getAchAccountDetails(balanceId: String, callback: (Either<Failure, AchAccountDetails>) -> Unit)
 }

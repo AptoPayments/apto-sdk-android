@@ -58,7 +58,7 @@ ext {
           markdownStrikethrough:      "io.noties.markwon:ext-strikethrough:$markdown_version",
           trackerTool:                "com.mixpanel.android:mixpanel-android:5.8.3",
           charts:                     "com.github.PhilJay:MPAndroidChart:v3.1.0",
-          twilioVoip:                 "com.twilio:voice-android:3.3.0",
+          twilioVoip:                 "com.twilio:voice-android:5.6.2",
           pdfViewer:                  "com.github.barteksc:android-pdf-viewer:2.8.2",
           biometric:                  "androidx.biometric:biometric:1.0.1",
           viewPager2:                 "androidx.viewpager2:viewpager2:1.0.0",

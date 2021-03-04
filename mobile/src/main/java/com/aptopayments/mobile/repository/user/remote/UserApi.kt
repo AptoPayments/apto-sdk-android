@@ -13,6 +13,8 @@ private const val LOGIN_USER_PATH = "/v1/user/login"
 private const val REGISTER_PUSH_DEVICE_PATH = "/v1/user/pushdevice"
 private const val UNREGISTER_PUSH_DEVICE_PATH = "/v1/user/pushdevice/{push_token}"
 private const val NOTIFICATION_PREFERENCES_PATH = "/v1/user/notifications/preferences"
+private const val AGREEMENTS_PATH = "/v1/agreements"
+
 private const val PUSH_TOKEN = "push_token"
 
 internal interface UserApi {
@@ -40,4 +42,7 @@ internal interface UserApi {
 
     @PUT(NOTIFICATION_PREFERENCES_PATH)
     fun updateNotificationPreferences(@Body request: NotificationPreferencesRequest): Call<NotificationPreferencesEntity>
+
+    @POST(AGREEMENTS_PATH)
+    fun reviewAgreements(@Body request: AgreementsInputRequest): Call<Unit>
 }

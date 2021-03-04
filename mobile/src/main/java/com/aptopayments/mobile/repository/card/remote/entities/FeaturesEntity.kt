@@ -24,7 +24,10 @@ internal data class FeaturesEntity(
     val fundingFeatureEntity: FundingFeatureEntity? = null,
 
     @SerializedName("passcode")
-    val passcodeEntity: CardPasscodeFeatureEntity? = null
+    val passcodeEntity: CardPasscodeFeatureEntity? = null,
+
+    @SerializedName("ach")
+    val achAccountFeatureEntity: AchAccountFeatureEntity? = null
 ) {
     fun toFeatures() = Features(
         getPin = getPinEntity?.toGetPin(),
@@ -33,7 +36,8 @@ internal data class FeaturesEntity(
         activation = activationEntity?.toActivation(),
         ivrSupport = ivrSupportEntity?.toIvr(),
         funding = fundingFeatureEntity?.toFundingFeature(),
-        passcode = passcodeEntity?.toCardPasscode()
+        passcode = passcodeEntity?.toCardPasscode(),
+        achAccount = achAccountFeatureEntity?.toAchFeature()
     )
 
     companion object {
@@ -45,7 +49,8 @@ internal data class FeaturesEntity(
                 activationEntity = ActivationEntity.from(features.activation),
                 ivrSupportEntity = IvrEntity.from(features.ivrSupport),
                 fundingFeatureEntity = FundingFeatureEntity.from(features.funding),
-                passcodeEntity = CardPasscodeFeatureEntity.from(features.passcode)
+                passcodeEntity = CardPasscodeFeatureEntity.from(features.passcode),
+                achAccountFeatureEntity = AchAccountFeatureEntity.from(features.achAccount)
             )
         }
     }

@@ -5,6 +5,7 @@ import com.aptopayments.mobile.data.cardproduct.CardProduct
 import com.aptopayments.mobile.data.config.Branding
 import com.aptopayments.mobile.data.config.ContextConfiguration
 import com.aptopayments.mobile.data.config.ProjectConfiguration
+import com.aptopayments.mobile.data.fundingsources.AchAccountDetails
 import com.aptopayments.mobile.data.geo.Country
 import com.aptopayments.mobile.data.oauth.OAuthAttempt
 import com.aptopayments.mobile.data.oauth.OAuthAttemptStatus
@@ -294,5 +295,10 @@ internal class TestDataProvider {
             createdAt: ZonedDateTime = ZonedDateTime.now(),
             cardId: String = "card_1234"
         ) = TransactionLocalEntity.fromTransaction(provideTransaction(transactionId, createdAt), cardId)
+
+        fun providerAchAccountDetails(
+            routingNumber: String = "12345",
+            accountNumber: String = "6789"
+        ) = AchAccountDetails(routingNumber, accountNumber)
     }
 }

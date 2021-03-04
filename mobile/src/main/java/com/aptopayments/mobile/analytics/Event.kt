@@ -82,5 +82,8 @@ enum class Event(val event: String) {
     UnknownServerError("unknown.server_error"),
     CardPasscodeStart("manage_card.set_passcode.start"),
     CardPasscodeSet("manage_card.set_passcode.set"),
-    CardPasscodeConfirm("manage_card.set_passcode.confirm")
+    CardPasscodeConfirm("manage_card.set_passcode.confirm"),
+    AddFundsSelector("manage_card.add_funds.selector"),
+    DirectDepositInstructions("manage_card.direct_deposit.instructions"),
+    AchAccountDetails("manage_card.ach_account.details"),
 }

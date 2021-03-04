@@ -5,9 +5,9 @@ import com.aptopayments.mobile.extension.ColorParser
 import com.aptopayments.mobile.extension.ColorParserImpl
 import com.aptopayments.mobile.extension.toUrl
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-internal class NativeValueEntity(
-
+internal data class NativeValueEntity(
     @SerializedName("background_color")
     val backgroundColor: String? = null,
 
@@ -16,7 +16,7 @@ internal class NativeValueEntity(
 
     @SerializedName("asset")
     val asset: String? = null
-) : ContentEntity {
+) : ContentEntity, Serializable {
 
     private val colorParser: ColorParser = ColorParserImpl()
 
@@ -25,4 +25,12 @@ internal class NativeValueEntity(
         backgroundImage = backgroundImage?.toUrl(),
         asset = asset?.toUrl()
     )
+
+    companion object {
+        fun from(value: Content.Native) = NativeValueEntity(
+            backgroundColor = value.backgroundColor?.let { String.format("#%06X", 0xFFFFFF and it) },
+            backgroundImage = value.backgroundImage.toString(),
+            asset = value.asset.toString()
+        )
+    }
 }

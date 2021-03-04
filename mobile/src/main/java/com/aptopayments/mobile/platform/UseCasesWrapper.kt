@@ -6,6 +6,8 @@ import com.aptopayments.mobile.repository.cardapplication.usecases.IssueCardUseC
 import com.aptopayments.mobile.repository.config.usecases.GetCardProductUseCase
 import com.aptopayments.mobile.repository.config.usecases.GetCardProductsUseCase
 import com.aptopayments.mobile.repository.config.usecases.GetContextConfigurationUseCase
+import com.aptopayments.mobile.repository.fundingsources.remote.usecases.AssignAchAccountToBalanceUseCase
+import com.aptopayments.mobile.repository.fundingsources.remote.usecases.GetAchAccountDetailsUseCase
 import com.aptopayments.mobile.repository.fundingsources.remote.usecases.GetFundingSourcesUseCase
 import com.aptopayments.mobile.repository.oauth.usecases.GetOAuthAttemptStatusUseCase
 import com.aptopayments.mobile.repository.oauth.usecases.RetrieveOAuthUserDataUseCase
@@ -21,7 +23,6 @@ import com.aptopayments.mobile.repository.stats.usecases.ClearMonthlySpendingCac
 import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.mobile.repository.transaction.usecases.GetTransactionsUseCase
 import com.aptopayments.mobile.repository.user.usecases.*
-import com.aptopayments.mobile.repository.verification.usecase.*
 import com.aptopayments.mobile.repository.verification.usecase.FinishVerificationUseCase
 import com.aptopayments.mobile.repository.verification.usecase.RestartVerificationUseCase
 import com.aptopayments.mobile.repository.verification.usecase.StartEmailVerificationUseCase
@@ -79,4 +80,7 @@ internal class UseCasesWrapper : KoinComponent {
     val deletePaymentSourceUseCase: DeletePaymentSourceUseCase by inject()
     val pushFundsUseCase: PushFundsUseCase by inject()
     val setCardPasscodeUseCase: SetCardPasscodeUseCase by inject()
+    val reviewAgreementsUseCase: ReviewAgreementsUseCase by inject()
+    val assignAchAccountToBalanceUseCase: AssignAchAccountToBalanceUseCase by inject()
+    val getAchAccountDetailsUseCase: GetAchAccountDetailsUseCase by inject()
 }

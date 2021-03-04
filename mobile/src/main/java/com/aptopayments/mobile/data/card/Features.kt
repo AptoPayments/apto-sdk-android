@@ -42,5 +42,6 @@ data class Features(
     val activation: Activation? = null,
     val ivrSupport: Ivr? = null,
     val funding: FundingFeature? = null,
-    val passcode: CardPasscodeFeature? = null
+    val passcode: CardPasscodeFeature? = null,
+    val achAccount: AchAccountFeature? = null
 ) : Serializable

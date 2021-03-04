@@ -1,5 +1,6 @@
 package com.aptopayments.mobile.repository.fundingsources
 
+import com.aptopayments.mobile.data.fundingsources.AchAccountDetails
 import com.aptopayments.mobile.data.fundingsources.Balance
 import com.aptopayments.mobile.exception.Failure
 import com.aptopayments.mobile.functional.Either
@@ -10,7 +11,15 @@ import com.aptopayments.mobile.repository.fundingsources.local.entities.BalanceL
 import com.aptopayments.mobile.repository.fundingsources.remote.FundingSourcesService
 
 internal interface FundingSourceRepository : BaseNoNetworkRepository {
-    fun getFundingSources(accountId: String, refresh: Boolean, page: Int, rows: Int): Either<Failure, List<Balance>>
+    fun getFundingSources(
+        accountId: String,
+        refresh: Boolean,
+        page: Int,
+        rows: Int
+    ): Either<Failure, List<Balance>>
+
+    fun assignAchAccountToBalance(balanceId: String): Either<Failure, AchAccountDetails>
+    fun getAchAccountDetails(balanceId: String): Either<Failure, AchAccountDetails>
 }
 
 internal class FundingSourceRepositoryImpl(
@@ -25,9 +34,9 @@ internal class FundingSourceRepositoryImpl(
         rows: Int
     ): Either<Failure, List<Balance>> {
         return if (refresh) {
-            getFromAPI(accountId = accountId, page = page, rows = rows)
+            getFundingSourcesFromAPI(accountId = accountId, page = page, rows = rows)
         } else {
-            balanceLocalDao.getBalances()?.map { it.toBalance() }?.right() ?: getFromAPI(
+            balanceLocalDao.getBalances()?.map { it.toBalance() }?.right() ?: getFundingSourcesFromAPI(
                 accountId = accountId,
                 page = page,
                 rows = rows
@@ -35,7 +44,13 @@ internal class FundingSourceRepositoryImpl(
         }
     }
 
-    private fun getFromAPI(accountId: String, page: Int, rows: Int) =
+    override fun assignAchAccountToBalance(balanceId: String): Either<Failure, AchAccountDetails> =
+        service.assignAchAccountToBalance(balanceId)
+
+    override fun getAchAccountDetails(balanceId: String): Either<Failure, AchAccountDetails> =
+        service.getAchAccountDetails(balanceId)
+
+    private fun getFundingSourcesFromAPI(accountId: String, page: Int, rows: Int) =
         service.getFundingSources(accountId, page, rows).runIfRight { balanceList ->
             balanceLocalDao.clearBalanceCache()
             balanceLocalDao.saveBalances(balanceList.map { BalanceLocalEntity.fromBalance(it) })
