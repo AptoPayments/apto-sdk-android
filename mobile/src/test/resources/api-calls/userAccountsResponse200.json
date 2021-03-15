@@ -105,7 +105,7 @@
     "type":"card_style",
     "background":{
       "type":"card_background_style",
-      "background_type":"image",
+      "background_type":"color",
       "background_color":"961e1e"
     },
     "text_color":"000000",

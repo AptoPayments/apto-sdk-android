@@ -10,26 +10,21 @@ import com.aptopayments.mobile.data.fundingsources.Balance
 import com.aptopayments.mobile.data.oauth.OAuthCredential
 import com.aptopayments.mobile.exception.Failure
 import com.aptopayments.mobile.functional.Either
-import com.aptopayments.mobile.network.NetworkHandler
-import com.aptopayments.mobile.network.PaginatedListEntity
-import com.aptopayments.mobile.platform.BaseRepository
+import com.aptopayments.mobile.functional.right
+import com.aptopayments.mobile.platform.BaseNoNetworkRepository
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.card.local.CardBalanceLocalDao
 import com.aptopayments.mobile.repository.card.local.CardLocalRepository
 import com.aptopayments.mobile.repository.card.local.entities.CardBalanceLocalEntity
 import com.aptopayments.mobile.repository.card.remote.CardService
-import com.aptopayments.mobile.repository.card.remote.entities.ActivatePhysicalCardEntity
-import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
-import com.aptopayments.mobile.repository.card.remote.requests.AddCardBalanceRequest
 import com.aptopayments.mobile.repository.card.remote.requests.GetCardRequest
 import com.aptopayments.mobile.repository.card.remote.requests.IssueCardRequest
 import com.aptopayments.mobile.repository.card.remote.requests.OAuthCredentialRequest
 import com.aptopayments.mobile.repository.card.usecases.*
-import com.aptopayments.mobile.repository.fundingsources.remote.entities.BalanceEntity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-internal interface CardRepository : BaseRepository {
+internal interface CardRepository : BaseNoNetworkRepository {
     fun issueCard(
         cardProductId: String,
         credential: OAuthCredential?,
@@ -55,237 +50,104 @@ internal interface CardRepository : BaseRepository {
     ): Either<Failure, ProvisioningData>
 
     fun setCardPasscode(cardId: String, passcode: String, verificationId: String?): Either<Failure, Unit>
+}
 
-    class Network(
-        private val networkHandler: NetworkHandler,
-        private val service: CardService,
-        private val cardLocalRepo: CardLocalRepository,
-        private val cardBalanceLocalDao: CardBalanceLocalDao,
-        userSessionRepository: UserSessionRepository
-    ) : BaseRepository.BaseRepositoryImpl(), CardRepository {
+internal class CardRepositoryImpl(
+    private val service: CardService,
+    private val cardLocalRepo: CardLocalRepository,
+    private val cardBalanceLocalDao: CardBalanceLocalDao,
+    private val userSessionRepository: UserSessionRepository
+) : CardRepository {
 
-        init {
-            userSessionRepository.subscribeSessionInvalidListener(this) {
-                GlobalScope.launch {
-                    cardLocalRepo.clearCardCache()
-                    cardBalanceLocalDao.clearCardBalanceCache()
-                }
-            }
-        }
-
-        protected fun finalize() {
-            userSessionRepository.unsubscribeSessionInvalidListener(this)
-        }
-
-        override fun issueCard(
-            cardProductId: String,
-            credential: OAuthCredential?,
-            additionalFields: Map<String, Any>?,
-            initialFundingSourceId: String?
-        ) = when (networkHandler.isConnected) {
-            true -> {
-                val credentialRequest: OAuthCredentialRequest? = credential?.let {
-                    OAuthCredentialRequest(
-                        accessToken = it.oauthToken,
-                        refreshToken = it.refreshToken
-                    )
-                }
-                val issueCardRequest = IssueCardRequest(
-                    cardProductId = cardProductId,
-                    oAuthCredentialRequest = credentialRequest,
-                    additionalFields = additionalFields,
-                    initialFundingSourceId = initialFundingSourceId
-                )
-                request(service.issueCard(issueCardRequest), { it.toCard() }, CardEntity())
-            }
-            false -> Either.Left(Failure.NetworkConnection)
-        }
-
-        override fun getCard(params: GetCardParams): Either<Failure, Card> {
-            return if (params.refresh) {
-                getCardFromRemoteAPI(params.cardId)
-            } else {
-                cardLocalRepo.getCard(params.cardId)?.let { Either.Right(it) }
-                    ?: getCardFromRemoteAPI(params.cardId)
-            }
-        }
-
-        override fun getCardDetails(cardId: String): Either<Failure, CardDetails> {
-            return when (networkHandler.isConnected) {
-                true -> {
-                    request(service.getCardDetails(cardId)) { it.toCardDetails() }
-                }
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
-
-        override fun getCards(pagination: ListPagination?): Either<Failure, PaginatedList<Card>> {
-            return when (networkHandler.isConnected) {
-                true -> {
-                    request(
-                        service.getCards(pagination?.startingAfter, pagination?.endingBefore, pagination?.limit),
-                        { listEntity: PaginatedListEntity<CardEntity> ->
-                            listEntity.toPaginatedList { it.toCard() }
-                        },
-                        PaginatedListEntity()
-                    )
-                }
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
-
-        override fun unlockCard(cardId: String): Either<Failure, Card> {
-            return when (networkHandler.isConnected) {
-                true -> {
-                    request(service.unlockCard(cardId), { it.toCard() }, CardEntity())
-                }
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
-
-        override fun lockCard(cardId: String): Either<Failure, Card> {
-            return when (networkHandler.isConnected) {
-                true -> {
-                    request(service.lockCard(cardId), { it.toCard() }, CardEntity())
-                }
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
-
-        override fun activatePhysicalCard(cardId: String, code: String): Either<Failure, ActivatePhysicalCardResult> {
-            return when (networkHandler.isConnected) {
-                true -> {
-                    request(
-                        service.activatePhysicalCard(cardId, code),
-                        { it.toActivatePhysicalCardResult() },
-                        ActivatePhysicalCardEntity()
-                    )
-                }
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
-
-        override fun getCardBalance(params: GetCardBalanceParams): Either<Failure, Balance> {
-            return if (params.refresh) {
-                getCardBalanceFromRemoteAPI(params.cardID)
-            } else {
-                cardBalanceLocalDao.getCardBalance(params.cardID)?.let { localCardBalance ->
-                    return Either.Right(localCardBalance.toBalance())
-                } ?: return getCardBalanceFromRemoteAPI(params.cardID)
-            }
-        }
-
-        override fun setCardBalance(params: SetCardBalanceParams): Either<Failure, Balance> {
-            return when (networkHandler.isConnected) {
-                true -> {
-                    request(
-                        service.setCardBalance(params.cardID, params.fundingSourceID),
-                        { it.toBalance() },
-                        BalanceEntity()
-                    )
-                }
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
-
-        override fun addCardBalance(params: AddCardBalanceParams): Either<Failure, Balance> {
-            return when (networkHandler.isConnected) {
-                true -> {
-                    val addCardBalanceRequest = AddCardBalanceRequest(params.fundingSourceType, params.tokenId)
-                    request(
-                        service.addCardBalance(params.cardID, addCardBalanceRequest),
-                        { it.toBalance() },
-                        BalanceEntity()
-                    )
-                }
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
-
-        override fun setPin(params: SetPinParams): Either<Failure, Card> {
-            return when (networkHandler.isConnected) {
-                true -> {
-                    request(service.setPin(params.cardId, params.pin), { it.toCard() }, CardEntity())
-                }
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
-
-        private fun getCardFromRemoteAPI(cardId: String): Either<Failure, Card> {
-            return when (networkHandler.isConnected) {
-                true -> {
-                    val getCardRequest = GetCardRequest(accountID = cardId)
-                    request(
-                        service.getCard(getCardRequest),
-                        {
-                            val card = it.toCard()
-                            cardLocalRepo.saveCard(card)
-                            card
-                        },
-                        CardEntity()
-                    )
-                }
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
-
-        private fun getCardBalanceFromRemoteAPI(cardID: String): Either<Failure, Balance> {
-            return when (networkHandler.isConnected) {
-                true -> {
-                    request(
-                        service.getCardBalance(cardID),
-                        {
-                            val balance = it.toBalance()
-                            cardBalanceLocalDao.clearCardBalanceCache()
-                            cardBalanceLocalDao.saveCardBalance(CardBalanceLocalEntity.fromBalance(cardID, balance))
-                            balance
-                        },
-                        BalanceEntity()
-                    )
-                }
-                false -> Either.Left(Failure.NetworkConnection)
-            }
-        }
-
-        override fun getProvisioningData(
-            cardId: String,
-            clientAppId: String,
-            clientDeviceId: String,
-            walletId: String
-        ): Either<Failure, ProvisioningData> {
-
-            return when (networkHandler.isConnected) {
-                true -> {
-                    request(
-                        service.getProvisioningData(
-                            cardId,
-                            clientAppId,
-                            clientDeviceId,
-                            walletId
-                        )
-                    ) { it.pushTokenizeRequestData.toProvisioningData() }
-                }
-                else -> Either.Left(Failure.NetworkConnection)
-            }
-        }
-
-        override fun setCardPasscode(
-            cardId: String,
-            passcode: String,
-            verificationId: String?
-        ): Either<Failure, Unit> {
-            return when (networkHandler.isConnected) {
-                true -> {
-                    request(
-                        service.setCardPasscode(
-                            cardId,
-                            passcode,
-                            verificationId
-                        )
-                    ) { }
-                }
-                else -> Either.Left(Failure.NetworkConnection)
+    init {
+        userSessionRepository.subscribeSessionInvalidListener(this) {
+            GlobalScope.launch {
+                cardLocalRepo.clearCardCache()
+                cardBalanceLocalDao.clearCardBalanceCache()
             }
         }
     }
+
+    protected fun finalize() {
+        userSessionRepository.unsubscribeSessionInvalidListener(this)
+    }
+
+    override fun issueCard(
+        cardProductId: String,
+        credential: OAuthCredential?,
+        additionalFields: Map<String, Any>?,
+        initialFundingSourceId: String?
+    ): Either<Failure, Card> {
+        val credentialRequest: OAuthCredentialRequest? = credential?.let {
+            OAuthCredentialRequest(
+                accessToken = it.oauthToken,
+                refreshToken = it.refreshToken
+            )
+        }
+        val issueCardRequest = IssueCardRequest(
+            cardProductId = cardProductId,
+            oAuthCredentialRequest = credentialRequest,
+            additionalFields = additionalFields,
+            initialFundingSourceId = initialFundingSourceId
+        )
+        return service.issueCard(issueCardRequest)
+    }
+
+    override fun getCard(params: GetCardParams): Either<Failure, Card> {
+        return if (params.refresh) {
+            getCardFromRemoteAPI(params.cardId)
+        } else {
+            cardLocalRepo.getCard(params.cardId)?.right() ?: getCardFromRemoteAPI(params.cardId)
+        }
+    }
+
+    override fun getCardDetails(cardId: String): Either<Failure, CardDetails> {
+        return service.getCardDetails(cardId)
+    }
+
+    override fun getCards(pagination: ListPagination?): Either<Failure, PaginatedList<Card>> {
+        return service.getCards(pagination?.startingAfter, pagination?.endingBefore, pagination?.limit)
+    }
+
+    override fun unlockCard(cardId: String) = service.unlockCard(cardId)
+
+    override fun lockCard(cardId: String) = service.lockCard(cardId)
+
+    override fun activatePhysicalCard(cardId: String, code: String) = service.activatePhysicalCard(cardId, code)
+
+    override fun getCardBalance(params: GetCardBalanceParams): Either<Failure, Balance> {
+        return if (params.refresh) {
+            getCardBalanceFromRemoteAPI(params.cardID)
+        } else {
+            cardBalanceLocalDao.getCardBalance(params.cardID)?.toBalance()?.right()
+                ?: getCardBalanceFromRemoteAPI(params.cardID)
+        }
+    }
+
+    override fun setCardBalance(params: SetCardBalanceParams) =
+        service.setCardBalance(params.cardID, params.fundingSourceID)
+
+    override fun addCardBalance(params: AddCardBalanceParams) =
+        service.addCardBalance(params.cardID, params.fundingSourceType, params.tokenId)
+
+    override fun setPin(params: SetPinParams) = service.setPin(params.cardId, params.pin)
+
+    private fun getCardFromRemoteAPI(cardId: String): Either<Failure, Card> {
+        val getCardRequest = GetCardRequest(accountID = cardId)
+
+        return service.getCard(getCardRequest).runIfRight { cardLocalRepo.saveCard(it) }
+    }
+
+    private fun getCardBalanceFromRemoteAPI(cardID: String): Either<Failure, Balance> {
+        return service.getCardBalance(cardID).runIfRight {
+            cardBalanceLocalDao.clearCardBalanceCache()
+            cardBalanceLocalDao.saveCardBalance(CardBalanceLocalEntity.fromBalance(cardID, it))
+        }
+    }
+
+    override fun getProvisioningData(cardId: String, clientAppId: String, clientDeviceId: String, walletId: String) =
+        service.getProvisioningData(cardId, clientAppId, clientDeviceId, walletId)
+
+    override fun setCardPasscode(cardId: String, passcode: String, verificationId: String?) =
+        service.setCardPasscode(cardId, passcode, verificationId)
 }

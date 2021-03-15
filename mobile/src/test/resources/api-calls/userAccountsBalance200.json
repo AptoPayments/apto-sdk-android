@@ -1,0 +1,35 @@
+{
+  "type": "funding_source",
+  "id": "bal_1234",
+  "state": "valid",
+  "funding_source_type": "custodian_wallet",
+  "balance": {
+    "type": "money",
+    "currency": "USD",
+    "amount": 0.0
+  },
+  "amount_spendable": {
+    "type": "money",
+    "currency": "USD",
+    "amount": 0.0
+  },
+  "amount_held": {
+    "type": "money",
+    "currency": "USD",
+    "amount": 0.0
+  },
+  "details": {
+    "type": "custodian_wallet",
+    "custodian": {
+      "type": "custodian",
+      "custodian_type": "apto",
+      "name": "Jhon Snow (USD)"
+    },
+    "balance": {
+      "type": "money",
+      "currency": "USD",
+      "amount": 0.0
+    },
+    "external_id": null
+  }
+}

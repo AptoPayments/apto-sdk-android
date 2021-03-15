@@ -6,6 +6,7 @@ import com.aptopayments.mobile.data.config.Branding
 import com.aptopayments.mobile.data.config.ContextConfiguration
 import com.aptopayments.mobile.data.config.ProjectConfiguration
 import com.aptopayments.mobile.data.fundingsources.AchAccountDetails
+import com.aptopayments.mobile.data.fundingsources.Balance
 import com.aptopayments.mobile.data.geo.Country
 import com.aptopayments.mobile.data.oauth.OAuthAttempt
 import com.aptopayments.mobile.data.oauth.OAuthAttemptStatus
@@ -129,6 +130,26 @@ internal class TestDataProvider {
             cardHolder = cardHolder,
             features = features,
             metadata = null
+        )
+
+        fun provideBalance(
+            id: String = "id_1234",
+            state: Balance.BalanceState? = null,
+            type: String = "",
+            fundingSourceType: String = "",
+            balance: Money? = null,
+            amountSpendable: Money? = null,
+            amountHeld: Money? = null,
+            custodianWallet: CustodianWallet? = null
+        ) = Balance(
+            id = id,
+            state = state,
+            type = type,
+            fundingSourceType = fundingSourceType,
+            balance = balance,
+            amountSpendable = amountSpendable,
+            amountHeld = amountHeld,
+            custodianWallet = custodianWallet
         )
 
         fun provideUser(userData: DataPointList?) = User(userId = "user_id", token = "token", userData = userData)

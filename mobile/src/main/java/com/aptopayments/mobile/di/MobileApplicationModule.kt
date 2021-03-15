@@ -10,6 +10,7 @@ import com.aptopayments.mobile.repository.UserPreferencesRepository
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.UserSessionRepositoryImpl
 import com.aptopayments.mobile.repository.card.CardRepository
+import com.aptopayments.mobile.repository.card.CardRepositoryImpl
 import com.aptopayments.mobile.repository.card.local.CardLocalRepository
 import com.aptopayments.mobile.repository.card.local.CardLocalRepositoryImpl
 import com.aptopayments.mobile.repository.card.remote.CardService
@@ -45,6 +46,7 @@ import com.aptopayments.mobile.repository.user.UserRepository
 import com.aptopayments.mobile.repository.user.UserRepositoryImpl
 import com.aptopayments.mobile.repository.user.remote.UserService
 import com.aptopayments.mobile.repository.verification.VerificationRepository
+import com.aptopayments.mobile.repository.verification.VerificationRepositoryImpl
 import com.aptopayments.mobile.repository.verification.remote.entities.VerificationService
 import com.aptopayments.mobile.repository.voip.VoipRepository
 import com.aptopayments.mobile.repository.voip.VoipRepositoryImpl
@@ -81,7 +83,7 @@ internal val repositoryModule = module {
         )
     }
     single { VerificationService(apiCatalog = get()) }
-    single<VerificationRepository> { VerificationRepository.Network(networkHandler = get(), service = get()) }
+    single<VerificationRepository> { VerificationRepositoryImpl(service = get()) }
     single { OAuthService(apiCatalog = get()) }
     single<OAuthRepository> { OAuthRepositoryImpl(get()) }
     single { CardApplicationService(apiCatalog = get()) }
@@ -93,7 +95,7 @@ internal val repositoryModule = module {
     single { FundingSourcesService(apiCatalog = get()) }
     single<FundingSourceRepository> { FundingSourceRepositoryImpl(get(), get()) }
     single { CardService(apiCatalog = get()) }
-    single<CardRepository> { CardRepository.Network(get(), get(), get(), get(), get()) }
+    single<CardRepository> { CardRepositoryImpl(get(), get(), get(), get()) }
     single { TransactionService(get()) }
     single<TransactionRepository> { TransactionRepositoryImpl(get(), get(), get(), get()) }
     single { StatsService(apiCatalog = get()) }

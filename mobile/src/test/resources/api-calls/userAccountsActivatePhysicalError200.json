@@ -1,0 +1,6 @@
+{
+  "type": "physical_activation_result",
+  "result": "error",
+  "error_code": 90207,
+  "error_message": "Param 'activation_code' does not match"
+}

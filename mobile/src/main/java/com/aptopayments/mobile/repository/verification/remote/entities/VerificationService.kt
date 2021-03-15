@@ -3,38 +3,53 @@ package com.aptopayments.mobile.repository.verification.remote.entities
 import com.aptopayments.mobile.data.PhoneNumber
 import com.aptopayments.mobile.data.user.Verification
 import com.aptopayments.mobile.network.ApiCatalog
+import com.aptopayments.mobile.platform.BaseNetworkService
 import com.aptopayments.mobile.repository.user.remote.entities.EmailDataPointEntity
 import com.aptopayments.mobile.repository.user.remote.entities.PhoneDataPointEntity
 import com.aptopayments.mobile.repository.verification.remote.VerificationApi
 import com.aptopayments.mobile.repository.verification.remote.entities.request.FinishVerificationRequest
 import com.aptopayments.mobile.repository.verification.remote.entities.request.RestartVerificationRequest
 import com.aptopayments.mobile.repository.verification.remote.entities.request.StartVerificationRequest
-import retrofit2.Call
 
 private const val REQUEST_TYPE_PHONE = "phone"
 private const val REQUEST_TYPE_EMAIL = "email"
 
-internal class VerificationService(apiCatalog: ApiCatalog) {
+internal class VerificationService(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
     private val verificationApi by lazy { apiCatalog.api().create(VerificationApi::class.java) }
 
-    fun startVerification(request: PhoneNumber): Call<VerificationEntity> =
-        verificationApi.startVerification(prepareDataRequest(request))
-
-    fun startVerification(request: String): Call<VerificationEntity> =
-        verificationApi.startVerification(prepareDataRequest(request))
-
-    fun startPrimaryVerification(): Call<VerificationEntity> =
-        verificationApi.startPrimaryVerification()
-
-    fun restartVerification(request: Verification): Call<VerificationEntity> =
-        verificationApi.restartVerification(
-            request.verificationId,
-            RestartVerificationRequest(showVerificationSecret = true)
+    fun startVerification(request: PhoneNumber) =
+        request(
+            verificationApi.startVerification(prepareDataRequest(request)),
+            { it.toVerification() }, VerificationEntity()
         )
 
-    fun finishVerification(verificationId: String, secret: String): Call<VerificationEntity> =
-        verificationApi.finishVerification(verificationId, FinishVerificationRequest(secret))
+    fun startVerification(request: String) =
+        request(
+            verificationApi.startVerification(prepareDataRequest(request)),
+            { it.toVerification() }, VerificationEntity()
+        )
+
+    fun startPrimaryVerification() =
+        request(
+            verificationApi.startPrimaryVerification(),
+            { it.toVerification() }, VerificationEntity()
+        )
+
+    fun restartVerification(request: Verification) =
+        request(
+            verificationApi.restartVerification(
+                request.verificationId,
+                RestartVerificationRequest(showVerificationSecret = true)
+            ),
+            { it.toVerification() }, VerificationEntity()
+        )
+
+    fun finishVerification(verificationId: String, secret: String) =
+        request(
+            verificationApi.finishVerification(verificationId, FinishVerificationRequest(secret)),
+            { it.toVerification() }, VerificationEntity()
+        )
 
     private fun prepareDataRequest(phoneNumber: PhoneNumber): StartVerificationRequest =
         StartVerificationRequest(

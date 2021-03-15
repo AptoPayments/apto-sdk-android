@@ -2,99 +2,51 @@ package com.aptopayments.mobile.repository.card
 
 import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.TestDataProvider
+import com.aptopayments.mobile.data.card.ActivatePhysicalCardResult
+import com.aptopayments.mobile.data.card.ActivatePhysicalCardResultType
 import com.aptopayments.mobile.data.card.Card
-import com.aptopayments.mobile.exception.Failure.NetworkConnection
 import com.aptopayments.mobile.exception.Failure.ServerError
 import com.aptopayments.mobile.extension.shouldBeLeftAndInstanceOf
+import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.extension.shouldBeRightAndInstanceOf
-import com.aptopayments.mobile.network.NetworkHandler
-import com.aptopayments.mobile.platform.ErrorHandler
-import com.aptopayments.mobile.platform.RequestExecutor
+import com.aptopayments.mobile.functional.left
+import com.aptopayments.mobile.functional.right
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.card.local.CardBalanceLocalDao
 import com.aptopayments.mobile.repository.card.local.CardLocalRepository
+import com.aptopayments.mobile.repository.card.local.entities.CardBalanceLocalEntity
 import com.aptopayments.mobile.repository.card.remote.CardService
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
+import com.aptopayments.mobile.repository.card.remote.requests.GetCardRequest
 import com.aptopayments.mobile.repository.card.remote.requests.IssueCardRequest
-import com.nhaarman.mockitokotlin2.given
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyZeroInteractions
+import com.aptopayments.mobile.repository.card.usecases.*
+import com.nhaarman.mockitokotlin2.*
 import org.junit.Before
 import org.junit.Test
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
-import org.mockito.Mock
-import retrofit2.Call
-import retrofit2.Response
+
+private const val CODE = "123456"
 
 class CardRepositoryTest : UnitTest() {
 
-    private lateinit var requestExecutor: RequestExecutor
-    private lateinit var sut: CardRepository.Network
+    private val cardId = TestDataProvider.provideCardId()
+    private val card = TestDataProvider.provideCard(cardId)
 
-    // Collaborators
-    @Mock
-    private lateinit var networkHandler: NetworkHandler
+    private lateinit var sut: CardRepositoryImpl
 
-    @Mock
-    private lateinit var service: CardService
-
-    @Mock
-    private lateinit var cardLocalRepository: CardLocalRepository
-
-    @Mock
-    private lateinit var cardBalanceLocalDao: CardBalanceLocalDao
-
-    @Mock
-    private lateinit var userSessionRepository: UserSessionRepository
-
-    // Issue card
-    @Mock
-    private lateinit var issueCardCall: Call<CardEntity>
-
-    @Mock
-    private lateinit var issueCardResponse: Response<CardEntity>
+    private val service: CardService = mock()
+    private val cardLocalRepo: CardLocalRepository = mock()
+    private val cardBalanceLocalDao: CardBalanceLocalDao = mock()
+    private val userSessionRepository: UserSessionRepository = mock()
 
     @Before
     override fun setUp() {
         super.setUp()
-        startKoin {
-            modules(
-                module {
-                    single { networkHandler }
-                    single { service }
-                    single { cardLocalRepository }
-                    single { cardBalanceLocalDao }
-                    single { userSessionRepository }
-                    single { requestExecutor }
-                }
-            )
-        }
-        requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock()))
-        sut = CardRepository.Network(
-            networkHandler,
+        sut = CardRepositoryImpl(
             service,
-            cardLocalRepository,
+            cardLocalRepo,
             cardBalanceLocalDao,
             userSessionRepository
         )
-    }
-
-    @Test
-    fun `issue card return network failure when no connection`() {
-        // Given
-        given { networkHandler.isConnected }.willReturn(false)
-
-        // When
-        val result = sut.issueCard(
-            cardProductId = "cardProductId",
-            credential = null, additionalFields = null, initialFundingSourceId = null
-        )
-
-        // Then
-        result.shouldBeLeftAndInstanceOf(NetworkConnection::class.java)
-        verifyZeroInteractions(service)
     }
 
     @Test
@@ -191,10 +143,166 @@ class CardRepositoryTest : UnitTest() {
 
     // Helpers
     private fun givenSetUpIssueCardMocks(willRequestSucceed: Boolean) {
-        given { networkHandler.isConnected }.willReturn(true)
-        given { issueCardResponse.body() }.willReturn(CardEntity())
-        given { issueCardResponse.isSuccessful }.willReturn(willRequestSucceed)
-        given { issueCardCall.execute() }.willReturn(issueCardResponse)
-        given { service.issueCard(TestDataProvider.anyObject()) }.willReturn(issueCardCall)
+        if (willRequestSucceed) {
+            given { service.issueCard(TestDataProvider.anyObject()) }.willReturn(CardEntity().toCard().right())
+        } else {
+            given { service.issueCard(TestDataProvider.anyObject()) }.willReturn(ServerError(1).left())
+        }
+    }
+
+    @Test
+    fun `given CardLocalRepo has data and refresh is false when getCard then service doesn't get called`() {
+        whenever(cardLocalRepo.getCard(cardId)).thenReturn(TestDataProvider.provideCard(accountID = cardId))
+
+        sut.getCard(GetCardParams(cardId = cardId, refresh = false))
+
+        verifyZeroInteractions(service)
+    }
+
+    @Test
+    fun `given CardLocalRepo has data and refresh is false when getCard then response is correct`() {
+        val card = TestDataProvider.provideCard(accountID = cardId)
+        whenever(cardLocalRepo.getCard(cardId)).thenReturn(card)
+
+        val result = sut.getCard(GetCardParams(cardId = cardId, refresh = false))
+
+        result.shouldBeRightAndEqualTo(card)
+    }
+
+    @Test
+    fun `given CardLocalRepo is empty and refresh is false when getCard then service gets called`() {
+        val card = TestDataProvider.provideCard(accountID = cardId)
+        whenever(cardLocalRepo.getCard(cardId)).thenReturn(null)
+        whenever(service.getCard(any())).thenReturn(card.right())
+
+        val result = sut.getCard(GetCardParams(cardId = cardId, refresh = false))
+
+        verify(service).getCard(GetCardRequest(cardId))
+        result.shouldBeRightAndEqualTo(card)
+    }
+
+    @Test
+    fun `given refresh is true when getCard then service gets called`() {
+        val card = TestDataProvider.provideCard(accountID = cardId)
+        whenever(service.getCard(any())).thenReturn(card.right())
+
+        val result = sut.getCard(GetCardParams(cardId = cardId, refresh = true))
+
+        verify(service).getCard(any())
+        verify(cardLocalRepo).saveCard(card)
+        verifyNoMoreInteractions(cardLocalRepo)
+        result.shouldBeRightAndEqualTo(card)
+    }
+
+    @Test
+    fun `when unlockCard then service gets called`() {
+        sut.unlockCard(cardId)
+
+        verify(service).unlockCard(cardId)
+    }
+
+    @Test
+    fun `when unlockCard then service answer is returned`() {
+        whenever(service.unlockCard(cardId)).thenReturn(card.right())
+
+        val result = sut.unlockCard(cardId)
+
+        result.shouldBeRightAndEqualTo(card)
+    }
+
+    @Test
+    fun `when lockCard then service gets called`() {
+        sut.lockCard(cardId)
+
+        verify(service).lockCard(cardId)
+    }
+
+    @Test
+    fun `when lockCard then service answer is returned`() {
+        whenever(service.lockCard(cardId)).thenReturn(card.right())
+
+        val result = sut.lockCard(cardId)
+
+        result.shouldBeRightAndEqualTo(card)
+    }
+
+    @Test
+    fun `when activatePhysicalCard then service gets called`() {
+        sut.activatePhysicalCard(cardId, CODE)
+
+        verify(service).activatePhysicalCard(cardId, CODE)
+    }
+
+    @Test
+    fun `when activatePhysicalCard then service answer is returned`() {
+        val activateResult = ActivatePhysicalCardResult(ActivatePhysicalCardResultType.ACTIVATED)
+        whenever(service.activatePhysicalCard(cardId, CODE)).thenReturn(activateResult.right())
+
+        val result = sut.activatePhysicalCard(cardId, CODE)
+
+        result.shouldBeRightAndEqualTo(activateResult)
+    }
+
+    @Test
+    fun `given refresh in false and no localData when getCardBalance then service gets called`() {
+        val balance = TestDataProvider.provideBalance()
+        whenever(cardBalanceLocalDao.getCardBalance(cardId)).thenReturn(null)
+        whenever(service.getCardBalance(cardId)).thenReturn(balance.right())
+
+        val result = sut.getCardBalance(GetCardBalanceParams(cardId, refresh = false))
+
+        verify(service).getCardBalance(cardId)
+        result.shouldBeRightAndEqualTo(balance)
+    }
+
+    @Test
+    fun `given refresh in false and localData exists when getCardBalance then service doesn't gets called`() {
+        val balance = TestDataProvider.provideBalance()
+        whenever(cardBalanceLocalDao.getCardBalance(cardId)).thenReturn(
+            CardBalanceLocalEntity.fromBalance(
+                cardId,
+                balance
+            )
+        )
+
+        val result = sut.getCardBalance(GetCardBalanceParams(cardId, refresh = false))
+
+        verifyZeroInteractions(service)
+        verify(cardBalanceLocalDao).getCardBalance(cardId)
+        result.shouldBeRightAndEqualTo(balance)
+    }
+
+    @Test
+    fun `given refresh in true when getCardBalance then service gets called`() {
+        val balance = TestDataProvider.provideBalance()
+        whenever(service.getCardBalance(cardId)).thenReturn(balance.right())
+
+        val result = sut.getCardBalance(GetCardBalanceParams(cardId, refresh = true))
+
+        verify(cardBalanceLocalDao).saveCardBalance(any())
+        result.shouldBeRightAndEqualTo(balance)
+    }
+
+    @Test
+    fun `when setCardBalance then service gets called`() {
+        val fundingId = "f_id"
+        sut.setCardBalance(SetCardBalanceParams(cardId, fundingId))
+
+        verify(service).setCardBalance(cardId, fundingId)
+    }
+
+    @Test
+    fun `when setPin then service gets called`() {
+        sut.setPin(SetPinParams(cardId, CODE))
+
+        verify(service).setPin(cardId, CODE)
+    }
+
+    @Test
+    fun `when setCardPasscode then service gets called`() {
+        val verificationId = "id_123"
+        sut.setCardPasscode(cardId = cardId, passcode = CODE, verificationId = verificationId)
+
+        verify(service).setCardPasscode(cardId, CODE, verificationId)
     }
 }

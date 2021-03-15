@@ -1,11 +1,11 @@
 package com.aptopayments.mobile.repository.verification.remote.entities
 
-import com.aptopayments.mobile.ServiceTest
+import com.aptopayments.mobile.NetworkServiceTest
 import com.aptopayments.mobile.data.PhoneNumber
+import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import org.junit.Assert.*
 import org.junit.Test
 import org.koin.test.inject
-import java.net.HttpURLConnection.HTTP_OK
 
 private const val PHONE_NUMBER = "123456"
 private const val PHONE_COUNTRY = "1"
@@ -13,7 +13,7 @@ private val PHONE = PhoneNumber(PHONE_COUNTRY, PHONE_NUMBER)
 private const val VERIFICATION_ID = "entity_12345"
 private const val VERIFICATION = "111111"
 
-internal class VerificationServiceTest : ServiceTest() {
+internal class VerificationServiceTest : NetworkServiceTest() {
 
     private val sut: VerificationService by inject()
 
@@ -21,10 +21,9 @@ internal class VerificationServiceTest : ServiceTest() {
     fun `when startVerification then request is made to the correct url`() {
         enqueueFile("verificationStartResponse200.json")
 
-        val response = sut.startVerification(PHONE).execute()
+        sut.startVerification(PHONE)
 
         assertRequestSentTo("v1/verifications/start", "POST")
-        assertCode(response, HTTP_OK)
     }
 
     @Test
@@ -33,9 +32,9 @@ internal class VerificationServiceTest : ServiceTest() {
         val entity = parseEntity(fileContent, VerificationEntity::class.java)
         enqueueContent(fileContent)
 
-        val response = sut.startVerification(PHONE).execute()
+        val response = sut.startVerification(PHONE)
 
-        assertEquals(entity, response.body()!!)
+        response.shouldBeRightAndEqualTo(entity.toVerification())
         assertNotNull(entity.toVerification())
     }
 
@@ -43,10 +42,9 @@ internal class VerificationServiceTest : ServiceTest() {
     fun `when verificationFinish then request is made to the correct url`() {
         enqueueFile("verificationFinishResponse200.json")
 
-        val response = sut.finishVerification(VERIFICATION_ID, VERIFICATION).execute()
+        sut.finishVerification(VERIFICATION_ID, VERIFICATION)
 
         assertRequestSentTo("v1/verifications/$VERIFICATION_ID/finish", "POST")
-        assertCode(response, HTTP_OK)
     }
 
     @Test
@@ -55,9 +53,9 @@ internal class VerificationServiceTest : ServiceTest() {
         val entity = parseEntity(fileContent, VerificationEntity::class.java)
         enqueueContent(fileContent)
 
-        val response = sut.finishVerification(VERIFICATION_ID, VERIFICATION).execute()
+        val response = sut.finishVerification(VERIFICATION_ID, VERIFICATION)
 
-        assertEquals(entity, response.body()!!)
+        response.shouldBeRightAndEqualTo(entity.toVerification())
         assertNotNull(entity.toVerification())
     }
 
@@ -65,10 +63,9 @@ internal class VerificationServiceTest : ServiceTest() {
     fun `when startPrimaryVerification then request is made to the correct url`() {
         enqueueContent("{}")
 
-        val response = sut.startPrimaryVerification().execute()
+        sut.startPrimaryVerification()
 
         assertRequestSentTo("v1/verifications/primary/start", "POST")
-        assertCode(response, HTTP_OK)
     }
 
     @Test
@@ -77,9 +74,9 @@ internal class VerificationServiceTest : ServiceTest() {
         val entity = parseEntity(fileContent, VerificationEntity::class.java)
         enqueueContent(fileContent)
 
-        val response = sut.startPrimaryVerification().execute()
+        val response = sut.startPrimaryVerification()
 
-        assertEquals(entity, response.body()!!)
+        response.shouldBeRightAndEqualTo(entity.toVerification())
         assertNotNull(entity.toVerification())
     }
 }
