@@ -45,15 +45,21 @@ internal data class OAuthAttemptEntity(
         status = parseOAuthAttemptStatus(status),
         url = parseURL(url),
         tokenId = tokenId,
-        userData = if (getUserDataContent()?.isEmpty() == false) DataPointList(getUserDataContent()?.map { it.toDataPoint() }) else null,
+        userData = calcUserData(),
         error = error,
         errorMessage = errorMessage
     )
 
+    private fun calcUserData() =
+        if (getUserDataContent()?.isEmpty() == false)
+            DataPointList(getUserDataContent()?.map { it.toDataPoint() })
+        else
+            null
+
     private fun parseOAuthAttemptStatus(status: String): OAuthAttemptStatus {
         return try {
             OAuthAttemptStatus.valueOf(status.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
+        } catch (exception: IllegalArgumentException) {
             OAuthAttemptStatus.PENDING
         }
     }

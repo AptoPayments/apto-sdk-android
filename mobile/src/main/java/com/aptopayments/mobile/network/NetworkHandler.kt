@@ -34,6 +34,7 @@ class NetworkHandler(private val connectivityChecker: ConnectivityChecker) {
                 networkReachabilityListenerPool.notifyListeners(available = true)
             }
         } catch (e: java.io.IOException) {
+            // Do nothing
         }
     }
 

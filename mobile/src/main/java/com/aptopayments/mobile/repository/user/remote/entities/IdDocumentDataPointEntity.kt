@@ -40,7 +40,7 @@ internal data class IdDocumentDataPointEntity(
     private fun parseDocumentType(type: String): Type? {
         return try {
             Type.valueOf(type.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
+        } catch (exception: IllegalArgumentException) {
             null
         }
     }

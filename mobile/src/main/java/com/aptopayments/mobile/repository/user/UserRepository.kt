@@ -23,7 +23,8 @@ internal interface UserRepository : BaseNoNetworkRepository {
     fun registerPushDevice(pushToken: String): Either<Failure, Unit>
     fun unregisterPushDevice(params: UnregisterPushDeviceParams): Either<Failure, Unit>
     fun getNotificationPreferences(): Either<Failure, NotificationPreferences>
-    fun updateNotificationPreferences(notificationPreferencesList: List<NotificationGroup>): Either<Failure, NotificationPreferences>
+    fun updateNotificationPreferences(notificationPreferencesList: List<NotificationGroup>):
+        Either<Failure, NotificationPreferences>
     fun reviewAgreements(input: ReviewAgreementsInput): Either<Failure, Unit>
 }
 

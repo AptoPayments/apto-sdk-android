@@ -28,8 +28,10 @@ internal data class PlainTextContentEntity(
                 is Content.PlainText -> PlainTextContentEntity(FORMAT_PLAIN_TEXT, content.text)
                 is Content.Markdown -> PlainTextContentEntity(FORMAT_MARKDOWN, content.markdown)
                 is Content.Web -> PlainTextContentEntity(FORMAT_EXTERNAL_URL, content.url.toExternalForm())
-                else -> throw RuntimeException()
+                else -> throw PlainTextContentEntityParsingException()
             }
         }
     }
+
+    class PlainTextContentEntityParsingException : RuntimeException()
 }

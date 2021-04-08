@@ -11,7 +11,7 @@ enum class FeatureStatus {
         fun fromString(state: String): FeatureStatus {
             return try {
                 valueOf(state.toUpperCase(Locale.US))
-            } catch (exception: Throwable) {
+            } catch (exception: IllegalArgumentException) {
                 DISABLED
             }
         }

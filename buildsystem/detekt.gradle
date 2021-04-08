@@ -1,0 +1,11 @@
+apply plugin: 'io.gitlab.arturbosch.detekt'
+
+detekt {
+    buildUponDefaultConfig = true
+    config = files("$projectDir/../buildsystem/detekt.yml")
+    baseline = file("$projectDir/detekt-baseline.xml")
+
+    reports {
+        html.enabled = true // observe findings in your browser with structure and code snippets
+    }
+}

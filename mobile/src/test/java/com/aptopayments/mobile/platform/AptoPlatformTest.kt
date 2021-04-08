@@ -2,9 +2,16 @@ package com.aptopayments.mobile.platform
 
 import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.TestDataProvider
+import com.aptopayments.mobile.data.card.Card
+import com.aptopayments.mobile.data.card.OrderPhysicalCardConfig
 import com.aptopayments.mobile.data.user.DataPointList
+import com.aptopayments.mobile.exception.Failure
+import com.aptopayments.mobile.functional.Either
+import com.aptopayments.mobile.functional.right
 import com.aptopayments.mobile.repository.UserSessionRepository
-import com.aptopayments.mobile.repository.card.usecases.IssueCardUseCase
+import com.aptopayments.mobile.repository.card.usecases.GetOrderPhysicalCardConfigurationUseCase
+import com.aptopayments.mobile.repository.card.usecases.OrderPhysicalCardUseCase
+import com.aptopayments.mobile.repository.card.usecases.IssueCardWithProductIdUseCase
 import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.mobile.repository.user.usecases.CreateUserUseCase
 import com.nhaarman.mockitokotlin2.*
@@ -14,23 +21,21 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import org.koin.test.KoinTest
-import org.mockito.Mock
 
+private const val CARD_ID = "cardId"
+
+@Suppress("UNCHECKED_CAST")
 class AptoPlatformTest : UnitTest(), KoinTest {
     private val sut = AptoPlatform
 
     // Collaborators
-    @Mock
-    private lateinit var issueCardCardProductUseCase: IssueCardUseCase
+    private val issueCardCardProductWithProductIdUseCase: IssueCardWithProductIdUseCase = mock()
+    private val createUserUseCase: CreateUserUseCase = mock()
+    private val userSessionRepository: UserSessionRepository = mock()
+    private val getMonthlySpendingUseCase = mock<GetMonthlySpendingUseCase>()
 
-    @Mock
-    private lateinit var createUserUseCase: CreateUserUseCase
-
-    @Mock
-    private lateinit var userSessionRepository: UserSessionRepository
-
-    @Mock
-    private lateinit var useCasesWrapper: UseCasesWrapper
+    private val getOrderPhysicalCardConfigurationUseCase: GetOrderPhysicalCardConfigurationUseCase = mock()
+    private val orderPhysicalCardUseCase: OrderPhysicalCardUseCase = mock()
 
     override fun setUp() {
         super.setUp()
@@ -38,12 +43,14 @@ class AptoPlatformTest : UnitTest(), KoinTest {
             modules(
                 module {
                     factory<UserSessionRepository> { userSessionRepository }
+                    factory { issueCardCardProductWithProductIdUseCase }
+                    factory { createUserUseCase }
+                    factory { getMonthlySpendingUseCase }
+                    factory { orderPhysicalCardUseCase }
+                    factory { getOrderPhysicalCardConfigurationUseCase }
                 }
             )
         }.koin
-        given { useCasesWrapper.issueCardCardProductUseCase }.willReturn(issueCardCardProductUseCase)
-        given { useCasesWrapper.createUserUseCase }.willReturn(createUserUseCase)
-        sut.useCasesWrapper = useCasesWrapper
     }
 
     @After
@@ -57,14 +64,14 @@ class AptoPlatformTest : UnitTest(), KoinTest {
         AptoPlatform.issueCard(cardProductId = "card_product_id", credential = null) {}
 
         // Then
-        verify(issueCardCardProductUseCase).invoke(TestDataProvider.anyObject(), TestDataProvider.anyObject())
+        verify(issueCardCardProductWithProductIdUseCase).invoke(TestDataProvider.anyObject(), TestDataProvider.anyObject())
     }
 
     @Test
     fun `additional params are sent to issue card`() {
         // Given
         val additionalFields = mapOf<String, Any>("field" to "value")
-        val expectedParams = IssueCardUseCase.Params(
+        val expectedParams = IssueCardWithProductIdUseCase.Params(
             cardProductId = "card_product_id",
             credential = null,
             additionalFields = additionalFields,
@@ -79,14 +86,14 @@ class AptoPlatformTest : UnitTest(), KoinTest {
         ) {}
 
         // Then
-        verify(issueCardCardProductUseCase).invoke(eq(expectedParams), TestDataProvider.anyObject())
+        verify(issueCardCardProductWithProductIdUseCase).invoke(eq(expectedParams), TestDataProvider.anyObject())
     }
 
     @Test
     fun `initial funding source id is sent to issue card`() {
         // Given
         val initialFundingSourceId = "initial_funding_source_id"
-        val expectedParams = IssueCardUseCase.Params(
+        val expectedParams = IssueCardWithProductIdUseCase.Params(
             cardProductId = "card_product_id",
             credential = null,
             additionalFields = null,
@@ -102,7 +109,7 @@ class AptoPlatformTest : UnitTest(), KoinTest {
         ) {}
 
         // Then
-        verify(issueCardCardProductUseCase).invoke(eq(expectedParams), TestDataProvider.anyObject())
+        verify(issueCardCardProductWithProductIdUseCase).invoke(eq(expectedParams), TestDataProvider.anyObject())
     }
 
     @Test
@@ -146,12 +153,40 @@ class AptoPlatformTest : UnitTest(), KoinTest {
         val cardId = "cardId"
         val month = 10
         val year = 2020
-        val useCase = mock<GetMonthlySpendingUseCase>()
-        whenever(useCasesWrapper.getMonthlySpendingUseCase).thenReturn(useCase)
         val params = GetMonthlySpendingUseCase.Params(cardId, "October", "2020")
 
         sut.cardMonthlySpending(cardId, month, year) {}
 
-        verify(useCase).invoke(eq(params), TestDataProvider.anyObject())
+        verify(getMonthlySpendingUseCase).invoke(eq(params), TestDataProvider.anyObject())
+    }
+
+    @Test
+    fun `getOrderPhysicalCardConfiguration calls correctly the UseCase`() {
+        val config = TestDataProvider.provideOrderPhysicalCardConfig()
+        val params = GetOrderPhysicalCardConfigurationUseCase.Params(CARD_ID)
+        whenever(getOrderPhysicalCardConfigurationUseCase.invoke(eq(params), TestDataProvider.anyObject())).thenAnswer { invocation ->
+            (invocation.arguments[1] as (Either<Failure, OrderPhysicalCardConfig>) -> Unit).invoke(config.right())
+        }
+        val callback: (Either<Failure, OrderPhysicalCardConfig>) -> Unit = mock()
+
+        sut.getOrderPhysicalCardConfig(CARD_ID, callback)
+
+        verify(getOrderPhysicalCardConfigurationUseCase).invoke(eq(params), TestDataProvider.anyObject())
+        verify(callback).invoke(eq(config.right()))
+    }
+
+    @Test
+    fun `orderPhysicalCardUseCase calls correctly the UseCase`() {
+        val card = TestDataProvider.provideCard(accountID = CARD_ID)
+        val params = OrderPhysicalCardUseCase.Params(CARD_ID)
+        whenever(orderPhysicalCardUseCase.invoke(eq(params), TestDataProvider.anyObject())).thenAnswer { invocation ->
+            (invocation.arguments[1] as (Either<Failure, Card>) -> Unit).invoke(card.right())
+        }
+        val callback: (Either<Failure, Card>) -> Unit = mock()
+
+        sut.orderPhysicalCard(CARD_ID, callback)
+
+        verify(orderPhysicalCardUseCase).invoke(eq(params), TestDataProvider.anyObject())
+        verify(callback).invoke(eq(card.right()))
     }
 }

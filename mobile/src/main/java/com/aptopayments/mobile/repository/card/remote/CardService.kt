@@ -106,4 +106,16 @@ internal class CardService(apiCatalog: ApiCatalog) : BaseNetworkService() {
             ),
             { }
         )
+
+    fun getOrderPhysicalCardConfig(cardId: String) =
+        request(
+            cardApi.getOrderPhysicalCardConfig(cardId = cardId),
+            { it.toOrderPhysicalCardConfig() }
+        )
+
+    fun orderPhysicalCard(cardId: String) =
+        request(
+            cardApi.orderPhysicalCard(cardId = cardId),
+            { it.toCard() }
+        )
 }

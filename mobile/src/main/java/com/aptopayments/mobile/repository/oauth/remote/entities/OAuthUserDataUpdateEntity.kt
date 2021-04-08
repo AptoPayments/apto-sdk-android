@@ -19,13 +19,16 @@ internal data class OAuthUserDataUpdateEntity(
 ) {
     fun toOAuthUserDataUpdate() = OAuthUserDataUpdate(
         result = parseOAuthUpdateResult(result),
-        userData = if (userData?.data?.isEmpty() == false) DataPointList(userData.data?.map { it.toDataPoint() }) else null
+        userData = calculateUserData(userData)
     )
+
+    private fun calculateUserData(userData: ListEntity<DataPointEntity>?) =
+        if (userData?.data?.isEmpty() == false) DataPointList(userData.data?.map { it.toDataPoint() }) else null
 
     private fun parseOAuthUpdateResult(result: String): OAuthUserDataUpdateResult {
         return try {
             OAuthUserDataUpdateResult.valueOf(result.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
+        } catch (exception: IllegalArgumentException) {
             OAuthUserDataUpdateResult.INVALID
         }
     }

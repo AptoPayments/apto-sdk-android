@@ -2,6 +2,7 @@ package com.aptopayments.mobile.di
 
 import com.aptopayments.mobile.db.DataBaseProvider
 import com.aptopayments.mobile.db.LocalDB
+import com.aptopayments.mobile.exception.server.ServerErrorFactory
 import com.aptopayments.mobile.network.*
 import com.aptopayments.mobile.platform.ErrorHandler
 import com.aptopayments.mobile.platform.RequestExecutor
@@ -67,8 +68,9 @@ internal val applicationModule = module {
     factory<RetrofitFactory> { RetrofitFactoryImpl(GsonProvider, get()) }
     single { ApiCatalog(get(), ApiKeyProvider) }
     factory { RequestExecutor(get(), get()) }
-    factory { ErrorHandler(get()) }
+    factory { ErrorHandler(get(), get()) }
     factory { TransactionListMerger() }
+    factory { ServerErrorFactory() }
 }
 
 internal val repositoryModule = module {

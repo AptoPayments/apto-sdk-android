@@ -47,7 +47,7 @@ internal class BalanceEntity(
         return state?.let {
             try {
                 Balance.BalanceState.valueOf(it.toUpperCase(Locale.US))
-            } catch (exception: Throwable) {
+            } catch (exception: IllegalArgumentException) {
                 Balance.BalanceState.INVALID
             }
         }

@@ -12,7 +12,10 @@ class TransactionListMerger {
         }
     }
 
-    private fun mergeLists(apiTransactionList: List<Transaction>, localTransactions: List<Transaction>): List<Transaction> {
+    private fun mergeLists(
+        apiTransactionList: List<Transaction>,
+        localTransactions: List<Transaction>
+    ): List<Transaction> {
         val lastAPIDate = apiTransactionList.last().createdAt
         val cachedTransactionsFiltered = localTransactions.filter { it.createdAt.isBefore(lastAPIDate) }
         return apiTransactionList.plus(cachedTransactionsFiltered)

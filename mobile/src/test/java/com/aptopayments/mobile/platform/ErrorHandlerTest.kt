@@ -2,6 +2,7 @@ package com.aptopayments.mobile.platform
 
 import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.exception.Failure
+import com.aptopayments.mobile.exception.server.ServerErrorFactory
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
@@ -16,7 +17,7 @@ class ErrorHandlerTest : UnitTest() {
 
     private val userSessionRepository = mock<UserSessionRepository>()
     private val response = mock<Response<Any>>()
-    private val sut = ErrorHandler(userSessionRepository)
+    private val sut = ErrorHandler(userSessionRepository, ServerErrorFactory())
 
     @Test
     fun `when 401 then UserSessionExpired`() {

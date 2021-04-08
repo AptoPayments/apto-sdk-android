@@ -46,22 +46,45 @@ import com.aptopayments.mobile.repository.PushTokenRepository
 import com.aptopayments.mobile.repository.UserPreferencesRepository
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.card.usecases.*
-import com.aptopayments.mobile.repository.cardapplication.usecases.AcceptDisclaimerUseCase
+import com.aptopayments.mobile.repository.cardapplication.usecases.*
+import com.aptopayments.mobile.repository.cardapplication.usecases.GetCardApplicationUseCase
+import com.aptopayments.mobile.repository.cardapplication.usecases.IssueCardUseCase
 import com.aptopayments.mobile.repository.cardapplication.usecases.IssueCardUseCase.Params
-import com.aptopayments.mobile.repository.cardapplication.usecases.SetBalanceStoreUseCase
-import com.aptopayments.mobile.repository.cardapplication.usecases.StartCardApplicationParams
+import com.aptopayments.mobile.repository.cardapplication.usecases.StartCardApplicationUseCase
 import com.aptopayments.mobile.repository.config.usecases.GetCardProductParams
+import com.aptopayments.mobile.repository.config.usecases.GetCardProductUseCase
+import com.aptopayments.mobile.repository.config.usecases.GetCardProductsUseCase
+import com.aptopayments.mobile.repository.config.usecases.GetContextConfigurationUseCase
+import com.aptopayments.mobile.repository.fundingsources.remote.usecases.AssignAchAccountToBalanceUseCase
+import com.aptopayments.mobile.repository.fundingsources.remote.usecases.GetAchAccountDetailsUseCase
 import com.aptopayments.mobile.repository.fundingsources.remote.usecases.GetFundingSourcesUseCase
+import com.aptopayments.mobile.repository.oauth.usecases.GetOAuthAttemptStatusUseCase
 import com.aptopayments.mobile.repository.oauth.usecases.RetrieveOAuthUserDataUseCase
 import com.aptopayments.mobile.repository.oauth.usecases.SaveOAuthUserDataUseCase
+import com.aptopayments.mobile.repository.oauth.usecases.StartOAuthAuthenticationUseCase
 import com.aptopayments.mobile.repository.payment.usecases.PushFundsUseCase
+import com.aptopayments.mobile.repository.paymentsources.usecases.AddPaymentSourceUseCase
+import com.aptopayments.mobile.repository.paymentsources.usecases.DeletePaymentSourceUseCase
 import com.aptopayments.mobile.repository.paymentsources.usecases.GetPaymentSourcesUseCase
+import com.aptopayments.mobile.repository.statements.usecases.GetMonthlyStatementPeriodUseCase
 import com.aptopayments.mobile.repository.statements.usecases.GetMonthlyStatementUseCase
+import com.aptopayments.mobile.repository.stats.usecases.ClearMonthlySpendingCacheUseCase
 import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.mobile.repository.transaction.TransactionListFilters
 import com.aptopayments.mobile.repository.transaction.usecases.GetTransactionsUseCase
+import com.aptopayments.mobile.repository.user.usecases.*
 import com.aptopayments.mobile.repository.user.usecases.CreateUserUseCase
+import com.aptopayments.mobile.repository.user.usecases.GetNotificationPreferencesUseCase
+import com.aptopayments.mobile.repository.user.usecases.LoginUserUseCase
+import com.aptopayments.mobile.repository.user.usecases.ReviewAgreementsUseCase
+import com.aptopayments.mobile.repository.user.usecases.UpdateUserDataUseCase
+import com.aptopayments.mobile.repository.verification.usecase.FinishVerificationUseCase
+import com.aptopayments.mobile.repository.verification.usecase.RestartVerificationUseCase
+import com.aptopayments.mobile.repository.verification.usecase.StartEmailVerificationUseCase
+import com.aptopayments.mobile.repository.verification.usecase.StartPhoneVerificationUseCase
+import com.aptopayments.mobile.repository.verification.usecase.StartPrimaryVerificationUseCase
 import com.aptopayments.mobile.repository.voip.usecases.SetupVoipCallParams
+import com.aptopayments.mobile.repository.voip.usecases.SetupVoipCallUseCase
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.Koin
@@ -86,8 +109,6 @@ object AptoPlatform : AptoPlatformProtocol {
     @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
     lateinit var koin: Koin
 
-    @VisibleForTesting(otherwise = Modifier.PRIVATE)
-    internal lateinit var useCasesWrapper: UseCasesWrapper
     private val userSessionRepository: UserSessionRepository by lazy { koin.get() }
 
     @VisibleForTesting(otherwise = Modifier.PROTECTED)
@@ -109,7 +130,6 @@ object AptoPlatform : AptoPlatformProtocol {
         this.application = application
         initKoin(application)
         AndroidThreeTen.init(application)
-        useCasesWrapper = UseCasesWrapper()
     }
 
     fun setApiKey(apiKey: String, environment: AptoSdkEnvironment = PRD) {
@@ -156,23 +176,21 @@ object AptoPlatform : AptoPlatformProtocol {
         return list
     }
 
-    override fun clearMonthlySpendingCache() = useCasesWrapper.clearMonthlySpendingCacheUseCase(Unit)
+    override fun clearMonthlySpendingCache() = koin.get<ClearMonthlySpendingCacheUseCase>().invoke(Unit)
 
     override fun fetchContextConfiguration(
         forceRefresh: Boolean,
         callback: (Either<Failure, ContextConfiguration>) -> Unit
-    ) = useCasesWrapper.getContextConfigurationUseCase(forceRefresh) { callback(it) }
+    ) = koin.get<GetContextConfigurationUseCase>().invoke(forceRefresh) { callback(it) }
 
     override fun fetchCardProduct(
         cardProductId: String,
         forceRefresh: Boolean,
         callback: (Either<Failure, CardProduct>) -> Unit
-    ) = useCasesWrapper.getCardProductUseCase(
-        GetCardProductParams(forceRefresh, cardProductId)
-    ) { callback(it) }
+    ) = koin.get<GetCardProductUseCase>().invoke(GetCardProductParams(forceRefresh, cardProductId)) { callback(it) }
 
     override fun fetchCardProducts(callback: (Either<Failure, List<CardProductSummary>>) -> Unit) =
-        useCasesWrapper.getCardProductsUseCase(Unit) { callback(it) }
+        koin.get<GetCardProductsUseCase>().invoke(Unit) { callback(it) }
 
     override fun isShowDetailedCardActivityEnabled(): Boolean = userPreferencesRepository.showDetailedCardActivity
 
@@ -185,20 +203,19 @@ object AptoPlatform : AptoPlatformProtocol {
         custodianUid: String?,
         metadata: String?,
         callback: (Either<Failure, User>) -> Unit
-    ) =
-        useCasesWrapper.createUserUseCase(CreateUserUseCase.Params(userData, custodianUid, metadata)) { result ->
-            result.either({}, { user -> userSessionRepository.userToken = user.token })
-            callback(result)
-        }
+    ) = koin.get<CreateUserUseCase>().invoke(CreateUserUseCase.Params(userData, custodianUid, metadata)) { result ->
+        result.runIfRight { user -> userSessionRepository.userToken = user.token }
+        callback(result)
+    }
 
     override fun loginUserWith(verifications: List<Verification>, callback: (Either<Failure, User>) -> Unit) =
-        useCasesWrapper.loginUserUseCase(verifications) { result ->
-            result.either({}, { user -> userSessionRepository.userToken = user.token })
+        koin.get<LoginUserUseCase>().invoke(verifications) { result ->
+            result.runIfRight { user -> userSessionRepository.userToken = user.token }
             callback(result)
         }
 
     override fun updateUserInfo(userData: DataPointList, callback: (Either<Failure, User>) -> Unit) =
-        useCasesWrapper.updateUserDataUseCase(userData) { callback(it) }
+        koin.get<UpdateUserDataUseCase>().invoke(userData) { callback(it) }
 
     override fun subscribeSessionInvalidListener(instance: Any, callback: (String) -> Unit) =
         userSessionRepository.subscribeSessionInvalidListener(instance, callback)
@@ -214,19 +231,19 @@ object AptoPlatform : AptoPlatformProtocol {
     override fun startOauthAuthentication(
         balanceType: AllowedBalanceType,
         callback: (Either<Failure, OAuthAttempt>) -> Unit
-    ) = useCasesWrapper.startOAuthAuthenticationUseCase(balanceType) { callback(it) }
+    ) = koin.get<StartOAuthAuthenticationUseCase>().invoke(balanceType) { callback(it) }
 
     override fun verifyOauthAttemptStatus(
         oAuthAttempt: OAuthAttempt,
         callback: (Either<Failure, OAuthAttempt>) -> Unit
-    ) = useCasesWrapper.getOAuthAttemptStatusUseCase(oAuthAttempt.id) { callback(it) }
+    ) = koin.get<GetOAuthAttemptStatusUseCase>().invoke(oAuthAttempt.id) { callback(it) }
 
     override fun saveOauthUserData(
         userData: DataPointList,
         allowedBalanceType: AllowedBalanceType,
         tokenId: String,
         callback: (Either<Failure, OAuthUserDataUpdate>) -> Unit
-    ) = useCasesWrapper.saveOAuthUserDataUseCase(
+    ) = koin.get<SaveOAuthUserDataUseCase>().invoke(
         SaveOAuthUserDataUseCase.Params(
             allowedBalanceType = allowedBalanceType,
             dataPointList = userData,
@@ -238,67 +255,58 @@ object AptoPlatform : AptoPlatformProtocol {
         allowedBalanceType: AllowedBalanceType,
         tokenId: String,
         callback: (Either<Failure, OAuthUserDataUpdate>) -> Unit
-    ) =
-        useCasesWrapper.retrieveOAuthUserDataUseCase(
-            RetrieveOAuthUserDataUseCase.Params(allowedBalanceType = allowedBalanceType, tokenId = tokenId)
-        ) { callback(it) }
+    ) = koin.get<RetrieveOAuthUserDataUseCase>().invoke(
+        RetrieveOAuthUserDataUseCase.Params(allowedBalanceType = allowedBalanceType, tokenId = tokenId)
+    ) { callback(it) }
 
     override fun startPhoneVerification(phoneNumber: PhoneNumber, callback: (Either<Failure, Verification>) -> Unit) =
-        useCasesWrapper.startPhoneVerificationUseCase(phoneNumber) { callback(it) }
+        koin.get<StartPhoneVerificationUseCase>().invoke(phoneNumber) { callback(it) }
 
     override fun startEmailVerification(email: String, callback: (Either<Failure, Verification>) -> Unit) =
-        useCasesWrapper.startEmailVerificationUseCase(email) { callback(it) }
+        koin.get<StartEmailVerificationUseCase>().invoke(email) { callback(it) }
 
     override fun startPrimaryVerification(callback: (Either<Failure, Verification>) -> Unit) {
-        useCasesWrapper.startPrimaryVerificationUseCase(Unit) { callback(it) }
+        koin.get<StartPrimaryVerificationUseCase>().invoke(Unit) { callback(it) }
     }
 
     override fun completeVerification(verification: Verification, callback: (Either<Failure, Verification>) -> Unit) =
-        useCasesWrapper.finishVerificationUseCase(verification) { callback(it) }
+        koin.get<FinishVerificationUseCase>().invoke(verification) { callback(it) }
 
     override fun restartVerification(verification: Verification, callback: (Either<Failure, Verification>) -> Unit) =
-        useCasesWrapper.restartVerificationUseCase(verification) { callback(it) }
+        koin.get<RestartVerificationUseCase>().invoke(verification) { callback(it) }
 
-    override fun applyToCard(
-        cardProduct: CardProduct,
-        callback: (Either<Failure, CardApplication>) -> Unit
-    ) =
-        useCasesWrapper.startCardApplicationUseCase(
-            StartCardApplicationParams(
-                cardProductId = cardProduct.id
-            )
-        ) { callback(it) }
+    override fun applyToCard(cardProduct: CardProduct, callback: (Either<Failure, CardApplication>) -> Unit) =
+        koin.get<StartCardApplicationUseCase>()
+            .invoke(StartCardApplicationParams(cardProductId = cardProduct.id)) { callback(it) }
 
     override fun fetchCardApplicationStatus(
         applicationId: String,
         callback: (Either<Failure, CardApplication>) -> Unit
-    ) = useCasesWrapper.getCardApplicationUseCase(applicationId) { callback(it) }
+    ) = koin.get<GetCardApplicationUseCase>().invoke(applicationId) { callback(it) }
 
     override fun setBalanceStore(
         applicationId: String,
         tokenId: String,
         callback: (Either<Failure, SelectBalanceStoreResult>) -> Unit
-    ) = useCasesWrapper.setBalanceStoreUseCase(
-        SetBalanceStoreUseCase.Params(applicationId, tokenId)
-    ) { callback(it) }
+    ) = koin.get<SetBalanceStoreUseCase>()
+        .invoke(SetBalanceStoreUseCase.Params(applicationId, tokenId)) { callback(it) }
 
     override fun acceptDisclaimer(
         workflowObjectId: String,
         workflowAction: WorkflowAction,
         callback: (Either<Failure, Unit>) -> Unit
-    ) = useCasesWrapper.acceptDisclaimerUseCase(
-        AcceptDisclaimerUseCase.Params(workflowObjectId, workflowAction.actionId)
-    ) { callback(it) }
+    ) = koin.get<AcceptDisclaimerUseCase>()
+        .invoke(AcceptDisclaimerUseCase.Params(workflowObjectId, workflowAction.actionId)) { callback(it) }
 
     override fun cancelCardApplication(applicationId: String, callback: (Either<Failure, Unit>) -> Unit) =
-        useCasesWrapper.cancelCardApplicationUseCase(applicationId) { callback(it) }
+        koin.get<CancelCardApplicationUseCase>()(applicationId) { callback(it) }
 
     override fun issueCard(
         applicationId: String,
         additionalFields: Map<String, Any>?,
         metadata: String?,
         callback: (Either<Failure, Card>) -> Unit
-    ) = useCasesWrapper.issueCardUseCase(Params(applicationId, additionalFields, metadata)) { callback(it) }
+    ) = koin.get<IssueCardUseCase>().invoke(Params(applicationId, additionalFields, metadata)) { callback(it) }
 
     override fun issueCard(
         cardProductId: String,
@@ -306,21 +314,20 @@ object AptoPlatform : AptoPlatformProtocol {
         additionalFields: Map<String, Any>?,
         initialFundingSourceId: String?,
         callback: (Either<Failure, Card>) -> Unit
-    ) = useCasesWrapper.issueCardCardProductUseCase(
-        IssueCardUseCase.Params(
+    ) = koin.get<IssueCardWithProductIdUseCase>().invoke(
+        IssueCardWithProductIdUseCase.Params(
             cardProductId = cardProductId,
             credential = credential,
             additionalFields = additionalFields,
             initialFundingSourceId = initialFundingSourceId
         )
-    )
+    ) { callback(it) }
 
     override fun fetchCards(callback: (Either<Failure, List<Card>>) -> Unit) =
         fetchCards(null) { result -> callback(result.map { it.data }) }
 
-    override fun fetchCards(pagination: ListPagination?, callback: (Either<Failure, PaginatedList<Card>>) -> Unit) {
-        useCasesWrapper.getCardsUseCase(pagination) { callback(it) }
-    }
+    override fun fetchCards(pagination: ListPagination?, callback: (Either<Failure, PaginatedList<Card>>) -> Unit) =
+        koin.get<GetCardsUseCase>().invoke(pagination) { callback(it) }
 
     override fun fetchFinancialAccount(
         accountId: String,
@@ -329,26 +336,27 @@ object AptoPlatform : AptoPlatformProtocol {
     ) = fetchCard(accountId, forceRefresh, callback)
 
     override fun fetchCard(cardId: String, forceRefresh: Boolean, callback: (Either<Failure, Card>) -> Unit) {
-        useCasesWrapper.getCardUseCase(GetCardParams(cardId, forceRefresh)) { callback(it) }
+        koin.get<GetCardUseCase>().invoke(GetCardParams(cardId, forceRefresh)) { callback(it) }
     }
 
     override fun fetchCardDetails(cardId: String, callback: (Either<Failure, CardDetails>) -> Unit) =
-        useCasesWrapper.getCardDetailsUseCase(cardId) { callback(it) }
+        koin.get<GetCardDetailsUseCase>().invoke(cardId) { callback(it) }
 
     override fun activatePhysicalCard(
         cardId: String,
         code: String,
         callback: (Either<Failure, ActivatePhysicalCardResult>) -> Unit
-    ) = useCasesWrapper.activatePhysicalCardUseCase(ActivatePhysicalCardUseCase.Params(cardId, code)) { callback(it) }
+    ) = koin.get<ActivatePhysicalCardUseCase>()
+        .invoke(ActivatePhysicalCardUseCase.Params(cardId, code)) { callback(it) }
 
     override fun unlockCard(cardId: String, callback: (Either<Failure, Card>) -> Unit) =
-        useCasesWrapper.unlockCardUseCase(cardId) { callback(it) }
+        koin.get<UnlockCardUseCase>().invoke(cardId) { callback(it) }
 
     override fun lockCard(cardId: String, callback: (Either<Failure, Card>) -> Unit) =
-        useCasesWrapper.lockCardUseCase(cardId) { callback(it) }
+        koin.get<LockCardUseCase>().invoke(cardId) { callback(it) }
 
     override fun changeCardPin(cardId: String, pin: String, callback: (Either<Failure, Card>) -> Unit) =
-        useCasesWrapper.setPinUseCase(SetPinParams(cardId, pin)) { callback(it) }
+        koin.get<SetPinUseCase>().invoke(SetPinParams(cardId, pin)) { callback(it) }
 
     override fun fetchCardTransactions(
         cardId: String,
@@ -356,7 +364,7 @@ object AptoPlatform : AptoPlatformProtocol {
         forceRefresh: Boolean,
         clearCachedValues: Boolean,
         callback: (Either<Failure, List<Transaction>>) -> Unit
-    ) = useCasesWrapper.getTransactionsUseCase(
+    ) = koin.get<GetTransactionsUseCase>().invoke(
         GetTransactionsUseCase.Params(
             cardId = cardId,
             filters = filters,
@@ -370,7 +378,7 @@ object AptoPlatform : AptoPlatformProtocol {
         month: String,
         year: String,
         callback: (Either<Failure, MonthlySpending>) -> Unit
-    ) = useCasesWrapper.getMonthlySpendingUseCase(
+    ) = koin.get<GetMonthlySpendingUseCase>().invoke(
         GetMonthlySpendingUseCase.Params(cardId = cardId, month = month, year = year)
     ) { callback(it) }
 
@@ -382,18 +390,21 @@ object AptoPlatform : AptoPlatformProtocol {
     ) {
         val date = LocalDate.of(year, month, 1)
         val monthName = date.month.getDisplayName(TextStyle.FULL, Locale.US)
-
-        useCasesWrapper.getMonthlySpendingUseCase(
-            GetMonthlySpendingUseCase.Params(cardId = cardId, month = monthName, year = year.toString())
+        koin.get<GetMonthlySpendingUseCase>().invoke(
+            GetMonthlySpendingUseCase.Params(
+                cardId = cardId,
+                month = monthName,
+                year = year.toString()
+            )
         ) { callback(it) }
     }
 
     override fun fetchMonthlyStatement(month: Int, year: Int, callback: (Either<Failure, MonthlyStatement>) -> Unit) {
-        useCasesWrapper.getMonthlyStatementUseCase(GetMonthlyStatementUseCase.Params(month, year)) { callback(it) }
+        koin.get<GetMonthlyStatementUseCase>().invoke(GetMonthlyStatementUseCase.Params(month, year)) { callback(it) }
     }
 
     override fun fetchMonthlyStatementPeriod(callback: (Either<Failure, MonthlyStatementPeriod>) -> Unit) =
-        useCasesWrapper.getMonthlyStatementPeriodUseCase(Unit) { callback(it) }
+        koin.get<GetMonthlyStatementPeriodUseCase>().invoke(Unit) { callback(it) }
 
     override fun fetchCardFundingSources(
         cardId: String,
@@ -401,21 +412,20 @@ object AptoPlatform : AptoPlatformProtocol {
         rows: Int,
         forceRefresh: Boolean,
         callback: (Either<Failure, List<Balance>>) -> Unit
-    ) = useCasesWrapper.getFundingSourcesUseCase(
-        GetFundingSourcesUseCase.Params(cardId, forceRefresh, page, rows)
-    ) { callback(it) }
+    ) = koin.get<GetFundingSourcesUseCase>()
+        .invoke(GetFundingSourcesUseCase.Params(cardId, forceRefresh, page, rows)) { callback(it) }
 
     override fun fetchCardFundingSource(
         cardId: String,
         forceRefresh: Boolean,
         callback: (Either<Failure, Balance>) -> Unit
-    ) = useCasesWrapper.getCardBalanceUseCase(GetCardBalanceParams(cardId, forceRefresh)) { callback(it) }
+    ) = koin.get<GetCardBalanceUseCase>().invoke(GetCardBalanceParams(cardId, forceRefresh)) { callback(it) }
 
     override fun setCardFundingSource(
         fundingSourceId: String,
         cardId: String,
         callback: (Either<Failure, Balance>) -> Unit
-    ) = useCasesWrapper.setFundingSourcesUseCase(SetCardBalanceParams(cardId, fundingSourceId)) { callback(it) }
+    ) = koin.get<SetCardFundingSourceUseCase>().invoke(SetCardBalanceParams(cardId, fundingSourceId)) { callback(it) }
 
     override fun addCardFundingSource(
         cardId: String,
@@ -424,20 +434,20 @@ object AptoPlatform : AptoPlatformProtocol {
         credentialType: String,
         tokenId: String,
         callback: (Either<Failure, Balance>) -> Unit
-    ) = useCasesWrapper.addCardBalanceUseCase(
+    ) = koin.get<AddCardBalanceUseCase>().invoke(
         AddCardBalanceParams(cardId, fundingSourceType, custodianType, credentialType, tokenId)
     ) { callback(it) }
 
     override fun fetchNotificationPreferences(callback: (Either<Failure, NotificationPreferences>) -> Unit) =
-        useCasesWrapper.getNotificationPreferencesUseCase(Unit) { callback(it) }
+        koin.get<GetNotificationPreferencesUseCase>().invoke(Unit) { callback(it) }
 
     override fun updateNotificationPreferences(
         preferences: NotificationPreferences,
         callback: (Either<Failure, NotificationPreferences>) -> Unit
-    ) = useCasesWrapper.updateNotificationPreferencesUseCase(preferences.preferences!!) { callback(it) }
+    ) = koin.get<UpdateNotificationPreferencesUseCase>().invoke(preferences.preferences!!) { callback(it) }
 
     override fun fetchVoIPToken(cardId: String, actionSource: Action, callback: (Either<Failure, VoipCall>) -> Unit) =
-        useCasesWrapper.setupVoipCallUseCase(SetupVoipCallParams(cardId, actionSource)) { callback(it) }
+        koin.get<SetupVoipCallUseCase>().invoke(SetupVoipCallParams(cardId, actionSource)) { callback(it) }
 
     override fun fetchProvisioningData(
         cardId: String,
@@ -446,21 +456,15 @@ object AptoPlatform : AptoPlatformProtocol {
         walletId: String,
         callback: (Either<Failure, ProvisioningData>) -> Unit
     ) {
-        return useCasesWrapper.getProvisioningDataUseCase(
-            GetProvisioningDataUseCase.Params(
-                cardId,
-                clientAppId,
-                clientDeviceId,
-                walletId
-            )
-        ) { callback(it) }
+        return koin.get<GetProvisioningDataUseCase>()
+            .invoke(GetProvisioningDataUseCase.Params(cardId, clientAppId, clientDeviceId, walletId)) { callback(it) }
     }
 
     override fun addPaymentSource(
         paymentSource: NewPaymentSource,
         callback: (Either<Failure, PaymentSource>) -> Unit
     ) {
-        useCasesWrapper.addPaymentSourceUseCase(paymentSource) { callback(it) }
+        koin.get<AddPaymentSourceUseCase>().invoke(paymentSource) { callback(it) }
     }
 
     override fun getPaymentSources(
@@ -469,17 +473,12 @@ object AptoPlatform : AptoPlatformProtocol {
         startingAfter: String?,
         endingBefore: String?
     ) {
-        useCasesWrapper.getPaymentSourcesUseCase(
-            GetPaymentSourcesUseCase.Params(
-                startingAfter,
-                endingBefore,
-                limit
-            )
-        ) { callback(it) }
+        koin.get<GetPaymentSourcesUseCase>()
+            .invoke(GetPaymentSourcesUseCase.Params(startingAfter, endingBefore, limit)) { callback(it) }
     }
 
     override fun deletePaymentSource(paymentSourceId: String, callback: (Either<Failure, Unit>) -> Unit) {
-        useCasesWrapper.deletePaymentSourceUseCase(paymentSourceId)
+        koin.get<DeletePaymentSourceUseCase>().invoke(paymentSourceId) { callback(it) }
     }
 
     override fun pushFunds(
@@ -488,7 +487,7 @@ object AptoPlatform : AptoPlatformProtocol {
         amount: Money,
         callback: (Either<Failure, Payment>) -> Unit
     ) {
-        useCasesWrapper.pushFundsUseCase(
+        koin.get<PushFundsUseCase>().invoke(
             PushFundsUseCase.Params(
                 balanceId = balanceId,
                 paymentSourceId = paymentSourceId,
@@ -503,7 +502,7 @@ object AptoPlatform : AptoPlatformProtocol {
         verificationId: String?,
         callback: (Either<Failure, Unit>) -> Unit
     ) {
-        useCasesWrapper.setCardPasscodeUseCase(
+        koin.get<SetCardPasscodeUseCase>().invoke(
             SetCardPasscodeUseCase.Params(
                 cardId = cardId,
                 passcode = passcode,
@@ -517,14 +516,22 @@ object AptoPlatform : AptoPlatformProtocol {
         action: AgreementAction,
         callback: (Either<Failure, Unit>) -> Unit
     ) {
-        useCasesWrapper.reviewAgreementsUseCase(ReviewAgreementsInput(keys, action)) { callback(it) }
+        koin.get<ReviewAgreementsUseCase>().invoke(ReviewAgreementsInput(keys, action)) { callback(it) }
     }
 
     override fun assignAchAccount(balanceId: String, callback: (Either<Failure, AchAccountDetails>) -> Unit) {
-        useCasesWrapper.assignAchAccountToBalanceUseCase(balanceId) { callback(it) }
+        koin.get<AssignAchAccountToBalanceUseCase>().invoke(balanceId) { callback(it) }
     }
 
     override fun getAchAccountDetails(balanceId: String, callback: (Either<Failure, AchAccountDetails>) -> Unit) {
-        useCasesWrapper.getAchAccountDetailsUseCase(balanceId) { callback(it) }
+        koin.get<GetAchAccountDetailsUseCase>().invoke(balanceId) { callback(it) }
+    }
+
+    override fun getOrderPhysicalCardConfig(cardId: String, callback: (Either<Failure, OrderPhysicalCardConfig>) -> Unit) {
+        koin.get<GetOrderPhysicalCardConfigurationUseCase>().invoke(GetOrderPhysicalCardConfigurationUseCase.Params(cardId)) { callback(it) }
+    }
+
+    override fun orderPhysicalCard(cardId: String, callback: (Either<Failure, Card>) -> Unit) {
+        koin.get<OrderPhysicalCardUseCase>().invoke(OrderPhysicalCardUseCase.Params(cardId)) { callback(it) }
     }
 }

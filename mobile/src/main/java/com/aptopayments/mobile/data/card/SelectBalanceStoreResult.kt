@@ -50,8 +50,10 @@ data class SelectBalanceStoreResult(
             ADDRESS_MISSING -> "select_balance_store.login.error_missing_address.message".localized()
             EMAIL_MISSING -> "select_balance_store.login.error_missing_email.message".localized()
             EMAIL_ERROR -> "select_balance_store.login.error_wrong_email.message".localized()
-            BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED -> "select_balance_store.login.error_email_sends_disabled.message".localized()
-            BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT -> "select_balance_store.login.error_insufficient_application_limit.message".localized()
+            BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED ->
+                "select_balance_store.login.error_email_sends_disabled.message".localized()
+            BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT ->
+                "select_balance_store.login.error_insufficient_application_limit.message".localized()
             IDENTITY_NOT_VERIFIED -> "select_balance_store.login.error_identity_not_verified.message".localized()
             else ->
                 "select_balance_store.login.error_unknown.message".localized()
@@ -122,7 +124,8 @@ data class SelectBalanceStoreResult(
             EMAIL_MISSING -> Event.SelectBalanceStoreOauthConfirmEmailMissing
             EMAIL_ERROR -> Event.SelectBalanceStoreOauthConfirmEmailError
             BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED -> Event.SelectBalanceStoreOauthConfirmEmailSendsDisabled
-            BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT -> Event.SelectBalanceStoreOauthConfirmInsufficientApplicationLimit
+            BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT ->
+                Event.SelectBalanceStoreOauthConfirmInsufficientApplicationLimit
             IDENTITY_NOT_VERIFIED -> Event.SelectBalanceStoreOauthConfirmIdentityNotVerified
             else -> Event.SelectBalanceStoreOauthConfirmUnknownError
         }

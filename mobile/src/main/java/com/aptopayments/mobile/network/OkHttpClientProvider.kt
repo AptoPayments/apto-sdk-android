@@ -99,7 +99,10 @@ internal open class OkHttpClientProviderImpl(
 
     private fun addApiKeyInterceptor(okHttpClientBuilder: OkHttpClient.Builder) {
         okHttpClientBuilder.addInterceptor { chain ->
-            val newRequest = chain.request().newBuilder().addHeader(X_API_KEY, "Bearer ${apiKeyProvider.apiKey}").build()
+            val newRequest = chain
+                .request()
+                .newBuilder()
+                .addHeader(X_API_KEY, "Bearer ${apiKeyProvider.apiKey}").build()
             chain.proceed(newRequest)
         }
     }

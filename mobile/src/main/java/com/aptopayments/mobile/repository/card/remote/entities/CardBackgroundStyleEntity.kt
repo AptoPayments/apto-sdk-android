@@ -10,7 +10,7 @@ private const val TYPE_COLOR = "color"
 
 internal data class CardBackgroundStyleEntity(
     @SerializedName("background_type")
-    val background_type: String? = "color",
+    val backgroundType: String? = "color",
 
     @SerializedName("background_image")
     val image: String? = null,
@@ -24,7 +24,7 @@ internal data class CardBackgroundStyleEntity(
 
     fun toCardBackgroundStyle(): CardBackgroundStyle? {
         val colorParser = ColorParserImpl()
-        return when (background_type) {
+        return when (backgroundType) {
             TYPE_IMAGE -> CardBackgroundStyle.Image(URL(image), getCardLogoUrl())
             TYPE_COLOR -> CardBackgroundStyle.Color(colorParser.fromHexString(color, "0567D0"), getCardLogoUrl())
             else -> null
@@ -38,13 +38,13 @@ internal data class CardBackgroundStyleEntity(
             return when (value) {
                 is CardBackgroundStyle.Image ->
                     CardBackgroundStyleEntity(
-                        background_type = TYPE_IMAGE,
+                        backgroundType = TYPE_IMAGE,
                         image = value.url.toString(),
                         cardLogo = value.logo?.toString()
                     )
                 is CardBackgroundStyle.Color ->
                     CardBackgroundStyleEntity(
-                        background_type = TYPE_COLOR,
+                        backgroundType = TYPE_COLOR,
                         color = value.color.toString(16),
                         cardLogo = value.logo?.toString()
                     )

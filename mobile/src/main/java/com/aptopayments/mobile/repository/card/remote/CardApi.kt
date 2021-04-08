@@ -1,9 +1,11 @@
 package com.aptopayments.mobile.repository.card.remote
 
 import com.aptopayments.mobile.network.PaginatedListEntity
+import com.aptopayments.mobile.repository.card.remote.entities.*
 import com.aptopayments.mobile.repository.card.remote.entities.ActivatePhysicalCardEntity
 import com.aptopayments.mobile.repository.card.remote.entities.CardDetailsEntity
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
+import com.aptopayments.mobile.repository.card.remote.entities.OrderPhysicalCardConfigEntity
 import com.aptopayments.mobile.repository.card.remote.entities.ProvisioningEntity
 import com.aptopayments.mobile.repository.card.remote.requests.*
 import com.aptopayments.mobile.repository.fundingsources.remote.entities.BalanceEntity
@@ -20,6 +22,8 @@ private const val CHANGE_CARD_STATE_PATH = "v1/user/accounts/{account_id}/{actio
 private const val ACTIVATE_PHYSICAL_CARD_PATH = "v1/user/accounts/{account_id}/activate_physical"
 private const val GPAY_PROVISIONING_PATH = "v1/user/accounts/{account_id}/provision/androidpay"
 private const val SET_PASSCODE = "/v1/user/accounts/{account_id}/passcode"
+private const val ORDER_PHYSICAL_CONFIG = "/v1/user/accounts/{account_id}/order_physical/config"
+private const val ORDER_PHYSICAL = "/v1/user/accounts/{account_id}/order_physical"
 private const val ACCOUNT_ID = "account_id"
 private const val ACTION = "action"
 private const val SHOW_DETAILS = "show_details"
@@ -83,4 +87,10 @@ internal interface CardApi {
 
     @POST(SET_PASSCODE)
     fun setCardPasscode(@Path(ACCOUNT_ID) cardId: String, @Body request: SetPasscodeRequest): Call<Unit>
+
+    @GET(ORDER_PHYSICAL_CONFIG)
+    fun getOrderPhysicalCardConfig(@Path(ACCOUNT_ID) cardId: String): Call<OrderPhysicalCardConfigEntity>
+
+    @POST(ORDER_PHYSICAL)
+    fun orderPhysicalCard(@Path(ACCOUNT_ID) cardId: String): Call<CardEntity>
 }

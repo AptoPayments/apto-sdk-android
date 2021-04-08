@@ -34,8 +34,12 @@ import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.repository.transaction.TransactionListFilters
 
 /**
- * This SDK gives access to the Apto's mobile API, designed to be used from a mobile app. Using this SDK there's no need to integrate the API itself, all the API endpoints are exposed as simple to use methods, and the data returned by the API is properly encapsulated and easy to access.
- * With this SDK, you'll be able to onboard new users, issue cards, obtain card activity information and manage the card (set pin, freeze / unfreeze, etc.)
+ * This SDK gives access to the Apto's mobile API, designed to be used from a mobile app.
+ * Using this SDK there's no need to integrate the API itself,
+ * all the API endpoints are exposed as simple to use methods,
+ * and the data returned by the API is properly encapsulated and easy to access.
+ * With this SDK, you'll be able to onboard new users, issue cards,
+ * obtain card activity information and manage the card (set pin, freeze / unfreeze, etc.)
  * <p>In addition to this documentation, you may wish to take a look at
  * <a href="https://aptopayments.com/#/developers">the developer portal</a>.
  *
@@ -89,7 +93,8 @@ interface AptoPlatformProtocol {
      * }
      * ```
      *
-     * @param callback Lambda called when the fetchCardProducts response is back, Either<Failure, List<CardProductSummary>>>
+     * @param callback Lambda called when the fetchCardProducts response is back
+     * returning Either<Failure, List<CardProductSummary>>>
      */
     fun fetchCardProducts(callback: (Either<Failure, List<CardProductSummary>>) -> Unit)
 
@@ -173,7 +178,8 @@ interface AptoPlatformProtocol {
     fun updateUserInfo(userData: DataPointList, callback: (Either<Failure, User>) -> Unit)
 
     /**
-     * Method to subscribe to a Session Invalid listener fired when the API returns session invalid or user is logged out
+     * Method to subscribe to a Session Invalid listener
+     * fired when the API returns session invalid or user is logged out
      *
      * @param instance any object
      * @param callback Lambda called when session gets invalidated
@@ -239,9 +245,10 @@ interface AptoPlatformProtocol {
      * This methods completes the verification
      *
      * @param verification Verification, if the status of the verification is Passed, means that the code was correct
-     * if it contains a secondaryCredential value, means that it's an existing user and has to verify it's secondary credential
-     * check {@link DataPoint.Type} for the different types
-     * @param callback Lambda called when this step ended, it can be Failure when the code doesn't match or a Verification
+     * if it contains a secondaryCredential value, means that it's an existing user and has to verify
+     * it's secondary credential check {@link DataPoint.Type} for the different types
+     * @param callback Lambda called when this step ended, it can be Failure when the code doesn't match
+     * or a Verification
      */
     fun completeVerification(verification: Verification, callback: (Either<Failure, Verification>) -> Unit)
 
@@ -278,11 +285,13 @@ interface AptoPlatformProtocol {
     /**
      * This methods allows to issue a card
      *
-     * @param applicationId String got from {@link fetchCardProducts((Either<Failure, List<CardProductSummary>>) -> Unit)}
+     * @param applicationId String got from
+     * {@link fetchCardProducts((Either<Failure, List<CardProductSummary>>) -> Unit)}
      * or {@link fetchCardProduct(String, Boolean, (Either<Failure, CardProduct>) -> Unit)}
      * @param additionalFields Map<String, Any> (Optional)(Deprecated)
      * @param metadata String
-     * @param callback Lambda called when card has been issued returning Either Failure if was not successful or the Card if it was correct
+     * @param callback Lambda called when card has been issued returning Either Failure
+     * if was not successful or the Card if it was correct
      */
     fun issueCard(
         applicationId: String,
@@ -294,13 +303,15 @@ interface AptoPlatformProtocol {
     /**
      * This methods allows to issue a card providing different parameters
      *
-     * @param cardProductId String got from {@link fetchCardProducts((Either<Failure, List<CardProductSummary>>) -> Unit)}
+     * @param cardProductId String got from
+     * {@link fetchCardProducts((Either<Failure, List<CardProductSummary>>) -> Unit)}
      * or {@link fetchCardProduct(String, Boolean, (Either<Failure, CardProduct>) -> Unit)}
      * @param credential OAuthCredential
      * @param additionalFields can be used to send Apto additional data required to card issuance that is not captured
      * during the user creation process. For a list of allowed fields and values contact us
      * @param initialFundingSourceId specifies the id of the wallet that will be connected to the card when issued
-     * @param callback Lambda called when card has been issued returning Either Failure if was not successful or the Card if it was correct
+     * @param callback Lambda called when card has been issued returning Either Failure if was not successful
+     * or the Card if it was correct
      */
     @Deprecated("Please use issueCard with applicationId")
     fun issueCard(
@@ -390,8 +401,8 @@ interface AptoPlatformProtocol {
      * @param forceRefresh If false is provided, then the SDK will get local transactions. Otherwise an API call will
      * be made and transactions will come from backend
      * @param clearCachedValues a Boolean that tells the SDK to clear the cached values after the call
-     * @param callback Lambda called when the transactions has been fetched returning Either Failure if there was an error
-     * or a list of Transactions if the fetching was correct
+     * @param callback Lambda called when the transactions has been fetched returning Either Failure
+     * if there was an error or a list of Transactions if the fetching was correct
      */
     fun fetchCardTransactions(
         cardId: String,
@@ -407,8 +418,8 @@ interface AptoPlatformProtocol {
      * @param cardId String containing the cardId
      * @param month String containing the month in English (i.e. April)
      * @param year String containing the year in numbers
-     * @param callback Lambda called when the transactions has been fetched returning Either Failure if there was an error
-     * or a MonthlySpending if the fetching was successful
+     * @param callback Lambda called when the transactions has been fetched returning Either Failure
+     * if there was an error or a MonthlySpending if the fetching was successful
      */
     @Deprecated(message = "Use the version with Integer parameters")
     fun cardMonthlySpending(
@@ -424,8 +435,8 @@ interface AptoPlatformProtocol {
      * @param cardId String containing the cardId
      * @param month Int containing the month number, being 01 for January
      * @param year Int containing the year in numbers, i.e. 2020
-     * @param callback Lambda called when the transactions has been fetched returning Either Failure if there was an error
-     * or a MonthlySpending if the fetching was successful
+     * @param callback Lambda called when the transactions has been fetched returning Either Failure
+     * if there was an error or a MonthlySpending if the fetching was successful
      */
     fun cardMonthlySpending(
         cardId: String,
@@ -439,8 +450,8 @@ interface AptoPlatformProtocol {
      *
      * @param month Int of the desired month, starting in 1 for January
      * @param year Int of the desired year
-     * @param callback Lambda called when the transactions has been fetched returning Either Failure if there was an error
-     * or a MonthlyStatement if the fetching was successful
+     * @param callback Lambda called when the transactions has been fetched
+     * returning Either Failure if there was an error or a MonthlyStatement if the fetching was successful
      */
     fun fetchMonthlyStatement(month: Int, year: Int, callback: (Either<Failure, MonthlyStatement>) -> Unit)
 
@@ -524,9 +535,11 @@ interface AptoPlatformProtocol {
     /**
      * Gets a list with all the payment sources already added
      *
-     * @param startingAfter Optional Parameter. Return the page starting right after the specified element. Optional Parameter.
+     * @param startingAfter Optional Parameter. Return the page starting right after the specified element.
+     * Optional Parameter.
      * @param endingBefore Optional Parameter. Return the page ending before the specified element
-     * @param limit Optional Parameter. A limit on the number of objects to be returned. Default value is 25. Max allowed value is 50.
+     * @param limit Optional Parameter. A limit on the number of objects to be returned.
+     * Default value is 25. Max allowed value is 50.
      * @param callback Lambda called when the task has ended returning Either Failure if there was an error
      * or a List<PaymentSource> if the task was successful
      */
@@ -610,7 +623,26 @@ interface AptoPlatformProtocol {
      *
      * @param balanceId the id of the balance that the Ach Account will be created to
      * @param callback Lambda called when the task has ended returning Either Failure if there was an error
-     * or AchAccountDetails if the task was successful
+     * or [AchAccountDetails] if the task was successful
      */
     fun getAchAccountDetails(balanceId: String, callback: (Either<Failure, AchAccountDetails>) -> Unit)
+
+    /**
+     * Gets the configuration for ordering a Physical card,
+     * This contains the cost of issuing the card or the Address that will be shipped to.
+     *
+     * @param cardId Id of the virtual card that will ask a Physical card replacement
+     * @param callback Lambda called when a task has ended returning [Either] Failure if there was an error or
+     * [OrderPhysicalCardConfig] if it was successful
+     */
+    fun getOrderPhysicalCardConfig(cardId: String, callback: (Either<Failure, OrderPhysicalCardConfig>) -> Unit)
+
+    /**
+     * Order a physical card for a defined Virtual card with a certain cardId
+     *
+     * @param cardId Id of the virtual card that will ask a Physical card replacement
+     * @param callback Lambda called when a task has ended returning [Either] Failure if there was an error or
+     * [Card] if it was successful
+     */
+    fun orderPhysicalCard(cardId: String, callback: (Either<Failure, Card>) -> Unit)
 }

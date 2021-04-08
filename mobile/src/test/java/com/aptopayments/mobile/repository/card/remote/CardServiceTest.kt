@@ -172,4 +172,22 @@ internal class CardServiceTest : NetworkServiceTest() {
 
         assertRequestBodyFile("userAccountsPasscodeRequestPost.json")
     }
+
+    @Test
+    fun `when getOrderPhysicalCardConfig then request is made to the correct url`() {
+        enqueueContent("{}")
+
+        sut.getOrderPhysicalCardConfig(ACCOUNT_ID)
+
+        assertRequestSentTo("v1/user/accounts/$ACCOUNT_ID/order_physical/config", "GET")
+    }
+
+    @Test
+    fun `when orderPhysicalCard then request is made to the correct url`() {
+        enqueueContent("{}")
+
+        sut.orderPhysicalCard(ACCOUNT_ID)
+
+        assertRequestSentTo("v1/user/accounts/$ACCOUNT_ID/order_physical", "POST")
+    }
 }

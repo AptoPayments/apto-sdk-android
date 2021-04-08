@@ -39,7 +39,7 @@ internal class PaymentSourcesService(apiCatalog: ApiCatalog) : BaseNetworkServic
     private fun getAddPaymentSourceRequest(source: NewPaymentSource): AddPaymentSourceRequest {
         return when (source) {
             is NewCard -> getAddCardPaymentSourceRequest(source)
-            else -> throw RuntimeException("Unrecognized Payment Source")
+            else -> throw UnRecognizedPaymentSource()
         }
     }
 
@@ -62,4 +62,6 @@ internal class PaymentSourcesService(apiCatalog: ApiCatalog) : BaseNetworkServic
         val yearFourDigits = if (year.length == 2) "20$year" else year
         return "$yearFourDigits-$month"
     }
+
+    class UnRecognizedPaymentSource : RuntimeException("Unrecognized Payment Source")
 }

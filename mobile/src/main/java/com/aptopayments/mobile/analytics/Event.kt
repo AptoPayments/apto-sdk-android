@@ -29,7 +29,8 @@ enum class Event(val event: String) {
     SelectBalanceStoreOauthConfirmEmailError("select_balance_store.oauth_confirm.email_error"),
     SelectBalanceStoreOauthConfirmUnknownError("select_balance_store.oauth_confirm.unknown_error"),
     SelectBalanceStoreOauthConfirmEmailSendsDisabled("select_balance_store.oauth_confirm.email_sends_disabled"),
-    SelectBalanceStoreOauthConfirmInsufficientApplicationLimit("select_balance_store.oauth_confirm.insufficient_application_limit"),
+    SelectBalanceStoreOauthConfirmInsufficientApplicationLimit
+    ("select_balance_store.oauth_confirm.insufficient_application_limit"),
     SelectBalanceStoreOauthConfirmIdentityNotVerified("select_balance_store.oauth_confirm.identity_not_verified"),
     Waitlist("waitlist.waitlist.start"),
     Disclaimer("disclaimer.disclaimer.start"),
@@ -86,4 +87,10 @@ enum class Event(val event: String) {
     AddFundsSelector("manage_card.add_funds.selector"),
     DirectDepositInstructions("manage_card.direct_deposit.instructions"),
     AchAccountDetails("manage_card.ach_account.details"),
+    OrderPhysicalCardStart("order_physical_card.start"),
+    OrderPhysicalCardRequested("order_physical_card.ordered"),
+    OrderPhysicalCardDiscarded("order_physical_card.discarded"),
+    OrderPhysicalCardInsufficientFunds("order_physical_card.insufficient_funds"),
+    OrderPhysicalCardError("order_physical_card.error"),
+    OrderPhysicalCardDone("order_physical_card.end"),
 }

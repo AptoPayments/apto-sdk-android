@@ -17,7 +17,7 @@ import org.koin.core.inject
 private const val CUSTODIAN_UID = "id_12345"
 private const val METADATA = "METADATA"
 private const val TOKEN = "token_1234"
-private const val PUSH_TOKEN = "push_token_12345"
+private const val PUSH_TOKEN = "this/is\\my test"
 
 internal class UserServiceTest : NetworkServiceTest() {
 
@@ -77,8 +77,11 @@ internal class UserServiceTest : NetworkServiceTest() {
 
         sut.unregisterPushDevice(TOKEN, PUSH_TOKEN)
 
-        assertRequestSentTo("v1/user/pushdevice/$PUSH_TOKEN", "DELETE")
+        val pushTokenEncoded = "this%2Fis%5Cmy+test"
+
+        assertRequestSentTo("v1/user/pushdevice/$pushTokenEncoded", "DELETE")
     }
+
     @Test
     fun `when getNotificationPreferences then request is made to the correct url`() {
         enqueueContent("{}")

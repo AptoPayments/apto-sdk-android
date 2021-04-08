@@ -7,6 +7,7 @@ import com.aptopayments.mobile.data.oauth.OAuthAttemptStatus
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdate
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdateResult
 import com.aptopayments.mobile.data.workflowaction.AllowedBalanceType
+import com.aptopayments.mobile.exception.server.ServerErrorFactory
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.functional.right
@@ -45,7 +46,7 @@ class OAuthConnectRepositoryTest : UnitTest() {
     @Before
     override fun setUp() {
         super.setUp()
-        requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock()))
+        requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock(), ServerErrorFactory()))
         startKoin {
             modules(
                 module {

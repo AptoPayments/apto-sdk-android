@@ -29,7 +29,7 @@ internal data class NotificationGroupEntity(
     private fun parseCategoryId(categoryId: String): NotificationGroup.Category? {
         return try {
             NotificationGroup.Category.valueOf(categoryId.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
+        } catch (exception: IllegalArgumentException) {
             null
         }
     }
@@ -37,7 +37,7 @@ internal data class NotificationGroupEntity(
     private fun parseGroupId(groupId: String): NotificationGroup.Group? {
         return try {
             NotificationGroup.Group.valueOf(groupId.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
+        } catch (exception: IllegalArgumentException) {
             null
         }
     }
@@ -45,7 +45,7 @@ internal data class NotificationGroupEntity(
     private fun parseState(state: String): NotificationGroup.State? {
         return try {
             NotificationGroup.State.valueOf(state.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
+        } catch (exception: IllegalArgumentException) {
             null
         }
     }

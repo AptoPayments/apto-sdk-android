@@ -1,7 +1,7 @@
 package com.aptopayments.mobile.di
 
 import com.aptopayments.mobile.repository.card.usecases.*
-import com.aptopayments.mobile.repository.card.usecases.IssueCardUseCase
+import com.aptopayments.mobile.repository.card.usecases.IssueCardWithProductIdUseCase
 import com.aptopayments.mobile.repository.cardapplication.usecases.*
 import com.aptopayments.mobile.repository.config.usecases.GetCardProductUseCase
 import com.aptopayments.mobile.repository.config.usecases.GetCardProductsUseCase
@@ -61,7 +61,7 @@ internal val useCasesModule = module {
         )
     }
     factory {
-        IssueCardUseCase(
+        IssueCardWithProductIdUseCase(
             cardRepository = get(),
             networkHandler = get()
         )
@@ -94,4 +94,6 @@ internal val useCasesModule = module {
     factory { AssignAchAccountToBalanceUseCase(get(), get()) }
     factory { GetAchAccountDetailsUseCase(get(), get()) }
     factory { ReviewAgreementsUseCase(get(), get()) }
+    factory { OrderPhysicalCardUseCase(get(), get()) }
+    factory { GetOrderPhysicalCardConfigurationUseCase(get(), get()) }
 }

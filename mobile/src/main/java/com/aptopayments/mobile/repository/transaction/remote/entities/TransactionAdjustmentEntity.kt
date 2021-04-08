@@ -54,7 +54,7 @@ internal data class TransactionAdjustmentEntity(
         return type?.let {
             try {
                 TransactionAdjustment.Type.valueOf(it.toUpperCase(Locale.US))
-            } catch (exception: Throwable) {
+            } catch (exception: IllegalArgumentException) {
                 TransactionAdjustment.Type.OTHER
             }
         } ?: TransactionAdjustment.Type.OTHER

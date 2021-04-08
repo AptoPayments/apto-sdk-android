@@ -305,4 +305,18 @@ class CardRepositoryTest : UnitTest() {
 
         verify(service).setCardPasscode(cardId, CODE, verificationId)
     }
+
+    @Test
+    fun `when getOrderPhysicalCardConfig then service gets called`() {
+        sut.getOrderPhysicalCardConfig(cardId = cardId)
+
+        verify(service).getOrderPhysicalCardConfig(cardId)
+    }
+
+    @Test
+    fun `when orderPhysicalCard then service gets called`() {
+        sut.orderPhysicalCard(cardId = cardId)
+
+        verify(service).orderPhysicalCard(cardId)
+    }
 }

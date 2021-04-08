@@ -43,11 +43,13 @@ data class Transaction(
     }
 
     fun deviceType(): TransactionDeviceType {
-        if (ecommerce == true) return TransactionDeviceType.ECOMMERCE
-        if (cardPresent == true) return TransactionDeviceType.CARDPRESENT
-        if (international == true) return TransactionDeviceType.INTERNATIONAL
-        if (emv == true) return TransactionDeviceType.EMV
-        return TransactionDeviceType.OTHER
+        return when {
+            ecommerce == true -> TransactionDeviceType.ECOMMERCE
+            cardPresent == true -> TransactionDeviceType.CARDPRESENT
+            international == true -> TransactionDeviceType.INTERNATIONAL
+            emv == true -> TransactionDeviceType.EMV
+            else -> TransactionDeviceType.OTHER
+        }
     }
 
     enum class TransactionType {

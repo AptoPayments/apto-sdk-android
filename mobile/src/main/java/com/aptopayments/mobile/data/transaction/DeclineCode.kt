@@ -27,7 +27,7 @@ enum class DeclineCode(val code: String) {
         fun from(code: String?): DeclineCode? = code?.let {
             try {
                 valueOf(it.toUpperCase(Locale.US))
-            } catch (exception: Throwable) {
+            } catch (exception: IllegalArgumentException) {
                 Other
             }
         }

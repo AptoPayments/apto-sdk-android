@@ -22,7 +22,7 @@ class ColorParserImpl : ColorParser {
     override fun fromHexString(colorString: String): Int {
         return try {
             Color.parseColor("#$colorString")
-        } catch (exception: Throwable) {
+        } catch (exception: IllegalArgumentException) {
             Color.WHITE
         }
     }

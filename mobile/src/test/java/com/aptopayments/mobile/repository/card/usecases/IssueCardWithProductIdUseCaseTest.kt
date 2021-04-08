@@ -17,8 +17,8 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 
-class IssueCardUseCaseTest : UnitTest() {
-    private lateinit var sut: IssueCardUseCase
+class IssueCardWithProductIdUseCaseTest : UnitTest() {
+    private lateinit var sut: IssueCardWithProductIdUseCase
 
     // Collaborators
     @Mock
@@ -26,7 +26,7 @@ class IssueCardUseCaseTest : UnitTest() {
 
     @Mock
     private lateinit var networkHandler: NetworkHandler
-    private val params = IssueCardUseCase.Params(
+    private val params = IssueCardWithProductIdUseCase.Params(
         cardProductId = "card_product_id",
         credential = OAuthCredential(oauthToken = "token", refreshToken = "refresh_token"),
         additionalFields = null,
@@ -36,7 +36,7 @@ class IssueCardUseCaseTest : UnitTest() {
     @Before
     override fun setUp() {
         super.setUp()
-        sut = IssueCardUseCase(cardRepository, networkHandler)
+        sut = IssueCardWithProductIdUseCase(cardRepository, networkHandler)
     }
 
     @Test

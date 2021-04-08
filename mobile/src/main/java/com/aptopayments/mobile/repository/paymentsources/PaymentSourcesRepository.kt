@@ -9,7 +9,11 @@ import com.aptopayments.mobile.platform.BaseNoNetworkRepository
 internal interface PaymentSourcesRepository : BaseNoNetworkRepository {
     fun addPaymentSource(source: NewPaymentSource): Either<Failure, PaymentSource>
 
-    fun getPaymentSources(startingAfter: String?, endingBefore: String?, limit: Int?): Either<Failure, List<PaymentSource>>
+    fun getPaymentSources(
+        startingAfter: String?,
+        endingBefore: String?,
+        limit: Int?
+    ): Either<Failure, List<PaymentSource>>
 
     fun deletePaymentSource(paymentSourceId: String): Either<Failure, Unit>
 }
@@ -20,7 +24,11 @@ internal class PaymentSourcesRepositoryImpl(private val service: PaymentSourcesS
         return service.addPaymentSource(source)
     }
 
-    override fun getPaymentSources(startingAfter: String?, endingBefore: String?, limit: Int?): Either<Failure, List<PaymentSource>> {
+    override fun getPaymentSources(
+        startingAfter: String?,
+        endingBefore: String?,
+        limit: Int?
+    ): Either<Failure, List<PaymentSource>> {
         return service.getPaymentSources(startingAfter, endingBefore, limit)
     }
 

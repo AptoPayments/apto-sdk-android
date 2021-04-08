@@ -11,7 +11,7 @@ internal interface BaseVerificationEntity {
     fun parseStatus(status: String): VerificationStatus {
         return try {
             VerificationStatus.valueOf(status.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
+        } catch (exception: IllegalArgumentException) {
             VerificationStatus.PENDING
         }
     }

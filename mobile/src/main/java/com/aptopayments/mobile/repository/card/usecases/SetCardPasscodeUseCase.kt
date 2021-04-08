@@ -9,7 +9,11 @@ internal class SetCardPasscodeUseCase(
     networkHandler: NetworkHandler
 ) : UseCase<Unit, SetCardPasscodeUseCase.Params>(networkHandler) {
     override fun run(params: Params) =
-        repository.setCardPasscode(cardId = params.cardId, passcode = params.passcode, verificationId = params.verificationId)
+        repository.setCardPasscode(
+            cardId = params.cardId,
+            passcode = params.passcode,
+            verificationId = params.verificationId
+        )
 
     data class Params(val cardId: String, val passcode: String, val verificationId: String?)
 }

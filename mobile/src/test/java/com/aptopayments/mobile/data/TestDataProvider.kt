@@ -13,10 +13,7 @@ import com.aptopayments.mobile.data.oauth.OAuthAttemptStatus
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdate
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdateResult
 import com.aptopayments.mobile.data.transaction.Transaction
-import com.aptopayments.mobile.data.user.DataPoint
-import com.aptopayments.mobile.data.user.DataPointList
-import com.aptopayments.mobile.data.user.User
-import com.aptopayments.mobile.data.user.Verification
+import com.aptopayments.mobile.data.user.*
 import com.aptopayments.mobile.data.workflowaction.AllowedBalanceType
 import com.aptopayments.mobile.platform.AptoSdkEnvironment
 import com.aptopayments.mobile.repository.transaction.local.entities.TransactionLocalEntity
@@ -284,7 +281,11 @@ internal class TestDataProvider {
 
         fun provideTransaction(
             transactionId: String = "transaction_1234",
-            createdAt: ZonedDateTime = ZonedDateTime.now()
+            createdAt: ZonedDateTime = ZonedDateTime.now(),
+            ecommerce: Boolean? = null,
+            international: Boolean? = null,
+            cardPresent: Boolean? = null,
+            emv: Boolean? = null,
         ) = Transaction(
             transactionId,
             transactionType = Transaction.TransactionType.PURCHASE,
@@ -301,10 +302,10 @@ internal class TestDataProvider {
             feeAmount = provideMoney(0.0),
             nativeBalance = provideMoney(),
             settlement = null,
-            ecommerce = null,
-            international = null,
-            cardPresent = null,
-            emv = null,
+            ecommerce = ecommerce,
+            international = international,
+            cardPresent = cardPresent,
+            emv = emv,
             cardNetwork = Card.CardNetwork.VISA,
             state = Transaction.TransactionState.COMPLETE,
             adjustments = null,
@@ -321,5 +322,13 @@ internal class TestDataProvider {
             routingNumber: String = "12345",
             accountNumber: String = "6789"
         ) = AchAccountDetails(routingNumber, accountNumber)
+
+        fun provideOrderPhysicalCardConfig(
+            issuanceFee: Money = Money("USD", 9.99),
+            userAddress: AddressDataPoint? = AddressDataPoint("street one")
+        ) = OrderPhysicalCardConfig(
+            issuanceFee = issuanceFee,
+            userAddress = userAddress
+        )
     }
 }

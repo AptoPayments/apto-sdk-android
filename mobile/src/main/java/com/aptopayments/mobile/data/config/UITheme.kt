@@ -9,7 +9,7 @@ enum class UITheme {
         fun parseUITheme(theme: String): UITheme {
             return try {
                 valueOf(theme.toUpperCase(Locale.US))
-            } catch (exception: Throwable) {
+            } catch (exception: IllegalArgumentException) {
                 THEME_2
             }
         }

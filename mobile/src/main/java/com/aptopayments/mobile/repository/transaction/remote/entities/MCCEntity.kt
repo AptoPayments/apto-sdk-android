@@ -24,7 +24,7 @@ internal data class MCCEntity(
         return icon?.let {
             try {
                 MCC.Icon.valueOf(it.toUpperCase(Locale.US))
-            } catch (exception: Throwable) {
+            } catch (exception: IllegalArgumentException) {
                 MCC.Icon.OTHER
             }
         }

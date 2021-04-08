@@ -41,7 +41,8 @@ internal interface UserApi {
     fun getNotificationPreferences(): Call<NotificationPreferencesEntity>
 
     @PUT(NOTIFICATION_PREFERENCES_PATH)
-    fun updateNotificationPreferences(@Body request: NotificationPreferencesRequest): Call<NotificationPreferencesEntity>
+    fun updateNotificationPreferences(@Body request: NotificationPreferencesRequest):
+        Call<NotificationPreferencesEntity>
 
     @POST(AGREEMENTS_PATH)
     fun reviewAgreements(@Body request: AgreementsInputRequest): Call<Unit>

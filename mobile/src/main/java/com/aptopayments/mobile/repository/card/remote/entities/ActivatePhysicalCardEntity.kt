@@ -25,7 +25,7 @@ internal data class ActivatePhysicalCardEntity(
     private fun parseResult(result: String): ActivatePhysicalCardResultType {
         return try {
             ActivatePhysicalCardResultType.valueOf(result.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
+        } catch (exception: IllegalArgumentException) {
             ActivatePhysicalCardResultType.ERROR
         }
     }

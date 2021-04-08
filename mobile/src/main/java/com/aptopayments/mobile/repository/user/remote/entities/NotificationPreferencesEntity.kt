@@ -11,6 +11,9 @@ internal data class NotificationPreferencesEntity(
 
 ) {
     fun toNotificationPreferences() = NotificationPreferences(
-        preferences = if (preferences?.data?.isEmpty() == false) preferences.data?.map { it.toNotificationGroup() } else null
+        preferences = if (preferences?.data?.isEmpty() == false)
+            preferences.data?.map { it.toNotificationGroup() }
+        else
+            null
     )
 }

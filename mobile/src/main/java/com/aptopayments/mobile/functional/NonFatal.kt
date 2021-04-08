@@ -11,7 +11,7 @@ package com.aptopayments.mobile.functional
  * @return true if the provided `Throwable` is to be considered non-fatal, or false if it is to be considered fatal
  *
  */
-internal fun NonFatal(t: Throwable): Boolean =
+internal fun nonFatal(t: Throwable): Boolean =
     when (t) {
         is VirtualMachineError, is ThreadDeath, is InterruptedException, is LinkageError -> false
         else -> true
@@ -25,4 +25,4 @@ internal fun NonFatal(t: Throwable): Boolean =
  *
  */
 internal fun Throwable.nonFatalOrThrow(): Throwable =
-    if (NonFatal(this)) this else throw this
+    if (nonFatal(this)) this else throw this

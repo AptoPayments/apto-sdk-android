@@ -2,10 +2,7 @@ package com.aptopayments.mobile.repository.card
 
 import com.aptopayments.mobile.data.ListPagination
 import com.aptopayments.mobile.data.PaginatedList
-import com.aptopayments.mobile.data.card.ActivatePhysicalCardResult
-import com.aptopayments.mobile.data.card.Card
-import com.aptopayments.mobile.data.card.CardDetails
-import com.aptopayments.mobile.data.card.ProvisioningData
+import com.aptopayments.mobile.data.card.*
 import com.aptopayments.mobile.data.fundingsources.Balance
 import com.aptopayments.mobile.data.oauth.OAuthCredential
 import com.aptopayments.mobile.exception.Failure
@@ -50,6 +47,8 @@ internal interface CardRepository : BaseNoNetworkRepository {
     ): Either<Failure, ProvisioningData>
 
     fun setCardPasscode(cardId: String, passcode: String, verificationId: String?): Either<Failure, Unit>
+    fun orderPhysicalCard(cardId: String): Either<Failure, Card>
+    fun getOrderPhysicalCardConfig(cardId: String): Either<Failure, OrderPhysicalCardConfig>
 }
 
 internal class CardRepositoryImpl(
@@ -150,4 +149,8 @@ internal class CardRepositoryImpl(
 
     override fun setCardPasscode(cardId: String, passcode: String, verificationId: String?) =
         service.setCardPasscode(cardId, passcode, verificationId)
+
+    override fun getOrderPhysicalCardConfig(cardId: String) = service.getOrderPhysicalCardConfig(cardId)
+
+    override fun orderPhysicalCard(cardId: String) = service.orderPhysicalCard(cardId)
 }

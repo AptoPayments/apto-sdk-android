@@ -21,7 +21,7 @@ internal data class SelectBalanceStoreResultEntity(
     private fun parseResult(result: String): SelectBalanceStoreResult.Type {
         return try {
             SelectBalanceStoreResult.Type.valueOf(result.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
+        } catch (exception: IllegalArgumentException) {
             SelectBalanceStoreResult.Type.INVALID
         }
     }

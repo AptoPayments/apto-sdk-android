@@ -11,7 +11,8 @@ import com.aptopayments.mobile.repository.user.remote.entities.NotificationPrefe
 import com.aptopayments.mobile.repository.user.remote.entities.UserEntity
 import com.aptopayments.mobile.repository.user.remote.requests.*
 import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
+
+private const val UTF8 = "UTF-8"
 
 internal class UserService(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
@@ -39,7 +40,7 @@ internal class UserService(apiCatalog: ApiCatalog) : BaseNetworkService() {
         request(
             userApi.unregisterPushDevice(
                 userToken = authorizationHeader(userToken),
-                pushToken = URLEncoder.encode(pushToken, StandardCharsets.UTF_8.toString())
+                pushToken = URLEncoder.encode(pushToken, UTF8)
             ),
             { }, Unit
         )

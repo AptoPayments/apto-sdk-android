@@ -12,7 +12,8 @@ internal data class DisclaimerEntity(
     @SerializedName("content")
     val content: ContentEntity?
 ) : Serializable {
-    fun toDisclaimer() = if (keys != null && content != null) Disclaimer(keys = keys, content = content.toContent()) else null
+    fun toDisclaimer() =
+        if (keys != null && content != null) Disclaimer(keys = keys, content = content.toContent()) else null
 
     companion object {
         fun from(value: Disclaimer) = DisclaimerEntity(keys = value.keys, content = ContentEntity.from(value.content))

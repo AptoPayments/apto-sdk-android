@@ -9,7 +9,7 @@ enum class UIStatusBarStyle {
         fun parseStatusBarStyle(style: String): UIStatusBarStyle {
             return try {
                 valueOf(style.toUpperCase(Locale.US))
-            } catch (exception: Throwable) {
+            } catch (exception: IllegalArgumentException) {
                 AUTO
             }
         }

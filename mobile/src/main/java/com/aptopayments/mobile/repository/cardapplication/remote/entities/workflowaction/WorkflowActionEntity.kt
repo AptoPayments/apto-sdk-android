@@ -68,7 +68,7 @@ internal data class WorkflowActionEntity(
     private fun parseActionType(type: String): WorkflowActionType {
         return try {
             WorkflowActionType.valueOf(type.toUpperCase(Locale.US))
-        } catch (exception: Throwable) {
+        } catch (exception: IllegalArgumentException) {
             WorkflowActionType.UNSUPPORTED_ACTION_TYPE
         }
     }

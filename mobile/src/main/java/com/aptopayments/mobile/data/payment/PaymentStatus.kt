@@ -11,7 +11,7 @@ enum class PaymentStatus(val legend: String) {
         fun fromString(string: String) =
             try {
                 valueOf(string.toUpperCaseDefault())
-            } catch (e: Exception) {
+            } catch (e: IllegalArgumentException) {
                 FAILED
             }
     }

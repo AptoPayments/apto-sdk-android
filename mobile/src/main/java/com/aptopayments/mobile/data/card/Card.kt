@@ -43,7 +43,7 @@ data class Card(
             fun fromString(value: String): CardNetwork {
                 return try {
                     valueOf(value.toUpperCase(Locale.US))
-                } catch (e: Exception) {
+                } catch (e: IllegalArgumentException) {
                     UNKNOWN
                 }
             }

@@ -16,7 +16,7 @@ abstract class DataPoint : Serializable {
             fun fromString(string: String) =
                 try {
                     valueOf(string.toUpperCase(Locale.US))
-                } catch (e: Exception) {
+                } catch (e: IllegalArgumentException) {
                     null
                 }
         }
