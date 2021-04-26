@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.functional
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.functional.Either.Left
 import com.aptopayments.mobile.functional.Either.Right
 import org.junit.Test
@@ -14,7 +13,7 @@ private const val MAPPED_STRING_INPUT = "hello test"
 private const val INTEGER_INPUT = 3
 private const val SECOND_INTEGER_INPUT = 11
 
-class EitherTest : UnitTest() {
+class EitherTest {
 
     private val stringMapFunction = { input: String -> "hello $input" }
 

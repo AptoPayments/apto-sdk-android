@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.platform
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.exception.Failure
 import com.aptopayments.mobile.exception.server.ServerErrorFactory
 import com.aptopayments.mobile.repository.UserSessionRepository
@@ -13,7 +12,7 @@ import org.junit.Test
 import retrofit2.Response
 import kotlin.test.assertEquals
 
-class ErrorHandlerTest : UnitTest() {
+class ErrorHandlerTest {
 
     private val userSessionRepository = mock<UserSessionRepository>()
     private val response = mock<Response<Any>>()

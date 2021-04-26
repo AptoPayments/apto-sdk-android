@@ -40,6 +40,7 @@ import com.aptopayments.mobile.exception.server.ServerErrorCodes.LOCALITY_INVALI
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.LOGIN_ERROR_INVALID_CREDENTIALS
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.LOGIN_ERROR_UNVERIFIED_DATAPOINTS
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PAYMENT_SOURCE_ADD_LIMIT
+import com.aptopayments.mobile.exception.server.ServerErrorCodes.INVALID_PAYMENT_SOURCE_DUPLICATE
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PHYSICAL_CARD_ACTIVATION_NOT_SUPPORTED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PHYSICAL_CARD_ALREADY_ACTIVATED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PHYSICAL_CARD_ALREADY_ORDERED
@@ -126,6 +127,7 @@ class ServerErrorFactory {
         PAYMENT_SOURCE_ADD_LIMIT to "load_funds_add_card_error_limit",
         PHYSICAL_CARD_ALREADY_ORDERED to "error.physical_card.card_already_ordered",
         PHYSICAL_CARD_NOT_SUPPORTED to "error.physical_card.order_not_supported",
+        INVALID_PAYMENT_SOURCE_DUPLICATE to "load_funds_add_card_error_duplicate",
     )
 
     fun create(code: Int? = UNKNOWN_ERROR, message: String? = null): Failure.ServerError {

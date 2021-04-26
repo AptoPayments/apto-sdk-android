@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.repository.card.usecases
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.data.oauth.OAuthCredential
@@ -11,21 +10,18 @@ import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.card.CardRepository
 import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.willReturn
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 
-class IssueCardWithProductIdUseCaseTest : UnitTest() {
+class IssueCardWithProductIdUseCaseTest {
     private lateinit var sut: IssueCardWithProductIdUseCase
 
     // Collaborators
-    @Mock
-    private lateinit var cardRepository: CardRepository
-
-    @Mock
-    private lateinit var networkHandler: NetworkHandler
+    private val cardRepository: CardRepository = mock()
+    private val networkHandler: NetworkHandler = mock()
     private val params = IssueCardWithProductIdUseCase.Params(
         cardProductId = "card_product_id",
         credential = OAuthCredential(oauthToken = "token", refreshToken = "refresh_token"),
@@ -34,8 +30,7 @@ class IssueCardWithProductIdUseCaseTest : UnitTest() {
     )
 
     @Before
-    override fun setUp() {
-        super.setUp()
+    fun setUp() {
         sut = IssueCardWithProductIdUseCase(cardRepository, networkHandler)
     }
 

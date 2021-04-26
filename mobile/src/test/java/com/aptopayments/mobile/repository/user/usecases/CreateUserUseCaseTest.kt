@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.repository.user.usecases
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.data.user.User
@@ -12,26 +11,22 @@ import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.user.UserRepository
 import com.aptopayments.mobile.repository.user.usecases.CreateUserUseCase.Params
 import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.willReturn
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 
-class CreateUserUseCaseTest : UnitTest() {
+class CreateUserUseCaseTest {
     private lateinit var sut: CreateUserUseCase
 
     // Collaborators
-    @Mock
-    private lateinit var userRepository: UserRepository
-
-    @Mock
-    private lateinit var networkHandler: NetworkHandler
+    private val userRepository: UserRepository = mock()
+    private val networkHandler: NetworkHandler = mock()
     private val params = Params(userData = DataPointList(), custodianUid = "custodianUid", metadata = "metadata")
 
     @Before
-    override fun setUp() {
-        super.setUp()
+    fun setUp() {
         sut = CreateUserUseCase(userRepository, networkHandler)
     }
 

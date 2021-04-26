@@ -1,11 +1,10 @@
 package com.aptopayments.mobile.data.transaction
 
-import com.aptopayments.mobile.UnitTest
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-class DeclineCodeTest : UnitTest() {
+class DeclineCodeTest {
 
     @Test
     fun `null decline code converts to null`() {

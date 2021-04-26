@@ -1,28 +1,20 @@
 package com.aptopayments.mobile.repository.card.remote.entities
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.common.ModelDataProvider
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.data.card.KycStatus
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 import kotlin.test.assertEquals
 
-class CardEntityTest : UnitTest() {
+class CardEntityTest {
 
-    @Mock
-    private lateinit var mockCardStyleEntity: CardStyleEntity
-
-    @Mock
-    private lateinit var mockSpendableAmountEntity: MoneyEntity
-
-    @Mock
-    private lateinit var mockNativeAmountEntity: MoneyEntity
-
-    @Mock
-    private lateinit var mockFeaturesEntity: FeaturesEntity
+    private val mockCardStyleEntity: CardStyleEntity = mock()
+    private val mockSpendableAmountEntity: MoneyEntity = mock()
+    private val mockNativeAmountEntity: MoneyEntity = mock()
+    private val mockFeaturesEntity: FeaturesEntity = mock()
 
     private lateinit var sut: CardEntity
 

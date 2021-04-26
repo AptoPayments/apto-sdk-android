@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.repository
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.cardproduct.CardProductSummary
 import com.aptopayments.mobile.functional.right
@@ -15,7 +14,7 @@ import kotlin.test.assertEquals
 
 private const val CARD_PRODUCT_ID = "id_12345"
 
-class ConfigRepositoryTest : UnitTest() {
+class ConfigRepositoryTest {
 
     private val service: ConfigService = mock()
     private val sut = ConfigRepositoryImpl(service)

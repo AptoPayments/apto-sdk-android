@@ -1,13 +1,12 @@
 package com.aptopayments.mobile.repository.user.remote.entities
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.user.IdDocumentDataPoint
 import com.google.gson.Gson
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class IdDocumentDataPointEntityTest : UnitTest() {
+class IdDocumentDataPointEntityTest {
     @Test
     fun `converts to id document data point`() {
         // Given

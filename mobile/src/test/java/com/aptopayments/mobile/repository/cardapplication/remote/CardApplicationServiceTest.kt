@@ -1,6 +1,7 @@
 package com.aptopayments.mobile.repository.cardapplication.remote
 
 import com.aptopayments.mobile.NetworkServiceTest
+import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
 import com.aptopayments.mobile.repository.cardapplication.remote.entities.CardApplicationEntity
@@ -14,6 +15,8 @@ private const val CARD_PRODUCT_ID = "entity_1234"
 private const val METADATA = "metadata"
 
 internal class CardApplicationServiceTest : NetworkServiceTest() {
+
+    private val design = TestDataProvider.provideIssueCardDesign()
 
     val sut: CardApplicationService by inject()
 
@@ -86,7 +89,7 @@ internal class CardApplicationServiceTest : NetworkServiceTest() {
     fun `when issuecard then then request is made to the correct url`() {
         enqueueFile("issueCardResponse200.json")
 
-        sut.issueCard(CARD_APPLICATION_ID, null, METADATA)
+        sut.issueCard(CARD_APPLICATION_ID, null, METADATA, design)
 
         assertRequestSentTo("v1/user/accounts/issuecard", "POST")
     }
@@ -97,7 +100,7 @@ internal class CardApplicationServiceTest : NetworkServiceTest() {
         val cardEntity = parseEntity(fileContent, CardEntity::class.java)
         enqueueContent(fileContent)
 
-        val response = sut.issueCard(CARD_APPLICATION_ID, null, METADATA)
+        val response = sut.issueCard(CARD_APPLICATION_ID, null, METADATA, design)
 
         response.shouldBeRightAndEqualTo(cardEntity.toCard())
     }
@@ -106,7 +109,7 @@ internal class CardApplicationServiceTest : NetworkServiceTest() {
     fun `when issuecard then request is made correctly`() {
         enqueueFile("userAccountsApplyResponse200.json")
 
-        sut.issueCard(CARD_APPLICATION_ID, mapOf("property" to "value"), METADATA)
+        sut.issueCard(CARD_APPLICATION_ID, mapOf("property" to "value"), METADATA, design)
 
         assertRequestBodyFile("issueCardRequest.json")
     }

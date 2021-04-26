@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.repository
 
-import com.aptopayments.mobile.UnitTest
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -8,7 +7,7 @@ private const val MY_VALUE = "my value"
 private const val STRING_KEY = "string_key"
 private const val STRING_DOT_KEY = "string.key"
 
-class LiteralsRepositoryTest : UnitTest() {
+class LiteralsRepositoryTest {
 
     @Test
     fun `should return server value if it's defined`() {

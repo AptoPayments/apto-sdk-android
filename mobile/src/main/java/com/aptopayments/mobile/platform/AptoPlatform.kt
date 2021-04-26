@@ -3,7 +3,6 @@ package com.aptopayments.mobile.platform
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.annotation.RestrictTo
-import androidx.annotation.VisibleForTesting
 import com.aptopayments.mobile.data.AccessToken
 import com.aptopayments.mobile.data.ListPagination
 import com.aptopayments.mobile.data.PaginatedList
@@ -93,7 +92,6 @@ import org.koin.core.module.Module
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.TextStyle
 import java.lang.ref.WeakReference
-import java.lang.reflect.Modifier
 import java.util.Locale
 
 @SuppressLint("VisibleForTests")
@@ -111,7 +109,7 @@ object AptoPlatform : AptoPlatformProtocol {
 
     private val userSessionRepository: UserSessionRepository by lazy { koin.get() }
 
-    @VisibleForTesting(otherwise = Modifier.PROTECTED)
+    @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
     lateinit var application: Application
 
     private var uiModules: List<Module> = listOf()
@@ -305,8 +303,9 @@ object AptoPlatform : AptoPlatformProtocol {
         applicationId: String,
         additionalFields: Map<String, Any>?,
         metadata: String?,
+        design: IssueCardDesign?,
         callback: (Either<Failure, Card>) -> Unit
-    ) = koin.get<IssueCardUseCase>().invoke(Params(applicationId, additionalFields, metadata)) { callback(it) }
+    ) = koin.get<IssueCardUseCase>().invoke(Params(applicationId, additionalFields, metadata, design)) { callback(it) }
 
     override fun issueCard(
         cardProductId: String,

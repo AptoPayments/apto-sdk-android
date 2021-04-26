@@ -10,7 +10,6 @@ class CardOptions(
     private val authenticateOnStartup: Boolean = false,
     private val authenticateOnPCI: PCIAuthType = PCIAuthType.NONE,
     private val darkThemeEnabled: Boolean = false,
-    private val inAppProvisioningEnabled: Boolean = false,
     var openingMode: OpeningMode = OpeningMode.STANDALONE,
     var fontOptions: FontOptions = FontOptions()
 ) {
@@ -36,6 +35,4 @@ class CardOptions(
     fun authenticatePCI() = authenticateOnPCI
 
     fun darkThemeEnabled() = darkThemeEnabled
-
-    fun inAppProvisioningEnabled() = inAppProvisioningEnabled
 }

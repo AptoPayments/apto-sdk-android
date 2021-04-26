@@ -1,10 +1,9 @@
 package com.aptopayments.mobile.data
 
-import com.aptopayments.mobile.UnitTest
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class PhoneNumberTest : UnitTest() {
+class PhoneNumberTest {
     @Test
     fun `string representation return expected value`() {
         // Given

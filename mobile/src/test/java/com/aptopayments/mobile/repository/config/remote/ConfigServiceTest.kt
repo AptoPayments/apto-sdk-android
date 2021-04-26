@@ -58,7 +58,6 @@ internal class ConfigServiceTest : NetworkServiceTest() {
 
     @Test
     fun `when getCardProduct then response parses correctly`() {
-        enqueueFile("configCardproductsIdResponse200.json")
         val fileContent = readFile("configCardproductsIdResponse200.json")
         val configEntity = parseEntity(fileContent, CardConfigurationEntity::class.java).toCardProduct()
         enqueueContent(fileContent)

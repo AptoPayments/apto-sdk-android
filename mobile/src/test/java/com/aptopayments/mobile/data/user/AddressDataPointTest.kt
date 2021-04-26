@@ -1,10 +1,9 @@
 package com.aptopayments.mobile.data.user
 
-import com.aptopayments.mobile.UnitTest
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class AddressDataPointTest : UnitTest() {
+class AddressDataPointTest {
 
     @Test
     fun `Address with all the components is well represented`() {

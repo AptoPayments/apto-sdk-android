@@ -8,13 +8,13 @@ import com.aptopayments.mobile.platform.RequestExecutor
 import com.aptopayments.mobile.repository.stats.remote.StatsService
 import com.aptopayments.mobile.repository.stats.remote.entities.MonthlySpendingEntity
 import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
-import org.mockito.Mock
 import kotlin.test.assertEquals
 
 private const val CARD_ID = "1"
@@ -26,15 +26,11 @@ class StatsRepositoryOldTest : UnitTest() {
     private lateinit var sut: StatsRepositoryImpl
     private lateinit var requestExecutor: RequestExecutor
 
-    @Mock
-    private lateinit var service: StatsService
-
-    @Mock
-    private lateinit var monthlySpending: MonthlySpending
+    private val service: StatsService = mock()
+    private val monthlySpending: MonthlySpending = mock()
 
     @Before
-    override fun setUp() {
-        super.setUp()
+    fun setUp() {
         startKoin {
             modules(
                 module {

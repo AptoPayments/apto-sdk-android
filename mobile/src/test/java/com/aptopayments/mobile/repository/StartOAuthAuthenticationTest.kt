@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.repository
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.functional.Either.Right
 import com.aptopayments.mobile.network.ConnectivityCheckerAlwaysConnected
@@ -8,23 +7,21 @@ import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.oauth.OAuthRepository
 import com.aptopayments.mobile.repository.oauth.usecases.StartOAuthAuthenticationUseCase
 import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 
-class StartOAuthAuthenticationTest : UnitTest() {
+class StartOAuthAuthenticationTest {
 
     private lateinit var sut: StartOAuthAuthenticationUseCase
 
-    @Mock
-    private lateinit var oauthRepository: OAuthRepository
+    private val oauthRepository: OAuthRepository = mock()
 
     @Before
-    override fun setUp() {
-        super.setUp()
+    fun setUp() {
         sut = StartOAuthAuthenticationUseCase(oauthRepository, NetworkHandler(ConnectivityCheckerAlwaysConnected()))
     }
 

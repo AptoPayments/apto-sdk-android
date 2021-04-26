@@ -2,6 +2,7 @@ package com.aptopayments.mobile.repository.cardapplication
 
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.data.card.CardApplication
+import com.aptopayments.mobile.data.card.IssueCardDesign
 import com.aptopayments.mobile.data.card.SelectBalanceStoreResult
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.functional.right
@@ -80,10 +81,16 @@ class CardApplicationRepositoryImplTest {
     fun `when issueCard then service called correctly`() {
         val map = mapOf("test" to "test1")
         val card = mock<Card>()
-        whenever(service.issueCard(CARD_APPLICATION_ID, map, METADATA)).thenReturn(card.right())
-        val result = sut.issueCard(CARD_APPLICATION_ID, map, METADATA)
+        val design: IssueCardDesign = mock()
+        whenever(service.issueCard(CARD_APPLICATION_ID, map, METADATA, design)).thenReturn(card.right())
+        val result = sut.issueCard(CARD_APPLICATION_ID, map, METADATA, design)
 
         result.shouldBeRightAndEqualTo(card)
-        verify(service).issueCard(applicationId = CARD_APPLICATION_ID, additionalFields = map, metadata = METADATA)
+        verify(service).issueCard(
+            applicationId = CARD_APPLICATION_ID,
+            additionalFields = map,
+            metadata = METADATA,
+            design = design
+        )
     }
 }

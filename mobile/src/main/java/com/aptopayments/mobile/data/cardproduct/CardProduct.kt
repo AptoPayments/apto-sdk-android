@@ -14,5 +14,6 @@ data class CardProduct(
     val waitlistBackgroundImage: URL? = null,
     val waitlistBackgroundColor: Int? = null,
     val waitlistDarkBackgroundColor: Int? = null,
-    val waitlistAsset: URL? = null
+    val waitlistAsset: URL? = null,
+    val exchangeRates: Content? = null
 ) : Serializable

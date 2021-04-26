@@ -1,10 +1,9 @@
 package com.aptopayments.mobile.data.card
 
-import com.aptopayments.mobile.UnitTest
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class SelectBalanceStoreResultTest : UnitTest() {
+class SelectBalanceStoreResultTest {
     @Test
     fun `error message return expected error message`() {
         // Given

@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.repository.card
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.card.ActivatePhysicalCardResult
 import com.aptopayments.mobile.data.card.ActivatePhysicalCardResultType
@@ -26,7 +25,7 @@ import org.junit.Test
 
 private const val CODE = "123456"
 
-class CardRepositoryTest : UnitTest() {
+class CardRepositoryTest {
 
     private val cardId = TestDataProvider.provideCardId()
     private val card = TestDataProvider.provideCard(cardId)
@@ -39,8 +38,7 @@ class CardRepositoryTest : UnitTest() {
     private val userSessionRepository: UserSessionRepository = mock()
 
     @Before
-    override fun setUp() {
-        super.setUp()
+    fun setUp() {
         sut = CardRepositoryImpl(
             service,
             cardLocalRepo,

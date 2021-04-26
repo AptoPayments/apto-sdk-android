@@ -68,7 +68,8 @@ class ServerErrorFactoryTest {
         ServerErrorCodes.BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED to "select_balance_store.login.error_email_sends_disabled.message",
         ServerErrorCodes.BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT to "select_balance_store.login.error_insufficient_application_limit.message",
         ServerErrorCodes.INSUFFICIENT_FUNDS to "error.transport.undefined",
-        ServerErrorCodes.REVOKED_TOKEN to "issue_card.issue_card.error.token_revoked"
+        ServerErrorCodes.REVOKED_TOKEN to "issue_card.issue_card.error.token_revoked",
+        ServerErrorCodes.INVALID_PAYMENT_SOURCE_DUPLICATE to "load_funds_add_card_error_duplicate"
     )
 
     @Test

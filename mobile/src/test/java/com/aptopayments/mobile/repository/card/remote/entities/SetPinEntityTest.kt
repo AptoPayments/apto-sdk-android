@@ -1,13 +1,12 @@
 package com.aptopayments.mobile.repository.card.remote.entities
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.common.ModelDataProvider
 import com.aptopayments.mobile.data.card.FeatureStatus
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-class SetPinEntityTest : UnitTest() {
+class SetPinEntityTest {
 
     private lateinit var sut: SetPinEntity
 

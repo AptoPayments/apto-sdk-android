@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.interactor
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.functional.Either.Right
 import com.aptopayments.mobile.network.ConnectivityCheckerAlwaysConnected
 import com.aptopayments.mobile.network.NetworkHandler
@@ -11,7 +10,7 @@ import kotlin.test.assertEquals
 private const val TYPE_TEST = "Test"
 private const val TYPE_PARAM = "ParamTest"
 
-class UseCaseTest : UnitTest() {
+class UseCaseTest {
 
     private val useCase = MyUseCase()
 

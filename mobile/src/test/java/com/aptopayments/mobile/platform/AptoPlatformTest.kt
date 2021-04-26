@@ -16,16 +16,16 @@ import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCa
 import com.aptopayments.mobile.repository.user.usecases.CreateUserUseCase
 import com.nhaarman.mockitokotlin2.*
 import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
-import org.koin.test.KoinTest
 
 private const val CARD_ID = "cardId"
 
 @Suppress("UNCHECKED_CAST")
-class AptoPlatformTest : UnitTest(), KoinTest {
+class AptoPlatformTest : UnitTest() {
     private val sut = AptoPlatform
 
     // Collaborators
@@ -37,8 +37,8 @@ class AptoPlatformTest : UnitTest(), KoinTest {
     private val getOrderPhysicalCardConfigurationUseCase: GetOrderPhysicalCardConfigurationUseCase = mock()
     private val orderPhysicalCardUseCase: OrderPhysicalCardUseCase = mock()
 
-    override fun setUp() {
-        super.setUp()
+    @Before
+    fun setUp() {
         AptoPlatform.koin = startKoin {
             modules(
                 module {

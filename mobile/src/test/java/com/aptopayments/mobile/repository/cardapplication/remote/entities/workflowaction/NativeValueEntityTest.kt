@@ -1,12 +1,11 @@
 package com.aptopayments.mobile.repository.cardapplication.remote.entities.workflowaction
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.content.Content
 import org.junit.Test
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
-class NativeValueEntityTest : UnitTest() {
+class NativeValueEntityTest {
     // Collaborators
     private val url = "https://aptopayments.com"
     private val colorString = "FFFFFF"

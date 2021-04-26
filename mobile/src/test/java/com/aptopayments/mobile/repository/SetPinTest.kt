@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.repository
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.functional.Either.Right
 import com.aptopayments.mobile.network.ConnectivityCheckerAlwaysConnected
@@ -9,24 +8,21 @@ import com.aptopayments.mobile.repository.card.CardRepository
 import com.aptopayments.mobile.repository.card.usecases.SetPinParams
 import com.aptopayments.mobile.repository.card.usecases.SetPinUseCase
 import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 
-class SetPinTest : UnitTest() {
+class SetPinTest {
 
     private lateinit var sut: SetPinUseCase
-    @Mock
-    private lateinit var mockCard: Card
-    @Mock
-    private lateinit var repository: CardRepository
+    private val mockCard: Card = mock()
+    private val repository: CardRepository = mock()
 
     @Before
-    override fun setUp() {
-        super.setUp()
+    fun setUp() {
         sut = SetPinUseCase(repository, NetworkHandler(ConnectivityCheckerAlwaysConnected()))
     }
 

@@ -71,7 +71,8 @@ internal class TestDataProvider {
             faq = null,
             waitlistBackgroundImage = null,
             waitlistBackgroundColor = null,
-            waitlistAsset = null
+            waitlistAsset = null,
+            exchangeRates = null
         )
 
         fun provideAllowedBalanceType() = AllowedBalanceType(
@@ -329,6 +330,20 @@ internal class TestDataProvider {
         ) = OrderPhysicalCardConfig(
             issuanceFee = issuanceFee,
             userAddress = userAddress
+        )
+
+        fun provideIssueCardDesign(
+            designKey: String = "key",
+            qrCode: String = "qr",
+            extraEmbossingLine: String = "extra",
+            imageUrl: String = "image",
+            additionalImageUrl: String = "additional"
+        ) = IssueCardDesign(
+            designKey = designKey,
+            qrCode = qrCode,
+            extraEmbossingLine = extraEmbossingLine,
+            imageUrl = imageUrl,
+            additionalImageUrl = additionalImageUrl
         )
     }
 }

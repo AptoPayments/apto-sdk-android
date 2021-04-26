@@ -2,6 +2,7 @@ package com.aptopayments.mobile.repository.cardapplication
 
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.data.card.CardApplication
+import com.aptopayments.mobile.data.card.IssueCardDesign
 import com.aptopayments.mobile.data.card.SelectBalanceStoreResult
 import com.aptopayments.mobile.exception.Failure
 import com.aptopayments.mobile.functional.Either
@@ -17,7 +18,8 @@ internal interface CardApplicationRepository : BaseNoNetworkRepository {
     fun issueCard(
         applicationId: String,
         additionalFields: Map<String, Any>? = null,
-        metadata: String? = null
+        metadata: String? = null,
+        design: IssueCardDesign? = null
     ): Either<Failure, Card>
 }
 
@@ -50,6 +52,7 @@ internal class CardApplicationRepositoryImpl(
     override fun issueCard(
         applicationId: String,
         additionalFields: Map<String, Any>?,
-        metadata: String?
-    ) = cardApplicationService.issueCard(applicationId, additionalFields, metadata)
+        metadata: String?,
+        design: IssueCardDesign?
+    ) = cardApplicationService.issueCard(applicationId, additionalFields, metadata, design)
 }

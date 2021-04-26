@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.data.card
 
-import com.aptopayments.mobile.UnitTest
 import org.junit.Before
 import org.junit.Test
 import java.util.Locale
@@ -9,7 +8,7 @@ import kotlin.test.assertEquals
 
 private const val VALUE_0 = "$0.00"
 
-class MoneyTest : UnitTest() {
+class MoneyTest {
 
     private lateinit var locale: Locale
 

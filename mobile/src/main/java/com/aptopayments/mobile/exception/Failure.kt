@@ -35,9 +35,9 @@ sealed class Failure(open val errorKey: String = "") {
             val rawCode = if (errorKey == UNDEFINED_MESSAGE) "" else (code?.toString() ?: "")
 
             val json = JSONObject()
-                .put("code", code)
-                .put("message", errorKey.localized())
-                .put("raw_code", rawCode)
+            json.put("code", code)
+            json.put("message", errorKey.localized())
+            json.put("raw_code", rawCode)
 
             addErrorTracking255CharactersRestriction(json, message)
             return json

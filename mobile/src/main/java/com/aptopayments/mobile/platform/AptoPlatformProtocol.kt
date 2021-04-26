@@ -297,6 +297,7 @@ interface AptoPlatformProtocol {
         applicationId: String,
         additionalFields: Map<String, Any>? = null,
         metadata: String? = null,
+        design: IssueCardDesign? = null,
         callback: (Either<Failure, Card>) -> Unit
     )
 

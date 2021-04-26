@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.repository.user
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.repository.user.remote.UserService
 import com.nhaarman.mockitokotlin2.mock
@@ -10,7 +9,7 @@ import org.junit.Test
 private const val CUSTODIAN_UID = "custodian"
 private const val METADATA = "metadata"
 
-class UserRepositoryTest : UnitTest() {
+class UserRepositoryTest {
 
     private val service: UserService = mock()
 

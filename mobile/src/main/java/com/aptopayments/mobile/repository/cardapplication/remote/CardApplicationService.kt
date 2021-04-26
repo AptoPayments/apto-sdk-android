@@ -1,5 +1,9 @@
 package com.aptopayments.mobile.repository.cardapplication.remote
 
+import com.aptopayments.mobile.data.card.Card
+import com.aptopayments.mobile.data.card.IssueCardDesign
+import com.aptopayments.mobile.exception.Failure
+import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.network.ApiCatalog
 import com.aptopayments.mobile.platform.BaseNetworkService
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
@@ -56,10 +60,18 @@ internal class CardApplicationService(apiCatalog: ApiCatalog) : BaseNetworkServi
             default = Unit
         )
 
-    fun issueCard(applicationId: String, additionalFields: Map<String, Any>?, metadata: String?) =
-        request(
-            call = cardApplicationApi.issueCard(request = IssueCardRequest(applicationId, additionalFields, metadata)),
+    fun issueCard(
+        applicationId: String,
+        additionalFields: Map<String, Any>?,
+        metadata: String?,
+        design: IssueCardDesign?
+    ): Either<Failure, Card> {
+        val design = design?.let { IssueCardDesignRequest.from(design) }
+        val request = IssueCardRequest(applicationId, additionalFields, metadata, design)
+        return request(
+            call = cardApplicationApi.issueCard(request = request),
             transform = { it.toCard() },
             default = CardEntity()
         )
+    }
 }

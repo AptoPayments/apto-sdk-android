@@ -34,6 +34,11 @@
     ],
     "labels":{
       "external_oauth.login.call_to_action.title":"Connect to Company"
+    },
+    "exchange_rates": {
+      "type": "content",
+      "format": "external_url",
+      "value": "https://yoururl.com/faq.html"
     }
   }
 }

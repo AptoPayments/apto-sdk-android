@@ -40,8 +40,10 @@ internal data class CardProductEntity(
     val waitlistAsset: String? = null,
 
     @SerializedName("labels")
-    val labels: Map<String, String>? = null
+    val labels: Map<String, String>? = null,
 
+    @SerializedName("exchange_rates")
+    val exchangeRates: ContentEntity? = null,
 ) {
     fun toCardProduct(): CardProduct {
         val colorParser = ColorParserImpl()
@@ -61,7 +63,8 @@ internal data class CardProductEntity(
             waitlistDarkBackgroundColor = waitlistDarkBackgroundColor?.let {
                 colorParser.fromHexString(waitlistDarkBackgroundColor, "000000")
             },
-            waitlistAsset = waitlistAsset?.let { URL(it) }
+            waitlistAsset = waitlistAsset?.let { URL(it) },
+            exchangeRates = exchangeRates?.toContent(),
         )
     }
 }

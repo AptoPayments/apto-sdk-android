@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.repository.voip.usecases
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.voip.Action
 import com.aptopayments.mobile.data.voip.VoipCall
 import com.aptopayments.mobile.functional.Either
@@ -8,25 +7,21 @@ import com.aptopayments.mobile.network.ConnectivityCheckerAlwaysConnected
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.voip.VoipRepository
 import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 
-class SetupVoipCallUseCaseTest : UnitTest() {
+class SetupVoipCallUseCaseTest {
 
     private lateinit var sut: SetupVoipCallUseCase
 
-    @Mock
-    private lateinit var mockCall: VoipCall
-
-    @Mock
-    private lateinit var repository: VoipRepository
+    private val mockCall: VoipCall = mock()
+    private val repository: VoipRepository = mock()
 
     @Before
-    override fun setUp() {
-        super.setUp()
+    fun setUp() {
         sut = SetupVoipCallUseCase(repository, NetworkHandler(ConnectivityCheckerAlwaysConnected()))
     }
 

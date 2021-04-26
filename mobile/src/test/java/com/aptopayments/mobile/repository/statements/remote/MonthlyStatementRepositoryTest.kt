@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.repository.statements.remote
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.common.ModelDataProvider
 import com.aptopayments.mobile.exception.Failure
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
@@ -15,7 +14,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Test
 import kotlin.test.assertTrue
 
-class MonthlyStatementRepositoryTest : UnitTest() {
+class MonthlyStatementRepositoryTest {
     private val service = mock<MonthlyStatementService>()
 
     private val sut: MonthlyStatementRepository = MonthlyStatementRepositoryImpl(service)

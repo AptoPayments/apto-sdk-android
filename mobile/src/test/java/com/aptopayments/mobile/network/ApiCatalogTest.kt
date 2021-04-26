@@ -1,16 +1,14 @@
 package com.aptopayments.mobile.network
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.TestDataProvider
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 
-class ApiCatalogTest : UnitTest() {
+class ApiCatalogTest {
 
-    @Mock
-    private lateinit var retrofitFactory: RetrofitFactory
+    private val retrofitFactory: RetrofitFactory = mock()
 
     private lateinit var sut: ApiCatalog
 

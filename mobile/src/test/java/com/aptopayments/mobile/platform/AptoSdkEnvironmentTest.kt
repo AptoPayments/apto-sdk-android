@@ -1,11 +1,9 @@
 package com.aptopayments.mobile.platform
 
-import com.aptopayments.mobile.UnitTest
-
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class AptoSdkEnvironmentTest : UnitTest() {
+class AptoSdkEnvironmentTest {
 
     @Test
     fun `when parsing prd then PRD enum is returned`() {

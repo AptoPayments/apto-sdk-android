@@ -1,11 +1,10 @@
 package com.aptopayments.mobile.data.oauth
 
-import com.aptopayments.mobile.UnitTest
 import com.aptopayments.mobile.data.oauth.OAuthAttemptStatus.*
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class OAuthAttemptTest : UnitTest() {
+class OAuthAttemptTest {
     @Test
     fun `pending attempt error message is empty`() {
         // Given

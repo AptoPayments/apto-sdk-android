@@ -1,1 +1,14 @@
-{"application_id":"entity_12345","additional_fields":{"property":"value"},"metadata":"metadata"}
+{
+  "application_id": "entity_12345",
+  "additional_fields": {
+    "property": "value"
+  },
+  "metadata": "metadata",
+  "design": {
+    "design_key": "key",
+    "qr_code": "qr",
+    "extra_embossing_line": "extra",
+    "image_url": "image",
+    "additional_image_url": "additional"
+  }
+}

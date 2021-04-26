@@ -1,23 +1,21 @@
 package com.aptopayments.mobile.network
 
-import com.aptopayments.mobile.UnitTest
 import com.nhaarman.mockitokotlin2.*
+import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 private const val INSTANCE = "test"
 
-class NetworkHandlerTest : UnitTest() {
+class NetworkHandlerTest {
 
-    @Mock
-    private lateinit var connectivityChecker: ConnectivityChecker
+    private val connectivityChecker: ConnectivityChecker = mock()
 
     private lateinit var sut: NetworkHandler
 
-    override fun setUp() {
-        super.setUp()
+    @Before
+    fun setUp() {
         sut = NetworkHandler(connectivityChecker)
     }
 

@@ -26,7 +26,6 @@ import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
-import org.mockito.Mock
 import kotlin.test.assertEquals
 
 class OAuthConnectRepositoryTest : UnitTest() {
@@ -34,18 +33,12 @@ class OAuthConnectRepositoryTest : UnitTest() {
     private lateinit var requestExecutor: RequestExecutor
     private lateinit var sut: OAuthRepositoryImpl
 
-    @Mock
-    private lateinit var networkHandler: NetworkHandler
-
-    @Mock
-    private lateinit var service: OAuthService
-
-    @Mock
-    private lateinit var mockUserSessionRepository: UserSessionRepository
+    private val networkHandler: NetworkHandler = mock()
+    private val service: OAuthService = mock()
+    private val mockUserSessionRepository: UserSessionRepository = mock()
 
     @Before
-    override fun setUp() {
-        super.setUp()
+    fun setUp() {
         requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock(), ServerErrorFactory()))
         startKoin {
             modules(

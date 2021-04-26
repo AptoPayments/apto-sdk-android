@@ -8,6 +8,7 @@ import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.UserSessionRepositoryDouble
 import com.aptopayments.mobile.utils.FileReader
 import com.google.gson.JsonParser
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -17,7 +18,6 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
-import org.mockito.Mock
 import retrofit2.Response
 import java.io.IOException
 import java.net.HttpURLConnection.HTTP_OK
@@ -28,12 +28,8 @@ internal abstract class ServiceTest : UnitTest() {
 
     open var environments = listOf(Environment.NORMAL)
 
-    @Mock
-    lateinit var apiKeyProvider: ApiKeyProvider
-
-    @Mock
-    lateinit var networkHandler: NetworkHandler
-
+    private val apiKeyProvider: ApiKeyProvider = mock()
+    protected val networkHandler: NetworkHandler = mock()
     private var server: MockWebServer = MockWebServer()
     protected val gson = GsonProvider.provide()
     private val jsonParser = JsonParser()
