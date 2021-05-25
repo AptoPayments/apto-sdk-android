@@ -1,6 +1,5 @@
 package com.aptopayments.mobile.data.statements
 
-import org.threeten.bp.LocalDate
 import org.threeten.bp.ZonedDateTime
 
 /**
@@ -20,6 +19,4 @@ data class MonthlyStatement(
     val urlExpiration: ZonedDateTime?
 ) {
     fun canDownload() = downloadUrl != null && ZonedDateTime.now().isBefore(urlExpiration)
-
-    fun getLocalDate(): LocalDate = LocalDate.of(year, month, 1)
 }

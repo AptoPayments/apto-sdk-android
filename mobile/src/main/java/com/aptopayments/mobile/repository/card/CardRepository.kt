@@ -25,12 +25,10 @@ internal interface CardRepository : BaseNoNetworkRepository {
     fun issueCard(
         cardProductId: String,
         credential: OAuthCredential?,
-        additionalFields: Map<String, Any>?,
         initialFundingSourceId: String?
     ): Either<Failure, Card>
 
     fun getCard(params: GetCardParams): Either<Failure, Card>
-    fun getCardDetails(cardId: String): Either<Failure, CardDetails>
     fun getCards(pagination: ListPagination? = null): Either<Failure, PaginatedList<Card>>
     fun unlockCard(cardId: String): Either<Failure, Card>
     fun lockCard(cardId: String): Either<Failure, Card>
@@ -74,7 +72,6 @@ internal class CardRepositoryImpl(
     override fun issueCard(
         cardProductId: String,
         credential: OAuthCredential?,
-        additionalFields: Map<String, Any>?,
         initialFundingSourceId: String?
     ): Either<Failure, Card> {
         val credentialRequest: OAuthCredentialRequest? = credential?.let {
@@ -86,7 +83,6 @@ internal class CardRepositoryImpl(
         val issueCardRequest = IssueCardRequest(
             cardProductId = cardProductId,
             oAuthCredentialRequest = credentialRequest,
-            additionalFields = additionalFields,
             initialFundingSourceId = initialFundingSourceId
         )
         return service.issueCard(issueCardRequest)
@@ -98,10 +94,6 @@ internal class CardRepositoryImpl(
         } else {
             cardLocalRepo.getCard(params.cardId)?.right() ?: getCardFromRemoteAPI(params.cardId)
         }
-    }
-
-    override fun getCardDetails(cardId: String): Either<Failure, CardDetails> {
-        return service.getCardDetails(cardId)
     }
 
     override fun getCards(pagination: ListPagination?): Either<Failure, PaginatedList<Card>> {

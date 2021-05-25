@@ -12,11 +12,10 @@ internal class IssueCardUseCase(
 ) : UseCase<Card, IssueCardUseCase.Params>(networkHandler) {
 
     override fun run(params: Params) =
-        applicationRepository.issueCard(params.applicationId, params.additionalFields, params.metadata, params.design)
+        applicationRepository.issueCard(params.applicationId, params.metadata, params.design)
 
     data class Params(
         val applicationId: String,
-        val additionalFields: Map<String, Any>?,
         val metadata: String?,
         val design: IssueCardDesign?
     )

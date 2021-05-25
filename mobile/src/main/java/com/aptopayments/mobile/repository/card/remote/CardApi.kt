@@ -1,9 +1,7 @@
 package com.aptopayments.mobile.repository.card.remote
 
 import com.aptopayments.mobile.network.PaginatedListEntity
-import com.aptopayments.mobile.repository.card.remote.entities.*
 import com.aptopayments.mobile.repository.card.remote.entities.ActivatePhysicalCardEntity
-import com.aptopayments.mobile.repository.card.remote.entities.CardDetailsEntity
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
 import com.aptopayments.mobile.repository.card.remote.entities.OrderPhysicalCardConfigEntity
 import com.aptopayments.mobile.repository.card.remote.entities.ProvisioningEntity
@@ -38,12 +36,6 @@ internal interface CardApi {
 
     @GET(FINANCIAL_ACCOUNT_PATH)
     fun getCard(@Path(ACCOUNT_ID) accountID: String, @Query(SHOW_DETAILS) showDetails: Boolean): Call<CardEntity>
-
-    @GET(FINANCIAL_ACCOUNT_PATH)
-    fun getCardDetails(
-        @Path(ACCOUNT_ID) accountID: String,
-        @Query(SHOW_DETAILS) showDetails: Boolean
-    ): Call<CardDetailsEntity>
 
     @GET(FINANCIAL_ACCOUNTS_PATH)
     fun getCards(

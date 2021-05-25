@@ -17,7 +17,6 @@ internal interface CardApplicationRepository : BaseNoNetworkRepository {
     fun acceptDisclaimer(workflowObjectId: String, actionId: String): Either<Failure, Unit>
     fun issueCard(
         applicationId: String,
-        additionalFields: Map<String, Any>? = null,
         metadata: String? = null,
         design: IssueCardDesign? = null
     ): Either<Failure, Card>
@@ -51,8 +50,7 @@ internal class CardApplicationRepositoryImpl(
 
     override fun issueCard(
         applicationId: String,
-        additionalFields: Map<String, Any>?,
         metadata: String?,
         design: IssueCardDesign?
-    ) = cardApplicationService.issueCard(applicationId, additionalFields, metadata, design)
+    ) = cardApplicationService.issueCard(applicationId, metadata, design)
 }

@@ -26,11 +26,11 @@ data class TransactionAdjustment(
 
         fun toLocalizedDescription() =
             when (this) {
-                CAPTURE -> "transaction_details.adjustment.capture.text"
-                REFUND -> "transaction_details.adjustment.refund.text"
-                HOLD -> "transaction_details.adjustment.hold.text"
-                RELEASE -> "transaction_details.adjustment.release.text"
-                OTHER -> "transaction_details.adjustment.other.text"
+                CAPTURE -> "transaction_details_adjustment_capture_text"
+                REFUND -> "transaction_details_adjustment_refund_text"
+                HOLD -> "transaction_details_adjustment_hold_text"
+                RELEASE -> "transaction_details_adjustment_release_text"
+                OTHER -> "transaction_details_adjustment_other_text"
             }.localized()
     }
 }

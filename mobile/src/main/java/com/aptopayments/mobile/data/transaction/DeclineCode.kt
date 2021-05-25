@@ -20,8 +20,8 @@ enum class DeclineCode(val code: String) {
     Other("");
 
     fun toLocalizedString(): String =
-        if (this == Other) "transaction_details.details.decline_default".localized()
-        else ("transaction_details.details." + this.code).localized()
+        if (this == Other) "transaction_details_details_decline_default".localized()
+        else ("transaction_details_details_" + this.code).localized()
 
     companion object {
         fun from(code: String?): DeclineCode? = code?.let {

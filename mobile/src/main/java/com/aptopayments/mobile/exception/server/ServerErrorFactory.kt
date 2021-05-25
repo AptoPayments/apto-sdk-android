@@ -130,20 +130,20 @@ class ServerErrorFactory {
         INVALID_PAYMENT_SOURCE_DUPLICATE to "load_funds_add_card_error_duplicate",
     )
 
-    fun create(code: Int? = UNKNOWN_ERROR, message: String? = null): Failure.ServerError {
+    fun create(code: Int? = UNKNOWN_ERROR, apiMessage: String? = null): Failure.ServerError {
 
         return when {
-            genericMap.containsKey(code) -> createGenericServerError(code, message, genericMap[code]!!)
-            code == BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED -> ErrorBalanceValidationsEmailSendsDisabled(message)
+            genericMap.containsKey(code) -> createGenericServerError(code, apiMessage, genericMap[code]!!)
+            code == BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED -> ErrorBalanceValidationsEmailSendsDisabled(apiMessage)
             code == BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT ->
-                ErrorBalanceValidationsInsufficientApplicationLimit(message)
-            code == REVOKED_TOKEN -> ErrorOauthTokenRevoked(message)
-            code == INSUFFICIENT_FUNDS -> ErrorInsufficientFunds(message)
-            else -> createGenericServerError(code, message, UNDEFINED_MESSAGE)
+                ErrorBalanceValidationsInsufficientApplicationLimit(apiMessage)
+            code == REVOKED_TOKEN -> ErrorOauthTokenRevoked(apiMessage)
+            code == INSUFFICIENT_FUNDS -> ErrorInsufficientFunds(apiMessage)
+            else -> createGenericServerError(code, apiMessage, UNDEFINED_MESSAGE)
         }
     }
 
-    private fun createGenericServerError(code: Int? = UNKNOWN_ERROR, message: String? = null, errorKey: String): Failure.ServerError {
-        return Failure.ServerError(code, message, errorKey)
+    private fun createGenericServerError(code: Int? = UNKNOWN_ERROR, apiMessage: String? = null, errorKey: String): Failure.ServerError {
+        return Failure.ServerError(code, apiMessage, errorKey)
     }
 }

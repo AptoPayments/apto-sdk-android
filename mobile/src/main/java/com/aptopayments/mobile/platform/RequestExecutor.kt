@@ -52,7 +52,7 @@ internal class RequestExecutor(
         printLogIfIsOnDebugMode(exception)
         return when (exception) {
             is ConnectException, is SocketTimeoutException -> Either.Left(Failure.NetworkConnection)
-            else -> Either.Left(Failure.ServerError(null, message = getLog(exception)))
+            else -> Either.Left(Failure.ServerError(null, apiMessage = getLog(exception)))
         }
     }
 

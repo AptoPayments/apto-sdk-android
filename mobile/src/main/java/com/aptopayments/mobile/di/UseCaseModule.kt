@@ -68,7 +68,6 @@ internal val useCasesModule = module {
     }
     factory { GetCardsUseCase(repository = get(), networkHandler = get()) }
     factory { GetCardUseCase(repository = get(), networkHandler = get()) }
-    factory { GetCardDetailsUseCase(repository = get(), networkHandler = get()) }
     factory { ActivatePhysicalCardUseCase(repository = get(), networkHandler = get()) }
     factory { UnlockCardUseCase(repository = get(), networkHandler = get()) }
     factory { LockCardUseCase(repository = get(), networkHandler = get()) }

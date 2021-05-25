@@ -37,9 +37,6 @@ internal data class ProjectConfigurationEntity(
     @SerializedName("tracker_active")
     val isTrackerActive: Boolean? = false,
 
-    @SerializedName("chatbot_active")
-    val isChatbotActive: Boolean? = false
-
 ) {
     fun toProjectConfiguration() = ProjectConfiguration(
         name = name,
@@ -50,7 +47,6 @@ internal data class ProjectConfigurationEntity(
         supportEmailAddress = supportEmailAddress,
         trackerAccessToken = trackerAccessToken,
         isTrackerActive = isTrackerActive,
-        isChatbotActive = isChatbotActive ?: false,
         primaryAuthCredential = DataPoint.Type.fromString(primaryOAuthCredential),
         secondaryAuthCredential = DataPoint.Type.fromString(secondaryOAuthCredential)
     )

@@ -12,6 +12,8 @@ import org.junit.Test
 import retrofit2.Response
 import kotlin.test.assertEquals
 
+private const val ERROR_MESSAGE = "I am an error"
+
 class ErrorHandlerTest {
 
     private val userSessionRepository = mock<UserSessionRepository>()
@@ -77,5 +79,19 @@ class ErrorHandlerTest {
 
         assert(result is Failure.ServerError)
         assertEquals(300, (result as Failure.ServerError).code)
+    }
+
+    @Test
+    fun `when 400 with error body then Server message matches`() {
+        whenever(response.code()).thenReturn(400)
+        val errorBody = mock<ResponseBody>() {
+            on { string() } doReturn "{'message' : '$ERROR_MESSAGE'}"
+        }
+        whenever(response.errorBody()).thenReturn(errorBody)
+
+        val result = sut.handle(response)
+
+        assert(result is Failure.ServerError)
+        assertEquals(ERROR_MESSAGE, (result as Failure.ServerError).apiMessage)
     }
 }

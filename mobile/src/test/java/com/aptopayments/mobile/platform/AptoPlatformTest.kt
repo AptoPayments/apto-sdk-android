@@ -68,35 +68,12 @@ class AptoPlatformTest : UnitTest() {
     }
 
     @Test
-    fun `additional params are sent to issue card`() {
-        // Given
-        val additionalFields = mapOf<String, Any>("field" to "value")
-        val expectedParams = IssueCardWithProductIdUseCase.Params(
-            cardProductId = "card_product_id",
-            credential = null,
-            additionalFields = additionalFields,
-            initialFundingSourceId = null
-        )
-
-        // When
-        AptoPlatform.issueCard(
-            cardProductId = "card_product_id",
-            credential = null,
-            additionalFields = additionalFields
-        ) {}
-
-        // Then
-        verify(issueCardCardProductWithProductIdUseCase).invoke(eq(expectedParams), TestDataProvider.anyObject())
-    }
-
-    @Test
     fun `initial funding source id is sent to issue card`() {
         // Given
         val initialFundingSourceId = "initial_funding_source_id"
         val expectedParams = IssueCardWithProductIdUseCase.Params(
             cardProductId = "card_product_id",
             credential = null,
-            additionalFields = null,
             initialFundingSourceId = initialFundingSourceId
         )
 
@@ -104,7 +81,6 @@ class AptoPlatformTest : UnitTest() {
         AptoPlatform.issueCard(
             cardProductId = "card_product_id",
             credential = null,
-            additionalFields = null,
             initialFundingSourceId = initialFundingSourceId
         ) {}
 

@@ -1,6 +1,7 @@
 package com.aptopayments.mobile.repository.verification.remote.entities
 
 import com.aptopayments.mobile.data.user.Verification
+import com.aptopayments.mobile.data.user.VerificationStatus
 import com.google.gson.annotations.SerializedName
 import java.util.Locale
 
@@ -21,7 +22,7 @@ internal data class VerificationEntity(
         return Verification(
             verificationId = verificationId,
             verificationType = verificationType,
-            status = parseStatus(status),
+            status = VerificationStatus.from(status),
             secondaryCredential = secondaryCredentialEntity?.toVerification()
         )
     }

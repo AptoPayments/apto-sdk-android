@@ -50,7 +50,8 @@ internal class ErrorHandler(
     private fun genericServerError() = Failure.ServerError(null)
 
     private fun getServerError(jsonElement: JsonElement): Failure.ServerError {
-        return serverErrorFactory.create(parseServerErrorEntity(jsonElement).code)
+        val entity = parseServerErrorEntity(jsonElement)
+        return serverErrorFactory.create(entity.code, entity.message)
     }
 
     private fun parseServerErrorEntity(jsonElement: JsonElement): ServerErrorEntity {

@@ -89,7 +89,7 @@ internal class CardApplicationServiceTest : NetworkServiceTest() {
     fun `when issuecard then then request is made to the correct url`() {
         enqueueFile("issueCardResponse200.json")
 
-        sut.issueCard(CARD_APPLICATION_ID, null, METADATA, design)
+        sut.issueCard(CARD_APPLICATION_ID, METADATA, design)
 
         assertRequestSentTo("v1/user/accounts/issuecard", "POST")
     }
@@ -100,7 +100,7 @@ internal class CardApplicationServiceTest : NetworkServiceTest() {
         val cardEntity = parseEntity(fileContent, CardEntity::class.java)
         enqueueContent(fileContent)
 
-        val response = sut.issueCard(CARD_APPLICATION_ID, null, METADATA, design)
+        val response = sut.issueCard(CARD_APPLICATION_ID, METADATA, design)
 
         response.shouldBeRightAndEqualTo(cardEntity.toCard())
     }
@@ -109,7 +109,7 @@ internal class CardApplicationServiceTest : NetworkServiceTest() {
     fun `when issuecard then request is made correctly`() {
         enqueueFile("userAccountsApplyResponse200.json")
 
-        sut.issueCard(CARD_APPLICATION_ID, mapOf("property" to "value"), METADATA, design)
+        sut.issueCard(CARD_APPLICATION_ID, METADATA, design)
 
         assertRequestBodyFile("issueCardRequest.json")
     }

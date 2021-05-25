@@ -301,23 +301,20 @@ object AptoPlatform : AptoPlatformProtocol {
 
     override fun issueCard(
         applicationId: String,
-        additionalFields: Map<String, Any>?,
         metadata: String?,
         design: IssueCardDesign?,
         callback: (Either<Failure, Card>) -> Unit
-    ) = koin.get<IssueCardUseCase>().invoke(Params(applicationId, additionalFields, metadata, design)) { callback(it) }
+    ) = koin.get<IssueCardUseCase>().invoke(Params(applicationId, metadata, design)) { callback(it) }
 
     override fun issueCard(
         cardProductId: String,
         credential: OAuthCredential?,
-        additionalFields: Map<String, Any>?,
         initialFundingSourceId: String?,
         callback: (Either<Failure, Card>) -> Unit
     ) = koin.get<IssueCardWithProductIdUseCase>().invoke(
         IssueCardWithProductIdUseCase.Params(
             cardProductId = cardProductId,
             credential = credential,
-            additionalFields = additionalFields,
             initialFundingSourceId = initialFundingSourceId
         )
     ) { callback(it) }
@@ -328,18 +325,9 @@ object AptoPlatform : AptoPlatformProtocol {
     override fun fetchCards(pagination: ListPagination?, callback: (Either<Failure, PaginatedList<Card>>) -> Unit) =
         koin.get<GetCardsUseCase>().invoke(pagination) { callback(it) }
 
-    override fun fetchFinancialAccount(
-        accountId: String,
-        forceRefresh: Boolean,
-        callback: (Either<Failure, Card>) -> Unit
-    ) = fetchCard(accountId, forceRefresh, callback)
-
     override fun fetchCard(cardId: String, forceRefresh: Boolean, callback: (Either<Failure, Card>) -> Unit) {
         koin.get<GetCardUseCase>().invoke(GetCardParams(cardId, forceRefresh)) { callback(it) }
     }
-
-    override fun fetchCardDetails(cardId: String, callback: (Either<Failure, CardDetails>) -> Unit) =
-        koin.get<GetCardDetailsUseCase>().invoke(cardId) { callback(it) }
 
     override fun activatePhysicalCard(
         cardId: String,
@@ -370,15 +358,6 @@ object AptoPlatform : AptoPlatformProtocol {
             forceApiCall = forceRefresh,
             clearCachedValues = clearCachedValues
         )
-    ) { callback(it) }
-
-    override fun cardMonthlySpending(
-        cardId: String,
-        month: String,
-        year: String,
-        callback: (Either<Failure, MonthlySpending>) -> Unit
-    ) = koin.get<GetMonthlySpendingUseCase>().invoke(
-        GetMonthlySpendingUseCase.Params(cardId = cardId, month = month, year = year)
     ) { callback(it) }
 
     override fun cardMonthlySpending(

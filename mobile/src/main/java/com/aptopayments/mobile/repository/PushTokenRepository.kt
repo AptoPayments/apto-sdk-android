@@ -16,9 +16,11 @@ internal class PushTokenRepository(
     context: Context
 ) {
 
-    private val sharedPref: SharedPreferences = context.getSharedPreferences(
-        PREF_PUSH_TOKEN_FILENAME, Context.MODE_PRIVATE
-    )
+    private val sharedPref: SharedPreferences by lazy {
+        context.getSharedPreferences(
+            PREF_PUSH_TOKEN_FILENAME, Context.MODE_PRIVATE
+        )
+    }
 
     var pushToken: String
         get() = sharedPref.getString(PREF_PUSH_TOKEN, "")!!

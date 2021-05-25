@@ -25,7 +25,6 @@ class IssueCardWithProductIdUseCaseTest {
     private val params = IssueCardWithProductIdUseCase.Params(
         cardProductId = "card_product_id",
         credential = OAuthCredential(oauthToken = "token", refreshToken = "refresh_token"),
-        additionalFields = null,
         initialFundingSourceId = null
     )
 
@@ -41,8 +40,9 @@ class IssueCardWithProductIdUseCaseTest {
 
         // Then
         verify(cardRepository).issueCard(
-            params.cardProductId, params.credential,
-            params.additionalFields, params.initialFundingSourceId
+            params.cardProductId,
+            params.credential,
+            params.initialFundingSourceId
         )
     }
 
@@ -51,8 +51,9 @@ class IssueCardWithProductIdUseCaseTest {
         // Given
         given {
             cardRepository.issueCard(
-                params.cardProductId, params.credential,
-                params.additionalFields, params.initialFundingSourceId
+                params.cardProductId,
+                params.credential,
+                params.initialFundingSourceId
             )
         }.willReturn { Either.Right(TestDataProvider.provideCard()) }
 
@@ -68,8 +69,9 @@ class IssueCardWithProductIdUseCaseTest {
         // Given
         given {
             cardRepository.issueCard(
-                params.cardProductId, params.credential,
-                params.additionalFields, params.initialFundingSourceId
+                params.cardProductId,
+                params.credential,
+                params.initialFundingSourceId
             )
         }.willReturn { Either.Left(ServerError(code = null)) }
 

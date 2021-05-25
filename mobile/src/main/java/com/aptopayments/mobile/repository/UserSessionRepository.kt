@@ -22,9 +22,11 @@ interface UserSessionRepository {
 
 internal class UserSessionRepositoryImpl(context: Context, private val localDB: LocalDB) : UserSessionRepository {
 
-    private val sharedPref: SharedPreferences = context.getSharedPreferences(
-        PREF_USER_TOKEN_FILENAME, Context.MODE_PRIVATE
-    )
+    private val sharedPref: SharedPreferences by lazy {
+        context.getSharedPreferences(
+            PREF_USER_TOKEN_FILENAME, Context.MODE_PRIVATE
+        )
+    }
 
     private var sessionInvalidEventListeners: MutableMap<Any, (String) -> Unit> = mutableMapOf()
     private var newSessionEventListeners: MutableMap<Any, () -> Unit> = mutableMapOf()

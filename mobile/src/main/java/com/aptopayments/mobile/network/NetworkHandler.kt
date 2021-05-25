@@ -1,5 +1,6 @@
 package com.aptopayments.mobile.network
 
+import androidx.annotation.RestrictTo
 import java.net.InetAddress
 import java.net.InetSocketAddress
 import java.net.Socket
@@ -7,6 +8,7 @@ import java.net.Socket
 /**
  * Injectable class which returns information about the network connection state.
  */
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 class NetworkHandler(private val connectivityChecker: ConnectivityChecker) {
 
     private val networkReachabilityListenerPool = BooleanListenersPool()

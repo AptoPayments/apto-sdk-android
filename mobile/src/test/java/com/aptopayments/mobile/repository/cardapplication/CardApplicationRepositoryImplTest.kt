@@ -79,16 +79,14 @@ class CardApplicationRepositoryImplTest {
 
     @Test
     fun `when issueCard then service called correctly`() {
-        val map = mapOf("test" to "test1")
         val card = mock<Card>()
         val design: IssueCardDesign = mock()
-        whenever(service.issueCard(CARD_APPLICATION_ID, map, METADATA, design)).thenReturn(card.right())
-        val result = sut.issueCard(CARD_APPLICATION_ID, map, METADATA, design)
+        whenever(service.issueCard(CARD_APPLICATION_ID, METADATA, design)).thenReturn(card.right())
+        val result = sut.issueCard(CARD_APPLICATION_ID, METADATA, design)
 
         result.shouldBeRightAndEqualTo(card)
         verify(service).issueCard(
             applicationId = CARD_APPLICATION_ID,
-            additionalFields = map,
             metadata = METADATA,
             design = design
         )

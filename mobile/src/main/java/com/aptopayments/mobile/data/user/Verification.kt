@@ -2,12 +2,6 @@ package com.aptopayments.mobile.data.user
 
 import java.io.Serializable
 
-enum class VerificationStatus {
-    PENDING,
-    PASSED,
-    FAILED
-}
-
 data class Verification(
     val verificationId: String,
     val verificationType: String,

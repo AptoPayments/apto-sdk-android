@@ -12,24 +12,24 @@ data class MCC(
     constructor(name: String) : this(name, Icon.valueOf(name.toUpperCase(Locale.US)))
 
     fun toLocalizedString(): String {
-        return (mccDescriptions[icon] ?: "transaction_details.basic_info.category.unavailable").localized()
+        return (mccDescriptions[icon] ?: "transaction_details_basic_info_category_unavailable").localized()
     }
 
     companion object {
         val mccDescriptions: Map<Icon, String> = hashMapOf(
-            Icon.PLANE to "transaction_details.basic_info.category.plane_mcc",
-            Icon.CAR to "transaction_details.basic_info.category.car_mcc",
-            Icon.GLASS to "transaction_details.basic_info.category.glass_mcc",
-            Icon.FINANCE to "transaction_details.basic_info.category.finance_mcc",
-            Icon.FOOD to "transaction_details.basic_info.category.food_mcc",
-            Icon.GAS to "transaction_details.basic_info.category.gas_mcc",
-            Icon.BED to "transaction_details.basic_info.category.bed_mcc",
-            Icon.MEDICAL to "transaction_details.basic_info.category.medical_mcc",
-            Icon.CAMERA to "transaction_details.basic_info.category.camera_mcc",
-            Icon.CARD to "transaction_details.basic_info.category.card_mcc",
-            Icon.CART to "transaction_details.basic_info.category.cart_mcc",
-            Icon.ROAD to "transaction_details.basic_info.category.road_mcc",
-            Icon.OTHER to "transaction_details.basic_info.category.other_mcc"
+            Icon.PLANE to "transaction_details_basic_info_category_plane_mcc",
+            Icon.CAR to "transaction_details_basic_info_category_car_mcc",
+            Icon.GLASS to "transaction_details_basic_info_category_glass_mcc",
+            Icon.FINANCE to "transaction_details_basic_info_category_finance_mcc",
+            Icon.FOOD to "transaction_details_basic_info_category_food_mcc",
+            Icon.GAS to "transaction_details_basic_info_category_gas_mcc",
+            Icon.BED to "transaction_details_basic_info_category_bed_mcc",
+            Icon.MEDICAL to "transaction_details_basic_info_category_medical_mcc",
+            Icon.CAMERA to "transaction_details_basic_info_category_camera_mcc",
+            Icon.CARD to "transaction_details_basic_info_category_card_mcc",
+            Icon.CART to "transaction_details_basic_info_category_cart_mcc",
+            Icon.ROAD to "transaction_details_basic_info_category_road_mcc",
+            Icon.OTHER to "transaction_details_basic_info_category_other_mcc"
         )
     }
 

@@ -11,9 +11,11 @@ internal class UserPreferencesRepository(
     context: Context
 ) {
 
-    private val sharedPref: SharedPreferences = context.getSharedPreferences(
-        PREF_USER_PREFERENCES_FILENAME, Context.MODE_PRIVATE
-    )
+    private val sharedPref: SharedPreferences by lazy {
+        context.getSharedPreferences(
+            PREF_USER_PREFERENCES_FILENAME, Context.MODE_PRIVATE
+        )
+    }
 
     var showDetailedCardActivity: Boolean
         get() = sharedPref.getBoolean(PREF_SHOW_DETAILED_ACTIVITY, false)

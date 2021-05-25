@@ -288,14 +288,12 @@ interface AptoPlatformProtocol {
      * @param applicationId String got from
      * {@link fetchCardProducts((Either<Failure, List<CardProductSummary>>) -> Unit)}
      * or {@link fetchCardProduct(String, Boolean, (Either<Failure, CardProduct>) -> Unit)}
-     * @param additionalFields Map<String, Any> (Optional)(Deprecated)
      * @param metadata String
      * @param callback Lambda called when card has been issued returning Either Failure
      * if was not successful or the Card if it was correct
      */
     fun issueCard(
         applicationId: String,
-        additionalFields: Map<String, Any>? = null,
         metadata: String? = null,
         design: IssueCardDesign? = null,
         callback: (Either<Failure, Card>) -> Unit
@@ -308,8 +306,6 @@ interface AptoPlatformProtocol {
      * {@link fetchCardProducts((Either<Failure, List<CardProductSummary>>) -> Unit)}
      * or {@link fetchCardProduct(String, Boolean, (Either<Failure, CardProduct>) -> Unit)}
      * @param credential OAuthCredential
-     * @param additionalFields can be used to send Apto additional data required to card issuance that is not captured
-     * during the user creation process. For a list of allowed fields and values contact us
      * @param initialFundingSourceId specifies the id of the wallet that will be connected to the card when issued
      * @param callback Lambda called when card has been issued returning Either Failure if was not successful
      * or the Card if it was correct
@@ -318,7 +314,6 @@ interface AptoPlatformProtocol {
     fun issueCard(
         cardProductId: String,
         credential: OAuthCredential?,
-        additionalFields: Map<String, Any>? = null,
         initialFundingSourceId: String? = null,
         callback: (Either<Failure, Card>) -> Unit
     )
@@ -342,13 +337,7 @@ interface AptoPlatformProtocol {
      */
     fun fetchCards(pagination: ListPagination? = null, callback: (Either<Failure, PaginatedList<Card>>) -> Unit)
 
-    @Deprecated("To obtain card data, please use fetchCard")
-    fun fetchFinancialAccount(accountId: String, forceRefresh: Boolean, callback: (Either<Failure, Card>) -> Unit)
-
     fun fetchCard(cardId: String, forceRefresh: Boolean, callback: (Either<Failure, Card>) -> Unit)
-
-    @Deprecated(message = "To show the card data to your users, please use the Apto PCI SDK")
-    fun fetchCardDetails(cardId: String, callback: (Either<Failure, CardDetails>) -> Unit)
 
     /**
      * Physical cards need to be activated by providing an activation code that is sent to the cardholder.
@@ -411,23 +400,6 @@ interface AptoPlatformProtocol {
         forceRefresh: Boolean,
         clearCachedValues: Boolean,
         callback: (Either<Failure, List<Transaction>>) -> Unit
-    )
-
-    /**
-     * Obtains information about the monthly spendings of a given card, classified by Category
-     *
-     * @param cardId String containing the cardId
-     * @param month String containing the month in English (i.e. April)
-     * @param year String containing the year in numbers
-     * @param callback Lambda called when the transactions has been fetched returning Either Failure
-     * if there was an error or a MonthlySpending if the fetching was successful
-     */
-    @Deprecated(message = "Use the version with Integer parameters")
-    fun cardMonthlySpending(
-        cardId: String,
-        month: String,
-        year: String,
-        callback: (Either<Failure, MonthlySpending>) -> Unit
     )
 
     /**

@@ -13,9 +13,6 @@ internal data class IssueCardRequest(
     @SerializedName("balance_store")
     val oAuthCredentialRequest: OAuthCredentialRequest? = null,
 
-    @SerializedName("additional_fields")
-    val additionalFields: Map<String, Any>? = null,
-
     @SerializedName("initial_funding_source_id")
     val initialFundingSourceId: String? = null
 ) : Serializable

@@ -114,11 +114,11 @@ data class Transaction(
 
         fun toLocalizedString() =
             when (this) {
-                ATM -> "transaction_details.details.transaction_type.atm_withdrawal"
-                AUTHORISED -> "transaction_details.details.transaction_type.authorised"
-                PREAUTHORISED -> "transaction_details.details.transaction_type.pending"
-                DECLINED -> "transaction_details.details.transaction_type.declined"
-                REVERSED -> "transaction_details.details.transaction_type.reversed"
+                ATM -> "transaction_details.details.transaction_class.atm_withdrawal"
+                AUTHORISED -> "transaction_details.details.transaction_class.authorised"
+                PREAUTHORISED -> "transaction_details.details.transaction_class.pending"
+                DECLINED -> "transaction_details.details.transaction_class.declined"
+                REVERSED -> "transaction_details.details.transaction_class.reversed"
             }.localized()
     }
 

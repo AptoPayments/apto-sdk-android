@@ -62,12 +62,11 @@ internal class CardApplicationService(apiCatalog: ApiCatalog) : BaseNetworkServi
 
     fun issueCard(
         applicationId: String,
-        additionalFields: Map<String, Any>?,
         metadata: String?,
         design: IssueCardDesign?
     ): Either<Failure, Card> {
         val design = design?.let { IssueCardDesignRequest.from(design) }
-        val request = IssueCardRequest(applicationId, additionalFields, metadata, design)
+        val request = IssueCardRequest(applicationId, metadata, design)
         return request(
             call = cardApplicationApi.issueCard(request = request),
             transform = { it.toCard() },

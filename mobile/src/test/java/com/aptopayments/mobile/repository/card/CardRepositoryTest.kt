@@ -54,35 +54,13 @@ class CardRepositoryTest {
 
         // When
         sut.issueCard(
-            cardProductId = "cardProductId", credential = null, additionalFields = null,
+            cardProductId = "cardProductId",
+            credential = null,
             initialFundingSourceId = null
         )
 
         // Then
         verify(service).issueCard(TestDataProvider.anyObject())
-    }
-
-    @Test
-    fun `issue card with additional fields pass additional fields`() {
-        // Given
-        val nestedMap = mapOf<String, Any>("nestedField1" to "nestedValue1")
-        val additionalFields = mapOf("field1" to "value1", "field2" to 2, "nested" to nestedMap)
-        givenSetUpIssueCardMocks(willRequestSucceed = true)
-
-        // When
-        sut.issueCard(
-            cardProductId = "cardProductId", credential = null,
-            additionalFields = additionalFields, initialFundingSourceId = null
-        )
-
-        // Then
-        verify(service).issueCard(
-            IssueCardRequest(
-                cardProductId = "cardProductId",
-                oAuthCredentialRequest = null,
-                additionalFields = additionalFields
-            )
-        )
     }
 
     @Test
@@ -94,7 +72,7 @@ class CardRepositoryTest {
 
         // When
         sut.issueCard(
-            cardProductId = "cardProductId", credential = null, additionalFields = null,
+            cardProductId = "cardProductId", credential = null,
             initialFundingSourceId = initialFundingSourceId
         )
 
@@ -103,7 +81,6 @@ class CardRepositoryTest {
             IssueCardRequest(
                 cardProductId = "cardProductId",
                 oAuthCredentialRequest = null,
-                additionalFields = null,
                 initialFundingSourceId = initialFundingSourceId
             )
         )
@@ -117,7 +94,8 @@ class CardRepositoryTest {
         // When
         val result = sut.issueCard(
             cardProductId = "cardProductId",
-            credential = null, additionalFields = null, initialFundingSourceId = null
+            credential = null,
+            initialFundingSourceId = null
         )
 
         // Then
@@ -132,7 +110,8 @@ class CardRepositoryTest {
         // When
         val result = sut.issueCard(
             cardProductId = "cardProductId",
-            credential = null, additionalFields = null, initialFundingSourceId = null
+            credential = null,
+            initialFundingSourceId = null
         )
 
         // Then

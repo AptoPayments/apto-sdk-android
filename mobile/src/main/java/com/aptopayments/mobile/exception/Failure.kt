@@ -25,7 +25,7 @@ sealed class Failure(open val errorKey: String = "") {
 
     open class ServerError(
         val code: Int?,
-        private val message: String? = null,
+        val apiMessage: String? = null,
         override val errorKey: String = UNDEFINED_MESSAGE
     ) : Failure() {
 
@@ -39,7 +39,7 @@ sealed class Failure(open val errorKey: String = "") {
             json.put("message", errorKey.localized())
             json.put("raw_code", rawCode)
 
-            addErrorTracking255CharactersRestriction(json, message)
+            addErrorTracking255CharactersRestriction(json, apiMessage)
             return json
         }
 

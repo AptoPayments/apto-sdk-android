@@ -44,23 +44,7 @@ internal class TestDataProvider {
                 supportEmailAddress = "",
                 trackerAccessToken = "",
                 isTrackerActive = false,
-                isChatbotActive = false,
                 primaryAuthCredential = DataPoint.Type.PHONE
-            )
-        )
-
-        fun provideContextConfigurationEmail() = ContextConfiguration(
-            projectConfiguration = ProjectConfiguration(
-                name = "",
-                summary = "",
-                branding = Branding.createDefault(),
-                labels = hashMapOf(),
-                allowedCountries = arrayListOf(Country("US")),
-                supportEmailAddress = "",
-                trackerAccessToken = "",
-                isTrackerActive = false,
-                isChatbotActive = false,
-                primaryAuthCredential = DataPoint.Type.EMAIL
             )
         )
 

@@ -13,7 +13,6 @@ data class ProjectConfiguration(
     val supportEmailAddress: String?,
     val trackerAccessToken: String?,
     val isTrackerActive: Boolean?,
-    val isChatbotActive: Boolean,
     val primaryAuthCredential: DataPoint.Type?,
     val secondaryAuthCredential: DataPoint.Type? = null
 ) : Serializable

@@ -14,7 +14,6 @@ private const val STATE_DISABLE = "disable"
 internal class CardService(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
     private val cardApi by lazy { apiCatalog.api().create(CardApi::class.java) }
-    private val vaultCardApi by lazy { apiCatalog.vaultApi().create(CardApi::class.java) }
 
     fun issueCard(issueCardRequest: IssueCardRequest) =
         request(cardApi.issueCard(request = issueCardRequest), { it.toCard() }, CardEntity())
@@ -25,9 +24,6 @@ internal class CardService(apiCatalog: ApiCatalog) : BaseNetworkService() {
             { it.toCard() },
             CardEntity()
         )
-
-    fun getCardDetails(cardId: String) =
-        request(vaultCardApi.getCardDetails(accountID = cardId, showDetails = true), { it.toCardDetails() })
 
     fun getCards(startingAfter: String? = null, endingBefore: String? = null, limit: Int? = null) =
         request(
