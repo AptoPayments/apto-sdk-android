@@ -6,8 +6,8 @@ import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.koin.core.context.loadKoinModules
 import org.koin.core.inject
 import org.koin.dsl.module
@@ -22,7 +22,7 @@ internal class FakeServiceTest : ServiceTest() {
     private val apiCatalog: ApiCatalog by inject()
     private val sut by lazy { apiCatalog.api().create(FakeApi::class.java) }
 
-    @Before
+    @BeforeEach
     override fun setup() {
         super.setup()
         loadKoinModules(module { single<UserSessionRepository>(override = true) { userSessionRepository } })

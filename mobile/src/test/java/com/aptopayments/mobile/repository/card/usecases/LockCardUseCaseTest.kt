@@ -10,8 +10,8 @@ import com.aptopayments.mobile.repository.card.local.CardLocalRepository
 import com.aptopayments.mobile.repository.card.remote.CardService
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import org.junit.Assert.*
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 import org.koin.test.inject

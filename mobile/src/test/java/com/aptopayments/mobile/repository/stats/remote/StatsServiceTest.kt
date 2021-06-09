@@ -4,7 +4,7 @@ import com.aptopayments.mobile.NetworkServiceTest
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.repository.stats.remote.entities.MonthlySpendingEntity
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.core.inject
 import java.time.LocalDate
 import kotlin.test.assertTrue

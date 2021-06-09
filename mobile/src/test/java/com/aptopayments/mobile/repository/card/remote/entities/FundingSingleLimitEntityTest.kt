@@ -1,7 +1,7 @@
 package com.aptopayments.mobile.repository.card.remote.entities
 
-import org.junit.Assert.*
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 
 private const val CURRENCY = "USD"
 class FundingSingleLimitEntityTest {

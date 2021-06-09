@@ -8,7 +8,7 @@ data class NotificationGroup(
     val categoryId: Category? = null,
     val groupId: Group? = null,
     val state: State? = null,
-    val activeChannels: ActiveChannels? = null
+    val activeChannels: ActiveChannels
 ) : Serializable {
 
     enum class Category {

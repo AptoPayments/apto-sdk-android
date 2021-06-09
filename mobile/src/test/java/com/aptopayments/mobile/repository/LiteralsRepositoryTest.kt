@@ -1,6 +1,6 @@
 package com.aptopayments.mobile.repository
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 private const val MY_VALUE = "my value"

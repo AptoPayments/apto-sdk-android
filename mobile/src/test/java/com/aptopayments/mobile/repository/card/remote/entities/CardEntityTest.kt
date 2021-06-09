@@ -5,8 +5,8 @@ import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.data.card.KycStatus
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class CardEntityTest {
@@ -32,7 +32,7 @@ class CardEntityTest {
     private val TEST_CARDHOLDER_LAST_NAME = "TEST_CARDHOLDER_LAST_NAME"
     private val TEST_NAME_ON_CARD = "TEST_NAME_ON_CARD"
 
-    @Before
+    @BeforeEach
     fun `set up for testing`() {
         sut = CardEntity(
             accountID = TEST_ACCOUNT_ID,

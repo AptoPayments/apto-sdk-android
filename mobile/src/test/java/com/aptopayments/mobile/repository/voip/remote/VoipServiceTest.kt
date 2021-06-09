@@ -2,7 +2,7 @@ package com.aptopayments.mobile.repository.voip.remote
 
 import com.aptopayments.mobile.NetworkServiceTest
 import com.aptopayments.mobile.repository.voip.remote.requests.GetTokensRequest
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.test.inject
 
 internal class VoipServiceTest : NetworkServiceTest() {

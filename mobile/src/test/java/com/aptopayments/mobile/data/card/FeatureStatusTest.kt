@@ -1,7 +1,7 @@
 package com.aptopayments.mobile.data.card
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 class FeatureStatusTest {
     @Test

@@ -3,8 +3,8 @@ package com.aptopayments.mobile.data.transaction
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.transaction.Transaction.TransactionDeviceType
 
-import org.junit.Assert.*
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 
 class TransactionTest {
 

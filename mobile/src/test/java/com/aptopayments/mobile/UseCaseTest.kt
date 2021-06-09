@@ -6,18 +6,17 @@ import com.aptopayments.mobile.di.useCasesModule
 import com.aptopayments.mobile.network.ConnectivityChecker
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
-import org.koin.test.AutoCloseKoinTest
 
-internal abstract class UseCaseTest : AutoCloseKoinTest() {
+internal abstract class UseCaseTest : UnitTest() {
 
     private val connectivityChecker: ConnectivityChecker = mock() {
         on { isConnected() } doReturn true
     }
 
-    @Before
+    @BeforeEach
     open fun setUp() {
         startKoin {
             modules(

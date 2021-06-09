@@ -15,9 +15,9 @@ import com.aptopayments.mobile.repository.card.usecases.IssueCardWithProductIdUs
 import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.mobile.repository.user.usecases.CreateUserUseCase
 import com.nhaarman.mockitokotlin2.*
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
@@ -37,7 +37,7 @@ class AptoPlatformTest : UnitTest() {
     private val getOrderPhysicalCardConfigurationUseCase: GetOrderPhysicalCardConfigurationUseCase = mock()
     private val orderPhysicalCardUseCase: OrderPhysicalCardUseCase = mock()
 
-    @Before
+    @BeforeEach
     fun setUp() {
         AptoPlatform.koin = startKoin {
             modules(
@@ -53,7 +53,7 @@ class AptoPlatformTest : UnitTest() {
         }.koin
     }
 
-    @After
+    @AfterEach
     fun tearDown() {
         stopKoin()
     }

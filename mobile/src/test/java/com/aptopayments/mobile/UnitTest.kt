@@ -1,8 +1,8 @@
 package com.aptopayments.mobile
 
-import org.junit.runner.RunWith
-import org.koin.test.AutoCloseKoinTest
-import org.mockito.junit.MockitoJUnitRunner
+import org.junit.jupiter.api.AfterEach
+import org.koin.core.context.stopKoin
+import org.koin.test.KoinTest
 
 /**
  * Base class for Unit tests. Inherit from it to create test cases which DO NOT contain android
@@ -10,5 +10,10 @@ import org.mockito.junit.MockitoJUnitRunner
  *
  * @see AndroidTest
  */
-@RunWith(MockitoJUnitRunner::class)
-abstract class UnitTest : AutoCloseKoinTest()
+abstract class UnitTest : KoinTest {
+
+    @AfterEach
+    open fun afterEach() {
+        stopKoin()
+    }
+}

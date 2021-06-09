@@ -4,7 +4,7 @@ import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.repository.user.remote.UserService
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 private const val CUSTODIAN_UID = "custodian"
 private const val METADATA = "metadata"

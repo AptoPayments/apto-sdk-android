@@ -8,8 +8,8 @@ import com.aptopayments.mobile.repository.fundingsources.local.BalanceLocalDao
 import com.aptopayments.mobile.repository.fundingsources.local.entities.BalanceLocalEntity
 import com.aptopayments.mobile.repository.fundingsources.remote.FundingSourcesService
 import com.nhaarman.mockitokotlin2.*
-import org.junit.Assert.*
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 
 private const val ACCOUNT_ID = "ac_1234"
 private const val BALANCE_ID = "bl_12345"

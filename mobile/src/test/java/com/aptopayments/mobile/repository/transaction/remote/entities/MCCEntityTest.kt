@@ -2,8 +2,8 @@ package com.aptopayments.mobile.repository.transaction.remote.entities
 
 import com.aptopayments.mobile.data.transaction.MCC
 
-import org.junit.Assert.*
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 
 private const val NAME = "test"
 

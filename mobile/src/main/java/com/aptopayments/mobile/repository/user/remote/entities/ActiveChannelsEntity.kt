@@ -17,10 +17,11 @@ internal data class ActiveChannelsEntity(
 
 ) {
     fun toActiveChannels(): ActiveChannels {
-        val activeChannelsMap = HashMap<NotificationChannel, Boolean?>()
-        activeChannelsMap[NotificationChannel.EMAIL] = email
-        activeChannelsMap[NotificationChannel.PUSH] = push
-        activeChannelsMap[NotificationChannel.SMS] = sms
+        val activeChannelsMap = hashMapOf(
+            NotificationChannel.EMAIL to email,
+            NotificationChannel.PUSH to push,
+            NotificationChannel.SMS to sms
+        )
         return ActiveChannels(activeChannelsMap = activeChannelsMap)
     }
 

@@ -7,7 +7,7 @@ import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.repository.oauth.remote.entities.OAuthAttemptEntity
 import com.aptopayments.mobile.repository.oauth.remote.entities.OAuthUserDataUpdateEntity
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.test.inject
 
 private const val ID = "id_1234"

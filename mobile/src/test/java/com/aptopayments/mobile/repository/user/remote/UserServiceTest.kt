@@ -11,7 +11,7 @@ import com.aptopayments.mobile.repository.user.remote.requests.LoginUserRequest
 import com.aptopayments.mobile.repository.user.remote.requests.NotificationPreferencesRequest
 import com.aptopayments.mobile.repository.user.remote.requests.PushDeviceRequest
 import com.aptopayments.mobile.repository.verification.remote.entities.VerificationEntity
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.core.inject
 
 private const val CUSTODIAN_UID = "id_12345"

@@ -10,8 +10,8 @@ import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 class SetupVoipCallUseCaseTest {
 
@@ -20,7 +20,7 @@ class SetupVoipCallUseCaseTest {
     private val mockCall: VoipCall = mock()
     private val repository: VoipRepository = mock()
 
-    @Before
+    @BeforeEach
     fun setUp() {
         sut = SetupVoipCallUseCase(repository, NetworkHandler(ConnectivityCheckerAlwaysConnected()))
     }

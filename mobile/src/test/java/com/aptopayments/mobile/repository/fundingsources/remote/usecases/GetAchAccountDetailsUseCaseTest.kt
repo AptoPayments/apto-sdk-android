@@ -9,7 +9,7 @@ import com.aptopayments.mobile.repository.fundingsources.remote.FundingSourcesSe
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 import org.koin.test.inject

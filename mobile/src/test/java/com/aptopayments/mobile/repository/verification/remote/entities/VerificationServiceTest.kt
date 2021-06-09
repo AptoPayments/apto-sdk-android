@@ -3,8 +3,8 @@ package com.aptopayments.mobile.repository.verification.remote.entities
 import com.aptopayments.mobile.NetworkServiceTest
 import com.aptopayments.mobile.data.PhoneNumber
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
-import org.junit.Assert.*
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 import org.koin.test.inject
 
 private const val PHONE_NUMBER = "123456"

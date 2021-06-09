@@ -1,6 +1,6 @@
 package com.aptopayments.mobile.data.transaction
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 

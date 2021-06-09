@@ -1,7 +1,7 @@
 package com.aptopayments.mobile.repository.cardapplication.remote.entities.workflowaction
 
 import com.aptopayments.mobile.data.content.Content
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 

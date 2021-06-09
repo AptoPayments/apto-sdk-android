@@ -22,8 +22,8 @@ import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import kotlin.test.assertEquals
@@ -37,7 +37,7 @@ class OAuthConnectRepositoryTest : UnitTest() {
     private val service: OAuthService = mock()
     private val mockUserSessionRepository: UserSessionRepository = mock()
 
-    @Before
+    @BeforeEach
     fun setUp() {
         requestExecutor = RequestExecutor(networkHandler, ErrorHandler(mock(), ServerErrorFactory()))
         startKoin {

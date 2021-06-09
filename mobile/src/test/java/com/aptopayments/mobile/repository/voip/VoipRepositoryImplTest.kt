@@ -6,7 +6,7 @@ import com.aptopayments.mobile.repository.voip.remote.requests.GetTokensRequest
 import com.aptopayments.mobile.repository.voip.usecases.SetupVoipCallParams
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 private const val CARD_ID = "id_12345"
 

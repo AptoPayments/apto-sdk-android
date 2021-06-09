@@ -2,7 +2,7 @@ package com.aptopayments.mobile.repository.paymentsources
 
 import com.aptopayments.mobile.NetworkServiceTest
 import com.aptopayments.mobile.data.paymentsources.NewCard
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.core.inject
 import java.net.HttpURLConnection.HTTP_BAD_REQUEST
 import kotlin.test.assertTrue

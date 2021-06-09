@@ -3,7 +3,7 @@ package com.aptopayments.mobile.repository.statements.remote
 import com.aptopayments.mobile.NetworkServiceTest
 import com.aptopayments.mobile.common.ModelDataProvider
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.test.inject
 
 private const val MONTH = 12

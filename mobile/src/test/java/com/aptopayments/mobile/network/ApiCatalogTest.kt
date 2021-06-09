@@ -3,8 +3,8 @@ package com.aptopayments.mobile.network
 import com.aptopayments.mobile.data.TestDataProvider
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 class ApiCatalogTest {
 
@@ -12,7 +12,7 @@ class ApiCatalogTest {
 
     private lateinit var sut: ApiCatalog
 
-    @Before
+    @BeforeEach
     fun configure() {
         sut = ApiCatalog(retrofitFactory, ApiKeyProvider)
     }

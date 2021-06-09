@@ -20,8 +20,8 @@ import com.aptopayments.mobile.repository.card.remote.requests.GetCardRequest
 import com.aptopayments.mobile.repository.card.remote.requests.IssueCardRequest
 import com.aptopayments.mobile.repository.card.usecases.*
 import com.nhaarman.mockitokotlin2.*
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 private const val CODE = "123456"
 
@@ -37,7 +37,7 @@ class CardRepositoryTest {
     private val cardBalanceLocalDao: CardBalanceLocalDao = mock()
     private val userSessionRepository: UserSessionRepository = mock()
 
-    @Before
+    @BeforeEach
     fun setUp() {
         sut = CardRepositoryImpl(
             service,

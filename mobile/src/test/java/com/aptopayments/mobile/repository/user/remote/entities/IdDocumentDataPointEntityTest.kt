@@ -3,7 +3,7 @@ package com.aptopayments.mobile.repository.user.remote.entities
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.user.IdDocumentDataPoint
 import com.google.gson.Gson
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class IdDocumentDataPointEntityTest {

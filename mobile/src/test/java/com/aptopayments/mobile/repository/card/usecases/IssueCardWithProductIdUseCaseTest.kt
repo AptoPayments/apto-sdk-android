@@ -13,8 +13,8 @@ import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.willReturn
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 class IssueCardWithProductIdUseCaseTest {
     private lateinit var sut: IssueCardWithProductIdUseCase
@@ -28,7 +28,7 @@ class IssueCardWithProductIdUseCaseTest {
         initialFundingSourceId = null
     )
 
-    @Before
+    @BeforeEach
     fun setUp() {
         sut = IssueCardWithProductIdUseCase(cardRepository, networkHandler)
     }

@@ -6,7 +6,7 @@ import com.aptopayments.mobile.network.NetworkHandler
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import retrofit2.Call
 import retrofit2.Response
 import java.net.ConnectException

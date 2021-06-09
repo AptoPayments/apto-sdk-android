@@ -1,7 +1,7 @@
 package com.aptopayments.mobile.data.card
 
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import java.util.Locale
 import kotlin.test.AfterTest
 import kotlin.test.assertEquals
@@ -12,7 +12,7 @@ class MoneyTest {
 
     private lateinit var locale: Locale
 
-    @Before
+    @BeforeEach
     fun setup() {
         locale = Locale.getDefault()
         Locale.setDefault(Locale("en", "US"))

@@ -1,7 +1,7 @@
 package com.aptopayments.mobile.extension
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import org.threeten.bp.ZoneOffset
 
 private const val MILLIS = 1586429406736L

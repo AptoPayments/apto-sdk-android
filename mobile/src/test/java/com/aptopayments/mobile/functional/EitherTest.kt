@@ -2,7 +2,7 @@ package com.aptopayments.mobile.functional
 
 import com.aptopayments.mobile.functional.Either.Left
 import com.aptopayments.mobile.functional.Either.Right
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull

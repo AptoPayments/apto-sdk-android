@@ -12,11 +12,10 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import org.junit.After
-import org.junit.Before
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import retrofit2.Response
 import java.io.IOException
@@ -34,17 +33,17 @@ internal abstract class ServiceTest : UnitTest() {
     protected val gson = GsonProvider.provide()
     private val jsonParser = JsonParser()
 
-    @Before
+    @BeforeEach
     open fun setup() {
         server.start()
         configureEnvironment()
         configureKoin()
     }
 
-    @After
-    fun tearDown() {
+    @AfterEach
+    override fun afterEach() {
         server.shutdown()
-        stopKoin()
+        super.afterEach()
     }
 
     protected fun enqueueContent(content: String, code: Int = HTTP_OK) {

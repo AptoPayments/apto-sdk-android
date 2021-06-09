@@ -12,7 +12,7 @@ import com.aptopayments.mobile.repository.card.CardRepository
 import com.nhaarman.mockitokotlin2.anyOrNull
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 internal class GetCardsUseCaseTest {

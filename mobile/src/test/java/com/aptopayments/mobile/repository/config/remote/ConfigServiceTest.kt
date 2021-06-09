@@ -4,7 +4,7 @@ import com.aptopayments.mobile.NetworkServiceTest
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.repository.config.remote.entities.CardConfigurationEntity
 import com.aptopayments.mobile.repository.config.remote.entities.ContextConfigurationEntity
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.core.inject
 import kotlin.test.assertTrue
 

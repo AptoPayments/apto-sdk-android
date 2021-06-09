@@ -4,10 +4,20 @@ import java.io.Serializable
 import java.math.BigDecimal
 import java.math.MathContext
 import java.text.DecimalFormatSymbols
-import java.util.Currency
+import java.util.*
 import kotlin.math.abs
 
 private const val MINIMUM_DECIMAL_PLACES = 2
+
+private const val EUR_SYMBOL = "€"
+private const val POUND_SYMBOL = "£"
+private const val US_DOLLAR_SYMBOL = "$"
+
+private const val EUR_ISO_CODE = "EUR"
+private const val POUND_ISO_CODE = "GBP"
+private const val US_DOLLAR_ISO_CODE = "USD"
+
+private const val US_COUNTRY_2_ISO_CODE = "US"
 
 data class Money(
     val currency: String?,
@@ -36,14 +46,7 @@ data class Money(
         return number.toBigDecimal(MathContext(precision))
     }
 
-    fun currencySymbol(): String {
-        if (currency == null) return ""
-        return try {
-            Currency.getInstance(currency).symbol
-        } catch (exception: IllegalArgumentException) {
-            currency
-        }
-    }
+    fun currencySymbol(): String = CurrencySymbolProvider().provide(currency)
 
     private fun decimalPlacesAdjustment(string: String): String {
         val trimmed = string.trim('0')
@@ -54,5 +57,30 @@ data class Money(
             decimals++
         }
         return adjustedString
+    }
+}
+
+internal class CurrencySymbolProvider {
+    fun provide(currency: String?): String {
+        return currency?.let {
+            getKnownCurrencySymbol(it) ?: getSystemCurrencySymbol(it)
+        } ?: ""
+    }
+
+    private fun getSystemCurrencySymbol(currency: String): String {
+        return try {
+            Currency.getInstance(currency).symbol
+        } catch (exception: IllegalArgumentException) {
+            currency
+        }
+    }
+
+    private fun getKnownCurrencySymbol(currency: String?): String? {
+        return when {
+            currency == EUR_ISO_CODE -> EUR_SYMBOL
+            currency == POUND_ISO_CODE -> POUND_SYMBOL
+            currency == US_DOLLAR_ISO_CODE && Locale.getDefault().country == US_COUNTRY_2_ISO_CODE -> US_DOLLAR_SYMBOL
+            else -> null
+        }
     }
 }

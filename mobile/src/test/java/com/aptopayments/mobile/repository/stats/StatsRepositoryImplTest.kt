@@ -11,8 +11,8 @@ import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import kotlin.test.assertEquals
@@ -29,7 +29,7 @@ class StatsRepositoryOldTest : UnitTest() {
     private val service: StatsService = mock()
     private val monthlySpending: MonthlySpending = mock()
 
-    @Before
+    @BeforeEach
     fun setUp() {
         startKoin {
             modules(

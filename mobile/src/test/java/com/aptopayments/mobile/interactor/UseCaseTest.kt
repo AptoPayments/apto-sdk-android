@@ -4,7 +4,7 @@ import com.aptopayments.mobile.functional.Either.Right
 import com.aptopayments.mobile.network.ConnectivityCheckerAlwaysConnected
 import com.aptopayments.mobile.network.NetworkHandler
 import kotlinx.coroutines.runBlocking
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 private const val TYPE_TEST = "Test"

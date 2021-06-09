@@ -1,6 +1,6 @@
 package com.aptopayments.mobile.repository.statements.remote.entities
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.threeten.bp.ZoneOffset
 import org.threeten.bp.ZonedDateTime
 import kotlin.test.assertEquals

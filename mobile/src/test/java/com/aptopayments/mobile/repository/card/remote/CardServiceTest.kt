@@ -7,7 +7,7 @@ import com.aptopayments.mobile.repository.card.remote.entities.ActivatePhysicalC
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
 import com.aptopayments.mobile.repository.card.remote.requests.GetCardRequest
 import com.aptopayments.mobile.repository.fundingsources.remote.entities.BalanceEntity
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.core.inject
 import kotlin.test.assertTrue
 

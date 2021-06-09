@@ -3,7 +3,7 @@ package com.aptopayments.mobile.repository.fundingsources.remote
 import com.aptopayments.mobile.NetworkServiceTest
 import com.aptopayments.mobile.data.fundingsources.AchAccountDetails
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.test.inject
 import kotlin.test.assertTrue
 

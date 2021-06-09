@@ -1,8 +1,8 @@
 package com.aptopayments.mobile.network
 
 import com.nhaarman.mockitokotlin2.*
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -14,7 +14,7 @@ class NetworkHandlerTest {
 
     private lateinit var sut: NetworkHandler
 
-    @Before
+    @BeforeEach
     fun setUp() {
         sut = NetworkHandler(connectivityChecker)
     }

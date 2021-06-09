@@ -4,7 +4,7 @@ import com.aptopayments.mobile.common.ModelDataProvider
 import com.aptopayments.mobile.data.card.FeatureStatus
 import com.aptopayments.mobile.data.card.FeatureType
 import com.nhaarman.mockitokotlin2.mock
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull

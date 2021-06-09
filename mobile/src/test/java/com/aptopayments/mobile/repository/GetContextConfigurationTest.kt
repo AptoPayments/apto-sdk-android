@@ -11,8 +11,8 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import kotlinx.coroutines.runBlocking
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 class GetContextConfigurationTest {
 
@@ -20,7 +20,7 @@ class GetContextConfigurationTest {
 
     private val repository: ConfigRepository = mock()
 
-    @Before
+    @BeforeEach
     fun setUp() {
         sut = GetContextConfigurationUseCase(repository, NetworkHandler(ConnectivityCheckerAlwaysConnected()))
     }

@@ -5,7 +5,7 @@ import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
 import com.aptopayments.mobile.repository.cardapplication.remote.entities.CardApplicationEntity
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.test.inject
 
 private const val CARD_APPLICATION_ID = "entity_12345"

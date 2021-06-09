@@ -14,8 +14,8 @@ import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.willReturn
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 class CreateUserUseCaseTest {
     private lateinit var sut: CreateUserUseCase
@@ -25,7 +25,7 @@ class CreateUserUseCaseTest {
     private val networkHandler: NetworkHandler = mock()
     private val params = Params(userData = DataPointList(), custodianUid = "custodianUid", metadata = "metadata")
 
-    @Before
+    @BeforeEach
     fun setUp() {
         sut = CreateUserUseCase(userRepository, networkHandler)
     }

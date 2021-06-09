@@ -7,7 +7,7 @@ import com.aptopayments.mobile.network.ListEntity
 import com.aptopayments.mobile.repository.transaction.TransactionListFilters
 import com.aptopayments.mobile.repository.transaction.remote.entities.TransactionEntity
 import com.google.gson.reflect.TypeToken
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.test.inject
 import java.lang.reflect.Type
 

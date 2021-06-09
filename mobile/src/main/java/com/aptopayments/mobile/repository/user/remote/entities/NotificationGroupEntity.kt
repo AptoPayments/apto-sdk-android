@@ -1,5 +1,6 @@
 package com.aptopayments.mobile.repository.user.remote.entities
 
+import com.aptopayments.mobile.data.user.notificationpreferences.ActiveChannels
 import com.aptopayments.mobile.data.user.notificationpreferences.NotificationGroup
 import com.google.gson.annotations.SerializedName
 import java.util.Locale
@@ -23,7 +24,7 @@ internal data class NotificationGroupEntity(
         categoryId = parseCategoryId(categoryId),
         groupId = parseGroupId(groupId),
         state = parseState(state),
-        activeChannels = activeChannels?.toActiveChannels()
+        activeChannels = activeChannels?.toActiveChannels() ?: ActiveChannels(hashMapOf())
     )
 
     private fun parseCategoryId(categoryId: String): NotificationGroup.Category? {

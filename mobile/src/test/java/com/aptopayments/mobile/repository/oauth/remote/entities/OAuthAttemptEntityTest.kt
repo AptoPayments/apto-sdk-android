@@ -2,8 +2,8 @@ package com.aptopayments.mobile.repository.oauth.remote.entities
 
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.network.GsonProvider
-import org.junit.Assert.*
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 
 class OAuthAttemptEntityTest {
 

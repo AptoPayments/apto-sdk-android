@@ -6,7 +6,7 @@ import com.aptopayments.mobile.data.user.agreements.ReviewAgreementsInput
 import com.aptopayments.mobile.repository.user.remote.UserService
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 import org.koin.test.inject

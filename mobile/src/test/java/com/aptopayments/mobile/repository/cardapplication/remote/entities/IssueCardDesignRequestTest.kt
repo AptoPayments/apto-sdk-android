@@ -1,8 +1,8 @@
 package com.aptopayments.mobile.repository.cardapplication.remote.entities
 
 import com.aptopayments.mobile.data.TestDataProvider
-import org.junit.Assert.*
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 
 class IssueCardDesignRequestTest {
 

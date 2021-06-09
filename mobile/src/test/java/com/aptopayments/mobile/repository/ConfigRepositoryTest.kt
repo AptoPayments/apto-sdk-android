@@ -9,7 +9,7 @@ import com.aptopayments.mobile.repository.config.remote.entities.CardConfigurati
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 private const val CARD_PRODUCT_ID = "id_12345"

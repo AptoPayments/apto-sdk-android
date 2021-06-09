@@ -8,7 +8,7 @@ import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.transaction.local.TransactionLocalDao
 import com.aptopayments.mobile.repository.transaction.remote.TransactionService
 import com.nhaarman.mockitokotlin2.*
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 private const val CARD_ID = "card_id"
 private val FILTERS = TransactionListFilters(rows = 20)

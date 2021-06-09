@@ -2,8 +2,8 @@ package com.aptopayments.mobile.repository.transaction
 
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.transaction.Transaction
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import org.threeten.bp.ZoneId
 import org.threeten.bp.ZonedDateTime
 

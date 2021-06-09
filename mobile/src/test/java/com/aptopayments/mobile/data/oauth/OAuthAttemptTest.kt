@@ -1,7 +1,7 @@
 package com.aptopayments.mobile.data.oauth
 
 import com.aptopayments.mobile.data.oauth.OAuthAttemptStatus.*
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class OAuthAttemptTest {

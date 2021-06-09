@@ -4,7 +4,7 @@ import com.aptopayments.mobile.data.workflowaction.*
 import com.aptopayments.mobile.repository.user.remote.entities.CollectUserDataActionConfigurationEntity
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 

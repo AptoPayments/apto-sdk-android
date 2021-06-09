@@ -2,7 +2,7 @@ package com.aptopayments.mobile.repository.card.remote.entities
 
 import com.aptopayments.mobile.network.GsonProvider
 import com.aptopayments.mobile.utils.FileReader
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertNotNull
 
 class FeaturesEntityTest {
