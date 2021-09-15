@@ -7,7 +7,7 @@ import com.aptopayments.mobile.functional.right
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.transaction.local.TransactionLocalDao
 import com.aptopayments.mobile.repository.transaction.remote.TransactionService
-import com.nhaarman.mockitokotlin2.*
+import org.mockito.kotlin.*
 import org.junit.jupiter.api.Test
 
 private const val CARD_ID = "card_id"

@@ -1,10 +1,11 @@
 package com.aptopayments.mobile.repository.card.remote
 
 import com.aptopayments.mobile.network.PaginatedListEntity
+import com.aptopayments.mobile.repository.card.remote.entities.*
 import com.aptopayments.mobile.repository.card.remote.entities.ActivatePhysicalCardEntity
 import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
 import com.aptopayments.mobile.repository.card.remote.entities.OrderPhysicalCardConfigEntity
-import com.aptopayments.mobile.repository.card.remote.entities.ProvisioningEntity
+import com.aptopayments.mobile.repository.card.remote.entities.ProvisioningDataEntity
 import com.aptopayments.mobile.repository.card.remote.requests.*
 import com.aptopayments.mobile.repository.fundingsources.remote.entities.BalanceEntity
 import retrofit2.Call
@@ -18,7 +19,7 @@ private const val FINANCIAL_ACCOUNT_BALANCE_PATH = "v1/user/accounts/{account_id
 private const val FINANCIAL_ACCOUNT_PIN_PATH = "v1/user/accounts/{account_id}/pin"
 private const val CHANGE_CARD_STATE_PATH = "v1/user/accounts/{account_id}/{action}"
 private const val ACTIVATE_PHYSICAL_CARD_PATH = "v1/user/accounts/{account_id}/activate_physical"
-private const val GPAY_PROVISIONING_PATH = "v1/user/accounts/{account_id}/provision/androidpay"
+private const val GPAY_PROVISIONING_PATH = "v1/user/accounts/{account_id}/provision/googlepay"
 private const val SET_PASSCODE = "/v1/user/accounts/{account_id}/passcode"
 private const val ORDER_PHYSICAL_CONFIG = "/v1/user/accounts/{account_id}/order_physical/config"
 private const val ORDER_PHYSICAL = "/v1/user/accounts/{account_id}/order_physical"
@@ -72,10 +73,7 @@ internal interface CardApi {
     fun setPin(@Path(ACCOUNT_ID) accountID: String, @Body request: SetPinRequest): Call<CardEntity>
 
     @POST(GPAY_PROVISIONING_PATH)
-    fun getProvisioningOPC(
-        @Path(ACCOUNT_ID) accountID: String,
-        @Body request: GetProvisioningDataRequestWrapper
-    ): Call<ProvisioningEntity>
+    fun getProvisioningOPC(@Path(ACCOUNT_ID) accountID: String): Call<ProvisioningDataEntity>
 
     @POST(SET_PASSCODE)
     fun setCardPasscode(@Path(ACCOUNT_ID) cardId: String, @Body request: SetPasscodeRequest): Call<Unit>

@@ -9,9 +9,9 @@ import com.aptopayments.mobile.functional.left
 import com.aptopayments.mobile.functional.right
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.card.CardRepository
-import com.nhaarman.mockitokotlin2.anyOrNull
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
+import org.mockito.kotlin.anyOrNull
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 

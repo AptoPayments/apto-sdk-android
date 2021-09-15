@@ -9,10 +9,10 @@ import com.aptopayments.mobile.extension.shouldBeRightAndInstanceOf
 import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.card.CardRepository
-import com.nhaarman.mockitokotlin2.given
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.willReturn
+import org.mockito.kotlin.given
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.willReturn
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 

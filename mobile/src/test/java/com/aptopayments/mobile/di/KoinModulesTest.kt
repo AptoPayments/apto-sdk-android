@@ -4,8 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.aptopayments.mobile.db.DataBaseProvider
 import com.aptopayments.mobile.network.ConnectivityChecker
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.KoinTest

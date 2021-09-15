@@ -1,5 +1,6 @@
 package com.aptopayments.mobile.exception.server
 
+import androidx.annotation.RestrictTo
 import com.aptopayments.mobile.exception.Failure
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.ADDRESS_INVALID
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.BALANCE_VALIDATIONS_EMAIL_SENDS_DISABLED
@@ -67,6 +68,7 @@ import com.aptopayments.mobile.exception.server.ServerErrorCodes.WRONG_PHYSICAL_
 private const val UNKNOWN_ERROR = -1
 private const val UNDEFINED_MESSAGE = "error.transport.undefined"
 
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 class ServerErrorFactory {
 
     private val genericMap = mapOf(
@@ -115,7 +117,7 @@ class ServerErrorFactory {
         STATEMENT_URL_NOT_GENERATED2 to "monthly_statements.list.error_generating_report.message",
         STATEMENT_GENERATING_ERROR to "monthly_statements.list.error_generating_report.message",
         INVALID_PAYMENT_SOURCE_CARD_NETWORK to "load_funds_add_card_error_message",
-        INVALID_PAYMENT_SOURCE_CARD_TYPE to "load_funds_add_card_error_message",
+        INVALID_PAYMENT_SOURCE_CARD_TYPE to "load_funds_add_card_error_card_type",
         INVALID_PAYMENT_SOURCE_CARD_ENTITY to "load_funds_add_card_error_message",
         INVALID_PAYMENT_SOURCE_CARD_NUMBER to "load_funds_add_card_error_number",
         INVALID_PAYMENT_SOURCE_CARD_CVV to "load_funds_add_card_error_cvv",

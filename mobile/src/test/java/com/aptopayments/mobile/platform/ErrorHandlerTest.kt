@@ -3,10 +3,10 @@ package com.aptopayments.mobile.platform
 import com.aptopayments.mobile.exception.Failure
 import com.aptopayments.mobile.exception.server.ServerErrorFactory
 import com.aptopayments.mobile.repository.UserSessionRepository
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import okhttp3.ResponseBody
 import org.junit.jupiter.api.Test
 import retrofit2.Response

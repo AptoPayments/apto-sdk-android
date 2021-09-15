@@ -1,6 +1,6 @@
 package com.aptopayments.mobile
 
-import com.nhaarman.mockitokotlin2.whenever
+import org.mockito.kotlin.whenever
 
 internal abstract class NetworkServiceTest : ServiceTest() {
 

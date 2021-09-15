@@ -3,6 +3,8 @@ package com.aptopayments.mobile.repository.card.remote.entities
 import com.aptopayments.mobile.data.card.Card
 import com.aptopayments.mobile.data.card.KycStatus
 import com.google.gson.annotations.SerializedName
+import org.threeten.bp.ZonedDateTime
+import org.threeten.bp.format.DateTimeParseException
 import java.util.Locale
 
 internal data class CardEntity(
@@ -62,7 +64,10 @@ internal data class CardEntity(
     val nameOnCard: String? = null,
 
     @SerializedName("metadata")
-    val metadata: String? = null
+    val metadata: String? = null,
+
+    @SerializedName("issued_at")
+    val issuedAt: String? = null,
 
 ) {
     fun toCard() = Card(
@@ -82,7 +87,14 @@ internal data class CardEntity(
         cardHolder = nameOnCard ?: "$cardholderFirstName $cardholderLastName",
         cardStyle = style?.toCardStyle(),
         features = features?.toFeatures(),
-        metadata = metadata
+        metadata = metadata,
+        issuedAt = issuedAt?.let {
+            try {
+                ZonedDateTime.parse(issuedAt)
+            } catch (e: DateTimeParseException) {
+                null
+            }
+        }
     )
 
     private fun parseCardNetwork(network: String?): Card.CardNetwork {
@@ -139,7 +151,9 @@ internal data class CardEntity(
                 nativeSpendableAmount = MoneyEntity.from(card.nativeSpendableAmount),
                 features = FeaturesEntity.from(features = card.features),
                 style = CardStyleEntity.from(card.cardStyle),
-                nameOnCard = card.cardHolder
+                nameOnCard = card.cardHolder,
+                metadata = card.metadata,
+                issuedAt = card.issuedAt.toString()
             )
         }
     }

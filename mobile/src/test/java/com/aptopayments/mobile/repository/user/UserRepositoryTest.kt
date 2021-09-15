@@ -2,8 +2,8 @@ package com.aptopayments.mobile.repository.user
 
 import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.repository.user.remote.UserService
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 import org.junit.jupiter.api.Test
 
 private const val CUSTODIAN_UID = "custodian"

@@ -4,8 +4,8 @@ import com.aptopayments.mobile.BuildConfig
 import com.aptopayments.mobile.ServiceTest
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.repository.UserSessionRepository
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.core.context.loadKoinModules

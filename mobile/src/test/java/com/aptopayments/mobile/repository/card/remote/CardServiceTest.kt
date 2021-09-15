@@ -1,6 +1,10 @@
 package com.aptopayments.mobile.repository.card.remote
 
 import com.aptopayments.mobile.NetworkServiceTest
+import com.aptopayments.mobile.data.card.Card
+import com.aptopayments.mobile.data.card.ProvisioningData
+import com.aptopayments.mobile.data.card.ProvisioningTokenServiceProvider
+import com.aptopayments.mobile.data.card.ProvisioningUserAddress
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.repository.card.remote.entities.ActivatePhysicalCardEntity
@@ -189,5 +193,41 @@ internal class CardServiceTest : NetworkServiceTest() {
         sut.orderPhysicalCard(ACCOUNT_ID)
 
         assertRequestSentTo("v1/user/accounts/$ACCOUNT_ID/order_physical", "POST")
+    }
+
+    @Test
+    fun `when getProvisioningData then the request is made to the correct url`() {
+        enqueueContent("{}")
+
+        sut.getProvisioningData(ACCOUNT_ID)
+
+        assertRequestSentTo("v1/user/accounts/$ACCOUNT_ID/provision/googlepay", "POST")
+    }
+
+    @Test
+    fun `when getProvisioningData then response is parsed correctly`() {
+        enqueueFile("googlePay200Response200.json")
+        val userAddress = ProvisioningUserAddress(
+            name = "Matias Example",
+            address1 = "Malibu Point 10880",
+            address2 = "apartment 1",
+            city = "Malibu",
+            state = "CA",
+            postalCode = "90265",
+            country = "US",
+            phone = "3202476962"
+        )
+        val response = ProvisioningData(
+            network = Card.CardNetwork.VISA,
+            tokenServiceProvider = ProvisioningTokenServiceProvider.VISA,
+            displayName = "My card program",
+            lastFour = "1234",
+            userAddress = userAddress,
+            opaquePaymentCard = "opc_123"
+        )
+
+        val result = sut.getProvisioningData(ACCOUNT_ID)
+
+        result.shouldBeRightAndEqualTo(response)
     }
 }

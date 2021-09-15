@@ -1,10 +1,10 @@
 package com.aptopayments.mobile.data.card
 
 data class ProvisioningData(
-    val network: ProvisioningCardNetwork,
+    val network: Card.CardNetwork,
     val tokenServiceProvider: ProvisioningTokenServiceProvider,
     val displayName: String,
-    val lastDigits: String,
+    val lastFour: String,
     val userAddress: ProvisioningUserAddress,
     val opaquePaymentCard: String
 )

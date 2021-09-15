@@ -152,7 +152,7 @@ class MoneyTest {
         val value = sut.toString()
 
         // Then
-        assertEquals("MXN12.30", value)
+        assertEquals("MX$12.30", value)
     }
 
     @Test
@@ -164,7 +164,7 @@ class MoneyTest {
         val value = sut.toAbsString()
 
         // Then
-        assertEquals("MXN12.30", value)
+        assertEquals("MX$12.30", value)
     }
 
     @Test
@@ -177,7 +177,7 @@ class MoneyTest {
         val value = sut.toString()
 
         // Then
-        assertEquals("USD0,00", value)
+        assertEquals("US$0,00", value)
     }
 
     @Test

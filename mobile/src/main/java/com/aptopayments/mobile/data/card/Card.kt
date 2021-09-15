@@ -1,5 +1,6 @@
 package com.aptopayments.mobile.data.card
 
+import org.threeten.bp.ZonedDateTime
 import java.io.Serializable
 import java.util.Locale
 
@@ -20,7 +21,8 @@ data class Card(
     val nativeSpendableAmount: Money?,
     val cardHolder: String,
     val features: Features?,
-    val metadata: String?
+    val metadata: String?,
+    val issuedAt: ZonedDateTime?
 ) : Serializable {
 
     enum class CardState {

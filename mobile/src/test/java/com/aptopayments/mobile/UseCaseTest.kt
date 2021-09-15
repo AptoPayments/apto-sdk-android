@@ -4,8 +4,8 @@ import com.aptopayments.mobile.di.applicationModule
 import com.aptopayments.mobile.di.repositoryModule
 import com.aptopayments.mobile.di.useCasesModule
 import com.aptopayments.mobile.network.ConnectivityChecker
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 import org.junit.jupiter.api.BeforeEach
 import org.koin.core.context.startKoin
 import org.koin.dsl.module

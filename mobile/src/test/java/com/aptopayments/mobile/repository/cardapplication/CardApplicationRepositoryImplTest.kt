@@ -7,9 +7,9 @@ import com.aptopayments.mobile.data.card.SelectBalanceStoreResult
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
 import com.aptopayments.mobile.functional.right
 import com.aptopayments.mobile.repository.cardapplication.remote.CardApplicationService
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import org.junit.jupiter.api.Test
 
 private const val CARD_APPLICATION_ID = "entity_12345"

@@ -1,0 +1,17 @@
+{
+  "card_network": "VISA",
+  "token_service_provider": "VISA",
+  "display_name": "My card program",
+  "last_four": "1234",
+  "user_address": {
+    "name": "Matias Example",
+    "address1": "Malibu Point 10880",
+    "address2": "apartment 1",
+    "city": "Malibu",
+    "state": "CA",
+    "postal_code": "90265",
+    "country": "US",
+    "phone": "3202476962"
+  },
+  "opaque_payment_card": "opc_123"
+}

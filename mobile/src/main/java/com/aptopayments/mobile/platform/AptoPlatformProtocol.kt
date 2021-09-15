@@ -490,9 +490,6 @@ interface AptoPlatformProtocol {
 
     fun fetchProvisioningData(
         cardId: String,
-        clientAppId: String,
-        clientDeviceId: String,
-        walletId: String,
         callback: (Either<Failure, ProvisioningData>) -> Unit
     )
 

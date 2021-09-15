@@ -7,7 +7,7 @@ import com.aptopayments.mobile.functional.right
 import com.aptopayments.mobile.repository.fundingsources.local.BalanceLocalDao
 import com.aptopayments.mobile.repository.fundingsources.local.entities.BalanceLocalEntity
 import com.aptopayments.mobile.repository.fundingsources.remote.FundingSourcesService
-import com.nhaarman.mockitokotlin2.*
+import org.mockito.kotlin.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 

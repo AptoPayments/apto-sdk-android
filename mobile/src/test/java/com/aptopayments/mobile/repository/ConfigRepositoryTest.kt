@@ -6,9 +6,9 @@ import com.aptopayments.mobile.functional.right
 import com.aptopayments.mobile.repository.config.ConfigRepositoryImpl
 import com.aptopayments.mobile.repository.config.remote.ConfigService
 import com.aptopayments.mobile.repository.config.remote.entities.CardConfigurationEntity
-import com.nhaarman.mockitokotlin2.given
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
+import org.mockito.kotlin.given
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 

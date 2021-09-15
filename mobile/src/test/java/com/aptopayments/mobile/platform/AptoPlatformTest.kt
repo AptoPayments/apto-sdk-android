@@ -14,7 +14,7 @@ import com.aptopayments.mobile.repository.card.usecases.OrderPhysicalCardUseCase
 import com.aptopayments.mobile.repository.card.usecases.IssueCardWithProductIdUseCase
 import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.mobile.repository.user.usecases.CreateUserUseCase
-import com.nhaarman.mockitokotlin2.*
+import org.mockito.kotlin.*
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

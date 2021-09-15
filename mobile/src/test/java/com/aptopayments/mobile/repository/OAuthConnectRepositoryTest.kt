@@ -18,10 +18,10 @@ import com.aptopayments.mobile.repository.oauth.OAuthRepositoryImpl
 import com.aptopayments.mobile.repository.oauth.remote.OAuthService
 import com.aptopayments.mobile.repository.oauth.remote.entities.OAuthAttemptEntity
 import com.aptopayments.mobile.repository.oauth.remote.entities.OAuthUserDataUpdateEntity
-import com.nhaarman.mockitokotlin2.given
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import org.mockito.kotlin.given
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.core.context.startKoin

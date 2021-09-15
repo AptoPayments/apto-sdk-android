@@ -11,8 +11,8 @@ import com.aptopayments.mobile.repository.card.local.CardBalanceLocalDao
 import com.aptopayments.mobile.repository.card.local.CardLocalRepository
 import com.aptopayments.mobile.repository.card.remote.CardService
 import com.aptopayments.mobile.repository.card.usecases.ActivatePhysicalCardUseCase.Params
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 import org.junit.jupiter.api.Test
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module

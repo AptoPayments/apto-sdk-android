@@ -19,7 +19,7 @@ import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
 import com.aptopayments.mobile.repository.card.remote.requests.GetCardRequest
 import com.aptopayments.mobile.repository.card.remote.requests.IssueCardRequest
 import com.aptopayments.mobile.repository.card.usecases.*
-import com.nhaarman.mockitokotlin2.*
+import org.mockito.kotlin.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 

@@ -93,7 +93,8 @@ internal class TestDataProvider {
             spendableAmount: Money? = null,
             nativeSpendableAmount: Money? = null,
             cardHolder: String = "",
-            features: Features? = null
+            features: Features? = null,
+            issuedAt: ZonedDateTime? = ZonedDateTime.now()
         ) = Card(
             accountID = accountID,
             cardProductID = cardProductID,
@@ -111,7 +112,8 @@ internal class TestDataProvider {
             nativeSpendableAmount = nativeSpendableAmount,
             cardHolder = cardHolder,
             features = features,
-            metadata = null
+            metadata = null,
+            issuedAt = issuedAt,
         )
 
         fun provideBalance(

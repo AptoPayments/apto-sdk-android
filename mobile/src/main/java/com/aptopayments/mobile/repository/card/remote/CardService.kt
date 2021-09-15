@@ -79,20 +79,8 @@ internal class CardService(apiCatalog: ApiCatalog) : BaseNetworkService() {
     fun setPin(cardId: String, pin: String) =
         request(cardApi.setPin(accountID = cardId, request = SetPinRequest(pin)), { it.toCard() }, CardEntity())
 
-    fun getProvisioningData(cardId: String, clientAppId: String, clientDeviceId: String, walletId: String) =
-        request(
-            cardApi.getProvisioningOPC(
-                accountID = cardId,
-                request = GetProvisioningDataRequestWrapper(
-                    GetProvisioningDataRequest(
-                        clientAppId,
-                        clientDeviceId,
-                        walletId
-                    )
-                )
-            ),
-            { it.pushTokenizeRequestData.toProvisioningData() }
-        )
+    fun getProvisioningData(cardId: String) =
+        request(cardApi.getProvisioningOPC(accountID = cardId), { it.toProvisioningData() })
 
     fun setCardPasscode(cardId: String, passcode: String, verificationId: String?) =
         request(

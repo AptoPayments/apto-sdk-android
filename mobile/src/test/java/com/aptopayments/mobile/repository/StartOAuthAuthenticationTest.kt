@@ -6,10 +6,10 @@ import com.aptopayments.mobile.network.ConnectivityCheckerAlwaysConnected
 import com.aptopayments.mobile.network.NetworkHandler
 import com.aptopayments.mobile.repository.oauth.OAuthRepository
 import com.aptopayments.mobile.repository.oauth.usecases.StartOAuthAuthenticationUseCase
-import com.nhaarman.mockitokotlin2.given
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
+import org.mockito.kotlin.given
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.verifyNoMoreInteractions
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

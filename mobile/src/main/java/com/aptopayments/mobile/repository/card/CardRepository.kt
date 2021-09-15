@@ -38,10 +38,7 @@ internal interface CardRepository : BaseNoNetworkRepository {
     fun addCardBalance(params: AddCardBalanceParams): Either<Failure, Balance>
     fun setPin(params: SetPinParams): Either<Failure, Card>
     fun getProvisioningData(
-        cardId: String,
-        clientAppId: String,
-        clientDeviceId: String,
-        walletId: String
+        cardId: String
     ): Either<Failure, ProvisioningData>
 
     fun setCardPasscode(cardId: String, passcode: String, verificationId: String?): Either<Failure, Unit>
@@ -136,8 +133,7 @@ internal class CardRepositoryImpl(
         }
     }
 
-    override fun getProvisioningData(cardId: String, clientAppId: String, clientDeviceId: String, walletId: String) =
-        service.getProvisioningData(cardId, clientAppId, clientDeviceId, walletId)
+    override fun getProvisioningData(cardId: String) = service.getProvisioningData(cardId)
 
     override fun setCardPasscode(cardId: String, passcode: String, verificationId: String?) =
         service.setCardPasscode(cardId, passcode, verificationId)

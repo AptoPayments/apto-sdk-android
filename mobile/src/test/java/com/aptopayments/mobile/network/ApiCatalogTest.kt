@@ -1,8 +1,8 @@
 package com.aptopayments.mobile.network
 
 import com.aptopayments.mobile.data.TestDataProvider
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 

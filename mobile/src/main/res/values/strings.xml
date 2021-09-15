@@ -140,10 +140,11 @@
     <string name="auth_input_phone_error_invalid_called_phone_number">Looks like the phone number you\'ve entered isn\'t valid. Please try again.</string>
     <string name="load_funds_add_card_error_message">We experienced an error while verifying your card. Please try again or contact support for further assistance</string>
     <string name="load_funds_add_card_error_cvv">Invalid CVV.</string>
-    <string name="load_funds_add_card_error_expiration">Invalid Expiration Date.</string>
-    <string name="load_funds_add_card_error_postal_code">Invalid ZIP Code.</string>
-    <string name="load_funds_add_card_error_address">Invalid Address</string>
+    <string name="load_funds_add_card_error_expiration">Invalid expiration date.</string>
+    <string name="load_funds_add_card_error_postal_code">Invalid postal Code.</string>
+    <string name="load_funds_add_card_error_address">This geography is not currently supported. Please contact support for assistance.</string>
     <string name="load_funds_add_card_error_limit">Too many cards added</string>
+    <string name="load_funds_add_card_error_card_type">Card type not supported</string>
     <string name="load_funds_add_card_error_duplicate">This card has already been added previously.</string>
     <string name="monthly_statements.list.error_generating_report.message">There was an error generating the report. Please try again later or contact customer support if the error persist</string>
 

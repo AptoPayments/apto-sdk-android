@@ -427,15 +427,9 @@ object AptoPlatform : AptoPlatformProtocol {
     override fun fetchVoIPToken(cardId: String, actionSource: Action, callback: (Either<Failure, VoipCall>) -> Unit) =
         koin.get<SetupVoipCallUseCase>().invoke(SetupVoipCallParams(cardId, actionSource)) { callback(it) }
 
-    override fun fetchProvisioningData(
-        cardId: String,
-        clientAppId: String,
-        clientDeviceId: String,
-        walletId: String,
-        callback: (Either<Failure, ProvisioningData>) -> Unit
-    ) {
+    override fun fetchProvisioningData(cardId: String, callback: (Either<Failure, ProvisioningData>) -> Unit) {
         return koin.get<GetProvisioningDataUseCase>()
-            .invoke(GetProvisioningDataUseCase.Params(cardId, clientAppId, clientDeviceId, walletId)) { callback(it) }
+            .invoke(GetProvisioningDataUseCase.Params(cardId)) { callback(it) }
     }
 
     override fun addPaymentSource(

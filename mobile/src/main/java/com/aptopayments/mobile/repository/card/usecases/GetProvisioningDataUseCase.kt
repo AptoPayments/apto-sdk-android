@@ -10,7 +10,7 @@ internal class GetProvisioningDataUseCase(
     networkHandler: NetworkHandler
 ) : UseCase<ProvisioningData, GetProvisioningDataUseCase.Params>(networkHandler) {
     override fun run(params: Params) =
-        repository.getProvisioningData(params.cardId, params.clientAppId, params.clientDeviceId, params.walletId)
+        repository.getProvisioningData(params.cardId)
 
-    data class Params(val cardId: String, val clientAppId: String, val clientDeviceId: String, val walletId: String)
+    data class Params(val cardId: String)
 }

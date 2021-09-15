@@ -34,7 +34,7 @@ internal class CurrencySymbolProviderTest {
 
         val result = sut.provide("USD")
 
-        assertEquals("USD", result)
+        assertEquals("US$", result)
     }
 
     @Test
@@ -84,6 +84,6 @@ internal class CurrencySymbolProviderTest {
 
         val result = sut.provide("CNY")
 
-        assertEquals("CNY", result)
+        assertEquals("CN¥", result)
     }
 }

@@ -53,7 +53,7 @@ class ServerErrorFactoryTest {
         ServerErrorCodes.STATEMENT_URL_NOT_GENERATED2 to "monthly_statements.list.error_generating_report.message",
         ServerErrorCodes.STATEMENT_GENERATING_ERROR to "monthly_statements.list.error_generating_report.message",
         ServerErrorCodes.INVALID_PAYMENT_SOURCE_CARD_NETWORK to "load_funds_add_card_error_message",
-        ServerErrorCodes.INVALID_PAYMENT_SOURCE_CARD_TYPE to "load_funds_add_card_error_message",
+        ServerErrorCodes.INVALID_PAYMENT_SOURCE_CARD_TYPE to "load_funds_add_card_error_card_type",
         ServerErrorCodes.INVALID_PAYMENT_SOURCE_CARD_ENTITY to "load_funds_add_card_error_message",
         ServerErrorCodes.INVALID_PAYMENT_SOURCE_CARD_NUMBER to "load_funds_add_card_error_number",
         ServerErrorCodes.INVALID_PAYMENT_SOURCE_CARD_CVV to "load_funds_add_card_error_cvv",

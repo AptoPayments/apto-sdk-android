@@ -8,7 +8,7 @@ import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.card.local.CardBalanceLocalDao
 import com.aptopayments.mobile.repository.card.local.CardLocalRepository
 import com.aptopayments.mobile.repository.card.remote.CardService
-import com.nhaarman.mockitokotlin2.*
+import org.mockito.kotlin.*
 
 import org.junit.jupiter.api.Test
 import org.koin.core.context.loadKoinModules
