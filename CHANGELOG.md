@@ -1,5 +1,8 @@
 ## CHANGELOG
 
+# 2021-09-15 Version Mobile 3.14.0
+fix(mobile): Add Keep annotation to ExtraModule
+
 # 2021-09-15 Version 3.14.0 Ui 3.14.0
 feat(mobile): Improve Card Error copies (ACQ-1392)
 chore(ui): Update PCI-SDK to v3 (ACQ-1667)
