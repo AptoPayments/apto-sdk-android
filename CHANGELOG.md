@@ -1,31 +1,37 @@
 ## CHANGELOG
 
-# 2021-09-15 Version Mobile 3.14.0
-fix(mobile): Add Keep annotation to ExtraModule
+# 2021-10-13 Version 3.15.0 Ui 3.15.0
+- feat(mobile): Added format field to Card object (ACQ-2142)
+- feat(ui): Remove payment source
+- feat(ui): Change old PDF library for a new one (ACQ-1952)
+
+# 2021-09-29 Version Ui 3.14.1
+- fix(ui): Fix Card logo placement
+
+# 2021-09-15 Version Mobile 3.14.1
+- fix(mobile): Add Keep annotation to ExtraModule
 
 # 2021-09-15 Version 3.14.0 Ui 3.14.0
-feat(mobile): Improve Card Error copies (ACQ-1392)
-chore(ui): Update PCI-SDK to v3 (ACQ-1667)
-feat(ui): Shipping status row (RAIN-792)
-chore(ui): Disable rotation on activities
-fix(ui): Card logo placement & scale (ACQ-1214)
-chore(ui): Load Funds - Enable button when input equals the limit
-fix(ui): Error not being shown when activating physical card (ACQ-1887)
-fix(ui): Order of transactions after background refresh (ACQ-1881)
-build(all): Change some dependencies to start move away from jCenter (ACQ-1417)
-build(all): Update Mockito version to official 3.x
-build(all): Update Kotlin to 1.5.21 (ACQ-1845)
-build(all): Update ktlint to 0.41.0
-build(all): Update gradle to 7.0.2 (ACQ-1814)
+- feat(mobile): Improve Card Error copies (ACQ-1392)
+- feat(ui): Shipping status row (RAIN-792)
+- chore(ui): Update PCI-SDK to v3 (ACQ-1667)
+- chore(ui): Load Funds - Enable button when input equals the limit
+- chore(ui): Disable rotation on activities
+- fix(ui): Card logo placement & scale (ACQ-1214)
+- fix(ui): Error not being shown when activating physical card (ACQ-1887)
+- fix(ui): Order of transactions after background refresh (ACQ-1881)
+- build(all): Change some dependencies to start to move away from jCenter (ACQ-1417)
+- build(all): Update Mockito version to official 3.x
+- build(all): Update Kotlin to 1.5.21 (ACQ-1845)
+- build(all): Update ktlint to 0.41.0
+- build(all): Update gradle to 7.0.2 (ACQ-1814)
 
 # 2021-06-09 Version 3.13.0 Ui 3.13.0
 - feat(ui): Collect User Address - Show zip code when selected from list(ACQ-1189)
 - feat(ui): AddFunds screen - Added possibility to add cents (ACQ-1130)
 - fix(ui): CountrySelector & Activate card - Topbar color fixed
 - refactor(ui): AddFunds screen - Added tests also (ACQ-125)
-
 - tests(all): Moved from jUnit4 to jUnit5 (ACQ-1130)
-
 - feat(mobile): Money - Show Euro and Pound symbols always - Dollar when Us - fallback on System(ACQ-1189)
 
 # 2021-05-21 Version 3.12.0 Ui 3.12.0

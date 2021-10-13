@@ -42,6 +42,9 @@ internal data class CardEntity(
     @SerializedName("ordered_status")
     val orderedStatus: String = "",
 
+    @SerializedName("format")
+    val format: String = "",
+
     @SerializedName("spendable_today")
     val spendableAmount: MoneyEntity? = null,
 
@@ -82,6 +85,7 @@ internal data class CardEntity(
         kycStatus = parseKycStatus(kycStatus),
         kycReason = kycReason,
         orderedStatus = parseOrderedStatus(orderedStatus),
+        format = parseFormat(format),
         spendableAmount = spendableAmount?.toMoney(),
         nativeSpendableAmount = nativeSpendableAmount?.toMoney(),
         cardHolder = nameOnCard ?: "$cardholderFirstName $cardholderLastName",
@@ -133,6 +137,14 @@ internal data class CardEntity(
         }
     }
 
+    private fun parseFormat(format: String): Card.Format {
+        return try {
+            Card.Format.valueOf(format.toUpperCase(Locale.US))
+        } catch (exception: IllegalArgumentException) {
+            Card.Format.UNKNOWN
+        }
+    }
+
     companion object {
         fun from(card: Card): CardEntity {
             return CardEntity(
@@ -147,6 +159,7 @@ internal data class CardEntity(
                 kycStatus = card.kycStatus.toString(),
                 kycReason = card.kycReason,
                 orderedStatus = card.orderedStatus.toString(),
+                format = card.format.toString(),
                 spendableAmount = MoneyEntity.from(card.spendableAmount),
                 nativeSpendableAmount = MoneyEntity.from(card.nativeSpendableAmount),
                 features = FeaturesEntity.from(features = card.features),

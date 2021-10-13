@@ -17,6 +17,7 @@ data class Card(
     val kycStatus: KycStatus?,
     val kycReason: List<String>?,
     val orderedStatus: OrderedStatus,
+    val format: Format,
     val spendableAmount: Money?,
     val nativeSpendableAmount: Money?,
     val cardHolder: String,
@@ -57,6 +58,12 @@ data class Card(
         AVAILABLE,
         ORDERED,
         RECEIVED,
+        UNKNOWN
+    }
+
+    enum class Format {
+        VIRTUAL,
+        PHYSICAL,
         UNKNOWN
     }
 }

@@ -28,6 +28,7 @@ class CardEntityTest {
     private val TEST_KYC_STATUS = "TEST_KYC_STATUS"
     private val TEST_KYC_REASONS = listOf("KYC_REASON")
     private val TEST_ORDERED_STATUS = "TEST_ORDERED_STATUS"
+    private val TEST_FORMAT = "TEST_FORMAT"
     private val TEST_CARDHOLDER_FIRST_NAME = "TEST_CARDHOLDER_FIRST_NAME"
     private val TEST_CARDHOLDER_LAST_NAME = "TEST_CARDHOLDER_LAST_NAME"
     private val TEST_NAME_ON_CARD = "TEST_NAME_ON_CARD"
@@ -45,6 +46,7 @@ class CardEntityTest {
             kycStatus = TEST_KYC_STATUS,
             kycReason = TEST_KYC_REASONS,
             orderedStatus = TEST_ORDERED_STATUS,
+            format = TEST_FORMAT,
             spendableAmount = mockSpendableAmountEntity,
             nativeSpendableAmount = mockNativeAmountEntity,
             features = mockFeaturesEntity,
@@ -85,6 +87,7 @@ class CardEntityTest {
         assertEquals(card.kycStatus, KycStatus.UNKNOWN)
         assertEquals(card.kycReason, TEST_KYC_REASONS)
         assertEquals(card.orderedStatus, Card.OrderedStatus.UNKNOWN)
+        assertEquals(card.format, Card.Format.UNKNOWN)
         assertEquals(card.spendableAmount, testSpendableAmount)
         assertEquals(card.nativeSpendableAmount, testNativeAmount)
         assertEquals(card.features, testFeatures)
