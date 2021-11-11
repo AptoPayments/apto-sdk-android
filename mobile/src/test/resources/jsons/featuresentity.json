@@ -47,5 +47,8 @@
   },
   "in_app_provisioning":{
     "status":"disabled"
+  },
+  "support_p2p_transfers":{
+    "status":"enabled"
   }
 }

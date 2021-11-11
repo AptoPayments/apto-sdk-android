@@ -8,7 +8,7 @@ enum class UITheme {
     companion object {
         fun parseUITheme(theme: String): UITheme {
             return try {
-                valueOf(theme.toUpperCase(Locale.US))
+                valueOf(theme.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 THEME_2
             }

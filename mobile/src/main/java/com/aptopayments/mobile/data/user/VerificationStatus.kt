@@ -10,7 +10,7 @@ enum class VerificationStatus {
     companion object {
         fun from(status: String): VerificationStatus {
             return try {
-                valueOf(status.toUpperCase(Locale.US))
+                valueOf(status.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 FAILED
             }

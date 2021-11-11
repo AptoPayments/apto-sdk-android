@@ -151,7 +151,7 @@ class EitherTest {
 
     @Test
     fun `orNull returns null value when is left`() {
-        val sut = Left(INTEGER_INPUT)
+        val sut: Either<Int, Int> = Left(INTEGER_INPUT)
 
         val result = sut.orNull()
 

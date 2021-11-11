@@ -23,5 +23,5 @@ internal data class UserEntity(
     )
 
     private fun getUserData(userData: ListEntity<DataPointEntity>?) =
-        if (userData?.data?.isEmpty() == false) DataPointList(userData.data?.map { it.toDataPoint() }) else null
+        if (userData?.data?.isEmpty() == false) DataPointList(userData.data.map { it.toDataPoint() }) else null
 }

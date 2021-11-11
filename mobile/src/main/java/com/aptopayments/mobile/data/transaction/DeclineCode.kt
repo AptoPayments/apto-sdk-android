@@ -26,7 +26,7 @@ enum class DeclineCode(val code: String) {
     companion object {
         fun from(code: String?): DeclineCode? = code?.let {
             try {
-                valueOf(it.toUpperCase(Locale.US))
+                valueOf(it.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 Other
             }

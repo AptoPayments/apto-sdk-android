@@ -46,7 +46,7 @@ internal class BalanceEntity(
     private fun parseBalanceState(state: String?): Balance.BalanceState? {
         return state?.let {
             try {
-                Balance.BalanceState.valueOf(it.toUpperCase(Locale.US))
+                Balance.BalanceState.valueOf(it.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 Balance.BalanceState.INVALID
             }

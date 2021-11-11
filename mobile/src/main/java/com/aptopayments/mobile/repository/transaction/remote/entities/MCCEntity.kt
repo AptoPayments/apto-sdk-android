@@ -23,7 +23,7 @@ internal data class MCCEntity(
     private fun parseMCCIcon(icon: String?): MCC.Icon? {
         return icon?.let {
             try {
-                MCC.Icon.valueOf(it.toUpperCase(Locale.US))
+                MCC.Icon.valueOf(it.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 MCC.Icon.OTHER
             }

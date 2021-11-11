@@ -30,7 +30,11 @@ internal data class FeaturesEntity(
     val achAccountFeatureEntity: AchAccountFeatureEntity? = null,
 
     @SerializedName("in_app_provisioning")
-    val inAppProvisioningEntity: InAppProvisioningFeatureEntity? = null,
+    val inAppProvisioningEntity: GenericFeatureEntity? = null,
+
+    @SerializedName("supports_p2p_transfers")
+    val transferMoneyP2pEntity: GenericFeatureEntity? = null,
+
 ) {
     fun toFeatures() = Features(
         getPin = getPinEntity?.toGetPin(),
@@ -42,6 +46,7 @@ internal data class FeaturesEntity(
         passcode = passcodeEntity?.toCardPasscode(),
         achAccount = achAccountFeatureEntity?.toAchFeature(),
         inAppProvisioning = inAppProvisioningEntity?.toFeature(),
+        transferMoneyP2p = transferMoneyP2pEntity?.toFeature()
     )
 
     companion object {
@@ -55,7 +60,8 @@ internal data class FeaturesEntity(
                 fundingFeatureEntity = FundingFeatureEntity.from(features.funding),
                 passcodeEntity = CardPasscodeFeatureEntity.from(features.passcode),
                 achAccountFeatureEntity = AchAccountFeatureEntity.from(features.achAccount),
-                inAppProvisioningEntity = InAppProvisioningFeatureEntity.from(features.inAppProvisioning),
+                inAppProvisioningEntity = GenericFeatureEntity.from(features.inAppProvisioning),
+                transferMoneyP2pEntity = GenericFeatureEntity.from(features.transferMoneyP2p)
             )
         }
     }

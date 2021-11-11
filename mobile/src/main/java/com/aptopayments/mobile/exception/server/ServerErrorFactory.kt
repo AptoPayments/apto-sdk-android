@@ -42,12 +42,15 @@ import com.aptopayments.mobile.exception.server.ServerErrorCodes.LOGIN_ERROR_INV
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.LOGIN_ERROR_UNVERIFIED_DATAPOINTS
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PAYMENT_SOURCE_ADD_LIMIT
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.INVALID_PAYMENT_SOURCE_DUPLICATE
+import com.aptopayments.mobile.exception.server.ServerErrorCodes.INVALID_RECIPIENT_EMAIL
+import com.aptopayments.mobile.exception.server.ServerErrorCodes.INVALID_RECIPIENT_PHONE
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PHYSICAL_CARD_ACTIVATION_NOT_SUPPORTED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PHYSICAL_CARD_ALREADY_ACTIVATED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PHYSICAL_CARD_ALREADY_ORDERED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PHYSICAL_CARD_NOT_SUPPORTED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.POSTAL_CODE_INVALID
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PRIMARY_FUNDING_SOURCE_NOT_FOUND
+import com.aptopayments.mobile.exception.server.ServerErrorCodes.RECIPIENT_NOT_FOUND
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.REGION_INVALID
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.REVOKED_TOKEN
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.SESSION_EXPIRED
@@ -71,7 +74,7 @@ private const val UNDEFINED_MESSAGE = "error.transport.undefined"
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 class ServerErrorFactory {
 
-    private val genericMap = mapOf(
+    private val genericMap = hashMapOf(
         UNKNOWN_SESSION to "error.transport.invalid_session",
         INVALID_SESSION to "error.transport.invalid_session",
         SESSION_EXPIRED to "error.transport.session_expired",
@@ -130,6 +133,8 @@ class ServerErrorFactory {
         PHYSICAL_CARD_ALREADY_ORDERED to "error.physical_card.card_already_ordered",
         PHYSICAL_CARD_NOT_SUPPORTED to "error.physical_card.order_not_supported",
         INVALID_PAYMENT_SOURCE_DUPLICATE to "load_funds_add_card_error_duplicate",
+        INVALID_RECIPIENT_PHONE to "p2p_transfer_error_invalid_phone",
+        INVALID_RECIPIENT_EMAIL to "p2p_transfer_error_invalid_email",
     )
 
     fun create(code: Int? = UNKNOWN_ERROR, apiMessage: String? = null): Failure.ServerError {
@@ -141,6 +146,7 @@ class ServerErrorFactory {
                 ErrorBalanceValidationsInsufficientApplicationLimit(apiMessage)
             code == REVOKED_TOKEN -> ErrorOauthTokenRevoked(apiMessage)
             code == INSUFFICIENT_FUNDS -> ErrorInsufficientFunds(apiMessage)
+            code == RECIPIENT_NOT_FOUND -> ErrorRecipientNotFound(apiMessage)
             else -> createGenericServerError(code, apiMessage, UNDEFINED_MESSAGE)
         }
     }

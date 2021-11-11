@@ -43,6 +43,9 @@ import com.aptopayments.mobile.repository.transaction.TransactionListMerger
 import com.aptopayments.mobile.repository.transaction.TransactionRepository
 import com.aptopayments.mobile.repository.transaction.TransactionRepositoryImpl
 import com.aptopayments.mobile.repository.transaction.remote.TransactionService
+import com.aptopayments.mobile.repository.p2p.P2pRepository
+import com.aptopayments.mobile.repository.p2p.P2pRepositoryImpl
+import com.aptopayments.mobile.repository.p2p.remote.P2pService
 import com.aptopayments.mobile.repository.user.UserRepository
 import com.aptopayments.mobile.repository.user.UserRepositoryImpl
 import com.aptopayments.mobile.repository.user.remote.UserService
@@ -110,4 +113,6 @@ internal val repositoryModule = module {
     single<PaymentSourcesRepository> { PaymentSourcesRepositoryImpl(get()) }
     single { PaymentService(get()) }
     single<PaymentRepository> { PaymentRepositoryImpl(get()) }
+    single { P2pService(get()) }
+    single<P2pRepository> { P2pRepositoryImpl(get()) }
 }

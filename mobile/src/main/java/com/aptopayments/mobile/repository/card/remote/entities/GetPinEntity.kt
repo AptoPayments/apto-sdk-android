@@ -42,7 +42,7 @@ internal data class GetPinEntity(
                 }
             }
             GetPinEntity(
-                status = it.status.toString().toLowerCase(Locale.US),
+                status = it.status.toString().lowercase(Locale.US),
                 type = it.type.name,
                 ivrPhoneEntity = phone
             )

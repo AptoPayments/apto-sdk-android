@@ -11,7 +11,6 @@ import com.aptopayments.mobile.data.config.ContextConfiguration
 import com.aptopayments.mobile.data.fundingsources.AchAccountDetails
 import com.aptopayments.mobile.data.fundingsources.Balance
 import com.aptopayments.mobile.data.oauth.OAuthAttempt
-import com.aptopayments.mobile.data.oauth.OAuthCredential
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdate
 import com.aptopayments.mobile.data.payment.Payment
 import com.aptopayments.mobile.data.paymentsources.NewPaymentSource
@@ -20,6 +19,8 @@ import com.aptopayments.mobile.data.statements.MonthlyStatement
 import com.aptopayments.mobile.data.statements.MonthlyStatementPeriod
 import com.aptopayments.mobile.data.stats.MonthlySpending
 import com.aptopayments.mobile.data.transaction.Transaction
+import com.aptopayments.mobile.data.transfermoney.CardHolderData
+import com.aptopayments.mobile.data.transfermoney.P2pTransferResponse
 import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.data.user.User
 import com.aptopayments.mobile.data.user.Verification
@@ -296,25 +297,6 @@ interface AptoPlatformProtocol {
         applicationId: String,
         metadata: String? = null,
         design: IssueCardDesign? = null,
-        callback: (Either<Failure, Card>) -> Unit
-    )
-
-    /**
-     * This methods allows to issue a card providing different parameters
-     *
-     * @param cardProductId String got from
-     * {@link fetchCardProducts((Either<Failure, List<CardProductSummary>>) -> Unit)}
-     * or {@link fetchCardProduct(String, Boolean, (Either<Failure, CardProduct>) -> Unit)}
-     * @param credential OAuthCredential
-     * @param initialFundingSourceId specifies the id of the wallet that will be connected to the card when issued
-     * @param callback Lambda called when card has been issued returning Either Failure if was not successful
-     * or the Card if it was correct
-     */
-    @Deprecated("Please use issueCard with applicationId")
-    fun issueCard(
-        cardProductId: String,
-        credential: OAuthCredential?,
-        initialFundingSourceId: String? = null,
         callback: (Either<Failure, Card>) -> Unit
     )
 
@@ -615,4 +597,36 @@ interface AptoPlatformProtocol {
      * [Card] if it was successful
      */
     fun orderPhysicalCard(cardId: String, callback: (Either<Failure, Card>) -> Unit)
+
+    /**
+     * Search for the existence of a certain user in the Card Program.
+     * An phone number or email must be provided.
+     *
+     * @param phone [PhoneNumber] Number of the user to be searched.
+     * @param email [String] Email of the user to be searched
+     * @param callback Lambda called when a task has ended returning [Either] Failure if there was an error or
+     * [CardHolderData] if it was successful.
+     */
+    fun p2pFindRecipient(
+        phone: PhoneNumber? = null,
+        email: String? = null,
+        callback: (Either<Failure, CardHolderData>) -> Unit
+    )
+
+    /**
+     * Send transfer from a user's balance to another user.
+     *
+     * @param sourceId [String] Users balance id that will be the source of the funds, this id can be retrieved using
+     * [fetchCardFundingSource] or [fetchCardFundingSources].
+     * @param recipientId [String] The recipient_id can be retrieved using [p2pFindRecipient] function.
+     * @param amount [Money] Amount of money to be sent to the recipient.
+     * @param callback Lambda called when a task has ended returning [Either] Failure if there was an error or
+     * [P2pTransferResponse] if it was successful.
+     */
+    fun p2pMakeTransfer(
+        sourceId: String,
+        recipientId: String,
+        amount: Money,
+        callback: (Either<Failure, P2pTransferResponse>) -> Unit
+    )
 }

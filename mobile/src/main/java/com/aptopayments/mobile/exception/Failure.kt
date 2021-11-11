@@ -56,3 +56,6 @@ sealed class Failure(open val errorKey: String = "") {
     /** * Extend this class for feature specific failures.*/
     abstract class FeatureFailure(override val errorKey: String = "", val titleKey: String = "") : Failure()
 }
+
+internal class NoEnoughParametersFailure : Failure.FeatureFailure()
+internal class TooMuchParametersFailure : Failure.FeatureFailure()

@@ -110,12 +110,12 @@ internal data class TransactionEntity(
     )
 
     private fun calculateAdjustments(adjustments: ListEntity<TransactionAdjustmentEntity>?) =
-        if (adjustments?.data?.isEmpty() == false) adjustments.data?.map { it.toTransactionAdjustment() } else null
+        if (adjustments?.data?.isEmpty() == false) adjustments.data.map { it.toTransactionAdjustment() } else null
 
     private fun parseTransactionType(transactionType: String?): Transaction.TransactionType {
         return transactionType?.let {
             try {
-                Transaction.TransactionType.valueOf(it.toUpperCase(Locale.US))
+                Transaction.TransactionType.valueOf(it.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 Transaction.TransactionType.OTHER
             }
@@ -125,7 +125,7 @@ internal data class TransactionEntity(
     private fun parseCardNetwork(cardNetwork: String?): Card.CardNetwork? {
         return cardNetwork?.let {
             try {
-                Card.CardNetwork.valueOf(it.toUpperCase(Locale.US))
+                Card.CardNetwork.valueOf(it.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 null
             }
@@ -135,7 +135,7 @@ internal data class TransactionEntity(
     private fun parseTransactionState(state: String?): Transaction.TransactionState {
         return state?.let {
             try {
-                Transaction.TransactionState.valueOf(it.toUpperCase(Locale.US))
+                Transaction.TransactionState.valueOf(it.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 Transaction.TransactionState.OTHER
             }

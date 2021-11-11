@@ -53,7 +53,7 @@ internal class FundingSourceRepositoryImplTest {
 
         val result = sut.getFundingSources(accountId = ACCOUNT_ID, refresh = false, page = 0, rows = 10)
 
-        verifyZeroInteractions(service)
+        verifyNoInteractions(service)
         assertEquals(listOf(balance).right(), result)
     }
 

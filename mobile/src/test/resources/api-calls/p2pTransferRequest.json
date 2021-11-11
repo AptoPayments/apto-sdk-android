@@ -1,0 +1,8 @@
+{
+  "source_id": "source_123",
+  "recipient_id": "rec_1234",
+  "amount": {
+    "currency": "USD",
+    "amount": 10.50
+  }
+}

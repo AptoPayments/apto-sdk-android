@@ -15,9 +15,6 @@ internal class CardService(apiCatalog: ApiCatalog) : BaseNetworkService() {
 
     private val cardApi by lazy { apiCatalog.api().create(CardApi::class.java) }
 
-    fun issueCard(issueCardRequest: IssueCardRequest) =
-        request(cardApi.issueCard(request = issueCardRequest), { it.toCard() }, CardEntity())
-
     fun getCard(getCardRequest: GetCardRequest) =
         request(
             cardApi.getCard(accountID = getCardRequest.accountID, showDetails = false),

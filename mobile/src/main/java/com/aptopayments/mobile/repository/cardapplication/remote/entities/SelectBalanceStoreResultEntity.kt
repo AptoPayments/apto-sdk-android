@@ -20,7 +20,7 @@ internal data class SelectBalanceStoreResultEntity(
 
     private fun parseResult(result: String): SelectBalanceStoreResult.Type {
         return try {
-            SelectBalanceStoreResult.Type.valueOf(result.toUpperCase(Locale.US))
+            SelectBalanceStoreResult.Type.valueOf(result.uppercase(Locale.US))
         } catch (exception: IllegalArgumentException) {
             SelectBalanceStoreResult.Type.INVALID
         }

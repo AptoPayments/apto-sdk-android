@@ -8,6 +8,6 @@ enum class AptoSdkEnvironment(val baseUrl: String, val vaultBaseUrl: String) {
     PRD("https://api.aptopayments.com", "https://vault.aptopayments.com");
 
     companion object {
-        fun fromString(str: String) = valueOf(str.toUpperCase(Locale.US))
+        fun fromString(str: String) = valueOf(str.uppercase(Locale.US))
     }
 }

@@ -82,6 +82,9 @@
           }
         }
       }
+    },
+    "supports_p2p_transfers" : {
+      "status":"enabled"
     }
   },
   "spendable_today":{

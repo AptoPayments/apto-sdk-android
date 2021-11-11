@@ -1,0 +1,16 @@
+{
+    "id": "tr_1",
+    "status": "processed",
+    "source_id": "source_123",
+    "amount": {
+      "currency": "USD",
+      "amount": 10.50
+    },
+    "recipient": {
+      "name": {
+        "first_name": "John",
+        "last_name": "Smith"
+      }
+    },
+    "created_at": "2021-07-16T17:00:00.000Z"
+}

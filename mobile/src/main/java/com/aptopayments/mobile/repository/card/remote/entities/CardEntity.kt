@@ -104,7 +104,7 @@ internal data class CardEntity(
     private fun parseCardNetwork(network: String?): Card.CardNetwork {
         return network?.let {
             try {
-                Card.CardNetwork.valueOf(it.toUpperCase(Locale.US))
+                Card.CardNetwork.valueOf(it.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 Card.CardNetwork.UNKNOWN
             }
@@ -113,7 +113,7 @@ internal data class CardEntity(
 
     private fun parseCardState(state: String): Card.CardState {
         return try {
-            Card.CardState.valueOf(state.toUpperCase(Locale.US))
+            Card.CardState.valueOf(state.uppercase(Locale.US))
         } catch (exception: IllegalArgumentException) {
             Card.CardState.UNKNOWN
         }
@@ -122,7 +122,7 @@ internal data class CardEntity(
     private fun parseKycStatus(status: String?): KycStatus? {
         return status?.let {
             try {
-                KycStatus.valueOf(it.toUpperCase(Locale.US))
+                KycStatus.valueOf(it.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 KycStatus.UNKNOWN
             }
@@ -131,7 +131,7 @@ internal data class CardEntity(
 
     private fun parseOrderedStatus(status: String): Card.OrderedStatus {
         return try {
-            Card.OrderedStatus.valueOf(status.toUpperCase(Locale.US))
+            Card.OrderedStatus.valueOf(status.uppercase(Locale.US))
         } catch (exception: IllegalArgumentException) {
             Card.OrderedStatus.UNKNOWN
         }
@@ -139,7 +139,7 @@ internal data class CardEntity(
 
     private fun parseFormat(format: String): Card.Format {
         return try {
-            Card.Format.valueOf(format.toUpperCase(Locale.US))
+            Card.Format.valueOf(format.uppercase(Locale.US))
         } catch (exception: IllegalArgumentException) {
             Card.Format.UNKNOWN
         }

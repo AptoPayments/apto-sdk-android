@@ -58,7 +58,7 @@ internal data class OAuthAttemptEntity(
 
     private fun parseOAuthAttemptStatus(status: String): OAuthAttemptStatus {
         return try {
-            OAuthAttemptStatus.valueOf(status.toUpperCase(Locale.US))
+            OAuthAttemptStatus.valueOf(status.uppercase(Locale.US))
         } catch (exception: IllegalArgumentException) {
             OAuthAttemptStatus.PENDING
         }

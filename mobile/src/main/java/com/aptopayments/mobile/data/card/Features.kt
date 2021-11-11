@@ -10,7 +10,7 @@ enum class FeatureStatus {
     companion object {
         fun fromString(state: String): FeatureStatus {
             return try {
-                valueOf(state.toUpperCase(Locale.US))
+                valueOf(state.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 DISABLED
             }
@@ -44,5 +44,6 @@ data class Features(
     val funding: FundingFeature? = null,
     val passcode: CardPasscodeFeature? = null,
     val achAccount: AchAccountFeature? = null,
-    val inAppProvisioning: InAppProvisioningFeature? = null,
+    val inAppProvisioning: GenericFeature? = null,
+    val transferMoneyP2p: GenericFeature? = null
 ) : Serializable

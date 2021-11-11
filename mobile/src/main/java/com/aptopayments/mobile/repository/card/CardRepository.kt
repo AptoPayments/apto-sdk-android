@@ -4,7 +4,6 @@ import com.aptopayments.mobile.data.ListPagination
 import com.aptopayments.mobile.data.PaginatedList
 import com.aptopayments.mobile.data.card.*
 import com.aptopayments.mobile.data.fundingsources.Balance
-import com.aptopayments.mobile.data.oauth.OAuthCredential
 import com.aptopayments.mobile.exception.Failure
 import com.aptopayments.mobile.functional.Either
 import com.aptopayments.mobile.functional.right
@@ -15,19 +14,11 @@ import com.aptopayments.mobile.repository.card.local.CardLocalRepository
 import com.aptopayments.mobile.repository.card.local.entities.CardBalanceLocalEntity
 import com.aptopayments.mobile.repository.card.remote.CardService
 import com.aptopayments.mobile.repository.card.remote.requests.GetCardRequest
-import com.aptopayments.mobile.repository.card.remote.requests.IssueCardRequest
-import com.aptopayments.mobile.repository.card.remote.requests.OAuthCredentialRequest
 import com.aptopayments.mobile.repository.card.usecases.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 internal interface CardRepository : BaseNoNetworkRepository {
-    fun issueCard(
-        cardProductId: String,
-        credential: OAuthCredential?,
-        initialFundingSourceId: String?
-    ): Either<Failure, Card>
-
     fun getCard(params: GetCardParams): Either<Failure, Card>
     fun getCards(pagination: ListPagination? = null): Either<Failure, PaginatedList<Card>>
     fun unlockCard(cardId: String): Either<Failure, Card>
@@ -64,25 +55,6 @@ internal class CardRepositoryImpl(
 
     protected fun finalize() {
         userSessionRepository.unsubscribeSessionInvalidListener(this)
-    }
-
-    override fun issueCard(
-        cardProductId: String,
-        credential: OAuthCredential?,
-        initialFundingSourceId: String?
-    ): Either<Failure, Card> {
-        val credentialRequest: OAuthCredentialRequest? = credential?.let {
-            OAuthCredentialRequest(
-                accessToken = it.oauthToken,
-                refreshToken = it.refreshToken
-            )
-        }
-        val issueCardRequest = IssueCardRequest(
-            cardProductId = cardProductId,
-            oAuthCredentialRequest = credentialRequest,
-            initialFundingSourceId = initialFundingSourceId
-        )
-        return service.issueCard(issueCardRequest)
     }
 
     override fun getCard(params: GetCardParams): Either<Failure, Card> {

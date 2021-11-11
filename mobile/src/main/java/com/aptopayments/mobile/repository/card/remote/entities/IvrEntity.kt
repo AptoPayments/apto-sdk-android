@@ -23,7 +23,7 @@ internal data class IvrEntity(
         fun from(getPin: Ivr?): IvrEntity? {
             return getPin?.let {
                 IvrEntity(
-                    status = it.status.toString().toLowerCase(Locale.US),
+                    status = it.status.toString().lowercase(Locale.US),
                     ivrPhoneEntity = PhoneNumberEntity.from(it.ivrPhone)
                 )
             }

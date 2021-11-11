@@ -11,7 +11,6 @@ import com.aptopayments.mobile.functional.right
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.card.usecases.GetOrderPhysicalCardConfigurationUseCase
 import com.aptopayments.mobile.repository.card.usecases.OrderPhysicalCardUseCase
-import com.aptopayments.mobile.repository.card.usecases.IssueCardWithProductIdUseCase
 import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.mobile.repository.user.usecases.CreateUserUseCase
 import org.mockito.kotlin.*
@@ -29,7 +28,6 @@ class AptoPlatformTest : UnitTest() {
     private val sut = AptoPlatform
 
     // Collaborators
-    private val issueCardCardProductWithProductIdUseCase: IssueCardWithProductIdUseCase = mock()
     private val createUserUseCase: CreateUserUseCase = mock()
     private val userSessionRepository: UserSessionRepository = mock()
     private val getMonthlySpendingUseCase = mock<GetMonthlySpendingUseCase>()
@@ -43,7 +41,6 @@ class AptoPlatformTest : UnitTest() {
             modules(
                 module {
                     factory<UserSessionRepository> { userSessionRepository }
-                    factory { issueCardCardProductWithProductIdUseCase }
                     factory { createUserUseCase }
                     factory { getMonthlySpendingUseCase }
                     factory { orderPhysicalCardUseCase }
@@ -56,36 +53,6 @@ class AptoPlatformTest : UnitTest() {
     @AfterEach
     fun tearDown() {
         stopKoin()
-    }
-
-    @Test
-    fun `issue card called invoke use case`() {
-        // When
-        AptoPlatform.issueCard(cardProductId = "card_product_id", credential = null) {}
-
-        // Then
-        verify(issueCardCardProductWithProductIdUseCase).invoke(TestDataProvider.anyObject(), TestDataProvider.anyObject())
-    }
-
-    @Test
-    fun `initial funding source id is sent to issue card`() {
-        // Given
-        val initialFundingSourceId = "initial_funding_source_id"
-        val expectedParams = IssueCardWithProductIdUseCase.Params(
-            cardProductId = "card_product_id",
-            credential = null,
-            initialFundingSourceId = initialFundingSourceId
-        )
-
-        // When
-        AptoPlatform.issueCard(
-            cardProductId = "card_product_id",
-            credential = null,
-            initialFundingSourceId = initialFundingSourceId
-        ) {}
-
-        // Then
-        verify(issueCardCardProductWithProductIdUseCase).invoke(eq(expectedParams), TestDataProvider.anyObject())
     }
 
     @Test

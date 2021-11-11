@@ -14,7 +14,6 @@ import com.aptopayments.mobile.data.config.ContextConfiguration
 import com.aptopayments.mobile.data.fundingsources.AchAccountDetails
 import com.aptopayments.mobile.data.fundingsources.Balance
 import com.aptopayments.mobile.data.oauth.OAuthAttempt
-import com.aptopayments.mobile.data.oauth.OAuthCredential
 import com.aptopayments.mobile.data.oauth.OAuthUserDataUpdate
 import com.aptopayments.mobile.data.payment.Payment
 import com.aptopayments.mobile.data.paymentsources.NewPaymentSource
@@ -23,6 +22,8 @@ import com.aptopayments.mobile.data.statements.MonthlyStatement
 import com.aptopayments.mobile.data.statements.MonthlyStatementPeriod
 import com.aptopayments.mobile.data.stats.MonthlySpending
 import com.aptopayments.mobile.data.transaction.Transaction
+import com.aptopayments.mobile.data.transfermoney.CardHolderData
+import com.aptopayments.mobile.data.transfermoney.P2pTransferResponse
 import com.aptopayments.mobile.data.user.DataPointList
 import com.aptopayments.mobile.data.user.User
 import com.aptopayments.mobile.data.user.Verification
@@ -71,6 +72,8 @@ import com.aptopayments.mobile.repository.stats.usecases.ClearMonthlySpendingCac
 import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.mobile.repository.transaction.TransactionListFilters
 import com.aptopayments.mobile.repository.transaction.usecases.GetTransactionsUseCase
+import com.aptopayments.mobile.repository.p2p.usecases.P2pFindRecipientUseCase
+import com.aptopayments.mobile.repository.p2p.usecases.P2pMakeTransfer
 import com.aptopayments.mobile.repository.user.usecases.*
 import com.aptopayments.mobile.repository.user.usecases.CreateUserUseCase
 import com.aptopayments.mobile.repository.user.usecases.GetNotificationPreferencesUseCase
@@ -306,19 +309,6 @@ object AptoPlatform : AptoPlatformProtocol {
         callback: (Either<Failure, Card>) -> Unit
     ) = koin.get<IssueCardUseCase>().invoke(Params(applicationId, metadata, design)) { callback(it) }
 
-    override fun issueCard(
-        cardProductId: String,
-        credential: OAuthCredential?,
-        initialFundingSourceId: String?,
-        callback: (Either<Failure, Card>) -> Unit
-    ) = koin.get<IssueCardWithProductIdUseCase>().invoke(
-        IssueCardWithProductIdUseCase.Params(
-            cardProductId = cardProductId,
-            credential = credential,
-            initialFundingSourceId = initialFundingSourceId
-        )
-    ) { callback(it) }
-
     override fun fetchCards(callback: (Either<Failure, List<Card>>) -> Unit) =
         fetchCards(null) { result -> callback(result.map { it.data }) }
 
@@ -422,7 +412,7 @@ object AptoPlatform : AptoPlatformProtocol {
     override fun updateNotificationPreferences(
         preferences: NotificationPreferences,
         callback: (Either<Failure, NotificationPreferences>) -> Unit
-    ) = koin.get<UpdateNotificationPreferencesUseCase>().invoke(preferences.preferences!!) { callback(it) }
+    ) = koin.get<UpdateNotificationPreferencesUseCase>().invoke(preferences.preferences) { callback(it) }
 
     override fun fetchVoIPToken(cardId: String, actionSource: Action, callback: (Either<Failure, VoipCall>) -> Unit) =
         koin.get<SetupVoipCallUseCase>().invoke(SetupVoipCallParams(cardId, actionSource)) { callback(it) }
@@ -505,5 +495,22 @@ object AptoPlatform : AptoPlatformProtocol {
 
     override fun orderPhysicalCard(cardId: String, callback: (Either<Failure, Card>) -> Unit) {
         koin.get<OrderPhysicalCardUseCase>().invoke(OrderPhysicalCardUseCase.Params(cardId)) { callback(it) }
+    }
+
+    override fun p2pFindRecipient(
+        phone: PhoneNumber?,
+        email: String?,
+        callback: (Either<Failure, CardHolderData>) -> Unit
+    ) {
+        koin.get<P2pFindRecipientUseCase>().invoke(P2pFindRecipientUseCase.Params(phone, email)) { callback(it) }
+    }
+
+    override fun p2pMakeTransfer(
+        sourceId: String,
+        recipientId: String,
+        amount: Money,
+        callback: (Either<Failure, P2pTransferResponse>) -> Unit
+    ) {
+        koin.get<P2pMakeTransfer>().invoke(P2pMakeTransfer.Params(sourceId, recipientId, amount)) { callback(it) }
     }
 }

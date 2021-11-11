@@ -11,7 +11,6 @@ import com.aptopayments.mobile.repository.fundingsources.remote.entities.Balance
 import retrofit2.Call
 import retrofit2.http.*
 
-private const val ISSUE_CARD_PATH = "v1/user/accounts/issuecard"
 private const val USER_BALANCES_PATH = "v1/user/accounts/{account_id}/balances"
 private const val FINANCIAL_ACCOUNTS_PATH = "v1/user/accounts"
 private const val FINANCIAL_ACCOUNT_PATH = "v1/user/accounts/{account_id}"
@@ -31,9 +30,6 @@ private const val PARAMETER_ENDING_BEFORE = "ending_before"
 private const val PARAMETER_LIMIT = "limit"
 
 internal interface CardApi {
-
-    @POST(ISSUE_CARD_PATH)
-    fun issueCard(@Body request: IssueCardRequest): Call<CardEntity>
 
     @GET(FINANCIAL_ACCOUNT_PATH)
     fun getCard(@Path(ACCOUNT_ID) accountID: String, @Query(SHOW_DETAILS) showDetails: Boolean): Call<CardEntity>

@@ -1,14 +1,14 @@
 package com.aptopayments.mobile.data.card
 
-import com.aptopayments.mobile.repository.card.remote.entities.InAppProvisioningFeatureEntity
+import com.aptopayments.mobile.repository.card.remote.entities.GenericFeatureEntity
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-internal class InAppProvisioningFeatureTest {
+internal class GenericFeatureTest {
 
     @Test
     fun `given empty entity when transformed then status is disabled`() {
-        val entity = InAppProvisioningFeatureEntity()
+        val entity = GenericFeatureEntity()
 
         val sut = entity.toFeature()
 
@@ -17,7 +17,7 @@ internal class InAppProvisioningFeatureTest {
 
     @Test
     fun `given entity with disabled status when transformed then status is disabled`() {
-        val entity = InAppProvisioningFeatureEntity(status = "disabled")
+        val entity = GenericFeatureEntity(status = "disabled")
 
         val sut = entity.toFeature()
 
@@ -26,7 +26,7 @@ internal class InAppProvisioningFeatureTest {
 
     @Test
     fun `given entity with enabled status when transformed then status is enabled`() {
-        val entity = InAppProvisioningFeatureEntity(status = "enabled")
+        val entity = GenericFeatureEntity(status = "enabled")
 
         val sut = entity.toFeature()
 

@@ -30,7 +30,7 @@ internal data class CardApplicationEntity(
 
     private fun parseCardApplicationStatus(status: String): CardApplicationStatus {
         return try {
-            CardApplicationStatus.valueOf(status.toUpperCase(Locale.US))
+            CardApplicationStatus.valueOf(status.uppercase(Locale.US))
         } catch (exception: IllegalArgumentException) {
             CardApplicationStatus.UNKNOWN
         }

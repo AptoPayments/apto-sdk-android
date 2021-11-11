@@ -17,7 +17,7 @@ internal data class SetPinEntity(
 
     companion object {
         fun from(setPin: SetPin?): SetPinEntity? {
-            return setPin?.let { SetPinEntity(status = it.status.toString().toLowerCase(Locale.US)) }
+            return setPin?.let { SetPinEntity(status = it.status.toString().lowercase(Locale.US)) }
         }
     }
 }

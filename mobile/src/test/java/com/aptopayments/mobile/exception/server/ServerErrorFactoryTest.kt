@@ -69,7 +69,10 @@ class ServerErrorFactoryTest {
         ServerErrorCodes.BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT to "select_balance_store.login.error_insufficient_application_limit.message",
         ServerErrorCodes.INSUFFICIENT_FUNDS to "error.transport.undefined",
         ServerErrorCodes.REVOKED_TOKEN to "issue_card.issue_card.error.token_revoked",
-        ServerErrorCodes.INVALID_PAYMENT_SOURCE_DUPLICATE to "load_funds_add_card_error_duplicate"
+        ServerErrorCodes.INVALID_PAYMENT_SOURCE_DUPLICATE to "load_funds_add_card_error_duplicate",
+        ServerErrorCodes.RECIPIENT_NOT_FOUND to "p2p_transfer_error_recipient_not_found",
+        ServerErrorCodes.INVALID_RECIPIENT_EMAIL to "p2p_transfer_error_invalid_email",
+        ServerErrorCodes.INVALID_RECIPIENT_PHONE to "p2p_transfer_error_invalid_phone",
     )
 
     @Test
@@ -92,6 +95,13 @@ class ServerErrorFactoryTest {
         val error = sut.create(ServerErrorCodes.BALANCE_VALIDATIONS_INSUFFICIENT_APPLICATION_LIMIT)
 
         assertTrue(error is ErrorBalanceValidationsInsufficientApplicationLimit)
+    }
+
+    @Test
+    fun `given CARDHOLDER_DOES_NOT_EXIST code when create then ErrorCardholderDoesNotExist`() {
+        val error = sut.create(ServerErrorCodes.RECIPIENT_NOT_FOUND)
+
+        assertTrue(error is ErrorRecipientNotFound)
     }
 
     @Test

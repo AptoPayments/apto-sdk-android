@@ -9,7 +9,7 @@ data class MCC(
     val icon: Icon?
 ) : Serializable {
 
-    constructor(name: String) : this(name, Icon.valueOf(name.toUpperCase(Locale.US)))
+    constructor(name: String) : this(name, Icon.valueOf(name.uppercase(Locale.US)))
 
     fun toLocalizedString(): String {
         return (mccDescriptions[icon] ?: "transaction_details_basic_info_category_unavailable").localized()

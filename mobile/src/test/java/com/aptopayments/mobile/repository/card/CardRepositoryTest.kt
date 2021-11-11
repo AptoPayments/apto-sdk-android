@@ -3,21 +3,14 @@ package com.aptopayments.mobile.repository.card
 import com.aptopayments.mobile.data.TestDataProvider
 import com.aptopayments.mobile.data.card.ActivatePhysicalCardResult
 import com.aptopayments.mobile.data.card.ActivatePhysicalCardResultType
-import com.aptopayments.mobile.data.card.Card
-import com.aptopayments.mobile.exception.Failure.ServerError
-import com.aptopayments.mobile.extension.shouldBeLeftAndInstanceOf
 import com.aptopayments.mobile.extension.shouldBeRightAndEqualTo
-import com.aptopayments.mobile.extension.shouldBeRightAndInstanceOf
-import com.aptopayments.mobile.functional.left
 import com.aptopayments.mobile.functional.right
 import com.aptopayments.mobile.repository.UserSessionRepository
 import com.aptopayments.mobile.repository.card.local.CardBalanceLocalDao
 import com.aptopayments.mobile.repository.card.local.CardLocalRepository
 import com.aptopayments.mobile.repository.card.local.entities.CardBalanceLocalEntity
 import com.aptopayments.mobile.repository.card.remote.CardService
-import com.aptopayments.mobile.repository.card.remote.entities.CardEntity
 import com.aptopayments.mobile.repository.card.remote.requests.GetCardRequest
-import com.aptopayments.mobile.repository.card.remote.requests.IssueCardRequest
 import com.aptopayments.mobile.repository.card.usecases.*
 import org.mockito.kotlin.*
 import org.junit.jupiter.api.BeforeEach
@@ -48,92 +41,12 @@ class CardRepositoryTest {
     }
 
     @Test
-    fun `issue card with network connection call service`() {
-        // Given
-        givenSetUpIssueCardMocks(willRequestSucceed = true)
-
-        // When
-        sut.issueCard(
-            cardProductId = "cardProductId",
-            credential = null,
-            initialFundingSourceId = null
-        )
-
-        // Then
-        verify(service).issueCard(TestDataProvider.anyObject())
-    }
-
-    @Test
-    fun `issue card with initial funding source id pass initial funding source id`() {
-
-        // Given
-        val initialFundingSourceId = "initial_funding_source_id"
-        givenSetUpIssueCardMocks(willRequestSucceed = true)
-
-        // When
-        sut.issueCard(
-            cardProductId = "cardProductId", credential = null,
-            initialFundingSourceId = initialFundingSourceId
-        )
-
-        // Then
-        verify(service).issueCard(
-            IssueCardRequest(
-                cardProductId = "cardProductId",
-                oAuthCredentialRequest = null,
-                initialFundingSourceId = initialFundingSourceId
-            )
-        )
-    }
-
-    @Test
-    fun `issue card with network connection and request succeed return Right`() {
-        // Given
-        givenSetUpIssueCardMocks(willRequestSucceed = true)
-
-        // When
-        val result = sut.issueCard(
-            cardProductId = "cardProductId",
-            credential = null,
-            initialFundingSourceId = null
-        )
-
-        // Then
-        result.shouldBeRightAndInstanceOf(Card::class.java)
-    }
-
-    @Test
-    fun `issue card with network connection and request fails return Left`() {
-        // Given
-        givenSetUpIssueCardMocks(willRequestSucceed = false)
-
-        // When
-        val result = sut.issueCard(
-            cardProductId = "cardProductId",
-            credential = null,
-            initialFundingSourceId = null
-        )
-
-        // Then
-        result.shouldBeLeftAndInstanceOf(ServerError::class.java)
-    }
-
-    // Helpers
-    private fun givenSetUpIssueCardMocks(willRequestSucceed: Boolean) {
-        if (willRequestSucceed) {
-            given { service.issueCard(TestDataProvider.anyObject()) }.willReturn(CardEntity().toCard().right())
-        } else {
-            given { service.issueCard(TestDataProvider.anyObject()) }.willReturn(ServerError(1).left())
-        }
-    }
-
-    @Test
     fun `given CardLocalRepo has data and refresh is false when getCard then service doesn't get called`() {
         whenever(cardLocalRepo.getCard(cardId)).thenReturn(TestDataProvider.provideCard(accountID = cardId))
 
         sut.getCard(GetCardParams(cardId = cardId, refresh = false))
 
-        verifyZeroInteractions(service)
+        verifyNoInteractions(service)
     }
 
     @Test
@@ -244,7 +157,7 @@ class CardRepositoryTest {
 
         val result = sut.getCardBalance(GetCardBalanceParams(cardId, refresh = false))
 
-        verifyZeroInteractions(service)
+        verifyNoInteractions(service)
         verify(cardBalanceLocalDao).getCardBalance(cardId)
         result.shouldBeRightAndEqualTo(balance)
     }

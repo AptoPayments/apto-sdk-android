@@ -16,5 +16,5 @@ fun String.replaceFirstValue(value: String) = this.replaceFirst(VALUE_STRING, va
 internal fun String.toUrl(): URL? = if (this.isNotEmpty()) URL(this) else null
 
 fun String.toUpperCaseDefault(): String {
-    return this.toUpperCase(Locale.US)
+    return this.uppercase(Locale.US)
 }

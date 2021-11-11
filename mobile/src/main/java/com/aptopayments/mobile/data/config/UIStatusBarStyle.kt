@@ -8,7 +8,7 @@ enum class UIStatusBarStyle {
     companion object {
         fun parseStatusBarStyle(style: String): UIStatusBarStyle {
             return try {
-                valueOf(style.toUpperCase(Locale.US))
+                valueOf(style.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 AUTO
             }

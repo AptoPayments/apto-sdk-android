@@ -6,6 +6,6 @@ enum class ProvisioningCardNetwork {
     VISA, MASTERCARD, AMEX;
 
     companion object {
-        fun fromString(str: String) = valueOf(str.toUpperCase(Locale.US))
+        fun fromString(str: String) = valueOf(str.uppercase(Locale.US))
     }
 }

@@ -53,7 +53,7 @@ internal data class TransactionAdjustmentEntity(
     private fun parseTransactionAdjustmentType(type: String?): TransactionAdjustment.Type {
         return type?.let {
             try {
-                TransactionAdjustment.Type.valueOf(it.toUpperCase(Locale.US))
+                TransactionAdjustment.Type.valueOf(it.uppercase(Locale.US))
             } catch (exception: IllegalArgumentException) {
                 TransactionAdjustment.Type.OTHER
             }

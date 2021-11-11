@@ -45,7 +45,7 @@ data class Card(
         companion object {
             fun fromString(value: String): CardNetwork {
                 return try {
-                    valueOf(value.toUpperCase(Locale.US))
+                    valueOf(value.uppercase(Locale.US))
                 } catch (e: IllegalArgumentException) {
                     UNKNOWN
                 }

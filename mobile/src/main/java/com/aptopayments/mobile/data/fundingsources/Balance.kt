@@ -13,6 +13,9 @@ data class Balance(
     val amountHeld: Money? = null,
     val custodianWallet: CustodianWallet? = null
 ) {
+
+    fun getSpendable() = amountSpendable ?: balance ?: Money("USD", 0.0)
+
     enum class BalanceState {
         VALID,
         INVALID

@@ -44,7 +44,7 @@ data class NotificationGroup(
         }
 
         override fun toString(): String {
-            return name.toLowerCase(Locale.US)
+            return name.lowercase(Locale.US)
         }
     }
 

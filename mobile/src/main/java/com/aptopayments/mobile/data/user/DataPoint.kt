@@ -15,7 +15,7 @@ abstract class DataPoint : Serializable {
         companion object {
             fun fromString(string: String) =
                 try {
-                    valueOf(string.toUpperCase(Locale.US))
+                    valueOf(string.uppercase(Locale.US))
                 } catch (e: IllegalArgumentException) {
                     null
                 }

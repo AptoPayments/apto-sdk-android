@@ -1,5 +1,14 @@
 ## CHANGELOG
 
+# 2021-11-10 Mobile Version 3.16.0 Ui 3.16.0
+- feat(ui): Add Exported value to Activities to support Android 12 (ACQ-2194)
+- fix(ui): Prepare IVR Phone Call for Android 12 (ACQ-2298)
+- feat(ui-mobile): P2P payments
+- chore(mobile): Remove deprecated IssueCard method (ACQ-1201)
+- chore(all): Update Gradle plugin to 7.0.3
+- chore(all): Remove jCenter | Twillio 5.7.2 | Places 2.4.0 | inputMask 6.1.0 | ccp 2.4.9 (ACQ-1983)
+- chore(all): Reduce compile time warnings (ACQ-2186)
+
 # 2021-10-13 Version 3.15.0 Ui 3.15.0
 - feat(mobile): Added format field to Card object (ACQ-2142)
 - feat(ui): Remove payment source

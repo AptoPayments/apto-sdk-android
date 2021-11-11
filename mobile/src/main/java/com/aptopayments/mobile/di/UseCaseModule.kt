@@ -1,7 +1,6 @@
 package com.aptopayments.mobile.di
 
 import com.aptopayments.mobile.repository.card.usecases.*
-import com.aptopayments.mobile.repository.card.usecases.IssueCardWithProductIdUseCase
 import com.aptopayments.mobile.repository.cardapplication.usecases.*
 import com.aptopayments.mobile.repository.config.usecases.GetCardProductUseCase
 import com.aptopayments.mobile.repository.config.usecases.GetCardProductsUseCase
@@ -22,6 +21,8 @@ import com.aptopayments.mobile.repository.statements.usecases.GetMonthlyStatemen
 import com.aptopayments.mobile.repository.stats.usecases.ClearMonthlySpendingCacheUseCase
 import com.aptopayments.mobile.repository.stats.usecases.GetMonthlySpendingUseCase
 import com.aptopayments.mobile.repository.transaction.usecases.GetTransactionsUseCase
+import com.aptopayments.mobile.repository.p2p.usecases.P2pFindRecipientUseCase
+import com.aptopayments.mobile.repository.p2p.usecases.P2pMakeTransfer
 import com.aptopayments.mobile.repository.user.usecases.*
 import com.aptopayments.mobile.repository.verification.usecase.FinishVerificationUseCase
 import com.aptopayments.mobile.repository.verification.usecase.RestartVerificationUseCase
@@ -54,18 +55,7 @@ internal val useCasesModule = module {
     factory { SetBalanceStoreUseCase(applicationRepository = get(), networkHandler = get()) }
     factory { AcceptDisclaimerUseCase(applicationRepository = get(), networkHandler = get()) }
     factory { CancelCardApplicationUseCase(applicationRepository = get(), networkHandler = get()) }
-    factory {
-        com.aptopayments.mobile.repository.cardapplication.usecases.IssueCardUseCase(
-            applicationRepository = get(),
-            networkHandler = get()
-        )
-    }
-    factory {
-        IssueCardWithProductIdUseCase(
-            cardRepository = get(),
-            networkHandler = get()
-        )
-    }
+    factory { IssueCardUseCase(applicationRepository = get(), networkHandler = get()) }
     factory { GetCardsUseCase(repository = get(), networkHandler = get()) }
     factory { GetCardUseCase(repository = get(), networkHandler = get()) }
     factory { ActivatePhysicalCardUseCase(repository = get(), networkHandler = get()) }
@@ -95,4 +85,6 @@ internal val useCasesModule = module {
     factory { ReviewAgreementsUseCase(get(), get()) }
     factory { OrderPhysicalCardUseCase(get(), get()) }
     factory { GetOrderPhysicalCardConfigurationUseCase(get(), get()) }
+    factory { P2pFindRecipientUseCase(get(), get()) }
+    factory { P2pMakeTransfer(get(), get()) }
 }

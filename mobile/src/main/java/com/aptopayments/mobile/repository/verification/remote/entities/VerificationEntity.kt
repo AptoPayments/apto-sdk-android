@@ -33,7 +33,7 @@ internal data class VerificationEntity(
             return VerificationEntity(
                 verificationType = verification.verificationType,
                 verificationId = verification.verificationId,
-                status = verification.status.toString().toLowerCase(Locale.US)
+                status = verification.status.toString().lowercase(Locale.US)
             )
         }
     }
