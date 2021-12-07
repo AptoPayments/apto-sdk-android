@@ -8,6 +8,7 @@ import com.aptopayments.mobile.exception.server.ServerErrorCodes.BALANCE_VALIDAT
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.CAN_NOT_SEND_SMS
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.CARD_ALREADY_ISSUED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.COUNTRY_INVALID
+import com.aptopayments.mobile.exception.server.ServerErrorCodes.LOAD_FUNDS_DAILY_LIMIT_EXCEEDED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.DOB_INVALID
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.DOB_REQUIRED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.DOB_TOO_YOUNG
@@ -44,6 +45,7 @@ import com.aptopayments.mobile.exception.server.ServerErrorCodes.PAYMENT_SOURCE_
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.INVALID_PAYMENT_SOURCE_DUPLICATE
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.INVALID_RECIPIENT_EMAIL
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.INVALID_RECIPIENT_PHONE
+import com.aptopayments.mobile.exception.server.ServerErrorCodes.P2P_SELF_SEND
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PHYSICAL_CARD_ACTIVATION_NOT_SUPPORTED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PHYSICAL_CARD_ALREADY_ACTIVATED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PHYSICAL_CARD_ALREADY_ORDERED
@@ -127,9 +129,10 @@ class ServerErrorFactory {
         INVALID_PAYMENT_SOURCE_CARD_EXPIRATION to "load_funds_add_card_error_expiration",
         INVALID_PAYMENT_SOURCE_CARD_POSTAL_CODE to "load_funds_add_card_error_postal_code",
         INVALID_PAYMENT_SOURCE_CARD_ADDRESS to "load_funds_add_card_error_address",
-        INVALID_PAYMENT_SOURCE_AMOUNT to "load_funds_add_money_error_limit",
+        INVALID_PAYMENT_SOURCE_AMOUNT to "load_funds_add_money_error_invalid_amount",
         INVALID_PAYMENT_SOURCE_CURRENCY to "load_funds_add_money_error_message",
         PAYMENT_SOURCE_ADD_LIMIT to "load_funds_add_card_error_limit",
+        LOAD_FUNDS_DAILY_LIMIT_EXCEEDED to "load_funds_add_money_error_limit",
         PHYSICAL_CARD_ALREADY_ORDERED to "error.physical_card.card_already_ordered",
         PHYSICAL_CARD_NOT_SUPPORTED to "error.physical_card.order_not_supported",
         INVALID_PAYMENT_SOURCE_DUPLICATE to "load_funds_add_card_error_duplicate",
@@ -147,6 +150,7 @@ class ServerErrorFactory {
             code == REVOKED_TOKEN -> ErrorOauthTokenRevoked(apiMessage)
             code == INSUFFICIENT_FUNDS -> ErrorInsufficientFunds(apiMessage)
             code == RECIPIENT_NOT_FOUND -> ErrorRecipientNotFound(apiMessage)
+            code == P2P_SELF_SEND -> ErrorP2PSelfRecipient(apiMessage)
             else -> createGenericServerError(code, apiMessage, UNDEFINED_MESSAGE)
         }
     }

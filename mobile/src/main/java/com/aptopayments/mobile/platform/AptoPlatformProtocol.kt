@@ -301,14 +301,6 @@ interface AptoPlatformProtocol {
     )
 
     // Card handling
-    /**
-     * This method is used to retrieve the list of the user cards
-     *
-     * @param callback Lambda called when the api call has been made returning Either Failure if there was an error
-     * or a List of cards it it was successful
-     */
-    @Deprecated("To obtain the list of cards please use fetchCards with pagination")
-    fun fetchCards(callback: (Either<Failure, List<Card>>) -> Unit)
 
     /**
      * This method is used to retrieve the list of the user cards
@@ -363,6 +355,7 @@ interface AptoPlatformProtocol {
      * @param callback Lambda called when the call has been made returning Either Failure if there was an error
      * or the Card if the PIN was successfully changed
      */
+    @Deprecated("This operation should be done using the PCI-SDK")
     fun changeCardPin(cardId: String, pin: String, callback: (Either<Failure, Card>) -> Unit)
 
     /**

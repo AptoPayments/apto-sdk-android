@@ -309,9 +309,6 @@ object AptoPlatform : AptoPlatformProtocol {
         callback: (Either<Failure, Card>) -> Unit
     ) = koin.get<IssueCardUseCase>().invoke(Params(applicationId, metadata, design)) { callback(it) }
 
-    override fun fetchCards(callback: (Either<Failure, List<Card>>) -> Unit) =
-        fetchCards(null) { result -> callback(result.map { it.data }) }
-
     override fun fetchCards(pagination: ListPagination?, callback: (Either<Failure, PaginatedList<Card>>) -> Unit) =
         koin.get<GetCardsUseCase>().invoke(pagination) { callback(it) }
 

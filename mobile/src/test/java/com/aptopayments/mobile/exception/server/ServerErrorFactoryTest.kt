@@ -60,7 +60,7 @@ class ServerErrorFactoryTest {
         ServerErrorCodes.INVALID_PAYMENT_SOURCE_CARD_EXPIRATION to "load_funds_add_card_error_expiration",
         ServerErrorCodes.INVALID_PAYMENT_SOURCE_CARD_POSTAL_CODE to "load_funds_add_card_error_postal_code",
         ServerErrorCodes.INVALID_PAYMENT_SOURCE_CARD_ADDRESS to "load_funds_add_card_error_address",
-        ServerErrorCodes.INVALID_PAYMENT_SOURCE_AMOUNT to "load_funds_add_money_error_limit",
+        ServerErrorCodes.INVALID_PAYMENT_SOURCE_AMOUNT to "load_funds_add_money_error_invalid_amount",
         ServerErrorCodes.INVALID_PAYMENT_SOURCE_CURRENCY to "load_funds_add_money_error_message",
         ServerErrorCodes.PAYMENT_SOURCE_ADD_LIMIT to "load_funds_add_card_error_limit",
         ServerErrorCodes.PHYSICAL_CARD_ALREADY_ORDERED to "error.physical_card.card_already_ordered",
@@ -73,6 +73,7 @@ class ServerErrorFactoryTest {
         ServerErrorCodes.RECIPIENT_NOT_FOUND to "p2p_transfer_error_recipient_not_found",
         ServerErrorCodes.INVALID_RECIPIENT_EMAIL to "p2p_transfer_error_invalid_email",
         ServerErrorCodes.INVALID_RECIPIENT_PHONE to "p2p_transfer_error_invalid_phone",
+        ServerErrorCodes.LOAD_FUNDS_DAILY_LIMIT_EXCEEDED to "load_funds_add_money_error_limit",
     )
 
     @Test
@@ -116,5 +117,12 @@ class ServerErrorFactoryTest {
         val error = sut.create(ServerErrorCodes.INSUFFICIENT_FUNDS)
 
         assertTrue(error is ErrorInsufficientFunds)
+    }
+
+    @Test
+    fun `given P2P_SELF_SEND code when create then ErrorInsufficientFunds`() {
+        val error = sut.create(ServerErrorCodes.P2P_SELF_SEND)
+
+        assertTrue(error is ErrorP2PSelfRecipient)
     }
 }

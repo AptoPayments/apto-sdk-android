@@ -1,5 +1,15 @@
 ## CHANGELOG
 
+# 2021-12-7 Mobile Version 3.17.0 Ui 3.17.0
+- feat(ui): Moved Card PIN update to PCI-SDK
+- feat(ui): Start migration to ViewBinding
+- chore(ui): Remove emojis from copies
+- fix(ui): Remove memory leak con Main Screen - Transaction List
+- fix(ui): Set background color for main activity
+- fix(ui): Reconnect funding source
+- feat(mobile&ui): P2P - Catch Recipient Self Error
+- chore(mobile): Remove deprecated fetchCard method
+
 # 2021-11-10 Mobile Version 3.16.0 Ui 3.16.0
 - feat(ui): Add Exported value to Activities to support Android 12 (ACQ-2194)
 - fix(ui): Prepare IVR Phone Call for Android 12 (ACQ-2298)

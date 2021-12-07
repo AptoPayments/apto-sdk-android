@@ -66,4 +66,6 @@ internal object ServerErrorCodes {
     const val INVALID_RECIPIENT_EMAIL = 200023
     const val INVALID_RECIPIENT_PHONE = 200014
     const val RECIPIENT_NOT_FOUND = 200116
+    const val LOAD_FUNDS_DAILY_LIMIT_EXCEEDED = 200069
+    const val P2P_SELF_SEND = 200115
 }

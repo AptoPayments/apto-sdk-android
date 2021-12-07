@@ -146,8 +146,10 @@
     <string name="load_funds_add_card_error_limit">Too many cards added</string>
     <string name="load_funds_add_card_error_card_type">Card type not supported</string>
     <string name="load_funds_add_card_error_duplicate">This card has already been added previously.</string>
+    <string name="load_funds_add_money_error_invalid_amount">Invalid Amount</string>
     <string name="monthly_statements.list.error_generating_report.message">There was an error generating the report. Please try again later or contact customer support if the error persist</string>
     <string name="p2p_transfer_error_invalid_phone">Invalid phone</string>
     <string name="p2p_transfer_error_invalid_email">Invalid email</string>
     <string name="p2p_transfer_error_recipient_not_found">Recipient not found</string>
+    <string name="p2p_transfer_error_self_transfer">You cannot transfer money to yourself.</string>
 </resources>
