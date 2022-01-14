@@ -12,6 +12,7 @@ class ServerErrorFactoryTest {
         ServerErrorCodes.INVALID_SESSION to "error.transport.invalid_session",
         ServerErrorCodes.SESSION_EXPIRED to "error.transport.session_expired",
         ServerErrorCodes.EMPTY_SESSION to "error.transport.empty_session",
+        ServerErrorCodes.ACCOUNT_CREATION_PROHIBITED to "error.transport.account_creation_prohibited",
         ServerErrorCodes.LOGIN_ERROR_INVALID_CREDENTIALS to "error.transport.login_error_invalid_credentials",
         ServerErrorCodes.LOGIN_ERROR_UNVERIFIED_DATAPOINTS to "error.transport.login_error_unverified_datapoints",
         ServerErrorCodes.SHIFT_CARD_ACTIVATE_ERROR to "error.transport.shift_card_activate_error",

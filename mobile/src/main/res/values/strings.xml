@@ -97,6 +97,7 @@
     <string name="error_transport_invalid_session">For your security, your session has timed out due to inactivity.</string>
     <string name="error_transport_session_expired">User session has expired. Please sign in with your credentials.</string>
     <string name="error_transport_empty_session">For your security, your session has timed out due to inactivity.</string>
+    <string name="account_creation_prohibited">We’re temporarily holding back new activations. Sorry for the inconvenience. If you have any questions, please do not hesitate to contact our support team.</string>
     <string name="error_transport_login_error_invalid_credentials">Error. Please re-enter your credentials.</string>
     <string name="error_transport_login_error_unverified_datapoints">Error. Please verify your login information.</string>
     <string name="error_transport_shift_card_activate_error">Oops! There was a problem activating your card.</string>

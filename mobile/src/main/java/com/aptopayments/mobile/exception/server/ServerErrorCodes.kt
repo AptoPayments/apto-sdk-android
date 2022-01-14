@@ -5,6 +5,7 @@ internal object ServerErrorCodes {
     const val SESSION_EXPIRED = 3031
     const val INVALID_SESSION = 3032
     const val EMPTY_SESSION = 3033
+    const val ACCOUNT_CREATION_PROHIBITED = 90301
     const val LOGIN_ERROR_INVALID_CREDENTIALS = 90028
     const val LOGIN_ERROR_UNVERIFIED_DATAPOINTS = 90032
     const val SHIFT_CARD_ACTIVATE_ERROR = 90173

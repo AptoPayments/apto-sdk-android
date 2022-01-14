@@ -39,6 +39,7 @@ import com.aptopayments.mobile.exception.server.ServerErrorCodes.INVALID_SESSION
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.LAST_NAME_INVALID
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.LAST_NAME_REQUIRED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.LOCALITY_INVALID
+import com.aptopayments.mobile.exception.server.ServerErrorCodes.ACCOUNT_CREATION_PROHIBITED
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.LOGIN_ERROR_INVALID_CREDENTIALS
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.LOGIN_ERROR_UNVERIFIED_DATAPOINTS
 import com.aptopayments.mobile.exception.server.ServerErrorCodes.PAYMENT_SOURCE_ADD_LIMIT
@@ -81,6 +82,7 @@ class ServerErrorFactory {
         INVALID_SESSION to "error.transport.invalid_session",
         SESSION_EXPIRED to "error.transport.session_expired",
         EMPTY_SESSION to "error.transport.empty_session",
+        ACCOUNT_CREATION_PROHIBITED to "error.transport.account_creation_prohibited",
         LOGIN_ERROR_INVALID_CREDENTIALS to "error.transport.login_error_invalid_credentials",
         LOGIN_ERROR_UNVERIFIED_DATAPOINTS to "error.transport.login_error_unverified_datapoints",
         SHIFT_CARD_ACTIVATE_ERROR to "error.transport.shift_card_activate_error",
