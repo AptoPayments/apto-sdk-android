@@ -34,6 +34,7 @@ const val X_DEVICE_VERSION_HEADER = "X-Device-Version"
 @VisibleForTesting(otherwise = Modifier.PRIVATE)
 const val X_CONTENT_TYPE_HEADER = "Content-Type"
 private const val X_CONTENT_TYPE_CONTENT = "application/json"
+private const val X_CONTENT_TYPE_JWT = "application/jwt"
 
 @VisibleForTesting(otherwise = Modifier.PRIVATE)
 const val X_API_KEY = "Api-Key"
@@ -49,6 +50,7 @@ internal open class OkHttpClientProviderImpl(
     private val apiKeyProvider: ApiKeyProvider,
     private val userSessionRepository: UserSessionRepository
 ) : OkHttpClientProvider {
+    private val validContentTypes = listOf(X_CONTENT_TYPE_CONTENT, X_CONTENT_TYPE_JWT)
 
     override fun provide(): OkHttpClient {
         val okHttpClientBuilder = OkHttpClient.Builder()
@@ -109,16 +111,22 @@ internal open class OkHttpClientProviderImpl(
 
     private fun addFixedHeaders(okHttpClientBuilder: OkHttpClient.Builder) {
         okHttpClientBuilder.addInterceptor { chain ->
+            val contentType: String = findContentType(chain.request())
             val newRequest = chain.request().newBuilder().apply {
                 addHeader(X_SDK_VERSION_HEADER, BuildConfig.LIBRARY_VERSION_NAME)
                 addHeader(X_DEVICE_HEADER, X_DEVICE_CONTENT)
                 addHeader(X_DEVICE_VERSION_HEADER, Build.MODEL ?: "Unknown model")
                 addHeader(X_CACHE_CONTROL_HEADER, X_CACHE_CONTROL_CONTENT)
-                addHeader(X_CONTENT_TYPE_HEADER, X_CONTENT_TYPE_CONTENT)
+                addHeader(X_CONTENT_TYPE_HEADER, contentType)
             }.build()
             chain.proceed(newRequest)
         }
     }
+
+    private fun findContentType(request: Request) = request.body?.contentType()?.let {
+        if (validContentTypes.contains("${it.type}/${it.subtype}")) "${it.type}/${it.subtype}"
+        else null
+    } ?: X_CONTENT_TYPE_CONTENT
 
     private fun manageCache(okHttpClientBuilder: OkHttpClient.Builder) {
         AptoPlatform.application.cacheDir?.let { cacheDir ->

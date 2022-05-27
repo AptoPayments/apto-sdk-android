@@ -1,5 +1,7 @@
 ## CHANGELOG
-
+#2022-05-27 Mobile Version 3.19.0 Ui 3.19.0
+- feat(mobile&ui): Added Origin Verification.
+- 
 # 2022-01-13 Mobile Version 3.17.2 Ui 3.17.2
 - feat(mobile&ui): Minor updates to improve onboarding experience.
 

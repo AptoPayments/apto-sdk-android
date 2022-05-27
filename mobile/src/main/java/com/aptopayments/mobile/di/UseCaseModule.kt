@@ -39,6 +39,7 @@ internal val useCasesModule = module {
     factory { GetCardProductUseCase(repository = get(), networkHandler = get()) }
     factory { GetCardProductsUseCase(repository = get(), networkHandler = get()) }
     factory { CreateUserUseCase(userRepository = get(), networkHandler = get()) }
+    factory { CreateUserSignedPayloadUseCase(userRepository = get(), networkHandler = get()) }
     factory { LoginUserUseCase(repository = get(), networkHandler = get()) }
     factory { UpdateUserDataUseCase(repository = get(), networkHandler = get()) }
     factory { StartOAuthAuthenticationUseCase(repository = get(), networkHandler = get()) }

@@ -18,6 +18,7 @@ import com.aptopayments.mobile.repository.user.usecases.UnregisterPushDevicePara
 internal interface UserRepository : BaseNoNetworkRepository {
 
     fun createUser(userData: DataPointList, custodianUid: String?, metadata: String?): Either<Failure, User>
+    fun createUser(webToken: String): Either<Failure, User>
     fun updateUserData(userData: DataPointList): Either<Failure, User>
     fun loginUser(verificationList: List<Verification>): Either<Failure, User>
     fun registerPushDevice(pushToken: String): Either<Failure, Unit>
@@ -37,6 +38,8 @@ internal class UserRepositoryImpl(
         custodianUid: String?,
         metadata: String?
     ) = service.createUser(userData, custodianUid, metadata)
+
+    override fun createUser(webToken: String) = service.createUser(webToken = webToken)
 
     override fun updateUserData(userData: DataPointList) = service.updateUser(userData)
 

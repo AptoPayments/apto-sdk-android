@@ -10,6 +10,8 @@ import com.aptopayments.mobile.platform.BaseNetworkService
 import com.aptopayments.mobile.repository.user.remote.entities.NotificationPreferencesEntity
 import com.aptopayments.mobile.repository.user.remote.entities.UserEntity
 import com.aptopayments.mobile.repository.user.remote.requests.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.net.URLEncoder
 
 private const val UTF8 = "UTF-8"
@@ -24,8 +26,12 @@ internal class UserService(apiCatalog: ApiCatalog) : BaseNetworkService() {
         metadata: String?
     ): Either<Failure, User> {
         val request = CreateUserDataRequest.from(userData, custodianUid, metadata)
-        return request(userApi.createUser(request), { it.toUser() }, UserEntity())
+        return request(userApi.createUserSigned(request), { it.toUser() }, UserEntity())
     }
+
+    fun createUser(webToken: String) = request(
+        userApi.createUser(webToken.toRequestBody("text/plain".toMediaTypeOrNull())), { it.toUser() }, UserEntity()
+    )
 
     fun updateUser(userData: DataPointList) =
         request(userApi.updateUser(UserDataRequest.from(userData)), { it.toUser() }, UserEntity())

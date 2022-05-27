@@ -14,5 +14,6 @@ data class ProjectConfiguration(
     val trackerAccessToken: String?,
     val isTrackerActive: Boolean?,
     val primaryAuthCredential: DataPoint.Type?,
-    val secondaryAuthCredential: DataPoint.Type? = null
+    val secondaryAuthCredential: DataPoint.Type? = null,
+    val requiredSignedPayloads: Boolean? = true
 ) : Serializable

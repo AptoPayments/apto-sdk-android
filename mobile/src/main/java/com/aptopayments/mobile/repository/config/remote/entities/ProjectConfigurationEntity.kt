@@ -37,6 +37,9 @@ internal data class ProjectConfigurationEntity(
     @SerializedName("tracker_active")
     val isTrackerActive: Boolean? = false,
 
+    @SerializedName("required_signed_payloads")
+    val requiredSignedPayloads: Boolean? = true,
+
 ) {
     fun toProjectConfiguration() = ProjectConfiguration(
         name = name,
@@ -48,6 +51,7 @@ internal data class ProjectConfigurationEntity(
         trackerAccessToken = trackerAccessToken,
         isTrackerActive = isTrackerActive,
         primaryAuthCredential = DataPoint.Type.fromString(primaryOAuthCredential),
-        secondaryAuthCredential = DataPoint.Type.fromString(secondaryOAuthCredential)
+        secondaryAuthCredential = DataPoint.Type.fromString(secondaryOAuthCredential),
+        requiredSignedPayloads = requiredSignedPayloads
     )
 }

@@ -74,6 +74,7 @@ import com.aptopayments.mobile.repository.transaction.TransactionListFilters
 import com.aptopayments.mobile.repository.transaction.usecases.GetTransactionsUseCase
 import com.aptopayments.mobile.repository.p2p.usecases.P2pFindRecipientUseCase
 import com.aptopayments.mobile.repository.p2p.usecases.P2pMakeTransfer
+import com.aptopayments.mobile.repository.user.remote.requests.CreateUserDataRequest
 import com.aptopayments.mobile.repository.user.usecases.*
 import com.aptopayments.mobile.repository.user.usecases.CreateUserUseCase
 import com.aptopayments.mobile.repository.user.usecases.GetNotificationPreferencesUseCase
@@ -87,6 +88,7 @@ import com.aptopayments.mobile.repository.verification.usecase.StartPhoneVerific
 import com.aptopayments.mobile.repository.verification.usecase.StartPrimaryVerificationUseCase
 import com.aptopayments.mobile.repository.voip.usecases.SetupVoipCallParams
 import com.aptopayments.mobile.repository.voip.usecases.SetupVoipCallUseCase
+import com.google.gson.Gson
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.Koin
@@ -107,6 +109,8 @@ object AptoPlatform : AptoPlatformProtocol {
 
     private var weakDelegate = WeakReference<AptoPlatformDelegate?>(null)
 
+    var webTokenProvider: AptoPlatformWebTokenProvider? = null
+
     @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
     lateinit var koin: Koin
 
@@ -117,6 +121,8 @@ object AptoPlatform : AptoPlatformProtocol {
 
     private var uiModules: List<Module> = listOf()
     private val userPreferencesRepository: UserPreferencesRepository by lazy { koin.get() }
+
+    private var useSignedPayload: Boolean = true
 
     fun setUiModules(list: List<Any>) {
         uiModules = list.filterIsInstance<Module>()
@@ -182,7 +188,10 @@ object AptoPlatform : AptoPlatformProtocol {
     override fun fetchContextConfiguration(
         forceRefresh: Boolean,
         callback: (Either<Failure, ContextConfiguration>) -> Unit
-    ) = koin.get<GetContextConfigurationUseCase>().invoke(forceRefresh) { callback(it) }
+    ) = koin.get<GetContextConfigurationUseCase>().invoke(forceRefresh) {
+        it.runIfRight { useSignedPayload = it.projectConfiguration.requiredSignedPayloads ?: true }
+        callback(it)
+    }
 
     override fun fetchCardProduct(
         cardProductId: String,
@@ -204,9 +213,41 @@ object AptoPlatform : AptoPlatformProtocol {
         custodianUid: String?,
         metadata: String?,
         callback: (Either<Failure, User>) -> Unit
-    ) = koin.get<CreateUserUseCase>().invoke(CreateUserUseCase.Params(userData, custodianUid, metadata)) { result ->
-        result.runIfRight { user -> userSessionRepository.userToken = user.token }
-        callback(result)
+    ) {
+
+        if (!useSignedPayload) {
+            createUser(CreateUserUseCase.Params(userData, custodianUid, metadata), callback)
+            return
+        }
+
+        val createUserPayload = Gson().toJson(
+            CreateUserDataRequest.from(
+                userData,
+                custodianUid = custodianUid,
+                metadata = metadata
+            )
+        )
+
+        webTokenProvider?.getToken(createUserPayload) { tokenResults ->
+            tokenResults.either(
+                ifLeft = { callback(Either.Left(it)) },
+                ifRight = { createUser(it, callback) }
+            )
+        } ?: createUser(CreateUserUseCase.Params(userData, custodianUid, metadata), callback)
+    }
+
+    private fun createUser(webToken: String, callback: (Either<Failure, User>) -> Unit) {
+        koin.get<CreateUserSignedPayloadUseCase>().invoke(webToken) { result ->
+            result.runIfRight { userSessionRepository.userToken = it.token }
+            callback(result)
+        }
+    }
+    private fun createUser(params: CreateUserUseCase.Params, callback: (Either<Failure, User>) -> Unit) {
+        koin.get<CreateUserUseCase>()
+            .invoke(params) { result ->
+                result.runIfRight { user -> userSessionRepository.userToken = user.token }
+                callback(result)
+            }
     }
 
     override fun loginUserWith(verifications: List<Verification>, callback: (Either<Failure, User>) -> Unit) =
