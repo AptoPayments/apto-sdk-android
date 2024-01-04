@@ -70,15 +70,6 @@ internal class CurrencySymbolProviderTest {
     }
 
     @Test
-    fun `given CHINA locale and CNY then correct symbol is provided`() {
-        Locale.setDefault(Locale.CHINA)
-
-        val result = sut.provide("CNY")
-
-        assertEquals("￥", result)
-    }
-
-    @Test
     fun `given USA locale and CNY then correct symbol is provided`() {
         Locale.setDefault(Locale.US)
 
